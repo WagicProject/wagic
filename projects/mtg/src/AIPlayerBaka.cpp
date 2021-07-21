@@ -3296,15 +3296,21 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
         if((!pMana->canAfford(card->getManaCost(),0) || card->getManaCost()->getKicker()))
             gotPayments = canPayMana(card,card->getManaCost(),card->has(Constants::ANYTYPEOFMANA));
         if(card->getManaCost()->getAlternative() && !gotPayments.size() && !pMana->canAfford(card->getManaCost(),0) && !card->getManaCost()->getKicker()){ //Now AI can cast cards using alternative cost.
-            ManaCost * extra = card->getManaCost()->getAlternative(); //Fix a crash when AI try to pay convoke cost.
-            bool hasConvoke = false;
+            ManaCost * extra = card->getManaCost()->getAlternative(); 
+            bool hasConvoke = false; //Fix a crash when AI try to pay convoke cost.
+            bool hasOffering = card->basicAbilities[Constants::OFFERING]; //Fix a hang when AI try to pay emerge cost.
+            bool hasDelve = false; //Fix a hang when AI try to pay delve cost.
             if(extra->extraCosts){
-                for(unsigned int i = 0; i < extra->extraCosts->costs.size() && !hasConvoke; i++){
+                for(unsigned int i = 0; i < extra->extraCosts->costs.size() && !hasConvoke && !hasOffering && !hasDelve; i++){
                     if(dynamic_cast<Convoke*> (extra->extraCosts->costs[i]))
                         hasConvoke = true;
+                    else if(dynamic_cast<Offering*> (extra->extraCosts->costs[i]))
+                        hasOffering = true;
+                    else if(dynamic_cast<Delve*> (extra->extraCosts->costs[i]))
+                        hasDelve = true;
                 }
             }
-            if(!hasConvoke){
+            if(!hasOffering && !hasConvoke && !hasDelve){
                 localpayAlternative = true;
                 manaToPay = card->getManaCost()->getAlternative();
                 if(!pMana->canAfford(manaToPay,0))
@@ -4129,15 +4135,19 @@ int AIPlayerBaka::chooseBlockers()
                 else
                 {
                     MTGCardInstance * attacker = card->defenser;
-                    if (opponentsToughness[attacker] <= 0 || (card->toughness <= attacker->power && opponentForce * 2 < life
-                            && !canFirstStrikeKill(card, attacker)) || attacker->nbOpponents() > 1)
+                    if (opponentsToughness[attacker] <= 0 || (card->toughness <= attacker->power && opponentForce * 2 < life && !canFirstStrikeKill(card, attacker)) || attacker->nbOpponents() > 1)
                     {
                         if (card->blockCost)
                         {
                             MTGAbility * a = observer->mLayers->actionLayer()->getAbility(MTGAbility::BLOCK_COST);
                             doAbility(a, card);
                         }
-                        observer->cardClick(card, MTGAbility::MTG_BLOCK_RULE);
+                        if((!attacker->basicAbilities[Constants::MENACE] && !attacker->basicAbilities[Constants::THREEBLOCKERS]) || 
+                            (attacker->basicAbilities[Constants::MENACE] && attacker->blockers.size() > 2) ||
+                            (attacker->basicAbilities[Constants::THREEBLOCKERS] && attacker->blockers.size() > 3))
+                            observer->cardClick(card, MTGAbility::MTG_BLOCK_RULE);
+                        else
+                            set = 1;
                     }
                     else
                     {

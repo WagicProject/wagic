@@ -1043,7 +1043,7 @@ auto={C(0/0,1,Loyalty)}:name(+1: Creature can't attack) target(creature[-first s
 auto={C(0/0,1,Loyalty)}:name(+1: Search Monk in library) target(Monk of the Open Hand|mylibrary) moveto(myhand) and!( shuffle )!
 auto={C(0/0,1,Loyalty)}:name(+1: Search Monk in graveyard) target(Monk of the Open Hand|mygraveyard) moveto(myhand)
 text=As long as Grand Master of Flowers has seven or more loyalty counters on him, he’s a 7/7 Dragon God creature with flying and indestructible. -- +1: Target creature without first strike, double strike, or vigilance can’t attack or block until your next turn. -- +1: Search your library and/or graveyard for a card named Monk of the Open Hand, reveal it, and put it into your hand. If you search your library this way, shuffle it.
-mana={2}{U}{U}
+mana={2}{W}{W}
 type=Legendary Planeswalker
 subtype=Bahamut
 [/card]
@@ -1403,7 +1403,7 @@ aicode=activate target(*[zpos<=1]|myLibrary) moveto(ownerHand) && target(*[zpos<
 auto=counter(0/0,5,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Reveal two exile one and put in hand) reveal:2 optionone name(Look at the top two cards) target(*|reveal) moveto(myHand) optiononeend optiontwo name(Exile) target(*|reveal) moveTo(myExile) optiontwoend revealend
 auto={C(0/0,-3,Loyalty)}:name(-3: Return a exile card to your hand) moveTo(myHand) target(*|myExile)
-auto={C(0/0,-2,Loyalty)}:name(-2: Create a 0/0 Construct) token(Construct Kar)
+auto={C(0/0,-2,Loyalty)}:name(-2: Create a 0/0 Construct) token(Construct,Artifact Creature Construct,0/0) and!( transforms((,newability[foreach(artifact|mybattlefield) 1/1])) forever )!
 text=+1: Reveal the top two cards of your library. An opponent chooses one of them. Put that card into your hand and exile the other with a silver counter on it. -- −1: Put a card you own with a silver counter on it from exile into your hand. -- −2: Create a 0/0 colorless Construct artifact creature token with “This creature gets +1/+1 for each artifact you control.”
 mana={4}
 type=Legendary Planeswalker

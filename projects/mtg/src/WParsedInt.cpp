@@ -1303,6 +1303,10 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
             }
         }
     }
+    else if (s == "ishuman")//return if controller is Human or AI
+    {
+        intValue = (card->controller()->isAI())?0:1;
+    }
     else if(!intValue)//found nothing, try parsing a atoi
     {
         intValue = atoi(s.c_str());

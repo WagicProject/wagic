@@ -9479,10 +9479,12 @@ toughness=1
 [/card]
 [card]
 name=Cetavolver
-other={2}{U}{R} name(Red Kicker)
-kicker={G}
-auto=if paid(alternative) then counter(1/1,2) && first strike
-auto=if paid(kicker) then counter(1/1,1) && trample
+abilities=hasotherkicker
+other={2}{U}{R} name(Kicker Red)
+kicker={G} name(Kicker Green or Both)
+auto=if paid(alternative) then transforms((,newability[counter(1/1.2)],newability[first strike])) forever
+auto=if paid(kicker) then transforms((,newability[counter(1/1)],newability[trample])) forever
+auto=if paid(kicker) then pay({R}) name(Pay also kicker red) transforms((,newability[counter(1/1.2)],newability[first strike])) forever
 text=Kicker {1}{R} and/or {G} (You may pay an additional {1}{R} and/or {G} as you cast this spell.) -- If Cetavolver was kicked with its {1}{R} kicker, it enters the battlefield with two +1/+1 counters on it and with first strike. -- If Cetavolver was kicked with its {G} kicker, it enters the battlefield with a +1/+1 counter on it and with trample.
 mana={1}{U}
 type=Creature
@@ -13451,6 +13453,52 @@ mana={1}{R}
 type=Sorcery
 [/card]
 [card]
+name=Cycle of Life
+auto={H}:name(Creature becomes 0/1) target(creature[fresh]|mybattlefield) transforms((,newability[becomes(Creature^0/1) uynt],newability[phaseaction[my upkeep once sourceinplay] counter(1/1)])) forever
+text=Return Cycle of Life to its owner's hand: Target creature you cast this turn becomes 0/1 until your next upkeep. At the beginning of your next upkeep, put a +1/+1 counter on that creature.
+mana={1}{G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Cyclical Evolution
+abilities=exiledeath
+other={2}{G} name(Suspend 3)
+auto=ifnot paid(alternative) then choice name(Creature gets 3/3) name(Creature gets 3/3) target(creature) 3/3 ueot
+auto=moveto(myexile) and!( counter(0/0,3,Time) )!
+autoexile=@each my upkeep restriction{compare(hascnttime)~morethan~1}:counter(0/0,-1,Time)
+autoexile=@each my upkeep restriction{compare(hascnttime)~equalto~1}:activate castcard(normal)
+text=Target creature gets +3/+3 until end of turn. Exile Cyclical Evolution with three time counters on it. -- Suspend 3 — {2}{G} (Rather than cast this card from your hand, you may pay {2}{G} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
+mana={3}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Cyclone
+auto=@each my upkeep restriction{compare(hascntwind)~equalto~0}:name(Pay or sacrifice) transforms((,newability[pay({G}) name(Pay or sacrifice) name(Pay or sacrifice) damage:hascntwind all(player) && damage:hascntwind all(creature)?name(sacrifice) sacrifice])) oneshot
+auto=@each my upkeep restriction{compare(hascntwind)~equalto~1}:name(Pay or sacrifice) transforms((,newability[pay({G}{G}) name(Pay or sacrifice) name(Pay or sacrifice) damage:hascntwind all(player) && damage:hascntwind all(creature)?name(sacrifice) sacrifice])) oneshot
+auto=@each my upkeep restriction{compare(hascntwind)~equalto~2}:name(Pay or sacrifice) transforms((,newability[pay({G}{G}{G}) name(Pay or sacrifice) name(Pay or sacrifice) damage:hascntwind all(player) && damage:hascntwind all(creature)?name(sacrifice) sacrifice])) oneshot
+auto=@each my upkeep restriction{compare(hascntwind)~equalto~3}:name(Pay or sacrifice) transforms((,newability[pay({G}{G}{G}{G}) name(Pay or sacrifice) name(Pay or sacrifice) damage:hascntwind all(player) && damage:hascntwind all(creature)?name(sacrifice) sacrifice])) oneshot
+auto=@each my upkeep restriction{compare(hascntwind)~equalto~4}:name(Pay or sacrifice) transforms((,newability[pay({G}{G}{G}{G}{G}) name(Pay or sacrifice) name(Pay or sacrifice) damage:hascntwind all(player) && damage:hascntwind all(creature)?name(sacrifice) sacrifice])) oneshot
+auto=@each my upkeep restriction{compare(hascntwind)~equalto~5}:name(Pay or sacrifice) transforms((,newability[pay({G}{G}{G}{G}{G}{G}) name(Pay or sacrifice) name(Pay or sacrifice) damage:hascntwind all(player) && damage:hascntwind all(creature)?name(sacrifice) sacrifice])) oneshot
+auto=@each my upkeep restriction{compare(hascntwind)~equalto~6}:name(Pay or sacrifice) transforms((,newability[pay({G}{G}{G}{G}{G}{G}{G}) name(Pay or sacrifice) name(Pay or sacrifice) damage:hascntwind all(player) && damage:hascntwind all(creature)?name(sacrifice) sacrifice])) oneshot
+auto=@each my upkeep restriction{compare(hascntwind)~equalto~7}:name(Pay or sacrifice) transforms((,newability[pay({G}{G}{G}{G}{G}{G}{G}{G}) name(Pay or sacrifice) name(Pay or sacrifice) damage:hascntwind all(player) && damage:hascntwind all(creature)?name(sacrifice) sacrifice])) oneshot
+auto=@each my upkeep restriction{compare(hascntwind)~equalto~8}:name(Pay or sacrifice) transforms((,newability[pay({G}{G}{G}{G}{G}{G}{G}{G}{G}) name(Pay or sacrifice) name(Pay or sacrifice) damage:hascntwind all(player) && damage:hascntwind all(creature)?name(sacrifice) sacrifice])) oneshot
+auto=@each my upkeep restriction{compare(hascntwind)~equalto~9}:name(Pay or sacrifice) transforms((,newability[pay({G}{G}{G}{G}{G}{G}{G}{G}{G}{G}) name(Pay or sacrifice) name(Pay or sacrifice) damage:hascntwind all(player) && damage:hascntwind all(creature)?name(sacrifice) sacrifice])) oneshot
+auto=@each my upkeep restriction{compare(hascntwind)~equalto~10}:name(Pay or sacrifice) transforms((,newability[pay({G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}) name(Pay or sacrifice) name(Pay or sacrifice) damage:hascntwind all(player) && damage:hascntwind all(creature)?name(sacrifice) sacrifice])) oneshot
+auto=@each my upkeep restriction{compare(hascntwind)~equalto~11}:name(Pay or sacrifice) transforms((,newability[pay({G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}) name(Pay or sacrifice) name(Pay or sacrifice) damage:hascntwind all(player) && damage:hascntwind all(creature)?name(sacrifice) sacrifice])) oneshot
+auto=@each my upkeep restriction{compare(hascntwind)~equalto~12}:name(Pay or sacrifice) transforms((,newability[pay({G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}) name(Pay or sacrifice) name(Pay or sacrifice) damage:hascntwind all(player) && damage:hascntwind all(creature)?name(sacrifice) sacrifice])) oneshot
+auto=@each my upkeep restriction{compare(hascntwind)~equalto~13}:name(Pay or sacrifice) transforms((,newability[pay({G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}) name(Pay or sacrifice) name(Pay or sacrifice) damage:hascntwind all(player) && damage:hascntwind all(creature)?name(sacrifice) sacrifice])) oneshot
+auto=@each my upkeep restriction{compare(hascntwind)~equalto~14}:name(Pay or sacrifice) transforms((,newability[pay({G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}) name(Pay or sacrifice) name(Pay or sacrifice) damage:hascntwind all(player) && damage:hascntwind all(creature)?name(sacrifice) sacrifice])) oneshot
+auto=@each my upkeep restriction{compare(hascntwind)~equalto~15}:name(Pay or sacrifice) transforms((,newability[pay({G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}) name(Pay or sacrifice) name(Pay or sacrifice) damage:hascntwind all(player) && damage:hascntwind all(creature)?name(sacrifice) sacrifice])) oneshot
+auto=@each my upkeep restriction{compare(hascntwind)~equalto~16}:name(Pay or sacrifice) transforms((,newability[pay({G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}) name(Pay or sacrifice) name(Pay or sacrifice) damage:hascntwind all(player) && damage:hascntwind all(creature)?name(sacrifice) sacrifice])) oneshot
+auto=@each my upkeep restriction{compare(hascntwind)~equalto~17}:name(Pay or sacrifice) transforms((,newability[pay({G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}) name(Pay or sacrifice) name(Pay or sacrifice) damage:hascntwind all(player) && damage:hascntwind all(creature)?name(sacrifice) sacrifice])) oneshot
+auto=@each my upkeep restriction{compare(hascntwind)~equalto~18}:name(Pay or sacrifice) transforms((,newability[pay({G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}) name(Pay or sacrifice) name(Pay or sacrifice) damage:hascntwind all(player) && damage:hascntwind all(creature)?name(sacrifice) sacrifice])) oneshot
+auto=@each my upkeep restriction{compare(hascntwind)~equalto~19}:name(Pay or sacrifice) transforms((,newability[pay({G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}) name(Pay or sacrifice) name(Pay or sacrifice) damage:hascntwind all(player) && damage:hascntwind all(creature)?name(sacrifice) sacrifice])) oneshot
+auto=@each my upkeep:name(Put wind counter) counter(0/0,1,Wind)
+text=At the beginning of your upkeep, put a wind counter on Cyclone, then sacrifice Cyclone unless you pay {G} for each wind counter on it. If you pay, Cyclone deals damage equal to the number of wind counters on it to each creature and each player.
+mana={2}{G}{G}
+type=Enchantment
+[/card]
+[card]
 name=Cyclone Summoner
 auto=if casted(this) then all(*[-giant;-wizard;-land]|battlefield) moveto(ownerhand)
 text=When Cyclone Summoner enters the battlefield, if you cast it from your hand, return all permanents to their owners’ hands except for Giants, Wizards, and lands.
@@ -13479,6 +13527,21 @@ type=Creature
 subtype=Cyclops Wizard
 power=4
 toughness=2
+[/card]
+[card]
+name=Cytoplast Manipulator
+auto=counter(1/1,2)
+auto=@movedto(other creature|battlefield) restriction{compare(hascnt11)~morethan~0,compare(ishuman)~equalto~1}:may name(move 1/1 counter) all(trigger) counter(1/1.1) && counter(1/1.-1) all(this)
+auto=@movedto(other creature|mybattlefield) restriction{compare(hascnt11)~morethan~1,compare(ishuman)~equalto~0,compare(genrand2)~equalto~0}:may name(move 1/1 counter) all(trigger) counter(1/1.1) && counter(1/1.-1) all(this)
+auto=@movedto(other creature|mybattlefield) restriction{compare(hascnt11)~equalto~1,compare(ishuman)~equalto~0,compare(genrand4)~equalto~0}:may name(move 1/1 counter) all(trigger) counter(1/1.1) && counter(1/1.-1) all(this)
+auto=@movedto(other creature|opponentbattlefield) restriction{compare(hascnt11)~morethan~1,compare(ishuman)~equalto~0,compare(genrand20)~equalto~0}:may name(move 1/1 counter) all(trigger) counter(1/1.1) && counter(1/1.-1) all(this)
+auto={U}{T}:name(Gain control of creature) target(creature[counter{1/1.1}]) steal
+text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {U}, {T}: Gain control of target creature with a +1/+1 counter on it for as long as Cytoplast Manipulator remains on the battlefield.
+mana={2}{U}{U}
+type=Creature
+subtype=Human Wizard Mutant
+power=0
+toughness=0
 [/card]
 [card]
 name=D'Avenant Trapper
@@ -13578,6 +13641,24 @@ auto=paidmana destroy
 text=Destroy target creature. A creature destroyed this way can't be regenerated. -- Overload {2}{W}{W} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
 mana={B}{B}
 type=Sorcery
+[/card]
+[card]
+name=Damping Field
+auto=lord(artifact|battlefield) doesnotuntap
+auto=@each my untap restriction{type(artifact[tapped]|mybattlefield)~morethan~0}:name(Untap one artifact) target(artifact[tapped]|mybattlefield) untap
+auto=@each opponent untap restriction{type(artifact[tapped]|opponentbattlefield)~morethan~0}:ability$!name(Untap one artifact) name(Untap one artifact) target(artifact[tapped]|mybattlefield) untap!$ opponent
+text=Players can't untap more than one artifact during their untap steps.
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
+name=Dance of Many
+auto=upcost[{U}{U}] sacrifice
+auto=target(creature[-token]|battlefield) clone and!( transforms((,newability[counter(0/0.1.DanceEffect)],newability[@movedto(this|nonbattlezone) from(battlefield):name(Sacrifice dance of many) target(Dance of Many|mybattlefield) sacrifice] )!
+auto=@movedto(this|nonbattlezone) from(battlefield):name(Sacrifice token copy) target(creature[counter{0/0.1.DanceEffect}]|mybattlefield) sacrifice
+text=When Dance of Many enters the battlefield, put a token that's a copy of target nontoken creature onto the battlefield. -- When Dance of Many leaves the battlefield, exile the token. -- When the token leaves the battlefield, sacrifice Dance of Many. -- At the beginning of your upkeep, sacrifice Dance of Many unless you pay {U}{U}.
+mana={U}{U}
+type=Enchantment
 [/card]
 [card]
 name=Dance of the Manse
@@ -14064,6 +14145,14 @@ mana={3}{B}
 type=Sorcery
 [/card]
 [card]
+name=Dead Ringers
+target=<2>creature[-black]
+auto=bury
+text=Destroy two target nonblack creatures unless either one is a color the other isn't. They can't be regenerated.
+mana={4}{B}
+type=Sorcery
+[/card]
+[card]
 name=Dead of Winter
 auto=foreach(*[snow]|myBattlefield) 1/0 ueot all(creature[-snow]|mybattlefield)
 text=All nonsnow creatures get -X/-X until end of turn, where X is the number of snow permanents you control.
@@ -14417,6 +14506,13 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Declaration of Naught
+auto=chooseanameopp transforms((,newability[{U}:name(Counter named spell) target(*[chosenname]|stack) fizzle])) forever chooseend nonland
+text=As Declaration of Naught enters the battlefield, name a card. -- {U}: Counter target spell with the chosen name.
+mana={U}{U}
+type=Enchantment
+[/card]
+[card]
 name=Decoy Gambit
 target=creature|opponentbattlefield
 auto=name(Draw or return) transforms((,newability[choice name(Opponent draw a card) draw:1 opponent],newability[choice name(Return to hand) moveTo(ownerhand)])) oneshot
@@ -14516,6 +14612,13 @@ mana={2}{U}
 type=Enchantment
 [/card]
 [card]
+name=Deep Water
+auto={U}:name(All lands produce blue mana) ueot loseabilities && losesubtypesof(land) && transforms((island)) target(<type:land:myBattlefield>land|mybattlefield)
+text={U}: Until end of turn, if you tap a land you control for mana, it produces {U} instead of any other type.
+mana={U}{U}
+type=Enchantment
+[/card]
+[card]
 name=Deepwood Denizen
 abilities=vigilance
 auto=this(variable{totcntcre11}=0) {5}{G}{T}:draw:1 controller
@@ -14599,6 +14702,21 @@ auto=thisforeach(variable{3}) ability$!name(Deal 1 damage) name(Deal 1 damage) t
 text=Deft Dismissal deals 3 damage divided as you choose among one, two, or three target attacking or blocking creatures.
 mana={3}{W}
 type=Instant
+[/card]
+[card]
+name=Degavolver
+abilities=hasotherkicker
+other={1}{W}{R} name(Kicker Red)
+kicker={1}{B} name(Kicker Black or Both)
+auto=if paid(alternative) then transforms((,newability[counter(1/1)],newability[first strike])) forever
+auto=if paid(kicker) then transforms((,newability[counter(1/1.2)],newability[{L:3}:name(Regenerate) regenerate])) forever
+auto=if paid(kicker) then pay({R}) name(Pay also kicker red) transforms((,newability[counter(1/1)],newability[first strike])) forever
+text=Kicker {1}{B} and/or {R} (You may pay an additional {1}{B} and/or {R} as you cast this spell.) -- If Degavolver was kicked with its {1}{B} kicker, it enters the battlefield with two +1/+1 counters on it and with "Pay 3 life: Regenerate Degavolver." -- If Degavolver was kicked with its {R} kicker, it enters the battlefield with a +1/+1 counter on it and with first strike.
+mana={1}{W}
+type=Creature
+subtype=Volver
+power=1
+toughness=1
 [/card]
 [card]
 name=Deliberate
@@ -16107,6 +16225,14 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Domineering Will
+target=player
+auto=ability!$name(Gain control) name(Gain control) target(<upto:3>creature[-attacking]|opponentbattlefield) moveto(mybattlefield) and!( transforms((,newability[untap],newability[mustblock],newability[phaseaction[endofturn once sourceinplay] moveto(ownerbattlefield)])) ueot )! !$ targetedplayer
+text=Target player gains control of up to three target nonattacking creatures until end of turn. Untap those creatures. They block this turn if able.
+mana={3}{U}
+type=Instant
+[/card]
+[card]
 name=Domri's Ambush
 target=creature|myBattlefield
 auto=counter(1/1)
@@ -16227,11 +16353,32 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Double Deal
+auto=damage:3 opponent
+text=Choose another player. Double Deal deals 3 damage to that player now and deals an additional 3 damage to the player at the beginning of the next game with the player.
+mana={4}{R}
+type=Sorcery
+[/card]
+[card]
+name=Double Dip
+auto=life:5 controller
+text=Choose another player. Gain 5 life now and an additional 5 life at the beginning of the next game with that player.
+mana={4}{W}
+type=Instant
+[/card]
+[card]
 name=Double Major
 target=creature|mybattlefield
 auto=clone options(nolegend)
 text=Copy target creature spell you control, except it isn't legendary if the spell is legendary. (A copy of a creature spell becomes a token.)
 mana={G}{U}
+type=Instant
+[/card]
+[card]
+name=Double Take
+auto=draw:2 controller
+text=Choose another player. Draw two cards now and draw an additional two cards at the beginning of the next game with that player.
+mana={3}{U}{U}
 type=Instant
 [/card]
 [card]
@@ -16376,6 +16523,17 @@ auto=destroy
 text=This spell costs {X} less to cast, where X is your devotion to black. (Each {B} in the mana costs of permanents you control counts toward your devotion to black.) -- Destroy target creature.
 mana={2}{B}{B}
 type=Instant
+[/card]
+[card]
+name=Dragon Hunter
+auto=protection from(dragon)
+auto=@combat(attacking) source(dragon[flying]|opponentbattlefield):name(Can block flying dragon) transforms((,newability[reach])) ueot
+text=Protection from Dragons -- Dragon Hunter can block Dragons as though it had reach.
+mana={W}
+type=Creature
+subtype=Human Warrior
+power=2
+toughness=1
 [/card]
 [card]
 name=Dragon Throne of Tarkir
@@ -16932,6 +17090,13 @@ auto={D(*|opponenthand)}: castcard(restricted) lord(*[share!color!][-land]|oppon
 text=Rather than pay the mana cost for a spell, its controller may discard a card that share a color with that spell.
 mana={3}{U}{U}
 type=Enchantment
+[/card]
+[card]
+name=Dream Salvage
+auto=draw:type:*[discarded]:opponentgraveyard controller
+text=Draw cards equal to the number of cards target opponent discarded this turn.
+mana={UB}
+type=Instant
 [/card]
 [card]
 name=Dream Strix
@@ -17492,6 +17657,19 @@ type=Creature
 subtype=Human Rogue
 power=2
 toughness=2
+[/card]
+[card]
+name=Duskmantle Seer
+abilities=flying
+aicode=activate target(*[zpos=1]|opponentlibrary) moveto(opponenthand) and!( transforms((,newability[life:-manacost controller])) oneshot )! 
+auto=@each my upkeep:name(Reveal my top card) all(*[zpos=1]|mylibrary) moveto(myhand) and!( transforms((,newability[life:-manacost controller])) oneshot )! 
+auto=@each my upkeep:name(Reveal opponent top card) reveal:1 revealzone(opponentlibrary) optionone name(look) target(*|reveal) moveto(opponenthand) and!( transforms((,newability[life:-manacost controller])) oneshot )! optiononeend revealend
+text=Flying -- At the beginning of your upkeep, each player reveals the top card of his or her library, loses life equal to that card's converted mana cost, then puts it into his or her hand.
+mana={2}{U}{B}
+type=Creature
+subtype=Vampire Wizard
+power=4
+toughness=4
 [/card]
 [card]
 name=Duskshell Crawler
@@ -18747,6 +18925,13 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Enchanter's Bane
+auto=@each my end:name(Choose enchantment) target(enchantment|battlefield) transforms((,newability[choice name(Sacrifice) sacrifice],newability[choice name(Deal damage) damage:manacost controller])) oneshot
+text=At the beginning of your end step, target enchantment deals damage equal to its converted mana cost to its controller unless that player sacrifices it.
+mana={1}{R}
+type=Enchantment
+[/card]
+[card]
 name=End-Raze Forerunners
 abilities=vigilance, trample, haste
 auto=all(other creature|myBattlefield) +2/+2
@@ -19134,6 +19319,15 @@ type=Legendary Enchantment Creature
 subtype=God
 power=5
 toughness=6
+[/card]
+[card]
+name=Erosion
+target=land
+auto=teach(land) transforms((,newability[@each my upkeep:transforms((,newability[choice name(Pay 1 mana) pay[[{1}]] name(pay 1 mana) donothing?destroy],newability[choice name(Pay 1 life) pay[[{L:1}]] name(pay 1 life) donothing?destroy]])) oneshot]))
+text=Enchant land -- At the beginning of the upkeep of enchanted land's controller, destroy that land unless that player pays {1} or 1 life.
+mana={U}{U}{U}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Errata, the Silencer
@@ -19635,6 +19829,14 @@ type=Creature
 subtype=Frog Beast
 power=4
 toughness=4
+[/card]
+[card]
+name=Excavation
+auto={1}{S(land|myBattlefield)}:draw:1 controller
+auto=aslongas(land|opponentBattlefield) lord(land|opponentbattlefield) transforms((,newability[{1}{S(land|myBattlefield)}:draw:1 controller limit:1])) >1
+text={1}, Sacrifice a land: Draw a card. Any player may activate this ability.
+mana={1}{U}
+type=Enchantment
 [/card]
 [card]
 name=Excavation Elephant
@@ -24427,8 +24629,7 @@ subttype=Equipment
 [card]
 name=Giant's Grasp
 target=giant|mybattlefield
-auto=teach(creature) transforms((,newability[name(Gain control of nonland permanent) target(*[-land]|opponentbattlefield) moveto(mybattlefield) and!( counter(0/0.1.GraspEffect) )!])) oneshot
-auto=@movedto(this|nonbattlezone) from(battlefield):name(Give back nonland permanent) target(*[counter{0/0.1.GraspEffect}]|mybattlefield) moveto(ownerbattlefield)
+auto=name(Gain control of nonland permanent) steal target(*[-land]|opponentbattlefield)
 text=Enchant Giant you control -- When Giant's Grasp enters the battlefield, gain control of target nonland permanent for as long as Giant's Grasp remains on the battlefield.
 mana={2}{U}{U}
 type=Enchantment
@@ -58240,8 +58441,7 @@ toughness=6
 [card]
 name=Sower of Temptation
 abilities=flying
-auto=target(creature|opponentbattlefield) moveto(mybattlefield)
-auto=@movedTo(this|nonbattlezone) from(battlefield):target(creature|mybattlefield) moveto(opponentbattlefield)
+auto=name(Gain control of creature) target(creature|opponentbattlefield) steal
 text=Flying -- When Sower of Temptation enters the battlefield, gain control of target creature for as long as Sower of Temptation remains on the battlefield.
 mana={2}{U}{U}
 type=Creature
@@ -63230,7 +63430,7 @@ toughness=3
 [/card]
 [card]
 name=The Akroan War
-auto=aslongas(The Akroan War|mybattlefield) shackle target(creature)
+auto=name(Gain control of creature) target(creature|opponentbattlefield) steal
 auto=counter(0/0,1,Lore)
 auto=@each my firstmain:counter(0/0,1,Lore)
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}) all(creature|opponentbattlefield) mustattack uynt
