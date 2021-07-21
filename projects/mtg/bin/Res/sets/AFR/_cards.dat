@@ -3,10 +3,15 @@ author=Wagic Team
 name=Adventures in the Forgotten Realms
 orderindex=EXP-ZZI.AFR
 year=2021-07-23
-total=312
+total=313
 [/meta]
 [card]
 primitive=Annihilation Rooms
+id=-53044910
+rarity=T
+[/card]
+[card]
+primitive=The Atropal
 id=-530449
 rarity=T
 [/card]
