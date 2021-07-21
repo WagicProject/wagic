@@ -1543,7 +1543,7 @@ toughness=3
 [card]
 name=Anax, Hardened in the Forge
 anyzone=type:manaR:mybattlefield/3 cdaactive
-auto=@movedTo(this|mygraveyard) from(battlefield):token(Satyr,Creature Satyr,1/1,red,cantblock)
+auto=_DIES_token(Satyr,Creature Satyr,1/1,red,cantblock)
 auto=@movedTo(other creature[-token;power<=3]|mygraveyard) from(Battlefield):token(Satyr,Creature Satyr,1/1,red,cantblock)
 auto=@movedTo(other creature[-token;power>=4]|mygraveyard) from(Battlefield):token(Satyr,Creature Satyr,1/1,red,cantblock)*2
 text=Anax’s power is equal to your devotion to red. (Each {R} in the mana costs of permanents you control counts toward your devotion to red.) -- Whenever Anax or another nontoken creature you control dies, create a 1/1 red Satyr creature token with “This creature can’t block.” If the creature had power 4 or greater, create two of those tokens instead.
@@ -2499,7 +2499,7 @@ toughness=3
 name=Arcbound Javelineer
 abilities=modular
 modular=1
-auto=@movedTo(this|mygraveyard) from(myBattlefield):may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
+auto=_DIES_may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
 auto={T}{C(1/1,-1)}:name(Deals 1 damage) target(creature[attacking;blocking]) damage:1
 auto={T}{C(1/1,-2)}:name(Deals 2 damage) target(creature[attacking;blocking]) damage:2
 auto={T}{C(1/1,-3)}:name(Deals 3 damage) target(creature[attacking;blocking]) damage:3
@@ -2531,7 +2531,7 @@ toughness=1
 name=Arcbound Mouser
 abilities=lifelink,modular
 modular=1
-auto=@movedTo(this|mygraveyard) from(myBattlefield):may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
+auto=_DIES_may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
 text=Lifelink -- Modular 1 (This creature enters the battlefield with a +1/+1 counter on it. When it dies, you may put its +1/+1 counters on target artifact creature.)
 mana={W}
 type=Artifact Creature
@@ -2543,7 +2543,7 @@ toughness=0
 name=Arcbound Prototype
 abilities=modular
 modular=2
-auto=@movedTo(this|mygraveyard) from(myBattlefield):may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
+auto=_DIES_may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
 text=Modular 2 (This creature enters the battlefield with two +1/+1 counters on it. When it dies, you may put its +1/+1 counters on target artifact creature.)
 mana={1}{W}
 type=Artifact Creature
@@ -2555,7 +2555,7 @@ toughness=0
 name=Arcbound Shikari
 abilities=modular,first strike
 modular=2
-auto=@movedTo(this|mygraveyard) from(myBattlefield):may name(Put 1/1 counters) thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
+auto=_DIES_may name(Put 1/1 counters) thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
 text=First strike -- When Arcbound Shikari enters the battlefield, put a +1/+1 counter on each other artifact creature you control. -- Modular 2 (This creature enters the battlefield with two +1/+1 counters on it. When it dies, you may put its +1/+1 counters on target artifact creature.)
 mana={1}{R}{W}
 type=Artifact Creature
@@ -2567,7 +2567,7 @@ toughness=0
 name=Arcbound Slasher
 abilities=modular
 modular=4
-auto=@movedTo(this|mygraveyard) from(myBattlefield):may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
+auto=_DIES_may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
 auto=choice counter(1/1)
 auto=choice aslongas(creature|myBattlefield) haste
 text=Modular 4 (This creature enters the battlefield with four +1/+1 counters on it. When it dies, you may put its +1/+1 counters on target artifact creature.) -- Riot (This creature enters the battlefield with your choice of an additional +1/+1 counter or haste.)
@@ -2581,7 +2581,7 @@ toughness=0
 name=Arcbound Tracker
 abilities=menace,modular
 modular=2
-auto=@movedTo(this|mygraveyard) from(myBattlefield):may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
+auto=_DIES_may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
 auto=@movedto(*|mystack) restriction{thisturn(*|mystack)~morethan~0}:name(Counter 1/1) counter(1/1)
 text=Menace -- Modular 2 (This creature enters the battlefield with two +1/+1 counters on it. When it dies, you may put its +1/+1 counters on target artifact creature.) -- Whenever you cast a spell other than your first spell each turn, put a +1/+1 counter on Arcbound Tracker.
 mana={2}{R}
@@ -2594,7 +2594,7 @@ toughness=0
 name=Arcbound Whelp
 abilities=flying,modular
 modular=2
-auto=@movedTo(this|mygraveyard) from(myBattlefield):may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
+auto=_DIES_may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
 auto={R}:name(Gets 1/0) 1/0 ueot
 text=Flying -- {R}: Arcbound Whelp gets +1/+0 until end of turn. -- Modular 2 (This creature enters the battlefield with two +1/+1 counters on it. When it dies, you may put its +1/+1 counters on target artifact creature.)
 mana={3}{R}
@@ -2807,7 +2807,7 @@ toughness=3
 [card]
 name=Archon of Falling Stars
 abilities=Flying
-auto=@movedTo(this|mygraveyard) from(Battlefield):may moveTo(mybattlefield) target(enchantment|mygraveyard)
+auto=_DIES_may moveTo(mybattlefield) target(enchantment|mygraveyard)
 text=Flying -- When Archon of Falling Stars dies, you may return target enchantment card from your graveyard to the battlefield.
 mana={4}{W}{W}
 type=Creature
@@ -4631,7 +4631,7 @@ type=Sorcery
 [/card]
 [card]
 name=Barrin, Tolarian Archmage
-auto=moveTo(ownerhand) target(creature,planeswalker)
+auto=may moveTo(ownerhand) target(other creature,planeswalker)
 auto=@movedTo(*|myhand) from(battlefield):phaseaction[endofturn once] draw:1 controller limit:1
 text=When Barrin, Tolarian Archmage enters the battlefield, return up to one other target creature or planeswalker to its owner's hand. -- At the beginning of your end step, if a permanent was put into your hand from the battlefield this turn, draw a card.
 mana={1}{U}{U}
@@ -4756,7 +4756,7 @@ name=Basri's Lieutenant
 abilities=vigilance
 auto=protection from(*[multicolor])
 auto=counter(1/1,1) target(creature|myBattlefield)
-auto=@movedTo(this|myGraveyard) from(myBattlefield):this(counter{1/1.1}>=1) token(Knight Bas)
+auto=_DIES_this(counter{1/1.1}>=1) token(Knight Bas)
 auto=@movedTo(other creature[counter{1/1}]|myGraveyard) from(mybattlefield):token(Knight Bas)
 text=Vigilance, protection from multicolored -- When Basri's Lieutenant enters the battlefield, put a +1/+1 counter on target creature you control. -- Whenever Basri's Lieutenant or another creature you control dies, if it had a +1/+1 counter on it, create a 2/2 white Knight creature token with vigilance.
 mana={3}{W}
@@ -5225,7 +5225,7 @@ toughness=2
 [card]
 name=Beledros Witherbloom
 abilities=flying
-auto=@each upkeep:name(Create Pest) token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[@movedto(this|mygraveyard) from(battlefield):life:1 controller])) forever )!
+auto=@each upkeep:name(Create Pest) token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[_DIES_life:1 controller])) forever )!
 text=Flying -- At the beginning of each upkeep, create a 1/1 black and green Pest creature token with "When this creature dies, you gain 1 life." -- Pay 10 life: Untap all lands you control. Activate only once each turn.
 mana={5}{B}{G}
 type=Legendary Creature
@@ -6088,7 +6088,7 @@ toughness=1
 [card]
 name=Blight Mound
 auto=lord(pest[attacking]|mybattlefield) transforms((,newability[1/0],newability[menace]))
-auto=@movedto(creature[-token]|graveyard) from(mybattlefield):token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[@movedto(this|mygraveyard) from(battlefield):life:1 controller])) forever )!
+auto=@movedto(creature[-token]|graveyard) from(mybattlefield):token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[_DIES_life:1 controller])) forever )!
 text=Attacking Pests you control get +1/+0 and have menace. -- Whenever a nontoken creature you control dies, create a 1/1 black and green Pest creature token with "When this creature dies, you gain 1 life."
 mana={2}{B}
 type=Enchantment
@@ -7985,8 +7985,8 @@ toughness=3
 [card]
 name=Bruse Tarl, Boorish Herder
 abilities=partner
-auto=target(creature|mybattlefield) double strike && lifelink ueot
-auto=@combat(attacking) source(this):target(creature|mybattlefield) double strike && lifelink ueot
+auto=target(creature|mybattlefield) transforms((,newability[double strike],newability[lifelink])) ueot
+auto=@combat(attacking) source(this):target(creature|mybattlefield) transforms((,newability[double strike],newability[lifelink])) ueot
 text=Whenever Bruse Tarl, Boorish Herder enters the battlefield or attacks, target creature you control gains double strike and lifelink until end of turn. -- Partner (You can have two commanders if both have partner.)
 mana={2}{R}{W}
 type=Legendary Creature
@@ -8470,7 +8470,7 @@ toughness=3
 [/card]
 [card]
 name=Callous Bloodmage
-auto=choice name(Create Pest) token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[@movedto(this|mygraveyard) from(battlefield):life:1 controller])) forever )!
+auto=choice name(Create Pest) token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[_DIES_life:1 controller])) forever )!
 auto=choice name(Draw and lose life) draw:1 controller && life:-1 controller
 auto=choice name(Exile opponent's graveyard) all(*|opponentgraveyard) moveto(exile) 
 auto=choice name(Exile your graveyard) all(*|mygraveyard) moveto(exile)
@@ -8579,7 +8579,7 @@ toughness=3
 [card]
 name=Canopy Stalker
 auto=@combat(attacking) source(this):all(creature|opponentbattlefield) mustblock ueot
-auto=@movedTo(this|myGraveyard) from(myBattlefield):life:type:creature[fresh]:graveyard controller
+auto=_DIES_life:type:creature[fresh]:graveyard controller
 text=Canopy Stalker must be blocked if able. -- When Canopy Stalker dies, you gain 1 life for each creature that died this turn.
 mana={3}{G}
 type=Creature
@@ -8756,7 +8756,7 @@ subtype=Aura
 [/card]
 [card]
 name=Careless Celebrant
-auto=@movedTo(this|mygraveyard) from(Battlefield):damage:2 target(creature,planeswalker|opponentBattlefield)
+auto=_DIES_damage:2 target(creature,planeswalker|opponentBattlefield)
 text=When Careless Celebrant dies, it deals 2 damage to target creature or planeswalker an opponent controls.
 mana={1}{R}
 type=Creature
@@ -9276,7 +9276,7 @@ name=Cavalier of Night
 abilities=lifelink
 other={2}{B}{B}{B}{S(other creature|mybattlefield)} name(sacrifice)
 auto=if paid(alternative) then destroy target(creature|opponentBattlefield)
-auto=@movedTo(this|mygraveyard) from(myBattlefield):moveTo(myBattlefield) target(creature[manacost<=3]|mygraveyard)
+auto=_DIES_moveTo(myBattlefield) target(creature[manacost<=3]|mygraveyard)
 text=Lifelink -- When Cavalier of Night enters the battlefield, you may sacrifice another creature. When you do, destroy target creature an opponent controls. -- When Cavalier of Night dies, return target creature card with converted mana cost 3 or less from your graveyard to the battlefield.
 mana={2}{B}{B}{B}
 type=Creature
@@ -10210,18 +10210,18 @@ type=Instant
 [/card]
 [card]
 name=Cherished Hatchling
-auto=@movedto(this|mygraveyard) from(mybattlefield):all(dinosaur|mycastingzone) transforms((,newability[flash])) ueot
-auto=@movedto(this|mygraveyard) from(mybattlefield):emblem transforms((,newability[@movedto(dinosaur[power=0]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:0 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:10!$ controller])) ueot
-auto=@movedto(this|mygraveyard) from(mybattlefield):emblem transforms((,newability[@movedto(dinosaur[power=1]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:1 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:10!$ controller])) ueot
-auto=@movedto(this|mygraveyard) from(mybattlefield):emblem transforms((,newability[@movedto(dinosaur[power=2]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:2 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:10!$ controller])) ueot
-auto=@movedto(this|mygraveyard) from(mybattlefield):emblem transforms((,newability[@movedto(dinosaur[power=3]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:3 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:10!$ controller])) ueot
-auto=@movedto(this|mygraveyard) from(mybattlefield):emblem transforms((,newability[@movedto(dinosaur[power=4]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:4 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:10!$ controller])) ueot
-auto=@movedto(this|mygraveyard) from(mybattlefield):emblem transforms((,newability[@movedto(dinosaur[power=5]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:5 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:10!$ controller])) ueot
-auto=@movedto(this|mygraveyard) from(mybattlefield):emblem transforms((,newability[@movedto(dinosaur[power=6]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:6 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:10!$ controller])) ueot
-auto=@movedto(this|mygraveyard) from(mybattlefield):emblem transforms((,newability[@movedto(dinosaur[power=7]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:7 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:10!$ controller])) ueot
-auto=@movedto(this|mygraveyard) from(mybattlefield):emblem transforms((,newability[@movedto(dinosaur[power=8]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:8 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:10!$ controller])) ueot
-auto=@movedto(this|mygraveyard) from(mybattlefield):emblem transforms((,newability[@movedto(dinosaur[power=9]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:9 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:10!$ controller])) ueot
-auto=@movedto(this|mygraveyard) from(mybattlefield):emblem transforms((,newability[@movedto(dinosaur[power>=10]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:10 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:10!$ controller])) ueot
+auto=_DIES_all(dinosaur|mycastingzone) transforms((,newability[flash])) ueot
+auto=_DIES_emblem transforms((,newability[@movedto(dinosaur[power=0]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:0 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:0 && all(dinosaur[power=0;fresh]|mybattlefield) damage:10!$ controller])) ueot
+auto=_DIES_emblem transforms((,newability[@movedto(dinosaur[power=1]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:1 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:1 && all(dinosaur[power=1;fresh]|mybattlefield) damage:10!$ controller])) ueot
+auto=_DIES_emblem transforms((,newability[@movedto(dinosaur[power=2]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:2 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:2 && all(dinosaur[power=2;fresh]|mybattlefield) damage:10!$ controller])) ueot
+auto=_DIES_emblem transforms((,newability[@movedto(dinosaur[power=3]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:3 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:3 && all(dinosaur[power=3;fresh]|mybattlefield) damage:10!$ controller])) ueot
+auto=_DIES_emblem transforms((,newability[@movedto(dinosaur[power=4]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:4 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:4 && all(dinosaur[power=4;fresh]|mybattlefield) damage:10!$ controller])) ueot
+auto=_DIES_emblem transforms((,newability[@movedto(dinosaur[power=5]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:5 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:5 && all(dinosaur[power=5;fresh]|mybattlefield) damage:10!$ controller])) ueot
+auto=_DIES_emblem transforms((,newability[@movedto(dinosaur[power=6]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:6 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:6 && all(dinosaur[power=6;fresh]|mybattlefield) damage:10!$ controller])) ueot
+auto=_DIES_emblem transforms((,newability[@movedto(dinosaur[power=7]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:7 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:7 && all(dinosaur[power=7;fresh]|mybattlefield) damage:10!$ controller])) ueot
+auto=_DIES_emblem transforms((,newability[@movedto(dinosaur[power=8]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:8 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:8 && all(dinosaur[power=8;fresh]|mybattlefield) damage:10!$ controller])) ueot
+auto=_DIES_emblem transforms((,newability[@movedto(dinosaur[power=9]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:9 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:9 && all(dinosaur[power=9;fresh]|mybattlefield) damage:10!$ controller])) ueot
+auto=_DIES_emblem transforms((,newability[@movedto(dinosaur[power>=10]|mybattlefield):ability$!name(Choose one) choice name(Don't fight) donothing _ choice name(Fights with another creature with power 0) target(creature[power=0]) damage:10 _ choice name(Fights with another creature with power 1) target(creature[power=1]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:1 _ choice name(Fights with another creature with power 2) target(creature[power=2]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:2 _ choice name(Fights with another creature with power 3) target(creature[power=3]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:3 _ choice name(Fights with another creature with power 4) target(creature[power=4]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:4 _ choice name(Fights with another creature with power 5) target(creature[power=5]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:5 _ choice name(Fights with another creature with power 6) target(creature[power=6]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:6 _ choice name(Fights with another creature with power 7) target(creature[power=7]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:7 _ choice name(Fights with another creature with power 8) target(creature[power=8]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:8 _ choice name(Fights with another creature with power 9) target(creature[power=9]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:9 _ choice name(Fights with another creature with power 10 or more) target(creature[power>=10]) damage:10 && all(dinosaur[power>=10;fresh]|mybattlefield) damage:10!$ controller])) ueot
 text=When Cherished Hatchling dies, you may cast Dinosaur spells this turn as though they had flash, and whenever you cast a Dinosaur spell this turn, it gains "When this creature enters the battlefield, you may have it fight another target creature."
 mana={1}{G}
 type=Creature
@@ -12128,7 +12128,7 @@ type=Instant
 [/card]
 [card]
 name=Containment Breach
-auto=if type(*[artifact;enchantment;manacost<=2]|battlefield)~morethan~0 then choice name(Destroy artifact or enchantment with manacost 2 or less) name(Destroy artifact or enchantment with manacost 2 or less) target(*[artifact;enchantment;manacost<=2]|battlefield) destroy && token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[@movedto(this|mygraveyard) from(battlefield):life:1 controller])) forever )!
+auto=if type(*[artifact;enchantment;manacost<=2]|battlefield)~morethan~0 then choice name(Destroy artifact or enchantment with manacost 2 or less) name(Destroy artifact or enchantment with manacost 2 or less) target(*[artifact;enchantment;manacost<=2]|battlefield) destroy && token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[_DIES_life:1 controller])) forever )!
 auto=if type(*[artifact;enchantment;manacost>=3]|battlefield)~morethan~0 then choice name(Destroy artifact or enchantment with manacost 3 or more) name(Destroy artifact or enchantment with manacost 3 or more) target(*[artifact;enchantment;manacost>=3]|battlefield) destroy
 text=Destroy target artifact or enchantment. If its mana value is 2 or less, create a 1/1 black and green Pest creature token with "When this creature dies, you gain 1 life."
 mana={2}{G}
@@ -12226,7 +12226,7 @@ toughness=1
 [/card]
 [card]
 name=Corpse Augur
-auto=@movedto(this|mygraveyard) from(mybattlefield): notatarget(player) then draw:foreach(notAtarget(creature|targetedpersonsgraveyard) && life:-foreach(notAtarget(creature|targetedpersonsgraveyard)
+auto=_DIES_ notatarget(player) then draw:foreach(notAtarget(creature|targetedpersonsgraveyard) && life:-foreach(notAtarget(creature|targetedpersonsgraveyard)
 text=When Corpse Augur dies, you draw X cards and you lose X life, where X is the number of creature cards in target player’s graveyard.
 mana={3}{B}
 type=Creature
@@ -13467,7 +13467,7 @@ auto=ifnot paid(alternative) then choice name(Creature gets 3/3) name(Creature g
 auto=moveto(myexile) and!( counter(0/0,3,Time) )!
 autoexile=@each my upkeep restriction{compare(hascnttime)~morethan~1}:counter(0/0,-1,Time)
 autoexile=@each my upkeep restriction{compare(hascnttime)~equalto~1}:activate castcard(normal)
-text=Target creature gets +3/+3 until end of turn. Exile Cyclical Evolution with three time counters on it. -- Suspend 3 — {2}{G} (Rather than cast this card from your hand, you may pay {2}{G} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
+text=Target creature gets +3/+3 until end of turn. Exile Cyclical Evolution with three time counters on it. -- Suspend 3 - {2}{G} (Rather than cast this card from your hand, you may pay {2}{G} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
 mana={3}{G}{G}
 type=Sorcery
 [/card]
@@ -13824,7 +13824,7 @@ type=Instant
 [/card]
 [card]
 name=Dark-Dweller Oracle
-auto={1}{S(creature|myBattlefield)}:moveto(exile) and!(transforms((,canplayfromexile)) ueot )! all(*[zpos=1]|mylibrary
+auto={1}{S(creature|myBattlefield)}:moveto(exile) and!(transforms((,canplayfromexile)) ueot)! all(*[zpos=1]|mylibrary)
 text={1}, Sacrifice a creature: Exile the top card of your library. You may play that card this turn. (You still pay its costs. You can play a land this way only if you have an available land play remaining.)
 mana={1}{R}
 type=Creature
@@ -14556,9 +14556,9 @@ toughness=1
 [card]
 name=Deep Freeze
 target=creature
-auto=teach(creature) transforms((,setpower=0,settoughness=4))
-auto=teach(creature) defender
 auto=teach(creature) loseabilities
+auto=teach(creature) becomes(,0/4)
+auto=teach(creature) defender
 text=Enchant creature -- Enchanted creature has base power and toughness 0/4, has defender, loses all other abilities, and is a blue Wall in addition to its other colors and types.
 mana={2}{U}
 type=Enchantment
@@ -15175,6 +15175,7 @@ type=Instant
 [card]
 name=Desperate Castaways
 auto=aslongas(artifact|mybattlefield) cantattack <1
+auto=aslongas(artifact|mybattlefield) cantpwattack <1
 text=Desperate Castaways can't attack unless you control an artifact.
 mana={1}{B}
 type=Creature
@@ -15888,7 +15889,7 @@ toughness=3
 [/card]
 [card]
 name=Discordant Piper
-auto=@movedTo(this|mygraveyard) from(Battlefield):token(Goat,Creature Goat,0/1,white)
+auto=_DIES_token(Goat,Creature Goat,0/1,white)
 text=When Discordant Piper dies, create a 0/1 white Goat creature token.
 mana={1}{B}
 type=Creature
@@ -17515,7 +17516,7 @@ toughness=3
 [card]
 name=Dunes of the Dead
 auto={T}:Add{1}
-auto=@movedto(this|mygraveyard) from(myBattlefield):token(Zombie ,Creature Zombie,2/2,Black)
+auto=_DIES_token(Zombie ,Creature Zombie,2/2,Black)
 text={T}: Add {1} to your mana pool. -- When Dunes of the Dead is put into a graveyard from the battlefield, create a 2/2 black Zombie creature token.
 type=Land
 subtype=Desert
@@ -20020,7 +20021,7 @@ toughness=3
 [card]
 name=Expedition Diviner
 abilities=flying
-auto=@movedTo(this|myGraveyard) from(Battlefield):if type(creature[wizard]|mybattlefield)~morethan~0 then draw:1 controller
+auto=_DIES_if type(creature[wizard]|mybattlefield)~morethan~0 then draw:1 controller
 text=Flying -- As long as you control another Wizard, Expedition Diviner has “When this creature dies, draw a card.”
 mana={3}{U}
 type=Creature
@@ -21881,7 +21882,7 @@ toughness=2
 [card]
 name=Fireblade Charger
 auto=this(gear > 0) haste
-auto=@movedTo(this|mygraveyard) from(battlefield):name(Damage any target) damage:power target(player,creature,planeswalker)
+auto=_DIES_name(Damage any target) damage:power target(player,creature,planeswalker)
 text=As long as Fireblade Charger is equipped, it has haste. -- When Fireblade Charger dies, it deals damage equal to its power to any target.
 mana={R}
 type=Creature
@@ -22115,7 +22116,7 @@ toughness=4
 [/card]
 [card]
 name=Fish Reef
-auto=@movedTo(this|mygraveyard) from(myBattlefield):token(Whale Reef)
+auto=_DIES_token(Whale Reef)
 text=When this creature dies, put a 6/6 blue Whale creature token onto the battlefield with "When this creature dies, put a 9/9 blue Kraken creature token onto the battlefield."
 type=Creature
 subtype=Fish
@@ -22929,6 +22930,7 @@ auto=@tappedformana(*[-basic;colorless]|myBattlefield):add{C}
 auto=@movedTo(*[colorless]|myStack):life:2 controller
 text=Colorless creatures you control get +2/+2. -- Whenever you tap a permanent for {C}, add an additional {C}. -- Whenever you cast a colorless spell, you gain 2 life.
 type=Legendary Artifact
+mana={5}
 [/card]
 [card]
 name=Forsworn Paladin
@@ -27007,7 +27009,7 @@ toughness=1
 [/card]
 [card]
 name=Grim Physician
-auto=@movedTo(this|mygraveyard) from(Battlefield):-1/-1 target(creature|opponentGraveyard) ueot
+auto=_DIES_target(creature|opponentBattlefield) -1/-1 ueot
 text=When Grim Physician dies, target creature an opponent controls gets -1/-1 until end of turn.
 mana={B}
 type=Creature
@@ -30072,7 +30074,7 @@ type=Sorcery
 [/card]
 [card]
 name=Hunt for Specimens
-auto=token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[@movedto(this|mygraveyard) from(battlefield):life:1 controller])) forever )!
+auto=token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[_DIES_life:1 controller])) forever )!
 auto=name(Learn) transforms((,newability[if type(*[lesson]|mysideboard)~morethan~0 then choice name(Put lesson in hand) name(Put lesson in hand) target(*[lesson]|mysideboard) moveto(myhand)],newability[if type(*|myhand)~morethan~0 then choice name(Discard and draw) name(Discard and draw) target(*|myhand) reject and!(draw:1)!],newability[if type(Retriever Phoenix|mygraveyard)~morethan~0 then choice name(Return a Retriever Phoenix) name(Return a Retriever Phoenix) target(Retriever Phoenix|mygraveyard) moveto(myBattlefield)],newability[choice name(Don't learn) donothing])) oneshot
 text=Create a 1/1 black and green Pest creature token with "When this creature dies, you gain 1 life." -- Learn. (You may reveal a Lesson card you own from outside the game and put it into your hand, or discard a card to draw a card.)
 mana={1}{B}
@@ -36069,7 +36071,7 @@ type=Sorcery
 [/card]
 [card]
 name=Legion's Judgment
-target=creature[power=>4]
+target=creature[power>=4]
 auto=destroy
 text=Destroy target creature with power 4 or greater.
 mana={2}{W}
@@ -39622,7 +39624,7 @@ toughness=3
 [card]
 name=Militant Angel
 abilities=flying, lifelink
-auto=if (this[attacking]|mybattlefield)~morethan~0 then token(Knight,creature Knight,2/2,white,vigilance)
+auto=if raid then token(Knight,creature Knight,2/2,white,vigilance)
 text=Flying, Lifelink -- When Militant Angel enters the battlefield, create a number of 2/2 white Knight creature tokens with vigilance equal to the number of opponents you attacked this turn.
 mana={3}{W}{W}
 type=Creature
@@ -40110,8 +40112,8 @@ type=Land
 [card]
 name=Mistmoon Griffin
 abilities=flying
-auto=@movedto(this|mygraveyard) from(myBattlefield):moveto(myexile) all(this)
-auto=@movedto(this|mygraveyard) from(myBattlefield):moveto(mybattlefield) target(creature|mybattlefield)
+auto=_DIES_moveto(myexile) all(this)
+auto=_DIES_moveto(mybattlefield) target(creature|mybattlefield)
 text=Flying -- When Mistmoon Griffin dies, exile Mistmoon Griffin, then return the top creature card of your graveyard to the battlefield.
 mana={3}{W}
 type=Creature
@@ -43340,10 +43342,10 @@ toughness=3
 [card]
 name=Old-Growth Troll
 abilities=trample
-auto=this(cantargetcard(*[creature]) transforms((,newability[@movedTo(this|mygraveyard) from(mybattlefield):name(Return as enchantment) target(Old-Growth Troll[fresh]|mygraveyard) activate castcard(alternative)]))
+auto=this(cantargetcard(*[creature]) transforms((,newability[_DIES_name(Return as enchantment) target(Old-Growth Troll[fresh]|mygraveyard) activate castcard(alternative)]))
 auto=if paid(alternative) then name(Enchant Forest) name(Enchant Forest) target(land[forest]|mybattlefield) transforms((,newability[counter(0/0.1.TrollEffect)],newability[this(counter{0/0.1.TrollEffect}>0) {T}:add{G}{G}],newability[this(counter{0/0.1.TrollEffect}>0) {1}{T}{S}:token(Troll^Creature Troll Warrior^4/4^green^trample)])) forever
 auto=if paid(alternative) then transforms((removetypes,newability[becomes(enchantment aura)])) forever
-auto=if paid(alternative) then transforms((,newability[@movedTo(this|mygraveyard) from(mybattlefield):name(Terminate effect) target(forest[counter{0/0.1.TrollEffect}]|mybattlefield) counter(0/0.-1.TrollEffect)]))
+auto=if paid(alternative) then transforms((,newability[_DIES_name(Terminate effect) target(forest[counter{0/0.1.TrollEffect}]|mybattlefield) counter(0/0.-1.TrollEffect)]))
 auto=if paid(alternative) then transforms((,newability[@movedTo(forest[counter{0/0.1.TrollEffect}]|mygraveyard) from(mybattlefield):name(Terminate effect) target(Old-Growth Troll[aura]|mybattlefield) moveto(mygraveyard)]))
 text=Trample -- When Old-Growth Troll dies, if it was a creature, return it to the battlefield. It’s an Aura enchantment with enchant Forest you control and “Enchanted Forest has ‘{T}: Add {G}{G}’ and ‘{1}, {T}, Sacrifice this land: Create a 4/4 green Troll Warrior creature token with trample.’”
 mana={G}{G}{G}
@@ -43934,7 +43936,7 @@ name=Ordeal of Erebos
 target=creature
 auto=@combat(attacking) source(mytgt):counter(1/1)
 auto=teach(creature) transforms((,newability[this(counter{1/1}>=3) sacrifice target(Ordeal of Erebos|mybattlefield)]))
-auto=@movedto(this|mygraveyard) from(mybattlefield):target(player) ability$!target(<2>*|myhand) reject!$ targetedplayer
+auto=_DIES_target(player) ability$!target(<2>*|myhand) reject!$ targetedplayer
 text=Enchant creature -- Whenever enchanted creature attacks, put a +1/+1 counter on it. Then if it has three or more +1/+1 counters on it, sacrifice Ordeal of Erebos. -- When you sacrifice Ordeal of Erebos, target player discards two cards.
 mana={1}{B}
 type=Enchantment
@@ -43945,7 +43947,7 @@ name=Ordeal of Heliod
 target=creature
 auto=@combat(attacking) source(mytgt):counter(1/1)
 auto=teach(creature) transforms((,newability[this(counter{1/1}>=3) sacrifice target(Ordeal of Heliod|mybattlefield)]))
-auto=@movedto(this|mygraveyard) from(mybattlefield):life:10 controller
+auto=_DIES_life:10 controller
 text=Enchant creature -- Whenever enchanted creature attacks, put a +1/+1 counter on it. Then if it has three or more +1/+1 counters on it, sacrifice Ordeal of Heliod. -- When you sacrifice Ordeal of Heliod, you gain 10 life.
 mana={1}{W}
 type=Enchantment
@@ -43956,7 +43958,7 @@ name=Ordeal of Nylea
 target=creature
 auto=@combat(attacking) source(mytgt):counter(1/1)
 auto=teach(creature) transforms((,newability[this(counter{1/1}>=3) sacrifice target(Ordeal of Nylea|mybattlefield)]))
-auto=@movedto(this|mygraveyard) from(mybattlefield):notatarget(land[basic]|mylibrary) transforms((,newability[name(move to battlefield) notatarget(land[basic]|mylibrary) moveTo(myBattlefield) and!(tap(noevent))!],newability[moveTo(myBattlefield) and!(tap(noevent))!])) oneshot
+auto=_DIES_notatarget(land[basic]|mylibrary) transforms((,newability[name(move to battlefield) notatarget(land[basic]|mylibrary) moveTo(myBattlefield) and!(tap(noevent))!],newability[moveTo(myBattlefield) and!(tap(noevent))!])) oneshot
 text=Enchant creature -- Whenever enchanted creature attacks, put a +1/+1 counter on it. Then if it has three or more +1/+1 counters on it, sacrifice Ordeal of Nylea. -- When you sacrifice Ordeal of Nylea, search your library for up to two basic land cards, put them onto the battlefield tapped, then shuffle your library.
 mana={1}{G}
 type=Enchantment
@@ -43967,7 +43969,7 @@ name=Ordeal of Purphoros
 target=creature
 auto=@combat(attacking) source(mytgt):counter(1/1)
 auto=teach(creature) transforms((,newability[this(counter{1/1}>=3) sacrifice target(Ordeal of Purphoros|mybattlefield)]))
-auto=@movedto(this|mygraveyard) from(mybattlefield):damage:3 target(creature,player)
+auto=_DIES_damage:3 target(creature,player)
 text=Enchant creature -- Whenever enchanted creature attacks, put a +1/+1 counter on it. Then if it has three or more +1/+1 counters on it, sacrifice Ordeal of Purphoros. -- When you sacrifice Ordeal of Purphoros, it deals 3 damage to target creature or player.
 mana={1}{R}
 type=Enchantment
@@ -43978,7 +43980,7 @@ name=Ordeal of Thassa
 target=creature
 auto=@combat(attacking) source(mytgt):counter(1/1)
 auto=teach(creature) transforms((,newability[this(counter{1/1}>=3) sacrifice target(Ordeal of Thassa|mybattlefield)]))
-auto=@movedto(this|mygraveyard) from(mybattlefield):draw:2 controller
+auto=_DIES_draw:2 controller
 text=Enchant creature -- Whenever enchanted creature attacks, put a +1/+1 counter on it. Then if it has three or more +1/+1 counters on it, sacrifice Ordeal of Thassa. -- When you sacrifice Ordeal of Thassa, draw two cards.
 mana={1}{U}
 type=Enchantment
@@ -45256,15 +45258,15 @@ toughness=3
 [card]
 name=Pest Infestation
 auto=target(<upto:halfpaid>*[artifact;enchantment]|battlefield) destroy
-auto=thisforeach(X) token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[@movedto(this|mygraveyard) from(battlefield):life:1 controller])) forever )!
+auto=thisforeach(X) token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[_DIES_life:1 controller])) forever )!
 text=Destroy up to X target artifacts and/or enchantments. Create twice X 1/1 black and green Pest creature tokens with "When this creature dies, you gain 1 life."
 mana={X}{X}{G}
 type=Sorcery
 [/card]
 [card]
 name=Pest Summoning
-auto=token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[@movedto(this|mygraveyard) from(battlefield):life:1 controller])) forever )!
-auto=token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[@movedto(this|mygraveyard) from(battlefield):life:1 controller])) forever )!
+auto=token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[_DIES_life:1 controller])) forever )!
+auto=token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[_DIES_life:1 controller])) forever )!
 text=Create two 1/1 black and green Pest creature tokens with "When this creature dies, you gain 1 life."
 mana={1}{BG}{BG}
 type=Sorcery
@@ -45277,7 +45279,7 @@ otherrestriction=can play sorcery,compare(isflipped)~equalto~1
 restriction=compare(isflipped)~equalto~0
 anyzone={0}:doubleside(Restorative Burst)
 autostack=if paid(alternative) then transforms((,newability[moveto(myexile)],newability[activate castcard(named!:restorative burst:!)])) forever
-auto={T}{D(*|myhand)}:name(Create Pest) token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[@movedto(this|mygraveyard) from(battlefield):life:1 controller])) forever )!
+auto={T}{D(*|myhand)}:name(Create Pest) token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[_DIES_life:1 controller])) forever )!
 auto={1}{T}:deplete:lifegain opponent
 auto={4}{T} restriction{type(*|mygraveyard)~morethan~3}:name(Exile from your graveyard) transforms((,newability[draw:1 controller],newability[name(Exile from your graveyard) target(<4>*|mygraveyard) moveto(exile)])) oneshot
 auto={4}{T} restriction{type(*|opponentgraveyard)~morethan~3}:name(Exile from opponent's graveyard) transforms((,newability[draw:1 controller],newability[name(Exile from opponent's graveyard) target(<4>*|opponentgraveyard) moveto(exile)])) oneshot
@@ -46392,7 +46394,7 @@ name=Power Depot
 abilities=modular
 modular=1
 auto=tap(noevent)
-auto=@movedTo(this|mygraveyard) from(myBattlefield):may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
+auto=_DIES_may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
 auto={T}:add{C}
 auto=this(variable{type:artifact:myrestrictedcastingzone}>0) {T}:add{R}
 auto=this(variable{type:artifact:mybattlefield}>0) {T}:add{R}
@@ -46710,7 +46712,7 @@ toughness=1
 name=Primal Amulet
 auto=lord(instant,sorcery|myhand) altercost(colorless,-1)
 auto=@movedto(instant,sorcery|mystack):counter(0/0,1,charge)
-auto={0}restriction{type(this[counter{charge}=>4])~morethan~0}:flip(Primal Wellspring)
+auto={0}restriction{type(this[counter{charge}>=4])~morethan~0}:flip(Primal Wellspring)
 text=Instant and sorcery spells you cast cost {1} less to cast. -- Whenever you cast an instant or sorcery spell, put a charge counter on Primal Amulet. Then if there are four or more charge counters on it, you may remove those counters and transform it.
 mana={4}
 type=Artifact
@@ -46958,7 +46960,7 @@ toughness=1
 [/card]
 [card]
 name=Professor of Zoomancy
-auto=token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[@movedto(this|mygraveyard) from(battlefield):life:1 controller])) forever )!
+auto=token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[_DIES_life:1 controller])) forever )!
 text=When Professor of Zoomancy enters the battlefield, create a 1/1 black and green Pest creature token with "When this creature dies, you gain 1 life."
 mana={3}{G}
 type=Creature
@@ -49277,7 +49279,7 @@ subtype=Lesson
 [/card]
 [card]
 name=Reef Worm
-auto=@movedTo(this|mygraveyard) from(myBattlefield):token(Fish Reef)
+auto=_DIES_token(Fish Reef)
 text=When Reef Worm dies, put a 3/3 blue Fish creature token onto the battlefield with "When this creature dies, put a 6/6 blue Whale creature token onto the battlefield with ‘When this creature dies, put a 9/9 blue Kraken creature token onto the battlefield.'"
 mana={3}{U}
 type=Creature
@@ -49468,7 +49470,7 @@ type=Land
 [card]
 name=Rekindling Phoenix
 abilities=flying
-auto=@movedTo(this|mygraveyard) from(Battlefield):token(Elemental Phoenix)
+auto=_DIES_token(Elemental Phoenix)
 text=Flying -- When Rekindling Phoenix dies, create a 0/1 red Elemental creature token with "At the beginning of your upkeep, sacrifice this creature and return target card named Rekindling Phoenix from your graveyard to the battlefield. It gains haste until end of turn."
 mana={2}{R}{R}
 type=Creature
@@ -51374,7 +51376,7 @@ toughness=4
 [card]
 name=Rootless Yew
 abilities=trample
-auto=@movedTo(this|mygraveyard) from(mybattlefield):name(Put creature in hand) target(creature[power>=6]|mygraveyard) moveto(myhand) and!( shuffle )!
+auto=_DIES_name(Put creature in hand) target(creature[power>=6]|mygraveyard) moveto(myhand) and!( shuffle )!
 text=When Rootless Yew dies, search your library for a creature card with power or toughness 6 or greater, reveal it, put it into your hand, then shuffle your library.
 mana={3}{G}{G}
 type=Creature
@@ -52242,7 +52244,7 @@ toughness=1
 name=Sage-Eye Avengers
 abilities=prowess
 auto=@movedTo(*[-creature]|mystack):1/1 ueot
-auto=@combat(attacking) source(this): may moveTo(ownerhand) target(creature[power<=this])
+auto=@combat(attacking) source(this):may moveTo(ownerhand) target(creature[power<=pminus1minusend])
 text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.) -- Whenever Sage-Eye Avengers attacks, you may return target creature to its owner’s hand if its power is less than Sage-Eye Avengers’s power.
 mana={4}{U}{U}
 type=Creature
@@ -52668,8 +52670,8 @@ toughness=3
 [/card]
 [card]
 name=Sandals of Abdallah
-auto={2}{T}:name(Target your creature) target(creature|mybattlefield) transforms((,newability[islandwalk],newability[@movedto(this|mygraveyard) from(mybattlefield):destroy target(Sandals of Abdallah|mybattlefield)])) ueot
-auto={2}{T}:name(Target opponent's creature) target(creature|opponentbattlefield) transforms((,newability[islandwalk],newability[@movedto(this|mygraveyard) from(mybattlefield):destroy target(Sandals of Abdallah|opponentbattlefield)])) ueot
+auto={2}{T}:name(Target your creature) target(creature|mybattlefield) transforms((,newability[islandwalk],newability[_DIES_destroy target(Sandals of Abdallah|mybattlefield)])) ueot
+auto={2}{T}:name(Target opponent's creature) target(creature|opponentbattlefield) transforms((,newability[islandwalk],newability[_DIES_destroy target(Sandals of Abdallah|opponentbattlefield)])) ueot
 text={2}, {T}: Target creature gains islandwalk until end of turn. When that creature dies this turn, destroy Sandals of Abdallah.
 mana={4}
 type=Artifact
@@ -54030,7 +54032,7 @@ type=Sorcery
 name=Sedgemoor Witch
 abilities=menace
 auto=@targeted(this) from(*|opponentzones):choice name(This spell costs 3 life more) name(This spell costs 3 life more) target(*|opponentzones) transforms((,newability[pay[[{L:3}]] name(pay 3 life) donothing?fizzle])) oneshot
-auto=@movedto(*[instant;sorcery]|mystack):name(Create Pest) token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[@movedto(this|mygraveyard) from(battlefield):life:1 controller])) forever )!
+auto=@movedto(*[instant;sorcery]|mystack):name(Create Pest) token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[_DIES_life:1 controller])) forever )!
 text=Menace -- Ward — Pay 3 life. (Whenever this creature becomes the target of a spell or ability an opponent controls, counter it unless that player pays 3 life.) -- Magecraft — Whenever you cast or copy an instant or sorcery spell, create a 1/1 black and green Pest creature token with "When this creature dies, you gain 1 life."
 mana={2}{B}
 type=Creature
@@ -54574,7 +54576,7 @@ toughness=5
 [/card]
 [card]
 name=Serrated Scorpion
-auto=@movedTo(this|myGraveyard) from(myBattlefield):damage:2 target(player) && life:2 controller
+auto=_DIES_damage:2 target(player) && life:2 controller
 text=When Serrated Scorpion dies, it deals 2 damage to each opponent and you gain 2 life.
 mana={B}
 type=Creature
@@ -54818,7 +54820,7 @@ auto={2}:equip
 auto=teach(creature) 1/1
 auto=teach(creature) trample
 auto=teach(creature) lifelink
-auto=teach(creature) transforms((,newability[{1}:lord(*|opponentBattlefield) -indestructible ueot && -opponentshroud ueot]))
+auto={1}:lord(*|opponentBattlefield) transforms((,newability[-indestructible],newability[-opponentshroud])) ueot
 text=Equipped creature gets +1/+1 and has trample and lifelink. -- 1 -- : Permanents your opponents control lose hexproof and indestructible until end of turn. -- Equip 2
 mana={1}
 type=Legendary Artifact
@@ -55758,7 +55760,7 @@ type=Sorcery
 [/card]
 [card]
 name=Sickle Dancer
-auto=@combat(attacking) source(this) aslongas(other warrior|myBattlefield)  :1/1 ueot
+auto=@combat(attacking) source(this) aslongas(other warrior|myBattlefield):1/1 ueot
 text=Whenever Sickle Dancer attacks, if your team controls another Warrior, Sickle Dancer gets +1/+1 until end of turn.
 mana={2}{B}
 type=Creature
@@ -59277,7 +59279,7 @@ toughness=2
 [/card]
 [card]
 name=Spiteful Sliver
-auto=lord(sliver|mybattlefield) transforms((,newability[@damaged(sliver):damage:1 target(*[creature;player])]))
+auto=lord(sliver|mybattlefield) transforms((,newability[@damaged(sliver):damage:1 target(*[player;planeswalker])]))
 text=Sliver creatures you control have "Whenever this creature is dealt damage, it deals that much damage to target player or planeswalker."
 mana={2}{R}
 type=Creature
@@ -59482,7 +59484,7 @@ auto=@movedTo(graveyard) from(creature[counter{0/0.17.Fungus}]|battlefield):toke
 auto=@movedTo(graveyard) from(creature[counter{0/0.18.Fungus}]|battlefield):token(Saproling,Creature Saproling,1/1,green)*18
 auto=@movedTo(graveyard) from(creature[counter{0/0.19.Fungus}]|battlefield):token(Saproling,Creature Saproling,1/1,green)*19
 auto=@movedTo(graveyard) from(creature[counter{0/0.20.Fungus}]|battlefield):token(Saproling,Creature Saproling,1/1,green)*20
-auto=@movedTo(this|mygraveyard) from(battlefield):removeallcounters(0/0,1,Fungus) all(creature|battlefield)
+auto=_DIES_removeallcounters(0/0,1,Fungus) all(creature|battlefield)
 text=At the beginning of your upkeep, you may put a fungus counter on target nontoken creature. -- Whenever a creature with a fungus counter on it dies, put a 1/1 green Saproling creature token onto the battlefield for each fungus counter on that creature. -- When Sporogenesis leaves the battlefield, remove all fungus counters from all creatures.
 mana={3}{G}
 type=Enchantment
@@ -62994,7 +62996,7 @@ toughness=4
 [/card]
 [card]
 name=Tend the Pests
-auto=thisforeach(storedpower>0) token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[@movedto(this|mygraveyard) from(battlefield):life:1 controller])) forever )!
+auto=thisforeach(storedpower>0) token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[_DIES_life:1 controller])) forever )!
 text=As an additional cost to cast this spell, sacrifice a creature. -- Create X 1/1 black and green Pest creature tokens with "When this creature dies, you gain 1 life," where X is the sacrificed creature's power.
 mana={B}{G}{S(creature|mybattlefield)}
 type=Instant
@@ -63399,8 +63401,8 @@ name=Thassa, Deep-Dwelling
 abilities=Indestructible
 auto=this(variable{type:manau}<5) transforms((removetypes,newability[becomes(Legendary Enchantment God)]))
 auto=this(variable{type:manau}>4) transforms((Legendary Enchantment Creature))
-auto=@each my upkeep:target(creature|mybattlefield) moveto(exile) and!(moveto(mybattlefield))!
-auto={3}{U}:tap target(creature)
+auto=@each my endstep:may target(other creature|mybattlefield) moveto(exile) and!(moveto(mybattlefield))!
+auto={3}{U}:tap target(other creature)
 text=Indestructible -- As long as your devotion to blue is less than five, Thassa isn’t a creature. -- At the beginning of your end step, exile up to one other target creature you control, then return that card to the battlefield under your control. -- {3}{U}: Tap another target creature.
 mana={3}{U}
 type=Legendary Enchantment Creature
@@ -63638,7 +63640,7 @@ auto=@dierolled(this) result(16) from(controller):name(Draw 2 cards) draw:2 cont
 auto=@dierolled(this) result(17) from(controller):name(Draw 2 cards) draw:2 controller
 auto=@dierolled(this) result(18) from(controller):name(Draw 2 cards) draw:2 controller
 auto=@dierolled(this) result(19) from(controller):name(Draw 2 cards) draw:2 controller
-auto=@dierolled(this) result(20) from(controller):name(Return creature) target(creature|graveyard) moveto(myBattlefield) and!( transforms((,newability[@movedTo(this|mygraveyard) from(battlefield):wingame opponent],newability[@movedTo(this|opponentgraveyard) from(battlefield):wingame controller])) )!
+auto=@dierolled(this) result(20) from(controller):name(Return creature) target(creature|graveyard) moveto(myBattlefield) and!( transforms((,newability[_DIES_wingame opponent],newability[@movedTo(this|opponentgraveyard) from(battlefield):wingame controller])) )!
 auto=@dierolled(this) from(controller):if compare(lastrollresultminusphandcountminusend)~equalto~0 then name(Discard your hand) all(*|myhand) reject 
 text={2}, {T}: Roll a d20 and subtract the number of cards in your hand. If the result is 0 or less, discard your hand. -- 1-9 | Return a card at random from your graveyard to your hand. -- 10-19 | Draw two cards. -- 20 | Put a creature card from any graveyard onto the battlefield under your control. When that creature dies, its owner loses the game.
 mana={5}
@@ -65070,7 +65072,7 @@ toughness=5
 [card]
 name=Titania's Song
 auto=lord(artifact[-creature]) transforms((creature,noactivatedability,newability[manacost/manacost]))
-auto=@movedTo(this|myGraveyard) from(battlefield):all(artifact[-creature]|myBattlefield) transforms((creature,noactivatedability,newability[manacost/manacost])) ueot
+auto=_DIES_all(artifact[-creature]|myBattlefield) transforms((creature,noactivatedability,newability[manacost/manacost])) ueot
 text=Each noncreature artifact loses all abilities and becomes an artifact creature with power and toughness each equal to its converted mana cost. If Titania's Song leaves the battlefield, this effect continues until end of turn.
 mana={3}{G}
 type=Enchantment
@@ -65272,7 +65274,7 @@ autocommandzone=@counteradded(0/0,1,Explore) from(Tomb of Annihilation|mycommand
 autocommandzone=@counteradded(0/0,1,Explore) from(Tomb of Annihilation|mycommandzone) restriction{compare(hascntexplore)~equalto~3,compare(hascntoubliette)~equalto~1}:choice name(Dungeon completed) all(Tomb of Annihilation|mycommandzone) completedungeon:1 controller
 autocommandzone=@counteradded(0/0,1,Explore) from(Tomb of Annihilation|mycommandzone) restriction{compare(hascntexplore)~equalto~3,compare(hascntoubliette)~equalto~1}:thisforeach(variable{type:*[twodngtrg]:myBattlefieldplus1plusend}) ability$!name(Cradle of the Death God) name(Cradle of the Death God) token(The Atropal)!$ controller
 autocommandzone=@counteradded(0/0,1,Explore) from(Tomb of Annihilation|mycommandzone) restriction{compare(hascntexplore)~equalto~4}:choice name(Dungeon completed) all(Tomb of Annihilation|mycommandzone) completedungeon:1 controller
-autocommandzone=@counteradded(0/0,1,Explore) from(Tomb of Annihilation|mycommandzone) restriction{compare(hascntexplore)~equalto~4}:thisforeach(variable{type:*[twodngtrg]:myBattlefieldplus1plusend}) ability$!name(Cradle of the Death God) name(Cradle of the Death God) token(The Atropal)!$ controller
+autocommandzone=@counteradded(0/0,1,Explore) from(Tomb of Annihilation|mycommandzone) restriction{compare(hascntexplore)~equalto~4}:thisforeach(variable{type:*[twodngtrg]:myBattlefieldplus1plusend}) ability$!name(Cradle of the Death God) name(Cradle of the Death God) token(The Atropal,Legendary Creature God Horror,4/4,black,deathtouch)!$ controller
 text=Trapped Entry — Each player loses 1 life. -- Veils of Fear — Each player loses 2 life unless they discard a card. -- Sandfall Cell — Each player loses 2 life unless they sacrifice an artifact, a creature, or a land. -- Oubliette — Discard a card and sacrifice an artifact, a creature, and a land. -- Cradle of the Death God — Create The Atropal, a legendary 4/4 black God Horror creature token with deathtouch.
 type=Dungeon
 [/card]
@@ -65961,7 +65963,7 @@ subtype=Aura
 [card]
 name=Treeshaker Chimera
 abilities=lure
-auto=@movedTo(this|mygraveyard) from(Battlefield):draw:3 controller
+auto=_DIES_draw:3 controller
 text=All creatures able to block Treeshaker Chimera do so. -- When Treeshaker Chimera dies, draw three cards.
 mana={5}{G}{G}
 type=Creature
@@ -67089,7 +67091,7 @@ auto=lord(*|mygraveyard) cantbetargetof(*|opponentzones)
 auto=lord(*|mygraveyard) cantbetargetof(*|myzones)
 auto=lord(*|opponentgraveyard) cantbetargetof(*|opponentzones)
 auto=lord(*|opponentgraveyard) cantbetargetof(*|myzones)
-auto=@movedto(this|mygraveyard) from(battlefield):moveto(myexile) all(this) && moveto(myHand) all(creature|myGraveyard) && moveto(opponentHand) all(creature|opponentGraveyard)
+auto=_DIES_moveto(myexile) all(this) && moveto(myHand) all(creature|myGraveyard) && moveto(opponentHand) all(creature|opponentGraveyard)
 text=Underworld Cerberus can't be blocked except by three or more creatures. -- Cards in graveyards can't be the targets of spells or abilities. -- When Underworld Cerberus dies, exile it and each player returns all creature cards from his or her graveyard to his or her hand.
 mana={3}{B}{R}
 type=Creature
@@ -67144,7 +67146,7 @@ toughness=1
 [card]
 name=Underworld Sentinel
 auto=@combat(attacking) source(this):target(creature|myGraveyard) moveTo(myexile) and!( counter(0/0,1,UnderworldExiled) )!
-auto=@movedTo(this|mygraveyard) from(Battlefield):moveTo(myBattlefield) all(creature[counter{0/0.1.UnderworldExiled}]|myexile)
+auto=_DIES_moveTo(myBattlefield) all(creature[counter{0/0.1.UnderworldExiled}]|myexile)
 text=Whenever Underworld Sentinel attacks, exile target creature card from your graveyard. -- When Underworld Sentinel dies, put all cards exiled with it onto the battlefield.
 mana={3}{B}{B}
 type=Creature
@@ -68869,6 +68871,7 @@ type=Instant
 name=Vicious Rumors
 auto=damage:1 opponent
 auto=life:1 controller
+auto=deplete:1 opponent
 auto=ability$!name(Discard a card) notatarget(*|myhand) reject!$ opponent
 text=Vicious Rumors deals 1 damage to each opponent. Each opponent discards a card, then mills a card. You gain 1 life.
 mana={B}
@@ -70564,7 +70567,7 @@ toughness=4
 [/card]
 [card]
 name=Whale Reef
-auto=@movedTo(this|mygraveyard) from(myBattlefield):token(Kraken Reef)
+auto=_DIES_token(Kraken Reef)
 text=When this creature dies, put a 9/9 blue Kraken creature token onto the battlefield.
 mana={3}{U}
 type=Creature
@@ -72026,7 +72029,7 @@ type=Instant
 [card]
 name=You Happen On a Glade
 auto=choice name(Search library) target(<upto:2>land[basic]|mylibrary) moveto(myhand) and!( shuffle )!
-auto=choice name(Return permanent) target(*[-land]|mygraveyard) moveto(myhand)
+auto=choice name(Return permanent) target(*[-instant;-sorcery]|mygraveyard) moveto(myhand)
 text=Choose one — -- • Journey On — Search your library for up to two basic land cards, reveal them, put them into your hand, then shuffle. -- • Make Camp — Return target permanent card from your graveyard to your hand.
 mana={2}{G}
 type=Instant
