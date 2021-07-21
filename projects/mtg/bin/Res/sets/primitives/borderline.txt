@@ -46491,7 +46491,7 @@ toughness=4
 [card]
 name=Precipitous Drop
 target=creature
-auto=if compare(type:*[nodngplr]:mybattlefieldplustype:*[nodngopp]:opponentbattlefieldplusend)~equalto~0 then name(Venture into dungeon) name(Venture into dungeon) transforms((,newability[if type(*[dungeon]|mycommandzone)~morethan~0 then name(Explore the dungeon) name(Explore the dungeon) all(*[dungeon]|mycommandzone) counter(0/0.1.Explore)],newability[if type(*[dungeon]|mycommandzone)~equalto~0 then name(Choose a new dungeon) name(Choose a new dungeon) target(*[dungeon]|mysideboard) moveTo(mycommandzone) and!( counter(0/0.1.Explore) )!])) oneshot
+auto=name(Venture into dungeon) all(this) transforms((,newability[if compare(type:*[nodngplr]:mybattlefieldplustype:*[nodngopp]:opponentbattlefieldplusend)~equalto~0 then name(Venture into dungeon) name(Venture into dungeon) transforms((,newability[if type(*[dungeon]|mycommandzone)~morethan~0 then name(Explore the dungeon) name(Explore the dungeon) all(*[dungeon]|mycommandzone) counter(0/0.1.Explore)],newability[if type(*[dungeon]|mycommandzone)~equalto~0 then name(Choose a new dungeon) name(Choose a new dungeon) target(*[dungeon]|mysideboard) moveTo(mycommandzone) and!( counter(0/0.1.Explore) )!])) oneshot])) oneshot
 auto=teach(creature) -2/-2
 auto=this(variable{pdungeoncompleted}>0) teach(creature) -3/-3
 text=Enchant creature -- When Precipitous Drop enters the battlefield, venture into the dungeon. (Enter the first room or advance to the next room.) -- Enchanted creature gets -2/-2. It gets -5/-5 instead as long as you’ve completed a dungeon.
@@ -63454,6 +63454,16 @@ type=Enchantment
 subtype=Saga
 [/card]
 [card]
+name=The Atropal
+abilities=deathtouch
+text=Deathtouch
+type=Legendary Creature
+subtype=God Horror
+power=4
+toughness=4
+color=black
+[/card]
+[card]
 name=The Bears of Littjara
 auto=counter(0/0,1,Lore)
 auto=@each my firstmain:counter(0/0,1,Lore)
@@ -65260,9 +65270,9 @@ autocommandzone=@counteradded(0/0,1,Explore) from(Tomb of Annihilation|mycommand
 autocommandzone=@counteradded(0/0,1,Explore) from(Tomb of Annihilation|mycommandzone) restriction{compare(hascntexplore)~equalto~3,compare(hascntoubliette)~equalto~0}:thisforeach(variable{type:*[twodngtrg]:myBattlefieldplus1plusend}) ability$!name(Sandfall Cell) name(Sandfall Cell) transforms((,newability[choice name(Loose 2 life) life:-2 controller],newability[if type(artifact|mybattlefield)~morethan~0 then if type(creature|mybattlefield)~morethan~0 then if type(land|mybattlefield)~morethan~0 then choice name(Sacrifice cards) name(Sacrifice cards) name(Sacrifice cards) name(Sacrifice cards) activate castcard(alternative named!:annihilation rooms:!)])) oneshot!$ controller
 autocommandzone=@counteradded(0/0,1,Explore) from(Tomb of Annihilation|mycommandzone) restriction{compare(hascntexplore)~equalto~3,compare(hascntoubliette)~equalto~0}:thisforeach(variable{type:*[twodngtrg]:myBattlefieldplus1plusend}) ability$!name(Sandfall Cell) name(Sandfall Cell) transforms((,newability[choice name(Loose 2 life) life:-2 controller],newability[if type(artifact|mybattlefield)~morethan~0 then if type(creature|mybattlefield)~morethan~0 then if type(land|mybattlefield)~morethan~0 then choice name(Sacrifice cards) name(Sacrifice cards) name(Sacrifice cards) name(Sacrifice cards) activate castcard(alternative named!:annihilation rooms:!)])) oneshot!$ opponent
 autocommandzone=@counteradded(0/0,1,Explore) from(Tomb of Annihilation|mycommandzone) restriction{compare(hascntexplore)~equalto~3,compare(hascntoubliette)~equalto~1}:choice name(Dungeon completed) all(Tomb of Annihilation|mycommandzone) completedungeon:1 controller
-autocommandzone=@counteradded(0/0,1,Explore) from(Tomb of Annihilation|mycommandzone) restriction{compare(hascntexplore)~equalto~3,compare(hascntoubliette)~equalto~1}:thisforeach(variable{type:*[twodngtrg]:myBattlefieldplus1plusend}) ability$!name(Cradle of the Death God) name(Cradle of the Death God) token(The Atropal,Legendary Creature God Horror,4/4,black,deathtouch)!$ controller
+autocommandzone=@counteradded(0/0,1,Explore) from(Tomb of Annihilation|mycommandzone) restriction{compare(hascntexplore)~equalto~3,compare(hascntoubliette)~equalto~1}:thisforeach(variable{type:*[twodngtrg]:myBattlefieldplus1plusend}) ability$!name(Cradle of the Death God) name(Cradle of the Death God) token(The Atropal)!$ controller
 autocommandzone=@counteradded(0/0,1,Explore) from(Tomb of Annihilation|mycommandzone) restriction{compare(hascntexplore)~equalto~4}:choice name(Dungeon completed) all(Tomb of Annihilation|mycommandzone) completedungeon:1 controller
-autocommandzone=@counteradded(0/0,1,Explore) from(Tomb of Annihilation|mycommandzone) restriction{compare(hascntexplore)~equalto~4}:thisforeach(variable{type:*[twodngtrg]:myBattlefieldplus1plusend}) ability$!name(Cradle of the Death God) name(Cradle of the Death God) token(The Atropal,Legendary Creature God Horror,4/4,black,deathtouch)!$ controller
+autocommandzone=@counteradded(0/0,1,Explore) from(Tomb of Annihilation|mycommandzone) restriction{compare(hascntexplore)~equalto~4}:thisforeach(variable{type:*[twodngtrg]:myBattlefieldplus1plusend}) ability$!name(Cradle of the Death God) name(Cradle of the Death God) token(The Atropal)!$ controller
 text=Trapped Entry — Each player loses 1 life. -- Veils of Fear — Each player loses 2 life unless they discard a card. -- Sandfall Cell — Each player loses 2 life unless they sacrifice an artifact, a creature, or a land. -- Oubliette — Discard a card and sacrifice an artifact, a creature, and a land. -- Cradle of the Death God — Create The Atropal, a legendary 4/4 black God Horror creature token with deathtouch.
 type=Dungeon
 [/card]
