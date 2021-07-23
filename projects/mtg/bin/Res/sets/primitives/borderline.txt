@@ -46712,7 +46712,7 @@ toughness=1
 name=Primal Amulet
 auto=lord(instant,sorcery|myhand) altercost(colorless,-1)
 auto=@movedto(instant,sorcery|mystack):counter(0/0,1,charge)
-auto={0}restriction{type(this[counter{charge}>=4])~morethan~0}:flip(Primal Wellspring)
+auto={0} restriction{type(this[counter{charge}>=4])~morethan~0}:flip(Primal Wellspring)
 text=Instant and sorcery spells you cast cost {1} less to cast. -- Whenever you cast an instant or sorcery spell, put a charge counter on Primal Amulet. Then if there are four or more charge counters on it, you may remove those counters and transform it.
 mana={4}
 type=Artifact
@@ -48543,7 +48543,7 @@ subtype=Class
 [card]
 name=Ranger's Hawk
 abilities=flying
-auto={3}{T}{T(creature[tapped]|mybattlefield)}:if compare(type:*[nodngplr]:mybattlefieldplustype:*[nodngopp]:opponentbattlefieldplusend)~equalto~0 then name(Venture into dungeon) name(Venture into dungeon) transforms((,newability[if type(*[dungeon]|mycommandzone)~morethan~0 then name(Explore the dungeon) name(Explore the dungeon) all(*[dungeon]|mycommandzone) counter(0/0.1.Explore)],newability[if type(*[dungeon]|mycommandzone)~equalto~0 then name(Choose a new dungeon) name(Choose a new dungeon) target(*[dungeon]|mysideboard) moveTo(mycommandzone) and!( counter(0/0.1.Explore) )!])) oneshot asSorcery
+auto={3}{T}{T(other creature[-tapped]|mybattlefield)}:if compare(type:*[nodngplr]:mybattlefieldplustype:*[nodngopp]:opponentbattlefieldplusend)~equalto~0 then name(Venture into dungeon) name(Venture into dungeon) transforms((,newability[if type(*[dungeon]|mycommandzone)~morethan~0 then name(Explore the dungeon) name(Explore the dungeon) all(*[dungeon]|mycommandzone) counter(0/0.1.Explore)],newability[if type(*[dungeon]|mycommandzone)~equalto~0 then name(Choose a new dungeon) name(Choose a new dungeon) target(*[dungeon]|mysideboard) moveTo(mycommandzone) and!( counter(0/0.1.Explore) )!])) oneshot asSorcery
 text=Flying -- {3}, {T}, Tap another untapped creature you control: Venture into the dungeon. Activate only as a sorcery. (Enter the first room or advance to the next room.)
 mana={W}
 type=Creature
@@ -67737,7 +67737,7 @@ otherrestriction=can play creature,compare(isflipped)~equalto~1
 restriction=compare(isflipped)~equalto~0
 anyzone={0}:doubleside(Lisette, Dean of the Root)
 autostack=if paid(alternative) then name(Lisette, Dean of the Root) name(Lisette, Dean of the Root) flip(Lisette, Dean of the Root) forcetype(Legendary Creature)
-auto=@movedto(creature[-token]|graveyard) from(opponentbattlefield) restriction{compare(isflipped)~equalto~0}:transforms((,newability[all(creature[zpos=type:*:opponentgraveyard]|opponentgraveyard) moveto(opponentexile) and!( pay({2}) name(pay 2 and create pest) token(Pest^Creature Pest^1/1^green^blue) and!( transforms((,newability[@movedto(this|mygraveyard) from(battlefield):life:1 controller])) forever )! )! ])) oneshot
+auto=@movedto(creature[-token]|graveyard) from(opponentbattlefield) restriction{compare(isflipped)~equalto~0}:transforms((,newability[all(creature[zpos=type:*:opponentgraveyard]|opponentgraveyard) moveto(opponentexile) and!( pay({2}) name(pay 2 and create pest) token(Pest^Creature Pest^1/1^green^blue) and!( transforms((,newability[_DIES_life:1 controller])) forever )! )! ])) oneshot
 text=Menace, lifelink -- If a nontoken creature an opponent controls would die, exile it instead. When you do, you may pay {2}. If you do, create a 1/1 black and green Pest creature token with "When this creature dies, you gain 1 life." // {2}{G}{G} Lisette, Dean of the Root
 mana={B}
 type=Legendary Creature
