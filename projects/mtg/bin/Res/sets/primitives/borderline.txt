@@ -13426,7 +13426,7 @@ type=Artifact
 [/card]
 [card]
 name=Cursed Scroll
-auto={3}{T}:name(Name a card from your hand) choice target(*|myhand) donothing && name(Game chooses a random card) if compare(cursedscrollresult)~equalto~1 then ability$!name(Deals 2 damages) name(Deals 2 damages) damage:2 target(player,creature,planeswalker)!$ controller
+auto={3}{T}:ability$!name(Name a card from your hand) name(Name a card from your hand) target(*|myhand) transforms((,newability[if compare(cursedscrollresult)~equalto~1 then name(Deals 2 damage) name(Deals 2 damage) damage:2 target(player^creature^planeswalker)])) oneshot!$ controller
 text={3}, {T}: Choose a card name, then reveal a card at random from your hand. If that card has the chosen name, Cursed Scroll deals 2 damage to any target.
 mana={1}
 type=Artifact
@@ -38070,7 +38070,7 @@ toughness=3
 [/card]
 [card]
 name=Magus of the Scroll
-auto={3}{T}:name(Name a card from your hand) choice target(*|myhand) donothing && name(Reveal a random card) if compare(cursedscrollresult)~equalto~1 then ability$!name(Deals 2 damages) name(Deals 2 damages) damage:2 target(player,creature)!$ controller
+auto={3}{T}:ability$!name(Name a card from your hand) name(Name a card from your hand) target(*|myhand) transforms((,newability[if compare(magusofscrollresult)~equalto~1 then name(Deals 2 damage) name(Deals 2 damage) damage:2 target(player^creature^planeswalker)])) oneshot!$ controller
 text={3}, {T}: Name a card. Reveal a card at random from your hand. If it's the named card, Magus of the Scroll deals 2 damage to target creature or player.
 mana={R}
 type=Creature
