@@ -2742,7 +2742,7 @@ public class ImgDownloader {
                     set.equals("BOK") || set.equals("CHK") || set.equals("ZNR") || set.equals("KHM") ||
                     set.equals("STX"))
                 rarity = "";
-            if(id != null && (id.equals("209162") || id.equals("209163") || id.equals("401721") || id.equals("401722") || id.equals("491633")))
+            if(id != null && (id.equals("209162") || id.equals("209163") || id.equals("401721") || id.equals("401722")))
                 rarity = "t";
             if(id != null && (id.equals("1750411") || id.equals("5176911") || id.equals("44680711") || id.equals("29530711") || id.equals("45108910")
                     || id.equals("530447") || id.equals("530448") || id.equals("530449")))
@@ -2768,6 +2768,8 @@ public class ImgDownloader {
                 mappa.put("530447t", "Skeleton");
             if(id.equals("530448"))
                 mappa.put("530448t", "Goblin");
+            if(id.equals("491633"))
+                mappa.put("491633t", "Angel");
             if (id.equals("114921")) {
                 mappa.put("11492111t", "Citizen");
                 mappa.put("11492112t", "Camarid");

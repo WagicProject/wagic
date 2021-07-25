@@ -13,7 +13,7 @@
 #AUTO_DEFINE __BASIC_LANDCYCLING__($cost) $cost{cycle}:name(basic landcycling) moveTo(myhand) target(land[basic]|mylibrary)
 
 # Dies, Evergreen
-#AUTO_DEFINE _DIES_ @movedTo(this|mygraveyard) from(battlefield):
+#AUTO_DEFINE _DIES_ @movedTo(this|graveyard) from(battlefield):
 
 # Scry, Evergreen
 #AUTO_DEFINE _SCRY_($c) scry:$c scrycore delayed dontshow donothing scrycoreend scryend

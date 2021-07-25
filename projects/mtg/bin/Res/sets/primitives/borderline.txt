@@ -123,7 +123,7 @@ type=Instant
 [/card]
 [card]
 name=Abu Ja'far
-auto=@movedto(this|graveyard) from(battlefield):bury all(creature[blocking;blocked])
+auto=_DIES_bury all(creature[blocking;blocked])
 text=When Abu Ja'far dies, destroy all creatures blocking or blocked by it. They can't be regenerated.
 mana={W}
 type=Creature
@@ -133,7 +133,7 @@ toughness=1
 [/card]
 [card]
 name=Abu Jafar
-auto=@movedto(this|graveyard) from(battlefield):bury all(creature[blocking;blocked])
+auto=_DIES_bury all(creature[blocking;blocked])
 text=When Abu Ja'far dies, destroy all creatures blocking or blocked by it. They can’t be regenerated.
 mana={W}
 type=Creature
@@ -1617,7 +1617,7 @@ toughness=7
 name=Ancient Stone Idol
 abilities=flash, trample
 anyzone=foreach(creature[attacking]|battlefield) changecost(colorless:-1) forcedalive
-auto=@movedTo(this|graveyard) from(battlefield):create(construct artifact:creature construct artifact:6/12:colorless:trample)
+auto=_DIES_create(construct artifact:creature construct artifact:6/12:colorless:trample)
 text=Flash -- This spell costs {1} less to cast for each attacking creature. -- Trample -- When Ancient Stone Idol dies, create a 6/12 colorless Construct artifact creature token with trample.
 mana={10}
 type=Artifact Creature
@@ -2988,7 +2988,7 @@ toughness=3
 [/card]
 [card]
 name=Arena Rector
-auto=@movedTo(this|graveyard) from(battlefield):may all(trigger[to]) moveto(exile) and! moveTo(myBattlefield) target(planeswalker|myLibrary)!
+auto=_DIES_may all(trigger[to]) moveto(exile) and! moveTo(myBattlefield) target(planeswalker|myLibrary)!
 text=When Arena Rector dies, you may exile it. If you do, search your library for a planeswalker card, put it onto the battlefield, then shuffle your library.
 mana={3}{W}
 type=Creature
@@ -3527,7 +3527,7 @@ toughness=3
 [/card]
 [card]
 name=Attendant of Vraska
-auto=@movedTo(this|graveyard) from(battlefield):if type(planeswalker[vraska]|myBattlefield)~morethan~0 then life:power
+auto=_DIES_if type(planeswalker[vraska]|myBattlefield)~morethan~0 then life:power
 text=When Attendant of Vraska dies, if you control a Vraska planeswalker, you gain life equal to Attendant of Vraska's power.
 mana={1}{B}{G}
 type=Creature
@@ -4090,8 +4090,8 @@ type=Enchantment
 [/card]
 [card]
 name=Ayula, Queen Among Bears
-auto=@movedTo(another creature[bear]|myBattlefield):choice target(creature[bear]) counter(1/1,2)
-auto=@movedTo(another creature[bear]|myBattlefield):choice target(creature[bear]) transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>])) ueot
+auto=@movedTo(other creature[bear]|myBattlefield):choice target(creature[bear]) counter(1/1,2)
+auto=@movedTo(other creature[bear]|myBattlefield):choice target(creature[bear]) transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>])) ueot
 text=Whenever another Bear enters the battlefield under your control, choose one — -- • Put two +1/+1 counters on target Bear. -- • Target Bear you control fights target creature you don't control.
 mana={1}{G}
 type=Legendary Creature
@@ -4663,7 +4663,7 @@ toughness=3
 [/card]
 [card]
 name=Bartered Cow
-auto=@movedTo(this|graveyard) from(battlefield):token(-473141)
+auto=_DIES_token(-473141)
 auto=@movedTo(this|mygraveyard) from(myHand):token(-473141)
 text=When Bartered Cow dies or when you discard it, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
 mana={3}{W}
@@ -6522,7 +6522,7 @@ toughness=1
 [/card]
 [card]
 name=Bloodmist Infiltrator
-auto=@combat(attacking) source(this):may name(Sacrifice) sacrifice notatarget(another creature|mybattlefield) && transforms((,newability[unblockable])) forever
+auto=@combat(attacking) source(this):may name(Sacrifice) sacrifice notatarget(other creature|mybattlefield) && transforms((,newability[unblockable])) forever
 text=Whenever Bloodmist Infiltrator attacks, you may sacrifice another creature. If you do, Bloodmist Infiltrator can't be blocked this turn.
 mana={2}{B}
 type=Creature
@@ -7314,7 +7314,7 @@ type=Legendary Land
 [card]
 name=Bottle Golems
 abilities=trample
-auto=@movedto(this|graveyard) from(battlefield):name(Gain life) life:power controller
+auto=_DIES_name(Gain life) life:power controller
 text=Trample -- When Bottle Golems dies, you gain life equal to its power.
 mana={4}
 type=Artifact Creature
@@ -9235,7 +9235,7 @@ type=Enchantment
 [card]
 name=Cavalier of Dawn
 abilities=vigilance
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) target(*[artifact;enchantment]|mygraveyard)
+auto=_DIES_moveTo(myhand) target(*[artifact;enchantment]|mygraveyard)
 auto=choice name(Destroy your land) target(*[-land]|mybattlefield) destroy && token(Golem,Artifact Creature Golem,3/3)
 auto=choice name(Destroy opponent's land) target(*[-land]|opponentbattlefield) destroy && token(Golem,Artifact Creature Golem,3/3) opponent
 text=Vigilance -- When Cavalier of Dawn enters the battlefield, destroy up to one target nonland permanent. Its controller creates a 3/3 colorless Golem artifact creature token. -- When Cavalier of Dawn dies, return target artifact or enchantment card from your graveyard to your hand.
@@ -9249,8 +9249,8 @@ toughness=6
 name=Cavalier of Flame
 auto={1}{R}:all(creature|myBattlefield)) 1/0 && haste ueot
 auto=target(<anyamount>*|myhand) reject && teach(*) draw:1 controller assorcery
-auto=@movedTo(this|graveyard) from(battlefield):damage:type:land:mygraveyard opponent
-auto=@movedTo(this|graveyard) from(battlefield):damage:type:land:mygraveyard all(planeswalker|opponentbattlefield)
+auto=_DIES_damage:type:land:mygraveyard opponent
+auto=_DIES_damage:type:land:mygraveyard all(planeswalker|opponentbattlefield)
 text={1}{R}: Creatures you control get +1/+0 and gain haste until end of turn. -- When Cavalier of Flame enters the battlefield, discard any number of cards, then draw that many cards. -- When Cavalier of Flame dies, it deals X damage to each opponent and each planeswalker they control, where X is the number of land cards in your graveyard.
 mana={2}{R}{R}{R}
 type=Creature
@@ -9288,7 +9288,7 @@ toughness=5
 name=Cavalier of Thorns
 abilities=reach
 auto=reveal:5 optionone name(Get land) target(land|reveal) moveto(myhand) optiononeend optiontwo name(put in grave) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
-auto=@movedTo(this|graveyard) from(battlefield):may all(trigger[to]) moveto(exile) && moveto(mylibrary) target(*|mygraveyard)
+auto=_DIES_may all(trigger[to]) moveto(exile) && moveto(mylibrary) target(*|mygraveyard)
 text=Reach -- When Cavalier of Thorns enters the battlefield, reveal the top five cards of your library. Put a land card from among them onto the battlefield and the rest into your graveyard. -- When Cavalier of Thorns dies, you may exile it. If you do, put another target card from your graveyard on top of your library.
 mana={2}{G}{G}{G}
 type=Creature
@@ -10538,7 +10538,7 @@ type=Instant
 [card]
 name=Cinderheart Giant
 abilities=trample
-auto=@movedto(this|graveyard) from(battlefield):ability$!name(Deals 7 damage) name(Deals 7 damage) damage:7 notatarget(creature|mybattlefield)!$ opponent
+auto=_DIES_ability$!name(Deals 7 damage) name(Deals 7 damage) damage:7 notatarget(creature|mybattlefield)!$ opponent
 text=Trample -- When Cinderheart Giant dies, it deals 7 damage to a creature an opponent controls chosen at random.
 mana={5}{R}{R}
 type=Creature
@@ -10632,7 +10632,7 @@ type=Sorcery
 name=Citywatch Sphinx
 abilities=flying
 aicode=activate transforms((,newability[surveil],newability[all(*[zpos<=psurveiloffsetplus2plusend]|mylibrary) transforms((,newability[if compare(genrand2)~equalto~1 then moveto(mygraveyard)])) oneshot])) oneshot
-auto=@movedTo(this|graveyard) from(battlefield):name(Surveil 2) reveal:psurveiloffsetplus2plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus2plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus2plusend>*|reveal) moveto(ownerlibrary) optiontwoend afterrevealed surveil afterrevealedend revealend
+auto=_DIES_name(Surveil 2) reveal:psurveiloffsetplus2plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus2plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus2plusend>*|reveal) moveto(ownerlibrary) optiontwoend afterrevealed surveil afterrevealedend revealend
 text=Flying -- When Citywatch Sphinx dies, surveil 2. (Look at the top two cards of your library, then put any number of them into your graveyard and the rest on the top of your library in any order.)
 mana={5}{U}
 type=Creature
@@ -10955,7 +10955,7 @@ auto=aslongas(parents) name(Attach to creature) rehook target(creature|myBattlef
 auto=teach(creature) flying
 auto={2}:equip
 text=When Cliffhaven Kitesail enters the battlefield, attach it to target creature you control. -- Equipped creature has flying. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery)
-mana={2}
+mana={1}
 type=Artifact
 subtype=Equipment
 [/card]
@@ -11727,7 +11727,16 @@ type=Instant
 [card]
 name=Component Pouch
 auto={T}:name(Roll a d20) rolld20 20 winability counter(0/0.2.component) winabilityend loseability if compare(lastrollresult)~lessthan~10 then counter(0/0.1.component) else counter(0/0.2.component) loseabilityend rolld20end
-auto={T}{C(0/0.-1.component)}:name(Add 2 mana) thisforeach(variable{2}) ability$!name(Choose one) choice name(Add white) add{W} _ choice name(Add blue) add{U} _ choice name(Add red) add{R} _ choice name(Add green) add{G} _ choice name(Add black) add{B}!$ controller
+auto={T}{C(0/0.-1.component)}:Add{W}{U}
+auto={T}{C(0/0.-1.component)}:Add{W}{B}
+auto={T}{C(0/0.-1.component)}:Add{W}{R}
+auto={T}{C(0/0.-1.component)}:Add{W}{G}
+auto={T}{C(0/0.-1.component)}:Add{U}{B}
+auto={T}{C(0/0.-1.component)}:Add{U}{R}
+auto={T}{C(0/0.-1.component)}:Add{U}{G}
+auto={T}{C(0/0.-1.component)}:Add{B}{R}
+auto={T}{C(0/0.-1.component)}:Add{B}{G}
+auto={T}{C(0/0.-1.component)}:Add{R}{G}
 text={T}, Remove a component counter from Component Pouch: Add two mana of different colors. -- {T}: Roll a d20. -- 1-9 | Put a component counter on Component Pouch. -- 10-20 | Put two component counters on Component Pouch.
 mana={3}
 type=Artifact
@@ -11767,7 +11776,7 @@ type=Instant
 [card]
 name=Conclave Cavalier
 abilities=vigilance
-auto=@movedTo(this|graveyard) from(battlefield):create(elf knight:creature elf knight:2/2:green,white:vigilance)*2
+auto=_DIES_create(elf knight:creature elf knight:2/2:green,white:vigilance)*2
 text=Vigilance -- When Conclave Cavalier dies, create two 2/2 green and white Elf Knight creature tokens with vigilance.
 mana={G}{G}{W}{W}
 type=Creature
@@ -11789,7 +11798,7 @@ toughness=2
 [card]
 name=Conclave Mentor
 auto=@counteradded(1/1) from(creature|mybattlefield) except(Conclave Mentor):may counter(1/1) target(creature[counter{1/1.1}]|myBattlefield)
-auto=@movedTo(this|graveyard) from(battlefield):life:power controller
+auto=_DIES_life:power controller
 text=If one or more +1/+1 counters would be put on a creature you control, that many plus one +1/+1 counters are put on that creature instead. -- When Conclave Mentor dies, you gain life equal to its power.
 mana={G}{W}
 type=Creature
@@ -11811,7 +11820,7 @@ target=player
 auto=choice name(1 Player, 2, 3 Creature) damage:1 && damage:2 target(creature) && ability$!name(damage) choice target(other creature) damage:3!$ controller
 auto=choice name(2 Player, 1, 3 Creature) damage:2 && damage:1 target(creature) && ability$!name(damage) choice target(other creature) damage:3!$ controller
 auto=choice name(3 Player, 1, 2 Creature) damage:3 && damage:1 target(creature) && ability$!name(damage) choice target(other creature) damage:2!$ controller
-auto=choice name(0 Player, 1, 2, 3 Creature) damage:1 target(creature) && ability$!name(damage) choice target(another creature) damage:2!$ controller && ability$!name(damage) choice target(another creature) damage:3!$ controller
+auto=choice name(0 Player, 1, 2, 3 Creature) damage:1 target(creature) && ability$!name(damage) choice target(other creature) damage:2!$ controller && ability$!name(damage) choice target(other creature) damage:3!$ controller
 text=Cone of Flame deals 1 damage to target creature or player, 2 damage to another target creature or player, and 3 damage to a third target creature or player.
 mana={3}{R}{R}
 type=Sorcery
@@ -12103,7 +12112,7 @@ type=Enchantment
 name=Consume Strength
 target=creature
 auto=2/2 ueot
-auto=target(another creature) -2/-2 ueot
+auto=target(other creature) -2/-2 ueot
 text=Target creature gets +2/+2 until end of turn. Another target creature gets -2/-2 until end of turn.
 mana={1}{B}{G}
 type=Instant
@@ -12835,6 +12844,7 @@ subtype=Aura
 name=Crown-Hunter Hireling
 auto=becomesmonarch controller
 auto=this(variable{omonarch}<1) cantattack
+auto=this(variable{omonarch}<1) cantpwattack
 text=When Crown-Hunter Hireling enters the battlefield, you become the monarch. -- Crown-Hunter Hireling can't attack unless defending player is the monarch.
 mana={4}{R}
 type=Creature
@@ -13416,7 +13426,7 @@ type=Artifact
 [/card]
 [card]
 name=Cursed Scroll
-auto={3}{T}:name(Name a card from your hand) choice target(*|myhand) donothing && name(Game chooses a random card) if compare(cursedscrollresult)~equalto~1 then ability$!name(Deals 2 damages) name(Deals 2 damages) damage:2 target(player,creature,planeswalker)!$ controller
+auto={3}{T}:ability$!name(Name a card from your hand) name(Name a card from your hand) target(*|myhand) transforms((,newability[if compare(cursedscrollresult)~equalto~1 then name(Deals 2 damage) name(Deals 2 damage) damage:2 target(player^creature^planeswalker)])) oneshot!$ controller
 text={3}, {T}: Choose a card name, then reveal a card at random from your hand. If that card has the chosen name, Cursed Scroll deals 2 damage to any target.
 mana={1}
 type=Artifact
@@ -13510,7 +13520,7 @@ toughness=7
 [/card]
 [card]
 name=Cyclopean Giant
-auto=@movedTo(this|graveyard) from(battlefield):all(trigger[to]) moveto(exile) and!( transforms((swamp)) target(land) )!
+auto=_DIES_all(trigger[to]) moveto(exile) and!( transforms((swamp)) target(land) )!
 text=When Cyclopean Giant dies, target land becomes a Swamp. Exile Cyclopean Giant.
 mana={2}{B}{B}
 type=Creature
@@ -13724,7 +13734,7 @@ toughness=5
 [card]
 name=Darigaaz Reincarnated
 abilities=flying, trample, haste
-autograveyard=@movedto(this|graveyard) from(battlefield):moveTo(exile) && counter(0/0,3,egg)
+autograveyard=_DIES_moveTo(exile) && counter(0/0,3,egg)
 autoexile=@each my upkeep:counter(0/0,-1,egg)
 autoexile=@each my upkeep:this(counter{0/0,1,egg}<1)while moveTo(battlefield)
 text=Flying, trample, haste -- If Darigaaz Reincarnated would die, instead exile it with three egg counters on it. -- At the beginning of your upkeep, if Darigaaz is exiled with an egg counter on it, remove an egg counter from it. Then if Darigaaz has no egg counters on it, return it to the battlefield.
@@ -14316,8 +14326,8 @@ type=Enchantment
 [card]
 name=Death Tyrant
 abilities=menace
-auto=lord(creature[attacking]|mybattlefield) transforms((,newability[@movedto(this|graveyard) from(battlefield):name(Create zombie) token(Zombie Lil)]))
-auto=lord(creature[blocking]|opponentbattlefield) transforms((,newability[@movedto(this|graveyard) from(battlefield):name(Create zombie) token(Zombie Lil) opponent]))
+auto=lord(creature[attacking]|mybattlefield) transforms((,newability[_DIES_name(Create zombie) token(Zombie Lil)]))
+auto=lord(creature[blocking]|opponentbattlefield) transforms((,newability[_DIES_name(Create zombie) token(Zombie Lil) opponent]))
 autograveyard={5}{B}:name(Return to battlefield) moveto(mybattlefield) and!( tap(novent) )!
 text=Menace -- Negative Energy Cone — Whenever an attacking creature you control or a blocking creature an opponent controls dies, create a 2/2 black Zombie creature token. -- {5}{B}: Return Death Tyrant from your graveyard to the battlefield tapped.
 mana={4}{B}
@@ -14367,7 +14377,7 @@ toughness=2
 [/card]
 [card]
 name=Deathbloom Thallid
-auto=@movedTo(this|graveyard) from(battlefield):create(saproling:creature saproling:1/1:green:)
+auto=_DIES_create(saproling:creature saproling:1/1:green:)
 text=When Deathbloom Thallid dies, create a 1/1 green Saproling creature token.
 mana={2}{B}
 type=Creature
@@ -14440,7 +14450,7 @@ type=Instant
 [/card]
 [card]
 name=Debtors' Transport
-auto=@movedTo(this|graveyard) from(battlefield):create(Spirit:creature Spirit:1/1:white,black:flying)*2
+auto=_DIES_create(Spirit:creature Spirit:1/1:white,black:flying)*2
 text=Afterlife 2 (When this creature dies, create two 1/1 white and black Spirit creature tokens with flying.)
 mana={5}{B}
 type=Creature
@@ -15146,6 +15156,7 @@ subtype=Desert
 name=Desert's Hold
 target=creature
 auto=cantattack
+auto=cantpwattack
 auto=cantblock
 auto=noactivatedability
 auto=aslongas(Desert|mybattlefield,myGraveyard) life:3 controller
@@ -15481,8 +15492,8 @@ toughness=1
 [card]
 name=Diabolic Servitude
 auto=moveTo(myBattlefield) target(creature|mygraveyard)
-auto=soulbond @movedto(this|graveyard) from(battlefield):moveto(exile) && all(this) transforms((,newability[moveTo(ownerhand)]))
-auto=soulbond @movedto(this|graveyard) from(battlefield):moveto(exile)
+auto=soulbond _DIES_moveto(exile) && all(this) transforms((,newability[moveTo(ownerhand)]))
+auto=soulbond _DIES_moveto(exile)
 text={B}{B}, Pay 2 life, Sacrifice a Swamp: Return target creature card from your graveyard to the battlefield.
 mana={3}{B}
 type=Enchantment
@@ -15490,7 +15501,7 @@ type=Enchantment
 [card]
 name=Diabolical Salvation
 abilities=split second
-auto=token(Devil,Creature Devil,4/4,red,unreath) with((,newability ((@movedto(this|graveyard) from(battlefield):token(Treasure,Artifact Treasure) and!( transforms((,newability[{T}{S}:Add{W}])(,newability[{T}{S}:Add{R}])(,newability[{T}{S}:Add{G}])(,newability[{T}{S}:Add{U}])(,newability[{T}{S}:Add{B}])) forever )!))
+auto=token(Devil,Creature Devil,4/4,red,unreath) with((,newability ((_DIES_token(Treasure,Artifact Treasure) and!( transforms((,newability[{T}{S}:Add{W}])(,newability[{T}{S}:Add{R}])(,newability[{T}{S}:Add{G}])(,newability[{T}{S}:Add{U}])(,newability[{T}{S}:Add{B}])) forever )!))
 text=Split second Create four 4/4 red Devil creature tokens with haste and “When this creature dies, create a colorless Treasure artifact token with ‘{T}, Sacrifice this artifact: Add one mana of any color.’” Sacrifice the Devil tokens at the beginning of the next end step.
 mana={2}{R}{R}{R}{R}
 type=Instant
@@ -15731,7 +15742,7 @@ toughness=1
 [/card]
 [card]
 name=Dire Fleet Hoarder
-auto=@movedTo(this|graveyard) from(battlefield):token(435451)
+auto=_DIES_token(435451)
 text=When Dire Fleet Hoarder dies, create a colorless Treasure artifact token with "{T}, Sacrifice this artifact: Add one mana of any color to your mana pool."
 mana={1}{B}
 type=Creature
@@ -16288,7 +16299,7 @@ toughness=1
 [/card]
 [card]
 name=Doomed Dissenter
-auto=@movedTo(this|graveyard) from(battlefield):token(Zombie,creature Zombie,2/2,black)
+auto=_DIES_token(Zombie,creature Zombie,2/2,black)
 text=When Doomed Dissenter dies, create a 2/2 black Zombie creature token.
 mana={1}{B}
 type=Creature
@@ -18457,7 +18468,9 @@ auto=moveTo(Exile) target(*[manacost>=3]|opponentbattlefield)
 auto=counter(0/0,1,Lore)
 auto=@each my firstmain:counter(0/0,1,Lore)
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}) all(*[-creature]|opponentcastingzone) altercost(colorless, +2) uynt
-auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) moveTo(mybattlefield) target(creature,planeswalker|mygraveyard) if type(creature|myGraveyard)~morethan~0 then all(this) counter(1/1,1) else counter(0/0.1.Loyalty) && sacrifice(this)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) choice name(Planeswalker) target(planeswalker|mygraveyard) transforms((,newability[moveTo(mybattlefield)],newability[counter(0/0.1.loyalty)]))
+auto=@counteradded(0/0,1,Lore) from(this): this(counter{0/0.3.Lore}) choice name(Creature) target(creature|mygraveyard) transforms((,newability[moveTo(mybattlefield)],newability[counter(1/1)]))
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) sacrifice(this)
 text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I - Exile target permanent an opponent controls with converted mana cost 3 or greater. -- II - Noncreature spells your opponents cast cost {2} more to cast until your next turn. -- III - Return target creature or planeswalker card from your graveyard to the battlefield. Put a +1/+1 counter or a loyalty counter on it.
 mana={3}{W}{W}
 type=Enchantment
@@ -18480,7 +18493,8 @@ auto=destroy target (creature[power<=2])
 auto=counter(0/0,1,Lore)
 auto=@each my firstmain:counter(0/0,1,Lore)
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}) target(opponent) reveal:type:*:targetedpersonshand revealzone(targetedpersonshand) optionone name(choose discards) notatarget(<1>*[-creature;-land]|reveal) transforms((,newability[moveto(ownerhand) all(other *|reveal)],newability[moveto(ownerhand) and!(reject)!])) ueot optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )!  optiontwoend revealend
-auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) moveTo(exile) all(*|opponentGraveyard) && sacrifice(this)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) moveTo(exile) all(*|opponentGraveyard)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) sacrifice(this)
 text=I - Destroy target creature an opponent controls with power 2 or less. -- II - Target opponent reveals their hand. You choose a noncreature, nonland card from it. That player discards that card. -- III - Exile target opponent’s graveyard.
 mana={2}{B}
 type=Enchantment
@@ -19099,7 +19113,7 @@ type=Enchantment
 [/card]
 [card]
 name=Enlarge
-target=creates
+target=creature
 auto=trample ueot
 auto=7/7 ueot
 auto=transform((,newability[@combat(attacking) source(this): all(creature|opponentbattlefield) mustblock ueot])) ueot
@@ -20196,7 +20210,7 @@ type=Sorcery
 [/card]
 [card]
 name=Exquisite Huntmaster
-auto=@movedTo(this|graveyard) from(battlefield):token(Elf Warrior,Creature Elf Warrior,1/1,green)
+auto=_DIES_token(Elf Warrior,Creature Elf Warrior,1/1,green)
 autograveyard={4}{B}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=When Exquisite Huntmaster dies, create a 1/1 green Elf Warrior creature token. -- Encore {4}{B} ({4}{B}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={3}{B}
@@ -20274,8 +20288,8 @@ type=Legendary Artifact
 [/card]
 [card]
 name=Eyeblight Cullers
-auto=@movedTo(this|graveyard) from(battlefield):token(Elf Warrior,Creature Elf Warrior,1/1,green)*3
-auto=@movedTo(this|graveyard) from(battlefield):deplete:3 controller
+auto=_DIES_token(Elf Warrior,Creature Elf Warrior,1/1,green)*3
+auto=_DIES_deplete:3 controller
 text=When Eyeblight Cullers dies, create three 1/1 green Elf Warrior creature tokens, then mill three cards. (Put the top three cards of your library into your graveyard.)
 mana={4}{B}
 type=Creature
@@ -21221,7 +21235,7 @@ toughness=2
 [/card]
 [card]
 name=Feral Prowler
-auto=@movedTo(this|graveyard) from(battlefield):draw:1
+auto=_DIES_draw:1
 text=When Feral Prowler dies, draw a card.
 mana={1}{G}
 type=Creature
@@ -21333,7 +21347,7 @@ type=Sorcery
 [/card]
 [card]
 name=Festering Mummy
-auto=@movedTo(this|graveyard) from(battlefield):may target(creature) counter(-1/-1,1)
+auto=_DIES_may target(creature) counter(-1/-1,1)
 text=When Festering Mummy dies, you may put a -1/-1 counter on target creature.
 mana={B}
 type=Creature
@@ -22348,7 +22362,7 @@ type=Sorcery
 [card]
 name=Flameskull
 abilities=cantblock,flying
-auto=@movedto(this|graveyard) from(battlefield):name(Rejuvenation) transforms((,newability[all(creature[-token;fresh:zpos=type:*:mygraveyard]|mygraveyard) moveto(exile) and!( transforms((,newability[phaseaction[my endofturn once next checkex] removeallcounters(0/0.1.FlameskullExiled)],newability[this(counter{0/0.1.FlameskullExiled}>0) canplayfromexile],newability[counter(0/0.1.FlameskullExiled)],newability[all(*[zpos=1]|mylibrary) moveTo(myexile) and!( transforms((,newability[counter(0/0.1.FlameskullExiled)],newability[this(counter{0/0.1.FlameskullExiled}>0) canplayfromexile],newability[@each untap restriction{compare(hascntflameskullexiled)~equalto~0}:-canplayfromexile],newability[@each untap restriction{compare(hascntflameskullexiled)~morethan~0}:canplayfromexile],newability[phaseaction[my endofturn once next checkex] removeallcounters(0/0.1.FlameskullExiled)],newability[@movedto(this|mystack) from(myexile) restriction{compare(hascntflameskullexiled)~morethan~0}:all(*[counter{0/0.1.FlameskullExiled}]|myexile) removeallcounters(0/0.1.FlameskullExiled)],newability[@movedto(this|mybattlefield) from(myexile) restriction{compare(hascntflameskullexiled)~morethan~0}:all(*[counter{0/0.1.FlameskullExiled}]|myexile) removeallcounters(0/0.1.FlameskullExiled)])) forever )!])) forever )!])) forever
+auto=_DIES_name(Rejuvenation) transforms((,newability[all(creature[-token;fresh:zpos=type:*:mygraveyard]|mygraveyard) moveto(exile) and!( transforms((,newability[phaseaction[my endofturn once next checkex] removeallcounters(0/0.1.FlameskullExiled)],newability[this(counter{0/0.1.FlameskullExiled}>0) canplayfromexile],newability[counter(0/0.1.FlameskullExiled)],newability[all(*[zpos=1]|mylibrary) moveTo(myexile) and!( transforms((,newability[counter(0/0.1.FlameskullExiled)],newability[this(counter{0/0.1.FlameskullExiled}>0) canplayfromexile],newability[@each untap restriction{compare(hascntflameskullexiled)~equalto~0}:-canplayfromexile],newability[@each untap restriction{compare(hascntflameskullexiled)~morethan~0}:canplayfromexile],newability[phaseaction[my endofturn once next checkex] removeallcounters(0/0.1.FlameskullExiled)],newability[@movedto(this|mystack) from(myexile) restriction{compare(hascntflameskullexiled)~morethan~0}:all(*[counter{0/0.1.FlameskullExiled}]|myexile) removeallcounters(0/0.1.FlameskullExiled)],newability[@movedto(this|mybattlefield) from(myexile) restriction{compare(hascntflameskullexiled)~morethan~0}:all(*[counter{0/0.1.FlameskullExiled}]|myexile) removeallcounters(0/0.1.FlameskullExiled)])) forever )!])) forever )!])) forever
 autoexile=@movedto(*[counter{0/0.1.FlameskullExiled}]|mystack) from(myexile) restriction{compare(hascntflameskullexiled)~morethan~0}:all(*[counter{0/0.1.FlameskullExiled}]|myexile) transforms((,newability[removeallcounters(0/0.1.FlameskullExiled)],newability[-canplayfromexile])) oneshot
 autoexile=@movedto(land[counter{0/0.1.FlameskullExiled}]|mybattlefield) from(myexile) restriction{compare(hascntflameskullexiled)~morethan~0}:all(*[counter{0/0.1.FlameskullExiled}]|myexile) transforms((,newability[removeallcounters(0/0.1.FlameskullExiled)],newability[-canplayfromexile])) oneshot
 text=Flying -- Flameskull can’t block. -- Rejuvenation — When Flameskull dies, exile it. If you do, exile the top card of your library. Until the end of your next turn, you may play one of those cards. (If you cast Flameskull this way, you can’t play the other card, and vice versa.)
@@ -22685,7 +22699,7 @@ subtype=Aura
 [/card]
 [card]
 name=Footlight Fiend
-auto=@movedTo(this|graveyard) from(battlefield):damage:1 target(player,creature,planeswalker)
+auto=_DIES_damage:1 target(player,creature,planeswalker)
 text=When Footlight Fiend dies, it deals 1 damage to any target.
 mana={BR}
 type=Creature
@@ -23346,8 +23360,8 @@ type=Snow Instant
 [card]
 name=Frost Titan
 auto=@targeted(this) from(opponent):transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) oneshot
-auto=frozen target(*)
-auto=@combat(attacking) source(this): frozen target (*)
+auto=target(*) transforms((,newability[tap],newability[frozen]))
+auto=@combat(attacking) source(this):target(*) transforms((,newability[tap],newability[frozen]))
 text=Whenever Frost Titan becomes the target of a spell or ability an opponent controls, counter that spell or ability unless its controller pays {2}. -- Whenever Frost Titan enters the battlefield or attacks, tap target permanent. It doesn’t untap during its controller’s next untap step.
 mana={4}{U}{U}
 type=Creature
@@ -23799,7 +23813,7 @@ type=Instant
 [/card]
 [card]
 name=Gang of Devils
-auto=@movedTo(this|graveyard) from(battlefield):thisforeach(variable{3}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(player,creature,planeswalker) damage:1!$ controller
+auto=_DIES_thisforeach(variable{3}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(player,creature,planeswalker) damage:1!$ controller
 text=When Gang of Devils dies, it deals 3 damage divided as you choose among one, two, or three target creatures and/or players.
 mana={5}{R}
 type=Creature
@@ -23902,7 +23916,7 @@ toughness=3
 [/card]
 [card]
 name=Garrison Cat
-auto=@movedto(this|graveyard) from(battlefield):token(Human Soldier Gar)
+auto=_DIES_token(Human Soldier Gar)
 text=When Garrison Cat dies, create a 1/1 white Human Soldier creature token.
 mana={W}
 type=Creature
@@ -24346,7 +24360,7 @@ type=Sorcery
 [card]
 name=Gerrard, Weatherlight Hero
 abilities=first strike
-auto=@movedTo(this|graveyard) from(battlefield):moveto(exile) && moveTo(myBattlefield) all(creature[fresh]|graveyard) && moveTo(myBattlefield) all(artifact[fresh]|graveyard)
+auto=_DIES_moveto(exile) && moveTo(myBattlefield) all(creature[fresh]|graveyard) && moveTo(myBattlefield) all(artifact[fresh]|graveyard)
 text=First strike -- When Gerrard, Weatherlight Hero dies, exile it and return to the battlefield all artifact and creature cards in your graveyard that were put there from the battlefield this turn.
 mana={2}{R}{W}
 type=Legendary Creature
@@ -24610,6 +24624,7 @@ toughness=1
 name=Giant Turtle
 auto=@each my combatends restriction{didattack}:transforms((,newability[counter(0/0.1.TurtleEffect)],newability[@each my end restriction{didntattack}:counter(0/0.-1.TurtleEffect)])) forever
 auto=this(counter{0/0.1.TurtleEffect}>0) cantattack
+auto=this(counter{0/0.1.TurtleEffect}>0) cantpwattack
 text=Giant Turtle can't attack if it attacked during your last turn.
 mana={1}{G}{G}
 type=Creature
@@ -25109,7 +25124,7 @@ type=Land
 [card]
 name=Gleaming Barrier
 abilities=defender
-auto=@movedTo(this|graveyard) from(battlefield):token(Treasure Sur)
+auto=_DIES_token(Treasure Sur)
 text=Defender -- When Gleaming Barrier dies, create a Treasure token. (It's an artifact with " {T}, Sacrifice this artifact: Add one mana of any color.")
 mana={2}
 type=Artifact Creature
@@ -27621,7 +27636,7 @@ name=Haakon, Stromgald Scourge
 autograveyard={1}{B}{B}:activate castcard(normal)
 restriction=never
 auto=lord(knight|mygraveyard) canPlayFromGraveyard
-auto=@movedTo(this|graveyard) from(battlefield):life:-2 controller
+auto=_DIES_life:-2 controller
 text=You may cast Haakon, Stromgald Scourge from your graveyard, but not from anywhere else. -- As long as Haakon is on the battlefield, you may play Knight cards from your graveyard. -- When Haakon dies, you lose 2 life.
 mana={1}{B}{B}
 type=Legendary Creature
@@ -28409,6 +28424,7 @@ type=Instant
 name=Hazoret the Fervent
 abilities=indestructible, haste
 auto=aslongas(*|myhand) cantattack >1
+auto=aslongas(*|myhand) cantpwattack >1
 auto=aslongas(*|myhand) cantblock >1
 auto={2}{R}{D(*|myhand)}:damage:2 opponent
 text=Indestructible, haste -- Hazoret the Fervent can't attack or block unless you have one or fewer cards in hand. -- {2}{R}, Discard a card: Hazoret deals 2 damage to each opponent.
@@ -29760,7 +29776,7 @@ type=Instant
 [/card]
 [card]
 name=Hour of Promise
-auto=aslongas(Desert|mybattlefield,myGraveyard) token(Zombie,creature Zombie,2/2,black)*2 >2 
+auto=aslongas(Desert|mybattlefield) token(Zombie,creature Zombie,2/2,black)*2 >2 
 auto=moveto(mybattlefield) target(<upto:2>land|mylibrary) and!(tap(noevent))!
 #auto=transforms((,newability[if type(desert|mybattlefield)~morethan~2 then token(Zombie,creature Zombie,2/2,black)])) ueot
 text=Search your library for up to two land cards, put them onto the battlefield tapped, then shuffle your library. Then if you control three or more Deserts, create two 2/2 black Zombie creature tokens.
@@ -30093,7 +30109,7 @@ toughness=5
 [/card]
 [card]
 name=Hunted Witness
-auto=@movedTo(this|graveyard) from(battlefield):create(soldier:creature soldier:1/1:white:lifelink)
+auto=_DIES_create(soldier:creature soldier:1/1:white:lifelink)
 text=When Hunted Witness dies, create a 1/1 white Soldier creature token with lifelink.
 mana={W}
 type=Creature
@@ -30379,7 +30395,7 @@ color=white
 [card]
 name=Icingdeath, Frost Tyrant
 abilities=vigilance,flying
-auto=@movedto(this|graveyard) from(battlefield):name(Icingdeath, Frost Tongue) activate castcard(copied named!:icingdeath, frost tongue:!)
+auto=_DIES_name(Icingdeath, Frost Tongue) activate castcard(copied named!:icingdeath, frost tongue:!)
 text=Flying, vigilance -- When Icingdeath, Frost Tyrant dies, create Icingdeath, Frost Tongue, a legendary white Equipment artifact token with "Equipped creature gets +2/+0", "Whenever equipped creature attacks, tap target creature defending player controls" and equip {2}.
 mana={2}{W}{W}
 type=Legendary Creature
@@ -30848,7 +30864,7 @@ toughness=3
 [card]
 name=Immortal Phoenix
 abilities=flying
-auto=@movedTo(this|graveyard) from(battlefield):all(trigger[to]) moveto(ownerhand)
+auto=_DIES_all(trigger[to]) moveto(ownerhand)
 text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- When Immortal Phoenix dies, return it to its owner's hand.
 mana={4}{R}{R}
 type=Creature
@@ -30957,7 +30973,7 @@ toughness=5
 [card]
 name=Imperious Oligarch
 abilities=vigilance
-auto=@movedTo(this|graveyard) from(battlefield):create(Spirit:creature Spirit:1/1:white,black:flying)
+auto=_DIES_create(Spirit:creature Spirit:1/1:white,black:flying)
 text=Vigilance -- Afterlife 1 (When this creature dies, create a 1/1 white and black Spirit creature token with flying.)
 mana={W}{B}
 type=Creature
@@ -31048,7 +31064,7 @@ type=Sorcery
 [/card]
 [card]
 name=Impulsive Pilferer
-auto=@movedTo(this|graveyard) from(battlefield):token(Treasure Sur)
+auto=_DIES_token(Treasure Sur)
 autograveyard={3}{R}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=When Impulsive Pilferer dies, create a Treasure token. (It's an artifact with " {T}, Sacrifice this artifact: Add one mana of any color.") -- Encore {3}{R} ({3}{R}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={R}
@@ -31605,8 +31621,8 @@ toughness=1
 [/card]
 [card]
 name=Initiate of Blood
-auto={T}:name(damage my creature) target(creature[damaged]|mybattlefield) transforms((,newability[damage:1 all(this)],newability[@movedto(this|graveyard) from(battlefield):notatarget(Initiate of Blood|mybattlefield) flip(Goka the Unjust)])) ueot
-auto={T}:name(damage opponent's creature) target(creature[damaged]|opponentbattlefield) transforms((,newability[damage:1 all(this)],newability[@movedto(this|graveyard) from(battlefield):notatarget(Initiate of Blood|opponentbattlefield) flip(Goka the Unjust)])) ueot
+auto={T}:name(damage my creature) target(creature[damaged]|mybattlefield) transforms((,newability[damage:1 all(this)],newability[_DIES_notatarget(Initiate of Blood|mybattlefield) flip(Goka the Unjust)])) ueot
+auto={T}:name(damage opponent's creature) target(creature[damaged]|opponentbattlefield) transforms((,newability[damage:1 all(this)],newability[_DIES_notatarget(Initiate of Blood|opponentbattlefield) flip(Goka the Unjust)])) ueot
 text={T}: Initiate of Blood deals 1 damage to target creature that was dealt damage this turn. When that creature dies this turn, flip Initiate of Blood.
 mana={3}{R}
 type=Creature
@@ -31646,6 +31662,7 @@ subtype=Aura
 [/card]
 [card]
 name=Inniaz, the Gale Force
+abilities=flying
 auto={2}{WU}:all(creature[attacking]) flying ueot && 1/1 ueot
 auto=@each my blockers restriction{type(creature[attacking;flying]|myBattlefield)~morethan~2}:moveto(myBattlefield) target(*[-land]|opponentbattlefield)
 auto=@each my blockers restriction{type(creature[attacking;flying]|myBattlefield)~morethan~2}:ability$!moveto(myBattlefield) notatarget(*[-land]|opponentbattlefield)!$ opponent
@@ -32826,7 +32843,7 @@ type=Artifact
 [card]
 name=Jewel-Eyed Cobra
 abilities=deathtouch
-auto=@movedto(this|graveyard) from(battlefield):name(Create Treasure) token(Treasure Sur)
+auto=_DIES_name(Create Treasure) token(Treasure Sur)
 text=Deathtouch -- When Jewel-Eyed Cobra dies, create a Treasure token. (It's an artifact with " {T}, Sacrifice this artifact: Add one mana of any color.")
 mana={2}{G}
 type=Creature
@@ -33160,7 +33177,7 @@ toughness=6
 [card]
 name=Juri, Master of the Revue
 auto=@sacrificed(*|mybattlefield):counter(1/1) all(this)
-auto=@movedTo(this|graveyard) from(Battlefield):damage:power target(player,creature,planeswalker)
+auto=_DIES_damage:power target(player,creature,planeswalker)
 text=Whenever you sacrifice a permanent, put a +1/+1 counter on Juri, Master of the Revue. -- When Juri dies, it deals damage equal to its power to any target.
 mana={B}{R}
 type=Legendary Creature
@@ -33849,8 +33866,9 @@ toughness=1
 [/card]
 [card]
 name=Kefnet the Mindful
-abilities=flying, indestructible
+abilities=flying,indestructible
 auto=aslongas(*|myhand) cantattack <7
+auto=aslongas(*|myhand) cantpwattack <7
 auto=aslongas(*|myhand) cantblock <7
 auto={3}{U}:draw:1 && transforms((,newability[may moveto(myhand) target(land|mybattlefield)])) ueot
 text=Flying, indestructible -- Kefnet the Mindful can't attack or block unless you have seven or more cards in hand. -- {3}{U}: Draw a card, then you may return a land you control to its owner's hand.
@@ -33947,7 +33965,7 @@ toughness=3
 name=Kelsien, the Plague
 abilities=Vigilance,haste
 anyzone=type:alterexperience:nonbattlezone/type:alterexperience:nonbattlezone cdaactive
-auto={T}:damage:1 target(creature|opponentBattlefield) transforms((,newability[@movedTo(this|graveyard) from(battlefield):alterexperience:1 controller
+auto={T}:damage:1 target(creature|opponentBattlefield) transforms((,newability[_DIES_alterexperience:1 controller
 text=Vigilance, haste -- Kelsien, the Plague gets +1/+1 for each experience counter you have. -- {T}: Kelsien deals 1 damage to target creature you don’t control. When that creature dies this turn, you get an experience counter.
 mana={R}{W}{B}
 type=Legendary Creature
@@ -34651,7 +34669,7 @@ toughness=3
 [/card]
 [card]
 name=Knight of Sorrows
-auto=@movedTo(this|graveyard) from(battlefield):token(Spirit,Creature Spirit,1/1,white,black,flying)
+auto=_DIES_token(Spirit,Creature Spirit,1/1,white,black,flying)
 text=Knight of Sorrows can block an additional creature each combat. -- Afterlife 1 (When this creature dies, create a 1/1 white and black Spirit creature token with flying.)
 mana={4}{W}
 type=Creature
@@ -34694,7 +34712,7 @@ toughness=2
 name=Knight of the Last Breath
 abilities=flying
 auto={3}{S(other creature[-token]|mybattlefield)}:create(Spirit:creature Spirit:1/1:white,black:flying)
-auto=@movedTo(this|graveyard) from(battlefield):create(Spirit:creature Spirit:1/1:white,black:flying)
+auto=_DIES_create(Spirit:creature Spirit:1/1:white,black:flying)
 text={3}, Sacrifice another nontoken creature: Create a 1/1 white and black Spirit creature token with flying. -- Afterlife 3 (When this creature dies, create three 1/1 white and black Spirit creature tokens with flying.)
 mana={5}{W}{B}
 type=Creature
@@ -34869,7 +34887,7 @@ toughness=4
 [card]
 name=Koma's Faithful
 abilities=lifelink
-auto=@movedto(this|graveyard) from(battlefield):deplete:3 opponent && deplete:3 controller
+auto=_DIES_deplete:3 opponent && deplete:3 controller
 text=Lifelink -- When Koma’s Faithful dies, each player mills three cards. (To mill a card, a player puts the top card of their library into their graveyard.)
 mana={2}{B}
 type=Creature
@@ -36137,7 +36155,7 @@ toughness=4
 [/card]
 [card]
 name=Leonin of the Lost Pride
-auto=@movedto(this|graveyard) from(battlefield):MoveTo(exile) target(*|opponentGraveyard)
+auto=_DIES_MoveTo(exile) target(*|opponentGraveyard)
 text=When Leonin of the Lost Pride dies, exile target card from an opponent’s graveyard.
 mana={1}{W}
 type=Creature
@@ -36318,7 +36336,7 @@ abilities=cantlifelose
 auto=lifeset:0 controller
 auto=@lifeof(player):draw:thatmuch controller && life:-thatmuch controller
 auto=@damageof(player):if type(creature[-token]|mybattlefield)~lessthan~thatmuch then winGame opponent else sacrifice target(<thatmuch>creature[-token]|mybattlefield)
-auto=@movedto(this|graveyard) from(battlefield):winGame opponent
+auto=_DIES_winGame opponent
 text=As Lich enters the battlefield, you lose life equal to your life total. -- You don't lose the game for having 0 or less life. -- If you would gain life, draw that many cards instead. -- Whenever you're dealt damage, sacrifice that many nontoken permanents. If you can't, you lose the game. -- When Lich is put into a graveyard from the battlefield, you lose the game.
 mana={B}{B}{B}{B}
 type=Enchantment
@@ -36421,7 +36439,7 @@ subtype=Aura
 name=Light of the Legion
 abilities=flying,mentor
 auto=@combat(attacking) source(this):name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
-auto=@movedTo(this|graveyard) from(battlefield):counter(1/1)(creature[white]|myBattlefield)
+auto=_DIES_counter(1/1)(creature[white]|myBattlefield)
 text=Flying -- Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.) -- When Light of the Legion dies, put a +1/+1 counter on each white creature you control.
 mana={4}{W}{W}
 type=Creature
@@ -36896,7 +36914,7 @@ toughness=5
 [/card]
 [card]
 name=Living Lightning
-auto=@movedTo(this|graveyard) from(battlefield):moveto(myhand) target(*[instant;sorcery]|mygraveyard)
+auto=_DIES_moveto(myhand) target(*[instant;sorcery]|mygraveyard)
 text=When Living Lightning dies, return target instant or sorcery card from your graveyard to your hand.
 mana={3}{R}
 type=Creature
@@ -36995,7 +37013,7 @@ toughness=6
 [card]
 name=Loathsome Catoblepas
 auto={2}{G}:transforms((,newability[@combat(attacking) source(this):all(creature|opponentbattlefield) mustblock ueot])) ueot
-auto=@movedTo(this|graveyard) from(battlefield):target(creature|opponentbattlefield) -3/-3 ueot
+auto=_DIES_target(creature|opponentbattlefield) -3/-3 ueot
 text={2}{G}: Loathsome Catoblepas must be blocked this turn if able. -- When Loathsome Catoblepas dies, target creature an opponent controls gets -3/-3 until end of turn.
 mana={5}{B}
 type=Creature
@@ -38052,7 +38070,7 @@ toughness=3
 [/card]
 [card]
 name=Magus of the Scroll
-auto={3}{T}:name(Name a card from your hand) choice target(*|myhand) donothing && name(Reveal a random card) if compare(cursedscrollresult)~equalto~1 then ability$!name(Deals 2 damages) name(Deals 2 damages) damage:2 target(player,creature)!$ controller
+auto={3}{T}:ability$!name(Name a card from your hand) name(Name a card from your hand) target(*|myhand) transforms((,newability[if compare(magusofscrollresult)~equalto~1 then name(Deals 2 damage) name(Deals 2 damage) damage:2 target(player^creature^planeswalker)])) oneshot!$ controller
 text={3}, {T}: Name a card. Reveal a card at random from your hand. If it's the named card, Magus of the Scroll deals 2 damage to target creature or player.
 mana={R}
 type=Creature
@@ -38644,7 +38662,7 @@ subtype=Aura
 [/card]
 [card]
 name=Martyr for the Cause
-auto=@movedto(this|graveyard) from(battlefield):_PROLIFERATE_
+auto=_DIES__PROLIFERATE_
 text=When Martyr for the Cause dies, proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
 mana={1}{W}
 type=Creature
@@ -38676,7 +38694,7 @@ toughness=1
 [card]
 name=Martyr of Dusk
 abilities=lifelink
-auto=@movedTo(this|graveyard) from(battlefield):token(Vampire,creature Vampire,1/1,white,lifelink)
+auto=_DIES_token(Vampire,creature Vampire,1/1,white,lifelink)
 text=When Martyr of Dusk dies, create a 1/1 white Vampire creature token with lifelink.
 mana={1}{W}
 type=Creature
@@ -38734,7 +38752,7 @@ toughness=1
 [/card]
 [card]
 name=Martyr's Bond
-auto=@movedto(this|graveyard) from(battlefield):ability$!sacrifice notatarget(enchantment|mybattlefield)!$ opponent
+auto=_DIES_ability$!sacrifice notatarget(enchantment|mybattlefield)!$ opponent
 auto=@movedto(*[-land]|graveyard) from(battlefield):ability$!sacrifice notatarget(*[-land,share!types!]|mybattlefield)!$ opponent
 text=Whenever Martyr’s Bond or another nonland permanent you control is put into a graveyard from the battlefield, each opponent sacrifices a permanent that shares a card type with it.
 mana={4}{W}{W}
@@ -39822,7 +39840,7 @@ subtype=Aura
 [/card]
 [card]
 name=Ministrant of Obligation
-auto=@movedTo(this|graveyard) from(battlefield):create(Spirit:creature Spirit:1/1:white,black:flying)*2
+auto=_DIES_create(Spirit:creature Spirit:1/1:white,black:flying)*2
 text=Afterlife 2 (When this creature dies, create two 1/1 white and black Spirit creature tokens with flying.)
 mana={2}{W}
 type=Creature
@@ -40837,7 +40855,7 @@ other={1}{B}{B} name(Adventure)
 autostack=if paid(alternative) then name(Destroy creature or planeswalker) name(Destroy creature or planeswalker) target(creature,planeswalker) destroy
 autostack=if paid(alternative) then name(You loose 2 life) name(You loose 2 life) life:-2 controller
 autostack=if paid(alternative) then transforms((,newability[moveto(exile) and!( transforms((,newability[canplayfromexile])) forever )!])) forever
-auto=@movedTo(this|graveyard) from(battlefield):name(Put on the bottom of library) all(trigger[to]) bottomoflibrary
+auto=_DIES_name(Put on the bottom of library) all(trigger[to]) bottomoflibrary
 text=Lifelink -- When Murderous Rider dies, put it on the bottom of its owner's library. // Destroy target creature or planeswalker. You lose 2 life. (Then exile this card. You may cast the creature later from exile.)
 mana={1}{B}{B}
 type=Creature
@@ -41145,7 +41163,7 @@ type=Instant
 [card]
 name=Mythos of Vadrok
 auto=if casted(this) then ifnot spent({W}{U}) then thisforeach(variable{5}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(creature,planewsalker) damage:1!$ controller
-auto=if casted(this) then if spent({W}{U}) then  thisforeach(variable{5}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(creature,planewsalker) transforms((,newability[damage:1],newability[cantattack],newability[cantblock],newability[noactivatedability])) uynt!$ controller
+auto=if casted(this) then if spent({W}{U}) then  thisforeach(variable{5}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(creature,planewsalker) transforms((,newability[damage:1],newability[cantattack],newability[cantpwattack],newability[cantblock],newability[noactivatedability])) uynt!$ controller
 text=Mythos of Vadrok deals 5 damage divided as you choose among any number of target creatures and/or planeswalkers. If {W}{U} was spent to cast this spell, until your next turn, those permanents can't attack or block and their activated abilities can't be activated.
 mana={2}{R}{R}
 type=Sorcery
@@ -41818,7 +41836,7 @@ type=Enchantment
 [/card]
 [card]
 name=Nested Shambler
-auto=@movedTo(this|graveyard) from(battlefield):token(Squirrel,Creature Squirrel,1/1,green)*power and!( tap(noevent) )!
+auto=_DIES_token(Squirrel,Creature Squirrel,1/1,green)*power and!( tap(noevent) )!
 text=When Nested Shambler dies, create X tapped 1/1 green Squirrel creature tokens, where X is Nested Shambler's power.
 mana={B}
 type=Creature
@@ -41951,7 +41969,7 @@ toughness=0
 name=Nevinyrral, Urborg Tyrant
 auto=cantbetargetof(*[artifact;creature;enchantment])
 auto=foreach(creature[fresh]|graveyard) token(Zombie,Creature Zombie,2/2,black) and!( tap(noevent) )!
-auto=@movedto(this|graveyard) from(battlefield):pay({1}) name(destroy all artifacts, creatures, and enchantments) destroy all(artifact,creature,enchantment)
+auto=_DIES_pay({1}) name(destroy all artifacts, creatures, and enchantments) destroy all(artifact,creature,enchantment)
 text=Hexproof from artifacts, creatures, and enchantments -- When Nevinyrral, Urborg Tyrant enters the battlefield, create a tapped 2/2 black Zombie creature token for each creature that died this turn. -- When Nevinyrral dies, you may pay {1} . When you do, destroy all artifacts, creatures, and enchantments.
 mana={3}{W}{U}{B}
 type=Legendary Creature
@@ -42545,7 +42563,7 @@ type=Instant
 [/card]
 [card]
 name=Noble Benefactor
-auto=@movedTo(this|graveyard) from(battlefield):name(fetch) transforms((,newability[ability$! moveto(ownerhand) notatarget(<1>*|mylibrary) !$ controller],newability[ability$! moveto(ownerhand) notatarget(<1>*|mylibrary) !$ opponent])) oneshot
+auto=_DIES_name(fetch) transforms((,newability[ability$! moveto(ownerhand) notatarget(<1>*|mylibrary) !$ controller],newability[ability$! moveto(ownerhand) notatarget(<1>*|mylibrary) !$ opponent])) oneshot
 text=When Noble Benefactor dies, each player may search his or her library for a card and put that card into his or her hand. Then each player who searched his or her library this way shuffles it.
 mana={2}{U}
 type=Creature
@@ -42556,7 +42574,7 @@ toughness=2
 [card]
 name=Nocturnal Feeder
 abilities=flying
-auto=@movedTo(this|graveyard) from(battlefield):life:-2 opponent && life:2 controller
+auto=_DIES_life:-2 opponent && life:2 controller
 text=Flying -- When Nocturnal Feeder dies, each opponent loses 2 life and you gain 2 life.
 mana={2}{B}
 type=Creature
@@ -43250,7 +43268,8 @@ type=Instant
 [card]
 name=Oketra the True
 abilities=double strike,indestructible
-auto=aslongas(creature|mybattlefield) cantattack <4 
+auto=aslongas(creature|mybattlefield) cantattack <4
+auto=aslongas(creature|mybattlefield) cantpwattack <4 
 auto=aslongas(creature|mybattlefield) cantblock <4 
 auto={3}{W}:token(Warrior,creature Warrior,1/1,white,vigilance)
 text=Double strike, indestructible -- Oketra the True can't attack or block unless you control at least three other creatures. -- {3}{W}: Create a 1/1 white Warrior creature token with vigilance.
@@ -43901,7 +43920,7 @@ toughness=2
 name=Orcish Hellraiser
 auto=counter(0/0,1,echo)
 auto=@each my upkeep once:transforms((,newability[counter(0/0.-1.echo)],newability[pay[[{R}]] name(pay red mana) donothing?sacrifice])) forever
-auto=@movedTo(this|graveyard) from(battlefield):name(Deals 2 damage) damage:2 target(player,planeswalker)
+auto=_DIES_name(Deals 2 damage) damage:2 target(player,planeswalker)
 text=Echo {R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Orcish Hellraiser dies, it deals 2 damage to target player or planeswalker.
 mana={1}{R}
 type=Creature
@@ -44168,7 +44187,7 @@ type=Instant
 [card]
 name=Orzhov Enforcer
 abilities=deathtouch
-auto=@movedTo(this|graveyard) from(battlefield):create(Spirit:creature Spirit:1/1:white,black:flying)
+auto=_DIES_create(Spirit:creature Spirit:1/1:white,black:flying)
 text=Deathtouch -- Afterlife 1 (When this creature dies, create a 1/1 white and black Spirit creature token with flying.)
 mana={1}{B}
 type=Creature
@@ -44188,7 +44207,7 @@ type=Artifact
 [card]
 name=Orzhov Racketeers
 auto=@combatdamaged(player) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
-auto=@movedTo(this|graveyard) from(battlefield):create(Spirit:creature Spirit:1/1:white,black:flying)*2
+auto=_DIES_create(Spirit:creature Spirit:1/1:white,black:flying)*2
 text=Whenever Orzhov Racketeers deals combat damage to a player, that player discards a card. -- Afterlife 2 (When this creature dies, create two 1/1 white and black Spirit creature tokens with flying.)
 mana={4}{B}
 type=Creature
@@ -44402,7 +44421,7 @@ toughness=4
 [/card]
 [card]
 name=Overgrowth Elemental
-auto=target(another creature[elemental]) counter(1/1,1)
+auto=target(other creature[elemental]) counter(1/1,1)
 auto=@movedto(other creature[elemental]|graveyard) from(mybattlefield):counter(1/1,1)
 auto=@movedto(other creature|graveyard) from(mybattlefield):life:1
 text=When Overgrowth Elemental enters the battlefield, put a +1/+1 counter on another target Elemental you control. -- Whenever another creature you control dies, you gain 1 life. If that creature was an Elemental, put a +1/+1 counter on Overgrowth Elemental.
@@ -44645,7 +44664,7 @@ subtype=Class
 [card]
 name=Paladin of Atonement
 auto=@each upkeep restriction{lastturn(life)~morethan~0}:counter(1/1,1)
-auto=@movedTo(this|graveyard) from(battlefield):dynamicability<!toughnesslifegain srccontroller!>
+auto=_DIES_dynamicability<!toughnesslifegain srccontroller!>
 text=At the beginning of each upkeep, if you lost life last turn, put a +1/+1 counter on Paladin of Atonement. -- When Paladin of Atonement dies, you gain life equal to its toughness.
 mana={1}{W}
 type=Creature
@@ -45097,6 +45116,7 @@ type=Instant
 [card]
 name=Peace Talks
 auto=lord(creature|battlefield) transforms((,newability[cantattack])) uynt
+auto=lord(creature|battlefield) transforms((,newability[cantpwattack])) uynt
 auto=lord(*|battlefield) transforms((,newability[shroud],newability[controllershroud])) uynt
 text=This turn and next turn, creatures can't attack, and players and permanents can't be the targets of spells or activated abilities.
 mana={1}{W}
@@ -45522,7 +45542,7 @@ type=Artifact
 [/card]
 [card]
 name=Phyrexian Ingester
-other={6}{U}{E(creature[-token]|mybattlefield)} name(Imprint)
+other={6}{U}{E(creature[-token]|battlefield)} name(Imprint)
 auto=if paid(alternative) then storedpower/storedtoughness
 text=Imprint — When Phyrexian Ingester enters the battlefield, you may exile target nontoken creature. -- Phyrexian Ingester gets +X/+Y, where X is the exiled creature card's power and Y is its toughness.
 mana={6}{U}
@@ -45601,7 +45621,7 @@ type=Artifact
 [/card]
 [card]
 name=Phyrexian Triniform
-auto=@movedTo(this|graveyard) from(battlefield):token(Golem,Creature Artifact Golem,3/3)*3
+auto=_DIES_token(Golem,Creature Artifact Golem,3/3)*3
 autograveyard={12}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=When Phyrexian Triniform dies, create three 3/3 colorless Golem artifact creature tokens. -- Encore {12} ({12}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={9}
@@ -45731,6 +45751,7 @@ name=Pious Interdiction
 target=creature
 auto=life:2 controller
 auto=cantattack
+auto=cantpwattack
 auto=cantblock
 text=Enchant creature -- When Pious Interdiction enters the battlefield, you gain 2 life. -- Enchanted creature can't attack or block.
 mana={3}{W}
@@ -45808,7 +45829,7 @@ type=Sorcery
 name=Piru, the Volatile
 abilities=flying,lifelink
 auto=upcost[{R}{W}{B}] sacrifice
-auto=@movedto(this|graveyard) from(battlefield):name(Deals 7 damage) damage:7 all(creature[-legendary])
+auto=_DIES_name(Deals 7 damage) damage:7 all(creature[-legendary])
 text=Flying, lifelink -- At the beginning of your upkeep, sacrifice Piru, the Volatile unless you pay {R}{W}{B}. -- When Piru dies, it deals 7 damage to each nonlegendary creature.
 mana={2}{R}{R}{W}{W}{B}{B}
 type=Legendary Creature
@@ -46252,7 +46273,7 @@ auto=@movedTo(mytgt|library) from(battlefield):all(this) moveTo(myLibrary)
 auto=@movedTo(mytgt|sideboard) from(battlefield):all(this) moveTo(mySideboard)
 auto={9999}:equip
 other={2}{R} name(Mutate)
-auto=transforms((,newability[name(damage target) {T}:name(damage target) thisforeach(mutations) damage:1 target(player,creature,planeswalker)]))
+auto=transforms((,newability[name(damage target) {T}:name(damage target) thisforeach(mutations) damage:1 target(*)]))
 auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Over) choice name(Mutate Over) mutateover target(other creature[-human]|mybattlefield)
 auto=if paid(alternative) then name(Mutate Over) this(mutations<1) name(Mutate Under) choice name(Mutate Under) mutateunder target(other creature[-human]|mybattlefield)
 text=Mutate {2}{R} (If you cast this spell for its mutate cost, put it over or under target non-Human creature you own. They mutate into the creature on top plus all abilities from under it.) -- {T}: This creature deals X damage to any target, where X is the number of times this creature has mutated.
@@ -47085,7 +47106,7 @@ toughness=4
 [card]
 name=Protean Hulk
 aicode=activate moveTo(myBattlefield) target(<anyamount>creature[manacost<=6]|myLibrary)
-auto=@movedTo(this|graveyard) from(battlefield):name(Search any number of creatures with casting cost 6 or less) reveal:plibrarycount optionone name(Choose card) target(<anyamount>creature[manacost<=6]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(Put them back) target(<anyamount>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(activate castcard(putinplay))! afterrevealedend revealend
+auto=_DIES_name(Search any number of creatures with casting cost 6 or less) reveal:plibrarycount optionone name(Choose card) target(<anyamount>creature[manacost<=6]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(Put them back) target(<anyamount>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(activate castcard(putinplay))! afterrevealedend revealend
 text=When Protean Hulk dies, search your library for any number of creature cards with total converted mana cost 6 or less, put them onto the battlefield, then suffle your library.
 mana={5}{G}{G}
 type=Creature
@@ -47419,7 +47440,7 @@ toughness=7
 [/card]
 [card]
 name=Purple-Crystal Crab
-auto=@movedTo(this|graveyard) from(battlefield): draw:1
+auto=_DIES_ draw:1
 text=When Purple-Crystal Crab dies, draw a card.
 mana={1}{U}
 type=Creature
@@ -49437,7 +49458,7 @@ type=Sorcery
 [card]
 name=Reincarnation
 target=creature
-auto=transforms(,newability[@movedTo(this|graveyard) from(battlefield):target(creature|ownergraveyard) moveto(ownerbattlefield)])) ueot
+auto=transforms(,newability[_DIES_target(creature|ownergraveyard) moveto(ownerbattlefield)])) ueot
 text=Choose target creature. When that creature dies this turn, return a creature card from its owner's graveyard to the battlefield under the control of that creature's owner.
 mana={1}{G}{G}
 type=Instant
@@ -49502,8 +49523,8 @@ type=Sorcery
 [/card]
 [card]
 name=Relentless Dead
-autograveyard=@movedTo(this|graveyard) from(battlefield):name(return relentless dead) pay({B}) moveTo(hand)
-auto=@movedTo(this|graveyard) from(battlefield):choice name(rturn cost X) pay({1}) moveTo(battlefield) target(other zombie|mygraveyard)
+autograveyard=_DIES_name(return relentless dead) pay({B}) moveTo(hand)
+auto=_DIES_choice name(rturn cost X) pay({1}) moveTo(battlefield) target(other zombie|mygraveyard)
 text=Menace (This creature can't be blocked except by two or more creatures.) -- When Relentless Dead dies, you may pay {B}. If you do, return it to its owner's hand. -- When Relentless Dead dies, you may pay {X}. If you do, return another target Zombie creature card with converted mana cost X from your graveyard to the battlefield.
 mana={B}{B}
 abilities=menace
@@ -50228,6 +50249,7 @@ toughness=2
 name=Rhonas the Indomitable
 abilities=deathtouch, indestructible
 auto=aslongas(other creature[power>=4]|mybattlefield) cantattack <1
+auto=aslongas(other creature[power>=4]|mybattlefield) cantpwattack <1
 auto=aslongas(other creature[power>=4]|mybattlefield) cantblock <1
 auto={2}{G}:target(other creature|mybattlefield) 2/0 && trample ueot
 text=Deathtouch, indestructible -- Rhonas the Indomitable can't attack or block unless you control another creature with power 4 or greater. -- {2}{G}: Another target creature gets +2/+0 and gains trample until end of turn.
@@ -50977,6 +50999,7 @@ toughness=3
 name=River Serpent
 abilities=cycling
 auto=aslongas(type(*|mygraveyard)~lessthen~5) cantattack
+auto=aslongas(type(*|mygraveyard)~lessthen~5) cantpwattack
 autohand=__CYCLING__({U})
 text=River Serpent can't attack unless there are five or more cards in your graveyard. -- Cycling {U} ({U}, Discard this card: Draw a card.)
 mana={5}{U}
@@ -51076,7 +51099,7 @@ type=Sorcery
 name=Roalesk, Apex Hybrid
 abilities=flying,trample
 auto=counter(1/1,2) target(other creature|myBattlefield)
-auto=@movedto(this|graveyard) from(battlefield):name(Proliferate) notatarget(<anyamount>*[artifact;creature;enchantment;land;planeswalker;player]) transforms((,newability[duplicatecounters(single)],newability[duplicatecounters(single)])) oneshot
+auto=_DIES_name(Proliferate) notatarget(<anyamount>*[artifact;creature;enchantment;land;planeswalker;player]) transforms((,newability[duplicatecounters(single)],newability[duplicatecounters(single)])) oneshot
 text=Flying, trample -- When Roalesk, Apex Hybrid enters the battlefield, put two +1/+1 counters on another target creature you control. -- When Roalesk dies, proliferate, then proliferate again. (Choose any number of permanents and/or players, then give each another counter of each kind already there. Then do it again.)
 mana={2}{G}{G}{U}
 type=Legendary Creature
@@ -51721,7 +51744,7 @@ toughness=2
 [card]
 name=Ruin Rat
 abilities=deathtouch
-auto=@movedTo(this|graveyard) from(battlefield):target(*|opponentgraveyard) moveTo(exile)
+auto=_DIES_target(*|opponentgraveyard) moveTo(exile)
 text=Deathtouch -- When Ruin Rat dies, exile target card from an opponent's graveyard.
 mana={1}{B}
 type=Creature
@@ -51731,7 +51754,7 @@ toughness=1
 [/card]
 [card]
 name=Ruination Rioter
-auto=@movedTo(this|graveyard) from(battlefield):damage:type:land:mygraveyard target(player,creature,planeswalker)
+auto=_DIES_damage:type:land:mygraveyard target(player,creature,planeswalker)
 text=When Ruination Rioter dies, you may have it deal damage to any target equal to the number of land cards in your graveyard.
 mana={R}{G}
 type=Creature
@@ -52690,6 +52713,7 @@ toughness=4
 [card]
 name=Sandwurm Convergence
 auto=lord(creature[flying]|opponentbattlefield) cantattack
+auto=lord(creature[flying]|opponentbattlefield) cantpwattack
 auto=@each my endofturn:token(Wurm,creature Wurm,5/5,green)
 text=Creatures with flying can't attack you or planeswalkers you control. -- At the beginning of your end step, create a 5/5 green Wurm creature token.
 mana={6}{G}{G}
@@ -53596,6 +53620,7 @@ toughness=*
 [/card]
 [card]
 name=Scrapyard Recombiner
+abilities=modular
 modular=2
 auto={T}{S(artifact|myBattlefield)}:moveto(myhand) target(creature[construct]|mylibrary)
 text=Modular 2 (This creature enters the battlefield with two +1/+1 counters on it. When it dies, you may put its +1/+1 counters on target artifact creature.) -- {T}, Sacrifice an artifact: Search your library for a Construct card, reveal it, put it into your hand, then shuffle your library.
@@ -54469,7 +54494,7 @@ name=Seraph of the Scales
 abilities=flying
 auto={W}:vigilance
 auto={B}:deathtouch
-auto=@movedTo(this|graveyard) from(battlefield):create(Spirit:creature Spirit:1/1:white,black:flying)*2
+auto=_DIES_create(Spirit:creature Spirit:1/1:white,black:flying)*2
 text=Flying -- {W}: Seraph of the Scales gains vigilance until end of turn. -- {B}: Seraph of the Scales gains deathtouch until end of turn. -- Afterlife 2 (When this creature dies, create two 1/1 white and black Spirit creature tokens with flying.)
 mana={2}{W}{B}
 type=Creature
@@ -54916,7 +54941,7 @@ toughness=3
 [/card]
 [card]
 name=Shambling Ghast
-auto=@movedto(this|graveyard) from(battlefield):name(Choose one) transforms((,newability[if type(creature|opponentbattlefield)~morethan~0 then choice name(Creature gets -1/-1) name(Creature gets -1/-1) target(creature|opponentbattlefield) -1/-1 ueot],newability[choice name(Create treasure) token(Treasure Sur)])) oneshot
+auto=_DIES_name(Choose one) transforms((,newability[if type(creature|opponentbattlefield)~morethan~0 then choice name(Creature gets -1/-1) name(Creature gets -1/-1) target(creature|opponentbattlefield) -1/-1 ueot],newability[choice name(Create treasure) token(Treasure Sur)])) oneshot
 text=When Shambling Ghast dies, choose one — -- • Brave the Stench — Target creature an opponent controls gets -1/-1 until end of turn. -- • Search the Body — Create a Treasure token. (It’s an artifact with "{T}, Sacrifice this artifact: Add one mana of any color.")
 mana={B}
 type=Creature
@@ -54936,9 +54961,9 @@ toughness=3
 [/card]
 [card]
 name=Shambling Swarm
-auto=@movedTo(this|graveyard) from(battlefield):choice name(Assign -1/-1 counter) name(Assign -1/-1 counter) target(creature) transforms((,newability[counter(-1/-1) all(this)],newability[phaseaction[endofturn once] counter(-1/-1.-1) all(this)])) oneshot
-auto=@movedTo(this|graveyard) from(battlefield):choice name(Assign -1/-1 counter) name(Assign -1/-1 counter) target(creature) transforms((,newability[counter(-1/-1) all(this)],newability[phaseaction[endofturn once] counter(-1/-1.-1) all(this)])) oneshot
-auto=@movedTo(this|graveyard) from(battlefield):choice name(Assign -1/-1 counter) name(Assign -1/-1 counter) target(creature) transforms((,newability[counter(-1/-1) all(this)],newability[phaseaction[endofturn once] counter(-1/-1.-1) all(this)])) oneshot
+auto=_DIES_choice name(Assign -1/-1 counter) name(Assign -1/-1 counter) target(creature) transforms((,newability[counter(-1/-1) all(this)],newability[phaseaction[endofturn once] counter(-1/-1.-1) all(this)])) oneshot
+auto=_DIES_choice name(Assign -1/-1 counter) name(Assign -1/-1 counter) target(creature) transforms((,newability[counter(-1/-1) all(this)],newability[phaseaction[endofturn once] counter(-1/-1.-1) all(this)])) oneshot
+auto=_DIES_choice name(Assign -1/-1 counter) name(Assign -1/-1 counter) target(creature) transforms((,newability[counter(-1/-1) all(this)],newability[phaseaction[endofturn once] counter(-1/-1.-1) all(this)])) oneshot
 text=When Shambling Swarm dies, distribute three -1/-1 counters among one, two, or three target creatures. For each -1/-1 counter you put on a creature this way, remove a -1/-1 counter from that creature at the beginning of the next end step.
 mana={1}{B}{B}{B}
 type=Creature
@@ -55945,7 +55970,7 @@ toughness=2
 [card]
 name=Silas Renn, Seeker Adept
 abilities=deathtouch,partner
-auto=@combatdamaged(player) from(this):may name(cast card) castcard(normal) target(*[artifact]|mygraveyard)
+auto=@combatdamaged(player) from(this):name(target artifact) target(artifact[-land]|mygraveyard) canplayfromgraveyard ueot
 text=Deathtouch -- Whenever Silas Renn, Seeker Adept deals combat damage to a player, choose target artifact card in your graveyard. You may cast that card this turn. -- Partner (You can have two commanders if both have partner.)
 mana={1}{U}{B}
 type=Legendary Artifact Creature
@@ -56084,7 +56109,7 @@ toughness=1
 [card]
 name=Silverback Shaman
 abilities=trample
-auto=@movedTo(this|graveyard) from(battlefield):draw:1
+auto=_DIES_draw:1
 text=Trample (This creature can deal excess combat damage to the player or planeswalker it's attacking.) -- When Silverback Shaman dies, draw a card.
 mana={3}{G}{G}
 type=Creature
@@ -57312,7 +57337,7 @@ toughness=8
 name=Slippery Scoundrel
 auto=_ASCEND_
 auto=@movedTo(*|myBattlefield):_ASCEND_
-auto=_CITY'S_BLESSING_ transforms((,newability[cantattack],newability[opponentshroud]))
+auto=_CITY'S_BLESSING_ transforms((,newability[unblockable],newability[opponentshroud]))
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- As long as you have the city's blessing, Slippery Scoundrel has hexproof and can't be blocked.
 mana={2}{U}
 type=Creature
@@ -58526,7 +58551,7 @@ toughness=3
 [/card]
 [card]
 name=Sparring Construct
-auto=@movedTo(this|graveyard) from(battlefield):counter(1/1) target(creature|myBattlefield)
+auto=_DIES_counter(1/1) target(creature|myBattlefield)
 text=When Sparring Construct dies, put a +1/+1 counter on target creature you control.
 mana={1}
 type=Artifact Creature
@@ -58611,7 +58636,7 @@ toughness=3
 name=Specimen Collector
 auto=token(Squirrel,Creature Squirrel,1/1,green)
 auto=token(Crab,Creature Crab,0/3,blue)
-auto=@movedTo(this|graveyard) from(battlefield):name(Copy token) clone target(*[token]|mybattlefield)
+auto=_DIES_name(Copy token) clone target(*[token]|mybattlefield)
 text=When Specimen Collector enters the battlefield, create a 1/1 green Squirrel creature token and a 0/3 blue Crab creature token. -- When Specimen Collector dies, create a token that's a copy of target token you control.
 mana={4}{U}
 type=Creature
@@ -59060,7 +59085,7 @@ toughness=2
 [/card]
 [card]
 name=Spinal Centipede
-auto=@movedTo(this|graveyard) from(battlefield):counter(1/1)target(creature|myBattlefield)
+auto=_DIES_counter(1/1)target(creature|myBattlefield)
 text=When Spinal Centipede dies, put a +1/+1 counter on target creature you control.
 mana={2}{B}
 type=Creature
@@ -59210,7 +59235,7 @@ subtype=Lesson
 [/card]
 [card]
 name=Spirit of Malevolence
-auto=@movedto(this|graveyard) from(battlefield):life:-1 opponent && life:1 controller
+auto=_DIES_life:-1 opponent && life:1 controller
 text=When Spirit of Malevolence dies, each opponent loses 1 life and you gain 1 life.
 mana={1}{B}
 type=Creature
@@ -60090,7 +60115,7 @@ toughness=3
 [card]
 name=Steadfast Sentry
 abilities=vigilance
-auto=@movedTo(this|graveyard) from(battlefield):counter(1/1) target(creature|myBattlefield)
+auto=_DIES_counter(1/1) target(creature|myBattlefield)
 text=Vigilance (Attacking doesn't cause this creature to tap.) -- When Steadfast Sentry dies, put a +1/+1 counter on target creature you control.
 mana={2}{W}
 type=Creature
@@ -60573,7 +60598,7 @@ toughness=2
 [/card]
 [card]
 name=Storm God's Oracle
-auto=@movedTo(this|graveyard) from(battlefield):name(Deeals 3 damage) damage:3 target(player,creature,planeswalker)
+auto=_DIES_name(Deeals 3 damage) damage:3 target(player,creature,planeswalker)
 auto={1}:1/-1 ueot
 text={1}: Storm God's Oracle gets +1/-1 until end of turn. -- When Storm God's Oracle dies, it deals 3 damage to any target.
 mana={1}{U}{R}
@@ -61271,7 +61296,7 @@ type=Sorcery
 [card]
 name=Sundering Titan
 auto=destroy all(land[plains,island,swamp,mountain,forest])
-auto=@movedto(this|graveyard) from(battlefield):destroy all(land[plains,island,swamp,mountain,forest])
+auto=_DIES_destroy all(land[plains,island,swamp,mountain,forest])
 text=When Sundering Titan enters the battlefield or leaves the battlefield, choose a land of each basic land type, then destroy those lands.
 mana={8}
 type=Artifact Creature
@@ -62037,7 +62062,7 @@ toughness=2
 [card]
 name=Syndicate Messenger
 abilities=flying
-auto=@movedTo(this|graveyard) from(battlefield):create(Spirit:creature Spirit:1/1:white,black:flying)
+auto=_DIES_create(Spirit:creature Spirit:1/1:white,black:flying)
 text=Flying -- Afterlife 1 (When this creature dies, create a 1/1 white and black Spirit creature token with flying.)
 mana={3}{W}
 type=Creature
@@ -62198,8 +62223,8 @@ type=Instant
 name=Taborax, Hope's Demise
 abilities=flying
 auto=this(counter{1/1.1}>4) lifelink
-auto=@movedTo(another cleric[-token]|myGraveyard) from(Battlefield):may draw:1 controller && life:-1 controller
-auto=@movedTo(another creature[-token]|myGraveyard) from(Battlefield):counter(1/1,1) all(this)
+auto=@movedTo(other cleric[-token]|myGraveyard) from(Battlefield):may draw:1 controller && life:-1 controller
+auto=@movedTo(other creature[-token]|myGraveyard) from(Battlefield):counter(1/1,1) all(this)
 text=Flying -- Taborax, Hope's Demise has lifelink as long as it has five or more +1/+1 counters on it. -- Whenever another nontoken creature you control dies, put a +1/+1 counter on Taborax. If that creature was a Cleric, you may draw a card. If you do, you lose 1 life.
 mana={2}{B}
 type=Legendary Creature
@@ -62562,7 +62587,7 @@ toughness=4
 [card]
 name=Taranika, Akroan Veteran
 abilities=vigilance
-auto=@combat(attacking) source(this): untap target(creature|myBattlefield) && transforms((creature,setpower=4,settoughness=4,indestructible)) ueot
+auto=@combat(attacking) source(this):target(other creature|myBattlefield) transforms((,setpower=4,settoughness=4,newability[untap],newability[indestructible])) ueot
 text=Vigilance -- Whenever Taranika, Akroan Veteran attacks, untap another target creature you control. Until end of turn, that creature has base power and toughness 4/4 and gains indestructible.
 mana={1}{W}{W}
 type=Legendary Creature
@@ -62619,7 +62644,7 @@ type=Sorcery
 [/card]
 [card]
 name=Tattered Mummy
-auto=@movedTo(this|graveyard) from(battlefield):life:-2 opponent
+auto=_DIES_life:-2 opponent
 text=When Tattered Mummy dies, each opponent loses 2 life.
 mana={1}{B}
 type=Creature
@@ -63435,7 +63460,7 @@ name=The Akroan War
 auto=name(Gain control of creature) target(creature|opponentbattlefield) steal
 auto=counter(0/0,1,Lore)
 auto=@each my firstmain:counter(0/0,1,Lore)
-auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}) all(creature|opponentbattlefield) mustattack uynt
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}) lord(creature|opponentbattlefield) mustattack uynt
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) all(creature[tapped]) dynamicability<!mytgt powerstrike itself!> && sacrifice(this)
 text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I — Gain control of target creature for as long as The Akroan War remains on the battlefield. -- II — Until your next turn, creatures your opponents control attack each combat if able. -- III — Each tapped creature deals damage to itself equal to its power.
 mana={3}{R}
@@ -63764,7 +63789,7 @@ name=The Locust God
 abilities=flying, haste
 auto=@drawn(controller):token(Insect,creature Insect,1/1,red,blue,flying,haste)
 auto={2}{U}{R}:draw:1 && transforms((,newability[target(*|myhand) reject])) forever
-auto=@movedTo(this|graveyard) from(battlefield):phaseaction[endofturn once] moveTo(ownerhand) ueot
+auto=_DIES_phaseaction[endofturn once] moveTo(ownerhand) ueot
 text=Flying -- Whenever you draw a card, create a 1/1 blue and red Insect creature token with flying and haste. -- {2}{U}{R}: Draw a card, then discard a card. -- When The Locust God dies, return it to its owner's hand at the beginning of the next end step.
 mana={4}{U}{R}
 type=Legendary Creature
@@ -63868,7 +63893,7 @@ aicode=activate transforms((,newability[all(*[zpos<=type:zombie:mybattlefield]|m
 auto={2}{U}{B}:target(creature|graveyard) clone and!( transforms((Zombie,setpower=4,settoughness=4,black)) forever )! && moveTo(exile)
 auto=@each my upkeep:name(Opponent looses life) foreach(zombie|mybattlefield) life:-1 opponent
 auto=@each my upkeep:name(Scry cards) scry:type:zombie:mybattlefield scrycore delayed scrycoreend scryend
-auto=@movedTo(this|graveyard) from(battlefield):phaseaction[endofturn once] moveTo(ownerhand) ueot
+auto=_DIES_phaseaction[endofturn once] moveTo(ownerhand) ueot
 text=At the beginning of your upkeep, each opponent loses X life and you scry X, where X is the number of Zombies you control. -- {2}{U}{B}: Exile target creature card from a graveyard. Create a token that's a copy of it, except it's a 4/4 black Zombie. -- When The Scarab God dies, return it to its owner's hand at the beginning of the next end step.
 mana={3}{U}{B}
 type=Legendary Creature
@@ -63880,7 +63905,7 @@ toughness=5
 name=The Scorpion God
 auto=@movedto(graveyard) from(creature[counter{-1/-1}]|battlefield):draw:1
 auto={1}{B}{R}:counter(-1/-1,1) target(other creature)
-auto=@movedTo(this|graveyard) from(battlefield):phaseaction[endofturn once] moveTo(ownerhand) ueot
+auto=_DIES_phaseaction[endofturn once] moveTo(ownerhand) ueot
 text=Whenever a creature with a -1/-1 counter on it dies, draw a card. -- {1}{B}{R}: Put a -1/-1 counter on another target creature. -- When The Scorpion God dies, return it to its owner's hand at the beginning of the next end step.
 mana={3}{B}{R}
 type=Legendary Creature
@@ -65120,7 +65145,7 @@ type=Enchantment
 [card]
 name=Tithe Taker
 auto=while(restriction{myturnonly}) lord(*|opponentcastingzone) altercost( colorless,+1)
-auto=@movedTo(this|graveyard) from(battlefield):token(Spirit,Creature Spirit,1/1,white,black,flying)
+auto=_DIES_token(Spirit,Creature Spirit,1/1,white,black,flying)
 text=During your turn, spells your opponents cast cost {1} more to cast and abilities your opponents activate cost {1} more to activate unless they're mana abilities. -- Afterlife 1 (When this creature dies, create a 1/1 white and black Spirit creature token with flying.)
 mana={1}{W}
 type=Creature
@@ -65174,7 +65199,7 @@ toughness=3
 [card]
 name=Together Forever
 auto=target(<upto:2>other creature|battlefield) counter(1/1) 
-auto={1}:target(creature[counter{any}]) transforms((,newability[@movedTo(this|graveyard) from(battlefield):all(trigger[to]) moveTo(ownerHand)])) ueot
+auto={1}:target(creature[counter{any}]) transforms((,newability[_DIES_all(trigger[to]) moveTo(ownerHand)])) ueot
 text=When Together Forever enters the battlefield, support 2. (Put a +1/+1 counter on each of up to two other target creatures.) -- {1}: Choose target creature with a counter on it. When that creature dies this turn, return that card to its owner's hand.
 mana={W}{W}
 type=Enchantment
@@ -66189,7 +66214,7 @@ toughness=4
 [/card]
 [card]
 name=Trove Tracker
-auto=@movedTo(this|graveyard) from(battlefield):draw:1 controller
+auto=_DIES_draw:1 controller
 autograveyard={5}{U}{U}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=When Trove Tracker dies, draw a card. -- Encore {5}{U}{U} ({5}{U}{U}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={2}{U}
@@ -66202,7 +66227,7 @@ toughness=2
 name=Trove Warden
 abilities=vigilance
 auto=@movedto(land|myBattlefield):moveto(exile) target(*[manacost<=3]|mygraveyard)
-auto=@movedTo(this|graveyard) from(battlefield):moveto(ownerbattlefield) target(<anyamount>*[manacost<=3]|myexile)
+auto=_DIES_moveto(ownerbattlefield) target(<anyamount>*[manacost<=3]|myexile)
 text=Vigilance -- Landfall — Whenever a land enters the battlefield under your control, exile target permanent card with converted mana cost 3 or less from your graveyard. -- When Trove Warden dies, put each permanent card exiled with it onto the battlefield under the control of that card's owner.
 mana={2}{W}{W}
 type=Creature
@@ -67553,8 +67578,8 @@ type=Legendary Sorcery
 name=Urza's Saga
 auto=counter(0/0,1,Lore)
 auto=@each my firstmain:counter(0/0,1,Lore)
-auto=this(counter{0/0.1.Lore}=) transforms((,newability[{T}:add{C}])) oneshot
-auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) transforms((,newability[{2}{T}:token(Construct)])) oneshot
+auto=this(counter{0/0.1.Lore}) transforms((,newability[{T}:add{C}]))
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) transforms((,newability[{2}{T}:token(Construct)]))
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) name(Search artifact) target(artifact[manacost<=1]|mylibrary) moveto(mybattlefield) and!( shuffle )!
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) sacrifice(this)
 text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I — Urza's Saga gains "{T}: Add {C}." -- II — Urza's Saga gains "{2}, {T}: Create a 0/0 colorless Construct artifact creature token with 'This creature gets +1/+1 for each artifact you control.'" -- III — Search your library for an artifact card with mana cost {0} or {1}, put it onto the battlefield, then shuffle.
@@ -68055,6 +68080,7 @@ name=Varchild, Betrayer of Kjeldor
 auto=@combatdamaged(player) from(this):create(Survivor:Creature Survivor:1/1:red)*thatmuch opponent
 auto=lord(survivor|opponentBattlefield) cantblock
 auto=lord(survivor|opponentBattlefield) cantattack
+auto=lord(survivor|opponentBattlefield) cantpwattack
 auto=@movedTo(this|nonbattlezone) from(mybattlefield):moveTo(myBattlefield) all(survivor)
 text=Whenever Varchild, Betrayer of Kjeldor deals combat damage to a player, that player creates that many 1/1 red Survivor creature tokens. -- Survivors your opponents control can't block, and they can't attack you or a planeswalker you control. -- When Varchild leaves the battlefield, gain control of all Survivors.
 mana={2}{R}
@@ -68345,7 +68371,7 @@ subtype=Aura
 [/card]
 [card]
 name=Venerable Knight
-auto=@movedTo(this|graveyard) from(battlefield):target(creature[knight]|myBattlefield) counter(1/1,1)
+auto=_DIES_target(creature[knight]|myBattlefield) counter(1/1,1)
 text=When Venerable Knight dies, put a +1/+1 counter on target Knight you control.
 mana={W}
 type=Creature
@@ -68378,7 +68404,7 @@ toughness=4
 [card]
 name=Vengeant Vampire
 abilities=lifelink
-auto=@movedto(this|graveyard) from(battlefield):destroy target(creature|opponentBattlefield) && life:4 controller
+auto=_DIES_destroy target(creature|opponentBattlefield) && life:4 controller
 text=Lifelink -- When Vengeant Vampire dies, destroy target creature an opponent controls and you gain 4 life.
 mana={4}{B}{B}
 type=Creature
@@ -68991,7 +69017,7 @@ type=Sorcery
 [/card]
 [card]
 name=Vindictive Lich
-auto=@movedto(this|graveyard) from(battlefield):name(Choose one) name(Choose one) emblem transforms((,newability[choice name(Opponent sacrifices a creature) ability$!name(Sacrifice creature) notatarget(creature|mybattlefield) sacrifice!$ opponent],newability[choice name(Opponent discards 2 cards) ability$!name(Discards 2 cards) notatarget(<2>*|myhand) reject!$ opponent],newability[choice name(Opponent looses 5 life) life:-5 opponent])) ueot
+auto=_DIES_name(Choose one) name(Choose one) emblem transforms((,newability[choice name(Opponent sacrifices a creature) ability$!name(Sacrifice creature) notatarget(creature|mybattlefield) sacrifice!$ opponent],newability[choice name(Opponent discards 2 cards) ability$!name(Discards 2 cards) notatarget(<2>*|myhand) reject!$ opponent],newability[choice name(Opponent looses 5 life) life:-5 opponent])) ueot
 text=When Vindictive Lich dies, choose one or more. Each mode must target a different player. -- • Target opponent sacrifices a creature. -- • Target opponent discards two cards. -- • Target opponent loses 5 life.
 mana={3}{B}
 type=Creature
@@ -69939,7 +69965,7 @@ toughness=3
 [/card]
 [card]
 name=Wanted Scoundrels
-auto=@movedTo(this|graveyard) from(battlefield):token(435451)*2
+auto=_DIES_token(435451)*2 opponent
 text=When Wanted Scoundrels dies, target opponent creates two colorless Treasure artifact tokens with "{T}, Sacrifice this artifact: Add one mana of any color to your mana pool."
 mana={1}{B}
 type=Creature
@@ -71677,7 +71703,7 @@ toughness=3
 [/card]
 [card]
 name=Wretched Camel
-auto=@movedTo(this|graveyard) from(battlefield):if type(*[desert]|mybattlefield,myGraveyard)~morethan~0 then target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer
+auto=_DIES_if type(*[desert]|mybattlefield,myGraveyard)~morethan~0 then target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer
 text=When Wretched Camel dies, if you control a Desert or there is a Desert card in your graveyard, target player discards a card.
 mana={1}{B}
 type=Creature
