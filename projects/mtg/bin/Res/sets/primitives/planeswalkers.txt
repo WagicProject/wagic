@@ -190,7 +190,7 @@ subtype=Aminatou
 name=Angrath, Captain of Chaos
 auto=counter(0/0,5,loyalty)
 auto=lord(creature|myBattlefield) menace
-auto={C(0/0,-2,Loyalty)}:name(-2: Amass 2) if type(creature[Army]|myBattlefield)~morethan~0 then counter(1/1,2) target(creature[Army]|myBattlefield) else token(Zombie Army,Creature Zombie Army,0/0,black) and!(counter(1/1,2))!
+auto={C(0/0,-2,Loyalty)}:name(-2: Amass 2) _AMASS_(2)
 text=Creatures you control have menace. -- -2: Amass 2. (Put two +1/+1 counters on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.)
 mana={2}{BR}{BR}
 type=Legendary Planeswalker
@@ -1479,7 +1479,7 @@ subtype=Kasmina
 name=Kasmina, Enigmatic Mentor
 auto=counter(0/0,5,loyalty)
 auto=@targeted(*[creature;planeswalker]|myBattlefield) from(*[instant;sorcery]|opponentzones):choice name(This spell costs 2 more) name(This spell costs 2 more) target(*[instant;sorcery]|opponentzones) transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) oneshot
-auto={C(0/0,-2,Loyalty)}:name(-2: Create a 2/2 Wizard, draw and discard a card) token(Wizard,Creature Wizard,2/2,blue) && ability$!name(Draw a card) draw:1!$ controller && ability$!name(discard a card) notatarget(*|myhand) reject!$ controller
+auto={C(0/0,-2,Loyalty)}:name(-2: Create a 2/2 Wizard, draw and discard a card) token(Wizard,Creature Wizard,2/2,blue) && draw:1 && transforms((,newability[target(*|myhand) reject])) forever
 text=Spells your opponents cast that target a creature or planeswalker you control cost {2} more to cast. -- −2: Create a 2/2 blue Wizard creature token. Draw a card, then discard a card.
 mana={3}{U}
 type=Legendary Planeswalker
@@ -2649,7 +2649,7 @@ subtype=Szat
 [/card]
 [card]
 name=Teyo, the Shieldmage
-abilities=opponentshroud
+abilities=playershroud
 auto=counter(0/0,5,loyalty)
 auto={C(0/0,-2,Loyalty)}:name(-2: Create a 0/3 Wall with defender) create(Wall:Creature Wall:0/3:white:defender)
 text=You have hexproof. (You can't be the target of spells or abilities your opponents control.) -- -2: Create a 0/3 white Wall creature token with defender.
