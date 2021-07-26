@@ -1928,11 +1928,12 @@ subtype=Bolas
 [card]
 name=Nicol Bolas, God-Pharaoh
 auto=counter(0/0,7,loyalty)
-auto={C(0/0,2,Loyalty)}:name(+2: Exile cards from top and may cast it) moverandom(*[-land]) from(opponentlibrary) to(myhand) && altercost(colorless,blue,green,red,black,white,-15)
-auto={C(0/0,1,Loyalty)}:name(+1: Opponent exiles two cards from hand) ability$!moveto(exile) target(<2>*|myhand)!$ opponent
-auto={C(0/0,-4,Loyalty)}:name(-4: Deals 7 damage to creature or opponent) damage:7 target(creature,player)
-auto={C(0/0,-12,Loyalty)}:name(-12: Exile all nonland permanents) moveTo(exile) all(*[-land]|opponentbattlefield)
-text=+2: Target opponent exiles cards from the top of his or her library until he or she exiles a nonland card. Until end of turn, you may cast that card without paying its mana cost. -- +1: Each opponent exiles two cards from his or her hand. -- -4: Nicol Bolas, God-Pharaoh deals 7 damage to target opponent or creature an opponent controls. -- -12: Exile each nonland permanent your opponents control.
+aicode=activate transforms((,newability[all(*[zpos=oppofindfirsttypenonland]|opponentlibrary) moveto(myexile) and!( transforms((,newability[zerocast],newability[canplayfromexile],newability[phaseaction[my endofturn once checkex] moveto(ownerExile)],newability[all(*[zpos<=oppofindfirsttypenonland]|opponentlibrary) moveto(ownerExile)])) ueot )!])) oneshot
+auto={C(0/0,2,Loyalty)}:name(+2: Exile cards from top and may cast it) reveal:1 revealzone(opponentlibrary) revealuntil(*[-land]|opponentlibrary) optionone name(Move to your exile for cast) target(*[-land]|reveal) moveto(myexile) and!( transforms((,newability[zerocast],newability[canplayfromexile],newability[phaseaction[my endofturn once checkex] moveto(ownerExile)])) ueot )! optiononeend optiontwo name(Exile other cards) all(*|reveal) moveto(ownerExile) oneshot optiontwoend revealend
+auto={C(0/0,1,Loyalty)}:name(+1: Opponent exiles two cards from hand) ability$!name(Move to exile) name(Move to exile) moveto(exile) notatarget(<2>*|myhand)!$ opponent
+auto={C(0/0,-4,Loyalty)}:name(-4: Deals 7 damage) ability$!name(Choose one) choice name(Damage opponent) damage:7 opponent _ choice name(Damage creature or planeswalker) damage:7 target(*[creature;planeswalker]|opponentbattlefield)!$ controller
+auto={C(0/0,-12,Loyalty)}:name(-12: Exile all non-land permanents) moveTo(exile) all(*[-land]|opponentbattlefield)
+text=+2: Target opponent exiles cards from the top of their library until they exile a nonland card. Until end of turn, you may cast that card without paying its mana cost. -- +1: Each opponent exiles two cards from their hand. -- −4: Nicol Bolas, God-Pharaoh deals 7 damage to target opponent, creature an opponent controls, or planeswalker an opponent controls. -- −12: Exile each nonland permanent your opponents control.
 mana={4}{U}{B}{R}
 type=Legendary Planeswalker
 subtype=Bolas

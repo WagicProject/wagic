@@ -553,16 +553,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Aven Mindcensor
-abilities=flash
-text=Flash (You may cast this spell any time you could cast an instant.) -- Flying -- If an opponent would search a library, that player searches the top four cards of that library instead.
-mana={2}{W}
-type=Creature
-subtype=Bird Wizard
-power=2
-toughness=1
-[/card]
-[card]
 name=Aven Soulgazer
 abilities=flying
 text=Flying -- {2}{W}: Look at target face-down creature.
