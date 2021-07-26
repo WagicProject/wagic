@@ -3872,6 +3872,16 @@ power=3
 toughness=1
 [/card]
 [card]
+name=Aven Mindcensor
+abilities=flash,flying
+text=Flash (You may cast this spell any time you could cast an instant.) -- Flying -- If an opponent would search a library, that player searches the top four cards of that library instead.
+mana={2}{W}
+type=Creature
+subtype=Bird Wizard
+power=2
+toughness=1
+[/card]
+[card]
 name=Aven Reedstalker
 abilities=flash, flying
 text=Flash -- Flying
@@ -58181,7 +58191,7 @@ type=Instant
 [/card]
 [card]
 name=Soul Shatter
-auto=ability$!name(Sacrifice a creature or planeswalker) sacrifice notatarget(*[creature;planeswalker;manacost=convertedcost:highest:*:myBattlefield])!$ opponent
+auto=ability$!name(Sacrifice a creature or planeswalker) name(Sacrifice a creature or planeswalker) sacrifice notatarget(*[creature;planeswalker;manacost=convertedcost:highest:*:myBattlefield]|myBattlefield)!$ opponent
 text=Each opponent sacrifices a creature or planeswalker with the highest converted mana cost among creatures and planeswalkers they control.
 mana={2}{B}
 type=Instant
