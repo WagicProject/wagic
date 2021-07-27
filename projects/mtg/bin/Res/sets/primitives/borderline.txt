@@ -9815,6 +9815,7 @@ type=Instant
 [card]
 name=Chandra, Fire of Kaladesh
 auto=@movedTo(*[red]|mystack):untap all(this)
+auto=@movedto(Moonmist|stack):name(Transform Human Shaman) moveto(ownerBattlefield) && flip(Chandra, Roaring Flame)
 auto={T}:damage:1 target(player) limit^moveto(ownerBattlefield) && flip(Chandra, Roaring Flame)^3
 text=Whenever you cast a red spell, untap Chandra, Fire of Kaladesh. -- {T}: Chandra, Fire of Kaladesh deals 1 damage to target player. If Chandra has dealt 3 or more damage this turn, exile her, then return her to the battlefield transformed under her owner's control.
 mana={1}{R}{R}
@@ -13436,7 +13437,7 @@ type=Artifact
 [/card]
 [card]
 name=Cursed Scroll
-auto={3}{T}:ability$!name(Name a card from your hand) name(Name a card from your hand) target(*|myhand) transforms((,newability[if compare(cursedscrollresult)~equalto~1 then name(Deals 2 damage) name(Deals 2 damage) damage:2 target(player^creature^planeswalker)])) oneshot!$ controller
+auto={3}{T}:name(Choose a card name) ability$!name(Name a card from your hand) name(Name a card from your hand) target(*|myhand) transforms((,newability[if compare(cursedscrollresult)~equalto~1 then name(Deals 2 damage) name(Deals 2 damage) damage:2 target(player^creature^planeswalker) else ability$!choice name(Revealed card was different) name(Revealed card was different) all(mysource) donothing!$ controller])) oneshot!$ controller
 text={3}, {T}: Choose a card name, then reveal a card at random from your hand. If that card has the chosen name, Cursed Scroll deals 2 damage to any target.
 mana={1}
 type=Artifact
@@ -13800,6 +13801,7 @@ toughness=1
 [/card]
 [card]
 name=Daring Sleuth
+auto=@movedto(Moonmist|stack):name(Transform Human Rogue) flip(Bearer of Overwhelming Truths)
 auto=@sacrificed(Clue|mybattlefield):flip(Bearer of Overwhelming Truths)
 text=When you sacrifice a Clue, transform Daring Sleuth.
 mana={1}{U}
@@ -29232,7 +29234,9 @@ type=Instant
 [/card]
 [card]
 name=Hinterland Hermit
-auto=@each upkeep restriction{lastturn(*|stack)~lessthan~1}:flip(Hinterland Scourge)
+auto=if cantargetcard(*[fresh]|*) then if compare(isflipped)~equalto~0 then if type(Vildin-Pack Alpha|mybattlefield)~morethan~0 then may name(Transform Human Werewolf) name(Transform Human Werewolf) name(Transform Human Werewolf) flip(Hinterland Scourge)
+auto=@movedto(Moonmist|stack):name(Transform Human Werewolf) flip(Hinterland Scourge)
+auto=@each upkeep restriction{lastturn(*|stack)~lessthan~1}:name(Transform Human Werewolf) flip(Hinterland Scourge)
 text=At the beginning of each upkeep, if no spells were cast last turn, transform Hinterland Hermit.
 mana={1}{R}
 type=Creature
@@ -29242,11 +29246,13 @@ toughness=1
 [/card]
 [card]
 name=Hinterland Scourge
-auto=@each upkeep restriction{lastturn(*|stack)~morethan~1}:flip(Hinterland Hermit)
-auto=@combat(attacking) source(this):all(creature|opponentbattlefield) mustblock ueot
+auto=@each upkeep restriction{lastturn(*|mystack)~morethan~1,lastturn(*|opponentstack)~lessthan~2}:name(Transform Werewolf) flip(Hinterland Hermit)
+auto=@each upkeep restriction{lastturn(*|opponentstack)~morethan~1}:name(Transform Werewolf) flip(Hinterland Hermit)
+auto=@combat(attacking) source(this):all(creature|opponentbattlefield) transforms((,newability[mustblock])) ueot
 text=Hinterland Scourge must be blocked if able. -- At the beginning of each upkeep, if a player cast two or more spells last turn, transform Hinterland Scourge.
 type=Creature
 subtype=Werewolf
+color=red
 power=3
 toughness=2
 [/card]
@@ -32586,6 +32592,7 @@ type=Sorcery
 [/card]
 [card]
 name=Jace, Vryn's Prodigy
+auto=@movedto(Moonmist|stack):name(Transform Human Wizard) flip(Jace, Telepath Unbound
 auto={T}:draw:1 controller && ability$!name(Discard a card) reject notatarget(*|myhand)!$ controller restriction{type(*|mygraveyard)~lessthan~4}
 auto={T}:draw:1 controller && ability$!name(Discard a card) reject notatarget(*|myhand)!$ controller && moveto(exile) and!( moveto(mybattlefield) and!( haste && counter(0/0,5,Loyalty) && flip(Jace^ Telepath Unbound) )! )! restriction{type(*|mygraveyard)~morethan~3}
 text={T}: Draw a card, then discard a card. If there are five or more cards in your graveyard, exile Jace, Vryn's Prodigy, then return him to the battlefield transformed under his owner's control.
@@ -35410,6 +35417,7 @@ type=Artifact
 [/card]
 [card]
 name=Kytheon, Hero of Akros
+auto=@movedto(Moonmist|stack):name(Transform Human Soldier) moveto(ownerBattlefield) && flip(Gideon, Battle-Forged)
 auto=@combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:moveto(ownerBattlefield) && flip(Gideon, Battle-Forged)
 auto={2}{W}:all(this) indestructible ueot
 text=At end of combat, if Kytheon, Hero of Akros and at least two other creatures attacked this combat, exile Kytheon, then return him to the battlefield transformed under his owner's control. -- {2}{W}: Kytheon gains indestructible until end of turn.
@@ -36690,6 +36698,7 @@ type=Instant
 [card]
 name=Liliana, Heretical Healer
 abilities=lifelink
+auto=@movedto(Moonmist|stack):name(Transform Human Cleric) moveto(ownerBattlefield) && flip(Liliana, Defiant Necromancer)
 auto=@movedTo(other creature[-token]|graveyard) from(myBattlefield):moveto(ownerBattlefield) && flip(Liliana, Defiant Necromancer) && ability$!name(Create Zombie) token(Zombie,Creature Zombie,2/2,black)!$ controller
 text=Lifelink -- Whenever another nontoken creature you control dies, exile Liliana, Heretical Healer, then return her to the battlefield transformed under her owner's control. If you do, put a 2/2 black Zombie creature token onto the battlefield.
 mana={1}{B}{B}
@@ -38079,7 +38088,7 @@ toughness=3
 [/card]
 [card]
 name=Magus of the Scroll
-auto={3}{T}:ability$!name(Name a card from your hand) name(Name a card from your hand) target(*|myhand) transforms((,newability[if compare(magusofscrollresult)~equalto~1 then name(Deals 2 damage) name(Deals 2 damage) damage:2 target(player^creature^planeswalker)])) oneshot!$ controller
+auto={3}{T}:name(Name a card) ability$!name(Name a card from your hand) name(Name a card from your hand) target(*|myhand) transforms((,newability[if compare(magusofscrollresult)~equalto~1 then name(Deals 2 damage) name(Deals 2 damage) damage:2 target(player^creature^planeswalker) else ability$!choice name(Revealed card was different) name(Revealed card was different) all(mysource) donothing!$ controller])) oneshot!$ controller
 text={3}, {T}: Name a card. Reveal a card at random from your hand. If it's the named card, Magus of the Scroll deals 2 damage to target creature or player.
 mana={R}
 type=Creature
@@ -40533,6 +40542,13 @@ type=Creature
 subtype=Merfolk Rogue
 power=4
 toughness=5
+[/card]
+[card]
+name=Moonmist
+auto=preventAllCombatDamage from(creature[-wolf;-werewolf]|battlefield) ueot
+text=Transform all Humans. Prevent all combat damage that would be dealt this turn by creatures other than Werewolves and Wolves. (Only double-faced cards can be transformed.)
+mana={1}{G}
+type=Instant
 [/card]
 [card]
 name=Moraug, Fury of Akoum
@@ -62518,6 +62534,7 @@ toughness=4
 [/card]
 [card]
 name=Tangleclaw Werewolf
+auto=if cantargetcard(*[fresh]|*) then if compare(isflipped)~equalto~0 then if type(Vildin-Pack Alpha|mybattlefield)~morethan~0 then may name(Transform Horror Werewolf) name(Transform Horror Werewolf) name(Transform Horror Werewolf) flip(Fibrous Entangler)
 auto={6}{G}:flip(Fibrous Entangler)
 text=Tangleclaw Werewolf can block an additional creature each combat. -- {6}{G}: Transform Tangleclaw Werewolf.
 mana={2}{G}{G}

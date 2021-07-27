@@ -7320,12 +7320,6 @@ mana={1}{G}
 type=Instant
 [/card]
 [card]
-name=Moonmist
-text=Transform all Humans. Prevent all combat damage that would be dealt this turn by creatures other than Werewolves and Wolves. (Only double-faced cards can be transformed.)
-mana={1}{G}
-type=Instant
-[/card]
-[card]
 name=Moonring Mirror
 text=Whenever you draw a card, exile the top card of your library face down. -- At the beginning of your upkeep, you may exile all cards from your hand face down. If you do, put all other cards you own exiled with Moonring Mirror into your hand.
 mana={5}
