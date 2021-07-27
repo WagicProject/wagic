@@ -9658,7 +9658,7 @@ toughness=3
 [/card]
 [card]
 name=Champion of Stray Souls
-autograveyard={5}{B}{B}:moveTo(mylibrary) target(this)
+autograveyard={5}{B}{B}:moveTo(mylibrary)
 auto={3}{B}{B}{T}{S(creature|mybattlefield)}:moveTo(myBattlefield) target(creature|myGraveyard)
 auto={3}{B}{B}{T}{S(creature|mybattlefield)}{S(creature|mybattlefield)}:moveTo(myBattlefield) target(<2>creature|myGraveyard)
 auto={3}{B}{B}{T}{S(creature|mybattlefield)}{S(creature|mybattlefield)}{S(creature|mybattlefield)}:moveTo(myBattlefield) target(<3>creature|myGraveyard)
@@ -10620,8 +10620,8 @@ toughness=2
 [/card]
 [card]
 name=Circu, Dimir Lobotomist
-auto=@movedTo(*[blue]|myStack):transforms((,newability[deplete:1 target (player) with counter{0/0.1.Lobotomist}]))
-auto=@movedTo(*[black]|myStack):transforms((,newability[deplete:1 target (player) with counter{0/0.1.Lobotomist}]))
+auto=@movedTo(*[blue]|myStack):transforms((,newability[deplete:1 target(player) with counter{0/0.1.Lobotomist}]))
+auto=@movedTo(*[black]|myStack):transforms((,newability[deplete:1 target(player) with counter{0/0.1.Lobotomist}]))
 auto=maxCast(*[named!{counter[0/0.1.Lobotomist]}])0 opponent
 text=Whenever you cast a blue spell, exile the top card of target player’s library. -- Whenever you cast a black spell, exile the top card of target player’s library. -- Your opponents can’t cast spells with the same name as a card exiled with Circu, Dimir Lobotomist.
 mana={2}{U}{B}
@@ -13912,7 +13912,7 @@ toughness=1
 [/card]
 [card]
 name=Dauntless Bodyguard
-auto={S}:target (creature|myBattlefield) indestructible
+auto={S}:target(creature|myBattlefield) indestructible
 text=As Dauntless Bodyguard enters the battlefield, choose another creature you control. -- Sacrifice Dauntless Bodyguard: The chosen creature gains indestructible until end of turn.
 mana={W}
 type=Creature
@@ -18499,7 +18499,7 @@ toughness=3
 [card]
 name=Elspeth's Nightmare
 aicode=activate reject notatarget(*[-creature;-land]|targetedpersonshand)
-auto=destroy target (creature[power<=2])
+auto=destroy target(creature[power<=2])
 auto=counter(0/0,1,Lore)
 auto=@each my firstmain:counter(0/0,1,Lore)
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}) target(opponent) reveal:type:*:targetedpersonshand revealzone(targetedpersonshand) optionone name(choose discards) notatarget(<1>*[-creature;-land]|reveal) transforms((,newability[moveto(ownerhand) all(other *|reveal)],newability[moveto(ownerhand) and!(reject)!])) ueot optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerhand) and!( all(*|reveal) moveto(ownerhand) )!  optiontwoend revealend
@@ -18933,7 +18933,7 @@ auto={7}{W}{T}{S}:all(creature|mybattlefield) 2/2 ueot
 text=First strike -- {7}{W}, {T}, Sacrifice Encampment Keeper: Creatures you control get +2/+2 until end of turn.
 mana={W}
 type=Creature
-subtype=Hound
+subtype=Dog
 power=1
 toughness=1
 [/card]
@@ -24903,7 +24903,6 @@ toughness=1
 [/card]
 [card]
 name=Gingerbread Cabin
-auto={T}:add{G}
 auto=aslongas(other land[forest]|myBattlefield) tap(noevent) <3 oneshot
 auto=if this(untapped) token(-473141) once 
 text={T}: Add {G}. -- Gingerbread Cabin enters the battlefield tapped unless you control three or more other Forests. -- When Gingerbread Cabin enters the battlefield untapped, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
@@ -29890,7 +29889,7 @@ toughness=3
 name=Hull Breach
 auto=choice destroy target(artifact)
 auto=choice destroy target(enchantment)
-auto=choice destroy target(artifact) && destroy target (enchantment)
+auto=choice destroy target(artifact) && destroy target(enchantment)
 text=Choose one — • Destroy target artifact. • Destroy target enchantment. • Destroy target artifact and target enchantment.
 mana={R}{G}
 type=Sorcery
@@ -30450,7 +30449,6 @@ type=Artifact
 [/card]
 [card]
 name=Idyllic Grange
-auto={T}:add{W}
 auto=aslongas(other land[plain]|myBattlefield) tap(noevent) <3 oneshot
 auto=if this(untapped) target(creature|myBattlefield) counter(1/1) once 
 text={T}: Add {W}. -- Idyllic Grange enters the battlefield tapped unless you control three or more other Plains. -- When Idyllic Grange enters the battlefield untapped, put a +1/+1 counter on target creature you control.
@@ -33407,8 +33405,9 @@ toughness=3
 [card]
 name=Kalitas, Traitor of Ghet
 abilities=lifelink
-auto=@movedto(creature[token]|opponentbattlefield):all(trigger[to]) moveTo(exile) && token(Zombie,Creature Zombie,2/2,black)
-auto={2}{B}{S(other creature[vampire;zombie])}:counter(1/1,2)
+auto=@movedto(creature[-token]|opponentgraveyard):all(trigger[to]) moveTo(exile) && token(Zombie,Creature Zombie,2/2,black)
+auto={2}{B}{S(other vampire|myBattlefield)}:name(Sacrifice vampire) counter(1/1,2)
+auto={2}{B}{S(other zombie|myBattlefield)}:name(Sacrifice zombie) counter(1/1,2)
 text=Lifelink -- If a nontoken creature an opponent controls would die, instead exile that card and put a 2/2 black Zombie creature token onto the battlefield. -- {2}{B}, Sacrifice another Vampire or Zombie: Put two +1/+1 counters on Kalitas, Traitor of Ghet.
 mana={2}{B}{B}
 type=Legendary Creature
@@ -33614,7 +33613,7 @@ auto=@combat(attacking) source(this) aslongas(planeswalker[chandra]|myBattlefiel
 text=Whenever Karplusan Hound attacks, if you control a Chandra planeswalker, this creature deals 2 damage to any target.
 mana={3}{R}
 type=Creature
-subtype=Hound
+subtype=Dog
 power=3
 toughness=3
 [/card]
@@ -35353,7 +35352,7 @@ auto=maxCast(*|graveyard)0 opponent
 text=Vigilance, menace, lifelink -- Creature cards in graveyards can't enter the battlefield. -- Players can't cast spells from graveyards.
 mana={1}{W}{B}
 type=Legendary Creature
-subtype=Hound
+subtype=Dog
 power=3
 toughness=3
 [/card]
@@ -36187,7 +36186,7 @@ abilities=persist
 target=creature
 auto={4}:damage:1
 text=As an additional cost to cast this spell, discard a card. {4}: Lesser Masticore deals 1 damage to target creature. -- Persist (When this creature dies, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
-mana={2}{discard(*|myhand)}
+mana={2}{D(*|myhand)}
 type=Artifact Creature
 subtype=Masticore
 power=2
@@ -36405,7 +36404,7 @@ toughness=5
 [card]
 name=Life // Death
 auto=choice {G}:lord(land|myBattlefield) becomes(Creature,1/1) ueot
-auto=choice {1}{B}:target (creature|myGraveyard) moveTo(myBattlefield) then life:-manacost controller
+auto=choice {1}{B}:target(creature|myGraveyard) moveTo(myBattlefield) then life:-manacost controller
 text=All lands you control become 1/1 creatures until end of turn. They’re still lands. -- Return target creature card from your graveyard to the battlefield. You lose life equal to its converted mana cost.
 mana={0}
 type=Sorcery
@@ -37832,7 +37831,7 @@ auto=@each my endofturn restriction{type(Mad Dog[fresh]|mybattlefield)~morethan~
 text=At the beginning of your end step, if Mad Dog didn't attack or come under your control this turn, sacrifice it.
 mana={1}{R}
 type=Creature
-subtype=Hound
+subtype=Dog
 power=2
 toughness=2
 [/card]
@@ -40510,7 +40509,7 @@ auto=aslongas(planeswalker[Yanling]|mybattlefield) flying
 text=As long as you control a Yanling planeswalker, Moon-Eating Dog has flying. (It can't be blocked except by creatures with flying or reach.)
 mana={3}{U}
 type=Creature
-subtype=Hound
+subtype=Dog
 power=3
 toughness=3
 [/card]
@@ -40691,7 +40690,7 @@ type=Sorcery
 [card]
 name=Mowu
 type=Token Legendary Creature
-subtype=Hound
+subtype=Dog
 power=3
 toughness=3
 [/card]
@@ -40702,7 +40701,7 @@ auto=@counteradded(1/1) from(this) except(Mowu, Loyal Companion):may counter(1/1
 text=Trample, vigilance -- If one or more +1/+1 counters would be put on Mowu, Loyal Companion, that many plus one +1/+1 counters are put on it instead.
 mana={3}{G}
 type=Legendary Creature
-subtype=Hound
+subtype=Dog
 power=3
 toughness=3
 [/card]
@@ -42765,7 +42764,7 @@ toughness=3
 [/card]
 [card]
 name=Nylea's Huntmaster
-auto=target (creature|myBattlefield) type:manaG:myBattlefield/type:manaG:myBattlefield ueot
+auto=target(creature|myBattlefield) type:manaG:myBattlefield/type:manaG:myBattlefield ueot
 text=When Nylea’s Huntmaster enters the battlefield, target creature you control gets +X/+0 until end of turn, where X is your devotion to green. (Each {G} in the mana costs of permanents you control counts towards your devotion to green.)
 mana={3}{G}
 type=Creature
@@ -44533,7 +44532,7 @@ auto={1}{R}:all(creature[myname]|myBattlefield) 1/0 ueot
 text={1}{R}: Each creature you control named Pack Mastiff gets +1/+0 until end of turn.
 mana={1}{R}
 type=Creature
-subtype=Hound
+subtype=Dog
 power=2
 toughness=2
 [/card]
@@ -45386,7 +45385,7 @@ type=Instant
 [card]
 name=Phalanx Tactics
 target=creature
-auto=target (creature|myBattlefield) 2/1 ueot
+auto=target(creature|myBattlefield) 2/1 ueot
 auto=all(other creature|mybattlefield) 1/1 ueot
 text=Target creature you control gets +2/+1 until end of turn. Each other creature you control gets +1/+1 until end of turn.
 mana={1}{W}
@@ -45770,7 +45769,7 @@ subtype=Aura
 [/card]
 [card]
 name=Pious Wayfarer
-auto=@movedTo(enchantment|myBattlefield):target (creature|myBattlefield) 1/1 ueot
+auto=@movedTo(enchantment|myBattlefield):target(creature|myBattlefield) 1/1 ueot
 text=Constellation -- Whenever an enchantment enters the battlefield under your control, target creature gets +1/+1 until end of turn.
 mana={W}
 type=Creature
@@ -48599,7 +48598,7 @@ auto=target(creature[manacost<=1]|mylibrary) moveto(myhand) and!( shuffle )!
 text=When Ranger-Captain of Eos enters the battlefield, you may search your library for a creature card with converted mana cost 1 or less, reveal it, put it into your hand, then shuffle your library. -- Sacrifice Ranger-Captain of Eos: Your opponents can't cast noncreature spells this turn.
 mana={1}{W}{W}
 type=Creature
-subtype=Human Soldier
+subtype=Human Soldier Ranger
 power=3
 toughness=3
 [/card]
@@ -49882,7 +49881,7 @@ auto={1}{S}:indestructible target(creature|myBattlefield)
 text=Defender -- {1}, Sacrifice Resolute Watchdog: Target creature you control gains indestructible until end of turn. (Damage and effects that say "destroy" don't destroy it.)
 mana={W}
 type=Creature
-subtype=Hound
+subtype=Dog
 power=1
 toughness=3
 [/card]
@@ -56502,7 +56501,7 @@ toughness=2
 [card]
 name=Sisters of Stone Death
 auto={G}:target(creature|opponentBattlefield) mustblock ueot
-auto={B}{G}:@combat(blocking,blocked) source(this):moveTo(exile) target (creature[blocking,blocked]) oneshot
+auto={B}{G}:@combat(blocking,blocked) source(this):moveTo(exile) target(creature[blocking,blocked]) oneshot
 auto={2}{B}:moveTo(mybattlefield) target(creature|opponentexile)
 text={G}: Target creature blocks Sisters of Stone Death this turn if able. -- {B}{G}: Exile target creature blocking or blocked by Sisters of Stone Death. -- {2}{B}: Put a creature card exiled with Sisters of Stone Death onto the battlefield under your control.
 mana={4}{B}{B}{G}{G}
@@ -57295,7 +57294,7 @@ type=Sorcery
 [card]
 name=Sleeper Dart
 auto=draw:1 controller
-auto={T}{S}:frozen target (creature)
+auto={T}{S}:frozen target(creature)
 text=When Sleeper Dart enters the battlefield, draw a card. -- {T}, Sacrifice Sleeper Dart: Target creature doesn't untap during its controller's next untap step.
 mana={2}
 type=Artifact
@@ -65939,7 +65938,7 @@ type=Artifact
 [/card]
 [card]
 name=Treasure Nabber
-auto=@tappedformana(artifact|opponentBattlefield):moveTo(myBattlefield) target (artifact[tapped]) uynt
+auto=@tappedformana(artifact|opponentBattlefield):moveTo(myBattlefield) target(artifact[tapped]) uynt
 text=Whenever an opponent taps an artifact for mana, gain control of that artifact until the end of your next turn.
 mana={2}{R}
 type=Creature
@@ -67130,7 +67129,7 @@ auto=_DIES_moveto(myexile) all(this) && moveto(myHand) all(creature|myGraveyard)
 text=Underworld Cerberus can't be blocked except by three or more creatures. -- Cards in graveyards can't be the targets of spells or abilities. -- When Underworld Cerberus dies, exile it and each player returns all creature cards from his or her graveyard to his or her hand.
 mana={3}{B}{R}
 type=Creature
-subtype=Hound
+subtype=Dog
 power=6
 toughness=6
 [/card]
