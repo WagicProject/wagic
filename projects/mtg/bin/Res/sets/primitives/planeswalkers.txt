@@ -775,7 +775,7 @@ subtype=Elspeth
 [card]
 name=Elspeth, Sun's Nemesis
 auto=counter(0/0,5,loyalty)
-auto={C(0/0,-1,Loyalty)}:name(-1: Up to two creature gets +2/+1) target (<upto:2>creature|myBattlefield) 2/1 ueot
+auto={C(0/0,-1,Loyalty)}:name(-1: Up to two creature gets +2/+1) target(<upto:2>creature|myBattlefield) 2/1 ueot
 auto={C(0/0,-2,Loyalty)}:name(-2: Create two human soldiers) token(Human Soldier,Creature Human Soldier,1/1,white)*2
 auto={C(0/0,-6,Loyalty)}:name(-6: Gain 5 life) life:5 controller
 retrace={4}{W}{W}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)} name(Escape)
@@ -798,7 +798,7 @@ subtype=Elspeth
 [card]
 name=Elspeth, Undaunted Hero
 auto=counter(0/0,5,loyalty)
-auto={C(0/0,2,Loyalty)}:name(+2: Put up to two counters +1/+1) target (<upto:2>creature|myBattlefield) counter(1/1,1) ueot
+auto={C(0/0,2,Loyalty)}:name(+2: Put up to two counters +1/+1) target(<upto:2>creature|myBattlefield) counter(1/1,1) ueot
 auto={C(0/0,-2,Loyalty)}:name(-2: Search a Sunlit Hoplite) moveto(myBattlefield) target(Sunlit Hoplite|mylibrary,mygraveyard) && shuffle
 auto={C(0/0,-8,Loyalty)}:name(-8: Creatures you control get +X/+X) type:manaW:myBattlefield/type:manaW:myBattlefield all(creature|myBattlefield) && flying ueot
 text=+2: Put a +1/+1 counter on each of up to two target creatures. -- -2: Search your library and/or graveyard for a card named Sunlit Hoplite and put it onto the battlefield. If you search your library this way, shuffle it. -- -8: Until end of turn, creatures you control gain flying and get +X/+X, where X is your devotion to white.
