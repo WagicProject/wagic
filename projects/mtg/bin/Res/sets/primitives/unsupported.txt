@@ -2962,7 +2962,6 @@ name=Double Stroke
 text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Whenever you cast an instant or sorcery spell with the chosen name, you may copy it. You may choose new targets for the copy.
 type=Conspiracy
 [/card]
-
 [card]
 name=Doubling Chant
 text=For each creature you control, you may search your library for a creature card with the same name as that creature. Put those cards onto the battlefield, then shuffle your library.
@@ -6937,15 +6936,6 @@ type=Creature
 subtype=Human Mercenary
 power=3
 toughness=3
-[/card]
-[card]
-name=Meren of Clan Nel Toth
-text=Whenever another creature you control dies, you get an experience counter. -- At the beginning of your end step, choose target creature card in your graveyard. If that card's converted mana cost is less than or equal to the number of experience counters you have, return it to the battlefield. Otherwise, put it into your hand.
-mana={2}{B}{G}
-type=Legendary Creature
-subtype=Human Shaman
-power=3
-toughness=4
 [/card]
 [card]
 name=Merieke Ri Berit

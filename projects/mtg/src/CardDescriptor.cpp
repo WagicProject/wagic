@@ -411,9 +411,9 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
             match = NULL;
         }
 
-    if(CDopponentDamaged == -1 || CDopponentDamaged == 1)
+    if(CDopponentDamaged == -1 || CDopponentDamaged == 1 || CDcontrollerDamaged == -1 || CDcontrollerDamaged == 1)
     {
-        Player * p = card->controller()->opponent();//controller()->opponent();
+        Player * p = card->controller();
         if ((CDopponentDamaged == -1 && card->damageToOpponent && card->controller() == p)
             || (CDopponentDamaged == 1 && !card->damageToOpponent && card->controller() == p)
             || (CDopponentDamaged == -1 && card->damageToController && card->controller() == p->opponent())

@@ -1192,7 +1192,6 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
             attackingTrigger,attackedAloneTrigger,notBlockedTrigger,attackBlockedTrigger,blockingTrigger);
     }
 
-    
     //energized player - controller of card
     if (TargetChooser * tc = parseSimpleTC(s, "energizedof", card))
         return NEW TrplayerEnergized(observer, id, card, tc,once,true,false);
@@ -1200,6 +1199,14 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     //energized player - opponent of card controller
     if (TargetChooser * tc = parseSimpleTC(s, "energizedfoeof", card))
         return NEW TrplayerEnergized(observer, id, card, tc,once,false,true);
+
+    //experienced player - controller of card
+    if (TargetChooser * tc = parseSimpleTC(s, "experiencedof", card))
+        return NEW TrplayerExperienced(observer, id, card, tc,once,true,false);
+
+    //experienced player - opponent of card controller
+    if (TargetChooser * tc = parseSimpleTC(s, "experiencedfoeof", card))
+        return NEW TrplayerExperienced(observer, id, card, tc,once,false,true);
 
     //becomes monarch - controller of card
     if (TargetChooser * tc = parseSimpleTC(s, "becomesmonarchof", card))
@@ -2619,14 +2626,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             return NEW APaired(observer,id, card,card->myPair,a);
         return NULL;
     }
+
     //mana of the listed type doesnt get emptied from the pools.
     vector<string>colorType = parseBetween(s,"poolsave(",")",false);
     if (colorType.size())
     {
-        return NEW AManaPoolSaver(observer,id, card,colorType[1],s.find("opponentpool")!=string::npos);
+        return NEW AManaPoolSaver(observer, id, card, colorType[1], s.find("opponentpool")!=string::npos, s.find("terminate") != string::npos);// Added a way to terminate effect when source card leave battlefield.
     }
 
-        //opponent replace draw with
+    //opponent replace draw with
     found = s.find("opponentreplacedraw ");
     if (found != string::npos)
     {
@@ -3686,6 +3694,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         int energy = atoi(splitEnergy[1].c_str());
         Targetable * t = spell ? spell->getNextTarget() : NULL;
         MTGAbility * a = NEW AAAlterEnergy(observer, id, card, t, energy, NULL, who);
+        a->oneShot = 1;
+        return a;
+    }
+
+    //alter experience
+    vector<string> splitExperience = parseBetween(s, "alterexperience:", " ", false);
+    if (splitExperience.size())
+    {
+        int exp = atoi(splitExperience[1].c_str());
+        Targetable * t = spell ? spell->getNextTarget() : NULL;
+        MTGAbility * a = NEW AAAlterExperience(observer, id, card, t, exp, NULL, who);
         a->oneShot = 1;
         return a;
     }

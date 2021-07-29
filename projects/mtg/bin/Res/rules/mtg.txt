@@ -85,6 +85,7 @@ auto=@movedto(other *|battlefield) restriction{type(*[isflipped]|nonbattlezone)~
 
 #Monarch rule
 auto=@each my endofturn restriction{compare(pmonarch)~morethan~0}:draw:1
+auto=@combatdamageof(player) restriction{compare(pmonarch)~morethan~0}:becomesmonarch opponent
 
 #reset Creature damage at the cleanup phase
 auto=@each cleanup:all(*|myBattlefield) resetDamage

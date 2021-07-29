@@ -43,6 +43,7 @@ public:
     int extraTurn;
     int drawCounter;
     int energyCount;
+    int experienceCount;
     int yidaroCount;
     int dungeonCompleted;
     int numOfCommandCast;

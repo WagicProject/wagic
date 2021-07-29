@@ -627,6 +627,7 @@ subtype=Daretti
 name=Daretti, Scrap Savant
 abilities=canbecommander
 auto=counter(0/0,3,loyalty)
+auto={C(0/0,2,Loyalty)}:name(+2: Don't discard) donothing
 auto={C(0/0,2,Loyalty)}:name(+2: Discard and Draw) reject notatarget(<upto:2>*|myhand) and!( draw:1 controller )!
 auto={C(0/0,-2,Loyalty)}:name(-2: Sacrifice an Artifact) sacrifice notatarget(artifact|mybattlefield) and!( moveto(mybattlefield) target(artifact|mygraveyard) )!
 auto={C(0/0,-10,Loyalty)}:name(-10: Emblem: "Reanimate artifacts") emblem transforms((,newability[@movedTo(artifact|mygraveyard) from(battlefield):all(trigger[to]) phaseaction[endofturn once] moveTo(mybattlefield)])) forever dontremove

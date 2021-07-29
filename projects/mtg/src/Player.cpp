@@ -35,6 +35,7 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     extraTurn = 0;
     drawCounter = 0;
     energyCount = 0;
+    experienceCount = 0;
     yidaroCount = 0;
     dungeonCompleted = 0;
     numOfCommandCast = 0;
