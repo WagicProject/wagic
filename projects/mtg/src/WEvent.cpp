@@ -287,6 +287,11 @@ WEventplayerEnergized::WEventplayerEnergized(Player * player, int nb_count) :
 {
 }
 
+WEventplayerExperienced::WEventplayerExperienced(Player * player, int nb_count) :
+    player(player), nb_count(nb_count)
+{
+}
+
 WEventplayerMonarch::WEventplayerMonarch(Player * player) :
     player(player)
 {
@@ -600,6 +605,12 @@ Targetable * WEventTokenCreated::getTarget(int target)
 }
 
 Targetable * WEventplayerEnergized::getTarget(Player * player)
+{
+    if (player) return player;
+    return NULL;
+}
+
+Targetable * WEventplayerExperienced::getTarget(Player * player)
 {
     if (player) return player;
     return NULL;

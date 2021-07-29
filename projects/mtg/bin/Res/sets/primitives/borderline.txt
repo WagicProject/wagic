@@ -3938,8 +3938,8 @@ toughness=3
 [/card]
 [card]
 name=Avenging Huntbonder
-abilities=Double Strike
-auto=@combat(attacking) source(this):transforms((,newability[counter(0/0,1,Double Strike)],newability[this(counter{0/0.1.Double Strike}>=1) double strike])) target(other creature[attacking])
+abilities=double strike
+auto=@combat(attacking) source(this):name(Put double strike counter) target(other creature[attacking]) transforms((,newability[counter(0/0.1.DoubleStrike)],newability[this(counter{0/0.1.DoubleStrike}>=1) double strike])) forever 
 text=Double strike -- Whenever Avenging Huntbonder attacks, put a double strike counter on another target attacking creature.
 mana={3}{W}{W}
 type=Creature
@@ -3951,7 +3951,7 @@ toughness=3
 name=Avian Oddity
 abilities=flying,cycling
 autohand=__CYCLING__({2}{U})
-autohand=@cycled(this|myHand):transforms((,newability[counter(0/0,1,Flying],newability[this(counter{0/0.1.Flying}>=1) flying target(creature|myBattlefield)]))
+autohand=@cycled(this|myHand):name(Put flying counter) target(creature|myBattlefield) transforms((,newability[counter(0/0.1.Flying],newability[this(counter{0/0.1.Flying}>=1) flying])) forever
 text=Flying -- Cycling {2}{U} ({2}{U}, Discard this card: Draw a card.) -- When you cycle Avian Oddity, put a flying counter on target creature you control.
 mana={3}{U}
 type=Creature
@@ -5120,9 +5120,9 @@ name=Beast Viv
 auto=this(counter{0/0.1.Vigilance}>=1) vigilance
 auto=this(counter{0/0.1.Reach}>=1) reach
 auto=this(counter{0/0.1.Trample}>=1) trample
-auto=choice name(Vigilance) counter(0/0,1,Vigilance)
-auto=choice name(Reach) counter(0/0,1,Reach)
-auto=choice name(Trample) counter(0/0,1,Trample)
+auto=choice name(Vigilance counter) counter(0/0,1,Vigilance)
+auto=choice name(Reach counter) counter(0/0,1,Reach)
+auto=choice name(Trample counter) counter(0/0,1,Trample)
 type=Creature
 subttype=Beast
 power=3
@@ -6318,8 +6318,7 @@ toughness=2
 name=Blood Curdle
 target=creature
 auto=destroy
-auto=counter(0/0,1,Menace)
-auto=transforms((,newability[this(counter{0/0.1.Menace}>=1) menace]))
+auto=name(Put menace counter) target(creature|myBattlefield) transforms((,newability[counter(0/0.1.Menace)],newability[this(counter{0/0.1.Menace}>=1) menace])) forever
 text=Destroy target creature. Put a menace counter on a creature you control. (It can't be blocked except by two or more creatures.)
 mana={3}{B}
 type=Instant
@@ -7218,8 +7217,8 @@ type=Sorcery
 name=Boot Nipper
 auto=this(counter{0/0.1.Deathtouch}>=1) deathtouch
 auto=this(counter{0/0.1.Lifelink}>=1) lifelink
-auto=choice name(Deathtouch) counter(0/0,1,Deathtouch)
-auto=choice name(Lifelink) counter(0/0,1,Lifelink)
+auto=choice name(Deathtouch counter) counter(0/0,1,Deathtouch)
+auto=choice name(Lifelink counter) counter(0/0,1,Lifelink)
 text=Boot Nipper enters the battlefield with your choice of a deathtouch counter or a lifelink counter on it.
 mana={1}{B}
 type=Creature
@@ -8439,9 +8438,7 @@ toughness=3
 [card]
 name=Call of the Death-Dweller
 target=<upto:2>creature[manacost<=3]|myGraveyard
-auto=moveTo(myBattlefield)
-auto=counter(0/0,1,Menace) <upto:2>target(creature[manacost<=3]
-auto=transforms((,newability[this(counter{0/0.1.Menace}>=1) menace <upto:2>target(creature[manacost<=3])]))
+auto=moveTo(myBattlefield) and!( transforms((,newability[counter(0/0.1.Deathtouch)],newability[this(counter{0/0.1.Deathtouch}>=1) deathtouch],newability[counter(0/0.1.Menace)],newability[this(counter{0/0.1.Menace}>=1) menace])) forever )!
 text=Return up to two target creature cards with total converted mana cost 3 or less from your graveyard to the battlefield. Put a deathtouch counter on either of them. Then put a menace counter on either of them.
 mana={2}{B}
 type=Sorcery
@@ -13119,7 +13116,7 @@ subtype=Equipment
 [card]
 name=Crystalline Giant
 auto=this(counter{0/0.1.Flying}>=1) flying
-auto=this(counter{0/0.1.First Strike}>=1) first strike
+auto=this(counter{0/0.1.FirstStrike}>=1) first strike
 auto=this(counter{0/0.1.Deathtouch}>=1) deathtouch
 auto=this(counter{0/0.1.Hexproof}>=1) opponentshroud
 auto=this(counter{0/0.1.Lifelink}>=1) lifelink
@@ -14033,10 +14030,20 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Daxos Spirit Token
+anyzone=pexperience/pexperience cdaactive
+text=This creature’s power and toughness are each equal to the number of experience counters you have.
+type=Enchantment Creature
+subtype=Spirit
+color=black,white
+power=*
+toughness=*
+[/card]
+[card]
 name=Daxos the Returned
 auto=@movedTo(enchantment|mystack):alterexperience:1 controller
-auto={1}{W}{B}: token(Spirit,Creature Enchantment Spirit,[anyzone:type:alterexperience:mybattlefield/type:alterexperience:mybattlefield cdaactive],withe,black)
-text=Whenever you cast an enchantment spell, you get an experience counter. -- {1}{W}{B}: Create a white and black Spirit enchantment creature token. It has “This creature’s power and toughness are each equal to the number of experience counters you have.”
+auto={1}{W}{B}:name(Create Spirit) token(Daxos Spirit Token)
+text=Whenever you cast an enchantment spell, you get an experience counter. -- {1}{W}{B}: Create a white and black Spirit enchantment creature token. It has "This creature’s power and toughness are each equal to the number of experience counters you have."
 mana={1}{W}{B}
 type=Legendary Creature
 subtype=Zombie Soldier
@@ -16239,8 +16246,7 @@ type=Enchantment
 [/card]
 [card]
 name=Domesticated Hydra
-auto=this(cantargetcard(*[-monstrous]) {X}{G}{G}{G}:becomes(monstrous) forever && counter(1/1,X)
-auto=aslongas(this[monstrous]|myBattlefield) trample
+auto=this(cantargetcard(*[-monstrous]) {X}{G}{G}{G}:becomes(monstrous) forever && counter(1/1,X) && transforms((,newability[trample])) forever
 text={X}{G}{G}{G}: Monstrosity X. (If this creature isn’t monstrous, put X +1/+1 counters on it and it becomes monstrous.) -- As long as Domesticated Hydra is monstrous, it has trample.
 mana={2}{G}{G}
 type=Creature
@@ -17663,8 +17669,8 @@ toughness=1
 [/card]
 [card]
 name=Duskfang Mentor
-auto=target(creature[-human]|myBattlefield) transforms((,newability[counter(0/0,1,Lifelink)],newability[this(counter{0/0.1.Lifelink}>=1) lifelink]))
-auto={1}{W}{T}:counter(1/1,1) all(creature[lifelink]|myBattlefield)
+auto=target(creature[-human]|myBattlefield) transforms((,newability[counter(0/0.1.Lifelink)],newability[this(counter{0/0.1.Lifelink}>=1) lifelink])) forever
+auto={1}{B}{T}:counter(1/1,1) all(creature[lifelink]|myBattlefield)
 text=When Duskfang Mentor enters the battlefield, put a lifelink counter on target non-Human creature you control. -- {1}{B}, {T}: Put a +1/+1 counter on each creature you control with lifelink.
 mana={2}{B}
 type=Creature
@@ -20358,7 +20364,7 @@ type=Sorcery
 [card]
 name=Ezuri, Claw of Progress
 auto=@movedTo(creature[power<=2]|myBattlefield):alterexperience:1 controller
-auto=@each my combatbegins:foreach(anyzone:alterexperience) counter(1/1,1) target(other creature|myBattlefield)
+auto=@each my combatbegins:name(Put 1/1 counters) counter(1/1,pexperience) target(other creature|myBattlefield)
 text=Whenever a creature with power 2 or less enters the battlefield under your control, you get an experience counter. -- At the beginning of combat on your turn, put X +1/+1 counters on another target creature you control, where X is the number of experience counters you have.
 mana={2}{G}{U}
 type=Legendary Creature
@@ -22646,8 +22652,8 @@ subtype=Aura
 name=Flycatcher Giraffid
 auto=this(counter{0/0.1.Vigilance}>=1) vigilance
 auto=this(counter{0/0.1.Reach}>=1) reach
-auto=choice name(Flying) counter(0/0,1,Vigilance)
-auto=choice name(First Strike) counter(0/0,1,Reach)
+auto=choice name(Vigilance counter) counter(0/0,1,Vigilance)
+auto=choice name(Reach counter) counter(0/0,1,Reach)
 text=Flycatcher Giraffid enters the battlefield with your choice of a vigilance counter or a reach counter on it.
 mana={4}{G}
 type=Creature
@@ -23275,8 +23281,8 @@ toughness=6
 [/card]
 [card]
 name=Frillscare Mentor
-auto=target(creature[-human]|myBattlefield) transforms((,newability[counter(0/0,1,Menace)],newability[this(counter{0/0.1.Menace}>=1) menace]))
-auto={1}{W}{T}:counter(1/1,1) all(creature[Menace]|myBattlefield)
+auto=target(creature[-human]|myBattlefield) transforms((,newability[counter(0/0.1.Menace)],newability[this(counter{0/0.1.Menace}>=1) menace])) forever
+auto={2}{R}{T}:counter(1/1,1) all(creature[Menace]|myBattlefield)
 text=When Frillscare Mentor enters the battlefield, put a menace counter on target non-Human creature you control. (It can't be blocked except by two or more creatures.) -- {2}{R}, {T}: Put a +1/+1 counter on each creature you control with menace.
 mana={2}{R}
 type=Creature
@@ -23491,8 +23497,7 @@ type=Sorcery
 name=Fully Grown
 target=creature
 auto=3/3 ueot
-auto=counter(0/0,1,Trample)
-auto=transforms((,newability[this(counter{0/0.1.Trample}>=1) trample]))
+auto=transforms((,newability[counter(0/0.1.Trample)],newability[this(counter{0/0.1.Trample}>=1) trample])) forever
 text=Target creature gets +3/+3 until end of turn. Put a trample counter on it.
 mana={2}{G}
 type=Instant
@@ -27075,9 +27080,9 @@ name=Grimdancer
 auto=this(counter{0/0.1.Deathtouch}>=1) deathtouch
 auto=this(counter{0/0.1.Lifelink}>=1) lifelink
 auto=this(counter{0/0.1.Menace}>=1) menace
-auto=choice name(Menace & Deathtouch) counter(0/0,1,Menace) && counter(0/0,1,Deathtouch)
-auto=choice name(Menace & Lifelink) counter(0/0,1,Deathtouch) && counter(0/0,1,Lifelink)
-auto=choice name(Lifelink & Deathtouch) counter(0/0,1,Lifelink) && counter(0/0,1,Deathtouch)
+auto=choice name(Menace and Deathtouch counters) counter(0/0,1,Menace) && counter(0/0,1,Deathtouch)
+auto=choice name(Menace and Lifelink counters) counter(0/0,1,Deathtouch) && counter(0/0,1,Lifelink)
+auto=choice name(Lifelink and Deathtouch counters) counter(0/0,1,Lifelink) && counter(0/0,1,Deathtouch)
 text=Grimdancer enters the battlefield with your choice of two different counters on it from among menace, deathtouch, and lifelink.
 mana={1}{B}{B}
 type=Creature
@@ -28692,8 +28697,7 @@ toughness=2
 name=Heightened Reflexes
 target=creature
 auto=1/0 ueot
-auto=counter(0/0,1,First Strike)
-auto=transforms((,newability[this(counter{0/0.1.First Strike}>=1) first strike]))
+auto=transforms((,newability[counter(0/0.1.FirstStrike)],newability[this(counter{0/0.1.FirstStrike}>=1) first strike])) forever
 text=Target creature gets +1/+0 until end of turn. Put a first strike counter on it.
 mana={R}
 type=Instant
@@ -28721,9 +28725,9 @@ toughness=3
 [card]
 name=Helica Glider
 auto=this(counter{0/0.1.Flying}>=1) flying
-auto=this(counter{0/0.1.First Strike}>=1) first strike
+auto=this(counter{0/0.1.FirstStrike}>=1) first strike
 auto=choice name(Flying) counter(0/0,1,Flying)
-auto=choice name(First Strike) counter(0/0,1,First Strike)
+auto=choice name(First Strike) counter(0/0,1,FirstStrike)
 text=Helica Glider enters the battlefield with your choice of a flying counter or a first strike counter on it.
 mana={2}{W}
 type=Creature
@@ -29619,6 +29623,7 @@ auto=mypoolsave(green)
 auto=mypoolsave(blue)
 auto=mypoolsave(artifact)
 auto=mypoolsave(land)
+auto=@movedto(this|nonbattlezone) from(battlefield):name(Terminate effect) name(Terminate effect) transforms((,newability[mypoolsave(red) terminate],newability[mypoolsave(green) terminate],newability[mypoolsave(blue) terminate],newability[mypoolsave(black) terminate],newability[mypoolsave(white) terminate],newability[mypoolsave(artifact) terminate],newability[mypoolsave(land) terminate])) oneshot
 auto=@each untap restriction{compare(mybluepoolcount)~morethan~0}:thisforeach(variable{mybluepoolcount}) add{C} && removemana({U})
 auto=@each untap restriction{compare(mygreenpoolcount)~morethan~0}:thisforeach(variable{mygreenpoolcount}) add{C} && removemana({G})
 auto=@each untap restriction{compare(myredpoolcount)~morethan~0}:thisforeach(variable{myredpoolcount})add{C} && removemana({R})
@@ -29678,8 +29683,8 @@ type=Artifact
 [/card]
 [card]
 name=Hornbash Mentor
-auto=target(creature[-human]|myBattlefield) transforms((,newability[counter(0/0,1,Trample)],newability[this(counter{0/0.1.Trample}>=1) trample]))
-auto={1}{W}{T}:counter(1/1,1) all(creature[trample]|myBattlefield)
+auto=name(Put trample counter) target(creature[-human]|myBattlefield) transforms((,newability[counter(0/0.1.Trample)],newability[this(counter{0/0.1.Trample}>=1) trample])) forever
+auto={2}{G}{T}:counter(1/1) all(creature[trample]|myBattlefield)
 text=When Hornbash Mentor enters the battlefield, put a trample counter on target non-Human creature you control. -- {2}{G}, {T}: Put a +1/+1 counter on each creature you control with trample.
 mana={2}{G}
 type=Creature
@@ -30114,7 +30119,7 @@ type=Sorcery
 [card]
 name=Hunted Nightmare
 abilities=menace
-auto=notatarget(creature[-human]) transforms((,newability[counter(0/0,1,Deathtouch)],newability[this(counter{0/0.1.Deathtouch}>=1) deathtouch])) opponent
+auto=ability$!name(Put Deathtouch counter) name(Put Deathtouch counter) target(creature|myBattlefield) transforms((,newability[counter(0/0.1.Deathtouch)],newability[this(counter{0/0.1.Deathtouch}>=1) deathtouch])) forever!$ opponent
 text=Menace -- When Hunted Nightmare enters the battlefield, target opponent puts a deathtouch counter on a creature they control.
 mana={1}{B}{B}
 type=Creature
@@ -33399,9 +33404,9 @@ type=Sorcery
 [/card]
 [card]
 name=Kalemne, Disciple of Iroas
-abilities=double strike, vigilance
+abilities=double strike,vigilance
 auto=@movedto(creature[manacost>=5]|mystack):alterexperience:1 controller
-auto=foreach(anyzone:alterexperience) 1/1
+auto=lord(this) pexperience/pexperience nonstatic
 text=Double strike, vigilance -- Whenever you cast a creature spell with converted mana cost 5 or greater, you get an experience counter. -- Kalemne, Disciple of Iroas gets +1/+1 for each experience counter you have.
 mana={2}{R}{W}
 type=Legendary Creature
@@ -33979,9 +33984,9 @@ toughness=3
 [/card]
 [card]
 name=Kelsien, the Plague
-abilities=Vigilance,haste
-anyzone=type:alterexperience:nonbattlezone/type:alterexperience:nonbattlezone cdaactive
-auto={T}:damage:1 target(creature|opponentBattlefield) transforms((,newability[_DIES_alterexperience:1 controller
+abilities=vigilance,haste
+auto=lord(this) pexperience/pexperience nonstatic
+auto={T}:name(Damage creature) target(creature|opponentbattlefield) transforms((,newability[_DIES_alterexperience:1 opponent],newability[damage:1])) ueot
 text=Vigilance, haste -- Kelsien, the Plague gets +1/+1 for each experience counter you have. -- {T}: Kelsien deals 1 damage to target creature you don’t control. When that creature dies this turn, you get an experience counter.
 mana={R}{W}{B}
 type=Legendary Creature
@@ -34326,7 +34331,7 @@ type=Sorcery
 [/card]
 [card]
 name=Kindred Summons
-auto=activatechooseatype all(creature[chosentype]|mybattlefield) transforms((,newability[target(creature[share!types!]|mylibrary) moveto(mybattlefield) and! shuffle )!])) oneshot activatechooseend
+auto=activatechooseatype transforms((,newability[reveal:plibrarycount optionone name(Get creatures) target(<type:creature[chosentype]:myBattlefield>creature[chosentype]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) all(*|reveal) moveto(mylibrary) and!( shuffle )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!( moveTo(myBattlefield) )! afterrevealedend revealend])) oneshot activatechooseend
 text=Choose a creature type. Reveal cards from the top of your library until you reveal X creature cards of the chosen type, where X is the number of creatures you control of that type. Put those cards onto the battlefield, then shuffle the rest of the revealed cards into your library.
 mana={5}{G}{G}
 type=Instant
@@ -35212,6 +35217,7 @@ auto=mypoolsave(green)
 auto=mypoolsave(blue)
 auto=mypoolsave(artifact)
 auto=mypoolsave(land)
+auto=@movedto(this|nonbattlezone) from(battlefield):name(Terminate effect) name(Terminate effect) transforms((,newability[mypoolsave(red) terminate],newability[mypoolsave(green) terminate],newability[mypoolsave(blue) terminate],newability[mypoolsave(black) terminate],newability[mypoolsave(white) terminate],newability[mypoolsave(artifact) terminate],newability[mypoolsave(land) terminate])) oneshot
 auto=@each untap restriction{compare(mybluepoolcount)~morethan~0}:thisforeach(variable{mybluepoolcount}) add{C} && removemana({U})
 auto=@each untap restriction{compare(mygreenpoolcount)~morethan~0}:thisforeach(variable{mygreenpoolcount}) add{C} && removemana({G})
 auto=@each untap restriction{compare(myredpoolcount)~morethan~0}:thisforeach(variable{myredpoolcount})add{C} && removemana({R})
@@ -36274,6 +36280,7 @@ toughness=3
 name=Leyline Tyrant
 abilities=flying
 auto=mypoolsave(red)
+auto=@movedto(this|nonbattlezone) from(battlefield):name(Terminate effect) name(Terminate effect) transforms((,newability[mypoolsave(red) terminate])) oneshot
 auto=_DIES_:choice name(Pay X red mana) name(Pay X red mana) ability$!name(Damage X) pay[[{X:red}]] name(Damage any target) target(player,creature,planeswalker) damage:X!$ controller
 text=Flying -- You don't lose unspent red mana as steps and phases end. -- When Leyline Tyrant dies, you may pay any amount of {R}. When you do, it deals that much damage to any target.
 mana={2}{R}{R}
@@ -37679,7 +37686,7 @@ subtype=Aura
 [card]
 name=Luminous Broodmoth
 abilities=flying
-auto=@movedto(creature[-flying]|myGraveyard) from(myBattlefield):all(trigger[to]) moveTo(myBattlefield) and!( transforms((,newability[counter(0/0.1.Flying],newability[this(counter{0/0.1.Flying}>=1) flying])) forever )!
+auto=@movedto(creature[-flying;-counter{0/0.1.Flying}]|myGraveyard) from(myBattlefield):all(trigger[to]) moveTo(myBattlefield) and!( transforms((,newability[counter(0/0.1.Flying)],newability[this(counter{0/0.1.Flying}>=1) flying])) forever )!
 text=Flying -- Whenever a creature you control without flying dies, return it to the battlefield under its owner's control with a flying counter on it.
 mana={2}{W}{W}
 type=Creature
@@ -39340,6 +39347,17 @@ type=Sorcery
 subtype=Lesson
 [/card]
 [card]
+name=Meren of Clan Nel Toth
+auto=@movedTo(other creature|graveyard) from(myBattlefield):alterexperience:1 controller
+auto=@each my endofturn restriction{type(creature|mygraveyard)~morethan~0}:name(Choose a creature) target(creature|mygraveyard) transforms((,newability[if compare(manacost)~morethan~compare(pexperience) then moveto(myhand) else moveto(mybattlefield)])) oneshot
+text=Whenever another creature you control dies, you get an experience counter. -- At the beginning of your end step, choose target creature card in your graveyard. If that card's converted mana cost is less than or equal to the number of experience counters you have, return it to the battlefield. Otherwise, put it into your hand.
+mana={2}{B}{G}
+type=Legendary Creature
+subtype=Human Shaman
+power=3
+toughness=4
+[/card]
+[card]
 name=Merfolk Branchwalker
 aicode=activate transforms((,newability[explores],newability[if type(land[zpos=1]|mylibrary)~lessthan~1 then all(this) counter(1/1) else all(land[zpos=1]|mylibrary) moveto(myhand)])) oneshot
 auto=name(Explores) reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend afterrevealed explores afterrevealedend revealend
@@ -39967,8 +39985,8 @@ subtype=Aura
 [card]
 name=Mirri, Weatherlight Duelist
 abilities=first strike
-auto=aslongas(this[tapped]) lord(creature[-attacking]|opponentbattlefield) cantattack
-auto=aslongas(this[tapped]) lord(creature[-attacking]|opponentbattlefield) cantpwattack
+auto=this(tapped) lord(creature[-attacking]|opponentbattlefield) cantattack
+auto=this(tapped) lord(creature[-attacking]|opponentbattlefield) cantpwattack
 auto=@combat(attacking) source(this):aslongas(creature[blocking]|opponentBattlefield) lord(creature[-blocking]|opponentbattlefield) cantblock
 text=First strike -- Whenever Mirri, Weatherlight Duelist attacks, each opponent can't block with more than one creature this combat. -- As long as Mirri, Weatherlight Duelist is tapped, no more than one creature can attack you each combat.
 mana={1}{G}{W}
@@ -40395,9 +40413,9 @@ type=Instant
 [/card]
 [card]
 name=Momentum Rumbler
-auto=this(counter{0/0.1.First Strike}>=1) first strike
-auto=@combat(attacking) source(this):this(counter{0/0.1.First Strike}<1) counter(0/0,1,First Strike)
-auto=@combat(attacking) source(this):this(counter{0/0.1.First Strike}>0) double strike ueot
+auto=this(counter{0/0.1.FirstStrike}>=1) first strike
+auto=@combat(attacking) source(this) restriction{compare(hascntfirststrike)~equalto~0)}:name(Put first strike counter) counter(0/0,1,FirstStrike)
+auto=@combat(attacking) source(this):this(cantargetcard(*[first strike]|*) transforms((,newability[double strike])) ueot
 text=Whenever Momentum Rumbler attacks, if it doesn't have first strike, put a first strike counter on it. -- Whenever Momentum Rumbler attacks, if it has first strike, it gains double strike until end of turn.
 mana={3}{R}
 type=Creature
@@ -43507,6 +43525,7 @@ toughness=4
 [card]
 name=Omnath, Locus of Mana
 auto=mypoolsave(green)
+auto=@movedto(this|nonbattlezone) from(battlefield):name(Terminate effect) name(Terminate effect) transforms((,newability[mypoolsave(green) terminate])) oneshot
 anyzone=mygreenpoolcountplus1plusend/mygreenpoolcountplus1plusend cdaactive
 text=Green mana doesn't empty from your mana pool as steps and phases end. -- Omnath, Locus of Mana gets +1/+1 for each green mana in your mana pool.
 mana={2}{G}
@@ -50047,8 +50066,9 @@ type=Sorcery
 [/card]
 [card]
 name=Return from Extinction
-auto=choice moveto(myhand) target(creature|mygraveyard)
-auto=choice moveto(myhand) target(<2>creature[share!types!]|mygraveyard)
+restriction=type(creature|mygraveyard)~morethan~0
+auto=choice name(Return 1 creature) target(creature|mygraveyard) moveTo(myhand)
+auto=if type(creature|mygraveyard)~morethan~1 then choice name(Return 2 creatures) name(Return 2 creatures) target(creature|mygraveyard) moveTo(myhand) and!( transforms((,newability[name(Choose another creature) target(other *[creature;share!types!]|mygraveyard) moveTo(myhand)])) oneshot )!
 text=Choose one — -- • Return target creature card from your graveyard to your hand. -- • Return two target creature cards that share a creature type from your graveyard to your hand.
 mana={1}{B}
 type=Sorcery
@@ -52549,7 +52569,7 @@ toughness=1
 name=Sanctuary Smasher
 abilities=first strike,cycling
 autohand=__CYCLING__({2}{R})
-autohand=@cycled(this|myHand):transforms((,newability[counter(0/0,1,First Strike],newability[this(counter{0/0.1.First Strike}>=1) first strike target(creature|myBattlefield)]))
+autohand=@cycled(this|myHand):name(Put a first strike counter) target(creature|myBattlefield) transforms((,newability[counter(0/0.1.FirstStrike],newability[this(counter{0/0.1.FirstStrike}>=1) first strike])) forever
 text=First strike -- Cycling {2}{R} ({2}{R}, Discard this card: Draw a card.) -- When you cycle Sanctuary Smasher, put a first strike counter on target creature you control.
 mana={4}{R}{R}
 type=Creature
@@ -59398,7 +59418,7 @@ type=Instant
 name=Splendor Mare
 abilities=lifelink,cycling
 autohand=__CYCLING__({1}{W})
-autohand=@cycled(this|myHand):transforms((,newability[counter(0/0,1,Lifelink],newability[this(counter{0/0.1.Lifelink}>=1) lifelink target(creature|myBattlefield)]))
+autohand=@cycled(this|myHand):name(Put lifelink counter) target(creature|myBattlefield) transforms((,newability[counter(0/0.1.Lifelink],newability[this(counter{0/0.1.Lifelink}>=1) lifelink])) forever
 text=Lifelink -- Cycling {1}{W} ({1}{W}, Discard this card: Draw a card.) -- When you cycle Splendor Mare, put a lifelink counter on target creature you control.
 mana={2}{W}
 type=Creature
@@ -59475,8 +59495,7 @@ type=Instant
 name=Spontaneous Flight
 target=creature
 auto=2/2 ueot
-auto=counter(0/0,1,Flying)
-auto=transforms((,newability[this(counter{0/0.1.Flying}>=1) flying]))
+auto=transforms((,newability[counter(0/0.1.Flying)],newability[this(counter{0/0.1.Flying}>=1) flying])) forever
 text=Target creature gets +2/+2 until end of turn. Put a flying counter on it.
 mana={2}{W}
 type=Instant
@@ -61156,8 +61175,8 @@ type=Instant
 name=Sudden Spinnerets
 target=creature
 auto=1/3 ueot
-auto=counter(0/0,1,Reach)
-auto=transforms((,newability[this(counter{0/0.1.Reach}>=1) reach],newability[untap(this)]))
+auto=untap
+auto=transforms((,newability[counter(0/0.1.Reach)],newability[this(counter{0/0.1.Reach}>=1) reach])) forever
 text=Target creature gets +1/+3 until end of turn. Put a reach counter on it. Untap it.
 mana={G}
 type=Instant
@@ -62313,28 +62332,28 @@ toughness=4
 [/card]
 [card]
 name=Taj-Nar Swordsmith
-aicode=activate moveTo(mybattlefield) target(equipment|mylibrary)
-auto=name(May pay X for equipment) may pay[[{0}]]:name(search equipment) Reveal:type:[Equipment<=0]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=0]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=0]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=name(May pay X for equipment) may pay[[{1}]]:name(search equipment) Reveal:type:[Equipment<=1]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=1]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=1]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=name(May pay X for equipment) may pay[[{2}]]:name(search equipment) Reveal:type:[Equipment<=2]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=2]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=2]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=name(May pay X for equipment) may pay[[{3}]]:name(search equipment) Reveal:type:[Equipment<=3]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=3]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=3]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=name(May pay X for equipment) may pay[[{4}]]:name(search equipment) Reveal:type:[Equipment<=4]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=4]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=4]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=name(May pay X for equipment) may pay[[{5}]]:name(search equipment) Reveal:type:[Equipment<=5]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=5]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=5]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=name(May pay X for equipment) may pay[[{6}]]:name(search equipment) Reveal:type:[Equipment<=6]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=6]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=6]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=name(May pay X for equipment) may pay[[{7}]]:name(search equipment) Reveal:type:[Equipment<=7]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=7]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=7]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=name(May pay X for equipment) may pay[[{8}]]:name(search equipment) Reveal:type:[Equipment<=8]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=8]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=8]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=name(May pay X for equipment) may pay[[{9}]]:name(search equipment) Reveal:type:[Equipment<=9]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=9]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=9]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=name(May pay X for equipment) may pay[[{10}]]:name(search equipment) Reveal:type:[Equipment<=10]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=10]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=10]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=name(May pay X for equipment) may pay[[{11}]]:name(search equipment) Reveal:type:[Equipment<=11]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=11]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=11]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=name(May pay X for equipment) may pay[[{12}]]:name(search equipment) Reveal:type:[Equipment<=12]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=12]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=12]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=name(May pay X for equipment) may pay[[{13}]]:name(search equipment) Reveal:type:[Equipment<=13]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=13]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=13]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=name(May pay X for equipment) may pay[[{14}]]:name(search equipment) Reveal:type:[Equipment<=14]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=14]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=14]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=name(May pay X for equipment) may pay[[{15}]]:name(search equipment) Reveal:type:[Equipment<=15]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=15]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=15]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=name(May pay X for equipment) may pay[[{16}]]:name(search equipment) Reveal:type:[Equipment<=16]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=16]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=16]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=name(May pay X for equipment) may pay[[{17}]]:name(search equipment) Reveal:type:[Equipment<=17]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=17]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=17]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=name(May pay X for equipment) may pay[[{18}]]:name(search equipment) Reveal:type:[Equipment<=18]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=18]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=18]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=name(May pay X for equipment) may pay[[{19}]]:name(search equipment) Reveal:type:[Equipment<=19]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=19]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=19]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=name(May pay X for equipment) may pay[[{20}]]:name(search equipment) Reveal:type:[Equipment<=20]:mylibrary revealzone(mylibrary) optionone name(choose an equipment) target(<1>[equipment<=20]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(mybattlefield)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>[equipment<=20]|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+auto=choice name(Don't pay) donothing
+auto=choice name(X = 0) transforms((,newability[name(Search equipment) target(equipment[manacost=0]|mylibrary) moveTo(mybattlefield) and!( shuffle )!])) oneshot
+auto=choice name(X = 1) transforms((,newability[pay[[{1}]] name(Pay and search equipment) target(equipment[manacost<=1]|mylibrary) moveTo(mybattlefield) and!( shuffle )!])) oneshot
+auto=choice name(X = 2) transforms((,newability[pay[[{2}]] name(Pay and search equipment) target(equipment[manacost<=2]|mylibrary) moveTo(mybattlefield) and!( shuffle )!])) oneshot
+auto=choice name(X = 3) transforms((,newability[pay[[{3}]] name(Pay and search equipment) target(equipment[manacost<=3]|mylibrary) moveTo(mybattlefield) and!( shuffle )!])) oneshot
+auto=choice name(X = 4) transforms((,newability[pay[[{4}]] name(Pay and search equipment) target(equipment[manacost<=4]|mylibrary) moveTo(mybattlefield) and!( shuffle )!])) oneshot
+auto=choice name(X = 5) transforms((,newability[pay[[{5}]] name(Pay and search equipment) target(equipment[manacost<=5]|mylibrary) moveTo(mybattlefield) and!( shuffle )!])) oneshot
+auto=choice name(X = 6) transforms((,newability[pay[[{6}]] name(Pay and search equipment) target(equipment[manacost<=6]|mylibrary) moveTo(mybattlefield) and!( shuffle )!])) oneshot
+auto=choice name(X = 7) transforms((,newability[pay[[{7}]] name(Pay and search equipment) target(equipment[manacost<=7]|mylibrary) moveTo(mybattlefield) and!( shuffle )!])) oneshot
+auto=choice name(X = 8) transforms((,newability[pay[[{8}]] name(Pay and search equipment) target(equipment[manacost<=8]|mylibrary) moveTo(mybattlefield) and!( shuffle )!])) oneshot
+auto=choice name(X = 9) transforms((,newability[pay[[{9}]] name(Pay and search equipment) target(equipment[manacost<=9]|mylibrary) moveTo(mybattlefield) and!( shuffle )!])) oneshot
+auto=choice name(X = 10) transforms((,newability[pay[[{10}]] name(Pay and search equipment) target(equipment[manacost<=10]|mylibrary) moveTo(mybattlefield) and!( shuffle )!])) oneshot
+auto=choice name(X = 11) transforms((,newability[pay[[{11}]] name(Pay and search equipment) target(equipment[manacost<=11]|mylibrary) moveTo(mybattlefield) and!( shuffle )!])) oneshot
+auto=choice name(X = 12) transforms((,newability[pay[[{12}]] name(Pay and search equipment) target(equipment[manacost<=12]|mylibrary) moveTo(mybattlefield) and!( shuffle )!])) oneshot
+auto=choice name(X = 13) transforms((,newability[pay[[{13}]] name(Pay and search equipment) target(equipment[manacost<=13]|mylibrary) moveTo(mybattlefield) and!( shuffle )!])) oneshot
+auto=choice name(X = 14) transforms((,newability[pay[[{14}]] name(Pay and search equipment) target(equipment[manacost<=14]|mylibrary) moveTo(mybattlefield) and!( shuffle )!])) oneshot
+auto=choice name(X = 15) transforms((,newability[pay[[{15}]] name(Pay and search equipment) target(equipment[manacost<=15]|mylibrary) moveTo(mybattlefield) and!( shuffle )!])) oneshot
+auto=choice name(X = 16) transforms((,newability[pay[[{16}]] name(Pay and search equipment) target(equipment[manacost<=16]|mylibrary) moveTo(mybattlefield) and!( shuffle )!])) oneshot
+auto=choice name(X = 17) transforms((,newability[pay[[{17}]] name(Pay and search equipment) target(equipment[manacost<=17]|mylibrary) moveTo(mybattlefield) and!( shuffle )!])) oneshot
+auto=choice name(X = 18) transforms((,newability[pay[[{18}]] name(Pay and search equipment) target(equipment[manacost<=18]|mylibrary) moveTo(mybattlefield) and!( shuffle )!])) oneshot
+auto=choice name(X = 19) transforms((,newability[pay[[{19}]] name(Pay and search equipment) target(equipment[manacost<=19]|mylibrary) moveTo(mybattlefield) and!( shuffle )!])) oneshot
+auto=choice name(X = 20) transforms((,newability[pay[[{20}]] name(Pay and search equipment) target(equipment[manacost<=20]|mylibrary) moveTo(mybattlefield) and!( shuffle )!])) oneshot
 text=When Taj-Nar Swordsmith enters the battlefield, you may pay {X}. If you do, search your library for an Equipment card with converted mana cost X or less and put that card onto the battlefield. Then shuffle your library.
 mana={3}{W}
 type=Creature
@@ -65151,7 +65170,7 @@ toughness=6
 name=Titanoth Rex
 abilities=trample,cycling
 autohand=__CYCLING__({1}{G})
-autohand=@cycled(this|myHand):transforms((,newability[counter(0/0,1,Trample],newability[this(counter{0/0.1.Trample}>=1) trample target(creature|myBattlefield)])))
+autohand=@cycled(this|myHand):name(Put trample counter) target(creature|myBattlefield) transforms((,newability[counter(0/0.1.Trample],newability[this(counter{0/0.1.Trample}>=1) trample]))) forever
 text=Trample -- Cycling {1}{G} ({1}{G}, Discard this card: Draw a card.) -- When you cycle Titanoth Rex, put a trample counter on target creature you control.
 mana={7}{G}{G}
 type=Creature
@@ -66971,9 +66990,7 @@ type=Instant
 [card]
 name=Unbreakable Bond
 target=creature|myGraveyard
-auto=moveTo(myBattlefield)
-auto=counter(0/0,1,Lifelink)
-auto=transforms((,newability[this(counter{0/0.1.Lifelink}>=1) lifelink]))
+auto=moveTo(myBattlefield) and!( transforms((,newability[counter(0/0.1.Lifelink)],newability[this(counter{0/0.1.Lifelink}>=1) lifelink])) forever )!
 text=Return target creature card from your graveyard to the battlefield with a lifelink counter on it.
 mana={4}{B}
 type=Sorcery
@@ -67221,9 +67238,7 @@ toughness=4
 [card]
 name=Unexpected Fangs
 target=creature
-auto=counter(1/1,1)
-auto=counter(0/0,1,Lifelink)
-auto=transforms((,newability[this(counter{0/0.1.Lifelink}>=1) lifelink]))
+auto=transforms((,newability[counter(1/1)],newability[counter(0/0.1.Lifelink)],newability[this(counter{0/0.1.Lifelink}>=1) lifelink])) forever
 text=Put a +1/+1 counter and a lifelink counter on target creature.
 mana={1}{B}
 type=Instant
@@ -69378,7 +69393,7 @@ toughness=3
 name=Void Beckoner
 abilities=deathtouch,cycling
 autohand=__CYCLING__({2}{B})
-autohand=@cycled(this|myHand):transforms((,newability[counter(0/0,1,Deathtouch)],newability[this(counter{0/0.1.Deathtouch}>=1) deathtouch])) target(creature|myBattlefield)]
+autohand=@cycled(this|myHand):name(Put Deathtouch counter) target(creature|myBattlefield) transforms((,newability[counter(0/0.1.Deathtouch)],newability[this(counter{0/0.1.Deathtouch}>=1) deathtouch])) forever
 text=Deathtouch -- Cycling {2}{B} ({2}{B}, Discard this card: Draw a card.) -- When you cycle Void Beckoner, put a deathtouch counter on target creature you control.
 mana={6}{B}{B}
 type=Creature

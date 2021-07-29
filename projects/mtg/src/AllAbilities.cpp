@@ -1376,6 +1376,8 @@ int AAAlterEnergy::resolve()
         if(pTarget)
         {
             pTarget->energyCount += energy;
+            if(pTarget->energyCount < 0)
+                pTarget->energyCount = 0;
             if(energy > 0)
             {
                 WEvent * e = NEW WEventplayerEnergized(pTarget, energy);
@@ -1398,6 +1400,49 @@ AAAlterEnergy * AAAlterEnergy::clone() const
 }
 
 AAAlterEnergy::~AAAlterEnergy()
+{
+}
+
+//AA Experience Counters
+AAAlterExperience::AAAlterExperience(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int experience, ManaCost * _cost,
+        int who) :
+    ActivatedAbilityTP(observer, _id, _source, _target, _cost, who), experience(experience)
+{
+}
+
+int AAAlterExperience::resolve()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    if (_target)
+    {
+        Player * pTarget = (Player*)_target;
+        if(pTarget)
+        {
+            pTarget->experienceCount += experience;
+            if(pTarget->experienceCount < 0)
+                pTarget->experienceCount = 0;
+            if(experience > 0)
+            {
+                WEvent * e = NEW WEventplayerExperienced(pTarget, experience);
+                game->receiveEvent(e);
+            }//todo loses experience event
+        }
+    }
+    return 0;
+}
+
+const string AAAlterExperience::getMenuText()
+{
+    WParsedInt parsedNum(experience);
+    return _(parsedNum.getStringValue() + " Experience ").c_str();
+}
+
+AAAlterExperience * AAAlterExperience::clone() const
+{
+    return NEW AAAlterExperience(*this);
+}
+
+AAAlterExperience::~AAAlterExperience()
 {
 }
 
@@ -2615,6 +2660,12 @@ int AARemoveSingleCounter::resolve()
         a->oneShot = true;
         pcounters.push_back(a);
     }
+    else if(pTarget && pTarget->experienceCount)
+    {
+        MTGAbility * a = NEW AAAlterExperience(game, game->mLayers->actionLayer()->getMaxId(), source, target, -nb, NULL);
+        a->oneShot = true;
+        pcounters.push_back(a);
+    }
     else if (cTarget && cTarget->counters)
     {
         Counters * counters = cTarget->counters;
@@ -2685,6 +2736,16 @@ int AADuplicateCounters::resolve()
             a = NEW AAAlterEnergy(game, game->mLayers->actionLayer()->getMaxId(), source, target, 1, NULL);
         else
             a = NEW AAAlterEnergy(game, game->mLayers->actionLayer()->getMaxId(), source, target, pTarget->energyCount, NULL);
+        a->oneShot = true;
+        pcounters.push_back(a);
+    }
+    else if(pTarget && pTarget->experienceCount)
+    {
+        MTGAbility * a = NULL;
+        if(single)
+            a = NEW AAAlterExperience(game, game->mLayers->actionLayer()->getMaxId(), source, target, 1, NULL);
+        else
+            a = NEW AAAlterExperience(game, game->mLayers->actionLayer()->getMaxId(), source, target, pTarget->experienceCount, NULL);
         a->oneShot = true;
         pcounters.push_back(a);
     }
@@ -2765,6 +2826,12 @@ int AAProliferate::resolve()
     else if(pTarget && pTarget->energyCount && pTarget == source->controller())
     {
         MTGAbility * a = NEW AAAlterEnergy(game, game->mLayers->actionLayer()->getMaxId(), source, target, 1, NULL);
+        a->oneShot = true;
+        pcounters.push_back(a);
+    }
+    else if(pTarget && pTarget->experienceCount && pTarget == source->controller())
+    {
+        MTGAbility * a = NEW AAAlterExperience(game, game->mLayers->actionLayer()->getMaxId(), source, target, 1, NULL);
         a->oneShot = true;
         pcounters.push_back(a);
     }
@@ -3517,23 +3584,37 @@ GenericPaidAbility::~GenericPaidAbility()
     SAFE_DELETE(baseAbility);
 }
 
-//saves a listed mana type until end of turn.
-AManaPoolSaver::AManaPoolSaver(GameObserver* observer, int id, MTGCardInstance * source,string color, bool otherPlayer) :
-MTGAbility(observer, id, source),Color(color),OtherPlayer(otherPlayer)
+//saves a listed mana type.
+AManaPoolSaver::AManaPoolSaver(GameObserver* observer, int id, MTGCardInstance * source,string color, bool otherPlayer, bool removePool) :
+MTGAbility(observer, id, source),Color(color),OtherPlayer(otherPlayer),RemovePool(removePool)
 {
 }
 
 int AManaPoolSaver::addToGame()
 {
     int colorInt = Constants::GetColorStringIndex(Color.c_str());
-    source->controller()->poolDoesntEmpty->add(colorInt,1);
+    if(OtherPlayer){
+        if(RemovePool)
+            source->controller()->opponent()->poolDoesntEmpty->remove(colorInt,1);
+        else
+            source->controller()->opponent()->poolDoesntEmpty->add(colorInt,1);
+    }
+    else {
+        if(RemovePool)
+            source->controller()->poolDoesntEmpty->remove(colorInt,1);
+        else
+            source->controller()->poolDoesntEmpty->add(colorInt,1);
+    }
     return 1;
 }
 
 int AManaPoolSaver::destroy()
 {
     int colorInt = Constants::GetColorStringIndex(Color.c_str());
-    source->controller()->poolDoesntEmpty->remove(colorInt,1);
+    if(OtherPlayer)
+        source->controller()->opponent()->poolDoesntEmpty->remove(colorInt,1);
+    else
+        source->controller()->poolDoesntEmpty->remove(colorInt,1);
     return 1;
 }
 
@@ -6099,6 +6180,22 @@ int AARemoveMana::resolve()
                         return 1;
                     }
                     manaPool->Empty();
+                } 
+                else if(game->getCurrentGamePhase() == MTG_PHASE_ENDOFTURN && !forceclean)
+                {
+                    if(player->poolDoesntEmpty->getConvertedCost())
+                    {
+                        ManaCost * toSave = NEW ManaCost();
+                        for(int k = Constants::MTG_COLOR_ARTIFACT; k < Constants::NB_Colors;k++)
+                        {
+                            if(player->poolDoesntEmpty->getCost(k))
+                                toSave->add(k,manaPool->getCost(k));
+                        }
+                        player->getManaPool()->pay(manaPool->Diff(toSave));
+                        delete(toSave);
+                        return 1;
+                    }
+                    manaPool->Empty();
                 }
                 else
                     manaPool->Empty();
@@ -7144,14 +7241,9 @@ ATransformer::ATransformer(GameObserver* observer, int id, MTGCardInstance * sou
 
     if (stypes.find("allsubtypes") != string::npos || stypes.find("removecreaturesubtypes") != string::npos)
     {  
-        const vector<string> values = MTGAllCards::getValuesById();
-        for (size_t i = 0; i <values.size(); ++i)
-        {
-            if (!MTGAllCards::isSubtypeOfType(i,Subtypes::TYPE_CREATURE))
-                continue;
-
-            types.push_back(i);
-        }
+        const vector<string> values = MTGAllCards::getCreatureValuesById();
+        for (size_t i = 0; i < values.size(); ++i)
+            types.push_back(MTGAllCards::findType(values.at(i)));
     }
     else
     {

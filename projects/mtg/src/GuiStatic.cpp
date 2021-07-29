@@ -33,6 +33,7 @@ void GuiAvatar::Render()
     int life = player->life;
     int poisonCount = player->poisonCount;
     int energyCount = player->energyCount;
+    int experienceCount = player->experienceCount;
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     TargetChooser * tc = NULL;
@@ -163,6 +164,23 @@ void GuiAvatar::Render()
         case BOTTOM_RIGHT:
             mFont->SetColor(ARGB((int)actA / 1 ,255, 255, 0));
             mFont->DrawString(energy, actX, actY - 27, JGETEXT_RIGHT);
+            break;
+        }
+    }
+    //experience
+    char experience[15];
+    if (experienceCount > 0)
+    {
+        sprintf(experience, "%i", experienceCount);
+        switch (corner)
+        {
+        case TOP_LEFT:
+            mFont->SetColor(ARGB((int)actA / 1, 255, 0, 255));
+            mFont->DrawString(experience, actX + 2, actY + 24);
+            break;
+        case BOTTOM_RIGHT:
+            mFont->SetColor(ARGB((int)actA / 1 ,255, 0, 255));
+            mFont->DrawString(experience, actX - 10, actY - 27, JGETEXT_RIGHT);
             break;
         }
     }

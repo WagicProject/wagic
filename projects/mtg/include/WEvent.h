@@ -352,6 +352,15 @@ struct WEventplayerEnergized : public WEvent {
     virtual Targetable * getTarget(Player * player);
 };
 
+//alterexperience event
+struct WEventplayerExperienced : public WEvent {
+    WEventplayerExperienced(Player * player, int nb_count);
+    Player * player;
+    int nb_count;
+    using WEvent::getTarget;
+    virtual Targetable * getTarget(Player * player);
+};
+
 //monarch event
 struct WEventplayerMonarch : public WEvent {
     WEventplayerMonarch(Player * player);

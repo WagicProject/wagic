@@ -499,7 +499,34 @@ public:
         return NEW TrplayerEnergized(*this);
     }
 };
+class TrplayerExperienced: public Trigger
+{
+public:
+    bool thiscontroller, thisopponent;
+    TrplayerExperienced(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false, bool thiscontroller = false, bool thisopponent = false) :
+        Trigger(observer, id, source,once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent)
+    {
+    }
 
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventplayerExperienced * e = dynamic_cast<WEventplayerExperienced *> (event);
+        if (!e) return 0;
+        if (!tc->canTarget(e->player)) return 0;
+        if(thiscontroller)
+            if(e->player != source->controller())
+                return 0;
+        if(thisopponent)
+            if(e->player == source->controller())
+                return 0;
+        return 1;
+    }
+
+    TrplayerExperienced * clone() const
+    {
+        return NEW TrplayerExperienced(*this);
+    }
+};
 class TrplayerMonarch: public Trigger
 {
 public:
@@ -4023,6 +4050,19 @@ public:
     AAAlterEnergy * clone() const;
     ~AAAlterEnergy();
 };
+//Experience Counter
+class AAAlterExperience: public ActivatedAbilityTP
+{
+public:
+    int experience;
+
+    AAAlterExperience(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int energy, ManaCost * _cost = NULL,
+            int who = TargetChooser::UNSET);
+    int resolve();
+    const string getMenuText();
+    AAAlterExperience * clone() const;
+    ~AAAlterExperience();
+};
 //Boast Event
 class AABoastEvent: public ActivatedAbilityTP
 {
@@ -5164,7 +5204,8 @@ class AManaPoolSaver: public MTGAbility
 public:
     string Color;
     bool OtherPlayer;
-    AManaPoolSaver(GameObserver* observer, int id, MTGCardInstance * source,string Color = "",bool otherPlayer = false);
+    bool RemovePool;
+    AManaPoolSaver(GameObserver* observer, int id, MTGCardInstance * source, string Color = "", bool otherPlayer = false, bool removePool = false);
     int addToGame();
     int destroy();
     AManaPoolSaver * clone() const;
@@ -5177,7 +5218,7 @@ public:
     REDrawReplacement * re;
     MTGAbility * replacer;
     bool OtherPlayer;
-    ADrawReplacer(GameObserver* observer, int id, MTGCardInstance * source, MTGAbility * _replace = NULL,bool otherPlayer = false);
+    ADrawReplacer(GameObserver* observer, int id, MTGCardInstance * source, MTGAbility * _replace = NULL, bool otherPlayer = false);
     int addToGame();
     int destroy();
     ADrawReplacer * clone() const;
