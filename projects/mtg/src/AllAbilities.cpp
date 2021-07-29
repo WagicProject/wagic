@@ -4599,8 +4599,9 @@ int AAFlip::resolve()
             MTGCardInstance * myParent = NULL;
             if(_target->target)
                 myParent = _target->target;
+            string nameOrig = _target->name;
             if(_target->nameOrig == "")
-                _target->nameOrig = _target->name; // Saves the orignal card name before to flip the card.
+                _target->nameOrig = nameOrig; // Saves the orignal card name before to flip the card.
             _target->name = myFlip->name;
             _target->setName(myFlip->name);
             if(!isflipcard)//transform card
@@ -4613,7 +4614,17 @@ int AAFlip::resolve()
             _target->types = myFlip->types;
             _target->text = myFlip->text;
             _target->formattedText = myFlip->formattedText;
-            _target->basicAbilities = myFlip->model->data->basicAbilities;
+            if(_target->enchanted || _target->equipment > 0){ // Try to keep auras and equipment effects on basicAbilities (issue #1065).
+                MTGCardInstance * myOrig = NEW MTGCardInstance(MTGCollection()->getCardByName(nameOrig), _target->controller()->game);
+                for(unsigned int i = 0; i < _target->basicAbilities.size(); i++) {
+                    if(myOrig->basicAbilities[i] == 1)
+                        _target->basicAbilities[i] = 0;
+                    if(myFlip->model->data->basicAbilities[i] == 1)
+                        _target->basicAbilities[i] = 1;
+                }
+                SAFE_DELETE(myOrig);
+            } else
+                _target->basicAbilities = myFlip->model->data->basicAbilities;
             cdaDamage = _target->damageCount;
             _target->copiedID = myFlip->getMTGId();//for copier
             if(_target->owner->playMode != Player::MODE_TEST_SUITE)
