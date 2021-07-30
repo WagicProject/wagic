@@ -1466,7 +1466,6 @@ toughness=5
 [/card]
 [card]
 name=Amorphous Axe
-target=creature
 auto={3}:equip
 auto=teach(creature) +3/+0
 auto=transforms((allsubtypes))
@@ -6197,7 +6196,7 @@ type=Instant
 [/card]
 [card]
 name=Blinding Radiance
-auto=tap all(creature[power<2]|opponentBattlefield)
+auto=tap all(creature[toughness<=2]|opponentBattlefield)
 text=Tap all creatures your opponents control with toughness 2 or less.
 mana={2}{W}
 type=Sorcery
@@ -6705,7 +6704,7 @@ toughness=5
 [card]
 name=Blur of Blades
 target=creature
-auto=(-1/-1,1)
+auto=counter(-1/-1,1)
 auto=damage:2 targetcontroller
 text=Put a -1/-1 counter on target creature. Blur of Blades deals 2 damage to that creature's controller.
 mana={1}{R}
@@ -8066,7 +8065,7 @@ type=Artifact
 [/card]
 [card]
 name=Bulette
-auto=auto=@each my endofturn restriction{morbid}:name(Put 1/1 counter) counter(1/1)
+auto=@each my endofturn restriction{morbid}:name(Put 1/1 counter) counter(1/1)
 text=At the beginning of your end step, if a creature died this turn, put a +1/+1 counter on Bulette.
 mana={3}{G}
 type=Creature
@@ -9994,7 +9993,7 @@ type=Instant
 [/card]
 [card]
 name=Charge of the Forever-Beast
-auto=target(creature|myhand) transforms((,newability[damage:power target(creature|planeswalker) ueot])) 
+auto=target(creature|myhand) transforms((,newability[target(*[creature;planeswalker]|opponentbattlefield) dynamicability<!powerstrike!>])) forever
 text=As an additional cost to cast this spell, reveal a creature card from your hand. -- Charge of the Forever-Beast deals damage to target creature or planeswalker equal to the revealed card's power.
 mana={2}{G}
 type=Sorcery
@@ -11965,7 +11964,7 @@ subtype=Equipment
 [card]
 name=Conqueror's Foothold
 auto={T}:Add{1}
-auto={2}{T}:draw:1 controller && discard(*|myhand)
+auto={2}{T}:draw:1 controller && transforms((,newability[target(*|myhand) reject])) forever
 auto={4}{T}:draw:1 controller
 auto={6}{T}:moveto(myhand) target(*|mygraveyard)
 text=(Transforms from Conqueror's Galleon.) -- {T}: Add {1} to your mana pool. -- {2}, {T}: Draw a card, then discard a card. -- {4}, {T}: Draw a card. -- {6}, {T}: Return target card from your graveyard to your hand.
@@ -12263,26 +12262,26 @@ toughness=2
 [/card]
 [card]
 name=Corpseweft
-auto={1}{B}:choice name(Exile 1 creature) moveTo(exile) target(creature|mygraveyard) && token(Zombie,creature Zombie Horror,2/2,black) and!( tap(noevent) )!
-auto={1}{B}:choice name(Exile 2 creatures) moveTo(exile) target(<2>creature|mygraveyard) && token(Zombie,creature Zombie Horror,4/4,black) and!( tap(noevent) )!
-auto={1}{B}:choice name(Exile 3 creatures) moveTo(exile) target(<3>creature|mygraveyard) && token(Zombie,creature Zombie Horror,6/6,black) and!( tap(noevent) )!
-auto={1}{B}:choice name(Exile 4 creatures) moveTo(exile) target(<4>creature|mygraveyard) && token(Zombie,creature Zombie Horror,8/8,black) and!( tap(noevent) )!
-auto={1}{B}:choice name(Exile 5 creatures) moveTo(exile) target(<5>creature|mygraveyard) && token(Zombie,creature Zombie Horror,10/10,black) and!( tap(noevent) )!
-auto={1}{B}:choice name(Exile 6 creatures) moveTo(exile) target(<6>creature|mygraveyard) && token(Zombie,creature Zombie Horror,12/12,black) and!( tap(noevent) )!
-auto={1}{B}:choice name(Exile 7 creatures) moveTo(exile) target(<7>creature|mygraveyard) && token(Zombie,creature Zombie Horror,14/14,black) and!( tap(noevent) )!
-auto={1}{B}:choice name(Exile 8 creatures) moveTo(exile) target(<8>creature|mygraveyard) && token(Zombie,creature Zombie Horror,16/16,black) and!( tap(noevent) )!
-auto={1}{B}:choice name(Exile 9 creatures) moveTo(exile) target(<9>creature|mygraveyard) && token(Zombie,creature Zombie Horror,18/18,black) and!( tap(noevent) )!
-auto={1}{B}:choice name(Exile 10 creatures) moveTo(exile) target(<10>creature|mygraveyard) && token(Zombie,creature Zombie Horror,20/20,black) and!( tap(noevent) )!
-auto={1}{B}:choice name(Exile 11 creatures) moveTo(exile) target(<11>creature|mygraveyard) && token(Zombie,creature Zombie Horror,22/22,black) and!( tap(noevent) )!
-auto={1}{B}:choice name(Exile 12 creatures) moveTo(exile) target(<12>creature|mygraveyard) && token(Zombie,creature Zombie Horror,24/24,black) and!( tap(noevent) )!
-auto={1}{B}:choice name(Exile 13 creatures) moveTo(exile) target(<13>creature|mygraveyard) && token(Zombie,creature Zombie Horror,26/26,black) and!( tap(noevent) )!
-auto={1}{B}:choice name(Exile 14 creatures) moveTo(exile) target(<14>creature|mygraveyard) && token(Zombie,creature Zombie Horror,28/28,black) and!( tap(noevent) )!
-auto={1}{B}:choice name(Exile 15 creatures) moveTo(exile) target(<15>creature|mygraveyard) && token(Zombie,creature Zombie Horror,30/30,black) and!( tap(noevent) )!
-auto={1}{B}:choice name(Exile 16 creatures) moveTo(exile) target(<16>creature|mygraveyard) && token(Zombie,creature Zombie Horror,32/32,black) and!( tap(noevent) )!
-auto={1}{B}:choice name(Exile 17 creatures) moveTo(exile) target(<17>creature|mygraveyard) && token(Zombie,creature Zombie Horror,34/34,black) and!( tap(noevent) )!
-auto={1}{B}:choice name(Exile 18 creatures) moveTo(exile) target(<18>creature|mygraveyard) && token(Zombie,creature Zombie Horror,36/36,black) and!( tap(noevent) )!
-auto={1}{B}:choice name(Exile 19 creatures) moveTo(exile) target(<19>creature|mygraveyard) && token(Zombie,creature Zombie Horror,38/38,black) and!( tap(noevent) )!
-auto={1}{B}:choice name(Exile 20 creatures) moveTo(exile) target(<20>creature|mygraveyard) && token(Zombie,creature Zombie Horror,40/40,black) and!( tap(noevent) )!
+auto={1}{B}{E(creature|mygraveyard)}:name(Exile 1 creature) token(Zombie,creature Zombie Horror,2/2,black) and!( tap(noevent) )!
+auto={1}{B}{E(creature|mygraveyard)}{E(creature|mygraveyard)}:name(Exile 2 creatures) token(Zombie,creature Zombie Horror,4/4,black) and!( tap(noevent) )!
+auto={1}{B}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}:name(Exile 3 creatures) token(Zombie,creature Zombie Horror,6/6,black) and!( tap(noevent) )!
+auto={1}{B}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}:name(Exile 4 creatures) token(Zombie,creature Zombie Horror,8/8,black) and!( tap(noevent) )!
+auto={1}{B}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}:name(Exile 5 creatures) token(Zombie,creature Zombie Horror,10/10,black) and!( tap(noevent) )!
+auto={1}{B}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}:name(Exile 6 creatures) token(Zombie,creature Zombie Horror,12/12,black) and!( tap(noevent) )!
+auto={1}{B}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}:name(Exile 7 creatures) token(Zombie,creature Zombie Horror,14/14,black) and!( tap(noevent) )!
+auto={1}{B}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}:name(Exile 8 creatures) token(Zombie,creature Zombie Horror,16/16,black) and!( tap(noevent) )!
+auto={1}{B}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}:name(Exile 9 creatures) token(Zombie,creature Zombie Horror,18/18,black) and!( tap(noevent) )!
+auto={1}{B}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}:name(Exile 10 creatures) token(Zombie,creature Zombie Horror,20/20,black) and!( tap(noevent) )!
+auto={1}{B}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}:name(Exile 11 creatures) token(Zombie,creature Zombie Horror,22/22,black) and!( tap(noevent) )!
+auto={1}{B}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}:name(Exile 12 creatures) token(Zombie,creature Zombie Horror,24/24,black) and!( tap(noevent) )!
+auto={1}{B}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}:name(Exile 13 creatures) token(Zombie,creature Zombie Horror,26/26,black) and!( tap(noevent) )!
+auto={1}{B}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}:name(Exile 14 creatures) token(Zombie,creature Zombie Horror,28/28,black) and!( tap(noevent) )!
+auto={1}{B}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}:name(Exile 15 creatures) token(Zombie,creature Zombie Horror,30/30,black) and!( tap(noevent) )!
+auto={1}{B}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}:name(Exile 16 creatures) token(Zombie,creature Zombie Horror,32/32,black) and!( tap(noevent) )!
+auto={1}{B}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}:name(Exile 17 creatures) token(Zombie,creature Zombie Horror,34/34,black) and!( tap(noevent) )!
+auto={1}{B}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}:name(Exile 18 creatures) token(Zombie,creature Zombie Horror,36/36,black) and!( tap(noevent) )!
+auto={1}{B}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}:name(Exile 19 creatures) token(Zombie,creature Zombie Horror,38/38,black) and!( tap(noevent) )!
+auto={1}{B}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}{E(creature|mygraveyard)}:name(Exile 20 creatures) token(Zombie,creature Zombie Horror,40/40,black) and!( tap(noevent) )!
 text={1}{B}, Exile one or more creature cards from your graveyard: Put an X/X black Zombie Horror creature token onto the battlefield tapped, where X is twice the number of cards exiled this way.
 mana={2}{B}
 type=Enchantment
@@ -12955,8 +12954,8 @@ type=Instant
 [card]
 name=Cruel Reality
 target=player
-auto=auto=@each targetedplayer upkeep restriction{type(*[creature;planeswalker]|targetedpersonsbattlefield)~equalto~0}:life:-5 targetedplayer 
-auto=auto=@each targetedplayer upkeep restriction{type(*[creature;planeswalker]|targetedpersonsbattlefield)~morethan~0}:name(Sacrifice of lose life) ability$!name(Sacrifice of lose life) choice name(Sacrifice) notatarget(*[creature;planeswalker]|myBattlefield) sacrifice _ choice name(Lose life) life:-5 controller!$ targetedplayer
+auto=@each targetedplayer upkeep restriction{type(*[creature;planeswalker]|targetedpersonsbattlefield)~equalto~0}:life:-5 targetedplayer 
+auto=@each targetedplayer upkeep restriction{type(*[creature;planeswalker]|targetedpersonsbattlefield)~morethan~0}:name(Sacrifice of lose life) ability$!name(Sacrifice of lose life) choice name(Sacrifice) notatarget(*[creature;planeswalker]|myBattlefield) sacrifice _ choice name(Lose life) life:-5 controller!$ targetedplayer
 text=Enchant player -- At the beginning of enchanted player's upkeep, that player sacrifices a creature or planeswalker. If the player can't, he or she loses 5 life.
 mana={5}{B}{B}
 type=Enchantment
@@ -13074,7 +13073,7 @@ type=Instant
 [/card]
 [card]
 name=Cryptic Serpent
-anyzone=foreach(instant,sorcery|mygraveyard) altercost(-1,colorless)
+anyzone=foreach(instant,sorcery|mygraveyard) altercost(colorless,-1)
 text=Cryptic Serpent costs {1} less to cast for each instant and sorcery card in your graveyard.
 mana={5}{U}{U}
 type=Creature
@@ -13788,7 +13787,7 @@ toughness=1
 [card]
 name=Daring Saboteur
 auto={2}{U}:unblockable
-auto=@combatdamaged(player) from(this):may draw:1 && discard(*|myhand)
+auto=@combatdamaged(player) from(this):may draw:1 && transforms((,newability[target(*|myhand) reject])) forever
 text={2}{U}: Daring Saboteur can't be blocked this turn. -- Whenever Daring Saboteur deals combat damage to a player, you may draw a card. If you do, discard a card.
 mana={1}{U}
 type=Creature
@@ -17791,7 +17790,7 @@ toughness=4
 [card]
 name=Dwarven Mine
 auto=aslongas(other land[mountain]|myBattlefield) tap(noevent) <3 oneshot
-auto=if this(untapped) create(Dwarf:creature Dwarf:1/1:red) once 
+auto=aslongas(other land[mountain]|myBattlefield) >2 create(Dwarf:creature Dwarf:1/1:red) once 
 text={T}: Add {R}. -- Dwarven Mine enters the battlefield tapped unless you control three or more other Mountains. -- When Dwarven Mine enters the battlefield untapped, create a 1/1 red Dwarf creature token.
 type=Land
 subtype=Mountain
@@ -19895,9 +19894,9 @@ toughness=3
 [card]
 name=Excavation Technique
 other={3}{W} name(Demonstrate)
-auto=name(Destroy permanent) target(*|battlefield) transforms((,newability[destroy],newability[token(Treasure Sur)*2])) oneshot
-auto=if paid(alternative) then ability$!name(Destroy permanent) name(Destroy permanent) target(*|battlefield) transforms((,newability[destroy],newability[token(Treasure Sur)*2])) oneshot!$ controller
-auto=if paid(alternative) then ability$!name(Destroy permanent) name(Destroy permanent) target(*|battlefield) transforms((,newability[destroy],newability[token(Treasure Sur)*2])) oneshot!$ opponent
+auto=name(Destroy permanent) target(*[-land]|battlefield) transforms((,newability[destroy],newability[token(Treasure Sur)*2])) oneshot
+auto=if paid(alternative) then ability$!name(Destroy permanent) name(Destroy permanent) target(*[-land]|battlefield) transforms((,newability[destroy],newability[token(Treasure Sur)*2])) oneshot!$ controller
+auto=if paid(alternative) then ability$!name(Destroy permanent) name(Destroy permanent) target(*[-land]|battlefield) transforms((,newability[destroy],newability[token(Treasure Sur)*2])) oneshot!$ opponent
 text=Demonstrate (When you cast this spell, you may copy it. If you do, choose an opponent to also copy it. Players may choose new targets for their copies.) -- Destroy target nonland permanent. Its controller creates two Treasure tokens.
 mana={3}{W}
 type=Sorcery
@@ -24911,7 +24910,7 @@ toughness=1
 [card]
 name=Gingerbread Cabin
 auto=aslongas(other land[forest]|myBattlefield) tap(noevent) <3 oneshot
-auto=if this(untapped) token(-473141) once 
+auto=aslongas(other land[forest]|myBattlefield) >2 token(-473141) once 
 text={T}: Add {G}. -- Gingerbread Cabin enters the battlefield tapped unless you control three or more other Forests. -- When Gingerbread Cabin enters the battlefield untapped, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
 type=Land
 subtype=Forest
@@ -26611,6 +26610,7 @@ toughness=7
 [/card]
 [card]
 name=Grasping Scoundrel
+auto=@combat(attacking) source(this):1/0
 text=Grasping Scoundrel gets +1/+0 as long as it's attacking.
 mana={B}
 type=Creature
@@ -30460,8 +30460,8 @@ type=Artifact
 [/card]
 [card]
 name=Idyllic Grange
-auto=aslongas(other land[plain]|myBattlefield) tap(noevent) <3 oneshot
-auto=if this(untapped) target(creature|myBattlefield) counter(1/1) once 
+auto=aslongas(other land[plains]|myBattlefield) tap(noevent) <3 oneshot
+auto=aslongas(other land[plains]|myBattlefield) >2 target(creature|myBattlefield) counter(1/1) once 
 text={T}: Add {W}. -- Idyllic Grange enters the battlefield tapped unless you control three or more other Plains. -- When Idyllic Grange enters the battlefield untapped, put a +1/+1 counter on target creature you control.
 type=Land
 subtype=Plains
@@ -33910,7 +33910,7 @@ type=Sorcery
 [/card]
 [card]
 name=Kefnet's Monument
-auto=lord(creature[blue]|myhand) altercost(-1,colorless)
+auto=lord(creature[blue]|myhand) altercost(colorless,-1)
 auto=@movedto(creature|mystack):target(creature|opponentbattlefield) freeze
 text=Blue creature spells you cast cost {1} less to cast. -- Whenever you cast a creature spell, target creature an opponent controls doesn't untap during its controller's next untap step.
 mana={3}
@@ -36197,8 +36197,7 @@ toughness=1
 [card]
 name=Lesser Masticore
 abilities=persist
-target=creature
-auto={4}:damage:1
+auto={4}:damage:1 target(creature)
 text=As an additional cost to cast this spell, discard a card. {4}: Lesser Masticore deals 1 damage to target creature. -- Persist (When this creature dies, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
 mana={2}{D(*|myhand)}
 type=Artifact Creature
@@ -38552,7 +38551,7 @@ toughness=3
 [/card]
 [card]
 name=Marauding Looter
-auto=@each my endofturn:if raid then draw:1 && discard(*|myhand)
+auto=@each my endofturn:if raid then draw:1 && transforms((,newability[target(*|myhand) reject])) forever
 text=Raid — At the beginning of your end step, if you attacked with a creature this turn, you may draw a card. If you do, discard a card.
 mana={2}{U}{R}
 type=Creature
@@ -41135,7 +41134,7 @@ type=Instant
 [card]
 name=Mystic Sanctuary
 auto=aslongas(other land[island]|myBattlefield) tap(noevent) <3 oneshot
-auto=if this(untapped) may (instant,sorcery|mygraveyard) moveTo(myLibrary) once 
+auto=aslongas(other land[island]|myBattlefield) >2 may moveTo(myLibrary) target(instant,sorcery|mygraveyard) once 
 text={T}: Add {U}. -- Mystic Sanctuary enters the battlefield tapped unless you control three or more other Islands. -- When Mystic Sanctuary enters the battlefield untapped, you may put target instant or sorcery card from your graveyard on top of your library.
 type=Land
 subtype=Island
@@ -47985,7 +47984,7 @@ toughness=3
 name=Radiant Destiny
 auto=_ASCEND_
 auto=@movedTo(*|myBattlefield):_ASCEND_
-auto=activatechooseacolor transforms((,newability[lord(creature[chosencolor]|mybattlefield) 1/1],newability[_CITY'S_BLESSING_ lord(creature[chosencolor]|mybattlefield) vigilance])) forever activatechooseend
+auto=activatechooseatype transforms((,newability[lord(creature[chosentype]|mybattlefield) 1/1],newability[_CITY'S_BLESSING_ lord(creature[chosentype]|mybattlefield) vigilance])) forever activatechooseend
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- As Radiant Destiny enters the battlefield, choose a creature type. -- Creatures you control of the chosen type get +1/+1. As long as you have the city's blessing, they also have vigilance.
 mana={2}{W}
 type=Enchantment
@@ -48597,7 +48596,7 @@ name=Ranger Class
 auto=counter(0/0,1,Level)
 auto=name(Create Wolf) token(Wolf,Creature Wolf,2/2,green)
 auto=this(variable{hascntlevel}=1) {1}{G}:name(Level 2) counter(0/0,1,Level) asSorcery
-auto=auto=@each my blockers restriction{compare(hascntlevel)~morethan~1}:name(Put 1/1 counter) target(creature[attacking]|battlefield) counter(1/1)
+auto=@each my blockers restriction{compare(hascntlevel)~morethan~1}:name(Put 1/1 counter) target(creature[attacking]|battlefield) counter(1/1)
 auto=this(variable{hascntlevel}=2) {3}{G}:name(Level 3) counter(0/0,1,Level) asSorcery
 auto=this(variable{hascntlevel}>=3) transforms((,newability[showfromtoplibrary],newability[canplaycreaturelibrarytop]))
 text=(Gain the next level as a sorcery to add its ability.) -- When Ranger Class enters the battlefield, create a 2/2 green Wolf creature token. -- {1}{G}: Level 2 -- Whenever you attack, put a +1/+1 counter on target attacking creature. -- {3}{G}: Level 3 -- You may look at the top card of your library any time. -- You may cast creature spells from the top of your library.
@@ -51675,7 +51674,7 @@ toughness=2
 [card]
 name=Rowdy Crew
 abilities=trample
-auto=draw:3 && discard:2 controller
+auto=draw:3 && transforms((,newability[target(<2>*|myhand) reject])) forever
 text=Trample -- When Rowdy Crew enters the battlefield, draw three cards, then discard two cards at random. If two cards that share a card type are discarded this way, put two +1/+1 counters on Rowdy Crew.
 mana={2}{R}{R}
 type=Creature
@@ -55556,7 +55555,7 @@ toughness=3
 [/card]
 [card]
 name=Shipwreck Looter
-auto=if raid then may draw:1 && discard(*|myhand)
+auto=if raid then may draw:1 && transforms((,newability[target(*|myhand) reject])) forever
 text=Raid — When Shipwreck Looter enters the battlefield, if you attacked with a creature this turn, you may draw a card. If you do, discard a card.
 mana={1}{U}
 type=Creature
@@ -61108,10 +61107,10 @@ type=Instant
 [/card]
 [card]
 name=Subtlety
-abilities=Flash,lifelink
+abilities=flash,flying
 other={E(*[blue]|myhand)} name(Evoke)
 auto=if paid(alternative) then sacrifice
-auto=may name(Choose creature or planeswalker) target(creature,planeswalker) transforms((,newability[choice name(Put on top) moveto(myLibrary)],newability[choice name(Put on bottom) bottomoflibrary])) oneshot
+auto=may name(Choose creature or planeswalker) target(creature,planeswalker|stack) transforms((,newability[choice name(Put on top) moveto(myLibrary)],newability[choice name(Put on bottom) bottomoflibrary])) oneshot
 text=Flash -- Flying -- When Subtlety enters the battlefield, choose up to one target creature spell or planeswalker spell. Its owner puts it on the top or bottom of their library. -- Evoke—Exile a blue card from your hand.
 mana={2}{U}{U}
 type=Creature
@@ -66102,7 +66101,7 @@ type=Instant
 [/card]
 [card]
 name=Trial of Ambition
-auto=ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ opponent
+auto=ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ target(opponent)
 auto=@movedto(cartouche|mybattlefield):moveto(myhand)
 text=When Trial of Ambition enters the battlefield, target opponent sacrifices a creature. -- When a Cartouche enters the battlefield under your control, return Trial of Ambition to its owner's hand.
 mana={1}{B}
@@ -71319,7 +71318,7 @@ type=Land
 [card]
 name=Witch's Cottage
 auto=aslongas(other land[swamp]|myBattlefield) tap(noevent) <3 oneshot
-auto=if this(untapped) may (creature|mygraveyard) moveTo(myLibrary) once 
+auto=aslongas(other land[swamp]|myBattlefield) >2 may moveTo(myLibrary) target(creature|mygraveyard) once
 text={T}: Add {B} -- Witch's Cottage enters the battlefield tapped unless you control three or more other Swamps. -- When Witch's Cottage enters the battlefield untapped, you may put target creature card from your graveyard on top of your library.
 type=Land
 subtype=Swamp
@@ -71973,7 +71972,7 @@ type=Legendary Sorcery
 [/card]
 [card]
 name=Yawgmoth, Thran Physician
-abilities=protection from humans
+abilities=protection from(human)
 auto={L:1}{S(other creature|mybattlefield)}:target(creature) counter(-1/-1) && draw:1 controller
 auto={B}{B}{discard(*|myhand)}:_PROLIFERATE_
 text=Protection from Humans -- Pay 1 life, Sacrifice another creature: Put a -1/-1 counter on up to one target creature and draw a card. -- {B}{B}, Discard a card: Proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
