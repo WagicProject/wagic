@@ -103,7 +103,7 @@ type=Instant
 [card]
 name=Absolver Thrull
 auto=name(Destroy enchantment) target(enchantment|battlefield) destroy
-auto=@movedto(this|graveyard) from(mybattlefield):all(trigger[to]) transforms((,newability[moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) counter(0/0.1.ThrullHaunted)])) oneshot )!])) oneshot
+auto=_DIES_all(trigger[to]) transforms((,newability[moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) counter(0/0.1.ThrullHaunted)])) oneshot )!])) oneshot
 autoexile=@movedto(creature[counter{0/0.1.ThrullHaunted}]|graveyard) from(battlefield) once:name(Destroy enchantment) target(enchantment|battlefield) destroy
 text=Haunt (When this creature dies, exile it haunting target creature.) -- When Absolver Thrull enters the battlefield or the creature it haunts dies, destroy target enchantment.
 mana={3}{W}
@@ -2296,7 +2296,7 @@ toughness=6
 [card]
 name=Arasta of the Endless Web
 abilities=reach
-auto=@movedto(*[sorcery,instant]|opponentStack):token(Spider,Creature Spider,1/2,reach,green)
+auto=@movedto(*[sorcery;instant]|opponentStack):token(Spider,Creature Spider,1/2,reach,green)
 text=Reach -- Whenever an opponent casts an instant or sorcery spell, create a 1/2 green Spider creature token with reach.
 mana={2}{G}{G}
 type=Legendary Enchantment Creature
@@ -5246,7 +5246,7 @@ toughness=4
 name=Belfry Spirit
 abilities=flying
 auto=token(Bat,Creature Bat,1/1,black,flying)*2
-auto=@movedto(this|graveyard) from(mybattlefield):all(trigger[to]) transforms((,newability[moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) counter(0/0.1.BelfryHaunted)])) oneshot )!])) oneshot
+auto=_DIES_all(trigger[to]) transforms((,newability[moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) counter(0/0.1.BelfryHaunted)])) oneshot )!])) oneshot
 autoexile=@movedto(creature[counter{0/0.1.BelfryHaunted}]|graveyard) from(battlefield) once:token(Bat,Creature Bat,1/1,black,flying)*2
 text=Flying -- Haunt (When this creature dies, exile it haunting target creature.) -- When Belfry Spirit enters the battlefield or the creature it haunts dies, put two 1/1 black Bat creature tokens with flying onto the battlefield.
 mana={3}{W}{W}
@@ -5448,7 +5448,7 @@ type=Instant
 [/card]
 [card]
 name=Beskir Shieldmate
-auto=@movedto(this|graveyard) from(mybattlefield):token(Warrior,Creature Human Warrior,1/1,white)
+auto=_DIES_token(Warrior,Creature Human Warrior,1/1,white)
 text=When Beskir Shieldmate dies, create a 1/1 white Human Warrior creature token.
 mana={1}{W}
 type=Creature
@@ -6065,7 +6065,7 @@ restriction=compare(isflipped)~equalto~0
 anyzone={0}:doubleside(Search for Blex)
 autostack=if paid(alternative) then transforms((,newability[moveto(mygraveyard)],newability[activate castcard(named!:search for blex:!)])) forever
 auto=lord(other *[pest;bat;insect;snake;spider]|mybattlefield) 1/1
-auto=@movedto(this|graveyard) from(mybattlefield):life:4 controller
+auto=_DIES_life:4 controller
 text=Other Pests, Bats, Insects, Snakes, and Spiders you control get +1/+1. -- When Blex, Vexing Pest dies, you gain 4 life. // Look at the top five cards of your library. You may put any number of them into your hand and the rest into your graveyard. You lose 3 life for each card you put into your hand this way. // {2}{B}{B} Search for Blex
 mana={2}{G}
 type=Legendary Creature
@@ -9269,7 +9269,7 @@ name=Cavalier of Gales
 abilities=flying
 aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveTo(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=draw:3 controller && transforms((,newability[target(<2>*|myhand) moveto(mylibrary)])) oneshot
-auto=@movedTo(this|graveyard) from(myBattlefield):all(trigger[to]) moveTo(mylibrary) and!( transforms((,newability[scry:2 scrycore delayed dontshow donothing scrycoreend scryend],newability[shuffle])) oneshot )!
+auto=_DIES_all(trigger[to]) moveTo(mylibrary) and!( transforms((,newability[scry:2 scrycore delayed dontshow donothing scrycoreend scryend],newability[shuffle])) oneshot )!
 text=Flying -- When Cavalier of Gales enters the battlefield, draw three cards, then put two cards from your hand on top of your library in any order. -- When Cavalier of Gales dies, shuffle it into its owner's library, then scry 2.
 mana={2}{U}{U}{U}
 type=Creature
@@ -11024,7 +11024,7 @@ toughness=4
 name=Clone Shell
 aicode=activate target(*[zpos<=4]|mylibrary) moveTo(myExile)
 auto=name(look) reveal:4 optionone name(put in exile) target(*|reveal) transforms((,newability[moveTo(ownerExile) and!( counter(0/0.1.ClnImp) )!])) forever optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
-auto=@movedTo(this|graveyard) from(myBattlefield):name(Take back from exile) name(Take back from exile) moveto(mybattlefield) target(creature[counter{0/0.1.ClnImp}]|myExile)
+auto=_DIES_name(Take back from exile) name(Take back from exile) moveto(mybattlefield) target(creature[counter{0/0.1.ClnImp}]|myExile)
 text=Imprint — When Clone Shell enters the battlefield, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library in any order. -- When Clone Shell dies, turn the exiled card face up. If it's a creature card, put it onto the battlefield under your control.
 mana={5}
 type=Artifact Creature
@@ -14418,7 +14418,7 @@ toughness=2
 [/card]
 [card]
 name=Deathknell Berserker
-auto=@movedto(this|graveyard) from(mybattlefield):this(power>=3) token(Zombie,Creature Zombie Berserker,2/2,black)
+auto=_DIES_this(power>=3) token(Zombie,Creature Zombie Berserker,2/2,black)
 text=When Deathknell Berserker dies, if its power was 3 or greater, create a 2/2 black Zombie Berserker creature token.
 mana={1}{B}
 type=Creature
@@ -17131,7 +17131,7 @@ type=Instant
 name=Dream Strix
 abilities=flying
 auto=@targeted(this):sacrifice
-auto=@movedto(this|graveyard) from(mybattlefield):name(Learn) transforms((,newability[if type(*[lesson]|mysideboard)~morethan~0 then choice name(Put lesson in hand) name(Put lesson in hand) target(*[lesson]|mysideboard) moveto(myhand)],newability[if type(*|myhand)~morethan~0 then choice name(Discard and draw) name(Discard and draw) target(*|myhand) reject and!(draw:1)!],newability[if type(Retriever Phoenix|mygraveyard)~morethan~0 then choice name(Return a Retriever Phoenix) name(Return a Retriever Phoenix) target(Retriever Phoenix|mygraveyard) moveto(myBattlefield)],newability[choice name(Don't learn) donothing])) oneshot
+auto=_DIES_name(Learn) transforms((,newability[if type(*[lesson]|mysideboard)~morethan~0 then choice name(Put lesson in hand) name(Put lesson in hand) target(*[lesson]|mysideboard) moveto(myhand)],newability[if type(*|myhand)~morethan~0 then choice name(Discard and draw) name(Discard and draw) target(*|myhand) reject and!(draw:1)!],newability[if type(Retriever Phoenix|mygraveyard)~morethan~0 then choice name(Return a Retriever Phoenix) name(Return a Retriever Phoenix) target(Retriever Phoenix|mygraveyard) moveto(myBattlefield)],newability[choice name(Don't learn) donothing])) oneshot
 text=Flying -- When Dream Strix becomes the target of a spell, sacrifice it. -- When Dream Strix dies, learn. (You may reveal a Lesson card you own from outside the game and put it into your hand, or discard a card to draw a card.)
 mana={2}{U}
 type=Creature
@@ -18171,7 +18171,7 @@ toughness=1
 [/card]
 [card]
 name=Elderfang Ritualist
-auto=@movedto(this|graveyard) from(mybattlefield):target(other *[elf]|mygraveyard) moveTo(myhand)
+auto=_DIES_target(other *[elf]|mygraveyard) moveTo(myhand)
 text=When Elderfang Ritualist dies, return another target Elf card from your graveyard to your hand.
 mana={2}{B}
 type=Creature
@@ -19989,7 +19989,7 @@ type=Sorcery
 [card]
 name=Exhumer Thrull
 auto=name(Return creature to hand) moveto(myhand) target(creature|mygraveyard)
-auto=@movedto(this|graveyard) from(mybattlefield):all(trigger[to]) transforms((,newability[moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) counter(0/0.1.ExhumerHaunted)])) oneshot )!])) oneshot
+auto=_DIES_all(trigger[to]) transforms((,newability[moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) counter(0/0.1.ExhumerHaunted)])) oneshot )!])) oneshot
 autoexile=@movedto(creature[counter{0/0.1.ExhumerHaunted}]|graveyard) from(battlefield) once:name(Return creature to hand) moveto(myhand) target(creature|mygraveyard)
 text=Haunt (When this creature dies, exile it haunting target creature.) -- When Exhumer Thrull enters the battlefield or the creature it haunts dies, return target creature card from your graveyard to your hand.
 mana={5}{B}
@@ -20345,7 +20345,7 @@ type=Instant
 [card]
 name=Eyetwitch
 abilities=flying
-auto=@movedto(this|graveyard) from(mybattlefield):name(Learn) transforms((,newability[if type(*[lesson]|mysideboard)~morethan~0 then choice name(Put lesson in hand) name(Put lesson in hand) target(*[lesson]|mysideboard) moveto(myhand)],newability[if type(*|myhand)~morethan~0 then choice name(Discard and draw) name(Discard and draw) target(*|myhand) reject and!(draw:1)!],newability[if type(Retriever Phoenix|mygraveyard)~morethan~0 then choice name(Return a Retriever Phoenix) name(Return a Retriever Phoenix) target(Retriever Phoenix|mygraveyard) moveto(myBattlefield)],newability[choice name(Don't learn) donothing])) oneshot
+auto=_DIES_name(Learn) transforms((,newability[if type(*[lesson]|mysideboard)~morethan~0 then choice name(Put lesson in hand) name(Put lesson in hand) target(*[lesson]|mysideboard) moveto(myhand)],newability[if type(*|myhand)~morethan~0 then choice name(Discard and draw) name(Discard and draw) target(*|myhand) reject and!(draw:1)!],newability[if type(Retriever Phoenix|mygraveyard)~morethan~0 then choice name(Return a Retriever Phoenix) name(Return a Retriever Phoenix) target(Retriever Phoenix|mygraveyard) moveto(myBattlefield)],newability[choice name(Don't learn) donothing])) oneshot
 text=Flying -- When Eyetwitch dies, learn. (You may reveal a Lesson card you own from outside the game and put it into your hand, or discard a card to draw a card.)
 mana={B}
 type=Creature
@@ -23777,7 +23777,7 @@ name=Gallia of the Endless Dance
 abilities=haste
 auto=lord(other creature[Satyr]|myBattlefield) 1/1
 auto=lord(other creature[Satyr]|myBattlefield) haste
-auto=@each blockers restriction{type(creature[attacking]|myBattlefield)~morethan~2}:reject controller && draw:2 controller
+auto=@each blockers restriction{type(creature[attacking]|myBattlefield)~morethan~2}:discard:1 controller oneshot && draw:2 controller
 text=Haste -- Other Satyrs you control get +1/+1 and have haste. -- Whenever you attack with three or more creatures, you may discard a card at random. If you do, draw two cards.
 mana={R}{G}
 type=Legendary Creature
@@ -26011,7 +26011,7 @@ type=Instant
 name=God-Eternal Bontu
 abilities=menace
 auto=may name(Sacrifice permanents) target(<anyamount>other *|mybattlefield) sacrifice && draw:1 controller
-auto=@movedto(this|graveyard) from(myBattlefield):may name(Move back to hand) target(God-Eternal Bontu[fresh]|graveyard) placefromthetop(3)
+auto=_DIES_may name(Move back to hand) target(God-Eternal Bontu[fresh]|graveyard) placefromthetop(3)
 auto=@movedto(this|exile) from(myBattlefield):may name(Move back to hand) target(God-Eternal Bontu[fresh]|exile) placefromthetop(3)
 text=Menace -- When God-Eternal Bontu enters the battlefield, sacrifice any number of other permanents, then draw that many cards. -- When God-Eternal Bontu dies or is put into exile from the battlefield, you may put it into its owner's library third from the top.
 mana={3}{B}{B}
@@ -26023,7 +26023,7 @@ toughness=6
 [card]
 name=God-Eternal Kefnet
 abilities=flying
-auto=@movedto(this|graveyard) from(myBattlefield):may name(Move back to hand) target(God-Eternal Kefnet[fresh]|graveyard) placefromthetop(3)
+auto=_DIES_may name(Move back to hand) target(God-Eternal Kefnet[fresh]|graveyard) placefromthetop(3)
 auto=@movedto(this|exile) from(myBattlefield):may name(Move back to hand) target(God-Eternal Kefnet[fresh]|exile) placefromthetop(3)
 auto=@drawof(player) turnlimited:may activate castcard(copied noevent) target(*[sorcery;instant;fresh]|myhand) limit:1
 text=Flying -- You may reveal the first card you draw each turn as you draw it. Whenever you reveal an instant or sorcery card this way, copy that card and you may cast the copy. That copy costs {2} less to cast. -- When God-Eternal Kefnet dies or is put into exile from the battlefield, you may put it into its owner's library third from the top.
@@ -26037,7 +26037,7 @@ toughness=5
 name=God-Eternal Oketra
 abilities=double strike
 auto=@movedTo(creature|mystack):create(zombie warrior:creature zombie warrior:4/4:black:vigilance)
-auto=@movedto(this|graveyard) from(myBattlefield):may name(Move back to hand) target(God-Eternal Oketra[fresh]|graveyard) placefromthetop(3)
+auto=_DIES_may name(Move back to hand) target(God-Eternal Oketra[fresh]|graveyard) placefromthetop(3)
 auto=@movedto(this|exile) from(myBattlefield):may name(Move back to hand) target(God-Eternal Oketra[fresh]|exile) placefromthetop(3)
 text=Double strike -- Whenever you cast a creature spell, create a 4/4 black Zombie Warrior creature token with vigilance. -- When God-Eternal Oketra dies or is put into exile from the battlefield, you may put it into its owner's library third from the top.
 mana={3}{W}{W}
@@ -26051,7 +26051,7 @@ name=God-Eternal Rhonas
 abilities=deathtouch
 auto=all(other creature|myBattlefield) dynamicability<!mytgt powerpumppow!> ueot
 auto=all(other creature|myBattlefield) vigilance ueot
-auto=@movedto(this|graveyard) from(myBattlefield):may name(Move back to hand) target(God-Eternal Rhonas[fresh]|graveyard) placefromthetop(3)
+auto=_DIES_may name(Move back to hand) target(God-Eternal Rhonas[fresh]|graveyard) placefromthetop(3)
 auto=@movedto(this|exile) from(myBattlefield):may name(Move back to hand) target(God-Eternal Rhonas[fresh]|exile) placefromthetop(3)
 text=Deathtouch -- When God-Eternal Rhonas enters the battlefield, double the power of each other creature you control until end of turn. Those creatures gain vigilance until end of turn. -- When God-Eternal Rhonas dies or is put into exile from the battlefield, you may put it into its owner's library third from the top.
 mana={3}{G}{G}
@@ -29436,7 +29436,7 @@ toughness=1
 [card]
 name=Hofri Ghostforge
 auto=lord(spirit) transforms((,newability[1/1],newability[trample],newability[haste]))
-auto=@movedto(creature[-token]|graveyard) from(mybattlefield):name(Exile and copy) transforms((,newability[all(creature[-token;fresh:zpos=type:*:mygraveyard]|mygraveyard) moveto(exile) and!( clone and!( transforms((Spirit,newability[@movedto(this|graveyard) from(mybattlefield):name(Return exiled creature) target(creature[!share!name!]|myexile) moveto(mygraveyard)])) forever )! )!])) forever
+auto=@movedto(creature[-token]|graveyard) from(mybattlefield):name(Exile and copy) transforms((,newability[all(creature[-token;fresh:zpos=type:*:mygraveyard]|mygraveyard) moveto(exile) and!( clone and!( transforms((Spirit,newability[_DIES_name(Return exiled creature) target(creature[!share!name!]|myexile) moveto(mygraveyard)])) forever )! )!])) forever
 text=Spirits you control get +1/+1 and have trample and haste. -- Whenever another nontoken creature you control dies, exile it. If you do, create a token that's a copy of that creature, except it's a Spirit in addition to its other types and it has "When this creature leaves the battlefield, return the exiled card to your graveyard."
 mana={3}{R}{W}
 type=Legendary Creature
@@ -30569,7 +30569,7 @@ toughness=7
 name=Ilharg, the Raze-Boar
 abilities=trample
 auto=@combat(attacking) source(this):target(creature|myhand) transforms((,newability[phaseaction[endofturn once] moveTo(hand)],newability[ninjutsu])) forever
-auto=@movedto(this|graveyard) from(myBattlefield):may name(Move back to hand) target(Ilharg^ the Raze-Boar[fresh]|graveyard) placefromthetop(3)
+auto=_DIES_may name(Move back to hand) target(Ilharg^ the Raze-Boar[fresh]|graveyard) placefromthetop(3)
 auto=@movedto(this|exile) from(myBattlefield):may name(Move back to hand) target(Ilharg^ the Raze-Boar[fresh]|exile) placefromthetop(3)
 text=Trample -- Whenever Ilharg, the Raze-Boar attacks, you may put a creature card from your hand onto the battlefield tapped and attacking. Return that creature to your hand at the beginning of the next end step. -- When Ilharg, the Raze-Boar dies or is put into exile from the battlefield, you may put it into its owner's library third from the top.
 mana={3}{R}{R}
@@ -31571,7 +31571,7 @@ name=Inga Rune-Eyes
 aicode=activate transforms((,newability[all(*[zpos<=3]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:3 scrycore delayed dontshow donothing scrycoreend scryend
 auto=@movedto(creature|graveyard) from(battlefield):counter(0/0,1,IngaEffect)
-auto=@movedto(this|graveyard) from(mybattlefield):this(counter{0/0.1.IngaEffect}>=3) draw:3 controller
+auto=_DIES_this(counter{0/0.1.IngaEffect}>=3) draw:3 controller
 auto=@each endofturn:this(counter{0/0.1.IngaEffect}>=1) removeallcounters(0/0,1,IngaEffect)
 text=When Inga Rune-Eyes enters the battlefield, scry 3. -- When Inga Rune-Eyes dies, draw three cards if three or more creatures died this turn.
 mana={3}{U}
@@ -32501,7 +32501,7 @@ toughness=3
 name=Izzet Charm
 auto=choice target(*[-creature]|stack) transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
 auto=choice target(creature) damage:2
-auto=choice draw:2 controller then reject:2 target(*|myhand)
+auto=choice draw:2 controller && transforms((,newability[target(<2>*|myhand) reject])) oneshot
 text=Choose one — • Counter target noncreature spell unless its controller pays {2}. • Izzet Charm deals 2 damage to target creature. • Draw two cards, then discard two cards.
 mana={U}{R}
 type=Instant
@@ -34596,8 +34596,9 @@ name=Klothys, God of Destiny
 abilities=indestructible
 auto=this(variable{gruul}<7) transforms((removetypes,newability[becomes(Legendary Enchantment God)]))
 auto=this(variable{gruul}>6) transforms((Legendary Enchantment Creature))
-auto=@each my combatbegins:moveTo(exile) target(*|myGraveyard):life:2 controller && damage:2 target(opponent)
-auto=@each my combatbegins:moveTo(exile) target(*[Land]|myGraveyard):Add{R} else Add{G}
+#auto=@each my combatbegins:moveTo(exile) target(*|myGraveyard):life:2 controller && damage:2 target(opponent)
+auto=@each my combatbegins:choice moveTo(exile) target(*[Land]|myGraveyard) and!(Add{R})!
+auto=@each my combatbegins:choice moveTo(exile) target(*[Land]|myGraveyard) and!(Add{G})!
 text=Indestructible -- As long as your devotion to red and green is less than seven, Klothys isn't a creature. -- At the beginning of your precombat main phase, exile target card from a graveyard. If it was a land card, add {R} or {G}. Otherwise, you gain 2 life and Klothys deals 2 damage to each opponent.
 mana={1}{R}{G}
 type=Legendary Enchantment Creature
@@ -35405,7 +35406,7 @@ toughness=3
 name=Kykar, Wind's Fury
 abilities=flying
 auto=@movedTo(*[-creature]|mystack):create(Spirit:creature Spirit:1/1:white:flying)
-auto=[S(Spirit|myBattlefield)}:add{R}
+auto={S(Spirit|myBattlefield)}:add{R}
 text=Flying -- Whenever you cast a noncreature spell, create a 1/1 white Spirit creature token with flying. -- Sacrifice a Spirit: Add {R}.
 mana={1}{U}{R}{W}
 type=Legendary Creature
@@ -38170,7 +38171,7 @@ toughness=*
 [card]
 name=Make Your Mark
 target=creature
-auto=transforms((,newability[1/0],newability[@movedto(this|graveyard) from(mybattlefield):name(Create spirit) token(Spirit^Creature Spirit^3/2^red^white)])) ueot
+auto=transforms((,newability[1/0],newability[_DIES_name(Create spirit) token(Spirit^Creature Spirit^3/2^red^white)])) ueot
 text=Target creature gets +1/+0 until end of turn. When that creature dies this turn, create a 3/2 red and white Spirit creature token.
 mana={RW}
 type=Instant
@@ -40056,7 +40057,7 @@ toughness=4
 [/card]
 [card]
 name=Miscast
-target=*[instant,sorcery]|stack
+target=instant,sorcery|stack
 auto=transforms((,newability[pay [[{3}]] name(pay 3 mana) donothing?fizzle])) oneshot
 text=Counter target instant or sorcery spell unless its controller pays 3 .
 mana={U}
@@ -41134,7 +41135,7 @@ type=Instant
 [card]
 name=Mystic Sanctuary
 auto=aslongas(other land[island]|myBattlefield) tap(noevent) <3 oneshot
-auto=aslongas(other land[island]|myBattlefield) >2 may moveTo(myLibrary) target(instant,sorcery|mygraveyard) once 
+auto=aslongas(other land[island]|myBattlefield) >2 may  moveTo(myLibrary) target(instant,sorcery|mygraveyard) once 
 text={T}: Add {U}. -- Mystic Sanctuary enters the battlefield tapped unless you control three or more other Islands. -- When Mystic Sanctuary enters the battlefield untapped, you may put target instant or sorcery card from your graveyard on top of your library.
 type=Land
 subtype=Island
@@ -42818,11 +42819,11 @@ type=Sorcery
 [card]
 name=Nylea, Keen-Eyed
 abilities=indestructible
-aicode=activate transforms((,newability[if type(creature[zpos=1]|mylibrary)~morethan~0 then target(creature[zpos=1]|mylibrary) moveto(ownerbattlefield) else target(*[zpos=1]|mylibrary) moveto(mygraveyard)])) ueot
+aicode=activate transforms((,newability[if type(creature[zpos=1]|mylibrary)~morethan~0 then target(creature[zpos=1]|mylibrary) moveto(myhand) else target(*[zpos=1]|mylibrary) moveto(mygraveyard)])) ueot
 auto=this(variable{type:manag}<5) transforms((removetypes,newability[becomes(Legendary Enchantment God)]))
 auto=this(variable{type:manag}>4) transforms((Legendary Enchantment Creature))
 auto=lord(creature|mycastingzone) altercost( colorless,-1)
-auto={2}{G}:reveal:1 optionone target(creature|reveal) moveto(mybattlefield) optiononeend optiontwo name(Put in grave) target(<1>*|reveal) moveto(mygraveyard) optiontwoend revealend
+auto={2}{G}:reveal:1 optionone target(creature|reveal) moveto(myhand) optiononeend optiontwo name(Put in grave) target(<1>*|reveal) moveto(mygraveyard) optiontwoend revealend
 text=Indestructible -- As long as your devotion to green is less than five, Nylea isn’t a creature. -- Creature spells you cast cost {1} less to cast. -- {2}{G}: Reveal the top card of your library. If it’s a creature card, put it into your hand. Otherwise, you may put it into your graveyard.
 mana={3}{G}
 type=Legendary Enchantment Creature
@@ -44998,7 +44999,7 @@ type=Sorcery
 [card]
 name=Pashalik Mons
 auto=@movedto(other creature[goblin]|graveyard) from(mybattlefield):damage:1 target(creature,player)
-auto=@movedto(this|graveyard) from(mybattlefield):damage:1 target(player,creature,planeswalker)
+auto=_DIES_damage:1 target(player,creature,planeswalker)
 auto={3}{R}{S(creature[goblin]|myBattlefield)}:token(Goblin,Creature Goblin,1/1,red)*2
 text=Whenever Pashalik Mons or another Goblin you control dies, Pashalik Mons deals 1 damage to any target. -- {3}{R}, Sacrifice a Goblin: Create two 1/1 red Goblin creature tokens.
 mana={2}{R}
@@ -46354,7 +46355,7 @@ type=Artifact
 [/card]
 [card]
 name=Portal of Sanctuary
-target=creature|battlefield
+target=creature|myBattlefield
 auto={1}{T}:transforms((,newability[moveto(ownerhand) all(mychild)],newability[moveto(ownerhand)])) myturnonly
 text={1}, {T}: Return target creature you control and each Aura attached to it to their owners' hands. Activate this ability only during your turn.
 mana={2}{U}
@@ -49950,7 +49951,7 @@ abilities=flying
 auto=if type(creature|mygraveyard)~morethan~0 then choice name(Don't exile any creature) name(Don't exile any creature) donothing
 auto=if type(creature[-angel;-warrior]|mygraveyard)~morethan~0 then choice name(Exile non-angel and non-warrior) name(Exile non-angel and non-warrior) target(creature[-angel;-warrior]|mygraveyard) moveTo(Exile) and!( transforms((,newability[all(*[creature;share!types!]|mybattlefield) counter(1/1)])) oneshot )!
 auto=if type(creature[angel;warrior]|mygraveyard)~morethan~0 then choice name(Exile angel or warrior) name(Exile angel or warrior) target(creature[angel;warrior]|mygraveyard) moveTo(Exile) and!( transforms((,newability[all(*[creature;share!types!]|mybattlefield) counter(1/1)],newability[all(Resplendent Marshal|mybattlefield) counter(1/1.-1)])) oneshot )!
-auto=@movedto(this|graveyard) from(mybattlefield):may name(Exile another creature) target(other creature|mygraveyard) moveTo(Exile) and!( transforms((,newability[all(*[creature;share!types!]|mybattlefield) counter(1/1)])) oneshot )!
+auto=_DIES_may name(Exile another creature) target(other creature|mygraveyard) moveTo(Exile) and!( transforms((,newability[all(*[creature;share!types!]|mybattlefield) counter(1/1)])) oneshot )!
 text=Flying -- When Resplendent Marshal enters the battlefield or dies, you may exile another creature card from your graveyard. When you do, put a +1/+1 counter on each creature you control other than Resplendent Marshal that shares a creature type with the exiled card.
 mana={1}{W}{W}
 type=Creature
@@ -50026,7 +50027,7 @@ type=Sorcery
 [card]
 name=Retributive Wand
 auto={3}{T}:damage 1 target(player,creature,planeswalker)
-auto=@movedto(this|graveyard) from(mybattlefield):damage 5 target(player,creature,planeswalker)
+auto=_DIES_damage 5 target(player,creature,planeswalker)
 text={3}, {T}: Retributive Wand deals 1 damage to any target. -- When Retributive Wand is put into a graveyard from the battlefield, it deals 5 damage to any target.
 mana={3}
 type=Artifact
@@ -52031,28 +52032,28 @@ toughness=2
 [/card]
 [card]
 name=Rushed Rebirth
-auto=if type(creature|mybattlefield)~morethan~0 then choice name(Choose your creature) name(Choose your creature) target(creature|mybattlefield) transforms((,newability[@movedto(this|graveyard) from(mybattlefield):name(Search creature) target(creature[manacost<=manacostminus1minusend]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )!])) ueot
-auto=if type(creature[manacost=0]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 0) name(Choose opponent creature with manacost 0) target(creature[manacost=0]|opponentbattlefield) transforms((,newability[@movedto(this|graveyard) from(mybattlefield):donothing])) ueot
-auto=if type(creature[manacost=1]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 1) name(Choose opponent creature with manacost 1) target(creature[manacost=1]|opponentbattlefield) transforms((,newability[@movedto(this|graveyard) from(mybattlefield):ability$!name(Search creature) name(Search creature) target(creature[manacost<=0]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
-auto=if type(creature[manacost=2]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 2) name(Choose opponent creature with manacost 2) target(creature[manacost=2]|opponentbattlefield) transforms((,newability[@movedto(this|graveyard) from(mybattlefield):ability$!name(Search creature) name(Search creature) target(creature[manacost<=1]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
-auto=if type(creature[manacost=3]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 3) name(Choose opponent creature with manacost 3) target(creature[manacost=3]|opponentbattlefield) transforms((,newability[@movedto(this|graveyard) from(mybattlefield):ability$!name(Search creature) name(Search creature) target(creature[manacost<=2]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
-auto=if type(creature[manacost=4]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 4) name(Choose opponent creature with manacost 4) target(creature[manacost=4]|opponentbattlefield) transforms((,newability[@movedto(this|graveyard) from(mybattlefield):ability$!name(Search creature) name(Search creature) target(creature[manacost<=3]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
-auto=if type(creature[manacost=5]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 5) name(Choose opponent creature with manacost 5) target(creature[manacost=5]|opponentbattlefield) transforms((,newability[@movedto(this|graveyard) from(mybattlefield):ability$!name(Search creature) name(Search creature) target(creature[manacost<=4]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
-auto=if type(creature[manacost=6]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 6) name(Choose opponent creature with manacost 6) target(creature[manacost=6]|opponentbattlefield) transforms((,newability[@movedto(this|graveyard) from(mybattlefield):ability$!name(Search creature) name(Search creature) target(creature[manacost<=5]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
-auto=if type(creature[manacost=7]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 7) name(Choose opponent creature with manacost 7) target(creature[manacost=7]|opponentbattlefield) transforms((,newability[@movedto(this|graveyard) from(mybattlefield):ability$!name(Search creature) name(Search creature) target(creature[manacost<=6]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
-auto=if type(creature[manacost=8]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 8) name(Choose opponent creature with manacost 8) target(creature[manacost=8]|opponentbattlefield) transforms((,newability[@movedto(this|graveyard) from(mybattlefield):ability$!name(Search creature) name(Search creature) target(creature[manacost<=7]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
-auto=if type(creature[manacost=9]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 9) name(Choose opponent creature with manacost 9) target(creature[manacost=9]|opponentbattlefield) transforms((,newability[@movedto(this|graveyard) from(mybattlefield):ability$!name(Search creature) name(Search creature) target(creature[manacost<=8]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
-auto=if type(creature[manacost=10]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 10) name(Choose opponent creature with manacost 10) target(creature[manacost=10]|opponentbattlefield) transforms((,newability[@movedto(this|graveyard) from(mybattlefield):ability$!name(Search creature) name(Search creature) target(creature[manacost<=9]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
-auto=if type(creature[manacost=11]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 11) name(Choose opponent creature with manacost 11) target(creature[manacost=11]|opponentbattlefield) transforms((,newability[@movedto(this|graveyard) from(mybattlefield):ability$!name(Search creature) name(Search creature) target(creature[manacost<=10]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
-auto=if type(creature[manacost=12]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 12) name(Choose opponent creature with manacost 12) target(creature[manacost=12]|opponentbattlefield) transforms((,newability[@movedto(this|graveyard) from(mybattlefield):ability$!name(Search creature) name(Search creature) target(creature[manacost<=11]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
-auto=if type(creature[manacost=13]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 13) name(Choose opponent creature with manacost 13) target(creature[manacost=13]|opponentbattlefield) transforms((,newability[@movedto(this|graveyard) from(mybattlefield):ability$!name(Search creature) name(Search creature) target(creature[manacost<=12]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
-auto=if type(creature[manacost=14]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 14) name(Choose opponent creature with manacost 14) target(creature[manacost=14]|opponentbattlefield) transforms((,newability[@movedto(this|graveyard) from(mybattlefield):ability$!name(Search creature) name(Search creature) target(creature[manacost<=13]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
-auto=if type(creature[manacost=15]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 15) name(Choose opponent creature with manacost 15) target(creature[manacost=15]|opponentbattlefield) transforms((,newability[@movedto(this|graveyard) from(mybattlefield):ability$!name(Search creature) name(Search creature) target(creature[manacost<=14]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
-auto=if type(creature[manacost=16]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 16) name(Choose opponent creature with manacost 16) target(creature[manacost=16]|opponentbattlefield) transforms((,newability[@movedto(this|graveyard) from(mybattlefield):ability$!name(Search creature) name(Search creature) target(creature[manacost<=15]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
-auto=if type(creature[manacost=17]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 17) name(Choose opponent creature with manacost 17) target(creature[manacost=17]|opponentbattlefield) transforms((,newability[@movedto(this|graveyard) from(mybattlefield):ability$!name(Search creature) name(Search creature) target(creature[manacost<=16]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
-auto=if type(creature[manacost=18]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 18) name(Choose opponent creature with manacost 18) target(creature[manacost=18]|opponentbattlefield) transforms((,newability[@movedto(this|graveyard) from(mybattlefield):ability$!name(Search creature) name(Search creature) target(creature[manacost<=17]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
-auto=if type(creature[manacost=19]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 19) name(Choose opponent creature with manacost 19) target(creature[manacost=19]|opponentbattlefield) transforms((,newability[@movedto(this|graveyard) from(mybattlefield):ability$!name(Search creature) name(Search creature) target(creature[manacost<=18]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
-auto=if type(creature[manacost>=20]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 20) name(Choose opponent creature with manacost 20) target(creature[manacost>=20]|opponentbattlefield) transforms((,newability[@movedto(this|graveyard) from(mybattlefield):ability$!name(Search creature) name(Search creature) target(creature[manacost<=19]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
+auto=if type(creature|mybattlefield)~morethan~0 then choice name(Choose your creature) name(Choose your creature) target(creature|mybattlefield) transforms((,newability[_DIES_name(Search creature) target(creature[manacost<=manacostminus1minusend]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )!])) ueot
+auto=if type(creature[manacost=0]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 0) name(Choose opponent creature with manacost 0) target(creature[manacost=0]|opponentbattlefield) transforms((,newability[_DIES_donothing])) ueot
+auto=if type(creature[manacost=1]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 1) name(Choose opponent creature with manacost 1) target(creature[manacost=1]|opponentbattlefield) transforms((,newability[_DIES_ability$!name(Search creature) name(Search creature) target(creature[manacost<=0]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
+auto=if type(creature[manacost=2]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 2) name(Choose opponent creature with manacost 2) target(creature[manacost=2]|opponentbattlefield) transforms((,newability[_DIES_ability$!name(Search creature) name(Search creature) target(creature[manacost<=1]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
+auto=if type(creature[manacost=3]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 3) name(Choose opponent creature with manacost 3) target(creature[manacost=3]|opponentbattlefield) transforms((,newability[_DIES_ability$!name(Search creature) name(Search creature) target(creature[manacost<=2]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
+auto=if type(creature[manacost=4]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 4) name(Choose opponent creature with manacost 4) target(creature[manacost=4]|opponentbattlefield) transforms((,newability[_DIES_ability$!name(Search creature) name(Search creature) target(creature[manacost<=3]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
+auto=if type(creature[manacost=5]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 5) name(Choose opponent creature with manacost 5) target(creature[manacost=5]|opponentbattlefield) transforms((,newability[_DIES_ability$!name(Search creature) name(Search creature) target(creature[manacost<=4]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
+auto=if type(creature[manacost=6]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 6) name(Choose opponent creature with manacost 6) target(creature[manacost=6]|opponentbattlefield) transforms((,newability[_DIES_ability$!name(Search creature) name(Search creature) target(creature[manacost<=5]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
+auto=if type(creature[manacost=7]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 7) name(Choose opponent creature with manacost 7) target(creature[manacost=7]|opponentbattlefield) transforms((,newability[_DIES_ability$!name(Search creature) name(Search creature) target(creature[manacost<=6]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
+auto=if type(creature[manacost=8]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 8) name(Choose opponent creature with manacost 8) target(creature[manacost=8]|opponentbattlefield) transforms((,newability[_DIES_ability$!name(Search creature) name(Search creature) target(creature[manacost<=7]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
+auto=if type(creature[manacost=9]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 9) name(Choose opponent creature with manacost 9) target(creature[manacost=9]|opponentbattlefield) transforms((,newability[_DIES_ability$!name(Search creature) name(Search creature) target(creature[manacost<=8]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
+auto=if type(creature[manacost=10]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 10) name(Choose opponent creature with manacost 10) target(creature[manacost=10]|opponentbattlefield) transforms((,newability[_DIES_ability$!name(Search creature) name(Search creature) target(creature[manacost<=9]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
+auto=if type(creature[manacost=11]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 11) name(Choose opponent creature with manacost 11) target(creature[manacost=11]|opponentbattlefield) transforms((,newability[_DIES_ability$!name(Search creature) name(Search creature) target(creature[manacost<=10]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
+auto=if type(creature[manacost=12]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 12) name(Choose opponent creature with manacost 12) target(creature[manacost=12]|opponentbattlefield) transforms((,newability[_DIES_ability$!name(Search creature) name(Search creature) target(creature[manacost<=11]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
+auto=if type(creature[manacost=13]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 13) name(Choose opponent creature with manacost 13) target(creature[manacost=13]|opponentbattlefield) transforms((,newability[_DIES_ability$!name(Search creature) name(Search creature) target(creature[manacost<=12]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
+auto=if type(creature[manacost=14]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 14) name(Choose opponent creature with manacost 14) target(creature[manacost=14]|opponentbattlefield) transforms((,newability[_DIES_ability$!name(Search creature) name(Search creature) target(creature[manacost<=13]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
+auto=if type(creature[manacost=15]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 15) name(Choose opponent creature with manacost 15) target(creature[manacost=15]|opponentbattlefield) transforms((,newability[_DIES_ability$!name(Search creature) name(Search creature) target(creature[manacost<=14]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
+auto=if type(creature[manacost=16]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 16) name(Choose opponent creature with manacost 16) target(creature[manacost=16]|opponentbattlefield) transforms((,newability[_DIES_ability$!name(Search creature) name(Search creature) target(creature[manacost<=15]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
+auto=if type(creature[manacost=17]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 17) name(Choose opponent creature with manacost 17) target(creature[manacost=17]|opponentbattlefield) transforms((,newability[_DIES_ability$!name(Search creature) name(Search creature) target(creature[manacost<=16]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
+auto=if type(creature[manacost=18]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 18) name(Choose opponent creature with manacost 18) target(creature[manacost=18]|opponentbattlefield) transforms((,newability[_DIES_ability$!name(Search creature) name(Search creature) target(creature[manacost<=17]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
+auto=if type(creature[manacost=19]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 19) name(Choose opponent creature with manacost 19) target(creature[manacost=19]|opponentbattlefield) transforms((,newability[_DIES_ability$!name(Search creature) name(Search creature) target(creature[manacost<=18]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
+auto=if type(creature[manacost>=20]|opponentbattlefield)~morethan~0 then choice name(Choose opponent creature with manacost 20) name(Choose opponent creature with manacost 20) target(creature[manacost>=20]|opponentbattlefield) transforms((,newability[_DIES_ability$!name(Search creature) name(Search creature) target(creature[manacost<=19]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )! !$ opponent])) ueot
 text=Choose target creature. When that creature dies this turn, search your library for a creature card with lesser mana value, put it onto the battlefield tapped, then shuffle.
 mana={B}{G}
 type=Instant
@@ -52371,7 +52372,7 @@ name=Said // Done
 ability=flash
 other={3}{U} name(Done)
 restriction=can play sorcery
-auto=ifnot paid(alternative) then target(*[instant;sorcery]|mygraveyard) moveto(myHand)
+auto=ifnot paid(alternative) then target(other *[instant;sorcery]|mygraveyard) moveto(myHand)
 auto=if paid(alternative) then target(<upto:2>creature|battlefield) freeze
 text=Return target instant or sorcery card from your graveyard to your hand. -- Tap up to two target creatures. They don’t untap during their controllers’ next untap step.
 mana={2}{U}
@@ -55133,10 +55134,10 @@ type=Sorcery
 [/card]
 [card]
 name=Shatter the Sky
-auto=foreach(creature[power>=4]|mybattlefield) draw:1 opponent && destroy all(creature)
-auto=foreach(creature[power>=4]|mybattlefield) draw:1 controller && destroy all(creature)
+auto=aslongas(creature[power>=4]|opponentBattlefield) draw:1 opponent && aslongas(creature[power>=4]|mybattlefield) draw:1 controller
+auto=destroy all(creature)
 text=Each player who controls a creature with power 4 or greater draws a card. Then destroy all creatures.
-mana={2}{G}{G}
+mana={2}{W}{W}
 type=Sorcery
 [/card]
 [card]
@@ -60418,7 +60419,7 @@ subtype=Equipment
 [card]
 name=Stitcher's Supplier
 auto=deplete:3
-autograveyard=@movedTo(this|graveyard) from(mybattlefield):deplete:3
+autograveyard=_DIES_deplete:3
 text=When Stitcher's Supplier enters the battlefield or dies, put the top three cards of your library into your graveyard.
 mana={B}
 type=Creature
@@ -63572,7 +63573,7 @@ auto=counter(0/0,1,Lore)
 auto=@each my firstmain:counter(0/0,1,Lore)
 auto=deplete:3 opponent
 auto=deplete:3 controller
-auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) ability$!name(Choose one) choice name(Don't exile any card) donothing _ choice name(Exile 1 card) moveto(myexile) target(<1>*|graveyard) && life:1 controller _ choice name(Exile 2 cards) moveto(myexile) target(<2>*|graveyard) && life:2 controller!$ controller
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) ability$!name(Choose one) choice name(Don't exile any card) donothing _ choice name(Exile 1 card) moveto(exile) target(<1>*|graveyard) && life:1 controller _ choice name(Exile 2 cards) moveto(exile) target(<2>*|graveyard) && life:2 controller!$ controller
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) moveto(myhand) target(*[land;creature]|mygraveyard)
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) sacrifice(this)
 text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I — Each player puts the top three cards of their library into their graveyard. -- II — Exile up to two target cards from graveyards. For each creature card exiled this way, you gain 1 life. -- III — Return target creature or land card from your graveyard to your hand.
@@ -66101,7 +66102,7 @@ type=Instant
 [/card]
 [card]
 name=Trial of Ambition
-auto=ability$!name(Sacrifice a creature) name(Sacrifice a creature) notatarget(creature|mybattlefield) sacrifice!$ opponent
+auto=ability$!name(Sacrifice a creature) notatarget(creature|mybattlefield) sacrifice!$ opponent
 auto=@movedto(cartouche|mybattlefield):moveto(myhand)
 text=When Trial of Ambition enters the battlefield, target opponent sacrifices a creature. -- When a Cartouche enters the battlefield under your control, return Trial of Ambition to its owner's hand.
 mana={1}{B}
@@ -66171,9 +66172,9 @@ type=Artifact
 [card]
 name=Triplicate Titan
 abilities=flying,vigilance,trample
-auto=@movedto(this|graveyard) from(mybattlefield):token(Golem,Creature Artifact Golem,3/3,flying)
-auto=@movedto(this|graveyard) from(mybattlefield):token(Golem,Creature Artifact Golem,3/3,vigilance)
-auto=@movedto(this|graveyard) from(mybattlefield):token(Golem,Creature Artifact Golem,3/3,trample)
+auto=_DIES_token(Golem,Creature Artifact Golem,3/3,flying)
+auto=_DIES_token(Golem,Creature Artifact Golem,3/3,vigilance)
+auto=_DIES_token(Golem,Creature Artifact Golem,3/3,trample)
 text=Flying, vigilance, trample -- When Triplicate Titan dies, create a 3/3 colorless Golem artifact creature token with flying, a 3/3 colorless Golem artifact creature token with vigilance, and a 3/3 colorless Golem artifact creature token with trample.
 mana={9}
 type=Artifact Creature
@@ -72040,8 +72041,8 @@ toughness=0
 [card]
 name=Yosei, the Morning Star
 abilities=flying
-auto=@movedto(this|graveyard) from(mybattlefield):all(*|opponentbattlefield) frozen
-auto=@movedto(this|graveyard) from(mybattlefield):name(Tap up to 5 permanents) name(Tap up to 5 permanents) target(<upto:5>*|opponentbattlefield) tap(noevent)
+auto=_DIES_all(*|opponentbattlefield) frozen
+auto=_DIES_name(Tap up to 5 permanents) name(Tap up to 5 permanents) target(<upto:5>*|opponentbattlefield) tap(noevent)
 text=Flying -- When Yosei, the Morning Star dies, target player skips his or her next untap step. Tap up to five target permanents that player controls.
 mana={4}{W}{W}
 type=Legendary Creature
