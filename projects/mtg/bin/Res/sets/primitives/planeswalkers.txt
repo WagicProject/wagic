@@ -1622,7 +1622,7 @@ subtype=Liliana
 [card]
 name=Liliana, Defiant Necromancer
 auto=counter(0/0,3,Loyalty)
-auto={C(0/0,2,Loyalty)}:name(+2: Each Player Discard) ability$!name(discard) notatarget(*|myhand) reject!$ controller && ability$!name(discard) notatarget(*|myhand) reject!$ opponent
+auto={C(0/0,2,Loyalty)}:name(+2: Each Player Discard) transforms((,newability[ability$!name(discard) notatarget(*|myhand) reject!$ controller],newability[ability$!name(discard) notatarget(*|myhand) reject!$ opponent])) ueot
 auto={C(0/0,-0,Loyalty)}:name(-0: Reanimate nonLegendary creature with manacost 0) moveto(mybattlefield) target(creature[-legendary;manacost=0]|mygraveyard)
 auto={C(0/0,-1,Loyalty)}:name(-1: Reanimate nonLegendary creature with manacost 1) moveto(mybattlefield) target(creature[-legendary;manacost=1]|mygraveyard)
 auto={C(0/0,-2,Loyalty)}:name(-2: Reanimate nonLegendary creature with manacost 2) moveto(mybattlefield) target(creature[-legendary;manacost=2]|mygraveyard)

@@ -605,7 +605,7 @@ toughness=3
 [card]
 name=Aesi, Tyrant of Gyre Strait
 auto=maxPlay(land)+1
-auto=@movedTo(land|myBattlefield):may draw:1 controller
+auto=_LANDFALL_may draw:1 controller
 text=You may play an additional land on each of your turns. -- Whenever a land enters the battlefield under your control, you may draw a card.
 mana={4}{G}{U}
 type=Legendary Creature
@@ -4949,7 +4949,7 @@ toughness=3
 [card]
 name=Battlefield Thaumaturge
 auto=lord(instant,sorcery|myhand) altercost(colorless,-1)
-auto=@targeted(this) from(*[instant;sorcery;enchantment]|mycastingzone):opponentshroud ueot
+auto=_HEROIC_opponentshroud ueot
 text=Each instant and sorcery spell you cast costs {1} less to cast for each creature it targets. -- Heroic — Whenever you cast a spell that targets Battlefield Thaumaturge, Battlefield Thaumaturge gains hexproof until end of turn.
 mana={1}{U}
 type=Creature
@@ -9812,7 +9812,7 @@ type=Instant
 name=Chandra, Fire of Kaladesh
 auto=@movedTo(*[red]|mystack):untap all(this)
 auto=@movedto(Moonmist|stack):name(Transform Human Shaman) moveto(ownerBattlefield) && flip(Chandra, Roaring Flame)
-auto={T}:damage:1 target(player) limit^moveto(ownerBattlefield) && flip(Chandra, Roaring Flame)^3
+auto={T}:damage:1 target(player) limit^moveto(exile) and!(moveto(mybattlefield) and!(counter(0/0,4,Loyalty) && flip(Chandra, Roaring Flame) )! )!^3
 text=Whenever you cast a red spell, untap Chandra, Fire of Kaladesh. -- {T}: Chandra, Fire of Kaladesh deals 1 damage to target player. If Chandra has dealt 3 or more damage this turn, exile her, then return her to the battlefield transformed under her owner's control.
 mana={1}{R}{R}
 type=Legendary Creature
@@ -19820,7 +19820,7 @@ type=Sorcery
 [/card]
 [card]
 name=Evolution Sage
-auto=@movedTo(land|myBattlefield):_PROLIFERATE_
+auto=_LANDFALL__PROLIFERATE_
 text=Whenever a land enters the battlefield under your control, proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
 mana={2}{G}
 type=Creature
@@ -24322,7 +24322,7 @@ toughness=3
 [card]
 name=Geode Rager
 abilities=first strike
-auto=@movedto(land|myBattlefield):name(Choose one) ability$!name(Choose one) choice name(Goad opponent creatures) mustattack all(creature|opponentBattlefield) uynt _ choice name(Goad your creatures) mustattack all(creature|myBattlefield) uynt!$ controller
+auto=_LANDFALL_name(Choose one) ability$!name(Choose one) choice name(Goad opponent creatures) mustattack all(creature|opponentBattlefield) uynt _ choice name(Goad your creatures) mustattack all(creature|myBattlefield) uynt!$ controller
 text=First strike -- Landfall — Whenever a land enters the battlefield under your control, goad each creature target player controls. (Until your next turn, those creatures attack each combat if able and attack a player other than you if able.)
 mana={4}{R}{R}
 type=Creature
@@ -25473,7 +25473,7 @@ type=Instant
 [card]
 name=Gnarlback Rhino
 abilities=trample
-auto=@targeted(this) from(*[instant;sorcery;enchantment]|mycastingzone):draw:1 controller
+auto=_HEROIC_draw:1 controller
 text=Trample (This creature can deal excess combat damage to the player or planeswalker it's attacking.) -- Whenever you cast a spell that targets Gnarlback Rhino, draw a card.
 mana={2}{G}{G}
 type=Creature
@@ -29026,7 +29026,7 @@ toughness=2
 [/card]
 [card]
 name=Hero of the Games
-auto=@targeted(this) from(*[instant;sorcery;enchantment]|mycastingzone):1/0 all(creature|mybattlefield) ueot oneshot
+auto=_HEROIC_1/0 all(creature|mybattlefield) ueot oneshot
 text=Whenever you cast a spell that targets Hero of the Games, creatures you control get +1/+0 until end of turn.
 mana={2}{R}
 type=Creature
@@ -29037,7 +29037,7 @@ toughness=2
 [card]
 name=Hero of the Nyxborn
 auto=token(Soldier,Creature Human Soldier,1/1,white)
-auto=@targeted(this) from(*[instant;sorcery;enchantment]|mycastingzone):1/0 all(creature|mybattlefield) ueot oneshot
+auto=_HEROIC_1/0 all(creature|mybattlefield) ueot oneshot
 text=When Hero of the Nyxborn enters the battlefield, create a 1/1 white Human Soldier creature token. -- Whenever you cast a spell that targets Hero of the Nyxborn, creatures you control get +1/+0 until end of turn.
 mana={1}{R}{W}
 type=Enchantment Creature
@@ -29047,7 +29047,7 @@ toughness=2
 [/card]
 [card]
 name=Hero of the Pride
-auto=@targeted(this) from(*[instant;sorcery;enchantment]|mycastingzone):1/0 all(creature|mybattlefield) ueot oneshot
+auto=_HEROIC_1/0 all(creature|mybattlefield) ueot oneshot
 text=Whenever you cast a spell that targets Hero of the Pride, creatures you control get +1/+0 until end of turn.
 mana={1}{W}
 type=Creature
@@ -29058,7 +29058,7 @@ toughness=2
 [card]
 name=Hero of the Revel
 auto=token(Satyr,Creature Satyr,1/1,red,cantblock)
-auto=@targeted(this) from(*[instant;sorcery;enchantment]|mycastingzone):1/0 all(creature|mybattlefield) ueot oneshot
+auto=_HEROIC_1/0 all(creature|mybattlefield) ueot oneshot
 text=When Heroes of the Revel enters the battlefield, create a 1/1 red Satyr creature token with “This creature can’t block.” -- Whenever you cast a spell that targets Heroes of the Revel, creatures you control get +1/+0 until end of turn.
 mana={4}{R}
 type=Creature
@@ -29069,7 +29069,7 @@ toughness=4
 [card]
 name=Hero of the Winds
 abilities=flying
-auto=@targeted(this) from(*[instant;sorcery;enchantment]|mycastingzone):1/0 all(creature|mybattlefield) ueot oneshot
+auto=_HEROIC_1/0 all(creature|mybattlefield) ueot oneshot
 text=Flying -- Whenever you cast a spell that targets Hero of the Pride, creatures you control get +1/+0 until end of turn.
 mana={3}{W}
 type=Creature
@@ -32597,7 +32597,7 @@ type=Sorcery
 [/card]
 [card]
 name=Jace, Vryn's Prodigy
-auto=@movedto(Moonmist|stack):name(Transform Human Wizard) flip(Jace, Telepath Unbound
+auto=@movedto(Moonmist|stack):name(Transform Human Wizard) flip(Jace, Telepath Unbound)
 auto={T}:draw:1 controller && ability$!name(Discard a card) reject notatarget(*|myhand)!$ controller restriction{type(*|mygraveyard)~lessthan~4}
 auto={T}:draw:1 controller && ability$!name(Discard a card) reject notatarget(*|myhand)!$ controller && moveto(exile) and!( moveto(mybattlefield) and!( haste && counter(0/0,5,Loyalty) && flip(Jace^ Telepath Unbound) )! )! restriction{type(*|mygraveyard)~morethan~3}
 text={T}: Draw a card, then discard a card. If there are five or more cards in your graveyard, exile Jace, Vryn's Prodigy, then return him to the battlefield transformed under his owner's control.
@@ -35425,7 +35425,7 @@ type=Artifact
 [card]
 name=Kytheon, Hero of Akros
 auto=@movedto(Moonmist|stack):name(Transform Human Soldier) moveto(ownerBattlefield) && flip(Gideon, Battle-Forged)
-auto=@combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:moveto(ownerBattlefield) && flip(Gideon, Battle-Forged)
+auto=@combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:moveto(exile) and!( moveto(mybattlefield) and!(counter(0/0,3,Loyalty) && flip(Gideon, Battle-Forged)
 auto={2}{W}:all(this) indestructible ueot
 text=At end of combat, if Kytheon, Hero of Akros and at least two other creatures attacked this combat, exile Kytheon, then return him to the battlefield transformed under his owner's control. -- {2}{W}: Kytheon gains indestructible until end of turn.
 mana={W}
@@ -36706,7 +36706,7 @@ type=Instant
 name=Liliana, Heretical Healer
 abilities=lifelink
 auto=@movedto(Moonmist|stack):name(Transform Human Cleric) moveto(ownerBattlefield) && flip(Liliana, Defiant Necromancer)
-auto=@movedTo(other creature[-token]|graveyard) from(myBattlefield):moveto(ownerBattlefield) && flip(Liliana, Defiant Necromancer) && ability$!name(Create Zombie) token(Zombie,Creature Zombie,2/2,black)!$ controller
+auto=@movedTo(other creature[-token]|graveyard) from(myBattlefield):moveto(exile) and!( moveto(mybattlefield) and!(counter(0/0,3,Loyalty) && flip(Liliana, Defiant Necromancer) )! )! && ability$!name(Create Zombie) token(Zombie,Creature Zombie,2/2,black)!$ controller
 text=Lifelink -- Whenever another nontoken creature you control dies, exile Liliana, Heretical Healer, then return her to the battlefield transformed under her owner's control. If you do, put a 2/2 black Zombie creature token onto the battlefield.
 mana={1}{B}{B}
 type=Legendary Creature
@@ -37449,7 +37449,7 @@ toughness=5
 name=Lotus Field
 abilities=opponentshroud
 auto=tap(noevent)
-auto=aslongas(land|mybattlefield) choice target(<2>other land|mybattlefield) sacrifice oneshot >1
+auto=aslongas(land|mybattlefield) choice target(<2>land|mybattlefield) sacrifice oneshot >1
 auto={T}:Add{W}{W}{W}
 auto={T}:Add{U}{U}{U}
 auto={T}:Add{B}{B}{B}
@@ -40571,8 +40571,8 @@ type=Instant
 [card]
 name=Moraug, Fury of Akoum
 auto=@combat(attacking) source(creature|myBattlefield):1/0 ueot
-auto=@movedTo(land|myBattlefield):nextphasealter(add,combatphaseswithmain,controller,after<this>)
-auto=@movedTo(land|myBattlefield):transforms((,newability[@each my combatbegins:untap all(creature|myBattlefield)])) oneshot
+auto=_LANDFALL_nextphasealter(add,combatphaseswithmain,controller,after<this>)
+auto=_LANDFALL_transforms((,newability[@each my combatbegins:untap all(creature|myBattlefield)])) oneshot
 text=Each creature you control gets +1/+0 for each time it has attacked this turn. -- Landfall — Whenever a land enters the battlefield under your control, if it's your main phase, there's an additional combat phase after this phase. At the beginning of that combat, untap all creatures you control.
 mana={4}{R}{R}
 type=Legendary Creature
@@ -41135,7 +41135,7 @@ type=Instant
 [card]
 name=Mystic Sanctuary
 auto=aslongas(other land[island]|myBattlefield) tap(noevent) <3 oneshot
-auto=aslongas(other land[island]|myBattlefield) >2 may  moveTo(myLibrary) target(instant,sorcery|mygraveyard) once 
+auto=aslongas(other land[island]|myBattlefield) >2 may moveTo(myLibrary) target(instant,sorcery|mygraveyard) once 
 text={T}: Add {U}. -- Mystic Sanctuary enters the battlefield tapped unless you control three or more other Islands. -- When Mystic Sanctuary enters the battlefield untapped, you may put target instant or sorcery card from your graveyard on top of your library.
 type=Land
 subtype=Island
@@ -41315,7 +41315,7 @@ name=Nahiri's Lithoforming
 target=<x>land|myBattlefield
 auto=transforms((,newability[sacrifice],newability[draw:1])) ueot
 auto=maxPlay(land)+1 ueot
-auto=emblem transforms((,newability[@movedTo(land|myBattlefield):all(trigger[to]) tap(noevent)])) ueot
+auto=emblem transforms((,newability[_LANDFALL_all(trigger[to]) tap(noevent)])) ueot
 text=Sacrifice X lands. For each land sacrificed this way, draw a card. You may play X additional lands this turn. Lands you control enter the battlefield tapped this turn.
 mana={X}{R}{R}
 type=Sorcery
@@ -41890,7 +41890,7 @@ toughness=1
 [card]
 name=Nesting Dragon
 abilities=flying
-auto=@movedTo(land|myBattlefield):token(dragon egg)
+auto=_LANDFALL_token(dragon egg)
 text=Flying -- Landfall — Whenever a land enters the battlefield under your control, create a 0/2 red Dragon Egg creature token with defender and "When this creature dies, create a 2/2 red Dragon creature token with flying and '{R}: This creature gets +1/+0 until end of turn.'"
 mana={3}{R}{R}
 type=Creature
@@ -42114,7 +42114,7 @@ toughness=2
 name=Nicol Bolas, the Ravager
 abilities=flying
 auto=ability$!name(discard) reject notatarget(*|myhand)!$ opponent
-auto={4}{U}{B}{R}:moveto(ownerBattlefield) && flip(Nicol Bolas, the Arisen) asSorcery
+auto={4}{U}{B}{R}:moveto(exile) and!(moveto(mybattlefield) and!(counter(0/0,7,Loyalty) && flip(Nicol Bolas, the Arisen))! )! asSorcery
 text=Flying -- When Nicol Bolas, the Ravager enters the battlefield, each opponent discards a card. -- {4}{U}{B}{R}: Exile Nicol Bolas, the Ravager, then return him to the battlefield transformed under his owner's control. Activate this ability only any time you could cast a sorcery.
 mana={1}{U}{B}{R}
 type=Legendary Creature
@@ -42556,7 +42556,7 @@ subtype=Aura
 name=Nissa, Vastwood Seer
 aicode=activate target(forest[basic]|mylibrary) moveto(myhand)
 auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<1>forest[basic]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=@movedto(land|mybattlefield) restriction{type(land|mybattlefield)~morethan~6}:all(this) moveto(ownerBattlefield) && flip(Nissa, Sage Animist)
+auto=@movedto(land|mybattlefield) restriction{type(land|mybattlefield)~morethan~6}:all(this) moveto(exile) and!( moveto(mybattlefield) and!(counter(0/0,3,Loyalty) && flip(Nissa, Sage Animist) )! )!
 text=When Nissa, Vastwood Seer enters the battlefield, you may search your library for a basic Forest card, reveal it, put it into your hand, then shuffle your library. -- Whenever a land enters the battlefield under your control, if you control seven or more lands, exile Nissa, then return her to the battlefield transformed under her owner's control.
 mana={2}{G}
 type=Legendary Creature
@@ -42714,7 +42714,7 @@ toughness=2
 name=Null Profusion
 auto=phasealter(remove,draw,controller)
 auto=@movedTo(*[-land]|mystack):draw:1 controller
-auto=@movedTo(land|mybattlefield):draw:1 controller
+auto=_LANDFALL_draw:1 controller
 auto=hmodifer:-5 controller
 text=Skip your draw step. -- Whenever you play a card, draw a card. -- Your maximum hand size is two.
 mana={4}{B}{B}
@@ -43121,7 +43121,7 @@ auto=@each my combatbegins restriction{compare(power)~equalto~17}:may target(lan
 auto=@each my combatbegins restriction{compare(power)~equalto~18}:may target(land|mybattlefield) transforms((Elemental Creature,setpower=18,settoughness=18,trample,haste)) ueot
 auto=@each my combatbegins restriction{compare(power)~equalto~19}:may target(land|mybattlefield) transforms((Elemental Creature,setpower=19,settoughness=19,trample,haste)) ueot
 auto=@each my combatbegins restriction{compare(power)~morethan~19}:may target(land|mybattlefield) transforms((Elemental Creature,setpower=20,settoughness=20,trample,haste)) ueot
-auto=@movedto(land|myBattlefield):counter(1/1) target(creature|mybattlefield)
+auto=_LANDFALL_counter(1/1) target(creature|mybattlefield)
 text=At the beginning of combat on your turn, up to one target land you control becomes an X/X Elemental creature with trample and haste until end of turn, where X is Obuun's power. It's still a land. -- Landfall — Whenever a land enters the battlefield under your control, put a +1/+1 counter on target creature.
 mana={1}{R}{G}{W}
 type=Legendary Creature
@@ -43537,8 +43537,8 @@ toughness=1
 [card]
 name=Omnath, Locus of the Roil
 auto=damage:type:elemental:mybattlefield target(player,creature,planeswalker)
-auto=@movedTo(land|myBattlefield):counter(1/1) target(elemental|myBattlefield)
-auto=@movedTo(land|myBattlefield):if type(land|mybattlefield)~morethan~7 then draw:1 controller
+auto=_LANDFALL_counter(1/1) target(elemental|myBattlefield)
+auto=_LANDFALL_if type(land|mybattlefield)~morethan~7 then draw:1 controller
 text=When Omnath, Locus of the Roil enters the battlefield, it deals damage to any target equal to the number of Elementals you control. -- Whenever a land enters the battlefield under your control, put a +1/+1 counter on target Elemental you control. If you control eight or more lands, draw a card.
 mana={1}{G}{U}{R}
 type=Legendary Creature
@@ -52230,7 +52230,7 @@ toughness=2
 [/card]
 [card]
 name=Sage of Hours
-auto=@targeted(this) from(*[instant;sorcery;enchantment]|mycastingzone):counter(1/1)
+auto=_HEROIC_counter(1/1)
 auto={0}:this(counter{1/1.1}=5) turns:+1 controller && removeallcounters(1/1)
 auto={0}:this(counter{1/1.1}=6) turns:+1 controller && removeallcounters(1/1)
 auto={0}:this(counter{1/1.1}=7) turns:+1 controller && removeallcounters(1/1)
@@ -57035,7 +57035,7 @@ toughness=3
 [card]
 name=Skyclave Geopede
 abilities=trample
-auto=@movedTo(land|myBattlefield):2/2 ueot
+auto=_LANDFALL_2/2 ueot
 text=Trample -- Landfall — Whenever a land enters the battlefield under your control, Skyclave Geopede gets +2/+2 until end of turn.
 mana={2}{R}
 type=Creature
@@ -57046,7 +57046,7 @@ toughness=1
 [card]
 name=Skyclave Pick-Axe
 auto=aslongas(parents) name(Attach to creature) rehook target(creature|myBattlefield) <1
-auto=teach(creature) transforms((,newability[@movedTo(land|myBattlefield):2/2 ueot]))
+auto=teach(creature) transforms((,newability[_LANDFALL_2/2 ueot]))
 auto={2}{G}:equip
 text=Skyclave Pick-Axe enters the battlefield, attach it to target creature you control. -- Landfall — Whenever a land enters the battlefield under your control, equipped creature gets +2/+2 until end of turn. -- Equip {2}{G}
 mana={G}
@@ -59397,7 +59397,7 @@ type=Legendary Land
 [/card]
 [card]
 name=Spitfire Lagac
-auto=@movedTo(land|myBattlefield):damage:1 opponent
+auto=_LANDFALL_damage:1 opponent
 text=Landfall — Whenever a land enters the battlefield under your control, Spitfire Lagac deals 1 damage to each opponent.
 mana={3}{R}
 type=Creature
@@ -62699,7 +62699,7 @@ toughness=2
 [/card]
 [card]
 name=Tatyova, Benthic Druid
-auto=@movedTo(land|myBattlefield):life:1 && draw:1
+auto=_LANDFALL_life:1 && draw:1
 text=Whenever a land enters the battlefield under your control, you gain 1 life and draw a card.
 mana={3}{G}{U}
 type=Legendary Creature
@@ -63257,7 +63257,7 @@ toughness=*
 [card]
 name=Territorial Scythecat
 abilities=trample
-auto=@movedTo(land|myBattlefield):counter(1/1,1)
+auto=_LANDFALL_counter(1/1,1)
 text=Trample -- Landfall — Whenever a land enters the battlefield under your control, put a +1/+1 counter on Territorial Scythecat.
 mana={2}{G}
 type=Creature
@@ -65096,7 +65096,7 @@ toughness=2
 [/card]
 [card]
 name=Tireless Provisioner
-auto=@movedTo(land|myBattlefield):name(Create treasure) token(Treasure Sur)
+auto=_LANDFALL_name(Create treasure) token(Treasure Sur)
 text=Landfall — Whenever a land enters the battlefield under your control, create a Food token or a Treasure token. (Food is an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life." Treasure is an artifact with " {T}, Sacrifice this artifact: Add one mana of any color.")
 mana={2}{G}
 type=Creature
@@ -65252,7 +65252,7 @@ type=Enchantment
 [card]
 name=Toggo, Goblin Weaponsmith
 abilities=partner
-auto=@movedTo(land|myBattlefield):token(Rock Equipment)
+auto=_LANDFALL_token(Rock Equipment)
 text=Whenever a land enters the battlefield under your control, create a colorless Equipment artifact token named Rock with "Equipped creature has '{1}, {T}, Sacrifice Rock: This creature deals 2 damage to any target'" and equip {1}. -- Partner (You can have two commanders if both have partner.)
 mana={2}{R}
 type=Legendary Creature
@@ -66074,7 +66074,7 @@ toughness=2
 [card]
 name=Trench Behemoth
 auto={H(land|mybattlefield)}:name(Untap and gain hexproof) name(Untap and gain hexproof) transforms((,newability[untap],newability[opponentshroud])) ueot
-auto=@movedTo(land|myBattlefield):name(Target creature must attack) name(Target creature must attack) target(creature|opponentbattlefield) transforms((,newability[mustattack])) uynt
+auto=_LANDFALL_name(Target creature must attack) name(Target creature must attack) target(creature|opponentbattlefield) transforms((,newability[mustattack])) uynt
 text=Return a land you control to its owner's hand: Untap Trench Behemoth. It gains hexproof until end of turn. -- Whenever a land enters the battlefield under your control, target creature an opponent controls attacks during its controller's next combat phase if able.
 mana={5}{U}{U}
 type=Creature
@@ -66271,7 +66271,7 @@ toughness=2
 [card]
 name=Trove Warden
 abilities=vigilance
-auto=@movedto(land|myBattlefield):moveto(exile) target(*[manacost<=3]|mygraveyard)
+auto=_LANDFALL_moveto(exile) target(*[manacost<=3]|mygraveyard)
 auto=_DIES_moveto(ownerbattlefield) target(<anyamount>*[manacost<=3]|myexile)
 text=Vigilance -- Landfall — Whenever a land enters the battlefield under your control, exile target permanent card with converted mana cost 3 or less from your graveyard. -- When Trove Warden dies, put each permanent card exiled with it onto the battlefield under the control of that card's owner.
 mana={2}{W}{W}
@@ -67771,7 +67771,7 @@ type=Instant
 [/card]
 [card]
 name=Valakut Exploration
-auto=@movedTo(land|myBattlefield):all(*[zpos=1]|myLibrary) moveTo(exile) and!( transforms((,canplayfromexile)) ueot )!
+auto=_LANDFALL_all(*[zpos=1]|myLibrary) moveTo(exile) and!( transforms((,canplayfromexile)) ueot )!
 auto=@each my endofturn restriction{type(*[fresh]|myExile)~morethan~0}:count(type:*[fresh]:myExile) && moveTo(myGraveyard) all(*[fresh]|myExile) && damage:countedamount opponent
 text=Landfall — Whenever a land enters the battlefield under your control, exile the top card of your library. You may play that card for as long as it remains exiled. -- At the beginning of your end step, if there are cards exiled with Valakut Exploration, put them into their owner's graveyard, then Valakut Exploration deals that much damage to each opponent.
 mana={2}{R}

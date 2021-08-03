@@ -77,7 +77,7 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 #AUTO_DEFINE _MONSTROSITY_($cost) name(Monstrosity) this(cantargetcard(*[-monstrous]) {$cost}:becomes(monstrous) forever && counter(1/1,$c)
 
 # Heroic
-#AUTO_DEFINE _HEROIC_ @targeted(this) from(*[instant;sorcery;enchantment;aura]|myCastingzone):
+#AUTO_DEFINE _HEROIC_ @targeted(this) from(*[instant;sorcery;aura]|myCastingzone):
 
 # Outlast
 #AUTO_DEFINE _OUTLAST_($cost) {$cost}{$cost}:counter(1/1,1) all(this) asSorcery
