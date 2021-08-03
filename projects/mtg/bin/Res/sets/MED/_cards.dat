@@ -11,18 +11,8 @@ id=456589
 rarity=M
 [/card]
 [card]
-primitive=Karn, Scion of Urza
-id=460122
-rarity=M
-[/card]
-[card]
 primitive=Liliana, the Last Hope
 id=456590
-rarity=M
-[/card]
-[card]
-primitive=Tamiyo, the Moon Sage
-id=460123
 rarity=M
 [/card]
 [card]
@@ -31,18 +21,8 @@ id=456591
 rarity=M
 [/card]
 [card]
-primitive=Sorin Markov
-id=460124
-rarity=M
-[/card]
-[card]
 primitive=Nicol Bolas, Planeswalker
 id=456592
-rarity=M
-[/card]
-[card]
-primitive=Jaya Ballard
-id=460125
 rarity=M
 [/card]
 [card]
@@ -51,18 +31,8 @@ id=456593
 rarity=M
 [/card]
 [card]
-primitive=Ajani, Mentor of Heroes
-id=460126
-rarity=M
-[/card]
-[card]
 primitive=Teferi, Hero of Dominaria
 id=456594
-rarity=M
-[/card]
-[card]
-primitive=Dack Fayden
-id=460127
 rarity=M
 [/card]
 [card]
@@ -71,17 +41,87 @@ id=456595
 rarity=M
 [/card]
 [card]
-primitive=Domri, Chaos Bringer
-id=460128
-rarity=M
-[/card]
-[card]
 primitive=Vraska, Golgari Queen
 id=456596
 rarity=M
 [/card]
 [card]
+primitive=Karn, Scion of Urza
+id=460122
+rarity=M
+[/card]
+[card]
+primitive=Tamiyo, the Moon Sage
+id=460123
+rarity=M
+[/card]
+[card]
+primitive=Sorin Markov
+id=460124
+rarity=M
+[/card]
+[card]
+primitive=Jaya Ballard
+id=460125
+rarity=M
+[/card]
+[card]
+primitive=Ajani, Mentor of Heroes
+id=460126
+rarity=M
+[/card]
+[card]
+primitive=Dack Fayden
+id=460127
+rarity=M
+[/card]
+[card]
+primitive=Domri, Chaos Bringer
+id=460128
+rarity=M
+[/card]
+[card]
 primitive=Kaya, Orzhov Usurper
 id=460129
+rarity=M
+[/card]
+[card]
+primitive=Ugin, the Spirit Dragon
+id=463942
+rarity=M
+[/card]
+[card]
+primitive=Gideon Blackblade
+id=463943
+rarity=M
+[/card]
+[card]
+primitive=Jace, the Mind Sculptor
+id=463944
+rarity=M
+[/card]
+[card]
+primitive=Tezzeret the Seeker
+id=463945
+rarity=M
+[/card]
+[card]
+primitive=Garruk, Apex Predator
+id=463946
+rarity=M
+[/card]
+[card]
+primitive=Nicol Bolas, Dragon-God
+id=463947
+rarity=M
+[/card]
+[card]
+primitive=Nahiri, the Harbinger
+id=463948
+rarity=M
+[/card]
+[card]
+primitive=Sarkhan Unbroken
+id=463949
 rarity=M
 [/card]

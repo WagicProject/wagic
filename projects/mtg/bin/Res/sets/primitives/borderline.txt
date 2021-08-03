@@ -441,8 +441,8 @@ toughness=1
 [/card]
 [card]
 name=Adriana, Captain of the Guard
-auto=@combat(attacking) source(this):1/1 ueot
-auto=@combat(attacking) source(this):all(other creature[attacking]) 1/1 ueot
+auto=_ATTACKING_1/1 ueot
+auto=_ATTACKING_all(other creature[attacking]) 1/1 ueot
 text=Melee (Whenever this creature attacks, it gets +1/+1 until end of turn for each opponent you attacked with a creature this combat.) -- Other creatures you control have melee. (If a creature has multiple instances of melee, each triggers separately.)
 mana={3}{R}{W}
 type=Legendary Creature
@@ -565,7 +565,7 @@ type=Instant
 [card]
 name=Aerial Guide
 abilities=flying
-auto=@combat(attacking) source(this):flying target(other creature[attacking]|mybattlefield)
+auto=_ATTACKING_flying target(other creature[attacking]|mybattlefield)
 text=Flying -- Whenever Aerial Guide attacks, another target attacking creature gains flying until end of turn.
 mana={2}{U}
 type=Creature
@@ -698,7 +698,7 @@ type=Instant
 name=Aetherstorm Roc
 abilities=flying
 auto=alterenergy:1 controller
-auto=@combat(attacking) source(this):pay({e:2}) counter(1/1,1) && tap(noevent) target(creature|opponentbattlefield)
+auto=_ATTACKING_pay({e:2}) counter(1/1,1) && tap(noevent) target(creature|opponentbattlefield)
 text=Flying -- Whenever Aetherstorm Roc or another creature enters the battlefield under your control, you get {E} (an energy counter). -- Whenever Aetherstorm Roc attacks, you may pay {E}{E}. If you do, put a +1/+1 counter on it and tap up to one target creature defending player controls.
 mana={2}{W}{W}
 type=Creature
@@ -834,7 +834,7 @@ type=Sorcery
 [card]
 name=Ahn-Crop Champion
 auto=@exerted(this):untap all(other creature|mybattlefield)
-auto=@combat(attacking) source(this):may exert
+auto=_ATTACKING_may exert
 text=You may exert Ahn-Crop Champion as it attacks. When you do, untap all other creatures you control. (An exerted creature won't untap during your next untap step.)
 mana={2}{G}{W}
 type=Creature
@@ -846,7 +846,7 @@ toughness=4
 name=Ahn-Crop Crasher
 abilities=haste
 auto=@exerted(this):target(creature) cantblock ueot
-auto=@combat(attacking) source(this):may exert
+auto=_ATTACKING_may exert
 text=Haste -- You may exert Ahn-Crop Crasher as it attacks. When you do, target creature can't block this turn. (An exerted creature won't untap during your next untap step.)
 mana={2}{R}
 type=Creature
@@ -1287,7 +1287,7 @@ auto=if type(Alpine Watchdog|mylibrary)~morethan~0 then if type(Igneous Cur|myli
 auto=if type(Alpine Watchdog|mylibrary)~morethan~0 then if type(Igneous Cur|mylibrary)~equalto~0 then choice name(Search Alpine Watchdog) name(Search Alpine Watchdog) name(Search Alpine Watchdog) target(Alpine Watchdog|mylibrary) moveto(myhand) and!( shuffle )!
 auto=if type(Alpine Watchdog|mylibrary)~equalto~0 then if type(Igneous Cur|mylibrary)~morethan~0 then choice name(Search Igneous Cur) may name(Search Igneous Cur) target(Igneous Cur|mylibrary) moveto(myhand) and!( shuffle )!
 auto=choice name(Don's search library) name(Don's search library) donothing
-auto=@combat(attacking) source(this):type:creature[attacking]:myBattlefield/0 ueot
+auto=_ATTACKING_type:creature[attacking]:myBattlefield/0 ueot
 text=When Alpine Houndmaster enters the battlefield, you may search your library for a card named Alpine Watchdog and/or a card named Igneous Cur, reveal them, put them into your hand, then shuffle your library. -- Whenever Alpine Houndmaster attacks, it gets +X/+0 until end of turn, where X is the number of other attacking creatures.
 mana={R}{W}
 type=Creature
@@ -2780,9 +2780,9 @@ abilities=flying
 auto=ability$!name(Sacrifice creature or planeswalker) name(Sacrifice creature or planeswalker) target(*[creature;planeswalker]|mybattlefield) sacrifice!$ opponent
 auto=ability$!name(Discard a card) name(Discard a card) target(*|myhand) reject!$ opponent
 auto=life:-3 opponent && life:3 controller && draw:1 controller
-auto=@combat(attacking) source(this):ability$!name(Sacrifice creature or planeswalker) name(Sacrifice creature or planeswalker) target(*[creature;planeswalker]|mybattlefield) sacrifice!$ opponent
-auto=@combat(attacking) source(this):ability$!name(Discard a card) name(Discard a card) target(*|myhand) reject!$ opponent
-auto=@combat(attacking) source(this):life:-3 opponent && life:3 controller && draw:1 controller
+auto=_ATTACKING_ability$!name(Sacrifice creature or planeswalker) name(Sacrifice creature or planeswalker) target(*[creature;planeswalker]|mybattlefield) sacrifice!$ opponent
+auto=_ATTACKING_ability$!name(Discard a card) name(Discard a card) target(*|myhand) reject!$ opponent
+auto=_ATTACKING_life:-3 opponent && life:3 controller && draw:1 controller
 text=Flying -- Whenever Archon of Cruelty enters the battlefield or attacks, target opponent sacrifices a creature or planeswalker, discards a card, and loses 3 life. You draw a card and gain 3 life.
 mana={6}{B}{B}
 type=Creature
@@ -2938,7 +2938,7 @@ toughness=2
 [/card]
 [card]
 name=Ardent Dustspeaker
-auto=@combat(attacking) source(this):may name(Put instant or sorcery on bottom) target(*[instant;sorcery]|mygraveyard) bottomoflibrary and!( transforms((,newability[all(other *[zpos<=2]|mylibrary) moveto(exile) and!( transforms((,newability[canplayfromexile])) ueot )!])) oneshot )!
+auto=_ATTACKING_may name(Put instant or sorcery on bottom) target(*[instant;sorcery]|mygraveyard) bottomoflibrary and!( transforms((,newability[all(other *[zpos<=2]|mylibrary) moveto(exile) and!( transforms((,newability[canplayfromexile])) ueot )!])) oneshot )!
 text=Whenever Ardent Dustspeaker attacks, you may put an instant or sorcery card from your graveyard on the bottom of your library. If you do, exile the top two cards of your library. You may play those cards this turn.
 mana={4}{R}
 type=Creature
@@ -3080,7 +3080,7 @@ type=Instant
 [card]
 name=Armix, Filigree Thrasher
 abilities=partner
-auto=@combat(attacking) source(this):may name(discard a card) reject notatarget(*|myhand) && ability$!name(Choose creature) target(creature|opponentbattlefield) -type:artifact:mygraveyardplustype:artifact:myBattlefieldplusend/-type:artifact:mygraveyardplustype:artifact:myBattlefieldplusend ueot!$ controller
+auto=_ATTACKING_may name(discard a card) reject notatarget(*|myhand) && ability$!name(Choose creature) target(creature|opponentbattlefield) -type:artifact:mygraveyardplustype:artifact:myBattlefieldplusend/-type:artifact:mygraveyardplustype:artifact:myBattlefieldplusend ueot!$ controller
 text=Whenever Armix, Filigree Thrasher attacks, you may discard a card. When you do, target creature defending player controls gets -X/-X until end of turn, where X is the number of artifacts you control plus the number of artifact cards in your graveyard. -- Partner (You can have two commanders if both have partner.)
 mana={2}{B}
 type=Legendary Artifact Creature
@@ -3092,7 +3092,7 @@ toughness=2
 name=Armored Skyhunter
 abilities=flying
 aicode=activate target(*[aura;equipment;zpos<=6]|mylibrary) moveto(myBattlefield) and!( transforms((,newability[if cantargetcard(*[equipment]|*) then name(Attach to creature) rehook target(creature|mybattlefield)],newability[all(*[zpos<=5]|mylibrary) moveto(myreveal) and!( bottomoflibrary )!])) oneshot )!
-auto=@combat(attacking) source(this):name(Look top 6 cards) reveal:6 optionone name(Get aura or equipment) target(<upto:1>*[aura;equipment]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend afterrevealed all(tobecast|mylibrary) transforms((,newability[choice name(Put in play) moveto(myBattlefield)],newability[if cantargetcard(*[equipment]|*) then choice name(Put in play and attach) name(Put in play and attach) moveto(myBattlefield) and!( transforms((,newability[name(Attach to creature) rehook target(creature|mybattlefield)])) oneshot )!])) oneshot afterrevealedend revealend
+auto=_ATTACKING_name(Look top 6 cards) reveal:6 optionone name(Get aura or equipment) target(<upto:1>*[aura;equipment]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend afterrevealed all(tobecast|mylibrary) transforms((,newability[choice name(Put in play) moveto(myBattlefield)],newability[if cantargetcard(*[equipment]|*) then choice name(Put in play and attach) name(Put in play and attach) moveto(myBattlefield) and!( transforms((,newability[name(Attach to creature) rehook target(creature|mybattlefield)])) oneshot )!])) oneshot afterrevealedend revealend
 text=Flying -- Whenever Armored Skyhunter attacks, look at the top six cards of your library. You may put an Aura or Equipment card from among them onto the battlefield. If an Equipment is put onto the battlefield this way, you may attach it to a creature you control. Put the rest of those cards on the bottom of your library in a random order.
 mana={3}{W}
 type=Creature
@@ -3164,7 +3164,7 @@ type=Instant
 [/card]
 [card]
 name=Arrogant Poet
-auto=@combat(attacking) source(this):pay({L:2}) name(Arrogant poet gains flying) flying ueot
+auto=_ATTACKING_pay({L:2}) name(Arrogant poet gains flying) flying ueot
 text=Whenever Arrogant Poet attacks, you may pay 2 life. If you do, it gains flying until end of turn.
 mana={1}{B}
 type=Creature
@@ -3662,7 +3662,7 @@ type=Instant
 [card]
 name=Aurelia, Exemplar of Justice
 abilities=flying,mentor
-auto=@combat(attacking) source(this):name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
+auto=_ATTACKING_name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
 auto=@each my combatbegins:ability$!name(Choose a creature) choice name(Choose non-red, non-white creature) target(creature[-red;-white]|myBattlefield) 2/0 ueot _ choice name(Choose red creature) target(creature[red]|myBattlefield) transforms((,newability[2/0 ueot],newability[trample ueot])) ueot _ name(Choose white creature) target(creature[white]|myBattlefield) transforms((,newability[2/0 ueot],newability[vigilance ueot])) ueot!$ controller
 text=Flying -- Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.) -- At the beginning of combat on your turn, choose up to one target creature you control. Until end of turn, that creature gets +2/+0, gains trample if it's red, and gains vigilance if it's white.
 mana={2}{R}{W}
@@ -3792,7 +3792,7 @@ toughness=3
 [/card]
 [card]
 name=Avalanche Tusker
-auto=@combat(attacking) source(this):setblocker target(creature|opponentbattlefield)
+auto=_ATTACKING_setblocker target(creature|opponentbattlefield)
 text=Whenever Avalanche Tusker attacks, target creature defending player controls blocks it this combat if able.
 mana={2}{G}{U}{R}
 type=Creature
@@ -3938,7 +3938,7 @@ toughness=3
 [card]
 name=Avenging Huntbonder
 abilities=double strike
-auto=@combat(attacking) source(this):name(Put double strike counter) target(other creature[attacking]) transforms((,newability[counter(0/0.1.DoubleStrike)],newability[this(counter{0/0.1.DoubleStrike}>=1) double strike])) forever 
+auto=_ATTACKING_name(Put double strike counter) target(other creature[attacking]) transforms((,newability[counter(0/0.1.DoubleStrike)],newability[this(counter{0/0.1.DoubleStrike}>=1) double strike])) forever 
 text=Double strike -- Whenever Avenging Huntbonder attacks, put a double strike counter on another target attacking creature.
 mana={3}{W}{W}
 type=Creature
@@ -3990,7 +3990,7 @@ type=Instant
 [card]
 name=Awaken the Blood Avatar
 abilities=doublefacedeath
-auto=name(Create Avatar) name(Create Avatar) token(Avatar,Creature Avatar,3/6,black,red,haste) and!( transforms((,newability[@combat(attacking) source(this):damage:3 opponent])) forever )!
+auto=name(Create Avatar) name(Create Avatar) token(Avatar,Creature Avatar,3/6,black,red,haste) and!( transforms((,newability[_ATTACKING_damage:3 opponent])) forever )!
 auto=ability$!name(Sacrifice creature) name(Sacrifice creature) notatarget(creature|myBattlefield) sacrifice!$ opponent
 text=As an additional cost to cast this spell, you may sacrifice any number of creatures. This spell costs {2} less to cast for each creature sacrificed this way. -- Each opponent sacrifices a creature. Create a 3/6 black and red Avatar creature token with haste and "Whenever this creature attacks, it deals 3 damage to each opponent." // {1}{W}{B}{B} Extus, Oriq Overlord
 mana={6}{B}{R}
@@ -4128,7 +4128,7 @@ type=Legendary Artifact
 name=Azor, the Lawbringer
 abilities=flying
 auto=phaseaction[upkeep once] maxCast(*[instant;sorcery])0 opponent ueot
-auto=@combat(attacking) source(this):may pay({X}{W}{U}{U}) name(Gain X life and draw X cards) life:x controller && draw:x controller
+auto=_ATTACKING_may pay({X}{W}{U}{U}) name(Gain X life and draw X cards) life:x controller && draw:x controller
 text=Flying -- When Azor, the Lawbringer enters the battlefield, each opponent can't cast instant or sorcery spells during that player's next turn. -- Whenever Azor attacks, you may pay {X}{W}{U}{U}. If you do, you gain X life and draw X cards.
 mana={2}{W}{W}{U}{U}
 type=Legendary Creature
@@ -4553,7 +4553,7 @@ type=Instant
 [card]
 name=Barging Sergeant
 abilities=haste,mentor
-auto=@combat(attacking) source(this):name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
+auto=_ATTACKING_name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
 text=Haste -- Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.)
 mana={4}{R}
 type=Creature
@@ -4928,7 +4928,7 @@ toughness=2
 [card]
 name=Battlefield Scavenger
 auto=@exerted(creature|myBattlefield):may reject notatarget(*|myhand) and!( draw:1 controller )!
-auto=@combat(attacking) source(this):may exert
+auto=_ATTACKING_may exert
 text=You may exert Battlefield Scavenger as it attacks. (It won't untap during your next untap step.) -- Whenever you exert a creature, you may discard a card. If you do, draw a card.
 mana={1}{R}
 type=Creature
@@ -5258,7 +5258,7 @@ toughness=1
 [card]
 name=Belle of the Brawl
 abilities=menace
-auto=@combat(attacking) source(this):lord(other creature[knight]|myBattlefield) 1/0 ueot
+auto=_ATTACKING_lord(other creature[knight]|myBattlefield) 1/0 ueot
 text=Menace (This creature can't be blocked except by two or more creatures.) -- Whenever Belle of the Brawl attacks, other Knights you control get +1/+0 until end of turn.
 mana={2}{B}
 type=Creature
@@ -5663,26 +5663,26 @@ type=Artifact
 [card]
 name=Bishop of Binding
 auto=if type(creature[power=0]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 0) name(Exile creature with power 0) transforms((,newability[(blink)forsrc target(creature[power=0]|opponentbattlefield)])) forever
-auto=if type(creature[power=1]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 1) name(Exile creature with power 1) transforms((,newability[(blink)forsrc target(creature[power=1]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 1/1) name(target vampire gets 1/1) target(vampire|battlefield) 1/1 ueot])) forever
-auto=if type(creature[power=2]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 2) name(Exile creature with power 2) transforms((,newability[(blink)forsrc target(creature[power=2]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 2/2) name(target vampire gets 2/2) target(vampire|battlefield) 2/2 ueot])) forever
-auto=if type(creature[power=3]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 3) name(Exile creature with power 3) transforms((,newability[(blink)forsrc target(creature[power=3]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 3/3) name(target vampire gets 3/3) target(vampire|battlefield) 3/3 ueot])) forever
-auto=if type(creature[power=4]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 4) name(Exile creature with power 4) transforms((,newability[(blink)forsrc target(creature[power=4]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 4/4) name(target vampire gets 4/4) target(vampire|battlefield) 4/4 ueot])) forever
-auto=if type(creature[power=5]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 5) name(Exile creature with power 5) transforms((,newability[(blink)forsrc target(creature[power=5]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 5/5) name(target vampire gets 5/5) target(vampire|battlefield) 5/5 ueot])) forever
-auto=if type(creature[power=6]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 6) name(Exile creature with power 6) transforms((,newability[(blink)forsrc target(creature[power=6]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 6/6) name(target vampire gets 6/6) target(vampire|battlefield) 6/6 ueot])) forever
-auto=if type(creature[power=7]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 7) name(Exile creature with power 7) transforms((,newability[(blink)forsrc target(creature[power=7]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 7/7) name(target vampire gets 7/7) target(vampire|battlefield) 7/7 ueot])) forever
-auto=if type(creature[power=8]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 8) name(Exile creature with power 8) transforms((,newability[(blink)forsrc target(creature[power=8]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 8/8) name(target vampire gets 8/8) target(vampire|battlefield) 8/8 ueot])) forever
-auto=if type(creature[power=9]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 9) name(Exile creature with power 9) transforms((,newability[(blink)forsrc target(creature[power=9]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 9/9) name(target vampire gets 9/9) target(vampire|battlefield) 9/9 ueot])) forever
-auto=if type(creature[power=10]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 10) name(Exile creature with power 10) transforms((,newability[(blink)forsrc target(creature[power=10]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 10/10) name(target vampire gets 10/10) target(vampire|battlefield) 10/10 ueot])) forever
-auto=if type(creature[power=11]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 11) name(Exile creature with power 11) transforms((,newability[(blink)forsrc target(creature[power=11]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 11/11) name(target vampire gets 11/11) target(vampire|battlefield) 11/11 ueot])) forever
-auto=if type(creature[power=12]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 12) name(Exile creature with power 12) transforms((,newability[(blink)forsrc target(creature[power=12]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 12/12) name(target vampire gets 12/12) target(vampire|battlefield) 12/12 ueot])) forever
-auto=if type(creature[power=13]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 13) name(Exile creature with power 13) transforms((,newability[(blink)forsrc target(creature[power=13]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 13/13) name(target vampire gets 13/13) target(vampire|battlefield) 13/13 ueot])) forever
-auto=if type(creature[power=14]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 14) name(Exile creature with power 14) transforms((,newability[(blink)forsrc target(creature[power=14]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 14/14) name(target vampire gets 14/14) target(vampire|battlefield) 14/14 ueot])) forever
-auto=if type(creature[power=15]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 15) name(Exile creature with power 15) transforms((,newability[(blink)forsrc target(creature[power=15]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 15/15) name(target vampire gets 15/15) target(vampire|battlefield) 15/15 ueot])) forever
-auto=if type(creature[power=16]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 16) name(Exile creature with power 16) transforms((,newability[(blink)forsrc target(creature[power=16]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 16/16) name(target vampire gets 16/16) target(vampire|battlefield) 16/16 ueot])) forever
-auto=if type(creature[power=17]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 17) name(Exile creature with power 17) transforms((,newability[(blink)forsrc target(creature[power=17]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 17/17) name(target vampire gets 17/17) target(vampire|battlefield) 17/17 ueot])) forever
-auto=if type(creature[power=18]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 18) name(Exile creature with power 18) transforms((,newability[(blink)forsrc target(creature[power=18]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 18/18) name(target vampire gets 18/18) target(vampire|battlefield) 18/18 ueot])) forever
-auto=if type(creature[power=19]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 19) name(Exile creature with power 19) transforms((,newability[(blink)forsrc target(creature[power=19]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 19/19) name(target vampire gets 19/19) target(vampire|battlefield) 19/19 ueot])) forever
-auto=if type(creature[power>=20]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 20) name(Exile creature with power 20) transforms((,newability[(blink)forsrc target(creature[power>=20]|opponentbattlefield)],newability[@combat(attacking) source(this):name(target vampire gets 20/20) name(target vampire gets 20/20) target(vampire|battlefield) 20/20 ueot])) forever
+auto=if type(creature[power=1]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 1) name(Exile creature with power 1) transforms((,newability[(blink)forsrc target(creature[power=1]|opponentbattlefield)],newability[_ATTACKING_name(target vampire gets 1/1) name(target vampire gets 1/1) target(vampire|battlefield) 1/1 ueot])) forever
+auto=if type(creature[power=2]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 2) name(Exile creature with power 2) transforms((,newability[(blink)forsrc target(creature[power=2]|opponentbattlefield)],newability[_ATTACKING_name(target vampire gets 2/2) name(target vampire gets 2/2) target(vampire|battlefield) 2/2 ueot])) forever
+auto=if type(creature[power=3]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 3) name(Exile creature with power 3) transforms((,newability[(blink)forsrc target(creature[power=3]|opponentbattlefield)],newability[_ATTACKING_name(target vampire gets 3/3) name(target vampire gets 3/3) target(vampire|battlefield) 3/3 ueot])) forever
+auto=if type(creature[power=4]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 4) name(Exile creature with power 4) transforms((,newability[(blink)forsrc target(creature[power=4]|opponentbattlefield)],newability[_ATTACKING_name(target vampire gets 4/4) name(target vampire gets 4/4) target(vampire|battlefield) 4/4 ueot])) forever
+auto=if type(creature[power=5]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 5) name(Exile creature with power 5) transforms((,newability[(blink)forsrc target(creature[power=5]|opponentbattlefield)],newability[_ATTACKING_name(target vampire gets 5/5) name(target vampire gets 5/5) target(vampire|battlefield) 5/5 ueot])) forever
+auto=if type(creature[power=6]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 6) name(Exile creature with power 6) transforms((,newability[(blink)forsrc target(creature[power=6]|opponentbattlefield)],newability[_ATTACKING_name(target vampire gets 6/6) name(target vampire gets 6/6) target(vampire|battlefield) 6/6 ueot])) forever
+auto=if type(creature[power=7]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 7) name(Exile creature with power 7) transforms((,newability[(blink)forsrc target(creature[power=7]|opponentbattlefield)],newability[_ATTACKING_name(target vampire gets 7/7) name(target vampire gets 7/7) target(vampire|battlefield) 7/7 ueot])) forever
+auto=if type(creature[power=8]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 8) name(Exile creature with power 8) transforms((,newability[(blink)forsrc target(creature[power=8]|opponentbattlefield)],newability[_ATTACKING_name(target vampire gets 8/8) name(target vampire gets 8/8) target(vampire|battlefield) 8/8 ueot])) forever
+auto=if type(creature[power=9]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 9) name(Exile creature with power 9) transforms((,newability[(blink)forsrc target(creature[power=9]|opponentbattlefield)],newability[_ATTACKING_name(target vampire gets 9/9) name(target vampire gets 9/9) target(vampire|battlefield) 9/9 ueot])) forever
+auto=if type(creature[power=10]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 10) name(Exile creature with power 10) transforms((,newability[(blink)forsrc target(creature[power=10]|opponentbattlefield)],newability[_ATTACKING_name(target vampire gets 10/10) name(target vampire gets 10/10) target(vampire|battlefield) 10/10 ueot])) forever
+auto=if type(creature[power=11]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 11) name(Exile creature with power 11) transforms((,newability[(blink)forsrc target(creature[power=11]|opponentbattlefield)],newability[_ATTACKING_name(target vampire gets 11/11) name(target vampire gets 11/11) target(vampire|battlefield) 11/11 ueot])) forever
+auto=if type(creature[power=12]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 12) name(Exile creature with power 12) transforms((,newability[(blink)forsrc target(creature[power=12]|opponentbattlefield)],newability[_ATTACKING_name(target vampire gets 12/12) name(target vampire gets 12/12) target(vampire|battlefield) 12/12 ueot])) forever
+auto=if type(creature[power=13]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 13) name(Exile creature with power 13) transforms((,newability[(blink)forsrc target(creature[power=13]|opponentbattlefield)],newability[_ATTACKING_name(target vampire gets 13/13) name(target vampire gets 13/13) target(vampire|battlefield) 13/13 ueot])) forever
+auto=if type(creature[power=14]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 14) name(Exile creature with power 14) transforms((,newability[(blink)forsrc target(creature[power=14]|opponentbattlefield)],newability[_ATTACKING_name(target vampire gets 14/14) name(target vampire gets 14/14) target(vampire|battlefield) 14/14 ueot])) forever
+auto=if type(creature[power=15]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 15) name(Exile creature with power 15) transforms((,newability[(blink)forsrc target(creature[power=15]|opponentbattlefield)],newability[_ATTACKING_name(target vampire gets 15/15) name(target vampire gets 15/15) target(vampire|battlefield) 15/15 ueot])) forever
+auto=if type(creature[power=16]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 16) name(Exile creature with power 16) transforms((,newability[(blink)forsrc target(creature[power=16]|opponentbattlefield)],newability[_ATTACKING_name(target vampire gets 16/16) name(target vampire gets 16/16) target(vampire|battlefield) 16/16 ueot])) forever
+auto=if type(creature[power=17]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 17) name(Exile creature with power 17) transforms((,newability[(blink)forsrc target(creature[power=17]|opponentbattlefield)],newability[_ATTACKING_name(target vampire gets 17/17) name(target vampire gets 17/17) target(vampire|battlefield) 17/17 ueot])) forever
+auto=if type(creature[power=18]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 18) name(Exile creature with power 18) transforms((,newability[(blink)forsrc target(creature[power=18]|opponentbattlefield)],newability[_ATTACKING_name(target vampire gets 18/18) name(target vampire gets 18/18) target(vampire|battlefield) 18/18 ueot])) forever
+auto=if type(creature[power=19]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 19) name(Exile creature with power 19) transforms((,newability[(blink)forsrc target(creature[power=19]|opponentbattlefield)],newability[_ATTACKING_name(target vampire gets 19/19) name(target vampire gets 19/19) target(vampire|battlefield) 19/19 ueot])) forever
+auto=if type(creature[power>=20]|opponentbattlefield)~morethan~0 then choice name(Exile creature with power 20) name(Exile creature with power 20) transforms((,newability[(blink)forsrc target(creature[power>=20]|opponentbattlefield)],newability[_ATTACKING_name(target vampire gets 20/20) name(target vampire gets 20/20) target(vampire|battlefield) 20/20 ueot])) forever
 text=When Bishop of Binding enters the battlefield, exile target creature an opponent controls until Bishop of Binding leaves the battlefield. -- Whenever Bishop of Binding attacks, target Vampire gets +X/+X until end of turn, where X is the power of the exiled card.
 mana={3}{W}
 type=Creature
@@ -5693,7 +5693,7 @@ toughness=1
 [card]
 name=Bishop of Rebirth
 abilities=vigilance
-auto=@combat(attacking) source(this):may moveto(mybattlefield) target(creature[manacost<=3]|mygraveyard)
+auto=_ATTACKING_may moveto(mybattlefield) target(creature[manacost<=3]|mygraveyard)
 text=Vigilance -- Whenever Bishop of Rebirth attacks, you may return target creature card with converted mana cost 3 or less from your graveyard to the battlefield.
 mana={3}{W}{W}
 type=Creature
@@ -5735,7 +5735,7 @@ toughness=2
 [card]
 name=Bitterblade Warrior
 auto=@exerted(this):transforms((,newability[deathtouch],newability[1/0])) ueot
-auto=@combat(attacking) source(this):may exert
+auto=_ATTACKING_may exert
 text=You may exert Bitterblade Warrior as it attacks. When you do, it gets +1/+0 and gains deathtouch until end of turn. (An exerted creature won't untap during your next untap step.)
 mana={1}{G}
 type=Creature
@@ -5836,7 +5836,7 @@ toughness=3
 [card]
 name=Blade Instructor
 abilities=mentor
-auto=@combat(attacking) source(this):name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
+auto=_ATTACKING_name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
 text=Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.)
 mana={2}{W}
 type=Creature
@@ -5893,7 +5893,7 @@ toughness=2
 name=Blaring Captain
 abilities=partner
 auto=may name(Put partner in hand) moveto(myhand) target(blaring recruiter|mylibrary)
-auto=@combat(attacking) source(this):all(warrior[attacking]) 1/1
+auto=_ATTACKING_all(warrior[attacking]) 1/1
 text=Partner with Blaring Recruiter (When this creature enters the battlefield, target player may put Blaring Recruiter into their hand from their library, then shuffle.) -- Whenever Blaring Captain attacks, attacking Warriors get +1/+1 until end of turn.
 mana={3}{B}
 type=Creature
@@ -6530,7 +6530,7 @@ toughness=1
 [/card]
 [card]
 name=Bloodmist Infiltrator
-auto=@combat(attacking) source(this):may name(Sacrifice) sacrifice notatarget(other creature|mybattlefield) && transforms((,newability[unblockable])) forever
+auto=_ATTACKING_may name(Sacrifice) sacrifice notatarget(other creature|mybattlefield) && transforms((,newability[unblockable])) forever
 text=Whenever Bloodmist Infiltrator attacks, you may sacrifice another creature. If you do, Bloodmist Infiltrator can't be blocked this turn.
 mana={2}{B}
 type=Creature
@@ -6651,7 +6651,7 @@ toughness=2
 [/card]
 [card]
 name=Blossoming Bogbeast
-auto=@combat(attacking) source(this):life:2 controller && all(creature|mybattlefield) transforms((,newability[lifegain/lifegain],newability[trample])) ueot
+auto=_ATTACKING_life:2 controller && all(creature|mybattlefield) transforms((,newability[lifegain/lifegain],newability[trample])) ueot
 text=Whenever Blossoming Bogbeast attacks, you gain 2 life. Then creatures you control gain trample and get +X/+X until end of turn, where X is the amount of life you gained this turn.
 mana={4}{G}
 type=Creature
@@ -7260,7 +7260,7 @@ toughness=2
 [card]
 name=Boros Challenger
 abilities=mentor
-auto=@combat(attacking) source(this):name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
+auto=_ATTACKING_name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
 auto={2}{R}{W}:1/1 ueot
 text=Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.) -- {2}{R}{W}: Boros Challenger gets +1/+1 until end of turn.
 mana={R}{W}
@@ -7540,7 +7540,7 @@ type=Enchantment
 [card]
 name=Brawl-Bash Ogre
 abilities=menace
-auto=@combat(attacking) source(this):may {S(other creature|mybattlefield)} 2/2 ueot
+auto=_ATTACKING_may {S(other creature|mybattlefield)} 2/2 ueot
 text=Menace (This creature can't be blocked except by two or more creatures.) -- Whenever Brawl-Bash Ogre attacks, you may sacrifice another creature. If you do, Brawl-Bash Ogre gets +2/+2 until end of turn.
 mana={2}{B}{R}
 type=Creature
@@ -7699,7 +7699,7 @@ toughness=3
 [/card]
 [card]
 name=Briarblade Adept
-auto=@combat(attacking) source(this):target(creature|opponentbattlefield) -1/-1 ueot
+auto=_ATTACKING_target(creature|opponentbattlefield) -1/-1 ueot
 autograveyard={3}{B}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=Whenever Briarblade Adept attacks, target creature an opponent controls gets -1/-1 until end of turn. -- Encore {3}{B} ({3}{B}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={4}{B}
@@ -7771,7 +7771,7 @@ toughness=4
 [card]
 name=Brimaz, King of Oreskos
 abilities=vigilance
-auto=@combat(attacking) source(this):token(Cat Soldier,Creature Cat Soldier,1/1,white,vigilance,battleready) controller
+auto=_ATTACKING_token(Cat Soldier,Creature Cat Soldier,1/1,white,vigilance,battleready) controller
 auto=@combat(blocking) source(this) from(creature|opponentbattlefield):token(Cat Soldier,Creature Cat Soldier,1/1,white,vigilance) controller
 text=Vigilance -- Whenever Brimaz, King of Oreskos attacks, put a 1/1 white Cat Soldier creature token with vigilance onto the battlefield attacking. -- Whenever Brimaz blocks a creature, put a 1/1 white Cat Soldier creature token with vigilance onto the battlefield blocking that creature.
 mana={1}{W}{W}
@@ -7994,7 +7994,7 @@ toughness=3
 name=Bruse Tarl, Boorish Herder
 abilities=partner
 auto=target(creature|mybattlefield) transforms((,newability[double strike],newability[lifelink])) ueot
-auto=@combat(attacking) source(this):target(creature|mybattlefield) transforms((,newability[double strike],newability[lifelink])) ueot
+auto=_ATTACKING_target(creature|mybattlefield) transforms((,newability[double strike],newability[lifelink])) ueot
 text=Whenever Bruse Tarl, Boorish Herder enters the battlefield or attacks, target creature you control gains double strike and lifelink until end of turn. -- Partner (You can have two commanders if both have partner.)
 mana={2}{R}{W}
 type=Legendary Creature
@@ -8209,7 +8209,7 @@ toughness=6
 name=Burning-Tree Vandal
 auto=choice counter(1/1)
 auto=choice aslongas(creature|myBattlefield) haste
-auto=@combat(attacking) source(this):may reject notatarget(*|myhand) and!( draw:1 controller )!
+auto=_ATTACKING_may reject notatarget(*|myhand) and!( draw:1 controller )!
 text=Riot (This creature enters the battlefield with your choice of a +1/+1 counter or haste.) -- Whenever Burning-Tree Vandal attacks, you may discard a card. If you do, draw a card.
 mana={2}{R}
 type=Creature
@@ -8584,7 +8584,7 @@ toughness=3
 [/card]
 [card]
 name=Canopy Stalker
-auto=@combat(attacking) source(this):all(creature|opponentbattlefield) mustblock ueot
+auto=_ATTACKING_all(creature|opponentbattlefield) mustblock ueot
 auto=_DIES_life:type:creature[fresh]:graveyard controller
 text=Canopy Stalker must be blocked if able. -- When Canopy Stalker dies, you gain 1 life for each creature that died this turn.
 mana={3}{G}
@@ -8649,7 +8649,7 @@ toughness=0
 name=Captain Lannery Storm
 abilities=haste
 auto=@sacrificed(TreasureArtifactToken):1/0 ueot
-auto=@combat(attacking) source(this):token(435451)
+auto=_ATTACKING_token(435451)
 text=Haste -- Whenever Captain Lannery Storm attacks, create a colorless Treasure artifact token with "{T}, Sacrifice this artifact: Add one mana of any color to your mana pool." -- Whenever you sacrifice a Treasure, Captain Lannery Storm gets +1/+0 until end of turn.
 mana={2}{R}
 type=Legendary Creature
@@ -8669,7 +8669,7 @@ toughness=2
 [/card]
 [card]
 name=Captain Vargus Wrath
-auto=@combat(attacking) source(this):all(pirate|myBattlefield) pnumofcommandcast/pnumofcommandcast ueot
+auto=_ATTACKING_all(pirate|myBattlefield) pnumofcommandcast/pnumofcommandcast ueot
 text=Whenever Captain Vargus Wrath attacks, Pirates you control get +1/+1 until end of turn for each time you've cast a commander from the command zone this game.
 mana={U}{R}
 type=Legendary Creature
@@ -9202,7 +9202,7 @@ toughness=3
 [card]
 name=Catti-brie of Mithral Hall
 abilities=first strike,reach
-auto=@combat(attacking) source(this):name(Add 1/1 counters) thisforeach(gear) counter(1/1)
+auto=_ATTACKING_name(Add 1/1 counters) thisforeach(gear) counter(1/1)
 auto=this(variable{hascnt11}>0) {1}:name(Remove all 1/1 counters) damage:hascnt11 target(creature[attacking;blocking]|opponentbattlefield) && all(this) removeallcounters(1/1)
 text=First strike, reach -- Whenever Catti-brie of Mithral Hall attacks, put a +1/+1 counter on it for each Equipment attached to it. -- {1}, Remove all +1/+1 counters from Catti-brie: It deals X damage to target attacking or blocking creature an opponent controls, where X is the number of counters removed this way.
 mana={G}{W}
@@ -9644,7 +9644,7 @@ toughness=4
 [card]
 name=Champion of Rhonas
 auto=@exerted(this):moveto(mybattlefield) target(creature|myhand)
-auto=@combat(attacking) source(this):may exert
+auto=_ATTACKING_may exert
 text=You may exert Champion of Rhonas as it attacks. When you do, you may put a creature card from your hand onto the battlefield. (An exerted creature won't untap during your next untap step.)
 mana={3}{G}
 type=Creature
@@ -9909,7 +9909,7 @@ type=Instant
 [/card]
 [card]
 name=Chaos Channeler
-auto=@combat(attacking) source(this):name(Roll a d20) rolld20 20 winability donothing winabilityend rolld20end
+auto=_ATTACKING_name(Roll a d20) rolld20 20 winability donothing winabilityend rolld20end
 auto=@dierolled(this) result(1) from(controller):name(Exile top card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile])) ueot )!
 auto=@dierolled(this) result(2) from(controller):name(Exile top card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile])) ueot )!
 auto=@dierolled(this) result(3) from(controller):name(Exile top card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile])) ueot )!
@@ -10199,7 +10199,7 @@ toughness=2
 [/card]
 [card]
 name=Cheering Fanatic
-auto=@combat(attacking) source(this):target(*[-land]|mycastingzone) altercost(colorless,-1) ueot
+auto=_ATTACKING_target(*[-land]|mycastingzone) altercost(colorless,-1) ueot
 text=Whenever Cheering Fanatic attacks, choose a card name. Spells with the chosen name cost 1 less to cast this turn.
 mana={1}{R}
 type=Creature
@@ -10713,7 +10713,7 @@ subtype=Clamfolk
 name=Clamor Shaman
 auto=choice counter(1/1)
 auto=choice aslongas(creature|myBattlefield) haste
-auto=@combat(attacking) source(this):target(creature|opponentBattlefield) cantblock ueot
+auto=_ATTACKING_target(creature|opponentBattlefield) cantblock ueot
 text=Riot (This creature enters the battlefield with your choice of a +1/+1 counter or haste.) -- Whenever Clamor Shaman attacks, target creature an opponent controls can't block this turn.
 mana={2}{R}
 type=Creature
@@ -11112,7 +11112,7 @@ toughness=5
 [card]
 name=Coastline Marauders
 abilities=trample
-auto=@combat(attacking) source(this):type:land:opponentbattlefield/0 ueot
+auto=_ATTACKING_type:land:opponentbattlefield/0 ueot
 autograveyard={4}{R}{R}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=Trample -- Whenever Coastline Marauders attacks, it gets +1/+0 until end of turn for each land defending player controls. -- Encore {4}{R}{R} ({4}{R}{R}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={2}{R}
@@ -11286,7 +11286,7 @@ other={1}{W} name(Adventure)
 autostack=if paid(alternative) then name(Return to hand) name(Return to hand) target(*[-land]|myGraveyard) moveTo(ownerHand)
 autostack=if paid(alternative) then transforms((,newability[moveto(exile) and!( transforms((,newability[canplayfromexile])) forever )!])) forever
 auto=protection from(*)
-auto=@combat(attacking) source(this):draw:1 controller
+auto=_ATTACKING_draw:1 controller
 text=Flying, protection from common -- Whenever Collectigull attacks, reveal the top card of your library. If it’s a Booster Fun card, you may put it into your hand. // Return target Booster Fun card from your graveyard to your hand.
 mana={2}{W}
 type=Creature
@@ -11426,7 +11426,7 @@ type=Enchantment
 [/card]
 [card]
 name=Colossal Plow
-auto=@combat(attacking) source(this):life:3 controller && add{W}{W}{W} doesntempty
+auto=_ATTACKING_life:3 controller && add{W}{W}{W} doesntempty
 auto={crew(other creature[power>=6]|myBattlefield)}:name(crew 6[1 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=6]|mybattlefield)~morethan~0,compare(crewtotalpower)~morethan~5}
 auto={crew(other creature[power>=1]|myBattlefield)}{crew(other creature[power>=5]|myBattlefield)}:name(crew 6[2 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=1]|mybattlefield)~morethan~0,type(other creature[-tapped;power>=5]|mybattlefield)~morethan~0,type(other creature[-tapped;-cantcrew]|mybattlefield)~morethan~1,compare(crewtotalpower)~morethan~5}
 auto={crew(other creature[power>=2]|myBattlefield)}{crew(other creature[power>=4]|myBattlefield)}:name(crew 6[2 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=2]|mybattlefield)~morethan~0,type(other creature[-tapped;power>=4]|mybattlefield)~morethan~0,type(other creature[-tapped;-cantcrew]|mybattlefield)~morethan~1,compare(crewtotalpower)~morethan~5}
@@ -11490,7 +11490,7 @@ toughness=3
 [card]
 name=Combat Celebrant
 auto=@exerted(this) restriction{once}:untap all(other creature|mybattlefield) && nextphasealter(add,combatphases,controller,after<combatends>) oneshot
-auto=@combat(attacking) source(this):may exert
+auto=_ATTACKING_may exert
 text=If Combat Celebrant hasn't been exerted this turn, you may exert it as it attacks. When you do, untap all other creatures you control and after this phase, there is an additional combat phase. (An exerted creature won't untap during your next untap step.)
 mana={2}{R}
 type=Creature
@@ -11705,7 +11705,7 @@ toughness=2
 [card]
 name=Compelled Duel
 target=creature
-auto=transforms((,newability[3/3],newability[@combat(attacking) source(this):all(creature|opponentbattlefield) mustblock ueot])) ueot
+auto=transforms((,newability[3/3],newability[_ATTACKING_all(creature|opponentbattlefield) mustblock ueot])) ueot
 text=Target creature gets +3/+3 until end of turn and must be blocked this turn if able.
 mana={1}{G}
 type=Sorcery
@@ -11972,7 +11972,7 @@ type=Land
 [/card]
 [card]
 name=Conqueror's Galleon
-auto=@combat(attacking) source(this):phaseaction[combatends once] flip(Conqueror's Foothold)
+auto=_ATTACKING_phaseaction[combatends once] flip(Conqueror's Foothold)
 auto={crew(other creature[power>=4]|myBattlefield)}:name(crew 4 [1 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=4]|mybattlefield)~morethan~0,compare(crewtotalpower)~morethan~3}
 auto={crew(other creature[power>=2]|myBattlefield)}{crew(other creature[power>=2]|myBattlefield)}:name(crew 4 [2 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=2]|mybattlefield)~morethan~1,compare(crewtotalpower)~morethan~3}
 auto={crew(other creature[power>=1]|myBattlefield)}{crew(other creature[power>=3]|myBattlefield)}:name(crew 4 [2 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=1]|mybattlefield)~morethan~0,type(other creature[-tapped;power>=3]|mybattlefield)~morethan~0,type(other creature[-tapped;-cantcrew]|mybattlefield)~morethan~1,compare(crewtotalpower)~morethan~3}
@@ -12476,7 +12476,7 @@ type=Artifact
 [card]
 name=Coveted Peacock
 abilities=flying
-auto=@combat(attacking) source(this):may name(Goad creature) target(creature|opponentBattlefield) transforms((,newability[mustattack])) uynt
+auto=_ATTACKING_may name(Goad creature) target(creature|opponentBattlefield) transforms((,newability[mustattack])) uynt
 text=Flying -- Whenever Coveted Peacock attacks, you may goad target creature defending player controls. (Until your next turn, that creature attacks each combat if able and attacks a player other than you if able.)
 mana={3}{U}{U}
 type=Creature
@@ -12631,7 +12631,7 @@ type=Instant
 [/card]
 [card]
 name=Crashing Boars
-auto=@combat(attacking) source(this):ability$!name(block) target(creature|mybattlefield) mustblock ueot!$ opponent
+auto=_ATTACKING_ability$!name(block) target(creature|mybattlefield) mustblock ueot!$ opponent
 text=Whenever Crashing Boars attacks, defending player chooses an untapped creature he or she controls. That creature blocks Crashing Boars this turn if able.
 mana={3}{G}{G}
 type=Creature
@@ -13451,8 +13451,8 @@ toughness=2
 [/card]
 [card]
 name=Custodi Soulcaller
-auto=@combat(attacking) source(this):1/1 ueot
-auto=@combat(attacking) source(this):moveto(mybattlefield) target(creature[manacost<=1]|mygraveyard)
+auto=_ATTACKING_1/1 ueot
+auto=_ATTACKING_moveto(mybattlefield) target(creature[manacost<=1]|mygraveyard)
 text=Melee (Whenever this creature attacks, it gets +1/+1 until end of turn for each opponent you attacked with a creature this combat.) -- Whenever Custodi Soulcaller attacks, return target creature card with converted mana cost X or less from your graveyard to the battlefield, where X is the number of players you attacked with a creature this combat.
 mana={1}{W}{W}
 type=Creature
@@ -13572,7 +13572,7 @@ toughness=2
 [/card]
 [card]
 name=Daemogoth Titan
-auto=@combat(attacking) source(this):name(Sacrifice a creature) target(creature|mybattlefield) sacrifice
+auto=_ATTACKING_name(Sacrifice a creature) target(creature|mybattlefield) sacrifice
 auto=@combat(blocking) source(this):name(Sacrifice a creature) target(creature|mybattlefield) sacrifice
 text=Whenever Daemogoth Titan attacks or blocks, sacrifice a creature.
 mana={BG}{BG}{BG}{BG}
@@ -13900,7 +13900,7 @@ type=Instant
 [card]
 name=Dauntless Aven
 abilities=flying
-auto=@combat(attacking) source(this):untap target(creature|myBattlefield)
+auto=_ATTACKING_untap target(creature|myBattlefield)
 text=Flying -- Whenever Dauntless Aven attacks, untap target creature you control.
 mana={2}{W}
 type=Creature
@@ -14406,7 +14406,7 @@ toughness=2
 [card]
 name=Deathgorge Scavenger
 auto=may moveto(exile) target(*|graveyard)
-auto=@combat(attacking) source(this):may moveto(exile) target(*|graveyard)
+auto=_ATTACKING_may moveto(exile) target(*|graveyard)
 auto=@targeted(creature|graveyard) from(this):life:2 controller
 auto=@targeted(*[-creature]|graveyard) from(this):1/1 ueot
 text=Whenever Deathgorge Scavenger enters the battlefield or attacks, you may exile target card from a graveyard. If a creature card is exiled this way, you gain 2 life. If a noncreature card is exiled this way, Deathgorge Scavenger gets +1/+1 until end of turn.
@@ -14479,7 +14479,7 @@ toughness=3
 [card]
 name=Decimator Beetle
 auto=counter(-1/-1,1) target(creature|mybattlefield)
-auto=@combat(attacking) source(this):counter(-1/-1,-1) target(creature|mybattlefield) && counter(-1/-1,1) target(creature|opponentbattlefield)
+auto=_ATTACKING_counter(-1/-1,-1) target(creature|mybattlefield) && counter(-1/-1,1) target(creature|opponentbattlefield)
 text=When Decimator Beetle enters the battlefield, put a -1/-1 counter on target creature you control. -- Whenever Decimator Beetle attacks, remove a -1/-1 counter from target creature you control and put a -1/-1 counter on up to one target creature defending player controls.
 mana={3}{B}{G}
 type=Creature
@@ -14764,8 +14764,8 @@ toughness=1
 [/card]
 [card]
 name=Delina, Wild Mage
-auto=@combat(attacking) source(this):name(Roll a d20) rolld20 20 winability donothing winabilityend rolld20end
-auto=@combat(attacking) source(this):name(Choose your creature) target(creature|mybattlefield) counter(0/0.1.DelinaEffect)
+auto=_ATTACKING_name(Roll a d20) rolld20 20 winability donothing winabilityend rolld20end
+auto=_ATTACKING_name(Choose your creature) target(creature|mybattlefield) counter(0/0.1.DelinaEffect)
 auto=@dierolled(this) result(1) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(treason^battleready) options(nolegend)])) oneshot
 auto=@dierolled(this) result(2) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(treason^battleready) options(nolegend)])) oneshot
 auto=@dierolled(this) result(3) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(treason^battleready) options(nolegend)])) oneshot
@@ -14836,7 +14836,7 @@ autograveyard={U}{U}{U} restriction{type(*[instant;sorcery]|mygraveyard)~moretha
 autograveyard={U}{U} restriction{type(*[instant;sorcery]|mygraveyard)~morethan~3,thisturn(*[instant;sorcery]|mystack)~equalto~2}:name(Cast Demilich) name(Cast Demilich) transforms((,newability[activate castcard(normal)],newability[name(Exile 4 cards) target(<4>*[instant;sorcery]|mygraveyard) moveto(myexile)])) oneshot
 autograveyard={U} restriction{type(*[instant;sorcery]|mygraveyard)~morethan~3,thisturn(*[instant;sorcery]|mystack)~equalto~3}:name(Cast Demilich) name(Cast Demilich) transforms((,newability[activate castcard(normal)],newability[name(Exile 4 cards) target(<4>*[instant;sorcery]|mygraveyard) moveto(myexile)])) oneshot
 autograveyard={0} restriction{type(*[instant;sorcery]|mygraveyard)~morethan~3,thisturn(*[instant;sorcery]|mystack)~morethan~3}:name(Cast Demilich) name(Cast Demilich) transforms((,newability[activate castcard(normal)],newability[name(Exile 4 cards) target(<4>*[instant;sorcery]|mygraveyard) moveto(myexile)])) oneshot
-auto=@combat(attacking) source(this):may name(Exile instant or sorcery) target(*[instant;sorcery]|mygraveyard) moveTo(exile) and!( transforms((,newability[may name(Copy and cast) activate castcard(copied)])) oneshot )!
+auto=_ATTACKING_may name(Exile instant or sorcery) target(*[instant;sorcery]|mygraveyard) moveTo(exile) and!( transforms((,newability[may name(Copy and cast) activate castcard(copied)])) oneshot )!
 text=This spell costs {U} less to cast for each instant and sorcery you’ve cast this turn. -- Whenever Demilich attacks, exile up to one target instant or sorcery card from your graveyard. Copy it. You may cast the copy. -- You may cast Demilich from your graveyard by exiling four instants and/or sorcery cards from your graveyard in addition to paying its other costs.
 mana={U}{U}{U}{U}
 type=Creature
@@ -14990,7 +14990,7 @@ subtype=Aura
 name=Den of the Bugbear
 auto=if compare(type:land:myBattlefield)~morethan~2 then tap(noevent)
 auto={T}:Add{R}
-auto={3}{R}:name(Becomes goblin) transforms((,newability[becomes(Creature Goblin^3/2^red) ueot],newability[@combat(attacking) source(this):name(Create goblin) token(Goblin^Creature Goblin^1/1^red^battleready)])) ueot
+auto={3}{R}:name(Becomes goblin) transforms((,newability[becomes(Creature Goblin^3/2^red) ueot],newability[_ATTACKING_name(Create goblin) token(Goblin^Creature Goblin^1/1^red^battleready)])) ueot
 text=If you control two or more other lands, Den of the Bugbear enters the battlefield tapped. -- {T}: Add {R}. -- {3}{R}: Until end of turn, Den of the Bugbear becomes a 3/2 red Goblin creature with "Whenever this creature attacks, create a 1/1 red Goblin creature token that’s tapped and attacking." It’s still a land.
 type=Land
 [/card]
@@ -15060,7 +15060,7 @@ type=Instant
 [card]
 name=Deputized Protester
 abilities=menace
-auto=@combat(attacking) source(this):1/1 ueot
+auto=_ATTACKING_1/1 ueot
 text=Menace (This creature can't be blocked except by two or more creatures.) -- Melee (Whenever this creature attacks, it gets +1/+1 until end of turn for each opponent you attacked with a creature this combat.)
 mana={2}{R}
 type=Creature
@@ -15390,7 +15390,7 @@ toughness=2
 [card]
 name=Devoted Crop-Mate
 auto=@exerted(this):moveto(mybattlefield) target(creature[manacost<=2]|mygraveyard)
-auto=@combat(attacking) source(this):may exert
+auto=_ATTACKING_may exert
 text=You may exert Devoted Crop-Mate as it attacks. When you do, return target creature card with converted mana cost 2 or less from your graveyard to the battlefield. (An exerted creature won't untap during your next untap step.)
 mana={2}{W}
 type=Creature
@@ -15739,7 +15739,7 @@ toughness=1
 [/card]
 [card]
 name=Dire Fleet Captain
-auto=@combat(attacking) source(this):all(this) foreach(other pirate[attacking]) 1/1 ueot
+auto=_ATTACKING_all(this) foreach(other pirate[attacking]) 1/1 ueot
 text=Whenever Dire Fleet Captain attacks, it gets +1/+1 until end of turn for each other attacking Pirate.
 mana={B}{R}
 type=Creature
@@ -16805,8 +16805,8 @@ color=blue
 [card]
 name=Drakuseth, Maw of Flames
 abilities=flying
-auto=@combat(attacking) source(this):may name(Deals 3 damages to each of up to two other targets) name(Deals 3 damages to each of up to two other targets) damage:3 target(<2>player,creature,planeswalker)
-auto=@combat(attacking) source(this):name(Deals 4 damages to any target) name(Deals 4 damagess to any target) damage:4 target(player,creature,planeswalker)
+auto=_ATTACKING_may name(Deals 3 damages to each of up to two other targets) name(Deals 3 damages to each of up to two other targets) damage:3 target(<2>player,creature,planeswalker)
+auto=_ATTACKING_name(Deals 4 damages to any target) name(Deals 4 damagess to any target) damage:4 target(player,creature,planeswalker)
 text=Flying -- Whenever Drakuseth, Maw of Flames attacks, it deals 4 damage to any target and 3 damage to each of up to two other targets.
 mana={4}{R}{R}{R}
 type=Legendary Creature
@@ -16847,7 +16847,7 @@ toughness=2
 [card]
 name=Drana, the Last Bloodchief
 abilities=flying
-auto=@combat(attacking) source(this):ability$!name(Choose a non-legendary creature) notAtarget(creature[-legendary]|opponentGraveyard) moveTo(opponentBattlefield) and!( counter(1/1.1) and!(becomes(vampire) forever)! )! !$ opponent
+auto=_ATTACKING_ability$!name(Choose a non-legendary creature) notAtarget(creature[-legendary]|opponentGraveyard) moveTo(opponentBattlefield) and!( counter(1/1.1) and!(becomes(vampire) forever)! )! !$ opponent
 text=Flying -- Whenever Drana, the Last Bloodchief attacks, defending player chooses a nonlegendary creature card in your graveyard. You return that card to the battlefield with a +1/+1 counter on it. The creature is a Vampire in addition to its other types.
 mana={3}{B}{B}
 type=Legendary Creature
@@ -17008,7 +17008,7 @@ subtype=Aura
 [card]
 name=Dreadhorde Arcanist
 abilities=trample
-auto=@combat(attacking) source(this):may target(*[instant;sorcery;manacost<=power]|mygraveyard) activate castcard(normal) and!(transforms((,newability[gainedexiledeath])) forever)!
+auto=_ATTACKING_may target(*[instant;sorcery;manacost<=power]|mygraveyard) activate castcard(normal) and!(transforms((,newability[gainedexiledeath])) forever)!
 text=Trample -- Whenever Dreadhorde Arcanist attacks, you may cast target instant or sorcery card with converted mana cost less than or equal to Dreadhorde Arcanist's power from your graveyard without paying its mana cost. If that card would be put into your graveyard this turn, exile it instead.
 mana={1}{R}
 type=Creature
@@ -17151,7 +17151,7 @@ type=Enchantment
 name=Dream Trawler
 abilities=flying,lifelink
 auto=@drawof(player):1/0 ueot
-auto=@combat(attacking) source(this):draw:1 controller
+auto=_ATTACKING_draw:1 controller
 auto={D(*|myHand)}:opponentshroud && tap(this) ueot
 text=Flying, lifelink -- Whenever you draw a card, Dream Trawler gets +1/+0 until end of turn. -- Whenever Dream Trawler attacks, draw a card. -- Discard a card: Dream Trawler gains hexproof until end of turn. Tap it.
 mana={2}{W}{W}{U}{U}
@@ -17974,7 +17974,7 @@ auto=@dierolled(this) result(3) from(controller):may name(Becomes 3/3 insect) be
 auto=@dierolled(this) result(4) from(controller):may name(Becomes 4/4 insect) becomes(Creature Insect,4/4,flying) ueot
 auto=@dierolled(this) result(5) from(controller):may name(Becomes 5/5 insect) becomes(Creature Insect,5/5,flying) ueot
 auto=@dierolled(this) result(6) from(controller):may name(Becomes 6/6 insect) becomes(Creature Insect,6/6,flying) ueot
-auto=@combat(attacking) source(this):name(Another creature gains flying) target(other creature[attacking]|battlefield) transforms((,newability[flying])) ueot
+auto=_ATTACKING_name(Another creature gains flying) target(other creature[attacking]|battlefield) transforms((,newability[flying])) ueot
 text=Ebony Fly enters the battlefield tapped. -- {T}: Add {C}. -- {4}: Roll a d6. Until end of turn, you may have Ebony Fly become an X/X Insect artifact creature with flying, where X is the result. -- Whenever Ebony Fly attacks, another target attacking creature gains flying until end of turn.
 mana={2}
 type=Artifact
@@ -18047,7 +18047,7 @@ name=Edgar Markov
 abilities=first strike,haste
 auto=@movedTo(other *[vampire]|mystack):token(Vampire,Creature Vampire,1/1,black)
 autocommandzone=@movedTo(other *[vampire]|mystack):token(Vampire,Creature Vampire,1/1,black)
-auto=@combat(attacking) source(this):counter(1/1) all(vampire|myBattlefield)
+auto=_ATTACKING_counter(1/1) all(vampire|myBattlefield)
 text=Eminence — Whenever you cast another Vampire spell, if Edgar Markov is in the command zone or on the battlefield, create a 1/1 black Vampire creature token. -- First strike, haste -- Whenever Edgar Markov attacks, put a +1/+1 counter on each Vampire you control.
 mana={3}{R}{W}{B}
 type=Legendary Creature
@@ -18671,7 +18671,7 @@ toughness=1
 [card]
 name=Embereth Skyblazer
 auto=this(variable{controllerturn}>0) flying
-auto=@combat(attacking) source(this):pay({2}{R}):all(creature|mybattlefield) 1/0 ueot
+auto=_ATTACKING_pay({2}{R}):all(creature|mybattlefield) 1/0 ueot
 text=As long as it's your turn, Embereth Skyblazer has flying. -- Whenever Embereth Skyblazer attacks, you may pay {2}{R}. If you do, creatures you control get +X/+0 until end of turn, where X is the number of opponents you have.
 mana={3}{R}
 type=Creature
@@ -18682,7 +18682,7 @@ toughness=3
 [card]
 name=Emberhorn Minotaur
 auto=@exerted(this):1/1 ueot && menace ueot
-auto=@combat(attacking) source(this):may exert
+auto=_ATTACKING_may exert
 text=You may exert Emberhorn Minotaur as it attacks. When you do, it gets +1/+1 and gains menace until end of turn. (An exerted creature won't untap during your next untap step.)
 mana={3}{R}
 type=Creature
@@ -18777,7 +18777,7 @@ type=Instant
 [card]
 name=Emergent Growth
 target=creature
-auto=transforms((,newability[5/5],newability[@combat(attacking) source(this):all(creature|opponentbattlefield) mustblock ueot])) ueot
+auto=transforms((,newability[5/5],newability[_ATTACKING_all(creature|opponentbattlefield) mustblock ueot])) ueot
 text=Target creature gets +5/+5 until end of turn and must be blocked this turn if able.
 mana={3}{G}
 type=Sorcery
@@ -19133,7 +19133,7 @@ name=Enlarge
 target=creature
 auto=trample ueot
 auto=7/7 ueot
-auto=transform((,newability[@combat(attacking) source(this): all(creature|opponentbattlefield) mustblock ueot])) ueot
+auto=transform((,newability[_ATTACKING_ all(creature|opponentbattlefield) mustblock ueot])) ueot
 text=Target creature gets +7/+7 and gains trample until end of turn. It must be blocked this turn if able. (If a creature with trample would assign enough damage to its blockers to destroy them, you may have it assign the rest of its damage to defending player or planeswalker.)
 mana={3}{G}{G}
 type=Sorcery
@@ -19456,7 +19456,7 @@ auto={crew(other creature[power>=1]|myBattlefield)}{crew(other creature[power>=3
 auto={crew(other creature[power>=1]|myBattlefield)}{crew(other creature[power>=1]|myBattlefield)}{crew(other creature[power>=2]|myBattlefield)}:name(crew 4 [3 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=2]|mybattlefield)~morethan~0,type(other creature[-tapped;power>=1]|mybattlefield)~morethan~1,type(other creature[-tapped;-cantcrew]|mybattlefield)~morethan~2,compare(crewtotalpower)~morethan~3}
 auto={crew(other creature[power>=1]|myBattlefield)}{crew(other creature[power>=1]|myBattlefield)}{crew(other creature[power>=1]|myBattlefield)}{crew(other creature[power>=1]|myBattlefield)}:name(crew 4 [4 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=1]|mybattlefield)~morethan~3,compare(crewtotalpower)~morethan~3}
 auto=token(Cat,Creature Cat,2/2,green)*2
-auto=@combat(attacking) source(this):clone target(*[token]|mybattlefield)
+auto=_ATTACKING_clone target(*[token]|mybattlefield)
 text=When Esika’s Chariot enters the battlefield, create two 2/2 green Cat creature tokens. -- Whenever Esika’s Chariot attacks, create a token that’s a copy of target token you control. -- Crew 4
 mana={3}{G}
 type=Legendary Artifact
@@ -19586,8 +19586,8 @@ type=Enchantment
 [/card]
 [card]
 name=Etali, Primal Storm
-auto=@combat(attacking) source(this):Reveal:1 revealzone(mylibrary) revealuntil(*|mylibrary) optionone choice name(Cast Card) target(*|reveal)  moveto(mylibrary) and!(may castcard(normal))! optiononeend optiontwo target(<1>*|reveal) bottomoflibrary and!(all(*|reveal) bottomoflibrary)! optiontwoend revealend
-auto=@combat(attacking) source(this):Reveal:1 revealzone(opponentlibrary) revealuntil(*|opponentlibrary) optionone choice name(Cast Card) target(*|reveal)  moveto(opponentlibrary) and!(may castcard(normal))! optiononeend optiontwo target(<1>*|reveal) bottomoflibrary and!(all(*|reveal) bottomoflibrary)! optiontwoend revealend
+auto=_ATTACKING_Reveal:1 revealzone(mylibrary) revealuntil(*|mylibrary) optionone choice name(Cast Card) target(*|reveal)  moveto(mylibrary) and!(may castcard(normal))! optiononeend optiontwo target(<1>*|reveal) bottomoflibrary and!(all(*|reveal) bottomoflibrary)! optiontwoend revealend
+auto=_ATTACKING_Reveal:1 revealzone(opponentlibrary) revealuntil(*|opponentlibrary) optionone choice name(Cast Card) target(*|reveal)  moveto(opponentlibrary) and!(may castcard(normal))! optiononeend optiontwo target(<1>*|reveal) bottomoflibrary and!(all(*|reveal) bottomoflibrary)! optiontwoend revealend
 text=Whenever Etali, Primal Storm attacks, exile the top card of each player’s library, then you may cast any number of spells from among those cards without paying their mana costs.
 mana={4}{R}{R}
 type=Legendary Creature
@@ -19624,7 +19624,7 @@ toughness=3
 [card]
 name=Eternal Taskmaster
 auto=tapped(noevent)
-auto=@combat(attacking) source(this):pay({2}{b}) target(creature|mygraveyard) moveto(ownerhand)
+auto=_ATTACKING_pay({2}{b}) target(creature|mygraveyard) moveto(ownerhand)
 text=Eternal Taskmaster enters the battlefield tapped. -- Whenever Eternal Taskmaster attacks, you may pay {2}{B}. If you do, return target creature card from your graveyard to your hand.
 mana={1}{B}
 type=Creature
@@ -19668,7 +19668,7 @@ toughness=3
 [card]
 name=Ethereal Forager
 abilities=flying
-auto=@combat(attacking) source(this):may moveTo(ownerHand) target(instant,sorcery|myExile)
+auto=_ATTACKING_may moveTo(ownerHand) target(instant,sorcery|myExile)
 text=Delve (Each card you exile from your graveyard while casting this spell pays for {1}.) -- Flying -- Whenever Ethereal Forager attacks, you may return an instant or sorcery card exiled with Ethereal Forager to its owner’s hand.
 mana={4}{U}{U}
 other={delve} name(Delve)
@@ -19681,7 +19681,7 @@ toughness=3
 name=Ethereal Valkyrie
 abilities=flying
 auto=draw:1 controller && transforms((,newability[name(Exile a card from your hand) target(*|myhand) doforetell])) oneshot
-auto=@combat(attacking) source(this):draw:1 controller && transforms((,newability[name(Exile a card from your hand) target(*|myhand) doforetell])) oneshot
+auto=_ATTACKING_draw:1 controller && transforms((,newability[name(Exile a card from your hand) target(*|myhand) doforetell])) oneshot
 auto=emblem transforms((,newability[@each upkeep:all(*[foretold;-foretell]|myexile) transforms((,newability[this(variable{canforetellcast}>0) canplayfromexile],newability[this(variable{canforetellcast}>0) changecost(colorless:-2) forcedalive])) ueot])) forever dontremove
 text=Flying -- Whenever Ethereal Valkyrie enters the battlefield or attacks, draw a card, then exile a card from your hand face down. It becomes foretold. Its foretell cost is its mana cost reduced by {2}. (On a later turn, you may cast it for its foretell cost, even if this creature has left the battlefield.)
 mana={4}{W}{U}
@@ -20265,7 +20265,7 @@ toughness=4
 [/card]
 [card]
 name=Exuberant Wolfbear
-auto=@combat(attacking) source(this):may target(human|myBattlefield) becomes(p/t) ueot
+auto=_ATTACKING_may target(human|myBattlefield) becomes(p/t) ueot
 text=Whenever Exuberant Wolfbear attacks, you may change the base power and toughness of target Human you control to Exuberant Wolfbear's power and toughness until end of turn.
 mana={3}{G}
 type=Creature
@@ -20604,7 +20604,7 @@ type=Instant
 [/card]
 [card]
 name=Falconer Adept
-auto=@combat(attacking) source(this):token(Bird,Creature Bird,1/1,white,flying,battleready)
+auto=_ATTACKING_token(Bird,Creature Bird,1/1,white,flying,battleready)
 text=Whenever Falconer Adept attacks, create a 1/1 white Bird creature token with flying that's tapped and attacking.
 mana={3}{W}
 type=Creature
@@ -20727,7 +20727,7 @@ toughness=1
 [/card]
 [card]
 name=Fang of the Pack
-auto=@combat(attacking) source(this):1/1 ueot
+auto=_ATTACKING_1/1 ueot
 text=Melee (Whenever this creature attacks, it gets +1/+1 until end of turn for each opponent you attacked with a creature this combat.) -- At the beginning of combat on your turn, another target creature you control gains melee until end of turn. (If a creature has multiple instances of melee, each triggers separately.)
 mana={5}{G}
 type=Creature
@@ -20893,7 +20893,7 @@ toughness=2
 [/card]
 [card]
 name=Fathom Fleet Swordjack
-auto=@combat(attacking) source(this):target(planeswalker,player) damage:type:artifact:mybattlefield
+auto=_ATTACKING_target(planeswalker,player) damage:type:artifact:mybattlefield
 autograveyard={5}{R}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=Whenever Fathom Fleet Swordjack attacks, it deals damage to the player or planeswalker it's attacking equal to the number of artifacts you control. -- Encore {5}{R} ({5}{R}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={3}{R}
@@ -21111,7 +21111,7 @@ toughness=3
 [card]
 name=Felisa, Fang of Silverquill
 abilities=flying,mentor
-auto=@combat(attacking) source(this):name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot 
+auto=_ATTACKING_name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot 
 auto=@movedto(creature[-token;counter{1/1.1}]|mygraveyard) from(myBattlefield):thisforeach(variable{1}) token(Inkling,Creature Inkling,2/1,white,black,flying) and!( tap(noevent) )!
 auto=@movedto(creature[-token;counter{1/1.2}]|mygraveyard) from(myBattlefield):thisforeach(variable{2}) token(Inkling,Creature Inkling,2/1,white,black,flying) and!( tap(noevent) )!
 auto=@movedto(creature[-token;counter{1/1.3}]|mygraveyard) from(myBattlefield):thisforeach(variable{3}) token(Inkling,Creature Inkling,2/1,white,black,flying) and!( tap(noevent) )!
@@ -21401,7 +21401,7 @@ type=Sorcery
 [/card]
 [card]
 name=Fey Steed
-auto=@combat(attacking) source(this):name(Creature gains indestructible) target(other creature[attacking]|mybattlefield) transforms((,newability[indestructible])) ueot
+auto=_ATTACKING_name(Creature gains indestructible) target(other creature[attacking]|mybattlefield) transforms((,newability[indestructible])) ueot
 auto=@targeted(*[creature;planeswalker]|mybattlefield) from(*|opponentzones):may name(Draw a card) draw:1 controller
 text=Whenever Fey Steed attacks, another target attacking creature you control gains indestructible until end of turn. -- Whenever a creature or planeswalker you control becomes the target of a spell or ability an opponent controls, you may draw a card.
 mana={2}{W}{W}
@@ -21423,7 +21423,7 @@ toughness=2
 [card]
 name=Fibrous Entangler
 abilities=vigilance
-auto=@combat(attacking) source(this):all(creature|opponentbattlefield) mustblock ueot
+auto=_ATTACKING_all(creature|opponentbattlefield) mustblock ueot
 text=Vigilance -- Fibrous Entangler must be blocked if able. -- Fibrous Entangler can block an additional creature each combat.
 mana={2}{G}{G}
 type=Creature
@@ -21891,7 +21891,7 @@ type=Instant
 [card]
 name=Fire-Omen Crane
 abilities=flying
-auto=@combat(attacking) source(this):damage:1 target(creature|opponentBattlefield)
+auto=_ATTACKING_damage:1 target(creature|opponentBattlefield)
 text=Flying. (This creature can't be blocked except by creatures with flying or reach.) -- Whenever Fire-Omen Crane attacks, it deals 1 damage to target creature an opponent controls.
 mana={3}{R}{R}
 type=Creature
@@ -21963,7 +21963,7 @@ toughness=3
 [/card]
 [card]
 name=Fireflux Squad
-auto=@combat(attacking) source(this):may moveTo(myExile) target(other creature[attacking]|myBattlefield) && Reveal:1 revealzone(mylibrary) revealuntil(creature|mylibrary) optionone name(Get Creature) target(creature|myreveal) moveto(mybattlefield) && transforms((,haste,attacking)) forever optiononeend optiontwo choice name(Shuffle) all(*|myreveal) bottomoflibrary && shuffle controller  optiontwoend revealend
+auto=_ATTACKING_may moveTo(myExile) target(other creature[attacking]|myBattlefield) && Reveal:1 revealzone(mylibrary) revealuntil(creature|mylibrary) optionone name(Get Creature) target(creature|myreveal) moveto(mybattlefield) && transforms((,haste,attacking)) forever optiononeend optiontwo choice name(Shuffle) all(*|myreveal) bottomoflibrary && shuffle controller  optiontwoend revealend
 text=Haste -- Whenever Fireflux Squad attacks, you may exile another target attacking creature you control. If you do, reveal cards from the top of your library until you reveal a creature card. Put that card onto the battlefield tapped and attacking and the rest on the bottom of your library in a random order.
 mana={3}{R}
 type=Creature
@@ -22325,7 +22325,7 @@ toughness=2
 name=Flamerush Rider
 other={2}{R}{R} name(Dash)
 auto=if paid(alternative) then transforms((,newability[haste],newability[phaseaction[endofturn sourceinplay] moveto(ownerhand)]))ueot
-auto=@combat(attacking) source(this):target(other creature[attacking]) clone with(unearth,battleready)
+auto=_ATTACKING_target(other creature[attacking]) clone with(unearth,battleready)
 text=Whenever Flamerush Rider attacks, create a token that’s a copy of another target attacking creature and that’s tapped and attacking. Exile the token at end of combat. -- Dash {2}{R}{R} (You may cast this spell for its dash cost. If you do, it gains haste, and it’s returned from the battlefield to its owner’s hand at the beginning of the next end step.)
 mana={4}{R}
 type=Creature
@@ -22461,7 +22461,7 @@ type=Sorcery
 [/card]
 [card]
 name=Fleet Swallower
-auto=@combat(attacking) source(this):target(player) deplete:halfdowntype:*:targetedpersonslibrary
+auto=_ATTACKING_target(player) deplete:halfdowntype:*:targetedpersonslibrary
 text=Whenever Fleet Swallower attacks, target player puts the top half of his or her library, rounded up, into his or her graveyard.
 mana={5}{U}{U}
 type=Creature
@@ -23096,7 +23096,7 @@ name=Fractal Harness
 auto={2}:equip
 auto=token(Fractal,Creature Fractal,0/0,green,blue) and!( counter(1/1.x) )!
 auto=name(Attach to fractal) rehook target(fractal[token;fresh;counter{1/1}]|mybattlefield)
-auto=transforms((,newability[@combat(attacking) source(this):thisforeach(counter{1/1.1}) counter(1/1) all(this)]))
+auto=transforms((,newability[_ATTACKING_thisforeach(counter{1/1.1}) counter(1/1) all(this)]))
 text=When Fractal Harness enters the battlefield, create a 0/0 green and blue Fractal creature token. Put X +1/+1 counters on it and attach Fractal Harness to it. -- Whenever equipped creature attacks, double the number of +1/+1 counters on it. -- Equip {2}
 mana={X}{2}{G}
 type=Artifact
@@ -23345,7 +23345,7 @@ toughness=3
 [/card]
 [card]
 name=Frontline Medic
-auto=@combat(attacking) source(this):restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:all(creature|mybattlefield) transforms((indestructible)) ueot
+auto=_ATTACKING_restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:all(creature|mybattlefield) transforms((indestructible)) ueot
 auto={S}:name(counter spell) target(other *|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) oneshot
 text=Battalion — Whenever Frontline Medic and at least two other creatures attack, creatures you control gain indestructible until end of turn. -- Sacrifice Frontline Medic: Counter target spell with {X} in its mana cost unless its controller pays {3}.
 mana={2}{W}
@@ -23378,7 +23378,7 @@ type=Snow Instant
 name=Frost Titan
 auto=@targeted(this) from(opponent):transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) oneshot
 auto=target(*) transforms((,newability[tap],newability[frozen]))
-auto=@combat(attacking) source(this):target(*) transforms((,newability[tap],newability[frozen]))
+auto=_ATTACKING_target(*) transforms((,newability[tap],newability[frozen]))
 text=Whenever Frost Titan becomes the target of a spell or ability an opponent controls, counter that spell or ability unless its controller pays {2}. -- Whenever Frost Titan enters the battlefield or attacks, tap target permanent. It doesn’t untap during its controller’s next untap step.
 mana={4}{U}{U}
 type=Creature
@@ -23671,7 +23671,7 @@ toughness=1
 [/card]
 [card]
 name=Gaea's Protector
-auto=@combat(attacking) source(this): all(creature|opponentbattlefield) mustblock ueot
+auto=_ATTACKING_ all(creature|opponentbattlefield) mustblock ueot
 text=Gaea’s Protector must be blocked if able.
 mana={3}{G}
 type=Creature
@@ -23839,7 +23839,7 @@ toughness=3
 [/card]
 [card]
 name=Garbage Elemental (c)
-auto=@combat(attacking) source(this):all(other creature[attacking]) 1/0 ueot
+auto=_ATTACKING_all(other creature[attacking]) 1/0 ueot
 auto=all(this) rolld6 winability token(Goblin,Creature Goblin,1/1,red)*lastrollresultminuslastrollchoiceminusend winabilityend loseability token(Goblin,Creature Goblin,1/1,red)*lastrollresultminuslastrollchoiceminusend loseabilityend rolld6end
 text=Battle cry (Whenever this creature attacks, each other attacking creature gets +1/+0 until end of turn.) -- When Garbage Elemental enters the battlefield, roll two six-sided dice. Create a number of 1/1 red Goblin creature tokens equal to the difference between those results.
 mana={4}{R}
@@ -23943,7 +23943,7 @@ toughness=1
 [card]
 name=Garrison Griffin
 abilities=flying
-auto=@combat(attacking) source(this):target(knight|myBattlefield) flying ueot
+auto=_ATTACKING_target(knight|myBattlefield) flying ueot
 text=Flying -- Whenever Garrison Griffin attacks, target Knight you control gains flying until end of turn.
 mana={2}{W}
 type=Creature
@@ -24824,7 +24824,7 @@ toughness=1
 [/card]
 [card]
 name=Gilded Cerodon
-auto=@combat(attacking) source(this):aslongas(Desert|mybattlefield,myGraveyard) target(creature) cantblock ueot
+auto=_ATTACKING_aslongas(Desert|mybattlefield,myGraveyard) target(creature) cantblock ueot
 text=Whenever Gilded Cerodon attacks, if you control a Desert or there is a Desert card in your graveyard, target creature can't block this turn.
 mana={4}{R}
 type=Creature
@@ -25367,7 +25367,7 @@ toughness=4
 [card]
 name=Glory-Bound Initiate
 auto=@exerted(this):transforms((,newability[lifelink],newability[1/3])) ueot
-auto=@combat(attacking) source(this):may exert
+auto=_ATTACKING_may exert
 text=You may exert Glory-Bound Initiate as it attacks. When you do, it gets +1/+3 and gains lifelink until end of turn. (An exerted creature won't untap during your next untap step.)
 mana={1}{W}
 type=Creature
@@ -25379,7 +25379,7 @@ toughness=1
 name=Glorybringer
 abilities=flying, haste
 auto=@exerted(this):damage:4 target(creature[-dragon]|opponentbattlefield)
-auto=@combat(attacking) source(this):may exert
+auto=_ATTACKING_may exert
 text=Flying, haste -- You may exert Glorybringer as it attacks. When you do, it deals 4 damage to target non-Dragon creature an opponent controls. (An exerted creature won't untap during your next untap step.)
 mana={3}{R}{R}
 type=Creature
@@ -25648,7 +25648,7 @@ toughness=1
 [card]
 name=Goblin Banneret
 abilities=mentor
-auto=@combat(attacking) source(this):name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
+auto=_ATTACKING_name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
 auto={1}{R}:2/0 ueot
 text=Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.) -- {1}{R}: Goblin Banneret gets +2/+0 until end of turn.
 mana={R}
@@ -25750,7 +25750,7 @@ type=Enchantment
 [card]
 name=Goblin Fire Fiend
 abilities=haste
-auto=@combat(attacking) source(this):all(creature|opponentBattlefield) mustblock ueot
+auto=_ATTACKING_all(creature|opponentBattlefield) mustblock ueot
 auto={R}:1/0 ueot
 text=Haste -- Goblin Fire Fiend must be blocked if able. -- {R}: Goblin Fire Fiend gets +1/+0 until end of turn.
 mana={3}{R}
@@ -25825,7 +25825,7 @@ toughness=1
 [/card]
 [card]
 name=Goblin Locksmith
-auto=@combat(attacking) source(this):all(creature[defender]) cantblock
+auto=_ATTACKING_all(creature[defender]) cantblock
 text=Whenever Goblin Locksmith attacks, creatures with defender can't block this turn.
 mana={1}{R}
 type=Creature
@@ -25891,7 +25891,7 @@ type=Enchantment
 [/card]
 [card]
 name=Goblin Racketeer
-auto=@combat(attacking) source(this):may name(Goad creature) target(creature|opponentBattlefield) transforms((,newability[mustattack])) uynt
+auto=_ATTACKING_may name(Goad creature) target(creature|opponentBattlefield) transforms((,newability[mustattack])) uynt
 text=Whenever Goblin Racketeer attacks, you may goad target creature defending player controls. (Until your next turn, that creature attacks each combat if able and attacks a player other than you if able.)
 mana={3}{R}
 type=Creature
@@ -25952,9 +25952,9 @@ toughness=1
 [/card]
 [card]
 name=Goblin Traprunner
-auto=@combat(attacking) source(this):name(Flip a coin) flipacoin winability token(Goblin,Creature Goblin,1/1,red,battleready) winabilityend flipend
-auto=@combat(attacking) source(this):name(Flip a coin) flipacoin winability token(Goblin,Creature Goblin,1/1,red,battleready) winabilityend flipend
-auto=@combat(attacking) source(this):name(Flip a coin) flipacoin winability token(Goblin,Creature Goblin,1/1,red,battleready) winabilityend flipend
+auto=_ATTACKING_name(Flip a coin) flipacoin winability token(Goblin,Creature Goblin,1/1,red,battleready) winabilityend flipend
+auto=_ATTACKING_name(Flip a coin) flipacoin winability token(Goblin,Creature Goblin,1/1,red,battleready) winabilityend flipend
+auto=_ATTACKING_name(Flip a coin) flipacoin winability token(Goblin,Creature Goblin,1/1,red,battleready) winabilityend flipend
 text=Whenever Goblin Traprunner attacks, flip three coins. For each flip you win, create a 1/1 red Goblin creature token that's tapped and attacking.
 mana={3}{R}
 type=Creature
@@ -26319,7 +26319,7 @@ toughness=5
 [/card]
 [card]
 name=Goma Fada Vanguard
-auto=@combat(attacking) source(this):target(creature[power<=type:warrior:mybattlefield]|opponentBattlefield) cantblock ueot
+auto=_ATTACKING_target(creature[power<=type:warrior:mybattlefield]|opponentBattlefield) cantblock ueot
 text=Whenever Goma Fada Vanguard attacks, target creature an opponent controls with power less than or equal to the number of Warriors you control can't block this turn.
 mana={1}{R}
 type=Creature
@@ -26366,8 +26366,8 @@ toughness=2
 [card]
 name=Goreclaw, Terror of Qal Sisma
 auto=lord(creature[power>=4]|mycastingzone) altercost(colorless,-2)
-auto=@combat(attacking) source(this):all(creature[power>=4]|myBattlefield) 1/1 ueot
-auto=@combat(attacking) source(this):all(creature[power>=4]|myBattlefield) trample ueot
+auto=_ATTACKING_all(creature[power>=4]|myBattlefield) 1/1 ueot
+auto=_ATTACKING_all(creature[power>=4]|myBattlefield) trample ueot
 text=Creature spells you cast with power 4 or greater cost {2} less to cast. -- Whenever Goreclaw, Terror of Qal Sisma attacks, each creature you control with power 4 or greater gets +1/+1 and gains trample until end of turn.
 mana={3}{G}
 type=Legendary Creature
@@ -26401,7 +26401,7 @@ toughness=2
 name=Gorilla Berserkers
 abilities=trample,threeblockers
 auto=rampage(2/2,1)
-auto=@combat(attacking) source(this):if type(creature[blocking]|opponentBattlefield)~lessthan~3 then unblockable ueot
+auto=_ATTACKING_if type(creature[blocking]|opponentBattlefield)~lessthan~3 then unblockable ueot
 text=Trample; rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.) -- Gorilla Berserkers can't be blocked except by three or more creatures.
 mana={3}{G}{G}
 type=Creature
@@ -26412,7 +26412,7 @@ toughness=3
 [card]
 name=Goring Ceratops
 abilities=double strike
-auto=@combat(attacking) source(this):all(other creature|mybattlefield) double strike ueot
+auto=_ATTACKING_all(other creature|mybattlefield) double strike ueot
 text=Double strike -- Whenever Goring Ceratops attacks, other creatures you control gain double strike until end of turn.
 mana={5}{W}{W}
 type=Creature
@@ -26424,7 +26424,7 @@ toughness=3
 name=Gorm the Great
 abilities=vigilance,menace,partner
 auto=may name(Put partner in hand) moveto(myhand) target(Virtus the Veiled|mylibrary) and!(shuffle)!
-auto=@combat(attacking) source(this):all(creature|opponentbattlefield) mustblock ueot
+auto=_ATTACKING_all(creature|opponentbattlefield) mustblock ueot
 text=Partner with Virtus the Veiled (When this creature enters the battlefield, target player may put Virtus into their hand from their library, then shuffle.) -- Vigilance -- Gorm the Great must be blocked if able, and Gorm must be blocked by two or more creatures if able.
 mana={3}{G}
 type=Legendary Creature
@@ -26482,7 +26482,7 @@ toughness=4
 [/card]
 [card]
 name=Graceful Cat
-auto=@combat(attacking) source(this): 1/1 ueot
+auto=_ATTACKING_ 1/1 ueot
 text=Whenever Graceful Cat attacks, it gets +1/+1 until end of turn.
 mana={2}{W}
 type=Creature
@@ -26610,7 +26610,7 @@ toughness=7
 [/card]
 [card]
 name=Grasping Scoundrel
-auto=@combat(attacking) source(this):1/0
+auto=_ATTACKING_1/0
 text=Grasping Scoundrel gets +1/+0 as long as it's attacking.
 mana={B}
 type=Creature
@@ -26690,7 +26690,7 @@ toughness=1
 [/card]
 [card]
 name=Graven Abomination
-auto=@combat(attacking) source(this):moveto(exile) target(*|opponentgraveyard)
+auto=_ATTACKING_moveto(exile) target(*|opponentgraveyard)
 text=Whenever Graven Abomination attacks, exile target card from defending player's graveyard.
 mana={3}
 type=Artifact Creature
@@ -26868,7 +26868,7 @@ type=Sorcery
 [/card]
 [card]
 name=Grenzo's Ruffians
-auto=@combat(attacking) source(this):1/1 ueot
+auto=_ATTACKING_1/1 ueot
 text=Melee (Whenever this creature attacks, it gets +1/+1 until end of turn for each opponent you attacked with a creature this combat.) -- Whenever Grenzo's Ruffians deals combat damage to an opponent, it deals that much damage to each other opponent.
 mana={2}{R}{R}
 type=Creature
@@ -26914,7 +26914,7 @@ toughness=4
 name=Greven, Predator Captain
 abilities=menace
 auto=life:lifelost/0
-auto=@combat(attacking) source(this):may {S(other creature|mybattlefield)} life:-storedtoughness && draw:storedpower
+auto=_ATTACKING_may {S(other creature|mybattlefield)} life:-storedtoughness && draw:storedpower
 text=Menace -- Greven, Predator Captain gets +X/+0, where X is the amount of life you've lost this turn. -- Whenever Greven attacks, you may sacrifice another creature. If you do, you draw cards equal to that creature's power and you lose life equal to that creature's toughness.
 mana={3}{B}{R}
 type=Legendary Creature
@@ -27173,7 +27173,7 @@ toughness=5
 [card]
 name=Grotag Bug-Catcher
 abilities=trample
-auto=@combat(attacking) source(this):calculateparty/0 ueot
+auto=_ATTACKING_calculateparty/0 ueot
 text=Trample -- Whenever Grotag Bug-Catcher attacks, it gets +1/+0 until end of turn for each creature in your party. (Your party consists of up to one each of Cleric, Rogue, Warrior, and Wizard.)
 mana={1}{R}
 type=Creature
@@ -27316,7 +27316,7 @@ toughness=5
 name=Gruul Beastmaster
 auto=choice counter(1/1)
 auto=choice aslongas(creature|myBattlefield) haste
-auto=@combat(attacking) source(this):target(other creature|myBattlefield) dynamicability<!powerpumppow!> ueot
+auto=_ATTACKING_target(other creature|myBattlefield) dynamicability<!powerpumppow!> ueot
 text=Riot (This creature enters the battlefield with your choice of a +1/+1 counter or haste.) -- Whenever Gruul Beastmaster attacks, another target creature you control gets +X/+0 until end of turn, where X is Gruul Beastmaster's power.
 mana={3}{G}
 type=Creature
@@ -27556,7 +27556,7 @@ toughness=4
 [card]
 name=Gust Walker
 auto=@exerted(this):transforms((,newability[flying],newability[1/1])) ueot
-auto=@combat(attacking) source(this):may exert
+auto=_ATTACKING_may exert
 text=You may exert Gust Walker as it attacks. When you do, it gets +1/+1 and gains flying until end of turn. (An exerted creature won't untap during your next untap step.)
 mana={1}{W}
 type=Creature
@@ -27639,7 +27639,7 @@ toughness=1
 [card]
 name=Gyrus, Waker of Corpses
 auto=counter(1/1,X) && counter(1/1,3)
-auto=@combat(attacking) source(this): copy target(creature[~lessthan~storedpower]|myGraveyard) with(unearth,haste[attacking]) && moveTo(exile) targe(creature[~lessthan~storedpower]|myGraveyard)
+auto=_ATTACKING_ copy target(creature[~lessthan~storedpower]|myGraveyard) with(unearth,haste[attacking]) && moveTo(exile) targe(creature[~lessthan~storedpower]|myGraveyard)
 text=Gyrus, Waker of Corpses enters the battlefield with a number of +1/+1 counters on it equal to the amount of mana spent to cast it. -- Whenever Gyrus attacks, you may exile target creature card with lesser power from your graveyard. If you do, create a token that’s a copy of that card and that’s tapped and attacking. Exile the token at end of combat.
 mana={X}{B}{R}{G}
 type=Legendary Creature
@@ -27923,7 +27923,7 @@ toughness=3
 [card]
 name=Hammer Dropper
 abilities=mentor
-auto=@combat(attacking) source(this):name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
+auto=_ATTACKING_name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
 text=Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.)
 mana={2}{R}{W}
 type=Creature
@@ -28036,7 +28036,7 @@ toughness=1
 [/card]
 [card]
 name=Hans Eriksson
-auto=@combat(attacking) source(this):reveal:1 optionone name(Reveal) target(creature|reveal) moveto(mybattlefield) and!( transforms((,newability[ninjutsu],newability[target(Hans Eriksson|mybattlefield) dynamicability<!powerstrike eachother!>])) forever )! optiononeend optiontwo target(<1>*|reveal) moveto(myhand) optiontwoend revealend
+auto=_ATTACKING_reveal:1 optionone name(Reveal) target(creature|reveal) moveto(mybattlefield) and!( transforms((,newability[ninjutsu],newability[target(Hans Eriksson|mybattlefield) dynamicability<!powerstrike eachother!>])) forever )! optiononeend optiontwo target(<1>*|reveal) moveto(myhand) optiontwoend revealend
 text=Whenever Hans Eriksson attacks, reveal the top card of your library. If it's a creature card, put it onto the battlefield tapped and attacking defending player or a planeswalker they control. Otherwise, put that card into your hand. When you put a creature card onto the battlefield this way, it fights Hans Eriksson.
 mana={2}{R}{G}
 type=Legendary Creature
@@ -28088,7 +28088,7 @@ auto=counter(0/0,1,Lore)
 auto=@each my firstmain:counter(0/0,1,Lore)
 auto=transforms((,newability[deplete:3 controller],newability[target(*[elf;tyvar]|mygraveyard) moveto(mybattlefield)])) oneshot
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) all(elf|mybattlefield) counter(1/1)
-auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) all(elf|mybattlefield) transforms((,newability[@combat(attacking) source(this):name(Creature gets -1/-1) target(creature|opponentbattlefield) -1/-1 ueot])) ueot
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) all(elf|mybattlefield) transforms((,newability[_ATTACKING_name(Creature gets -1/-1) target(creature|opponentbattlefield) -1/-1 ueot])) ueot
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) sacrifice(this)
 text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I — Mill three cards. You may put an Elf or Tyvar card from your graveyard onto the battlefield. -- II — Put a +1/+1 counter on each Elf you control. -- III — Whenever an Elf you control attacks this turn, target creature an opponent controls gets -1/-1 until end of turn.
 mana={2}{B}{G}
@@ -28127,7 +28127,7 @@ type=Sorcery
 [/card]
 [card]
 name=Hardened Berserker
-auto=@combat(attacking) source(this):lord(*|mycastingzone):altercost(colorless,-1) oneshot
+auto=_ATTACKING_lord(*|mycastingzone):altercost(colorless,-1) oneshot
 text=Whenever Hardened Berserker attacks, the next spell you cast this turn costs {1} less to cast.
 mana={2}{R}
 type=Creature
@@ -28685,7 +28685,7 @@ toughness=6
 [card]
 name=Heavenly Qilin
 abilities=flying
-auto=@combat(attacking) source(this):flying target(other creature|myBattlefield) ueot
+auto=_ATTACKING_flying target(other creature|myBattlefield) ueot
 text=Flying. (This creature can't be blocked except by creatures with flying or reach.) -- Whenever Heavenly Qilin attacks, another target creature you control gains flying until end of turn.
 mana={2}{W}
 type=Creature
@@ -28832,7 +28832,7 @@ toughness=6
 [card]
 name=Hellkite Whelp
 abilities=flying
-auto=@combat(attacking) source(this):damage:1 target(creature|opponentBattlefield)
+auto=_ATTACKING_damage:1 target(creature|opponentBattlefield)
 text=Flying -- Whenever Hellkite Whelp attacks, it deals 1 damage to target creature defending player controls.
 mana={4}{R}
 type=Creature
@@ -28883,7 +28883,7 @@ type=Land
 [card]
 name=Herald of Faith
 abilities=flying
-auto=@combat(attacking) source(this):life:2
+auto=_ATTACKING_life:2
 text=Flying -- Whenever Herald of Faith attacks, you gain 2 life.
 mana={3}{W}{W}
 type=Creature
@@ -29252,7 +29252,7 @@ toughness=1
 name=Hinterland Scourge
 auto=@each upkeep restriction{lastturn(*|mystack)~morethan~1,lastturn(*|opponentstack)~lessthan~2}:name(Transform Werewolf) flip(Hinterland Hermit)
 auto=@each upkeep restriction{lastturn(*|opponentstack)~morethan~1}:name(Transform Werewolf) flip(Hinterland Hermit)
-auto=@combat(attacking) source(this):all(creature|opponentbattlefield) transforms((,newability[mustblock])) ueot
+auto=_ATTACKING_all(creature|opponentbattlefield) transforms((,newability[mustblock])) ueot
 text=Hinterland Scourge must be blocked if able. -- At the beginning of each upkeep, if a player cast two or more spells last turn, transform Hinterland Scourge.
 type=Creature
 subtype=Werewolf
@@ -29358,7 +29358,7 @@ type=Enchantment
 name=Hive of the Eye Tyrant
 auto=if compare(type:land:myBattlefield)~morethan~2 then tap(noevent)
 auto={T}:Add{B}
-auto={3}{B}:name(Becomes beholder) transforms((,newability[becomes(Creature Beholder^3/3^black^menace) ueot],newability[@combat(attacking) source(this):name(Exile card) target(creature|opponentgraveyard) moveto(exile)])) ueot
+auto={3}{B}:name(Becomes beholder) transforms((,newability[becomes(Creature Beholder^3/3^black^menace) ueot],newability[_ATTACKING_name(Exile card) target(creature|opponentgraveyard) moveto(exile)])) ueot
 text=If you control two or more other lands, Hive of the Eye Tyrant enters the battlefield tapped. -- {T}: Add {B}. -- {3}{B}: Until end of turn, Hive of the Eye Tyrant becomes a 3/3 black Beholder creature with menace and "Whenever this creature attacks, exile target card from defending player’s graveyard." It’s still a land.
 type=Land
 [/card]
@@ -29374,7 +29374,7 @@ toughness=3
 [/card]
 [card]
 name=Hoarding Ogre
-auto=@combat(attacking) source(this):name(Roll a d20) rolld20 20 winability token(Treasure Sur)*3 winabilityend loseability if compare(lastrollresult)~lessthan~10 then token(Treasure Sur) else token(Treasure Sur)*2 loseabilityend rolld20end
+auto=_ATTACKING_name(Roll a d20) rolld20 20 winability token(Treasure Sur)*3 winabilityend loseability if compare(lastrollresult)~lessthan~10 then token(Treasure Sur) else token(Treasure Sur)*2 loseabilityend rolld20end
 text=Whenever Hoarding Ogre attacks, roll a d20. -- 1-9 | Create a Treasure token. (It’s an artifact with "{T}, Sacrifice this artifact: Add one mana of any color.") -- 10-19 | Create two Treasure tokens. -- 20 | Create three Treasure tokens.
 mana={3}{R}
 type=Creature
@@ -29538,7 +29538,7 @@ type=Sorcery
 [/card]
 [card]
 name=Honored Crop-Captain
-auto=@combat(attacking) source(this):all(other creature[attacking]) 1/0 ueot
+auto=_ATTACKING_all(other creature[attacking]) 1/0 ueot
 text=Whenever Honored Crop-Captain attacks, other attacking creatures get +1/+0 until end of turn.
 mana={R}{W}
 type=Creature
@@ -29572,7 +29572,7 @@ toughness=4
 [card]
 name=Hooded Brawler
 auto=@exerted(this):2/2 ueot
-auto=@combat(attacking) source(this):may exert
+auto=_ATTACKING_may exert
 text=You may exert Hooded Brawler as it attacks. When you do, it gets +2/+2 until end of turn. (An exerted creature won't untap during your next untap step.)
 mana={2}{G}
 type=Creature
@@ -29837,9 +29837,9 @@ toughness=5
 [/card]
 [card]
 name=Howling Golem
-auto=@combat(attacking) source(this):draw:1
+auto=_ATTACKING_draw:1
 auto=@combat(blocking) source(this):draw:1
-auto=@combat(attacking) source(this):draw:1 opponent
+auto=_ATTACKING_draw:1 opponent
 auto=@combat(blocking) source(this):draw:1 opponent
 text=Whenever Howling Golem attacks or blocks, each player draws a card.
 mana={3}
@@ -30568,7 +30568,7 @@ toughness=7
 [card]
 name=Ilharg, the Raze-Boar
 abilities=trample
-auto=@combat(attacking) source(this):target(creature|myhand) transforms((,newability[phaseaction[endofturn once] moveTo(hand)],newability[ninjutsu])) forever
+auto=_ATTACKING_target(creature|myhand) transforms((,newability[phaseaction[endofturn once] moveTo(hand)],newability[ninjutsu])) forever
 auto=_DIES_may name(Move back to hand) target(Ilharg^ the Raze-Boar[fresh]|graveyard) placefromthetop(3)
 auto=@movedto(this|exile) from(myBattlefield):may name(Move back to hand) target(Ilharg^ the Raze-Boar[fresh]|exile) placefromthetop(3)
 text=Trample -- Whenever Ilharg, the Raze-Boar attacks, you may put a creature card from your hand onto the battlefield tapped and attacking. Return that creature to your hand at the beginning of the next end step. -- When Ilharg, the Raze-Boar dies or is put into exile from the battlefield, you may put it into its owner's library third from the top.
@@ -31014,7 +31014,7 @@ toughness=16
 [card]
 name=Impetuous Devils
 abilities=trample,haste
-auto=@combat(attacking) source(this):target(creature|opponentbattlefield) mustblock ueot
+auto=_ATTACKING_target(creature|opponentbattlefield) mustblock ueot
 text=Trample, haste -- When Impetuous Devils attacks, up to one target creature defending player controls blocks it this combat if able. -- At the beginning of the end step, sacrifice Impetuous Devils.
 mana={2}{R}{R}
 type=Creature
@@ -31025,7 +31025,7 @@ toughness=1
 [card]
 name=Impetuous Protege
 auto=may name(Put partner on your hand) moveto(myhand) target(Proud Mentor|mylibrary)
-auto=@combat(attacking) source(this):all(this) power:highest:creature[tapped]:opponentbattlefield/0 ueot
+auto=_ATTACKING_all(this) power:highest:creature[tapped]:opponentbattlefield/0 ueot
 text=Partner with Proud Mentor (When this creature enters the battlefield, target player may put Proud Mentor into their hand from their library, then shuffle.) -- Whenever Impetuous Protege attacks, it gets +X/+0 until end of turn, where X is the greatest power among tapped creatures your opponents control.
 mana={2}{R}
 type=Creature
@@ -31351,7 +31351,7 @@ type=Instant
 [card]
 name=Inescapable Brute
 abilities=wither
-auto=@combat(attacking) source(this):all(creature|opponentBattlefield) mustblock ueot
+auto=_ATTACKING_all(creature|opponentBattlefield) mustblock ueot
 text=Wither (This deals damage to creatures in the form of -1/-1 counters.) -- Inescapable Brute must be blocked if able.
 mana={5}{R}
 type=Creature
@@ -31463,7 +31463,7 @@ type=Instant
 [card]
 name=Inferno Hellion
 abilities=trample
-auto=@combat(attacking) source(this):phaseaction[endofturn once] moveTo(ownerlibrary) and!(shuffle)!
+auto=_ATTACKING_phaseaction[endofturn once] moveTo(ownerlibrary) and!(shuffle)!
 auto=@combat(blocking) source(this):phaseaction[endofturn once] moveTo(ownerlibrary) and!(shuffle)!
 text=Trample (This creature can deal excess combat damage to the player or planeswalker it's attacking.) -- At the beginning of each end step, if Inferno Hellion attacked or blocked this turn, its owner shuffles it into their library.
 mana={3}{R}
@@ -31497,7 +31497,7 @@ toughness=0
 name=Inferno Titan
 auto={R}:1/0 ueot
 auto=thisforeach(variable{3}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(player,creature,planeswalker) damage:1!$ controller
-auto=@combat(attacking) source(this):thisforeach(variable{3}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(player,creature,planeswalker) damage:1!$ controller
+auto=_ATTACKING_thisforeach(variable{3}) ability$!name(Deal 1 damage) name(Deal 1 damage) target(player,creature,planeswalker) damage:1!$ controller
 text={R}: Inferno Titan gets +1/+0 until end of turn. -- Whenever Inferno Titan enters the battlefield or attacks, it deals 3 damage divided as you choose among one, two, or three targets.
 mana={4}{R}{R}
 type=Creature
@@ -31920,7 +31920,7 @@ type=Sorcery
 [/card]
 [card]
 name=Inspiring Unicorn
-auto=@combat(attacking) source(this):all(creature|myBattlefield) 1/1 ueot
+auto=_ATTACKING_all(creature|myBattlefield) 1/1 ueot
 text=Whenever Inspiring Unicorn attacks, creatures you control get +1/+1 until end of turn.
 mana={2}{W}{W}
 type=Creature
@@ -32327,7 +32327,7 @@ toughness=2
 [card]
 name=Irresistible Prey
 target=creature
-auto=transforms((,newability[@combat(attacking) source(this):all(creature|opponentbattlefield) mustblock ueot])) ueot
+auto=transforms((,newability[_ATTACKING_all(creature|opponentbattlefield) mustblock ueot])) ueot
 auto=draw:1 controller
 text=Target creature must be blocked this turn if able. -- Draw a card.
 mana={G}
@@ -32356,7 +32356,7 @@ subtype=Plains Island
 [card]
 name=Isareth the Awakener
 abilities=deathtouch
-auto=@combat(attacking) source(this):may {x} :target(creature[manacost<=x] mygraveyard) moveto(mybattlefield)
+auto=_ATTACKING_may {x} :target(creature[manacost<=x] mygraveyard) moveto(mybattlefield)
 text=Deathtouch -- Whenever Isareth the Awakener attacks, you may pay {X}. When you do, return target creature card with converted mana cost X from your graveyard to the battlefield with a corpse counter on it. If that creature would leave the battlefield, exile it instead of putting it anywhere else.
 mana={1}{B}{B}
 type=Legendary Creature
@@ -33460,7 +33460,7 @@ toughness=5
 [card]
 name=Kangee's Lieutenant
 abilities=flying
-auto=@combat(attacking) source(this):all(creature[attacking;flying]) 1/1 ueot
+auto=_ATTACKING_all(creature[attacking;flying]) 1/1 ueot
 autograveyard={5}{W}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=Flying -- Whenever Kangee's Lieutenant attacks, attacking creatures with flying get +1/+1 until end of turn. -- Encore {5}{W} ({5}{W}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={2}{W}
@@ -33472,7 +33472,7 @@ toughness=1
 [card]
 name=Kangee, Sky 
 abilities=flying,vigilance
-auto=@combat(attacking) source(this):all(creature[flying;attacking]) 2/0 ueot
+auto=_ATTACKING_all(creature[flying;attacking]) 2/0 ueot
 auto=@combat(blocking) source(this):all(creature[flying;blocking]) 0/2 ueot
 text=Flying, vigilance -- Whenever Kangee, Sky Warden attacks, attacking creatures with flying get +2/+0 until end of turn. -- Whenever Kangee blocks, blocking creatures with flying get +0/+2 until end of turn.
 mana={3}{W}{U}
@@ -33940,7 +33940,7 @@ toughness=3
 [/card]
 [card]
 name=Keldon Warcaller
-auto=@combat(attacking) source(this):counter(0/0,Lore) target(saga|myBattlefield)
+auto=_ATTACKING_counter(0/0,Lore) target(saga|myBattlefield)
 text=Whenever Keldon Warcaller attacks, put a lore counter on target Saga you control.
 mana={1}{R}
 type=Creature
@@ -34197,7 +34197,7 @@ toughness=2
 name=Khenra Scrapper
 abilities=menace
 auto=@exerted(this):2/0 ueot
-auto=@combat(attacking) source(this):may exert
+auto=_ATTACKING_may exert
 text=Menace -- You may exert Khenra Scrapper as it attacks. When you do, it gets +2/+0 until end of turn. (An exerted creature won't untap during your next untap step.)
 mana={2}{R}
 type=Creature
@@ -34352,7 +34352,7 @@ toughness=4
 name=King Harald's Revenge
 target=creature
 auto=foreach(creature|myBattlefield) 1/1
-auto=transforms((,newability[trample],newability[@combat(attacking) source(this):all(creature|opponentbattlefield) mustblock ueot])) ueot
+auto=transforms((,newability[trample],newability[_ATTACKING_all(creature|opponentbattlefield) mustblock ueot])) ueot
 text=Until end of tun, target creature gets +1/+1 for each creature you control and gains trample. It must be blocked this turn if able.
 mana={2}{G}
 type=Sorcery
@@ -34499,7 +34499,7 @@ toughness=1
 [/card]
 [card]
 name=Kitesail Corsair
-auto=@combat(attacking) source(this):flying
+auto=_ATTACKING_flying
 text=Kitesail Corsair has flying as long as it's attacking.
 mana={1}{U}
 type=Creature
@@ -34521,7 +34521,7 @@ toughness=2
 [card]
 name=Kitesail Skirmisher
 abilities=flying
-auto=@combat(attacking) source(this):name(Other creature gains flying) target(other creature|myBattlefield) transforms((,newability[flying])) ueot
+auto=_ATTACKING_name(Other creature gains flying) target(other creature|myBattlefield) transforms((,newability[flying])) ueot
 autograveyard={4}{U}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=Flying -- Whenever Kitesail Skirmisher attacks, another target creature attacking the same player or planeswalker gains flying until end of turn. -- Encore {4}{U} ({4}{U}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={3}{U}
@@ -34966,7 +34966,7 @@ toughness=4
 name=Korvold, Fae-Cursed King
 abilities=flying
 auto=sacrifice target(*|mybattlefield)
-auto=@combat(attacking) source(this):sacrifice target(*|mybattlefield)
+auto=_ATTACKING_sacrifice target(*|mybattlefield)
 auto=@sacrificed(other *|mybattlefield):counter(1/1,1) all(this) && draw:1
 text=Flying -- Whenever Korvold, Fae-Cursed King enters the battlefield or attacks, sacrifice another permanent. -- Whenever you sacrifice a permanent, put a +1/+1 counter on Korvold and draw a card.
 mana={2}{B}{R}{G}
@@ -34993,7 +34993,7 @@ toughness=9
 [/card]
 [card]
 name=Kraken of the Straits
-auto=@combat(attacking) source(this):lord(creature[power<=type:island:mybattlefield]|opponentbattlefield) cantblock ueot
+auto=_ATTACKING_lord(creature[power<=type:island:mybattlefield]|opponentbattlefield) cantblock ueot
 text=Creatures with power less than the number of Islands you control can't block Kraken of the Straits.
 mana={5}{U}{U}
 type=Creature
@@ -35129,8 +35129,8 @@ subtype=Cow
 [/card]
 [card]
 name=Krenko, Tin Street Kingpin
-auto=@combat(attacking) source(this):create(goblin:goblin creature:1/1:red)*power
-auto=@combat(attacking) source(this):counter(1/1)
+auto=_ATTACKING_create(goblin:goblin creature:1/1:red)*power
+auto=_ATTACKING_counter(1/1)
 text=Whenever Krenko, Tin Street Kingpin attacks, put a +1/+1 counter on it, then create a number of 1/1 red Goblin creature tokens equal to Krenko's power.
 mana={2}{R}
 type=Legendary Creature
@@ -35478,7 +35478,7 @@ type=Land
 [card]
 name=Laelia, the Blade Reforged
 abilities=haste
-auto=@combat(attacking) source(this):name(Exile top card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile])) ueot )!
+auto=_ATTACKING_name(Exile top card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile])) ueot )!
 auto=@movedto(*|myexile) from(mylibrary,mygraveyard):name(Put 1/1 counter) counter(1/1)
 text=Haste -- Whenever Laelia, the Blade Reforged attacks, exile the top card of your library. You may play that card this turn. -- Whenever a spell or ability you control exiles one or more cards from your library and/or your graveyard, put a +1/+1 counter on Laelia.
 mana={2}{R}
@@ -35670,26 +35670,26 @@ toughness=3
 [card]
 name=Launch the Fleet
 kicker=multi{1}
-auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature) transforms((,newability[@combat(attacking) source(this):create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>creature) transforms((,newability[@combat(attacking) source(this):create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>creature) transforms((,newability[@combat(attacking) source(this):create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~3 then name(choose 4 creatures) name(choose 4 creatures) target(<upto:4>creature) transforms((,newability[@combat(attacking) source(this):create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~4 then name(choose 5 creatures) name(choose 5 creatures) target(<upto:5>creature) transforms((,newability[@combat(attacking) source(this):create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~5 then name(choose 6 creatures) name(choose 6 creatures) target(<upto:6>creature) transforms((,newability[@combat(attacking) source(this):create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~6 then name(choose 7 creatures) name(choose 7 creatures) target(<upto:7>creature) transforms((,newability[@combat(attacking) source(this):create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~7 then name(choose 8 creatures) name(choose 8 creatures) target(<upto:8>creature) transforms((,newability[@combat(attacking) source(this):create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~8 then name(choose 9 creatures) name(choose 9 creatures) target(<upto:9>creature) transforms((,newability[@combat(attacking) source(this):create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~9 then name(choose 10 creatures) name(choose 10 creatures) target(<upto:10>creature) transforms((,newability[@combat(attacking) source(this):create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~10 then name(choose 11 creatures) name(choose 11 creatures) target(<upto:11>creature) transforms((,newability[@combat(attacking) source(this):create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~11 then name(choose 12 creatures) name(choose 12 creatures) target(<upto:12>creature) transforms((,newability[@combat(attacking) source(this):create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~12 then name(choose 13 creatures) name(choose 13 creatures) target(<upto:13>creature) transforms((,newability[@combat(attacking) source(this):create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~13 then name(choose 14 creatures) name(choose 14 creatures) target(<upto:14>creature) transforms((,newability[@combat(attacking) source(this):create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~14 then name(choose 15 creatures) name(choose 15 creatures) target(<upto:15>creature) transforms((,newability[@combat(attacking) source(this):create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16 creatures) target(<upto:16>creature) transforms((,newability[@combat(attacking) source(this):create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>creature) transforms((,newability[@combat(attacking) source(this):create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>creature) transforms((,newability[@combat(attacking) source(this):create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>creature) transforms((,newability[@combat(attacking) source(this):create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~19 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[@combat(attacking) source(this):create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
+auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
+auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
+auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
+auto=if compare(kicked)~equalto~3 then name(choose 4 creatures) name(choose 4 creatures) target(<upto:4>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
+auto=if compare(kicked)~equalto~4 then name(choose 5 creatures) name(choose 5 creatures) target(<upto:5>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
+auto=if compare(kicked)~equalto~5 then name(choose 6 creatures) name(choose 6 creatures) target(<upto:6>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
+auto=if compare(kicked)~equalto~6 then name(choose 7 creatures) name(choose 7 creatures) target(<upto:7>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
+auto=if compare(kicked)~equalto~7 then name(choose 8 creatures) name(choose 8 creatures) target(<upto:8>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
+auto=if compare(kicked)~equalto~8 then name(choose 9 creatures) name(choose 9 creatures) target(<upto:9>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
+auto=if compare(kicked)~equalto~9 then name(choose 10 creatures) name(choose 10 creatures) target(<upto:10>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
+auto=if compare(kicked)~equalto~10 then name(choose 11 creatures) name(choose 11 creatures) target(<upto:11>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
+auto=if compare(kicked)~equalto~11 then name(choose 12 creatures) name(choose 12 creatures) target(<upto:12>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
+auto=if compare(kicked)~equalto~12 then name(choose 13 creatures) name(choose 13 creatures) target(<upto:13>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
+auto=if compare(kicked)~equalto~13 then name(choose 14 creatures) name(choose 14 creatures) target(<upto:14>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
+auto=if compare(kicked)~equalto~14 then name(choose 15 creatures) name(choose 15 creatures) target(<upto:15>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
+auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16 creatures) target(<upto:16>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
+auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
+auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
+auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
+auto=if compare(kicked)~equalto~19 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
 text=Strive — Launch the Fleet costs {1} more to cast for each target beyond the first. -- Until end of turn, any number of target creatures each gain "Whenever this creature attacks, put a 1/1 white Soldier creature token onto the battlefield tapped and attacking."
 mana={W}
 type=Sorcery
@@ -35772,7 +35772,7 @@ type=Land
 [/card]
 [card]
 name=Lavakin Brawler
-auto=@combat(attacking) source(this):all(this) foreach(elemental|myBattlefield) 1/0 ueot
+auto=_ATTACKING_all(this) foreach(elemental|myBattlefield) 1/0 ueot
 text=Whenever Lavakin Brawler attacks, it gets +1/+0 until end of turn for each Elemental you control.
 mana={3}{R}
 type=Creature
@@ -35987,7 +35987,7 @@ type=Instant
 [/card]
 [card]
 name=Ledev Champion
-auto=@combat(attacking) source(this):(<anyamount>creature[-tapped]|mybattlefield)  1/1
+auto=_ATTACKING_(<anyamount>creature[-tapped]|mybattlefield)  1/1
 auto={3}{G}{W}:create(soldier:creature soldier:1/1:white:lifelink)
 text=Whenever Ledev Champion attacks, you may tap any number of untapped creatures you control. Ledev Champion gets +1/+1 until end of turn for each creature tapped this way. -- {3}{G}{W}: Create a 1/1 white Soldier creature token with lifelink.
 mana={1}{G}{W}
@@ -36090,7 +36090,7 @@ toughness=2
 [card]
 name=Legion Warboss
 abilities=mentor
-auto=@combat(attacking) source(this):name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
+auto=_ATTACKING_name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
 auto=@each my combatbegins:create(goblin:creature goblin:1/1:red:haste ueot:mustattack ueot)
 text=Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.) -- At the beginning of combat on your turn, create a 1/1 red Goblin creature token. That token gains haste until end of turn and attacks this combat if able.
 mana={2}{R}
@@ -36169,7 +36169,7 @@ toughness=1
 [/card]
 [card]
 name=Leonin Warleader
-auto=@combat(attacking) source(this):create(cat:creature cat:1/1:white:lifelink:battleready)*2
+auto=_ATTACKING_create(cat:creature cat:1/1:white:lifelink:battleready)*2
 text=Whenever Leonin Warleader attacks, create two 1/1 white Cat creature tokens with lifelink that are tapped and attacking.
 mana={2}{W}{W}
 type=Creature
@@ -36338,7 +36338,7 @@ type=Sorcery
 [/card]
 [card]
 name=Library Larcenist
-auto=@combat(attacking) source(this):draw:1 controller
+auto=_ATTACKING_draw:1 controller
 text=Whenever Library Larcenist attacks, draw a card.
 mana={2}{U}
 type=Creature
@@ -36462,7 +36462,7 @@ subtype=Aura
 [card]
 name=Light of the Legion
 abilities=flying,mentor
-auto=@combat(attacking) source(this):name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
+auto=_ATTACKING_name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
 auto=_DIES_counter(1/1)(creature[white]|myBattlefield)
 text=Flying -- Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.) -- When Light of the Legion dies, put a +1/+1 counter on each white creature you control.
 mana={4}{W}{W}
@@ -36473,7 +36473,7 @@ toughness=5
 [/card]
 [card]
 name=Lightfoot Rogue
-auto=@combat(attacking) source(this):name(Roll a d20) rolld20 20 winability transforms((,newability[3/0],newability[first strike])) ueot winabilityend rolld20end
+auto=_ATTACKING_name(Roll a d20) rolld20 20 winability transforms((,newability[3/0],newability[first strike])) ueot winabilityend rolld20end
 auto=@dierolled(this) from(controller):name(Gains deathtouch) transforms((,newability[deathtouch])) ueot
 auto=@dierolled(this) result(10) from(controller):name(Gains 1/0) transforms((,newability[1/0])) ueot
 auto=@dierolled(this) result(11) from(controller):name(Gains 1/0) transforms((,newability[1/0])) ueot
@@ -37027,7 +37027,7 @@ toughness=2
 [/card]
 [card]
 name=Loafing Giant
-auto=@combat(attacking) source(this):reveal:1 optionone if type(land|reveal)~lessthan~1 then target(<1>*|reveal) moveto(mygraveyard) else fog from(this) optiononeend optiontwo if type(land|reveal)~morethan~0 then target(<1>*|reveal) moveto(mylibrary) optiontwoend revealend
+auto=_ATTACKING_reveal:1 optionone if type(land|reveal)~lessthan~1 then target(<1>*|reveal) moveto(mygraveyard) else fog from(this) optiononeend optiontwo if type(land|reveal)~morethan~0 then target(<1>*|reveal) moveto(mylibrary) optiontwoend revealend
 text=Whenever Loafing Giant attacks or blocks, put the top card of your library into your graveyard. If that card is a land card, prevent all combat damage Loafing Giant would deal this turn.
 mana={4}{R}
 type=Creature
@@ -37037,7 +37037,7 @@ toughness=6
 [/card]
 [card]
 name=Loathsome Catoblepas
-auto={2}{G}:transforms((,newability[@combat(attacking) source(this):all(creature|opponentbattlefield) mustblock ueot])) ueot
+auto={2}{G}:transforms((,newability[_ATTACKING_all(creature|opponentbattlefield) mustblock ueot])) ueot
 auto=_DIES_target(creature|opponentbattlefield) -3/-3 ueot
 text={2}{G}: Loathsome Catoblepas must be blocked this turn if able. -- When Loathsome Catoblepas dies, target creature an opponent controls gets -3/-3 until end of turn.
 mana={5}{B}
@@ -37092,7 +37092,7 @@ subtype=Equipment
 name=Loch Dragon
 abilities=flying
 auto=may ability$!name(discard) reject notatarget(*|myhand) and!(draw:1)! !$ controller
-auto=@combat(attacking) source(this):may ability$!name(discard) reject notatarget(*|myhand) and!(draw:1) controller!$
+auto=_ATTACKING_may ability$!name(discard) reject notatarget(*|myhand) and!(draw:1) controller!$
 text=Flying -- Whenever Loch Dragon enters the battlefield or attacks, you may discard a card. If you do, draw a card.
 mana={UR}{UR}{UR}{UR}
 type=Creature
@@ -38138,7 +38138,7 @@ toughness=4
 [card]
 name=Majestic Heliopterus
 abilities=flying
-auto=@combat(attacking) source(this):target(creature[dinosaur]|mybattlefield):flying ueot
+auto=_ATTACKING_target(creature[dinosaur]|mybattlefield):flying ueot
 text=Flying -- Whenever Majestic Heliopterus attacks, another target Dinosaur you control gains flying until end of turn.
 mana={3}{W}
 type=Creature
@@ -38679,7 +38679,7 @@ name=Martial Impetus
 target=creature
 auto=mustattack
 auto=1/1
-auto=@combat(attacking) source(this):all(creature[attacking]|myBattlefield) 1/1 ueot
+auto=_ATTACKING_all(creature[attacking]|myBattlefield) 1/1 ueot
 text=Enchant creature -- Enchanted creature gets +1/+1 and is goaded. (It attacks each combat if able and attacks a player other than you if able.) -- Whenever enchanted creature attacks, each other creature that’s attacking one of your opponents gets +1/+1 until end of turn.
 mana={2}{W}
 type=Enchantment
@@ -38936,7 +38936,7 @@ type=Instant
 [card]
 name=Master of Arms
 abilities=first strike
-auto=@combat(attacking) source(this):pay({1}{W}) tap target(creature[blocking]|opponentbattlefield)
+auto=_ATTACKING_pay({1}{W}) tap target(creature[blocking]|opponentbattlefield)
 text=First strike -- {1}{W}: Tap target creature blocking Master of Arms.
 mana={2}{W}
 type=Creature
@@ -39212,7 +39212,7 @@ type=Sorcery
 [card]
 name=Menagerie Liberator
 abilities=trample
-auto=@combat(attacking) source(this):1/1 ueot
+auto=_ATTACKING_1/1 ueot
 text=Trample -- Melee (Whenever this creature attacks, it gets +1/+1 until end of turn for each opponent you attacked with a creature this combat.)
 mana={3}{G}
 type=Creature
@@ -39987,7 +39987,7 @@ name=Mirri, Weatherlight Duelist
 abilities=first strike
 auto=this(tapped) lord(creature[-attacking]|opponentbattlefield) cantattack
 auto=this(tapped) lord(creature[-attacking]|opponentbattlefield) cantpwattack
-auto=@combat(attacking) source(this):aslongas(creature[blocking]|opponentBattlefield) lord(creature[-blocking]|opponentbattlefield) cantblock
+auto=_ATTACKING_aslongas(creature[blocking]|opponentBattlefield) lord(creature[-blocking]|opponentbattlefield) cantblock
 text=First strike -- Whenever Mirri, Weatherlight Duelist attacks, each opponent can't block with more than one creature this combat. -- As long as Mirri, Weatherlight Duelist is tapped, no more than one creature can attack you each combat.
 mana={1}{G}{W}
 type=Legendary Creature
@@ -40149,7 +40149,7 @@ toughness=1
 [/card]
 [card]
 name=Mistford River Turtle
-auto=@combat(attacking) source(this):target(other creature[-human;attacking]) unblockable ueot
+auto=_ATTACKING_target(other creature[-human;attacking]) unblockable ueot
 text=Whenever Mistford River Turtle attacks, another target attacking non-Human creature can't be blocked this turn.
 mana={3}{U}
 type=Creature
@@ -40415,7 +40415,7 @@ type=Instant
 name=Momentum Rumbler
 auto=this(counter{0/0.1.FirstStrike}>=1) first strike
 auto=@combat(attacking) source(this) restriction{compare(hascntfirststrike)~equalto~0)}:name(Put first strike counter) counter(0/0,1,FirstStrike)
-auto=@combat(attacking) source(this):this(cantargetcard(*[first strike]|*) transforms((,newability[double strike])) ueot
+auto=_ATTACKING_this(cantargetcard(*[first strike]|*) transforms((,newability[double strike])) ueot
 text=Whenever Momentum Rumbler attacks, if it doesn't have first strike, put a first strike counter on it. -- Whenever Momentum Rumbler attacks, if it has first strike, it gains double strike until end of turn.
 mana={3}{R}
 type=Creature
@@ -40981,7 +40981,7 @@ name=Muxus, Goblin Grandee
 aicode=activate moveto(mybattlefield) target(<anyamount>goblin[manacost<=5;zpos<=6]|mylibrary)
 auto=reveal:6 optionone target(<anyamount>goblin[manacost<=5]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!( activate castcard(normal) )! afterrevealedend revealend
 text=When Muxus, Goblin Grandee enters the battlefield, reveal the top six cards of your library. Put all Goblin creature cards with converted mana cost 5 or less from among them onto the battlefield and the rest on the bottom of your library in a random order. -- Whenever Muxus attacks, it gets +1/+1 until end of turn for each other Goblin you control.
-auto=@combat(attacking) source(this):all(this) foreach(other goblin[attacking]|myBattlefield) 1/1 ueot
+auto=_ATTACKING_all(this) foreach(other goblin[attacking]|myBattlefield) 1/1 ueot
 mana={4}{R}{R}
 type=Legendary Creature
 subtype=Goblin Noble
@@ -41727,7 +41727,7 @@ type=Land
 name=Nef-Crop Entangler
 abilities=trample
 auto=@exerted(this):1/2 ueot
-auto=@combat(attacking) source(this):may exert
+auto=_ATTACKING_may exert
 text=Trample -- You may exert Nef-Crop Entangler as it attacks. When you do, it gets +1/+2 until end of turn. (An exerted creature won't untap during your next untap step.)
 mana={1}{R}
 type=Creature
@@ -42173,7 +42173,7 @@ toughness=3
 [/card]
 [card]
 name=Nightmare Nig
-auto=@combat(attacking) source(this):ingest:2 opponent
+auto=_ATTACKING_ingest:2 opponent
 auto=@combat(blocking) source(this):ingest:2 opponent
 text=Whenever this creature attacks or blocks, each opponent exiles the top two cards of their library.
 type=Creature
@@ -42306,7 +42306,7 @@ toughness=3
 name=Nightveil Sprite
 abilities=flying
 aicode=activate transforms((,newability[surveil],newability[all(*[zpos<=psurveiloffsetplus1plusend]|mylibrary) transforms((,newability[if compare(genrand2)~equalto~1 then moveto(mygraveyard)])) oneshot])) oneshot
-auto=@combat(attacking) source(this):name(Surveil 1) reveal:psurveiloffsetplus1plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus1plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus1plusend>*|reveal) moveto(ownerlibrary) optiontwoend afterrevealed surveil afterrevealedend revealend
+auto=_ATTACKING_name(Surveil 1) reveal:psurveiloffsetplus1plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus1plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus1plusend>*|reveal) moveto(ownerlibrary) optiontwoend afterrevealed surveil afterrevealedend revealend
 text=Flying -- Whenever Nightveil Sprite attacks, surveil 1. (Look at the top card of your library. You may put that card into your graveyard.)
 mana={1}{U}
 type=Creature
@@ -42466,7 +42466,7 @@ toughness=3
 [card]
 name=Nimbus Champion
 abilities=flying
-auto=@combat(attacking) source(this):may moveto(ownerHand) target(creature)
+auto=_ATTACKING_may moveto(ownerHand) target(creature)
 text=Flying -- Whenever Nimbus Champion attacks, you may return target creature to its owner's hand if that creature's power is less than or equal to the number of Warriors your team controls.
 mana={5}{U}
 type=Creature
@@ -43199,7 +43199,7 @@ toughness=3
 name=Octopus Umbra
 abilities=totemarmor
 target=creature
-auto=teach(creature) transforms((,newability[@combat(attacking) source(this):may tap target(creature)]))
+auto=teach(creature) transforms((,newability[_ATTACKING_may tap target(creature)]))
 auto=teach(creature) becomes(,8/8)
 text=Enchant creature -- Enchanted creature has base power and toughness 8/8 and has "Whenever this creature attacks, you may tap target creature with power 8 or less." -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
 mana={3}{U}{U}
@@ -43247,7 +43247,7 @@ toughness=4
 [/card]
 [card]
 name=Ogre Errant
-auto=@combat(attacking) source(this):target(knight[attacking]) menace ueot
+auto=_ATTACKING_target(knight[attacking]) menace ueot
 text=Whenever Ogre Errant attacks, another target attacking Knight gains menace until end of turn. (It can't be blocked except by two or more creatures.)
 mana={3}{R}
 type=Creature
@@ -43258,7 +43258,7 @@ toughness=4
 [card]
 name=Ogre Marauder
 text=Whenever Ogre Marauder attacks, it gains "Ogre Marauder can't be blocked" until end of turn unless defending player sacrifices a creature.
-auto=@combat(attacking) source(this):ability$!name(choose one) if type(creature|mybattlefield)~morethan~0 then choice sacrifice notatarget(creature|mybattlefield) _ choice all(mysource) unblockable ueot!$ opponent
+auto=_ATTACKING_ability$!name(choose one) if type(creature|mybattlefield)~morethan~0 then choice sacrifice notatarget(creature|mybattlefield) _ choice all(mysource) unblockable ueot!$ opponent
 mana={1}{B}{B}
 type=Creature
 subtype=Ogre Warrior
@@ -43337,7 +43337,7 @@ toughness=3
 [card]
 name=Oketra's Avenger
 auto=@exerted(this):preventalldamage to(this)
-auto=@combat(attacking) source(this):may exert
+auto=_ATTACKING_may exert
 text=You may exert Oketra's Avenger as it attacks. When you do, prevent all combat damage that would be dealt to it this turn. (An exerted creature won't untap during your next untap step.)
 mana={1}{W}
 type=Creature
@@ -43886,7 +43886,7 @@ toughness=3
 [card]
 name=Oran-Rief Ooze
 auto=counter(1/1,1) target(creature|myBattlefield)
-auto=@combat(attacking) source(this):counter(1/1,1) all(creature[attacking;counter{1/1}]|myBattlefield)
+auto=_ATTACKING_counter(1/1,1) all(creature[attacking;counter{1/1}]|myBattlefield)
 text=When Oran-Rief Ooze enters the battlefield, put a +1/+1 counter on target creature you control. -- Whenever Oran-Rief ooze attacks, put a +1/+1 counter on each attacking creature with a +1/+1 counter on it.
 mana={2}{G}
 type=Creature
@@ -44151,7 +44151,7 @@ type=Artifact
 [card]
 name=Ornery Dilophosaur
 abilities=deathtouch
-auto=@combat(attacking) source(this):if type(creature[power>=4]|myBattlefield)~morethan~0} then 2/2 ueot
+auto=_ATTACKING_if type(creature[power>=4]|myBattlefield)~morethan~0} then 2/2 ueot
 text=Deathtouch (Any amount of damage this deals to a creature is enough to destroy it.) -- Whenever Ornery Dilophosaur attacks, if you control a creature with power 4 or greater, Ornery Dilophosaur gets +2/+2 until end of turn.
 mana={3}{G}
 type=Creature
@@ -44553,7 +44553,7 @@ toughness=2
 [card]
 name=Pack Leader
 auto=lord(creature[dog]|myBattlefield) 1/1
-auto=@combat(attacking) source(this):preventAllcombatDamage to(creature[dog]|myBattlefield) ueot
+auto=_ATTACKING_preventAllcombatDamage to(creature[dog]|myBattlefield) ueot
 text=Other Dogs you control get +1/+1. -- Whenever Pack Leader attacks, prevent all combat damage that would be dealt this turn to Dogs you control.
 mana={1}{W}
 type=Creature
@@ -44652,7 +44652,7 @@ toughness=2
 name=Pako, Arcane Retriever
 abilities=hiddenface,haste,partner
 auto=may name(Put partner in hand) moveTo(myhand) target(Haldan^ Avid Arcanist|mylibrary)
-auto=@combat(attacking) source(this):NOTCODED
+auto=_ATTACKING_NOTCODED
 text=Partner with Haldan, Avid Arcanist -- Haste -- Whenever Pako, Arcane Retriever attacks, exile the top card of each player’s library and put a fetch counter on each of them. Put a +1/+1 counter on Pako for each noncreature card exiled this way.
 mana={3}{R}{G}
 type=Legendary Creature
@@ -44863,7 +44863,7 @@ name=Parasitic Impetus
 target=creature
 auto=mustattack
 auto=2/2
-auto=@combat(attacking) source(this):life:-2 controller && life:2 opponent
+auto=_ATTACKING_life:-2 controller && life:2 opponent
 text=Enchant creature -- Enchanted creature gets +2/+2 and is goaded. (It attacks each combat if able and attacks a player other than you if able.) -- Whenever enchanted creature attacks, its controller loses 2 life and you gain 2 life.
 mana={2}{B}
 type=Enchantment
@@ -44914,7 +44914,7 @@ toughness=5
 [card]
 name=Parhelion II
 abilities=flying,first strike,vigilance
-auto=@combat(attacking) source(this):create(angel:creature angel:4/4:white:flying:vigilance:battleready)*2
+auto=_ATTACKING_create(angel:creature angel:4/4:white:flying:vigilance:battleready)*2
 auto={crew(other creature[power>=4]|myBattlefield)}:name(crew 4 [1 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=4]|mybattlefield)~morethan~0,compare(crewtotalpower)~morethan~3}
 auto={crew(other creature[power>=2]|myBattlefield)}{crew(other creature[power>=2]|myBattlefield)}:name(crew 4 [2 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=2]|mybattlefield)~morethan~1,compare(crewtotalpower)~morethan~3}
 auto={crew(other creature[power>=1]|myBattlefield)}{crew(other creature[power>=3]|myBattlefield)}:name(crew 4 [2 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=1]|mybattlefield)~morethan~0,type(other creature[-tapped;power>=3]|mybattlefield)~morethan~0,type(other creature[-tapped;-cantcrew]|mybattlefield)~morethan~1,compare(crewtotalpower)~morethan~3}
@@ -44930,7 +44930,7 @@ toughness=5
 [card]
 name=Parhelion Patrol
 abilities=flying,vigilance,mentor
-auto=@combat(attacking) source(this):name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
+auto=_ATTACKING_name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
 text=Flying, vigilance -- Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.)
 mana={3}{W}
 type=Creature
@@ -45094,7 +45094,7 @@ toughness=1
 [card]
 name=Pathrazer of Ulamog
 abilities=threeblockers
-auto=@combat(attacking) source(this):name(Annihilate 3) ability$!name(sacrifice) notatarget(<3>*|mybattlefield) sacrifice!$ opponent
+auto=_ATTACKING_name(Annihilate 3) ability$!name(sacrifice) notatarget(<3>*|mybattlefield) sacrifice!$ opponent
 text=Annihilator 3 (Whenever this creature attacks, defending player sacrifices three permanents.) -- Pathrazer of Ulamog can’t be blocked except by three or more creatures.
 mana={11}
 type=Creature
@@ -45177,7 +45177,7 @@ type=Sorcery
 [card]
 name=Pegasus Courser
 abilities=flying
-auto=@combat(attacking) source(this):target(other creature[attaking]) flying ueot
+auto=_ATTACKING_target(other creature[attaking]) flying ueot
 text=Flying -- Whenever Pegasus Courser attacks, another target attacking creature gains flying until end of turn.
 mana={2}{W}
 type=Creature
@@ -45284,7 +45284,7 @@ type=Instant
 [/card]
 [card]
 name=Perimeter Sergeant
-auto=@combat(attacking) source(this):all(human|myBattlefield) 1/0 ueot
+auto=_ATTACKING_all(human|myBattlefield) 1/0 ueot
 text=Whenever Perimeter Sergeant attacks, other Humans you control get +1/+0 until end of turn.
 mana={2}{W}
 type=Creature
@@ -45504,7 +45504,7 @@ toughness=4
 [/card]
 [card]
 name=Phase Dolphin
-auto=@combat(attacking) source(this):target(other creature[attacking]) unblockable ueot
+auto=_ATTACKING_target(other creature[attacking]) unblockable ueot
 text=Whenever Phase Dolphin attacks, another target attacking creature can't be blocked this turn.
 mana={2}{U}
 type=Creature
@@ -46601,7 +46601,7 @@ type=Sorcery
 name=Predatory Impetus
 target=creature
 auto=lure
-auto=transforms((,newability[@combat(attacking) source(this):all(creature|opponentbattlefield) mustblock ueot])) forever
+auto=transforms((,newability[_ATTACKING_all(creature|opponentbattlefield) mustblock ueot])) forever
 auto=3/3
 text=Enchant creature -- Enchanted creature gets +3/+3, must be blocked if able, and is goaded. (It attacks each combat if able and attacks a player other than you if able.)
 mana={4}{G}
@@ -47350,7 +47350,7 @@ target=creature
 auto=mustattack
 auto=2/2
 aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
-auto=@combat(attacking) source(this):scry:2 scrycore delayed dontshow donothing scrycoreend scryend
+auto=_ATTACKING_scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 text=Enchant creature -- Enchanted creature gets +2/+2 and is goaded. (It attacks each combat if able and attacks a player other than you if able.) -- Whenever enchanted creature attacks, you scry 2.
 mana={2}{U}
 type=Enchantment
@@ -48138,7 +48138,7 @@ toughness=2
 [/card]
 [card]
 name=Raging Regisaur
-auto=@combat(attacking) source(this):damage:1 target(player,creature,planeswalker)
+auto=_ATTACKING_damage:1 target(player,creature,planeswalker)
 text=Whenever Raging Regisaur attacks, it deals 1 damage to any target.
 mana={2}{R}{G}
 type=Creature
@@ -48168,7 +48168,7 @@ type=Sorcery
 [card]
 name=Raiders' Karve
 aicode=activate all(land[zpos=1|mylibrary) moveto(mybattlefield) and!( tap(noevent) )!
-auto=@combat(attacking) source(this):reveal:1 optionone target(<upto:1>land|reveal) moveto(ownerbattlefield) and!( tap(noevent) )! optiononeend optiontwo target(*|reveal) moveto(mylibrary) optiontwoend revealend
+auto=_ATTACKING_reveal:1 optionone target(<upto:1>land|reveal) moveto(ownerbattlefield) and!( tap(noevent) )! optiononeend optiontwo target(*|reveal) moveto(mylibrary) optiontwoend revealend
 auto={crew(other creature[power>=3]|myBattlefield)}:name(crew 3 [1 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=3]|mybattlefield)~morethan~0,compare(crewtotalpower)~morethan~2}
 auto={crew(other creature[power>=1]|myBattlefield)}{crew(other creature[power>=2]|myBattlefield)}:name(crew 3 [2 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=1]|mybattlefield)~morethan~0,type(other creature[-tapped;power>=2]|mybattlefield)~morethan~0,type(other creature[-tapped;-cantcrew]|mybattlefield)~morethan~1,compare(crewtotalpower)~morethan~2}
 auto={crew(other creature[power>=1]|myBattlefield)}{crew(other creature[power>=1]|myBattlefield)}{crew(other creature[power>=1]|myBattlefield)}:name(crew 3 [3 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=1]|mybattlefield)~morethan~2,compare(crewtotalpower)~morethan~2}
@@ -48336,7 +48336,7 @@ type=Instant
 [/card]
 [card]
 name=Rakshasa Debaser
-auto=@combat(attacking) source(this):moveTo(myBattlefield) target(creature|opponentgraveyard)
+auto=_ATTACKING_moveTo(myBattlefield) target(creature|opponentgraveyard)
 autograveyard={6}{B}{B}:name(Activate Encore) name(Activate Encore) moveto(exile) and!(clone with(unearth,haste,mustattack))! asSorcery
 text=Whenever Rakshasa Debaser attacks, put target creature card from defending player's graveyard onto the battlefield under your control. -- Encore {6}{B}{B} ({6}{B}{B}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
 mana={4}{B}{B}
@@ -48365,7 +48365,7 @@ type=Instant
 [card]
 name=Ral's Staticaster
 abilities=trample
-auto=@combat(attacking) source(this):if type(planeswalker[ral]|myBattlefield)~morethan~0 then 1/0 foreach(*|hand) ueot
+auto=_ATTACKING_if type(planeswalker[ral]|myBattlefield)~morethan~0 then 1/0 foreach(*|hand) ueot
 text=Trample (This creature can deal excess combat damage to the player or planeswalker it's attacking.) -- Whenever Ral's Staticaster attacks, if you control a Ral planeswalker, Ral's Staticaster gets +1/+0 for each card in your hand until end of turn.
 mana={2}{U}{R}
 type=Creature
@@ -48473,7 +48473,7 @@ type=Enchantment
 [card]
 name=Rampaging Brontodon
 abilities=trample
-auto=@combat(attacking) source(this):foreach(land|myBattlefield) 1/1 ueot
+auto=_ATTACKING_foreach(land|myBattlefield) 1/1 ueot
 text=Trample -- Whenever Rampaging Brontodon attacks, it gets +1/+1 until end of turn for each land you control.
 mana={5}{G}{G}
 type=Creature
@@ -49101,7 +49101,7 @@ toughness=5
 name=Reaper's Talisman
 auto={2}:equip
 auto=teach(creature) transforms((,newability[@combat(attackedalone) source(this):name(Gain life) life:2 controller],newability[@combat(attackedalone) source(this):life:-2 opponent]))
-auto=teach(creature) transforms((,newability[@combat(attacking) source(this):name(Gains deathtouch) transforms((,newability[deathtouch])) ueot]))
+auto=teach(creature) transforms((,newability[_ATTACKING_name(Gains deathtouch) transforms((,newability[deathtouch])) ueot]))
 text=Whenever equipped creature attacks, it gains deathtouch until end of turn. -- Whenever equipped creature attacks alone, defending player loses 2 life and you gain 2 life. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
 mana={B}
 type=Artifact
@@ -49219,7 +49219,7 @@ type=Sorcery
 [/card]
 [card]
 name=Reckless Pangolin
-auto=@combat(attacking) source(this):all(this) 1/1 ueot
+auto=_ATTACKING_all(this) 1/1 ueot
 text=Whenever Reckless Pangolin attacks, it gets +1/+1 until end of turn.
 mana={2}{G}
 type=Creature
@@ -49316,7 +49316,7 @@ type=Instant
 [/card]
 [card]
 name=Redcap Raiders
-auto=@combat(attacking) source(this):may name(tap non-Human) tap target(creature[-human,-tapped]|myBattlefield) and!(1/1)! ueot
+auto=_ATTACKING_may name(tap non-Human) tap target(creature[-human,-tapped]|myBattlefield) and!(1/1)! ueot
 text=Whenever Redcap Raiders attacks, you may tap an untapped non-Human creature you control. If you do, Redcap Raiders gets +1/+1 and gains trample until end of turn.
 mana={2}{R}
 type=Creature
@@ -49901,7 +49901,7 @@ type=Instant
 name=Resolute Survivors
 auto=@exerted(creature|myBattlefield):damage:1 opponent 
 auto=@exerted(creature|myBattlefield):life:1
-auto=@combat(attacking) source(this):may exert
+auto=_ATTACKING_may exert
 text=You may exert Resolute Survivors as it attacks. (It won't untap during your next untap step.) -- Whenever you exert a creature, Resolute Survivors deals 1 damage to each opponent and you gain 1 life.
 mana={1}{R}{W}
 type=Creature
@@ -49937,7 +49937,7 @@ name=Resplendent Griffin
 abilities=flying
 auto=_ASCEND_
 auto=@movedTo(*|myBattlefield):_ASCEND_
-auto=_CITY'S_BLESSING_ transforms((,newability[@combat(attacking) source(this):counter(1/1)]))
+auto=_CITY'S_BLESSING_ transforms((,newability[_ATTACKING_counter(1/1)]))
 text=Flying -- Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Whenever Resplendent Griffin attacks, if you have the city's blessing, put a +1/+1 counter on it.
 mana={1}{W}{U}
 type=Creature
@@ -50272,7 +50272,7 @@ toughness=0
 [card]
 name=Rhet-Crop Spearmaster
 auto=@exerted(this):transforms((,newability[1/0],newability[firststrike])) ueot
-auto=@combat(attacking) source(this):may exert
+auto=_ATTACKING_may exert
 text=You may exert Rhet-Crop Spearmaster as it attacks. When you do, it gets +1/+0 and gains first strike until end of turn. (An exerted creature won't untap during your next untap step.)
 mana={2}{W}
 type=Creature
@@ -50324,7 +50324,7 @@ type=Legendary Artifact
 name=Rhonas's Stalwart
 auto=@exerted(this):1/1 ueot
 auto=@exerted(this):cantbeblockedby(power<=2) ueot
-auto=@combat(attacking) source(this):may exert
+auto=_ATTACKING_may exert
 text=You may exert Rhonas's Stalwart as it attacks. When you do, it gets +1/+1 until end of turn and can't be blocked by creatures with power 2 or less this turn. (An exerted creature won't untap during your next untap step.)
 mana={1}{G}
 type=Creature
@@ -50356,8 +50356,8 @@ toughness=2
 [/card]
 [card]
 name=Rhox Veteran
-auto=@combat(attacking) source(this):all(other creature[attacking]) 1/0 ueot
-auto=@combat(attacking) source(this):target(creature|opponentBattlefield) tap(noevent)
+auto=_ATTACKING_all(other creature[attacking]) 1/0 ueot
+auto=_ATTACKING_target(creature|opponentBattlefield) tap(noevent)
 text=Battle cry (Whenever this creature attacks, each other attacking creature gets +1/+0 until end of turn.) -- Whenever Rhox Veteran attacks, tap target creature an opponent controls.
 mana={3}{W}
 type=Creature
@@ -50574,7 +50574,7 @@ toughness=2
 [card]
 name=Rimehorn Aurochs
 abilities=trample
-auto=@combat(attacking) source(this):all(this) foreach(other aurochs[attacking]) 1/0 ueot
+auto=_ATTACKING_all(this) foreach(other aurochs[attacking]) 1/0 ueot
 auto={2}{i}:target(creature|battlefield) mustblock ueot
 text=Trample -- Whenever Rimehorn Aurochs attacks, it gets +1/+0 until end of turn for each other attacking Aurochs. -- {2}{S{i}: Target creature blocks target creature this turn if able. ({S{i} can be paid with one mana from a snow permanent.)
 mana={4}{G}
@@ -51187,7 +51187,7 @@ toughness=2
 [card]
 name=Roc Charger
 abilities=flying
-auto=@combat(attacking) source(this):target(creature[attacking;-flying]) flying ueot
+auto=_ATTACKING_target(creature[attacking;-flying]) flying ueot
 text=Flying -- Whenever Roc Charger attacks, target attacking creature without flying gains flying until end of turn.
 mana={2}{W}
 type=Creature
@@ -51733,7 +51733,7 @@ toughness=5
 [card]
 name=Rubblebelt Rioters
 abilities=haste
-auto=@combat(attacking) source(this):power:highest:creature:mybattlefield/0
+auto=_ATTACKING_power:highest:creature:mybattlefield/0
 text=Haste -- Whenever Rubblebelt Rioters attacks, it gets +X/+0 until end of turn, where X is the greatest power among creatures you control.
 mana={1}{R}{G}
 type=Creature
@@ -52312,7 +52312,7 @@ toughness=1
 name=Sage-Eye Avengers
 abilities=prowess
 auto=@movedTo(*[-creature]|mystack):1/1 ueot
-auto=@combat(attacking) source(this):may moveTo(ownerhand) target(creature[power<=pminus1minusend])
+auto=_ATTACKING_may moveTo(ownerhand) target(creature[power<=pminus1minusend])
 text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.) -- Whenever Sage-Eye Avengers attacks, you may return target creature to its owner’s hand if its power is less than Sage-Eye Avengers’s power.
 mana={4}{U}{U}
 type=Creature
@@ -53012,7 +53012,7 @@ toughness=2
 [/card]
 [card]
 name=Satyr Piper
-auto={3}{G}:target(creature) transforms((,newability[@combat(attacking) source(this):all(creature|opponentbattlefield) mustblock ueot])) ueot
+auto={3}{G}:target(creature) transforms((,newability[_ATTACKING_all(creature|opponentbattlefield) mustblock ueot])) ueot
 text={3}{G}: Target creature must be blocked this turn if able.
 mana={2}{G}
 type=Creature
@@ -53106,7 +53106,7 @@ type=Sorcery
 [card]
 name=Savage Ventmaw
 abilities=flying
-auto=@combat(attacking) source(this):add{R}{R}{R}{G}{G}{G} doesntempty
+auto=_ATTACKING_add{R}{R}{R}{G}{G}{G} doesntempty
 text=Flying -- Whenever Savage Ventmaw attacks, add {R}{R}{R}{G}{G}{G} to your mana pool. Until end of turn, this mana doesn't empty from your mana pool as steps and phases end.
 mana={4}{R}{G}
 type=Creature
@@ -53176,7 +53176,7 @@ subtype=Aura
 [/card]
 [card]
 name=Savvy Hunter
-auto=@combat(attacking) source(this):token(-473141)
+auto=_ATTACKING_token(-473141)
 auto=@combat(blocking) source(this):token(-473141)
 auto={S(food|myBattlefield)}{S(food|myBattlefield)}:draw:1
 text=Whenever Savvy Hunter attacks or blocks, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.") -- Sacrifice two Foods: Draw a card.
@@ -55526,7 +55526,7 @@ name=Shiny Impetus
 target=creature
 auto=mustattack
 auto=2/2
-auto=@combat(attacking) source(this):token(Treasure Shi)
+auto=_ATTACKING_token(Treasure Shi)
 text=Enchant creature -- Enchanted creature gets +1/+1 and is goaded. (It attacks each combat if able and attacks a player other than you if able.) -- Whenever enchanted creature attacks, each other creature that’s attacking one of your opponents gets +1/+1 until end of turn.
 mana={2}{W}
 type=Enchantment
@@ -55773,7 +55773,7 @@ type=Instant
 [/card]
 [card]
 name=Shrouded Serpent
-auto=@combat(attacking) source(this):ability$!name(pay 4 mana) pay[[{4}]] donothing?unblockable all(mysource) ueot!$ opponent
+auto=_ATTACKING_ability$!name(pay 4 mana) pay[[{4}]] donothing?unblockable all(mysource) ueot!$ opponent
 text=Whenever Shrouded Serpent attacks, defending player may pay {4}. If he or she doesn't, Shrouded Serpent is unblockable this turn.
 mana={4}{U}{U}{U}
 type=Creature
@@ -55794,7 +55794,7 @@ type=Instant
 name=Siani, Eye of the Storm
 abilities=flying,partner
 aicode=activate transforms((,newability[all(*[zpos<=type:creature[attacking;flying]:battlefield]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
-auto=@combat(attacking) source(this):scry:type:creature[attacking;flying]:battlefield scrycore delayed dontshow donothing scrycoreend scryend
+auto=_ATTACKING_scry:type:creature[attacking;flying]:battlefield scrycore delayed dontshow donothing scrycoreend scryend
 text=Flying -- Whenever Siani, Eye of the Storm attacks, scry X, where X is the number of attacking creatures with flying. -- Partner (You can have two commanders if both have partner.)
 mana={3}{U}
 type=Legendary Creature
@@ -55863,7 +55863,7 @@ toughness=2
 [card]
 name=Sidisi, Brood Tyrant
 auto=deplete:3 controller
-auto=@combat(attacking) source(this):deplete:3 controller
+auto=_ATTACKING_deplete:3 controller
 auto=@movedTo(creature|myGraveyard) from(mylibrary):token(Zombie,Creature Zombie,2/2,black)
 text=Whenever Sidisi, Brood Tyrant enters the battlefield or attacks, put the top three cards of your library into your graveyard. -- Whenever one or more creature cards are put into your graveyard from your library, put a 2/2 black Zombie creature token onto the battlefield.
 mana={1}{B}{G}{U}
@@ -55875,7 +55875,7 @@ toughness=3
 [card]
 name=Siege Behemoth
 abilities=opponentshroud
-auto=@combat(attacking) source(this):all(creature|mybattlefield) transforms((,newability[@combat(blocked,turnlimited) source(this):may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent],newability[fog from(this)])) ueot
+auto=_ATTACKING_all(creature|mybattlefield) transforms((,newability[@combat(blocked,turnlimited) source(this):may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent],newability[fog from(this)])) ueot
 text=Hexproof -- As long as Siege Behemoth is attacking, for each creature you control, you may have that creature assign its combat damage as though it weren't blocked.
 mana={5}{G}{G}
 type=Creature
@@ -55886,7 +55886,7 @@ toughness=4
 [card]
 name=Siege Striker
 abilities=double strike
-auto=@combat(attacking) source(this):foreach(creature[-tapped]|mybattlefield) may target(creature[-tapped]|mybattlefield) tap && all(this) 1/1 ueot
+auto=_ATTACKING_foreach(creature[-tapped]|mybattlefield) may target(creature[-tapped]|mybattlefield) tap && all(this) 1/1 ueot
 text=Double strike (This creature deals both first-strike and regular combat damage.) -- Whenever Siege Striker attacks, you may tap any number of untapped creatures you control. Siege Striker gets +1/+1 until end of turn for each creature tapped this way.
 mana={2}{W}
 type=Creature
@@ -56296,7 +56296,7 @@ toughness=1
 name=Silverwing Squadron
 abilities=flying,vigilance
 anyzone=type:creature:battlefield/type:creature:battlefield cdaactive
-auto=@combat(attacking) source(this):token(Knight,creature Knight,2/2,white,vigilance)
+auto=_ATTACKING_token(Knight,creature Knight,2/2,white,vigilance)
 text=Flying, vigilance -- Silverwing Squadron's power and toughness are each equal to the number of creatures you control. -- Whenever Silverwing Squadron attacks, create a number of 2/2 white Knight creature tokens with vigilance equal to the number of opponents you have.
 mana={5}{W}
 type=Creature
@@ -57135,7 +57135,7 @@ toughness=3
 [card]
 name=Skyknight Vanguard
 abilities=flying
-auto=@combat(attacking) source(this):token(Soldier,Creature Soldier,1/1,white,battleready)
+auto=_ATTACKING_token(Soldier,Creature Soldier,1/1,white,battleready)
 text=Flying -- Whenever Skyknight Vanguard attacks, create a 1/1 white Soldier creature token that's tapped and attacking.
 mana={R}{W}
 type=Creature
@@ -57157,7 +57157,7 @@ toughness=5
 [/card]
 [card]
 name=Skyline Scout
-auto=@combat(attacking) source(this):pay({1}{w}):flying ueot
+auto=_ATTACKING_pay({1}{w}):flying ueot
 text=Whenever Skyline Scout attacks, you may pay {1}{W}. If you do, it gains flying until end of turn.
 mana={1}{W}
 type=Creature
@@ -59162,7 +59162,7 @@ toughness=4
 name=Spined Megalodon
 abilities=opponentshroud
 aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
-auto=@combat(attacking) source(this):scry:1 scrycore delayed dontshow donothing scrycoreend scryend
+auto=_ATTACKING_scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=Hexproof (This creature can't be the target of spells or abilities your opponents control.) -- Whenever Spined Megalodon attacks, scry 1. (Look at the top card of your library. You may put that card on the bottom of your library.)
 mana={5}{U}{U}
 type=Creature
@@ -59996,7 +59996,7 @@ type=Sorcery
 [/card]
 [card]
 name=Star-Crowned Stag
-auto=@combat(attacking) source(this):tap target(creature|opponentBattlefield)
+auto=_ATTACKING_tap target(creature|opponentBattlefield)
 text=Whenever Star-Crowned Stag attacks, tap target creature defending player controls.
 mana={3}{W}
 type=Creature
@@ -60236,7 +60236,7 @@ toughness=1
 [card]
 name=Steel-Plume Marshal
 abilities=flying
-auto=@combat(attacking) source(this):all(other creature[attacking]|mybattlefield) 2/2 ueot
+auto=_ATTACKING_all(other creature[attacking]|mybattlefield) 2/2 ueot
 text=Flying -- Whenever Steel-Plume Marshal attacks, other attacking creatures you control with flying get +2/+2 until end of turn.
 mana={3}{W}{W}
 type=Creature
@@ -60409,7 +60409,7 @@ type=Instant
 name=Stitcher's Graft
 auto={2}:equip
 auto=teach(creature) 3/3
-auto=teach(creature) transforms((,newability[counter(0/0.1.Hooked)],newability[@combat(attacking) source(this):all(this) frozen]))
+auto=teach(creature) transforms((,newability[counter(0/0.1.Hooked)],newability[_ATTACKING_all(this) frozen]))
 auto=lord(*[counter{0/0.1.Hooked}]|mybattlefield) transforms((,newability[this(gear < 1) destroy]))
 text=Equipped creature gets +3/+3. -- Whenever equipped creature attacks, it doesn't untap during its controller's next untap step. -- Whenever Stitcher's Graft becomes unattached from a permanent, sacrifice that permanent. -- Equip {2}
 mana={1}
@@ -60820,7 +60820,7 @@ type=Instant
 name=Storvald, Frost Giant Jarl
 auto=@targeted(creature|mybattlefield) from(*|opponentzones):choice name(This spell costs 3 more) name(This spell costs 3 more) target(*|opponentzones) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) oneshot
 auto=name(Choose one or both) activate castcard(named!:storvald effect:!)
-auto=@combat(attacking) source(this):name(Choose one or both) activate castcard(named!:storvald effect:!)
+auto=_ATTACKING_name(Choose one or both) activate castcard(named!:storvald effect:!)
 text=Ward {3} -- Other creatures you control have ward {3}. -- Whenever Storvald enters the battlefield or attacks, choose one or both — -- • Target creature has base power and toughness 7/7 until end of turn. -- • Target creature has base power and toughness 1/1 until end of turn.
 mana={4}{G}{W}{U}
 type=Legendary Creature
@@ -61351,7 +61351,7 @@ toughness=10
 [card]
 name=Sunhome Stalwart
 abilities=first strike,mentor
-auto=@combat(attacking) source(this):name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
+auto=_ATTACKING_name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
 text=First strike -- Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.)
 mana={1}{W}
 type=Creature
@@ -61593,7 +61593,7 @@ name=Surtland Elementalist
 other={7}{U}{U} name(Cast wihtout giant)
 otherrestriction=type(giant|myhand)~equalto~0
 restriction=type(giant|myhand)~morethan~0
-auto=@combat(attacking) source(this):may name(Cast instant or sorcery) target(*[instant;sorcery]|myhand) activate castcard(normal)
+auto=_ATTACKING_may name(Cast instant or sorcery) target(*[instant;sorcery]|myhand) activate castcard(normal)
 text=As an additional cost to cast this spell, reveal a Giant card from your hand or pay {2}. -- Whenever Surtland Elementalist attacks, you may cast an instant or sorcery spell from your hand without paying its mana cost.
 mana={5}{U}{U}
 type=Creature
@@ -61603,7 +61603,7 @@ toughness=8
 [/card]
 [card]
 name=Surtland Flinger
-auto=@combat(attacking) source(this):may name(Sacrifice creature) target(other creature|mybattlefield) sacrifice && transforms((,newability[if cantargetcard(giant|*) then damage:twicepower target(player^creature^planeswalker) else damage:power target(player^creature^planeswalker)])) oneshot
+auto=_ATTACKING_may name(Sacrifice creature) target(other creature|mybattlefield) sacrifice && transforms((,newability[if cantargetcard(giant|*) then damage:twicepower target(player^creature^planeswalker) else damage:power target(player^creature^planeswalker)])) oneshot
 text=Whenever Surtland Flinger attacks, you may sacrifice another creature. When you do, Surtland Flinger deals damage equal to the sacrificed creature's power to any target. If the sacrificed creature was a Giant, Surtland Flinger deals twice that much damage instead.
 mana={3}{R}{R}
 type=Creature
@@ -61675,7 +61675,7 @@ toughness=4
 [card]
 name=Svyelun of Sea and Sky
 auto=aslongas(merfolk|myBattlefield) indestructible >2
-auto=@combat(attacking) source(this):draw:1 controller
+auto=_ATTACKING_draw:1 controller
 auto=@targeted(other *[merfolk]|myBattlefield) from(*|opponentzones):choice name(This spell costs 1 more) name(This spell costs 1 more) target(*|opponentzones) transforms((,newability[pay[[{1}]] name(pay 1 more) donothing?fizzle])) oneshot
 text=Svyelun of Sea and Sky has indestructible as long as you control at least two other Merfolk. -- Whenever Svyelun attacks, draw a card. -- Other Merfolk you control have ward {1} . (Whenever another Merfolk you control becomes the target of a spell or ability an opponent controls, counter it unless that player pays {1}.)
 mana={1}{U}{U}
@@ -61775,7 +61775,7 @@ subtype=Aura
 [card]
 name=Swathcutter Giant
 abilities=vigilance
-auto=@combat(attacking) source(this):damage:1 all(creature|opponentBattlefield)
+auto=_ATTACKING_damage:1 all(creature|opponentBattlefield)
 text=Vigilance -- Whenever Swathcutter Giant attacks, it deals 1 damage to each creature defending player controls.
 mana={4}{R}{W}
 type=Creature
@@ -61914,7 +61914,7 @@ subtype=Equipment
 [card]
 name=Sword of Hours
 auto={2}:equip
-auto=teach(creature) transforms((,newability[@combat(attacking) source(this):counter(1/1)]))
+auto=teach(creature) transforms((,newability[_ATTACKING_counter(1/1)]))
 auto=teach(creature) transforms((,newability[@combatdamaged(player) from(this):name(Roll a d12) rolld12 12 winability counter(1/1.hascnt11) winabilityend loseability if compare(lastrollresult)~morethan~compare(thatmuch) then counter(1/1.hascnt11) loseabilityend rolld12end]))
 text=Whenever equipped creature attacks, put a +1/+1 counter on it. -- Whenever equipped creature deals combat damage, roll a d12. If the result is greater than the damage dealt or the result is 12, double the number of +1/+1 counters on that creature. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
 mana={2}
@@ -62028,7 +62028,7 @@ type=Sorcery
 [card]
 name=Sylvan Shepherd
 abilities=vigilance
-auto=@combat(attacking) source(this):name(Roll a d20) rolld20 20 winability life:5 controller winabilityend loseability if compare(lastrollresult)~lessthan~10 then life:1 controller else life:2 controller loseabilityend rolld20end
+auto=_ATTACKING_name(Roll a d20) rolld20 20 winability life:5 controller winabilityend loseability if compare(lastrollresult)~lessthan~10 then life:1 controller else life:2 controller loseabilityend rolld20end
 text=Vigilance -- Whenever Sylvan Shepherd attacks, roll a d20. -- 1-9 | You gain 1 life. -- 10-19 | You gain 2 life. -- 20 | You gain 5 life.
 mana={2}{G}
 type=Creature
@@ -62176,7 +62176,7 @@ type=Instant
 [card]
 name=Syr Alin, the Lion's Claw
 abilities=first strike
-auto=@combat(attacking) source(this):all(other creature|mybattlefield) 1/1 ueot
+auto=_ATTACKING_all(other creature|mybattlefield) 1/1 ueot
 text=First strike -- Whenever Syr Alin, the Lion's Claw attacks, other creatures you control get +1/+1 until end of turn.
 mana={3}{W}{W}
 type=Legendary Creature
@@ -62210,7 +62210,7 @@ toughness=4
 [/card]
 [card]
 name=Syr Faren, the Hengehammer
-auto=@combat(attacking) source(this):target(creature[attacking]) power/power ueot
+auto=_ATTACKING_target(creature[attacking]) power/power ueot
 text=Whenever Syr Faren, the Hengehammer attacks, another target attacking creature gets +X/+X until end of turn, where X is Syr Faren's power.
 mana={G}{G}
 type=Legendary Creature
@@ -62288,7 +62288,7 @@ type=Instant
 name=Tah-Crop Elite
 abilities=flying
 auto=@exerted(this):all(creature|myBattlefield) 1/1
-auto=@combat(attacking) source(this):may exert
+auto=_ATTACKING_may exert
 text=Flying -- You may exert Tah-Crop Elite as it attacks. When you do, creatures you control get +1/+1 until end of turn. (An exerted creature won't untap during your next untap step.)
 mana={3}{W}
 type=Creature
@@ -62364,7 +62364,7 @@ toughness=3
 [card]
 name=Tajic, Legion's Edge
 abilities=haste,mentor
-auto=@combat(attacking) source(this):name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
+auto=_ATTACKING_name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
 auto=lord(other creature|myBattlefield) preventAllNoncombatDamage
 auto={R}{W}:first strike ueot
 text=Haste -- Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.) -- Prevent all noncombat damage that would be dealt to other creatures you control. -- {R}{W}: Tajic, Legion's Edge gains first strike until end of turn.
@@ -62512,7 +62512,7 @@ subtype=Aura
 [/card]
 [card]
 name=Talruum Piper
-auto=@combat(attacking) source(this):all(creature[flying]|opponentBattlefield) mustblock ueot
+auto=_ATTACKING_all(creature[flying]|opponentBattlefield) mustblock ueot
 text=All creatures with flying able to block Talruum Piper do so.
 mana={4}{R}
 type=Creature
@@ -62543,7 +62543,7 @@ toughness=2
 name=Tanazir Quandrix
 abilities=flying,trample
 auto=name(Double the 1/1 counters) target(creature[counter{1/1}]|mybattlefield) transforms((,newability[thisforeach(counter{1/1.1}) counter(1/1) all(this)])) oneshot
-auto=@combat(attacking) source(this):may name(Transform all other creatures) all(creature|mybattlefield) becomes(,power/toughness) ueot
+auto=_ATTACKING_may name(Transform all other creatures) all(creature|mybattlefield) becomes(,power/toughness) ueot
 text=Flying, trample -- When Tanazir Quandrix enters the battlefield, double the number of +1/+1 counters on target creature you control. -- Whenever Tanazir Quandrix attacks, you may have the base power and toughness of other creatures you control become equal to Tanazir Quandrix's power and toughness until end of turn.
 mana={3}{G}{U}
 type=Legendary Creature
@@ -62632,7 +62632,7 @@ toughness=4
 [card]
 name=Taranika, Akroan Veteran
 abilities=vigilance
-auto=@combat(attacking) source(this):target(other creature|myBattlefield) transforms((,setpower=4,settoughness=4,newability[untap],newability[indestructible])) ueot
+auto=_ATTACKING_target(other creature|myBattlefield) transforms((,setpower=4,settoughness=4,newability[untap],newability[indestructible])) ueot
 text=Vigilance -- Whenever Taranika, Akroan Veteran attacks, untap another target creature you control. Until end of turn, that creature has base power and toughness 4/4 and gains indestructible.
 mana={1}{W}{W}
 type=Legendary Creature
@@ -62822,7 +62822,7 @@ toughness=4
 [card]
 name=Tectonic Hellion
 abilities=haste
-auto=@combat(attacking) source(this):if type(land|mybattlefield)~morethan~type(land|opponentbattlefield) then sacrifice target(<2>land|mybattlefield) else ability$!name(Sacrifice 2 lands) notatarget(<2>land|mybattlefield) sacrifice!$ opponent 
+auto=_ATTACKING_if type(land|mybattlefield)~morethan~type(land|opponentbattlefield) then sacrifice target(<2>land|mybattlefield) else ability$!name(Sacrifice 2 lands) notatarget(<2>land|mybattlefield) sacrifice!$ opponent 
 text=Haste -- Whenever Tectonic Hellion attacks, each player who controls the most lands sacrifices two lands.
 mana={5}{R}{R}
 type=Creature
@@ -63126,7 +63126,7 @@ toughness=2
 [card]
 name=Tenth District Veteran
 abilities=vigilance
-auto=@combat(attacking) source(this):untap target(other creature|mybattlefield)
+auto=_ATTACKING_untap target(other creature|mybattlefield)
 text=Vigilance -- Whenever Tenth District Veteran attacks, untap another target creature you control.
 mana={2}{W}
 type=Creature
@@ -63224,7 +63224,7 @@ toughness=2
 [/card]
 [card]
 name=Territorial Hammerskull
-auto=@combat(attacking) source(this):tap target(creature|opponentbattlefield)
+auto=_ATTACKING_tap target(creature|opponentbattlefield)
 text=Whenever Territorial Hammerskull attacks, tap target creature an opponent controls.
 mana={2}{W}
 type=Creature
@@ -63235,7 +63235,7 @@ toughness=3
 [card]
 name=Territorial Hellkite
 abilities=flying,haste
-auto=@combat(attacking) source(this):frozen
+auto=_ATTACKING_frozen
 text=Flying, haste -- At the beginning of combat on your turn, choose an opponent at random that Territorial Hellkite didn't attack during your last combat. Territorial Hellkite attacks that player this combat if able. If you can't choose an opponent this way, tap Territorial Hellkite.
 mana={2}{R}{R}
 type=Creature
@@ -63246,7 +63246,7 @@ toughness=5
 [card]
 name=Territorial Kavu
 anyzone=pbasiclandtypes/pbasiclandtypes cdaactive
-auto=@combat(attacking) source(this):transforms((,newability[choice name(Discard and draw) target(*|myHand) transforms((,newability[reject],newability[draw:1 controller])) oneshot],newability[choice name(Exile a card) target(*|graveyard) moveto(exile)],newability[choice name(Do nothing) donothing])) oneshot
+auto=_ATTACKING_transforms((,newability[choice name(Discard and draw) target(*|myHand) transforms((,newability[reject],newability[draw:1 controller])) oneshot],newability[choice name(Exile a card) target(*|graveyard) moveto(exile)],newability[choice name(Do nothing) donothing])) oneshot
 text=Domain — Territorial Kavu's power and toughness are each equal to the number of basic land types among lands you control. -- Whenever Territorial Kavu attacks, choose one — -- • Discard a card. If you do, draw a card. -- • Exile up to one target card from a graveyard.
 mana={R}{G}
 type=Creature
@@ -63608,7 +63608,7 @@ name=The Bloodsky Massacre
 auto=counter(0/0,1,Lore)
 auto=@each my firstmain:counter(0/0,1,Lore)
 auto=token(Demon,Creature Demon Berserker,2/3,red,menace)
-auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) all(berserker|mybattlefield) transforms((,newability[@combat(attacking) source(this):draw:1 controller && life:-1 controller])) ueot
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) all(berserker|mybattlefield) transforms((,newability[_ATTACKING_draw:1 controller && life:-1 controller])) ueot
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) foreach(berserker|mybattlefield) add{R} doesntempty
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) sacrifice(this)
 text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I — Create a 2/3 red Demon Berserker creature token with menace. -- II — Whenever a Berserker attacks this turn, you draw a card and you lose 1 life. -- III — Add {R} for each Berserker you control. Until end of turn, you don't lose this mana as steps and phases end.
@@ -63794,7 +63794,7 @@ type=Legendary Artifact
 [card]
 name=The Haunt of Hightower
 abilities=flying, lifelink
-auto=@combat(attacking) source(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=_ATTACKING_ability$!name(discard) target(*|myhand) reject!$ opponent
 auto=@movedTo(*|opponentgraveyard):counter(1/1)
 text=Flying, lifelink -- Whenever The Haunt of Hightower attacks, defending player discards a card. -- Whenever a card is put into an opponent's graveyard from anywhere, put a +1/+1 counter on The Haunt of Hightower.
 mana={4}{B}{B}
@@ -63961,7 +63961,7 @@ toughness=5
 [card]
 name=The Tarrasque
 auto=if casted(this) then transforms((,newability[haste],newability[@targeted(this) from(*[|opponentzones):choice name(This spell costs 10 more) name(This spell costs 10 more) target(*|opponentzones) transforms((,newability[pay[[{10}]] name(pay 10 mana) donothing?fizzle])) oneshot])) forever
-auto=@combat(attacking) source(this):name(Fight defending creature) target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>
+auto=_ATTACKING_name(Fight defending creature) target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>
 text=The Tarrasque has haste and ward {10} as long as it was cast. -- Whenever The Tarrasque attacks, it fights target creature defending player controls.
 mana={6}{G}{G}{G}
 type=Legendary Creature
@@ -64196,7 +64196,7 @@ type=Instant
 name=Thorned Moloch
 abilities=prowess
 auto=@movedTo(*[-creature]|mystack):1/1 ueot
-auto=@combat(attacking) source(this):first strike ueot
+auto=_ATTACKING_first strike ueot
 text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.) -- Thorned Moloch has first strike as long as it's attacking.
 mana={2}{R}
 type=Creature
@@ -64690,7 +64690,7 @@ toughness=3
 [card]
 name=Thundering Djinn
 abilities=flying
-auto=@combat(attacking) source(this):damage:pdrewcount target(player,creature,planeswalker)
+auto=_ATTACKING_damage:pdrewcount target(player,creature,planeswalker)
 text=Flying -- Whenever Thundering Djinn attacks, it deals damage to any target equal to the number of cards you've drawn this turn.
 mana={3}{U}{R}
 type=Creature
@@ -64910,7 +64910,7 @@ toughness=2
 [card]
 name=Tilonalli's Skinshifter
 abilities=haste
-auto=@combat(attacking) source(this):target(creature[-legendary;attacking]) copy and!( all(this) transforms((,newability[phaseaction[endofturn once] flip(Tilonalli's Skinshifter) undocpy])) forever )!
+auto=_ATTACKING_target(creature[-legendary;attacking]) copy and!( all(this) transforms((,newability[phaseaction[endofturn once] flip(Tilonalli's Skinshifter) undocpy])) forever )!
 text=Haste -- Whenever Tilonalli's Skinshifter attacks, it becomes a copy of another target nonlegendary attacking creature until end of turn.
 mana={2}{R}
 type=Creature
@@ -64922,7 +64922,7 @@ toughness=1
 name=Tilonalli's Summoner
 auto=_ASCEND_
 auto=@movedTo(*|myBattlefield) restriction{type(*[city's_blessing]|mybattlefield)~equalto~0}:_ASCEND_
-auto=@combat(attacking) source(this):may pay({X}{R}) name(Create X elemental tokens) token(Elemental,Creature Elemental Tilonalli,1/1,red,battleready)*x
+auto=_ATTACKING_may pay({X}{R}) name(Create X elemental tokens) token(Elemental,Creature Elemental Tilonalli,1/1,red,battleready)*x
 auto=@each my endstep restriction{type(*[city's_blessing]|mybattlefield)~equalto~0}:moveto(exile) all(Tilonalli[token;fresh]|myBattlefield)
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Whenever Tilonalli's Summoner attacks, you may pay {X}{R}. If you do, create X 1/1 red Elemental creature tokens that are tapped and attacking. At the beginning of the next end step, exile those tokens unless you have the city's blessing.
 mana={1}{R}
@@ -65694,7 +65694,7 @@ name=Tower Above
 target=creature
 other={G}{G}{G} name(Pay with 3 green)
 auto=4/4 ueot
-auto=transforms((,newability[trample ueot],newability[wither ueot],newability[@combat(attacking) source(this):target(creature|opponentbattlefield) mustblock ueot])) ueot
+auto=transforms((,newability[trample ueot],newability[wither ueot],newability[_ATTACKING_target(creature|opponentbattlefield) mustblock ueot])) ueot
 text=({2G} can be paid with any two mana or with {G}. This card's converted mana cost is 6.) -- Until end of turn, target creature gets +4/+4 and gains trample, wither, and "When this creature attacks, target creature blocks it this turn if able." (It deals damage to creatures in the form of -1/-1 counters.)
 mana={6}
 type=Sorcery
@@ -66045,7 +66045,7 @@ toughness=5
 name=Treetop Ambusher
 other={1}{G} name(Dash)
 auto=if paid(alternative) then transforms((,newability[haste],newability[phaseaction[endofturn sourceinplay] moveto(ownerhand) all(this)])) forever
-auto=@combat(attacking) source(this):target(creature|mybattlefield) 1/1 ueot
+auto=_ATTACKING_target(creature|mybattlefield) 1/1 ueot
 text=Dash {1}{G} (You may cast this spell for its dash cost. If you do, it gains haste, and it's returned from the battlefield to its owner's hand at the beginning of the next end step.) -- Whenever Treetop Ambusher attacks, target creature you control gets +1/+1 until end of turn.
 mana={1}{G}
 type=Creature
@@ -66326,7 +66326,7 @@ toughness=1
 [card]
 name=Truefire Captain
 abilities=mentor
-auto=@combat(attacking) source(this):name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
+auto=_ATTACKING_name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
 auto=@damaged(this):damage:thatmuch target(player)
 text=Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.) -- Whenever Truefire Captain is dealt damage, it deals that much damage to target player.
 mana={R}{R}{W}{W}
@@ -66348,7 +66348,7 @@ toughness=2
 [card]
 name=Trueheart Twins
 auto=@exerted(creature|myBattlefield):all(creature|mybattlefield) 1/0 ueot
-auto=@combat(attacking) source(this):may exert
+auto=_ATTACKING_may exert
 text=You may exert Trueheart Twins as it attacks. (It won't untap during your next untap step.) -- Whenever you exert a creature, creatures you control get +1/+0 until end of turn.
 mana={4}{R}
 type=Creature
@@ -66400,7 +66400,7 @@ type=Sorcery
 [card]
 name=Trusted Pegasus
 abilities=flying
-auto=@combat(attacking) source(this):target(creature[attacking;-flying]) flying ueot
+auto=_ATTACKING_target(creature[attacking;-flying]) flying ueot
 text=Flying -- Whenever Trusted Pegasus attacks, target attacking creature without flying gains flying until end of turn.
 mana={2}{W}
 type=Creature
@@ -66629,7 +66629,7 @@ toughness=1
 [/card]
 [card]
 name=Tuya Bearclaw
-auto=@combat(attacking) source(this):power:highest:*:mybattlefield/power:highest:*:mybattlefield ueot
+auto=_ATTACKING_power:highest:*:mybattlefield/power:highest:*:mybattlefield ueot
 text=Whenever Tuya Bearclaw attacks, it gets +X/+X until end of turn, where X is the greatest power among other creatures you control.
 mana={1}{R}{G}
 type=Legendary Creature
@@ -66770,7 +66770,7 @@ toughness=4
 [/card]
 [card]
 name=Two-Headed Giant
-auto=@combat(attacking) source(this):flipacoin winability transforms((,newability[flipacoin winability double strike winabilityend loseability loseabilityend flipend] winabilityend loseability transforms((,newability[flipacoin winability winabilityend loseability menace loseabilityend flipend] loseabilityend flipend
+auto=_ATTACKING_flipacoin winability transforms((,newability[flipacoin winability double strike winabilityend loseability loseabilityend flipend] winabilityend loseability transforms((,newability[flipacoin winability winabilityend loseability menace loseabilityend flipend] loseabilityend flipend
 text=Whenever Two-Headed Giant attacks, flip two coins. If both coins come up heads, Two-Headed Giant gains double strike until end of turn. If both coins come up tails, Two-Headed Giant gains menace until end of turn.
 mana={2}{R}{R}
 type=Creature
@@ -67213,7 +67213,7 @@ toughness=1
 [/card]
 [card]
 name=Underworld Sentinel
-auto=@combat(attacking) source(this):target(creature|myGraveyard) moveTo(myexile) and!( counter(0/0,1,UnderworldExiled) )!
+auto=_ATTACKING_target(creature|myGraveyard) moveTo(myexile) and!( counter(0/0,1,UnderworldExiled) )!
 auto=_DIES_moveTo(myBattlefield) all(creature[counter{0/0.1.UnderworldExiled}]|myexile)
 text=Whenever Underworld Sentinel attacks, exile target creature card from your graveyard. -- When Underworld Sentinel dies, put all cards exiled with it onto the battlefield.
 mana={3}{B}{B}
@@ -67552,8 +67552,8 @@ name=Uro, Titan of Nature's Wrath
 auto=ifnot paid(retrace) then sacrifice
 auto=life:3 controller && draw:1 controller
 auto=may name(Put land in play) moveto(mybattlefield) target(land|myhand)
-auto=@combat(attacking) source(this):life:3 controller && draw:1 controller
-auto=@combat(attacking) source(this):may moveto(mybattlefield) target(land|myhand)
+auto=_ATTACKING_life:3 controller && draw:1 controller
+auto=_ATTACKING_may moveto(mybattlefield) target(land|myhand)
 retrace={G}{G}{U}{U}{E(other *|mygraveyard)}{E(other *|mygraveyard)}{E(other *|mygraveyard)}{E(other *|mygraveyard)}{E(other *|mygraveyard)} name(Escape))
 text=When Uro enters the battlefield, sacrifice it unless it escaped. -- Whenever Uro enters the battlefield or attacks, you gain 3 life and draw a card, then you may put a land card from your hand onto the battlefield. -- Escape — {G}{G}{U}{U}, Exile five other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
 mana={1}{G}{U}
@@ -68267,7 +68267,7 @@ toughness=1
 [/card]
 [card]
 name=Vedalken Humiliator
-auto=@combat(attacking) source(this):restriction{aslongas(artifact|mybattlefield) lord(creature|opponentBattlefield) loseabilities && lord(creature|opponentBattlefield) transforms((,setpower=1,settoughness=1))) >2 ueot}
+auto=_ATTACKING_restriction{aslongas(artifact|mybattlefield) lord(creature|opponentBattlefield) loseabilities && lord(creature|opponentBattlefield) transforms((,setpower=1,settoughness=1))) >2 ueot}
 text=Metalcraft — Whenever Vedalken Humiliator attacks, if you control three or more artifacts, creatures your opponents control lose all abilities and have base power and toughness 1/1 until end of turn.
 mana={3}{U}
 type=Creature
@@ -68288,7 +68288,7 @@ toughness=3
 [/card]
 [card]
 name=Vedalken Mesmerist
-auto=@combat(attacking) source(this):target(creature|opponentBattlefield)) -2/-0 ueot
+auto=_ATTACKING_target(creature|opponentBattlefield)) -2/-0 ueot
 text=Whenever Vedalken Mesmerist attacks, target creature an opponent controls gets -2/-0 until end of turn.
 mana={1}{U}
 type=Creature
@@ -68391,7 +68391,7 @@ toughness=3
 name=Velomachus Lorehold
 abilities=flying,vigilance,haste
 aicode=activate transforms((,newability[target(*[instant;sorcery;manacost<=power;zpos<=7]|mylibrary) transforms((,newability[may activate castcard(normal)],newability[all(*[zpos<=7]|mylibrary) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
-auto=@combat(attacking) source(this):name(Reveal top 7 cards) reveal:7 optionone name(Choose instant or sorcery) target(*[instant;sorcery;manacost<=power]|reveal) bottomoflibrary and!( becomes(spelltobecast) ueot )! optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend afterrevealed if type(spelltobecast|mylibrary)~morethan~0 then may name(Cast chosen spell) name(Cast chosen spell) all(spelltobecast|mylibrary) activate castcard(normal) afterrevealedend revealend
+auto=_ATTACKING_name(Reveal top 7 cards) reveal:7 optionone name(Choose instant or sorcery) target(*[instant;sorcery;manacost<=power]|reveal) bottomoflibrary and!( becomes(spelltobecast) ueot )! optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend afterrevealed if type(spelltobecast|mylibrary)~morethan~0 then may name(Cast chosen spell) name(Cast chosen spell) all(spelltobecast|mylibrary) activate castcard(normal) afterrevealedend revealend
 text=Flying, vigilance, haste -- Whenever Velomachus Lorehold attacks, look at the top seven cards of your library. You may cast an instant or sorcery spell with mana value less than or equal to Velomachus Lorehold's power from among them without paying its mana cost. Put the rest on the bottom of your library in a random order.
 mana={5}{R}{W}
 type=Legendary Creature
@@ -68457,8 +68457,8 @@ toughness=4
 name=Vengeful Ancestor
 abilities=flying
 auto=name(Goad creature) target(creature|battlefield) transforms((,newability[mustattack])) uynt
-auto=@combat(attacking) source(this):name(Goad creature) target(creature|battlefield) transforms((,newability[mustattack],newability[@combat(attacking) source(this):damage:1 controller])) uynt
-auto=lord(creature[mustattack]|battlefield) transforms((,newability[@combat(attacking) source(this):damage:1 controller])) oneshot
+auto=_ATTACKING_name(Goad creature) target(creature|battlefield) transforms((,newability[mustattack],newability[_ATTACKING_damage:1 controller])) uynt
+auto=lord(creature[mustattack]|battlefield) transforms((,newability[_ATTACKING_damage:1 controller])) oneshot
 text=Flying -- When Vengeful Ancestor enters the battlefield or attacks, goad target creature. (Until your next turn, that creature attacks each combat if able and attacks a player other than you if able.) -- Whenever a goaded creature attacks, it deals 1 damage to its controller.
 mana={2}{R}{R}
 type=Creature
@@ -68916,7 +68916,7 @@ type=Sorcery
 [/card]
 [card]
 name=Vicious Conquistador
-auto=@combat(attacking) source(this):life:-1 opponent
+auto=_ATTACKING_life:-1 opponent
 text=Whenever Vicious Conquistador attacks, each opponent loses 1 life.
 mana={B}
 type=Creature
@@ -69351,7 +69351,7 @@ toughness=1
 [card]
 name=Vizier of the True
 auto=@exerted(this):tap target(cretaure|opponentbattlefield)
-auto=@combat(attacking) source(this):may exert
+auto=_ATTACKING_may exert
 text=You may exert Vizier of the True as it attacks. (It won't untap during your next untap step.) -- Whenever you exert a creature, tap target creature an opponent controls.
 mana={3}{W}
 type=Creature
@@ -69923,7 +69923,7 @@ name=Wand of Orcus
 auto={3}:equip
 auto=@damaged(player) from(mytgt):name(Create zombies) token(Zombie Lil)*thatmuch
 auto=@combat(attacking,blocking) source(mytgt):name(All zombies gain deathtouch) all(zombie|mybattlefield) transforms((,newability[deathtouch])) ueot
-auto=teach(creature) transforms((,newability[@combat(attacking) source(this):name(Equipped creature gains deathtouch) deathtouch ueot],newability[@combat(blocking) source(this):name(Equipped creature gains deathtouch) deathtouch ueot]))
+auto=teach(creature) transforms((,newability[_ATTACKING_name(Equipped creature gains deathtouch) deathtouch ueot],newability[@combat(blocking) source(this):name(Equipped creature gains deathtouch) deathtouch ueot]))
 text=Whenever equipped creature attacks or blocks, it and Zombies you control gain deathtouch until end of turn. -- Whenever equipped creature deals combat damage to a player, create that many 2/2 black Zombie creature tokens. -- Equip {3}
 mana={2}{B}
 type=Legendary Artifact
@@ -70155,7 +70155,7 @@ type=Instant
 [card]
 name=Warkite Marauder
 abilities=flying
-auto=@combat(attacking) source(this):target(creature|opponentBattlefield) loseabilities
+auto=_ATTACKING_target(creature|opponentBattlefield) loseabilities
 text=Flying -- Whenever Warkite Marauder attacks, target creature defending player controls loses all abilities and has base power and toughness 0/1 until end of turn.
 mana={1}{U}
 type=Creature
@@ -70350,7 +70350,7 @@ toughness=6
 [card]
 name=Watchful Naga
 auto=@exerted(this):draw:1
-auto=@combat(attacking) source(this):may exert
+auto=_ATTACKING_may exert
 text=You may exert Watchful Naga as it attacks. When you do, draw a card. (An exerted creature won't untap during your next untap step.)
 mana={2}{G}
 type=Creature
@@ -71186,7 +71186,7 @@ type=Instant
 [card]
 name=Wings of the Guard
 abilities=flying
-auto=@combat(attacking) source(this):1/1 ueot
+auto=_ATTACKING_1/1 ueot
 text=Flying -- Melee (Whenever this creature attacks, it gets +1/+1 until end of turn for each opponent you attacked with a creature this combat.)
 mana={1}{W}
 type=Creature
@@ -71247,7 +71247,7 @@ type=Instant
 name=Wintermoor Commander
 abilities=deathtouch
 anyzone=2/type:creature[knight]:battlefield cdaactive
-auto=@combat(attacking) source(this):target(creature[knight]) indestructible ueot
+auto=_ATTACKING_target(creature[knight]) indestructible ueot
 text=Deathtouch -- Wintermoor Commander's toughness is equal to the number of Knights you control. -- Whenever Wintermoor Commander attacks, another target Knight you control gains indestructible until end of turn. (Damage and effects that say "destroy" don't destroy it.)
 mana={W}{B}
 type=Creature
@@ -71510,7 +71510,7 @@ toughness=2
 [card]
 name=Wojek Bodyguard
 abilities=mentor
-auto=@combat(attacking) source(this):name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
+auto=_ATTACKING_name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
 auto=@combat(attacking) source(this) restriction{type(creature[attacking]|myBattlefield)~equalto~1}:all(this) removefromcombat && untap
 auto=@combat(blocking) source(this) restriction{type(creature[blocking]|myBattlefield)~equalto~1}:all(this) removefromcombat && untap
 text=Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.) -- Wojek Bodyguard can't attack or block alone.
@@ -71643,7 +71643,7 @@ toughness=4
 [/card]
 [card]
 name=World Shaper
-auto=@combat(attacking) source(this):may deplete:3
+auto=_ATTACKING_may deplete:3
 auto=_DIES_:all(land|mygraveyard) moveto(mybattlefield) and!(tap(noevent))!
 text=Whenever World Shaper attacks, you may put the top three cards of your library into your graveyard. -- When World Shaper dies, put all land cards from your graveyard onto the battlefield tapped.
 mana={3}{G}
@@ -71778,7 +71778,7 @@ type=Instant
 [card]
 name=Wulfgar of Icewind Dale
 #MISSING: not possible to trigger twice any ability ATM
-auto=@combat(attacking) source(this):name(Melee) 1/1 ueot
+auto=_ATTACKING_name(Melee) 1/1 ueot
 text=Melee (Whenever this creature attacks, it gets +1/+1 until end of turn for each opponent you attacked this combat.) -- If a creature you control attacking would cause a triggered ability of a permanent you control to trigger, that ability triggers an additional time.
 mana={3}{R}{G}
 type=Legendary Creature
@@ -71789,8 +71789,8 @@ toughness=4
 [card]
 name=Wyleth, Soul of Steel
 abilities=trample
-auto=@combat(attacking) source(this):thisforeach(auras > 0) draw:1 controller
-auto=@combat(attacking) source(this):thisforeach(gear) draw:1 controller
+auto=_ATTACKING_thisforeach(auras > 0) draw:1 controller
+auto=_ATTACKING_thisforeach(gear) draw:1 controller
 text=Trample -- Whenever Wyleth, Soul of Steel attacks, draw a card for each Aura and Equipment attached to it.
 mana={1}{R}{W}
 type=Legendary Creature
@@ -72323,7 +72323,7 @@ toughness=3
 [card]
 name=Zara, Renegade Recruiter
 abilities=flying
-auto=@combat(attacking) source(this):reveal:type:*:opponenthand revealzone(opponenthand) optionone name(Reveal) target(creature|reveal) moveto(mybattlefield) and!( transforms((,newability[ninjutsu],newability[phaseaction[endofturn] moveto(ownerhand) all(this)])) forever )! optiononeend optiontwo all(*|reveal) moveto(opponenthand) optiontwoend revealend
+auto=_ATTACKING_reveal:type:*:opponenthand revealzone(opponenthand) optionone name(Reveal) target(creature|reveal) moveto(mybattlefield) and!( transforms((,newability[ninjutsu],newability[phaseaction[endofturn] moveto(ownerhand) all(this)])) forever )! optiononeend optiontwo all(*|reveal) moveto(opponenthand) optiontwoend revealend
 text=Flying -- Whenever Zara, Renegade Recruiter attacks, look at defending player's hand. You may put a creature card from it onto the battlefield under your control tapped and attacking that player or a planeswalker they control. Return that creature to its owner's hand at the beginning of the next end step.
 mana={3}{U}{R}
 type=Legendary Creature

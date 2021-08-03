@@ -28,7 +28,7 @@
 #AUTO_DEFINE _THRESHOLD_ aslongas(*|myGraveyard) >6
 
 # Affinity
-#AUTO_DEFINE _AFFINITY_($Word) anyzone=foreach($Word|myZones) altercost(-1,colorless)
+#AUTO_DEFINE _AFFINITY_($Word) anyzone=foreach($Word|myZones) altercost(colorless,-1)
 
 # Bushido
 #AUTO_DEFINE _BUSHIDO_($c) @combat(blocking,blocked) source(this): $c/$c ueot
@@ -97,8 +97,8 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 # Fabricate
 #AUTO_DEFINE _FABRICATE_($c) transforms((,newability[choice counter(1/1.$c)],newability[choice create(Servo:Artifact Creature Servo:1/1)*$c])) ueot
 
-# Exert
-#AUTO_DEFINE _EXERT_ @combat(attacking) source(this):may name(Exert) frozen
+# Attacking
+#AUTO_DEFINE _ATTACKING_ @combat(attacking) source(this):
 
 # Afflict
 #AUTO_DEFINE _AFFLICT_ @combat(blocked,turnlimited) source(this):life:-3 opponent
