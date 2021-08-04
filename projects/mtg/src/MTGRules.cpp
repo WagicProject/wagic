@@ -3982,7 +3982,7 @@ int MTGLifelinkRule::receiveEvent(WEvent * event)
         WEventDamage * e = (WEventDamage *) event;
         Damage * d = e->damage;
         MTGCardInstance * card = d->source;
-        if (d->damage > 0 && card && (card->basicAbilities[(int)Constants::LIFELINK]||card->LKIbasicAbilities[(int)Constants::LIFELINK]))
+        if (d->damage > 0 && card && (card->basicAbilities[(int)Constants::LIFELINK]||card->basicAbilities[(int)Constants::PERPETUALLIFELINK]||card->LKIbasicAbilities[(int)Constants::LIFELINK]||card->LKIbasicAbilities[(int)Constants::PERPETUALLIFELINK]))
         {
             card->controller()->gainLife(d->damage, card);
             return 1;
@@ -4026,7 +4026,7 @@ int MTGDeathtouchRule::receiveEvent(WEvent * event)
             return 0;
         MTGCardInstance * _target = (MTGCardInstance *) (d->target);
 
-        if (card->basicAbilities[(int)Constants::DEATHTOUCH]||card->LKIbasicAbilities[(int)Constants::DEATHTOUCH])
+        if (card->basicAbilities[(int)Constants::DEATHTOUCH]||card->basicAbilities[(int)Constants::PERPETUALDEATHTOUCH]||card->LKIbasicAbilities[(int)Constants::DEATHTOUCH]||card->LKIbasicAbilities[(int)Constants::PERPETUALDEATHTOUCH])
         {
             _target->destroy();
             return 1;

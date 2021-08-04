@@ -2270,6 +2270,82 @@ AAImprint * AAImprint::clone() const
     return NEW AAImprint(*this);
 }
 
+AAImprint::~AAImprint()
+{
+    SAFE_DELETE(andAbility);
+}
+
+//AAConjure
+AAConjure::AAConjure(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost, string _namedCard, string _cardZone) :
+    ActivatedAbility(observer, _id, _source, _cost, 0),cardNamed(_namedCard),cardZone(_cardZone)
+{
+    target = _target;
+    andAbility = NULL;
+    theNamedCard = NULL;
+}
+
+MTGCardInstance * AAConjure::makeCard()
+{
+    string newName = cardNamed;
+    if(newName.find(";")){//if it's a list of cards we choose one randomly (e.g. Tome of the Infinite)
+        vector<string> names = split(newName, ';');
+        newName = names.at(std::rand() % names.size());
+    }
+    MTGCardInstance * card = NULL;
+    MTGCard * cardData = MTGCollection()->getCardByName(newName);
+    if(!cardData) return NULL;
+    card = NEW MTGCardInstance(cardData, source->controller()->game);
+    card->owner = source->controller();
+    card->lastController = source->controller();
+    source->controller()->game->sideboard->addCard(card);
+    return card;
+}
+
+int AAConjure::resolve()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if (_target)
+    {
+        if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be conjured, they will follow the fate of top-card
+        theNamedCard = makeCard();
+        if(theNamedCard){
+           MTGCardInstance * copy =  source->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, MTGGameZone::stringToZone(game, cardZone, theNamedCard, NULL));
+            if(andAbility)
+            {
+                MTGAbility * andAbilityClone = andAbility->clone();
+                andAbilityClone->target = copy;
+                if(andAbility->oneShot)
+                {
+                    andAbilityClone->resolve();
+                    SAFE_DELETE(andAbilityClone);
+                }
+                else
+                {
+                    andAbilityClone->addToGame();
+                }
+            }
+        }
+        this->forceDestroy = true;
+        return 1;
+    }
+    return 0;
+}
+
+const string AAConjure::getMenuText()
+{
+    return "Conjure";
+}
+
+AAConjure * AAConjure::clone() const
+{
+    return NEW AAConjure(*this);
+}
+
+AAConjure::~AAConjure()
+{
+    SAFE_DELETE(andAbility);
+}
+
 //AAForetell
 AAForetell::AAForetell(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost) :
     ActivatedAbility(observer, _id, _source, _cost, 0)
@@ -5685,7 +5761,6 @@ AInstantCastRestrictionUEOT::~AInstantCastRestrictionUEOT()
     SAFE_DELETE(ability);
 }
 
-
 //AAMover
 AAMover::AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest,string newName, ManaCost * _cost, bool undying, bool persist) :
     ActivatedAbility(observer, _id, _source, _cost, 0), destination(dest),named(newName),undying(undying),persist(persist)
@@ -5943,6 +6018,7 @@ AARandomMover::AARandomMover(GameObserver* observer, int _id, MTGCardInstance * 
 {
     if (_target)
         target = _target;
+    andAbility = NULL;
 }
 
 MTGGameZone * AARandomMover::destinationZone(Targetable * target,string zone)
@@ -5996,7 +6072,24 @@ int AARandomMover::resolve()
                     return 1;
                 }
             }
-            p->game->putInZone(toMove, fromDest, toDest);
+            MTGCardInstance *newTarget = p->game->putInZone(toMove, fromDest, toDest);
+            if(newTarget)
+            {
+                if(andAbility)
+                {
+                    MTGAbility * andAbilityClone = andAbility->clone();
+                    andAbilityClone->target = newTarget;
+                    if(andAbility->oneShot)
+                    {
+                        andAbilityClone->resolve();
+                        SAFE_DELETE(andAbilityClone);
+                    }
+                    else
+                    {
+                        andAbilityClone->addToGame();
+                    }
+                }
+            }
             return 1;
         }
     }
@@ -6016,6 +6109,7 @@ AARandomMover * AARandomMover::clone() const
 
 AARandomMover::~AARandomMover()
 {
+    SAFE_DELETE(andAbility);
 }
 
 //Random Discard
@@ -9401,6 +9495,12 @@ void AACastCard::Update(float dt)
        return;
    if(cardNamed.size() && !theNamedCard)
    {
+       if(cardNamed.find("randomcard") != string::npos){ //cast a random card from collection.
+           MTGCard *rndCard = NULL;
+           while(!rndCard || rndCard->data->isLand())
+               rndCard = MTGCollection()->getCardById(MTGCollection()->ids.at(std::rand() % (MTGCollection()->ids).size()));
+           cardNamed = rndCard->data->name;
+       }
        if (cardNamed.find("imprintedcard") != string::npos)
        {
            if (source && source->currentimprintName.size())

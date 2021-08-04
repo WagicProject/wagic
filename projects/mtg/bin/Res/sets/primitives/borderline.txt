@@ -40978,8 +40978,8 @@ type=Sorcery
 [/card]
 [card]
 name=Muxus, Goblin Grandee
-aicode=activate moveto(mybattlefield) target(<anyamount>goblin[manacost<=5;zpos<=6]|mylibrary)
-auto=reveal:6 optionone target(<anyamount>goblin[manacost<=5]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!( activate castcard(normal) )! afterrevealedend revealend
+aicode=activate all(creature[goblin;manacost<=5;zpos<=6]|mylibrary) moveto(mybattlefield) and!( all(*[zpos<=6]|mylibrary) bottomoflibrary )!
+auto=name(Look top 6)  reveal:6 optionone name(Get goblins) target(<6>creature[goblin;manacost<=5]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveto(ownerbattlefield))! afterrevealedend revealend
 text=When Muxus, Goblin Grandee enters the battlefield, reveal the top six cards of your library. Put all Goblin creature cards with converted mana cost 5 or less from among them onto the battlefield and the rest on the bottom of your library in a random order. -- Whenever Muxus attacks, it gets +1/+1 until end of turn for each other Goblin you control.
 auto=_ATTACKING_all(this) foreach(other goblin[attacking]|myBattlefield) 1/1 ueot
 mana={4}{R}{R}

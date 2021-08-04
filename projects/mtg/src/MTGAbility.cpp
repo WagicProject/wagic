@@ -3269,6 +3269,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
              return NULL;
          MTGAbility * a = NEW AARandomMover(observer, id, card, target, splitRandomMove[1],splitfrom[1],splitto[1]);
          a->oneShot = true;
+        if(storedAndAbility.size())
+        {
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((AARandomMover*)a)->andAbility = parseMagicLine(stored, id, spell, card);
+        }
          return a;
     }
 
@@ -3347,6 +3353,36 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             }
             return a;
         }
+    }
+
+    //Conjure a card
+    found = s.find("conjure");
+    if (found != string::npos)
+    {
+        replace(s.begin(), s.end(), '^', ','); // To allow the usage of ^ instead of , char (e.g. using conjure keyword inside transforms)
+        string cardName = "";
+        vector<string> splitCard = parseBetween(s, "cards(", ")");
+        if (splitCard.size())
+        {
+            cardName = splitCard[1];
+        }
+        string cardZone = "";
+        vector<string> splitZone = parseBetween(s, "zone(", ")");
+        if (splitZone.size())
+        {
+            cardZone = splitZone[1];
+        }
+        MTGAbility * a = NEW AAConjure(observer, id, card, target, NULL, cardName, cardZone);
+        a->oneShot = 1;
+        a->canBeInterrupted = false;
+        //andability
+        if(storedAndAbility.size())
+        {
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((AAConjure*)a)->andAbility = parseMagicLine(stored, id, spell, card);
+        }
+        return a;
     }
 
     //foretell
