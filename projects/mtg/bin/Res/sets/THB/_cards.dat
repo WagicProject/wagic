@@ -3,7 +3,7 @@ author=Wagic Team
 name=Theros Beyond Death
 orderindex=EXP-ZZE.THB
 year=2020-01-24
-total=278
+total=307
 [/meta]
 [card]
 primitive=Soldier
@@ -1394,4 +1394,149 @@ rarity=C
 primitive=Forest
 id=476505
 rarity=C
+[/card]
+[card]
+primitive=Athreos, Shroud-Veiled
+id=479156
+rarity=M
+[/card]
+[card]
+primitive=Elspeth, Undaunted Hero
+id=479167
+rarity=M
+[/card]
+[card]
+primitive=Eidolon of Inspiration
+id=479168
+rarity=U
+[/card]
+[card]
+primitive=Elspeth's Devotee
+id=479169
+rarity=R
+[/card]
+[card]
+primitive=Sunlit Hoplite
+id=479170
+rarity=C
+[/card]
+[card]
+primitive=Ashiok, Sculptor of Fears
+id=479171
+rarity=M
+[/card]
+[card]
+primitive=Swimmer in Nightmares
+id=479172
+rarity=U
+[/card]
+[card]
+primitive=Mindwrack Harpy
+id=479173
+rarity=C
+[/card]
+[card]
+primitive=Ashiok's Forerunner
+id=479174
+rarity=R
+[/card]
+[card]
+primitive=Plains
+id=479175
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=479176
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=479177
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=479178
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=479179
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=479180
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=479181
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=479182
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=479183
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=479184
+rarity=L
+[/card]
+[card]
+primitive=Grasping Giant
+id=479046
+rarity=R
+[/card]
+[card]
+primitive=Victory's Envoy
+id=479047
+rarity=R
+[/card]
+[card]
+primitive=Sphinx Mindbreaker
+id=479048
+rarity=R
+[/card]
+[card]
+primitive=Serpent of Yawning Depths
+id=479049
+rarity=R
+[/card]
+[card]
+primitive=Demon of Loathing
+id=479050
+rarity=R
+[/card]
+[card]
+primitive=Underworld Sentinel
+id=479051
+rarity=R
+[/card]
+[card]
+primitive=Deathbellow War Cry
+id=479052
+rarity=R
+[/card]
+[card]
+primitive=Terror of Mount Velus
+id=479053
+rarity=R
+[/card]
+[card]
+primitive=Ironscale Hydra
+id=479054
+rarity=R
+[/card]
+[card]
+primitive=Treeshaker Chimera
+id=479055
+rarity=R
 [/card]
