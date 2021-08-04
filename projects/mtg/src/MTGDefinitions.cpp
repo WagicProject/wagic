@@ -220,7 +220,9 @@ const char* Constants::MTGBasicAbilities[] = {
     "nodngplr", //Controller can't venture
     "canplayauraequiplibrarytop", //auras and equipment
     "counterdeath", //It gains a 1/1 counter when it returns from graveyard (to use with inplaydeath and inplaytapdeath)"
-    "dungeoncompleted" //This dungeon has been completed
+    "dungeoncompleted", //This dungeon has been completed
+    "perpetuallifelink", //It gains lifelink perpetually
+    "perpetualdeathtouch" //It gains deathtouch perpetually
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

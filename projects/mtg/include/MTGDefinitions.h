@@ -314,7 +314,9 @@ class Constants
       CANPLAYAURAEQUIPTOPLIBRARY = 187,//aurasequipment
       COUNTERDEATH = 188,
       DUNGEONCOMPLETED = 189,
-      NB_BASIC_ABILITIES = 190,
+      PERPETUALLIFELINK = 190,
+      PERPETUALDEATHTOUCH = 191,
+      NB_BASIC_ABILITIES = 192,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

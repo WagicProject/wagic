@@ -1512,6 +1512,22 @@ public:
     int resolve();
     const string getMenuText();
     AAImprint * clone() const;
+    ~AAImprint();
+};
+//AAConjure
+class AAConjure: public ActivatedAbility
+{
+public:
+    MTGAbility * andAbility;
+    string cardNamed;
+    string cardZone;
+    MTGCardInstance * theNamedCard;
+    AAConjure(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost, string _namedCard, string _cardZone);
+    MTGCardInstance * makeCard();
+    int resolve();
+    const string getMenuText();
+    AAConjure * clone() const;
+    ~AAConjure();
 };
 //AAForetell
 class AAForetell: public ActivatedAbility
@@ -1569,6 +1585,7 @@ public:
 class AARandomMover: public ActivatedAbility
 {
 public:
+    MTGAbility * andAbility;
     string abilityTC;
     string fromZone;
     string toZone;

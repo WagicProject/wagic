@@ -726,12 +726,14 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
         WEvent * e = NEW WEventZoneChange(copy, from, to);
         g->receiveEvent(e);
 
-        // Erasing counters from copy after the event has been triggered (no counter can survive to a zone changing)
+        // Erasing counters from copy after the event has been triggered (no counter can survive to a zone changing except the perpetual ones)
         if(doCopy && copy->counters && copy->counters->mCount > 0){
             for (unsigned int i = 0; i < copy->counters->counters.size(); i++){
                 Counter * counter = copy->counters->counters[i];
-                for(int j = counter->nb; j > 0; j--)
-                    copy->counters->removeCounter(counter->name.c_str(), counter->power, counter->toughness, true);
+                for(int j = counter->nb; j > 0; j--){
+                    if(counter->name.find("perpetual") == string::npos)
+                        copy->counters->removeCounter(counter->name.c_str(), counter->power, counter->toughness, true);
+                }
             }
         }
     }
@@ -863,6 +865,8 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy
                 copy->basicAbilities[Constants::GAINEDHANDDEATH] = card->basicAbilities[Constants::GAINEDHANDDEATH];
                 copy->basicAbilities[Constants::GAINEDDOUBLEFACEDEATH] = card->basicAbilities[Constants::GAINEDDOUBLEFACEDEATH];
                 copy->basicAbilities[Constants::DUNGEONCOMPLETED] = card->basicAbilities[Constants::DUNGEONCOMPLETED];
+                copy->basicAbilities[Constants::PERPETUALDEATHTOUCH] = card->basicAbilities[Constants::PERPETUALDEATHTOUCH];
+                copy->basicAbilities[Constants::PERPETUALLIFELINK] = card->basicAbilities[Constants::PERPETUALLIFELINK];
                 copy->damageInflictedAsCommander = card->damageInflictedAsCommander;
                 copy->numofcastfromcommandzone = card->numofcastfromcommandzone;
                 for (int i = 0; i < ManaCost::MANA_PAID_WITH_BESTOW +1; i++)

@@ -149,8 +149,7 @@ int OrderedAIAction::getEfficiency()
                     break;
                 if ((target->defenser || target->blockers.size()) && target->preventable < nextOpponent->power)
                     NeedPreventing = true;
-                if (p == target->controller() && target->controller()->isAI() && NeedPreventing  && !(nextOpponent->has(Constants::DEATHTOUCH)
-                    ||nextOpponent->has(Constants::WITHER)))
+                if (p == target->controller() && target->controller()->isAI() && NeedPreventing  && !(nextOpponent->has(Constants::DEATHTOUCH) || nextOpponent->has(Constants::PERPETUALDEATHTOUCH) || nextOpponent->has(Constants::WITHER)))
                 {
                     efficiency = 20 * (target->DangerRanking());//increase this chance to be used in combat if the creature blocking/blocked could kill the creature this chance is taking into consideration how good the creature is, best creature will always be the first "saved"..
                     if (target->toughness == 1 && nextOpponent->power == 1)
@@ -824,8 +823,7 @@ int OrderedAIAction::getRevealedEfficiency(MTGAbility * ability2)
                     break;
                 if ((target->defenser || target->blockers.size()) && target->preventable < nextOpponent->power)
                     NeedPreventing = true;
-                if (p == target->controller() && target->controller()->isAI() && NeedPreventing  && !(nextOpponent->has(Constants::DEATHTOUCH)
-                    ||nextOpponent->has(Constants::WITHER)))
+                if (p == target->controller() && target->controller()->isAI() && NeedPreventing  && !(nextOpponent->has(Constants::DEATHTOUCH) || nextOpponent->has(Constants::PERPETUALDEATHTOUCH) || nextOpponent->has(Constants::WITHER)))
                 {
                     eff2 = 20 * (target->DangerRanking());//increase this chance to be used in combat if the creature blocking/blocked could kill the creature this chance is taking into consideration how good the creature is, best creature will always be the first "saved"..
                     if (target->toughness == 1 && nextOpponent->power == 1)
