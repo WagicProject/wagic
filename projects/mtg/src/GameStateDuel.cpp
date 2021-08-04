@@ -932,29 +932,24 @@ void GameStateDuel::Update(float dt)
             if (!menu)
             {
                 menu = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), DUEL_MENU_GAME_MENU, this, Fonts::MENU_FONT, SCREEN_WIDTH / 2 - 100, 25);
-                int cardsinhand = game->currentPlayer->game->hand->nb_cards;
                 menu->Add(MENUITEM_CANCEL, "Cancel");
                 if(taskList->getState() != TaskList::TASKS_ACTIVE){
                     //almosthumane - mulligan
-                    if ((game->turn < 1) && (cardsinhand != 0) && game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
-                        && game->currentPlayer->game->inPlay->nb_cards == 0 && game->currentPlayer->game->graveyard->nb_cards == 0
-                        && game->currentPlayer->game->exile->nb_cards == 0 && game->currentlyActing() == (Player*)game->currentPlayer) //1st Play Check
-                        //IF there was no play at the moment automatically mulligan
+                    if (((game->turn == 0 && game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN) || (game->turn == 1 && game->getCurrentGamePhase() < MTG_PHASE_DRAW))
+                        && game->currentPlayer->game->hand->nb_cards > 0 && game->currentPlayer->game->inPlay->nb_cards == 0 && game->currentPlayer->game->graveyard->nb_cards == 0
+                        && game->currentPlayer->game->exile->nb_cards == 0 && game->currentlyActing() == (Player*)game->currentPlayer) //Now you can mulligan even if you didn't start as first.
                     {
                         menu->Add(MENUITEM_MULLIGAN, "Mulligan");
                     }
                     //END almosthumane - mulligan
-                    if(game->getCurrentGamePhase() == MTG_PHASE_COMBATATTACKERS){ // During attack phase it shows a button to toggle all creatures to attack mode
+                    if(game->getCurrentGamePhase() == MTG_PHASE_COMBATATTACKERS && game->currentlyActing() == (Player*)game->currentPlayer){ // During attack phase it shows a button to toggle all creatures to attack mode
                         menu->Add(MENUITEM_TOGGLEATTACK_ALL_CREATURES, "Toggle Attack all Creatures");
                     }
                     menu->Add(MENUITEM_MAIN_MENU, "Back to main menu");
 #ifdef TESTSUITE
                     menu->Add(MENUITEM_UNDO, "Undo");
-#endif
-#ifdef TESTSUITE
                     menu->Add(MENUITEM_LOAD, "Load");
 #endif
-
                     if (mParent->players[1] == PLAYER_TYPE_CPU && (mParent->gameType == GAME_TYPE_COMMANDER || mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO))
                     {
                         menu->Add(MENUITEM_SHOW_SCORE, "Show current score");

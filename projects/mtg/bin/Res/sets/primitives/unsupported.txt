@@ -12413,12 +12413,6 @@ mana={W}
 type=Instant
 [/card]
 [card]
-name=Vanish into Memory
-text=Exile target creature. You draw cards equal to that creature's power. At the beginning of your next upkeep, return that card to the battlefield under its owner's control. If you do, discard cards equal to its toughness.
-mana={2}{W}{U}
-type=Instant
-[/card]
-[card]
 name=Varolz, the Scar-Striped
 text=Each creature card in your graveyard has scavenge. The scavenge cost is equal to its mana cost. (Exile a creature card from your graveyard and pay its mana cost: Put a number of +1/+1 counters equal to that card's power on target creature. Scavenge only as a sorcery.) -- Sacrifice another creature: Regenerate Varolz, the Scar-Striped.
 mana={1}{B}{G}
