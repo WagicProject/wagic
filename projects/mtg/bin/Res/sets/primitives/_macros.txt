@@ -86,7 +86,7 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 #AUTO_DEFINE _FEROCIOUS_ if type(creature[power>=4]|myBattlefield)~morethan~0 then
 
 # Rally
-#AUTO_DEFINE _RALLY_ @movedTo(other creature[Ally]|myBattlefield):
+#AUTO_DEFINE _RALLY_ @movedTo(other ally|myBattlefield):
 
 # Landfall
 #AUTO_DEFINE _LANDFALL_ @movedTo(land|myBattlefield):

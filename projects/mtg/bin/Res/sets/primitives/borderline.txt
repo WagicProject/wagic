@@ -904,7 +904,7 @@ type=Enchantment
 [card]
 name=Ajani's Chosen
 auto=@movedTo(enchantment[aura]|myBattlefield):all(trigger[to]) transforms((,newability[may name(Attach aura to cat) rehook target(cat[token;fresh]|mybattlefield)])) oneshot
-auto=@movedTo(enchantment|myBattlefield):token(Cat,Creature Cat,2/2,white)
+auto=_CONSTELLATION_token(Cat,Creature Cat,2/2,white)
 text=Whenever an enchantment enters the battlefield under your control, put a 2/2 white Cat creature token onto the battlefield. If that enchantment is an Aura, you may attach it to the token.
 mana={2}{W}{W}
 type=Creature
@@ -2818,7 +2818,7 @@ toughness=4
 name=Archon of Sun's Grace
 abilities=flying,lifelink
 auto=lord(creature[Pegasus]|myBattlefield) lifelink
-auto=@movedTo(enchantment|myBattlefield):token(Pegasus,creature Pegasus,2/2,white,flying)
+auto=_CONSTELLATION_token(Pegasus,creature Pegasus,2/2,white,flying)
 text=Flying, lifelink -- Pegasus creatures you control have lifelink. -- Constellation -- Whenever an enchantment enters the battlefield under your control, create a 2/2 white Pegasus creature token with flying.
 mana={2}{W}{W}
 type=Creature
@@ -3148,7 +3148,7 @@ subtype=Saga
 name=Arrester's Admonition
 target=creature
 auto=moveTo(ownerHand)
-auto=if compare(restriction{assorcery}~morethan~0) then draw:1 else
+auto=_ADDENDUM_ draw:1 else
 text=Return target creature to its owner's hand. -- Addendum — If you cast this spell during your main phase, draw a card.
 mana={2}{U}
 type=Instant
@@ -3157,7 +3157,7 @@ type=Instant
 name=Arrester's Zeal
 target=creature
 auto=+2/+2
-auto=if compare(restriction{assorcery}~morethan~0) then flying else
+auto=_ADDENDUM_ flying else
 text=Target creature gets +2/+2 until end of turn. -- Addendum — If you cast this spell during your main phase, that creature gains flying until end of turn.
 mana={W}
 type=Instant
@@ -8719,7 +8719,7 @@ type=Sorcery
 [/card]
 [card]
 name=Captivating Unicorn
-auto=@movedTo(enchantment|myBattlefield):tap target(creature|opponentBattlefield)
+auto=_CONSTELLATION_tap target(creature|opponentBattlefield)
 text=Constellation -- Whenever an enchantment enters the battlefield under your control, tap target creature an opponent controls.
 mana={4}{W}
 type=Creature
@@ -9253,8 +9253,8 @@ toughness=6
 [/card]
 [card]
 name=Cavalier of Flame
-auto={1}{R}:all(creature|myBattlefield)) 1/0 && haste ueot
-auto=target(<anyamount>*|myhand) reject && teach(*) draw:1 controller assorcery
+auto={1}{R}:all(creature|myBattlefield)) transforms((,newability[1/0],newability[haste])) ueot
+auto=may target(<anyamount>*|myhand) reject && draw:1
 auto=_DIES_damage:type:land:mygraveyard opponent
 auto=_DIES_damage:type:land:mygraveyard all(planeswalker|opponentbattlefield)
 text={1}{R}: Creatures you control get +1/+0 and gain haste until end of turn. -- When Cavalier of Flame enters the battlefield, discard any number of cards, then draw that many cards. -- When Cavalier of Flame dies, it deals X damage to each opponent and each planeswalker they control, where X is the number of land cards in your graveyard.
@@ -11141,7 +11141,7 @@ type=Sorcery
 name=Code of Constraint
 target=creature
 auto=-4/-0
-auto=if compare(restriction{assorcery}~morethan~0) then freeze else
+auto=_ADDENDUM_ freeze else
 auto=draw:1 controller
 text=Target creature gets -4/-0 until end of turn. -- Draw a card. -- Addendum — If you cast this spell during your main phase, tap that creature and it doesn't untap during its controller's next untap step.
 mana={2}{U}
@@ -18769,7 +18769,7 @@ auto=draw:7 opponent
 auto=moveto(mylibrary) all(*|myhand)
 auto=moveto(mylibrary) all(*|mygraveyard) && shuffle
 auto=draw:7 controller
-auto=if compare(restriction{assorcery}~morethan~0) then auto=castcard(normal) notatarget(*[-instant;-sorcery;manacost<=7]|myhand) else
+auto=_ADDENDUM_ auto=castcard(normal) notatarget(*[-instant;-sorcery;manacost<=7]|myhand) else
 text=Each player shuffles their hand and graveyard into their library, then draws seven cards. Exile Emergency Powers. -- Addendum — If you cast this spell during your main phase, you may put a permanent card with converted mana cost 7 or less from your hand onto the battlefield.
 mana={5}{W}{U}
 type=Instant
@@ -19728,7 +19728,7 @@ type=Instant
 [/card]
 [card]
 name=Eutropia the Twice-Favored
-auto=@movedTo(enchantment|myBattlefield):counter(1/1,1) target(creature) && flying target(creature) ueot
+auto=_CONSTELLATION_counter(1/1,1) target(creature) && flying target(creature) ueot
 text=Constellation — Whenever an enchantment enters the battlefield under your control, put a +1/+1 counter on target creature. That creature gains flying until end of turn.
 mana={1}{G}{U}
 type=Legendary Creature
@@ -20916,7 +20916,7 @@ subtype=Giant
 [/card]
 [card]
 name=Favored of Iroas
-auto=@movedTo(enchantment|myBattlefield):double strike ueot
+auto=_CONSTELLATION_double strike ueot
 text=Constellation -- Whenever an enchantment enters the battlefield under your control, Favored of Iroas gains double strike until end of turn.
 mana={2}{W}
 type=Creature
@@ -24455,7 +24455,7 @@ type=Sorcery
 [card]
 name=Ghired, Conclave Exile
 auto=token(Rhino,Creature Rhino,4/4,green,trample)
-auto=@combat(attacking) restriction{type(creature[token]|mybattlefield)~morethan~0}:ability$! name(populate) clone notatarget(creature[token]|mybattlefield) ninjutsu !$ controller
+auto=@combat(attacking) restriction{type(creature[token]|mybattlefield)~morethan~0}:ability$! _POPULATE_ ninjutsu !$ controller
 text=When Ghired, Conclave Exile enters the battlefield, create a 4/4 green Rhino creature token with trample. -- Whenever Ghired attacks, populate. The token enters the battlefield tapped and attacking. (To populate, create a token that's a copy of a creature token you control.)
 mana={2}{R}{G}{W}
 type=Legendary Creature
@@ -40979,9 +40979,9 @@ type=Sorcery
 [card]
 name=Muxus, Goblin Grandee
 aicode=activate all(creature[goblin;manacost<=5;zpos<=6]|mylibrary) moveto(mybattlefield) and!( all(*[zpos<=6]|mylibrary) bottomoflibrary )!
-auto=name(Look top 6)  reveal:6 optionone name(Get goblins) target(<6>creature[goblin;manacost<=5]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveto(ownerbattlefield))! afterrevealedend revealend
+auto=name(Look top 6) reveal:6 optionone name(Get goblins) target(<6>creature[goblin;manacost<=5]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveto(ownerbattlefield))! afterrevealedend revealend
 text=When Muxus, Goblin Grandee enters the battlefield, reveal the top six cards of your library. Put all Goblin creature cards with converted mana cost 5 or less from among them onto the battlefield and the rest on the bottom of your library in a random order. -- Whenever Muxus attacks, it gets +1/+1 until end of turn for each other Goblin you control.
-auto=_ATTACKING_all(this) foreach(other goblin[attacking]|myBattlefield) 1/1 ueot
+auto=_ATTACKING_name(Get 1/1 for each other goblin) type:goblin:mybattlefieldminus1minusend/type:goblin:mybattlefieldminus1minusend ueot
 mana={4}{R}{R}
 type=Legendary Creature
 subtype=Goblin Noble
@@ -41840,7 +41840,7 @@ toughness=2
 [card]
 name=Nessian Wanderer
 aicode=activate target(land[zpos<=3]|mylibrary) moveto(myhand)
-auto=@movedTo(enchantment|myBattlefield):name(look three) reveal:3 optionone name(Get a land) target(<upto:1>land|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<2>*|reveal) bottomoflibrary optiontwoend revealend
+auto=_CONSTELLATION_name(look three) reveal:3 optionone name(Get a land) target(<upto:1>land|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<2>*|reveal) bottomoflibrary optiontwoend revealend
 text=Constellation — Whenever an enchantment enters the battlefield under your control, look at the top three cards of your library. You may reveal a land card from among them and put that card into your hand. Put the rest on the bottom of your library in a random order.
 mana={1}{G}
 type=Creature
@@ -42061,7 +42061,7 @@ type=Enchantment
 [card]
 name=Nexus Wardens
 abilities=reach
-auto=@movedTo(enchantment|myBattlefield):life:2 controller
+auto=_CONSTELLATION_life:2 controller
 text=Reach -- Constellation — Whenever an enchantment enters the battlefield under your control, you gain 2 life.
 mana={2}{G}
 type=Creature
@@ -45804,7 +45804,7 @@ subtype=Aura
 [/card]
 [card]
 name=Pious Wayfarer
-auto=@movedTo(enchantment|myBattlefield):target(creature|myBattlefield) 1/1 ueot
+auto=_CONSTELLATION_target(creature|myBattlefield) 1/1 ueot
 text=Constellation -- Whenever an enchantment enters the battlefield under your control, target creature gets +1/+1 until end of turn.
 mana={W}
 type=Creature
@@ -46585,7 +46585,7 @@ type=Enchantment
 [card]
 name=Precognitive Perception
 aicode=activate transforms((,newability[draw:3 controller])) oneshot
-auto=if compare(restriction{assorcery}~morethan~0) then scry:3 scrycore delayed draw:3 controller scrycoreend scryend else draw:3 controller
+auto=_ADDENDUM_ scry:3 scrycore delayed draw:3 controller scrycoreend scryend else draw:3 controller
 text=Draw three cards. -- Addendum — If you cast this spell during your main phase, instead scry 3, then draw three cards.
 mana={3}{U}{U}
 type=Instant
@@ -50271,7 +50271,7 @@ toughness=0
 [/card]
 [card]
 name=Rhet-Crop Spearmaster
-auto=@exerted(this):transforms((,newability[1/0],newability[firststrike])) ueot
+auto=@exerted(this):transforms((,newability[1/0],newability[first strike])) ueot
 auto=_ATTACKING_may exert
 text=You may exert Rhet-Crop Spearmaster as it attacks. When you do, it gets +1/+0 and gains first strike until end of turn. (An exerted creature won't untap during your next untap step.)
 mana={2}{W}
@@ -52261,7 +52261,7 @@ toughness=1
 [/card]
 [card]
 name=Sage of Mysteries
-auto=@movedTo(enchantment|myBattlefield):deplete:2 target(player)
+auto=_CONSTELLATION_deplete:2 target(player)
 text=Constellation -- Whenever an enchantment enters the battlefield under your control, target player puts the top two cards of their library into their graveyard.
 mana={U}
 type=Creature
@@ -53096,7 +53096,7 @@ type=Sorcery
 [/card]
 [card]
 name=Savage Swipe
-target=creature[power==2]|myBattlefield
+target=creature[power=2]|myBattlefield
 auto=2/2 ueot
 auto=transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>])) ueot
 text=Target creature you control gets +2/+2 until end of turn if its power is 2. Then it fights target creature you don't control. (Each deals damage equal to its power to the other.)
@@ -54280,7 +54280,7 @@ type=Sorcery
 [/card]
 [card]
 name=Selesnya Eulogist
-auto={2}{G}:target(creature|graveyard) moveto(exile) && ability$! name(populate) clone notatarget(creature[token]|mybattlefield) !$ controller
+auto={2}{G}:target(creature|graveyard) moveto(exile) && ability$! _POPULATE_ !$ controller
 text={2}{G}: Exile target creature card from a graveyard, then populate. (Create a token that's a copy of a creature token you control.)
 mana={2}{G}
 type=Creature
@@ -54479,7 +54479,7 @@ abilities=flash
 target=creature
 auto=1/2
 auto=vigilance
-auto=if compare(restriction{assorcery}~morethan~0) then lifelink ueot else
+auto=_ADDENDUM_ lifelink ueot else
 text=Flash -- Enchant creature -- Enchanted creature gets +1/+2 and has vigilance. -- Addendum — When Sentinel's Mark enters the battlefield, if you cast it during your main phase, enchanted creature gains lifelink until end of turn.
 mana={1}{W}
 type=Enchantment
@@ -54656,7 +54656,7 @@ toughness=2
 [/card]
 [card]
 name=Setessan Champion
-auto=@movedTo(enchantment|myBattlefield):all(this) counter(1/1,1) && draw:1 controller
+auto=_CONSTELLATION_all(this) counter(1/1,1) && draw:1 controller
 text=Constellation — Whenever an enchantment enters the battlefield under your control, put a +1/+1 counter on Setessan Champion and draw a card.
 mana={2}{G}
 type=Creature
@@ -54676,7 +54676,7 @@ toughness=2
 [/card]
 [card]
 name=Setessan Skirmisher
-auto=@movedTo(enchantment|myBattlefield):1/1 ueot
+auto=_CONSTELLATION_1/1 ueot
 text=Constellation — Whenever an enchantment enters the battlefield under your control, Setessan Skirmisher gets +1/+1 until end of turn.
 mana={1}{G}
 type=Creature
@@ -55611,7 +55611,7 @@ toughness=6
 [/card]
 [card]
 name=Shoal Kraken
-auto=@movedTo(enchantment|myBattlefield):may draw:1 controller && reject target(*|myhand) controller
+auto=_CONSTELLATION_may draw:1 controller && reject target(*|myhand) controller
 text=Constellation -- Whenever an enchantment enters the battlefield under your control, you may draw a card. If you do, discard a card.
 mana={4}{U}
 type=Creature
@@ -57998,7 +57998,7 @@ subtype=Aura
 [/card]
 [card]
 name=Song of the Worldsoul
-auto=@movedTo(*|mystack):ability$! name(populate) clone notatarget(creature[token]|mybattlefield) !$ controller
+auto=@movedTo(*|mystack):ability$! _POPULATE_ !$ controller
 text=Whenever you cast a spell, populate. (Create a token that's a copy of a creature token you control.)
 mana={4}{W}{W}
 type=Enchantment
@@ -59034,7 +59034,7 @@ type=Sorcery
 [/card]
 [card]
 name=Sphinx's Insight
-auto=if compare(restriction{assorcery}~morethan~0) then life:2
+auto=_ADDENDUM_ life:2
 auto=draw:2
 text=Draw two cards. -- Addendum — If you cast this spell during your main phase, you gain 2 life.
 mana={2}{W}{U}
@@ -61234,7 +61234,7 @@ type=Instant
 [card]
 name=Summary Judgment
 target=creature[tapped]
-auto=if compare(restriction{assorcery}~morethan~0) then damage:5 else damage:3
+auto=_ADDENDUM_ damage:5 else damage:3
 text=Summary Judgment deals 3 damage to target tapped creature. -- Addendum — If you cast this spell during your main phase, it deals 5 damage to that creature instead.
 mana={1}{W}
 type=Instant
@@ -64956,8 +64956,7 @@ type=Artifact
 [/card]
 [card]
 name=Time Wipe
-auto=notatarget(creature|myBattlefield) moveto(ownerhand)
-auto=destroy all(creature)
+auto=name(Return a creature) target(creature|myBattlefield) moveto(ownerhand) and!( destroy all(creature) )!
 text=Return a creature you control to its owner's hand, then destroy all creatures.
 mana={2}{W}{W}{U}
 type=Sorcery
@@ -66143,8 +66142,8 @@ type=Enchantment
 [/card]
 [card]
 name=Tribute Mage
-aicode=activate target(artifact[manacost==2]|mylibrary) moveto(myhand)
-auto=Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<1>artifact[manacost==2]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
+aicode=activate target(artifact[manacost=2]|mylibrary) moveto(myhand)
+auto=Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<1>artifact[manacost=2]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
 text=When Tribute Mage enters the battlefield, you may search your library for an artifact card with converted mana cost 2, reveal that card, put it into your hand, then shuffle your library.
 mana={2}{U}
 type=Creature
@@ -66184,7 +66183,7 @@ toughness=9
 [/card]
 [card]
 name=Triton Waverider
-auto=@movedTo(enchantment|myBattlefield):flying ueot
+auto=_CONSTELLATION_flying ueot
 text=Constellation -- Whenever an enchantment enters the battlefield under your control, Triton Waverider gains flying until end of turn.
 mana={3}{U}
 type=Creature
@@ -66566,7 +66565,7 @@ toughness=4
 [/card]
 [card]
 name=Turntimber Sower
-auto=@@movedto(land|mygraveyard):create(plant:creature plant:0/1:green:)
+auto=@movedto(land|mygraveyard):create(plant:creature plant:0/1:green:)
 auto={G}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:target(land|mygraveyard) moveto(ownerhand)
 text=Whenever one or more land cards are put into your graveyard from anywhere, create a 0/1 green Plant creature token. -- {G}, Sacrifice three creatures: Return target land card from your graveyard to your hand.
 mana={2}{G}
@@ -66997,8 +66996,8 @@ type=Sorcery
 [/card]
 [card]
 name=Unbreakable Formation
-auto=if compare(restriction{assorcery}~morethan~0) then all(creature|myBattlefield) counter(1/1)
-auto=if compare(restriction{assorcery}~morethan~0) then all(creature|myBattlefield) vigilance
+auto=_ADDENDUM_ all(creature|myBattlefield) counter(1/1)
+auto=_ADDENDUM_ all(creature|myBattlefield) vigilance
 auto=all(creature|myBattlefield) indestructible ueot
 text=Creatures you control gain indestructible until end of turn. -- Addendum — If you cast this spell during your main phase, put a +1/+1 counter on each of those creatures and they gain vigilance until end of turn.
 mana={2}{W}
