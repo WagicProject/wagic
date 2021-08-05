@@ -7728,8 +7728,13 @@ type=Land
 [/card]
 [card]
 name=Brightflame
-auto=damage:X target(creature)
-auto=damage:X all(other creature[share!color!])
+target=creature
+auto=if cantargetcard(creature[white]|*) then name(Damage white creature) name(Damage white creature) foreach(creature[white]|battlefield) life:X controller && all(creature[white]|battlefield) damage:X
+auto=if cantargetcard(creature[black]|*) then name(Damage black creature) name(Damage black creature) foreach(creature[black]|battlefield) life:X controller && all(creature[black]|battlefield) damage:X
+auto=if cantargetcard(creature[red]|*) then name(Damage red creature) name(Damage red creature) foreach(creature[red]|battlefield) life:X controller && all(creature[red]|battlefield) damage:X
+auto=if cantargetcard(creature[green]|*) then name(Damage green creature) name(Damage green creature) foreach(creature[green]|battlefield) life:X controller && all(creature[green]|battlefield) damage:X
+auto=if cantargetcard(creature[blue]|*) then name(Damage blue creature) name(Damage blue creature) foreach(creature[blue]|battlefield) life:X controller && all(creature[blue]|battlefield) damage:X
+auto=if cantargetcard(creature[colorless]|*) then name(Damage colorless creature) name(Damage colorless creature) life:X controller && damage:X
 text=Radiance -- Brightflame deals X damage to target creature and each other creature that shares a color with it. You gain life equal to the damage dealt this way.
 mana={X}{R}{R}{W}{W}
 type=Sorcery
@@ -17245,8 +17250,8 @@ type=Sorcery
 [/card]
 [card]
 name=Dregscape Sliver
-autograveyard={2}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
-auto=lord(sliver|mygraveyard) {2}:moveto(ownerbattlefield) and!( transforms((,unearth,haste)) forever )! assorcery
+autograveyard={2}:name(Unearth) moveto(mybattlefield) and!( transforms((,newability[haste],newability[unearth],newability[exiledeath])) forever )! asSorcery
+auto=lord(sliver|mygraveyard) {2}:name(Unearth) moveto(mybattlefield) and!( transforms((,newability[haste],newability[unearth],newability[exiledeath])) forever )! asSorcery
 text=Each Sliver creature card in your graveyard has unearth {2}. -- Unearth {2} ({2} : Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={1}{B}
 type=Creature
@@ -22135,13 +22140,13 @@ toughness=3
 [/card]
 [card]
 name=First-Sphere Gargantua
-auto=draw:1
-auto=life:-1
-autograveyard={2}{B}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
+auto=draw:1 controller
+auto=life:-1 controller
+autograveyard={2}{B}:name(Unearth) moveto(mybattlefield) and!( transforms((,newability[haste],newability[unearth],newability[exiledeath])) forever )! asSorcery
 text=When First-Sphere Gargantua enters the battlefield, you draw a card and you lose 1 life. -- Unearth {2}{B} ({2}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={4}{B}{B}
 type=Creature
-subtype=Horror
+subtype=Phyrexian Horror
 power=5
 toughness=4
 [/card]
@@ -71518,6 +71523,16 @@ type=Creature
 subtype=Human Soldier
 power=3
 toughness=3
+[/card]
+[card]
+name=Wojek Embermage
+auto={T}:name(Damage creature) target(creature) transforms((,newability[all(creature[share!color!]) damage:1])) oneshot
+text=Radiance — {T}: Wojek Embermage deals 1 damage to target creature and each other creature that shares a color with it.
+mana={3}{R}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=2
 [/card]
 [card]
 name=Wolf Gar

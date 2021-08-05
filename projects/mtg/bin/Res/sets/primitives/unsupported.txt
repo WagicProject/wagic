@@ -13097,15 +13097,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Wojek Embermage
-text=Radiance — {T}: Wojek Embermage deals 1 damage to target creature and each other creature that shares a color with it.
-mana={3}{R}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=2
-[/card]
-[card]
 name=Wood Sage
 text={T}: Name a creature card. Reveal the top four cards of your library and put all of them with that name into your hand. Put the rest into your graveyard.
 mana={G}{U}
