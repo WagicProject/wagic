@@ -1,7 +1,7 @@
 grade=borderline
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 16-07-2021
+#We sorted this in alphabetical order - Luruz & Vitty85 07-08-2021
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -647,6 +647,19 @@ type=Legendary Planeswalker
 subtype=Davriel
 [/card]
 [card]
+name=Davriel, Soul Broker
+auto=counter(0/0,4,Loyalty)
+auto={C(0/0,1,Loyalty)}:name(+1: Opponent discards or sacrifice) transforms((,newability[counter(0/0.1.DavrielEffect)],newability[phaseaction[my untap once sourceinplay] counter(0/0.-1.DavrielEffect)])) forever
+auto=@each blockers restriction{type(creature[attacking]|opponentbattlefield)~morethan~0,compare(hascntdavrieleffect)~morethan~0,type(*|opponenthand)~morethan~0}:ability$!name(Discard a card) name(Discard a card) target(*|myhand) reject!$ opponent
+auto=@each blockers restriction{type(creature[attacking]|opponentbattlefield)~morethan~0,compare(hascntdavrieleffect)~morethan~0,type(*|opponenthand)~equalto~0}:ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[attacking]|mybattlefield) sacrifice!$ opponent
+auto={C(0/0,-2,Loyalty)}:name(-2: Offers and conditions) activate castcard(normal named!:davriel conditions:!) and!( activate castcard(normal named!:davriel offers:!) )!
+auto={C(0/0,-3,Loyalty)}:name(-3: Creature perpetually gets -3/-3) target(creature) counter(-3/-3.1.PerpetualPT)
+text=+1: Until your next turn, whenever an opponent attacks you and/or planeswalkers you control, they discard a card. If they can’t, they sacrifice an attacking creature. -- −2: Accept one of Davriel’s offers, then accept one of Davriel’s conditions. -- −3: Target creature perpetually gets -3/-3.
+mana={2}{B}{B}
+type=Legendary Planeswalker
+subtype=Davriel
+[/card]
+[card]
 name=Domri, Anarch of Bolas
 auto=counter(0/0,3,loyalty)
 auto=lord(other creature|myBattlefield) +1/+0
@@ -828,6 +841,18 @@ auto={C(0/0,-2,Loyalty)}:name(-2: Destroy target artifact or enchantment) target
 auto={C(0/0,-6,Loyalty)}:name(-6: Draw a card for each green cerature) draw:type:creature[green]:mybattlefield
 text=+2: Put a 1/1 green Elf Druid creature token onto the battlefield with "{T}: Add {G} to your mana pool." -- -2: Destroy target artifact or enchantment. -- -6: Draw a card for each green creature you control. -- Freyalise, Llanowar's Fury can be your commander.
 mana={3}{G}{G}
+type=Legendary Planeswalker
+subtype=Freyalise
+[/card]
+[card]
+name=Freyalise, Skyshroud Partisan
+auto=counter(0/0,4,Loyalty)
+auto={C(0/0,1,Loyalty)}:name(+1: Don't untap any elf) moverandom(elf) from(myhand) to(myHand) and!( counter(1/1.1.PerpetualPT) )!
+auto={C(0/0,1,Loyalty)}:name(+1: Untap target elf) target(elf|mybattlefield) transforms((,newability[untap],newability[counter(1/1.1.PerpetualPT)],newability[name(Random elf perpetually gets 1/1) moverandom(elf) from(myhand) to(myHand) and!( counter(1/1.1.PerpetualPT) )!])) forever
+auto={C(0/0,-1,Loyalty)}:name(-1: Seek an Elf) moverandom(*[elf]) from(mylibrary) to(myhand)
+auto={C(0/0,-6,Loyalty)}:name(-6: Conjure a Regal Force) conjure cards(Regal Force) zone(myreveal) and!( moveto(mybattlefield) )!
+text=+1: Choose up to one target Elf. Untap it. It and a random Elf creature card in your hand each perpetually gets +1/+1. -- −1: Seek an Elf card. -- −6: Conjure a Regal Force card onto the battlefield.
+mana={1}{G}{G}
 type=Legendary Planeswalker
 subtype=Freyalise
 [/card]
@@ -1560,6 +1585,17 @@ auto={C(0/0,-1,Loyalty)}:name(-1: Draw a card and may play additional land) draw
 auto={C(0/0,-5,Loyalty)}:name(-5: Emblem: "Each my end of turn create a 9/9 Kraken") emblem transforms((,newability[@each my endofturn:token(Kraken^Creature Kraken^9/9^blue) controller])) forever dontremove
 text=+1: Until your next turn, prevent all damage that would be dealt to and dealt by target permanent an opponent controls. -- -1: Draw a card. You may play an additional land this turn. -- -5: You get an emblem with "At the beginning of your end step, put a 9/9 blue Kraken creature token onto the battlefield."
 mana={2}{G}{U}
+type=Legendary Planeswalker
+subtype=Kiora
+[/card]
+[card]
+name=Kiora, the Tide's Fury
+auto=counter(0/0,4,Loyalty)
+auto={C(0/0,1,Loyalty)}:name(+1: Conjure a Kraken Hatchling) conjure cards(Kraken Hatchling) zone(myhand)
+auto={C(0/0,-2,Loyalty)}:name(-1: Untap and prevent) target(*[land;creature]) transforms((,newability[untap],newability[preventalldamage to(this)],newability[preventalldamage from(this)])) uynt
+auto={C(0/0,-3,Loyalty)}:name(-3: Sacrifice a Kraken) target(kraken|mybattlefield) transforms((,newability[sacrifice],newability[token(Kraken^Creature Kraken^8/8^blue)])) oneshot
+text=+1: Conjure a Kraken Hatchling into your hand. -- +1: Untap target creature or land. Until your next turn, prevent all damage that would be dealt to and dealt by that permanent. -- −3: You may sacrifice a Kraken. If you do, create a 8/8 blue Kraken creature token.
+mana={3}{U}
 type=Legendary Planeswalker
 subtype=Kiora
 [/card]
@@ -2408,6 +2444,18 @@ type=Legendary Planeswalker
 subtype=Sarkhan
 [/card]
 [card]
+name=Sarkhan, Wanderer to Shiv
+auto=counter(0/0,4,Loyalty)
+auto=emblem transforms((,newability[lord(*[counter{0/0.1.PerpetualPayX}]|myzones) anytypeofmana])) forever dontremove
+auto={C(0/0,1,Loyalty)}:name(+1: Dragon cards cost 1 less) all(dragon|myhand) transforms((,newability[changecost(colorless:-1)],newability[counter(0/0.1.PerpetualPayX)])) forever
+auto={C(0/0,0,Loyalty)}:name(0: Conjure a Shivan Dragon) conjure cards(Shivan Dragon) zone(myhand)
+auto={C(0/0,-2,Loyalty)}:name(-2: Deals damage) damage:3 target(creature|battlefield)
+text=+1: Dragon cards in your hand perpetually gain "This spell costs {1} less to cast" and "You may pay {X} rather than pay this spell’s mana cost, where X is its mana value." -- 0: Conjure a Shivan Dragon card into your hand. -- −2: Sarkhan, Wanderer to Shiv deals 3 damage to target creature.
+mana={3}{R}
+type=Legendary Planeswalker
+subtype=Sarkhan
+[/card]
+[card]
 name=Serra the Benevolent
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Creatures you control with flying gets +1/+1) all(creature[flying]|myBattlefield) 1/1 ueot
@@ -2648,6 +2696,19 @@ text=+2: Create two 0/1 black Thrull creature tokens. -- +1: You may sacrifice a
 mana={4}{B}
 type=Legendary Planeswalker
 subtype=Szat
+[/card]
+[card]
+name=Teyo, Aegis Adept
+auto=counter(0/0,4,Loyalty)
+auto={C(0/0,1,Loyalty)}:name(+1: Don't target any creature) donothing
+auto={C(0/0,1,Loyalty)}:name(+1: Creature can attack) target(creature) counter(0/0.1.PerpetualTeyoEffect)
+auto={C(0/0,-2,Loyalty)}:name(-2: Conjure a Lumbering Lightshield) conjure cards(Lumbering Lightshield) zone(myreveal) and!( moveto(mybattlefield) )!
+auto={C(0/0,-6,Loyalty)}:name(-6: Emblem Return creature) activate activate castcard(normal noevent named!:teyo emblem:!)
+auto=emblem transforms((,newability[lord(*[counter{0/0.1.PerpetualTeyoEffect}]|myzones) transforms((,setpower=t,newability[canattack]))])) forever dontremove
+text=+1: Up to one target creature’s base power perpetually becomes equal to its toughness. It perpetually gains "This creature can attack as though it didn’t have defender." -- −2: Conjure a Lumbering Lightshield card onto the battlefield. −6: You get an emblem with "At the beginning of your end step, return target white creature card from your graveyard to the battlefield. You gain life equal to its toughness."
+mana={2}{W}{W}
+type=Legendary Planeswalker
+subtype=Teyo
 [/card]
 [card]
 name=Teyo, the Shieldmage

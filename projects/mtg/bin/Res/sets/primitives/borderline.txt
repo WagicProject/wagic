@@ -1,7 +1,7 @@
 grade=borderline
 #Bordeline Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#I sorted this programatically - Vitty85 16-07-2021
+#I sorted this programatically - Vitty85 07-08-2021
 [card]
 name=+2 Mace
 auto={3}:equip
@@ -4239,6 +4239,15 @@ mana={4}{B}{B}
 type=Sorcery
 [/card]
 [card]
+name=Baffling Defenses
+target=creature
+auto=counter(0/0,1,PerpetualZeroP)
+auto=emblem transforms((,newability[lord(creature[counter{0/0.1.PerpetualZeroP}]) transforms((,setpower=0))])) forever dontremove
+text=Target creature’s base power perpetually becomes 0.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
 name=Baffling End
 auto=target(creature[manacost<=3]|opponentbattlefield) moveto(exile)
 auto=@movedTo(this|nonbattlezone) from(battlefield): token(Dinosaur,creature Dinosaur,3/3,green,trample) opponent
@@ -5356,6 +5365,18 @@ type=Creature
 subtype=Human Cleric
 power=1
 toughness=1
+[/card]
+[card]
+name=Benalish Partisan
+abilities=lifelink,cycling
+autohand=__CYCLING__({2})
+autograveyard=@cycled(*|myHand):name(Pay and return) pay({1}{W}) name(Pay and return) moveto(mybattlefield) and!( transforms((,newability[tap(noevent)],newability[counter(1/0.1.PerpetualPT)])) forever
+text=Lifelink -- Whenever you cycle another card, you may pay {1}{W}. If you do, return Benalish Partisan from your graveyard to the battlefield tapped and it perpetually gets +1/+0. -- Cycling {1}{W}
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=2
 [/card]
 [card]
 name=Beneath the Sands
@@ -7071,6 +7092,17 @@ power=4
 toughness=3
 [/card]
 [card]
+name=Boneyard Aberration
+auto=exiledeath
+auto=@movedto(this|myexile):name(Conjure Reassembling Skeleton) transforms((,newability[name(Conjure Reassembling Skeleton) conjure cards(Reassembling Skeleton) zone(mygraveyard)],newability[name(Conjure Reassembling Skeleton) conjure cards(Reassembling Skeleton) zone(mygraveyard)],newability[name(Conjure Reassembling Skeleton) conjure cards(Reassembling Skeleton) zone(mygraveyard)])) oneshot
+text=When Boneyard Aberration dies, exile it. If you do, conjure three Reassembling Skeleton cards into your graveyard.
+mana={4}{B}
+type=Creature
+subtype=Skeleton Dog
+power=3
+toughness=3
+[/card]
+[card]
 name=Boneyard Lurker
 abilities=mutate
 otherrestriction=type(creature[-human]|mybattlefield)~morethan~0
@@ -7394,6 +7426,18 @@ auto=if type(elf[zpos<=6]|mylibrary)~equalto~0 then name(Look top 6 cards) name(
 auto=if type(land[zpos<=6]|mylibrary)~equalto~0 then name(Look top 6 cards) name(Look top 6 cards) reveal:6 optionone name(Get elf) target(<upto:1>elf|reveal) moveto(myhand) optiononeend optiontwo name(Put back) target(*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend revealend
 text=Reveal the top six cards of your library. You may put a land card from among them onto the battlefield tapped and an Elf card from among them into your hand. Put the rest on the bottom of your library in a random order.
 mana={2}{G}
+type=Sorcery
+[/card]
+[card]
+name=Bounty of the Deep
+other={2}{U} name(No lands in hand)
+otherrestriction=type(land|myhand)~equalto~0
+restriction=type(land|myhand)~morethan~0
+auto=if paid(alternative) then name(Seek a land) name(Seek a land) moverandom(land) from(mylibrary) to(myhand)
+auto=ifnot paid(alternative) then name(Seek a non-land) name(Seek a non-land) moverandom(*[-land]) from(mylibrary) to(myhand)
+auto=name(Seek a non-land) name(Seek a non-land) moverandom(*[-land]) from(mylibrary) to(myhand)
+text=If you have no land cards in your hand, seek a land card and a nonland card. Otherwise, seek two nonland cards.
+mana={2}{U}
 type=Sorcery
 [/card]
 [card]
@@ -13956,12 +14000,48 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Davriel Conditions
+abilities=doublefacedeath
+auto=choice name(You lose six life) life:-6 controller
+auto=if type(*|myhand)~equalto~0 then choice name(Exile two cards from your hand) name(Exile two cards from your hand) draw:2 opponent
+auto=if type(*|myhand)~equalto~1 then choice name(Exile two cards from your hand) name(Exile two cards from your hand) target(*|myHand) moveto(exile) and!( transforms((,newability[draw:2 opponent])) oneshot )!
+auto=if type(*|myhand)~morethan~1 then choice name(Exile two cards from your hand) name(Exile two cards from your hand) target(<2>*|myHand) moveto(exile)
+auto=choice name(Sacrifice two permanents) target(<2>*|mybattlefield) sacrifice
+auto=choice name(Opponent creatures perpetually gains +1/+1) all(creature|opponentbattlefield) counter(1/1.1.PerpetualPT)
+auto=choice name(Creatures you control get -1/-0) emblem transforms((,newability[lord(creature|mybattlefield) -1/0])) forever dontremove
+auto=choice name(Spells you cast cost B more to cast) emblem transforms((,newability[lord(*|mycastingzone) changecost(black:+1)])) forever dontremove
+auto=choice name(Whenever you draw a card, exile top 2 cards) emblem transforms((,newability[@drawof(player):all(*[zpos<=2]|mylibrary) moveto(exile)])) forever dontremove
+auto=choice name(Each upkeep you lose 1 life for each creature you control) emblem transforms((,newability[@each my upkeep:life:-type:creature:mybattlefield controller])) forever dontremove
+type=Instant
+[/card]
+[card]
+name=Davriel Offers
+abilities=doublefacedeath
+auto=choice name(Draw three cards) draw:3 controller
+auto=choice name(Conjure a Manor Guardian) conjure cards(Manor Guardian) zone(myhand)
+auto=choice name(Return two creatures) moverandom(creature) from(mygraveyard) to(myhand) and!( counter(1/1.1.PerpetualPT) )!
+auto=choice name(Return creature with the highest mana) moverandom(creature[mancost=convertedcost:highest:*:mygraveyard]) from(mygraveyard) to(mybattlefield)
+auto=choice name(Creatures you control get +2/+0.) emblem transforms((,newability[lord(creature|mybattlefield) 2/0])) forever dontremove
+auto=choice name(Spells you cast cost B less to cast.) emblem transforms((,newability[lord(*|mycastingzone) changecost(black:-1)])) forever dontremove
+auto=choice name(Davriel planeswalkers you control have "+2: Draw a card.") emblem transforms((,newability[lord(planeswalker[davriel]|mybattlefield) transforms((,newability[{C(0/0.2.Loyalty)}:limit:1 name(+2: Draw 1 card) draw:1 controller]))])) forever dontremove
+auto=choice name(Whenever you draw a card, you gain two life) emblem transforms((,newability[@drawof(player):life:2 controller])) forever dontremove
+type=Instant
+[/card]
+[card]
 name=Davriel's Shadowfugue
 target=player
 auto=ability$!name(discard) reject notatarget(<2>*|myhand)!$ targetedplayer && life:-2
 text=Target player discards two cards and loses 2 life.
 mana={3}{B}
 type=Sorcery
+[/card]
+[card]
+name=Davriel's Withering
+target=creature
+auto=counter(-1/-2,1,PerpetualPT)
+text=Target creature perpetually gets -1/-2.
+mana={B}
+type=Instant
 [/card]
 [card]
 name=Dawn Charm
@@ -14510,6 +14590,13 @@ mana={G}{U}
 type=Instant
 [/card]
 [card]
+name=Declaration of Naught
+auto=chooseanameopp transforms((,newability[{U}:name(Counter named spell) target(*[chosenname]|stack) fizzle])) forever chooseend nonland
+text=As Declaration of Naught enters the battlefield, name a card. -- {U}: Counter target spell with the chosen name.
+mana={U}{U}
+type=Enchantment
+[/card]
+[card]
 name=Declare Dominance
 target=creature
 auto=+3/+3
@@ -14538,13 +14625,6 @@ type=Creature
 subtype=Griffin
 power=2
 toughness=3
-[/card]
-[card]
-name=Declaration of Naught
-auto=chooseanameopp transforms((,newability[{U}:name(Counter named spell) target(*[chosenname]|stack) fizzle])) forever chooseend nonland
-text=As Declaration of Naught enters the battlefield, name a card. -- {U}: Counter target spell with the chosen name.
-mana={U}{U}
-type=Enchantment
 [/card]
 [card]
 name=Decoy Gambit
@@ -14599,6 +14679,13 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Deep Water
+auto={U}:name(All lands produce blue mana) ueot loseabilities && losesubtypesof(land) && transforms((island)) target(<type:land:myBattlefield>land|mybattlefield)
+text={U}: Until end of turn, if you tap a land you control for mana, it produces {U} instead of any other type.
+mana={U}{U}
+type=Enchantment
+[/card]
+[card]
 name=Deepglow Skate
 auto=target(<anyamount>*|battlefield) duplicatecounters(all)
 text=When Deepglow Skate enters the battlefield, double the number of each kind of counter on any number of target permanents.
@@ -14643,13 +14730,6 @@ name=Deeproot Waters
 auto=@movedTo(Merfolk|mystack):token(Merfolk,creature Merfolk,1/1,blue,opponentshroud)
 text=Whenever you cast a Merfolk spell, create a 1/1 blue Merfolk creature token with hexproof. (A creature with hexproof can't be the target of spells or abilities your opponents control.)
 mana={2}{U}
-type=Enchantment
-[/card]
-[card]
-name=Deep Water
-auto={U}:name(All lands produce blue mana) ueot loseabilities && losesubtypesof(land) && transforms((island)) target(<type:land:myBattlefield>land|mybattlefield)
-text={U}: Until end of turn, if you tap a land you control for mana, it produces {U} instead of any other type.
-mana={U}{U}
 type=Enchantment
 [/card]
 [card]
@@ -19684,6 +19764,16 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Ethereal Grasp
+target=creature
+auto=tap
+auto=counter(0/0,1,PerpetualUntap)
+auto=emblem transforms((,newability[lord(creature[counter{0/0.1.PerpetualUntap}]) transforms((,newability[doesnotuntap],newability[{8}:name(Untap this creature) untap]))])) forever dontremove
+text=Tap target creature. That creature perpetually gains "This creature doesn’t untap during your untap step" and "{8}: Untap this creature."
+mana={2}{U}
+type=Instant
+[/card]
+[card]
 name=Ethereal Valkyrie
 abilities=flying
 auto=draw:1 controller && transforms((,newability[name(Exile a card from your hand) target(*|myhand) doforetell])) oneshot
@@ -20413,6 +20503,17 @@ auto={W}{U}{B}{R}{G}{T}:all(creature|myBattlefield) transforms((,newability[this
 text={W}{U}{B}{R}{G}, {T}: Creatures you control gain landwalk until end of turn.
 type=Legendary Land
 subtype=Mountain
+[/card]
+[card]
+name=Faceless Agent
+abilities=changeling
+auto=name(Seek a creature) name(Seek a creature) moverandom(creature) from(mylibrary) to(myhand)
+text=Changeling -- When Faceless Agent enters the battlefield, seek a creature card of the most prevalent creature type in your library.
+mana={3}
+type=Creature
+subtype=Shapeshifter
+power=2
+toughness=1
 [/card]
 [card]
 name=Faceless Haven
@@ -36164,6 +36265,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Leonin Sanctifier
+abilities=lifelink
+auto=name(Creature perpetually gains lifelink) target(creature|myhand) transforms((,newability[perpetuallifelink])) forever 
+text=Lifelink -- When Leonin Sanctifier enters the battlefield, choose a creature card in your hand. It perpetually gains lifelink.
+mana={1}{W}
+type=Creature
+subtype=Cat Cleric
+power=2
+toughness=1
+[/card]
+[card]
 name=Leonin Vanguard
 auto=@each my combatbegins:aslongas(creature|myBattlefield) 1/1 ueot && life:1 >2
 text=At the beginning of combat on your turn, if you control three or more creatures, Leonin Vanguard gets +1/+1 until end of turn and you gain 1 life.
@@ -37202,6 +37314,18 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Longtusk Stalker
+auto=alterenergy:1 controller
+auto=_ATTACKING_alterenergy:1 controller
+auto={e:2}:name(Perpetually gets 1/0) transforms((,newability[counter(1/0.1.PerpetualPT)],newability[may name(Choose creature in hand) target(creature|myhand) counter(1/0.1.PerpetualPT)])) oneshot
+text=Whenever Longtusk Staker enters the battlefield or attacks, you get {E}. -- Pay {E}{E}: Longtusk Staker perpetually gets +1/+0. You may choose a creature card in your hand. If you do, that card perpetually gets +1/+0.
+mana={G}
+type=Creature
+subtype=Cat
+power=1
+toughness=1
+[/card]
+[card]
 name=Lonis, Cryptozoologist
 aicode=activate target(*[-land;zpos<=1]|opponentlibrary) moveto(myBattlefield)
 auto=@movedTo(other creature[-token]|mybattlefield):token(Clue,Artifact Clue,0/0) and!( transforms((,newability[{S}{2}:draw:1])) forever )!
@@ -37668,6 +37792,16 @@ type=Creature
 subtype=Beast
 power=4
 toughness=5
+[/card]
+[card]
+name=Lumbering Lightshield
+auto=name(Opponent reveal a random card) moverandom(*[-land]) from(opponenthand) to(myhand) and!( transforms((,newability[counter(0/0.1.PutBack)],newability[name(Put back) target(*[counter{0/0.1.PutBack}]|myhand) moveto(opponenthand) and!( transforms((,newability[changecost(colorless:+1) forcedalive])) forever )!])) forever )!
+text=When Lumbering Lightshield enters the battlefield, target opponent reveals a nonland card at random from their hand. It perpetually gains "This spell costs {1} more to cast."
+mana={1}{W}
+type=Creature
+subtype=Illusion
+power=1
+toughness=4
 [/card]
 [card]
 name=Luminarch Aspirant
@@ -38379,6 +38513,18 @@ mana={1}{U}{U}
 type=Enchantment
 [/card]
 [card]
+name=Managorger Phoenix
+abilities=cantblock,flying
+autograveyard=@movedto(*[manacost>=1]|mystack):all(trigger[to]) transforms((,newability[if spent({R}{R}{R}{R}{R}) then all(managorger phoenix|mygraveyard) counter(0/0.5.flame) else if spent({R}{R}{R}{R}) then all(managorger phoenix|mygraveyard) counter(0/0.4.flame) else if spent({R}{R}{R}) then all(managorger phoenix|mygraveyard) counter(0/0.3.flame) else if spent({R}{R}) then all(managorger phoenix|mygraveyard) counter(0/0.2.flame) else if spent({R}) then all(managorger phoenix|mygraveyard) counter(0/0.1.flame)])) oneshot
+autograveyard=@counteradded(0/0.1.flame) from(this|mygraveyard) restriction{compare(hascntflame)~morethan~4}:moveto(mybattlefield) and!( counter(1/1.1.PerpetualPT) )!
+text=Flying -- Managorger Phoenix can’t block. -- Whenever you cast a spell, if Managorger Phoenix is in your graveyard, put a flame counter on Managorger Phoenix for each {R} in that spell’s mana cost. If Managorger Phoenix has five or more flame counters on it, return it to the battlefield and it perpetually gets +1/+1.
+mana={R}{R}
+type=Creature
+subtype=Phoenix
+power=2
+toughness=2
+[/card]
+[card]
 name=Maned Serval
 abilities=vigilance
 text=Vigilance
@@ -38428,6 +38574,17 @@ auto={3}{T}:unblockable target(creature) ueot
 text={1}, {T}: Untap another target artifact. -- {3}, {T}: Target creature can't be blocked this turn.
 mana={1}
 type=Artifact
+[/card]
+[card]
+name=Manor Guardian
+auto=_DIES_name(You seek a non-land card) name(You seek a non-land card) moverandom(*[-land;manacost<=2]) from(mylibrary) to(myhand)
+auto=_DIES_name(Opponent seeks a non-land card) name(Opponent seeks a non-land card) moverandom(*[-land;manacost<=2]) from(opponentlibrary) to(opponenthand)
+text=When Manor Guardian dies, each player seeks a nonland card with mana value 2 or less.
+mana={2}{B}
+type=Creature
+subtype=Demon
+power=4
+toughness=3
 [/card]
 [card]
 name=Manticore
@@ -39234,6 +39391,18 @@ auto=draw:3 controller
 text=Draw three cards. -- Basic landcycling {1}{U} ({1}{U}, Discard this card: Search your library for a basic land card, reveal it, put it into your hand, then shuffle.)
 mana={4}{U}{U}
 type=Instant
+[/card]
+[card]
+name=Mentor of Evos Isle
+abilities=flying
+auto=name(Creature perpetually gains flying) target(creature|myhand) counter(0/0.1.PerpetualFlying)
+auto=emblem transforms((,newability[lord(creature[counter{0/0.1.PerpetualFlying}]) transforms((,newability[flying])) forever dontremove
+text=Flying -- When Mentor of Evos Isle enters the battlefield, choose a creature card in your hand. It perpetually gains flying.
+mana={2}{U}
+type=Creature
+subtype=Bird Wizard
+power=2
+toughness=1
 [/card]
 [card]
 name=Mentor's Guidance
@@ -46018,6 +46187,17 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Plaguecrafter's Familiar
+abilities=deathtouch
+auto=name(Creature perpetually gains deathtouch) target(creature|myhand) transforms((,newability[perpetualdeathtouch])) forever 
+text=Deathtouch -- When Plaguecrafter’s Familiar enters the battlefield, choose a creature card in your hand. It perpetually gains deathtouch.
+mana={1}{B}
+type=Creature
+subtype=Rat
+power=1
+toughness=1
+[/card]
+[card]
 name=Planar Ally
 abilities=flying
 auto=@combat(attacking) source(this) restriction{compare(type:*[nodngplr]:mybattlefieldplustype:*[nodngopp]:opponentbattlefieldplusend)~equalto~0}:name(Venture into dungeon) transforms((,newability[if type(*[dungeon]|mycommandzone)~morethan~0 then name(Explore the dungeon) name(Explore the dungeon) all(*[dungeon]|mycommandzone) counter(0/0.1.Explore)],newability[if type(*[dungeon]|mycommandzone)~equalto~0 then name(Choose a new dungeon) name(Choose a new dungeon) target(*[dungeon]|mysideboard) moveTo(mycommandzone) and!( counter(0/0.1.Explore) )!])) oneshot
@@ -46303,6 +46483,34 @@ type=Creature
 subtype=Human Wizard
 power=3
 toughness=4
+[/card]
+[card]
+name=Pool of Vigorous Growth
+auto={T}{D(*|myhand)}:name(X=0) all(creature[manacost=0]|battlefield) moveto(mybattlefield) and!( counter(0/0.1.PoolEffect) )! && all(this) counter(0/0.1.PoolEffect) asSorcery
+auto={1}{T}{D(*|myhand)}:name(X=1) all(creature[manacost=1]|battlefield) moveto(mybattlefield) and!( counter(0/0.1.PoolEffect) )! && all(this) counter(0/0.1.PoolEffect) asSorcery
+auto={2}{T}{D(*|myhand)}:name(X=2) all(creature[manacost=2]|battlefield) moveto(mybattlefield) and!( counter(0/0.1.PoolEffect) )! && all(this) counter(0/0.1.PoolEffect) asSorcery
+auto={3}{T}{D(*|myhand)}:name(X=3) all(creature[manacost=3]|battlefield) moveto(mybattlefield) and!( counter(0/0.1.PoolEffect) )! && all(this) counter(0/0.1.PoolEffect) asSorcery
+auto={4}{T}{D(*|myhand)}:name(X=4) all(creature[manacost=4]|battlefield) moveto(mybattlefield) and!( counter(0/0.1.PoolEffect) )! && all(this) counter(0/0.1.PoolEffect) asSorcery
+auto={5}{T}{D(*|myhand)}:name(X=5) all(creature[manacost=5]|battlefield) moveto(mybattlefield) and!( counter(0/0.1.PoolEffect) )! && all(this) counter(0/0.1.PoolEffect) asSorcery
+auto={6}{T}{D(*|myhand)}:name(X=6) all(creature[manacost=6]|battlefield) moveto(mybattlefield) and!( counter(0/0.1.PoolEffect) )! && all(this) counter(0/0.1.PoolEffect) asSorcery
+auto={7}{T}{D(*|myhand)}:name(X=7) all(creature[manacost=7]|battlefield) moveto(mybattlefield) and!( counter(0/0.1.PoolEffect) )! && all(this) counter(0/0.1.PoolEffect) asSorcery
+auto={8}{T}{D(*|myhand)}:name(X=8) all(creature[manacost=8]|battlefield) moveto(mybattlefield) and!( counter(0/0.1.PoolEffect) )! && all(this) counter(0/0.1.PoolEffect) asSorcery
+auto={9}{T}{D(*|myhand)}:name(X=9) all(creature[manacost=9]|battlefield) moveto(mybattlefield) and!( counter(0/0.1.PoolEffect) )! && all(this) counter(0/0.1.PoolEffect) asSorcery
+auto={10}{T}{D(*|myhand)}:name(X=10) all(creature[manacost=10]|battlefield) moveto(mybattlefield) and!( counter(0/0.1.PoolEffect) )! && all(this) counter(0/0.1.PoolEffect) asSorcery
+auto={11}{T}{D(*|myhand)}:name(X=11) all(creature[manacost=11]|battlefield) moveto(mybattlefield) and!( counter(0/0.1.PoolEffect) )! && all(this) counter(0/0.1.PoolEffect) asSorcery
+auto={12}{T}{D(*|myhand)}:name(X=12) all(creature[manacost=12]|battlefield) moveto(mybattlefield) and!( counter(0/0.1.PoolEffect) )! && all(this) counter(0/0.1.PoolEffect) asSorcery
+auto={13}{T}{D(*|myhand)}:name(X=13) all(creature[manacost=13]|battlefield) moveto(mybattlefield) and!( counter(0/0.1.PoolEffect) )! && all(this) counter(0/0.1.PoolEffect) asSorcery
+auto={14}{T}{D(*|myhand)}:name(X=14) all(creature[manacost=14]|battlefield) moveto(mybattlefield) and!( counter(0/0.1.PoolEffect) )! && all(this) counter(0/0.1.PoolEffect) asSorcery
+auto={15}{T}{D(*|myhand)}:name(X=15) all(creature[manacost=15]|battlefield) moveto(mybattlefield) and!( counter(0/0.1.PoolEffect) )! && all(this) counter(0/0.1.PoolEffect) asSorcery
+auto={16}{T}{D(*|myhand)}:name(X=16) all(creature[manacost=16]|battlefield) moveto(mybattlefield) and!( counter(0/0.1.PoolEffect) )! && all(this) counter(0/0.1.PoolEffect) asSorcery
+auto={17}{T}{D(*|myhand)}:name(X=17) all(creature[manacost=17]|battlefield) moveto(mybattlefield) and!( counter(0/0.1.PoolEffect) )! && all(this) counter(0/0.1.PoolEffect) asSorcery
+auto={18}{T}{D(*|myhand)}:name(X=18) all(creature[manacost=18]|battlefield) moveto(mybattlefield) and!( counter(0/0.1.PoolEffect) )! && all(this) counter(0/0.1.PoolEffect) asSorcery
+auto={19}{T}{D(*|myhand)}:name(X=19) all(creature[manacost=19]|battlefield) moveto(mybattlefield) and!( counter(0/0.1.PoolEffect) )! && all(this) counter(0/0.1.PoolEffect) asSorcery
+auto={20}{T}{D(*|myhand)}:name(X=20) all(creature[manacost>=20]|battlefield) moveto(mybattlefield) and!( counter(0/0.1.PoolEffect) )! && all(this) counter(0/0.1.PoolEffect) asSorcery
+auto=@counteradded(0/0.1.PoolEffect) from(this):name(Clone random creature) removeallcounters(0/0.1.PoolEffect) && moverandom(creature[counter{0/0.1.PoolEffect}]) from(mybattlefield) to(mybattlefield) and!( clone and!( all(creature[counter{0/0.1.PoolEffect}]|mybattlefield) moveto(ownerbattlefield) and!( removeallcounters(0/0.1.PoolEffect) )! )! )!
+text={X}, {T}, Discard a card: Create a token that’s a copy of a random creature card with mana value X. Activate only as a sorcery.
+mana={1}{G}
+type=Artifact
 [/card]
 [card]
 name=Pop Quiz
@@ -49241,6 +49449,18 @@ auto=name(Deals 2 damages to your creature) name(Deals 2 damages to your creatur
 text=Reckless Rage deals 4 damage to target creature you don't control and 2 damage to target creature you control.
 mana={R}
 type=Instant
+[/card]
+[card]
+name=Reckless Ringleader
+abilities=haste
+auto=name(Creature perpetually gains haste) target(creature|myhand) counter(0/0.1.PerpetualHaste)
+auto=emblem transforms((,newability[lord(creature[counter{0/0.1.PerpetualHaste}]) transforms((,newability[haste])) forever dontremove
+text=Haste -- When Reckless Ringleader enters the battlefield, choose a creature card in your hand. It perpetually gains haste.
+mana={R}
+type=Creature
+subtype=Goblin Shaman
+power=1
+toughness=1
 [/card]
 [card]
 name=Reclaim the Wastes
@@ -52903,6 +53123,14 @@ mana={3}{R}{R}
 type=Sorcery
 [/card]
 [card]
+name=Sarkhan's Scorn
+target=creature,planeswalker
+auto=damage:halfupcurrentturn
+text=Sarkhan’s Scorn deals damage equal to the number of turns you have begun to target creature or planeswalker.
+mana={2}{R}
+type=Instant
+[/card]
+[card]
 name=Sarkhan's Unsealing
 auto=@movedTo(creature[power=4]|mystack):damage:4 target(player,creature,planeswalker)
 auto=@movedTo(creature[power=5]|mystack):damage:4 target(player,creature,planeswalker)
@@ -53507,6 +53735,17 @@ type=Artifact Creature
 subtype=Dragon
 power=4
 toughness=4
+[/card]
+[card]
+name=Scion of Shiv
+abilities=flying
+auto={2}{R}:name(Perpetually gets 1/0) counter(1/0.1.PerpetualPT)
+text=Flying -- {2}{R}: Scion of Shiv perpetually gets +1/+0.
+mana={2}{R}{R}
+type=Creature
+subtype=Dragon
+power=3
+toughness=3
 [/card]
 [card]
 name=Scion of Stygia
@@ -55653,6 +55892,19 @@ power=0
 toughness=4
 [/card]
 [card]
+name=Shoreline Scout
+auto=may name(Exile merfolk or land) target(*[merfolk;land]|myHand) moveto(exile) and!( conjure cards(Tropical Island) zone(myhand) )!
+auto=if thisturn(*[land]|mybattlefield)~morethan~0 then 1/0 ueot
+auto=if thisturn(*[land]|mybattlefield)~equalto~0 then if thisturn(*[merfolk]|mybattlefield)~morethan~1 then 1/0 ueot
+auto=@movedto(*[merfolk;land]|mybattlefield) turnlimited:1/0 ueot
+text=When Shoreline Scout enters the battlefield, you may exile a Merfolk card or a land card from your hand. If you do, conjure a Tropical Island card into your hand. -- As long as another Merfolk or an Island entered the battlefield under your control this turn, Shoreline Scout gets +1/+0.
+mana={U}
+type=Creature
+subtype=Merfolk Scout
+power=1
+toughness=1
+[/card]
+[card]
 name=Short Sword
 auto=teach(creature) 1/1
 auto={1}:equip
@@ -57215,6 +57467,26 @@ text=Flying -- When Skyscanner enters the battlefield, draw a card.
 mana={3}
 type=Artifact Creature
 subtype=Thopter
+power=1
+toughness=1
+[/card]
+[card]
+name=Skyshroud Ambush
+target=creature|mybattlefield
+auto=choice name(Fight weaker creature) transforms((,newability[target(creature[toughness<=p]|opponentbattlefield) dynamicability<!powerstrike eachother!>],newability[draw:1 controller])) ueot
+auto=choice name(Fight not weaker creature) transforms((,newability[target(creature[toughness>=pplus1plusend]|opponentbattlefield) dynamicability<!powerstrike eachother!>])) ueot
+text=Target creature you control fights target creature you don’t control. When the creature you control wins the fight, draw a card.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Skyshroud Lookout
+abilities=reach
+auto=name(Seek an elf) name(Seek an elf) moverandom(elf) from(mylibrary) to(myhand)
+text=Reach -- When Skyshroud Lookout enters the battlefield, seek an Elf card.
+mana={1}{G}
+type=Creature
+subtype=Elf Archer
 power=1
 toughness=1
 [/card]
@@ -60095,6 +60367,15 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
+name=Static Discharge
+target=player,creature,planeswalker
+auto=damage:3plushascntperpetualchargeplusend 
+auto=all(Static Discharge|myzones) counter(0/0.1.PerpetualCharge)
+text=Static Discharge deals X damage to any target, where X is 3 plus the number of charge counters on Static Discharge. Then put a perpetual charge counter on this card and each card named Static Discharge in your hand, library, and graveyard.
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
 name=Static Orb
 auto=@each my beginofturn sourcenottap:lord(*|battlefield) doesnotuntap && untap target(*)*2
 auto=@each opponent beginofturn sourcenottap:lord(*|battlefield) doesnotuntap && untap target(*)*2
@@ -61124,6 +61405,17 @@ type=Creature
 subtype=Elemental Incarnation
 power=3
 toughness=3
+[/card]
+[card]
+name=Subversive Acolyte
+auto=this(cantargetcard(*[-effect]) {2}:becomes(cleric effect) forever && transforms((,newability[life:-2 controller],newability[1/2 forever],newability[lifelink])) forever
+auto=this(cantargetcard(*[-effect]) {2}:becomes(phyrexian effect) forever && transforms((,newability[life:-2 controller],newability[3/3 forever],newability[trample],newability[@damaged(this):ability$!name(Sacrifice permanents) name(Sacrifice permanents) notatarget(<storedthatmuch>*|mybattlefield) sacrifice!$ controller])) forever
+text={2}, Pay 2 life: Choose one. Activate only once. -- • Subversive Acolyte becomes a Human Cleric. It gets +1/+2 and gains lifelink. -- • Subversive Acolyte becomes a Phyrexian. It gets +3/+3 and gains trample and "Whenever this creature is dealt damage, sacrifice that many permanents."
+mana={B}{B}
+type=Creature
+subtype=Human
+power=2
+toughness=2
 [/card]
 [card]
 name=Sudden Breakthrough
@@ -63346,6 +63638,12 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Teyo Emblem
+abilities=doublefacedeath
+auto=emblem transforms((,newability[@each my endofturn:name(Return white creature) target(creature[white]|mygraveyard) moveto(mybattlefield) and!( transforms((,newability[life:toughness controller])) oneshot )!])) forever dontremove
+type=Instant
+[/card]
+[card]
 name=Teyo's Lightshield
 auto=counter(1/1) target(creature|myBattlefield)
 text=When Teyo's Lightshield enters the battlefield, put a +1/+1 counter on target creature you control.
@@ -65426,6 +65724,14 @@ auto={T}:Add{G}
 text=Whenever you cast a multicolored spell, draw a card. -- {T}: Add one mana of any color.
 mana={5}
 type=Artifact
+[/card]
+[card]
+name=Tome of the Infinite
+auto={U}{T}:name(Conjure a random card) conjure cards(Swords to Plowshares;Light of Hope;Ponder;Force Spike;Dark Ritual;Duress;Lightning Bolt;Assault Strobe;Giant Growth;Fog) zone(myhand) and!( counter(0/0.1.PerpetualAnyMana) )!
+auto=emblem transforms((,newability[lord(*[counter{0/0.1.PerpetualAnyMana}]|myzones) anytypeofmana])) forever dontremove
+text={U}, {T}: Conjure a random card from Tome of the Infinite’s spellbook into your hand. It perpetually gains "You may spend mana as though it were mana of any color to cast this spell."
+mana={2}{U}
+type=Legendary Artifact
 [/card]
 [card]
 name=Tomebound Lich
@@ -68781,6 +69087,16 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Veteran Charger
+auto=name(Choose creature in hand) target(creature|myhand) counter(2/2,1,PerpetualPT)
+text=When Veteran Charger enters the battlefield, choose a creature card in your hand. It perpetually gets +2/+2.
+mana={2}{G}
+type=Creature
+subtype=Centaur Soldier
+power=2
+toughness=2
+[/card]
+[card]
 name=Veteran Dungeoneer
 auto=if compare(type:*[nodngplr]:mybattlefieldplustype:*[nodngopp]:opponentbattlefieldplusend)~equalto~0 then name(Venture into dungeon) name(Venture into dungeon) transforms((,newability[if type(*[dungeon]|mycommandzone)~morethan~0 then name(Explore the dungeon) name(Explore the dungeon) all(*[dungeon]|mycommandzone) counter(0/0.1.Explore)],newability[if type(*[dungeon]|mycommandzone)~equalto~0 then name(Choose a new dungeon) name(Choose a new dungeon) target(*[dungeon]|mysideboard) moveTo(mycommandzone) and!( counter(0/0.1.Explore) )!])) oneshot
 text=When Veteran Dungeoneer enters the battlefield, venture into the dungeon. (Enter the first room or advance to the next room.)
@@ -71208,6 +71524,17 @@ mana={2}{U}
 type=Creature
 subtype=Human Wizard
 power=1
+toughness=3
+[/card]
+[card]
+name=Wingsteed Trainer
+auto=name(Conjure Stormfront Pegasus) transforms((,newability[name(Conjure Stormfront Pegasus) conjure cards(Stormfront Pegasus) zone(myhand)])) oneshot
+auto=@combat(attacking) source(this):name(Conjure Stormfront Pegasus) transforms((,newability[name(Conjure Stormfront Pegasus) conjure cards(Stormfront Pegasus) zone(myhand)])) oneshot
+text=When Wingsteed Trainer enters the battlefield or attacks, conjure a Stormfront Pegasus card into your hand.
+mana={3}{W}
+type=Creature
+subtype=Human
+power=2
 toughness=3
 [/card]
 [card]
