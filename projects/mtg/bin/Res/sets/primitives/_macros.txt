@@ -15,26 +15,56 @@
 # Dies, Evergreen
 #AUTO_DEFINE _DIES_ @movedTo(this|graveyard) from(battlefield):
 
+# Populate
+#AUTO_DEFINE _POPULATE_ name(Populate) clone notAtarget(creature[token]|myBattlefield)
+
+# Ferocious
+#AUTO_DEFINE _FEROCIOUS_ if type(creature[power>=4]|myBattlefield)~morethan~0 then
+
+# Attacking
+#AUTO_DEFINE _ATTACKING_ @combat(attacking) source(this):
+
+# Blocked
+#AUTO_DEFINE _BLOCKED_ @combat(blocked,turnlimited) source(this):
+
+# Heroic
+#AUTO_DEFINE _HEROIC_ @targeted(this) from(*[instant;sorcery;aura]|myCastingzone):
+
+# Rally
+#AUTO_DEFINE _RALLY_ @movedTo(other ally|myBattlefield):
+
+# Landfall
+#AUTO_DEFINE _LANDFALL_ @movedTo(land|myBattlefield):
+
+# Addendum
+#AUTO_DEFINE _ADDENDUM_ if compare(restriction{assorcery}~morethan~0) then
+
+# Constellation
+#AUTO_DEFINE _CONSTELLATION_ @movedTo(enchantment|myBattlefield):
+
+# Amass, Set WAR
+#AUTO_DEFINE _AMASS_($c) if type(army|mybattlefield)~morethan~0 then counter(1/1,$c) notATarget(army|myBattlefield) else create(Zombie Army:creature Zombie Army:0/0:black) and!(counter(1/1,$c) notATarget(army|myBattlefield))!
+
 # Scry, Evergreen
 #AUTO_DEFINE _SCRY_($c) scry:$c scrycore delayed dontshow donothing scrycoreend scryend
 
-# Rampage
-#AUTO_DEFINE _RAMPAGE_($c) @combat(blocked) source(this):foreach(<>=1>creature[blocking]|opponentBattlefield) $c/$c ueot
+# Fabricate
+#AUTO_DEFINE _FABRICATE_($c) transforms((,newability[choice counter(1/1.$c)],newability[choice create(Servo:Artifact Creature Servo:1/1)*$c])) ueot
+
+# Enrage
+#AUTO_DEFINE _ENRAGE_ @damaged(this):
+
+# Champion
+#AUTO_DEFINE _CHAMPION_($Word) aslongas(other $word|myBattlefield) choice notAtarget(other $word|myBattlefield) (blink)forsrc oneshot
+
+# Metalcraft
+#AUTO_DEFINE _METALCRAFT_ aslongas(artifact|mybattlefield) >2
 
 # Echo
 #AUTO_DEFINE _ECHO_($cost) $cost[{$c};next upkeep] sacrifice
 
 # Threshold
-#AUTO_DEFINE _THRESHOLD_ aslongas(*|myGraveyard) >6
-
-# Affinity
-#AUTO_DEFINE _AFFINITY_($Word) anyzone=foreach($Word|myZones) altercost(colorless,-1)
-
-# Bushido
-#AUTO_DEFINE _BUSHIDO_($c) @combat(blocking,blocked) source(this): $c/$c ueot
-
-# Soulshift
-#AUTO_DEFINE _SOULSHIFT_($c) @movedTo(this|myGraveyard) from(battlefield):may moveTo(myHand) target(creature[spirit;manacost<=$c]|myGraveyard)
+#AUTO_DEFINE _THRESHOLD_ if type(*|mygraveyard)~morethan~6
 
 # Splice onto Arcane
 #AUTO_DEFINE _SPLICEARCANE_ movedTo(*[Arcane]|myStack):may castcard(copied noevent) target(*[Arcane]|myHand)
@@ -42,23 +72,14 @@
 # Ripple
 #AUTO_DEFINE _RIPPLE_($c) autostack=if casted(this) then reveal:$c optionone name(Cast Card) target(<upto:$c>[share!name!]|reveal) moveTo(mylibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put on bottom) target(<$c>*|reveal) bottomoflibrary optiontwoend afterrevealed all(tobecast|mylibrary) moveTo(myLibrary) and!( activate castcard(normal) )! afterrevealedend revealend
 
-# Recover
+# Recover                              
 #AUTO_DEFINE _RECOVER_($cost) @movedTo(creature|myGraveyard) from(Battlefield):may pay{$cost} name(Return to owner Hand) moveTo(ownerHand) all(this) donothing?moveTo(exile) all(this)
-
-# Champion
-#AUTO_DEFINE _CHAMPION_($Word) aslongas(other $word|myBattlefield) choice notAtarget(other $word|myBattlefield) (blink)forsrc oneshot
-
-# Evoke
-#AUTO_DEFINE _EVOKE_($cost) {$cost}:sacrifice
 
 # Clash
 $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Erratic Explosion. Meaby it would work with a few fix
 
 # Conspire
 #AUTO_DEFINE _CONSPIRE_ @movedTo(this|myStak):may {T(creature|myBattlefield)}{T(creature|myBattlefield)} castcard(copied noevent) target(*|myStack)
-
-# Metalcraft
-#AUTO_DEFINE _METALCRAFT_ aslongas(artifact|mybattlefield) >2
 
 # Proliferate
 #AUTO_DEFINE _PROLIFERATE_ name(Proliferate) notatarget(<anyamount>*[artifact;creature;enchantment;land;planeswalker;player]) duplicatecounters(single)
@@ -67,44 +88,20 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 #AUTO_DEFINE _OLDPROLIFERATE_ name(Proliferate) notAtarget(<anyamount>*[artifact;creature;enchantment;land;planeswalker;player]) propagate
 #AUTO_DEFINE _OLDOLDPROLIFERATE_ name(proliferate) notatarget(<anyamount>*[artifact;creature;enchantment;land;planeswalker;player]) proliferate
 
-# Populate
-#AUTO_DEFINE _POPULATE_ name(Populate) clone notAtarget(creature[token]|myBattlefield)
-
 # Scavenge
 #AUTO_DEFINE _SCAVENGE_($cost) name(Scavenge) autograveyard={$cost}{E}:counter(1/1,$c) target(creature) asSorcery
 
 # Monstrosity
 #AUTO_DEFINE _MONSTROSITY_($cost) name(Monstrosity) this(cantargetcard(*[-monstrous]) {$cost}:becomes(monstrous) forever && counter(1/1,$c)
 
-# Heroic
-#AUTO_DEFINE _HEROIC_ @targeted(this) from(*[instant;sorcery;aura]|myCastingzone):
-
 # Outlast
 #AUTO_DEFINE _OUTLAST_($cost) {$cost}{$cost}:counter(1/1,1) all(this) asSorcery
-
-# Ferocious
-#AUTO_DEFINE _FEROCIOUS_ if type(creature[power>=4]|myBattlefield)~morethan~0 then
-
-# Rally
-#AUTO_DEFINE _RALLY_ @movedTo(other ally|myBattlefield):
-
-# Landfall
-#AUTO_DEFINE _LANDFALL_ @movedTo(land|myBattlefield):
 
 # Investigate token, Shadows over Innistrad SOI
 #AUTO_DEFINE _INVESTIGATE_ create(Clue:Artifact:0/0:"{2}, Sacrifice this artifact: Draw a card.") and!( transforms((,newability[{2}{S}:draw:1 controller])) forever )!
 
-# Fabricate
-#AUTO_DEFINE _FABRICATE_($c) transforms((,newability[choice counter(1/1.$c)],newability[choice create(Servo:Artifact Creature Servo:1/1)*$c])) ueot
-
-# Attacking
-#AUTO_DEFINE _ATTACKING_ @combat(attacking) source(this):
-
-# Afflict
-#AUTO_DEFINE _AFFLICT_ @combat(blocked,turnlimited) source(this):life:-3 opponent
-
-# Enrage
-#AUTO_DEFINE _ENRAGE_ @damaged(this):
+# Soulshift
+#AUTO_DEFINE _SOULSHIFT_($c) @movedTo(this|myGraveyard) from(battlefield):may moveTo(myHand) target(creature[spirit;manacost<=$c]|myGraveyard)
 
 # Ascend, Set XLN
 #AUTO_DEFINE _ASCEND_ if type(*[city's_blessing]|mybattlefield)~lessthan~1 then transforms((,newability[if type(*|mybattlefield)~morethan~9 then create(city's_blessing:city's_blessing:0/0:shroud:indestructible)]))
@@ -133,9 +130,6 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 # Adapt
 #AUTO_DEFINE _ADAPT_($c) aslongas(this[counter{1/1}<1]|myBattlefield):counter(1/1,$c)
 
-# Addendum
-#AUTO_DEFINE _ADDENDUM_ if compare(restriction{assorcery}~morethan~0) then
-
 # Afterlife
 #AUTO_DEFINE _AFTERLIFE_($c) @movedTo(this|graveyard) from(battlefield):create(Spirit:Creature Spirit:1/1:white,black:flying)*$c
 
@@ -144,9 +138,3 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 
 # Spectacle
 #AUTO_DEFINE _SPECTACLE_($cost) compare(oplifelost)~morethan~0 {$cost}:
-
-# Amass, Set WAR
-#AUTO_DEFINE _AMASS_($c) if type(army|mybattlefield)~morethan~0 then counter(1/1,$c) notATarget(army|myBattlefield) else create(Zombie Army:creature Zombie Army:0/0:black) and!(counter(1/1,$c) notATarget(army|myBattlefield))!
-
-# Constellation
-#AUTO_DEFINE _CONSTELLATION_ @movedTo(enchantment|myBattlefield):

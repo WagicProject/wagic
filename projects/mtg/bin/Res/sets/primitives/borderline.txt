@@ -1456,7 +1456,7 @@ type=Instant
 name=Ammit Eternal
 auto=@combatdamaged(player) from(this):removeallcounters(-1/-1)
 auto=@movedTo(*|opponentstack):counter(-1/-1,1)
-auto=@combat(blocked,turnlimited) source(this):life:-3 opponent
+auto=_BLOCKED_life:-3 opponent
 text=Afflict 3 (Whenever this creature becomes blocked, defending player loses 3 life.) -- Whenever an opponent casts a spell, put a -1/-1 counter on Ammit Eternal. -- Whenever Ammit Eternal deals combat damage to a player, remove all -1/-1 counters from it.
 mana={2}{B}
 type=Creature
@@ -2132,7 +2132,7 @@ type=Instant
 [card]
 name=Apex Altisaur
 auto=may name(Fights opponent's creature) target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>
-auto=@damaged(this):may name(Fights opponent's creature) target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>
+auto=_ENRAGE_may name(Fights opponent's creature) target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>
 text=When Apex Altisaur enters the battlefield, it fights up to one target creature you don't control. -- Enrage — Whenever Apex Altisaur is dealt damage, it fights up to one target creature you don't control.
 mana={7}{G}{G}
 type=Creature
@@ -2692,7 +2692,7 @@ toughness=5
 name=Archfiend of Spite
 abilities=flying,madness
 autoexile=restriction{discarded} pay({3}{B}{B}) name(pay 3BB to cast) activate name(pay 2G to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
-auto=@damaged(this):life:-thatmuch opponent donothing?sacrifice notatarget(*|mybattlefield)!$ opponent
+auto=_ENRAGE_life:-thatmuch opponent donothing?sacrifice notatarget(*|mybattlefield)!$ opponent
 text=Flying -- Whenever a source an opponent controls deals damage to Archfiend of Spite, that source's controller loses that much life unless they sacrifice that many permanents. -- Madness {3}{B}{B} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)
 mana={5}{B}{B}
 type=Creature
@@ -5277,7 +5277,7 @@ toughness=6
 [/card]
 [card]
 name=Bellowing Aegisaur
-auto=@damaged(this):counter(1/1,1) all(other creature|mybattlefield)
+auto=_ENRAGE_counter(1/1,1) all(other creature|mybattlefield)
 text=Enrage — Whenever Bellowing Aegisaur is dealt damage, put a +1/+1 counter on each other creature you control.
 mana={5}{W}
 type=Creature
@@ -6741,7 +6741,7 @@ toughness=3
 name=Body of Knowledge
 abilities=nomaxhand
 anyzone=type:*:myhand/type:*:myhand cdaactive
-auto=@damaged(this):draw:thatmuch controller
+auto=_ENRAGE_draw:thatmuch controller
 text=Body of Knowledge's power and toughness are each equal to the number of cards in your hand. -- You have no maximum hand size. -- Whenever Body of Knowledge is dealt damage, draw that many cards.
 mana={3}{U}{U}
 type=Creature
@@ -7514,7 +7514,7 @@ type=Land
 [card]
 name=Brash Taunter
 abilities=indestructible
-auto=@damaged(this):damage:thatmuch opponent
+auto=_ENRAGE_damage:thatmuch opponent
 auto={2}{R}{T}:transforms((,newability[target(other creature|battlefield) dynamicability<!powerstrike eachother!>])) oneshot
 text=Indestructible -- Whenever Brash Taunter is dealt damage, it deals that much damage to target opponent. -- {2}{R}, {T}: Brash Taunter fights another target creature.
 mana={4}{R}
@@ -8349,7 +8349,7 @@ toughness=1
 [/card]
 [card]
 name=Cacophodon
-auto=@damaged(this):untap target(*)
+auto=_ENRAGE_untap target(*)
 text=Enrage — Whenever Cacophodon is dealt damage, untap target permanent.
 mana={3}{G}
 type=Creature
@@ -8504,7 +8504,7 @@ type=Sorcery
 [card]
 name=Callous Giant
 abilities=undamageable
-auto=@damaged(this):if compare(thatmuch)~morethan~3 then 0/-thatmuch ueot
+auto=_ENRAGE_if compare(thatmuch)~morethan~3 then 0/-thatmuch ueot
 text=If a source would deal 3 or less damage to Callous Giant, prevent that damage.
 mana={4}{R}{R}
 type=Creature
@@ -12303,7 +12303,8 @@ toughness=4
 [/card]
 [card]
 name=Corrosive Ooze
-auto=@Corrosive Ooze blocks or becomes blocked by an equipped creaturedestroy all equipment attached that creature at end of combat
+auto=emblem transforms((,newability[lord(creature[counter{0/0.1.CorrosiveEffect}]) transforms((,newability[@each combatends:name(Destroy all equipments) all(myeqp) destroy],newability[@each combatends:name(Destroy all equipments) removeallcounters(0/0.1.CorrosiveEffect)]))])) forever dontremove
+auto=@combat(blocking,blocked) source(this) from(creature[equipped]):name(Destroy all equipments) all(trigger[from]) counter(0/0.1.CorrosiveEffect)
 text=Whenever Corrosive Ooze blocks or becomes blocked by an equipped creature, destroy all Equipment attached to that creature at end of combat.
 mana={1}{G}
 type=Creature
@@ -13611,7 +13612,7 @@ toughness=3
 [card]
 name=Dagger of the Worthy
 auto=teach(creature) 2/0
-auto=teach(creature) transforms((,newability[@combat(blocked,turnlimited) source(this):life:-1 opponent])) forever
+auto=teach(creature) transforms((,newability[_BLOCKED_life:-1 opponent])) forever
 auto={2}:equip
 text=Equipped creature gets +2/+0 and has afflict 1. (Whenever it becomes blocked, defending player loses 1 life.) -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
 mana={2}
@@ -16822,7 +16823,7 @@ toughness=7
 [card]
 name=Dralnu, Lich Lord
 abilities=undamageable
-auto=@damaged(this):ability$!name(sacrifice) notatarget(<storedthatmuch>*|mybattlefield) sacrifice!$ controller
+auto=_ENRAGE_ability$!name(sacrifice) notatarget(<storedthatmuch>*|mybattlefield) sacrifice!$ controller
 auto={T}:name(Instant or sorcery gains flashback) target(*[instant;sorcery]|myGraveyard) transforms((,newability[canplayfromgraveyard],newability[gainedexiledeath])) ueot
 text=If damage would be dealt to Dralnu, Lich Lord, sacrifice that many permanents instead.  -- {T}: Target instant or sorcery card in your graveyard gains flashback until end of turn. The flashback cost is equal to its mana cost. (You may cast that card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{U}{B}
@@ -19640,7 +19641,7 @@ toughness=3
 [card]
 name=Eternal of Harsh Truths
 auto=@combat(notblocked) source(this):draw:1
-auto=@combat(blocked,turnlimited) source(this):life:-2 opponent
+auto=_BLOCKED_life:-2 opponent
 text=Afflict 2 (Whenever this creature becomes blocked, defending player loses 2 life.) -- Whenever Eternal of Harsh Truths attacks and isn't blocked, draw a card.
 mana={2}{U}
 type=Creature
@@ -19789,7 +19790,7 @@ toughness=2
 name=Everlasting Torment
 #MISSING:Damage can't be prevented
 abilities=nolifegain,nolifegainopponent
-auto=lord(creature|battlefield) transforms((,newability[undamageable],newability[@damaged(this):counter(-1/-1.thatmuch)]))
+auto=lord(creature|battlefield) transforms((,newability[undamageable],newability[_ENRAGE_counter(-1/-1.thatmuch)]))
 text=Players can't gain life. -- Damage can't be prevented. -- All damage is dealt as though its source had wither. (A source with wither deals damage to creatures in the form of -1/-1 counters.)
 mana={2}{BR}
 type=Enchantment
@@ -22596,7 +22597,7 @@ toughness=4
 [card]
 name=Flumph
 abilities=defender,flying
-auto=@damaged(this):name(Draw a card) draw:1 controller && draw:1 opponent
+auto=_ENRAGE_name(Draw a card) draw:1 controller && draw:1 opponent
 text=Defender, flying -- Whenever Flumph is dealt damage, you and target opponent each draw a card.
 mana={1}{W}
 type=Creature
@@ -23244,7 +23245,7 @@ type=Instant
 [/card]
 [card]
 name=Frilled Deathspitter
-auto=@damaged(this):damage:2 target(opponent,planeswalker)
+auto=_ENRAGE_damage:2 target(opponent,planeswalker)
 text=Enrage — Whenever Frilled Deathspitter is dealt damage, it deals 2 damage to target opponent or planeswalker.
 mana={2}{R}
 type=Creature
@@ -23340,7 +23341,7 @@ toughness=4
 [card]
 name=Frontline Devastator
 auto={1}{R}:1/0
-auto=@combat(blocked,turnlimited) source(this):life:-2 opponent
+auto=_BLOCKED_life:-2 opponent
 text=Afflict 2 (Whenever this creature becomes blocked, defending player loses 2 life.) -- {1}{R}: Frontline Devastator gets +1/+0 until end of turn.
 mana={3}{R}
 type=Creature
@@ -25089,7 +25090,7 @@ subtype=Equipment
 [card]
 name=Glarecaster
 abilities=flying
-auto={5}{W}:transforms((,newability[undamageable],newability[@damaged(this):damage:thatmuch target(player^creature)],newability[@damageof(player):life:thatmuch controller && damage:thatmuch target(player^creature)])) ueot
+auto={5}{W}:transforms((,newability[undamageable],newability[_ENRAGE_damage:thatmuch target(player^creature)],newability[@damageof(player):life:thatmuch controller && damage:thatmuch target(player^creature)])) ueot
 text=Flying -- {5}{W}: The next time damage would be dealt to Glarecaster and/or you this turn, that damage is dealt to target creature or player instead.
 mana={4}{W}{W}
 type=Creature
@@ -30054,7 +30055,7 @@ toughness=5
 name=Hungering Hydra
 abilities=oneblocker
 auto=counter(1/1,X)
-auto=@damaged(this):counter(1/1)*thatmuch
+auto=_ENRAGE_counter(1/1)*thatmuch
 text=Hungering Hydra enters the battlefield with X +1/+1 counters on it. -- Hungering Hydra can't be blocked by more than one creature. -- Whenever Hungering Hydra is dealt damage, put that many +1/+1 counters on it. (It must survive the damage to get the counters.)
 mana={X}{G}
 type=Creature
@@ -30958,7 +30959,7 @@ toughness=3
 [/card]
 [card]
 name=Imperial Ceratops
-auto=@damaged(this):life:2 controller
+auto=_ENRAGE_life:2 controller
 text=Enrage — Whenever Imperial Ceratops is dealt damage, you gain 2 life.
 mana={4}{W}
 type=Creature
@@ -32979,8 +32980,8 @@ type=Instant
 [/card]
 [card]
 name=Jolrael, Mwonvuli Recluse
-auto=@drawof(player):transforms((,newability[@drawof(player) restriction{once}:token(Cat Jol)])) oneshot
-auto={4}{G}{G}:all(creature|mybattlefield) transforms((,setpower=type:*:myHand,settoughness=type:*:myHand)) ueot
+auto=@drawof(player) restriction{compare(pdrewcount)~equalto~2}:name(Create cat) token(Cat Jol)
+auto={4}{G}{G}:name(All creatures becomes X/X) all(creature|mybattlefield) transforms((,setpower=type:*:myHand,settoughness=type:*:myHand)) ueot
 text=Whenever you draw your second card each turn, create a 2/2 green Cat creature token. -- {4}{G}{G}: Until end of turn, creatures you control have base power and toughness X/X, where X is the number of cards in your hand.
 mana={1}{G}
 type=Legendary Creature
@@ -34190,7 +34191,7 @@ toughness=3
 [/card]
 [card]
 name=Khenra Eternal
-auto=@combat(blocked,turnlimited) source(this):life:-1 opponent
+auto=_BLOCKED_life:-1 opponent
 text=Afflict 1 (Whenever this creature becomes blocked, defending player loses 1 life.)
 mana={1}{B}
 type=Creature
@@ -38442,7 +38443,7 @@ toughness=1
 [card]
 name=Manticore Eternal
 abilities=mustattack
-auto=@combat(blocked,turnlimited) source(this):life:-3 opponent
+auto=_BLOCKED_life:-3 opponent
 text=Afflict 3 (Whenever this creature becomes blocked, defending player loses 3 life.) -- Manticore Eternal attacks each combat if able.
 mana={3}{R}{R}
 type=Creature
@@ -39320,7 +39321,7 @@ toughness=2
 [card]
 name=Merciless Eternal
 auto={2}{B}{D}:+2/+2 ueot
-auto=@combat(blocked,turnlimited) source(this):life:-2 opponent
+auto=_BLOCKED_life:-2 opponent
 text=Afflict 2 (Whenever this creature becomes blocked, defending player loses 2 life.) -- {2}{B}, Discard a card: Merciless Eternal gets +2/+2 until end of turn.
 mana={2}{B}
 type=Creature
@@ -40052,7 +40053,7 @@ type=Enchantment
 [/card]
 [card]
 name=Mirrorwood Treefolk
-auto={2}{R}{W}:transforms((,newability[undamageable],newability[@damaged(this):damage:thatmuch target(player^creature)])) ueot
+auto={2}{R}{W}:transforms((,newability[undamageable],newability[_ENRAGE_damage:thatmuch target(player^creature)])) ueot
 text={2}{R}{W}: The next time damage would be dealt to Mirrorwood Treefolk this turn, that damage is dealt to target creature or player instead.
 mana={3}{G}
 type=Creature
@@ -41711,7 +41712,7 @@ toughness=1
 [/card]
 [card]
 name=Needletooth Raptor
-auto=@damaged(this):damage:5 target(creature|opponentBattlefield)
+auto=_ENRAGE_damage:5 target(creature|opponentBattlefield)
 text=Enrage — Whenever Needletooth Raptor is dealt damage, it deals 5 damage to target creature an opponent controls.
 mana={3}{R}
 type=Creature
@@ -41753,7 +41754,7 @@ toughness=4
 [/card]
 [card]
 name=Neheb, the Eternal
-auto=@combat(blocked,turnlimited) source(this):life:-3 opponent
+auto=_BLOCKED_life:-3 opponent
 auto=@each my secondmain:counter(0/0,oplifelost,redmana) && transforms((,newability[thisforeach(counter{0/0.oplifelost.redmana}) add{R}])) ueot
 auto=@each endofturn:removeallcounters(0/0,1,redmana)
 text=Afflict 3 (Whenever this creature becomes blocked, defending player loses 3 life.) -- At the beginning of your postcombat main phase, add {R} to your mana pool for each 1 life your opponents have lost this turn.
@@ -41812,7 +41813,7 @@ type=Land
 [card]
 name=Nessian Boar
 abilities=lure
-auto=@combat(blocking,blocked) source(this) from(creature):draw:1 opponent
+auto=_BLOCKED_draw:1 opponent
 text=All creatures able to block Nessian Boar do so. -- Whenever Nessian Boar becomes blocked by a creature, that creature’s controller draws a card.
 mana={3}{G}{G}
 type=Creature
@@ -43840,8 +43841,8 @@ toughness=1
 [/card]
 [card]
 name=Oracle's Attendants
-auto={T}:name(Target your creature) target(creature|mybattlefield) transforms((,newability[undamageable],newability[@damaged(this):damage:thatmuch target(Oracle's Attendants|mybattlefield)])) ueot
-auto={T}:name(Target opponent's creature) target(creature|opponentbattlefield) transforms((,newability[undamageable],newability[@damaged(this):damage:thatmuch target(Oracle's Attendants|opponentbattlefield)])) ueot
+auto={T}:name(Target your creature) target(creature|mybattlefield) transforms((,newability[undamageable],newability[_ENRAGE_damage:thatmuch target(Oracle's Attendants|mybattlefield)])) ueot
+auto={T}:name(Target opponent's creature) target(creature|opponentbattlefield) transforms((,newability[undamageable],newability[_ENRAGE_damage:thatmuch target(Oracle's Attendants|opponentbattlefield)])) ueot
 text={T}: All damage that would be dealt to target creature this turn by a source of your choice is dealt to Oracle's Attendants instead.
 mana={3}{W}
 type=Creature
@@ -44460,7 +44461,7 @@ toughness=4
 [/card]
 [card]
 name=Overgrown Armasaur
-auto=@damaged(this):create(saproling:creature saproling:1/1:green:)
+auto=_ENRAGE_create(saproling:creature saproling:1/1:green:)
 text=Enrage — Whenever Overgrown Armasaur is dealt damage, create a 1/1 green Saproling creature token.
 mana={3}{G}{G}
 type=Creature
@@ -44764,7 +44765,7 @@ toughness=7
 [card]
 name=Palladia-Mors, the Ruiner
 abilities=flying, opponentshroud, vigilance, trample
-auto=@damaged(this):-opponentshroud forever
+auto=_ENRAGE_-opponentshroud forever
 text=Flying, vigilance, trample -- Palladia-Mors, the Ruiner has hexproof if it hasn't dealt damage yet.
 mana={3}{R}{G}{W}
 type=Legendary Creature
@@ -46284,7 +46285,7 @@ type=Instant
 [/card]
 [card]
 name=Polyraptor
-auto=@damaged(this):token(polyraptor)
+auto=_ENRAGE_token(polyraptor)
 text=Enrage — Whenever Polyraptor is dealt damage, create a token that's a copy of Polyraptor.
 mana={6}{G}{G}
 type=Creature
@@ -47247,7 +47248,7 @@ toughness=1
 [card]
 name=Proud Wildbonder
 abilities=trample
-auto=lord(creature[trample]|myBattlefield) transforms((,newability[@combat(blocked,turnlimited) source(this):may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent && fog from(this)]))
+auto=lord(creature[trample]|myBattlefield) transforms((,newability[_BLOCKED_may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent && fog from(this)]))
 text=Trample -- Creatures you control with trample have "You may have this creature assign its combat damage as though it weren't blocked."
 mana={2}{RG}{RG}
 type=Creature
@@ -48299,7 +48300,7 @@ type=Artifact
 [/card]
 [card]
 name=Rakdos Roustabout
-auto=@combat(blocked,turnlimited) source(this):damage:1 opponent
+auto=_BLOCKED_damage:1 opponent
 text=Whenever Rakdos Roustabout becomes blocked, it deals 1 damage to the player or planeswalker it's attacking.
 mana={1}{B}{R}
 type=Creature
@@ -48644,7 +48645,7 @@ toughness=3
 [/card]
 [card]
 name=Ranging Raptors
-auto=@damaged(this):may moveto(mybattlefield) target(basic|mylibrary) && tap
+auto=_ENRAGE_may moveto(mybattlefield) target(basic|mylibrary) && tap
 text=Enrage — Whenever Ranging Raptors is dealt damage, you may search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library.
 mana={2}{G}
 type=Creature
@@ -48706,7 +48707,7 @@ toughness=1
 [card]
 name=Raptor Hatchling
 abilities=trample
-auto=@damaged(this):token(Dinosaur,creature Dinosaur,3/3,green)
+auto=_ENRAGE_token(Dinosaur,creature Dinosaur,3/3,green)
 text=Enrage — Whenever Raptor Hatchling is dealt damage, create a 3/3 green Dinosaur creature token with trample.
 mana={1}{R}
 type=Creature
@@ -48803,7 +48804,7 @@ toughness=2
 [/card]
 [card]
 name=Ravenous Daggertooth
-auto=@damaged(this):life:2 controller
+auto=_ENRAGE_life:2 controller
 text=Enrage — Whenever Ravenous Daggertooth is dealt damage, you gain 2 life.
 mana={2}{G}
 type=Creature
@@ -50685,7 +50686,7 @@ type=Sorcery
 [/card]
 [card]
 name=Ripjaw Raptor
-auto=@damaged(this):draw:1 controller
+auto=_ENRAGE_draw:1 controller
 text=Enrage — Whenever Ripjaw Raptor is dealt damage, draw a card.
 mana={2}{G}{G}
 type=Creature
@@ -55880,7 +55881,7 @@ toughness=3
 [card]
 name=Siege Behemoth
 abilities=opponentshroud
-auto=_ATTACKING_all(creature|mybattlefield) transforms((,newability[@combat(blocked,turnlimited) source(this):may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent],newability[fog from(this)])) ueot
+auto=_ATTACKING_all(creature|mybattlefield) transforms((,newability[_BLOCKED_may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent],newability[fog from(this)])) ueot
 text=Hexproof -- As long as Siege Behemoth is attacking, for each creature you control, you may have that creature assign its combat damage as though it weren't blocked.
 mana={5}{G}{G}
 type=Creature
@@ -55939,7 +55940,7 @@ toughness=3
 [/card]
 [card]
 name=Siegehorn Ceratops
-auto=@damaged(this):counter(1/1,2)
+auto=_ENRAGE_counter(1/1,2)
 text=Enrage — Whenever Siegehorn Ceratops is dealt damage, put two +1/+1 counters on it. (It must survive the damage to get the counters.)
 mana={G}{W}
 type=Creature
@@ -56188,7 +56189,7 @@ type=Artifact Land
 [/card]
 [card]
 name=Silverclad Ferocidons
-auto=@damaged(this) from(*|opponentstack,opponentbattlefield):ability$!name(sacrifice a permanent) notatarget(*|mybattlefield) sacrifice!$ opponent
+auto=_ENRAGE_ability$!name(sacrifice a permanent) notatarget(*|mybattlefield) sacrifice!$ opponent
 text=Enrage — Whenever Silverclad Ferocidons is dealt damage, each opponent sacrifices a permanent.
 mana={5}{R}{R}
 type=Creature
@@ -56555,8 +56556,8 @@ toughness=5
 name=Sivvi's Valor
 other={T(creature[-tapped]|mybattlefield)} name(Tap a creature)
 otherrestriction=type(plains|mybattlefield)~morethan~0,type(creature[-tapped]|mybattlefield)~morethan~0
-auto=choice name(Target your creature) target(creature|mybattlefield) transforms((,newability[undamageable],newability[@damaged(this):damage:thatmuch controller])) ueot
-auto=choice name(Target opponent's creature) target(creature|opponentbattlefield) transforms((,newability[undamageable],newability[@damaged(this):damage:thatmuch opponent])) ueot
+auto=choice name(Target your creature) target(creature|mybattlefield) transforms((,newability[undamageable],newability[_ENRAGE_damage:thatmuch controller])) ueot
+auto=choice name(Target opponent's creature) target(creature|opponentbattlefield) transforms((,newability[undamageable],newability[_ENRAGE_damage:thatmuch opponent])) ueot
 text=If you control a Plains, you may tap an untapped creature you control rather than pay Sivvi's Valor's mana cost. -- All damage that would be dealt to target creature this turn is dealt to you instead.
 mana={2}{W}
 type=Instant
@@ -57627,7 +57628,7 @@ toughness=5
 [card]
 name=Snapping Sailback
 abilities=flash
-auto=@damaged(this):counter(1/1,1)
+auto=_ENRAGE_counter(1/1,1)
 text=Flash -- Enrage — Whenever Snapping Sailback is dealt damage, put a +1/+1 counter on it. (It must survive the damage to get the counter.)
 mana={4}{G}
 type=Creature
@@ -58907,7 +58908,7 @@ toughness=4
 name=Spellweaver Eternal
 abilities=prowess
 auto=@movedTo(*[-creature]|mystack):1/1 ueot
-auto=@combat(blocked,turnlimited) source(this):life:-2 opponent
+auto=_BLOCKED_life:-2 opponent
 text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.) -- Afflict 2 (Whenever this creature becomes blocked, defending player loses 2 life.)
 mana={1}{U}
 type=Creature
@@ -59527,7 +59528,7 @@ toughness=2
 name=Sporeweb Weaver
 abilities=reach
 auto=cantbetargetof(*[blue])
-auto=@damaged(this):life:1 controller && token(Saproling Spo)
+auto=_ENRAGE_life:1 controller && token(Saproling Spo)
 text=Reach, hexproof from blue -- Whenever Sporeweb Weaver is dealt damage, you gain 1 life and create a 1/1 green Saproling creature token.
 mana={2}{G}
 type=Creature
@@ -61288,7 +61289,7 @@ toughness=5
 [/card]
 [card]
 name=Sun-Crowned Hunters
-auto=@damaged(this):damage:3 target(opponent)
+auto=_ENRAGE_damage:3 target(opponent)
 text=Enrage — Whenever Sun-Crowned Hunters is dealt damage, it deals 3 damage to target opponent.
 mana={4}{R}{R}
 type=Creature
@@ -62983,7 +62984,7 @@ toughness=4
 [/card]
 [card]
 name=Temple Altisaur
-auto=lord(other dinosaur|mybattlefield) transforms((,newability[undamageable],newability[@damaged(this):0/-1 ueot]))
+auto=lord(other dinosaur|mybattlefield) transforms((,newability[undamageable],newability[_ENRAGE_0/-1 ueot]))
 text=If a source would deal damage to another Dinosaur you control, prevent all but 1 of that damage.
 mana={4}{W}
 type=Creature
@@ -65056,7 +65057,7 @@ subtype=Legend
 [/card]
 [card]
 name=Tin Street Cadet 
-auto=@combat(blocked) source(this):token(Goblin,Creature Goblin,1/1,red)
+auto=_BLOCKED_token(Goblin,Creature Goblin,1/1,red)
 text=Whenever Tin Street Cadet becomes blocked, create a 1/1 red Goblin creature token.
 mana={R}
 type=Creature
@@ -65864,7 +65865,7 @@ toughness=3
 [/card]
 [card]
 name=Trapjaw Tyrant
-auto=@damaged(this):(blink)forsrc target(creature|opponentbattlefield)
+auto=_ENRAGE_(blink)forsrc target(creature|opponentbattlefield)
 text=Enrage — Whenever Trapjaw Tyrant is dealt damage, exile target creature an opponent controls until Trapjaw Tyrant leaves the battlefield.
 mana={3}{W}{W}
 type=Creature
@@ -65916,7 +65917,7 @@ type=Enchantment
 [card]
 name=Treacherous Link
 target=creature
-auto=teach(creature) transforms((,newability[undamageable],newability[@damaged(this):damage:thatmuch controller]))
+auto=teach(creature) transforms((,newability[undamageable],newability[_ENRAGE_damage:thatmuch controller]))
 text=Enchant creature -- All damage that would be dealt to enchanted creature is dealt to its controller instead.
 mana={1}{B}
 type=Enchantment
@@ -66331,7 +66332,7 @@ toughness=1
 name=Truefire Captain
 abilities=mentor
 auto=_ATTACKING_name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
-auto=@damaged(this):damage:thatmuch target(player)
+auto=_ENRAGE_damage:thatmuch target(player)
 text=Mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.) -- Whenever Truefire Captain is dealt damage, it deals that much damage to target player.
 mana={R}{R}{W}{W}
 type=Creature
@@ -67506,7 +67507,7 @@ type=Instant
 [card]
 name=Urban Daggertooth
 abilities=vigilance
-auto=@damaged(this):_PROLIFERATE_
+auto=_ENRAGE__PROLIFERATE_
 text=Vigilance -- Enrage — Whenever Urban Daggertooth is dealt damage, proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
 mana={2}{G}{G}
 type=Creature
@@ -69736,7 +69737,7 @@ type=Sorcery
 [/card]
 [card]
 name=Vrondiss, Rage of Ancients
-auto=@damaged(this):may name(Create Dragon) token(Dragon Spirit,Creature Dragon Spirit,5/4,red,green) and!( transforms((,newability[@damaged(creature) from(this):all(this) sacrifice],newability[@damaged(player) from(this):all(this) sacrifice])) forever )! 
+auto=_ENRAGE_may name(Create Dragon) token(Dragon Spirit,Creature Dragon Spirit,5/4,red,green) and!( transforms((,newability[@damaged(creature) from(this):all(this) sacrifice],newability[@damaged(player) from(this):all(this) sacrifice])) forever )! 
 auto=@dierolled(*|battlefield) from(controller):may name(Deal 1 damage) damage:1 all(this)
 text=Enrage — Whenever Vrondiss, Rage of Ancients is dealt damage, you may create a 5/4 red and green Dragon Spirit creature token with "When this creature deals damage, sacrifice it." -- Whenever you roll one or more dice, you may have Vrondiss, Rage of Ancients deal 1 damage to itself.
 mana={3}{R}{G}
@@ -70908,7 +70909,7 @@ toughness=3
 [/card]
 [card]
 name=Wildfire Eternal
-auto=@combat(blocked) source(this):life:-4 opponent
+auto=_BLOCKED_life:-4 opponent
 auto=@combat(notblocked) source(this):target(*[instant;sorcery]|myHand) and! ( activate castcard(normal) )!
 text=Afflict 4 (Whenever this creature becomes blocked, defending player loses 4 life.) -- Whenever Wildfire Eternal attacks and isn’t blocked, you may cast an instant or sorcery card from your hand without paying its mana cost.
 mana={3}{R}
