@@ -45,6 +45,14 @@ mana={X}{1}{B}
 type=Sorcery
 [/card]
 [card]
+name=Abandoned Sarcophagus
+auto=lord(*[cycling]|mygraveyard) canplayfromgraveyard
+auto=@movedto(*[cycling]|mygraveyard) from(mystack,mycommandzone,mylibrary,myBattlefield,mysideboard,myexile):name(Move to exile) all(trigger[to]) moveto(myexile)
+text=You may cast spells that have cycling from your graveyard. -- If a card with cycling would be put into your graveyard from anywhere and it wasn't cycled, exile it instead.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Aberrant Mind Sorcerer
 auto=target(*[instant;sorcery]|mygraveyard) name(Choose instant or sorcery and roll a d20) rolld20 20 winability moveto(myhand) winabilityend loseability if compare(lastrollresult)~lessthan~10 then may name(Put on top) moveTo(mylibrary) else moveto(myhand) loseabilityend rolld20end
 text=Psionic Spells — When Aberrant Mind Sorcerer enters the battlefield, choose target instant or sorcery card in your graveyard, then roll a d20. -- 1-9 | You may put that card on top of your library. -- 10-20 | Return that card to your hand.
@@ -9576,6 +9584,17 @@ type=Creature
 subtype=Devil
 power=4
 toughness=3
+[/card]
+[card]
+name=Chainer, Nightmare Adept
+auto={D(*|myhand)}:name(Can play from graveyard) target(creature|mygraveyard) transforms((,newability[canplayfromgraveyard])) ueot limit:1
+autro=@movedto(*[-token]|myBattlefield):name(May gain haste) all(trigger[to]) transforms((,newability[ifnot casted(this) then transforms((,newability[haste])) uynt])) forever
+text=Discard a card: You may cast a creature card from your graveyard this turn. Activate this ability only once each turn. -- Whenever a nontoken creature enters the battlefield under your control, if you didn't cast it from your hand, it gains haste until your next turn.
+mana={2}{B}{R}
+type=Legendary Creature
+subtype=Human Minion
+power=3
+toughness=2
 [/card]
 [card]
 name=Chainer's Torment
@@ -64066,6 +64085,17 @@ text=(As this Saga enters and after your draw step, add a lore counter. Sacrific
 mana={2}{G}
 type=Enchantment
 subtype=Saga
+[/card]
+[card]
+name=The First Sliver
+autostack=if casted(this) then cascade:plibrarycount
+auto=@movedto(sliver|mystack):all(trigger[to]) transforms((,newability[cascade:plibrarycount])) ueot
+text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom of your library in a random order.) -- Sliver spells you cast have cascade.
+mana={W}{U}{B}{R}{G}
+type=Legendary Creature
+subtype=Sliver
+power=7
+toughness=7
 [/card]
 [card]
 name=The Flame of Keld
