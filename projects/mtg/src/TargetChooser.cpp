@@ -54,6 +54,13 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         return NEW TotemChooser(observer, card, maxtargets);
     };
 
+    found = s.find("myeqp");
+    if (found != string::npos)
+    {
+        int maxtargets = 1;
+        return NEW EqpChooser(observer, card, maxtargets);
+    };
+
     found = s.find("mytgt");
     if (found == 0)
     {
@@ -2303,5 +2310,44 @@ bool TotemChooser::equals(TargetChooser * tc)
 }
 
 TotemChooser::~TotemChooser()
+{
+}
+
+//equipment chooser
+bool EqpChooser::canTarget(Targetable * target,bool withoutProtections)
+{
+    if (MTGCardInstance * card = dynamic_cast<MTGCardInstance*>(target))
+    {
+        if(card == source)
+            return false;
+        if(!card->isInPlay(observer))
+            return false;
+		if(card->parentCards.size())
+        {
+			if((card->parentCards.at(0)) == source && (card->hasType(Subtypes::TYPE_EQUIPMENT)))
+                return true;
+        }
+        return false;
+    }
+    return false;
+}
+
+EqpChooser* EqpChooser::clone() const
+{
+    EqpChooser * a = NEW EqpChooser(*this);
+    return a;
+}
+
+bool EqpChooser::equals(TargetChooser * tc)
+{
+
+    EqpChooser  * dtc = dynamic_cast<EqpChooser  *> (tc);
+    if (!dtc)
+        return false;
+
+    return TypeTargetChooser::equals(tc);
+}
+
+EqpChooser::~EqpChooser()
 {
 }

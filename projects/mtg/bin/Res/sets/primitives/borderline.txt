@@ -12303,7 +12303,8 @@ toughness=4
 [/card]
 [card]
 name=Corrosive Ooze
-auto=
+auto=emblem transforms((,newability[lord(creature[counter{0/0.1.CorrosiveEffect}]) transforms((,newability[@each combatends:name(Destroy all equipments) all(myeqp) destroy],newability[@each combatends:name(Destroy all equipments) removeallcounters(0/0.1.CorrosiveEffect)]))])) forever dontremove
+auto=@combat(blocking,blocked) source(this) from(creature[equipped]):name(Destroy all equipments) all(trigger[from]) counter(0/0.1.CorrosiveEffect)
 text=Whenever Corrosive Ooze blocks or becomes blocked by an equipped creature, destroy all Equipment attached to that creature at end of combat.
 mana={1}{G}
 type=Creature
@@ -32979,8 +32980,8 @@ type=Instant
 [/card]
 [card]
 name=Jolrael, Mwonvuli Recluse
-auto=@drawof(player):transforms((,newability[@drawof(player) restriction{once}:token(Cat Jol)])) oneshot
-auto={4}{G}{G}:all(creature|mybattlefield) transforms((,setpower=type:*:myHand,settoughness=type:*:myHand)) ueot
+auto=@drawof(player) restriction{compare(pdrewcount)~equalto~2}:name(Create cat) token(Cat Jol)
+auto={4}{G}{G}:name(All creatures becomes X/X) all(creature|mybattlefield) transforms((,setpower=type:*:myHand,settoughness=type:*:myHand)) ueot
 text=Whenever you draw your second card each turn, create a 2/2 green Cat creature token. -- {4}{G}{G}: Until end of turn, creatures you control have base power and toughness X/X, where X is the number of cards in your hand.
 mana={1}{G}
 type=Legendary Creature
