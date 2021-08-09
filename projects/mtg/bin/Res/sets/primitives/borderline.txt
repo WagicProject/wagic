@@ -46194,10 +46194,10 @@ toughness=1
 [/card]
 [card]
 name=Plaguecrafter
-auto=restriction{type(creature|myBattlefield)~morethan~0}:ability$!sacrifice notatarget(creature|mybattlefield)!$ controller
-auto=restriction{type(creature|opponentBattlefield)~morethan~0}:ability$!sacrifice notatarget(creature|mybattlefield)!$ opponent
-auto=restriction{type(creature|myBattlefield)~lessthan~1}:transforms((,newability[target(*|myhand) reject])) controller
-auto=restriction{type(creature|opponentBattlefield)~lessthan~1}:ability$!name(discard) reject notatarget(*|myhand)!$ opponent
+auto=if type(creature|myBattlefield)~morethan~0 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) sacrifice notatarget(creature|mybattlefield)!$ controller
+auto=if type(creature|opponentBattlefield)~morethan~0 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) sacrifice notatarget(creature|mybattlefield)!$ opponent
+auto=if type(creature|myBattlefield)~equalto~0 then ability$!name(Discard a card) name(Discard a card) reject notatarget(*|myhand)!$ controller
+auto=if type(creature|opponentBattlefield)~equalto~0 then ability$!name(Discard a card) name(Discard a card) reject notatarget(*|myhand)!$ opponent
 text=When Plaguecrafter enters the battlefield, each player sacrifices a creature or planeswalker. Each player who can't discards a card.
 mana={2}{B}
 type=Creature
@@ -60508,8 +60508,53 @@ toughness=2
 [card]
 name=Steel Hellkite
 abilities=flying
-auto={2}:1/0 ueot
-auto=@combatdamaged(player) from(this):phaseaction<postbattle> may {X}:destroy all(*[-land;manacost=X]) opponent limit:1
+auto={2}:name(Gains 1/0) 1/0 ueot
+auto=@combatdamageof(player) from(this):name(Hellkite Effect) counter(0/0.1.HellkiteEffect)
+auto=@combatdamagefoeof(player) from(this):name(Hellkite Effect) counter(0/0.1.HellkiteOppoEffect)
+auto=@each endofturn restriction{compare(hascnthellkiteeffect)~morethan~0}:name(Effect ends) removeallcounters(0/0.1.HellkiteEffect)
+auto=@each endofturn restriction{compare(hascnthellkiteoppoeffect)~morethan~0}:name(Effect ends) removeallcounters(0/0.1.HellkiteOppoEffect)
+auto={C(0/0.-1.HellkiteOppoEffect)}{0}:name(X=0) all(*[-land;manacost=0]|opponentBattlefield) destroy
+auto={C(0/0.-1.HellkiteEffect)}{0}:name(X=0) all(*[-land;manacost=0]|myBattlefield) destroy
+auto={C(0/0.-1.HellkiteOppoEffect)}{1}:name(X=1) all(*[-land;manacost=1]|opponentBattlefield) destroy
+auto={C(0/0.-1.HellkiteEffect)}{1}:name(X=1) all(*[-land;manacost=1]|myBattlefield) destroy
+auto={C(0/0.-1.HellkiteOppoEffect)}{2}:name(X=2) all(*[-land;manacost=2]|opponentBattlefield) destroy
+auto={C(0/0.-1.HellkiteEffect)}{2}:name(X=2) all(*[-land;manacost=2]|myBattlefield) destroy
+auto={C(0/0.-1.HellkiteOppoEffect)}{3}:name(X=3) all(*[-land;manacost=3]|opponentBattlefield) destroy
+auto={C(0/0.-1.HellkiteEffect)}{3}:name(X=3) all(*[-land;manacost=3]|myBattlefield) destroy
+auto={C(0/0.-1.HellkiteOppoEffect)}{4}:name(X=4) all(*[-land;manacost=4]|opponentBattlefield) destroy
+auto={C(0/0.-1.HellkiteEffect)}{4}:name(X=4) all(*[-land;manacost=4]|myBattlefield) destroy
+auto={C(0/0.-1.HellkiteOppoEffect)}{5}:name(X=5) all(*[-land;manacost=5]|opponentBattlefield) destroy
+auto={C(0/0.-1.HellkiteEffect)}{5}:name(X=5) all(*[-land;manacost=5]|myBattlefield) destroy
+auto={C(0/0.-1.HellkiteOppoEffect)}{6}:name(X=6) all(*[-land;manacost=6]|opponentBattlefield) destroy
+auto={C(0/0.-1.HellkiteEffect)}{6}:name(X=6) all(*[-land;manacost=6]|myBattlefield) destroy
+auto={C(0/0.-1.HellkiteOppoEffect)}{7}:name(X=7) all(*[-land;manacost=7]|opponentBattlefield) destroy
+auto={C(0/0.-1.HellkiteEffect)}{7}:name(X=7) all(*[-land;manacost=7]|myBattlefield) destroy
+auto={C(0/0.-1.HellkiteOppoEffect)}{8}:name(X=8) all(*[-land;manacost=8]|opponentBattlefield) destroy
+auto={C(0/0.-1.HellkiteEffect)}{8}:name(X=8) all(*[-land;manacost=8]|myBattlefield) destroy
+auto={C(0/0.-1.HellkiteOppoEffect)}{9}:name(X=9) all(*[-land;manacost=9]|opponentBattlefield) destroy
+auto={C(0/0.-1.HellkiteEffect)}{9}:name(X=9) all(*[-land;manacost=9]|myBattlefield) destroy
+auto={C(0/0.-1.HellkiteOppoEffect)}{10}:name(X=10) all(*[-land;manacost=10]|opponentBattlefield) destroy
+auto={C(0/0.-1.HellkiteEffect)}{10}:name(X=10) all(*[-land;manacost=10]|myBattlefield) destroy
+auto={C(0/0.-1.HellkiteOppoEffect)}{11}:name(X=11) all(*[-land;manacost=11]|opponentBattlefield) destroy
+auto={C(0/0.-1.HellkiteEffect)}{11}:name(X=11) all(*[-land;manacost=11]|myBattlefield) destroy
+auto={C(0/0.-1.HellkiteOppoEffect)}{12}:name(X=12) all(*[-land;manacost=12]|opponentBattlefield) destroy
+auto={C(0/0.-1.HellkiteEffect)}{12}:name(X=12) all(*[-land;manacost=12]|myBattlefield) destroy
+auto={C(0/0.-1.HellkiteOppoEffect)}{13}:name(X=13) all(*[-land;manacost=13]|opponentBattlefield) destroy
+auto={C(0/0.-1.HellkiteEffect)}{13}:name(X=13) all(*[-land;manacost=13]|myBattlefield) destroy
+auto={C(0/0.-1.HellkiteOppoEffect)}{14}:name(X=14) all(*[-land;manacost=14]|opponentBattlefield) destroy
+auto={C(0/0.-1.HellkiteEffect)}{14}:name(X=14) all(*[-land;manacost=14]|myBattlefield) destroy
+auto={C(0/0.-1.HellkiteOppoEffect)}{15}:name(X=15) all(*[-land;manacost=15]|opponentBattlefield) destroy
+auto={C(0/0.-1.HellkiteEffect)}{15}:name(X=15) all(*[-land;manacost=15]|myBattlefield) destroy
+auto={C(0/0.-1.HellkiteOppoEffect)}{16}:name(X=16) all(*[-land;manacost=16]|opponentBattlefield) destroy
+auto={C(0/0.-1.HellkiteEffect)}{16}:name(X=16) all(*[-land;manacost=16]|myBattlefield) destroy
+auto={C(0/0.-1.HellkiteOppoEffect)}{17}:name(X=17) all(*[-land;manacost=17]|opponentBattlefield) destroy
+auto={C(0/0.-1.HellkiteEffect)}{17}:name(X=17) all(*[-land;manacost=17]|myBattlefield) destroy
+auto={C(0/0.-1.HellkiteOppoEffect)}{18}:name(X=18) all(*[-land;manacost=18]|opponentBattlefield) destroy
+auto={C(0/0.-1.HellkiteEffect)}{18}:name(X=18) all(*[-land;manacost=18]|myBattlefield) destroy
+auto={C(0/0.-1.HellkiteOppoEffect)}{19}:name(X=19) all(*[-land;manacost=19]|opponentBattlefield) destroy
+auto={C(0/0.-1.HellkiteEffect)}{19}:name(X=19) all(*[-land;manacost=19]|myBattlefield) destroy
+auto={C(0/0.-1.HellkiteOppoEffect)}{20}:name(X=20) all(*[-land;manacost>=20]|opponentBattlefield) destroy
+auto={C(0/0.-1.HellkiteEffect)}{20}:name(X=20) all(*[-land;manacost>=20]|myBattlefield) destroy
 text=Flying -- {2}: Steel Hellkite gets +1/+0 until end of turn. -- {X}: Destroy each nonland permanent with converted mana cost X whose controller was dealt combat damage by Steel Hellkite this turn. Activate this ability only once each turn.
 mana={6}
 type=Artifact Creature
