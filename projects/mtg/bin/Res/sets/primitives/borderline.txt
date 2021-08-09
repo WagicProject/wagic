@@ -14678,7 +14678,7 @@ type=Instant
 name=Deep Forest Hermit
 auto=vanishing:3
 auto=token(Squirrel,creature squirrel, 1/1,green)*4
-auto=all(creature[squirrels]|myBattlefield) 1/1
+auto=lord(creature[squirrel]|myBattlefield) 1/1
 text=Vanishing 3 (This creature enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Deep Forest Hermit enters the battlefield, create four 1/1 green Squirrel creature tokens. -- Squirrels you control get +1/+1.
 mana={3}{G}{G}
 type=Creature
@@ -18709,7 +18709,7 @@ toughness=2
 [card]
 name=Elvish Rejuvenator
 aicode=activate moveTo(myBattlefield) tap(noevent) target(land|myLibrary)
-auto=name(Reveal Cards) Reveal:5 revealzone(mylibrary) revealuntil(land|mylibrary) optionone choice name(Put a land card) target(land|reveal) moveto(mybattlefield) tap(noevent) optiononeend optiontwo choice name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto=name(Reveal Cards) reveal:5 revealzone(mylibrary) revealuntil(land|mylibrary) optionone choice name(Put a land card) target(land|reveal) moveto(mybattlefield) tap(noevent) optiononeend optiontwo choice name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
 text=When Elvish Rejuvenator enters the battlefield, look at the top five cards of your library. You may put a land card from among them onto the battlefield tapped. Put the rest on the bottom of your library in a random order.
 mana={2}{G}
 type=Creature
@@ -22898,7 +22898,7 @@ type=Instant
 name=Force of Virtue
 other={E(*[white]|myhand)}
 abilities=flash
-auto=all(creature|myBattlefield) 1/1
+auto=lord(creature|myBattlefield) 1/1
 text=If it's not your turn, you may exile a white card from your hand rather than pay this spell's mana cost. -- Flash -- Creatures you control get +1/+1.
 mana={2}{W}{W}
 type=Enchantment
@@ -46615,7 +46615,7 @@ type=Sorcery
 [/card]
 [card]
 name=Potion of Healing
-auto=draw:3 controller
+auto=draw:1 controller
 auto={W}{T}{S}:name(Gain life) life:3 controller
 text=When Potion of Healing enters the battlefield, draw a card. -- {W}, {T}, Sacrifice Potion of Healing: You gain 3 life.
 mana={1}{W}
@@ -47935,7 +47935,7 @@ toughness=4
 [/card]
 [card]
 name=Quakefoot Cyclops
-auto=cantblocktarget(<upto:2>creature)
+auto=cantblocktarget(<upto:2>creature) ueot
 autohand={1}{R}{cycle}:name(cycling) draw:1
 autohand=@cycled(this|hand):target(creature) cantblocktarget
 text=When Quakefoot Cyclops enters the battlefield, up to two target creatures can't block this turn. -- Cycling {1}{R} ({1}{R}, Discard this card: Draw a card.) -- When you cycle Quakefoot Cyclops, target creature can't block this turn.
@@ -64239,7 +64239,7 @@ auto=deplete:2
 auto=target(creature|mygraveyard) moveto(ownerhand)
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) target(creature|mygraveyard) moveto(ownerhand)
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) deplete:2
-auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) all(land|mygraveyard) moveto(battlefield)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) all(land|mygraveyard) moveto(battlefield) && moveTo(mylibrary) all(*|mygraveyard)
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) sacrifice(this)
 text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I, II — Put the top two cards of your library into your graveyard, then you may return a creature card from your graveyard to your hand. -- III — Return all land cards from your graveyard to the battlefield, then shuffle your graveyard into your library.
 mana={3}{G}{G}
@@ -65509,7 +65509,7 @@ toughness=*
 name=Titan Hunter
 auto=@each my end:restriction{-morbid}:life:-4 controller
 auto=@each opponent end:restriction{-morbid}:life:-4 opponent
-auto={1}{B}{S(creature|myBattlefield}:life:4 controller
+auto={1}{B}{S(creature|myBattlefield)}:life:4 controller
 text=At the beginning of each player’s end step, if no creatures died this turn, Titan Hunter deals 4 damage to that player. -- {1}{B}, Sacrifice a creature: You gain 4 life.
 mana={4}{B}
 type=Creature
@@ -68208,7 +68208,7 @@ type=Sorcery
 [card]
 name=Valiant Knight
 auto=lord(other knight|myBattlefield) +1/+1
-auto={3}{W}{W}:all(knights|myBattlefield)) double strike ueot
+auto={3}{W}{W}:all(knights|myBattlefield) double strike ueot
 text=Other Knights you control get +1/+1. -- {3}{W}{W}: Knights you control gain double strike until end of turn.
 mana={3}{W}
 type=Creature
