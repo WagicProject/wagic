@@ -13845,7 +13845,7 @@ toughness=2
 [card]
 name=Daring Fiendbonder
 abilities=haste,mustattack
-autograveyard={1}{B}{E}:target(creature) transform((,newability[counter(0/0,1,Indestructible)],newability[this(counter{0/0.1.Indestructible}>=1) indestructible]))
+autograveyard={1}{B}{E}:target(creature) transform((,newability[counter(0/0.1.Indestructible)],newability[this(counter{0/0.1.Indestructible}>=1) indestructible]))
 text=Haste -- Daring Fiendbonder attacks each combat if able. -- {1}{B}, Exile Daring Fiendbonder from your graveyard: Put an indestructible counter on target creature. Activate this ability only any time you could cast a sorcery.
 mana={3}{B}
 type=Creature
@@ -14678,7 +14678,7 @@ type=Instant
 name=Deep Forest Hermit
 auto=vanishing:3
 auto=token(Squirrel,creature squirrel, 1/1,green)*4
-auto=all(creature[squirrels]|myBattlefield) 1/1
+auto=lord(creature[squirrel]|myBattlefield) 1/1
 text=Vanishing 3 (This creature enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Deep Forest Hermit enters the battlefield, create four 1/1 green Squirrel creature tokens. -- Squirrels you control get +1/+1.
 mana={3}{G}{G}
 type=Creature
@@ -18709,7 +18709,7 @@ toughness=2
 [card]
 name=Elvish Rejuvenator
 aicode=activate moveTo(myBattlefield) tap(noevent) target(land|myLibrary)
-auto=name(Reveal Cards) Reveal:5 revealzone(mylibrary) revealuntil(land|mylibrary) optionone choice name(Put a land card) target(land|reveal) moveto(mybattlefield) tap(noevent) optiononeend optiontwo choice name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto=name(Reveal Cards) reveal:5 revealzone(mylibrary) revealuntil(land|mylibrary) optionone choice name(Put a land card) target(land|reveal) moveto(mybattlefield) tap(noevent) optiononeend optiontwo choice name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
 text=When Elvish Rejuvenator enters the battlefield, look at the top five cards of your library. You may put a land card from among them onto the battlefield tapped. Put the rest on the bottom of your library in a random order.
 mana={2}{G}
 type=Creature
@@ -22898,7 +22898,7 @@ type=Instant
 name=Force of Virtue
 other={E(*[white]|myhand)}
 abilities=flash
-auto=all(creature|myBattlefield) 1/1
+auto=lord(creature|myBattlefield) 1/1
 text=If it's not your turn, you may exile a white card from your hand rather than pay this spell's mana cost. -- Flash -- Creatures you control get +1/+1.
 mana={2}{W}{W}
 type=Enchantment
@@ -33948,8 +33948,8 @@ toughness=1
 [/card]
 [card]
 name=Keensight Mentor
-auto=newability[counter(0/0,1,Vigilance) && (vigilance)forever target(creature[-human]|myBattlefield)]
-auto={1}{W}{T}:counter(1/1,1) all(creature[vigilance]|myBattlefield)
+auto=name(Put vigilance counter) target(creature[-human]|myBattlefield) transforms((,newability[counter(0/0.1.Vigilance)],newability[this(counter{0/0.1.Vigilance}>=1) vigilance])) forever
+auto={1}{W}{T}:name(Put 1/1 counters) all(creature[vigilance]|myBattlefield) counter(1/1)
 text=When Keensight Mentor enters the battlefield, put a vigilance counter on target non-Human creature you control. -- {1}{W}, {T}: Put a +1/+1 counter on each creature you control with vigilance.
 mana={2}{W}
 type=Creature
@@ -46615,7 +46615,7 @@ type=Sorcery
 [/card]
 [card]
 name=Potion of Healing
-auto=draw:3 controller
+auto=draw:1 controller
 auto={W}{T}{S}:name(Gain life) life:3 controller
 text=When Potion of Healing enters the battlefield, draw a card. -- {W}, {T}, Sacrifice Potion of Healing: You gain 3 life.
 mana={1}{W}
@@ -47935,7 +47935,7 @@ toughness=4
 [/card]
 [card]
 name=Quakefoot Cyclops
-auto=cantblocktarget(<upto:2>creature)
+auto=cantblocktarget(<upto:2>creature) ueot
 autohand={1}{R}{cycle}:name(cycling) draw:1
 autohand=@cycled(this|hand):target(creature) cantblocktarget
 text=When Quakefoot Cyclops enters the battlefield, up to two target creatures can't block this turn. -- Cycling {1}{R} ({1}{R}, Discard this card: Draw a card.) -- When you cycle Quakefoot Cyclops, target creature can't block this turn.
@@ -63534,8 +63534,8 @@ otherrestriction=can play artifact,compare(isflipped)~equalto~1
 restriction=compare(isflipped)~equalto~0
 anyzone={0}:doubleside(Tergrid's Lantern)
 autostack=if paid(alternative) then flip(Tergrid's Lantern) forcetype(Legendary Artifact)
-auto=@sacrificed(*[-instant;-sorcery;-token]|opponentbattlefield) restriction{compare(isflipped)~equalto~0}:may name(Put on battlefield) transforms((,newability[all(*[zpos=type:*:opponentgraveyard]|opponentgraveyard) moveto(mybattlefield)])) forever
-auto=@discarded(*[-instant;-sorcery]|opponenthand) restriction{compare(isflipped)~equalto~0}:may name(Put on battlefield) transforms((,newability[all(*[zpos=type:*:opponentgraveyard]|opponentgraveyard) moveto(mybattlefield)])) forever
+auto=@sacrificed(*[-token]|opponentbattlefield) restriction{compare(isflipped)~equalto~0}:all(trigger[to]) moveto(myreveal) and!( transforms((,newability[choice name(Put on battlefield) moveTo(myBattlefield)],newAbility[choice name(Don't put on battlefield) moveto(ownerGraveyard)])) oneshot )!
+auto=@discarded(*[-instant;-sorcery]|opponenthand) restriction{compare(isflipped)~equalto~0}:all(trigger[to]) moveto(myreveal) and!( transforms((,newability[choice name(Put on battlefield) moveTo(myBattlefield)],newAbility[choice name(Don't put on battlefield) moveto(ownerGraveyard)])) oneshot )!
 text=Menace -- Whenever an opponent sacrifices a nontoken permanent or discards a permanent card, you may put that card onto the battlefield under your control from their graveyard. // {3}{B} Tergrid's Lantern
 mana={3}{B}{B}
 type=Legendary Creature
@@ -64239,7 +64239,7 @@ auto=deplete:2
 auto=target(creature|mygraveyard) moveto(ownerhand)
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) target(creature|mygraveyard) moveto(ownerhand)
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.2.Lore}=) deplete:2
-auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) all(land|mygraveyard) moveto(battlefield)
+auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) all(land|mygraveyard) moveto(battlefield) && moveTo(mylibrary) all(*|mygraveyard)
 auto=@counteradded(0/0,1,Lore) from(this):this(counter{0/0.3.Lore}) sacrifice(this)
 text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I, II — Put the top two cards of your library into your graveyard, then you may return a creature card from your graveyard to your hand. -- III — Return all land cards from your graveyard to the battlefield, then shuffle your graveyard into your library.
 mana={3}{G}{G}
@@ -65509,7 +65509,7 @@ toughness=*
 name=Titan Hunter
 auto=@each my end:restriction{-morbid}:life:-4 controller
 auto=@each opponent end:restriction{-morbid}:life:-4 opponent
-auto={1}{B}{S(creature|myBattlefield}:life:4 controller
+auto={1}{B}{S(creature|myBattlefield)}:life:4 controller
 text=At the beginning of each player’s end step, if no creatures died this turn, Titan Hunter deals 4 damage to that player. -- {1}{B}, Sacrifice a creature: You gain 4 life.
 mana={4}{B}
 type=Creature
@@ -67245,8 +67245,8 @@ type=Instant
 [card]
 name=Tyrite Sanctum
 auto={T}:add{C}
-auto={2}{T}:target(creature[legendary]|battlefield) transforms((God,newability[counter(1/1)])) forever
-auto={4}{T}{S}:target(god|battlefield) transform((,newability[counter(0/0,1,Indestructible)],newability[this(counter{0/0.1.Indestructible}>=1) indestructible]))
+auto={2}{T}:name(Creature becomes god) target(creature[legendary]|battlefield) transforms((God,newability[counter(1/1)])) forever
+auto={4}{T}{S}:name(Sacrifice and put indestructible counter) target(*[god]|battlefield) transforms((,newability[counter(0/0.1.Indestructible)],newability[this(counter{0/0.1.Indestructible}>=1) indestructible])) forever dontremove
 text={T}: Add {C}. -- {2}, {T}: Target legendary creature becomes a God in addition to its other types. Put a +1/+1 counter on it. -- {4}, {T}, Sacrifice Tyrite Sanctum: Put an indestructible counter on target God.
 type=Land
 [/card]
@@ -68208,7 +68208,7 @@ type=Sorcery
 [card]
 name=Valiant Knight
 auto=lord(other knight|myBattlefield) +1/+1
-auto={3}{W}{W}:all(knights|myBattlefield)) double strike ueot
+auto={3}{W}{W}:all(knights|myBattlefield) double strike ueot
 text=Other Knights you control get +1/+1. -- {3}{W}{W}: Knights you control gain double strike until end of turn.
 mana={3}{W}
 type=Creature
@@ -69594,7 +69594,26 @@ type=Sorcery
 [card]
 name=Vitality Hunter
 abilities=lifelink
-auto=this(cantargetcard(*[-monstrous]) {X}{W}{W}:becomes(monstrous) forever && newability[counter(0/0,1,Lifelink) && (lifelink)forever target(<upto:X>creature)]
+auto=this(cantargetcard(*[-monstrous]) {1}{W}{W}:name(X=1) all(this) becomes(monstrous) forever && target(<1>creature|Battlefield) transforms((,newability[counter(0/0.1.Lifelink)],newability[this(counter{0/0.1.Lifelink}>=1) lifelink])) forever
+auto=this(cantargetcard(*[-monstrous]) {2}{W}{W}:name(X=2) all(this) becomes(monstrous) forever && target(<upto:2>creature|Battlefield) transforms((,newability[counter(0/0.1.Lifelink)],newability[this(counter{0/0.1.Lifelink}>=1) lifelink])) forever
+auto=this(cantargetcard(*[-monstrous]) {3}{W}{W}:name(X=3) all(this) becomes(monstrous) forever && target(<upto:3>creature|Battlefield) transforms((,newability[counter(0/0.1.Lifelink)],newability[this(counter{0/0.1.Lifelink}>=1) lifelink])) forever
+auto=this(cantargetcard(*[-monstrous]) {4}{W}{W}:name(X=4) all(this) becomes(monstrous) forever && target(<upto:4>creature|Battlefield) transforms((,newability[counter(0/0.1.Lifelink)],newability[this(counter{0/0.1.Lifelink}>=1) lifelink])) forever
+auto=this(cantargetcard(*[-monstrous]) {5}{W}{W}:name(X=5) all(this) becomes(monstrous) forever && target(<upto:5>creature|Battlefield) transforms((,newability[counter(0/0.1.Lifelink)],newability[this(counter{0/0.1.Lifelink}>=1) lifelink])) forever
+auto=this(cantargetcard(*[-monstrous]) {6}{W}{W}:name(X=6) all(this) becomes(monstrous) forever && target(<upto:6>creature|Battlefield) transforms((,newability[counter(0/0.1.Lifelink)],newability[this(counter{0/0.1.Lifelink}>=1) lifelink])) forever
+auto=this(cantargetcard(*[-monstrous]) {7}{W}{W}:name(X=7) all(this) becomes(monstrous) forever && target(<upto:7>creature|Battlefield) transforms((,newability[counter(0/0.1.Lifelink)],newability[this(counter{0/0.1.Lifelink}>=1) lifelink])) forever
+auto=this(cantargetcard(*[-monstrous]) {8}{W}{W}:name(X=8) all(this) becomes(monstrous) forever && target(<upto:8>creature|Battlefield) transforms((,newability[counter(0/0.1.Lifelink)],newability[this(counter{0/0.1.Lifelink}>=1) lifelink])) forever
+auto=this(cantargetcard(*[-monstrous]) {9}{W}{W}:name(X=9) all(this) becomes(monstrous) forever && target(<upto:9>creature|Battlefield) transforms((,newability[counter(0/0.1.Lifelink)],newability[this(counter{0/0.1.Lifelink}>=1) lifelink])) forever
+auto=this(cantargetcard(*[-monstrous]) {10}{W}{W}:name(X=10) all(this) becomes(monstrous) forever && target(<upto:10>creature|Battlefield) transforms((,newability[counter(0/0.1.Lifelink)],newability[this(counter{0/0.1.Lifelink}>=1) lifelink])) forever
+auto=this(cantargetcard(*[-monstrous]) {11}{W}{W}:name(X=11) all(this) becomes(monstrous) forever && target(<upto:11>creature|Battlefield) transforms((,newability[counter(0/0.1.Lifelink)],newability[this(counter{0/0.1.Lifelink}>=1) lifelink])) forever
+auto=this(cantargetcard(*[-monstrous]) {12}{W}{W}:name(X=12) all(this) becomes(monstrous) forever && target(<upto:12>creature|Battlefield) transforms((,newability[counter(0/0.1.Lifelink)],newability[this(counter{0/0.1.Lifelink}>=1) lifelink])) forever
+auto=this(cantargetcard(*[-monstrous]) {13}{W}{W}:name(X=13) all(this) becomes(monstrous) forever && target(<upto:13>creature|Battlefield) transforms((,newability[counter(0/0.1.Lifelink)],newability[this(counter{0/0.1.Lifelink}>=1) lifelink])) forever
+auto=this(cantargetcard(*[-monstrous]) {14}{W}{W}:name(X=14) all(this) becomes(monstrous) forever && target(<upto:14>creature|Battlefield) transforms((,newability[counter(0/0.1.Lifelink)],newability[this(counter{0/0.1.Lifelink}>=1) lifelink])) forever
+auto=this(cantargetcard(*[-monstrous]) {15}{W}{W}:name(X=15) all(this) becomes(monstrous) forever && target(<upto:15>creature|Battlefield) transforms((,newability[counter(0/0.1.Lifelink)],newability[this(counter{0/0.1.Lifelink}>=1) lifelink])) forever
+auto=this(cantargetcard(*[-monstrous]) {16}{W}{W}:name(X=16) all(this) becomes(monstrous) forever && target(<upto:16>creature|Battlefield) transforms((,newability[counter(0/0.1.Lifelink)],newability[this(counter{0/0.1.Lifelink}>=1) lifelink])) forever
+auto=this(cantargetcard(*[-monstrous]) {17}{W}{W}:name(X=17) all(this) becomes(monstrous) forever && target(<upto:17>creature|Battlefield) transforms((,newability[counter(0/0.1.Lifelink)],newability[this(counter{0/0.1.Lifelink}>=1) lifelink])) forever
+auto=this(cantargetcard(*[-monstrous]) {18}{W}{W}:name(X=18) all(this) becomes(monstrous) forever && target(<upto:18>creature|Battlefield) transforms((,newability[counter(0/0.1.Lifelink)],newability[this(counter{0/0.1.Lifelink}>=1) lifelink])) forever
+auto=this(cantargetcard(*[-monstrous]) {19}{W}{W}:name(X=19) all(this) becomes(monstrous) forever && target(<upto:19>creature|Battlefield) transforms((,newability[counter(0/0.1.Lifelink)],newability[this(counter{0/0.1.Lifelink}>=1) lifelink])) forever
+auto=this(cantargetcard(*[-monstrous]) {20}{W}{W}:name(X=20) all(this) becomes(monstrous) forever && target(<anyamount>creature|Battlefield) transforms((,newability[counter(0/0.1.Lifelink)],newability[this(counter{0/0.1.Lifelink}>=1) lifelink])) forever
 text=Lifelink -- {X}{W}{W}: Monstrosity X. (If this creature isn’t monstrous, put X +1/+1 counters on it and it becomes monstrous.) -- When Vitality Hunter becomes monstrous, put a lifelink counter on each of up to X target creatures.
 mana={3}{W}
 type=Creature
@@ -71592,8 +71611,8 @@ toughness=1
 [/card]
 [card]
 name=Wingspan Mentor
-auto=newability[counter(0/0,1,Flying) && (flying)forever target(creature[-human]|myBattlefield)]
-auto={2}{U}{T}:counter(1/1,1) all(creature[flying]|myBattlefield)
+auto=name(Put flying counter) target(creature[-human]|myBattlefield) transforms((,newability[counter(0/0.1.Flying)],newability[this(counter{0/0.1.Flying}>=1) flying])) forever
+auto={2}{U}{T}:name(Put 1/1 counters) all(creature[flying]|myBattlefield) counter(1/1)
 text=When Wingspan Mentor enters the battlefield, put a flying counter on target non-Human creature you control. -- {2}{U}, {T}: Put a +1/+1 counter on each creature you control with flying.
 mana={2}{U}
 type=Creature
