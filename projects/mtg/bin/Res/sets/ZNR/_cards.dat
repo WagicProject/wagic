@@ -3,8 +3,23 @@ author=Wagic Team
 name=Zendikar Rising
 orderindex=EXP-ZZG.ZNR
 year=2020-09-25
-total=336
+total=364
 [/meta]
+[card]
+primitive=Plant
+id=-495210
+rarity=T
+[/card]
+[card]
+primitive=Insect
+id=-495205
+rarity=T
+[/card]
+[card]
+primitive=Cat Beast
+id=-495188
+rarity=T
+[/card]
 [card]
 primitive=Construct
 id=-491897
@@ -1684,4 +1699,129 @@ rarity=L
 primitive=Forest
 id=495102
 rarity=L
+[/card]
+[card]
+primitive=Canyon Jerboa
+id=495186
+rarity=U
+[/card]
+[card]
+primitive=Fearless Fledgling
+id=495187
+rarity=U
+[/card]
+[card]
+primitive=Felidar Retreat
+id=495188
+rarity=R
+[/card]
+[card]
+primitive=Makindi Ox
+id=495189
+rarity=C
+[/card]
+[card]
+primitive=Prowling Felidar
+id=495190
+rarity=C
+[/card]
+[card]
+primitive=Ruin Crab
+id=495191
+rarity=U
+[/card]
+[card]
+primitive=Skyclave Squid
+id=495192
+rarity=C
+[/card]
+[card]
+primitive=Dreadwurm
+id=495193
+rarity=C
+[/card]
+[card]
+primitive=Skyclave Shade
+id=495194
+rarity=R
+[/card]
+[card]
+primitive=Akoum Hellhound
+id=495195
+rarity=C
+[/card]
+[card]
+primitive=Moraug, Fury of Akoum
+id=495196
+rarity=M
+[/card]
+[card]
+primitive=Skyclave Geopede
+id=495197
+rarity=U
+[/card]
+[card]
+primitive=Spitfire Lagac
+id=495198
+rarity=C
+[/card]
+[card]
+primitive=Valakut Exploration
+id=495199
+rarity=R
+[/card]
+[card]
+primitive=Canopy Baloth
+id=495200
+rarity=C
+[/card]
+[card]
+primitive=Kazandu Mammoth
+id=495201
+rarity=R
+[/card]
+[card]
+primitive=Kazandu Valley
+id=495202
+rarity=T
+[/card]
+[card]
+primitive=Kazandu Nectarpot
+id=495203
+rarity=C
+[/card]
+[card]
+primitive=Lotus Cobra
+id=495204
+rarity=R
+[/card]
+[card]
+primitive=Scute Swarm
+id=495205
+rarity=R
+[/card]
+[card]
+primitive=Skyclave Pick-Axe
+id=495206
+rarity=U
+[/card]
+[card]
+primitive=Territorial Scythecat
+id=495207
+rarity=C
+[/card]
+[card]
+primitive=Brushfire Elemental
+id=495208
+rarity=U
+[/card]
+[card]
+primitive=Omnath, Locus of Creation
+id=495209
+rarity=M
+[/card]
+[card]
+primitive=Phylath, World Sculptor
+id=495210
+rarity=R
 [/card]
