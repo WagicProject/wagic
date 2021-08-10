@@ -57046,7 +57046,7 @@ toughness=3
 [/card]
 [card]
 name=Skittering Crustacean
-auto=this(cantargetcard(*[-monstrous]) {6}{U}:becomes(monstrous) forever && counter(1/1,4) && transforms((,newAbility[opponentshroud])) forever
+auto=this(cantargetcard(*[-monstrous]) {6}{U}:becomes(monstrous) forever && counter(1/1,4) && transforms((,newability[opponentshroud])) forever
 text={6}{U}: Monstrosity 4. (If this creature isn’t monstrous, put four +1/+1 counters on it and it becomes monstrous.) -- As long as Skittering Crustacean is monstrous, it has hexproof. (It can’t be the target of spells or abilities your opponents control.)
 mana={2}{U}
 type=Creature
@@ -63534,8 +63534,8 @@ otherrestriction=can play artifact,compare(isflipped)~equalto~1
 restriction=compare(isflipped)~equalto~0
 anyzone={0}:doubleside(Tergrid's Lantern)
 autostack=if paid(alternative) then flip(Tergrid's Lantern) forcetype(Legendary Artifact)
-auto=@sacrificed(*[-token]|opponentbattlefield) restriction{compare(isflipped)~equalto~0}:all(trigger[to]) moveto(myreveal) and!( transforms((,newability[choice name(Put on battlefield) moveTo(myBattlefield)],newAbility[choice name(Don't put on battlefield) moveto(ownerGraveyard)])) oneshot )!
-auto=@discarded(*[-instant;-sorcery]|opponenthand) restriction{compare(isflipped)~equalto~0}:all(trigger[to]) moveto(myreveal) and!( transforms((,newability[choice name(Put on battlefield) moveTo(myBattlefield)],newAbility[choice name(Don't put on battlefield) moveto(ownerGraveyard)])) oneshot )!
+auto=@sacrificed(*[-token]|opponentbattlefield) restriction{compare(isflipped)~equalto~0}:all(trigger[to]) moveto(myreveal) and!( transforms((,newability[choice name(Put on battlefield) moveTo(myBattlefield)],newability[choice name(Don't put on battlefield) moveto(ownerGraveyard)])) oneshot )!
+auto=@discarded(*[-instant;-sorcery]|opponenthand) restriction{compare(isflipped)~equalto~0}:name(Put on battlefield) transforms((,newability[all(*[zpos=type:*:opponentgraveyard]|opponentgraveyard) moveto(myreveal) and!( transforms((,newability[choice name(Put on battlefield) moveTo(myBattlefield)],newability[choice name(Don't put on battlefield) moveto(ownerGraveyard)])) oneshot )!])) oneshot
 text=Menace -- Whenever an opponent sacrifices a nontoken permanent or discards a permanent card, you may put that card onto the battlefield under your control from their graveyard. // {3}{B} Tergrid's Lantern
 mana={3}{B}{B}
 type=Legendary Creature
