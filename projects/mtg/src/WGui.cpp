@@ -1967,6 +1967,7 @@ bool WGuiFilters::isAvailable(int type)
             if (!wgfi || wgfi->mState != WGuiFilterItem::STATE_FINISHED) continue;
             switch (type)
             {
+            case WGuiFilterItem::FILTER_TYPE:
             case WGuiFilterItem::FILTER_SUBTYPE:
             case WGuiFilterItem::FILTER_BASIC:
                 return true;
@@ -2166,7 +2167,7 @@ void WGuiFilterItem::updateValue()
         }
         else if (filterType == FILTER_TOUGH)
         {
-            for (int i = 0; i < 17; i++)
+            for (int i = 0; i < 18; i++)
             {
                 sprintf(buf_code, "tgh:%i;", i);
                 sprintf(buf_name, "%i toughness", i);

@@ -368,12 +368,12 @@ Player * Rules::loadPlayerRandomThree(GameObserver* observer, int isAI)
     string lands[] = { "", "forest", "island", "mountain", "swamp", "plains", "" };
 
     MTGDeck * tempDeck = NEW MTGDeck(MTGCollection());
-    tempDeck->addRandomCards(4, 0, 0, -1, lands[color1].c_str());
-    tempDeck->addRandomCards(4, 0, 0, -1, lands[color2].c_str());
-    tempDeck->addRandomCards(4, 0, 0, -1, lands[color3].c_str());
-    tempDeck->addRandomCards(4, 0, 0, 'R', lands[color1].c_str());
-    tempDeck->addRandomCards(4, 0, 0, 'R', lands[color2].c_str());
-    tempDeck->addRandomCards(4, 0, 0, 'R', lands[color3].c_str());
+    tempDeck->addRandomCards(5, 0, 0, -1, lands[color1].c_str());
+    tempDeck->addRandomCards(5, 0, 0, -1, lands[color2].c_str());
+    tempDeck->addRandomCards(5, 0, 0, -1, lands[color3].c_str());
+    tempDeck->addRandomCards(3, 0, 0, 'R', lands[color1].c_str());
+    tempDeck->addRandomCards(3, 0, 0, 'R', lands[color2].c_str());
+    tempDeck->addRandomCards(3, 0, 0, 'R', lands[color3].c_str());
     tempDeck->addRandomCards(1, 0, 0, 'U', "land");
     tempDeck->addRandomCards(1, 0, 0, 'R', "land");
     tempDeck->addRandomCards(18, 0, 0, -1, "creature", colors, nbcolors);
@@ -401,9 +401,9 @@ Player * Rules::loadPlayerRandomFive(GameObserver* observer, int isAI)
 { 
     MTGDeck * tempDeck = NEW MTGDeck(MTGCollection());
 
-    tempDeck->addRandomCards(20, 0, 0, -1, "land");
+    tempDeck->addRandomCards(24, 0, 0, -1, "land");
     tempDeck->addRandomCards(10, 0, 0, -1, "legendary");
-    tempDeck->addRandomCards(30, 0, 0, -1, "");
+    tempDeck->addRandomCards(26, 0, 0, -1, "");
     
     string deckFile = "random";
     string deckFileSmall = "random";
@@ -465,12 +465,13 @@ Player * Rules::loadPlayerHorde(GameObserver* observer, int isAI)
 
     MTGDeck * tempDeck = NEW MTGDeck(MTGCollection());
     tempDeck->addRandomCards(14, 0, 0, -1, lands[tribeColor[0]].c_str());
-    tempDeck->addRandomCards(5, 0, 0, 'R', lands[tribeColor[0]].c_str());
-    tempDeck->addRandomCards(5, 0, 0, -1, "land");
-    tempDeck->addRandomCards(21, 0, 0, -1, randomTribe);
+    tempDeck->addRandomCards(6, 0, 0, 'R', lands[tribeColor[0]].c_str());
+    tempDeck->addRandomCards(4, 0, 0, -1, "land");
+    tempDeck->addRandomCards(20, 0, 0, -1, randomTribe);    
     tempDeck->addRandomCards(5, 0, 0, -1, "enchantment", tribeColor, nbColors);
     tempDeck->addRandomCards(5, 0, 0, -1, "instant", tribeColor, nbColors);
     tempDeck->addRandomCards(5, 0, 0, -1, "sorcery", tribeColor, nbColors);
+    tempDeck->addRandomCards(1, 0, 0, -1, "artifact", tribeColor, nbColors);
 
     string deckFile = "random";
     string deckFileSmall = "random";
