@@ -474,6 +474,19 @@ int MTGAllCards::load(const string& config_file, const string &set_name)
 
 int MTGAllCards::load(const string &config_file, int set_id)
 {
+    izfstream limitedFile;
+    vector<string> limitedCardList;
+    if (JFileSystem::GetInstance()->openForRead(limitedFile, "LimitedCardList.txt"))
+    {
+        string limitedLine;
+        while (getline(limitedFile,limitedLine))
+        {
+            if (limitedLine.size())
+                limitedCardList.push_back(limitedLine);
+        }
+    }
+    limitedFile.close();
+
     conf_read_mode = 0;
     MTGSetInfo *si = setlist.getInfo(set_id);
 
@@ -543,6 +556,16 @@ int MTGAllCards::load(const string &config_file, int set_id)
             if (s[0] == '[' && s[1] == '/')
             {
                 conf_read_mode = MTGAllCards::READ_ANYTHING;
+                if (limitedCardList.size() && tempPrimitive){
+                    bool found = false;
+                    for(size_t i = 0; i < limitedCardList.size(); i++)
+                        if(limitedCardList.at(i) == tempPrimitive->name)
+                            found = true;
+                    if(!found){
+                        tempCard = NULL;
+                        tempPrimitive = NULL;
+                    }
+                }
                 if (tempPrimitive) tempPrimitive = addPrimitive(tempPrimitive, tempCard);
                 if (tempCard)
                 {
