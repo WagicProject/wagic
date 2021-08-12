@@ -5947,16 +5947,27 @@ name=Blast Zone
 auto=counter(0/0,1,Charge)
 auto={T}:Add{C}
 auto={X}{X}{T}:counter(0/0,XX,Charge)
-auto={3}{T}{S}:this(counter{0/0.1.Charge}<1) {T}{S}:destroy all(*[-land;manacost=0])
-auto={3}{T}{S}:this(counter{0/0.1.Charge}=) {T}{S}:destroy all(*[-land;manacost=1])
-auto={3}{T}{S}:this(counter{0/0.2.Charge}=) {T}{S}:destroy all(*[-land;manacost=2])
-auto={3}{T}{S}:this(counter{0/0.3.Charge}=) {T}{S}:destroy all(*[-land;manacost=3])
-auto={3}{T}{S}:this(counter{0/0.4.Charge}=) {T}{S}:destroy all(*[-land;manacost=4])
-auto={3}{T}{S}:this(counter{0/0.5.Charge}=) {T}{S}:destroy all(*[-land;manacost=5])
-auto={3}{T}{S}:this(counter{0/0.6.Charge}=) {T}{S}:destroy all(*[-land;manacost=6])
-auto={3}{T}{S}:this(counter{0/0.7.Charge}=) {T}{S}:destroy all(*[-land;manacost=7])
-auto={3}{T}{S}:this(counter{0/0.8.Charge}=) {T}{S}:destroy all(*[-land;manacost=8])
-auto={3}{T}{S}:this(counter{0/0.9.Charge}=) {T}{S}:destroy all(*[-land;manacost=9])
+auto=this(counter{0/0.1.Charge}=0) {3}{T}{S}:name(Destroy all permanent with manacost 0) name(Destroy all permanent with manacost 0) destroy all(*[-land;manacost=0])
+auto=this(counter{0/0.1.Charge}=1) {3}{T}{S}:name(Destroy all permanent with manacost 1) name(Destroy all permanent with manacost 1) destroy all(*[-land;manacost=1])
+auto=this(counter{0/0.1.Charge}=2) {3}{T}{S}:name(Destroy all permanent with manacost 2) name(Destroy all permanent with manacost 2) destroy all(*[-land;manacost=2])
+auto=this(counter{0/0.1.Charge}=3) {3}{T}{S}:name(Destroy all permanent with manacost 3) name(Destroy all permanent with manacost 3) destroy all(*[-land;manacost=3])
+auto=this(counter{0/0.1.Charge}=4) {3}{T}{S}:name(Destroy all permanent with manacost 4) name(Destroy all permanent with manacost 4) destroy all(*[-land;manacost=4])
+auto=this(counter{0/0.1.Charge}=5) {3}{T}{S}:name(Destroy all permanent with manacost 5) name(Destroy all permanent with manacost 5) destroy all(*[-land;manacost=5])
+auto=this(counter{0/0.1.Charge}=6) {3}{T}{S}:name(Destroy all permanent with manacost 6) name(Destroy all permanent with manacost 6) destroy all(*[-land;manacost=6])
+auto=this(counter{0/0.1.Charge}=7) {3}{T}{S}:name(Destroy all permanent with manacost 7) name(Destroy all permanent with manacost 7) destroy all(*[-land;manacost=7])
+auto=this(counter{0/0.1.Charge}=8) {3}{T}{S}:name(Destroy all permanent with manacost 8) name(Destroy all permanent with manacost 8) destroy all(*[-land;manacost=8])
+auto=this(counter{0/0.1.Charge}=9) {3}{T}{S}:name(Destroy all permanent with manacost 9) name(Destroy all permanent with manacost 9) destroy all(*[-land;manacost=9])
+auto=this(counter{0/0.1.Charge}=10) {3}{T}{S}:name(Destroy all permanent with manacost 10) name(Destroy all permanent with manacost 10) destroy all(*[-land;manacost=10])
+auto=this(counter{0/0.1.Charge}=11) {3}{T}{S}:name(Destroy all permanent with manacost 11) name(Destroy all permanent with manacost 11) destroy all(*[-land;manacost=11])
+auto=this(counter{0/0.1.Charge}=12) {3}{T}{S}:name(Destroy all permanent with manacost 12) name(Destroy all permanent with manacost 12) destroy all(*[-land;manacost=12])
+auto=this(counter{0/0.1.Charge}=13) {3}{T}{S}:name(Destroy all permanent with manacost 13) name(Destroy all permanent with manacost 13) destroy all(*[-land;manacost=13])
+auto=this(counter{0/0.1.Charge}=14) {3}{T}{S}:name(Destroy all permanent with manacost 14) name(Destroy all permanent with manacost 14) destroy all(*[-land;manacost=14])
+auto=this(counter{0/0.1.Charge}=15) {3}{T}{S}:name(Destroy all permanent with manacost 15) name(Destroy all permanent with manacost 15) destroy all(*[-land;manacost=15])
+auto=this(counter{0/0.1.Charge}=16) {3}{T}{S}:name(Destroy all permanent with manacost 16) name(Destroy all permanent with manacost 16) destroy all(*[-land;manacost=16])
+auto=this(counter{0/0.1.Charge}=17) {3}{T}{S}:name(Destroy all permanent with manacost 17) name(Destroy all permanent with manacost 17) destroy all(*[-land;manacost=17])
+auto=this(counter{0/0.1.Charge}=18) {3}{T}{S}:name(Destroy all permanent with manacost 18) name(Destroy all permanent with manacost 18) destroy all(*[-land;manacost=18])
+auto=this(counter{0/0.1.Charge}=19) {3}{T}{S}:name(Destroy all permanent with manacost 19) name(Destroy all permanent with manacost 19) destroy all(*[-land;manacost=19])
+auto=this(counter{0/0.1.Charge}>=20) {3}{T}{S}:name(Destroy all permanent with manacost 20) name(Destroy all permanent with manacost 20) destroy all(*[-land;manacost>=20])
 text=Blast Zone enters the battlefield with a charge counter on it. -- {T}: Add {C}. -- {X}{X}, {T}: Put X charge counters on Blast Zone. -- {3}, {T}, Sacrifice Blast Zone: Destroy each nonland permanent with converted mana cost equal to the number of charge counters on Blast Zone.
 type=Land
 [/card]
@@ -46742,10 +46753,12 @@ type=Artifact
 name=Pox
 auto=life:-thirdupopponentlifetotal opponent
 auto=life:-thirduplifetotal controller
-auto=sacrifice notatarget(<thirduptype:creature:mybattlefield>creature|mybattlefield)
-auto=ability$! sacrifice notatarget(<thirduptype:creature:opponentbattlefield>creature|mybattlefield) !$ opponent
-auto=sacrifice notatarget(<thirduptype:land:mybattlefield>land|mybattlefield)
-auto=ability$! sacrifice notatarget(<thirduptype:land:opponentbattlefield>land|mybattlefield) !$ opponent
+auto=ability$!name(Discard cards) name(Discard cards) reject notatarget(<thirduptype:*:myhand>*|myhand)!$ controller
+auto=ability$!name(Discard cards) name(Discard cards) reject notatarget(<thirduptype:*:myhand>*|myhand)!$ opponent
+auto=ability$!name(Sacrifice creatures) name(Sacrifice creatures) sacrifice notatarget(<thirduptype:creature:mybattlefield>creature|mybattlefield)!$ controller
+auto=ability$!name(Sacrifice creatures) name(Sacrifice creatures) sacrifice notatarget(<thirduptype:creature:mybattlefield>creature|mybattlefield)!$ opponent
+auto=ability$!name(Sacrifice lands) name(Sacrifice lands) sacrifice notatarget(<thirduptype:land:mybattlefield>land|mybattlefield)!$ controller
+auto=ability$!name(Sacrifice lands) name(Sacrifice lands) sacrifice notatarget(<thirduptype:land:mybattlefield>land|mybattlefield)!$ opponent
 text=Each player loses a third of his or her life, then discards a third of the cards in his or her hand, then sacrifices a third of the creatures he or she controls, then sacrifices a third of the lands he or she controls. Round up each time.
 mana={B}{B}{B}
 type=Sorcery
