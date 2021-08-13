@@ -27800,7 +27800,7 @@ toughness=3
 [/card]
 [card]
 name=Haazda Marshal
-auto=_BATALLION_create(soldier:creature soldier:1/1:white:lifelink)
+auto=_BATTALION_create(soldier:creature soldier:1/1:white:lifelink)
 text=Whenever Haazda Marshal and at least two other creatures attack, create a 1/1 white Soldier creature token with lifelink.
 mana={W}
 type=Creature
@@ -35563,7 +35563,7 @@ type=Artifact
 [card]
 name=Kytheon, Hero of Akros
 auto=@movedto(Moonmist|stack):name(Transform Human Soldier) moveto(ownerBattlefield) && flip(Gideon, Battle-Forged)
-auto=_BATALLION_moveto(exile) and!( moveto(mybattlefield) and!(counter(0/0,3,Loyalty) && flip(Gideon, Battle-Forged)
+auto=_BATTALION_moveto(exile) and!( moveto(mybattlefield) and!(counter(0/0,3,Loyalty) && flip(Gideon, Battle-Forged)
 auto={2}{W}:all(this) indestructible ueot
 text=At end of combat, if Kytheon, Hero of Akros and at least two other creatures attacked this combat, exile Kytheon, then return him to the battlefield transformed under his owner's control. -- {2}{W}: Kytheon gains indestructible until end of turn.
 mana={W}
@@ -38349,7 +38349,7 @@ type=Instant
 [/card]
 [card]
 name=Makeshift Battalion
-auto=_BATALLION_counter(1/1)
+auto=_BATTALION_counter(1/1)
 text=Whenever Makeshift Battalion and at least two other creatures attack, put a +1/+1 counter on Makeshift Battalion.
 mana={2}{W}
 type=Creature
