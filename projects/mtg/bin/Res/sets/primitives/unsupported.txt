@@ -1622,48 +1622,6 @@ mana={1}{B}
 type=Enchantment
 [/card]
 [card]
-name=Chance Encounter
-text=Whenever you win a coin flip, put a luck counter on Chance Encounter. --  -- At the beginning of your upkeep, if Chance Encounter has ten or more luck counters on it, you win the game.
-mana={2}{R}{R}
-type=Enchantment
-[/card]
-[card]
-name=Chancellor of the Annex
-text=You may reveal this card from your opening hand. If you do, when each opponent casts his or her first spell of the game, counter that spell unless that player pays {1}. -- Flying -- Whenever an opponent casts a spell, counter it unless that player pays {1}.
-mana={4}{W}{W}{W}
-type=Creature
-subtype=Angel
-power=5
-toughness=6
-[/card]
-[card]
-name=Chancellor of the Dross
-text=You may reveal this card from your opening hand. If you do, at the beginning of the first upkeep, each opponent loses 3 life, then you gain life equal to the life lost this way. -- Flying, lifelink
-mana={4}{B}{B}{B}
-type=Creature
-subtype=Vampire
-power=6
-toughness=6
-[/card]
-[card]
-name=Chancellor of the Forge
-text=You may reveal this card from your opening hand. If you do, at the beginning of the first upkeep, put a 1/1 red Goblin creature token with haste onto the battlefield. -- When Chancellor of the Forge enters the battlefield, put X 1/1 red Goblin creature tokens with haste onto the battlefield, where X is the number of creatures you control.
-mana={4}{R}{R}{R}
-type=Creature
-subtype=Giant
-power=5
-toughness=5
-[/card]
-[card]
-name=Chancellor of the Spires
-text=You may reveal this card from your opening hand. If you do, at the beginning of the first upkeep, each opponent puts the top seven cards of his or her library into his or her graveyard. -- Flying -- When Chancellor of the Spires enters the battlefield, you may cast target instant or sorcery card from an opponent's graveyard without paying its mana cost.
-mana={4}{U}{U}{U}
-type=Creature
-subtype=Sphinx
-power=5
-toughness=7
-[/card]
-[card]
 name=Chandra's Incinerator
 text=This spell costs {X} less to cast, where X is the total amount of noncombat damage dealt to your opponents this turn. -- Trample -- Whenever a source you control deals noncombat damage to an opponent, Chandra's Incinerator deals that much damage to target creature or planeswalker that player controls.
 mana={5}{R}
@@ -1824,12 +1782,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Chronomantic Escape
-text=Until your next turn, creatures can't attack you. Exile Chronomantic Escape with three time counters on it. -- Suspend 3—{2}{W} (Rather than cast this card from your hand, you may pay {2}{W} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
-mana={4}{W}{W}
-type=Sorcery
-[/card]
-[card]
 name=Circle of Protection: Art
 text=As Circle of Protection: Art comes into play, choose an artist. -- {1}{W}: The next time a source of your choice by the chosen artist would deal damage to you this turn, prevent that damage. -- {1}{W}: Return Circle of Protection: Art to its owner's hand.
 mana={1}{W}
@@ -1867,12 +1819,6 @@ mana={3}
 type=Artifact Creature
 power=1
 toughness=1
-[/card]
-[card]
-name=Clear the Land
-text=Each player reveals the top five cards of his or her library, puts all land cards revealed this way onto the battlefield tapped, and exiles the rest.
-mana={2}{G}
-type=Sorcery
 [/card]
 [card]
 name=Clergy of the Holy Nimbus
