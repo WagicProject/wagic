@@ -1169,7 +1169,7 @@ subtype=Inzerva
 [card]
 name=Jace, Arcane Strategist
 auto=counter(0/0,4,loyalty)
-auto=@drawof(player):transforms((,newability[@drawof(player) restriction{once}:counter(1/1,1) target(creature|myBattlefield)])) ueot
+auto=_SECOND_DRAW_counter(1/1) target(creature|myBattlefield)
 auto={C(0/0,1,Loyalty)}:name(+1: Draw a card) draw:1 controller
 auto={C(0/0,-7,Loyalty)}:name(-7: Creatures you control can't be blocked) all(creature|myBattlefield) unblockable
 text=Whenever you draw your second card each turn, put a +1/+1 counter on target creature you control. -- +1: Draw a card. -- -7: Creatures you control can't be blocked this turn.
