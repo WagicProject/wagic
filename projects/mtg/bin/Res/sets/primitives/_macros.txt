@@ -54,6 +54,12 @@
 # Enrage
 #AUTO_DEFINE _ENRAGE_ @damaged(this):
 
+# Whenever you draw your second card each turn
+#AUTO_DEFINE _SECOND_DRAW_ @drawof(player) restriction{compare(pdrewcount)~equalto~2}:
+
+# Batallion
+#AUTO_DEFINE _BATALLION_ @combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:
+
 # Champion
 #AUTO_DEFINE _CHAMPION_($Word) aslongas(other $word|myBattlefield) choice notAtarget(other $word|myBattlefield) (blink)forsrc oneshot
 

@@ -6528,7 +6528,8 @@ subtype=Equipment
 [/card]
 [card]
 name=Bloodhaze Wolverine
-auto=@drawof(player):transforms((,newability[@drawof(player) restriction{once}:1/1 && first strike])) ueot
+auto=_SECOND_DRAW_1/1 ueot
+auto=_SECOND_DRAW_first strike ueot
 text=Whenever you draw your second card each turn, Bloodhaze Wolverine gets +1/+1 and gains first strike until end of turn.
 mana={1}{R}
 type=Creature
@@ -20673,7 +20674,7 @@ toughness=1
 [card]
 name=Faerie Vandal
 abilities=flash,flying
-auto=@drawof(player):transforms((,newability[@drawof(player) restriction{once}:counter(1/1,1)])) ueot
+auto=_SECOND_DRAW_counter(1/1)
 text=Flash -- Flying -- Whenever you draw your second card each turn, put a +1/+1 counter on Faerie Vandal.
 mana={1}{U}
 type=Creature
@@ -27799,7 +27800,7 @@ toughness=3
 [/card]
 [card]
 name=Haazda Marshal
-auto=@combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:create(soldier:creature soldier:1/1:white:lifelink)
+auto=_BATALLION_create(soldier:creature soldier:1/1:white:lifelink)
 text=Whenever Haazda Marshal and at least two other creatures attack, create a 1/1 white Soldier creature token with lifelink.
 mana={W}
 type=Creature
@@ -31203,7 +31204,7 @@ subtype=Aura
 [/card]
 [card]
 name=Improbable Alliance
-auto=@drawof(player):transforms((,newability[@drawof(player) restriction{once}:create(Faerie:creature Faerie:1/1:blue:flying)])) ueot
+auto=_SECOND_DRAW_create(Faerie:creature Faerie:1/1:blue:flying)
 auto={4}{U}{R}:draw:1 && transforms((,newability[target(*|myhand) reject])) forever
 text=Whenever you draw your second card each turn, create a 1/1 blue Faerie creature token with flying. -- {4}{U}{R}: Draw a card, then discard a card.
 mana={U}{R}
@@ -32350,7 +32351,7 @@ type=Sorcery
 [/card]
 [card]
 name=Irencrag Pyromancer
-auto=@drawof(player):transforms((,newability[@drawof(player) once:damage:3 target(player,creature,planeswalker)])) ueot
+auto=_SECOND_DRAW_damage:3 target(player;creature;planeswalker)
 text=Whenever you draw your second card each turn, Irencrag Pyromancer deals 3 damage to any target.
 mana={2}{R}
 type=Creature
@@ -33111,7 +33112,7 @@ type=Instant
 [/card]
 [card]
 name=Jolrael, Mwonvuli Recluse
-auto=@drawof(player) restriction{compare(pdrewcount)~equalto~2}:name(Create cat) token(Cat Jol)
+auto=_SECOND_DRAW_name(Create cat) token(Cat Jol)
 auto={4}{G}{G}:name(All creatures becomes X/X) all(creature|mybattlefield) transforms((,setpower=type:*:myHand,settoughness=type:*:myHand)) ueot
 text=Whenever you draw your second card each turn, create a 2/2 green Cat creature token. -- {4}{G}{G}: Until end of turn, creatures you control have base power and toughness X/X, where X is the number of cards in your hand.
 mana={1}{G}
@@ -35562,7 +35563,7 @@ type=Artifact
 [card]
 name=Kytheon, Hero of Akros
 auto=@movedto(Moonmist|stack):name(Transform Human Soldier) moveto(ownerBattlefield) && flip(Gideon, Battle-Forged)
-auto=@combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:moveto(exile) and!( moveto(mybattlefield) and!(counter(0/0,3,Loyalty) && flip(Gideon, Battle-Forged)
+auto=_BATALLION_moveto(exile) and!( moveto(mybattlefield) and!(counter(0/0,3,Loyalty) && flip(Gideon, Battle-Forged)
 auto={2}{W}:all(this) indestructible ueot
 text=At end of combat, if Kytheon, Hero of Akros and at least two other creatures attacked this combat, exile Kytheon, then return him to the battlefield transformed under his owner's control. -- {2}{W}: Kytheon gains indestructible until end of turn.
 mana={W}
@@ -38023,7 +38024,7 @@ toughness=2
 [/card]
 [card]
 name=Mad Ratter
-auto=@drawof(player):transforms((,newability[@drawof(player) restriction{once}:create(Rat:creature Rat:1/1:black)])) ueot
+auto=_SECOND_DRAW_create(Rat:creature Rat:1/1:black)*2
 text=Whenever you draw your second card each turn, create two 1/1 black Rat creature tokens.
 mana={3}{R}
 type=Creature
@@ -38348,7 +38349,7 @@ type=Instant
 [/card]
 [card]
 name=Makeshift Battalion
-auto=@combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:counter(1/1)
+auto=_BATALLION_counter(1/1)
 text=Whenever Makeshift Battalion and at least two other creatures attack, put a +1/+1 counter on Makeshift Battalion.
 mana={2}{W}
 type=Creature
@@ -38653,7 +38654,7 @@ toughness=4
 name=Mantle of Tides
 auto={3}:equip
 auto=teach(creature) 1/2
-auto=@drawof(player):transforms((,newability[@drawof(player) restriction{once}:equip target(creature|mybattlefield)
+auto=_SECOND_DRAW_rehook target(creature|mybattlefield)
 text=Equipped creature gets +1/+2. -- Whenever you draw your second card each turn, attach Mantle of Tides to target creature you control. -- Equip {3} ({3} : Attach to target creature you control. Equip only as a sorcery.)
 mana={U}
 type=Artifact
@@ -40091,7 +40092,7 @@ toughness=1
 [/card]
 [card]
 name=Minn, Wily Illusionist
-auto=@drawof(player) restriction{compare(pdrewcount)~equalto~2}:token(Illusion,Creature Illusion,1/1,blue) and!( transforms((,newability[foreach(other *[illusion]|mybattlefield) 1/0])) forever )!
+auto=_SECOND_DRAW_token(Illusion,Creature Illusion,1/1,blue) and!( transforms((,newability[foreach(other *[illusion]|mybattlefield) 1/0])) forever )!
 auto=@movedTo(illusion[power=0]|graveyard) from(mybattlefield):may name(Put permanent on battlefield) target(*[-instant;-sorcery;manacost<=0]|myhand) moveto(mybattlefield)
 auto=@movedTo(illusion[power=1]|graveyard) from(mybattlefield):may name(Put permanent on battlefield) target(*[-instant;-sorcery;manacost<=1]|myhand) moveto(mybattlefield)
 auto=@movedTo(illusion[power=2]|graveyard) from(mybattlefield):may name(Put permanent on battlefield) target(*[-instant;-sorcery;manacost<=2]|myhand) moveto(mybattlefield)
@@ -41347,7 +41348,7 @@ subtype=Island
 [/card]
 [card]
 name=Mystic Skyfish
-auto=@drawof(player):transforms((,newability[@drawof(player) restriction{once}:flying])) ueot
+auto=_SECOND_DRAW_flying ueot
 text=Whenever you draw your second card each turn, Mystic Skyfish gains flying until end of turn.
 mana={2}{U}
 type=Creature
@@ -60643,7 +60644,7 @@ toughness=4
 [card]
 name=Steelgaze Griffin
 abilities=flying
-auto=@drawof(player):transforms((,newability[@drawof(player) restriction{once}:2/0])) ueot
+auto=_SECOND_DRAW_2/0 ueot
 text=Flying -- Whenever you draw your second card each turn, Steelgaze Griffin gets +2/+0 until end of turn.
 mana={4}{U}
 type=Creature
