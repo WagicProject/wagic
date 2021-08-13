@@ -9790,17 +9790,72 @@ power=1
 toughness=4
 [/card]
 [card]
+name=Chance Encounter
+auto=@coinflipped(*|mybattlefield) result(won):name(Put Chance counter) counter(0/0,1,Chance)
+auto=@each my upkeep restriction{compare(hascntchance)~morethan~9}:name(Win the game) wingame
+text=Whenever you win a coin flip, put a luck counter on Chance Encounter. --  At the beginning of your upkeep, if Chance Encounter has ten or more luck counters on it, you win the game.
+mana={2}{R}{R}
+type=Enchantment
+[/card]
+[card]
 name=Chance for Glory
-auto=lord(other creature|myBattlefield) indestructible forever
+auto=all(creature|myBattlefield) transforms((,newability[indestructible])) forever
 auto=turns:+1 controller
-auto=transforms((,newability[@each my upkeep:phaseaction[endofturn once] winGame opponent])) forever
+auto=emblem transforms((,newability[@each my upkeep:phaseaction[endofturn once] winGame opponent])) forever dontremove
 text=Creatures you control gain indestructible. Take an extra turn after this one. At the beginning of that turn's end step, you lose the game.
 mana={1}{R}{W}
 type=Instant
 [/card]
 [card]
+name=Chancellor of the Annex
+abilities=flying
+autohand=@each upkeep restriction{compare(currentturn)~lessthan~2}:may name(Reveal Chancellor of the Annex) transforms((,newability[@movedto(*|opponentstack) once:all(trigger[to]) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever])) forever
+auto=@movedto(*|opponentstack):all(trigger[to]) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
+text=You may reveal this card from your opening hand. If you do, when each opponent casts his or her first spell of the game, counter that spell unless that player pays {1}. -- Flying -- Whenever an opponent casts a spell, counter it unless that player pays {1}.
+mana={4}{W}{W}{W}
+type=Creature
+subtype=Angel
+power=5
+toughness=6
+[/card]
+[card]
+name=Chancellor of the Dross
+abilities=flying,lifelink
+autohand=@each upkeep restriction{compare(currentturn)~lessthan~2}:may name(Reveal Chancellor of the Dross) life:-3 opponent  && life:3 controller
+text=You may reveal this card from your opening hand. If you do, at the beginning of the first upkeep, each opponent loses 3 life, then you gain life equal to the life lost this way. -- Flying, lifelink
+mana={4}{B}{B}{B}
+type=Creature
+subtype=Vampire
+power=6
+toughness=6
+[/card]
+[card]
+name=Chancellor of the Forge
+autohand=@each upkeep restriction{compare(currentturn)~lessthan~2}:may name(Reveal Chancellor of the Forge) token(Goblin,Creature Goblin,1/1,red,haste)
+auto=name(Create goblins) token(Goblin,Creature Goblin,1/1,red,haste)*type:creature:mybattlefield
+text=You may reveal this card from your opening hand. If you do, at the beginning of the first upkeep, put a 1/1 red Goblin creature token with haste onto the battlefield. -- When Chancellor of the Forge enters the battlefield, put X 1/1 red Goblin creature tokens with haste onto the battlefield, where X is the number of creatures you control.
+mana={4}{R}{R}{R}
+type=Creature
+subtype=Giant
+power=5
+toughness=5
+[/card]
+[card]
+name=Chancellor of the Spires
+abilities=flying
+autohand=@each upkeep restriction{compare(currentturn)~lessthan~2}:may name(Reveal Chancellor of the Spires) deplete:7 opponent
+auto=may name(Cast from opponent graveyard) target(*[instant;sorcery]|opponentgraveyard) activate castcard(normal)
+text=You may reveal this card from your opening hand. If you do, at the beginning of the first upkeep, each opponent puts the top seven cards of his or her library into his or her graveyard. -- Flying -- When Chancellor of the Spires enters the battlefield, you may cast target instant or sorcery card from an opponent's graveyard without paying its mana cost.
+mana={4}{U}{U}{U}
+type=Creature
+subtype=Sphinx
+power=5
+toughness=7
+[/card]
+[card]
 name=Chancellor of the Tangle
 abilities=reach,vigilance
+autohand=@each upkeep restriction{compare(currentturn)~lessthan~2}:may name(Reveal Chancellor of the Tangle) transforms((,newability[phaseaction[my firstmain once]:add{G}])) forever
 text=You may reveal this card from your opening hand. If you do, at the beginning of your first main phase, add {G} to your mana pool. -- Vigilance, reach
 mana={4}{G}{G}{G}
 type=Creature
@@ -10575,6 +10630,14 @@ power=7
 toughness=7
 [/card]
 [card]
+name=Chronomantic Escape
+suspend(3)={2}{W}
+auto=all(creature|opponentbattlefield) transforms((,newability[cantattack],newability[cantpwattack])) uynt
+text=Until your next turn, creatures can't attack you. Exile Chronomantic Escape with three time counters on it. -- Suspend 3—{2}{W} (Rather than cast this card from your hand, you may pay {2}{W} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
+mana={4}{W}{W}
+type=Sorcery
+[/card]
+[card]
 name=Chronostutter
 target=creature
 auto=placefromthetop(2)
@@ -10922,6 +10985,16 @@ auto=choice name(Destroy opponent's land) destroy target(land|opponentBattlefiel
 auto=choice name(Destroy your land) target(land|myBattlefield) && ability$!name(search for basic land) name(search for basic land) moveto(mybattlefield) target(land[basic]|myLibrary) and!(tap(noevent) and!(shuffle)!)! !$ controller
 text=Destroy target land. Its controller may search their library for a basic land card, put it onto the battlefield tapped, then shuffle their library. -- Draw a card.
 mana={1}{R}
+type=Sorcery
+[/card]
+[card]
+name=Clear the Land
+auto=all(land[zpos<=5]|mylibrary) moveto(myBattlefield) and!( tap(noevent) )!
+auto=all(land[zpos<=5]|opponentlibrary) moveto(opponentbattlefield) and!( tap(noevent) )!
+auto=all(*[-land;zpos<=5]|mylibrary) moveto(myexile)
+auto=all(*[-land;zpos<=5]|opponentlibrary) moveto(opponentexile)
+text=Each player reveals the top five cards of his or her library, puts all land cards revealed this way onto the battlefield tapped, and exiles the rest.
+mana={2}{G}
 type=Sorcery
 [/card]
 [card]
@@ -31501,7 +31574,7 @@ toughness=3
 name=Inevitable Betrayal
 suspend(3)={1}{U}{U}
 auto=name(Search creature) target(creature|opponentlibrary) moveto(myBattlefield) and!( shuffle opponent )!
-text=Suspend 3—{1}{U}{U} (Rather than cast this card from your hand, pay 1{U}{U} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- Search target opponent's library for a creature card and put that card onto the battlefield under your control. Then that player shuffles.
+text=Suspend 3—{1}{U}{U} (Rather than cast this card from your hand, pay {1}{U}{U} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- Search target opponent's library for a creature card and put that card onto the battlefield under your control. Then that player shuffles.
 mana={0}
 color=blue
 restriction=never
@@ -47509,7 +47582,7 @@ toughness=1
 [/card]
 [card]
 name=Providence
-abilities=leyline
+autohand=@each upkeep restriction{compare(currentturn)~lessthan~2}:may name(Reveal Providence) lifeset:26 controller
 auto=lifeset:26 controller
 text=You may reveal this card from your opening hand. If you do, at the beginning of the first upkeep, your life total becomes 26. -- Your life total becomes 26.
 mana={5}{W}{W}
@@ -59291,6 +59364,7 @@ toughness=5
 [card]
 name=Sphinx of Foresight
 abilities=flying
+autohand=@each upkeep restriction{compare(currentturn)~lessthan~2}:may name(Reveal Sphinx of Foresight) scry:3 scrycore delayed dontshow donothing scrycoreend scryend
 aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=@each my upkeep:scry:1 scrycore delayed dontshow donothing scrycoreend scryend
 text=You may reveal this card from your opening hand. If you do, scry 3 at the beginning of your first upkeep. -- Flying -- At the beginning of your upkeep, scry 1.
@@ -63103,7 +63177,7 @@ toughness=3
 [/card]
 [card]
 name=Tavern Scoundrel
-auto=@coinflipped(*|battlefield) result(won):token(Treasure Sur)*2
+auto=@coinflipped(*|mybattlefield) result(won):token(Treasure Sur)*2
 auto={1}{T}{S(other *|myBattlefield)}:flipacoin winability donothing winabilityend loseability donothing loseabilityend flipend
 text=Whenever you win a coin flip, create two Treasure tokens. (They're artifacts with " {T}, Sacrifice this artifact: Add one mana of any color.") -- {1}, {T}, Sacrifice another permanent: Flip a coin.
 mana={1}{R}
