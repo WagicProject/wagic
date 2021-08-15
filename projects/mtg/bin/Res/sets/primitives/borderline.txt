@@ -9791,7 +9791,7 @@ toughness=4
 [/card]
 [card]
 name=Chance Encounter
-auto=@coinflipped(*|mybattlefield) result(won):name(Put Chance counter) counter(0/0,1,Chance)
+auto=@coinflipped(*|battlefield) result(won) from(controller):name(Put chance counter) counter(0/0,1,Chance)
 auto=@each my upkeep restriction{compare(hascntchance)~morethan~9}:name(Win the game) wingame
 text=Whenever you win a coin flip, put a luck counter on Chance Encounter. --  At the beginning of your upkeep, if Chance Encounter has ten or more luck counters on it, you win the game.
 mana={2}{R}{R}
@@ -63177,7 +63177,7 @@ toughness=3
 [/card]
 [card]
 name=Tavern Scoundrel
-auto=@coinflipped(*|mybattlefield) result(won):token(Treasure Sur)*2
+auto=@coinflipped(*|battlefield) result(won) from(controller):name(Create treasures) token(Treasure Sur)*2
 auto={1}{T}{S(other *|myBattlefield)}:flipacoin winability donothing winabilityend loseability donothing loseabilityend flipend
 text=Whenever you win a coin flip, create two Treasure tokens. (They're artifacts with " {T}, Sacrifice this artifact: Add one mana of any color.") -- {1}, {T}, Sacrifice another permanent: Flip a coin.
 mana={1}{R}
