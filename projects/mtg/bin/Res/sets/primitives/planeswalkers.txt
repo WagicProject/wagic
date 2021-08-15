@@ -1514,7 +1514,7 @@ subtype=Kasmina
 [card]
 name=Kaya, Bane of the Dead
 auto=counter(0/0,7,loyalty)
-auto=lord(*|opponentBattlefield) -opponentshroud
+auto=lord(*|opponentBattlefield) transforms((,newability[-opponentshroud],newability[-controllershroud]))
 auto={C(0/0,-3,Loyalty)}:name(-3: Exile target creature) moveTo(exile) target(creature)
 text=Your opponents and permanents your opponents control with hexproof can be the target of spells and abilities you control as though they didn't have hexproof. -- -3: Exile target creature.
 mana={3}{WB}{WB}{WB}

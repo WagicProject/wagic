@@ -2465,7 +2465,7 @@ toughness=1
 [card]
 name=Arcane Lighthouse
 auto={T}:add{1}
-auto={1}{T}: all(creature|opponentbattlefield) -opponentshroud ueot && all(creature|opponentbattlefield) -shroud ueot 
+auto={1}{T}::name(Creatures lose hexproof) all(creature|opponentBattlefield) transforms((,newability[-shroud],newability[-opponentshroud])) ueot
 text={T}: Add {C} to your mana pool. -- {1}, {T}: Until end of turn, creatures your opponents control lose hexproof and shroud and can't have hexproof or shroud.
 type=Land
 [/card]
@@ -3760,8 +3760,8 @@ toughness=3
 [card]
 name=Autumn Willow
 abilities=opponentshroud,shroud
-auto={G}:-shroud
-#Slightly borderline assumption you will never activate this ability to let the opponent target Autumn Willow
+auto={G}:name(Can be target of your spells) transforms((,newability[-shroud])) ueot
+auto={G}:name(Can be target of opponent spells) transforms((,newability[-opponentshroud])) ueot
 text=Shroud -- {G}: Until end of turn, Autumn Willow can be the target of spells and abilities controlled by target player as though it didn't have shroud.
 mana={4}{G}{G}
 type=Legendary Creature
@@ -15489,7 +15489,7 @@ type=Sorcery
 [card]
 name=Detection Tower
 auto={T}:add{C}
-auto={1}{T}:lord(*[opponentshroud;controllershroud]|opponentbattlefield) transforms((,newability[-opponentshroud]),newability[-controllershroud])) ueot
+auto={1}{T}:name(Opponent loses hexproof) all(*|opponentbattlefield) transforms((,newability[-opponentshroud]),newability[-controllershroud])) ueot
 text={T}: Add {C}. -- {1}, {T}: Until end of turn, your opponents and creatures your opponents control with hexproof can be the targets of spells and abilities you control as though they didn't have hexproof.
 type=Land
 [/card]
@@ -55241,8 +55241,8 @@ auto={2}:equip
 auto=teach(creature) 1/1
 auto=teach(creature) trample
 auto=teach(creature) lifelink
-auto={1}:lord(*|opponentBattlefield) transforms((,newability[-indestructible],newability[-opponentshroud])) ueot
-text=Equipped creature gets +1/+1 and has trample and lifelink. -- 1 -- : Permanents your opponents control lose hexproof and indestructible until end of turn. -- Equip 2
+auto={1}:name(Permanents lose hexproof and indestructible) all(*|opponentBattlefield) transforms((,newability[-indestructible],newability[-opponentshroud])) ueot
+text=Equipped creature gets +1/+1 and has trample and lifelink. -- {1}: Permanents your opponents control lose hexproof and indestructible until end of turn. -- Equip 2
 mana={1}
 type=Legendary Artifact
 subtype=Equipment
