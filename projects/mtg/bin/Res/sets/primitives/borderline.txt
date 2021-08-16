@@ -4428,7 +4428,7 @@ abilities=lifelink,haste
 text=Lifelink, haste
 mana={B}
 type=Creature
-subtype=Nightmare Hound
+subtype=Nightmare Dog
 power=1
 toughness=1
 [/card]
@@ -9652,7 +9652,7 @@ auto=@movedTo(*|mystack) restriction{myturnonly}:untap target(creature)
 text=Partner with Chakram Slinger (When this creature enters the battlefield, target player may put Chakram Slinger into their hand from their library, then shuffle.) -- Whenever you cast a spell during your turn, untap target creature.
 mana={4}{U}
 type=Creature
-subtype=Elemental Hound
+subtype=Elemental Dog
 power=2
 toughness=4
 [/card]
@@ -27558,6 +27558,20 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Guard Dogs
+auto=aslongas(*[green]|myBattlefield) {2}{W}{T}:name(Prevent from green creature) name(Prevent from green creature) target(creature[green]) transforms((,newability[preventAllCombatDamage from(this)])) ueot
+auto=aslongas(*[white]|myBattlefield) {2}{W}{T}:name(Prevent from white creature) name(Prevent from white creature) target(creature[white]) transforms((,newability[preventAllCombatDamage from(this)])) ueot
+auto=aslongas(*[black]|myBattlefield) {2}{W}{T}:name(Prevent from black creature) name(Prevent from black creature) target(creature[black]) transforms((,newability[preventAllCombatDamage from(this)])) ueot
+auto=aslongas(*[blue]|myBattlefield) {2}{W}{T}:name(Prevent from blue creature) name(Prevent from blue creature) target(creature[blue]) transforms((,newability[preventAllCombatDamage from(this)])) ueot
+auto=aslongas(*[red]|myBattlefield) {2}{W}{T}:name(Prevent from red creature) name(Prevent from red creature) target(creature[red]) transforms((,newability[preventAllCombatDamage from(this)])) ueot
+text={2}{W}, {T}: Choose a permanent you control. Prevent all combat damage target creature would deal this turn if it shares a color with that permanent.
+mana={3}{W}
+type=Creature
+subtype=Dog
+power=2
+toughness=2
+[/card]
+[card]
 name=Guardian Archon
 abilities=flying
 auto=name(Choose opponent) target(opponent) donothing
@@ -30427,7 +30441,7 @@ auto=thisforeach(variable{halfpaid}) all(this) rolld6 6 winability counter(1/1,l
 text=As Hydradoodle enters the battlefield, roll X six-sided dice. Hydradoodle enters the battlefield with a number of +1/+1 counters on it equal to the total of those results. -- Reach, trample
 mana={X}{X}{G}{G}
 type=Creature
-subtype=Hydra Hound
+subtype=Hydra Dog
 power=0
 toughness=0
 [/card]
@@ -41000,13 +41014,6 @@ mana={2}{G}
 type=Sorcery
 [/card]
 [card]
-name=Mowu
-type=Token Legendary Creature
-subtype=Dog
-power=3
-toughness=3
-[/card]
-[card]
 name=Mowu, Loyal Companion
 abilities=vigilance,trample
 auto=@counteradded(1/1) from(this) except(Mowu, Loyal Companion):may counter(1/1)
@@ -41019,16 +41026,16 @@ toughness=3
 [/card]
 [card]
 name=Mox Amber
-auto=aslongas(creature[white&legendary]) {T}:Add{W}
-auto=aslongas(planeswalker[white]) {T}:Add{W}
-auto=aslongas(creature[blue&legendary]) {T}:Add{U}
-auto=aslongas(planeswalker[blue]) {T}:Add{U}
-auto=aslongas(creature[black&legendary]) {T}:Add{B}
-auto=aslongas(planeswalker[black]) {T}:Add{B}
-auto=aslongas(creature[red&legendary]) {T}:Add{R}
-auto=aslongas(planeswalker[red]) {T}:Add{R}
-auto=aslongas(creature[green&legendary]) {T}:Add{G}
-auto=aslongas(planeswalker[green]) {T}:Add{G}
+auto=aslongas(creature[-planeswalker;white;legendary]|myBattlefield) {T}:Add{W}
+auto=aslongas(planeswalker[white]|myBattlefield) {T}:Add{W}
+auto=aslongas(creature[-planeswalker;blue;legendary]|myBattlefield) {T}:Add{U}
+auto=aslongas(planeswalker[blue]|myBattlefield) {T}:Add{U}
+auto=aslongas(creature[-planeswalker;black;legendary]|myBattlefield) {T}:Add{B}
+auto=aslongas(planeswalker[black]|myBattlefield) {T}:Add{B}
+auto=aslongas(creature[-planeswalker;red;legendary]|myBattlefield) {T}:Add{R}
+auto=aslongas(planeswalker[red]|myBattlefield) {T}:Add{R}
+auto=aslongas(creature[-planeswalker;green;legendary]|myBattlefield) {T}:Add{G}
+auto=aslongas(planeswalker[green]|myBattlefield) {T}:Add{G}
 text={T}: Add one mana of any color among legendary creatures and planeswalkers you control.
 mana={0}
 type=Legendary Artifact
@@ -44934,7 +44941,7 @@ auto=_ATTACKING_NOTCODED
 text=Partner with Haldan, Avid Arcanist -- Haste -- Whenever Pako, Arcane Retriever attacks, exile the top card of each player’s library and put a fetch counter on each of them. Put a +1/+1 counter on Pako for each noncreature card exiled this way.
 mana={3}{R}{G}
 type=Legendary Creature
-subtype=Elemental Hound
+subtype=Elemental Dog
 power=3
 toughness=3
 [/card]
@@ -67680,7 +67687,7 @@ auto=if paid(retrace) then counter(1/1,1)
 text=Underworld Rage-Hound attacks each combat if able. -- Escape—{3}{R}, Exile three other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.) -- Underworld Rage-Hound escapes with a +1/+1 counter on it.
 mana={1}{R}
 type=Creature
-subtype=Elemental Hound
+subtype=Elemental Dog
 power=3
 toughness=1
 [/card]

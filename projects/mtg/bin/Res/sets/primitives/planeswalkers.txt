@@ -1394,9 +1394,9 @@ subtype=Jaya
 [card]
 name=Jiang Yanggu
 auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Target creature gets +2/+2 until end of turn.) target(creature) 2/2 ueot
-auto={C(0/0,-1,Loyalty)}:name(-1: Create a legendary 3/3 green Mowu creature token) restriction{type(Mowu|myBattlefield)~lessthan~1}:token(Mowu,Legendary Creature Hound,3/3,green)
-auto={C(0/0,-5,Loyalty)}:name(-5: Target creature gains trample and +X/+X until end of turn.) target(creature) foreach(land|myBattlefield) 1/1 && trample ueot
+auto={C(0/0,1,Loyalty)}:name(+1: Target creature gets +2/+2) target(creature) transforms((,newability[2/2])) ueot
+auto={C(0/0,-1,Loyalty)}:name(-1: Create Mowu token) token(Mowu,Legendary Creature Dog,3/3,green) restriction{type(Mowu|myBattlefield)~lessthan~1}
+auto={C(0/0,-5,Loyalty)}:name(-5: Target creature gains trample and +X/+X) target(creature) type:land:myBattlefield/type:land:myBattlefield ueot && trample ueot
 text=+1: Target creature gets +2/+2 until end of turn. -- -1: If you don't control a creature named Mowu, create a legendary 3/3 green Hound creature token named Mowu. -- -5: Until end of turn, target creature gains trample and gets +X/+X, where X is the number of lands you control.
 mana={4}{G}
 type=Legendary Planeswalker

@@ -603,7 +603,7 @@ abilities=trample
 text=Trample -- Whenever a player plays a spell, put a chip counter on its converted mana cost. -- B-I-N-G-O gets +9/+9 for each set of three numbers in a row with chip counters on them.
 mana={1}{G}
 type=Creature
-subtype=Hound
+subtype=Dog
 power=1
 toughness=1
 [/card]
@@ -1948,7 +1948,7 @@ name=Cogwork Tracker
 text=Reveal Cogwork Tracker as you draft it and note the player who passed it to you. -- Cogwork Tracker attacks each turn if able. -- Cogwork Tracker attacks a player you noted for cards named Cogwork Tracker each turn if able.
 mana={4}
 type=Artifact Creature
-subtype=Hound Construct
+subtype=Dog Construct
 power=4
 toughness=4
 [/card]
@@ -4586,15 +4586,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Guard Dogs
-text={2}{W}, {T}: Choose a permanent you control. Prevent all combat damage target creature would deal this turn if it shares a color with that permanent.
-mana={3}{W}
-type=Creature
-subtype=Hound
-power=2
-toughness=2
-[/card]
-[card]
 name=Guardian Angel
 text=Prevent the next X damage that would be dealt to target creature or player this turn. Until end of turn, you may pay {1} any time you could cast an instant. If you do, prevent the next 1 damage that would be dealt to that creature or player this turn.
 mana={X}{W}
@@ -4681,7 +4672,7 @@ toughness=+2
 [/card]
 [card]
 name=Half-Orc, Half-
-text=Trample -- At the beginning of each end step, if an opponent was dealt damage this turn, -- Augment {1}{R}{R} ( 1{R}{R}, Reveal this card from your hand: Combine it with target host. Augment only as a sorcery.)
+text=Trample -- At the beginning of each end step, if an opponent was dealt damage this turn, -- Augment {1}{R}{R} ({1}{R}{R}, Reveal this card from your hand: Combine it with target host. Augment only as a sorcery.)
 type=Creature
 subtype=Orc Warrior
 power=+3
@@ -6095,7 +6086,7 @@ name=Labro Bot
 text=When this creature enters the battlefield, return target host card or card with augment from your graveyard to your hand.
 mana={5}
 type=Host Artifact Creature
-subtype=Hound
+subtype=Dog
 power=3
 toughness=3
 [/card]
@@ -9654,7 +9645,7 @@ name=Salt Road Ambushers
 text=Whenever another permanent you control is turned face up, if it's a creature, put two +1/+1 counters on it. -- Megamorph {3}{G}{G} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its megamorph cost and put a +1/+1 counter on it.)
 mana={3}{G}
 type=Creature
-subtype=Hound Warrior
+subtype=Dog Warrior
 power=3
 toughness=3
 [/card]
