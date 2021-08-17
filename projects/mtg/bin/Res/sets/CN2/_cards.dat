@@ -6,6 +6,11 @@ year=2016-08-26
 total=222
 [/meta]
 [card]
+primitive=Monarch Token
+id=-999901
+rarity=T
+[/card]
+[card]
 primitive=Adriana's Valor
 id=416758
 rarity=C
@@ -1109,9 +1114,4 @@ rarity=U
 primitive=Shimmering Grotto
 id=416978
 rarity=U
-[/card]
-[card]
-primitive=Monarch Token
-id=999901
-rarity=T
 [/card]

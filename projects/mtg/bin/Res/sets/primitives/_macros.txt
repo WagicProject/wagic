@@ -104,22 +104,22 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 #AUTO_DEFINE _OUTLAST_($cost) {$cost}{$cost}:counter(1/1,1) all(this) asSorcery
 
 # Investigate token, Shadows over Innistrad SOI
-#AUTO_DEFINE _INVESTIGATE_ create(Clue:Artifact:0/0:"{2}, Sacrifice this artifact: Draw a card.") and!( transforms((,newability[{2}{S}:draw:1 controller])) forever )!
+#AUTO_DEFINE _INVESTIGATE_ token(Clue)
 
 # Soulshift
 #AUTO_DEFINE _SOULSHIFT_($c) @movedTo(this|myGraveyard) from(battlefield):may moveTo(myHand) target(creature[spirit;manacost<=$c]|myGraveyard)
 
 # Ascend, Set XLN
-#AUTO_DEFINE _ASCEND_ if type(*[city's_blessing]|mybattlefield)~lessthan~1 then transforms((,newability[if type(*|mybattlefield)~morethan~9 then create(city's_blessing:city's_blessing:0/0:shroud:indestructible)]))
+#AUTO_DEFINE _ASCEND_ if type(*[City's_blessing]|mybattlefield)~lessthan~1 then transforms((,newability[if type(*|mybattlefield)~morethan~9 then token(City's_blessing^notrigger)])) oneshot
 
 # Effect with the City's blessing, Set XLN
-#AUTO_DEFINE _CITY'S_BLESSING_ aslongas(*[city's_blessing]|mybattlefield)>0
+#AUTO_DEFINE _CITY'S_BLESSING_ aslongas(*[City's_blessing]|mybattlefield)>0
 
 # Explore
 #AUTO_DEFINE _EXPLORE_ reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) optiontwoend revealend limit:1
 
 # Treasure token, Set XLN
-#AUTO_DEFINE _TREASURE_ create(Treasure:Artifact Treasure:0/0:"{T}, Sacrifice this artifact: Add one mana of any color.") and!( transforms((,newability[{T}{S}:Add{W}],newability[{T}{S}:Add{U}],newability[{T}{S}:Add{R}],newability[{T}{S}:Add{B}],newability[{T}{S}:Add{G}])) forever )!
+#AUTO_DEFINE _TREASURE_ token(Treasure Sur)
 
 # Historic
 #AUTO_DEFINE _HISTORIC_ notAtarget(*[artifact;saga;legendary]|myZones)

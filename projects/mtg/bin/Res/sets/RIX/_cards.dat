@@ -4,8 +4,13 @@ name=Rivals of Ixalan
 block=Ixalan
 orderindex=EXP-ZZ8.RIX
 year=2018-01-19
-total=213
+total=214
 [/meta]
+[card]
+primitive=City's_blessing
+id=-999902
+rarity=T
+[/card]
 [card]
 primitive=Elemental Phoenix
 id=-439768
