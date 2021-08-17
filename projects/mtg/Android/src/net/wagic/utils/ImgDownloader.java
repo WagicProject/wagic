@@ -1217,8 +1217,10 @@ public class ImgDownloader {
             cardurl = "https://img.scryfall.com/cards/large/front/b/8/b86ac828-7b49-4663-a718-99fcac904568.jpg?1561756381";
         else if(id.equals("476097t") || id.equals("293685t") || id.equals("293652t") || id.equals("296775t")) //Zombie 2/2
             cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/b/5/b5bd6905-79be-4d2c-a343-f6e6a181b3e6.jpg?1562844819";
-        else if(id.equals("999901t"))
+        else if(id.equals("999901t")) //Monarch Token
             cardurl = "https://img.scryfall.com/cards/large/front/4/0/40b79918-22a7-4fff-82a6-8ebfe6e87185.jpg?1561897497";
+        else if(id.equals("999902t")) //City's Blessing
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/b/a/ba64ed3e-93c5-406f-a38d-65cc68472122.jpg?1561757924";
         else if(id.equals("19462t") || id.equals("19463t") || id.equals("19464t") || id.equals("19465t"))
             cardurl = "https://img.scryfall.com/cards/large/front/d/2/d2f51f4d-eb6d-4503-b9a4-559db1b9b16f.jpg?1574710411";
         else if(id.equals("19476t") || id.equals("19477t"))
@@ -2899,7 +2901,7 @@ public class ImgDownloader {
                     set.equals("BOK") || set.equals("CHK") || set.equals("ZNR") || set.equals("KHM") ||
                     set.equals("STX"))
                 rarity = "";
-            if(id != null && (id.equals("209162") || id.equals("209163") || id.equals("401721") || id.equals("401722")))
+            if(id != null && (id.equals("209162") || id.equals("209163") || id.equals("401721") || id.equals("401722") || id.equals("999902")))
                 rarity = "t";
             if(id != null && (id.equals("1750411") || id.equals("5176911") || id.equals("44680711") || id.equals("29530711") ||
                     id.equals("45108910") || id.equals("530447") || id.equals("530448") || id.equals("530449") || id.equals("297220") ||

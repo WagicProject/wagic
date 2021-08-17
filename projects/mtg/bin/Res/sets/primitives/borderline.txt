@@ -212,12 +212,12 @@ toughness=2
 [/card]
 [card]
 name=Academy Manufactor
-auto=@tokencreated(food|myBattlefield):token(Clue,Artifact Clue,0/0,notrigger) and!( transforms((,newability[{S}{2}:draw:1])) forever )! controller
-auto=@tokencreated(food|myBattlefield):token(Treasure,Artifact Treasure,0/0,notrigger) and!( transforms((,newability[{T}{S}:add{W}],newability[{T}{S}:add{U}],newability[{T}{S}:add{G}],newability[{T}{S}:add{B}],newability[{T}{S}:add{R}])) forever )! controller
-auto=@tokencreated(clue|myBattlefield):token(Food,Artifact Food,0/0,notrigger) and!( transforms((,newability[{2}{T}{S}:life:3])) forever )! controller
-auto=@tokencreated(clue|myBattlefield):token(Treasure,Artifact Treasure,0/0,notrigger) and!( transforms((,newability[{T}{S}:add{W}],newability[{T}{S}:add{U}],newability[{T}{S}:add{G}],newability[{T}{S}:add{B}],newability[{T}{S}:add{R}])) forever )! controller
-auto=@tokencreated(treasure|myBattlefield):token(Food,Artifact Food,0/0,notrigger) and!( transforms((,newability[{2}{T}{S}:life:3])) forever )! controller
-auto=@tokencreated(treasure|myBattlefield):token(Clue,Artifact Clue,0/0,notrigger) and!( transforms((,newability[{S}{2}:draw:1])) forever )! controller
+auto=@tokencreated(food|myBattlefield):token(Clue,notrigger)
+auto=@tokencreated(food|myBattlefield):token(Treasure Sur,notrigger)
+auto=@tokencreated(clue|myBattlefield):token(Food,notrigger)
+auto=@tokencreated(clue|myBattlefield):token(Treasure Sur,notrigger)
+auto=@tokencreated(treasure|myBattlefield):token(Food,notrigger)
+auto=@tokencreated(treasure|myBattlefield):token(Clue,notrigger)
 text=If you would create a Clue, Food, or Treasure token, instead create one of each.
 mana={3}
 type=Artifact Creature
@@ -2773,7 +2773,7 @@ toughness=2
 [card]
 name=Archon of Coronation
 abilities=flying
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 auto=this(variable{pmonarch}>0) preventalldamage to(controller)
 text=Flying -- When Archon of Coronation enters the battlefield, you become the monarch. -- As long as you're the monarch, damage doesn't cause you to lose life. (When a creature deals combat damage to you, its controller still becomes the monarch.)
 mana={4}{W}{W}
@@ -4207,7 +4207,7 @@ toughness=3
 [/card]
 [card]
 name=Azure Fleet Admiral
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 auto=this(variable{omonarch}>0) unblockable
 text=When Azure Fleet Admiral enters the battlefield, you become the monarch. -- Azure Fleet Admiral can't be blocked by creatures the monarch controls.
 mana={3}{U}
@@ -4307,7 +4307,7 @@ toughness=4
 name=Bake into a Pie
 target=creature
 auto=destroy
-auto=token(-473141)
+auto=token(Food)
 text=Destroy target creature. Create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
 mana={2}{B}{B}
 type=Instant
@@ -4689,8 +4689,8 @@ toughness=3
 [/card]
 [card]
 name=Bartered Cow
-auto=_DIES_token(-473141)
-auto=@movedTo(this|mygraveyard) from(myHand):token(-473141)
+auto=_DIES_token(Food)
+auto=@movedTo(this|mygraveyard) from(myHand):token(Food)
 text=When Bartered Cow dies or when you discard it, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
 mana={3}{W}
 type=Creature
@@ -5062,8 +5062,8 @@ subtype=Equipment
 name=Bearer of Overwhelming Truths
 abilities=prowess
 auto=@movedTo(*[-creature]|mystack):1/1 ueot
-auto=@combatdamagefoeof(player) from(this):token(Clue,Artifact Clue,0/0) and!( transforms((,newability[{S}{2}:draw:1])) forever )! controller
-auto=@combatdamageof(player) from(this):token(Clue,Artifact Clue,0/0) and!( transforms((,newability[{S}{2}:draw:1])) forever )! controller
+auto=@combatdamagefoeof(player) from(this):name(Create clue) token(Clue) controller
+auto=@combatdamageof(player) from(this):name(Create clue) token(Clue) controller
 text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.) -- Whenever Bearer of Overwhelming Truths deals combat damage to a player, investigate. (Create a colorless Clue artifact token with “{2}, Sacrifice this artifact: Draw a card.”)
 type=Creature
 subtype=Human Wizard
@@ -6753,7 +6753,7 @@ type=Instant
 [/card]
 [card]
 name=Boar
-auto=@movedto(this|ownergraveyard) from(battlefield):token(-473141)
+auto=@movedto(this|ownergraveyard) from(battlefield):token(Food)
 text=When this creature dies, create a Food token. (A Food token is an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
 type=Creature
 subtype=Boar
@@ -7589,7 +7589,7 @@ toughness=1
 [/card]
 [card]
 name=Brass's Bounty
-auto=foreach(land|mybattlefield) token(Treasure,Artifact Treasure) and!( transforms((,newability[{T}{S}:Add{W}])(,newability[{T}{S}:Add{R}])(,newability[{T}{S}:Add{G}])(,newability[{T}{S}:Add{U}])(,newability[{T}{S}:Add{B}])) forever )!
+auto=name(Create treasures) token(Treasure Sur)*type:land:myBattlefield
 text=For each land you control, create a Treasure token. (It’s an artifact with “{T}, Sacrifice this artifact: Add one mana of any color.”)
 mana={6}{R}
 type=Sorcery
@@ -8596,7 +8596,7 @@ toughness=1
 [/card]
 [card]
 name=Canal Courier
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 text=When Canal Courier enters the battlefield, you become the monarch. -- Whenever Canal Courier and another creature attack different players, Canal Courier can't be blocked this combat.
 mana={5}{U}
 type=Creature
@@ -10779,6 +10779,11 @@ mana={3}{G}
 type=Sorcery
 [/card]
 [card]
+name=City's_blessing
+abilities=shroud,indestructible
+type=City's_blessing
+[/card]
+[card]
 name=Citywatch Sphinx
 abilities=flying
 aicode=activate transforms((,newability[surveil],newability[all(*[zpos<=psurveiloffsetplus2plusend]|mylibrary) transforms((,newability[if compare(genrand2)~equalto~1 then moveto(mygraveyard)])) oneshot])) oneshot
@@ -11251,6 +11256,12 @@ type=Creature
 subtype=Sliver
 power=1
 toughness=1
+[/card]
+[card]
+name=Clue
+auto={S}{2}:name(Draw 1) draw:1 controller
+text={2}, Sacrifice this artifact: Draw a card.
+type=Artifact Clue
 [/card]
 [card]
 name=Coastline Chimera
@@ -12571,7 +12582,7 @@ toughness=1
 [/card]
 [card]
 name=Court of Ambition
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 auto=@each my upkeep restriction{compare(pmonarch)~equalto~0}:ability$!name(Choose one) choice name(Loose 3 life) life:-3 _ choice name(Discrd a card) reject notatarget(*|myhand)!$ opponent
 auto=@each my upkeep restriction{compare(pmonarch)~equalto~1}:ability$!name(Choose one) choice name(Loose 6 life) life:-6 _ choice name(Discrd 2 cards) reject notatarget(<2>*|myhand)!$ opponent
 text=When Court of Ambition enters the battlefield, you become the monarch. -- At the beginning of your upkeep, each opponent loses 3 life unless they discard a card. If you're the monarch, instead each opponent loses 6 life unless they discard two cards.
@@ -12580,7 +12591,7 @@ type=Enchantment
 [/card]
 [card]
 name=Court of Bounty
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 auto=@each my upkeep restriction{compare(pmonarch)~equalto~0}:may moveto(myBattlefield) target(land|myHand)
 auto=@each my upkeep restriction{compare(pmonarch)~equalto~1}:may moveto(myBattlefield) target(*[land;creature]|myHand)
 text=When Court of Bounty enters the battlefield, you become the monarch. -- At the beginning of your upkeep, you may put a land card from your hand onto the battlefield. If you're the monarch, instead you may put a creature or land card from your hand onto the battlefield.
@@ -12589,7 +12600,7 @@ type=Enchantment
 [/card]
 [card]
 name=Court of Cunning
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 auto=@each my upkeep restriction{compare(pmonarch)~equalto~0}:ability$!name(Choose one) choice name(Opponent mills cards) deplete:3 opponent _ choice name(You mill cards) deplete:3 controller _ choice name(Both player mill cards) deplete:3 controller && deplete:3 opponent _ choice name(No one mills cards) donothing!$ controller
 auto=@each my upkeep restriction{compare(pmonarch)~equalto~1}:ability$!name(Choose one) choice name(Opponent mills cards) deplete:10 opponent _ choice name(You mill cards) deplete:10 controller _ choice name(Both player mill cards) deplete:10 controller && deplete:10 opponent _ choice name(No one mills cards) donothing!$ controller 
 text=When Court of Cunning enters the battlefield, you become the monarch. -- At the beginning of your upkeep, any number of target players each mill two cards. If you're the monarch, each of those players mills ten cards instead. (To mill a card, a player puts the top card of their library into their graveyard.)
@@ -12598,7 +12609,7 @@ type=Enchantment
 [/card]
 [card]
 name=Court of Grace
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 auto=@each my upkeep restriction{compare(pmonarch)~equalto~0}:token(Spirit,Creature Spirit,1/1,white,flying)
 auto=@each my upkeep restriction{compare(pmonarch)~equalto~1}:token(Angel,Creature Angel,4/4,white,flying)
 text=When Court of Grace enters the battlefield, you become the monarch. -- At the beginning of your upkeep, create a 1/1 white Spirit creature token with flying. If you're the monarch, create a 4/4 white Angel creature token with flying instead.
@@ -12607,7 +12618,7 @@ type=Enchantment
 [/card]
 [card]
 name=Court of Ire
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 auto=@each my upkeep restriction{compare(pmonarch)~equalto~0}:name(Deals 2 damages to any target) name(Deals 2 damages to any target) damage:2 target(player,creature,planeswalker)
 auto=@each my upkeep restriction{compare(pmonarch)~equalto~1}:name(Deals 7 damages to any target) name(Deals 7 damages to any target) damage:7 target(player,creature,planeswalker)
 text=When Court of Ire enters the battlefield, you become the monarch. -- At the beginning of your upkeep, Court of Ire deals 2 damage to any target. If you're the monarch, it deals 7 damage instead.
@@ -12649,6 +12660,14 @@ auto=name(Reveal) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(c
 text=This spell costs {1} less to cast for each creature in your party. (Your party consists of up to one each of Cleric, Rogue, Warrior, and Wizard.) -- Search your library for a card, put it into your hand, then shuffle your library. If you have a full party, you may cast a spell with converted mana cost 4 or less from your hand without paying its mana cost.
 mana={4}{B}
 type=Sorcery
+[/card]
+[card]
+name=Crab
+type=Creature
+subtype=Crab
+power=0
+toughness=3
+color=blue
 [/card]
 [card]
 name=Crack Open
@@ -12921,7 +12940,7 @@ type=Sorcery
 [card]
 name=Crimson Fleet Commodore
 abilities=trample
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 text=Trample -- When Crimson Fleet Commodore enters the battlefield, you become the monarch.
 mana={3}{R}
 type=Creature
@@ -13003,7 +13022,7 @@ subtype=Aura
 [/card]
 [card]
 name=Crown-Hunter Hireling
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 auto=this(variable{omonarch}<1) cantattack
 auto=this(variable{omonarch}<1) cantpwattack
 text=When Crown-Hunter Hireling enters the battlefield, you become the monarch. -- Crown-Hunter Hireling can't attack unless defending player is the monarch.
@@ -13483,7 +13502,7 @@ subtype=Aura
 name=Curious Pair // Treats to Share
 abilities=adventure
 other={G} name(Adventure)
-autostack=if paid(alternative) then name(Create Food) name(Create Food) token(-473141)
+autostack=if paid(alternative) then name(Create Food) name(Create Food) token(Food)
 autostack=if paid(alternative) then transforms((,newability[moveto(exile) and!( transforms((,newability[canplayfromexile])) forever )!])) forever
 text=Create a Food token. (Then exile this card. You may cast the creature later from exile. A Food token is an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
 mana={1}{G}
@@ -13594,7 +13613,7 @@ type=Artifact
 [/card]
 [card]
 name=Custodi Lich
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 auto=@becomesmonarchof(player):target(player) ability$!name(sacrifice) target(creature|mybattlefield) sacrifice!$ targetedplayer
 text=When Custodi Lich enters the battlefield, you become the monarch. -- Whenever you become the monarch, target player sacrifices a creature.
 mana={3}{B}{B}
@@ -14198,7 +14217,7 @@ toughness=4
 [/card]
 [card]
 name=Dawnglade Regent
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 auto=lord(*|myBattlefield) transforms((,newability[this(variable{pmonarch}>0) opponentshroud]))
 text=When Dawnglade Regent enters the battlefield, you become the monarch. -- As long as you're the monarch, permanents you control have hexproof.
 mana={5}{G}{G}
@@ -15242,7 +15261,7 @@ type=Instant
 name=Depths of Desire
 target=creature
 auto=moveto(ownerhand)
-auto=_TREASURE_
+auto=name(Create treasure) token(Treasure Sur)
 text=Return target creature to its owner's hand. Create a colorless Treasure artifact token with "{T}, Sacrifice this artifact: Add one mana of any color to your mana pool."
 mana={2}{U}
 type=Instant
@@ -15709,7 +15728,7 @@ type=Enchantment
 [card]
 name=Diabolical Salvation
 abilities=split second
-auto=token(Devil,Creature Devil,4/4,red,unreath) with((,newability ((_DIES_token(Treasure,Artifact Treasure) and!( transforms((,newability[{T}{S}:Add{W}])(,newability[{T}{S}:Add{R}])(,newability[{T}{S}:Add{G}])(,newability[{T}{S}:Add{U}])(,newability[{T}{S}:Add{B}])) forever )!))
+auto=name(Create devil) token(Devil,Creature Devil,4/4,red,unreath) and!( transforms((,newability[_DIES_token(Treasure Sur)])) forever )!
 text=Split second Create four 4/4 red Devil creature tokens with haste and “When this creature dies, create a colorless Treasure artifact token with ‘{T}, Sacrifice this artifact: Add one mana of any color.’” Sacrifice the Devil tokens at the beginning of the next end step.
 mana={2}{R}{R}{R}{R}
 type=Instant
@@ -18901,7 +18920,7 @@ toughness=5
 [/card]
 [card]
 name=Emberwilde Captain
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 auto=@each blockers restriction{type(creature[attacking]|opponentbattlefield)~morethan~0}:if compare(pmonarch)~morethan~0 then damage:type:*:opponenthand opponent
 text=When Emberwilde Captain enters the battlefield, you become the monarch. -- Whenever an opponent attacks you while you're the monarch, Emberwilde Captain deals damage to that player equal to the number of cards in their hand.
 mana={3}{R}
@@ -19397,7 +19416,7 @@ type=Instant
 [/card]
 [card]
 name=Entourage of Trest
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 text=When Entourage of Trest enters the battlefield, you become the monarch. -- Entourage of Trest can block an additional creature each combat as long as you're the monarch.
 mana={4}{G}
 type=Creature
@@ -20652,9 +20671,9 @@ type=Sorcery
 [/card]
 [card]
 name=Fae Offering
-auto=@each my end restriction{thisturn(*[-creature]|mystack)~morethan~0,thisturn(*[creature]|mystack)~morethan~0}:token(Clue,Artifact Clue,0/0) and!( transforms((,newability[{S}{2}:draw:1])) forever )! controller
-auto=@each my end restriction{thisturn(*[-creature]|mystack)~morethan~0,thisturn(*[creature]|mystack)~morethan~0}:token(Food,Artifact Food,0/0) and!( transforms((,newability[{2}{T}{S}:life:3])) forever )! controller
-auto=@each my end restriction{thisturn(*[-creature]|mystack)~morethan~0,thisturn(*[creature]|mystack)~morethan~0}:token(Treasure Sur)
+auto=@each my end restriction{thisturn(*[-creature]|mystack)~morethan~0,thisturn(*[creature]|mystack)~morethan~0}:name(Create clue) token(Clue)
+auto=@each my end restriction{thisturn(*[-creature]|mystack)~morethan~0,thisturn(*[creature]|mystack)~morethan~0}:name(Create food) token(Food)
+auto=@each my end restriction{thisturn(*[-creature]|mystack)~morethan~0,thisturn(*[creature]|mystack)~morethan~0}:name(Create treasure) token(Treasure Sur)
 text=At the beginning of each end step, if you've cast both a creature spell and a noncreature spell this turn, create a Clue token, a Food token, and a Treasure token.
 mana={2}{G}
 type=Enchantment
@@ -21201,7 +21220,7 @@ type=Enchantment
 [/card]
 [card]
 name=Feast of Succession
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 auto=all(creature|battlefield) -4/-4 ueot
 text=All creatures get -4/-4 until end of turn. You become the monarch.
 mana={4}{B}{B}
@@ -21229,7 +21248,7 @@ toughness=3
 [card]
 name=Feasting Troll King
 auto=vigilance,trample
-auto=if casted(this) then token(-473141)
+auto=if casted(this) then token(Food)
 text=Vigilance, trample -- When Feasting Troll King enters the battlefield, if you cast it from your hand, create three Food tokens. (They're artifacts with "{2}, {T}, Sacrifice this artifact: You gain 3 life.") -- Sacrifice three Foods: Return Feasting Troll King from your graveyard to the battlefield. Activate this ability only during your turn.
 mana={2}{G}{G}{G}{G}
 type=Creature
@@ -21405,7 +21424,7 @@ type=Sorcery
 name=Fell the Pheasant
 target=creature[flying]
 auto=damage:5
-auto=token(-473141)
+auto=token(Food)
 text=Fell the Pheasant deals 5 damage to target creature with flying. Create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
 mana={1}{G}
 type=Instant
@@ -21739,7 +21758,7 @@ type=Instant
 [card]
 name=Fierce Witchstalker
 abilities=trample
-auto=token(-473141)
+auto=token(Food)
 text=Trample -- When Fierce Witchstalker enters the battlefield, create a Food token. (It's an artifact with "{2} , {T}, Sacrifice this artifact: You gain 3 life.")
 mana={2}{G}{G}
 type=Creature
@@ -22731,7 +22750,7 @@ type=Sorcery
 [/card]
 [card]
 name=Floodhound
-auto={3}{T}:name(Investigate) token(Clue,Artifact Clue,0/0) and!( transforms((,newability[{S}{2}:draw:1])) forever )! controller
+auto={3}{T}:name(Investigate) name(Create clue) token(Clue) controller
 text={3}, {T}: Investigate. (Create a colorless Clue artifact token with "{2}, Sacrifice this artifact: Draw a card.")
 mana={U}
 type=Creature
@@ -23020,7 +23039,7 @@ subtype=Equipment
 name=Foreboding Fruit
 target=player
 auto=draw:2 && life:-2
-auto=if casted(this) then if spent({B}{B}{B}) then token(-473141) controller
+auto=if casted(this) then if spent({B}{B}{B}) then token(Food) controller
 text=Target player draws two cards and loses 2 life. -- Adamant — If at least three black mana was spent to cast this spell, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
 mana={2}{B}
 type=Sorcery
@@ -23197,7 +23216,7 @@ type=Instant
 [card]
 name=Fortifying Provisions
 auto=lord(creature|myBattlefield) 0/1
-auto=token(-473141)
+auto=token(Food)
 text=Creatures you control get +0/+1. -- When Fortifying Provisions enters the battlefield, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
 mana={2}{W}
 type=Enchantment
@@ -23778,7 +23797,7 @@ type=Instant
 [card]
 name=Funnel-Web Recluse
 abilities=reach
-auto=if morbid then token(Clue,Artifact Clue,0/0) and!( transforms((,newability[{S}{2}:draw:1])) forever )! controller
+auto=if morbid then name(Create clue) token(Clue) controller
 text=Reach -- Morbid — When Funnel-Web Recluse enters the battlefield, if a creature died this turn, investigate. (Create a colorless Clue artifact token with "{2}, Sacrifice this artifact: Draw a card.")
 mana={4}{G}
 type=Creature
@@ -24818,7 +24837,7 @@ name=Giant Opportunity
 target=creature
 other={2}{G}{S(food|myBattlefield)}{S(food|myBattlefield)} name(Sacrifice Foods)
 auto=if paid(alternative) then token(Giant,creature Giant,7/7,green)
-auto=ifnot paid(alternative) then token(-473141)*3
+auto=ifnot paid(alternative) then token(Food)*3
 text=You may sacrifice two Foods. If you do, create a 7/7 green Giant creature token. Otherwise, create three Food tokens. (They're artifacts with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
 mana={2}{G}
 type=Sorcery
@@ -24882,7 +24901,7 @@ subtype=Aura
 name=Giant's Skewer
 auto={3}:equip
 auto=teach(creature) 2/1
-auto=teach(creature) transforms((,newability[@combatdamaged(creature) from(this):token(-473141)]))
+auto=teach(creature) transforms((,newability[@combatdamaged(creature) from(this):token(Food)]))
 text=Equipped creature gets +2/+1. -- Whenever equipped creature deals combat damage to a creature, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.") -- Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)
 mana={1}{B}
 type=Artifact
@@ -25045,8 +25064,8 @@ toughness=4
 [card]
 name=Gilded Goose
 abilities=flying
-auto=token(-473141)
-auto={1}{G}{T}:token(-473141)
+auto=token(Food)
+auto={1}{G}{T}:token(Food)
 auto={T}{S(food|myBattlefield)}:add{W}
 auto={T}{S(food|myBattlefield)}:add{U}
 auto={T}{S(food|myBattlefield)}:add{R}
@@ -25120,7 +25139,7 @@ toughness=1
 [card]
 name=Gingerbread Cabin
 auto=aslongas(other land[forest]|myBattlefield) tap(noevent) <3 oneshot
-auto=aslongas(other land[forest]|myBattlefield) >2 token(-473141) once 
+auto=aslongas(other land[forest]|myBattlefield) >2 token(Food) once 
 text={T}: Add {G}. -- Gingerbread Cabin enters the battlefield tapped unless you control three or more other Forests. -- When Gingerbread Cabin enters the battlefield untapped, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
 type=Land
 subtype=Forest
@@ -25642,7 +25661,7 @@ toughness=3
 [card]
 name=Gluttonous Troll
 abilities=trample
-auto=token(-473141)
+auto=token(Food)
 auto={1}{G}{S(other *[-land]|mybattlefield)}:+2/+2 ueot 
 text=Trample -- When Gluttonous Troll enters the battlefield, create a number of Food tokens equal to the number of opponents you have. (Food tokens are artifacts with "{2}, {T}, Sacrifice this artifact: You gain 3 life.") -- {1}{G}, Sacrifice another nonland permanent: Gluttonous Troll gets +2/+2 until end of turn.
 mana={2}{B}{G}
@@ -26341,7 +26360,7 @@ type=Land
 [card]
 name=Golden Demise
 auto=_ASCEND_
-auto=if type(*[city's_blessing]|mybattlefield)~equalto~0 then all(creature|myBattlefield) -2/-2 ueot
+auto=if type(*[City's_blessing]|mybattlefield)~equalto~0 then all(creature|myBattlefield) -2/-2 ueot
 auto=all(creature|opponentBattlefield) -2/-2 ueot
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- All creatures get -2/-2 until end of turn. If you have the city's blessing, instead only creatures your opponents control get -2/-2 until end of turn.
 mana={1}{B}{B}
@@ -27822,26 +27841,26 @@ toughness=3
 [card]
 name=Gyome, Master Chef
 abilities=trample
-auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~1}:token(-473141)
-auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~2}:token(-473141)*2
-auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~3}:token(-473141)*3
-auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~4}:token(-473141)*4
-auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~5}:token(-473141)*5
-auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~6}:token(-473141)*6
-auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~7}:token(-473141)*7
-auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~8}:token(-473141)*8
-auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~9}:token(-473141)*9
-auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~10}:token(-473141)*10
-auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~11}:token(-473141)*11
-auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~12}:token(-473141)*12
-auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~13}:token(-473141)*13
-auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~14}:token(-473141)*14
-auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~15}:token(-473141)*15
-auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~16}:token(-473141)*16
-auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~17}:token(-473141)*17
-auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~18}:token(-473141)*18
-auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~19}:token(-473141)*19
-auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~morethan~19}:token(-473141)*20
+auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~1}:token(Food)
+auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~2}:token(Food)*2
+auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~3}:token(Food)*3
+auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~4}:token(Food)*4
+auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~5}:token(Food)*5
+auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~6}:token(Food)*6
+auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~7}:token(Food)*7
+auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~8}:token(Food)*8
+auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~9}:token(Food)*9
+auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~10}:token(Food)*10
+auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~11}:token(Food)*11
+auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~12}:token(Food)*12
+auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~13}:token(Food)*13
+auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~14}:token(Food)*14
+auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~15}:token(Food)*15
+auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~16}:token(Food)*16
+auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~17}:token(Food)*17
+auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~18}:token(Food)*18
+auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~equalto~19}:token(Food)*19
+auto=@each my end restriction{thisturn(creature[-token]|mybattlefield)~morethan~19}:token(Food)*20
 auto={1}{S(food|mybattlefield)}:name(Creature gains indestructible) target(creature|battlefield) transforms((,newability[indestructible],newability[tap])) ueot
 text=Trample -- At the beginning of your end step, create a number of Food tokens equal to the number of nontoken creatures you had enter the battlefield under your control this turn. -- {1}, Sacrifice a Food: Target creature gains indestructible until end of turn. Tap it.
 mana={2}{B}{G}
@@ -28343,8 +28362,8 @@ subtype=Aura
 [/card]
 [card]
 name=Hard Evidence
-auto=token(Crab,Creature Crab,0/3,blue)
-auto=token(Clue,Artifact Clue,0/0)*2 and!( transforms((,newability[{S}{2}:draw:1])) forever )!
+auto=name(Create crab) token(Crab)
+auto=name(Create clues) token(Clue)*2
 text=Create a 0/3 blue Crab creature token. -- Investigate. (Create a colorless Clue artifact token with "{2} , Sacrifice this artifact: Draw a card.")
 mana={U}
 type=Sorcery
@@ -32988,7 +33007,7 @@ type=Artifact
 [/card]
 [card]
 name=Jared Carthalion, True Heir
-auto=becomesmonarch opponent
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) opponent else all(Monarch Token|battlefield) moveto(opponentbattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 auto=this(variable{pmonarch}>0) vigor
 text=When Jared Carthalion, True Heir enters the battlefield, target opponent becomes the monarch. You can't become the monarch this turn. -- If damage would be dealt to Jared Carthalion while you're the monarch, prevent that damage and put that many +1/+1 counters on it.
 mana={R}{G}{W}
@@ -34077,7 +34096,7 @@ toughness=5
 [/card]
 [card]
 name=Keeper of Keys
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 auto=@each my upkeep restriction{compare(pmonarch)~morethan~0}:lord(creature|mybattlefield) unblockable
 text=When Keeper of Keys enters the battlefield, you become the monarch. -- At the beginning of your upkeep, if you're the monarch, creatures you control can't be blocked this turn.
 mana={3}{U}{U}
@@ -35008,7 +35027,7 @@ toughness=2
 [/card]
 [card]
 name=Knights of the Black Rose
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 auto=@becomesmonarchfoeof(player):life:-2 opponent && life:2 controller
 text=When Knights of the Black Rose enters the battlefield, you become the monarch. -- Whenever an opponent becomes the monarch, if you were the monarch as the turn began, that player loses 2 life and you gain 2 life.
 mana={3}{W}{B}
@@ -35554,7 +35573,7 @@ name=Kumena's Awakening
 auto=_ASCEND_
 auto=@movedTo(*|myBattlefield):_ASCEND_
 auto=@each my upkeep:draw:1 controller
-auto=@each my upkeep restriction{type(*[city's_blessing]|mybattlefield)~equalto~0}:draw:1 opponent
+auto=@each my upkeep restriction{type(*[City's_blessing]|mybattlefield)~equalto~0}:draw:1 opponent
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- At the beginning of your upkeep, each player draws a card. If you have the city's blessing, instead only you draw a card.
 mana={2}{U}{U}
 type=Enchantment
@@ -35851,7 +35870,7 @@ type=Instant
 name=Late to Dinner
 target=creature|mygraveyard
 auto=moveto(myBattlefield)
-auto=token(Food,Artifact Food,0/0) and!( transforms((,newability[{2}{T}{S}:life:3])) forever )!
+auto=name(Create food) token(Food)
 text=Return target creature card from your graveyard to the battlefield. Create a Food token. (It's an artifact with " 2 , {T}, Sacrifice this artifact: You gain 3 life.")
 mana={3}{W}
 type=Sorcery
@@ -37445,7 +37464,7 @@ toughness=1
 [card]
 name=Lonis, Cryptozoologist
 aicode=activate target(*[-land;zpos<=1]|opponentlibrary) moveto(myBattlefield)
-auto=@movedTo(other creature[-token]|mybattlefield):token(Clue,Artifact Clue,0/0) and!( transforms((,newability[{S}{2}:draw:1])) forever )!
+auto=@movedTo(other creature[-token]|mybattlefield):name(Create clue) token(Clue)
 auto={T}{S(clue[token]|myBattlefield)}:name(Sacrifice 1 clue) reveal:1 revealzone(opponentlibrary) optionone target(<upto:1>*|reveal) moveto(myBattlefield) optiononeend optiontwo target(*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend revealend
 auto={T}{S(clue[token]|myBattlefield)}{S(clue[token]|myBattlefield)}:name(Sacrifice 2 clues) reveal:2 revealzone(opponentlibrary) optionone target(<upto:1>*|reveal) moveto(myBattlefield) optiononeend optiontwo target(*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend revealend
 auto={T}{S(clue[token]|myBattlefield)}{S(clue[token]|myBattlefield)}{S(clue[token]|myBattlefield)}:name(Sacrifice 3 clues) reveal:3 revealzone(opponentlibrary) optionone target(<upto:1>*|reveal) moveto(myBattlefield) optiononeend optiontwo target(*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend revealend
@@ -38908,7 +38927,7 @@ type=Instant
 [/card]
 [card]
 name=Marchesa's Decree
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 auto=@each blockers:foreach(creature[attacking]|opponentBattlefield) life:-1 opponent
 text=When Marchesa's Decree enters the battlefield, you become the monarch. -- Whenever a creature attacks you or a planeswalker you control, that creature's controller loses 1 life.
 mana={3}{B}
@@ -39299,7 +39318,7 @@ name=Mausoleum Harpy
 abilities=flying
 auto=_ASCEND_
 auto=@movedTo(*|myBattlefield):_ASCEND_
-auto=@movedto(other creature|mygraveyard) from(battlefield) restriction{type(*[city's_blessing]|mybattlefield)~morethan~0}:counter(1/1)
+auto=@movedto(other creature|mygraveyard) from(battlefield) restriction{type(*[City's_blessing]|mybattlefield)~morethan~0}:counter(1/1)
 text=Flying -- Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Whenever another creature you control dies, if you have the city's blessing, put a +1/+1 counter on Mausoleum Harpy.
 mana={4}{B}
 type=Creature
@@ -40714,6 +40733,14 @@ type=Creature
 subtype=Dinosaur
 power=3
 toughness=3
+[/card]
+[card]
+name=Monarch Token
+abilities=shroud,indestructible
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=@each my endofturn restriction{compare(pmonarch)~morethan~0}:name(Monarch draw a card) draw:1 controller
+auto=@combatdamageof(player) restriction{compare(pmonarch)~morethan~0}:name(Opponent becomes monarch) moveto(opponentBattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+type=MonarchToken
 [/card]
 [card]
 name=Monk Class
@@ -44199,7 +44226,7 @@ toughness=4
 name=Orazca Relic
 auto=_ASCEND_
 auto=@movedTo(*|myBattlefield):_ASCEND_
-auto=_CITY'S_BLESSING_ transforms((,newability[{T}{S}:life:3 && draw:1]))
+auto=_CITY'S_BLESSING_ transforms((,newability[{T}{S}:name(Gain life and draw) life:3 && draw:1]))
 auto={T}:Add{C}
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- {T}: Add {C}. -- {T}, Sacrifice Orazca Relic: You gain 3 life and draw a card. Activate this ability only if you have the city's blessing.
 mana={3}
@@ -44227,7 +44254,7 @@ type=Artifact
 name=Orchard Strider
 aicode=activate target(land[basic]|mylibrary) moveto(myhand)
 autohand={1}{G}{cycle}:name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<1>land[basic]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=token(Food,Artifact Food,0/0) and!( transforms((,newability[{2}{T}{S}:life:3])) forever )!
+auto=name(Create food) token(Food)
 text=When Orchard Strider enters the battlefield, create two Food tokens. (They're artifacts with "{2}, {T}, Sacrifice this artifact: You gain 3 life.") -- Basic landcycling {1}{G} ({1}{G}, Discard this card: Search your library for a basic land card, reveal it, put it into your hand, then shuffle.)
 mana={4}{G}{G}
 type=Creature
@@ -44956,9 +44983,8 @@ toughness=4
 [/card]
 [card]
 name=Palace Jailer
-auto=becomesmonarch controller
-auto=moveto(opponentexile) target(creature|opponentbattlefield)
-auto=@becomesmonarchfoeof(player) once:moveto(ownerbattlefield) target(creature|opponentexile)
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=name(Exile creature) target(creature|opponentbattlefield) moveto(opponentexile) and!( transforms((,newability[@becomesmonarchof(player):name(Return to battlefield) moveto(ownerbattlefield)])) forever )!
 text=When Palace Jailer enters the battlefield, you become the monarch. -- When Palace Jailer enters the battlefield, exile target creature an opponent controls until an opponent becomes the monarch. (That creature returns under its owner's control.)
 mana={2}{W}{W}
 type=Creature
@@ -44968,7 +44994,7 @@ toughness=2
 [/card]
 [card]
 name=Palace Sentinels
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 text=When Palace Sentinels enters the battlefield, you become the monarch.
 mana={3}{W}
 type=Creature
@@ -47516,7 +47542,7 @@ type=Enchantment
 [card]
 name=Protector of the Crown
 abilities=cantlifelose
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 auto=@damageof(player):life:thatmuch controller && damage:thatmuch all(this)
 text=When Protector of the Crown enters the battlefield, you become the monarch. -- All damage that would be dealt to you is dealt to Protector of the Crown instead.
 mana={5}{W}
@@ -48160,7 +48186,7 @@ type=Sorcery
 [card]
 name=Queen Marchesa
 abilities=deathtouch,haste
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 auto=@each my upkeep restriction{compare(omonarch)~morethan~0}:token(Assassin,Creature Assassin,1/1,black,deathtouch,haste)
 text=Deathtouch, haste -- When Queen Marchesa enters the battlefield, you become the monarch. -- At the beginning of your upkeep, if an opponent is the monarch, put a 1/1 black Assassin creature token with deathtouch and haste onto the battlefield.
 mana={1}{R}{W}{B}
@@ -49719,7 +49745,7 @@ type=Instant
 [card]
 name=Regal Behemoth
 abilities=trample
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 auto=lord(land|myBattlefield) transforms((,newability[this(variable{pmonarch}>0) produceextra:selectmana]))
 text=Trample -- When Regal Behemoth enters the battlefield, you become the monarch. -- Whenever you tap a land for mana while you're the monarch, add one mana of any color to your mana pool (in addition to the mana the land produces).
 mana={4}{G}{G}
@@ -53522,8 +53548,8 @@ subtype=Aura
 [/card]
 [card]
 name=Savvy Hunter
-auto=_ATTACKING_token(-473141)
-auto=@combat(blocking) source(this):token(-473141)
+auto=_ATTACKING_token(Food)
+auto=@combat(blocking) source(this):token(Food)
 auto={S(food|myBattlefield)}{S(food|myBattlefield)}:draw:1
 text=Whenever Savvy Hunter attacks or blocks, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.") -- Sacrifice two Foods: Draw a card.
 mana={1}{B}{G}
@@ -54139,7 +54165,7 @@ toughness=6
 [/card]
 [card]
 name=Scuttletide
-auto={1}{D(*|myhand)}:token(Crab,Creature Crab,0/3,blue)
+auto={1}{D(*|myhand)}:name(Create crab) token(Crab)
 auto=this(variable{mygravecardtypes}>3) lord(crab|myBattlefield) 1/1
 text={1}, Discard a card: Create a 0/3 blue Crab creature token. -- Delirium — Crabs you control get +1/+1 as long as there are four or more card types among cards in your graveyard.
 mana={1}{U}
@@ -54318,7 +54344,7 @@ type=Snow Sorcery
 [/card]
 [card]
 name=Search the Premises
-auto=@each blockers:name(Investigate) token(Clue,Artifact Clue,0/0) and!( transforms((,newability[{S}{2}:draw:1])) forever )! controller
+auto=@each blockers:name(Investigate) name(Create clue) token(Clue) controller
 text=Whenever a creature attacks you or a planeswalker you control, investigate. (Create a colorless Clue artifact token with "{2}, Sacrifice this artifact: Draw a card.")
 mana={3}{W}
 type=Enchantment
@@ -57516,7 +57542,7 @@ toughness=2
 [card]
 name=Skyline Despot
 abilities=flying
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 auto=@each my upkeep restriction{compare(pmonarch)~morethan~0}:token(Dragon,Creature Dragon,5/5,red,flying)
 text=Flying -- When Skyline Despot enters the battlefield, you become the monarch. -- At the beginning of your upkeep, if you're the monarch, put a 5/5 red Dragon creature token with flying onto the battlefield.
 mana={5}{R}{R}
@@ -59070,7 +59096,7 @@ toughness=3
 [card]
 name=Specimen Collector
 auto=token(Squirrel,Creature Squirrel,1/1,green)
-auto=token(Crab,Creature Crab,0/3,blue)
+auto=name(Create crab) token(Crab)
 auto=_DIES_name(Copy token) clone target(*[token]|mybattlefield)
 text=When Specimen Collector enters the battlefield, create a 1/1 green Squirrel creature token and a 0/3 blue Crab creature token. -- When Specimen Collector dies, create a token that's a copy of target token you control.
 mana={4}{U}
@@ -60246,6 +60272,14 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Squirrel
+type=Creature
+subtype=Squirrel
+power=1
+toughness=1
+color=green
+[/card]
+[card]
 name=Squirrel Sanctuary
 auto=token(Squirrel,Creature Squirrel,1/1,green)
 auto=@movedto(graveyard) from(creature[-token]|myBattlefield):may pay({1}) name(Pay 1 and return to hand) moveTo(ownerhand)
@@ -60516,7 +60550,7 @@ toughness=3
 [card]
 name=Staunch Throneguard
 abilities=vigilance
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 text=Vigilance -- When Staunch Throneguard enters the battlefield, you become the monarch.
 mana={5}
 type=Artifact Creature
@@ -62473,8 +62507,8 @@ type=Enchantment
 [/card]
 [card]
 name=Sylvan Offering
-auto=token(Treefolk,Creature Treefolk,X/X,green,tnum:2) opponent
-auto=token(Treefolk,Creature Treefolk,X/X,green,tnum:2) controller
+auto=token(Treefolk,Creature Treefolk,X/X,green,tnum.2) opponent
+auto=token(Treefolk,Creature Treefolk,X/X,green,tnum.2) controller
 auto=token(Elf Warrior,Creature Elf Warrior,1/1,green)*X opponent
 auto=token(Elf Warrior,Creature Elf Warrior,1/1,green)*X controller
 text=Choose an opponent. You and that player each put an X/X green Treefolk creature token onto the battlefield. -- Choose an opponent. You and that player each put X 1/1 green Elf Warrior creature tokens onto the battlefield.
@@ -63138,7 +63172,7 @@ type=Enchantment
 name=Taste of Death
 auto=sacrifice notatarget(<3>creature|mybattlefield)
 auto=ability$! sacrifice notatarget(<3>creature|mybattlefield) !$ opponent
-auto=token(-473141)*3
+auto=token(Food)*3
 text=Each player sacrifices three creatures. You create three Food tokens. (They're artifacts with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
 mana={4}{B}{B}
 type=Sorcery
@@ -63500,7 +63534,7 @@ type=Artifact
 [/card]
 [card]
 name=Tempting Witch
-auto=token(-473141)
+auto=token(Food)
 auto={2}{T}{S(food|myBattlefield)}:life:-3 target(player)
 text=When Tempting Witch enters the battlefield, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.") -- {2}, {T}, Sacrifice a Food: Target player loses 3 life.
 mana={2}{B}
@@ -64484,7 +64518,7 @@ subtype=Saga
 [/card]
 [card]
 name=The Underworld Cookbook
-auto={T}{D(*|myHand)}:name(Create food) token(Food,Artifact Food,0/0) and!( transforms((,newability[{2}{T}{S}:life:3])) forever )! controller
+auto={T}{D(*|myHand)}:name(Create food) token(Food)
 auto={4}{T}{S}:name(Return creature) target(creature|mygraveyard) moveto(myHand)
 text={T}, Discard a card: Create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.") -- {4}, {T}, Sacrifice The Underworld Cookbook: Return target creature card from your graveyard to your hand.
 mana={1}
@@ -64648,7 +64682,7 @@ toughness=6
 [card]
 name=Thorn of the Black Rose
 abilities=deathtouch
-auto=becomesmonarch controller
+auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 text=Deathtouch (Any amount of damage this deals to a creature is enough to destroy it.) -- When Thorn of the Black Rose enters the battlefield, you become the monarch.
 mana={3}{B}
 type=Creature
@@ -64714,7 +64748,7 @@ toughness=2
 [/card]
 [card]
 name=Thorough Investigation
-auto=@each my blockers:name(Investigation) token(Clue,Artifact Clue,0/0) and!( transforms((,newability[{S}{2}:draw:1])) forever )! controller
+auto=@each my blockers:name(Investigation) name(Create clue) token(Clue) controller
 auto=@sacrificed(Clue|mybattlefield) restriction{compare(type:*[nodngplr]:mybattlefieldplustype:*[nodngopp]:opponentbattlefieldplusend)~equalto~0}:name(Venture into dungeon) transforms((,newability[if type(*[dungeon]|mycommandzone)~morethan~0 then name(Explore the dungeon) name(Explore the dungeon) all(*[dungeon]|mycommandzone) counter(0/0.1.Explore)],newability[if type(*[dungeon]|mycommandzone)~equalto~0 then name(Choose a new dungeon) name(Choose a new dungeon) target(*[dungeon]|mysideboard) moveTo(mycommandzone) and!( counter(0/0.1.Explore) )!])) oneshot
 text=Whenever you attack, investigate. (Create a colorless Clue artifact token with "{2}, Sacrifice this artifact: Draw a card.") -- Whenever you sacrifice a Clue, venture into the dungeon. (Enter the first room or advance to the next room.)
 mana={2}{W}
@@ -65043,7 +65077,7 @@ type=Legendary Artifact
 [card]
 name=Throne of the High City
 auto={T}:add{C}
-auto={4}{T}{S}:becomesmonarch controller
+auto={4}{T}{S}:if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 text={T}: Add {C} to your mana pool. -- {4}, {T}, Sacrifice Throne of the High City: You become the monarch.
 type=Land
 [/card]
@@ -65394,7 +65428,7 @@ toughness=1
 [card]
 name=Tilonalli's Summoner
 auto=_ASCEND_
-auto=@movedTo(*|myBattlefield) restriction{type(*[city's_blessing]|mybattlefield)~equalto~0}:_ASCEND_
+auto=@movedTo(*|myBattlefield) restriction{type(*[City's_blessing]|mybattlefield)~equalto~0}:_ASCEND_
 auto=_ATTACKING_may pay({X}{R}) name(Create X elemental tokens) token(Elemental,Creature Elemental Tilonalli,1/1,red,battleready)*x
 auto=@each my endstep restriction{type(*[city's_blessing]|mybattlefield)~equalto~0}:moveto(exile) all(Tilonalli[token;fresh]|myBattlefield)
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Whenever Tilonalli's Summoner attacks, you may pay {X}{R}. If you do, create X 1/1 red Elemental creature tokens that are tapped and attacking. At the beginning of the next end step, exile those tokens unless you have the city's blessing.
@@ -66268,7 +66302,7 @@ type=Instant
 [/card]
 [card]
 name=Trail of Crumbs
-auto=token(-473141)
+auto=token(Food)
 auto=@sacrificed(food|mybattlefield):pay({1}) name(look) reveal:2 optionone name(Get a permanent card) target(<1>*[-instant,-sorcery]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<2>*|reveal) bottomoflibrary optiontwoend revealend
 text=When Trail of Crumbs enters the battlefield, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.") -- Whenever you sacrifice a Food, you may pay 1 . If you do, look at the top two cards of your library. You may reveal a permanent card from among them and put it into your hand. Put the rest on the bottom of your library in any order.
 mana={1}{G}
@@ -66447,7 +66481,7 @@ type=Artifact Treasure
 name=Treasure Map
 aicode=activate transforms((,newability[all(*[zpos<=type:zombie:mybattlefield]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto={1}{T}:_SCRY_(1) && counter(0/0,1,landmark)
-auto=@counteradded(0/0,1,landmark) from(this):this(counter{0/0.3.landmark}=) removeallcounters(0/0.1.landmark) && flip(Treasure Cove) && _TREASURE_*3
+auto=@counteradded(0/0,1,landmark) from(this):this(counter{0/0.3.landmark}=) removeallcounters(0/0.1.landmark) && flip(Treasure Cove) && token(Treasure Sur)*3
 text={1}, {T}: Scry 1. Put a landmark counter on Treasure Map. Then if there are three or more landmark counters on it, remove those counters, transform Treasure Map, and create three colorless Treasure artifact tokens with "{T}, Sacrifice this artifact: Add one mana of any color to your mana pool."
 mana={2}
 type=Artifact
@@ -67029,7 +67063,7 @@ name=Turn into a Pumpkin
 target=*[-land]
 auto=moveto(ownerhand)
 auto=draw:1 controller
-auto=if casted(this) then if spent({U}{U}{U}) then token(-473141)
+auto=if casted(this) then if spent({U}{U}{U}) then token(Food)
 text=Return target nonland permanent to its owner's hand. Draw a card. -- Adamant — If at least three blue mana was spent to cast this spell, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
 mana={3}{U}
 type=Instant
@@ -67132,7 +67166,7 @@ name=Twilight Prophet
 abilities=flying
 auto=_ASCEND_
 auto=@movedTo(*|myBattlefield):_ASCEND_
-auto=@each my upkeep restriction{type(*[city's_blessing]|mybattlefield)~morethan~0}:moveto(myhand) and!( transforms((,newability[damage:manacost opponent],newability[life:manacost controller])) ueot )! all(*[zpos=1]|mylibrary)
+auto=@each my upkeep restriction{type(*[City's_blessing]|mybattlefield)~morethan~0}:moveto(myhand) and!( transforms((,newability[damage:manacost opponent],newability[life:manacost controller])) ueot )! all(*[zpos=1]|mylibrary)
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- At the beginning of your upkeep, if you have the city's blessing, reveal the top card of your library and put it into your hand. Each opponent loses X life and you gain X life, where X is that card's converted mana cost.
 mana={2}{B}{B}
 type=Creature
@@ -70053,8 +70087,8 @@ toughness=3
 [card]
 name=Vona's Hunger
 auto=_ASCEND_
-auto=if type(*[city's_blessing]|mybattlefield)~morethan~0 then ability$!name(sacrifice half creatures) notatarget(<halfuptype:creature:myBattlefield>creature|myBattlefield) sacrifice!$ opponent
-auto=if type(*[city's_blessing]|mybattlefield)~equalto~0 then ability$!name(sacrifice a creature) notatarget(creature|myBattlefield) sacrifice!$ opponent
+auto=if type(*[City's_blessing]|mybattlefield)~morethan~0 then ability$!name(sacrifice half creatures) notatarget(<halfuptype:creature:myBattlefield>creature|myBattlefield) sacrifice!$ opponent
+auto=if type(*[City's_blessing]|mybattlefield)~equalto~0 then ability$!name(sacrifice a creature) notatarget(creature|myBattlefield) sacrifice!$ opponent
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Each opponent sacrifices a creature. If you have the city's blessing, instead each opponent sacrifices half the creatures they control, rounded up.
 mana={2}{B}
 type=Instant
@@ -70931,7 +70965,7 @@ name=Wavesifter
 abilities=flying
 other={G}{U} name(Evoke)
 auto=if paid(alternative) then sacrifice
-auto=token(Clue,Artifact Clue,0/0)*2 and!( transforms((,newability[{S}{2}:draw:1])) forever )!
+auto=name(Create clues) token(Clue)*2
 text=Flying -- When Wavesifter enters the battlefield, investigate twice. (To investigate, create a colorless Clue artifact token with "{2}, Sacrifice this artifact: Draw a card.") -- Evoke {G}{U} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
 mana={3}{G}{U}
 type=Creature
@@ -71846,8 +71880,8 @@ subtype=Swamp
 [/card]
 [card]
 name=Witch's Oven
-auto={T}{S(creature[toughness<4]|myBattlefield)}:token(-473141)
-auto={T}{S(creature[toughness>=4]|myBattlefield)}:token(-473141)*2
+auto={T}{S(creature[toughness<4]|myBattlefield)}:token(Food)
+auto={T}{S(creature[toughness>=4]|myBattlefield)}:token(Food)*2
 text={T}, Sacrifice a creature: Create a Food token. If the sacrificed creature's toughness was 4 or greater, create two Food tokens instead. (They're artifacts with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
 mana={1}
 type=Artifact
@@ -72363,7 +72397,7 @@ toughness=1
 [/card]
 [card]
 name=Xorn
-auto=@tokencreated(treasure|myBattlefield):token(Treasure,Artifact Treasure,0/0,notrigger) and!( transforms((,newability[{T}{S}:add{W}],newability[{T}{S}:add{U}],newability[{T}{S}:add{G}],newability[{T}{S}:add{B}],newability[{T}{S}:add{R}])) forever )! controller
+auto=@tokencreated(treasure|myBattlefield):token(Treasure Sur,notrigger)
 text=If you would create one or more Treasure tokens, instead create those tokens plus an additional Treasure token.
 mana={2}{R}
 type=Creature

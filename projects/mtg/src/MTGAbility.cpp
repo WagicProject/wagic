@@ -3028,7 +3028,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             starfound = starfound.substr(0,starEnd);
             multiplier = NEW WParsedInt(starfound, spell, card);
         }
-        
+        replace(splitToken[1].begin(), splitToken[1].end(), '^', ','); // To allow the usage of ^ instead of , char (e.g. using token keyword inside transforms)
         int tokenId = atoi(splitToken[1].c_str());
         if (tokenId)
         {
@@ -3047,19 +3047,25 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             }
             return tok;
         }
-        
         string tokenDesc = splitToken[1];
-        replace(tokenDesc.begin(), tokenDesc.end(), '^', ','); // To allow the usage of ^ instead of , char (e.g. using token keyword inside transforms)
         vector<string> tokenParameters = split(tokenDesc, ',');
+        string sabilities = "";
         //lets try finding a token by card name.
         if (splitToken[1].size() && (tokenParameters.size() ==1||tokenParameters.size() ==2))
         {
             string cardName = splitToken[1];
+            size_t triggerpos = cardName.find(",notrigger");
+            if(triggerpos != string::npos){
+                cardName.replace(triggerpos, 10, ""); // To allow the usage of notrigger even with named token (e.g. Academy Manufactor)
+                sabilities = "notrigger";
+            }
             MTGCard * safetycard = MTGCollection()->getCardByName(cardName);
             if (safetycard) //lets try constructing it then,we didnt find it by name
             {
                 ATokenCreator * tok = NEW ATokenCreator(observer, id, card, target, NULL, cardName, starfound, multiplier, who);
                 tok->oneShot = 1;
+                if(!sabilities.empty())
+                    tok->sabilities = sabilities;
                 //andability
                 if(storedAndAbility.size())
                 {
@@ -3082,7 +3088,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         //reconstructing string abilities from the split version,
         // then we re-split it again in the token constructor,
         // this needs to be improved
-        string sabilities = (tokenParameters.size() > 3)? tokenParameters[3] : "";
+        sabilities = (tokenParameters.size() > 3)? tokenParameters[3] : "";
         for (size_t i = 4; i < tokenParameters.size(); ++i)
         {
             sabilities.append(",");
