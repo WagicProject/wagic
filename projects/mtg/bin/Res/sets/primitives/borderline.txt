@@ -16419,8 +16419,9 @@ toughness=3
 [/card]
 [card]
 name=Dockside Extortionist
-auto=foreach(type:*[artifact,enchantment]:opponentbattlefield) token(435451)
-text=When Dockside Extortionist enters the battlefield, create X Treasure tokens, where X is the number of artifacts and enchantments your opponents control. (Treasure tokens are artifacts with " {T}, Sacrifice this artifact: Add one mana of any color.")
+auto=name(Create treasures) token(Treasure Sur)*type:artifact:opponentbattlefield
+auto=name(Create treasures) token(Treasure Sur)*type:enchantment:opponentbattlefield
+text=When Dockside Extortionist enters the battlefield, create X Treasure tokens, where X is the number of artifacts and enchantments your opponents control. (Treasure tokens are artifacts with "{T}, Sacrifice this artifact: Add one mana of any color.")
 mana={1}{R}
 type=Creature
 subtype=Goblin Pirate
@@ -18842,7 +18843,12 @@ type=Artifact
 [card]
 name=Embercleave
 abilities=flash
-anyzone=foreach(creature[attacking]|battlefield) changecost(colorless:-1) forcedalive
+other={3}{R}{R} name(Cast Embercleave for 1 less)
+otherrestriction=type(creature[attacking]|myBattlefield)~morethan~0
+restriction=type(creature[attacking]|myBattlefield)~equalto~0
+autohand={2}{R}{R} restriction{type(creature[attacking]|myBattlefield)~equalto~2}:name(Cast Embercleave for 2 less) name(Cast Embercleave for 2 less) activate castcard(alternative)
+autohand={1}{R}{R} restriction{type(creature[attacking]|myBattlefield)~equalto~3}:name(Cast Embercleave for 3 less) name(Cast Embercleave for 3 less) activate castcard(alternative)
+autohand={R}{R} restriction{type(creature[attacking]|myBattlefield)~morethan~3}:name(Cast Embercleave for 4 less) name(Cast Embercleave for 4 less) activate castcard(alternative)
 auto=aslongas(parents) name(Attach to creature) rehook target(creature|myBattlefield) <1
 auto=teach(creature) double strike
 auto=teach(creature) trample
@@ -24776,7 +24782,7 @@ autohand={10}{U}{D}:name(10 creatures gains flying) target(<10>creature|battlefi
 autohand={11}{U}{D}:name(11 creatures gains flying) target(<11>creature|battlefield) transforms((,newability[flying])) ueot
 autohand={12}{U}{D}:name(12 creatures gains flying) target(<12>creature|battlefield) transforms((,newability[flying])) ueot
 autohand={13}{U}{D}:name(13 creatures gains flying) target(<13>creature|battlefield) transforms((,newability[flying])) ueot
-autohand={14}{U}{D}:name(14 creatures gains flying) target(<4>creature|battlefield) transforms((,newability[flying])) ueot
+autohand={14}{U}{D}:name(14 creatures gains flying) target(<14>creature|battlefield) transforms((,newability[flying])) ueot
 autohand={15}{U}{D}:name(15 creatures gains flying) target(<15>creature|battlefield) transforms((,newability[flying])) ueot
 autohand={16}{U}{D}:name(16 creatures gains flying) target(<16>creature|battlefield) transforms((,newability[flying])) ueot
 autohand={17}{U}{D}:name(17 creatures gains flying) target(<17>creature|battlefield) transforms((,newability[flying])) ueot
@@ -28117,6 +28123,14 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Hallowed Moonlight
+auto=draw:1 controller
+auto=emblem transforms((,newability[@movedto(creature|battlefield):name(Exile if not casted) all(trigger[to]) transforms((,newability[ifnot casted(this) then moveto(exile)])) oneshot])) ueot dontremove
+text=Until end of turn, if a creature would enter the battlefield and it wasn't cast, exile it instead. -- Draw a card.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
 name=Hallowed Priest
 auto=@lifeof(player) from(*[-lifefaker]|*):counter(1/1,1)
 text=Whenever you gain life, put a +1/+1 counter on Hallowed Priest
@@ -28278,6 +28292,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Hankyu
+auto={4}:equip
+auto=teach(creature) transforms((,newability[{T}:name(Add aim counter) counter(0/0.1.aim)]))
+auto=teach(creature) transforms((,newability[{T}:name(Deal damage) damage:hascntaim target(player^creature) && all(this) removeallcounters(0/0.1.aim)]))
+text=Equipped creature has "{T}: Put an aim counter on Hankyu" and "{T}, Remove all aim counters from Hankyu: This creature deals damage to target creature or player equal to the number of aim counters removed this way." -- Equip {4} ({4}: Attach to target creature you control. Equip only as a sorcery.)
+mana={1}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Hans Eriksson
 auto=_ATTACKING_reveal:1 optionone name(Reveal) target(creature|reveal) moveto(mybattlefield) and!( transforms((,newability[ninjutsu],newability[target(Hans Eriksson|mybattlefield) dynamicability<!powerstrike eachother!>])) forever )! optiononeend optiontwo target(<1>*|reveal) moveto(myhand) optiontwoend revealend
 text=Whenever Hans Eriksson attacks, reveal the top card of your library. If it's a creature card, put it onto the battlefield tapped and attacking defending player or a planeswalker they control. Otherwise, put that card into your hand. When you put a creature card onto the battlefield this way, it fights Hans Eriksson.
@@ -28348,6 +28372,19 @@ mana={1}{B}{G}
 type=Legendary Creature
 subtype=Elf Warrior
 power=3
+toughness=2
+[/card]
+[card]
+name=Harbinger of the Tides
+abilities=flash
+other={2}{U}{U} name(Cast with flash)
+restriction=can play creature
+auto=may name(Return tapped creature) target(creature[tapped]|opponentbattlefield) moveto(ownerhand)
+text=You may cast Harbinger of the Tides as though it had flash if you pay {2} more to cast it. (You may cast it any time you could cast an instant.) -- When Harbinger of the Tides enters the battlefield, you may return target tapped creature an opponent controls to its owner's hand.
+mana={U}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=2
 toughness=2
 [/card]
 [card]
@@ -29590,6 +29627,17 @@ mana={1}{B}{R}
 type=Instant
 [/card]
 [card]
+name=Hixus, Prison Warden
+abilities=flash
+auto=@combatdamageof(player) from(creature|battlefield):this(cantargetcard(*[fresh]|*)) name(Exile creature) all(trigger[from]) (blink)forsrc
+text=Flash (You may cast this spell any time you could cast an instant.) -- Whenever a creature deals combat damage to you, if Hixus, Prison Warden entered the battlefield this turn, exile that creature until Hixus leaves the battlefield. (That creature returns under its owner's control.)
+mana={3}{W}{W}
+type=Legendary Creature
+subtype=Human Soldier
+power=4
+toughness=4
+[/card]
+[card]
 name=Hive Mind
 auto=@movedto(*[instant;sorcery]|mystack):ability$!name(Copy spell) name(Copy spell) all(*[instant;sorcery]|opponentstack) activate castcard(copied noevent)!$ opponent
 auto=@movedto(*[instant;sorcery]|opponentstack):ability$!name(Copy spell) name(Copy spell) all(*[instant;sorcery]|opponentstack) activate castcard(copied noevent)!$ controller
@@ -29688,6 +29736,20 @@ power=4
 toughness=5
 [/card]
 [card]
+name=Holistic Wisdom
+auto=aslongas(artifact|myhand) {2}{E(artifact|myhand)}:name(Exile an artifact) name(Exile an artifact) ability$!name(Return an artifact) name(Return an artifact) target(artifact|mygraveyard) moveto(myhand)!$ controller
+auto=aslongas(creature|myhand) {2}{E(creature|myhand)}:name(Exile a creature) name(Exile a creature) ability$!name(Return a creature) name(Return a creature) target(creature|mygraveyard) moveto(myhand)!$ controller
+auto=aslongas(enchantment|myhand) {2}{E(enchantment|myhand)}:name(Exile an enchantment) name(Exile an enchantment) ability$!name(Return an enchantment) name(Return an enchantment) target(enchantment|mygraveyard) moveto(myhand)!$ controller
+auto=aslongas(planeswalker|myhand) {2}{E(planeswalker|myhand)}:name(Exile a planeswalker) name(Exile a planeswalker) ability$!name(Return a planeswalker) name(Return a planeswalker) target(planeswalker|mygraveyard) moveto(myhand)!$ controller
+auto=aslongas(land|myhand) {2}{E(land|myhand)}:name(Exile a land) name(Exile a land) ability$!name(Return a land) name(Return a land) target(land|mygraveyard) moveto(myhand)!$ controller
+auto=aslongas(instant|myhand) {2}{E(instant|myhand)}:name(Exile an instant) name(Exile an instant) ability$!name(Return an instant) name(Return an instant) target(instant|mygraveyard) moveto(myhand)!$ controller
+auto=aslongas(sorcery|myhand) {2}{E(sorcery|myhand)}:name(Exile a sorcery) name(Exile a sorcery) ability$!name(Return a sorcery) name(Return a sorcery) target(sorcery|mygraveyard) moveto(myhand)!$ controller
+auto=aslongas(tribal|myhand) {2}{E(tribal|myhand)}:name(Exile a tribal) name(Exile a tribal) ability$!name(Return a tribal) name(Return a tribal) target(tribal|mygraveyard) moveto(myhand)!$ controller
+text={2}, Exile a card from your hand: Return target card from your graveyard to your hand if it shares a card type with the card exiled this way. (Artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal are card types.)
+mana={1}{G}{G}
+type=Enchantment
+[/card]
+[card]
 name=Hollow One
 abilities=cycling
 anyzone=@discarded(*|myhand):changecost(colorless:-2) ueot forcedalive
@@ -29739,6 +29801,17 @@ type=Creature
 subtype=Homarid Scout
 power=3
 toughness=3
+[/card]
+[card]
+name=Homing Sliver
+auto=lord(sliver|hand) transforms((,newability[{3}{D}:name(Search sliver) target(sliver|mylibrary) moveto(myhand) and!( shuffle )!]))
+autohand={3}{D}:name(Search sliver) target(sliver|mylibrary) moveto(myhand) and!( shuffle )!
+text=Each Sliver card in each player's hand has slivercycling {3}. -- Slivercycling {3} ({3}, Discard this card: Search your library for a Sliver card, reveal it, and put it into your hand. Then shuffle your library.)
+mana={2}{R}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
 [/card]
 [card]
 name=Honed Khopesh
@@ -40739,7 +40812,8 @@ name=Monarch Token
 abilities=shroud,indestructible
 auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 auto=@each my endofturn restriction{compare(pmonarch)~morethan~0}:name(Monarch draw a card) draw:1 controller
-auto=@combatdamageof(player) restriction{compare(pmonarch)~morethan~0}:name(Opponent becomes monarch) moveto(opponentBattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=@combatdamageof(player) restriction{compare(pmonarch)~morethan~0} turnlimited:name(Opponent becomes monarch) moveto(opponentBattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+text=At the beginning of your end step, draw a card. -- Whenever a creature deals combat damage to you, its controller becomes the monarch.
 type=MonarchToken
 [/card]
 [card]
@@ -42309,10 +42383,10 @@ toughness=1
 [card]
 name=Neverwinter Hydra
 abilities=trample
-auto=counter(1/1)
+auto=if compare(halfpaid)~morethan~0 then counter(1/1)
 auto=@dierolled(this) from(controller) once:counter(1/1,-1)
 auto=@targeted(this) from(*|opponentzones):choice name(This spell costs 4 more) name(This spell costs 4 more) target(*|opponentzones) transforms((,newability[pay[[{4}]] name(pay 4 mana) donothing?fizzle])) oneshot
-auto=thisforeach(variable{halfpaid}>=1) transforms((,newability[name(Roll a d6) rolld6 6 winability counter(1/1.lastrollresult) winabilityend loseability counter(1/1.lastrollresult) loseabilityend rolld6end
+auto=thisforeach(variable{halfpaid}>0) ability$!name(Roll a d6) name(Roll a d6) all(mysource) rolld6 6 winability counter(1/1.lastrollresult) winabilityend loseability counter(1/1.lastrollresult) loseabilityend rolld6end!$ controller
 text=As Neverwinter Hydra enters the battlefield, roll X d6. It enters with a number of +1/+1 counters on it equal to the total of those results. -- Trample -- Ward {4} (Whenever this creature becomes the target of a spell or ability an opponent controls, counter it unless that player pays {4}.)
 mana={X}{X}{G}{G}
 type=Creature
@@ -55909,7 +55983,7 @@ name=Shiny Impetus
 target=creature
 auto=mustattack
 auto=2/2
-auto=_ATTACKING_token(Treasure Shi)
+auto=_ATTACKING_token(Treasure Sur)
 text=Enchant creature -- Enchanted creature gets +1/+1 and is goaded. (It attacks each combat if able and attacks a player other than you if able.) -- Whenever enchanted creature attacks, each other creature that’s attacking one of your opponents gets +1/+1 until end of turn.
 mana={2}{W}
 type=Enchantment
@@ -66495,16 +66569,6 @@ type=Creature
 subtype=Goblin Rogue
 power=3
 toughness=2
-[/card]
-[card]
-name=Treasure Shi
-auto={T}{S}:add{W}
-auto={T}{S}:add{U}
-auto={T}{S}:add{B}
-auto={T}{S}:add{R}
-auto={T}{S}:add{G}
-text={T}, Sacrifice this artifact: Add one mana of any color.
-type=Artifact Treasure
 [/card]
 [card]
 name=Treasure Sur
