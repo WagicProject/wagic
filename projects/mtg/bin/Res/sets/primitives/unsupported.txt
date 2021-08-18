@@ -4716,12 +4716,6 @@ mana={W}
 type=Instant
 [/card]
 [card]
-name=Hallowed Moonlight
-text=Until end of turn, if a creature would enter the battlefield and it wasn't cast, exile it instead. -- Draw a card.
-mana={1}{W}
-type=Instant
-[/card]
-[card]
 name=Hammerfest Boomtacular
 text=Whenever you cast a spell with a Goblin Explosioneers watermark, Hammerfest Boomtacular deals 2 damage to any target.
 mana={3}{R}{R}
@@ -4753,22 +4747,6 @@ type=Creature
 subtype=Human Villain
 power=1
 toughness=1
-[/card]
-[card]
-name=Hankyu
-text=Equipped creature has "{T}: Put an aim counter on Hankyu" and "{T}, Remove all aim counters from Hankyu: This creature deals damage to target creature or player equal to the number of aim counters removed this way." -- Equip {4} ({4}: Attach to target creature you control. Equip only as a sorcery.)
-mana={1}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
-name=Harbinger of the Tides
-text=You may cast Harbinger of the Tides as though it had flash if you pay {2} more to cast it. (You may cast it any time you could cast an instant.) -- When Harbinger of the Tides enters the battlefield, you may return target tapped creature an opponent controls to its owner's hand.
-mana={U}{U}
-type=Creature
-subtype=Merfolk Wizard
-power=2
-toughness=2
 [/card]
 [card]
 name=Hard Hat Area
@@ -4939,16 +4917,6 @@ text=Hidden agenda (Start the game with this conspiracy face down in the command
 type=Conspiracy
 [/card]
 [card]
-name=Hixus, Prison Warden
-abilities=flash
-text=Flash (You may cast this spell any time you could cast an instant.) -- Whenever a creature deals combat damage to you, if Hixus, Prison Warden entered the battlefield this turn, exile that creature until Hixus leaves the battlefield. (That creature returns under its owner's control.)
-mana={3}{W}{W}
-type=Legendary Creature
-subtype=Human Soldier
-power=4
-toughness=4
-[/card]
-[card]
 name=Hoarder's Greed
 text=You lose 2 life and draw two cards, then clash with an opponent. If you win, repeat this process. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={3}{B}
@@ -4977,21 +4945,6 @@ toughness=1
 name=Hold the Perimeter
 text=(Start the game with this conspiracy face up in the command zone.) -- At the beginning of your first upkeep, put a 1/2 white Soldier creature token with defender onto the battlefield. -- At the beginning of each other player's first upkeep, that player puts a 1/1 red Goblin creature token onto the battlefield with "This creature can't block."
 type=Conspiracy
-[/card]
-[card]
-name=Holistic Wisdom
-text={2}, Exile a card from your hand: Return target card from your graveyard to your hand if it shares a card type with the card exiled this way. (Artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal are card types.)
-mana={1}{G}{G}
-type=Enchantment
-[/card]
-[card]
-name=Homing Sliver
-text=Each Sliver card in each player's hand has slivercycling {3}. -- Slivercycling {3} ({3}, Discard this card: Search your library for a Sliver card, reveal it, and put it into your hand. Then shuffle your library.)
-mana={2}{R}
-type=Creature
-subtype=Sliver
-power=2
-toughness=2
 [/card]
 [card]
 name=Honorable Passage
