@@ -115,6 +115,10 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 # Effect with the City's blessing, Set XLN
 #AUTO_DEFINE _CITY'S_BLESSING_ aslongas(*[City's_blessing]|mybattlefield)>0
 
+# Monarch
+#AUTO_DEFINE _MONARCH_CONTROLLER_ if type(The Monarch|battlefield)~lessthan~1 then token(The Monarch) else all(The Monarch|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+#AUTO_DEFINE _MONARCH_OPPONENT_ if type(The Monarch|battlefield)~lessthan~1 then token(The Monarch) opponent else all(The Monarch|battlefield) moveto(opponentbattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )! 
+
 # Explore
 #AUTO_DEFINE _EXPLORE_ reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) optiontwoend revealend limit:1
 

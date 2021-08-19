@@ -5345,12 +5345,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Infinite Obliteration
-text=Name a creature card. Search target opponent's graveyard, hand, and library for any number of cards with that name and exile them. Then that player shuffles his or her library.
-mana={1}{B}{B}
-type=Sorcery
-[/card]
-[card]
 name=Infinite Reflection
 text=Enchant creature -- When Infinite Reflection enters the battlefield attached to a creature, each other nontoken creature you control becomes a copy of that creature. -- Nontoken creatures you control enter the battlefield as a copy of enchanted creature.
 mana={5}{U}
