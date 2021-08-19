@@ -2613,7 +2613,7 @@ toughness=0
 [card]
 name=Arch of Orazca
 auto=_ASCEND_
-auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=@movedTo(*|myBattlefield) restriction{type(City's Blessing|mybattlefield)~equalto~0}:_ASCEND_
 auto=_CITY'S_BLESSING_ transforms((,newability[{5}{T}:draw:1]))
 auto={T}:Add{C}
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- {T}: Add {C}. -- {5}, {T}: Draw a card. Activate this ability only if you have the city's blessing.
@@ -2773,7 +2773,7 @@ toughness=2
 [card]
 name=Archon of Coronation
 abilities=flying
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 auto=this(variable{pmonarch}>0) preventalldamage to(controller)
 text=Flying -- When Archon of Coronation enters the battlefield, you become the monarch. -- As long as you're the monarch, damage doesn't cause you to lose life. (When a creature deals combat damage to you, its controller still becomes the monarch.)
 mana={4}{W}{W}
@@ -4207,7 +4207,7 @@ toughness=3
 [/card]
 [card]
 name=Azure Fleet Admiral
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 auto=this(variable{omonarch}>0) unblockable
 text=When Azure Fleet Admiral enters the battlefield, you become the monarch. -- Azure Fleet Admiral can't be blocked by creatures the monarch controls.
 mana={3}{U}
@@ -8596,7 +8596,7 @@ toughness=1
 [/card]
 [card]
 name=Canal Courier
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 text=When Canal Courier enters the battlefield, you become the monarch. -- Whenever Canal Courier and another creature attack different players, Canal Courier can't be blocked this combat.
 mana={5}{U}
 type=Creature
@@ -10779,9 +10779,9 @@ mana={3}{G}
 type=Sorcery
 [/card]
 [card]
-name=City's_blessing
-abilities=shroud,indestructible
-type=City's_blessing
+name=City's Blessing
+abilities=shroud,indestructible,doublefacedeath
+type=Emblem
 [/card]
 [card]
 name=Citywatch Sphinx
@@ -12582,7 +12582,7 @@ toughness=1
 [/card]
 [card]
 name=Court of Ambition
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 auto=@each my upkeep restriction{compare(pmonarch)~equalto~0}:ability$!name(Choose one) choice name(Loose 3 life) life:-3 _ choice name(Discrd a card) reject notatarget(*|myhand)!$ opponent
 auto=@each my upkeep restriction{compare(pmonarch)~equalto~1}:ability$!name(Choose one) choice name(Loose 6 life) life:-6 _ choice name(Discrd 2 cards) reject notatarget(<2>*|myhand)!$ opponent
 text=When Court of Ambition enters the battlefield, you become the monarch. -- At the beginning of your upkeep, each opponent loses 3 life unless they discard a card. If you're the monarch, instead each opponent loses 6 life unless they discard two cards.
@@ -12591,7 +12591,7 @@ type=Enchantment
 [/card]
 [card]
 name=Court of Bounty
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 auto=@each my upkeep restriction{compare(pmonarch)~equalto~0}:may moveto(myBattlefield) target(land|myHand)
 auto=@each my upkeep restriction{compare(pmonarch)~equalto~1}:may moveto(myBattlefield) target(*[land;creature]|myHand)
 text=When Court of Bounty enters the battlefield, you become the monarch. -- At the beginning of your upkeep, you may put a land card from your hand onto the battlefield. If you're the monarch, instead you may put a creature or land card from your hand onto the battlefield.
@@ -12600,7 +12600,7 @@ type=Enchantment
 [/card]
 [card]
 name=Court of Cunning
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 auto=@each my upkeep restriction{compare(pmonarch)~equalto~0}:ability$!name(Choose one) choice name(Opponent mills cards) deplete:3 opponent _ choice name(You mill cards) deplete:3 controller _ choice name(Both player mill cards) deplete:3 controller && deplete:3 opponent _ choice name(No one mills cards) donothing!$ controller
 auto=@each my upkeep restriction{compare(pmonarch)~equalto~1}:ability$!name(Choose one) choice name(Opponent mills cards) deplete:10 opponent _ choice name(You mill cards) deplete:10 controller _ choice name(Both player mill cards) deplete:10 controller && deplete:10 opponent _ choice name(No one mills cards) donothing!$ controller 
 text=When Court of Cunning enters the battlefield, you become the monarch. -- At the beginning of your upkeep, any number of target players each mill two cards. If you're the monarch, each of those players mills ten cards instead. (To mill a card, a player puts the top card of their library into their graveyard.)
@@ -12609,7 +12609,7 @@ type=Enchantment
 [/card]
 [card]
 name=Court of Grace
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 auto=@each my upkeep restriction{compare(pmonarch)~equalto~0}:token(Spirit,Creature Spirit,1/1,white,flying)
 auto=@each my upkeep restriction{compare(pmonarch)~equalto~1}:token(Angel,Creature Angel,4/4,white,flying)
 text=When Court of Grace enters the battlefield, you become the monarch. -- At the beginning of your upkeep, create a 1/1 white Spirit creature token with flying. If you're the monarch, create a 4/4 white Angel creature token with flying instead.
@@ -12618,7 +12618,7 @@ type=Enchantment
 [/card]
 [card]
 name=Court of Ire
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 auto=@each my upkeep restriction{compare(pmonarch)~equalto~0}:name(Deals 2 damages to any target) name(Deals 2 damages to any target) damage:2 target(player,creature,planeswalker)
 auto=@each my upkeep restriction{compare(pmonarch)~equalto~1}:name(Deals 7 damages to any target) name(Deals 7 damages to any target) damage:7 target(player,creature,planeswalker)
 text=When Court of Ire enters the battlefield, you become the monarch. -- At the beginning of your upkeep, Court of Ire deals 2 damage to any target. If you're the monarch, it deals 7 damage instead.
@@ -12940,7 +12940,7 @@ type=Sorcery
 [card]
 name=Crimson Fleet Commodore
 abilities=trample
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 text=Trample -- When Crimson Fleet Commodore enters the battlefield, you become the monarch.
 mana={3}{R}
 type=Creature
@@ -13022,7 +13022,7 @@ subtype=Aura
 [/card]
 [card]
 name=Crown-Hunter Hireling
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 auto=this(variable{omonarch}<1) cantattack
 auto=this(variable{omonarch}<1) cantpwattack
 text=When Crown-Hunter Hireling enters the battlefield, you become the monarch. -- Crown-Hunter Hireling can't attack unless defending player is the monarch.
@@ -13613,7 +13613,7 @@ type=Artifact
 [/card]
 [card]
 name=Custodi Lich
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 auto=@becomesmonarchof(player):target(player) ability$!name(sacrifice) target(creature|mybattlefield) sacrifice!$ targetedplayer
 text=When Custodi Lich enters the battlefield, you become the monarch. -- Whenever you become the monarch, target player sacrifices a creature.
 mana={3}{B}{B}
@@ -14135,7 +14135,7 @@ auto=choice name(Creatures you control get -1/-0) emblem transforms((,newability
 auto=choice name(Spells you cast cost B more to cast) emblem transforms((,newability[lord(*|mycastingzone) changecost(black:+1)])) forever dontremove
 auto=choice name(Whenever you draw a card, exile top 2 cards) emblem transforms((,newability[@drawof(player):all(*[zpos<=2]|mylibrary) moveto(exile)])) forever dontremove
 auto=choice name(Each upkeep you lose 1 life for each creature you control) emblem transforms((,newability[@each my upkeep:life:-type:creature:mybattlefield controller])) forever dontremove
-type=Instant
+type=Sorcery
 [/card]
 [card]
 name=Davriel Offers
@@ -14148,7 +14148,7 @@ auto=choice name(Creatures you control get +2/+0.) emblem transforms((,newabilit
 auto=choice name(Spells you cast cost B less to cast.) emblem transforms((,newability[lord(*|mycastingzone) changecost(black:-1)])) forever dontremove
 auto=choice name(Davriel planeswalkers you control have "+2: Draw a card.") emblem transforms((,newability[lord(planeswalker[davriel]|mybattlefield) transforms((,newability[{C(0/0.2.Loyalty)}:limit:1 name(+2: Draw 1 card) draw:1 controller]))])) forever dontremove
 auto=choice name(Whenever you draw a card, you gain two life) emblem transforms((,newability[@drawof(player):life:2 controller])) forever dontremove
-type=Instant
+type=Sorcery
 [/card]
 [card]
 name=Davriel's Shadowfugue
@@ -14217,7 +14217,7 @@ toughness=4
 [/card]
 [card]
 name=Dawnglade Regent
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 auto=lord(*|myBattlefield) transforms((,newability[this(variable{pmonarch}>0) opponentshroud]))
 text=When Dawnglade Regent enters the battlefield, you become the monarch. -- As long as you're the monarch, permanents you control have hexproof.
 mana={5}{G}{G}
@@ -14408,7 +14408,7 @@ type=Enchantment
 name=Deadeye Brawler
 abilities=deathtouch
 auto=_ASCEND_
-auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=@movedTo(*|myBattlefield) restriction{type(City's Blessing|mybattlefield)~equalto~0}:_ASCEND_
 auto=_CITY'S_BLESSING_ transforms((,newability[@combatdamaged(player) from(this):draw:1]))
 text=Deathtouch -- Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Whenever Deadeye Brawler deals combat damage to a player, if you have the city's blessing, draw a card.
 mana={2}{U}{B}
@@ -17833,7 +17833,7 @@ type=Sorcery
 [card]
 name=Dusk Charger
 auto=_ASCEND_
-auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=@movedTo(*|myBattlefield) restriction{type(City's Blessing|mybattlefield)~equalto~0}:_ASCEND_
 auto=_CITY'S_BLESSING_ 2/2
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Dusk Charger gets +2/+2 as long as you have the city's blessing.
 mana={3}{B}
@@ -18926,7 +18926,7 @@ toughness=5
 [/card]
 [card]
 name=Emberwilde Captain
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 auto=@each blockers restriction{type(creature[attacking]|opponentbattlefield)~morethan~0}:if compare(pmonarch)~morethan~0 then damage:type:*:opponenthand opponent
 text=When Emberwilde Captain enters the battlefield, you become the monarch. -- Whenever an opponent attacks you while you're the monarch, Emberwilde Captain deals damage to that player equal to the number of cards in their hand.
 mana={3}{R}
@@ -19422,7 +19422,7 @@ type=Instant
 [/card]
 [card]
 name=Entourage of Trest
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 text=When Entourage of Trest enters the battlefield, you become the monarch. -- Entourage of Trest can block an additional creature each combat as long as you're the monarch.
 mana={4}{G}
 type=Creature
@@ -21226,7 +21226,7 @@ type=Enchantment
 [/card]
 [card]
 name=Feast of Succession
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 auto=all(creature|battlefield) -4/-4 ueot
 text=All creatures get -4/-4 until end of turn. You become the monarch.
 mana={4}{B}{B}
@@ -26366,7 +26366,7 @@ type=Land
 [card]
 name=Golden Demise
 auto=_ASCEND_
-auto=if type(*[City's_blessing]|mybattlefield)~equalto~0 then all(creature|myBattlefield) -2/-2 ueot
+auto=if type(City's Blessing|mybattlefield)~equalto~0 then all(creature|myBattlefield) -2/-2 ueot
 auto=all(creature|opponentBattlefield) -2/-2 ueot
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- All creatures get -2/-2 until end of turn. If you have the city's blessing, instead only creatures your opponents control get -2/-2 until end of turn.
 mana={1}{B}{B}
@@ -31867,6 +31867,13 @@ power=999999
 toughness=5
 [/card]
 [card]
+name=Infinite Obliteration
+auto=chooseanameopp name(Search that cards) target(<anyamount>creature[chosenname]|opponentgraveyard,opponentlibrary,opponenthand) moveto(exile) and!( shuffle opponent )! chooseend nonland
+text=Name a creature card. Search target opponent's graveyard, hand, and library for any number of cards with that name and exile them. Then that player shuffles his or her library.
+mana={1}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Infuriate
 auto=3/2 target(creature) ueot
 text=Target creature gets +3/+2 until end of turn.
@@ -33080,7 +33087,9 @@ type=Artifact
 [/card]
 [card]
 name=Jared Carthalion, True Heir
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) opponent else all(Monarch Token|battlefield) moveto(opponentbattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+abilities=haste
+auto=_MONARCH_OPPONENT_
+auto=emblem transforms((,newability[@becomesmonarchof(player):name(You can't become the monarch) _MONARCH_OPPONENT_])) ueot
 auto=this(variable{pmonarch}>0) vigor
 text=When Jared Carthalion, True Heir enters the battlefield, target opponent becomes the monarch. You can't become the monarch this turn. -- If damage would be dealt to Jared Carthalion while you're the monarch, prevent that damage and put that many +1/+1 counters on it.
 mana={R}{G}{W}
@@ -34169,7 +34178,7 @@ toughness=5
 [/card]
 [card]
 name=Keeper of Keys
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 auto=@each my upkeep restriction{compare(pmonarch)~morethan~0}:lord(creature|mybattlefield) unblockable
 text=When Keeper of Keys enters the battlefield, you become the monarch. -- At the beginning of your upkeep, if you're the monarch, creatures you control can't be blocked this turn.
 mana={3}{U}{U}
@@ -35100,7 +35109,7 @@ toughness=2
 [/card]
 [card]
 name=Knights of the Black Rose
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 auto=@becomesmonarchfoeof(player):life:-2 opponent && life:2 controller
 text=When Knights of the Black Rose enters the battlefield, you become the monarch. -- Whenever an opponent becomes the monarch, if you were the monarch as the turn began, that player loses 2 life and you gain 2 life.
 mana={3}{W}{B}
@@ -35644,9 +35653,9 @@ subtype=Aura
 [card]
 name=Kumena's Awakening
 auto=_ASCEND_
-auto=@movedTo(*|myBattlefield):_ASCEND_
-auto=@each my upkeep:draw:1 controller
-auto=@each my upkeep restriction{type(*[City's_blessing]|mybattlefield)~equalto~0}:draw:1 opponent
+auto=@movedTo(*|myBattlefield) restriction{type(City's Blessing|mybattlefield)~equalto~0}:_ASCEND_
+auto=@each my upkeep:name(Draw a card) draw:1 controller
+auto=@each my upkeep restriction{type(City's Blessing|mybattlefield)~equalto~0}:name(Opponent draws a card) draw:1 opponent
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- At the beginning of your upkeep, each player draws a card. If you have the city's blessing, instead only you draw a card.
 mana={2}{U}{U}
 type=Enchantment
@@ -35944,7 +35953,7 @@ name=Late to Dinner
 target=creature|mygraveyard
 auto=moveto(myBattlefield)
 auto=name(Create food) token(Food)
-text=Return target creature card from your graveyard to the battlefield. Create a Food token. (It's an artifact with " 2 , {T}, Sacrifice this artifact: You gain 3 life.")
+text=Return target creature card from your graveyard to the battlefield. Create a Food token. (It's an artifact with "{2} , {T}, Sacrifice this artifact: You gain 3 life.")
 mana={3}{W}
 type=Sorcery
 [/card]
@@ -39000,7 +39009,7 @@ type=Instant
 [/card]
 [card]
 name=Marchesa's Decree
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 auto=@each blockers:foreach(creature[attacking]|opponentBattlefield) life:-1 opponent
 text=When Marchesa's Decree enters the battlefield, you become the monarch. -- Whenever a creature attacks you or a planeswalker you control, that creature's controller loses 1 life.
 mana={3}{B}
@@ -39390,8 +39399,8 @@ subtype=Equipment
 name=Mausoleum Harpy
 abilities=flying
 auto=_ASCEND_
-auto=@movedTo(*|myBattlefield):_ASCEND_
-auto=@movedto(other creature|mygraveyard) from(battlefield) restriction{type(*[City's_blessing]|mybattlefield)~morethan~0}:counter(1/1)
+auto=@movedTo(*|myBattlefield) restriction{type(City's Blessing|mybattlefield)~equalto~0}:_ASCEND_
+auto=@movedto(other creature|graveyard) from(mybattlefield) restriction{type(City's Blessing|mybattlefield)~morethan~0}:name(Put 1/1 counter) counter(1/1)
 text=Flying -- Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Whenever another creature you control dies, if you have the city's blessing, put a +1/+1 counter on Mausoleum Harpy.
 mana={4}{B}
 type=Creature
@@ -40806,15 +40815,6 @@ type=Creature
 subtype=Dinosaur
 power=3
 toughness=3
-[/card]
-[card]
-name=Monarch Token
-abilities=shroud,indestructible
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
-auto=@each my endofturn restriction{compare(pmonarch)~morethan~0}:name(Monarch draw a card) draw:1 controller
-auto=@combatdamageof(player) restriction{compare(pmonarch)~morethan~0} turnlimited:name(Opponent becomes monarch) moveto(opponentBattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
-text=At the beginning of your end step, draw a card. -- Whenever a creature deals combat damage to you, its controller becomes the monarch.
-type=MonarchToken
 [/card]
 [card]
 name=Monk Class
@@ -44299,7 +44299,7 @@ toughness=4
 [card]
 name=Orazca Relic
 auto=_ASCEND_
-auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=@movedTo(*|myBattlefield) restriction{type(City's Blessing|mybattlefield)~equalto~0}:_ASCEND_
 auto=_CITY'S_BLESSING_ transforms((,newability[{T}{S}:name(Gain life and draw) life:3 && draw:1]))
 auto={T}:Add{C}
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- {T}: Add {C}. -- {T}, Sacrifice Orazca Relic: You gain 3 life and draw a card. Activate this ability only if you have the city's blessing.
@@ -45057,7 +45057,7 @@ toughness=4
 [/card]
 [card]
 name=Palace Jailer
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 auto=name(Exile creature) target(creature|opponentbattlefield) moveto(opponentexile) and!( transforms((,newability[@becomesmonarchof(player):name(Return to battlefield) moveto(ownerbattlefield)])) forever )!
 text=When Palace Jailer enters the battlefield, you become the monarch. -- When Palace Jailer enters the battlefield, exile target creature an opponent controls until an opponent becomes the monarch. (That creature returns under its owner's control.)
 mana={2}{W}{W}
@@ -45068,7 +45068,7 @@ toughness=2
 [/card]
 [card]
 name=Palace Sentinels
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 text=When Palace Sentinels enters the battlefield, you become the monarch.
 mana={3}{W}
 type=Creature
@@ -45143,7 +45143,7 @@ toughness=7
 [/card]
 [card]
 name=Palladia-Mors, the Ruiner
-abilities=flying, opponentshroud, vigilance, trample
+abilities=flying,opponentshroud,vigilance,trample
 auto=_ENRAGE_-opponentshroud forever
 text=Flying, vigilance, trample -- Palladia-Mors, the Ruiner has hexproof if it hasn't dealt damage yet.
 mana={3}{R}{G}{W}
@@ -47616,7 +47616,7 @@ type=Enchantment
 [card]
 name=Protector of the Crown
 abilities=cantlifelose
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 auto=@damageof(player):life:thatmuch controller && damage:thatmuch all(this)
 text=When Protector of the Crown enters the battlefield, you become the monarch. -- All damage that would be dealt to you is dealt to Protector of the Crown instead.
 mana={5}{W}
@@ -48260,7 +48260,7 @@ type=Sorcery
 [card]
 name=Queen Marchesa
 abilities=deathtouch,haste
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 auto=@each my upkeep restriction{compare(omonarch)~morethan~0}:token(Assassin,Creature Assassin,1/1,black,deathtouch,haste)
 text=Deathtouch, haste -- When Queen Marchesa enters the battlefield, you become the monarch. -- At the beginning of your upkeep, if an opponent is the monarch, put a 1/1 black Assassin creature token with deathtouch and haste onto the battlefield.
 mana={1}{R}{W}{B}
@@ -48410,7 +48410,7 @@ toughness=3
 [card]
 name=Radiant Destiny
 auto=_ASCEND_
-auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=@movedTo(*|myBattlefield) restriction{type(City's Blessing|mybattlefield)~equalto~0}:_ASCEND_
 auto=activatechooseatype transforms((,newability[lord(creature[chosentype]|mybattlefield) 1/1],newability[_CITY'S_BLESSING_ lord(creature[chosentype]|mybattlefield) vigilance])) forever activatechooseend
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- As Radiant Destiny enters the battlefield, choose a creature type. -- Creatures you control of the chosen type get +1/+1. As long as you have the city's blessing, they also have vigilance.
 mana={2}{W}
@@ -49819,7 +49819,7 @@ type=Instant
 [card]
 name=Regal Behemoth
 abilities=trample
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 auto=lord(land|myBattlefield) transforms((,newability[this(variable{pmonarch}>0) produceextra:selectmana]))
 text=Trample -- When Regal Behemoth enters the battlefield, you become the monarch. -- Whenever you tap a land for mana while you're the monarch, add one mana of any color to your mana pool (in addition to the mana the land produces).
 mana={4}{G}{G}
@@ -50374,7 +50374,7 @@ toughness=3
 name=Resplendent Griffin
 abilities=flying
 auto=_ASCEND_
-auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=@movedTo(*|myBattlefield) restriction{type(City's Blessing|mybattlefield)~equalto~0}:_ASCEND_
 auto=_CITY'S_BLESSING_ transforms((,newability[_ATTACKING_counter(1/1)]))
 text=Flying -- Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Whenever Resplendent Griffin attacks, if you have the city's blessing, put a +1/+1 counter on it.
 mana={1}{W}{U}
@@ -57616,7 +57616,7 @@ toughness=2
 [card]
 name=Skyline Despot
 abilities=flying
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 auto=@each my upkeep restriction{compare(pmonarch)~morethan~0}:token(Dragon,Creature Dragon,5/5,red,flying)
 text=Flying -- When Skyline Despot enters the battlefield, you become the monarch. -- At the beginning of your upkeep, if you're the monarch, put a 5/5 red Dragon creature token with flying onto the battlefield.
 mana={5}{R}{R}
@@ -57871,7 +57871,7 @@ toughness=8
 [card]
 name=Slippery Scoundrel
 auto=_ASCEND_
-auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=@movedTo(*|myBattlefield) restriction{type(City's Blessing|mybattlefield)~equalto~0}:_ASCEND_
 auto=_CITY'S_BLESSING_ transforms((,newability[unblockable],newability[opponentshroud]))
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- As long as you have the city's blessing, Slippery Scoundrel has hexproof and can't be blocked.
 mana={2}{U}
@@ -58170,7 +58170,7 @@ subtype=Plains Swamp
 [card]
 name=Snubhorn Sentry
 auto=_ASCEND_
-auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=@movedTo(*|myBattlefield) restriction{type(City's Blessing|mybattlefield)~equalto~0}:_ASCEND_
 auto=_CITY'S_BLESSING_ 3/0
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Snubhorn Sentry gets +3/+0 as long as you have the city's blessing.
 mana={W}
@@ -59736,7 +59736,7 @@ toughness=1
 name=Spire Winder
 abilities=flying
 auto=_ASCEND_
-auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=@movedTo(*|myBattlefield) restriction{type(City's Blessing|mybattlefield)~equalto~0}:_ASCEND_
 auto=_CITY'S_BLESSING_ 1/1
 text=Flying -- Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Spire Winder gets +1/+1 as long as you have the city's blessing.
 mana={3}{U}
@@ -60624,7 +60624,7 @@ toughness=3
 [card]
 name=Staunch Throneguard
 abilities=vigilance
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 text=Vigilance -- When Staunch Throneguard enters the battlefield, you become the monarch.
 mana={5}
 type=Artifact Creature
@@ -61184,7 +61184,7 @@ toughness=2
 [card]
 name=Storm Fleet Swashbuckler
 auto=_ASCEND_
-auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=@movedTo(*|myBattlefield) restriction{type(City's Blessing|mybattlefield)~equalto~0}:_ASCEND_
 auto=_CITY'S_BLESSING_ transforms((,newability[double strike]))
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Storm Fleet Swashbuckler has double strike as long as you have the city's blessing.
 mana={1}{R}
@@ -63638,7 +63638,7 @@ type=Instant
 [card]
 name=Tendershoot Dryad
 auto=_ASCEND_
-auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=@movedTo(*|myBattlefield) restriction{type(City's Blessing|mybattlefield)~equalto~0}:_ASCEND_
 auto=_CITY'S_BLESSING_ lord(Saproling|myBattlefield) 2/2
 auto=@each upkeep:create(saproling:creature saproling:1/1:green)
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- At the beginning of each upkeep, create a 1/1 green Saproling creature token. -- Saprolings you control get +2/+2 as long as you have the city's blessing.
@@ -63902,12 +63902,6 @@ type=Legendary Creature
 subtype=Elder Dinosaur
 power=6
 toughness=6
-[/card]
-[card]
-name=Teyo Emblem
-abilities=doublefacedeath
-auto=emblem transforms((,newability[@each my endofturn:name(Return white creature) target(creature[white]|mygraveyard) moveto(mybattlefield) and!( transforms((,newability[life:toughness controller])) oneshot )!])) forever dontremove
-type=Instant
 [/card]
 [card]
 name=Teyo's Lightshield
@@ -64462,6 +64456,15 @@ type=Enchantment
 subtype=Saga
 [/card]
 [card]
+name=The Monarch
+abilities=shroud,indestructible,doublefacedeath
+auto=becomesmonarch controller
+auto=@each my endofturn restriction{compare(pmonarch)~morethan~0}:name(Monarch draw a card) draw:1 controller
+auto=@combatdamageof(player) restriction{compare(pmonarch)~morethan~0} turnlimited:name(Opponent becomes monarch) moveto(opponentBattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+text=At the beginning of your end step, draw a card. -- Whenever a creature deals combat damage to you, its controller becomes the monarch.
+type=Emblem
+[/card]
+[card]
 name=The Omenkeel
 auto=@combatdamagefoeof(player) from(vehicle|mybattlefield):transforms((,newability[all(*[-land;zpos<=thatmuch]|opponentlibrary) moveto(opponentexile)],newability[all(land[zpos<=thatmuch]|opponentlibrary) moveto(opponentexile) and!( counter(0/0.1.OmenkeelExiled) )!])) oneshot
 auto=@combatdamageof(player) from(vehicle|mybattlefield):transforms((,newability[all(*[-land;zpos<=thatmuch]|mylibrary) moveto(myexile)],newability[all(land[zpos<=thatmuch|mylibrary) moveto(myexile) and!( counter(0/0.1.OmenkeelExiled) )!])) oneshot
@@ -64756,7 +64759,7 @@ toughness=6
 [card]
 name=Thorn of the Black Rose
 abilities=deathtouch
-auto=if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto=_MONARCH_CONTROLLER_
 text=Deathtouch (Any amount of damage this deals to a creature is enough to destroy it.) -- When Thorn of the Black Rose enters the battlefield, you become the monarch.
 mana={3}{B}
 type=Creature
@@ -65151,7 +65154,7 @@ type=Legendary Artifact
 [card]
 name=Throne of the High City
 auto={T}:add{C}
-auto={4}{T}{S}:if type(Monarch Token|battlefield)~lessthan~1 then token(Monarch Token) else all(Monarch Token|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+auto={4}{T}{S}:name(Become the monarch) _MONARCH_CONTROLLER_
 text={T}: Add {C} to your mana pool. -- {4}, {T}, Sacrifice Throne of the High City: You become the monarch.
 type=Land
 [/card]
@@ -65502,9 +65505,9 @@ toughness=1
 [card]
 name=Tilonalli's Summoner
 auto=_ASCEND_
-auto=@movedTo(*|myBattlefield) restriction{type(*[City's_blessing]|mybattlefield)~equalto~0}:_ASCEND_
+auto=@movedTo(*|myBattlefield) restriction{type(City's Blessing|mybattlefield)~equalto~0}:_ASCEND_
 auto=_ATTACKING_may pay({X}{R}) name(Create X elemental tokens) token(Elemental,Creature Elemental Tilonalli,1/1,red,battleready)*x
-auto=@each my endstep restriction{type(*[city's_blessing]|mybattlefield)~equalto~0}:moveto(exile) all(Tilonalli[token;fresh]|myBattlefield)
+auto=@each my endstep restriction{type(City's Blessing|mybattlefield)~equalto~0}:name(Exile Elementals) moveto(exile) all(Tilonalli[token;fresh]|myBattlefield)
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Whenever Tilonalli's Summoner attacks, you may pay {X}{R}. If you do, create X 1/1 red Elemental creature tokens that are tapped and attacking. At the beginning of the next end step, exile those tokens unless you have the city's blessing.
 mana={1}{R}
 type=Creature
@@ -65613,7 +65616,7 @@ subtype=Aura
 [card]
 name=Timestream Navigator
 auto=_ASCEND_
-auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=@movedTo(*|myBattlefield) restriction{type(City's Blessing|mybattlefield)~equalto~0}:_ASCEND_
 auto=_CITY'S_BLESSING_ transforms((,newability[{2}{U}{U}{T}:(this|bottomoflibrary) && turns:+1 controller]))
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- {2}{U}{U},{T}, Put Timestream Navigator on the bottom of its owner's library: Take an extra turn after this one. Activate this ability only if you have the city's blessing.
 mana={1}{U}
@@ -67229,8 +67232,8 @@ toughness=2
 name=Twilight Prophet
 abilities=flying
 auto=_ASCEND_
-auto=@movedTo(*|myBattlefield):_ASCEND_
-auto=@each my upkeep restriction{type(*[City's_blessing]|mybattlefield)~morethan~0}:moveto(myhand) and!( transforms((,newability[damage:manacost opponent],newability[life:manacost controller])) ueot )! all(*[zpos=1]|mylibrary)
+auto=@movedTo(*|myBattlefield) restriction{type(City's Blessing|mybattlefield)~equalto~0}:_ASCEND_
+auto=@each my upkeep restriction{type(City's Blessing|mybattlefield)~morethan~0}:name(Reveal top card) all(*[zpos=1]|mylibrary) moveto(myhand) and!( transforms((,newability[damage:manacost opponent],newability[life:manacost controller])) ueot )!
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- At the beginning of your upkeep, if you have the city's blessing, reveal the top card of your library and put it into your hand. Each opponent loses X life and you gain X life, where X is that card's converted mana cost.
 mana={2}{B}{B}
 type=Creature
@@ -70151,8 +70154,8 @@ toughness=3
 [card]
 name=Vona's Hunger
 auto=_ASCEND_
-auto=if type(*[City's_blessing]|mybattlefield)~morethan~0 then ability$!name(sacrifice half creatures) notatarget(<halfuptype:creature:myBattlefield>creature|myBattlefield) sacrifice!$ opponent
-auto=if type(*[City's_blessing]|mybattlefield)~equalto~0 then ability$!name(sacrifice a creature) notatarget(creature|myBattlefield) sacrifice!$ opponent
+auto=if type(City's Blessing|mybattlefield)~morethan~0 then ability$!name(sacrifice half creatures) name(sacrifice half creatures) notatarget(<halfuptype:creature:myBattlefield>creature|myBattlefield) sacrifice!$ opponent
+auto=if type(City's Blessing|mybattlefield)~equalto~0 then ability$!name(sacrifice a creature) name(sacrifice a creature) notatarget(creature|myBattlefield) sacrifice!$ opponent
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Each opponent sacrifices a creature. If you have the city's blessing, instead each opponent sacrifices half the creatures they control, rounded up.
 mana={2}{B}
 type=Instant
@@ -71072,7 +71075,7 @@ name=Wayward Swordtooth
 abilities=cantattack,cantblock
 auto=maxPlay(land)+1
 auto=_ASCEND_
-auto=@movedTo(*|myBattlefield):_ASCEND_
+auto=@movedTo(*|myBattlefield) restriction{type(City's Blessing|mybattlefield)~equalto~0}:_ASCEND_
 auto=_CITY'S_BLESSING_ transforms((,newability[-cantattack]))
 auto=_CITY'S_BLESSING_ transforms((,newability[-cantblock]))
 text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- You may play an additional land on each of your turns. -- Wayward Swordtooth can't attack or block unless you have the city's blessing.
