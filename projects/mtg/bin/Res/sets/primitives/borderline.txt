@@ -61323,8 +61323,7 @@ toughness=5
 [/card]
 [card]
 name=Stormwild Capridor
-abilities=flying
-auto=@damaged(this) from(NoncombatDamage):all(trigger[to]) vigor
+abilities=flying,noncombatvigor
 text=Flying -- If noncombat damage would be dealt to Stormwild Capridor, prevent that damage. Put a +1/+1 counter on Stormwild Capridor for each 1 damage prevented this way.
 mana={2}{W}
 type=Creature

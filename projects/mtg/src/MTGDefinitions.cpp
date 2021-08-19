@@ -222,7 +222,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "counterdeath", //It gains a 1/1 counter when it returns from graveyard (to use with inplaydeath and inplaytapdeath)"
     "dungeoncompleted", //This dungeon has been completed
     "perpetuallifelink", //It gains lifelink perpetually
-    "perpetualdeathtouch" //It gains deathtouch perpetually
+    "perpetualdeathtouch", //It gains deathtouch perpetually
+    "noncombatvigor" //instead of taking non-combat damage the source gains +1/+1 counters (e.g. "Stormwild Capridor")
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

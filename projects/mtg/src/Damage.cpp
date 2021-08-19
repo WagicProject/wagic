@@ -116,6 +116,14 @@ int Damage::resolve()
             }
             damage = 0;
         }
+        if ((_target)->has(Constants::NONCOMBATVIGOR) && typeOfDamage != DAMAGE_COMBAT)
+        {
+            for (int j = damage; j > 0; j--)
+            {
+                (_target)->counters->addCounter(1, 1);
+            }
+            damage = 0;
+        }
         if ((_target)->has(Constants::HYDRA))
         {
             for (int j = damage; j > 0; j--)

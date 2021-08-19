@@ -316,7 +316,8 @@ class Constants
       DUNGEONCOMPLETED = 189,
       PERPETUALLIFELINK = 190,
       PERPETUALDEATHTOUCH = 191,
-      NB_BASIC_ABILITIES = 192,
+      NONCOMBATVIGOR = 192,
+      NB_BASIC_ABILITIES = 193,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics
