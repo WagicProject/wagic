@@ -110,10 +110,10 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 #AUTO_DEFINE _SOULSHIFT_($c) @movedTo(this|myGraveyard) from(battlefield):may moveTo(myHand) target(creature[spirit;manacost<=$c]|myGraveyard)
 
 # Ascend, Set XLN
-#AUTO_DEFINE _ASCEND_ if type(*[City's_blessing]|mybattlefield)~lessthan~1 then transforms((,newability[if type(*|mybattlefield)~morethan~9 then token(City's_blessing^notrigger)])) oneshot
+#AUTO_DEFINE _ASCEND_ if type(City's Blessing|mybattlefield)~lessthan~1 then transforms((,newability[if type(*|mybattlefield)~morethan~9 then token(City's Blessing^notrigger)])) oneshot
 
 # Effect with the City's blessing, Set XLN
-#AUTO_DEFINE _CITY'S_BLESSING_ aslongas(*[City's_blessing]|mybattlefield)>0
+#AUTO_DEFINE _CITY'S_BLESSING_ aslongas(City's Blessing|mybattlefield)>0
 
 # Monarch
 #AUTO_DEFINE _MONARCH_CONTROLLER_ if type(The Monarch|battlefield)~lessthan~1 then token(The Monarch) else all(The Monarch|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
