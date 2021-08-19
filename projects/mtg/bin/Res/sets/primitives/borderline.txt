@@ -33087,7 +33087,6 @@ type=Artifact
 [/card]
 [card]
 name=Jared Carthalion, True Heir
-abilities=haste
 auto=_MONARCH_OPPONENT_
 auto=emblem transforms((,newability[@becomesmonarchof(player):name(You can't become the monarch) _MONARCH_OPPONENT_])) ueot
 auto=this(variable{pmonarch}>0) vigor
