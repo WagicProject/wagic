@@ -13403,7 +13403,8 @@ toughness=2
 [/card]
 [card]
 name=Cunning Rhetoric
-auto=@each blockers restriction{type(creature[attacking]|opponentbattlefield)~morethan~0}:name(Exile top card) all(*[zpos=1]|opponentlibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[anytypeofmana])) forever )!
+auto=@each blockers restriction{type(creature[attacking]|opponentbattlefield)~morethan~0}:name(Exile top card) all(*[zpos=1]|opponentlibrary) moveto(exile) and!( counter(0/0.1.CunningExiled) )!
+auto={0}:name(You can cast exiled card) target(*[counter{0/0.1.CunningExiled}]|exile) moveto(myexile) and!( transforms((,newability[counter(0/0.1.CunningExiled)],newability[canplayfromexile],newability[anytypeofmana],newability[phaseaction[endofturn once checkex] moveTo(ownerexile)],newability[phaseaction[untap once checkex] counter(0/0.1.CunningExiled)])) ueot )!
 text=Whenever an opponent attacks you and/or one or more planeswalkers you control, exile the top card of that player's library. You may play that card for as long as it remains exiled, and you may spend mana as though it were mana of any color to cast it.
 mana={2}{B}
 type=Enchantment
