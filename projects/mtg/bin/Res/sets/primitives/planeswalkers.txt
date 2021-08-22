@@ -2677,7 +2677,7 @@ subtype=Teferi
 name=Teferi, Time Raveler
 auto=counter(0/0,4,loyalty)
 auto=this(variable{controllerturn}>0) maxCast(*)0 opponent
-auto={C(0/0,1,Loyalty)}:name(+1: Cast sorceries as flash) emblem transforms((,newability[lord(sorcery|mycastingzone) flash])) uynt
+auto={C(0/0,1,Loyalty)}:name(+1: Cast sorceries as flash) emblem transforms((,newability[lord(sorcery|mycastingzone) asflash])) uynt
 auto={C(0/0,-3,Loyalty)}:name(-3: Return artifact, creature or enchantment) target(*[artifact;creature;enchantment]) moveTo(ownerhand) && draw:1 controller
 text=Each opponent can cast spells only any time they could cast a sorcery. -- +1: Until your next turn, you may cast sorcery spells as though they had flash. -- -3: Return up to one target artifact, creature, or enchantment to its owner's hand. Draw a card.
 mana={1}{W}{U}
@@ -2844,7 +2844,7 @@ type=Legendary Planeswalker
 [card]
 name=Tibalt, Cosmic Impostor
 auto=counter(0/0,5,Loyalty)
-auto=token(Tibalt Emblem,Emblem,0/0,shroud,indestructible,notrigger) and!( transforms((,newability[lord(*[counter{0/0.1.TibaltExiled}]|myexile) canplayfromexile],newability[lord(*[counter{0/0.1.TibaltExiled}]|myexile) anytypeofmana],newability[{0}:name(Cast from opponent exile) target(*[counter{0/0.1.TibaltExiled}]|opponentexile) moveto(myexile) and!( transforms((,newability[counter(0/0.1.TibaltExiled)],newability[canplayfromexile],newability[anytypeofmana],newability[phaseaction[endofturn once checkex] moveTo(ownerexile)],newability[phaseaction[untap once checkex] counter(0/0.1.TibaltExiled)])) ueot )!])) forever )!
+auto=token(Tibalt Emblem,Emblem,0/0,shroud,indestructible,notrigger,nomovetrigger) and!( transforms((,newability[lord(*[counter{0/0.1.TibaltExiled}]|myexile) canplayfromexile],newability[lord(*[counter{0/0.1.TibaltExiled}]|myexile) anytypeofmana],newability[{0}:name(Cast from opponent exile) target(*[counter{0/0.1.TibaltExiled}]|opponentexile) moveto(myexile) and!( transforms((,newability[counter(0/0.1.TibaltExiled)],newability[canplayfromexile],newability[anytypeofmana],newability[phaseaction[endofturn once checkex] moveTo(ownerexile)],newability[phaseaction[untap once checkex] counter(0/0.1.TibaltExiled)])) ueot )!])) forever )!
 auto={C(0/0,2,Loyalty)}:name(+2: Exile the top card) all(*[zpos=1]|library) moveto(ownerexile) and!( counter(0/0,1,TibaltExiled) )!
 auto={C(0/0,-3,Loyalty)}:name(-3: Exile target artifact or creature) target(*[artifact;creature]|battlefield) moveto(ownerexile) and!( counter(0/0,1,TibaltExiled) )!
 auto={C(0/0,-8,Loyalty)}:name(-8: Exile all cards from all graveyards) all(*|graveyard) moveto(ownerexile) and!( counter(0/0,1,TibaltExiled) )!
@@ -2950,7 +2950,7 @@ subtype=Vivien
 [card]
 name=Vivien, Champion of the Wilds
 auto=counter(0/0,4,loyalty)
-auto=lord(creature|myHand) flash
+auto=lord(creature|myHand) asflash
 auto={C(0/0,1,Loyalty)}:name(+1: Creature gains vigilance and reach) target(creature) vigilance uynt && reach uynt
 auto={C(0/0,-2,Loyalty)}:name(-2: Reveal three and may cast it) reveal:3 optionone name(Get a card) target(<1>creature|reveal) moveTo(exile) and!( transforms((,canplayfromexile)) forever )!  optiononeend optiontwo name(put on bottom) target(<3>*|reveal) bottomoflibrary optiontwoend revealend
 text=You may cast creature spells as though they had flash. -- +1: Until your next turn, up to one target creature gains vigilance and reach. -- -2: Look at the top three cards of your library. Exile one face down and put the rest on the bottom of your library in any order. For as long as it remains exiled, you may look at that card and you may cast it if it's a creature card.

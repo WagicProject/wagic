@@ -723,8 +723,19 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
         if(shufflelibrary)
             copy->owner->game->library->shuffle();//shouldnt we only ever do this if you clicked close on your library gui??????
 
-        WEvent * e = NEW WEventZoneChange(copy, from, to);
-        g->receiveEvent(e);
+        if(copy->has(Constants::ADVENTURE) && copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_ALTERNATIVE] == 1 && //Added to correctly set the adventure cards type.
+            (to == g->players[0]->game->stack || to == g->players[1]->game->stack || to == g->players[0]->game->battlefield || to == g->players[1]->game->battlefield)){
+                copy->types.clear();
+                if(copy->has(Constants::ASFLASH))
+                    copy->types.push_back(Subtypes::TYPE_INSTANT);
+                else
+                    copy->types.push_back(Subtypes::TYPE_SORCERY);
+        }
+
+        if(!copy->has(Constants::NOMOVETRIGGER)){//no trigger when playing these cards (e.g. fake ability cards such as Davriel Conditions, Davriel Offers, Annihilation Rooms)
+            WEvent * e = NEW WEventZoneChange(copy, from, to);
+            g->receiveEvent(e);
+        }
 
         // Erasing counters from copy after the event has been triggered (no counter can survive to a zone changing except the perpetual ones)
         if(doCopy && copy->counters && copy->counters->mCount > 0){
