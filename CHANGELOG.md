@@ -1,6 +1,6 @@
 # Changelog
 
-## [latest-master] (https://github.com/WagicProject/wagic/tree/latest-master)
+## [master] (https://github.com/WagicProject/wagic/tree/master)
 
 ### 23/08/21
 - *Committed:* Updated changelog with last 3 years of modifications (issue #1067 by @remigiusz-suwalski), added tokens in ELD set, improved Android downloader for ELD set, fixed primitives with "asflash" ability, improved all cards with adventure: now they become instants or sorceries in stack to activate the correct trigger (e.g. with Magecraft combos), added "nomovetrigger" ability for all the "fake" cards (e.g. cards which are simple abilities) in order to don't trigger any event on their cast since they are not real cards. ([Vitty85](https://github.com/Vitty85)) 
