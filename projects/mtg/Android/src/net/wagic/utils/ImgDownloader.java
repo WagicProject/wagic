@@ -1201,6 +1201,8 @@ public class ImgDownloader {
             cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/b/3/b3c9a097-219b-4aaf-831f-cc0cddbcfaae.jpg?1561757870";
         else if (id.equals("17493t")) //Bear 2/2
             cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/c/8/c879d4a6-cef5-48f1-8c08-f5b59ec850de.jpg?1562857282";
+        else if (id.equals("473117t")) //Bear 2/2 ELD
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/b/0/b0f09f9e-e0f9-4ed8-bfc0-5f1a3046106e.jpg?1572489163";
         else if (id.equals("17358t")) //Beast 3/3
             cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/3/f/3fc3a29a-280d-4f2c-9a01-8cfead75f583.jpg?1561756988";
         else if(id.equals("17207t")) //Sliver 1/1
@@ -1209,7 +1211,7 @@ public class ImgDownloader {
             cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/2/9/29c4e4f2-0040-4490-b357-660d729ad9cc.jpg?1562636772";
         else if(id.equals("17069t")) //Voja 2/2
             cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/2/8/2879010f-b752-4808-8531-d24e612de0d9.jpg?1541006575";
-        else if(id.equals("17060t")) //Rat 1/1
+        else if(id.equals("17060t") || id.equals("476037t") || id.equals("473092t") || id.equals("473062t")) //Rat 1/1
             cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/1/a/1a85fe9d-ef18-46c4-88b0-cf2e222e30e4.jpg?1562279130";
         else if(id.equals("17061t"))
             cardurl = "https://img.scryfall.com/cards/large/front/a/c/acd51eed-bd5a-417a-811d-fbd1c08a3715.jpg?1561757812";

@@ -3,11 +3,11 @@ author=Wagic Team
 name=Throne of Eldraine
 orderindex=EXP-ZZD.ELD
 year=2019-10-04
-total=326
+total=328
 [/meta]
 [card]
-primitive=Warrior
-id=-47316011
+primitive=Rogue
+id=-47316013
 rarity=T
 [/card]
 [card]
@@ -16,8 +16,8 @@ id=-47316012
 rarity=T
 [/card]
 [card]
-primitive=Rogue
-id=-47316013
+primitive=Warrior
+id=-47316011
 rarity=T
 [/card]
 [card]
@@ -101,6 +101,11 @@ id=-473121
 rarity=T
 [/card]
 [card]
+primitive=Bear
+id=-473117
+rarity=T
+[/card]
+[card]
 primitive=Rat
 id=-473092
 rarity=T
@@ -108,6 +113,11 @@ rarity=T
 [card]
 primitive=Rat
 id=-473062
+rarity=T
+[/card]
+[card]
+primitive=Goat
+id=-473046
 rarity=T
 [/card]
 [card]

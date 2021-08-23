@@ -317,7 +317,8 @@ class Constants
       PERPETUALLIFELINK = 190,
       PERPETUALDEATHTOUCH = 191,
       NONCOMBATVIGOR = 192,
-      NB_BASIC_ABILITIES = 193,
+      NOMOVETRIGGER = 193,
+      NB_BASIC_ABILITIES = 194,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

@@ -216,14 +216,15 @@ const char* Constants::MTGBasicAbilities[] = {
     "doublefacedeath", //It goes to temp zone after death (e.g. Double face card)
     "gaineddoublefacedeath", //It goes to temp after death (use just to give add ability to instants and sorceries which originally have not, e.g. with transforms keyword)
     "twodngtrg", //It makes rooms abilities trigger twice (e.g. Hama Pashar, Ruin Seeker)
-    "nodngopp", //Opponent can't venture (e.g. "Keen-Eared Sentry")
+    "nodngopp", //Opponent can't venture (e.g. Keen-Eared Sentry)
     "nodngplr", //Controller can't venture
     "canplayauraequiplibrarytop", //auras and equipment
-    "counterdeath", //It gains a 1/1 counter when it returns from graveyard (to use with inplaydeath and inplaytapdeath)"
+    "counterdeath", //It gains a 1/1 counter when it returns from graveyard (to use with inplaydeath and inplaytapdeath)
     "dungeoncompleted", //This dungeon has been completed
     "perpetuallifelink", //It gains lifelink perpetually
     "perpetualdeathtouch", //It gains deathtouch perpetually
-    "noncombatvigor" //instead of taking non-combat damage the source gains +1/+1 counters (e.g. "Stormwild Capridor")
+    "noncombatvigor", //instead of taking non-combat damage the source gains +1/+1 counters (e.g. Stormwild Capridor)
+    "nomovetrigger" //no trigger when playing these cards (e.g. fake ability cards such as Davriel Conditions, Davriel Offers, Annihilation Rooms)
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

@@ -3586,8 +3586,10 @@ int AIPlayerBaka::computeActions()
         //am im not interupting my own spell, or the stack contains nothing.
     {
         bool ipotential = false;
-        if(p->game->hand->hasType("instant") || p->game->hand->hasAbility(Constants::FLASH) || p->game->graveyard->hasType("instant") || p->game->graveyard->hasAbility(Constants::FLASH) || 
-           p->game->exile->hasType("instant") || p->game->exile->hasAbility(Constants::FLASH) || p->game->commandzone->hasAbility(Constants::FLASH)) //Now AI will not search just for instant cards.
+        if(p->game->hand->hasType("instant") || p->game->hand->hasAbility(Constants::FLASH) || p->game->hand->hasAbility(Constants::ASFLASH) ||
+            p->game->graveyard->hasType("instant") || p->game->graveyard->hasAbility(Constants::FLASH) || p->game->graveyard->hasAbility(Constants::ASFLASH) ||
+            p->game->exile->hasType("instant") || p->game->exile->hasAbility(Constants::FLASH) || p->game->exile->hasAbility(Constants::ASFLASH) || 
+            p->game->commandzone->hasAbility(Constants::FLASH) || p->game->commandzone->hasAbility(Constants::ASFLASH)) //Now AI will not search just for instant cards.
         {
 #ifndef AI_CHANGE_TESTING
             findingCard = true;
@@ -3604,22 +3606,22 @@ int AIPlayerBaka::computeActions()
                 nextCardToPlay = FindCardToPlay(icurrentMana, ""); //Now AI will not search just for instant cards.
                 bool canPlay = false;
                 if(nextCardToPlay && p->game->hand->hasCard(nextCardToPlay)){
-                    if(nextCardToPlay->hasType(Subtypes::TYPE_INSTANT) || nextCardToPlay->has(Constants::FLASH))
+                    if(nextCardToPlay->hasType(Subtypes::TYPE_INSTANT) || nextCardToPlay->has(Constants::FLASH) || nextCardToPlay->has(Constants::ASFLASH))
                         canPlay = true;
                 } else if(nextCardToPlay && p->game->graveyard->hasCard(nextCardToPlay)){
-                    if((nextCardToPlay->hasType(Subtypes::TYPE_INSTANT) || nextCardToPlay->has(Constants::FLASH)) && nextCardToPlay->has(Constants::CANPLAYFROMGRAVEYARD))
+                    if((nextCardToPlay->hasType(Subtypes::TYPE_INSTANT) || nextCardToPlay->has(Constants::FLASH) || nextCardToPlay->has(Constants::ASFLASH)) && nextCardToPlay->has(Constants::CANPLAYFROMGRAVEYARD))
                         canPlay = true;
-                    else if((nextCardToPlay->hasType(Subtypes::TYPE_INSTANT) || nextCardToPlay->has(Constants::FLASH)) && nextCardToPlay->has(Constants::TEMPFLASHBACK))
+                    else if((nextCardToPlay->hasType(Subtypes::TYPE_INSTANT) || nextCardToPlay->has(Constants::FLASH) || nextCardToPlay->has(Constants::ASFLASH)) && nextCardToPlay->has(Constants::TEMPFLASHBACK))
                         canPlay = true;
-                    else if((nextCardToPlay->hasType(Subtypes::TYPE_INSTANT) || nextCardToPlay->has(Constants::FLASH)) && nextCardToPlay->getManaCost()->getFlashback())
+                    else if((nextCardToPlay->hasType(Subtypes::TYPE_INSTANT) || nextCardToPlay->has(Constants::FLASH) || nextCardToPlay->has(Constants::ASFLASH)) && nextCardToPlay->getManaCost()->getFlashback())
                         canPlay = true;
-                    else if((nextCardToPlay->hasType(Subtypes::TYPE_INSTANT) || nextCardToPlay->has(Constants::FLASH)) && nextCardToPlay->getManaCost()->getRetrace())
+                    else if((nextCardToPlay->hasType(Subtypes::TYPE_INSTANT) || nextCardToPlay->has(Constants::FLASH) || nextCardToPlay->has(Constants::ASFLASH)) && nextCardToPlay->getManaCost()->getRetrace())
                         canPlay = true;
                 } else if(nextCardToPlay && p->game->exile->hasCard(nextCardToPlay)){
-                    if((nextCardToPlay->hasType(Subtypes::TYPE_INSTANT) || nextCardToPlay->has(Constants::FLASH)) && nextCardToPlay->has(Constants::CANPLAYFROMEXILE))
+                    if((nextCardToPlay->hasType(Subtypes::TYPE_INSTANT) || nextCardToPlay->has(Constants::FLASH) || nextCardToPlay->has(Constants::ASFLASH)) && nextCardToPlay->has(Constants::CANPLAYFROMEXILE))
                         canPlay = true;
                 } else if(nextCardToPlay && p->game->commandzone->hasCard(nextCardToPlay)){
-                    if(nextCardToPlay->has(Constants::FLASH))
+                    if(nextCardToPlay->has(Constants::FLASH) || nextCardToPlay->has(Constants::ASFLASH))
                         canPlay = true;
                 }
                 if(!canPlay)
