@@ -4953,15 +4953,6 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
-name=Horde Ambusher
-text=Whenever Horde Ambusher blocks, it deals 1 damage to you. -- Morph—Reveal a red card in your hand. (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Horde Ambusher is turned face up, target creature can't block this turn.
-mana={1}{R}
-type=Creature
-subtype=Human Berserker
-power=2
-toughness=2
-[/card]
-[card]
 name=Horobi's Whisper
 text=If you control a Swamp, destroy target nonblack creature. -- Splice onto Arcane—Exile four cards from your graveyard. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={1}{B}{B}
@@ -8398,16 +8389,6 @@ mana={U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Pitchstone Wall
-abilities=defender
-text=Defender (This creature can't attack.) -- Whenever you discard a card, you may sacrifice Pitchstone Wall. If you do, return the discarded card from your graveyard to your hand.
-mana={2}{R}
-type=Creature
-subtype=Wall
-power=2
-toughness=5
-[/card]
-[card]
 name=Pithing Needle
 text=As Pithing Needle enters the battlefield, name a card. -- Activated abilities of sources with the chosen name can't be activated unless they're mana abilities.
 mana={1}
@@ -8417,12 +8398,6 @@ type=Artifact
 name=Plague of Vermin
 text=Starting with you, each player may pay any amount of life. Repeat this process until no one pays life. Each player puts a 1/1 black Rat creature token onto the battlefield for each 1 life he or she paid this way.
 mana={6}{B}
-type=Sorcery
-[/card]
-[card]
-name=Planar Overlay
-text=Each player chooses a land he or she controls of each basic land type. Return those lands to their owners' hands.
-mana={2}{U}
 type=Sorcery
 [/card]
 [card]
@@ -8557,15 +8532,6 @@ mana={1}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Preacher
-text=You may choose not to untap Preacher during your untap step. -- {T}: Gain control of target creature of an opponent's choice that he or she controls for as long as Preacher remains tapped.
-mana={1}{W}{W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-[/card]
-[card]
 name=Precursor Golem
 text=When Precursor Golem enters the battlefield, put two 3/3 colorless Golem artifact creature tokens onto the battlefield. -- Whenever a player casts an instant or sorcery spell that targets only a single Golem, that player copies that spell for each other Golem that spell could target. Each copy targets a different one of those Golems.
 mana={5}
@@ -8575,37 +8541,10 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Predict
-text=Name a card, then put the top card of target player's library into his or her graveyard. If that card is the named card, you draw two cards. Otherwise, you draw a card.
-mana={1}{U}
-type=Instant
-[/card]
-[card]
 name=Preferred Selection
 text=At the beginning of your upkeep, look at the top two cards of your library. You may sacrifice Preferred Selection and pay {2}{G}{G}. If you do, put one of those cards into your hand. If you don't, put one of those cards on the bottom of your library.
 mana={2}{G}{G}
 type=Enchantment
-[/card]
-[card]
-name=Primal Whisperer
-text=Primal Whisperer gets +2/+2 for each face-down creature on the battlefield. -- Morph {3}{G} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
-mana={4}{G}
-type=Creature
-subtype=Elf Soldier
-power=2
-toughness=2
-[/card]
-[card]
-name=Primitive Etchings
-text=Reveal the first card you draw each turn. Whenever you reveal a creature card this way, draw a card.
-mana={2}{G}{G}
-type=Enchantment
-[/card]
-[card]
-name=Primitive Justice
-text=As an additional cost to cast Primitive Justice, you may pay {1}{R} and/or {1}{G} any number of times. -- Destroy target artifact. For each additional {1}{R} you paid, destroy another target artifact. For each additional {1}{G} you paid, destroy another target artifact, and you gain 1 life.
-mana={1}{R}
-type=Sorcery
 [/card]
 [card]
 name=Primordial Mist
@@ -8690,12 +8629,6 @@ type=Enchantment
 name=Psychic Intrusion
 text=Target opponent reveals his or her hand. You choose a nonland card from that player's graveyard or hand and exile it. You may cast that card for as long as it remains exiled, and you may spend mana as though it were mana of any color to cast that spell.
 mana={3}{U}{B}
-type=Sorcery
-[/card]
-[card]
-name=Psychic Miasma
-text=Target player discards a card. If a land card is discarded this way, return Psychic Miasma to its owner's hand.
-mana={1}{B}
 type=Sorcery
 [/card]
 [card]
@@ -11511,15 +11444,7 @@ subtype=Licid
 power=2
 toughness=2
 [/card]
-[card]
-name=Temur Charger
-text=Morph—Reveal a green card in your hand. (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Temur Charger is turned face up, target creature gains trample until end of turn.
-mana={1}{G}
-type=Creature
-subtype=Horse
-power=3
-toughness=1
-[/card]
+
 [card]
 name=Teremko Griffin
 abilities=flying,banding

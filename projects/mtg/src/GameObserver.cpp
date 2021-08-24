@@ -1061,6 +1061,12 @@ void GameObserver::gameStateBasedEffects()
                 MTGCardInstance * card = fl->cards[k];
                 card->fresh = 0; // Remove fresh attribute to cards put in library last turn
             }
+            MTGGameZone * fs = p->game->sideboard;
+            for (int k = 0; k < fs->nb_cards; k++)
+            {
+                MTGCardInstance * card = fs->cards[k];
+                card->fresh = 0; // Remove fresh attribute to cards put in sideboard last turn
+            }
         }
         if (z->nb_cards == 0)
         {

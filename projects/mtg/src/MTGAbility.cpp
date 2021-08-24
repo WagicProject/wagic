@@ -5450,7 +5450,15 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
             card->types.clear();
             string cre = "Creature";
             card->setType(cre.c_str());
-            card->basicAbilities.reset();
+            if(card->has(Constants::ISCOMMANDER)){
+                card->basicAbilities[Constants::WASCOMMANDER] = 1;
+                card->basicAbilities[Constants::ISCOMMANDER] = 0;
+            }
+            for(size_t i = 0; i < card->basicAbilities.size(); i++) {
+                if(i != Constants::WASCOMMANDER && i != Constants::GAINEDEXILEDEATH && i != Constants::GAINEDHANDDEATH && i != Constants::GAINEDDOUBLEFACEDEATH && 
+                    i != Constants::DUNGEONCOMPLETED && i != Constants::PERPETUALDEATHTOUCH && i != Constants::PERPETUALLIFELINK)
+                    card->basicAbilities[i] = 0; // Try to keep the original special abilities on card morph.
+            }
             card->getManaCost()->resetCosts();
         }
         else if(card && !card->morphed && card->turningOver)
@@ -5462,16 +5470,15 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
             card->name = card->model->data->name;
             card->types = card->model->data->types;
             card->colors = card->model->data->colors;
-
             card->basicAbilities |= card->model->data->basicAbilities;
-
+            card->basicAbilities[Constants::ISCOMMANDER] = card->basicAbilities[Constants::WASCOMMANDER];
+            card->basicAbilities[Constants::WASCOMMANDER] = 0;
             ManaCost * copyCost = card->model->data->getManaCost();
             card->getManaCost()->copy(copyCost);
             magicText = card->model->data->magicText;
             string faceupC= card->magicTexts["faceup"];
             magicText.append("\n");
             magicText.append(faceupC);
-
         }
         else if(card && card->hasType(Subtypes::TYPE_EQUIPMENT) && card->target)
         {

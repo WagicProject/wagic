@@ -569,10 +569,13 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
         }
     }
 
-    //Commander is going back to Command Zone, so we recalculate cost according to how many times it has been casted from there.
-    if(to == g->players[0]->game->commandzone || to == g->players[1]->game->commandzone){
-        for(int i = 0; i < copy->numofcastfromcommandzone; i++)
-            copy->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT,2);
+    //Commander is going back to Command Zone, so we recalculate costs according to how many times it has been casted from there.
+    if((to == g->players[0]->game->commandzone || to == g->players[1]->game->commandzone) && copy->numofcastfromcommandzone > 0){
+        copy->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT,2*copy->numofcastfromcommandzone);
+        if(copy->getManaCost()->getAlternative())
+            copy->getManaCost()->getAlternative()->add(Constants::MTG_COLOR_ARTIFACT,2*copy->numofcastfromcommandzone);
+        if(copy->getManaCost()->getMorph())
+            copy->getManaCost()->getMorph()->add(Constants::MTG_COLOR_ARTIFACT,2*copy->numofcastfromcommandzone);
     }
 
     if (card->miracle)
@@ -871,7 +874,7 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy
                 copy->storedSourceCard = card->storedSourceCard;
                 copy->lastController = card->controller();
                 copy->previousController = card->controller();
-                copy->basicAbilities[Constants::ISCOMMANDER] = card->basicAbilities[Constants::ISCOMMANDER];
+                copy->basicAbilities[Constants::ISCOMMANDER] = (card->basicAbilities[Constants::ISCOMMANDER] | card->basicAbilities[Constants::WASCOMMANDER]);
                 copy->basicAbilities[Constants::GAINEDEXILEDEATH] = card->basicAbilities[Constants::GAINEDEXILEDEATH];
                 copy->basicAbilities[Constants::GAINEDHANDDEATH] = card->basicAbilities[Constants::GAINEDHANDDEATH];
                 copy->basicAbilities[Constants::GAINEDDOUBLEFACEDEATH] = card->basicAbilities[Constants::GAINEDDOUBLEFACEDEATH];

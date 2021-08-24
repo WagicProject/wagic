@@ -92,3 +92,4 @@ auto=@movedTo(*[iscommander]|mygraveyard):may name(Put back to command zone) abi
 auto=@movedTo(*[iscommander]|myexile):may name(Put back to command zone) ability$!name(Put back to command zone) name(Put back to command zone) target(*[iscommander;fresh]|myexile) moveto(mycommandzone)!$ controller
 auto=@movedTo(*[iscommander]|mylibrary):may name(Put back to command zone) ability$!name(Put back to command zone) name(Put back to command zone) target(*[iscommander;fresh]|mylibrary) moveto(mycommandzone)!$ controller
 auto=@movedTo(*[iscommander]|myhand):may name(Put back to command zone) ability$!name(Put back to command zone) name(Put back to command zone) target(*[iscommander;fresh]|myhand) moveto(mycommandzone)!$ controller
+auto=@movedTo(*[iscommander]|mysideboard):may name(Put back to command zone) ability$!name(Put back to command zone) name(Put back to command zone) target(*[iscommander;fresh]|mysideboard) moveto(mycommandzone)!$ controller

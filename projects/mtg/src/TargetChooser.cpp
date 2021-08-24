@@ -262,7 +262,6 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::MY_LIBRARY;
                 zones[nbzones++] = MTGGameZone::MY_HAND;
                 zones[nbzones++] = MTGGameZone::MY_EXILE;
-                zones[nbzones++] = MTGGameZone::MY_SIDEBOARD;
                 zones[nbzones++] = MTGGameZone::MY_COMMANDZONE;
             }
             else if (zoneName.compare("myrestrictedcastingzone") == 0)
@@ -276,7 +275,6 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::OPPONENT_LIBRARY;
                 zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
                 zones[nbzones++] = MTGGameZone::OPPONENT_EXILE;
-                zones[nbzones++] = MTGGameZone::OPPONENT_SIDEBOARD;
                 zones[nbzones++] = MTGGameZone::OPPONENT_COMMANDZONE;
             }
             else if (zoneName.compare("opponentrestrictedcastingzone") == 0)
@@ -2322,9 +2320,9 @@ bool EqpChooser::canTarget(Targetable * target,bool withoutProtections)
             return false;
         if(!card->isInPlay(observer))
             return false;
-		if(card->parentCards.size())
+        if(card->parentCards.size())
         {
-			if((card->parentCards.at(0)) == source && (card->hasType(Subtypes::TYPE_EQUIPMENT)))
+            if((card->parentCards.at(0)) == source && (card->hasType(Subtypes::TYPE_EQUIPMENT)))
                 return true;
         }
         return false;
