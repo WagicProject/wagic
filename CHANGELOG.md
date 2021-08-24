@@ -2,8 +2,8 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
-### 23/08/21
-- *Committed:*  ([Vitty85](https://github.com/Vitty85)) 
+### 24/08/21
+- *Committed:* Added/fixed primitives, improved "TurnSide", "Morph" and "Flip" abilities when dealing with Commanders, added "fresh" attribute to cards just put in Sideboard, added a put back rule when a Commander is put in Sideboard, allowed to cast a card with kicker or alternative or morph cost from the CommandZone: in case of Morphed or DoubleFace cards (e.g. "Tergrid, God of Fright"), they will be put in play but they won't be Commander, but when they will be put elsewhere (e.g. destroyed) they may be back to the CommandZone with the usual Commander put back rule. ([Vitty85](https://github.com/Vitty85)) 
 
 ### 23/08/21
 - *Committed:* Updated changelog with last 3 years of modifications (issue #1067 by @remigiusz-suwalski), added tokens in ELD set, improved Android downloader for ELD set, fixed primitives with "asflash" ability, improved all cards with adventure: now they become instants or sorceries in stack to activate the correct trigger (e.g. with Magecraft combos), added "nomovetrigger" ability for all the "fake" cards (e.g. cards which are simple abilities) in order to don't trigger any event on their cast since they are not real cards. (https://github.com/WagicProject/wagic/commit/6331b1daf43eb508ef1f9c54160ee5f4c4ac4ac9) ([Vitty85](https://github.com/Vitty85)) 
