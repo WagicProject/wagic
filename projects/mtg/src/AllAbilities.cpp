@@ -4564,9 +4564,16 @@ int AATurnSide::resolve()
             if(sideCard->getManaCost()){
                 if(_target->getManaCost()->getAlternative()){
                     sideCard->getManaCost()->setAlternative(NEW ManaCost());
-                    sideCard->getManaCost()->getAlternative()->copy(_target->getManaCost()->getAlternative()); // Keep orignal alternative cost to cast card with other.
+                    sideCard->getManaCost()->getAlternative()->copy(_target->getManaCost()->getAlternative()); // Keep orignal alternative cost to cast the original card with other.
+                }
+                if(_target->getManaCost()->getMorph()){
+                    sideCard->getManaCost()->setMorph(NEW ManaCost());
+                    sideCard->getManaCost()->getMorph()->copy(_target->getManaCost()->getMorph()); // Keep orignal morph cost to cast the original card with morph.
                 }
                 _target->getManaCost()->copy(sideCard->getManaCost()); // Show the other side cost mana symbols.
+                if(_target->numofcastfromcommandzone > 0){ //In case you turn side of a previuosly casted commander
+                    _target->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT,2*_target->numofcastfromcommandzone);
+                }
             }
         } else {
             fcard = MTGCollection()->getCardByName(_target->nameOrig);
@@ -4579,6 +4586,13 @@ int AATurnSide::resolve()
             if(sideCard->getManaCost()){
                 _target->getManaCost()->resetCosts();
                 _target->getManaCost()->copy(sideCard->getManaCost()); // Restore the original side cost mana symbols.
+                if(_target->numofcastfromcommandzone > 0){ //In case you turn side of a previuosly casted commander
+                    _target->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT,2*_target->numofcastfromcommandzone);
+                    if(_target->getManaCost()->getAlternative())
+                        _target->getManaCost()->getAlternative()->add(Constants::MTG_COLOR_ARTIFACT,2*_target->numofcastfromcommandzone);
+                    if(_target->getManaCost()->getMorph())
+                        _target->getManaCost()->getMorph()->add(Constants::MTG_COLOR_ARTIFACT,2*_target->numofcastfromcommandzone);
+                }
             }
         }
         if(_target->owner->playMode != Player::MODE_TEST_SUITE)
@@ -4587,7 +4601,6 @@ int AATurnSide::resolve()
             _target->setId = sideCard->setId;
         }
         _target->power = sideCard->power;
-        _target->life = sideCard->life;
         _target->toughness = sideCard->toughness;
         _target->origpower = sideCard->origpower;
         _target->origtoughness = sideCard->origtoughness;
@@ -4598,7 +4611,6 @@ int AATurnSide::resolve()
         _target->formattedText = sideCard->formattedText;
         _target->magicText = sideCard->magicText;
         _target->colors = sideCard->colors;
-        _target->basicAbilities = sideCard->basicAbilities;
         _target->isFlipped = !_target->isFlipped;
         _target->mPropertiesChangedSinceLastUpdate = true;
         SAFE_DELETE(sideCard);
@@ -4699,8 +4711,17 @@ int AAFlip::resolve()
                         _target->basicAbilities[i] = 1;
                 }
                 SAFE_DELETE(myOrig);
-            } else
-                _target->basicAbilities = myFlip->model->data->basicAbilities;
+            } else{
+                if(_target->has(Constants::ISCOMMANDER)){
+                    _target->basicAbilities[Constants::WASCOMMANDER] = 1;
+                    _target->basicAbilities[Constants::ISCOMMANDER] = 0;
+                }
+                for(size_t i = 0; i < _target->basicAbilities.size(); i++) {
+                    if(i != Constants::WASCOMMANDER && i != Constants::GAINEDEXILEDEATH && i != Constants::GAINEDHANDDEATH && i != Constants::GAINEDDOUBLEFACEDEATH && 
+                        i != Constants::DUNGEONCOMPLETED && i != Constants::PERPETUALDEATHTOUCH && i != Constants::PERPETUALLIFELINK)
+                        _target->basicAbilities[i] = myFlip->model->data->basicAbilities[i]; // Try to keep the original special abilities on card flip.
+                }
+            }
             cdaDamage = _target->damageCount;
             _target->copiedID = myFlip->getMTGId();//for copier
             if(_target->owner->playMode != Player::MODE_TEST_SUITE)

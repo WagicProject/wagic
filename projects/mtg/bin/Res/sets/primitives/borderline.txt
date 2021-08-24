@@ -16819,10 +16819,9 @@ toughness=3
 [/card]
 [card]
 name=Dragon's Eye Savants
-aicode=name(look) activate name(look) target(<ohandcount>*|opponenthand) donothing
 facedown={3}
-autofacedown={Reveal(<1>*[blue]|myHand)}:morph
-autofaceup=target(opponent) name(target opponent) reveal:ohandcount revealzone(opponenthand) optionone name(look) target(<1>*|reveal) moveto(ownerhand) and!(all(*|reveal) moveto(ownerhand))! optiononeend revealend
+autofacedown=aslongas(*[blue]|myhand) {0}:name(Reveal blue card and turn) morph
+autofaceup=name(Look opponent hand) target(*|opponenthand) moveto(opponentreveal) and!( moveto(opponenthand) )!
 text=Morph—Reveal a blue card in your hand. (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Dragon’s Eye Savants is turned face up, look at target opponent’s hand.
 mana={1}{U}
 type=Creature
@@ -17805,7 +17804,9 @@ type=Dungeon
 [/card]
 [card]
 name=Duplicant
-auto=if type(creature[-token]|battlefield)~morethan~0 then may name(Exile non-token creature) name(Exile non-token creature) imprint target(creature[-token]) && all(this) becomes(evicttypes,evictpw/evictth) forever
+auto=if type(creature[-token]|battlefield)~morethan~0 then may name(Exile non-token creature) name(Exile non-token creature) imprint target(creature[-token]) && all(this) transforms((,newability[evictpw/evictth cdaactive])) forever
+auto=this(variable{hasevict}>=1) transforms((evicttypes))
+auto=this(variable{hasevict}=0) transforms((,setpower=2,settoughness=4))
 text=Imprint — When Duplicant enters the battlefield, you may exile target nontoken creature. -- As long as the exiled card is a creature card, Duplicant has that card's power, toughness, and creature types. It's still a Shapeshifter.
 mana={6}
 type=Artifact Creature
@@ -29916,6 +29917,18 @@ text={1}, {T}: Untap target land. -- {1}, {T}, Exert Hope Tender: Untap two targ
 mana={1}{G}
 type=Creature
 subtype=Human Druid
+power=2
+toughness=2
+[/card]
+[card]
+name=Horde Ambusher
+facedown={3}
+autofacedown=aslongas(*[red]|myhand) {0}:name(Reveal red card and turn) morph
+autofaceup=name(Creature can't block) target(creature) transforms((,newability[cantblock])) ueot
+text=Whenever Horde Ambusher blocks, it deals 1 damage to you. -- Morph—Reveal a red card in your hand. (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Horde Ambusher is turned face up, target creature can't block this turn.
+mana={1}{R}
+type=Creature
+subtype=Human Berserker
 power=2
 toughness=2
 [/card]
@@ -46277,6 +46290,17 @@ power=4
 toughness=3
 [/card]
 [card]
+name=Pitchstone Wall
+abilities=defender
+auto=@discarded(*|myhand):may name(Sacrifice and put in hand) transforms((,newability[all(*[zpos=type:*:mygraveyard]|mygraveyard) moveto(myhand) && all(this) sacrifice])) oneshot
+text=Defender (This creature can't attack.) -- Whenever you discard a card, you may sacrifice Pitchstone Wall. If you do, return the discarded card from your graveyard to your hand.
+mana={2}{R}
+type=Creature
+subtype=Wall
+power=2
+toughness=5
+[/card]
+[card]
 name=Pitiless Gorgon
 abilities=deathtouch
 text=Deathtouch
@@ -46426,6 +46450,22 @@ auto=@movedTo(*|opponentstack):ability$!name(Flip a coin) flipacoin loseability 
 text=At the beginning of your upkeep, flip a coin. If you lose the flip, sacrifice Planar Chaos. -- Whenever a player casts a spell, that player flips a coin. If he or she loses the flip, counter that spell.
 mana={2}{R}
 type=Enchantment
+[/card]
+[card]
+name=Planar Overlay
+auto=ability$!name(Return a swamp) name(Return a swamp) target(swamp|myBattlefield) moveto(ownerhand)!$ controller
+auto=ability$!name(Return a swamp) name(Return a swamp) target(swamp|myBattlefield) moveto(ownerhand)!$ opponent
+auto=ability$!name(Return a plains) name(Return a plains) target(plains|myBattlefield) moveto(ownerhand)!$ controller
+auto=ability$!name(Return a plains) name(Return a plains) target(plains|myBattlefield) moveto(ownerhand)!$ opponent
+auto=ability$!name(Return a forest) name(Return a forest) target(forest|myBattlefield) moveto(ownerhand)!$ controller
+auto=ability$!name(Return a forest) name(Return a forest) target(forest|myBattlefield) moveto(ownerhand)!$ opponent
+auto=ability$!name(Return an island) name(Return an island) target(island|myBattlefield) moveto(ownerhand)!$ controller
+auto=ability$!name(Return an island) name(Return an island) target(island|myBattlefield) moveto(ownerhand)!$ opponent
+auto=ability$!name(Return a mountain) name(Return a mountain) target(mountain|myBattlefield) moveto(ownerhand)!$ controller
+auto=ability$!name(Return a mountain) name(Return a mountain) target(mountain|myBattlefield) moveto(ownerhand)!$ opponent
+text=Each player chooses a land he or she controls of each basic land type. Return those lands to their owners' hands.
+mana={2}{U}
+type=Sorcery
 [/card]
 [card]
 name=Planebound Accomplice
@@ -46982,6 +47022,20 @@ power=1
 toughness=4
 [/card]
 [card]
+name=Preacher
+abilities=doesnotuntap
+auto=@each my untap:if cantargetcard(*[tapped]|mybattlefield) then may name(Untap Preacher) name(Untap Preacher) untap
+auto=@untapped(this) restriction{compare(hascntpreachereffect)~morethan~0}:name(Give back creature) transforms((,newability[removeallcounters(0/0.1.PreacherEffect)],newability[name(Give back creature) target(creature[counter{0/0.1.PreacherStolen}]|mybattlefield) moveto(opponentBattlefield) and!( counter(0/0.-1.PreacherStolen) )!])) oneshot
+auto=@movedto(this|nonbattlezone) from(myBattlefield) restriction{compare(hascntpreachereffect)~morethan~0}:name(Give back creature) transforms((,newability[removeallcounters(0/0.1.PreacherEffect)],newability[name(Give back creature) target(creature[counter{0/0.1.PreacherStolen}]|mybattlefield) moveto(opponentBattlefield) and!( counter(0/0.-1.PreacherStolen) )!])) oneshot
+auto=aslongas(creature|opponentBattlefield) {C(0/0,1,PreacherEffect)}{T}:name(Gain control) ability$!name(Give control) name(Give control) target(creature|mybattlefield) moveto(opponentbattlefield) and!( counter(0/0.1.PreacherStolen) )! !$ opponent
+text=You may choose not to untap Preacher during your untap step. -- {T}: Gain control of target creature of an opponent's choice that he or she controls for as long as Preacher remains tapped.
+mana={1}{W}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+[/card]
+[card]
 name=Precipitous Drop
 target=creature
 auto=name(Venture into dungeon) all(this) transforms((,newability[if compare(type:*[nodngplr]:mybattlefieldplustype:*[nodngopp]:opponentbattlefieldplusend)~equalto~0 then name(Venture into dungeon) name(Venture into dungeon) transforms((,newability[if type(*[dungeon]|mycommandzone)~morethan~0 then name(Explore the dungeon) name(Explore the dungeon) all(*[dungeon]|mycommandzone) counter(0/0.1.Explore)],newability[if type(*[dungeon]|mycommandzone)~equalto~0 then name(Choose a new dungeon) name(Choose a new dungeon) target(*[dungeon]|mysideboard) moveTo(mycommandzone) and!( counter(0/0.1.Explore) )!])) oneshot])) oneshot
@@ -47044,6 +47098,13 @@ type=Creature
 subtype=Wurm
 power=4
 toughness=4
+[/card]
+[card]
+name=Predict
+auto=chooseanameopp name(Mill opponent) all(*[zpos=1]|opponentLibrary) moveto(opponentGraveyard) and!( if cantargetcard(*[chosenname]|*) then draw:2 controller else draw:1 controller )! chooseend
+text=Name a card, then put the top card of target player's library into his or her graveyard. If that card is the named card, you draw two cards. Otherwise, you draw a card.
+mana={1}{U}
+type=Instant
 [/card]
 [card]
 name=Premature Burial
@@ -47268,6 +47329,18 @@ text=(Transforms from Primal Amulet.) -- {T}: Add one mana of any color to your 
 type=Land
 [/card]
 [card]
+name=Primal Whisperer
+auto=foreach(Morph|myBattlefield) 2/2
+facedown={3}
+autofacedown={3}{G}:morph
+text=Primal Whisperer gets +2/+2 for each face-down creature on the battlefield. -- Morph {3}{G} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={4}{G}
+type=Creature
+subtype=Elf Soldier
+power=2
+toughness=2
+[/card]
+[card]
 name=Prime Speaker Vannifar
 aicode=activate moveTo(myBattlefield) target(creature[manacost=storedmanacostplus1plusend]|mylibrary)
 auto={T}{S(creature|mybattlefield)}:name(search card) reveal:plibrarycount optionone name(choose card) target(creature[manacost=storedmanacostplus1plusend]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(activate castcard(putinplay))! afterrevealedend revealend asSorcery
@@ -47285,6 +47358,42 @@ text=(You may cast a legendary sorcery only if you control a legendary creature 
 restriction=type(legendary[-artifact;-enchantment;-land]|mybattlefield)~morethan~0
 mana={5}{W}{B}
 type=Legendary Sorcery
+[/card]
+[card]
+name=Primitive Etchings
+auto=@drawof(player) turnlimited:if type(creature[fresh]|myhand)~morethan~0 then draw:1 controller
+text=Reveal the first card you draw each turn. Whenever you reveal a creature card this way, draw a card.
+mana={2}{G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Primitive Justice
+restriction=type(artifact|battlefield)~morethan~0
+kicker=multi{1}{RG}
+auto=if spent({20}{R}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}) then life:19 else if spent({19}{R}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}) then life:18 else if spent({18}{R}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}) then life:17 else if spent({17}{R}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}) then life:16 else if spent({16}{R}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}) then life:15 else if spent({15}{R}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}) then life:14 else if spent({14}{R}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}) then life:13 else if spent({13}{R}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}) then life:12 else if spent({12}{R}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}) then life:11 else if spent({11}{R}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}) then life:10 else if spent({10}{R}{G}{G}{G}{G}{G}{G}{G}{G}{G}) then life:9 else if spent({9}{R}{G}{G}{G}{G}{G}{G}{G}{G}) then life:8 else if spent({8}{R}{G}{G}{G}{G}{G}{G}{G}) then life:7 else if spent({7}{R}{G}{G}{G}{G}{G}{G}) then life:6 else if spent({6}{R}{G}{G}{G}{G}{G}) then life:5 else if spent({5}{R}{G}{G}{G}{G}) then life:4 else if spent({4}{R}{G}{G}{G}) then life:3 else if spent({3}{R}{G}{G}) then life:2 else if spent({2}{R}{G}) then life:1
+auto=if compare(kicked)~equalto~0 then name(Destroy 1 artifact) name(Destroy 1 artifact) target(artifact) destroy
+auto=if compare(kicked)~equalto~1 then name(Destroy 2 artifacts) name(Destroy 2 artifacts) target(<2>artifact) destroy
+auto=if compare(kicked)~equalto~2 then name(Destroy 3 artifacts) name(Destroy 3 artifacts) target(<3>artifact) destroy
+auto=if compare(kicked)~equalto~3 then name(Destroy 4 artifacts) name(Destroy 4 artifacts) target(<4>artifact) destroy
+auto=if compare(kicked)~equalto~4 then name(Destroy 5 artifacts) name(Destroy 5 artifacts) target(<5>artifact) destroy
+auto=if compare(kicked)~equalto~5 then name(Destroy 6 artifacts) name(Destroy 6 artifacts) target(<6>artifact) destroy
+auto=if compare(kicked)~equalto~6 then name(Destroy 7 artifacts) name(Destroy 7 artifacts) target(<7>artifact) destroy
+auto=if compare(kicked)~equalto~7 then name(Destroy 8 artifacts) name(Destroy 8 artifacts) target(<8>artifact) destroy
+auto=if compare(kicked)~equalto~8 then name(Destroy 9 artifacts) name(Destroy 9 artifacts) target(<9>artifact) destroy
+auto=if compare(kicked)~equalto~9 then name(Destroy 10 artifacts) name(Destroy 10 artifacts) target(<10>artifact) destroy
+auto=if compare(kicked)~equalto~10 then name(Destroy 11 artifacts) name(Destroy 11 artifacts) target(<11>artifact) destroy
+auto=if compare(kicked)~equalto~11 then name(Destroy 12 artifacts) name(Destroy 12 artifacts) target(<12>artifact) destroy
+auto=if compare(kicked)~equalto~12 then name(Destroy 13 artifacts) name(Destroy 13 artifacts) target(<13>artifact) destroy
+auto=if compare(kicked)~equalto~13 then name(Destroy 14 artifacts) name(Destroy 14 artifacts) target(<14>artifact) destroy
+auto=if compare(kicked)~equalto~14 then name(Destroy 15 artifacts) name(Destroy 15 artifacts) target(<15>artifact) destroy
+auto=if compare(kicked)~equalto~15 then name(Destroy 16 artifacts) name(Destroy 16 artifacts) target(<16>artifact) destroy
+auto=if compare(kicked)~equalto~16 then name(Destroy 17 artifacts) name(Destroy 17 artifacts) target(<17>artifact) destroy
+auto=if compare(kicked)~equalto~17 then name(Destroy 18 artifacts) name(Destroy 18 artifacts) target(<18>artifact) destroy
+auto=if compare(kicked)~equalto~18 then name(Destroy 19 artifacts) name(Destroy 19 artifacts) target(<19>artifact) destroy
+auto=if compare(kicked)~morethan~18 then name(Destroy 20 artifacts) name(Destroy 20 artifacts) target(<20>*artifact) destroy
+text=As an additional cost to cast Primitive Justice, you may pay {1}{R} and/or {1}{G} any number of times. -- Destroy target artifact. For each additional {1}{R} you paid, destroy another target artifact. For each additional {1}{G} you paid, destroy another target artifact, and you gain 1 life.
+mana={1}{R}
+type=Sorcery
 [/card]
 [card]
 name=Primordial Wurm
@@ -47781,6 +47890,13 @@ text=Enchant creature -- Enchanted creature gets +2/+2 and is goaded. (It attack
 mana={2}{U}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Psychic Miasma
+auto=ability$!name(Discard a card) name(Discard a card) target(*|myhand) reject and!( if cantargetcard(*[land]|*) then target(Psychic Miasma|opponentgraveyard) moveto(ownerhand) )! !$ opponent
+text=Target player discards a card. If a land card is discarded this way, return Psychic Miasma to its owner's hand.
+mana={1}{B}
+type=Sorcery
 [/card]
 [card]
 name=Psychic Symbiont
@@ -52540,7 +52656,7 @@ toughness=2
 name=Ruthless Ripper
 abilities=deathtouch
 facedown={3}
-autofacedown={target(*[black]|myhand)}:morph
+autofacedown=aslongas(*[black]|myhand) {0}:name(Reveal black card and turn) morph
 autofaceup=target(player) life:-2
 text=Deathtouch -- Morph—Reveal a black card in your hand. (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Ruthless Ripper is turned face up, target player loses 2 life.
 mana={B}
@@ -63617,6 +63733,18 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Temur Charger
+facedown={3}
+autofacedown=aslongas(*[green]|myhand) {0}:name(Reveal green card and turn) morph
+autofaceup=name(Creature gains trample) target(creature) transforms((,newability[trample])) ueot
+text=Morph—Reveal a green card in your hand. (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Temur Charger is turned face up, target creature gains trample until end of turn.
+mana={1}{G}
+type=Creature
+subtype=Horse
+power=3
+toughness=1
+[/card]
+[card]
 name=Tenacious Hunter
 auto=aslongas(creature[counter(-1/-1)]|battlefield) vigilance
 auto=aslongas(creature[counter(-1/-1)]|battlefield) deathtouch
@@ -70914,7 +71042,7 @@ toughness=5
 name=Watcher of the Roost
 abilities=flying
 facedown={3}
-autofacedown={target(*[white]|myhand)}:morph
+autofacedown=aslongas(*[white]|myhand) {0}:name(Reveal white card and turn) morph
 autofaceup=life:2 controller
 text=Flying -- Morph—Reveal a white card in your hand. (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Watcher of the Roost is turned face up, you gain 2 life.
 mana={2}{W}

@@ -631,7 +631,7 @@ int MTGKickerRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
     if(OptionKicker::KICKER_ALWAYS == options[Options::KICKERPAYMENT].number)
         return 0;
     Player * player = game->currentlyActing();
-    if (!player->game->hand->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->library->hasCard(card))
+    if (!player->game->hand->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->library->hasCard(card) && !game->currentlyActing()->game->commandzone->hasCard(card))
          return 0;
     if ((player->game->library->hasCard(card) && !card->canPlayFromLibrary()) || (player->game->graveyard->hasCard(card) && !card->has(Constants::CANPLAYFROMGRAVEYARD)) || (player->game->exile->hasCard(card) && !card->has(Constants::CANPLAYFROMEXILE)))
          return 0;
@@ -822,7 +822,7 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
         {
             alternateCost->extraCosts->costs[i]->setSource(card);
         }
-    if (!game->currentlyActing()->game->hand->hasCard(card) && !game->currentlyActing()->game->graveyard->hasCard(card) && !game->currentlyActing()->game->exile->hasCard(card) && !game->currentlyActing()->game->library->hasCard(card))
+    if (!game->currentlyActing()->game->hand->hasCard(card) && !game->currentlyActing()->game->graveyard->hasCard(card) && !game->currentlyActing()->game->exile->hasCard(card) && !game->currentlyActing()->game->library->hasCard(card) && !game->currentlyActing()->game->commandzone->hasCard(card))
          return 0;
     if ((game->currentlyActing()->game->library->hasCard(card) && !card->canPlayFromLibrary()) || (game->currentlyActing()->game->graveyard->hasCard(card) && !card->has(Constants::CANPLAYFROMGRAVEYARD)) || (game->currentlyActing()->game->exile->hasCard(card) && !card->has(Constants::CANPLAYFROMEXILE)))
          return 0;
@@ -1466,7 +1466,7 @@ int MTGMorphCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 
     Player * player = game->currentlyActing();
     //Player * currentPlayer = game->currentPlayer;
-    if (!player->game->library->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->hand->hasCard(card))
+    if (!player->game->library->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->hand->hasCard(card) && !player->game->commandzone->hasCard(card))
         return 0;
     if ((!card->canPlayFromLibrary() && player->game->library->hasCard(card))||(!card->has(Constants::CANPLAYFROMGRAVEYARD) && player->game->graveyard->hasCard(card))||(!card->has(Constants::CANPLAYFROMEXILE) && player->game->exile->hasCard(card)))
         return 0;
@@ -1512,11 +1512,10 @@ int MTGMorphCostRule::reactToClick(MTGCardInstance * card)
     ManaCost * cost = card->getManaCost();
     ManaCost * playerMana = player->getManaPool();
     ManaCost * morph = card->getManaCost()->getMorph();
-        if(morph->extraCosts)
-            for(unsigned int i = 0; i < morph->extraCosts->costs.size();i++)
-            {
-                morph->extraCosts->costs[i]->setSource(card);
-            }
+    if(morph->extraCosts){
+        for(unsigned int i = 0; i < morph->extraCosts->costs.size();i++)
+            morph->extraCosts->costs[i]->setSource(card);
+    }
     //this handles extra cost payments at the moment a card is played.
     if (playerMana->canAfford(morph,card->has(Constants::ANYTYPEOFMANA)))
     {
@@ -1555,13 +1554,21 @@ int MTGMorphCostRule::reactToClick(MTGCardInstance * card)
         card->getManaCost()->setManaUsedToCast(NEW ManaCost());
         card->getManaCost()->getManaUsedToCast()->copy(spellCost);
     }
+    int iscommander = card->has(Constants::ISCOMMANDER);
+    card->basicAbilities[Constants::ISCOMMANDER] = 0;//Morph is not a commander on stack
     MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->stack);
+    if(iscommander > 0)
+        copy->basicAbilities[Constants::ISCOMMANDER] = 1;
     copy->getManaCost()->resetCosts();//Morph has no ManaCost on stack
     copy->setColor(0,1);
     copy->types.clear();
     string cre = "Creature";
     copy->setType(cre.c_str());
-    copy->basicAbilities.reset();
+    for(size_t i = 0; i < copy->basicAbilities.size(); i++) {
+        if(i != Constants::ISCOMMANDER && i != Constants::GAINEDEXILEDEATH && i != Constants::GAINEDHANDDEATH && i != Constants::GAINEDDOUBLEFACEDEATH && 
+            i != Constants::DUNGEONCOMPLETED && i != Constants::PERPETUALDEATHTOUCH && i != Constants::PERPETUALLIFELINK)
+            copy->basicAbilities[i] = 0; // Try to keep the original special abilities on card morph.
+    }
     Spell * spell = NULL;
     spell = game->mLayers->stackLayer()->addSpell(copy, NULL, spellCost, payResult, 0);
     spell->source->morphed = true;
@@ -3429,6 +3436,10 @@ int MTGUnearthRule::receiveEvent(WEvent * event)
             e->card->fresh = 1;
         }
         if (e->to == e->card->controller()->game->library) // Apply fresh attribute for cards just put in library
+        {
+            e->card->fresh = 1;
+        }
+        if (e->to == e->card->controller()->game->sideboard) // Apply fresh attribute for cards just put in sideboard
         {
             e->card->fresh = 1;
         }
