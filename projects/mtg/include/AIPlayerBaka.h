@@ -93,7 +93,7 @@ class AIPlayerBaka: public AIPlayer{
 
     virtual AIStats * getStats();
 
-    bool payAlternative;
+    int payAlternative;
     MTGCardInstance * nextCardToPlay;
     MTGCardInstance * activateCombo();
     TargetChooser * GetComboTc(GameObserver * observer, TargetChooser * tc = NULL);
@@ -121,6 +121,12 @@ class AIPlayerBaka: public AIPlayer{
         INFO_CREATURESTOUGHNESS,
         INFO_CREATURESATTACKINGPOWER
     };
+
+    enum {
+        NONE,
+        OTHER,
+        MORPH
+    }; // Possbile alternative costs to be used for AI.
 
     vector<MTGAbility*>gotPayments;
 

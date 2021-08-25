@@ -47910,6 +47910,16 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Psychic Transfer
+other={4}{U} name(Psychic Transfer)
+otherrestriction=compare(lifetotalminusopponentlifetotalminusend)~morethan~4
+restriction=compare(opponentlifetotalminuslifetotalminusend)~morethan~4
+auto=exchangelife opponent
+text=If the difference between your life total and target player's life total is 5 or less, exchange life totals with that player.
+mana={4}{U}
+type=Sorcery
+[/card]
+[card]
 name=Psychotic Episode
 abilities=madness
 auto=if type(*|opponenthand)~morethan~0 then choice name(Look opponent's hand) target(*|opponenthand) bottomoflibrary
@@ -47946,6 +47956,14 @@ type=Creature
 subtype=Human Knight
 power=3
 toughness=3
+[/card]
+[card]
+name=Pull from Eternity
+target=*|exile
+auto=moveto(ownergraveyard)
+text=Put target face-up exiled card into its owner's graveyard.
+mana={W}
+type=Instant
 [/card]
 [card]
 name=Pull from Tomorrow
@@ -47988,6 +48006,14 @@ auto=if paid(alternative) then all(*[aura;equipment]|battlefield) destroy
 text=Destroy target multicolored permanent. // Destroy all Auras and Equipment.
 mana={1}{R}{G}
 type=Sorcery
+[/card]
+[card]
+name=Purgatory
+auto=@movedto(creature[-token]|mygraveyard) from(battlefield):name(Exile creature) all(trigger[to]) moveto(myexile) and!( counter(0/0.1.PurgatoryExile) )!
+auto=@each my upkeep restriction{type(creature|myexile)~morethan~0}:may pay({4}) name(Return exiled creature) target(creature[counter{0/0.1.PurgatoryExile}]|myexile) moveto(myBattlefield) and!( life:-2 controller )!
+text=Whenever a nontoken creature is put into your graveyard from the battlefield, exile that card. -- At the beginning of your upkeep, you may pay {4} and 2 life. If you do, return a card exiled with Purgatory to the battlefield.
+mana={2}{W}{B}
+type=Enchantment
 [/card]
 [card]
 name=Purphoros's Intervention
@@ -48136,6 +48162,41 @@ mana={4}{R}{R}
 type=Instant
 [/card]
 [card]
+name=Pyromancer's Gauntlet
+auto=@damaged(*|opponentBattlefield) from(instant[red]|myzones):all(trigger[to]) transforms((,newability[damage:2])) oneshot
+auto=@damaged(*|opponentBattlefield) from(sorcery[red]|myzones):all(trigger[to]) transforms((,newability[damage:2])) oneshot
+auto=@damaged(*|opponentBattlefield) from(planeswalker[red]|myzones):all(trigger[to]) transforms((,newability[damage:2])) oneshot
+auto=@damagefoeof(player) from(instant[red]|myzones):name(Damage opponent) damage:2 opponent
+auto=@damagefoeof(player) from(sorcery[red]|myzones):name(Damage opponent) damage:2 opponent
+auto=@damagefoeof(player) from(planeswalker[red]|myzones):name(Damage opponent) damage:2 opponent
+text=If a red instant or sorcery spell you control or a red planeswalker you control would deal damage to a permanent or player, it deals that much damage plus 2 to that permanent or player instead.
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Pyromancer's Goggles
+auto={T}:name(Add red mana) transforms((,newability[add{R}],newability[@movedto(*[sorcery;instant;red]|mystack) turnlimited:all(trigger[to]) activate castcard(copied noevent)])) ueot
+text={T}: Add {R} to your mana pool. When that mana is spent to cast a red instant or sorcery spell, copy that spell and you may choose new targets for the copy.
+mana={5}
+type=Legendary Artifact
+[/card]
+[card]
+name=Pyromancer's Swath
+auto=@damaged(*|opponentBattlefield) from(*[instant;sorcery]|myzones):all(trigger[to]) transforms((,newability[damage:2])) oneshot
+auto=@damagefoeof(player) from(*[instant;sorcery]|myzones):name(Damage opponent) damage:2 opponent
+auto=@each endofturn:name(Discard hand) all(*|myhand) reject
+text=If an instant or sorcery source you control would deal damage to a creature or player, it deals that much damage plus 2 to that creature or player instead. -- At the beginning of each end step, discard your hand.
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+name=Pyromancy
+auto={D}{3}:name(Deal damage) transforms((,newability[all(*[zpos=type:*:mygraveyard]|mygraveyard) transforms((,newability[name(Damage creature or player) damage:manacost target(player^creature)])) oneshot])) oneshot
+text={3}, Discard a card at random: Pyromancy deals damage to target creature or player equal to the converted mana cost of the discarded card.
+mana={2}{R}{R}
+type=Enchantment
+[/card]
+[card]
 name=Pyromantic Pilgrim
 abilities=haste
 text=Haste (This creature can attack and {T} as soon as it comes under your control.)
@@ -48185,6 +48246,14 @@ auto=thisforeach(variable{4}) ability$!name(Deal 1 damage) name(Deal 1 damage) t
 text=Pyrotechnics deals 4 damage divided as you choose among any number of target creatures and/or players.
 mana={4}{R}
 type=Sorcery
+[/card]
+[card]
+name=Pyxis of Pandemonium
+auto={T}:name(Exile top cards) all(*[zpos=1]|library) moveto(ownerexile) and!( counter(0/0.1.PyxisExiled) )!
+auto={7}{T}:name(Put permanents in play) all(*[-instant;-sorcery;counter{0/0.1.PyxisExiled}]|exile) moveto(ownerbattlefield)
+text={T}: Each player exiles the top card of his or her library face down. -- {7}, {T}, Sacrifice Pyxis of Pandemonium: Each player turns face up all cards he or she owns exiled with Pyxis of Pandemonium, then puts all permanent cards among them onto the battlefield.
+mana={1}
+type=Artifact
 [/card]
 [card]
 name=Qarsi Deceiver
@@ -48445,6 +48514,17 @@ mana={3}{R}
 type=Sorcery
 [/card]
 [card]
+name=Quest for Pure Flame
+auto=@damagefoeof(player) from(*[instant;sorcery]|stack,Graveyard):name(Put Quest counter) counter(0/0.1.quest)
+auto=@damagefoeof(player) from(*[enchantment;artifact;land;planeswalker]|battlefield,Graveyard):name(Put Quest counter) counter(0/0.1.quest)
+auto=@damagefoeof(player) from(creature[-Fiendish Duo]|battlefield,Graveyard):name(Put Quest counter) counter(0/0.1.quest)
+auto=@combatdamagefoeof(player) from(this):damage:name(Put Quest counter) counter(0/0.1.quest)
+auto={S} restriction{compare(hascntquest)~morethan~3}:name(Sacrifice and double damage) emblem transforms((,newability[@damagefoeof(player) from(*[instant;sorcery]|myzones):damage:thatmuch all(trigger[to])],newability[@damagefoeof(player) from(*[creature;artifact;land;planeswalker]|myzones):damage:thatmuch all(trigger[to])],newability[@damagefoeof(player) from(enchantment[-Quest for Pure Flame]|myzones):damage:thatmuch all(trigger[to])])) ueot dontremove
+text=Whenever a source you control deals damage to an opponent, you may put a quest counter on Quest for Pure Flame. -- Remove four quest counters from Quest for Pure Flame and sacrifice it: If any source you control would deal damage to a creature or player this turn, it deals double that damage to that creature or player instead.
+mana={R}
+type=Enchantment
+[/card]
+[card]
 name=Questing Beast
 abilities=vigilance,deathtouch,haste
 auto=cantbeblockedby(creature[power<=2])
@@ -48625,6 +48705,17 @@ type=Creature
 subtype=Demon
 power=4
 toughness=2
+[/card]
+[card]
+name=Rag Man
+auto=this(variable{ishuman}>0) {B}{B}{B}{T}:name(Look opponent hand) name(Look opponent hand) target(*|opponenthand) transforms((,newability[name(Discard creature) target(creature|myhand) reject])) oneshot myturnonly
+auto=this(variable{ishuman}<1) {B}{B}{B}{T}:name(Look opponent hand) name(Look opponent hand) target(*|opponenthand) transforms((,newability[ability$!name(Discard creature) name(Discard creature) target(creature|opponenthand) reject!$ opponent])) oneshot myturnonly
+text={B}{B}{B}, {T}: Target opponent reveals his or her hand and discards a creature card at random. Activate this ability only during your turn.
+mana={2}{B}{B}
+type=Creature
+subtype=Human Minion
+power=2
+toughness=1
 [/card]
 [card]
 name=Ragavan, Nimble Pilferer
