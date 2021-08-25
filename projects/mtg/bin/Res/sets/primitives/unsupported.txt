@@ -8663,12 +8663,6 @@ mana={1}{U}
 type=Sorcery
 [/card]
 [card]
-name=Psychic Transfer
-text=If the difference between your life total and target player's life total is 5 or less, exchange life totals with that player.
-mana={4}{U}
-type=Sorcery
-[/card]
-[card]
 name=Psychogenic Probe
 text=Whenever a spell or ability causes a player to shuffle his or her library, Psychogenic Probe deals 2 damage to him or her.
 mana={2}
@@ -8679,12 +8673,6 @@ name=Puca's Mischief
 text=At the beginning of your upkeep, you may exchange control of target nonland permanent you control and target nonland permanent an opponent controls with an equal or lesser converted mana cost.
 mana={3}{U}
 type=Enchantment
-[/card]
-[card]
-name=Pull from Eternity
-text=Put target face-up exiled card into its owner's graveyard.
-mana={W}
-type=Instant
 [/card]
 [card]
 name=Pulling Teeth
@@ -8713,14 +8701,9 @@ type=Instant
 subtype=Arcane
 [/card]
 [card]
-name=Purgatory
-text=Whenever a nontoken creature is put into your graveyard from the battlefield, exile that card. -- At the beginning of your upkeep, you may pay {4} and 2 life. If you do, return a card exiled with Purgatory to the battlefield.
-mana={2}{W}{B}
-type=Enchantment
-[/card]
-[card]
 name=Purity
 abilities=flying
+auto=@movedto(this|mygraveyard):name(Shuffle in library) all(trigger[to]) moveto(ownerlibrary) and!( shuffle )!
 text=Flying -- If noncombat damage would be dealt to you, prevent that damage. You gain life equal to the damage prevented this way. -- When Purity is put into a graveyard from anywhere, shuffle it into its owner's library.
 mana={3}{W}{W}{W}
 type=Creature
@@ -8765,42 +8748,6 @@ toughness=0
 name=Pyromancer Ascension
 text=Whenever you cast an instant or sorcery spell that has the same name as a card in your graveyard, you may put a quest counter on Pyromancer Ascension. -- Whenever you cast an instant or sorcery spell while Pyromancer Ascension has two or more quest counters on it, you may copy that spell. You may choose new targets for the copy.
 mana={1}{R}
-type=Enchantment
-[/card]
-[card]
-name=Pyromancer's Gauntlet
-text=If a red instant or sorcery spell you control or a red planeswalker you control would deal damage to a permanent or player, it deals that much damage plus 2 to that permanent or player instead.
-mana={5}
-type=Artifact
-[/card]
-[card]
-name=Pyromancer's Goggles
-text={T}: Add {R} to your mana pool. When that mana is spent to cast a red instant or sorcery spell, copy that spell and you may choose new targets for the copy.
-mana={5}
-type=Legendary Artifact
-[/card]
-[card]
-name=Pyromancer's Swath
-text=If an instant or sorcery source you control would deal damage to a creature or player, it deals that much damage plus 2 to that creature or player instead. -- At the beginning of each end step, discard your hand.
-mana={2}{R}
-type=Enchantment
-[/card]
-[card]
-name=Pyromancy
-text={3}, Discard a card at random: Pyromancy deals damage to target creature or player equal to the converted mana cost of the discarded card.
-mana={2}{R}{R}
-type=Enchantment
-[/card]
-[card]
-name=Pyxis of Pandemonium
-text={T}: Each player exiles the top card of his or her library face down. -- {7}, {T}, Sacrifice Pyxis of Pandemonium: Each player turns face up all cards he or she owns exiled with Pyxis of Pandemonium, then puts all permanent cards among them onto the battlefield.
-mana={1}
-type=Artifact
-[/card]
-[card]
-name=Quest for Pure Flame
-text=Whenever a source you control deals damage to an opponent, you may put a quest counter on Quest for Pure Flame. -- Remove four quest counters from Quest for Pure Flame and sacrifice it: If any source you control would deal damage to a creature or player this turn, it deals double that damage to that creature or player instead.
-mana={R}
 type=Enchantment
 [/card]
 [card]
@@ -8878,15 +8825,6 @@ name=Radiate
 text=Choose target instant or sorcery spell that targets only a single permanent or player. Copy that spell for each other permanent or player the spell could target. Each copy targets a different one of those permanents and players.
 mana={3}{R}{R}
 type=Instant
-[/card]
-[card]
-name=Rag Man
-text={B}{B}{B}, {T}: Target opponent reveals his or her hand and discards a creature card at random. Activate this ability only during your turn.
-mana={2}{B}{B}
-type=Creature
-subtype=Human Minion
-power=2
-toughness=1
 [/card]
 [card]
 name=Rage Extractor

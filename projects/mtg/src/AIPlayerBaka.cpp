@@ -2750,7 +2750,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     cd.init();
     cd.setType(type);
     card = NULL;
-    payAlternative = false;
+    payAlternative = NONE;
     gotPayments = vector<MTGAbility*>();
     //canplayfromgraveyard
      while ((card = cd.nextmatch(game->graveyard, card)))
@@ -3237,7 +3237,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     card = NULL; // fixed bug causing AI never play a card there are one or more cards in exile or other zones...
     while ((card = cd.nextmatch(game->hand, card)))
     {
-        bool localpayAlternative = false;
+        int localpayAlternative = NONE;
 
         if (!CanHandleCost(card->getManaCost(),card))
             continue;
@@ -3293,11 +3293,11 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
         ManaCost* manaToPay = card->getManaCost();
         if((!pMana->canAfford(card->getManaCost(),0) || card->getManaCost()->getKicker()))
             gotPayments = canPayMana(card,card->getManaCost(),card->has(Constants::ANYTYPEOFMANA));
+        bool hasConvoke = false; //Fix a crash when AI try to pay convoke cost.
+        bool hasOffering = card->basicAbilities[Constants::OFFERING]; //Fix a hang when AI try to pay emerge cost.
+        bool hasDelve = false; //Fix a hang when AI try to pay delve cost.
         if(card->getManaCost()->getAlternative() && !gotPayments.size() && !pMana->canAfford(card->getManaCost(),0) && !card->getManaCost()->getKicker()){ //Now AI can cast cards using alternative cost.
             ManaCost * extra = card->getManaCost()->getAlternative(); 
-            bool hasConvoke = false; //Fix a crash when AI try to pay convoke cost.
-            bool hasOffering = card->basicAbilities[Constants::OFFERING]; //Fix a hang when AI try to pay emerge cost.
-            bool hasDelve = false; //Fix a hang when AI try to pay delve cost.
             if(extra->extraCosts){
                 for(unsigned int i = 0; i < extra->extraCosts->costs.size() && !hasConvoke && !hasOffering && !hasDelve; i++){
                     if(dynamic_cast<Convoke*> (extra->extraCosts->costs[i]))
@@ -3309,12 +3309,18 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                 }
             }
             if(!hasOffering && !hasConvoke && !hasDelve){
-                localpayAlternative = true;
+                localpayAlternative = OTHER;
                 manaToPay = card->getManaCost()->getAlternative();
                 if(!pMana->canAfford(manaToPay,0))
                     gotPayments = canPayMana(card,card->getManaCost()->getAlternative(),card->has(Constants::ANYTYPEOFMANA));
             }
-        } 
+        }
+        if(card->getManaCost()->getMorph() && !gotPayments.size() && !pMana->canAfford(card->getManaCost(),0) && !card->getManaCost()->getKicker() && !card->getManaCost()->getAlternative()){ //Now AI can cast cards using morph cost.
+            localpayAlternative = MORPH;
+            manaToPay = card->getManaCost()->getMorph();
+            if(!pMana->canAfford(manaToPay,0))
+                gotPayments = canPayMana(card,card->getManaCost()->getMorph(),card->has(Constants::ANYTYPEOFMANA));
+        }
         //for preformence reason we only look for specific mana if the payment couldn't be made with pmana.
         if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(manaToPay,card->has(Constants::ANYTYPEOFMANA))))
         {
@@ -3394,13 +3400,13 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
             }
             DebugTrace("Should I play from hand" << (card ? card->name : "Nothing" ) << "?" << endl 
                 <<"shouldPlayPercentage = "<< shouldPlayPercentage);
-            if(localpayAlternative){
+            if(localpayAlternative != NONE){
                 if(card->getOtherRestrictions().size())
                 {
                     AbilityFactory af(observer);
                     int canPlay = af.parseCastRestrictions(card,card->controller(),card->getOtherRestrictions());
                     if(!canPlay){ 
-                        localpayAlternative = false;
+                        localpayAlternative = NONE;
                         canPlay = true;
                         if(card->getRestrictions().size())
                             canPlay = af.parseCastRestrictions(card,card->controller(),card->getRestrictions()); //Check if card can be casted at least with normal cost.
@@ -3413,11 +3419,18 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                 {
                     AbilityFactory af(observer);
                     int canPlay = af.parseCastRestrictions(card,card->controller(),card->getRestrictions());
-                    if(!canPlay && card->getManaCost()->getAlternative()){
+                    if(!canPlay && (card->getManaCost()->getAlternative() || card->getManaCost()->getMorph())){
                         canPlay = true;
                         if(card->getOtherRestrictions().size())
-                            canPlay = af.parseCastRestrictions(card,card->controller(),card->getOtherRestrictions()); //Check if card can be casted at least with other cost.
-                        if(canPlay) localpayAlternative = true;
+                            canPlay = af.parseCastRestrictions(card,card->controller(),card->getOtherRestrictions()); //Check if card can be casted at least with alternative costs (e.g. other or morph).
+                        if(canPlay) {
+                            if(card->getManaCost()->getAlternative() && !hasOffering && !hasConvoke && !hasDelve)
+                                localpayAlternative = OTHER;
+                            else if(card->getManaCost()->getMorph())
+                                localpayAlternative = MORPH;
+                            else 
+                                canPlay = false;
+                        }
                     }
                     if(!canPlay)
                         continue;
@@ -3448,9 +3461,12 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                 if(!pMana->canAfford(nextCardToPlay->getManaCost()->getRetrace(),0))
                     gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost()->getRetrace(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
             }
-        } else if(payAlternative){
+        } else if(payAlternative == OTHER){
             if(!pMana->canAfford(nextCardToPlay->getManaCost()->getAlternative(),0)) // Now AI can cast cards using alternative cost.
                 gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost()->getAlternative(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
+        } else if(payAlternative == MORPH){
+            if(!pMana->canAfford(nextCardToPlay->getManaCost()->getMorph(),0)) // Now AI can cast cards using morph cost.
+                gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost()->getMorph(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
         } else {
             if(!pMana->canAfford(nextCardToPlay->getManaCost(),0) || nextCardToPlay->getManaCost()->getKicker())
                 gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
@@ -3655,8 +3671,15 @@ int AIPlayerBaka::computeActions()
                             gotPayments.clear();
                         }
                     }
-                } else if(payAlternative){ // Now AI can cast cards using alternative cost.
+                } else if(payAlternative == OTHER){ // Now AI can cast cards using other cost.
                     if(payTheManaCost(nextCardToPlay->getManaCost()->getAlternative(),nextCardToPlay->has(Constants::ANYTYPEOFMANA),nextCardToPlay,gotPayments))
+                    {
+                        AIAction * a = NEW AIAction(this, nextCardToPlay);
+                        clickstream.push(a);
+                        gotPayments.clear();
+                    }
+                } else if(payAlternative == MORPH){ // Now AI can cast cards using morph cost.
+                    if(payTheManaCost(nextCardToPlay->getManaCost()->getMorph(),nextCardToPlay->has(Constants::ANYTYPEOFMANA),nextCardToPlay,gotPayments))
                     {
                         AIAction * a = NEW AIAction(this, nextCardToPlay);
                         clickstream.push(a);
@@ -3839,8 +3862,15 @@ int AIPlayerBaka::computeActions()
                                 gotPayments.clear();
                             }
                         }
-                    } else if(payAlternative){ // Now AI can cast cards using alternative cost.
+                    } else if(payAlternative == OTHER){ // Now AI can cast cards using other cost.
                         if(payTheManaCost(nextCardToPlay->getManaCost()->getAlternative(),nextCardToPlay->has(Constants::ANYTYPEOFMANA),nextCardToPlay,gotPayments))
+                        {
+                            AIAction * a = NEW AIAction(this, nextCardToPlay);
+                            clickstream.push(a);
+                            gotPayments.clear();
+                        }
+                    } else if(payAlternative == MORPH){ // Now AI can cast cards using morph cost.
+                        if(payTheManaCost(nextCardToPlay->getManaCost()->getMorph(),nextCardToPlay->has(Constants::ANYTYPEOFMANA),nextCardToPlay,gotPayments))
                         {
                             AIAction * a = NEW AIAction(this, nextCardToPlay);
                             clickstream.push(a);
