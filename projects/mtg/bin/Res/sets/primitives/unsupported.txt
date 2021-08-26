@@ -8703,7 +8703,6 @@ subtype=Arcane
 [card]
 name=Purity
 abilities=flying
-auto=@movedto(this|mygraveyard):name(Shuffle in library) all(trigger[to]) moveto(ownerlibrary) and!( shuffle )!
 text=Flying -- If noncombat damage would be dealt to you, prevent that damage. You gain life equal to the damage prevented this way. -- When Purity is put into a graveyard from anywhere, shuffle it into its owner's library.
 mana={3}{W}{W}{W}
 type=Creature
@@ -8845,12 +8844,6 @@ mana={2}{R}
 type=Enchantment
 [/card]
 [card]
-name=Rain of Gore
-text=If a spell or ability would cause its controller to gain life, that player loses that much life instead.
-mana={B}{R}
-type=Enchantment
-[/card]
-[card]
 name=Rakdos Riteknife
 text=Equipped creature gets +1/+0 for each blood counter on Rakdos Riteknife and has "{T}, Sacrifice a creature: Put a blood counter on Rakdos Riteknife." -- {B}{R}, Sacrifice Rakdos Riteknife: Target player sacrifices a permanent for each blood counter on Rakdos Riteknife. -- Equip {2}
 mana={2}
@@ -8889,15 +8882,6 @@ name=Rare-B-Gone
 text=Each player sacrifices all rare permanents, then reveals his or her hand and discards all rare cards.
 mana={2}{B}{R}
 type=Sorcery
-[/card]
-[card]
-name=Rayami, First of the Fallen
-text=If a nontoken creature would die, exile that card with a blood counter on it instead. -- As long as an exiled creature card with a blood counter on it has flying, Rayami, First of the Fallen has flying. The same is true for first strike, double strike, deathtouch, haste, hexproof, indestructible, lifelink, menace, protection, reach, trample, and vigilance.
-mana={1}{B}{G}{U}
-type=Legendary Creature
-subtype=Vampire
-power=5
-toughness=4
 [/card]
 [card]
 name=Razia, Boros Archangel
@@ -8975,12 +8959,6 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=Reclamation
-text=Black creatures can't attack unless their controller sacrifices a land for each black creature he or she controls that's attacking.
-mana={2}{G}{W}
-type=Enchantment
-[/card]
-[card]
 name=Record Store
 text=Whenever you crank Record Store, look at the top X cards of your library, where X is the number of artifacts you control. Put one of those cards into your hand and the rest on the bottom of your library in a random order.
 type=Artifact
@@ -9005,12 +8983,6 @@ toughness=5
 name=Redeem the Lost
 text=Target creature you control gains protection from the color of your choice until end of turn. Clash with an opponent. If you win, return Redeem the Lost to its owner's hand. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={1}{W}
-type=Instant
-[/card]
-[card]
-name=Redirect
-text=You may choose new targets for target spell.
-mana={U}{U}
 type=Instant
 [/card]
 [card]
@@ -9080,12 +9052,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Remedy
-text=Prevent the next 5 damage that would be dealt this turn to any number of target creatures and/or players, divided as you choose.
-mana={1}{W}
-type=Instant
-[/card]
-[card]
 name=Remodel
 text=If you control two or more green permanents that share an artist, you may play Remodel without paying its mana cost. -- Remove target artifact from the game.
 mana={2}{G}
@@ -9095,21 +9061,6 @@ type=Instant
 name=Remove Enchantments
 text=Return to your hand all enchantments you both own and control, all Auras you own attached to permanents you control, and all Auras you own attached to attacking creatures your opponents control. Then destroy all other enchantments you control, all other Auras attached to permanents you control, and all other Auras attached to attacking creatures your opponents control.
 mana={W}
-type=Instant
-[/card]
-[card]
-name=Renegade Doppelganger
-text=Whenever another creature enters the battlefield under your control, you may have Renegade Doppelganger become a copy of that creature until end of turn. (If it does, it loses this ability for the rest of the turn.)
-mana={1}{U}
-type=Creature
-subtype=Shapeshifter
-power=0
-toughness=1
-[/card]
-[card]
-name=Repeated Reverberation
-text=When you next cast an instant spell, cast a sorcery spell, or activate a loyalty ability this turn, copy that spell or ability twice. You may choose new targets for the copies.
-mana={2}{R}{R}
 type=Instant
 [/card]
 [card]
@@ -9141,12 +9092,6 @@ name=Revealing Wind
 text=Prevent all combat damage that would be dealt this turn. You may look at each face-down creature that's attacking or blocking.
 mana={2}{G}
 type=Instant
-[/card]
-[card]
-name=Revelation
-text=Players play with their hands revealed.
-mana={G}
-type=World Enchantment
 [/card]
 [card]
 name=Reverberation
@@ -11212,12 +11157,6 @@ mana={1}{B}
 type=Instant
 [/card]
 [card]
-name=Tainted Remedy
-text=If an opponent would gain life, that player loses that much life instead.
-mana={2}{B}
-type=Enchantment
-[/card]
-[card]
 name=Tajuru Preserver
 text=Spells and abilities your opponents control can't cause you to sacrifice permanents.
 mana={1}{G}
@@ -11316,12 +11255,6 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=Telepathy
-text=Your opponents play with their hands revealed.
-mana={U}
-type=Enchantment
-[/card]
-[card]
 name=Temp of the Damned
 text=When you play Temp of the Damned, roll a six-sided die. Temp of the Damned comes into play with a number of funk counters on it equal to the die roll. -- During your upkeep, remove a funk counter from Temp of the Damned or sacrifice Temp of the Damned.
 mana={2}{B}
@@ -11382,7 +11315,6 @@ subtype=Licid
 power=2
 toughness=2
 [/card]
-
 [card]
 name=Teremko Griffin
 abilities=flying,banding
@@ -12742,12 +12674,6 @@ mana={4}{G}{G}
 type=Enchantment
 [/card]
 [card]
-name=Wild Ricochet
-text=You may choose new targets for target instant or sorcery spell. Then copy that spell. You may choose new targets for the copy.
-mana={2}{R}{R}
-type=Instant
-[/card]
-[card]
 name=Wild Swing
 text=Choose three target nonenchantment permanents. Destroy one of them at random.
 mana={3}{R}
@@ -12764,21 +12690,15 @@ toughness=2
 [/card]
 [card]
 name=Willbender
+facedown={3}
+autofacedown={1}{U}:morph
+autofaceup=name(Choose new targets) target(*[instant;sorcery]|stack) fizzle && activate castcard(copied noevent costx!:mytargx:! kicked!:mytargkicked:!)
 text=Morph {1}{U} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Willbender is turned face up, change the target of target spell or ability with a single target.
 mana={1}{U}
 type=Creature
 subtype=Human Wizard
 power=1
 toughness=2
-[/card]
-[card]
-name=Willbreaker
-text=Whenever a creature an opponent controls becomes the target of a spell or ability you control, gain control of that creature for as long as you control Willbreaker.
-mana={3}{U}{U}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=3
 [/card]
 [card]
 name=Winding Constrictor
@@ -12811,15 +12731,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Wojek Apothecary
-text=Radiance — {T}: Prevent the next 1 damage that would be dealt to target creature and each other creature that shares a color with it this turn.
-mana={2}{W}{W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-[/card]
-[card]
 name=Wood Sage
 text={T}: Name a creature card. Reveal the top four cards of your library and put all of them with that name into your hand. Put the rest into your graveyard.
 mana={G}{U}
@@ -12833,16 +12744,6 @@ name=Woodland Guidance
 text=Return target card from your graveyard to your hand. Clash with an opponent. If you win, untap all Forests you control. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.) -- Exile Woodland Guidance.
 mana={3}{G}
 type=Sorcery
-[/card]
-[card]
-name=Woodvine Elemental
-abilities=trample
-text=Trample -- Parley — Whenever Woodvine Elemental attacks, each player reveals the top card of his or her library. For each nonland card revealed this way, attacking creatures you control get +1/+1 until end of turn. Then each player draws a card.
-mana={4}{G}{W}
-type=Creature
-subtype=Elemental
-power=4
-toughness=4
 [/card]
 [card]
 name=Word of Command
@@ -12880,15 +12781,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=World Queller
-text=At the beginning of your upkeep, you may choose a card type. If you do, each player sacrifices a permanent of that type.
-mana={3}{W}{W}
-type=Creature
-subtype=Avatar
-power=4
-toughness=4
-[/card]
-[card]
 name=World-Bottling Kit
 text={5}, Sacrifice World-Bottling Kit: Choose a Magic set. Remove from the game all permanents with that set's expansion symbol except for basic lands.
 mana={5}
@@ -12898,18 +12790,6 @@ type=Artifact
 name=Worldknit
 text=(Start the game with this conspiracy face up in the command zone.) -- As long as every card in your card pool started the game in your library or in the command zone, lands you control have "{T}: Add one mana of any color to your mana pool."
 type=Conspiracy
-[/card]
-[card]
-name=Worldpurge
-text=Return all permanents to their owners' hands. Each player chooses up to seven cards in his or her hand, then shuffles the rest into his or her library. Empty all mana pools.
-mana={4}{WU}{WU}{WU}{WU}
-type=Sorcery
-[/card]
-[card]
-name=Worms of the Earth
-text=Players can't play lands. -- Lands can't enter the battlefield. -- At the beginning of each upkeep, any player may sacrifice two lands or have Worms of the Earth deal 5 damage to him or her. If a player does either, destroy Worms of the Earth.
-mana={2}{B}{B}{B}
-type=Enchantment
 [/card]
 [card]
 name=Worst Fears
@@ -13042,21 +12922,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Zaxara, the Exemplary
-abilities=deathtouch
-auto={T}:add{W}{W}
-auto={T}:add{B}{B}
-auto={T}:add{G}{G}
-auto={T}:add{R}{R}
-auto={T}:add{U}{U}
-text=Deathtouch -- {T}: Add two mana of any one color. -- Whenever you cast a spell with {X} in its mana cost, create a 0/0 green Hydra creature token, then put X +1/+1 counters on it.
-mana={1}{B}{G}{U}
-type=Legendary Creature
-subtype=Nightmare Hydra
-power=2
-toughness=3
-[/card]
-[card]
 name=Zealous Inquisitor
 text={1}{W}: The next 1 damage that would be dealt to Zealous Inquisitor this turn is dealt to target creature instead.
 mana={2}{W}
@@ -13118,21 +12983,6 @@ type=Creature
 subtype=Zombie
 power=+2
 toughness=+2
-[/card]
-[card]
-name=Zur's Weirding
-text=Players play with their hands revealed. -- If a player would draw a card, he or she reveals it instead. Then any other player may pay 2 life. If a player does, put that card into its owner's graveyard. Otherwise, that player draws a card.
-mana={3}{U}
-type=Enchantment
-[/card]
-[card]
-name=Zurzoth, Chaos Rider
-text=Whenever an opponent draws their first card each turn, if it's not their turn, you create a 1/1 red Devil creature token with "When this creature dies, it deals 1 damage to any target." -- Whenever one or more Devils you control attack one or more players, you and those players each draw a card, then discard a card at random.
-mana={2}{R}
-type=Legendary Creature
-subtype=Devil
-power=2
-toughness=3
 [/card]
 [card]
 name=Zzzyxas's Abyss

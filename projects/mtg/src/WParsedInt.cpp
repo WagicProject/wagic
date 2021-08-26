@@ -16,7 +16,7 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
         return;
     if (!card)
     {
-        intValue = atoi(s.c_str());//if there is no card, try parsing a number.
+        intValue = atoi(s.c_str()); //if there is no card, try parsing a number.
         return;
     }
     MTGCardInstance * target = card->target;
@@ -45,6 +45,12 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
             altered.append(s.substr(+6));
             return init(altered,spell,card->storedCard);
         }
+        if(s.find("mytarg") != string::npos)
+        {
+            string altered ="-";
+            altered.append(s.substr(+6));
+            return init(altered,spell,card->target); //we refer the target (e.g. Redirect)
+        }
     }
     if(s[0] == '+')
     {
@@ -54,6 +60,10 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
     if(s.find("stored") != string::npos)
     {
         return init(s.substr(+6),spell,card->storedCard);
+    }
+    if(s.find("mytarg") != string::npos)
+    {
+        return init(s.substr(+6),spell,card->target); //we refer the target (e.g. Redirect)
     }
     //rounding values, the words can be written anywhere in the line,
     //they are erased after parsing.
@@ -742,7 +752,7 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
     }
     else if (s == "kicked" || s == "handsize")
     {
-        intValue = (s == "kicked")?target->kicked:target->controller()->handsize;
+        intValue = (s == "kicked")?card->kicked:target->controller()->handsize;
     }
     else if (s == "olandg" || s == "olandu")
     {

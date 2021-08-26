@@ -252,7 +252,7 @@ void GuiGameZone::Render()
         modx = -0.f;
         mody = -2.f;
         iconhand->SetColor(ARGB((int)(actA),255,255,255));
-        quad = iconhand;
+        quad = iconhand;       
     }
     if(iconcard && type == GUI_GRAVEYARD)
     {
@@ -286,7 +286,6 @@ void GuiGameZone::Render()
         iconsideboard->SetColor(ARGB((int)(actA),255,255,255));
         quad = iconsideboard;
     }
-    //
 
     if(type == GUI_LIBRARY && zone->nb_cards && !showCards)
     {
@@ -297,32 +296,26 @@ void GuiGameZone::Render()
             if(card && card->getObserver())
             {
                 replaced = true;
-                /*TargetChooser * tc = card->getObserver()->getCurrentTargetChooser();
-                if(tc && tc->canTarget(card) && !tc->done)
-                    replaced = false;
+                JQuadPtr kquad = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
+                if(kquad)
+                {
+                    kquad->SetColor(ARGB((int)(actA),255,255,255));
+                    scale2 = defaultHeight / kquad->mHeight;
+                    modx = (35/4)+1;
+                    mody = (50/4)+1;
+                    quad = kquad;
+                }
                 else
-                {*/
-                    JQuadPtr kquad = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
-                    if(kquad)
+                {
+                    quad = CardGui::AlternateThumbQuad(card);
+                    if(quad)
                     {
-                        kquad->SetColor(ARGB((int)(actA),255,255,255));
-                        scale2 = defaultHeight / kquad->mHeight;
+                        quad->SetColor(ARGB((int)(actA),255,255,255));
+                        scale2 = defaultHeight / quad->mHeight;
                         modx = (35/4)+1;
                         mody = (50/4)+1;
-                        quad = kquad;
                     }
-                    else
-                    {
-                        quad = CardGui::AlternateThumbQuad(card);
-                        if(quad)
-                        {
-                            quad->SetColor(ARGB((int)(actA),255,255,255));
-                            scale2 = defaultHeight / quad->mHeight;
-                            modx = (35/4)+1;
-                            mody = (50/4)+1;
-                        }
-                    }
-                //}
+                }
             }
         }
     }

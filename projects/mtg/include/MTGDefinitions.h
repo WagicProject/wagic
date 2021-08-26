@@ -319,7 +319,9 @@ class Constants
       NONCOMBATVIGOR = 192,
       NOMOVETRIGGER = 193,
       WASCOMMANDER = 194,
-      NB_BASIC_ABILITIES = 195,
+      SHOWOPPONENTHAND = 195,
+      SHOWCONTROLLERHAND = 196,
+      NB_BASIC_ABILITIES = 197,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics
