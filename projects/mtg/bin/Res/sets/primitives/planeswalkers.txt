@@ -1158,9 +1158,9 @@ subtype=Huatli
 name=Inzerva, Master of Insights
 aicode=activate target(*[zpos<=2]|opponentLibrary) moveto(opponentreveal) and!( bottomoflibrary )!
 auto=counter(0/0,4,loyalty)
-auto={C(0/0,+2,Loyalty)}:name(+2: Draw 2 cards and discard) draw:2 && reject target(*|myhand)
+auto={C(0/0,+2,Loyalty)}:name(+2: Draw 2 cards and discard) draw:2 && transforms((,newability[reject target(*|myhand)])) oneshot
 auto={C(0/0,-2,Loyalty)}:name(-2: Look at opponent library and scry 2) reveal:2 revealzone(opponentlibrary) optionone name(Put on top) target(<upto:2>*|reveal) moveto(ownerlibrary) optiononeend optiontwo name(Put on bottom) target(<2>*|reveal) bottomoflibrary optiontwoend afterrevealed name(Scry 2) scry:2 scrycore delayed dontshow donothing scrycoreend scryend afterrevealedend revealend
-auto={C(0/0,-4,Loyalty)}:name(-4: Emblem: Draw to deal damage) token(Inzerva Emblem,Inzerva Emblem,0/0,shroud,indestructible) and!( transforms((,newability[{0}:name(Look opponent hand) target(*|opponenthand) moveTo(myreveal) and!( moveto(opponenthand) )!],newability[@drawfoeof(player):damage:1 opponent] )) forever )!
+auto={C(0/0,-4,Loyalty)}:name(-4: Emblem: Draw to deal damage) emblem transforms((,newability[lord(*|opponentBattlefield) showcontrollerhand],newability[lord(*|myBattlefield) showopponenthand],newability[@drawfoeof(player):name(Damage opponent) damage:1 opponent] )) forever dontremove
 text=+2: Draw two cards, then discard a card. -- −2: Look at the top two cards of each other player’s library, then put any number of them on the bottom of that library and the rest on top in any order. Scry 2. -- −4: You get an emblem with "Your opponents play with their hands revealed" and "Whenever an opponent draws a card, this emblem deals 1 damage to them."
 mana={1}{2U}{2R}
 type=Legendary Planeswalker
@@ -1658,29 +1658,29 @@ subtype=Liliana
 [card]
 name=Liliana, Defiant Necromancer
 auto=counter(0/0,3,Loyalty)
-auto={C(0/0,2,Loyalty)}:name(+2: Each Player Discard) transforms((,newability[ability$!name(discard) notatarget(*|myhand) reject!$ controller],newability[ability$!name(discard) notatarget(*|myhand) reject!$ opponent])) ueot
-auto={C(0/0,-0,Loyalty)}:name(-0: Reanimate nonLegendary creature with manacost 0) moveto(mybattlefield) target(creature[-legendary;manacost=0]|mygraveyard)
-auto={C(0/0,-1,Loyalty)}:name(-1: Reanimate nonLegendary creature with manacost 1) moveto(mybattlefield) target(creature[-legendary;manacost=1]|mygraveyard)
-auto={C(0/0,-2,Loyalty)}:name(-2: Reanimate nonLegendary creature with manacost 2) moveto(mybattlefield) target(creature[-legendary;manacost=2]|mygraveyard)
-auto={C(0/0,-3,Loyalty)}:name(-3: Reanimate nonLegendary creature with manacost 3) moveto(mybattlefield) target(creature[-legendary;manacost=3]|mygraveyard)
-auto={C(0/0,-4,Loyalty)}:name(-4: Reanimate nonLegendary creature with manacost 4) moveto(mybattlefield) target(creature[-legendary;manacost=4]|mygraveyard)
-auto={C(0/0,-5,Loyalty)}:name(-5: Reanimate nonLegendary creature with manacost 5) moveto(mybattlefield) target(creature[-legendary;manacost=5]|mygraveyard)
-auto={C(0/0,-6,Loyalty)}:name(-6: Reanimate nonLegendary creature with manacost 6) moveto(mybattlefield) target(creature[-legendary;manacost=6]|mygraveyard)
-auto={C(0/0,-7,Loyalty)}:name(-7: Reanimate nonLegendary creature with manacost 7) moveto(mybattlefield) target(creature[-legendary;manacost=7]|mygraveyard)
-auto={C(0/0,-8,Loyalty)}:name(-8: Reanimate nonLegendary creature with manacost 8) moveto(mybattlefield) target(creature[-legendary;manacost=8]|mygraveyard)
-auto={C(0/0,-9,Loyalty)}:name(-9: Reanimate nonLegendary creature with manacost 9) moveto(mybattlefield) target(creature[-legendary;manacost=9]|mygraveyard)
-auto={C(0/0,-10,Loyalty)}:name(-10: Reanimate nonLegendary creature with manacost 10) moveto(mybattlefield) target(creature[-legendary;manacost=10]|mygraveyard)
-auto={C(0/0,-11,Loyalty)}:name(-11: Reanimate nonLegendary creature with manacost 11) moveto(mybattlefield) target(creature[-legendary;manacost=11]|mygraveyard)
-auto={C(0/0,-12,Loyalty)}:name(-12: Reanimate nonLegendary creature with manacost 12) moveto(mybattlefield) target(creature[-legendary;manacost=12]|mygraveyard)
-auto={C(0/0,-13,Loyalty)}:name(-13: Reanimate nonLegendary creature with manacost 13) moveto(mybattlefield) target(creature[-legendary;manacost=13]|mygraveyard)
-auto={C(0/0,-14,Loyalty)}:name(-14: Reanimate nonLegendary creature with manacost 14) moveto(mybattlefield) target(creature[-legendary;manacost=14]|mygraveyard)
-auto={C(0/0,-15,Loyalty)}:name(-15: Reanimate nonLegendary creature with manacost 15) moveto(mybattlefield) target(creature[-legendary;manacost=15]|mygraveyard)
-auto={C(0/0,-16,Loyalty)}:name(-16: Reanimate nonLegendary creature with manacost 16) moveto(mybattlefield) target(creature[-legendary;manacost=16]|mygraveyard)
-auto={C(0/0,-17,Loyalty)}:name(-17: Reanimate nonLegendary creature with manacost 17) moveto(mybattlefield) target(creature[-legendary;manacost=17]|mygraveyard)
-auto={C(0/0,-18,Loyalty)}:name(-18: Reanimate nonLegendary creature with manacost 18) moveto(mybattlefield) target(creature[-legendary;manacost=18]|mygraveyard)
-auto={C(0/0,-19,Loyalty)}:name(-19: Reanimate nonLegendary creature with manacost 19) moveto(mybattlefield) target(creature[-legendary;manacost=19]|mygraveyard)
-auto={C(0/0,-20,Loyalty)}:name(-20: Reanimate nonLegendary creature with manacost 20) moveto(mybattlefield) target(creature[-legendary;manacost=20]|mygraveyard)
-auto={C(0/0,-8,Loyalty)}:name(-8: Emblem: "Whenever a creature dies, reanimate it") emblem transforms((,newability[@movedTo(creature|Graveyard) from(myBattlefield):all(trigger[to]) phaseaction[endofturn once] moveTo(myBattlefield)],newability[@movedTo(creature|Graveyard) from(opponentBattlefield):all(trigger[to]) phaseaction[endofturn once] moveTo(myBattlefield)])) forever dontremove
+auto={C(0/0,2,Loyalty)}:name(+2: Each player discards a card) transforms((,newability[ability$!name(Discard a card) name(Discard a card) notatarget(*|myhand) reject!$ controller],newability[ability$!name(Discard a card) name(Discard a card) notatarget(*|myhand) reject!$ opponent])) oneshot
+auto={C(0/0,0,Loyalty)}:name(-0: Reanimate non-legendary creature with manacost 0) moveto(mybattlefield) target(creature[-legendary;manacost=0]|mygraveyard)
+auto={C(0/0,-1,Loyalty)}:name(-1: Reanimate non-legendary creature with manacost 1) moveto(mybattlefield) target(creature[-legendary;manacost=1]|mygraveyard)
+auto={C(0/0,-2,Loyalty)}:name(-2: Reanimate non-legendary creature with manacost 2) moveto(mybattlefield) target(creature[-legendary;manacost=2]|mygraveyard)
+auto={C(0/0,-3,Loyalty)}:name(-3: Reanimate non-legendary creature with manacost 3) moveto(mybattlefield) target(creature[-legendary;manacost=3]|mygraveyard)
+auto={C(0/0,-4,Loyalty)}:name(-4: Reanimate non-legendary creature with manacost 4) moveto(mybattlefield) target(creature[-legendary;manacost=4]|mygraveyard)
+auto={C(0/0,-5,Loyalty)}:name(-5: Reanimate non-legendary creature with manacost 5) moveto(mybattlefield) target(creature[-legendary;manacost=5]|mygraveyard)
+auto={C(0/0,-6,Loyalty)}:name(-6: Reanimate non-legendary creature with manacost 6) moveto(mybattlefield) target(creature[-legendary;manacost=6]|mygraveyard)
+auto={C(0/0,-7,Loyalty)}:name(-7: Reanimate non-legendary creature with manacost 7) moveto(mybattlefield) target(creature[-legendary;manacost=7]|mygraveyard)
+auto={C(0/0,-8,Loyalty)}:name(-8: Reanimate non-legendary creature with manacost 8) moveto(mybattlefield) target(creature[-legendary;manacost=8]|mygraveyard)
+auto={C(0/0,-9,Loyalty)}:name(-9: Reanimate non-legendary creature with manacost 9) moveto(mybattlefield) target(creature[-legendary;manacost=9]|mygraveyard)
+auto={C(0/0,-10,Loyalty)}:name(-10: Reanimate non-legendary creature with manacost 10) moveto(mybattlefield) target(creature[-legendary;manacost=10]|mygraveyard)
+auto={C(0/0,-11,Loyalty)}:name(-11: Reanimate non-legendary creature with manacost 11) moveto(mybattlefield) target(creature[-legendary;manacost=11]|mygraveyard)
+auto={C(0/0,-12,Loyalty)}:name(-12: Reanimate non-legendary creature with manacost 12) moveto(mybattlefield) target(creature[-legendary;manacost=12]|mygraveyard)
+auto={C(0/0,-13,Loyalty)}:name(-13: Reanimate non-legendary creature with manacost 13) moveto(mybattlefield) target(creature[-legendary;manacost=13]|mygraveyard)
+auto={C(0/0,-14,Loyalty)}:name(-14: Reanimate non-legendary creature with manacost 14) moveto(mybattlefield) target(creature[-legendary;manacost=14]|mygraveyard)
+auto={C(0/0,-15,Loyalty)}:name(-15: Reanimate non-legendary creature with manacost 15) moveto(mybattlefield) target(creature[-legendary;manacost=15]|mygraveyard)
+auto={C(0/0,-16,Loyalty)}:name(-16: Reanimate non-legendary creature with manacost 16) moveto(mybattlefield) target(creature[-legendary;manacost=16]|mygraveyard)
+auto={C(0/0,-17,Loyalty)}:name(-17: Reanimate non-legendary creature with manacost 17) moveto(mybattlefield) target(creature[-legendary;manacost=17]|mygraveyard)
+auto={C(0/0,-18,Loyalty)}:name(-18: Reanimate non-legendary creature with manacost 18) moveto(mybattlefield) target(creature[-legendary;manacost=18]|mygraveyard)
+auto={C(0/0,-19,Loyalty)}:name(-19: Reanimate non-legendary creature with manacost 19) moveto(mybattlefield) target(creature[-legendary;manacost=19]|mygraveyard)
+auto={C(0/0,-20,Loyalty)}:name(-20: Reanimate non-legendary creature with manacost 20) moveto(mybattlefield) target(creature[-legendary;manacost>=20]|mygraveyard)
+auto={C(0/0,-8,Loyalty)}:name(-8: Emblem: "Whenever a creature dies, reanimate it") emblem transforms((,newability[@movedTo(creature|mygraveyard) from(battlefield):all(trigger[to]) phaseaction[endofturn once] moveTo(myBattlefield)],newability[@movedTo(creature|opponentgraveyard) from(battlefield):all(trigger[to]) phaseaction[endofturn once] moveTo(opponentBattlefield)])) forever dontremove
 text=+2: Each player discards a card. -- -X: Return target nonlegendary creature card with converted mana cost X from your graveyard to the battlefield. -- -8: You get an emblem with "Whenever a creature dies, return it to the battlefield under your control at the beginning of the next end step."
 type=Legendary Planeswalker
 subtype=Liliana

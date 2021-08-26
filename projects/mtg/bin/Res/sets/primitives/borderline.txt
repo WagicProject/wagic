@@ -37054,8 +37054,8 @@ type=Instant
 [card]
 name=Liliana, Heretical Healer
 abilities=lifelink
-auto=@movedto(Moonmist|stack):name(Transform Human Cleric) moveto(ownerBattlefield) && flip(Liliana, Defiant Necromancer)
-auto=@movedTo(other creature[-token]|graveyard) from(myBattlefield):moveto(exile) and!( moveto(mybattlefield) and!(counter(0/0,3,Loyalty) && flip(Liliana, Defiant Necromancer) )! )! && ability$!name(Create Zombie) token(Zombie,Creature Zombie,2/2,black)!$ controller
+auto=@movedto(Moonmist|stack):name(Transform Human Cleric) flip(Liliana, Defiant Necromancer)
+auto=@movedTo(other creature[-token]|graveyard) from(myBattlefield):name(Liliana, Defiant Necromancer) moveto(exile) and!( moveto(mybattlefield) and!( transforms((,newability[counter(0/0.3.Loyalty)],newability[flip(Liliana^ Defiant Necromancer)],newability[name(Create Zombie) token(Zombie Lil)])) oneshot )! )!
 text=Lifelink -- Whenever another nontoken creature you control dies, exile Liliana, Heretical Healer, then return her to the battlefield transformed under her owner's control. If you do, put a 2/2 black Zombie creature token onto the battlefield.
 mana={1}{B}{B}
 type=Legendary Creature
@@ -47911,10 +47911,7 @@ toughness=3
 [/card]
 [card]
 name=Psychic Transfer
-other={4}{U} name(Psychic Transfer)
-otherrestriction=compare(lifetotalminusopponentlifetotalminusend)~morethan~4
-restriction=compare(opponentlifetotalminuslifetotalminusend)~morethan~4
-auto=exchangelife opponent
+auto=if compare(lifetotalminusopponentlifetotalminusend)~morethan~4 then exchangelife opponent else if compare(opponentlifetotalminuslifetotalminusend)~morethan~4 then exchangelife opponent
 text=If the difference between your life total and target player's life total is 5 or less, exchange life totals with that player.
 mana={4}{U}
 type=Sorcery
@@ -48821,6 +48818,14 @@ mana={3}{B}
 type=Enchantment
 [/card]
 [card]
+name=Rain of Gore
+auto=@lifeof(player):name(Loose life instead) life:-twicethatmuch controller
+auto=@lifefoeof(player):name(Loose life instead) life:-twicethatmuch opponent
+text=If a spell or ability would cause its controller to gain life, that player loses that much life instead.
+mana={B}{R}
+type=Enchantment
+[/card]
+[card]
 name=Rain of Revelation
 auto=draw:3
 auto=reject notatarget(*|myhand)
@@ -49566,6 +49571,34 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Rayami, First of the Fallen
+auto=@movedto(creature[-token]|graveyard) from(battlefield):name(Exile with blood counter) all(trigger[to]) moveto(exile) and!( counter(0/0.1.Blood) )!
+auto=aslongas(creature[flying;counter{0/0.1.Blood}]|exile) flying
+auto=aslongas(creature[first strike;counter{0/0.1.Blood}]|exile) first strike
+auto=aslongas(creature[double strike;counter{0/0.1.Blood}]|exile) double strike
+auto=aslongas(creature[deathtouch;counter{0/0.1.Blood}]|exile) deathtouch
+auto=aslongas(creature[haste;counter{0/0.1.Blood}]|exile) haste
+auto=aslongas(creature[opponentshroud;counter{0/0.1.Blood}]|exile) opponentshroud
+auto=aslongas(creature[indestructible;counter{0/0.1.Blood}]|exile) indestructible
+auto=aslongas(creature[lifelink;counter{0/0.1.Blood}]|exile) lifelink
+auto=aslongas(creature[menace;counter{0/0.1.Blood}]|exile) menace
+auto=aslongas(creature[reach;counter{0/0.1.Blood}]|exile) reach
+auto=aslongas(creature[trample;counter{0/0.1.Blood}]|exile) trample
+auto=aslongas(creature[vigilance;counter{0/0.1.Blood}]|exile) vigilance
+auto=aslongas(creature[protection from black;counter{0/0.1.Blood}]|exile) protection from white
+auto=aslongas(creature[protection from white;counter{0/0.1.Blood}]|exile) protection from black
+auto=aslongas(creature[protection from blue;counter{0/0.1.Blood}]|exile) protection from blue
+auto=aslongas(creature[protection from green;counter{0/0.1.Blood}]|exile) protection from green
+auto=aslongas(creature[protection from red;counter{0/0.1.Blood}]|exile) protection from red
+auto=aslongas(creature[protection from artifact;counter{0/0.1.Blood}]|exile) protection from artifact
+text=If a nontoken creature would die, exile that card with a blood counter on it instead. -- As long as an exiled creature card with a blood counter on it has flying, Rayami, First of the Fallen has flying. The same is true for first strike, double strike, deathtouch, haste, hexproof, indestructible, lifelink, menace, protection, reach, trample, and vigilance.
+mana={1}{B}{G}{U}
+type=Legendary Creature
+subtype=Vampire
+power=5
+toughness=4
+[/card]
+[card]
 name=Rayne, Academy Chancellor
 #missing parser for player/controller/opponent
 auto=this(auras >= 1) transforms((,newability[@targeted(*|mybattlefield) from(*|opponentzones):draw:2]))
@@ -49892,6 +49925,13 @@ mana={G}
 type=Instant
 [/card]
 [card]
+name=Reclamation
+auto=lord(creature[black;-canattack]|battlefield) transforms((,newability[becomes(^^black)],newability[cantattack],newability[{S(land|myBattlefield)}:name(Sacrifice a land to attack) canattack ueot attackersonly]))
+text=Black creatures can't attack unless their controller sacrifices a land for each black creature he or she controls that's attacking.
+mana={2}{G}{W}
+type=Enchantment
+[/card]
+[card]
 name=Reconnaissance Mission
 abilities=cycling
 auto=@combatdamagefoeof(player) from(creature|myBattlefield):may draw:1 controller
@@ -49968,6 +50008,14 @@ type=Creature
 subtype=Goblin Warrior
 power=3
 toughness=2
+[/card]
+[card]
+name=Redirect
+target=*[instant;sorcery]|stack
+auto=may name(Choose new targets) fizzle && activate castcard(copied noevent costx!:mytargx:! kicked!:mytargkicked:!)
+text=You may choose new targets for target spell.
+mana={U}{U}
+type=Instant
 [/card]
 [card]
 name=Reduce // Rubble
@@ -50314,6 +50362,13 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+name=Remedy
+auto=thisforeach(variable{5}) ability$!name(Prevent 1 damage) name(Prevent 1 damage) prevent:1 target(creature,player)!$ controller
+text=Prevent the next 5 damage that would be dealt this turn to any number of target creatures and/or players, divided as you choose.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
 name=Remember the Fallen
 target=*[creature;artifact]|mygraveyard
 auto=choice name(Choose one) moveto(myhand)
@@ -50352,6 +50407,16 @@ power=*
 toughness=3
 [/card]
 [card]
+name=Renegade Doppelganger
+auto=@movedto(other creature|myBattlefield) restriction{compare(iscopied)~equalto~0}:may name(Copy creature) all(trigger[to]) copy and!( all(this) transforms((,newability[phaseaction[endofturn once] flip(Renegade Doppelganger) undocpy])) forever )!
+text=Whenever another creature enters the battlefield under your control, you may have Renegade Doppelganger become a copy of that creature until end of turn. (If it does, it loses this ability for the rest of the turn.)
+mana={1}{U}
+type=Creature
+subtype=Shapeshifter
+power=0
+toughness=1
+[/card]
+[card]
 name=Renegade Krasis
 auto=evolve
 auto=@counteradded(1/1) from(this):all(creature[counter{1/1.1}]|mybattlefield) counter(1/1)
@@ -50386,6 +50451,14 @@ type=Creature
 subtype=Human Artificer
 power=1
 toughness=3
+[/card]
+[card]
+name=Repeated Reverberation
+#The abilities cannot be targeted or activated twice ATM.
+auto=emblem transforms((,newability[@movedto(*[instant;sorcery]|mystack) turnlimited:name(Copy spell) all(trigger[to]) transforms((,newability[activate castcard(copied noevent costx!:x:! kicked!:kicked:!)])) oneshot])) ueot
+text=When you next cast an instant spell, cast a sorcery spell, or activate a loyalty ability this turn, copy that spell or ability twice. You may choose new targets for the copies.
+mana={2}{R}{R}
+type=Instant
 [/card]
 [card]
 name=Repeating Barrage
@@ -50770,6 +50843,13 @@ auto=emblem transforms((,newability[lord(*[planeswalker]|opponentbattlefield) no
 text=Your opponents can't cast spells or activate planeswalkers' loyalty abilities this turn. -- Exile Revel in Silence. // {1}{R} Flamescroll Celebrant
 mana={W}{W}
 type=Instant
+[/card]
+[card]
+name=Revelation
+abilities=showopponenthand,showcontrollerhand
+text=Players play with their hands revealed.
+mana={G}
+type=World Enchantment
 [/card]
 [card]
 name=Revenge of Ravens
@@ -54837,7 +54917,7 @@ toughness=4
 [/card]
 [card]
 name=Seer's Vision
-auto={0}:name(Look opponent's hand) target(*|opponenthand) moveto(opponentreveal) and!( moveto(opponenthand) )!
+abilities=showopponenthand
 auto={S}:name(Look hand and discard) target(*|opponenthand) reject assorcery
 text=Your opponents play with their hands revealed. -- Sacrifice Seer's Vision: Look at target player's hand and choose a card from it. That player discards that card. Activate this ability only any time you could cast a sorcery.
 mana={2}{U}{B}
@@ -63101,6 +63181,13 @@ power=3
 toughness=4
 [/card]
 [card]
+name=Tainted Remedy
+auto=@lifefoeof(player):name(Loose life instead) life:-twicethatmuch opponent
+text=If an opponent would gain life, that player loses that much life instead.
+mana={2}{B}
+type=Enchantment
+[/card]
+[card]
 name=Taj-Nar Swordsmith
 auto=choice name(Don't pay) donothing
 auto=choice name(X = 0) transforms((,newability[name(Search equipment) target(equipment[manacost=0]|mylibrary) moveTo(mybattlefield) and!( shuffle )!])) oneshot
@@ -63685,6 +63772,13 @@ type=Legendary Creature
 subtype=Human Wizard
 power=3
 toughness=4
+[/card]
+[card]
+name=Telepathy
+abilities=showopponenthand
+text=Your opponents play with their hands revealed.
+mana={U}
+type=Enchantment
 [/card]
 [card]
 name=Teleportation Circle
@@ -70803,8 +70897,7 @@ toughness=4
 [/card]
 [card]
 name=Wandering Eye
-abilities=flying
-auto={0}:Reveal:type:*:opponenthand revealzone(opponenthand) revealtype(*|opponenthand) optionone target(*|reveal) moveto(opponenthand) optiononeend optiontwo name(Put Back) target(*|reveal) transforms((,newability[all(*|reveal) moveto(ownerhand)])) ueot optiontwoend revealend
+abilities=flying,showopponenthand,showcontrollerhand
 text=Flying -- Players play with their hands revealed.
 mana={2}{U}
 type=Creature
@@ -71674,6 +71767,14 @@ mana={3}{G}
 type=Instant
 [/card]
 [card]
+name=Wild Ricochet
+target=*[instant;sorcery]|stack
+auto=may name(Choose new targets) fizzle && activate castcard(copied noevent costx!:mytargx:! kicked!:mytargkicked:!) && activate castcard(copied noevent costx!:mytargx:! kicked!:mytargkicked:!)
+text=You may choose new targets for target instant or sorcery spell. Then copy that spell. You may choose new targets for the copy.
+mana={2}{R}{R}
+type=Instant
+[/card]
+[card]
 name=Wild Shape
 target=creature|mybattlefield
 auto=choice name(Becomes Turtle) transforms((Turtle,setpower=1,settoughness=3,newability[hexproof])) ueot
@@ -71791,6 +71892,16 @@ autohand=__CYLCING__({2})
 text=Target creature gets +2/+2 until end of turn. If it's blocking, instead put two +1/+1 counters on it. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{W}
 type=Instant
+[/card]
+[card]
+name=Willbreaker
+auto=@targeted(creature|opponentbattlefield) from(*|myzones):name(Gain control of creature) all(trigger[to]) steal
+text=Whenever a creature an opponent controls becomes the target of a spell or ability you control, gain control of that creature for as long as you control Willbreaker.
+mana={3}{U}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=3
 [/card]
 [card]
 name=Willing Test Subject
@@ -72347,6 +72458,16 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Wojek Apothecary
+auto={T}:name(Prevent 1 damage) target(creature|battlefield) transforms((,newability[prevent:1],newability[all(creature[share!color!]|battlefield) prevent:1])) ueot
+text=Radiance — {T}: Prevent the next 1 damage that would be dealt to target creature and each other creature that shares a color with it this turn.
+mana={2}{W}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+[/card]
+[card]
 name=Wojek Bodyguard
 abilities=mentor
 auto=_ATTACKING_name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
@@ -72445,6 +72566,20 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Woodvine Elemental
+abilities=trample
+auto=@combat(attacking) source(this) restriction{compare(ishuman)~morethan~0}:name(Reveal your top card) reveal:1 revealzone(mylibrary) optionone name(Draw non-land card) target(*[-land]|reveal) moveto(mylibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(Put back) target(*|reveal) moveto(mylibrary) optiontwoend afterrevealed all(tobecast|mylibrary) transforms((,newability[draw:1],newability[all(creature[attacking]|myBattlefield) 1/1 ueot])) oneshot afterrevealedend revealend
+auto=@combat(attacking) source(this) restriction{compare(ishuman)~morethan~0}:name(Reveal opponent top card) reveal:1 revealzone(opponentlibrary) optionone name(Draw non-land card) target(*[-land]|reveal) moveto(opponentlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(Put back) target(*|reveal) moveto(opponentlibrary) optiontwoend afterrevealed all(tobecast|opponentlibrary) transforms((,newability[draw:1],newability[all(creature[attacking]|opponentBattlefield) 1/1 ueot])) oneshot afterrevealedend revealend
+auto=@combat(attacking) source(this) restriction{compare(ishuman)~equalto~0}:ability$!name(Reveal your top card) reveal:1 revealzone(mylibrary) optionone name(Draw non-land card) target(*[-land]|reveal) moveto(mylibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(Put back) target(*|reveal) moveto(mylibrary) optiontwoend afterrevealed all(tobecast|mylibrary) transforms((,newability[draw:1],newability[all(creature[attacking]|opponentBattlefield) 1/1 ueot])) oneshot afterrevealedend revealend!$ opponent
+auto=@combat(attacking) source(this) restriction{compare(ishuman)~equalto~0}:ability$!name(Reveal opponent top card) reveal:1 revealzone(opponentlibrary) optionone name(Draw non-land card) target(*[-land]|reveal) moveto(opponentlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(Put back) target(*|reveal) moveto(opponentlibrary) optiontwoend afterrevealed all(tobecast|opponentlibrary) transforms((,newability[draw:1],newability[all(creature[attacking]|myBattlefield) 1/1 ueot])) oneshot afterrevealedend revealend!$ opponent
+text=Trample -- Parley — Whenever Woodvine Elemental attacks, each player reveals the top card of his or her library. For each nonland card revealed this way, attacking creatures you control get +1/+1 until end of turn. Then each player draws a card.
+mana={4}{G}{W}
+type=Creature
+subtype=Elemental
+power=4
+toughness=4
+[/card]
+[card]
 name=Words of War
 auto={1}:transforms((,newability[replacedraw ability$!name(Damage player or creature) choice name(Damage creature) target(creature|battlefield) damage:2 _ choice name(Damage opponent) damage:2 opponent _ choice name(Damage yourself) damage:2 controller!$ controller])) ueot
 text={1}: The next time you would draw a card this turn, Words of War deals 2 damage to target creature or player instead.
@@ -72491,6 +72626,31 @@ power=4
 toughness=4
 [/card]
 [card]
+name=World Queller
+auto=@each my upkeep:may name(Choose a card type) transforms((,newability[choice name(Choose Land) counter(0/0.1.Land)],newability[choice name(Choose Creature) counter(0/0.1.Creature)],newability[choice name(Choose Artifact) counter(0/0.1.Artifact)],newability[choice name(Choose Enchantment) counter(0/0.1.Enchantment)],newability[choice name(Choose Planeswalker) counter(0/0.1.Planeswalker)])) oneshot
+auto=@counteradded(0/0.1.Land) from(this):ability$!name(Sacrifice a land) name(Sacrifice a land) target(land|myBattlefield) sacrifice!$ controller
+auto=@counteradded(0/0.1.Land) from(this):ability$!name(Sacrifice a land) name(Sacrifice a land) target(land|myBattlefield) sacrifice!$ opponent
+auto=@counteradded(0/0.1.Land) from(this):removeallcounters(0/0.1.Land)
+auto=@counteradded(0/0.1.Creature) from(this):ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature|myBattlefield) sacrifice!$ controller
+auto=@counteradded(0/0.1.Creature) from(this):ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature|myBattlefield) sacrifice!$ opponent
+auto=@counteradded(0/0.1.Creature) from(this):removeallcounters(0/0.1.Creature)
+auto=@counteradded(0/0.1.Artifact) from(this):ability$!name(Sacrifice an artifact) name(Sacrifice an artifact) target(artifact|myBattlefield) sacrifice!$ controller
+auto=@counteradded(0/0.1.Artifact) from(this):ability$!name(Sacrifice an artifact) name(Sacrifice an artifact) target(artifact|myBattlefield) sacrifice!$ opponent
+auto=@counteradded(0/0.1.Artifact) from(this):removeallcounters(0/0.1.Artifact)
+auto=@counteradded(0/0.1.Enchantment) from(this):ability$!name(Sacrifice an enchantment) name(Sacrifice an enchantment) target(enchantment|myBattlefield) sacrifice!$ controller
+auto=@counteradded(0/0.1.Enchantment) from(this):ability$!name(Sacrifice an enchantment) name(Sacrifice an enchantment) target(enchantment|myBattlefield) sacrifice!$ opponent
+auto=@counteradded(0/0.1.Enchantment) from(this):removeallcounters(0/0.1.Enchantment)
+auto=@counteradded(0/0.1.Planeswalker) from(this):ability$!name(Sacrifice a planeswalker) name(Sacrifice a planeswalker) target(planeswalker|myBattlefield) sacrifice!$ controller
+auto=@counteradded(0/0.1.Planeswalker) from(this):ability$!name(Sacrifice a planeswalker) name(Sacrifice a planeswalker) target(planeswalker|myBattlefield) sacrifice!$ opponent
+auto=@counteradded(0/0.1.Planeswalker) from(this):removeallcounters(0/0.1.Planeswalker)
+text=At the beginning of your upkeep, you may choose a card type. If you do, each player sacrifices a permanent of that type.
+mana={3}{W}{W}
+type=Creature
+subtype=Avatar
+power=4
+toughness=4
+[/card]
+[card]
 name=World Shaper
 auto=_ATTACKING_may deplete:3
 auto=_DIES_:all(land|mygraveyard) moveto(mybattlefield) and!(tap(noevent))!
@@ -72511,6 +72671,16 @@ text=Enchant creature -- Enchanted creature gets -4/-4. -- Basic landcycling {1}
 mana={3}{B}{B}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Worldpurge
+auto=all(*|battlefield) moveto(ownerhand)
+auto=ability$!name(Discard cards) name(Discard cards) target(<phandcountminus7minusend>*|myhand) moveto(mylibrary) and!( shuffle )! !$ controller
+auto=ability$!name(Discard cards) name(Discard cards) target(<phandcountminus7minusend>*|myhand) moveto(mylibrary) and!( shuffle )! !$ opponent
+auto=removeMana(*)
+text=Return all permanents to their owners' hands. Each player chooses up to seven cards in his or her hand, then shuffles the rest into his or her library. Empty all mana pools.
+mana={4}{WU}{WU}{WU}{WU}
+type=Sorcery
 [/card]
 [card]
 name=Worldsoul Colossus
@@ -72543,6 +72713,24 @@ type=Creature
 subtype=Serpent
 power=3
 toughness=5
+[/card]
+[card]
+name=Worms of the Earth
+auto=maxPlay(land)-99 controller
+auto=maxPlay(land)-99 opponent
+auto=@movedto(land|battlefield) from(graveyard):name(Lands can't enter the battlefield) all(trigger[to]) moveto(ownergraveyard)
+auto=@movedto(land|battlefield) from(exile):name(Lands can't enter the battlefield) all(trigger[to]) moveto(ownerexile)
+auto=@movedto(land|battlefield) from(hand):name(Lands can't enter the battlefield) all(trigger[to]) moveto(ownerhand)
+auto=@movedto(land|battlefield) from(sideboard):name(Lands can't enter the battlefield) all(trigger[to]) moveto(ownersideboard)
+auto=@movedto(land|battlefield) from(commandzone):name(Lands can't enter the battlefield) all(trigger[to]) moveto(ownercommandzone)
+auto=@movedto(land|battlefield) from(library):name(Lands can't enter the battlefield) all(trigger[to]) moveto(ownerlibrary) and!( shuffle )!
+auto=@each my upkeep restriction{type(land|mybattlefield)~morethan~1}:name(Sacrifice lands or deal damage) ability$!name(Choose one) choice name(Sacrifice 2 lands) target(land|myBattlefield) sacrifice and!( transforms((,newability[name(Sacrifice another land) target(land|myBattlefield) sacrifice and!( transforms((,newability[name(Destroy Worms) target(Worms of the Earth|myBattlefield) destroy])) oneshot )!])) oneshot )! _ choice name(Deals 5 damage) damage:5 controller!$ controller
+auto=@each my upkeep restriction{type(land|mybattlefield)~lessthan~2}:name(Deals 5 damage) damage:5 controller
+auto=@each opponent upkeep restriction{type(land|opponentbattlefield)~morethan~1}:name(Sacrifice lands or deal damage) ability$!name(Choose one) choice name(Sacrifice 2 lands) target(land|myBattlefield) sacrifice and!( transforms((,newability[name(Sacrifice another land) target(land|myBattlefield) sacrifice and!( transforms((,newability[name(Destroy Worms) target(Worms of the Earth|opponentBattlefield) destroy])) oneshot )!])) oneshot )! _ choice name(Deals 5 damage) damage:5 controller!$ opponent
+auto=@each opponent upkeep restriction{type(land|opponentbattlefield)~lessthan~2}:name(Deals 5 damage) damage:5 opponent
+text=Players can't play lands. -- Lands can't enter the battlefield. -- At the beginning of each upkeep, any player may sacrifice two lands or have Worms of the Earth deal 5 damage to him or her. If a player does either, destroy Worms of the Earth.
+mana={2}{B}{B}{B}
+type=Enchantment
 [/card]
 [card]
 name=Worthy Knight
@@ -73193,6 +73381,22 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Zaxara, the Exemplary
+abilities=deathtouch
+auto={T}:add{W}{W}
+auto={T}:add{B}{B}
+auto={T}:add{G}{G}
+auto={T}:add{R}{R}
+auto={T}:add{U}{U}
+auto=@movedto(*|mystack):all(trigger[to]) transforms((,newability[if compare(fullpaid)~morethan~0 then name(Create Hydra) token(Hydra^Creature Hydra^0/0^green) and!( counter(1/1.fullpaid) )!])) oneshot
+text=Deathtouch -- {T}: Add two mana of any one color. -- Whenever you cast a spell with {X} in its mana cost, create a 0/0 green Hydra creature token, then put X +1/+1 counters on it.
+mana={1}{B}{G}{U}
+type=Legendary Creature
+subtype=Nightmare Hydra
+power=2
+toughness=3
+[/card]
+[card]
 name=Zealot of the God-Pharaoh
 auto={4}{R}:damage:2 target(opponent)
 text={4}{R}: Zealot of the God-Pharaoh deals 2 damage to target opponent.
@@ -73377,4 +73581,25 @@ type=Creature
 subtype=Human Rogue
 power=1
 toughness=1
+[/card]
+[card]
+name=Zur's Weirding
+abilities=showopponenthand,showcontrollerhand
+auto=@drawof(player):name(Reveal card) target(*[fresh]|myhand) moveto(opponenthand) and!( transforms((,newability[choice name(Pay 2 life and put in graveyard) moveto(opponentgraveyard) and!( life:-2 controller )!],newability[choice name(Put back to hand) moveto(opponenthand)])) oneshot )!
+auto=@drawfoeof(player):ability$!name(Reveal card) name(Reveal card) target(*[fresh]|myhand) moveto(opponenthand) and!( transforms((,newability[choice name(Put back to hand) moveto(opponenthand)],newability[choice name(Pay 2 life and put in graveyard) moveto(opponentgraveyard) and!( life:-2 controller )!])) oneshot )! !$ opponent
+text=Players play with their hands revealed. -- If a player would draw a card, he or she reveals it instead. Then any other player may pay 2 life. If a player does, put that card into its owner's graveyard. Otherwise, that player draws a card.
+mana={3}{U}
+type=Enchantment
+[/card]
+[card]
+name=Zurzoth, Chaos Rider
+auto=@drawfoeof(player) restriction{myturnonly} turnlimited:name(Create Devil) token(Devil,Creature Devil,1/1,red) and!( transforms((,newability[@movedto(this|mygraveyard):damage:1 target(player^creature)])) forever )!
+auto=@combat(attacking) source(creature[devil]|myBattlefield) turnlimited:name(Draw and discard) draw:1 && transforms((,newability[target(*|myhand) reject])) oneshot
+auto=@combat(attacking) source(creature[devil]|myBattlefield) turnlimited:ability$!name(Draw and discard) name(Draw and discard) draw:1 && transforms((,newability[target(*|myhand) reject])) oneshot!$ opponent
+text=Whenever an opponent draws their first card each turn, if it's not their turn, you create a 1/1 red Devil creature token with "When this creature dies, it deals 1 damage to any target." -- Whenever one or more Devils you control attack one or more players, you and those players each draw a card, then discard a card at random.
+mana={2}{R}
+type=Legendary Creature
+subtype=Devil
+power=2
+toughness=3
 [/card]

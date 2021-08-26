@@ -1384,8 +1384,10 @@ void GameObserver::ButtonPressed(PlayGuiObject * target)
         }
         else
         {
+            bool showopponenthand = (opponentHand->zone && opponentHand->zone->owner->opponent()->game->battlefield->nb_cards && opponentHand->zone->owner->opponent()->game->battlefield->hasAbility(Constants::SHOWOPPONENTHAND))?true:false;
+            bool showcontrollerhand = (opponentHand->zone && opponentHand->zone->owner->game->battlefield->nb_cards && opponentHand->zone->owner->game->battlefield->hasAbility(Constants::SHOWCONTROLLERHAND))?true:false;
             TargetChooser * _tc = this->getCurrentTargetChooser();
-            if (_tc && _tc->targetsZone(opponentHand->zone))
+            if ((_tc && _tc->targetsZone(opponentHand->zone)) || showopponenthand || showcontrollerhand)
             {
                 opponentHand->toggleDisplay();
             }

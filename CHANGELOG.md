@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 26/08/21
+- *Committed:* Added/fixed primitives, Added keywords "showopponenthand" and "showcontrollerhand" to allow controller and opponent to play with their hand revealed, added "mytarg" prefix to check values for a card target as like we do for "storedcard" prefix (e.g. "Redirect"), fixed "undocpy" keyoword for all cards (e.g. "Renegade Doppelganger") that have to be back from a previous copy. ([Vitty85](https://github.com/Vitty85)) 
+
 ### 25/08/21
-- *Committed:* Added/fixed primitives, Improved AI: now it can plays cards using morph cost too. ([Vitty85](https://github.com/Vitty85)) 
+- *Committed:* Added/fixed primitives, Improved AI: now it can plays cards using morph cost too. https://github.com/WagicProject/wagic/commit/bbc25e2727b1007ecb28888ce26482d856187298 ([Vitty85](https://github.com/Vitty85)) 
 
 ### 24/08/21
 - *Committed:* Added/fixed primitives, improved "TurnSide", "Morph" and "Flip" abilities when dealing with Commanders, added "fresh" attribute to cards just put in Sideboard, added a put back rule when a Commander is put in Sideboard, allowed to cast a card with kicker or alternative or morph cost from the CommandZone: in case of Morphed or DoubleFace cards (e.g. "Tergrid, God of Fright"), they will be put in play but they won't be Commander, but when they will be put elsewhere (e.g. destroyed) they may be back to the CommandZone with the usual Commander put back rule. https://github.com/WagicProject/wagic/commit/c7c2025fc9d44c4583a3e23a263824c3dcc62f59 ([Vitty85](https://github.com/Vitty85)) 

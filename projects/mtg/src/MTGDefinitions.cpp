@@ -226,6 +226,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "noncombatvigor", //instead of taking non-combat damage the source gains +1/+1 counters (e.g. Stormwild Capridor)
     "nomovetrigger", //no trigger when playing these cards (e.g. fake ability cards such as Davriel Conditions, Davriel Offers, Annihilation Rooms)
     "wascommander", //It was the current commander (e.g. after it flipped or morphed)
+    "showopponenthand", //opponent plays with his hand revealed.
+    "showcontrollerhand" //controller plays with his hand revealed.
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

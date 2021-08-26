@@ -4827,6 +4827,8 @@ int AAFlip::resolve()
             }
             SAFE_DELETE(myFlip);
             _target->mPropertiesChangedSinceLastUpdate = true;
+            if(backfromcopy)
+                _target->isACopier = false; //the card is no longer a copy (e.g. "Renegade Doppelganger" and "Scion of the Ur-Dragon")
             if(!isflipcard && !backfromcopy)
             {
                 if(_target->isFacedown)
