@@ -12573,16 +12573,6 @@ mana={5}{R}
 type=Sorcery
 [/card]
 [card]
-name=Whip Vine
-abilities=defender,reach
-text=Defender; reach (This creature can block creatures with flying.) -- You may choose not to untap Whip Vine during your untap step. -- {T}: Tap target creature with flying blocked by Whip Vine. That creature doesn't untap during its controller's untap step for as long as Whip Vine remains tapped.
-mana={2}{G}
-type=Creature
-subtype=Plant Wall
-power=1
-toughness=4
-[/card]
-[card]
 name=Whipgrass Entangler
 text={1}{W}: Until end of turn, target creature gains "This creature can't attack or block unless its controller pays {1} for each Cleric on the battlefield."
 mana={2}{W}

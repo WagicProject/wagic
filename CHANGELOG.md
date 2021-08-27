@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 27/08/21
+- *Committed:* Added/fixed primitives. ([Vitty85](https://github.com/Vitty85)) 
+
 ### 26/08/21
-- *Committed:* Added/fixed primitives, Added keywords "showopponenthand" and "showcontrollerhand" to allow controller and opponent to play with their hand revealed, added "mytarg" prefix to check values for a card target as like we do for "storedcard" prefix (e.g. "Redirect"), fixed "undocpy" keyoword for all cards (e.g. "Renegade Doppelganger") that have to be back from a previous copy. ([Vitty85](https://github.com/Vitty85)) 
+- *Committed:* Added/fixed primitives, Added keywords "showopponenthand" and "showcontrollerhand" to allow controller and opponent to play with their hand revealed, added "mytarg" prefix to check values for a card target as like we do for "storedcard" prefix (e.g. "Redirect"), fixed "undocpy" keyoword for all cards (e.g. "Renegade Doppelganger") that have to be back from a previous copy. https://github.com/WagicProject/wagic/commit/1ce0facf215f2af172e7e42b1f4d0ea25a7df38d ([Vitty85](https://github.com/Vitty85)) 
 
 ### 25/08/21
 - *Committed:* Added/fixed primitives, Improved AI: now it can plays cards using morph cost too. https://github.com/WagicProject/wagic/commit/bbc25e2727b1007ecb28888ce26482d856187298 ([Vitty85](https://github.com/Vitty85)) 
