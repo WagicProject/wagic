@@ -50532,16 +50532,6 @@ mana={GU}{GU}
 type=Instant
 [/card]
 [card]
-name=Rescind
-abilities=cycling
-target=*
-auto=moveTo(ownerHand)
-autohand=__CYCLING__({2})
-text=Return target permanent to its owner's hand. -- Cycling 2 ( 2 , Discard this card: Draw a card.)
-mana={1}{U}{U}
-type=Instant
-[/card]
-[card]
 name=Rescue from the Underworld
 target=creature|mygraveyard
 auto=phaseaction[my upkeep once]:moveto(mybattlefield) && moveTo(mybattlefield) target(creature|mygraveyard)
@@ -63128,7 +63118,7 @@ toughness=2
 [/card]
 [card]
 name=Tactical Advantage
-target=creature[blocking,blocked]|myBattlefield
+target=creature[blocking;blocked]|myBattlefield
 auto=2/2 ueot
 text=Target blocking or blocked creature you control gets +2/+2 until end of turn.
 mana={W}
@@ -71572,6 +71562,18 @@ text=Enchant player -- If a card would be put into enchanted player's graveyard 
 mana={GW}{GW}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Whip Vine
+abilities=defender,reach,doesnotuntap
+auto=@each my untap sourcetap:may name(Untap Whip Vine) untap
+auto={T}:name(Tap blocked flying creature):target(creature[flying;blocked]|battlefield) grant transforms((,newability[tap],newability[doesnotuntap])) grantend
+text=Defender; reach (This creature can block creatures with flying.) -- You may choose not to untap Whip Vine during your untap step. -- {T}: Tap target creature with flying blocked by Whip Vine. That creature doesn't untap during its controller's untap step for as long as Whip Vine remains tapped.
+mana={2}{G}
+type=Creature
+subtype=Plant Wall
+power=1
+toughness=4
 [/card]
 [card]
 name=Whiptongue Hydra
