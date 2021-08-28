@@ -4472,6 +4472,17 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Banshee of the Dread Choir
+auto=@damageof(player) from(this):ability$!name(discard) target(*|myhand) reject!$ controller
+auto=@damagefoeof(player) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+text=Myriad (Whenever this creature attacks, for each opponent other than defending player, you may put a token that's a copy of this creature onto the battlefield tapped and attacking that player or a planeswalker he or she controls. Exile the tokens at end of combat.) -- Whenever Banshee of the Dread Choir deals combat damage to a player, that player discards a card.
+mana={3}{B}{B}
+type=Creature
+subtype=Spirit
+power=4
+toughness=4
+[/card]
+[card]
 name=Bar the Gate
 target=*[creature;planeswalker]|stack
 auto=fizzle
@@ -5887,6 +5898,14 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Blade of Selves
+auto={4}:equip
+text=Equipped creature has myriad. (Whenever it attacks, for each opponent other than defending player, you may put a token that's a copy of that creature onto the battlefield tapped and attacking that player or a planeswalker he or she controls. Exile the tokens at end of combat.) -- Equip {4}
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Bladeback Sliver
 abilities=hellbent
 auto=aslongas(*|myhand) lord(sliver|myBattlefield) {T}:damage:1 target(player,planeswalker) <1
@@ -5941,6 +5960,24 @@ type=Creature
 subtype=Elf Warrior
 power=2
 toughness=2
+[/card]
+[card]
+name=Blast from the Past
+target=player,creature
+abilities=cycling,madness,hasotherkicker
+kicker={2}{R}
+flashback={3}{R}
+buyback={4}{R}
+autohand=__CYCLING__({1}{R})
+autoexile=restriction{discarded} pay({R}) name(pay R to cast) activate name(pay R to cast) castcard(alternative)?name(put in graveyard) moveto(ownergraveyard)
+auto=damage:2
+auto=if paid(kicker) then token(Goblin,Creature Goblin,1/1,red)
+auto=if paid(alternative) then may name(Pay also kicker) pay({2}{R}) name(Pay also kicker) token(Goblin,Creature Goblin,1/1,red)
+auto=if paid(flashback) then may name(Pay also kicker) pay({2}{R}) name(Pay also kicker) token(Goblin,Creature Goblin,1/1,red)
+auto=if paid(buyback) then may name(Pay also kicker) pay({2}{R}) name(Pay also kicker) token(Goblin,Creature Goblin,1/1,red)
+text=Madness {R}, cycling {1}{R}, kicker {2}{R}, flashback {3}{R}, buyback {4}{R} -- Blast from the Past deals 2 damage to target creature or player. -- If the kicker cost was paid, put a 1/1 red Goblin creature token into play.
+mana={2}{R}
+type=Instant
 [/card]
 [card]
 name=Blast Zone
@@ -8022,6 +8059,16 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
+name=Broodbirth Viper
+auto=@combatdamaged(player) from(this):name(Draw a card) draw:1 controller
+text=Myriad (Whenever this creature attacks, for each opponent other than defending player, you may put a token that's a copy of this creature onto the battlefield tapped and attacking that player or a planeswalker he or she controls. Exile the tokens at end of combat.) -- Whenever Broodbirth Viper deals combat damage to a player, you may draw a card.
+mana={4}{U}
+type=Creature
+subtype=Snake
+power=3
+toughness=3
+[/card]
+[card]
 name=Brought Back
 auto=moveTo(myBattlefield) target(<upto:2>*[fresh;-instant;-sorcery]|mygraveyard) and!(tap(noevent))!
 text=Choose up to two target permanent cards in your graveyard that were put there from the battlefield this turn. Return them to the battlefield tapped.
@@ -8210,6 +8257,33 @@ type=Creature
 subtype=Treefolk
 power=2
 toughness=3
+[/card]
+[card]
+name=Burn at the Stake
+target=player,creature
+auto=if type(creature[-tapped]|myBattlefield)~morethan~0 then choice name(Tap 1 creature) name(Tap 1 creature) damage:3 && ability$!name(Tap 1 creature) name(Tap 1 creature) target(creature|myBattlefield) tap!$ controller
+auto=if type(creature[-tapped]|myBattlefield)~morethan~1 then choice name(Tap 2 creatures) name(Tap 2 creatures) damage:6 && ability$!name(Tap 2 creatures) name(Tap 2 creatures) target(<2>creature|myBattlefield) tap!$ controller
+auto=if type(creature[-tapped]|myBattlefield)~morethan~2 then choice name(Tap 3 creatures) name(Tap 3 creatures) damage:9 && ability$!name(Tap 3 creatures) name(Tap 3 creatures) target(<3>creature|myBattlefield) tap!$ controller
+auto=if type(creature[-tapped]|myBattlefield)~morethan~3 then choice name(Tap 4 creatures) name(Tap 4 creatures) damage:12 && ability$!name(Tap 4 creatures) name(Tap 4 creatures) target(<4>creature|myBattlefield) tap!$ controller
+auto=if type(creature[-tapped]|myBattlefield)~morethan~4 then choice name(Tap 5 creatures) name(Tap 5 creatures) damage:15 && ability$!name(Tap 5 creatures) name(Tap 5 creatures) target(<5>creature|myBattlefield) tap!$ controller
+auto=if type(creature[-tapped]|myBattlefield)~morethan~5 then choice name(Tap 6 creatures) name(Tap 6 creatures) damage:18 && ability$!name(Tap 6 creatures) name(Tap 6 creatures) target(<6>creature|myBattlefield) tap!$ controller
+auto=if type(creature[-tapped]|myBattlefield)~morethan~6 then choice name(Tap 7 creatures) name(Tap 7 creatures) damage:21 && ability$!name(Tap 7 creatures) name(Tap 7 creatures) target(<7>creature|myBattlefield) tap!$ controller
+auto=if type(creature[-tapped]|myBattlefield)~morethan~7 then choice name(Tap 8 creatures) name(Tap 8 creatures) damage:24 && ability$!name(Tap 8 creatures) name(Tap 8 creatures) target(<8>creature|myBattlefield) tap!$ controller
+auto=if type(creature[-tapped]|myBattlefield)~morethan~8 then choice name(Tap 9 creatures) name(Tap 9 creatures) damage:27 && ability$!name(Tap 9 creatures) name(Tap 9 creatures) target(<9>creature|myBattlefield) tap!$ controller
+auto=if type(creature[-tapped]|myBattlefield)~morethan~9 then choice name(Tap 10 creatures) name(Tap 10 creatures) damage:30 && ability$!name(Tap 10 creatures) name(Tap 10 creatures) target(<10>creature|myBattlefield) tap!$ controller
+auto=if type(creature[-tapped]|myBattlefield)~morethan~10 then choice name(Tap 11 creatures) name(Tap 11 creatures) damage:33 && ability$!name(Tap 11 creatures) name(Tap 11 creatures) target(<11>creature|myBattlefield) tap!$ controller
+auto=if type(creature[-tapped]|myBattlefield)~morethan~11 then choice name(Tap 12 creatures) name(Tap 12 creatures) damage:36 && ability$!name(Tap 12 creatures) name(Tap 12 creatures) target(<12>creature|myBattlefield) tap!$ controller
+auto=if type(creature[-tapped]|myBattlefield)~morethan~12 then choice name(Tap 13 creatures) name(Tap 13 creatures) damage:39 && ability$!name(Tap 13 creatures) name(Tap 13 creatures) target(<13>creature|myBattlefield) tap!$ controller
+auto=if type(creature[-tapped]|myBattlefield)~morethan~13 then choice name(Tap 14 creatures) name(Tap 14 creatures) damage:42 && ability$!name(Tap 14 creatures) name(Tap 14 creatures) target(<14>creature|myBattlefield) tap!$ controller
+auto=if type(creature[-tapped]|myBattlefield)~morethan~14 then choice name(Tap 15 creatures) name(Tap 15 creatures) damage:45 && ability$!name(Tap 15 creatures) name(Tap 15 creatures) target(<15>creature|myBattlefield) tap!$ controller
+auto=if type(creature[-tapped]|myBattlefield)~morethan~15 then choice name(Tap 16 creatures) name(Tap 16 creatures) damage:48 && ability$!name(Tap 16 creatures) name(Tap 16 creatures) target(<16>creature|myBattlefield) tap!$ controller
+auto=if type(creature[-tapped]|myBattlefield)~morethan~16 then choice name(Tap 17 creatures) name(Tap 17 creatures) damage:51 && ability$!name(Tap 17 creatures) name(Tap 17 creatures) target(<17>creature|myBattlefield) tap!$ controller
+auto=if type(creature[-tapped]|myBattlefield)~morethan~17 then choice name(Tap 18 creatures) name(Tap 18 creatures) damage:54 && ability$!name(Tap 18 creatures) name(Tap 18 creatures) target(<18>creature|myBattlefield) tap!$ controller
+auto=if type(creature[-tapped]|myBattlefield)~morethan~18 then choice name(Tap 19 creatures) name(Tap 19 creatures) damage:57 && ability$!name(Tap 19 creatures) name(Tap 19 creatures) target(<19>creature|myBattlefield) tap!$ controller
+auto=if type(creature[-tapped]|myBattlefield)~morethan~19 then choice name(Tap 20 creatures) name(Tap 20 creatures) damage:60 && ability$!name(Tap 20 creatures) name(Tap 20 creatures) target(<20>creature|myBattlefield) tap!$ controller
+text=As an additional cost to cast Burn at the Stake, tap any number of untapped creatures you control. -- Burn at the Stake deals damage to target creature or player equal to three times the number of creatures tapped this way.
+mana={2}{R}{R}{R}
+type=Sorcery
 [/card]
 [card]
 name=Burn Bright
@@ -8403,13 +8477,21 @@ type=Land
 [card]
 name=Cabal Therapist
 abilities=menace
-auto=@each my firstmain:may name(Sacrifice a creature) target(creature|mybattlefield) transforms((,newability[sacrifice],newability[chooseanameopp name(Look hand) target(*|opponenthand) moveto(opponenthand) and!( all(*[chosenname]|opponenthand) reject)! chooseend nonland])) oneshot
+auto=@each my firstmain:may name(Sacrifice a creature) target(creature|mybattlefield) transforms((,newability[sacrifice],newability[chooseanameopp name(Look hand) target(*|opponenthand) moveto(opponentreveal) and!( moveto(opponenthand) and!( all(*[chosenname]|opponenthand) reject)! )! chooseend nonland])) oneshot
 text=Menace -- At the beginning of your precombat main phase, you may sacrifice a creature. When you do, choose a nonland card name, then target player reveals their hand and discards all cards with that name.
 mana={B}
 type=Creature
 subtype=Horror
 power=1
 toughness=1
+[/card]
+[card]
+name=Cabal Therapy
+flashback={S(creature|mybattlefield)}
+auto=chooseanameopp name(Look hand) target(*|opponenthand) moveto(opponentreveal) and!( moveto(opponenthand) and!( all(*[chosenname]|opponenthand) reject)! )! chooseend nonland
+text=Name a nonland card. Target player reveals his or her hand and discards all cards with that name. -- Flashback—Sacrifice a creature. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={B}
+type=Sorcery
 [/card]
 [card]
 name=Cacophodon
@@ -8542,6 +8624,16 @@ type=Legendary Enchantment Creature
 subtype=Demigod
 power=*
 toughness=3
+[/card]
+[card]
+name=Caller of the Pack
+abilities=trample
+text=Trample -- Myriad (Whenever this creature attacks, for each opponent other than defending player, you may put a token that's a copy of this creature onto the battlefield tapped and attacking that player or a planeswalker he or she controls. Exile the tokens at end of combat.)
+mana={5}{G}{G}
+type=Creature
+subtype=Beast
+power=8
+toughness=6
 [/card]
 [card]
 name=Callous Bloodmage
@@ -70989,6 +71081,16 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Warchief Giant
+abilities=haste
+text=Haste -- Myriad (Whenever this creature attacks, for each opponent other than defending player, you may put a token that's a copy of this creature onto the battlefield tapped and attacking that player or a planeswalker he or she controls. Exile the tokens at end of combat.)
+mana={3}{R}{R}
+type=Creature
+subtype=Giant Warrior
+power=5
+toughness=3
+[/card]
+[card]
 name=Warcry Phoenix
 abilities=flying, haste
 autograveyard=@each my blockers restriction{type(creature[attacking]|myBattlefield)~morethan~2}:pay({2}{r}) ninjutsu
@@ -71319,6 +71421,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Wave of Vitriol
+auto=all(artifact|battlefield) sacrifice
+auto=all(enchantment|battlefield) sacrifice
+auto=all(land[-basic]|battlefield) transforms((,newability[sacrifice],newability[may name(Search basic land) target(land[basic]|mylibrary) moveto(myBattlefield) and!( tap(noevent) )!])) oneshot
+text=Each player sacrifices all artifacts, enchantments, and nonbasic lands he or she controls. For each land sacrificed this way, its controller may search his or her library for a basic land card and put it onto the battlefield tapped. Then each player who searched his or her library this way shuffles it.
+mana={5}{G}{G}
+type=Sorcery
+[/card]
+[card]
 name=Wavebreak Hippocamp
 auto=@movedto(*|mystack) restriction{opponentturnonly,thisturn(*|mystack)~equalto~0}:draw:1 controller
 text=Whenever you cast your first spell during each opponent’s turn, draw a card.
@@ -71574,6 +71685,17 @@ type=Creature
 subtype=Plant Wall
 power=1
 toughness=4
+[/card]
+[card]
+name=Whippoorwill
+#MISSING: damage can't be prevented
+auto={G}{G}{T}:name(Creature can't be regenerated) target(creature) transforms((,newability[cantregen],newability[exiledeath])) ueot
+text={G}{G}, {T}: Target creature can't be regenerated this turn. Damage that would be dealt to that creature this turn can't be prevented or dealt instead to another creature or player. When the creature dies this turn, exile the creature.
+mana={G}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
 [/card]
 [card]
 name=Whiptongue Hydra

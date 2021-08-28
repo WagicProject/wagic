@@ -683,15 +683,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Banshee of the Dread Choir
-text=Myriad (Whenever this creature attacks, for each opponent other than defending player, you may put a token that's a copy of this creature onto the battlefield tapped and attacking that player or a planeswalker he or she controls. Exile the tokens at end of combat.) -- Whenever Banshee of the Dread Choir deals combat damage to a player, that player discards a card.
-mana={3}{B}{B}
-type=Creature
-subtype=Spirit
-power=4
-toughness=4
-[/card]
-[card]
 name=Baral, Chief of Compliance
 text=Instant and sorcery spells you cast cost {1} less to cast. -- Whenever a spell or ability you control counters a spell, you may draw a card. If you do, discard a card.
 mana={1}{U}
@@ -878,19 +869,6 @@ name=Blacker Lotus
 text={T}: Tear Blacker Lotus into pieces. Add four mana of any one color to your mana pool. Play this ability as a mana source. Remove the pieces from the game afterwards.
 mana={0}
 type=Artifact
-[/card]
-[card]
-name=Blade of Selves
-text=Equipped creature has myriad. (Whenever it attacks, for each opponent other than defending player, you may put a token that's a copy of that creature onto the battlefield tapped and attacking that player or a planeswalker he or she controls. Exile the tokens at end of combat.) -- Equip {4}
-mana={2}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
-name=Blast from the Past
-text=Madness {R}, cycling {1}{R}, kicker {2}{R}, flashback {3}{R}, buyback {4}{R} -- Blast from the Past deals 2 damage to target creature or player. -- If the kicker cost was paid, put a 1/1 red Goblin creature token into play.
-mana={2}{R}
-type=Instant
 [/card]
 [card]
 name=Blaze of Glory
@@ -1259,19 +1237,10 @@ type=Artifact
 [/card]
 [card]
 name=Bronzehide Lion
-text={G}{W}: Bronzehide Lion gains indestructible until end of turn. -- When Bronzehide Lion dies, return it to the battlefield. It's an Aura enchantment with enchant creature you control and " {G}{W}: Enchanted creature gains indestructible until end of turn," and it loses all other abilities.
+text={G}{W}: Bronzehide Lion gains indestructible until end of turn. -- When Bronzehide Lion dies, return it to the battlefield. It's an Aura enchantment with enchant creature you control and "{G}{W}: Enchanted creature gains indestructible until end of turn," and it loses all other abilities.
 mana={G}{W}
 type=Creature
 subtype=Cat
-power=3
-toughness=3
-[/card]
-[card]
-name=Broodbirth Viper
-text=Myriad (Whenever this creature attacks, for each opponent other than defending player, you may put a token that's a copy of this creature onto the battlefield tapped and attacking that player or a planeswalker he or she controls. Exile the tokens at end of combat.) -- Whenever Broodbirth Viper deals combat damage to a player, you may draw a card.
-mana={4}{U}
-type=Creature
-subtype=Snake
 power=3
 toughness=3
 [/card]
@@ -1310,12 +1279,6 @@ name=Bureaucracy
 text=Pursuant to subsection 3.1(4) of Richard's Rules of Order, during the upkeep of each participant in this game of the Magic: The Gathering® trading card game (hereafter known as "PLAYER"), that PLAYER performs all actions in the sequence of previously added actions (hereafter known as "ACTION QUEUE"), in the order those actions were added, then adds another action to the end of the ACTION QUEUE. All actions must be simple physical or verbal actions that a player can perform while sitting in a chair, without jeopardizing the health and security of said PLAYER. -- If any PLAYER does not perform all the prescribed actions in the correct order, sacrifice Bureaucracy and said PLAYER discards his or her complement of cards in hand (hereafter known as "HAND").
 mana={3}{U}{U}
 type=Enchantment
-[/card]
-[card]
-name=Burn at the Stake
-text=As an additional cost to cast Burn at the Stake, tap any number of untapped creatures you control. -- Burn at the Stake deals damage to target creature or player equal to three times the number of creatures tapped this way.
-mana={2}{R}{R}{R}
-type=Sorcery
 [/card]
 [card]
 name=Burning Cinder Fury of Crimson Chaos Fire
@@ -1378,12 +1341,6 @@ mana={2}{W}
 type=Enchantment
 [/card]
 [card]
-name=Cabal Therapy
-text=Name a nonland card. Target player reveals his or her hand and discards all cards with that name. -- Flashback—Sacrifice a creature. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={B}
-type=Sorcery
-[/card]
-[card]
 name=Call of the Nightwing
 text=Put a 1/1 blue and black Horror creature token with flying onto the battlefield. -- Cipher (Then you may exile this spell card encoded on a creature you control. Whenever that creature deals combat damage to a player, its controller may cast a copy of the encoded card without paying its mana cost.)
 mana={2}{U}{B}
@@ -1401,16 +1358,6 @@ text=Enchant creature -- At the beginning of your upkeep, you may look at the to
 mana={3}{U}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Caller of the Pack
-abilities=trample
-text=Trample -- Myriad (Whenever this creature attacks, for each opponent other than defending player, you may put a token that's a copy of this creature onto the battlefield tapped and attacking that player or a planeswalker he or she controls. Exile the tokens at end of combat.)
-mana={5}{G}{G}
-type=Creature
-subtype=Beast
-power=8
-toughness=6
 [/card]
 [card]
 name=Caller of the Untamed
@@ -12419,15 +12366,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Warchief Giant
-text=Haste -- Myriad (Whenever this creature attacks, for each opponent other than defending player, you may put a token that's a copy of this creature onto the battlefield tapped and attacking that player or a planeswalker he or she controls. Exile the tokens at end of combat.)
-mana={3}{R}{R}
-type=Creature
-subtype=Giant Warrior
-power=5
-toughness=3
-[/card]
-[card]
 name=Ward of Lights
 text=You may cast Ward of Lights as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- As Ward of Lights enters the battlefield, choose a color. -- Enchanted creature has protection from the chosen color. This effect doesn't remove Ward of Lights.
 mana={W}{W}
@@ -12477,12 +12415,6 @@ text={T}: Add {1}{1} . Spend this mana only to cast spells with watermarks.
 type=Land
 [/card]
 [card]
-name=Wave of Vitriol
-text=Each player sacrifices all artifacts, enchantments, and nonbasic lands he or she controls. For each land sacrificed this way, its controller may search his or her library for a basic land card and put it onto the battlefield tapped. Then each player who searched his or her library this way shuffles it.
-mana={5}{G}{G}
-type=Sorcery
-[/card]
-[card]
 name=Waxing Moon
 text=Transform up to one target Werewolf you control. Creatures you control gain trample until end of turn.
 mana={1}{G}
@@ -12506,6 +12438,8 @@ toughness=5
 [/card]
 [card]
 name=Weaver of Lies
+facedown={3}
+autofacedown={4}{U}:morph
 text=Morph {4}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Weaver of Lies is turned face up, turn any number of target creatures with morph other than Weaver of Lies face down.
 mana={5}{U}{U}
 type=Creature
@@ -12587,15 +12521,6 @@ text={T}: Whipkeeper deals damage to target creature equal to the damage already
 mana={2}{R}{R}
 type=Creature
 subtype=Dwarf
-power=1
-toughness=1
-[/card]
-[card]
-name=Whippoorwill
-text={G}{G}, {T}: Target creature can't be regenerated this turn. Damage that would be dealt to that creature this turn can't be prevented or dealt instead to another creature or player. When the creature dies this turn, exile the creature.
-mana={G}
-type=Creature
-subtype=Bird
 power=1
 toughness=1
 [/card]

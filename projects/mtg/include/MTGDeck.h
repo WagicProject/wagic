@@ -121,6 +121,7 @@ public:
     vector<int> ids;
     map<int, MTGCard *> collection;
     map<string, CardPrimitive *> primitives;
+    map<string, bool> limitedCardsMap; //used by parser in case of limited card list
     MTGCard * _(int id);
     MTGCard * getCardById(int id);
 

@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 28/08/21
+- *Committed:* Added/fixed primitives, improved the way to limit the number of total primitives to load at startup using the file named LimitedCardList.txt (that has to be copied in User folder). This should help to run the game even on older devices with low RAM such as PSP-3000 (It needs also a lighter graphics sub-folder in Res folder). ([Vitty85](https://github.com/Vitty85)) 
+
 ### 27/08/21
-- *Committed:* Added/fixed primitives. ([Vitty85](https://github.com/Vitty85)) 
+- *Committed:* Added/fixed primitives. https://github.com/WagicProject/wagic/commit/8d6e0122bb7253d29700bc4519067ed4160ddf84 ([Vitty85](https://github.com/Vitty85)) 
 
 ### 26/08/21
 - *Committed:* Added/fixed primitives, Added keywords "showopponenthand" and "showcontrollerhand" to allow controller and opponent to play with their hand revealed, added "mytarg" prefix to check values for a card target as like we do for "storedcard" prefix (e.g. "Redirect"), fixed "undocpy" keyoword for all cards (e.g. "Renegade Doppelganger") that have to be back from a previous copy. https://github.com/WagicProject/wagic/commit/1ce0facf215f2af172e7e42b1f4d0ea25a7df38d ([Vitty85](https://github.com/Vitty85)) 

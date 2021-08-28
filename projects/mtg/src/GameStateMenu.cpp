@@ -562,6 +562,9 @@ void GameStateMenu::Update(float dt)
         }
         if (!nextSetFolder("sets/", "_cards.dat"))
         {
+            //Reset LimitedCardsMap
+            MTGCollection()->limitedCardsMap.clear();
+
             //Remove temporary translations
             Translator::GetInstance()->tempValues.clear();
 
