@@ -414,6 +414,17 @@ void MTGAllCards::init()
     tempPrimitive = NULL;
     total_cards = 0;
     initCounters();
+    izfstream limitedFile;
+    if (JFileSystem::GetInstance()->openForRead(limitedFile, "LimitedCardList.txt"))
+    {
+        string limitedLine;
+        while (getline(limitedFile,limitedLine))
+        {
+            if (limitedLine.size())
+                limitedCardsMap[limitedLine] = true;
+        }
+    }
+    limitedFile.close();
 }
 
 void MTGAllCards::loadFolder(const string& infolder, const string& filename )
@@ -474,19 +485,6 @@ int MTGAllCards::load(const string& config_file, const string &set_name)
 
 int MTGAllCards::load(const string &config_file, int set_id)
 {
-    izfstream limitedFile;
-    vector<string> limitedCardList;
-    if (JFileSystem::GetInstance()->openForRead(limitedFile, "LimitedCardList.txt"))
-    {
-        string limitedLine;
-        while (getline(limitedFile,limitedLine))
-        {
-            if (limitedLine.size())
-                limitedCardList.push_back(limitedLine);
-        }
-    }
-    limitedFile.close();
-
     conf_read_mode = 0;
     MTGSetInfo *si = setlist.getInfo(set_id);
 
@@ -556,15 +554,9 @@ int MTGAllCards::load(const string &config_file, int set_id)
             if (s[0] == '[' && s[1] == '/')
             {
                 conf_read_mode = MTGAllCards::READ_ANYTHING;
-                if (limitedCardList.size() && tempPrimitive){
-                    bool found = false;
-                    for(size_t i = 0; i < limitedCardList.size(); i++)
-                        if(limitedCardList.at(i) == tempPrimitive->name)
-                            found = true;
-                    if(!found){
-                        tempCard = NULL;
-                        tempPrimitive = NULL;
-                    }
+                if (limitedCardsMap.size() && ((tempPrimitive && !limitedCardsMap[tempPrimitive->name]) || (tempCard && !tempCard->data))){
+                    SAFE_DELETE(tempCard);
+                    SAFE_DELETE(tempPrimitive);
                 }
                 if (tempPrimitive) tempPrimitive = addPrimitive(tempPrimitive, tempCard);
                 if (tempCard)
@@ -604,6 +596,7 @@ MTGAllCards::~MTGAllCards()
     for (map<string, CardPrimitive *>::iterator it = primitives.begin(); it != primitives.end(); it++)
         delete (it->second);
     primitives.clear();
+    limitedCardsMap.clear();
 }
 
 MTGAllCards* MTGAllCards::getInstance()
