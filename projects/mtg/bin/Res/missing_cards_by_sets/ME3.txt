@@ -1,0 +1,119 @@
+[card]
+name=Liu Bei, Lord of Shu
+abilities=horsemanship
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) -- Liu Bei, Lord of Shu gets +2/+2 as long as you control a permanent named Guan Yu, Sainted Warrior or a permanent named Zhang Fei, Fierce Warrior.
+mana={3}{W}{W}
+type=Legendary Creature
+subtype=Human Soldier
+power=2
+toughness=4
+[/card]
+[card]
+name=The Wretched
+text=At end of combat, gain control of all creatures blocking The Wretched for as long as you control The Wretched.
+mana={3}{B}{B}
+type=Creature
+subtype=Demon
+power=2
+toughness=5
+[/card]
+[card]
+name=Gabriel Angelfire
+text=At the beginning of your upkeep, choose flying, first strike, trample, or rampage 3. Gabriel Angelfire gains that ability until your next upkeep. (Whenever a creature with rampage 3 becomes blocked, it gets +3/+3 until end of turn for each creature blocking it beyond the first.)
+mana={3}{G}{G}{W}{W}
+type=Legendary Creature
+subtype=Angel
+power=4
+toughness=4
+[/card]
+[card]
+name=Illusionary Mask
+text={X}: You may choose a creature card in your hand whose mana cost could be paid by some amount of, or all of, the mana you spent on {X}. If you do, you may cast that card face down as a 2/2 creature spell without paying its mana cost. If the creature that spell becomes as it resolves has not been turned face up and would assign or deal damage, be dealt damage, or become tapped, instead it's turned face up and assigns or deals damage, is dealt damage, or becomes tapped. Activate this ability only any time you could cast a sorcery.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Knowledge Vault
+text={2}, {T}: Exile the top card of your library face down. -- {0}: Sacrifice Knowledge Vault. If you do, discard your hand, then put all cards exiled with Knowledge Vault into their owner's hand. -- When Knowledge Vault leaves the battlefield, put all cards exiled with Knowledge Vault into their owner's graveyard.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Halfdane
+text=At the beginning of your upkeep, Halfdane's power and toughness become equal to the power and toughness of target creature other than Halfdane until the end of your next upkeep.
+mana={1}{W}{U}{B}
+type=Legendary Creature
+subtype=Shapeshifter
+power=3
+toughness=3
+[/card]
+[card]
+name=Firestorm Phoenix
+abilities=flying
+text=Flying -- If Firestorm Phoenix would die, return Firestorm Phoenix to its owner's hand instead. Until that player's next turn, that player plays with that card revealed in his or her hand and can't play it.
+mana={4}{R}{R}
+type=Creature
+subtype=Phoenix
+power=3
+toughness=2
+[/card]
+[card]
+name=Nebuchadnezzar
+text={X}, {T}: Name a card. Target opponent reveals X cards at random from his or her hand. Then that player discards all cards with that name revealed this way. Activate this ability only during your turn.
+mana={3}{U}{B}
+type=Legendary Creature
+subtype=Human Wizard
+power=3
+toughness=3
+[/card]
+[card]
+name=Nova Pentacle
+text={3}, {T}: The next time a source of your choice would deal damage to you this turn, that damage is dealt to target creature of an opponent's choice instead.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Takklemaggot
+text=Enchant creature -- At the beginning of the upkeep of enchanted creature's controller, put a -0/-1 counter on that creature. -- When enchanted creature dies, that creature's controller chooses a creature that Takklemaggot could enchant. If he or she does, return Takklemaggot to the battlefield under your control attached to that creature. If he or she doesn't, return Takklemaggot to the battlefield under your control as a non-Aura enchantment. It loses "enchant creature" and gains "At the beginning of that player's upkeep, Takklemaggot deals 1 damage to him or her."
+mana={2}{B}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Sword of the Ages
+text=Sword of the Ages enters the battlefield tapped. -- {T}, Sacrifice Sword of the Ages and any number of creatures you control: Sword of the Ages deals X damage to target creature or player, where X is the total power of the creatures sacrificed this way, then exile Sword of the Ages and those creature cards.
+mana={6}
+type=Artifact
+[/card]
+[card]
+name=Gauntlets of Chaos
+text={5}, Sacrifice Gauntlets of Chaos: Exchange control of target artifact, creature, or land you control and target permanent an opponent controls that shares one of those types with it. If those permanents are exchanged this way, destroy all Auras attached to them.
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Divine Intervention
+text=Divine Intervention enters the battlefield with two intervention counters on it. -- At the beginning of your upkeep, remove an intervention counter from Divine Intervention. -- When you remove the last intervention counter from Divine Intervention, the game is a draw.
+mana={6}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Call to Arms
+text=As Call to Arms enters the battlefield, choose a color and an opponent. -- White creatures get +1/+1 as long as the chosen color is the most common color among nontoken permanents the chosen player controls but isn't tied for most common. -- When the chosen color isn't the most common color among nontoken permanents the chosen player controls or is tied for most common, sacrifice Call to Arms.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Sorrow's Path
+text={T}: Choose two target blocking creatures an opponent controls. If each of those creatures could block all creatures that the other is blocking, remove both of them from combat. Each one then blocks all creatures the other was blocking.  -- Whenever Sorrow's Path becomes tapped, it deals 2 damage to you and each creature you control.
+type=Land
+[/card]
+[card]
+name=Lesser Werewolf
+text={B}: If Lesser Werewolf's power is 1 or more, it gets -1/-0 until end of turn and put a -0/-1 counter on target creature blocking or blocked by Lesser Werewolf. Activate this ability only during the declare blockers step.
+mana={3}{B}
+type=Creature
+subtype=Werewolf
+power=2
+toughness=4
+[/card]

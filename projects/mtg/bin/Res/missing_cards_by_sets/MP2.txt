@@ -1,0 +1,31 @@
+[card]
+name=Counterbalance
+text=Whenever an opponent casts a spell, you may reveal the top card of your library. If you do, counter that spell if it has the same converted mana cost as the revealed card.
+mana={U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Through the Breach
+text=You may put a creature card from your hand onto the battlefield. That creature gains haste. Sacrifice that creature at the beginning of the next end step. -- Splice onto Arcane {2}{R}{R} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+mana={4}{R}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
+name=Stifle
+text=Counter target activated or triggered ability. (Mana abilities can't be targeted.)
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Divert
+text=Change the target of target spell with a single target unless that spell's controller pays {2}.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Doomsday
+text=Search your library and graveyard for five cards and exile the rest. Put the chosen cards on top of your library in any order. You lose half your life, rounded up.
+mana={B}{B}{B}
+type=Sorcery
+[/card]

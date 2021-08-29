@@ -36,7 +36,7 @@ id=-17645
 rarity=T
 [/card]
 [card]
-primitive=X/X
+primitive=Riptide Token
 id=-17639
 rarity=T
 [/card]
@@ -2397,9 +2397,14 @@ id=17497
 rarity=R
 [/card]
 [card]
-primitive=Kitsune Mystic // Autumn-Tail, Kitsune Sage
+primitive=Kitsune Mystic
 id=17498
 rarity=R
+[/card]
+[card]
+primitive=Autumn-Tail, Kitsune Sage
+id=1749810
+rarity=T
 [/card]
 [card]
 primitive=Hair-Strung Koto

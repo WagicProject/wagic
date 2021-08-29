@@ -1,0 +1,117 @@
+[card]
+name=Yennett, Cryptic Sovereign
+text=Flying, vigilance, menace -- Whenever Yennett, Cryptic Sovereign attacks, reveal the top card of your library. You may cast it without paying its mana cost if its converted mana cost is odd. If you don't cast it, draw a card.
+mana={2}{W}{U}{B}
+type=Legendary Creature
+subtype=Sphinx
+power=3
+toughness=5
+[/card]
+[card]
+name=Tawnos, Urza's Apprentice
+text=Haste -- {U}{R}, {T}: Copy target activated or triggered ability you control from an artifact source. You may choose new targets for the copy. (Mana abilities can't be targeted.)
+mana={U}{R}
+type=Legendary Creature
+subtype=Human Artificer
+power=1
+toughness=3
+[/card]
+[card]
+name=Sphinx of Uthuun
+abilities=flying
+text=Flying -- When Sphinx of Uthuun enters the battlefield, reveal the top five cards of your library. An opponent separates those cards into two piles. Put one pile into your hand and the other into your graveyard.
+mana={5}{U}{U}
+type=Creature
+subtype=Sphinx
+power=5
+toughness=6
+[/card]
+[card]
+name=Borderland Explorer
+text=When Borderland Explorer enters the battlefield, each player may discard a card. Each player who discarded a card this way may search his or her library for a basic land card, reveal it, put it into his or her hand, then shuffle his or her library.
+mana={1}{G}
+type=Creature
+subtype=Elf Scout
+power=3
+toughness=1
+[/card]
+[card]
+name=Primordial Mist
+text=At the beginning of your end step, you may manifest the top card of your library. (Put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.) -- Exile a face-down permanent you control face up: You may play that card this turn. (You still pay its costs. Timing rules still apply.)
+mana={4}{U}
+type=Enchantment
+[/card]
+[card]
+name=Sage's Reverie
+text=Enchant creature -- When Sage's Reverie enters the battlefield, draw a card for each Aura you control that's attached to a creature. -- Enchanted creature gets +1/+1 for each Aura you control that's attached to a creature.
+mana={3}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Aminatou's Augury
+text=Exile the top eight cards of your library. You may put a land card from among them onto the battlefield. Until end of turn, for each nonland card type, you may cast a spell of that type from among the exiled cards without paying its mana cost.
+mana={6}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Boreas Charger
+text=Flying -- When Boreas Charger leaves the battlefield, choose an opponent who controls more lands than you. Search your library for a number of Plains cards equal to the difference and reveal them. Put one of them onto the battlefield tapped and the rest into your hand. Then shuffle your library.
+mana={2}{W}
+type=Creature
+subtype=Pegasus
+power=2
+toughness=1
+[/card]
+[card]
+name=Nylea's Colossus
+text=Constellation  Whenever Nylea's Colossus or another enchantment enters the battlefield under your control, double target creature's power and toughness until end of turn.
+mana={6}{G}
+type=Enchantment Creature
+subtype=Giant
+power=6
+toughness=6
+[/card]
+[card]
+name=Jeskai Infiltrator
+text=Jeskai Infiltrator can't be blocked as long as you control no other creatures. -- When Jeskai Infiltrator deals combat damage to a player, exile it and the top card of your library in a face-down pile, shuffle that pile, then manifest those cards. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
+mana={2}{U}
+type=Creature
+subtype=Human Monk
+power=2
+toughness=3
+[/card]
+[card]
+name=Reality Scramble
+text=Put target permanent you own on the bottom of your library. Reveal cards from the top of your library until you reveal a card that shares a card type with that permanent. Put that card onto the battlefield and the rest on the bottom of your library in a random order. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
+mana={2}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Emissary of Grudges
+text=Flying, haste -- As Emissary of Grudges enters the battlefield, secretly choose an opponent. -- Reveal the player you chose: Choose new targets for target spell or ability if it's controlled by the chosen player and if it targets you or a permanent you control. Activate this ability only once.
+mana={5}{R}
+type=Creature
+subtype=Efreet
+power=6
+toughness=5
+[/card]
+[card]
+name=Conundrum Sphinx
+abilities=flying
+text=Flying -- Whenever Conundrum Sphinx attacks, each player names a card. Then each player reveals the top card of his or her library. If the card a player revealed is the card he or she named, that player puts it into his or her hand. If it's not, that player puts it on the bottom of his or her library.
+mana={2}{U}{U}
+type=Creature
+subtype=Sphinx
+power=4
+toughness=4
+[/card]
+[card]
+name=Daxos of Meletis
+text=Daxos of Meletis can't be blocked by creatures with power 3 or greater. -- Whenever Daxos of Meletis deals combat damage to a player, exile the top card of that player's library. You gain life equal to that card's converted mana cost. Until end of turn, you may cast that card and you may spend mana as though it were mana of any color to cast it.
+mana={1}{W}{U}
+type=Legendary Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]

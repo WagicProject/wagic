@@ -316,12 +316,7 @@ id=470608
 rarity=R
 [/card]
 [card]
-primitive=Dusk
-id=470609
-rarity=R
-[/card]
-[card]
-primitive=Dawn
+primitive=Dusk // Dawn
 id=470609
 rarity=R
 [/card]
@@ -966,12 +961,7 @@ id=470737
 rarity=R
 [/card]
 [card]
-primitive=Farm
-id=470738
-rarity=U
-[/card]
-[card]
-primitive=Market
+primitive=Farm // Market
 id=470738
 rarity=U
 [/card]
@@ -1006,12 +996,7 @@ id=470744
 rarity=M
 [/card]
 [card]
-primitive=Refuse
-id=470745
-rarity=R
-[/card]
-[card]
-primitive=Cooperate
+primitive=Refuse // Cooperate
 id=470745
 rarity=R
 [/card]

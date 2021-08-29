@@ -1,0 +1,7 @@
+[card]
+name=Desperate Ritual
+text=Add {R}{R}{R} to your mana pool. -- Splice onto Arcane {1}{R} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+mana={1}{R}
+type=Instant
+subtype=Arcane
+[/card]

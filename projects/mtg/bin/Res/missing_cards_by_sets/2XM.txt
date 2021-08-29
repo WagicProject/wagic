@@ -1,0 +1,44 @@
+[card]
+name=Council's Judgment
+text=Will of the council  Starting with you, each player votes for a nonland permanent you don't control. Exile each permanent with the most votes or tied for most votes.
+mana={1}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Dismantle
+target=artifact
+auto=destroy
+text=Destroy target artifact. If that artifact had counters on it, put that many +1/+1 counters or charge counters on an artifact you control.
+mana={2}{R}
+type=Sorcery
+[/card]
+[card]
+name=Oubliette
+text=When Oubliette enters the battlefield, exile target creature and all Auras attached to it. Note the number and kind of counters that were on that creature. -- When Oubliette leaves the battlefield, return the exiled card to the battlefield under its owner's control tapped with the noted number and kind of counters on it. If you do, return the exiled Aura cards to the battlefield under their owner's control attached to that permanent.
+mana={1}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Spellskite
+text={PU}: Change a target of target spell or ability to Spellskite. ({PU} can be paid with either {U} or 2 life.)
+mana={2}
+type=Artifact Creature
+subtype=Horror
+power=0
+toughness=4
+[/card]
+[card]
+name=Phyrexian Revoker
+text=As Phyrexian Revoker enters the battlefield, name a nonland card. -- Activated abilities of sources with the chosen name can't be activated.
+mana={2}
+type=Artifact Creature
+subtype=Horror
+power=2
+toughness=1
+[/card]
+[card]
+name=Council's Judgment
+text=Will of the council  Starting with you, each player votes for a nonland permanent you don't control. Exile each permanent with the most votes or tied for most votes.
+mana={1}{W}{W}
+type=Sorcery
+[/card]

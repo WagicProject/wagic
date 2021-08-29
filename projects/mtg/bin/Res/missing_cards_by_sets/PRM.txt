@@ -1,0 +1,297 @@
+[card]
+name=Desertion
+text=Counter target spell. If an artifact or creature spell is countered this way, put that card onto the battlefield under your control instead of into its owner's graveyard.
+mana={3}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Food Chain
+text=Exile a creature you control: Add X mana of any one color to your mana pool, where X is the exiled creature's converted mana cost plus one. Spend this mana only to cast creature spells.
+mana={2}{G}
+type=Enchantment
+[/card]
+[card]
+name=Magister of Worth
+abilities=flying
+text=Flying -- Will of the council  When Magister of Worth enters the battlefield, starting with you, each player votes for grace or condemnation. If grace gets more votes, each player returns each creature card from his or her graveyard to the battlefield. If condemnation gets more votes or the vote is tied, destroy all creatures other than Magister of Worth.
+mana={4}{W}{B}
+type=Creature
+subtype=Angel
+power=4
+toughness=4
+[/card]
+[card]
+name=Fortune's Favor
+text=Target opponent looks at the top four cards of your library and separates them into a face-down pile and a face-up pile. Put one pile into your hand and the other into your graveyard.
+mana={3}{U}
+type=Instant
+[/card]
+[card]
+name=Chains of Mephistopheles
+text=If a player would draw a card except the first one he or she draws in his or her draw step each turn, that player discards a card instead. If the player discards a card this way, he or she draws a card. If the player doesn't discard a card this way, he or she puts the top card of his or her library into his or her graveyard.
+mana={1}{B}
+type=Enchantment
+[/card]
+[card]
+name=Chain of Vapor
+text=Return target nonland permanent to its owner's hand. Then that permanent's controller may sacrifice a land. If the player does, he or she may copy this spell and may choose a new target for that copy.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Gaddock Teeg
+text=Noncreature spells with converted mana cost 4 or greater can't be cast. -- Noncreature spells with {X} in their mana costs can't be cast.
+mana={G}{W}
+type=Legendary Creature
+subtype=Kithkin Advisor
+power=2
+toughness=2
+[/card]
+[card]
+name=Gifts Ungiven
+text=Search your library for four cards with different names and reveal them. Target opponent chooses two of those cards. Put the chosen cards into your graveyard and the rest into your hand. Then shuffle your library.
+mana={3}{U}
+type=Instant
+[/card]
+[card]
+name=Corpsejack Menace
+text=If one or more +1/+1 counters would be placed on a creature you control, twice that many +1/+1 counters are placed on it instead.
+mana={2}{B}{G}
+type=Creature
+subtype=Fungus
+power=4
+toughness=4
+[/card]
+[card]
+name=Glacial Ray
+text=Glacial Ray deals 2 damage to target creature or player. -- Splice onto Arcane {1}{R} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+mana={1}{R}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
+name=Spellskite
+text={PU}: Change a target of target spell or ability to Spellskite. ({PU} can be paid with either {U} or 2 life.)
+mana={2}
+type=Artifact Creature
+subtype=Horror
+power=0
+toughness=4
+[/card]
+[card]
+name=Stairs to Infinity
+text=Players have no maximum hand size. -- Whenever you roll the planar die, draw a card. -- Whenever you roll {K}, reveal the top card of your planar deck. You may put it on the bottom of your planar deck.
+type=Plane
+subtype=Xerex
+[/card]
+[card]
+name=Stifle
+text=Counter target activated or triggered ability. (Mana abilities can't be targeted.)
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Jeskai Infiltrator
+text=Jeskai Infiltrator can't be blocked as long as you control no other creatures. -- When Jeskai Infiltrator deals combat damage to a player, exile it and the top card of your library in a face-down pile, shuffle that pile, then manifest those cards. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
+mana={2}{U}
+type=Creature
+subtype=Human Monk
+power=2
+toughness=3
+[/card]
+[card]
+name=Sorrow's Path
+text={T}: Choose two target blocking creatures an opponent controls. If each of those creatures could block all creatures that the other is blocking, remove both of them from combat. Each one then blocks all creatures the other was blocking.  -- Whenever Sorrow's Path becomes tapped, it deals 2 damage to you and each creature you control.
+type=Land
+[/card]
+[card]
+name=Oath of Druids
+text=At the beginning of each player's upkeep, that player chooses target player who controls more creatures than he or she does and is his or her opponent. The first player may reveal cards from the top of his or her library until he or she reveals a creature card. If he or she does, that player puts that card onto the battlefield and all other cards revealed this way into his or her graveyard.
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
+name=Celestine Reef
+text=Creatures without flying or islandwalk can't attack. -- Whenever you roll {K}, until a player planeswalks, you can't lose the game and your opponents can't win the game.
+type=Plane
+subtype=Luvion
+[/card]
+[card]
+name=Wild Pair
+text=Whenever a creature enters the battlefield, if you cast it from your hand, you may search your library for a creature card with the same total power and toughness and put it onto the battlefield. If you do, shuffle your library.
+mana={4}{G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Willbender
+facedown={3}
+autofacedown={1}{U}:morph
+autofaceup=name(Choose new targets) target(*[instant;sorcery]|stack) fizzle && activate castcard(copied noevent costx!:mytargx:! kicked!:mytargkicked:!)
+text=Morph {1}{U} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Willbender is turned face up, change the target of target spell or ability with a single target.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=2
+[/card]
+[card]
+name=Write into Being
+text=Look at the top two cards of your library. Manifest one of those cards, then put the other on the top or bottom of your library. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
+mana={2}{U}
+type=Sorcery
+[/card]
+[card]
+name=Azorius Guildmage
+text={2}{W}: Tap target creature. -- {2}{U}: Counter target activated ability. (Mana abilities can't be targeted.)
+mana={WU}{WU}
+type=Creature
+subtype=Vedalken Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Myr Superion
+text=Spend only mana produced by creatures to cast Myr Superion.
+mana={2}
+type=Artifact Creature
+subtype=Myr
+power=5
+toughness=6
+[/card]
+[card]
+name=Nalathni Dragon
+text=Flying; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.) -- {R}: Nalathni Dragon gets +1/+0 until end of turn. If this ability has been activated four or more times this turn, sacrifice Nalathni Dragon at the beginning of the next end step.
+mana={2}{R}{R}
+type=Creature
+subtype=Dragon
+power=1
+toughness=1
+[/card]
+[card]
+name=Helm of Obedience
+text={X}, {T}: Target opponent puts cards from the top of his or her library into his or her graveyard until a creature card or X cards are put into that graveyard this way, whichever comes first. If a creature card is put into that graveyard this way, sacrifice Helm of Obedience and put that card onto the battlefield under your control. X can't be 0.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Djinn Illuminatus
+text=({UR} can be paid with either {U} or {R}.) -- Flying -- Each instant and sorcery spell you cast has replicate. The replicate cost is equal to its mana cost. (When you cast it, copy it for each time you paid its replicate cost. You may choose new targets for the copies.)
+mana={5}{UR}{UR}
+type=Creature
+subtype=Djinn
+power=3
+toughness=5
+[/card]
+[card]
+name=Doomsday
+text=Search your library and graveyard for five cards and exile the rest. Put the chosen cards on top of your library in any order. You lose half your life, rounded up.
+mana={B}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Horizon Boughs
+text=All permanents untap during each players untap step. -- Whenever you roll {K}, you may search your library for up to three basic land cards, put them onto the battlefield tapped, then shuffle.
+type=Plane
+subtype=Pyrulea
+[/card]
+[card]
+name=Identity Thief
+text=Whenever Identity Thief attacks, you may exile another target nontoken creature. If you do, Identity Thief becomes a copy of that creature until end of turn. Return the exiled card to the battlefield under its owner's control at the beginning of the next end step.
+mana={2}{U}{U}
+type=Creature
+subtype=Shapeshifter
+power=0
+toughness=3
+[/card]
+[card]
+name=Tromokratis
+text=Tromokratis has hexproof unless it's attacking or blocking. -- Tromokratis can't be blocked unless all creatures defending player controls block it. (If any creature that player controls doesn't block this creature, it can't be blocked.)
+mana={5}{U}{U}
+type=Legendary Creature
+subtype=Kraken
+power=8
+toughness=8
+[/card]
+[card]
+name=Archfiend of Depravity
+abilities=flying
+text=Flying -- At the beginning of each opponent's end step, that player chooses up to two creatures he or she controls, then sacrifices the rest.
+mana={3}{B}{B}
+type=Creature
+subtype=Demon
+power=5
+toughness=4
+[/card]
+[card]
+name=Arena
+text={3}, {T}: Tap target creature you control and target creature of an opponent's choice he or she controls. Those creatures fight each other. (Each deals damage equal to its power to the other.)
+type=Land
+[/card]
+[card]
+name=Memoricide
+text=Name a nonland card. Search target player's graveyard, hand, and library for any number of cards with that name and exile them. Then that player shuffles his or her library.
+mana={3}{B}
+type=Sorcery
+[/card]
+[card]
+name=Mirrored Depths
+text=Whenever a player casts a spell, that player flips a coin. If the player loses the flip, counter that spell. -- Whenever you roll {K}, target player reveals the top card of their library. If its a nonland card, you may cast it without paying its mana cost.
+type=Plane
+subtype=Karsus
+[/card]
+[card]
+name=Mizzium Meddler
+abilities=flash
+text=Flash (You may cast this spell any time you could cast an instant.) -- When Mizzium Meddler enters the battlefield, you may change a target of target spell or ability to Mizzium Meddler.
+mana={2}{U}
+type=Creature
+subtype=Vedalken Wizard
+power=1
+toughness=4
+[/card]
+[card]
+name=Scroll Rack
+text={1}, {T}: Exile any number of cards from your hand face down. Put that many cards from the top of your library into your hand. Then look at the exiled cards and put them on top of your library in any order.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Grafdigger's Cage
+text=Creature cards can't enter the battlefield from graveyards or libraries. -- Players can't cast cards in graveyards or libraries.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Tawnos's Coffin
+text=You may choose not to untap Tawnos's Coffin during your untap step. -- {3}, {T}: Exile target creature and all Auras attached to it. Note the number and kind of counters that were on that creature. When Tawnos's Coffin leaves the battlefield or becomes untapped, return the exiled card to the battlefield under its owner's control tapped with the noted number and kind of counters on it, and if you do, return the exiled Aura cards to the battlefield under their owner's control attached to that permanent.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Tember City
+text=Whenever a player taps a land for mana, Tember City deals 1 damage to that player. -- Whenever you roll {K}, each other player sacrifices a nonland permanent.
+type=Plane
+subtype=Kinshala
+[/card]
+[card]
+name=Tazeem
+text=Creatures can't block. -- Whenever you roll {K}, draw a card for each land you control.
+type=Plane
+subtype=Zendikar
+[/card]
+[card]
+name=Alhammarret, High Arbiter
+abilities=flying
+text=Flying -- As Alhammarret, High Arbiter enters the battlefield, each opponent reveals his or her hand. You choose the name of a nonland card revealed this way. -- Your opponents can't cast spells with the chosen name (as long as this creature is on the battlefield).
+mana={5}{U}{U}
+type=Legendary Creature
+subtype=Sphinx
+power=5
+toughness=5
+[/card]
+[card]
+name=Transmute Artifact
+text=Sacrifice an artifact. If you do, search your library for an artifact card. If that card's converted mana cost is less than or equal to the sacrificed artifact's converted mana cost, put it onto the battlefield. If it's greater, you may pay {X}, where X is the difference. If you do, put it onto the battlefield. If you don't, put it into its owner's graveyard. Then shuffle your library.
+mana={U}{U}
+type=Sorcery
+[/card]

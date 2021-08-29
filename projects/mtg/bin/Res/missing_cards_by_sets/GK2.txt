@@ -1,0 +1,55 @@
+[card]
+name=Isperia the Inscrutable
+abilities=flying
+text=Flying -- Whenever Isperia the Inscrutable deals combat damage to a player, name a card. That player reveals his or her hand. If he or she reveals the named card, search your library for a creature card with flying, reveal it, put it into your hand, then shuffle your library.
+mana={1}{W}{W}{U}{U}
+type=Legendary Creature
+subtype=Sphinx
+power=3
+toughness=6
+[/card]
+[card]
+name=Burning-Tree Shaman
+text=Whenever a player activates an ability that isn't a mana ability, Burning-Tree Shaman deals 1 damage to that player.
+mana={1}{R}{G}
+type=Creature
+subtype=Centaur Shaman
+power=3
+toughness=4
+[/card]
+[card]
+name=Azorius Guildmage
+text={2}{W}: Tap target creature. -- {2}{U}: Counter target activated ability. (Mana abilities can't be targeted.)
+mana={WU}{WU}
+type=Creature
+subtype=Vedalken Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Experiment Kraj
+text=Experiment Kraj has all activated abilities of each other creature with a +1/+1 counter on it. -- {T}: Put a +1/+1 counter on target creature.
+mana={2}{G}{G}{U}{U}
+type=Legendary Creature
+subtype=Ooze Mutant
+power=4
+toughness=6
+[/card]
+[card]
+name=Orzhov Pontiff
+text=Haunt (When this creature dies, exile it haunting target creature.) -- When Orzhov Pontiff enters the battlefield or the creature it haunts dies, choose one  Creatures you control get +1/+1 until end of turn; or creatures you don't control get -1/-1 until end of turn.
+mana={1}{W}{B}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+[/card]
+[card]
+name=Rakdos, Lord of Riots
+text=You can't cast Rakdos, Lord of Riots unless an opponent lost life this turn. -- Flying, trample -- Creature spells you cast cost {1} less to cast for each 1 life your opponents have lost this turn.
+mana={B}{B}{R}{R}
+type=Legendary Creature
+subtype=Demon
+power=6
+toughness=6
+[/card]

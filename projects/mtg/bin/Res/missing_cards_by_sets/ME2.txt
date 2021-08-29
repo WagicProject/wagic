@@ -1,0 +1,124 @@
+[card]
+name=Demonic Consultation
+text=Name a card. Exile the top six cards of your library, then reveal cards from the top of your library until you reveal the named card. Put that card into your hand and exile all other cards revealed this way.
+mana={B}
+type=Instant
+[/card]
+[card]
+name=Errand of Duty
+text=Put a 1/1 white Knight creature token with banding onto the battlefield. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Forgotten Lore
+text=Target opponent chooses a card in your graveyard. You may pay {G}. If you do, repeat this process except that opponent can't choose a card already chosen for Forgotten Lore. Then put the last chosen card into your hand.
+mana={G}
+type=Sorcery
+[/card]
+[card]
+name=Sacred Boon
+text=Prevent the next 3 damage that would be dealt to target creature this turn. At the beginning of the next end step, put a +0/+1 counter on that creature for each 1 damage prevented this way.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Shield Bearer
+abilities=banding
+text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+power=0
+toughness=3
+[/card]
+[card]
+name=Phantasmal Mount
+abilities=flying
+text=Flying -- {T}: Target creature you control with toughness 2 or less gets +1/+1 and gains flying until end of turn. When Phantasmal Mount leaves the battlefield this turn, sacrifice that creature. When the creature leaves the battlefield this turn, sacrifice Phantasmal Mount.
+mana={1}{U}
+type=Creature
+subtype=Illusion Horse
+power=1
+toughness=1
+[/card]
+[card]
+name=Icatian Phalanx
+abilities=banding
+text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={4}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=4
+[/card]
+[card]
+name=Scars of the Veteran
+text=You may exile a white card from your hand rather than pay Scars of the Veteran's mana cost. -- Prevent the next 7 damage that would be dealt to target creature or player this turn. At the beginning of the next end step, put a +0/+1 counter on that creature for each 1 damage prevented this way.
+mana={4}{W}
+type=Instant
+[/card]
+[card]
+name=Helm of Obedience
+text={X}, {T}: Target opponent puts cards from the top of his or her library into his or her graveyard until a creature card or X cards are put into that graveyard this way, whichever comes first. If a creature card is put into that graveyard this way, sacrifice Helm of Obedience and put that card onto the battlefield under your control. X can't be 0.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Phyrexian Portal
+text={3}: If your library has ten or more cards in it, target opponent looks at the top ten cards of your library and separates them into two face-down piles. Exile one of those piles. Search the other pile for a card, put it into your hand, then shuffle the rest of that pile into your library.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Nature's Blessing
+text={G}{W}, Discard a card: Put a +1/+1 counter on target creature or that creature gains banding, first strike, or trample. (This effect lasts indefinitely. Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding a player controls are blocking or being blocked by a creature, that player divides that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={2}{G}{W}
+type=Enchantment
+[/card]
+[card]
+name=Gustha's Scepter
+text={T}: Exile a card from your hand face down. You may look at it for as long as it remains exiled. -- {T}: Return a card you own exiled with Gustha's Scepter to your hand. -- When you lose control of Gustha's Scepter, put all cards exiled with Gustha's Scepter into their owner's graveyard.
+mana={0}
+type=Artifact
+[/card]
+[card]
+name=Musician
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- {T}: Put a music counter on target creature. If it doesn't have "At the beginning of your upkeep, destroy this creature unless you pay {1} for each music counter on it," it gains that ability.
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=3
+[/card]
+[card]
+name=Icy Prison
+text=When Icy Prison enters the battlefield, exile target creature. -- At the beginning of your upkeep, sacrifice Icy Prison unless any player pays {3}. -- When Icy Prison leaves the battlefield, return the exiled card to the battlefield under its owner's control.
+mana={U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Jeweled Amulet
+text={1}, {T}: Put a charge counter on Jeweled Amulet. Note the type of mana spent to pay this activation cost. Activate this ability only if there are no charge counters on Jeweled Amulet. -- {T}, Remove a charge counter from Jeweled Amulet: Add one mana of Jeweled Amulet's last noted type to your mana pool.
+mana={0}
+type=Artifact
+[/card]
+[card]
+name=Kjeldoran Skycaptain
+abilities=flying,first strike,banding
+text=Flying; first strike; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={4}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Krovikan Vampire
+text=At the beginning of each end step, if a creature dealt damage by Krovikan Vampire this turn died, put that card onto the battlefield under your control. Sacrifice it when you lose control of Krovikan Vampire.
+mana={3}{B}{B}
+type=Creature
+subtype=Vampire
+power=3
+toughness=3
+[/card]

@@ -1,0 +1,9 @@
+[card]
+name=Vizier of the Anointed
+text=When Vizier of the Anointed enters the battlefield, you may search your library for a creature card with eternalize or embalm, put that card into your graveyard, then shuffle your library. -- Whenever you activate an eternalize or embalm ability, draw a card.
+mana={3}{U}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=4
+[/card]

@@ -1,0 +1,211 @@
+[card]
+name=Secret Plans
+text=Face-down creatures you control get +0/+1. -- Whenever a permanent you control is turned face up, draw a card.
+mana={G}{U}
+type=Enchantment
+[/card]
+[card]
+name=Chromeshell Crab
+text=Morph {4}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Chromeshell Crab is turned face up, you may exchange control of target creature you control and target creature an opponent controls.
+mana={4}{U}
+type=Creature
+subtype=Crab Beast
+power=3
+toughness=3
+[/card]
+[card]
+name=Ixidron
+text=As Ixidron enters the battlefield, turn all other nontoken creatures face down. (They're 2/2 creatures.) -- Ixidron's power and toughness are each equal to the number of face-down creatures on the battlefield.
+mana={3}{U}{U}
+type=Creature
+subtype=Illusion
+power=*
+toughness=*
+[/card]
+[card]
+name=Kheru Spellsnatcher
+text=Morph {4}{U}{U} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Kheru Spellsnatcher is turned face up, counter target spell. If that spell is countered this way, exile it instead of putting it into its owner's graveyard. You may cast that card without paying its mana cost for as long as it remains exiled.
+mana={3}{U}
+type=Creature
+subtype=Naga Wizard
+power=3
+toughness=3
+[/card]
+[card]
+name=Divine Reckoning
+text=Each player chooses a creature he or she controls. Destroy the rest. -- Flashback {5}{W}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={2}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Tempt with Discovery
+text=Tempting offer  Search your library for a land card and put it onto the battlefield. Each opponent may search his or her library for a land card and put it onto the battlefield. For each opponent who searches a library this way, search your library for a land card and put it onto the battlefield. Then each player who searched a library this way shuffles it.
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
+name=Pendant of Prosperity
+text=Pendant of Prosperity enters the battlefield under the control of an opponent of your choice. -- {2}, {T}: Draw a card, then you may put a land card from your hand onto the battlefield. Pendant of Prosperity's owner draws a card, then that player may put a land card from their hand onto the battlefield.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Scroll of Fate
+text={T}: Manifest a card from your hand. (Put that card onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Trail of Mystery
+text=Whenever a face-down creature enters the battlefield under your control, you may search your library for a basic land card, reveal it, put it into your hand, then shuffle your library. -- Whenever a permanent you control is turned face up, if it's a creature, it gets +2/+2 until end of turn.
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
+name=Deathmist Raptor
+abilities=deathtouch
+text=Deathtouch -- Whenever a permanent you control is turned face up, you may return Deathmist Raptor from your graveyard to the battlefield face up or face down. -- Megamorph {4}{G} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its megamorph cost and put a +1/+1 counter on it.)
+mana={1}{G}{G}
+type=Creature
+subtype=Lizard Beast
+power=3
+toughness=3
+[/card]
+[card]
+name=Bloodthirsty Blade
+auto=teach(creature) 2/0
+auto=teach(creature) mustattack
+text=Equipped creature gets +2/+0 and is goaded. (It attacks each combat if able and attacks a player other than you if able.) -- {1}: Attach Bloodthirsty Blade to target creature an opponent controls. Activate this ability only any time you could cast a sorcery.
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Marisi, Breaker of the Coil
+text=Your opponents can't cast spells during combat. -- Whenever a creature you control deals combat damage to a player, goad each creature that player controls. (Until your next turn, those creatures attack each combat if able and attack a player other than you if able.)
+mana={1}{R}{G}{W}
+type=Legendary Creature
+subtype=Cat Warrior
+power=5
+toughness=4
+[/card]
+[card]
+name=Kadena, Slinking Sorcerer
+text=The first face-down creature spell you cast each turn costs {3} less to cast. -- Whenever a face-down creature enters the battlefield under your control, draw a card.
+mana={1}{B}{G}{U}
+type=Legendary Creature
+subtype=Naga Wizard
+power=3
+toughness=3
+[/card]
+[card]
+name=Tahngarth, First Mate
+text=Tahngarth, First Mate can't be blocked by more than one creature. -- Whenever an opponent attacks with one or more creatures, if Tahngarth is tapped, you may have that opponent gain control of Tahngarth until end of combat. If you do, choose a player or planeswalker that opponent is attacking. Tahngarth is attacking that player or planeswalker.
+mana={2}{R}{G}
+type=Legendary Creature
+subtype=Minotaur Warrior
+power=5
+toughness=5
+[/card]
+[card]
+name=Aeon Engine
+text=Aeon Engine enters the battlefield tapped. -- {T}, Exile Aeon Engine: Reverse the game's turn order. (For example, if play had proceeded clockwise around the table, it now goes counterclockwise.)
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Thieving Amalgam
+text=At the beginning of each opponent's upkeep, you manifest the top card of that player's library. (Put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.) -- Whenever a creature you control but don't own dies, its owner loses 2 life and you gain 2 life.
+mana={5}{B}{B}
+type=Creature
+subtype=Ape Snake
+power=6
+toughness=7
+[/card]
+[card]
+name=Gift of Doom
+text=Enchant creature -- Enchanted creature has deathtouch and indestructible. -- MorphSacrifice another creature. (You may cast this card face down as a 2/2 creature for 3 . Turn it face up any time for its morph cost.) -- As Gift of Doom is turned face up, you may attach it to a creature.
+mana={4}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Wildfire Devils
+text=When Wildfire Devils enters the battlefield and at the beginning of your upkeep, choose a player at random. That player exiles an instant or sorcery card from their graveyard. Copy that card. You may cast the copy without paying its mana cost.
+mana={3}{R}
+type=Creature
+subtype=Devil
+power=4
+toughness=2
+[/card]
+[card]
+name=Hedonist's Trove
+text=When Hedonist's Trove enters the battlefield, exile all cards from target opponent's graveyard. -- You may play land cards exiled with Hedonist's Trove. -- You may cast nonland cards exiled with Hedonist's Trove. You can't cast more than one spell this way each turn.
+mana={5}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Ghastly Conscription
+text=Exile all creature cards from target player's graveyard in a face-down pile, shuffle that pile, then manifest those cards. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
+mana={5}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Thought Sponge
+text=Flash -- Thought Sponge enters the battlefield with a number of +1/+1 counters on it equal to the greatest number of cards an opponent has drawn this turn. -- When Thought Sponge dies, draw cards equal to its power.
+mana={3}{U}
+type=Creature
+subtype=Sponge
+power=1
+toughness=1
+[/card]
+[card]
+name=Sudden Substitution
+text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Exchange control of target noncreature spell and target creature. Then the spell's controller may choose new targets for it.
+mana={2}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Wall of Stolen Identity
+text=You may have Wall of Stolen Identity enter the battlefield as a copy of any creature on the battlefield, except it's a Wall in addition to its other types and has defender. When you do, tap the copied creature and it doesn't untap during its controller's untap step for as long as you control Wall of Stolen Identity.
+mana={3}{U}
+type=Creature
+subtype=Shapeshifter Wall
+power=0
+toughness=0
+[/card]
+[card]
+name=Mandate of Peace
+restriction=during battle
+auto=ueot maxCast(*)0 opponent
+text=Cast this spell only during combat. -- Your opponents can't cast spells this turn. -- End the combat phase. (Remove all attackers and blockers from combat. Exile all spells and abilities from the stack, including this spell.)
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Willbender
+facedown={3}
+autofacedown={1}{U}:morph
+autofaceup=name(Choose new targets) target(*[instant;sorcery]|stack) fizzle && activate castcard(copied noevent costx!:mytargx:! kicked!:mytargkicked:!)
+text=Morph {1}{U} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Willbender is turned face up, change the target of target spell or ability with a single target.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=2
+[/card]
+[card]
+name=Vesuvan Shapeshifter
+text=As Vesuvan Shapeshifter enters the battlefield or is turned face up, you may choose another creature on the battlefield. If you do, until Vesuvan Shapeshifter is turned face down, it becomes a copy of that creature and gains "At the beginning of your upkeep, you may turn this creature face down." -- Morph {1}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={3}{U}{U}
+type=Creature
+subtype=Shapeshifter
+power=0
+toughness=0
+[/card]
+[card]
+name=Strionic Resonator
+text={2}, {T}: Copy target triggered ability you control. You may choose new targets for the copy. (A triggered ability uses the words "when," "whenever," or "at.")
+mana={2}
+type=Artifact
+[/card]

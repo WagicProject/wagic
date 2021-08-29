@@ -1,0 +1,21 @@
+[card]
+name=Desertion
+text=Counter target spell. If an artifact or creature spell is countered this way, put that card onto the battlefield under your control instead of into its owner's graveyard.
+mana={3}{U}{U}
+type=Instant
+[/card]
+[card]
+name=The Mimeoplasm
+text=As The Mimeoplasm enters the battlefield, you may exile two creature cards from graveyards. If you do, it enters the battlefield as a copy of one of those cards with a number of additional +1/+1 counters on it equal to the power of the other card.
+mana={2}{G}{U}{B}
+type=Legendary Creature
+subtype=Ooze
+power=0
+toughness=0
+[/card]
+[card]
+name=Scroll Rack
+text={1}, {T}: Exile any number of cards from your hand face down. Put that many cards from the top of your library into your hand. Then look at the exiled cards and put them on top of your library in any order.
+mana={2}
+type=Artifact
+[/card]

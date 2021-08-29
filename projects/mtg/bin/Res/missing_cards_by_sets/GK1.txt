@@ -1,0 +1,49 @@
+[card]
+name=Stolen Identity
+text=Put a token onto the battlefield that's a copy of target artifact or creature. -- Cipher (Then you may exile this spell card encoded on a creature you control. Whenever that creature deals combat damage to a player, its controller may cast a copy of the encoded card without paying its mana cost.)
+mana={4}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Etrata, the Silencer
+text=Etrata, the Silencer can't be blocked. -- Whenever Etrata deals combat damage to a player, exile target creature that player controls and put a hit counter on that card. That player loses the game if they own three or more exiled cards with hit counters on them. Etrata's owner shuffles Etrata into their library.
+mana={2}{U}{B}
+type=Legendary Creature
+subtype=Vampire Assassin
+power=3
+toughness=5
+[/card]
+[card]
+name=Razia, Boros Archangel
+text=Flying, vigilance, haste -- {T}: The next 3 damage that would be dealt to target creature you control this turn is dealt to another target creature instead.
+mana={4}{R}{R}{W}{W}
+type=Legendary Creature
+subtype=Angel
+power=6
+toughness=3
+[/card]
+[card]
+name=Lazav, Dimir Mastermind
+abilities=opponentshroud
+text=Hexproof -- Whenever a creature card is put into an opponent's graveyard from anywhere, you may have Lazav, Dimir Mastermind become a copy of that card except its name is still Lazav, Dimir Mastermind, it's legendary in addition to its other types, and it gains hexproof and this ability.
+mana={U}{U}{B}{B}
+type=Legendary Creature
+subtype=Shapeshifter
+power=3
+toughness=3
+[/card]
+[card]
+name=Call of the Nightwing
+text=Put a 1/1 blue and black Horror creature token with flying onto the battlefield. -- Cipher (Then you may exile this spell card encoded on a creature you control. Whenever that creature deals combat damage to a player, its controller may cast a copy of the encoded card without paying its mana cost.)
+mana={2}{U}{B}
+type=Sorcery
+[/card]
+[card]
+name=Djinn Illuminatus
+text=({UR} can be paid with either {U} or {R}.) -- Flying -- Each instant and sorcery spell you cast has replicate. The replicate cost is equal to its mana cost. (When you cast it, copy it for each time you paid its replicate cost. You may choose new targets for the copies.)
+mana={5}{UR}{UR}
+type=Creature
+subtype=Djinn
+power=3
+toughness=5
+[/card]

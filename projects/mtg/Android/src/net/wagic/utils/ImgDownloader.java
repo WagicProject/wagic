@@ -1887,6 +1887,34 @@ public class ImgDownloader {
             cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/8/4/84da9c36-5d9c-4e29-b6cc-c5c10e490f2e.jpg?1604194822";
         else if (id.equals("495188t")) //Cat Beast 2/2
             cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/e/2/e2c91781-acf9-4cff-be1a-85148ad2a683.jpg?1604194683";
+        else if (id.equals("425847"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/2/e/2e376bdf-076c-471a-9408-b36fc5b8405b.jpg?1593812924";
+        else if (id.equals("293395") || id.equals("29339510"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/9/4/940509ec-8f58-4593-a598-142a827f55b0.jpg?1573507789";
+        else if (id.equals("17498") || id.equals("1749810"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/4/c/4c663245-dfb6-4d92-8ac7-ffe3d5d12187.jpg?1562066227";
+        else if (id.equals("51974") || id.equals("5197410"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/c/c/ccdda4dd-f2e3-419e-9f4d-15d7270e27ee.jpg?1562548183";
+        else if (id.equals("52495"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/5/c/5cf835fb-4953-486c-aed2-2208ca31df31.jpg?1562545025";
+        else if (id.equals("5249510"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/back/5/c/5cf835fb-4953-486c-aed2-2208ca31df31.jpg?1562545025";
+        else if (id.equals("52473"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/8/7/870e6492-3e4d-4680-9a78-a99782039876.jpg?1562546187";
+        else if (id.equals("5247310"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/back/8/7/870e6492-3e4d-4680-9a78-a99782039876.jpg?1562546187";
+        else if (id.equals("52137"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/4/6/466f7f14-72b7-46c9-b8d6-a99bf92c4089.jpg?1562544411";
+        else if (id.equals("5213710"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/back/4/6/466f7f14-72b7-46c9-b8d6-a99bf92c4089.jpg?1562544411";
+        else if (id.equals("52530"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/b/f/bfc92a35-9e40-4a7b-a7cb-f0b4537ea996.jpg?1562547835";
+        else if (id.equals("5253010"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/back/b/f/bfc92a35-9e40-4a7b-a7cb-f0b4537ea996.jpg?1562547835";
+        else if (id.equals("52704"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/7/2/72887f7f-4156-4b88-aef5-b96dea57903e.jpg?1562545665";
+        else if (id.equals("5270410"))
+            cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/back/7/2/72887f7f-4156-4b88-aef5-b96dea57903e.jpg?1562545665";
         else if(id.equals("297220"))
             cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/back/9/5/953dbe84-bcf5-4942-9eca-8617e4713984.jpg?1628323501"; //Pelakka Caverns
         else if(id.equals("297221"))
@@ -2907,7 +2935,9 @@ public class ImgDownloader {
                 rarity = "t";
             if(id != null && (id.equals("1750411") || id.equals("5176911") || id.equals("44680711") || id.equals("29530711") ||
                     id.equals("45108910") || id.equals("530447") || id.equals("530448") || id.equals("530449") || id.equals("297220") ||
-                    id.equals("297221") || id.equals("297222") || id.equals("297223") || id.equals("297224") || id.equals("297225")))
+                    id.equals("297221") || id.equals("297222") || id.equals("297223") || id.equals("297224") || id.equals("297225") ||
+                    id.equals("29339510") || id.equals("1749810") || id.equals("5197410") || id.equals("5249510") || id.equals("5247310") ||
+                    id.equals("5213710") || id.equals("5253010") || id.equals("5270410")))
                 rarity = "";
             int c = lines.indexOf("[/card]", lastIndex);
             if (c > 0)

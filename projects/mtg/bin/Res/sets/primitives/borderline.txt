@@ -10486,17 +10486,8 @@ subtype=Egg
 [/card]
 [card]
 name=Chicken a la King
-auto=@dierolled(*|battlefield) result(6) from(controller):all(chicken|battlefield) counter(1/1)
-auto={T(*[chicken]|mybattlefield)}:rolld6 6 winability donothing winabilityend rolld6end
-text=Whenever a 6 is rolled on a six-sided die, put a +1/+1 counter on each Chicken in play. (You may roll dice only when a card instructs you to.) -- Tap a Chicken you control: Roll a six-sided die.
-mana={1}{U}{U}
-type=Summon
-subtype=Chicken
-[/card]
-[card]
-name=Chicken à la King
-auto=@dierolled(*|battlefield) result(6) from(controller):all(chicken|battlefield) counter(1/1)
-auto={T(*[chicken]|mybattlefield)}:rolld6 6 winability donothing winabilityend rolld6end
+auto=@dierolled(*|battlefield) result(6) from(controller):all(bird|battlefield) counter(1/1)
+auto={T(*[bird]|mybattlefield)}:rolld6 6 winability donothing winabilityend rolld6end
 text=Whenever a 6 is rolled on a six-sided die, put a +1/+1 counter on each Bird. (You may roll dice only when instructed to.) -- Tap an untapped Bird you control: Roll a six-sided die. (Like now.)
 mana={1}{U}{U}
 type=Creature
@@ -12192,6 +12183,14 @@ type=Snow Creature
 subtype=Wurm
 power=4
 toughness=4
+[/card]
+[card]
+name=Conjurer's Ban
+auto=chooseanameopp emblem transforms((,newability[maxCast(*[chosenname])0 controller],newability[maxCast(*[chosenname])0 opponent])) uynt chooseend
+auto=draw:1 controller
+text=Name a card. Until your next turn, the named card can't be played. -- Draw a card.
+mana={W}{B}
+type=Sorcery
 [/card]
 [card]
 name=Connive // Concoct
@@ -14696,6 +14695,13 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Deathbellow War Cry
+auto=name(Search 4 different minotoaurs) target(<upto:4>creature[minotaur]|myLibrary) moveTo(myBattlefield)
+text=Search your library for up to four Minotaur creature cards with different names, put them onto the battlefield, then shuffle.
+mana={5}{R}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Deathbloom Thallid
 auto=_DIES_create(saproling:creature saproling:1/1:green:)
 text=When Deathbloom Thallid dies, create a 1/1 green Saproling creature token.
@@ -15410,6 +15416,19 @@ auto=@movedTo(*[-mygraveyard]) from(mygraveyard):create(bat:creature bat:1/1:bla
 text=Whenever one or more creature cards leave your graveyard, create a 1/1 black Bat creature token with flying.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Desecration Demon
+abilities=flying
+auto=@each combatbegins restriction{type(creature|opponentbattlefield)~morethan~0}:name(Sacrifice and tap) ability$!name(Sacrifice and tap) may name(Sacrifice and tap) target(creature|mybattlefield) counter(0/0.1.DesecrationEffect)!$ opponent
+auto=@counteradded(0/0.1.DesecrationEffect) from(creature|opponentbattlefield):name(Tap and put counter) tap && counter(1/1)
+auto=@counteradded(0/0.1.DesecrationEffect) from(creature|opponentbattlefield):name(Tap and put counter) all(creature[counter{0/0.1.DesecrationEffect}]|opponentBattlefield) sacrifice
+text=Flying -- At the beginning of each combat, any opponent may sacrifice a creature. If a player does, tap Desecration Demon and put a +1/+1 counter on it.
+mana={2}{B}{B}
+type=Creature
+subtype=Demon
+power=6
+toughness=6
 [/card]
 [card]
 name=Desert Cerodon
@@ -24376,7 +24395,7 @@ mana={3}
 type=Artifact
 [/card]
 [card]
-name=Gatebreaker Ram 
+name=Gatebreaker Ram
 auto=foreach(gate|myBattlefield) 1/1
 auto=aslongas(gate|myBattlefield) vigilance >1
 auto=aslongas(gate|myBattlefield) trample >1
@@ -26250,6 +26269,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Goblin Snowman
+auto=@combat(blocking) source(this):preventAllCombatDamage to(this) && preventAllCombatDamage from(this)
+auto={T}:name(Deal 1 damage) damage:1 target(creature[blocking]|battlefield)
+text=Whenever Goblin Snowman blocks, prevent all combat damage that would be dealt to and dealt by it this turn. -- {T}: Goblin Snowman deals 1 damage to target creature it's blocking.
+mana={3}{R}
+type=Creature
+subtype=Goblin
+power=1
+toughness=1
+[/card]
+[card]
 name=Goblin Test Pilot
 abilities=flying
 auto={T}:all(this) rolld6 6 winability counter(0/0,1,GoblinEffect) winabilityend loseability counter(0/0,1,GoblinEffect) loseabilityend rolld6end
@@ -27348,7 +27378,7 @@ type=Creature
 subtype=Tiefling Rogue
 power=3
 toughness=2
-[/card
+[/card]
 [card]
 name=Hellish Rebuke
 auto=all(*|opponentbattlefield) transforms((,newability[@damagefoeof(player) from(this):sacrifice and!( life:-2 controller )!])) ueot
@@ -33900,7 +33930,7 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Kangee, Sky 
+name=Kangee, Sky Warden
 abilities=flying,vigilance
 auto=_ATTACKING_all(creature[flying;attacking]) 2/0 ueot
 auto=@combat(blocking) source(this):all(creature[flying;blocking]) 0/2 ueot
@@ -39593,6 +39623,16 @@ mana={2}
 type=Artifact
 [/card]
 [card]
+name=Meddling Mage
+auto=chooseanameopp transforms((,newability[maxCast(*[chosenname])0 controller],newability[maxCast(*[chosenname])0 opponent])) forever chooseend nonland
+text=As Meddling Mage enters the battlefield, name a nonland card. -- The named card can't be cast.
+mana={W}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
 name=Medicine Runner
 auto=if type(*[counter{any}]|battlefield)~morethan~0 then may name(Remove a counter) removesinglecountertype(1) target(*[counter{any}]|battlefield)
 text=When Medicine Runner enters the battlefield, you may remove a counter from target permanent.
@@ -42476,6 +42516,13 @@ mana={2}{B}
 type=Sorcery
 [/card]
 [card]
+name=Nevermore
+auto=chooseanameopp transforms((,newability[maxCast(*[chosenname])0 controller],newability[maxCast(*[chosenname])0 opponent])) forever chooseend nonland
+text=As Nevermore enters the battlefield, name a nonland card. -- The named card can't be cast.
+mana={1}{W}{W}
+type=Enchantment
+[/card]
+[card]
 name=Neverwinter Dryad
 auto={2}{S}:name(Search forest) target(forest[basic]|mylibrary) moveto(myBattlefield) and!( tap(noevent) )!
 text={2}, Sacrifice Neverwinter Dryad: Search your library for a basic Forest card, put it onto the battlefield tapped, then shuffle.
@@ -43437,9 +43484,13 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Oakhame Ranger
+name=Oakhame Ranger // Bring Back
+abilities=adventure
+other={1}{B} name(Adventure)
+auto=if paid(alternative) then name(Create 2 humans) token(Human,Creature Human,1/1,white)*2
+auto=if paid(alternative) then transforms((,newability[moveto(exile) and!( transforms((,newability[canplayfromexile])) forever )!])) forever
 auto={T}:all(creature|mybattlefield) 1/1 ueot
-text={T}: Creatures you control get +1/+1 until end of turn.
+text={T}: Creatures you control get +1/+1 until end of turn. // Create two 1/1 white Human creature tokens. (Then exile this card. You may cast the creature later from exile.)
 mana={GW}{GW}{GW}{GW}
 type=Creature
 subtype=Elf Knight
@@ -46151,6 +46202,33 @@ auto={2}{T}:name(Choose first strike) transforms((,newability[target(creature[fi
 auto={2}{T}:name(Choose trample) transforms((,newability[target(creature[trample]) -trample ueot],newability[target(creature) trample ueot])) ueot
 text={2}, {T}: Choose one — flying; first strike; shadow; or trample. Target creature with that ability loses it until end of turn and another target creature gains it until end of turn.
 mana={2}
+type=Artifact
+[/card]
+[card]
+name=Phyrexian Processor
+auto=choice name(Pay 0 life) transforms((,newability[{4}{T}:name(Create minion) token(Minion^Creature Minion^0/0^black)])) forever
+auto=if compare(lifetotal)~morethan~0 then choice name(Pay 1 life) name(Pay 1 life) transforms((,newability[{4}{T}:name(Create minion) token(Minion^Creature Minion^1/1^black)])) forever
+auto=if compare(lifetotal)~morethan~1 then choice name(Pay 2 life) name(Pay 2 life) transforms((,newability[{4}{T}:name(Create minion) token(Minion^Creature Minion^2/2^black)])) forever
+auto=if compare(lifetotal)~morethan~2 then choice name(Pay 3 life) name(Pay 3 life) transforms((,newability[{4}{T}:name(Create minion) token(Minion^Creature Minion^3/3^black)])) forever
+auto=if compare(lifetotal)~morethan~3 then choice name(Pay 4 life) name(Pay 4 life) transforms((,newability[{4}{T}:name(Create minion) token(Minion^Creature Minion^4/4^black)])) forever
+auto=if compare(lifetotal)~morethan~4 then choice name(Pay 5 life) name(Pay 5 life) transforms((,newability[{4}{T}:name(Create minion) token(Minion^Creature Minion^5/5^black)])) forever
+auto=if compare(lifetotal)~morethan~5 then choice name(Pay 6 life) name(Pay 6 life) transforms((,newability[{4}{T}:name(Create minion) token(Minion^Creature Minion^6/6^black)])) forever
+auto=if compare(lifetotal)~morethan~6 then choice name(Pay 7 life) name(Pay 7 life) transforms((,newability[{4}{T}:name(Create minion) token(Minion^Creature Minion^7/7^black)])) forever
+auto=if compare(lifetotal)~morethan~7 then choice name(Pay 8 life) name(Pay 8 life) transforms((,newability[{4}{T}:name(Create minion) token(Minion^Creature Minion^8/8^black)])) forever
+auto=if compare(lifetotal)~morethan~8 then choice name(Pay 9 life) name(Pay 9 life) transforms((,newability[{4}{T}:name(Create minion) token(Minion^Creature Minion^9/9^black)])) forever
+auto=if compare(lifetotal)~morethan~9 then choice name(Pay 10 life) name(Pay 10 life) transforms((,newability[{4}{T}:name(Create minion) token(Minion^Creature Minion^10/10^black)])) forever
+auto=if compare(lifetotal)~morethan~10 then choice name(Pay 11 life) name(Pay 11 life) transforms((,newability[{4}{T}:name(Create minion) token(Minion^Creature Minion^11/11^black)])) forever
+auto=if compare(lifetotal)~morethan~11 then choice name(Pay 12 life) name(Pay 12 life) transforms((,newability[{4}{T}:name(Create minion) token(Minion^Creature Minion^12/12^black)])) forever
+auto=if compare(lifetotal)~morethan~12 then choice name(Pay 13 life) name(Pay 13 life) transforms((,newability[{4}{T}:name(Create minion) token(Minion^Creature Minion^13/13^black)])) forever
+auto=if compare(lifetotal)~morethan~13 then choice name(Pay 14 life) name(Pay 14 life) transforms((,newability[{4}{T}:name(Create minion) token(Minion^Creature Minion^14/14^black)])) forever
+auto=if compare(lifetotal)~morethan~14 then choice name(Pay 15 life) name(Pay 15 life) transforms((,newability[{4}{T}:name(Create minion) token(Minion^Creature Minion^15/15^black)])) forever
+auto=if compare(lifetotal)~morethan~15 then choice name(Pay 16 life) name(Pay 16 life) transforms((,newability[{4}{T}:name(Create minion) token(Minion^Creature Minion^16/16^black)])) forever
+auto=if compare(lifetotal)~morethan~16 then choice name(Pay 17 life) name(Pay 17 life) transforms((,newability[{4}{T}:name(Create minion) token(Minion^Creature Minion^17/17^black)])) forever
+auto=if compare(lifetotal)~morethan~17 then choice name(Pay 18 life) name(Pay 18 life) transforms((,newability[{4}{T}:name(Create minion) token(Minion^Creature Minion^18/18^black)])) forever
+auto=if compare(lifetotal)~morethan~18 then choice name(Pay 19 life) name(Pay 19 life) transforms((,newability[{4}{T}:name(Create minion) token(Minion^Creature Minion^19/19^black)])) forever
+auto=if compare(lifetotal)~morethan~19 then choice name(Pay 20 life) name(Pay 20 life) transforms((,newability[{4}{T}:name(Create minion) token(Minion^Creature Minion^20/20^black)])) forever
+text=As Phyrexian Processor enters the battlefield, pay any amount of life. -- {4}, {T}: Put an X/X black Minion creature token onto the battlefield, where X is the life paid as Phyrexian Processor entered the battlefield.
+mana={4}
 type=Artifact
 [/card]
 [card]
@@ -49510,8 +49588,7 @@ abilities=foretell
 target=*[creature;artifact]|battlefield
 autohand={2}:name(Pay 2 and exile face-down) name(Pay 2 and exile face-down) doforetell myturnonly
 autoexile={U} restriction{compare(canforetellcast)~morethan~0,can play sorcery}:name(Cast with foretell) name(Cast with foretell) activate castcard(alternative)
-auto=moveto(ownerexile)
-auto=token(Bird,Creature Bird,1/1,blue,flying) targetController
+auto=moveto(ownerexile) && token(Bird,Creature Bird,1/1,blue,flying) targetController
 text=Exile target artifact or creature. Its controller creates a 1/1 blue Bird creature token with flying. -- Foretell {U} (During your turn, you may pay {2} and exile this card from your hand face down. Cast it on a later turn for its foretell cost.)
 mana={1}{U}
 type=Sorcery
@@ -58608,6 +58685,20 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Sol, Advocate Eternal
+abilities=flying,vigilance,partner
+auto=@combat(attacking) source(this) restriction{type(creature[-blocking;attacking;iscommander]|myBattlefield)~morethan~1}:name(Support 4) target(<upto:4>creature|battlefield) counter(1/1)
+auto=@combat(attacking) source(this) restriction{type(creature[-blocking;attacking;iscommander]|myBattlefield)~morethan~1}:name(Investigate 4 times) token(Clue)*4
+auto=@combat(blocking) source(this) restriction{type(creature[-attacking;blocking;iscommander]|myBattlefield)~morethan~1}:name(Support 4) target(<upto:4>creature|battlefield) counter(1/1)
+auto=@combat(blocking) source(this) restriction{type(creature[-attacking;blocking;iscommander]|myBattlefield)~morethan~1}:name(Investigate 4 times) token(Clue)*4
+text=Legendary partner (You can have two commanders if this is one of them. The other one is promoted to legendary.) -- Flying, vigilance -- Teamwork — Whenever you attack or block with both Sol, Advocate Eternal and its partner, support 4 and investigate four times.
+mana={G}{W}{U}{B}
+type=Legendary Creature
+subtype=Dragon Angel
+power=4
+toughness=4
+[/card]
+[card]
 name=Sol Talisman
 suspend(3)={1}
 auto={T}:add{C}{C}
@@ -61969,8 +62060,9 @@ text={T}: Add {C}. -- {1}, {T}: Add one mana of any color. When you spend this m
 type=Land
 [/card]
 [card]
-name=Stumpsquall 
-auto=counter(1/1,X)
+name=Stumpsquall Hydra
+auto=if type(*[iscommander]|battlefield)~equalto~0 then counter(1/1,X)
+auto=if type(*[iscommander]|battlefield)~morethan~0 then thisforeach(X) ability$!name(Put 1/1 counter) choice name(Put 1/1 counter on Stumpsquall Hydra) all(mysource) counter(1/1) _ choice name(Put 1/1 counter on a commander) target(*[iscommander]|battlefield) counter(1/1)!$ controller
 text=When Stumpsquall Hydra enters the battlefield, distribute X +1/+1 counters among it and any number of commanders.
 mana={X}{G}{G}{G}
 type=Creature
@@ -63489,6 +63581,21 @@ type=Legendary Creature
 subtype=Elder Dragon
 power=4
 toughness=4
+[/card]
+[card]
+name=Tangle Wire
+auto=fading:4
+auto=@each my upkeep restriction{compare(hascntfade)~equalto~4}:ability$!name(Tap artifacts, lands or creatures) target(<4>*[artifact;creature;land]|myBattlefield) tap!$ controller
+auto=@each opponent upkeep restriction{compare(hascntfade)~equalto~4}:ability$!name(Tap artifacts, lands or creatures) target(<4>*[artifact;creature;land]|myBattlefield) tap!$ opponent
+auto=@each my upkeep restriction{compare(hascntfade))~equalto~3}:ability$!name(Tap artifacts, lands or creatures) target(<3>*[artifact;creature;land]|myBattlefield) tap!$ controller
+auto=@each opponent upkeep restriction{compare(hascntfade)~equalto~3}:ability$!name(Tap artifacts, lands or creatures) target(<3>*[artifact;creature;land]|myBattlefield) tap!$ opponent
+auto=@each my upkeep restriction{compare(hascntfade)~equalto~2}:ability$!name(Tap artifacts, lands or creatures) target(<2>*[artifact;creature;land]|myBattlefield) tap!$ controller
+auto=@each opponent upkeep restriction{compare(hascntfade)~equalto~2}:ability$!name(Tap artifacts, lands or creatures) target(<2>*[artifact;creature;land]|myBattlefield) tap!$ opponent
+auto=@each my upkeep restriction{compare(hascntfade)~equalto~1}:ability$!name(Tap artifacts, lands or creatures) target(*[artifact;creature;land]|myBattlefield) tap!$ controller
+auto=@each opponent upkeep restriction{compare(hascntfade)~equalto~1}:ability$!name(Tap artifacts, lands or creatures) target(*[artifact;creature;land]|myBattlefield) tap!$ opponent
+text=Fading 4 (This artifact enters the battlefield with four fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- At the beginning of each player's upkeep, that player taps an untapped artifact, creature, or land he or she controls for each fade counter on Tangle Wire.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Tangleclaw Werewolf
@@ -66028,7 +66135,7 @@ type=Summon
 subtype=Legend
 [/card]
 [card]
-name=Tin Street Cadet 
+name=Tin Street Cadet
 auto=_BLOCKED_token(Goblin,Creature Goblin,1/1,red)
 text=Whenever Tin Street Cadet becomes blocked, create a 1/1 red Goblin creature token.
 mana={R}
@@ -70433,6 +70540,17 @@ mana={U}{U}{G}
 type=Instant
 [/card]
 [card]
+name=Voidstone Gargoyle
+abilities=flying
+auto=chooseanameopp transforms((,newability[maxCast(*[chosenname])0 controller],newability[maxCast(*[chosenname])0 opponent],newability[lord(*[chosenname]) noactivatedability])) forever chooseend nonland
+text=Flying -- As Voidstone Gargoyle enters the battlefield, name a nonland card. -- The named card can't be cast. -- Activated abilities of sources with the chosen name can't be activated.
+mana={3}{W}{W}
+type=Creature
+subtype=Gargoyle
+power=3
+toughness=3
+[/card]
+[card]
 name=Volatile Claws
 auto=all(creature|myBattlefield) 2/0
 auto=all(creature|myBattlefield) transforms((allsubtypes))
@@ -71208,6 +71326,13 @@ type=Creature
 subtype=Minotaur Monger
 power=3
 toughness=3
+[/card]
+[card]
+name=Warpath
+auto=all(creature[blocked;blocking]) damage:3
+text=Warpath deals 3 damage to each blocking creature and each blocked creature.
+mana={3}{R}
+type=Instant
 [/card]
 [card]
 name=Warping Wail

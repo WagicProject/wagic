@@ -1,0 +1,8 @@
+[card]
+name=Dungeon Master
+auto=counter(0/0,1,loyalty)
+text=+1: Target opponent creates a 1/1 black Skeleton creature token with "When this creature dies, each opponent gains 2 life." -- +1: Roll a d20. If you roll a 1, skip your next turn. If you roll a 12 or higher, draw a card. -- -6: You get an adventuring party. (Your party is a 3/3 red Fighter with first strike, a 1/1 white Cleric with lifelink, a 2/2 black Rogue with hexproof, and a 1/1 blue Wizard with flying.) -- Loyalty: 1d4+1
+mana={2}{W}{U}
+type=Legendary Planeswalker
+subtype=Dungeon Master
+[/card]

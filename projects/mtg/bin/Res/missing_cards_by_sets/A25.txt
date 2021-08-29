@@ -1,0 +1,92 @@
+[card]
+name=Zada, Hedron Grinder
+text=Whenever you cast an instant or sorcery spell that targets only Zada, Hedron Grinder, copy that spell for each other creature you control that the spell could target. Each copy targets a different one of those creatures.
+mana={3}{R}
+type=Legendary Creature
+subtype=Goblin Ally
+power=3
+toughness=3
+[/card]
+[card]
+name=Vesuvan Shapeshifter
+text=As Vesuvan Shapeshifter enters the battlefield or is turned face up, you may choose another creature on the battlefield. If you do, until Vesuvan Shapeshifter is turned face down, it becomes a copy of that creature and gains "At the beginning of your upkeep, you may turn this creature face down." -- Morph {1}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={3}{U}{U}
+type=Creature
+subtype=Shapeshifter
+power=0
+toughness=0
+[/card]
+[card]
+name=Willbender
+facedown={3}
+autofacedown={1}{U}:morph
+autofaceup=name(Choose new targets) target(*[instant;sorcery]|stack) fizzle && activate castcard(copied noevent costx!:mytargx:! kicked!:mytargkicked:!)
+text=Morph {1}{U} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Willbender is turned face up, change the target of target spell or ability with a single target.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=2
+[/card]
+[card]
+name=Master of the Wild Hunt
+text=At the beginning of your upkeep, put a 2/2 green Wolf creature token onto the battlefield. -- {T}: Tap all untapped Wolf creatures you control. Each Wolf tapped this way deals damage equal to its power to target creature. That creature deals damage equal to its power divided as its controller chooses among any number of those Wolves.
+mana={2}{G}{G}
+type=Creature
+subtype=Human Shaman
+power=3
+toughness=3
+[/card]
+[card]
+name=Flash
+text=You may put a creature card from your hand onto the battlefield. If you do, sacrifice it unless you pay its mana cost reduced by up to {2}.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Karona's Zealot
+text=Morph {3}{W}{W} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Karona's Zealot is turned face up, all damage that would be dealt to it this turn is dealt to target creature instead.
+mana={4}{W}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=5
+[/card]
+[card]
+name=Strionic Resonator
+text={2}, {T}: Copy target triggered ability you control. You may choose new targets for the copy. (A triggered ability uses the words "when," "whenever," or "at.")
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Notion Thief
+abilities=flash
+text=Flash -- If an opponent would draw a card except the first one he or she draws in each of his or her draw steps, instead that player skips that draw and you draw a card.
+mana={2}{U}{B}
+type=Creature
+subtype=Human Rogue
+power=3
+toughness=1
+[/card]
+[card]
+name=Deadly Designs
+text={2}: Put a plot counter on Deadly Designs. Any player may activate this ability. -- When there are five or more plot counters on Deadly Designs, sacrifice it. If you do, destroy up to two target creatures.
+mana={1}{B}
+type=Enchantment
+[/card]
+[card]
+name=Gisela, Blade of Goldnight
+abilities=flying,first strike
+text=Flying, first strike -- If a source would deal damage to an opponent or a permanent an opponent controls, that source deals double that damage to that player or permanent instead. -- If a source would deal damage to you or a permanent you control, prevent half that damage, rounded up.
+mana={4}{R}{W}{W}
+type=Legendary Creature
+subtype=Angel
+power=5
+toughness=5
+[/card]
+[card]
+name=Doomsday
+text=Search your library and graveyard for five cards and exile the rest. Put the chosen cards on top of your library in any order. You lose half your life, rounded up.
+mana={B}{B}{B}
+type=Sorcery
+[/card]

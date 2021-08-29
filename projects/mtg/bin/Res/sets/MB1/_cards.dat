@@ -2581,9 +2581,14 @@ id=293394
 rarity=C
 [/card]
 [card]
-primitive=Jushi Apprentice // Tomoya the Revealer
+primitive=Jushi Apprentice
 id=293395
 rarity=R
+[/card]
+[card]
+primitive=Tomoya the Revealer
+id=29339510
+rarity=T
 [/card]
 [card]
 primitive=Jwar Isle Avenger

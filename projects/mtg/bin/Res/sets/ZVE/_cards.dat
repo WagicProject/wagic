@@ -163,7 +163,7 @@ rarity=R
 [card]
 primitive=Hellion
 id=401721
-rarity=C
+rarity=T
 [/card]
 [card]
 primitive=Induce Despair
@@ -268,7 +268,7 @@ rarity=L
 [card]
 primitive=Plant
 id=401722
-rarity=C
+rarity=T
 [/card]
 [card]
 primitive=Primal Command

@@ -1,0 +1,12 @@
+[card]
+name=Damping Sphere
+text=If a land is tapped for two or more mana, it produces {C} instead of any other type and amount. -- Each spell a player casts costs 1 more to cast for each other spell that player has cast this turn.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Oath of Teferi
+text=When Oath of Teferi enters the battlefield, exile another target permanent you control. Return it to the battlefield under its owner's control at the beginning of the next end step. -- You may activate the loyalty abilities of planeswalkers you control twice each turn rather than only once.
+mana={3}{W}{U}
+type=Legendary Enchantment
+[/card]

@@ -1,0 +1,25 @@
+[card]
+name=Thief of Sanity
+abilities=flying
+text=Flying -- Whenever Thief of Sanity deals combat damage to a player, look at the top three cards of that player's library, exile one of them face down, then put the rest into their graveyard. You may look at and cast that card for as long as it remains exiled, and you may spend mana as though it were mana of any type to cast that spell.
+mana={1}{U}{B}
+type=Creature
+subtype=Specter
+power=2
+toughness=2
+[/card]
+[card]
+name=Mnemonic Betrayal
+text=Exile all cards from all opponents' graveyards. You may cast spells from among those cards this turn, and you may spend mana as though it were mana of any type to cast those spells. At the beginning of the next end step, if any of those cards remain exiled, return them to their owners' graveyards. -- Exile Mnemonic Betrayal.
+mana={1}{U}{B}
+type=Sorcery
+[/card]
+[card]
+name=Etrata, the Silencer
+text=Etrata, the Silencer can't be blocked. -- Whenever Etrata deals combat damage to a player, exile target creature that player controls and put a hit counter on that card. That player loses the game if they own three or more exiled cards with hit counters on them. Etrata's owner shuffles Etrata into their library.
+mana={2}{U}{B}
+type=Legendary Creature
+subtype=Vampire Assassin
+power=3
+toughness=5
+[/card]

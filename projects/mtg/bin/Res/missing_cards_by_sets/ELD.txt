@@ -1,0 +1,36 @@
+[card]
+name=Robber of the Rich
+text=Reach, haste -- Whenever Robber of the Rich attacks, if defending player has more cards in hand than you, exile the top card of their library. During any turn you attacked with a Rogue, you may cast that card and you may spend mana as though it were mana of any color to cast that spell.
+mana={1}{R}
+type=Creature
+subtype=Human Archer Rogue
+power=2
+toughness=2
+[/card]
+[card]
+name=Fervent Champion
+text=First strike, haste -- Whenever Fervent Champion attacks, another target attacking Knight you control gets +1/+0 until end of turn. -- Equip abilities you activate that target Fervent Champion cost 3 less to activate.
+mana={R}
+type=Creature
+subtype=Human Knight
+power=1
+toughness=1
+[/card]
+[card]
+name=Specter's Shriek
+text=Target opponent reveals their hand. You may choose a nonland card from it. If you do, that player exiles that card. If a nonblack card is exiled this way, exile a card from your hand.
+mana={B}
+type=Sorcery
+[/card]
+[card]
+name=Lucky Clover
+text=Whenever you cast an Adventure instant or sorcery spell, copy it. You may choose new targets for the copy.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Covetous Urge
+text=Target opponent reveals their hand. You choose a nonland card from that player's graveyard or hand and exile it. You may cast that card for as long as it remains exiled, and you may spend mana as though it were mana of any color to cast that spell.
+mana={UB}{UB}{UB}{UB}
+type=Sorcery
+[/card]
