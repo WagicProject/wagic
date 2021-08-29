@@ -1,0 +1,84 @@
+[card]
+name=Armor of Thorns
+text=You may cast Armor of Thorns as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant nonblack creature -- Enchanted creature gets +2/+2.
+mana={1}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Magister of Worth
+abilities=flying
+text=Flying -- Will of the council  When Magister of Worth enters the battlefield, starting with you, each player votes for grace or condemnation. If grace gets more votes, each player returns each creature card from his or her graveyard to the battlefield. If condemnation gets more votes or the vote is tied, destroy all creatures other than Magister of Worth.
+mana={4}{W}{B}
+type=Creature
+subtype=Angel
+power=4
+toughness=4
+[/card]
+[card]
+name=Oath of Druids
+text=At the beginning of each player's upkeep, that player chooses target player who controls more creatures than he or she does and is his or her opponent. The first player may reveal cards from the top of his or her library until he or she reveals a creature card. If he or she does, that player puts that card onto the battlefield and all other cards revealed this way into his or her graveyard.
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
+name=Zhalfirin Crusader
+abilities=flanking
+text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- {1}{W}: The next 1 damage that would be dealt to Zhalfirin Crusader this turn is dealt to target creature or player instead.
+mana={1}{W}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]
+[card]
+name=Volrath's Shapeshifter
+text=As long as the top card of your graveyard is a creature card, Volrath's Shapeshifter has the full text of that card and has the text "{2}: Discard a card." (Volrath's Shapeshifter has that card's name, mana cost, color, types, abilities, power, and toughness.) -- {2}: Discard a card.
+mana={1}{U}{U}
+type=Creature
+subtype=Shapeshifter
+power=0
+toughness=1
+[/card]
+[card]
+name=Tyrant's Choice
+text=Will of the council  Starting with you, each player votes for death or torture. If death gets more votes, each opponent sacrifices a creature. If torture gets more votes or the vote is tied, each opponent loses 4 life.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=City in a Bottle
+text=Whenever a nontoken permanent from the Arabian Nights expansion other than City in a Bottle is on the battlefield, its controller sacrifices it.  -- Players can't play cards from the Arabian Nights expansion.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Plea for Power
+text=Will of the council  Starting with you, each player votes for time or knowledge. If time gets more votes, take an extra turn after this one. If knowledge gets more votes or the vote is tied, draw three cards.
+mana={3}{U}
+type=Sorcery
+[/card]
+[card]
+name=Power Sink
+text=Counter target spell unless its controller pays {X}. If he or she doesn't, that player taps all lands with mana abilities he or she controls and empties his or her mana pool.
+mana={X}{U}
+type=Instant
+[/card]
+[card]
+name=Reign of the Pit
+text=Each player sacrifices a creature. Put an X/X black Demon creature token with flying onto the battlefield, where X is the total power of the creatures sacrificed this way.
+mana={4}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Coercive Portal
+text=Will of the council  At the beginning of your upkeep, starting with you, each player votes for carnage or homage. If carnage gets more votes, sacrifice Coercive Portal and destroy all nonland permanents. If homage gets more votes or the vote is tied, draw a card.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Council's Judgment
+text=Will of the council  Starting with you, each player votes for a nonland permanent you don't control. Exile each permanent with the most votes or tied for most votes.
+mana={1}{W}{W}
+type=Sorcery
+[/card]

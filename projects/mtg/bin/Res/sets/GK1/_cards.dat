@@ -226,12 +226,7 @@ id=456234
 rarity=R
 [/card]
 [card]
-primitive=Burn
-id=456235
-rarity=U
-[/card]
-[card]
-primitive=Turn
+primitive=Turn // Burn
 id=456235
 rarity=U
 [/card]

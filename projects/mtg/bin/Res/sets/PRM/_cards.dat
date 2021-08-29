@@ -226,7 +226,7 @@ id=-52215
 rarity=T
 [/card]
 [card]
-primitive=enchantment
+primitive=Centaur
 id=-52181
 rarity=T
 [/card]
@@ -981,9 +981,14 @@ id=51973
 rarity=U
 [/card]
 [card]
-primitive=Budoka Pupil // Ichiga, Who Topples Oaks
+primitive=Budoka Pupil
 id=51974
 rarity=U
+[/card]
+[card]
+primitive=Ichiga, Who Topples Oaks
+id=5197410
+rarity=T
 [/card]
 [card]
 primitive=Burgeoning
@@ -1796,9 +1801,14 @@ id=52136
 rarity=M
 [/card]
 [card]
-primitive=Elusive Tormentor // Insidious Mist
+primitive=Elusive Tormentor
 id=52137
 rarity=R
+[/card]
+[card]
+primitive=Insidious Mist
+id=5213710
+rarity=T
 [/card]
 [card]
 primitive=Elves of Deep Shadow
@@ -2921,7 +2931,7 @@ id=52361
 rarity=R
 [/card]
 [card]
-primitive=Ifh-Bíff Efreet
+primitive=Ifh-Biff Efreet
 id=52362
 rarity=R
 [/card]
@@ -3186,7 +3196,7 @@ id=52414
 rarity=R
 [/card]
 [card]
-primitive=Khabál Ghoul
+primitive=Khabal Ghoul
 id=52415
 rarity=U
 [/card]
@@ -3476,9 +3486,14 @@ id=52472
 rarity=R
 [/card]
 [card]
-primitive=Ludevic's Test Subject // Ludevic's Abomination
+primitive=Ludevic's Test Subject
 id=52473
 rarity=R
+[/card]
+[card]
+primitive=Ludevic's Abomination
+id=5247310
+rarity=T
 [/card]
 [card]
 primitive=Mad Auntie
@@ -3586,9 +3601,14 @@ id=52494
 rarity=C
 [/card]
 [card]
-primitive=Mayor of Avabruck // Howlpack Alpha
+primitive=Mayor of Avabruck
 id=52495
 rarity=R
+[/card]
+[card]
+primitive=Howlpack Alpha
+id=5249510
+rarity=T
 [/card]
 [card]
 primitive=Maze of Ith
@@ -3761,9 +3781,14 @@ id=52529
 rarity=C
 [/card]
 [card]
-primitive=Mondronen Shaman // Tovolar's Magehunter
+primitive=Mondronen Shaman
 id=52530
 rarity=R
+[/card]
+[card]
+primitive=Tovolar's Magehunter
+id=5253010
+rarity=T
 [/card]
 [card]
 primitive=Monstrous Hound
@@ -4631,9 +4656,14 @@ id=52703
 rarity=U
 [/card]
 [card]
-primitive=Ravenous Demon // Archdemon of Greed
+primitive=Ravenous Demon
 id=52704
 rarity=R
+[/card]
+[card]
+primitive=Archdemon of Greed
+id=5270410
+rarity=T
 [/card]
 [card]
 primitive=Razorfin Hunter

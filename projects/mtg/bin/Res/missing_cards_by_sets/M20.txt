@@ -1,0 +1,55 @@
+[card]
+name=Thunderkin Awakener
+text=Haste -- Whenever Thunderkin Awakener attacks, choose target Elemental creature card in your graveyard with toughness less than Thunderkin Awakener's toughness. Return that card to the battlefield tapped and attacking. Sacrifice it at the beginning of the next end step.
+mana={1}{R}
+type=Creature
+subtype=Elemental Shaman
+power=1
+toughness=2
+[/card]
+[card]
+name=Chandra's Regulator
+text=Whenever you activate a loyalty ability of a Chandra planeswalker, you may pay 1. If you do, copy that ability. You may choose new targets for the copy. -- {1}, {T}, Discard a Mountain card or a red card: Draw a card.
+mana={1}{R}
+type=Legendary Artifact
+[/card]
+[card]
+name=Blightbeetle
+abilities=protection from green
+text=Protection from green (This creature can't be blocked, targeted, dealt damage, enchanted, or equipped by anything green.) -- Creatures your opponents control can't have +1/+1 counters put on them.
+mana={1}{B}
+type=Creature
+subtype=Insect
+power=1
+toughness=1
+[/card]
+[card]
+name=Yarok, the Desecrated
+text=Deathtouch, lifelink -- If a permanent entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.
+mana={2}{B}{G}{U}
+type=Legendary Creature
+subtype=Elemental Horror
+power=3
+toughness=5
+[/card]
+[card]
+name=Embodiment of Agonies
+text=Flying, deathtouch -- Embodiment of Agonies enters the battlefield with a +1/+1 counter on it for each different mana cost among nonland cards in your graveyard. (For example, {2}{B} and {1}{B}{B} are different mana costs.)
+mana={1}{B}{B}
+type=Creature
+subtype=Demon
+power=0
+toughness=0
+[/card]
+[card]
+name=Grafdigger's Cage
+text=Creature cards can't enter the battlefield from graveyards or libraries. -- Players can't cast cards in graveyards or libraries.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Tale's End
+text=Counter target activated ability, triggered ability, or legendary spell.
+mana={1}{U}
+type=Instant
+[/card]

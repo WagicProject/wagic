@@ -1,0 +1,162 @@
+[card]
+name=Sentinel
+text={0}: Sentinel's toughness becomes 1 plus the power of target creature blocking or blocked by Sentinel. (This effect lasts indefinitely.)
+mana={4}
+type=Artifact Creature
+subtype=Shapeshifter
+power=1
+toughness=1
+[/card]
+[card]
+name=Runesword
+text={3}, {T}: Target attacking creature gets +2/+0 until end of turn. When that creature leaves the battlefield this turn, sacrifice Runesword. If the creature deals damage to a creature this turn, the creature dealt damage can't be regenerated this turn. If a creature dealt damage by the targeted creature would die this turn, exile that creature instead.
+mana={6}
+type=Artifact
+[/card]
+[card]
+name=Wall of Shadows
+abilities=defender
+text=Defender (This creature can't attack.) -- Prevent all damage that would be dealt to Wall of Shadows by creatures it's blocking. -- Wall of Shadows can't be the target of spells that can target only Walls or of abilities that can target only Walls.
+mana={1}{B}{B}
+type=Creature
+subtype=Wall
+power=0
+toughness=1
+[/card]
+[card]
+name=Jeweled Bird
+text=Remove Jeweled Bird from your deck before playing if you're not playing for ante. -- {T}: Put Jeweled Bird into the ante. If you do, put all other cards you own from the ante into your graveyard, then draw a card.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Gauntlets of Chaos
+text={5}, Sacrifice Gauntlets of Chaos: Exchange control of target artifact, creature, or land you control and target permanent an opponent controls that shares one of those types with it. If those permanents are exchanged this way, destroy all Auras attached to them.
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Cocoon
+text=Enchant creature you control -- Enchanted creature doesn't untap during your untap step if Cocoon has a pupa counter on it. -- When Cocoon enters the battlefield, tap enchanted creature and put three pupa counters on Cocoon. -- At the beginning of your upkeep, remove a pupa counter from Cocoon. If you can't, sacrifice it, put a +1/+1 counter on enchanted creature, and that creature gains flying. (This effect lasts indefinitely.)
+mana={G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Metamorphosis
+text=As an additional cost to cast Metamorphosis, sacrifice a creature. -- Add X mana of any one color to your mana pool, where X is one plus the sacrificed creature's converted mana cost. Spend this mana only to cast creature spells.
+mana={G}
+type=Sorcery
+[/card]
+[card]
+name=Goblin Artisans
+text={T}: Flip a coin. If you win the flip, draw a card. If you lose the flip, counter target artifact spell you control that isn't the target of an ability from another creature named Goblin Artisans.
+mana={R}
+type=Creature
+subtype=Goblin Artificer
+power=1
+toughness=1
+[/card]
+[card]
+name=Land's Edge
+text=Discard a card: If the discarded card is a land card, Land's Edge deals 2 damage to target player. Any player may activate this ability.
+mana={1}{R}{R}
+type=World Enchantment
+[/card]
+[card]
+name=Blood of the Martyr
+text=Until end of turn, if damage would be dealt to any creature, you may have that damage dealt to you instead.
+mana={W}{W}{W}
+type=Instant
+[/card]
+[card]
+name=Primordial Ooze
+text=Primordial Ooze attacks each turn if able. -- At the beginning of your upkeep, put a +1/+1 counter on Primordial Ooze. Then you may pay {X}, where X is the number of +1/+1 counters on it. If you don't, tap Primordial Ooze and it deals X damage to you.
+mana={R}
+type=Creature
+subtype=Ooze
+power=1
+toughness=1
+[/card]
+[card]
+name=War Elephant
+abilities=trample,banding
+text=Trample; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={3}{W}
+type=Creature
+subtype=Elephant
+power=2
+toughness=2
+[/card]
+[card]
+name=Petra Sphinx
+text={T}: Target player names a card, then reveals the top card of his or her library. If that card is the named card, that player puts it into his or her hand. If it isn't, the player puts it into his or her graveyard.
+mana={2}{W}{W}{W}
+type=Creature
+subtype=Sphinx
+power=3
+toughness=4
+[/card]
+[card]
+name=Ayesha Tanaka
+abilities=banding
+text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.) -- {T}: Counter target activated ability from an artifact source unless that ability's controller pays {W}. (Mana abilities can't be targeted.)
+mana={W}{W}{U}{U}
+type=Legendary Creature
+subtype=Human Artificer
+power=2
+toughness=2
+[/card]
+[card]
+name=Nebuchadnezzar
+text={X}, {T}: Name a card. Target opponent reveals X cards at random from his or her hand. Then that player discards all cards with that name revealed this way. Activate this ability only during your turn.
+mana={3}{U}{B}
+type=Legendary Creature
+subtype=Human Wizard
+power=3
+toughness=3
+[/card]
+[card]
+name=Gabriel Angelfire
+text=At the beginning of your upkeep, choose flying, first strike, trample, or rampage 3. Gabriel Angelfire gains that ability until your next upkeep. (Whenever a creature with rampage 3 becomes blocked, it gets +3/+3 until end of turn for each creature blocking it beyond the first.)
+mana={3}{G}{G}{W}{W}
+type=Legendary Creature
+subtype=Angel
+power=4
+toughness=4
+[/card]
+[card]
+name=Enchantment Alteration
+text=Attach target Aura attached to a creature or land to another permanent of that type.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Puppet Master
+text=Enchant creature -- When enchanted creature dies, return that card to its owner's hand. If that card is returned to its owner's hand this way, you may pay {U}{U}{U}. If you do, return Puppet Master to its owner's hand.
+mana={U}{U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Juxtapose
+text=You and target player exchange control of the creature you each control with the highest converted mana cost. Then exchange control of artifacts the same way. If two or more permanents a player controls are tied for highest cost, their controller chooses one of them.
+mana={3}{U}
+type=Sorcery
+[/card]
+[card]
+name=The Wretched
+text=At end of combat, gain control of all creatures blocking The Wretched for as long as you control The Wretched.
+mana={3}{B}{B}
+type=Creature
+subtype=Demon
+power=2
+toughness=5
+[/card]
+[card]
+name=Takklemaggot
+text=Enchant creature -- At the beginning of the upkeep of enchanted creature's controller, put a -0/-1 counter on that creature. -- When enchanted creature dies, that creature's controller chooses a creature that Takklemaggot could enchant. If he or she does, return Takklemaggot to the battlefield under your control attached to that creature. If he or she doesn't, return Takklemaggot to the battlefield under your control as a non-Aura enchantment. It loses "enchant creature" and gains "At the beginning of that player's upkeep, Takklemaggot deals 1 damage to him or her."
+mana={2}{B}{B}
+type=Enchantment
+subtype=Aura
+[/card]

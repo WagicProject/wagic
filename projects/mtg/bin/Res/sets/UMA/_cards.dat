@@ -1126,12 +1126,7 @@ id=456820
 rarity=C
 [/card]
 [card]
-primitive=Ice
-id=456821
-rarity=C
-[/card]
-[card]
-primitive=Fire
+primitive=Fire // Ice
 id=456821
 rarity=C
 [/card]

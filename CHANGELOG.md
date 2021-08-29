@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 29/08/21
+- *Committed:* Added/fixed primitives, fixed dat file of several sets, updated the "missing_cards_by_sets" folder, updated README.md file, improved Android downloader. ([Vitty85](https://github.com/Vitty85)) 
+
 ### 28/08/21
-- *Committed:* Added/fixed primitives, improved the way to limit the number of total primitives to load at startup using the file named LimitedCardList.txt (that has to be copied in User folder). This should help to run the game even on older devices with low RAM such as PSP-3000 (It needs also a lighter graphics sub-folder in Res folder). ([Vitty85](https://github.com/Vitty85)) 
+- *Committed:* Added/fixed primitives, improved the way to limit the number of total primitives to load at startup using the file named LimitedCardList.txt (that has to be copied in User folder). This should help to run the game even on older devices with low RAM such as PSP-3000 (It needs also a lighter graphics sub-folder in Res folder). https://github.com/WagicProject/wagic/commit/ebc281da6ed3f90a5c25f431458a563e16788017 ([Vitty85](https://github.com/Vitty85)) 
 
 ### 27/08/21
 - *Committed:* Added/fixed primitives. https://github.com/WagicProject/wagic/commit/8d6e0122bb7253d29700bc4519067ed4160ddf84 ([Vitty85](https://github.com/Vitty85)) 

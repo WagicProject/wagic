@@ -1,0 +1,32 @@
+[card]
+name=Notion Thief
+abilities=flash
+text=Flash -- If an opponent would draw a card except the first one he or she draws in each of his or her draw steps, instead that player skips that draw and you draw a card.
+mana={2}{U}{B}
+type=Creature
+subtype=Human Rogue
+power=3
+toughness=1
+[/card]
+[card]
+name=Silumgar's Command
+text=Choose two  --  Counter target noncreature spell. --  Return target permanent to its owner's hand. --  Target creature gets -3/-3 until end of turn. --  Destroy target planeswalker.
+mana={3}{U}{B}
+type=Instant
+[/card]
+[card]
+name=Lazav, Dimir Mastermind
+abilities=opponentshroud
+text=Hexproof -- Whenever a creature card is put into an opponent's graveyard from anywhere, you may have Lazav, Dimir Mastermind become a copy of that card except its name is still Lazav, Dimir Mastermind, it's legendary in addition to its other types, and it gains hexproof and this ability.
+mana={U}{U}{B}{B}
+type=Legendary Creature
+subtype=Shapeshifter
+power=3
+toughness=3
+[/card]
+[card]
+name=Stolen Identity
+text=Put a token onto the battlefield that's a copy of target artifact or creature. -- Cipher (Then you may exile this spell card encoded on a creature you control. Whenever that creature deals combat damage to a player, its controller may cast a copy of the encoded card without paying its mana cost.)
+mana={4}{U}{U}
+type=Sorcery
+[/card]

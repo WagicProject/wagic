@@ -1,50 +1,82 @@
 [card]
-name=Command Tower
-text={T}: Add to your mana pool one mana of any color in your commander's color identity.
-type=Land
+name=Thief of Blood
+abilities=flying
+text=Flying -- As Thief of Blood enters the battlefield, remove all counters from all permanents. Thief of Blood enters the battlefield with a +1/+1 counter on it for each counter removed this way.
+mana={4}{B}{B}
+type=Creature
+subtype=Vampire
+power=1
+toughness=1
 [/card]
 [card]
-name=Desertion
-text=Counter target spell. If an artifact or creature spell is countered this way, put that card onto the battlefield under your control instead of into its owner's graveyard.
-mana={3}{U}{U}
-type=Instant
+name=Curse of Inertia
+text=Enchant player -- Whenever a player attacks enchanted player with one or more creatures, that attacking player may tap or untap target permanent of his or her choice.
+mana={2}{U}
+type=Enchantment
+subtype=Aura Curse
 [/card]
 [card]
-name=Duplicant
-text=Imprint � When Duplicant enters the battlefield, you may exile target nontoken creature. -- As long as the exiled card is a creature card, Duplicant has that card's power, toughness, and creature types. It's still a Shapeshifter.
-mana={6}
-type=Artifact Creature
-subtype=Shapeshifter
-power=2
-toughness=4
+name=Tempt with Glory
+text=Tempting offer  Put a +1/+1 counter on each creature you control. Each opponent may put a +1/+1 counter on each creature he or she controls. For each opponent who does, put a +1/+1 counter on each creature you control.
+mana={5}{W}
+type=Sorcery
 [/card]
 [card]
-name=Maelstrom Wanderer
-text=Creatures you control have haste. -- Cascade, cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order. Then do it again.)
-mana={5}{U}{R}{G}
-type=Legendary Creature
-subtype=Elemental
-power=7
-toughness=5
+name=Grave Sifter
+text=When Grave Sifter enters the battlefield, each player chooses a creature type and returns any number of cards of that type from his or her graveyard to his or her hand.
+mana={5}{G}
+type=Creature
+subtype=Elemental Beast
+power=5
+toughness=7
 [/card]
 [card]
-name=Scroll Rack
-text={1}, {T}: Exile any number of cards from your hand face down. Put that many cards from the top of your library into your hand. Then look at the exiled cards and put them on top of your library in any order.
+name=Surveyor's Scope
+text={T}, Exile Surveyor's Scope: Search your library for up to X basic land cards, where X is the number of players who control at least two more lands than you. Put those cards onto the battlefield, then shuffle your library.
 mana={2}
 type=Artifact
 [/card]
 [card]
-name=Sylvan Library
-text=At the beginning of your draw step, you may draw two additional cards. If you do, choose two cards in your hand drawn this turn. For each of those cards, pay 4 life or put the card on top of your library.
-mana={1}{G}
+name=Curse of the Forsaken
+text=Enchant player -- Whenever a creature attacks enchanted player, its controller gains 1 life.
+mana={2}{W}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+[card]
+name=Flickerform
+text=Enchant creature -- {2}{W}{W}: Exile enchanted creature and all Auras attached to it. At the beginning of the next end step, return that card to the battlefield under its owner's control. If you do, return the other cards exiled this way to the battlefield under their owners' control attached to that creature.
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Curse of Predation
+text=Enchant player -- Whenever a creature attacks enchanted player, put a +1/+1 counter on it.
+mana={2}{G}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+[card]
+name=Mana-Charged Dragon
+abilities=flying,trample
+text=Flying, trample -- Join forces  Whenever Mana-Charged Dragon attacks or blocks, each player starting with you may pay any amount of mana. Mana-Charged Dragon gets +X/+0 until end of turn, where X is the total amount of mana paid this way.
+mana={4}{R}{R}
+type=Creature
+subtype=Dragon
+power=5
+toughness=5
+[/card]
+[card]
+name=Stranglehold
+text=Your opponents can't search libraries. -- If an opponent would begin an extra turn, that player skips that turn instead.
+mana={3}{R}
 type=Enchantment
 [/card]
 [card]
-name=The Mimeoplasm
-text=As The Mimeoplasm enters the battlefield, you may exile two creature cards from graveyards. If you do, it enters the battlefield as a copy of one of those cards with a number of additional +1/+1 counters on it equal to the power of the other card.
-mana={2}{G}{U}{B}
-type=Legendary Creature
-subtype=Ooze
-power=0
-toughness=0
+name=Assault Suit
+text=Equipped creature gets +2/+2, has haste, can't attack you or a planeswalker you control, and can't be sacrificed. -- At the beginning of each opponent's upkeep, you may have that player gain control of equipped creature until end of turn. If you do, untap it. -- Equip {3}
+mana={4}
+type=Artifact
+subtype=Equipment
 [/card]

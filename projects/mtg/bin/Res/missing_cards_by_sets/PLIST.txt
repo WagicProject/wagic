@@ -1,0 +1,156 @@
+[card]
+name=Warp World
+text=Each player shuffles all permanents he or she owns into his or her library, then reveals that many cards from the top of his or her library. Each player puts all artifact, creature, and land cards revealed this way onto the battlefield, then does the same for enchantment cards, then puts all cards revealed this way that weren't put onto the battlefield on the bottom of his or her library.
+mana={5}{R}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Voracious Dragon
+abilities=flying
+text=Flying -- Devour 1 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with that many +1/+1 counters on it.) -- When Voracious Dragon enters the battlefield, it deals damage to target creature or player equal to twice the number of Goblins it devoured.
+mana={3}{R}{R}
+type=Creature
+subtype=Dragon
+power=4
+toughness=4
+[/card]
+[card]
+name=Thrumming Stone
+text=Spells you cast have ripple 4. (Whenever you cast a spell, you may reveal the top four cards of your library. You may cast any revealed cards with the same name as the spell without paying their mana costs. Put the rest on the bottom of your library.)
+mana={5}
+type=Legendary Artifact
+[/card]
+[card]
+name=Food Chain
+text=Exile a creature you control: Add X mana of any one color to your mana pool, where X is the exiled creature's converted mana cost plus one. Spend this mana only to cast creature spells.
+mana={2}{G}
+type=Enchantment
+[/card]
+[card]
+name=Ixidor, Reality Sculptor
+text=Face-down creatures get +1/+1. -- {2}{U}: Turn target face-down creature face up.
+mana={3}{U}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=3
+toughness=4
+[/card]
+[card]
+name=Evermind
+text=(Nonexistent mana costs can't be paid.) -- Draw a card. -- Splice onto Arcane {1}{U} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+type=Instant
+subtype=Arcane
+[/card]
+[card]
+name=Eye of the Storm
+text=Whenever a player casts an instant or sorcery card, exile it. Then that player copies each instant or sorcery card exiled with Eye of the Storm. For each copy, the player may cast the copy without paying its mana cost.
+mana={5}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Shelldock Isle
+text=Hideaway (This land enters the battlefield tapped. When it does, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library.) -- {T}: Add {U} to your mana pool. -- {U}, {T}: You may play the exiled card without paying its mana cost if a library has twenty or fewer cards in it.
+type=Land
+[/card]
+[card]
+name=Odds // Ends
+text=Flip a coin. If it comes up heads, counter target instant or sorcery spell. If it comes up tails, copy that spell and you may choose new targets for the copy. // Target player sacrifices two attacking creatures.
+mana={U}{R} // {3}{R}{W}
+type=Instant // Instant
+[/card]
+[card]
+name=Djinn Illuminatus
+text=({UR} can be paid with either {U} or {R}.) -- Flying -- Each instant and sorcery spell you cast has replicate. The replicate cost is equal to its mana cost. (When you cast it, copy it for each time you paid its replicate cost. You may choose new targets for the copies.)
+mana={5}{UR}{UR}
+type=Creature
+subtype=Djinn
+power=3
+toughness=5
+[/card]
+[card]
+name=Calming Licid
+text={W}, {T}: Calming Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {W} to end this effect. -- Enchanted creature can't attack.
+mana={2}{W}
+type=Creature
+subtype=Licid
+power=2
+toughness=2
+[/card]
+[card]
+name=The Chain Veil
+text=At the beginning of your end step, if you didn't activate a loyalty ability of a planeswalker this turn, you lose 2 life. -- {4}, {T}: For each planeswalker you control, you may activate one of its loyalty abilities once this turn as though none of its loyalty abilities have been activated this turn.
+mana={4}
+type=Legendary Artifact
+[/card]
+[card]
+name=Iterative Analysis
+text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Whenever you cast an instant or sorcery spell with the chosen name, you may draw a card.
+type=Conspiracy
+[/card]
+[card]
+name=Krark's Thumb
+text=If you would flip a coin, instead flip two coins and ignore one.
+mana={2}
+type=Legendary Artifact
+[/card]
+[card]
+name=Fractured Powerstone
+text={T}: Add {1} to your mana pool. -- {T}: Roll the planar die. Activate this ability only any time you could cast a sorcery.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Council's Judgment
+text=Will of the council  Starting with you, each player votes for a nonland permanent you don't control. Exile each permanent with the most votes or tied for most votes.
+mana={1}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Pyromancer Ascension
+text=Whenever you cast an instant or sorcery spell that has the same name as a card in your graveyard, you may put a quest counter on Pyromancer Ascension. -- Whenever you cast an instant or sorcery spell while Pyromancer Ascension has two or more quest counters on it, you may copy that spell. You may choose new targets for the copy.
+mana={1}{R}
+type=Enchantment
+[/card]
+[card]
+name=Shuriken
+text=Equipped creature has "{T}, Unattach Shuriken: Shuriken deals 2 damage to target creature. That creature's controller gains control of Shuriken unless it was unattached from a Ninja." -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
+mana={1}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Scroll Rack
+text={1}, {T}: Exile any number of cards from your hand face down. Put that many cards from the top of your library into your hand. Then look at the exiled cards and put them on top of your library in any order.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Panharmonicon
+text=If an artifact or creature entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Lash Out
+text=Lash Out deals 3 damage to target creature. Clash with an opponent. If you win, Lash Out deals 3 damage to that creature's controller. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Oubliette
+text=When Oubliette enters the battlefield, exile target creature and all Auras attached to it. Note the number and kind of counters that were on that creature. -- When Oubliette leaves the battlefield, return the exiled card to the battlefield under its owner's control tapped with the noted number and kind of counters on it. If you do, return the exiled Aura cards to the battlefield under their owner's control attached to that permanent.
+mana={1}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Necromancy
+text=You may cast Necromancy as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- When Necromancy enters the battlefield, if it's on the battlefield, it becomes an Aura with "enchant creature put onto the battlefield with Necromancy." Put target creature card from a graveyard onto the battlefield under your control and attach Necromancy to it. When Necromancy leaves the battlefield, that creature's controller sacrifices it.
+mana={2}{B}
+type=Enchantment
+[/card]
+[card]
+name=Training Grounds
+text=Activated abilities of creatures you control cost up to {2} less to activate. This effect can't reduce the amount of mana an ability costs to activate to less than one mana.
+mana={U}
+type=Enchantment
+[/card]

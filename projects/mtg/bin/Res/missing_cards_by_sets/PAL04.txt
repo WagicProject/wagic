@@ -1,0 +1,40 @@
+[card]
+name=Booster Tutor
+text=Open a sealed Magic booster pack, reveal the cards, and put one of those cards into your hand. (Remove that card from your deck before beginning a new game.)
+mana={B}
+type=Instant
+[/card]
+[card]
+name=Goblin Mime
+text=When you speak, sacrifice Goblin Mime.
+mana={1}{R}
+type=Creature
+subtype=Goblin Mime
+power=2
+toughness=2
+[/card]
+[card]
+name=Granny's Payback
+text=You gain life equal to your age.
+mana={7}{G}
+type=Sorcery
+[/card]
+[card]
+name=Ashnod's Coupon
+text=ocT, Sacrifice Ashnod's Coupon: Target player gets you target drink. -- Errata: You pay any costs for the drink.
+mana={0}
+type=Artifact
+[/card]
+[card]
+name=Glacial Ray
+text=Glacial Ray deals 2 damage to target creature or player. -- Splice onto Arcane {1}{R} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+mana={1}{R}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
+name=Circle of Protection: Art
+text=As Circle of Protection: Art comes into play, choose an artist. -- {1}{W}: The next time a source of your choice by the chosen artist would deal damage to you this turn, prevent that damage. -- {1}{W}: Return Circle of Protection: Art to its owner's hand.
+mana={1}{W}
+type=Enchantment
+[/card]

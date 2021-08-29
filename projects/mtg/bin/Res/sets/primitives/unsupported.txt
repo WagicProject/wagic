@@ -1521,6 +1521,12 @@ mana={1}{W}{W}
 type=Enchantment
 [/card]
 [card]
+name=Celestine Reef
+text=Creatures without flying or islandwalk can't attack. -- Whenever you roll {K}, until a player planeswalks, you can't lose the game and your opponents can't win the game.
+type=Plane
+subtype=Luvion
+[/card]
+[card]
 name=Cellar Door
 text={3}, {T}: Target player puts the bottom card of his or her library into his or her graveyard. If it's a creature card, you put a 2/2 black Zombie creature token onto the battlefield.
 mana={2}
@@ -1962,12 +1968,6 @@ name=Conjured Currency
 text=At the beginning of your upkeep, you may exchange control of Conjured Currency and target permanent you neither own nor control.
 mana={5}{U}
 type=Enchantment
-[/card]
-[card]
-name=Conjurer's Ban
-text=Name a card. Until your next turn, the named card can't be played. -- Draw a card.
-mana={W}{B}
-type=Sorcery
 [/card]
 [card]
 name=Consuming Vortex
@@ -2602,16 +2602,6 @@ mana={3}{B}{B}
 type=Enchantment
 [/card]
 [card]
-name=Desecration Demon
-abilities=flying
-text=Flying -- At the beginning of each combat, any opponent may sacrifice a creature. If a player does, tap Desecration Demon and put a +1/+1 counter on it.
-mana={2}{B}{B}
-type=Creature
-subtype=Demon
-power=6
-toughness=6
-[/card]
-[card]
 name=Desertion
 text=Counter target spell. If an artifact or creature spell is countered this way, put that card onto the battlefield under your control instead of into its owner's graveyard.
 mana={3}{U}{U}
@@ -2938,6 +2928,14 @@ name=Duplication Device
 text=Whenever you crank Duplication Device, until end of turn, target creature becomes a copy of any creature on the battlefield, except it's an artifact in addition to its other types.
 type=Artifact
 subtype=Contraption
+[/card]
+[card]
+name=Dungeon Master
+auto=counter(0/0,1,loyalty)
+text=+1: Target opponent creates a 1/1 black Skeleton creature token with "When this creature dies, each opponent gains 2 life." -- +1: Roll a d20. If you roll a 1, skip your next turn. If you roll a 12 or higher, draw a card. -- -6: You get an adventuring party. (Your party is a 3/3 red Fighter with first strike, a 1/1 white Cleric with lifelink, a 2/2 black Rogue with hexproof, and a 1/1 blue Wizard with flying.) -- Loyalty: 1d4+1
+mana={2}{W}{U}
+type=Legendary Planeswalker
+subtype=Dungeon Master
 [/card]
 [card]
 name=Duplicity
@@ -4337,15 +4335,6 @@ type=Artifact
 subtype=Contraption
 [/card]
 [card]
-name=Goblin Snowman
-text=Whenever Goblin Snowman blocks, prevent all combat damage that would be dealt to and dealt by it this turn. -- {T}: Goblin Snowman deals 1 damage to target creature it's blocking.
-mana={3}{R}
-type=Creature
-subtype=Goblin
-power=1
-toughness=1
-[/card]
-[card]
 name=Goblin Tutor
 text=Roll a six-sided die for Goblin Tutor. On a 1, Goblin Tutor has no effect. Otherwise, search your library for the indicated card, reveal that card to all players, and put it into your hand. Shuffle your library afterwards. -- 2 Any Goblin Tutor -- 3 Any enchantment -- 4 Any artifact -- 5 Any creature -- 6 Any sorcery, instant, or interrupt
 mana={R}
@@ -4898,6 +4887,12 @@ name=Honorable Passage
 text=The next time a source of your choice would deal damage to target creature or player this turn, prevent that damage. If damage from a red source is prevented this way, Honorable Passage deals that much damage to the source's controller.
 mana={1}{W}
 type=Instant
+[/card]
+[card]
+name=Horizon Boughs
+text=All permanents untap during each player’s untap step. -- Whenever you roll {K}, you may search your library for up to three basic land cards, put them onto the battlefield tapped, then shuffle.
+type=Plane
+subtype=Pyrulea
 [/card]
 [card]
 name=Horobi's Whisper
@@ -6675,15 +6670,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Meddling Mage
-text=As Meddling Mage enters the battlefield, name a nonland card. -- The named card can't be cast.
-mana={W}{U}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=2
-[/card]
-[card]
 name=Medomai the Ageless
 abilities=flying
 text=Flying -- Whenever Medomai the Ageless deals combat damage to a player, take an extra turn after this one. -- Medomai the Ageless can't attack during extra turns.
@@ -6945,6 +6931,12 @@ name=Mirror of Fate
 text={T}, Sacrifice Mirror of Fate: Choose up to seven face-up exiled cards you own. Exile all the cards from your library, then put the chosen cards on top of your library.
 mana={5}
 type=Artifact
+[/card]
+[card]
+name=Mirrored Depths
+text=Whenever a player casts a spell, that player flips a coin. If the player loses the flip, counter that spell. -- Whenever you roll {K}, target player reveals the top card of their library. If it’s a nonland card, you may cast it without paying its mana cost.
+type=Plane
+subtype=Karsus
 [/card]
 [card]
 name=Mirrorweave
@@ -7476,6 +7468,12 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
+name=Nerf War
+text=Fire a Nerf blaster until empty at target library from at least two meters away. For each card knocked off that library, put it into its owner’s graveyard and Nerf War deals ½ damage to that player. (Foam darts only.)
+mana={3}{U}{R}
+type=Sorcery
+[/card]
+[card]
 name=Nesting Grounds
 auto={T}:add{1}
 text={T}: Add {1}. -- {1}, {T}: Move a counter from target permanent you control onto another target permanent. Activate this ability only any time you could cast a sorcery.
@@ -7502,12 +7500,6 @@ name=Neural Network
 text=Whenever you crank Neural Network, gain control of target creature an opponent controls with power less than or equal to the number of creature cards in its controller's graveyard until end of turn. Untap that creature. It gains haste until end of turn.
 type=Artifact
 subtype=Contraption
-[/card]
-[card]
-name=Nevermore
-text=As Nevermore enters the battlefield, name a nonland card. -- The named card can't be cast.
-mana={1}{W}{W}
-type=Enchantment
 [/card]
 [card]
 name=Neyith of the Dire Hunt
@@ -8248,12 +8240,6 @@ toughness=3
 name=Phyrexian Portal
 text={3}: If your library has ten or more cards in it, target opponent looks at the top ten cards of your library and separates them into two face-down piles. Exile one of those piles. Search the other pile for a card, put it into your hand, then shuffle the rest of that pile into your library.
 mana={3}
-type=Artifact
-[/card]
-[card]
-name=Phyrexian Processor
-text=As Phyrexian Processor enters the battlefield, pay any amount of life. -- {4}, {T}: Put an X/X black Minion creature token onto the battlefield, where X is the life paid as Phyrexian Processor entered the battlefield.
-mana={4}
 type=Artifact
 [/card]
 [card]
@@ -11138,12 +11124,6 @@ type=Plane
 subtype=Dominaria
 [/card]
 [card]
-name=Tangle Wire
-text=Fading 4 (This artifact enters the battlefield with four fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- At the beginning of each player's upkeep, that player taps an untapped artifact, creature, or land he or she controls for each fade counter on Tangle Wire.
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Targeting Rocket
 text=Whenever you crank Targeting Rocket, target creature blocks this turn if able.
 type=Artifact
@@ -11180,6 +11160,12 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Tazeem
+text=Creatures can't block. -- Whenever you roll {K}, draw a card for each land you control.
+type=Plane
+subtype=Zendikar
+[/card]
+[card]
 name=Teacher's Pet
 text={2}{W}, Sacrifice Teacher's Pet: Search your library for a card with augment, combine it with target host you control, then shuffle your library.
 mana={1}{W}
@@ -11200,6 +11186,12 @@ name=Teferi's Response
 text=Counter target spell or ability an opponent controls that targets a land you control. If a permanent's ability is countered this way, destroy that permanent. --  Draw two cards.
 mana={1}{U}
 type=Instant
+[/card]
+[card]
+name=Tember City
+text=Whenever a player taps a land for mana, Tember City deals 1 damage to that player. -- Whenever you roll {K}, each other player sacrifices a nonland permanent.
+type=Plane
+subtype=Kinshala
 [/card]
 [card]
 name=Temp of the Damned
@@ -12180,16 +12172,6 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=2
-[/card]
-[card]
-name=Voidstone Gargoyle
-abilities=flying
-text=Flying -- As Voidstone Gargoyle enters the battlefield, name a nonland card. -- The named card can't be cast. -- Activated abilities of sources with the chosen name can't be activated.
-mana={3}{W}{W}
-type=Creature
-subtype=Gargoyle
-power=3
-toughness=3
 [/card]
 [card]
 name=Voidwalk

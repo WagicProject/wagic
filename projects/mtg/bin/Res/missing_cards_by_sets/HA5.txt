@@ -1,0 +1,18 @@
+[card]
+name=Dromoka's Command
+text=Choose two  --  Prevent all damage target instant or sorcery spell would deal this turn. --  Target player sacrifices an enchantment. --  Put a +1/+1 counter on target creature. --  Target creature you control fights target creature you don't control.
+mana={G}{W}
+type=Instant
+[/card]
+[card]
+name=Silumgar's Command
+text=Choose two  --  Counter target noncreature spell. --  Return target permanent to its owner's hand. --  Target creature gets -3/-3 until end of turn. --  Destroy target planeswalker.
+mana={3}{U}{B}
+type=Instant
+[/card]
+[card]
+name=Stifle
+text=Counter target activated or triggered ability. (Mana abilities can't be targeted.)
+mana={U}
+type=Instant
+[/card]

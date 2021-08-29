@@ -1,0 +1,42 @@
+[card]
+name=Through the Breach
+text=You may put a creature card from your hand onto the battlefield. That creature gains haste. Sacrifice that creature at the beginning of the next end step. -- Splice onto Arcane {2}{R}{R} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+mana={4}{R}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
+name=Gaddock Teeg
+text=Noncreature spells with converted mana cost 4 or greater can't be cast. -- Noncreature spells with {X} in their mana costs can't be cast.
+mana={G}{W}
+type=Legendary Creature
+subtype=Kithkin Advisor
+power=2
+toughness=2
+[/card]
+[card]
+name=Leovold, Emissary of Trest
+text=Each opponent can't draw more than one card each turn. -- Whenever you or a permanent you control becomes the target of a spell or ability an opponent controls, you may draw a card.
+mana={B}{G}{U}
+type=Legendary Creature
+subtype=Elf Advisor
+power=3
+toughness=3
+[/card]
+[card]
+name=Sigarda, Host of Herons
+abilities=flying,opponentshroud
+text=Flying, hexproof -- Spells and abilities your opponents control can't cause you to sacrifice permanents.
+mana={2}{G}{W}{W}
+type=Legendary Creature
+subtype=Angel
+power=5
+toughness=5
+[/card]
+[card]
+name=Goryo's Vengeance
+text=Return target legendary creature card from your graveyard to the battlefield. That creature gains haste. Exile it at the beginning of the next end step. -- Splice onto Arcane {2}{B} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+mana={1}{B}
+type=Instant
+subtype=Arcane
+[/card]

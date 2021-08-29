@@ -1,0 +1,41 @@
+[card]
+name=Willbender
+facedown={3}
+autofacedown={1}{U}:morph
+autofaceup=name(Choose new targets) target(*[instant;sorcery]|stack) fizzle && activate castcard(copied noevent costx!:mytargx:! kicked!:mytargkicked:!)
+text=Morph {1}{U} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Willbender is turned face up, change the target of target spell or ability with a single target.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=2
+[/card]
+[card]
+name=Wall of Deceit
+abilities=defender
+text=Defender (This creature can't attack.) -- {3}: Turn Wall of Deceit face down. -- Morph {U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={1}{U}
+type=Creature
+subtype=Wall
+power=0
+toughness=5
+[/card]
+[card]
+name=Quicksilver Dragon
+abilities=flying
+text=Flying -- {U}: If target spell has only one target and that target is Quicksilver Dragon, change that spell's target to another creature. -- Morph {4}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={4}{U}{U}
+type=Creature
+subtype=Dragon
+power=5
+toughness=5
+[/card]
+[card]
+name=Hostility
+text=Haste -- If a spell you control would deal damage to an opponent, prevent that damage. Put a 3/1 red Elemental Shaman creature token with haste onto the battlefield for each 1 damage prevented this way. -- When Hostility is put into a graveyard from anywhere, shuffle it into its owner's library.
+mana={3}{R}{R}{R}
+type=Creature
+subtype=Elemental Incarnation
+power=6
+toughness=6
+[/card]

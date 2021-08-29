@@ -1,0 +1,117 @@
+[card]
+name=Dracoplasm
+abilities=flying
+text=Flying -- As Dracoplasm enters the battlefield, sacrifice any number of creatures. Dracoplasm's power becomes the total power of those creatures and its toughness becomes their total toughness. -- {R}: Dracoplasm gets +1/+0 until end of turn.
+mana={U}{R}
+type=Creature
+subtype=Shapeshifter
+power=0
+toughness=0
+[/card]
+[card]
+name=Legerdemain
+text=Exchange control of target artifact or creature and another target permanent that shares one of those types with it. (This effect lasts indefinitely.)
+mana={2}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Corpse Dance
+buyback={2}{B}{2}
+text=Buyback {2} (You may pay an additional {2} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Return the top creature card of your graveyard to the battlefield. That creature gains haste until end of turn. Exile it at the beginning of the next end step.
+mana={2}{B}
+type=Instant
+[/card]
+[card]
+name=Volrath's Curse
+text=Enchant creature -- Enchanted creature can't attack or block, and its activated abilities can't be activated. That creature's controller may sacrifice a permanent for that player to ignore this effect until end of turn. -- {1}{U}: Return Volrath's Curse to its owner's hand.
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Spirit en-Kor
+abilities=flying
+text=Flying -- {0}: The next 1 damage that would be dealt to Spirit en-Kor this turn is dealt to target creature you control instead.
+mana={3}{W}
+type=Creature
+subtype=Kor Spirit
+power=2
+toughness=2
+[/card]
+[card]
+name=Kor Chant
+text=All damage that would be dealt this turn to target creature you control by a source of your choice is dealt to another target creature instead.
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+name=Warrior en-Kor
+text={0}: The next 1 damage that would be dealt to Warrior en-Kor this turn is dealt to target creature you control instead.
+mana={W}{W}
+type=Creature
+subtype=Kor Warrior Knight
+power=2
+toughness=2
+[/card]
+[card]
+name=Nomads en-Kor
+text={0}: The next 1 damage that would be dealt to Nomads en-Kor this turn is dealt to target creature you control instead.
+mana={W}
+type=Creature
+subtype=Kor Nomad Soldier
+power=1
+toughness=1
+[/card]
+[card]
+name=Oath of Druids
+text=At the beginning of each player's upkeep, that player chooses target player who controls more creatures than he or she does and is his or her opponent. The first player may reveal cards from the top of his or her library until he or she reveals a creature card. If he or she does, that player puts that card onto the battlefield and all other cards revealed this way into his or her graveyard.
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
+name=Shaman en-Kor
+text={0}: The next 1 damage that would be dealt to Shaman en-Kor this turn is dealt to target creature you control instead. -- {1}{W}: The next time a source of your choice would deal damage to target creature this turn, that damage is dealt to Shaman en-Kor instead.
+mana={1}{W}
+type=Creature
+subtype=Kor Cleric Shaman
+power=1
+toughness=2
+[/card]
+[card]
+name=Soltari Guerrillas
+abilities=shadow
+text=Shadow (This creature can block or be blocked by only creatures with shadow.) -- {0}: The next time Soltari Guerrillas would deal combat damage to an opponent this turn, it deals that damage to target creature instead.
+mana={2}{R}{W}
+type=Creature
+subtype=Soltari Soldier
+power=3
+toughness=2
+[/card]
+[card]
+name=Silver Wyvern
+abilities=flying
+text=Flying -- {U}: Change the target of target spell or ability that targets only Silver Wyvern. The new target must be a creature.
+mana={3}{U}{U}
+type=Creature
+subtype=Drake
+power=4
+toughness=3
+[/card]
+[card]
+name=Coffin Queen
+text=You may choose not to untap Coffin Queen during your untap step. -- {2}{B}, {T}: Put target creature card from a graveyard onto the battlefield under your control. When Coffin Queen becomes untapped or you lose control of Coffin Queen, exile that creature.
+mana={2}{B}
+type=Creature
+subtype=Zombie Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Wood Sage
+text={T}: Name a creature card. Reveal the top four cards of your library and put all of them with that name into your hand. Put the rest into your graveyard.
+mana={G}{U}
+type=Creature
+subtype=Human Druid
+power=1
+toughness=1
+[/card]

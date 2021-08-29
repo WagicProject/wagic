@@ -1,0 +1,70 @@
+[card]
+name=The Mimeoplasm
+text=As The Mimeoplasm enters the battlefield, you may exile two creature cards from graveyards. If you do, it enters the battlefield as a copy of one of those cards with a number of additional +1/+1 counters on it equal to the power of the other card.
+mana={2}{G}{U}{B}
+type=Legendary Creature
+subtype=Ooze
+power=0
+toughness=0
+[/card]
+[card]
+name=Mizzix of the Izmagnus
+text=Whenever you cast an instant or sorcery spell with converted mana cost greater than the number of experience counters you have, you get an experience counter. -- Instant and sorcery spells you cast cost {1} less to cast for each experience counter you have.
+mana={2}{U}{R}
+type=Legendary Creature
+subtype=Goblin Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Thief of Blood
+abilities=flying
+text=Flying -- As Thief of Blood enters the battlefield, remove all counters from all permanents. Thief of Blood enters the battlefield with a +1/+1 counter on it for each counter removed this way.
+mana={4}{B}{B}
+type=Creature
+subtype=Vampire
+power=1
+toughness=1
+[/card]
+[card]
+name=Oreskos Explorer
+text=When Oreskos Explorer enters the battlefield, search your library for up to X Plains cards, where X is the number of players who control more lands than you. Reveal those cards, put them into your hand, then shuffle your library.
+mana={1}{W}
+type=Creature
+subtype=Cat Scout
+power=2
+toughness=2
+[/card]
+[card]
+name=Seal of the Guildpact
+text=As Seal of the Guildpact enters the battlefield, choose two colors. -- Each spell you cast costs {1} less to cast for each of the chosen colors it is.
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Scroll Rack
+text={1}, {T}: Exile any number of cards from your hand face down. Put that many cards from the top of your library into your hand. Then look at the exiled cards and put them on top of your library in any order.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Zedruu the Greathearted
+text=At the beginning of your upkeep, you gain X life and draw X cards, where X is the number of permanents you own that your opponents control. -- {R}{W}{U}: Target opponent gains control of target permanent you control.
+mana={1}{R}{W}{U}
+type=Legendary Creature
+subtype=Minotaur Monk
+power=2
+toughness=4
+[/card]
+[card]
+name=AEthersnatch
+text=Gain control of target spell. You may choose new targets for it. (If that spell becomes a permanent, it enters the battlefield under your control.)
+mana={4}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Desertion
+text=Counter target spell. If an artifact or creature spell is countered this way, put that card onto the battlefield under your control instead of into its owner's graveyard.
+mana={3}{U}{U}
+type=Instant
+[/card]

@@ -1,0 +1,6 @@
+[card]
+name=Gifts Ungiven
+text=Search your library for four cards with different names and reveal them. Target opponent chooses two of those cards. Put the chosen cards into your graveyard and the rest into your hand. Then shuffle your library.
+mana={3}{U}
+type=Instant
+[/card]

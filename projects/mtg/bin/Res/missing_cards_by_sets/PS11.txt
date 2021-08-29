@@ -1,0 +1,6 @@
+[card]
+name=Wild Swing
+text=Choose three target nonenchantment permanents. Destroy one of them at random.
+mana={3}{R}
+type=Sorcery
+[/card]

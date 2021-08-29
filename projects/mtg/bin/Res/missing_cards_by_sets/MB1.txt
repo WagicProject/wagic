@@ -1,0 +1,211 @@
+[card]
+name=Rivals' Duel
+text=Choose two target creatures that share no creature types. Those creatures fight each other. (Each deals damage equal to its power to the other.)
+mana={3}{R}
+type=Sorcery
+[/card]
+[card]
+name=Release the Ants
+text=Release the Ants deals 1 damage to target creature or player. Clash with an opponent. If you win, return Release the Ants to its owner's hand. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Kor Chant
+text=All damage that would be dealt this turn to target creature you control by a source of your choice is dealt to another target creature instead.
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+name=Lieutenants of the Guard
+text=Council's dilemma  When Lieutenants of the Guard enters the battlefield, starting with you, each player votes for strength or numbers. Put a +1/+1 counter on Lieutenants of the Guard for each strength vote and put a 1/1 white Soldier creature token onto the battlefield for each numbers vote.
+mana={4}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Martyr's Cause
+text=Sacrifice a creature: The next time a source of your choice would deal damage to target creature or player this turn, prevent that damage.
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
+name=Reality Scramble
+text=Put target permanent you own on the bottom of your library. Reveal cards from the top of your library until you reveal a card that shares a card type with that permanent. Put that card onto the battlefield and the rest on the bottom of your library in a random order. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
+mana={2}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Winding Constrictor
+text=If one or more counters would be placed on an artifact or creature you control, that many plus one of each of those kinds of counters are placed on that permanent instead. -- If you would get one or more counters, you get that many plus one of each of those kinds of counters instead.
+mana={B}{G}
+type=Creature
+subtype=Snake
+power=2
+toughness=3
+[/card]
+[card]
+name=Goblin Charbelcher
+text={3}, {T}: Reveal cards from the top of your library until you reveal a land card. Goblin Charbelcher deals damage equal to the number of nonland cards revealed this way to target creature or player. If the revealed land card was a Mountain, Goblin Charbelcher deals double that damage instead. Put the revealed cards on the bottom of your library in any order.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Teferi's Protection
+abilities=exiledeath
+text=Until your next turn, your life total can't change and you gain protection from everything. All permanents you control phase out. (While they're phased out, they're treated as though they don't exist. They phase in before you untap during your untap step.) -- Exile Teferi's Protection.
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+name=Carpet of Flowers
+text=At the beginning of each of your main phases, if you haven't added mana to your mana pool with this ability this turn, you may add up to X mana of any one color to your mana pool, where X is the number of Islands target opponent controls.
+mana={G}
+type=Enchantment
+[/card]
+[card]
+name=Volunteer Reserves
+abilities=banding
+text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.) -- Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=4
+[/card]
+[card]
+name=Aminatou's Augury
+text=Exile the top eight cards of your library. You may put a land card from among them onto the battlefield. Until end of turn, for each nonland card type, you may cast a spell of that type from among the exiled cards without paying its mana cost.
+mana={6}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Borderland Explorer
+text=When Borderland Explorer enters the battlefield, each player may discard a card. Each player who discarded a card this way may search his or her library for a basic land card, reveal it, put it into his or her hand, then shuffle his or her library.
+mana={1}{G}
+type=Creature
+subtype=Elf Scout
+power=3
+toughness=1
+[/card]
+[card]
+name=Shrouded Lore
+text=Target opponent chooses a card in your graveyard. You may pay {B}. If you do, repeat this process except that opponent can't choose a card already chosen for Shrouded Lore. Then put the last chosen card into your hand.
+mana={B}
+type=Sorcery
+[/card]
+[card]
+name=Precursor Golem
+text=When Precursor Golem enters the battlefield, put two 3/3 colorless Golem artifact creature tokens onto the battlefield. -- Whenever a player casts an instant or sorcery spell that targets only a single Golem, that player copies that spell for each other Golem that spell could target. Each copy targets a different one of those Golems.
+mana={5}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=3
+[/card]
+[card]
+name=Spy Kit
+text=Equipped creature gets +1/+1 and has all names of nonlegendary creature cards in addition to its name. -- Equip {2}
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Everdream
+text=Draw a card. -- Splice onto instant or sorcery {2}{U} (As you cast an instant or sorcery spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Expropriate
+text=Council's dilemma  Starting with you, each player votes for time or money. For each time vote, take an extra turn after this one. For each money vote, choose a permanent owned by the voter and gain control of it. Exile Expropriate.
+mana={7}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Meandering Towershell
+abilities=islandwalk
+text=Islandwalk (This creature can't be blocked as long as defending player controls an Island.) -- Whenever Meandering Towershell attacks, exile it. Return it to the battlefield under your control tapped and attacking at the beginning of the declare attackers step on your next turn.
+mana={3}{G}{G}
+type=Creature
+subtype=Turtle
+power=5
+toughness=9
+[/card]
+[card]
+name=Sapphire Charm
+text=Choose one  Target player draws a card at the beginning of the next turn's upkeep; or target creature gains flying until end of turn; or target creature an opponent controls phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step.)
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Sakashima the Impostor
+text=You may have Sakashima the Impostor enter the battlefield as a copy of any creature on the battlefield, except its name is still Sakashima the Impostor, it's legendary in addition to its other types, and it gains "{2}{U}{U}: Return Sakashima the Impostor to its owner's hand at the beginning of the next end step."
+mana={2}{U}{U}
+type=Legendary Creature
+subtype=Human Rogue
+power=3
+toughness=1
+[/card]
+[card]
+name=Tempt with Discovery
+text=Tempting offer  Search your library for a land card and put it onto the battlefield. Each opponent may search his or her library for a land card and put it onto the battlefield. For each opponent who searches a library this way, search your library for a land card and put it onto the battlefield. Then each player who searched a library this way shuffles it.
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
+name=Messenger Jays
+text=Flying -- Council's dilemma  When Messenger Jays enters the battlefield, starting with you, each player votes for feather or quill. Put a +1/+1 counter on Messenger Jays for each feather vote and draw a card for each quill vote. For each card drawn this way, discard a card.
+mana={4}{U}
+type=Creature
+subtype=Bird
+power=2
+toughness=1
+[/card]
+[card]
+name=Call of the Nightwing
+text=Put a 1/1 blue and black Horror creature token with flying onto the battlefield. -- Cipher (Then you may exile this spell card encoded on a creature you control. Whenever that creature deals combat damage to a player, its controller may cast a copy of the encoded card without paying its mana cost.)
+mana={2}{U}{B}
+type=Sorcery
+[/card]
+[card]
+name=Corpsejack Menace
+text=If one or more +1/+1 counters would be placed on a creature you control, twice that many +1/+1 counters are placed on it instead.
+mana={2}{B}{G}
+type=Creature
+subtype=Fungus
+power=4
+toughness=4
+[/card]
+[card]
+name=Coalition Honor Guard
+text=While choosing targets as part of casting a spell or activating an ability, your opponents must choose at least one Flagbearer on the battlefield if able.
+mana={3}{W}
+type=Creature
+subtype=Human Flagbearer
+power=2
+toughness=4
+[/card]
+[card]
+name=Goblin Game
+text=Each player hides at least one item, then all players reveal them simultaneously. Each player loses life equal to the number of items he or she revealed. The player who revealed the fewest items then loses half his or her life, rounded up. If two or more players are tied for fewest, each loses half his or her life, rounded up.
+mana={5}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Reflector Mage
+text=When Reflector Mage enters the battlefield, return target creature an opponent controls to its owner's hand. That creature's owner can't cast spells with the same name as that creature until your next turn.
+mana={1}{W}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=3
+[/card]
+[card]
+name=Write into Being
+text=Look at the top two cards of your library. Manifest one of those cards, then put the other on the top or bottom of your library. (To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.)
+mana={2}{U}
+type=Sorcery
+[/card]

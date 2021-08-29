@@ -1,0 +1,36 @@
+[card]
+name=Icefall Regent
+abilities=flying
+text=Flying -- When Icefall Regent enters the battlefield, tap target creature an opponent controls. That creature doesn't untap during its controller's untap step for as long as you control Icefall Regent.  -- Spells your opponents cast that target Icefall Regent cost {2} more to cast.
+mana={3}{U}{U}
+type=Creature
+subtype=Dragon
+power=4
+toughness=3
+[/card]
+[card]
+name=Archfiend of Depravity
+abilities=flying
+text=Flying -- At the beginning of each opponent's end step, that player chooses up to two creatures he or she controls, then sacrifices the rest.
+mana={3}{B}{B}
+type=Creature
+subtype=Demon
+power=5
+toughness=4
+[/card]
+[card]
+name=Torchling
+text={R}: Untap Torchling. -- {R}: Target creature blocks Torchling this turn if able. -- {R}: Change the target of target spell that targets only Torchling. -- {1}: Torchling gets +1/-1 until end of turn. -- {1}: Torchling gets -1/+1 until end of turn.
+mana={3}{R}{R}
+type=Creature
+subtype=Shapeshifter
+power=3
+toughness=3
+[/card]
+[card]
+name=Soul Ransom
+text=Enchant creature -- You control enchanted creature. -- Discard two cards: Soul Ransom's controller sacrifices it, then draws two cards. Only any opponent may activate this ability.
+mana={2}{U}{B}
+type=Enchantment
+subtype=Aura
+[/card]
