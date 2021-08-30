@@ -18,23 +18,11 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Doomsday
-text=Search your library and graveyard for five cards and exile the rest. Put the chosen cards on top of your library in any order. You lose half your life, rounded up.
-mana={B}{B}{B}
-type=Sorcery
-[/card]
-[card]
 name=Kithkin Armor
 text=Enchant creature -- Enchanted creature can't be blocked by creatures with power 3 or greater. -- Sacrifice Kithkin Armor: The next time a source of your choice would deal damage to enchanted creature this turn, prevent that damage.
 mana={W}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Tariff
-text=Each player sacrifices the creature he or she controls with the highest converted mana cost unless he or she pays that creature's mana cost. If two creatures a player controls are tied for highest cost, that player chooses one.
-mana={1}{W}
-type=Sorcery
 [/card]
 [card]
 name=Volunteer Reserves
@@ -69,21 +57,6 @@ name=Desperate Gambit
 text=Choose a source you control and flip a coin. If you win the flip, the next time that source would deal damage this turn, it deals double that damage instead. If you lose the flip, the next time it would deal damage this turn, prevent that damage.
 mana={R}
 type=Instant
-[/card]
-[card]
-name=Goblin Grenadiers
-text=Whenever Goblin Grenadiers attacks and isn't blocked, you may sacrifice it. If you do, destroy target creature and target land.
-mana={3}{R}
-type=Creature
-subtype=Goblin
-power=2
-toughness=2
-[/card]
-[card]
-name=Bosium Strip
-text={3}, {T}: Until end of turn, if the top card of your graveyard is an instant or sorcery card, you may cast that card. If a card cast this way would be put into a graveyard this turn, exile it instead.
-mana={3}
-type=Artifact
 [/card]
 [card]
 name=Mana Web

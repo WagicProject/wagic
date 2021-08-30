@@ -64,13 +64,6 @@ mana={4}{U}{U}
 type=Instant
 [/card]
 [card]
-name=Cobra Trap
-text=If a noncreature permanent under your control was destroyed this turn by a spell or ability an opponent controlled, you may pay {G} rather than pay Cobra Trap's mana cost. -- Put four 1/1 green Snake creature tokens onto the battlefield.
-mana={4}{G}{G}
-type=Instant
-subtype=Trap
-[/card]
-[card]
 name=Karmic Justice
 text=Whenever a spell or ability an opponent controls destroys a noncreature permanent you control, you may destroy target permanent that opponent controls.
 mana={2}{W}

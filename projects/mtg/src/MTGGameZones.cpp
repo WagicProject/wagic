@@ -1197,6 +1197,11 @@ void MTGGameZone::cleanupPhase()
 void MTGGameZone::shuffle()
 {
     owner->getObserver()->getRandomGenerator()->random_shuffle(cards.begin(), cards.end());
+    if(this == owner->game->library){
+        owner->lastShuffleTurn = owner->getObserver()->turn;
+        WEvent * e = NEW WEventplayerShuffled(owner); //Added to trigger an event when a player shuffles his/her library.
+        owner->getObserver()->receiveEvent(e);
+    }
 }
 
 void MTGGameZone::addCard(MTGCardInstance * card)

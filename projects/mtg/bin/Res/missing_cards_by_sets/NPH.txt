@@ -1,16 +1,4 @@
 [card]
-name=Psychic Surgery
-text=Whenever an opponent shuffles his or her library, you may look at the top two cards of that library. You may exile one of those cards. Then put the rest on top of that library in any order.
-mana={1}{U}
-type=Enchantment
-[/card]
-[card]
-name=Exclusion Ritual
-text=Imprint  When Exclusion Ritual enters the battlefield, exile target nonland permanent. -- Players can't cast spells with the same name as the exiled card.
-mana={4}{W}{W}
-type=Enchantment
-[/card]
-[card]
 name=Spellskite
 text={PU}: Change a target of target spell or ability to Spellskite. ({PU} can be paid with either {U} or 2 life.)
 mana={2}

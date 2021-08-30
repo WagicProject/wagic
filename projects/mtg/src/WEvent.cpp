@@ -297,6 +297,11 @@ WEventplayerMonarch::WEventplayerMonarch(Player * player) :
 {
 }
 
+WEventplayerShuffled::WEventplayerShuffled(Player * player) :
+    player(player)
+{
+}
+
 WEventCardBoasted::WEventCardBoasted(MTGCardInstance * card) :
     WEventCardUpdate(card)
 {
@@ -617,6 +622,12 @@ Targetable * WEventplayerExperienced::getTarget(Player * player)
 }
 
 Targetable * WEventplayerMonarch::getTarget(Player * player)
+{
+    if (player) return player;
+    return NULL;
+}
+
+Targetable * WEventplayerShuffled::getTarget(Player * player)
 {
     if (player) return player;
     return NULL;

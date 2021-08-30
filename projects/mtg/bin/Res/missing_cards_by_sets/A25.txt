@@ -59,16 +59,6 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-name=Notion Thief
-abilities=flash
-text=Flash -- If an opponent would draw a card except the first one he or she draws in each of his or her draw steps, instead that player skips that draw and you draw a card.
-mana={2}{U}{B}
-type=Creature
-subtype=Human Rogue
-power=3
-toughness=1
-[/card]
-[card]
 name=Deadly Designs
 text={2}: Put a plot counter on Deadly Designs. Any player may activate this ability. -- When there are five or more plot counters on Deadly Designs, sacrifice it. If you do, destroy up to two target creatures.
 mana={1}{B}
@@ -83,10 +73,4 @@ type=Legendary Creature
 subtype=Angel
 power=5
 toughness=5
-[/card]
-[card]
-name=Doomsday
-text=Search your library and graveyard for five cards and exile the rest. Put the chosen cards on top of your library in any order. You lose half your life, rounded up.
-mana={B}{B}{B}
-type=Sorcery
 [/card]

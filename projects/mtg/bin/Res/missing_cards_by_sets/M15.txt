@@ -5,12 +5,6 @@ mana={4}
 type=Legendary Artifact
 [/card]
 [card]
-name=Stain the Mind
-text=Convoke (Your creatures can help cast this spell. Each creature you tap while casting this spell pays for {1} or one mana of that creature's color.) -- Name a nonland card. Search target player's graveyard, hand, and library for any number of cards with that name and exile them. Then that player shuffles his or her library.
-mana={4}{B}
-type=Sorcery
-[/card]
-[card]
 name=Might Makes Right
 text=At the beginning of combat on your turn, if you control each creature on the battlefield with the greatest power, gain control of target creature an opponent controls until end of turn. Untap that creature. It gains haste until end of turn. (It can attack and {T} this turn.)
 mana={5}{R}

@@ -8,12 +8,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Memoricide
-text=Name a nonland card. Search target player's graveyard, hand, and library for any number of cards with that name and exile them. Then that player shuffles his or her library.
-mana={3}{B}
-type=Sorcery
-[/card]
-[card]
 name=Strata Scythe
 text=Imprint  When Strata Scythe enters the battlefield, search your library for a land card, exile it, then shuffle your library. -- Equipped creature gets +1/+1 for each land on the battlefield with the same name as the exiled card. -- Equip {3}
 mana={3}

@@ -41,12 +41,6 @@ power=6
 toughness=6
 [/card]
 [card]
-name=Slaughter Games
-text=Slaughter Games can't be countered by spells or abilities. -- Name a nonland card. Search target opponent's graveyard, hand, and library for any number of cards with that name and exile them. Then that player shuffles his or her library.
-mana={2}{B}{R}
-type=Sorcery
-[/card]
-[card]
 name=Sphinx of the Chimes
 abilities=flying
 text=Flying -- Discard two nonland cards with the same name: Draw four cards.

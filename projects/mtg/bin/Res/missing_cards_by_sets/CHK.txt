@@ -114,13 +114,6 @@ mana={5}{R}
 type=Sorcery
 [/card]
 [card]
-name=Cranial Extraction
-text=Name a nonland card. Search target player's graveyard, hand, and library for all cards with that name and exile them. Then that player shuffles his or her library.
-mana={3}{B}
-type=Sorcery
-subtype=Arcane
-[/card]
-[card]
 name=Dampen Thought
 text=Target player puts the top four cards of his or her library into his or her graveyard. -- Splice onto Arcane {1}{U} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={1}{U}

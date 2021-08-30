@@ -2741,6 +2741,16 @@ power=7
 toughness=7
 [/card]
 [card]
+name=Archive Trap
+other={0} name(Opponent searched this turn)
+otherrestriction=compare(olastshlturn)~equalto~compare(currentturn)
+auto=deplete:13 opponent
+text=If an opponent searched his or her library this turn, you may pay {0} rather than pay Archive Trap's mana cost. -- Target opponent puts the top thirteen cards of his or her library into his or her graveyard.
+mana={3}{U}{U}
+type=Instant
+subtype=Trap
+[/card]
+[card]
 name=Archmage Emeritus
 auto=@movedto(*[instant;sorcery]|mystack):name(Draw 1 card) draw:1 controller
 text=Magecraft — Whenever you cast or copy an instant or sorcery spell, draw a card.
@@ -7409,6 +7419,13 @@ text=Boseiju, Who Shelters All enters the battlefield tapped. -- {T}, Pay 2 life
 type=Legendary Land
 [/card]
 [card]
+name=Bosium Strip
+auto={3}{T}:name(Can cast instant or sorcery) target(*[instant;sorcery;zpos=type:*:mygraveyard]|mygraveyard) transforms((,newability[canplayfromgraveyard],newability[gainedexiledeath])) ueot
+text={3}, {T}: Until end of turn, if the top card of your graveyard is an instant or sorcery card, you may cast that card. If a card cast this way would be put into a graveyard this turn, exile it instead.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Bottle Golems
 abilities=trample
 auto=_DIES_name(Gain life) life:power controller
@@ -7758,6 +7775,14 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Breathstealer's Crypt
+auto=@drawof(player):name(Check drawn card) transforms((,newability[name(Pay or discard) all(creature[zpos=type:*:myhand]|myhand) transforms((,newability[choice name(Discard creature) reject],newability[choice name(Pay 3 life) life:-3 controller])) oneshot])) oneshot
+auto=@drawfoeof(player):name(Check drawn card) transforms((,newability[name(Pay or discard) all(creature[zpos=type:*:opponenthand]|opponenthand) transforms((,newability[choice name(Discard creature) reject],newability[choice name(Pay 3 life) life:-3 controller])) oneshot])) oneshot
+text=If a player would draw a card, instead he or she draws a card and reveals it. If it's a creature card, that player discards it unless he or she pays 3 life.
+mana={2}{U}{B}
+type=Enchantment
+[/card]
+[card]
 name=Breeches, Brazen Plunderer
 abilities=menace,partner
 auto=@combatdamagefoeof(player) from(*[pirate]|myBattlefield):all(*[zpos=1]|opponentlibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[anytypeofmana],newability[phaseaction[endofturn once] moveTo(ownerexile)])) ueot )!
@@ -7989,8 +8014,9 @@ type=Sorcery
 [/card]
 [card]
 name=Broken Visage
-target=creature[attacking,-artifact]
-auto=destroy && token(Spirit,Creature Spirit,storedpower/storedtoughness,black,treason)
+restriction=type(creature[attacking;-artifact]|battlefield)~morethan~0
+auto=if type(creature[attacking;-artifact]|opponentbattlefield)~morethan~0 then choice name(Destroy opponent creature) name(Destroy opponent creature) target(creature[attacking;-artifact]|opponentbattlefield) transforms((,newability[destroy],newability[token(Spirit^Creature Spirit^p/t^black^treason) opponent])) oneshot
+auto=if type(creature[attacking;-artifact]|mybattlefield)~morethan~0 then choice name(Destroy your creature) name(Destroy your creature) target(creature[attacking;-artifact]|mybattlefield) transforms((,newability[destroy],newability[token(Spirit^Creature Spirit^p/t^black^treason)])) oneshot
 text=Destroy target nonartifact attacking creature. It can't be regenerated. Put a black Spirit creature token with that creature's power and toughness onto the battlefield. Sacrifice the token at the beginning of the next end step.
 mana={4}{B}
 type=Instant
@@ -11385,6 +11411,16 @@ mana={2}{U}
 type=Sorcery
 [/card]
 [card]
+name=Cobra Trap
+other={G} name(Permanent was destroyed)
+otherrestriction=type(*[-creature;-instant;-sorcery;fresh]|mygraveyard)~morethan~0
+auto=token(Snake,Creature Snake,1/1,green)*4
+text=If a noncreature permanent under your control was destroyed this turn by a spell or ability an opponent controlled, you may pay {G} rather than pay Cobra Trap's mana cost. -- Put four 1/1 green Snake creature tokens onto the battlefield.
+mana={4}{G}{G}
+type=Instant
+subtype=Trap
+[/card]
+[card]
 name=Code of Constraint
 target=creature
 auto=-4/-0
@@ -12506,6 +12542,15 @@ power=4
 toughness=2
 [/card]
 [card]
+name=Corpse Dance
+target=creature|mygraveyard
+buyback={4}{B}
+auto=moveto(myBattlefield) and!( transforms((,newability[haste],newability[unearth])) ueot )!
+text=Buyback {2} (You may pay an additional {2} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Return the top creature card of your graveyard to the battlefield. That creature gains haste until end of turn. Exile it at the beginning of the next end step.
+mana={2}{B}
+type=Instant
+[/card]
+[card]
 name=Corpse Knight
 auto=@movedto(other creature|mybattlefield):life:-1 opponent
 text=Whenever another creature enters the battlefield under your control, each opponent loses 1 life.
@@ -12583,6 +12628,16 @@ type=Creature
 subtype=Human Pirate
 power=2
 toughness=2
+[/card]
+[card]
+name=Cosi's Trickster
+auto=@shuffledfoeof(player):may name(Put 1/1 counter) counter(1/1)
+text=Whenever an opponent shuffles his or her library, you may put a +1/+1 counter on Cosi's Trickster.
+mana={U}
+type=Creature
+subtype=Merfolk Wizard
+power=1
+toughness=1
 [/card]
 [card]
 name=Cosima, God of the Voyage
@@ -12864,6 +12919,15 @@ auto=name(Learn) transforms((,newability[if type(*[lesson]|mysideboard)~morethan
 text=You gain 4 life. -- Learn. (You may reveal a Lesson card you own from outside the game and put it into your hand, or discard a card to draw a card.)
 mana={1}{BG}
 type=Sorcery
+[/card]
+[card]
+name=Cranial Extraction
+auto=choice name(Target opponent) ability$!chooseanameopp name(Search that cards) target(<anyamount>creature[chosenname]|opponentgraveyard,opponentlibrary,opponenthand) moveto(exile) and!( shuffle opponent )! chooseend nonland!$ controller
+auto=choice name(Target yourself) ability$!chooseaname name(Search that cards) target(<anyamount>creature[chosenname]|mygraveyard,mylibrary,myhand) moveto(exile) and!( shuffle controller )! chooseend nonland!$ controller
+text=Name a nonland card. Search target player's graveyard, hand, and library for all cards with that name and exile them. Then that player shuffles his or her library.
+mana={3}{B}
+type=Sorcery
+subtype=Arcane
 [/card]
 [card]
 name=Crash Through
@@ -15074,26 +15138,26 @@ toughness=1
 name=Delina, Wild Mage
 auto=_ATTACKING_name(Roll a d20) rolld20 20 winability donothing winabilityend rolld20end
 auto=_ATTACKING_name(Choose your creature) target(creature|mybattlefield) counter(0/0.1.DelinaEffect)
-auto=@dierolled(this) result(1) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(treason^battleready) options(nolegend)])) oneshot
-auto=@dierolled(this) result(2) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(treason^battleready) options(nolegend)])) oneshot
-auto=@dierolled(this) result(3) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(treason^battleready) options(nolegend)])) oneshot
-auto=@dierolled(this) result(4) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(treason^battleready) options(nolegend)])) oneshot
-auto=@dierolled(this) result(5) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(treason^battleready) options(nolegend)])) oneshot
-auto=@dierolled(this) result(6) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(treason^battleready) options(nolegend)])) oneshot
-auto=@dierolled(this) result(7) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(treason^battleready) options(nolegend)])) oneshot
-auto=@dierolled(this) result(8) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(treason^battleready) options(nolegend)])) oneshot
-auto=@dierolled(this) result(9) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(treason^battleready) options(nolegend)])) oneshot
-auto=@dierolled(this) result(10) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(treason^battleready) options(nolegend)])) oneshot
-auto=@dierolled(this) result(11) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(treason^battleready) options(nolegend)])) oneshot
-auto=@dierolled(this) result(12) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(treason^battleready) options(nolegend)])) oneshot
-auto=@dierolled(this) result(13) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(treason^battleready) options(nolegend)])) oneshot
-auto=@dierolled(this) result(14) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(treason^battleready) options(nolegend)])) oneshot
-auto=@dierolled(this) result(15) from(controller):name(may roll d20 again) transforms((,newability[choice name name(Roll d20 again) rolld20 20 winability donothing winabilityend rolld20end],newability[choice name name(Stop rolling d20) all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) removeallcounters(0/0.1.DelinaEffect)],newability[name(Copy creature) all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) clone with(treason^battleready) options(nolegend)])) oneshot
-auto=@dierolled(this) result(16) from(controller):name(may roll d20 again) transforms((,newability[choice name name(Roll d20 again) rolld20 20 winability donothing winabilityend rolld20end],newability[choice name name(Stop rolling d20) all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) removeallcounters(0/0.1.DelinaEffect)],newability[name(Copy creature) all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) clone with(treason^battleready) options(nolegend)])) oneshot
-auto=@dierolled(this) result(17) from(controller):name(may roll d20 again) transforms((,newability[choice name name(Roll d20 again) rolld20 20 winability donothing winabilityend rolld20end],newability[choice name name(Stop rolling d20) all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) removeallcounters(0/0.1.DelinaEffect)],newability[name(Copy creature) all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) clone with(treason^battleready) options(nolegend)])) oneshot
-auto=@dierolled(this) result(18) from(controller):name(may roll d20 again) transforms((,newability[choice name name(Roll d20 again) rolld20 20 winability donothing winabilityend rolld20end],newability[choice name name(Stop rolling d20) all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) removeallcounters(0/0.1.DelinaEffect)],newability[name(Copy creature) all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) clone with(treason^battleready) options(nolegend)])) oneshot
-auto=@dierolled(this) result(19) from(controller):name(may roll d20 again) transforms((,newability[choice name name(Roll d20 again) rolld20 20 winability donothing winabilityend rolld20end],newability[choice name name(Stop rolling d20) all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) removeallcounters(0/0.1.DelinaEffect)],newability[name(Copy creature) all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) clone with(treason^battleready) options(nolegend)])) oneshot
-auto=@dierolled(this) result(20) from(controller):name(may roll d20 again) transforms((,newability[choice name name(Roll d20 again) rolld20 20 winability donothing winabilityend rolld20end],newability[choice name name(Stop rolling d20) all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) removeallcounters(0/0.1.DelinaEffect)],newability[name(Copy creature) all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) clone with(treason^battleready) options(nolegend)])) oneshot
+auto=@dierolled(this) result(1) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(unearth^battleready) options(nolegend)])) oneshot
+auto=@dierolled(this) result(2) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(unearth^battleready) options(nolegend)])) oneshot
+auto=@dierolled(this) result(3) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(unearth^battleready) options(nolegend)])) oneshot
+auto=@dierolled(this) result(4) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(unearth^battleready) options(nolegend)])) oneshot
+auto=@dierolled(this) result(5) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(unearth^battleready) options(nolegend)])) oneshot
+auto=@dierolled(this) result(6) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(unearth^battleready) options(nolegend)])) oneshot
+auto=@dierolled(this) result(7) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(unearth^battleready) options(nolegend)])) oneshot
+auto=@dierolled(this) result(8) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(unearth^battleready) options(nolegend)])) oneshot
+auto=@dierolled(this) result(9) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(unearth^battleready) options(nolegend)])) oneshot
+auto=@dierolled(this) result(10) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(unearth^battleready) options(nolegend)])) oneshot
+auto=@dierolled(this) result(11) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(unearth^battleready) options(nolegend)])) oneshot
+auto=@dierolled(this) result(12) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(unearth^battleready) options(nolegend)])) oneshot
+auto=@dierolled(this) result(13) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(unearth^battleready) options(nolegend)])) oneshot
+auto=@dierolled(this) result(14) from(controller):all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) transforms((,newability[removeallcounters(0/0.1.DelinaEffect)],newability[clone with(unearth^battleready) options(nolegend)])) oneshot
+auto=@dierolled(this) result(15) from(controller):name(may roll d20 again) transforms((,newability[choice name name(Roll d20 again) rolld20 20 winability donothing winabilityend rolld20end],newability[choice name name(Stop rolling d20) all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) removeallcounters(0/0.1.DelinaEffect)],newability[name(Copy creature) all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) clone with(unearth^battleready) options(nolegend)])) oneshot
+auto=@dierolled(this) result(16) from(controller):name(may roll d20 again) transforms((,newability[choice name name(Roll d20 again) rolld20 20 winability donothing winabilityend rolld20end],newability[choice name name(Stop rolling d20) all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) removeallcounters(0/0.1.DelinaEffect)],newability[name(Copy creature) all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) clone with(unearth^battleready) options(nolegend)])) oneshot
+auto=@dierolled(this) result(17) from(controller):name(may roll d20 again) transforms((,newability[choice name name(Roll d20 again) rolld20 20 winability donothing winabilityend rolld20end],newability[choice name name(Stop rolling d20) all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) removeallcounters(0/0.1.DelinaEffect)],newability[name(Copy creature) all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) clone with(unearth^battleready) options(nolegend)])) oneshot
+auto=@dierolled(this) result(18) from(controller):name(may roll d20 again) transforms((,newability[choice name name(Roll d20 again) rolld20 20 winability donothing winabilityend rolld20end],newability[choice name name(Stop rolling d20) all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) removeallcounters(0/0.1.DelinaEffect)],newability[name(Copy creature) all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) clone with(unearth^battleready) options(nolegend)])) oneshot
+auto=@dierolled(this) result(19) from(controller):name(may roll d20 again) transforms((,newability[choice name name(Roll d20 again) rolld20 20 winability donothing winabilityend rolld20end],newability[choice name name(Stop rolling d20) all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) removeallcounters(0/0.1.DelinaEffect)],newability[name(Copy creature) all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) clone with(unearth^battleready) options(nolegend)])) oneshot
+auto=@dierolled(this) result(20) from(controller):name(may roll d20 again) transforms((,newability[choice name name(Roll d20 again) rolld20 20 winability donothing winabilityend rolld20end],newability[choice name name(Stop rolling d20) all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) removeallcounters(0/0.1.DelinaEffect)],newability[name(Copy creature) all(creature[counter{0/0.1.DelinaEffect}]|mybattlefield) clone with(unearth^battleready) options(nolegend)])) oneshot
 text=Whenever Delina, Wild Mage attacks, choose target creature you control, then roll a d20. -- 1-14 | Create a tapped and attacking token that’s a copy of that creature except it’s not legendary and it has "Exile this creature at end of combat." -- 15-20 | Create one of those tokens. You may roll again.
 mana={3}{R}
 type=Legendary Creature
@@ -16653,6 +16717,14 @@ auto=choice name(sacrifice) ability$!moveto(exile) target(creature|mybattlefield
 auto=choice name(discard) if type(*[-land]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else moveto(exile) notatarget(*[-land]|targetedpersonshand)
 text=Choose one — -- • Target opponent exiles a creature he or she controls. -- • Target opponent reveals his or her hand. You choose a nonland card from it. Exile that card.
 mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Doomsday
+auto=name(Search 5 cards) target(<5>*|mylibrary,mygraveyard) moveto(myreveal) and!( moveto(mylibrary) and!( transforms((,newability[all(*[-fresh]|mylibrary) moveto(exile)],newability[all(*|mygraveyard) moveto(exile)])) oneshot )! )!
+auto=life:-halfuplifetotal controller
+text=Search your library and graveyard for five cards and exile the rest. Put the chosen cards on top of your library in any order. You lose half your life, rounded up.
+mana={B}{B}{B}
 type=Sorcery
 [/card]
 [card]
@@ -18573,15 +18645,6 @@ power=0
 toughness=4
 [/card]
 [card]
-name=Elemental Cha
-abilities=haste,treason
-type=Creature
-subtype=Elemental
-power=3
-toughness=3
-color=red
-[/card]
-[card]
 name=Elemental Expressionist
 auto=@movedto(*[instant;sorcery]|mystack):name(Choose a creature) target(creature|mybattlefield) transforms((,newability[exiledeath],newability[@movedto(this|exile):token(Elemental^Creature Elemental^4/4^blue^red)])) ueot
 text=Magecraft — Whenever you cast or copy an instant or sorcery spell, choose target creature you control. Until end of turn, it gains "If this creature would leave the battlefield, exile it instead of putting it anywhere else" and "When this creature is put into exile, create a 4/4 blue and red Elemental creature token." (Each instance of that ability triggers separately.)
@@ -20294,6 +20357,14 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=2
+[/card]
+[card]
+name=Exclusion Ritual
+auto=name(Exile permanent) target(*|battlefield) imprint
+auto=this(variable{hasevict}>0) transforms((,newability[maxCast(*[evictname])0],newability[maxCast(*[evictname])0 opponent]))
+text=Imprint — When Exclusion Ritual enters the battlefield, exile target nonland permanent. -- Players can't cast spells with the same name as the exiled card.
+mana={4}{W}{W}
+type=Enchantment
 [/card]
 [card]
 name=Excruciator
@@ -22768,6 +22839,16 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Flaming Gambit
+target=player
+flashback={X}{R}{R}
+auto=if type(creature|targetedpersonsbattlefield)~equalto~0 then damage:x
+auto=if type(creature|targetedpersonsbattlefield)~morethan~0 then ability$!name(Choose one) choice name(Damage player) damage:storedx controller _ choice name(Damage creature) damage:storedx target(creature|mybattlefield)!$ targetedPlayer
+text=Flaming Gambit deals X damage to target player. That player may choose a creature he or she controls and have Flaming Gambit deal that damage to it instead. -- Flashback {X}{R}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={X}{R}
+type=Instant
+[/card]
+[card]
 name=Flash Foliage
 restriction=blockersonly
 auto=token(Saproling,Creature Saproling,1/1,green) and!(transforms((,newability[mustblock])) ueot)!
@@ -23078,6 +23159,14 @@ auto=token(Dinosaur For)
 auto=token(Human Soldier For)
 text=Create a 1/1 red Dinosaur creature token with haste and a 1/1 white Human Soldier creature token.
 mana={1}{R}
+type=Sorcery
+[/card]
+[card]
+name=Forbidden Ritual
+target=<anyamount>*[-token]|myBattlefield
+auto=transforms((,newability[sacrifice],newability[if type(*|opponentbattlefield)~morethan~0 then if type(*|opponenthand)~morethan~0 then ability$!name(Choose one) choice name(Pay 2 life) life:-2 controller _ choice name(Discard a card) notarget(*|myhand) reject _ choice name(Sacrifice a permanent) notarget(*|myBattlefield) sacrifice!$ opponent],newability[if type(*|opponentbattlefield)~morethan~0 then if type(*|opponenthand)~equalto~0 then ability$!name(Choose one) choice name(Pay 2 life) life:-2 controller _ choice name(Sacrifice a permanent) notarget(*|myBattlefield) sacrifice!$ opponent],newability[if type(*|opponentbattlefield)~equalto~0 then if type(*|opponenthand)~morethan~0 then ability$!name(Choose one) choice name(Pay 2 life) life:-2 controller _ choice name(Discard a card) notarget(*|myhand) reject!$ opponent],newability[if type(*|opponentbattlefield)~equalto~0 then if type(*|opponenthand)~equalto~0 then life:-2 opponent])) oneshot
+text=Sacrifice a nontoken permanent. If you do, target opponent loses 2 life unless he or she sacrifices a permanent or discards a card. You may repeat this process any number of times.
+mana={2}{B}{B}
 type=Sorcery
 [/card]
 [card]
@@ -26151,6 +26240,16 @@ power=5
 toughness=4
 [/card]
 [card]
+name=Goblin Grenadiers
+auto=@combat(notblocked) source(this):may name(Sacrifice and destroy) transforms((,newability[sacrifice],newability[name(Destroy creature) target(creature) destroy],newability[ability$!name(Destroy land) name(Destroy land) target(land) destroy!$ controller])) oneshot
+text=Whenever Goblin Grenadiers attacks and isn't blocked, you may sacrifice it. If you do, destroy target creature and target land.
+mana={3}{R}
+type=Creature
+subtype=Goblin
+power=2
+toughness=2
+[/card]
+[card]
 name=Goblin Instigator
 auto=token(Goblin,Creature Goblin,1/1,red)
 text=When Goblin Instigator enters the battlefield, create a 1/1 red Goblin creature token.
@@ -26685,6 +26784,17 @@ type=Creature
 subtype=Human Warrior
 power=2
 toughness=2
+[/card]
+[card]
+name=Gomazoa
+abilities=defender,flying
+auto={T}:name(Put on library) transforms((,newability[moveto(mylibrary) and!( shuffle )!],newability[if cantargetcard(*[blocking]|*) then name(Put creature on library) name(Put creature on library) target(creature[blocked]|opponentbattlefield) moveto(ownerlibrary) and!( shuffle opponent )!])) oneshot
+text=Defender, flying -- {T}: Put Gomazoa and each creature it's blocking on top of their owners' libraries, then those players shuffle their libraries.
+mana={2}{U}
+type=Creature
+subtype=Jellyfish
+power=0
+toughness=3
 [/card]
 [card]
 name=Gonti, Lord of Luxury
@@ -28012,7 +28122,26 @@ toughness=1
 [card]
 name=Gyrus, Waker of Corpses
 auto=counter(1/1,X) && counter(1/1,3)
-auto=_ATTACKING_ copy target(creature[~lessthan~storedpower]|myGraveyard) with(unearth,haste[attacking]) && moveTo(exile) targe(creature[~lessthan~storedpower]|myGraveyard)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~1}:may name(Exile and copy a creature) target(creature[power<=0]|mygraveyard) moveto(exile) && clone with(unearth,battleready)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~2}:may name(Exile and copy a creature) target(creature[power<=1]|mygraveyard) moveto(exile) && clone with(unearth,battleready)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~3}:may name(Exile and copy a creature) target(creature[power<=2]|mygraveyard) moveto(exile) && clone with(unearth,battleready)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~4}:may name(Exile and copy a creature) target(creature[power<=3]|mygraveyard) moveto(exile) && clone with(unearth,battleready)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~5}:may name(Exile and copy a creature) target(creature[power<=4]|mygraveyard) moveto(exile) && clone with(unearth,battleready)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~6}:may name(Exile and copy a creature) target(creature[power<=5]|mygraveyard) moveto(exile) && clone with(unearth,battleready)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~7}:may name(Exile and copy a creature) target(creature[power<=6]|mygraveyard) moveto(exile) && clone with(unearth,battleready)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~8}:may name(Exile and copy a creature) target(creature[power=<7]|mygraveyard) moveto(exile) && clone with(unearth,battleready)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~9}:may name(Exile and copy a creature) target(creature[power=<8]|mygraveyard) moveto(exile) && clone with(unearth,battleready)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~10}:may name(Exile and copy a creature) target(creature[power<=9]|mygraveyard) moveto(exile) && clone with(unearth,battleready)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~11}:may name(Exile and copy a creature) target(creature[power<=10]|mygraveyard) moveto(exile) && clone with(unearth,battleready)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~12}:may name(Exile and copy a creature) target(creature[power<=11]|mygraveyard) moveto(exile) && clone with(unearth,battleready)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~13}:may name(Exile and copy a creature) target(creature[power<=12]|mygraveyard) moveto(exile) && clone with(unearth,battleready)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~14}:may name(Exile and copy a creature) target(creature[power<=13]|mygraveyard) moveto(exile) && clone with(unearth,battleready)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~15}:may name(Exile and copy a creature) target(creature[power<=14]|mygraveyard) moveto(exile) && clone with(unearth,battleready)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~16}:may name(Exile and copy a creature) target(creature[power<=15]|mygraveyard) moveto(exile) && clone with(unearth,battleready)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~17}:may name(Exile and copy a creature) target(creature[power<=16]|mygraveyard) moveto(exile) && clone with(unearth,battleready)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~18}:may name(Exile and copy a creature) target(creature[power=<17]|mygraveyard) moveto(exile) && clone with(unearth,battleready)
+auto=@combat(attacking) source(this) restriction{compare(p)~equalto~19}:may name(Exile and copy a creature) target(creature[power=<18]|mygraveyard) moveto(exile) && clone with(unearth,battleready)
+auto=@combat(attacking) source(this) restriction{compare(p)~morethan~19}:may name(Exile and copy a creature) target(creature|mygraveyard) moveto(exile) && clone with(unearth,battleready)
 text=Gyrus, Waker of Corpses enters the battlefield with a number of +1/+1 counters on it equal to the amount of mana spent to cast it. -- Whenever Gyrus attacks, you may exile target creature card with lesser power from your graveyard. If you do, create a token that’s a copy of that card and that’s tapped and attacking. Exile the token at end of combat.
 mana={X}{B}{R}{G}
 type=Legendary Creature
@@ -28716,7 +28845,7 @@ toughness=7
 [/card]
 [card]
 name=Hate Mirage
-auto=clone with(treason,haste) target(<upto:2>creature|opponentbattlefield)
+auto=clone with(unearth,haste) target(<upto:2>creature|opponentbattlefield)
 text=Choose up to two target creatures you don't control. For each of those creatures, create a token that's a copy of that creature. Those tokens gain haste. Exile them at the beginning of the next end step.
 mana={3}{R}
 type=Sorcery
@@ -28856,7 +28985,7 @@ toughness=4
 [/card]
 [card]
 name=Hazoret's Favor
-auto=@each my combatbegins:may name(2/0 && haste) target(creature|mybattlefield) transforms((,newability[2/0],newability[haste],newability[treason])) ueot
+auto=@each my combatbegins:may name(Creature gains 2/0 and haste) target(creature|mybattlefield) transforms((,newability[2/0],newability[haste],newability[treason])) ueot
 text=At the beginning of combat on your turn, you may have target creature you control get +2/+0 and gain haste until end of turn. If you do, sacrifice it at the beginning of the next end step.
 mana={2}{R}
 type=Enchantment
@@ -33875,6 +34004,17 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Kalitas, Bloodchief of Ghet
+auto=this(variable{type:creature[-indestructible]:opponentbattlefield}>0) {B}{B}{B}{T}:name(Destroy opponent creature) name(Destroy opponent creature) target(creature[-indestructible]|opponentbattlefield) transforms((,newability[destroy],newability[token(Vampire^Creature Vampire^p/t^black) opponent])) oneshot
+auto=this(variable{type:creature[-indestructible]:mybattlefield}>0) {B}{B}{B}{T}:name(Destroy your creature) name(Destroy your creature) target(creature[-indestructible]|mybattlefield) transforms((,newability[destroy],newability[token(Vampire^Creature Vampire^p/t^black)])) oneshot
+text={B}{B}{B}, {T}: Destroy target creature. If that creature dies this way, put a black Vampire creature token onto the battlefield. Its power is equal to that creature's power and its toughness is equal to that creature's toughness.
+mana={5}{B}{B}
+type=Legendary Creature
+subtype=Vampire Warrior
+power=5
+toughness=5
+[/card]
+[card]
 name=Kalitas, Traitor of Ghet
 abilities=lifelink
 auto=@movedto(creature[-token]|opponentgraveyard):all(trigger[to]) moveTo(exile) && token(Zombie,Creature Zombie,2/2,black)
@@ -34770,7 +34910,7 @@ type=Enchantment
 [/card]
 [card]
 name=Kindred Charge
-auto=chooseatype clone with(treason,haste) all(creature[chosentype]|mybattlefield) chooseend
+auto=chooseatype clone with(unearth,haste) all(creature[chosentype]|mybattlefield) chooseend
 text=Choose a creature type. For each creature you control of the chosen type, create a token that's a copy of that creature. Those tokens gain haste. Exile them at the beginning of the next end step.
 mana={4}{R}{R}
 type=Sorcery
@@ -38316,8 +38456,7 @@ toughness=3
 [card]
 name=Macabre Mockery
 target=creature|opponentGraveyard
-auto=moveto(myBattlefield)
-auto=transforms((,treason,+2/+0,haste)) forever
+auto=moveto(myBattlefield) and!( transforms((,newability[treason],newability[+2/+0],newability[haste])) ueot )!
 text=Put target creature card from an opponent's graveyard onto the battlefield under your control. It gets +2/+0 and gains haste until end of turn. Sacrifice it at the beginning of the next end step.
 mana={2}{B}{R}
 type=Instant
@@ -39659,6 +39798,16 @@ type=Enchantment
 subtype=Saga
 [/card]
 [card]
+name=Meletis Charlatan
+auto={2}{U}{T}:name(Controller copies instant or sorcery) target(*[instant;sorcery]|stack) transforms((,newability[activate castcard(copied)])) oneshot
+text={2}{U}, {T}: The controller of target instant or sorcery spell copies it. That player may choose new targets for the copy.
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=3
+[/card]
+[card]
 name=Melting
 auto=all(land[snow]|battlefield) transforms((removetypes,newability[becomes(Land)])) forever
 text=All lands are no longer snow.
@@ -39704,6 +39853,14 @@ auto={4}{R}{T}{S}:destroy target(land)
 auto={T}:Add{R}
 text=Memorial to War enters the battlefield tapped. -- {T}: Add {R}. -- {4}{R}, {T}, Sacrifice Memorial to War: Destroy target land.
 type=Land
+[/card]
+[card]
+name=Memoricide
+auto=choice name(Target opponent) ability$!chooseanameopp name(Search that cards) target(<anyamount>creature[chosenname]|opponentgraveyard,opponentlibrary,opponenthand) moveto(exile) and!( shuffle opponent )! chooseend nonland!$ controller
+auto=choice name(Target yourself) ability$!chooseaname name(Search that cards) target(<anyamount>creature[chosenname]|mygraveyard,mylibrary,myhand) moveto(exile) and!( shuffle controller )! chooseend nonland!$ controller
+text=Name a nonland card. Search target player's graveyard, hand, and library for any number of cards with that name and exile them. Then that player shuffles his or her library.
+mana={3}{B}
+type=Sorcery
 [/card]
 [card]
 name=Memory Drain
@@ -39989,6 +40146,19 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Merieke Ri Berit
+abilities=doesnotuntap
+auto={T}:name(Gain control of creature) all(this) counter(0/0.1.MeriekeStolen) && target(creature) moveto(myBattlefield) and!( counter(0/0.1.MeriekeStolen) )!
+auto=@untapped(this) restriction{compare(hascntmeriekestolen)~morethan~0}:name(Destroy stolen creature) transforms((,newability[name(Destroy stolen creature) target(creature[counter{0/0.1.MeriekeStolen}]|myBattlefield) bury],newability[removeallcounters(0/0.1.MeriekeStolen)])) oneshot
+auto=@movedto(this|nonbattlezone) from(myBattlefield) restriction{compare(hascntmeriekestolen)~morethan~0}:name(Destroy stolen creature) target(creature[counter{0/0.1.MeriekeStolen}]|myBattlefield) bury
+text=Merieke Ri Berit doesn't untap during your untap step. -- {T}: Gain control of target creature for as long as you control Merieke Ri Berit. When Merieke Ri Berit leaves the battlefield or becomes untapped, destroy that creature. It can't be regenerated.
+mana={W}{U}{B}
+type=Legendary Creature
+subtype=Human
+power=1
+toughness=1
+[/card]
+[card]
 name=Mesa Lynx
 auto=this(variable{opponentturn}>0) 0/2
 text=As long as it's not your turn, Mesa Lynx gets +0/+2.
@@ -40251,7 +40421,7 @@ subtype=Treasure
 [card]
 name=Mimic Vat
 auto=@movedto(creature[-token]|nonbattlezone) from(battlefield):may name(Imprint card) name(Imprint card) all(trigger[to]) transforms((,newability[moveTo(ownerGraveyard) all(other creature[counter{0/0.1.MimicImprinted}]|exile)],newability[moveto(exile) and!( counter(0/0.1.MimicImprinted) )!])) forever
-auto={3}{T}:target(creature[counter{0/0.1.MimicImprinted}]|exile) clone with(haste,treason)
+auto={3}{T}:target(creature[counter{0/0.1.MimicImprinted}]|exile) clone with(haste,unearth)
 text=Imprint — Whenever a nontoken creature dies, you may exile that card. If you do, return each other card exiled with Mimic Vat to its owner’s graveyard. -- {3}, {T}: Create a token that’s a copy of a card exiled with Mimic Vat. It gains haste. Exile it at the beginning of the next end step.
 mana={3}
 type=Artifact
@@ -40306,6 +40476,18 @@ type=Creature
 subtype=Azra Warrior
 power=1
 toughness=3
+[/card]
+[card]
+name=Mindbreak Trap
+target=*|stack
+other={0} name(Opponent casted 3 or more spells)
+otherrestriction=thisturn(*|opponentstack)~morethan~2
+auto=fizzleto(exile)
+auto=all(*|opponentstack) fizzleto(exile)
+text=If an opponent cast three or more spells this turn, you may pay {0} rather than pay Mindbreak Trap's mana cost. -- Exile any number of target spells.
+mana={2}{U}{U}
+type=Instant
+subtype=Trap
 [/card]
 [card]
 name=Mindleecher
@@ -40911,7 +41093,7 @@ type=Sorcery
 [/card]
 [card]
 name=Molten Echoes
-auto=chooseatype transforms((,newability[@movedTo(creature[chosentype,-token]|myBattlefield)}:all(trigger[to]) clone with(treason,haste)])) chooseend
+auto=chooseatype transforms((,newability[@movedTo(creature[chosentype,-token]|myBattlefield)}:all(trigger[to]) clone with(unearth,haste)])) chooseend
 text=As Molten Echoes enters the battlefield, choose a creature type. -- Whenever a nontoken creature of the chosen type enters the battlefield under your control, create a token that’s a copy of that creature. That token gains haste. Exile it at the beginning of the next end step.
 mana={2}{R}{R}
 type=Enchantment
@@ -43196,6 +43378,18 @@ auto=name(surveil 2) reveal:psurveiloffsetplus2plusend optionone name(put in gra
 text=Surveil 2, then draw two cards. Notion Rain deals 2 damage to you. (To surveil 2, look at the top two cards of your library, then put any number of them into your graveyard and the rest on top of your library in any order.)
 mana={1}{U}{B}
 type=Sorcery
+[/card]
+[card]
+name=Notion Thief
+abilities=flash
+auto=@drawfoeof(player) restriction{opponentturnonly,compare(odrewcount)~morethan~1}:name(You draw instead) transforms((,newability[all(*[zpos=type:*:opponenthand]|opponenthand) moveto(ownerlibrary)],newability[draw:1 controller])) oneshot
+auto=@drawfoeof(player) restriction{myturnonly}:name(You draw instead) transforms((,newability[all(*[zpos=type:*:opponenthand]|opponenthand) moveto(ownerlibrary)],newability[draw:1 controller])) oneshot
+text=Flash -- If an opponent would draw a card except the first one he or she draws in each of his or her draw steps, instead that player skips that draw and you draw a card.
+mana={2}{U}{B}
+type=Creature
+subtype=Human Rogue
+power=3
+toughness=1
 [/card]
 [card]
 name=Novellamental
@@ -46639,7 +46833,7 @@ type=Sorcery
 [/card]
 [card]
 name=Planebound Accomplice
-auto={R}:may moveto(myBattlefield) target(planeswalker|myHand) && treason
+auto={R}:may name(Put planeswalker in play) target(planeswalker|myHand) moveto(myBattlefield) and!( transforms((,newability[treason])) ueot )!
 text={R}: You may put a planeswalker card from your hand onto the battlefield. Sacrifice it at the beginning of the next end step.
 mana={2}{R}
 type=Creature
@@ -47009,7 +47203,7 @@ toughness=3
 [card]
 name=Postmortem Lunge
 other={X}{L:2} name(Pay with 2 life)
-auto=target(creature[manacost=X]|mygraveyard) moveto(mybattlefield) && transforms((,treson,haste)) forever
+auto=target(creature[manacost=X]|mygraveyard) moveto(mybattlefield) and!( transforms((,newability[unearth],newability[haste])) forever )!
 text=({PB} can be paid with either {B} or 2 life.) -- Return target creature card with converted mana cost X from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step.
 mana={X}{B}
 type=Sorcery
@@ -48062,11 +48256,28 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Psychic Intrusion
+auto=if type(*[-land]|opponentgraveyard)~morethan~0 then name(Exile non land card) name(Exile non land card) target(*[-land]|opponenthand,opponentgraveyard) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[anytypeofmana])) forever )!
+auto=if type(*[-land]|opponentgraveyard)~equalto~0 then if type(*[-land]|opponenthand)~morethan~0 then name(Exile non land card) name(Exile non land card) name(Exile non land card) target(*[-land]|opponenthand) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[anytypeofmana])) forever )!
+auto=if type(*[-land]|opponentgraveyard)~equalto~0 then if type(*[-land]|opponenthand)~equalto~0 then name(Look opponent hand) name(Look opponent hand) name(Look opponent hand) target(*|opponenthand) moveto(myreveal) and!( moveto(opponenthand) )!
+text=Target opponent reveals his or her hand. You choose a nonland card from that player's graveyard or hand and exile it. You may cast that card for as long as it remains exiled, and you may spend mana as though it were mana of any color to cast that spell.
+mana={3}{U}{B}
+type=Sorcery
+[/card]
+[card]
 name=Psychic Miasma
 auto=ability$!name(Discard a card) name(Discard a card) target(*|myhand) reject and!( if cantargetcard(*[land]|*) then target(Psychic Miasma|opponentgraveyard) moveto(ownerhand) )! !$ opponent
 text=Target player discards a card. If a land card is discarded this way, return Psychic Miasma to its owner's hand.
 mana={1}{B}
 type=Sorcery
+[/card]
+[card]
+name=Psychic Surgery
+aicode=activate target(*[zpos<=2]|opponentlibrary) moveto(ownerexile)
+auto=@shuffledfoeof(player):may name(Look top 2) reveal:2 revealzone(opponentlibrary) optionone name(Put in exile) target(<upto:1>*|reveal) moveto(ownerexile) optiononeend optiontwo name(put back) target(<2>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+text=Whenever an opponent shuffles his or her library, you may look at the top two cards of that library. You may exile one of those cards. Then put the rest on top of that library in any order.
+mana={1}{U}
+type=Enchantment
 [/card]
 [card]
 name=Psychic Symbiont
@@ -48085,6 +48296,14 @@ auto=if compare(lifetotalminusopponentlifetotalminusend)~morethan~4 then exchang
 text=If the difference between your life total and target player's life total is 5 or less, exchange life totals with that player.
 mana={4}{U}
 type=Sorcery
+[/card]
+[card]
+name=Psychogenic Probe
+auto=@shuffledfoeof(player):name(Deal 2 damage) damage:2 opponent
+auto=@shuffledof(player):name(Deal 2 damage) damage:2 controller
+text=Whenever a spell or ability causes a player to shuffle his or her library, Psychogenic Probe deals 2 damage to him or her.
+mana={2}
+type=Artifact
 [/card]
 [card]
 name=Psychotic Episode
@@ -48196,7 +48415,8 @@ abilities=indestructible
 auto=this(variable{type:manar}<5) transforms((removetypes,newability[becomes(Legendary Enchantment God)]))
 auto=this(variable{type:manar}>4) transforms((Legendary Enchantment Creature))
 auto=lord(other creature|myBattlefield) haste
-auto={2}{R}:may moveto(mybattlefield) target(creature,artifact|myhand) && transforms((,treason)) oneshot
+auto={2}{R}:name(Put red creature in play) target(creature[red]|myhand) moveto(mybattlefield) and!( transforms((,newability[treason])) ueot )!
+auto={2}{R}:name(Put artifact creature in play) target(creature[artifact]|myhand) moveto(mybattlefield) and!( transforms((,newability[treason])) ueot )!
 text=Indestructible -- As long as your devotion to red is less than five, Purphoros isn’t a creature. -- Other creatures you control have haste. -- {2}{R}: You may put a red creature card or an artifact creature card from your hand onto the battlefield. Sacrifice it at the beginning of the next end step.
 mana={4}{R}
 type=Legendary Enchantment Creature
@@ -48327,6 +48547,14 @@ auto=thisforeach(variable{4}) ability$!name(Deal 1 damage) name(Deal 1 damage) t
 text=You may exile a red card from your hand rather than pay Pyrokinesis's mana cost. -- Pyrokinesis deals 4 damage divided as you choose among any number of target creatures.
 mana={4}{R}{R}
 type=Instant
+[/card]
+[card]
+name=Pyromancer Ascension
+auto=@movedto(*[instant;sorcery]|mystack) restriction{type(*[instant;sorcery]|mygraveyard)~morethan~0}:all(trigger[to]) transforms((,newability[if type(*[share!name!]|mygraveyard)~morethan~0 then may name(Put quest counter) target(<anyamount>Pyromancer Ascension|myBattlefield) counter(0/0.1.quest)])) oneshot
+auto=@movedto(*[instant;sorcery]|mystack) restriction{compare(hascntquest)~morethan~1}:may name(Copy spell) all(trigger[to]) activate castcard(noevent copied)
+text=Whenever you cast an instant or sorcery spell that has the same name as a card in your graveyard, you may put a quest counter on Pyromancer Ascension. -- Whenever you cast an instant or sorcery spell while Pyromancer Ascension has two or more quest counters on it, you may copy that spell. You may choose new targets for the copy.
+mana={1}{R}
+type=Enchantment
 [/card]
 [card]
 name=Pyromancer's Gauntlet
@@ -51312,6 +51540,17 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Ricochet Trap
+target=*[instant;sorcery]|stack
+other={R} name(Opponent casted blue spell)
+otherrestriction=thisturn(*[blue]|opponentstack)~morethan~0
+auto=fizzle && activate castcard(copied noevent costx!:mytargx:! kicked!:mytargkicked:!)
+text=If an opponent cast a blue spell this turn, you may pay {R} rather than pay Ricochet Trap's mana cost. -- Change the target of target spell with a single target.
+mana={3}{R}
+type=Instant
+subtype=Trap
+[/card]
+[card]
 name=Riddleform
 aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=@movedTo(*[-creature]|mystack):may transforms((Sphinx Creature,setpower=3,settoughness=3,flying)) ueot					    
@@ -51527,26 +51766,26 @@ type=Artifact
 [/card]
 [card]
 name=Rionya, Fire Dancer
-auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~1}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(treason^haste)],newability[clone with(treason^haste)])) oneshot
-auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~2}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)])) oneshot
-auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~3}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)])) oneshot
-auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~4}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)])) oneshot
-auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~5}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)])) oneshot
-auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~6}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)])) oneshot
-auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~7}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)])) oneshot
-auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~8}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)])) oneshot
-auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~9}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)])) oneshot
-auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~10}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)])) oneshot
-auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~11}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)])) oneshot
-auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~12}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)])) oneshot
-auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~13}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)])) oneshot
-auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~14}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)])) oneshot
-auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~15}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)])) oneshot
-auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~16}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)])) oneshot
-auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~17}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)])) oneshot
-auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~18}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)])) oneshot
-auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~19}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)])) oneshot
-auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~morethan~19}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)],newability[clone with(treason^haste)])) oneshot
+auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~1}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(unearth^haste)],newability[clone with(unearth^haste)])) oneshot
+auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~2}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)])) oneshot
+auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~3}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)])) oneshot
+auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~4}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)])) oneshot
+auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~5}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)])) oneshot
+auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~6}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)])) oneshot
+auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~7}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)])) oneshot
+auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~8}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)])) oneshot
+auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~9}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)])) oneshot
+auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~10}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)])) oneshot
+auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~11}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)])) oneshot
+auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~12}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)])) oneshot
+auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~13}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)])) oneshot
+auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~14}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)])) oneshot
+auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~15}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)])) oneshot
+auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~16}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)])) oneshot
+auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~17}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)])) oneshot
+auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~18}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)])) oneshot
+auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~equalto~19}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)])) oneshot
+auto=@each my combatbegins restriction{thisturn(*[instant;sorcery]|mystack)~morethan~19}:name(Copy creature) target(other creature|mybattlefield) transforms((,newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)],newability[clone with(unearth^haste)])) oneshot
 text=At the beginning of combat on your turn, create X tokens that are copies of another target creature you control, where X is one plus the number of instant and sorcery spells you've cast this turn. They gain haste. Exile them at the beginning of the next end step.
 mana={3}{R}{R}
 type=Legendary Creature
@@ -52697,6 +52936,32 @@ auto=destroy all(*[-land]|opponentBattlefield)
 text=Destroy all nonland permanents your opponents control.
 mana={R}{R}{W}{W}{W}{B}{B}
 type=Sorcery
+[/card]
+[card]
+name=Rumbling Aftershocks
+auto=@movedTo(*[kicked=1]|myStack):may name(Deal 1 damage) target(creature) damage:1
+auto=@movedTo(*[kicked=2]|myStack):may name(Deal 2 damage) target(creature) damage:2
+auto=@movedTo(*[kicked=3]|myStack):may name(Deal 3 damage) target(creature) damage:3
+auto=@movedTo(*[kicked=4]|myStack):may name(Deal 4 damage) target(creature) damage:4
+auto=@movedTo(*[kicked=5]|myStack):may name(Deal 5 damage) target(creature) damage:5
+auto=@movedTo(*[kicked=6]|myStack):may name(Deal 6 damage) target(creature) damage:6
+auto=@movedTo(*[kicked=7]|myStack):may name(Deal 7 damage) target(creature) damage:7
+auto=@movedTo(*[kicked=8]|myStack):may name(Deal 8 damage) target(creature) damage:8
+auto=@movedTo(*[kicked=9]|myStack):may name(Deal 9 damage) target(creature) damage:9
+auto=@movedTo(*[kicked=10]|myStack):may name(Deal 10 damage) target(creature) damage:10
+auto=@movedTo(*[kicked=11]|myStack):may name(Deal 11 damage) target(creature) damage:11
+auto=@movedTo(*[kicked=12]|myStack):may name(Deal 12 damage) target(creature) damage:12
+auto=@movedTo(*[kicked=13]|myStack):may name(Deal 13 damage) target(creature) damage:13
+auto=@movedTo(*[kicked=14]|myStack):may name(Deal 14 damage) target(creature) damage:14
+auto=@movedTo(*[kicked=15]|myStack):may name(Deal 15 damage) target(creature) damage:15
+auto=@movedTo(*[kicked=16]|myStack):may name(Deal 16 damage) target(creature) damage:16
+auto=@movedTo(*[kicked=17]|myStack):may name(Deal 17 damage) target(creature) damage:17
+auto=@movedTo(*[kicked=18]|myStack):may name(Deal 18 damage) target(creature) damage:18
+auto=@movedTo(*[kicked=19]|myStack):may name(Deal 19 damage) target(creature) damage:19
+auto=@movedTo(*[kicked>=20]|myStack):may name(Deal 20 damage) target(creature) damage:20
+text=Whenever you cast a kicked spell, you may have Rumbling Aftershocks deal damage to target creature or player equal to the number of times that spell was kicked.
+mana={4}{R}
+type=Enchantment
 [/card]
 [card]
 name=Rumbling Rockslide
@@ -55871,7 +56136,7 @@ toughness=4
 [card]
 name=Shallow Grave
 target=creature|mygraveyard
-auto=moveTo(mybattlefield) && transforms((,newability[phaseaction[endofturn once] moveTo(exile)],haste)) ueot
+auto=moveTo(mybattlefield) && transforms((,newability[unearth],newability[haste])) ueot
 text=Return the top creature card of your graveyard to the battlefield. That creature gains haste until end of turn. Exile it at the beginning of the next end step.
 mana={1}{B}
 type=Instant
@@ -56296,7 +56561,7 @@ subtype=Aura
 [/card]
 [card]
 name=Shifty Doppelganger
-auto={3}{U}{E}:target(creature|myhand) moveto(mybattlefield) and!(transforms((,newability[treason],newability[haste],newability[moveto(mybattlefield) target(Shifty Doppelganger[fresh]|myexile)])) ueot)!
+auto={3}{U}{E}:target(creature|myhand) moveto(mybattlefield) and!( transforms((,newability[treason],newability[haste],newability[moveto(mybattlefield) target(Shifty Doppelganger[fresh]|myexile)])) ueot )!
 text={3}{U}, Exile Shifty Doppelganger: You may put a creature card from your hand onto the battlefield. If you do, that creature gains haste until end of turn. At the beginning of the next end step, sacrifice that creature. If you do, return Shifty Doppelganger to the battlefield.
 mana={2}{U}
 type=Creature
@@ -57012,6 +57277,24 @@ type=Creature
 subtype=Elf Scout
 power=2
 toughness=1
+[/card]
+[card]
+name=Silumgar's Command
+auto=if type(*[-creature]|opponentstack)~morethan~0 then choice name(Counter opponent spell and return permanent) name(Counter opponent spell and return permanent) target(*[-creature]|opponentstack) transforms((,newability[fizzle],newability[ability$!name(Return permanent) name(Return permanent) target(*|battlefield) moveto(ownerhand)!$ opponent])) oneshot
+auto=if type(other *[-creature]|mystack)~morethan~0 then choice name(Counter your spell and return permanent) name(Counter your spell and return permanent) target(*[-creature]|mystack) transforms((,newability[fizzle],newability[ability$!name(Return permanent) name(Return permanent) target(*|battlefield) moveto(ownerhand)!$ controller])) oneshot
+auto=if type(*[-creature]|opponentstack)~morethan~0 then choice name(Counter opponent spell and creature gets -3/-3) name(Counter opponent spell and creature gets -3/-3) target(*[-creature]|opponentstack) transforms((,newability[fizzle],newability[ability$!name(Creature gets -3/-3) name(Creature gets -3/-3) target(creature|battlefield) -3/-3 ueot!$ opponent])) oneshot
+auto=if type(other *[-creature]|mystack)~morethan~0 then choice name(Counter your spell and and creature gets -3/-3) name(Counter your spell and and creature gets -3/-3) target(*[-creature]|mystack) transforms((,newability[fizzle],newability[ability$!name(Creature gets -3/-3) name(Creature gets -3/-3) target(creature|battlefield) -3/-3 ueot!$ controller])) oneshot
+auto=if type(*[-creature]|opponentstack)~morethan~0 then choice name(Counter opponent spell and destroy planeswalker) name(Counter opponent spell and destroy planeswalker) target(*[-creature]|opponentstack) transforms((,newability[fizzle],newability[ability$!name(Destroy planeswalker) name(Destroy planeswalker) target(planeswalker|battlefield) destroy!$ opponent])) oneshot
+auto=if type(other *[-creature]|mystack)~morethan~0 then choice name(Counter your spell and destroy planeswalker) name(Counter your spell and destroy planeswalker) target(*[-creature]|mystack) transforms((,newability[fizzle],newability[ability$!name(Destroy planeswalker) name(Destroy planeswalker) target(planeswalker|battlefield) destroy!$ controller])) oneshot
+auto=if type(*|opponentbattlefield)~morethan~0 then choice name(Return opponent permanent and creature gets -3/-3) name(Return opponent permanent and creature gets -3/-3) target(*|opponentbattlefield) transforms((,newability[moveto(ownerhand)],newability[ability$!name(Creature gets -3/-3) name(Creature gets -3/-3) target(creature|battlefield) -3/-3 ueot!$ opponent])) oneshot
+auto=if type(*|mybattlefield)~morethan~0 then choice name(Return your permanent and creature gets -3/-3) name(Return your permanent and creature gets -3/-3) target(*|mybattlefield) transforms((,newability[moveto(ownerhand)],newability[ability$!name(Creature gets -3/-3) name(Creature gets -3/-3) target(creature|battlefield) -3/-3 ueot!$ controller])) oneshot
+auto=if type(*|opponentbattlefield)~morethan~0 then choice name(Return opponent permanent and destroy planeswalker) name(Return opponent permanent and destroy planeswalker) target(*|opponentbattlefield) transforms((,newability[moveto(ownerhand)],newability[ability$!name(Destroy planeswalker) name(Destroy planeswalker) target(planeswalker|battlefield) destroy!$ opponent])) oneshot
+auto=if type(*|mybattlefield)~morethan~0 then choice name(Return your permanent and destroy planeswalker) name(Return your permanent and destroy planeswalker) target(*|mybattlefield) transforms((,newability[moveto(ownerhand)],newability[ability$!name(Destroy planeswalker) name(Destroy planeswalker) target(planeswalker|battlefield) destroy!$ controller])) oneshot
+auto=if type(creature|opponentbattlefield)~morethan~0 then choice name(Opponent creature gets -3/-3 and destroy planeswalker) name(Opponent creature gets -3/-3 and destroy planeswalker) target(creature|opponentbattlefield) transforms((,newability[-3/-3 ueot],newability[ability$!name(Destroy planeswalker) name(Destroy planeswalker) target(planeswalker|battlefield) destroy!$ opponent])) oneshot
+auto=if type(creature|mybattlefield)~morethan~0 then choice name(Your creature gets -3/-3 and destroy planeswalker) name(Your creature gets -3/-3 and destroy planeswalker) target(creature|mybattlefield) transforms((,newability[-3/-3 ueot],newability[ability$!name(Destroy planeswalker) name(Destroy planeswalker) target(planeswalker|battlefield) destroy!$ controller])) oneshot
+text=Choose two — -- • Counter target noncreature spell. -- • Return target permanent to its owner's hand. -- • Target creature gets -3/-3 until end of turn. -- • Destroy target planeswalker.
+mana={3}{U}{B}
+type=Instant
 [/card]
 [card]
 name=Silumgar Scavenger
@@ -58204,6 +58487,14 @@ auto=all(creature[-iscommander]|battlefield) destroy
 auto=all(planeswalker[-iscommander]|battlefield) destroy
 text=Destroy all creatures and planeswalkers except for commanders.
 mana={3}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Slaughter Games
+abilities=nofizzle
+auto=chooseanameopp name(Search that cards) target(<anyamount>creature[chosenname]|opponentgraveyard,opponentlibrary,opponenthand) moveto(exile) and!( shuffle opponent )! chooseend nonland
+text=Slaughter Games can't be countered by spells or abilities. -- Name a nonland card. Search target opponent's graveyard, hand, and library for any number of cards with that name and exile them. Then that player shuffles his or her library.
+mana={2}{B}{R}
 type=Sorcery
 [/card]
 [card]
@@ -60864,6 +61155,15 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Stain the Mind
+other={convoke} name(Convoke)
+auto=choice name(Target opponent) ability$!chooseanameopp name(Search that cards) target(<anyamount>creature[chosenname]|opponentgraveyard,opponentlibrary,opponenthand) moveto(exile) and!( shuffle opponent )! chooseend nonland!$ controller
+auto=choice name(Target yourself) ability$!chooseaname name(Search that cards) target(<anyamount>creature[chosenname]|mygraveyard,mylibrary,myhand) moveto(exile) and!( shuffle controller )! chooseend nonland!$ controller
+text=Convoke (Your creatures can help cast this spell. Each creature you tap while casting this spell pays for {1} or one mana of that creature's color.) -- Name a nonland card. Search target player's graveyard, hand, and library for any number of cards with that name and exile them. Then that player shuffles his or her library.
+mana={4}{B}
+type=Sorcery
+[/card]
+[card]
 name=Stalking Leonin
 auto={0}:name(reveal the opponent) this(counter{0/0.1.StalkingEffect}<1) name(reveal the opponent) transforms((,newability[name(Move to exile) name(Move to exile) target(creature[attacking]|opponentbattlefield) moveto(exile)],newability[counter(0/0.1.StalkingEffect)])) oneshot
 text=When Stalking Leonin enters the battlefield, secretly choose an opponent. -- Reveal the player you chose: Exile target creature that's attacking you if it's controlled by the chosen player. Activate this ability only once.
@@ -61667,7 +61967,7 @@ toughness=3
 [card]
 name=Storm Herald
 abilities=haste
-auto=activate castcard(normal) target(<anyamount>aura|myGraveyard) and!(transforms((,newability[treason],newability[exiledeath])) forever)!
+auto=activate castcard(normal) target(<anyamount>aura|myGraveyard) and!( transforms((,newability[unearth],newability[exiledeath])) forever )!
 text=Haste -- When Storm Herald enters the battlefield, return any number of Aura cards from your graveyard to the battlefield attached to creatures you control. Exile those Auras at the beginning of your next end step. If those Auras would leave the battlefield, exile them instead of putting them anywhere else.
 mana={2}{R}
 type=Creature
@@ -62262,6 +62562,17 @@ auto=_ADDENDUM_ damage:5 else damage:3
 text=Summary Judgment deals 3 damage to target tapped creature. -- Addendum — If you cast this spell during your main phase, it deals 5 damage to that creature instead.
 mana={1}{W}
 type=Instant
+[/card]
+[card]
+name=Summoning Trap
+other={0} name(Creature was countered)
+otherrestriction=thisturn(instant|opponentstack)~morethan~0,thisturn(creature|mystack)~morethan~0,type(creature[fresh]|mygraveyard)~morethan~0
+aicode=activate transforms((,newability[target(creature[zpos<=7]|mylibrary) moveto(mybattlefield)],newability[all(*[zpos<=7]|mylibrary) moveto(myreveal) and!( bottomoflibrary )!])) oneshot
+auto=name(Look top 7) reveal:7 optionone name(Get a creature) target(<upto:1>creature|reveal) moveto(mybattlefield) optiononeend optiontwo name(Put on bottom) target(<7>*|reveal) bottomoflibrary optiontwoend revealend
+text=If a creature spell you cast this turn was countered by a spell or ability an opponent controlled, you may pay {0} rather than pay Summoning Trap's mana cost. -- Look at the top seven cards of your library. You may put a creature card from among them onto the battlefield. Put the rest on the bottom of your library in any order.
+mana={4}{G}{G}
+type=Instant
+subtype=Trap
 [/card]
 [card]
 name=Sun Sentinel
@@ -63707,6 +64018,54 @@ type=Creature
 subtype=Minotaur Warrior
 power=2
 toughness=1
+[/card]
+[card]
+name=Tariff
+auto=if compare(convertedcost:highest:creature:opponentbattlefield)~equalto~0 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=0]|mybattlefield) transforms((,newability[pay[[{0}]] name(pay 0 mana) donothing?sacrifice])) oneshot!$ opponent
+auto=if compare(convertedcost:highest:creature:mybattlefield)~equalto~0 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=0]|mybattlefield) transforms((,newability[pay[[{0}]] name(pay 0 mana) donothing?sacrifice])) oneshot!$ controller
+auto=if compare(convertedcost:highest:creature:opponentbattlefield)~equalto~1 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=1]|mybattlefield) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?sacrifice])) oneshot!$ opponent
+auto=if compare(convertedcost:highest:creature:mybattlefield)~equalto~1 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=1]|mybattlefield) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?sacrifice])) oneshot!$ controller
+auto=if compare(convertedcost:highest:creature:opponentbattlefield)~equalto~2 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=2]|mybattlefield) transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?sacrifice])) oneshot!$ opponent
+auto=if compare(convertedcost:highest:creature:mybattlefield)~equalto~2 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=2]|mybattlefield) transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?sacrifice])) oneshot!$ controller
+auto=if compare(convertedcost:highest:creature:opponentbattlefield)~equalto~3 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=3]|mybattlefield) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?sacrifice])) oneshot!$ opponent
+auto=if compare(convertedcost:highest:creature:mybattlefield)~equalto~3 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=3]|mybattlefield) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?sacrifice])) oneshot!$ controller
+auto=if compare(convertedcost:highest:creature:opponentbattlefield)~equalto~4 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=4]|mybattlefield) transforms((,newability[pay[[{4}]] name(pay 4 mana) donothing?sacrifice])) oneshot!$ opponent
+auto=if compare(convertedcost:highest:creature:mybattlefield)~equalto~4 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=4]|mybattlefield) transforms((,newability[pay[[{4}]] name(pay 4 mana) donothing?sacrifice])) oneshot!$ controller
+auto=if compare(convertedcost:highest:creature:opponentbattlefield)~equalto~5 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=5]|mybattlefield) transforms((,newability[pay[[{5}]] name(pay 5 mana) donothing?sacrifice])) oneshot!$ opponent
+auto=if compare(convertedcost:highest:creature:mybattlefield)~equalto~5 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=5]|mybattlefield) transforms((,newability[pay[[{5}]] name(pay 5 mana) donothing?sacrifice])) oneshot!$ controller
+auto=if compare(convertedcost:highest:creature:opponentbattlefield)~equalto~6 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=6]|mybattlefield) transforms((,newability[pay[[{6}]] name(pay 6 mana) donothing?sacrifice])) oneshot!$ opponent
+auto=if compare(convertedcost:highest:creature:mybattlefield)~equalto~6 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=6]|mybattlefield) transforms((,newability[pay[[{6}]] name(pay 6 mana) donothing?sacrifice])) oneshot!$ controller
+auto=if compare(convertedcost:highest:creature:opponentbattlefield)~equalto~7 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=7]|mybattlefield) transforms((,newability[pay[[{7}]] name(pay 7 mana) donothing?sacrifice])) oneshot!$ opponent
+auto=if compare(convertedcost:highest:creature:mybattlefield)~equalto~7 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=7]|mybattlefield) transforms((,newability[pay[[{7}]] name(pay 7 mana) donothing?sacrifice])) oneshot!$ controller
+auto=if compare(convertedcost:highest:creature:opponentbattlefield)~equalto~8 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=8]|mybattlefield) transforms((,newability[pay[[{8}]] name(pay 8 mana) donothing?sacrifice])) oneshot!$ opponent
+auto=if compare(convertedcost:highest:creature:mybattlefield)~equalto~8 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=8]|mybattlefield) transforms((,newability[pay[[{8}]] name(pay 8 mana) donothing?sacrifice])) oneshot!$ controller
+auto=if compare(convertedcost:highest:creature:opponentbattlefield)~equalto~9 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=9]|mybattlefield) transforms((,newability[pay[[{9}]] name(pay 9 mana) donothing?sacrifice])) oneshot!$ opponent
+auto=if compare(convertedcost:highest:creature:mybattlefield)~equalto~9 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=9]|mybattlefield) transforms((,newability[pay[[{9}]] name(pay 9 mana) donothing?sacrifice])) oneshot!$ controller
+auto=if compare(convertedcost:highest:creature:opponentbattlefield)~equalto~10 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=10]|mybattlefield) transforms((,newability[pay[[{10}]] name(pay 10 mana) donothing?sacrifice])) oneshot!$ opponent
+auto=if compare(convertedcost:highest:creature:mybattlefield)~equalto~10 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=10]|mybattlefield) transforms((,newability[pay[[{10}]] name(pay 10 mana) donothing?sacrifice])) oneshot!$ controller
+auto=if compare(convertedcost:highest:creature:opponentbattlefield)~equalto~11 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=11]|mybattlefield) transforms((,newability[pay[[{11}]] name(pay 11 mana) donothing?sacrifice])) oneshot!$ opponent
+auto=if compare(convertedcost:highest:creature:mybattlefield)~equalto~11 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=11]|mybattlefield) transforms((,newability[pay[[{11}]] name(pay 11 mana) donothing?sacrifice])) oneshot!$ controller
+auto=if compare(convertedcost:highest:creature:opponentbattlefield)~equalto~12 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=12]|mybattlefield) transforms((,newability[pay[[{12}]] name(pay 12 mana) donothing?sacrifice])) oneshot!$ opponent
+auto=if compare(convertedcost:highest:creature:mybattlefield)~equalto~12 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=12]|mybattlefield) transforms((,newability[pay[[{12}]] name(pay 12 mana) donothing?sacrifice])) oneshot!$ controller
+auto=if compare(convertedcost:highest:creature:opponentbattlefield)~equalto~13 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=13]|mybattlefield) transforms((,newability[pay[[{13}]] name(pay 13 mana) donothing?sacrifice])) oneshot!$ opponent
+auto=if compare(convertedcost:highest:creature:mybattlefield)~equalto~13 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=13]|mybattlefield) transforms((,newability[pay[[{13}]] name(pay 13 mana) donothing?sacrifice])) oneshot!$ controller
+auto=if compare(convertedcost:highest:creature:opponentbattlefield)~equalto~14 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=14]|mybattlefield) transforms((,newability[pay[[{14}]] name(pay 14 mana) donothing?sacrifice])) oneshot!$ opponent
+auto=if compare(convertedcost:highest:creature:mybattlefield)~equalto~14 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=14]|mybattlefield) transforms((,newability[pay[[{14}]] name(pay 14 mana) donothing?sacrifice])) oneshot!$ controller
+auto=if compare(convertedcost:highest:creature:opponentbattlefield)~equalto~15 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=15]|mybattlefield) transforms((,newability[pay[[{15}]] name(pay 15 mana) donothing?sacrifice])) oneshot!$ opponent
+auto=if compare(convertedcost:highest:creature:mybattlefield)~equalto~15 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=15]|mybattlefield) transforms((,newability[pay[[{15}]] name(pay 15 mana) donothing?sacrifice])) oneshot!$ controller
+auto=if compare(convertedcost:highest:creature:opponentbattlefield)~equalto~16 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=16]|mybattlefield) transforms((,newability[pay[[{16}]] name(pay 16 mana) donothing?sacrifice])) oneshot!$ opponent
+auto=if compare(convertedcost:highest:creature:mybattlefield)~equalto~16 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=16]|mybattlefield) transforms((,newability[pay[[{16}]] name(pay 16 mana) donothing?sacrifice])) oneshot!$ controller
+auto=if compare(convertedcost:highest:creature:opponentbattlefield)~equalto~17 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=17]|mybattlefield) transforms((,newability[pay[[{17}]] name(pay 17 mana) donothing?sacrifice])) oneshot!$ opponent
+auto=if compare(convertedcost:highest:creature:mybattlefield)~equalto~17 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=17]|mybattlefield) transforms((,newability[pay[[{17}]] name(pay 17 mana) donothing?sacrifice])) oneshot!$ controller
+auto=if compare(convertedcost:highest:creature:opponentbattlefield)~equalto~18 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=18]|mybattlefield) transforms((,newability[pay[[{18}]] name(pay 18 mana) donothing?sacrifice])) oneshot!$ opponent
+auto=if compare(convertedcost:highest:creature:mybattlefield)~equalto~18 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=18]|mybattlefield) transforms((,newability[pay[[{18}]] name(pay 18 mana) donothing?sacrifice])) oneshot!$ controller
+auto=if compare(convertedcost:highest:creature:opponentbattlefield)~equalto~19 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=19]|mybattlefield) transforms((,newability[pay[[{19}]] name(pay 19 mana) donothing?sacrifice])) oneshot!$ opponent
+auto=if compare(convertedcost:highest:creature:mybattlefield)~equalto~19 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost=19]|mybattlefield) transforms((,newability[pay[[{19}]] name(pay 19 mana) donothing?sacrifice])) oneshot!$ controller
+auto=if compare(convertedcost:highest:creature:opponentbattlefield)~morethan~19 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost>=20]|mybattlefield) transforms((,newability[pay[[{20}]] name(pay 20 mana) donothing?sacrifice])) oneshot!$ opponent
+auto=if compare(convertedcost:highest:creature:mybattlefield)~morethan~19 then ability$!name(Sacrifice a creature) name(Sacrifice a creature) target(creature[manacost>=20]|mybattlefield) transforms((,newability[pay[[{20}]] name(pay 20 mana) donothing?sacrifice])) oneshot!$ controller
+text=Each player sacrifices the creature he or she controls with the highest converted mana cost unless he or she pays that creature's mana cost. If two creatures a player controls are tied for highest cost, that player chooses one.
+mana={1}{W}
+type=Sorcery
 [/card]
 [card]
 name=Tasha's Hideous Laughter
@@ -67788,26 +68147,26 @@ toughness=3
 [card]
 name=Twinflame
 kicker=multi{2}{R}
-auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature|myBattlefield) clone with(treason,haste)
-auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>creature|myBattlefield) clone with(treason,haste)
-auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>creature|myBattlefield) clone with(treason,haste)
-auto=if compare(kicked)~equalto~3 then name(choose 4 creatures) name(choose 4 creatures) target(<upto:4>creature|myBattlefield) clone with(treason,haste)
-auto=if compare(kicked)~equalto~4 then name(choose 5 creatures) name(choose 5 creatures) target(<upto:5>creature|myBattlefield) clone with(treason,haste)
-auto=if compare(kicked)~equalto~5 then name(choose 6 creatures) name(choose 6 creatures) target(<upto:6>creature|myBattlefield) clone with(treason,haste)
-auto=if compare(kicked)~equalto~6 then name(choose 7 creatures) name(choose 7 creatures) target(<upto:7>creature|myBattlefield) clone with(treason,haste)
-auto=if compare(kicked)~equalto~7 then name(choose 8 creatures) name(choose 8 creatures) target(<upto:8>creature|myBattlefield) clone with(treason,haste)
-auto=if compare(kicked)~equalto~8 then name(choose 9 creatures) name(choose 9 creatures) target(<upto:9>creature|myBattlefield) clone with(treason,haste)
-auto=if compare(kicked)~equalto~9 then name(choose 10 creatures) name(choose 10 creatures) target(<upto:10>creature|myBattlefield) clone with(treason,haste)
-auto=if compare(kicked)~equalto~10 then name(choose 11 creatures) name(choose 11 creatures) target(<upto:11>creature|myBattlefield) clone with(treason,haste)
-auto=if compare(kicked)~equalto~11 then name(choose 12 creatures) name(choose 12 creatures) target(<upto:12>creature|myBattlefield) clone with(treason,haste)
-auto=if compare(kicked)~equalto~12 then name(choose 13 creatures) name(choose 13 creatures) target(<upto:13>creature|myBattlefield) clone with(treason,haste)
-auto=if compare(kicked)~equalto~13 then name(choose 14 creatures) name(choose 14 creatures) target(<upto:14>creature|myBattlefield) clone with(treason,haste)
-auto=if compare(kicked)~equalto~14 then name(choose 15 creatures) name(choose 15 creatures) target(<upto:15>creature|myBattlefield) clone with(treason,haste)
-auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16 creatures) target(<upto:16>creature|myBattlefield) clone with(treason,haste)
-auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>creature|myBattlefield) clone with(treason,haste)
-auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>creature|myBattlefield) clone with(treason,haste)
-auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>creature|myBattlefield) clone with(treason,haste)
-auto=if compare(kicked)~equalto~19 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature|myBattlefield) clone with(treason,haste)
+auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature|myBattlefield) clone with(unearth,haste)
+auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>creature|myBattlefield) clone with(unearth,haste)
+auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>creature|myBattlefield) clone with(unearth,haste)
+auto=if compare(kicked)~equalto~3 then name(choose 4 creatures) name(choose 4 creatures) target(<upto:4>creature|myBattlefield) clone with(unearth,haste)
+auto=if compare(kicked)~equalto~4 then name(choose 5 creatures) name(choose 5 creatures) target(<upto:5>creature|myBattlefield) clone with(unearth,haste)
+auto=if compare(kicked)~equalto~5 then name(choose 6 creatures) name(choose 6 creatures) target(<upto:6>creature|myBattlefield) clone with(unearth,haste)
+auto=if compare(kicked)~equalto~6 then name(choose 7 creatures) name(choose 7 creatures) target(<upto:7>creature|myBattlefield) clone with(unearth,haste)
+auto=if compare(kicked)~equalto~7 then name(choose 8 creatures) name(choose 8 creatures) target(<upto:8>creature|myBattlefield) clone with(unearth,haste)
+auto=if compare(kicked)~equalto~8 then name(choose 9 creatures) name(choose 9 creatures) target(<upto:9>creature|myBattlefield) clone with(unearth,haste)
+auto=if compare(kicked)~equalto~9 then name(choose 10 creatures) name(choose 10 creatures) target(<upto:10>creature|myBattlefield) clone with(unearth,haste)
+auto=if compare(kicked)~equalto~10 then name(choose 11 creatures) name(choose 11 creatures) target(<upto:11>creature|myBattlefield) clone with(unearth,haste)
+auto=if compare(kicked)~equalto~11 then name(choose 12 creatures) name(choose 12 creatures) target(<upto:12>creature|myBattlefield) clone with(unearth,haste)
+auto=if compare(kicked)~equalto~12 then name(choose 13 creatures) name(choose 13 creatures) target(<upto:13>creature|myBattlefield) clone with(unearth,haste)
+auto=if compare(kicked)~equalto~13 then name(choose 14 creatures) name(choose 14 creatures) target(<upto:14>creature|myBattlefield) clone with(unearth,haste)
+auto=if compare(kicked)~equalto~14 then name(choose 15 creatures) name(choose 15 creatures) target(<upto:15>creature|myBattlefield) clone with(unearth,haste)
+auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16 creatures) target(<upto:16>creature|myBattlefield) clone with(unearth,haste)
+auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>creature|myBattlefield) clone with(unearth,haste)
+auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>creature|myBattlefield) clone with(unearth,haste)
+auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>creature|myBattlefield) clone with(unearth,haste)
+auto=if compare(kicked)~equalto~19 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature|myBattlefield) clone with(unearth,haste)
 text=Strive — Twinflame costs {2}{R} more to cast for each target beyond the first. -- Choose any number of target creatures you control. For each of them, put a token that's a copy of that creature onto the battlefield. Those tokens have haste. Exile them at the beginning of the next end step.
 mana={1}{R}
 type=Sorcery
@@ -72788,8 +73147,19 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Wood Sage
+aicode=activate target(<4>creature[chosenname;zpos<=4]|mylibrary) moveto(myhand) and!( all(*[zpos<=4]|mylibrary) moveto(mygraveyard) )!
+auto={T}:name(Name a creature) ability$!chooseaname reveal:4 optionone name(Put named creatures in hand) name(Put named creatures in hand) target(<4>creature[chosenname]|reveal) moveto(myhand) optiononeend optiontwo name(Put in graveyard) target(<4>*|reveal) moveto(mygraveyard) optiontwoend revealend chooseend nonland!$ controller
+text={T}: Name a creature card. Reveal the top four cards of your library and put all of them with that name into your hand. Put the rest into your graveyard.
+mana={G}{U}
+type=Creature
+subtype=Human Druid
+power=1
+toughness=1
+[/card]
+[card]
 name=Woodland Champion
-auto=@movedTo(*[token]|myBattlefield) counter(1/1,1)
+auto=@movedTo(*[token]|myBattlefield):counter(1/1)
 text=Whenever one or more tokens enter the battlefield under your control, put that many +1/+1 counters on Woodland Champion.
 mana={1}{G}
 type=Creature

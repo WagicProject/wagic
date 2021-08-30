@@ -166,7 +166,7 @@ public:
     bool limitOnceATurn;
     int triggeredTurn;
     TrCardAddedToZone(GameObserver* observer, int id, MTGCardInstance * source, TargetZoneChooser * toTcZone, TargetChooser * toTcCard,
-            TargetZoneChooser * fromTcZone = NULL, TargetChooser * fromTcCard = NULL,bool once = false,bool sourceUntapped = false,bool isSuspended = false, bool limitOnceATurn = false) :
+            TargetZoneChooser * fromTcZone = NULL, TargetChooser * fromTcCard = NULL, bool once = false, bool sourceUntapped = false, bool isSuspended = false, bool limitOnceATurn = false) :
         Trigger(observer, id, source, once), toTcZone(toTcZone), fromTcZone(fromTcZone), toTcCard(toTcCard), fromTcCard(fromTcCard),sourceUntapped(sourceUntapped),isSuspended(isSuspended),limitOnceATurn(limitOnceATurn)
     {
         triggeredTurn = -1;
@@ -368,11 +368,11 @@ public:
     bool attackBlockedTrigger;
     bool blockingTrigger;
     TrCombatTrigger(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,TargetChooser * fromTc = NULL,
-    bool once = false,bool limitOnceATurn = false,bool sourceUntapped = false,bool opponentPoisoned = false,
-    bool attackingTrigger = false,bool attackedAloneTrigger = false,bool notBlockedTrigger = false,bool attackBlockedTrigger = false,bool blockingTrigger = false) :
-    Trigger(observer, id, source,once, tc), fromTc(fromTc),limitOnceATurn(limitOnceATurn),sourceUntapped(sourceUntapped),opponentPoisoned(opponentPoisoned),
-    attackingTrigger(attackingTrigger),attackedAloneTrigger(attackedAloneTrigger),notBlockedTrigger(notBlockedTrigger),
-    attackBlockedTrigger(attackBlockedTrigger),blockingTrigger(blockingTrigger)
+    bool once = false, bool limitOnceATurn = false, bool sourceUntapped = false, bool opponentPoisoned = false,
+    bool attackingTrigger = false, bool attackedAloneTrigger = false, bool notBlockedTrigger = false, bool attackBlockedTrigger = false, bool blockingTrigger = false) :
+    Trigger(observer, id, source, once, tc), fromTc(fromTc), limitOnceATurn(limitOnceATurn), sourceUntapped(sourceUntapped), opponentPoisoned(opponentPoisoned),
+    attackingTrigger(attackingTrigger), attackedAloneTrigger(attackedAloneTrigger), notBlockedTrigger(notBlockedTrigger),
+    attackBlockedTrigger(attackBlockedTrigger), blockingTrigger(blockingTrigger)
     {
         triggeredTurn = -1;
     }
@@ -471,11 +471,12 @@ public:
         return NEW TrCombatTrigger(*this);
     }
 };
+
 class TrplayerEnergized: public Trigger
 {
 public:
     bool thiscontroller, thisopponent;
-    TrplayerEnergized(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false, bool thiscontroller = false, bool thisopponent = false) :
+    TrplayerEnergized(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false) :
         Trigger(observer, id, source,once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent)
     {
     }
@@ -499,11 +500,12 @@ public:
         return NEW TrplayerEnergized(*this);
     }
 };
+
 class TrplayerExperienced: public Trigger
 {
 public:
     bool thiscontroller, thisopponent;
-    TrplayerExperienced(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false, bool thiscontroller = false, bool thisopponent = false) :
+    TrplayerExperienced(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false) :
         Trigger(observer, id, source,once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent)
     {
     }
@@ -527,12 +529,13 @@ public:
         return NEW TrplayerExperienced(*this);
     }
 };
+
 class TrplayerMonarch: public Trigger
 {
 public:
     bool thiscontroller, thisopponent;
-    TrplayerMonarch(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false, bool thiscontroller = false, bool thisopponent = false) :
-        Trigger(observer, id, source,once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent)
+    TrplayerMonarch(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false) :
+        Trigger(observer, id, source, once, tc), thiscontroller(thiscontroller), thisopponent(thisopponent)
     {
     }
 
@@ -556,13 +559,42 @@ public:
     }
 };
 
+class TrplayerShuffled: public Trigger
+{
+public:
+    bool thiscontroller, thisopponent;
+    TrplayerShuffled(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false) :
+        Trigger(observer, id, source, once, tc), thiscontroller(thiscontroller), thisopponent(thisopponent)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventplayerShuffled * e = dynamic_cast<WEventplayerShuffled *> (event);
+        if (!e) return 0;
+        if (!tc->canTarget(e->player)) return 0;
+        if(thiscontroller)
+            if(e->player != source->controller())
+                return 0;
+        if(thisopponent)
+            if(e->player == source->controller())
+                return 0;
+        return 1;
+    }
+
+    TrplayerShuffled * clone() const
+    {
+        return NEW TrplayerShuffled(*this);
+    }
+};
+
 class TrcardDrawn: public Trigger
 {
 public:
     bool thiscontroller, thisopponent;
     bool limitOnceATurn;
     int triggeredTurn;
-    TrcardDrawn(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false, bool thiscontroller = false, bool thisopponent = false, bool limitOnceATurn = false) :
+    TrcardDrawn(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false, bool limitOnceATurn = false) :
         Trigger(observer, id, source,once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent),limitOnceATurn(limitOnceATurn)
     {
         triggeredTurn = -1;
@@ -596,7 +628,7 @@ class TrCardMutated: public Trigger
 public:
     bool limitOnceATurn;
     int triggeredTurn;
-    TrCardMutated(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false,bool limitOnceATurn = false) :
+    TrCardMutated(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
         Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn)
     {
         triggeredTurn = -1;
@@ -624,7 +656,7 @@ class TrCardExplored: public Trigger
 public:
     bool limitOnceATurn;
     int triggeredTurn;
-    TrCardExplored(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false,bool limitOnceATurn = false) :
+    TrCardExplored(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
         Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn)
     {
     }
@@ -651,7 +683,7 @@ class TrCardBoasted: public Trigger
 public:
     bool limitOnceATurn;
     int triggeredTurn;
-    TrCardBoasted(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false,bool limitOnceATurn = false) :
+    TrCardBoasted(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
         Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn)
     {
     }
@@ -678,7 +710,7 @@ class TrCardSurveiled: public Trigger
 public:
     bool limitOnceATurn;
     int triggeredTurn;
-    TrCardSurveiled(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false,bool limitOnceATurn = false) :
+    TrCardSurveiled(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
         Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn)
     {
     }
@@ -705,7 +737,7 @@ class TrCardForetold: public Trigger
 public:
     bool limitOnceATurn;
     int triggeredTurn;
-    TrCardForetold(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false,bool limitOnceATurn = false) :
+    TrCardForetold(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
         Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn)
     {
     }
@@ -732,7 +764,7 @@ class TrCardScryed: public Trigger
 public:
     bool limitOnceATurn;
     int triggeredTurn;
-    TrCardScryed(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false,bool limitOnceATurn = false) :
+    TrCardScryed(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
         Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn)
     {
     }
@@ -865,7 +897,7 @@ class TrTokenCreated: public Trigger
 {
 public:
     bool thiscontroller, thisopponent;
-    TrTokenCreated(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false) :
+    TrTokenCreated(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false) :
         Trigger(observer, id, source,once, tc)
     {
     }
@@ -887,7 +919,7 @@ public:
 class TrCardSacrificed: public Trigger
 {
 public:
-    TrCardSacrificed(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false) :
+    TrCardSacrificed(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false) :
         Trigger(observer, id, source, once, tc)
     {
     }
@@ -924,7 +956,7 @@ class TrCardDiscarded: public Trigger
 {
 public:
     bool cycledTrigger;
-    TrCardDiscarded(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false, bool cycledTrigger = false) :
+    TrCardDiscarded(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool cycledTrigger = false) :
     Trigger(observer, id, source, once, tc),cycledTrigger(cycledTrigger)
     {
     }
@@ -964,7 +996,7 @@ public:
     int triggeredTurn;
     bool thiscontroller;
     bool thisopponent;
-    TrDamaged(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false,bool limitOnceATurn = false,bool once = false, bool thiscontroller = false, bool thisopponent = false) :
+    TrDamaged(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0, bool sourceUntapped = false, bool limitOnceATurn = false, bool once = false, bool thiscontroller = false, bool thisopponent = false) :
         Trigger(observer, id, source, once, tc), fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped),limitOnceATurn(limitOnceATurn),thiscontroller(thiscontroller),thisopponent(thisopponent)
     {
         triggeredTurn = -1;
@@ -1024,7 +1056,7 @@ public:
     bool limitOnceATurn;
     int triggeredTurn;
     MTGCardInstance * gainException; //added exception to avid a gainlife loop (eg. Angels of Vitality)
-    TrLifeGained(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false,bool once = false, bool thiscontroller = false, bool thisopponent = false, bool limitOnceATurn = false, MTGCardInstance * gainException = NULL) :
+    TrLifeGained(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0, bool sourceUntapped = false, bool once = false, bool thiscontroller = false, bool thisopponent = false, bool limitOnceATurn = false, MTGCardInstance * gainException = NULL) :
         Trigger(observer, id, source, once , tc),  fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped), thiscontroller(thiscontroller), thisopponent(thisopponent), limitOnceATurn(limitOnceATurn), gainException(gainException)
     {
         triggeredTurn = -1;
@@ -1073,7 +1105,7 @@ class TrVampired: public Trigger
 {
 public:
     TargetChooser * fromTc;
-    TrVampired(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL,bool once = false) :
+    TrVampired(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, bool once = false) :
     Trigger(observer, id, source, once, tc), fromTc(fromTc)
     {
     }
@@ -1112,7 +1144,7 @@ class TrTargeted: public Trigger
 public:
     TargetChooser * fromTc;
     int type;
-    TrTargeted(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool once = false) :
+    TrTargeted(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0, bool once = false) :
     Trigger(observer, id, source, once, tc), fromTc(fromTc), type(type)
     {
     }
@@ -1749,7 +1781,7 @@ public:
     string nbcardsStr;
     bool noReplace;
     AADrawer(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost,string nbcardsStr, int who =
-            TargetChooser::UNSET,bool noReplace = false);
+            TargetChooser::UNSET, bool noReplace = false);
     int resolve();
     const string getMenuText();
     AADrawer * clone() const;
@@ -2216,7 +2248,7 @@ class ACantBeBlockerOf: public MTGAbility
 public:
     TargetChooser * fromTc;
     bool thisCard;
-    ACantBeBlockerOf(GameObserver* observer, int id, MTGCardInstance * _source, MTGCardInstance * _target, TargetChooser *fromTc,bool aThis) :
+    ACantBeBlockerOf(GameObserver* observer, int id, MTGCardInstance * _source, MTGCardInstance * _target, TargetChooser *fromTc, bool aThis) :
         MTGAbility(observer, id, _source, _target), fromTc(fromTc),thisCard(aThis)
     {
 
@@ -2263,7 +2295,7 @@ public:
     string PT;
     bool nonstatic;
     bool cda;
-    APowerToughnessModifier(GameObserver* observer, int id, MTGCardInstance * _source, MTGCardInstance * _target, WParsedPT * wppt,string PT,bool nonstatic) :
+    APowerToughnessModifier(GameObserver* observer, int id, MTGCardInstance * _source, MTGCardInstance * _target, WParsedPT * wppt,string PT, bool nonstatic) :
         MTGAbility(observer, id, _source, _target), wppt(wppt),PT(PT),nonstatic(nonstatic)
     {
         aType = MTGAbility::STANDARD_PUMP;
@@ -2676,7 +2708,7 @@ public:
     bool miniFound, maxiFound, compareZone;
     int amount[2];
     AAsLongAs(GameObserver* observer, int _id, MTGCardInstance * _source, Damageable * _target, TargetChooser * _tc, int _includeSelf,
-        MTGAbility * ability, int mini = 0, int maxi = 0,bool miniFound = false,bool maxiFound = false,bool compareZone = false) :
+        MTGAbility * ability, int mini = 0, int maxi = 0, bool miniFound = false, bool maxiFound = false, bool compareZone = false) :
     ListMaintainerAbility(observer, _id, _source, _target), NestedAbility(ability), mini(mini), maxi(maxi),miniFound(miniFound),maxiFound(maxiFound),compareZone(compareZone)
     {
         for (int j = 0; j < 2; j++)
@@ -3163,7 +3195,7 @@ public:
     string cID;
     //by id
     ATokenCreator(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable *, ManaCost * _cost, int tokenId,string starfound, WParsedInt * multiplier = NULL,
-        int who = 0,bool aLivingWeapon = false) :
+        int who = 0, bool aLivingWeapon = false) :
     ActivatedAbility(observer, _id, _source, _cost, 0), tokenId(tokenId), starfound(starfound),multiplier(multiplier), who(who),aLivingWeapon(aLivingWeapon)
     {
         if (!multiplier) this->multiplier = NEW WParsedInt(1);
@@ -3188,8 +3220,8 @@ public:
     }
     //by construction
     ATokenCreator(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable *, ManaCost * _cost, string sname, string stypes, int _power, int _toughness,
-        string sabilities, string starfound,WParsedInt * multiplier = NULL, int _who = 0,bool aLivingWeapon = false,string spt = "", string tnum = "") :
-    ActivatedAbility(observer, _id, _source, _cost, 0),sabilities(sabilities),starfound(starfound), multiplier(multiplier), who(_who),aLivingWeapon(aLivingWeapon),spt(spt)
+        string sabilities, string starfound, WParsedInt * multiplier = NULL, int _who = 0, bool aLivingWeapon = false, string spt = "", string tnum = "") :
+    ActivatedAbility(observer, _id, _source, _cost, 0), sabilities(sabilities), starfound(starfound), multiplier(multiplier), who(_who), aLivingWeapon(aLivingWeapon), spt(spt)
     {
         power = _power;
         toughness = _toughness;
@@ -4296,7 +4328,7 @@ bool retarget;
 bool reequip;
 bool newhook;
 int mutation;
-    AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,bool retarget = false, ManaCost * _cost = NULL, bool reequip = false, bool newhook = false, int mutation = 0);
+    AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, bool retarget = false, ManaCost * _cost = NULL, bool reequip = false, bool newhook = false, int mutation = 0);
     int resolve();
     const string getMenuText();
     AANewTarget * clone() const;
@@ -4728,9 +4760,9 @@ public:
     bool UYNT;
     int myCurrentTurn;
     string menutext; //this overrides the previous.
-    ATransformer(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string> newAbilitiesList,bool newAbilityFound = false,bool aForever = false ,bool UYNT = false,string menutext = "");
+    ATransformer(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower, bool newpowerfound,string newtoughness, bool newtoughnessfound,vector<string> newAbilitiesList, bool newAbilityFound = false, bool aForever = false , bool UYNT = false,string menutext = "");
     int addToGame();
-    int reapplyCountersBonus(MTGCardInstance * rtarget= NULL,bool powerapplied=false,bool toughnessapplied=false);
+    int reapplyCountersBonus(MTGCardInstance * rtarget= NULL, bool powerapplied=false, bool toughnessapplied=false);
     int testDestroy();
     int destroy();
     const string getMenuText();
@@ -4754,7 +4786,7 @@ public:
     bool UYNT;
     string menu;
 
-    ATransformerInstant(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string types = "", string abilities = "",string newpower = "",bool newpowerfound = false,string newtoughness = "",bool newtoughnessfound = false,vector<string>newAbilitiesList = vector<string>(),bool newAbilityFound = false,bool aForever = false, bool UYNT = false,string menutext = "");
+    ATransformerInstant(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string types = "", string abilities = "",string newpower = "", bool newpowerfound = false, string newtoughness = "", bool newtoughnessfound = false, vector<string>newAbilitiesList = vector<string>(), bool newAbilityFound = false, bool aForever = false, bool UYNT = false, string menutext = "");
     int resolve();
     const string getMenuText();
     ATransformerInstant * clone() const;
@@ -4770,7 +4802,7 @@ public:
     string s;
     bool nonstatic;
     WParsedPT * newWppt;
-    PTInstant(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, WParsedPT * wppt,string s = "",bool nonstatic = false);
+    PTInstant(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, WParsedPT * wppt, string s = "", bool nonstatic = false);
     int resolve();
     const string getMenuText();
     PTInstant * clone() const;
@@ -5003,7 +5035,7 @@ public:
     ManaCost * backupMana;
 
     AUpkeep(GameObserver* observer, int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int restrictions = 0, int _phase =
-        MTG_PHASE_UPKEEP, int _once = 0,bool Cumulative = false);
+        MTG_PHASE_UPKEEP, int _once = 0, bool Cumulative = false);
     int receiveEvent(WEvent * event);
     void Update(float dt);
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
@@ -5032,7 +5064,7 @@ public:
     Player * abilityOwner;
 
     APhaseAction(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int restrictions = 0, int _phase =
-        MTG_PHASE_UPKEEP,bool forcedestroy = false,bool next = true,bool myturn = true,bool opponentturn = true,bool once = false, bool checkexile = false);
+        MTG_PHASE_UPKEEP, bool forcedestroy = false, bool next = true, bool myturn = true, bool opponentturn = true, bool once = false, bool checkexile = false);
     void Update(float dt);
     int resolve();
     const string getMenuText();
@@ -5047,7 +5079,7 @@ public:
     string sAbility;
     APhaseAction * ability;
     APhaseActionGeneric(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int restrictions = 0, int _phase =
-            MTG_PHASE_UPKEEP,bool forcedestroy = false,bool next = true,bool myturn = false,bool opponentturn = false,bool once = false,bool checkexile = false);
+            MTG_PHASE_UPKEEP, bool forcedestroy = false, bool next = true, bool myturn = false, bool opponentturn = false, bool once = false, bool checkexile = false);
     int resolve();
     const string getMenuText();
     APhaseActionGeneric * clone() const;
@@ -5208,7 +5240,7 @@ public:
     bool blinkhand;
     ABlink * ability;
     MTGAbility * stored;
-    ABlinkGeneric(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target,bool blinkueot=false,bool blinkForSource = false,bool blinkhand = false,MTGAbility * stored = NULL);
+    ABlinkGeneric(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target, bool blinkueot=false, bool blinkForSource = false, bool blinkhand = false, MTGAbility * stored = NULL);
     int resolve();
     const string getMenuText();
     ABlinkGeneric * clone() const;
@@ -6467,7 +6499,7 @@ public:
     int kicked;
     int costx;
     bool flipped;
-    AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool restricted,bool copied,bool _asNormal,string nameCard,string abilityName,bool _noEvent, bool putinplay,bool asNormalMadness = false,bool alternative = false,int kicked = 0,int costx = 0,bool flipped = false);
+    AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, bool restricted, bool copied, bool _asNormal, string nameCard, string abilityName, bool _noEvent, bool putinplay, bool asNormalMadness = false, bool alternative = false, int kicked = 0, int costx = 0, bool flipped = false);
 
     int testDestroy(){return 0;};
     void Update(float dt);
@@ -6487,7 +6519,7 @@ class ASpiritLinkAbility: public MTGAbility
 public:
     MTGCardInstance * source;
     bool combatonly;
-    ASpiritLinkAbility(GameObserver* observer, int _id, MTGCardInstance * _source,bool combatonly = false) :
+    ASpiritLinkAbility(GameObserver* observer, int _id, MTGCardInstance * _source, bool combatonly = false) :
     MTGAbility(observer, _id, _source),source(_source),combatonly(combatonly)
     {
     }
@@ -6631,7 +6663,7 @@ public:
     bool ANonWall;
     bool ANonBasicLand;
     bool ANonLand;
-    GenericChooseTypeColorName(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, string toAdd = "", bool chooseColor = false,bool chooseName = false, bool chooseOppName = false, bool nonwall = false, bool nonbasicland = false, bool nonland = false, ManaCost * cost = NULL);
+    GenericChooseTypeColorName(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, string toAdd = "", bool chooseColor = false, bool chooseName = false, bool chooseOppName = false, bool nonwall = false, bool nonbasicland = false, bool nonland = false, ManaCost * cost = NULL);
     int resolve();
     const string getMenuText();
     GenericChooseTypeColorName * clone() const;

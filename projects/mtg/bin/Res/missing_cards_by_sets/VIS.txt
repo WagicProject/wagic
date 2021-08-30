@@ -144,22 +144,10 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Breathstealer's Crypt
-text=If a player would draw a card, instead he or she draws a card and reveals it. If it's a creature card, that player discards it unless he or she pays 3 life.
-mana={2}{U}{B}
-type=Enchantment
-[/card]
-[card]
 name=Corrosion
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of your upkeep, put a rust counter on each artifact target opponent controls. Then destroy each artifact with converted mana cost less than or equal to the number of rust counters on it. Artifacts destroyed this way can't be regenerated. -- When Corrosion leaves the battlefield, remove all rust counters from all permanents.
 mana={1}{B}{R}
 type=Enchantment
-[/card]
-[card]
-name=Forbidden Ritual
-text=Sacrifice a nontoken permanent. If you do, target opponent loses 2 life unless he or she sacrifices a permanent or discards a card. You may repeat this process any number of times.
-mana={2}{B}{B}
-type=Sorcery
 [/card]
 [card]
 name=Necromancy

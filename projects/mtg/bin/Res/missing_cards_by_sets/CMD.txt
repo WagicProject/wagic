@@ -85,27 +85,10 @@ mana={1}{R}
 type=Instant
 [/card]
 [card]
-name=Cobra Trap
-text=If a noncreature permanent under your control was destroyed this turn by a spell or ability an opponent controlled, you may pay {G} rather than pay Cobra Trap's mana cost. -- Put four 1/1 green Snake creature tokens onto the battlefield.
-mana={4}{G}{G}
-type=Instant
-subtype=Trap
-[/card]
-[card]
 name=Pollen Lullaby
 text=Prevent all combat damage that would be dealt this turn. Clash with an opponent. If you win, creatures that player controls don't untap during the player's next untap step. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={1}{W}
 type=Instant
-[/card]
-[card]
-name=Gomazoa
-abilities=defender,flying
-text=Defender, flying -- {T}: Put Gomazoa and each creature it's blocking on top of their owners' libraries, then those players shuffle their libraries.
-mana={2}{U}
-type=Creature
-subtype=Jellyfish
-power=0
-toughness=3
 [/card]
 [card]
 name=Scattering Stroke

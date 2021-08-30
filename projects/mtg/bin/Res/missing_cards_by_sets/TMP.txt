@@ -72,13 +72,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Corpse Dance
-buyback={2}{B}{2}
-text=Buyback {2} (You may pay an additional {2} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Return the top creature card of your graveyard to the battlefield. That creature gains haste until end of turn. Exile it at the beginning of the next end step.
-mana={2}{B}
-type=Instant
-[/card]
-[card]
 name=Oracle en-Vec
 text={T}: Target opponent chooses any number of creatures he or she controls. During that player's next turn, the chosen creatures attack if able, and other creatures can't attack. At the beginning of that turn's end step, destroy each of the chosen creatures that didn't attack. Activate this ability only during your turn.
 mana={1}{W}
@@ -152,15 +145,6 @@ type=Creature
 subtype=Shapeshifter
 power=0
 toughness=0
-[/card]
-[card]
-name=Wood Sage
-text={T}: Name a creature card. Reveal the top four cards of your library and put all of them with that name into your hand. Put the rest into your graveyard.
-mana={G}{U}
-type=Creature
-subtype=Human Druid
-power=1
-toughness=1
 [/card]
 [card]
 name=Flowstone Salamander

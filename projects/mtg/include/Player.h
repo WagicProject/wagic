@@ -50,6 +50,7 @@ public:
     int monarch;
     int surveilOffset;
     int devotionOffset;
+    int lastShuffleTurn;
     int epic;
     int forcefield;
     int dealsdamagebycombat;
