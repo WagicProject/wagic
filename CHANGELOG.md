@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 30/08/21
+- *Committed:* Fixed dat file for J21 set, improved Android downloader for J21 set. ([Vitty85](https://github.com/Vitty85)) 
+
 ### 29/08/21
-- *Committed:* Fixed dat file for MB1, PRM and PSAL sets. ([Vitty85](https://github.com/Vitty85)) 
+- *Committed:* Fixed dat file for MB1, PRM and PSAL sets. https://github.com/WagicProject/wagic/commit/790f02905ac44cbcabd2fa7cd00ea11e6a36379c ([Vitty85](https://github.com/Vitty85)) 
 
 - *Committed:* Added/fixed primitives, fixed dat file of several sets, updated the "missing_cards_by_sets" folder, updated README.md file, improved Android downloader. https://github.com/WagicProject/wagic/commit/32008496b3016ebb0c8dc60e037c8ba7e6890802 ([Vitty85](https://github.com/Vitty85)) 
 
