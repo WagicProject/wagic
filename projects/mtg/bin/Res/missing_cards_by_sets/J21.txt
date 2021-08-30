@@ -1,7 +1,0 @@
-[card]
-name=Ascent of the Worthy
-text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I, II  Choose a creature you control. Until your next turn, all damage that would be dealt to creatures you control is dealt to that creature instead. -- III  Return target creature card from your graveyard to the battlefield with a flying counter on it. That creature is an Angel Warrior in addition to its other types.
-mana={1}{W}{B}
-type=Enchantment
-subtype=Saga
-[/card]
