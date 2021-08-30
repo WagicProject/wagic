@@ -301,15 +301,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Merieke Ri Berit
-text=Merieke Ri Berit doesn't untap during your untap step. -- {T}: Gain control of target creature for as long as you control Merieke Ri Berit. When Merieke Ri Berit leaves the battlefield or becomes untapped, destroy that creature. It can't be regenerated.
-mana={W}{U}{B}
-type=Legendary Creature
-subtype=Human
-power=1
-toughness=1
-[/card]
-[card]
 name=Chaos Moon
 text=At the beginning of each upkeep, count the number of permanents. If the number is odd, until end of turn, red creatures get +1/+1 and whenever a player taps a Mountain for mana, that player adds {R} to his or her mana pool (in addition to the mana the land produces). If the number is even, until end of turn, red creatures get -1/-1 and if a player taps a Mountain for mana, that Mountain produces colorless mana instead of any other type.
 mana={3}{R}

@@ -1,13 +1,4 @@
 [card]
-name=Meletis Charlatan
-text={2}{U}, {T}: The controller of target instant or sorcery spell copies it. That player may choose new targets for the copy.
-mana={2}{U}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=3
-[/card]
-[card]
 name=Steam Augury
 text=Reveal the top five cards of your library and separate them into two piles. An opponent chooses one of those piles. Put that pile into your hand and the other into your graveyard.
 mana={2}{U}{R}
@@ -31,10 +22,4 @@ type=Legendary Creature
 subtype=Human Soldier
 power=2
 toughness=2
-[/card]
-[card]
-name=Psychic Intrusion
-text=Target opponent reveals his or her hand. You choose a nonland card from that player's graveyard or hand and exile it. You may cast that card for as long as it remains exiled, and you may spend mana as though it were mana of any color to cast that spell.
-mana={3}{U}{B}
-type=Sorcery
 [/card]

@@ -17,12 +17,6 @@ mana={R}
 type=Sorcery
 [/card]
 [card]
-name=Flaming Gambit
-text=Flaming Gambit deals X damage to target player. That player may choose a creature he or she controls and have Flaming Gambit deal that damage to it instead. -- Flashback {X}{R}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={X}{R}
-type=Instant
-[/card]
-[card]
 name=Radiate
 text=Choose target instant or sorcery spell that targets only a single permanent or player. Copy that spell for each other permanent or player the spell could target. Each copy targets a different one of those permanents and players.
 mana={3}{R}{R}

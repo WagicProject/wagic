@@ -106,12 +106,6 @@ mana={1}{W}{W}
 type=Sorcery
 [/card]
 [card]
-name=Pyromancer Ascension
-text=Whenever you cast an instant or sorcery spell that has the same name as a card in your graveyard, you may put a quest counter on Pyromancer Ascension. -- Whenever you cast an instant or sorcery spell while Pyromancer Ascension has two or more quest counters on it, you may copy that spell. You may choose new targets for the copy.
-mana={1}{R}
-type=Enchantment
-[/card]
-[card]
 name=Shuriken
 text=Equipped creature has "{T}, Unattach Shuriken: Shuriken deals 2 damage to target creature. That creature's controller gains control of Shuriken unless it was unattached from a Ninja." -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
 mana={1}

@@ -369,6 +369,14 @@ struct WEventplayerMonarch : public WEvent {
     virtual Targetable * getTarget(Player * player);
 };
 
+//shuffle event
+struct WEventplayerShuffled : public WEvent {
+    WEventplayerShuffled(Player * player);
+    Player * player;
+    using WEvent::getTarget;
+    virtual Targetable * getTarget(Player * player);
+};
+
 //boast event
 struct WEventCardBoasted : public WEventCardUpdate {
     WEventCardBoasted(MTGCardInstance * card);

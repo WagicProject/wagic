@@ -183,12 +183,6 @@ power=3
 toughness=5
 [/card]
 [card]
-name=Doomsday
-text=Search your library and graveyard for five cards and exile the rest. Put the chosen cards on top of your library in any order. You lose half your life, rounded up.
-mana={B}{B}{B}
-type=Sorcery
-[/card]
-[card]
 name=Horizon Boughs
 text=All permanents untap during each players untap step. -- Whenever you roll {K}, you may search your library for up to three basic land cards, put them onto the battlefield tapped, then shuffle.
 type=Plane
@@ -226,12 +220,6 @@ toughness=4
 name=Arena
 text={3}, {T}: Tap target creature you control and target creature of an opponent's choice he or she controls. Those creatures fight each other. (Each deals damage equal to its power to the other.)
 type=Land
-[/card]
-[card]
-name=Memoricide
-text=Name a nonland card. Search target player's graveyard, hand, and library for any number of cards with that name and exile them. Then that player shuffles his or her library.
-mana={3}{B}
-type=Sorcery
 [/card]
 [card]
 name=Mirrored Depths

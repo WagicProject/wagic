@@ -11,15 +11,6 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Merieke Ri Berit
-text=Merieke Ri Berit doesn't untap during your untap step. -- {T}: Gain control of target creature for as long as you control Merieke Ri Berit. When Merieke Ri Berit leaves the battlefield or becomes untapped, destroy that creature. It can't be regenerated.
-mana={W}{U}{B}
-type=Legendary Creature
-subtype=Human
-power=1
-toughness=1
-[/card]
-[card]
 name=Spitting Slug
 text=Whenever Spitting Slug blocks or becomes blocked, you may pay {1}{G}. If you do, Spitting Slug gains first strike until end of turn. Otherwise, each creature blocking or blocked by Spitting Slug gains first strike until end of turn.
 mana={1}{G}{G}

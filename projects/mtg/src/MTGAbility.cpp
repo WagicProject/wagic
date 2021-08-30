@@ -1194,35 +1194,43 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
 
     //energized player - controller of card
     if (TargetChooser * tc = parseSimpleTC(s, "energizedof", card))
-        return NEW TrplayerEnergized(observer, id, card, tc,once,true,false);
+        return NEW TrplayerEnergized(observer, id, card, tc, once, true, false);
 
     //energized player - opponent of card controller
     if (TargetChooser * tc = parseSimpleTC(s, "energizedfoeof", card))
-        return NEW TrplayerEnergized(observer, id, card, tc,once,false,true);
+        return NEW TrplayerEnergized(observer, id, card, tc, once, false, true);
 
     //experienced player - controller of card
     if (TargetChooser * tc = parseSimpleTC(s, "experiencedof", card))
-        return NEW TrplayerExperienced(observer, id, card, tc,once,true,false);
+        return NEW TrplayerExperienced(observer, id, card, tc, once, true, false);
 
     //experienced player - opponent of card controller
     if (TargetChooser * tc = parseSimpleTC(s, "experiencedfoeof", card))
-        return NEW TrplayerExperienced(observer, id, card, tc,once,false,true);
+        return NEW TrplayerExperienced(observer, id, card, tc, once, false, true);
 
     //becomes monarch - controller of card
     if (TargetChooser * tc = parseSimpleTC(s, "becomesmonarchof", card))
-        return NEW TrplayerMonarch(observer, id, card, tc,once,true,false);
+        return NEW TrplayerMonarch(observer, id, card, tc, once, true, false);
 
     //becomes monarch - opponent of card controller
     if (TargetChooser * tc = parseSimpleTC(s, "becomesmonarchfoeof", card))
-        return NEW TrplayerMonarch(observer, id, card, tc,once,false,true);
+        return NEW TrplayerMonarch(observer, id, card, tc, once, false, true);
+
+    //shuffled library - controller of card
+    if (TargetChooser * tc = parseSimpleTC(s, "shuffledof", card))
+        return NEW TrplayerShuffled(observer, id, card, tc, once, true, false);
+
+    //shuffled library - opponent of card controller
+    if (TargetChooser * tc = parseSimpleTC(s, "shuffledfoeof", card))
+        return NEW TrplayerShuffled(observer, id, card, tc, once, false, true);
 
     //drawn player - controller of card - dynamic version drawof(player) -> returns current controller even with exchange of card controller
     if (TargetChooser * tc = parseSimpleTC(s, "drawof", card))
-        return NEW TrcardDrawn(observer, id, card, tc,once,true,false,limitOnceATurn);
+        return NEW TrcardDrawn(observer, id, card, tc, once, true, false, limitOnceATurn);
 
     //drawn player - opponent of card controller - dynamic version drawfoeof(player) -> returns current opponent even with exchange of card controller
     if (TargetChooser * tc = parseSimpleTC(s, "drawfoeof", card))
-        return NEW TrcardDrawn(observer, id, card, tc,once,false,true,limitOnceATurn);
+        return NEW TrcardDrawn(observer, id, card, tc, once, false, true, limitOnceATurn);
 
     //Card card is drawn - static version - drawn(player) - any player; drawn(controller) - owner forever; drawn(opponent) - opponent forever
     if (TargetChooser * tc = parseSimpleTC(s, "drawn", card))
@@ -7166,7 +7174,7 @@ ostream& ListMaintainerAbility::toString(ostream& out) const
     return MTGAbility::toString(out) << ")";
 }
 
-TriggerAtPhase::TriggerAtPhase(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, int _phaseId, int who, bool sourceUntapped, bool sourceTap,bool lifelost,int lifeamount,bool once) :
+TriggerAtPhase::TriggerAtPhase(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, int _phaseId, int who, bool sourceUntapped, bool sourceTap, bool lifelost, int lifeamount, bool once) :
     TriggeredAbility(observer, id, source, target), phaseId(_phaseId), who(who), sourceUntapped(sourceUntapped), sourceTap(sourceTap),lifelost(lifelost),lifeamount(lifeamount),once(once)
 {
     activeTrigger = true;
@@ -7252,7 +7260,7 @@ TriggerAtPhase* TriggerAtPhase::clone() const
     return NEW TriggerAtPhase(*this);
 }
 
-TriggerNextPhase::TriggerNextPhase(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, int _phaseId, int who,bool sourceUntapped, bool sourceTap,bool once) :
+TriggerNextPhase::TriggerNextPhase(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, int _phaseId, int who, bool sourceUntapped, bool sourceTap, bool once) :
     TriggerAtPhase(observer, id, source, target, _phaseId, who, sourceUntapped, sourceTap, once)
 {
     destroyActivated = 0;
@@ -7277,7 +7285,7 @@ TriggerNextPhase* TriggerNextPhase::clone() const
     return NEW TriggerNextPhase(*this);
 }
 
-TriggerRebound::TriggerRebound(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, int _phaseId, int who,bool sourceUntapped, bool sourceTap,bool once) :
+TriggerRebound::TriggerRebound(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, int _phaseId, int who, bool sourceUntapped, bool sourceTap, bool once) :
     TriggerAtPhase(observer, id, source, target, _phaseId, who, sourceUntapped, sourceTap, once)
 {
     destroyActivated = 0;
@@ -7441,7 +7449,7 @@ GenericTriggeredAbility* GenericTriggeredAbility::clone() const
  */
 
 AManaProducer::AManaProducer(GameObserver* observer, int id, MTGCardInstance * card, Targetable * t, ManaCost * _output, ManaCost * _cost,
-                int who,string producing,bool doesntEmpty) :
+                int who,string producing, bool doesntEmpty) :
     ActivatedAbilityTP(observer, id, card, t, _cost, who)
 {
 

@@ -23,9 +23,3 @@ text=Change the target of target spell with a single target unless that spell's 
 mana={U}
 type=Instant
 [/card]
-[card]
-name=Doomsday
-text=Search your library and graveyard for five cards and exile the rest. Put the chosen cards on top of your library in any order. You lose half your life, rounded up.
-mana={B}{B}{B}
-type=Sorcery
-[/card]

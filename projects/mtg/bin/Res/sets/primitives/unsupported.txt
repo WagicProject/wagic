@@ -360,13 +360,6 @@ power=5
 toughness=4
 [/card]
 [card]
-name=Archive Trap
-text=If an opponent searched his or her library this turn, you may pay {0} rather than pay Archive Trap's mana cost. -- Target opponent puts the top thirteen cards of his or her library into his or her graveyard.
-mana={3}{U}{U}
-type=Instant
-subtype=Trap
-[/card]
-[card]
 name=Arcum's Whistle
 text={3}, {T}: Choose target non-Wall creature the active player has controlled continuously since the beginning of the turn. That player may pay {X}, where X is that creature's converted mana cost. If he or she doesn't, the creature attacks this turn if able, and at the beginning of the next end step, destroy it if it didn't attack. Activate this ability only before attackers are declared.
 mana={3}
@@ -1111,12 +1104,6 @@ power=5
 toughness=5
 [/card]
 [card]
-name=Bosium Strip
-text={3}, {T}: Until end of turn, if the top card of your graveyard is an instant or sorcery card, you may cast that card. If a card cast this way would be put into a graveyard this turn, exile it instead.
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Bosom Buddy
 text=Whenever you play a spell, you may gain ½ life for each word in that spell's name.
 mana={3}{W}
@@ -1177,12 +1164,6 @@ name=Breaking Wave
 text=You may cast Breaking Wave any time you could cast an instant if you pay {2} more to cast it. -- Simultaneously untap all tapped creatures and tap all untapped creatures.
 mana={2}{U}{U}
 type=Sorcery
-[/card]
-[card]
-name=Breathstealer's Crypt
-text=If a player would draw a card, instead he or she draws a card and reveals it. If it's a creature card, that player discards it unless he or she pays 3 life.
-mana={2}{U}{B}
-type=Enchantment
 [/card]
 [card]
 name=Briarbridge Patrol
@@ -1832,13 +1813,6 @@ power=2
 toughness=4
 [/card]
 [card]
-name=Cobra Trap
-text=If a noncreature permanent under your control was destroyed this turn by a spell or ability an opponent controlled, you may pay {G} rather than pay Cobra Trap's mana cost. -- Put four 1/1 green Snake creature tokens onto the battlefield.
-mana={4}{G}{G}
-type=Instant
-subtype=Trap
-[/card]
-[card]
 name=Cocoon
 text=Enchant creature you control -- Enchanted creature doesn't untap during your untap step if Cocoon has a pupa counter on it. -- When Cocoon enters the battlefield, tap enchanted creature and put three pupa counters on Cocoon. -- At the beginning of your upkeep, remove a pupa counter from Cocoon. If you can't, sacrifice it, put a +1/+1 counter on enchanted creature, and that creature gains flying. (This effect lasts indefinitely.)
 mana={G}
@@ -2009,13 +1983,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Corpse Dance
-buyback={2}{B}{2}
-text=Buyback {2} (You may pay an additional {2} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Return the top creature card of your graveyard to the battlefield. That creature gains haste until end of turn. Exile it at the beginning of the next end step.
-mana={2}{B}
-type=Instant
-[/card]
-[card]
 name=Corpsejack Menace
 text=If one or more +1/+1 counters would be placed on a creature you control, twice that many +1/+1 counters are placed on it instead.
 mana={2}{B}{G}
@@ -2038,15 +2005,6 @@ type=Creature
 subtype=Licid
 power=2
 toughness=2
-[/card]
-[card]
-name=Cosi's Trickster
-text=Whenever an opponent shuffles his or her library, you may put a +1/+1 counter on Cosi's Trickster.
-mana={U}
-type=Creature
-subtype=Merfolk Wizard
-power=1
-toughness=1
 [/card]
 [card]
 name=Council Guardian
@@ -2132,13 +2090,6 @@ name=Cramped Bunker
 text=At the beginning of each opponent's upkeep, that player moves a permanent they control to touch Cramped Bunker and no other permanents. If the player can't, destroy each permanent they control that isn't touching Cramped Bunker, then sacrifice it.
 mana={4}{R}{G}
 type=Enchantment
-[/card]
-[card]
-name=Cranial Extraction
-text=Name a nonland card. Search target player's graveyard, hand, and library for all cards with that name and exile them. Then that player shuffles his or her library.
-mana={3}{B}
-type=Sorcery
-subtype=Arcane
 [/card]
 [card]
 name=Crawlspace
@@ -2798,12 +2749,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Doomsday
-text=Search your library and graveyard for five cards and exile the rest. Put the chosen cards on top of your library in any order. You lose half your life, rounded up.
-mana={B}{B}{B}
-type=Sorcery
-[/card]
-[card]
 name=Double Cross
 text=Choose another player. Look at that player's hand and choose one of those cards other than a basic land. He or she discards that card. At the beginning of the next game with the player, look at the player's hand and choose one of those cards other than a basic land. He or she discards that card.
 mana={3}{B}{B}
@@ -3304,12 +3249,6 @@ mana={2}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Exclusion Ritual
-text=Imprint — When Exclusion Ritual enters the battlefield, exile target nonland permanent. -- Players can't cast spells with the same name as the exiled card.
-mana={4}{W}{W}
-type=Enchantment
-[/card]
-[card]
 name=Experiment Kraj
 text=Experiment Kraj has all activated abilities of each other creature with a +1/+1 counter on it. -- {T}: Put a +1/+1 counter on target creature.
 mana={2}{G}{G}{U}{U}
@@ -3570,12 +3509,6 @@ mana={1}{G}
 type=Instant
 [/card]
 [card]
-name=Flaming Gambit
-text=Flaming Gambit deals X damage to target player. That player may choose a creature he or she controls and have Flaming Gambit deal that damage to it instead. -- Flashback {X}{R}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={X}{R}
-type=Instant
-[/card]
-[card]
 name=Flaring Pain
 text=Damage can't be prevented this turn. -- Flashback {R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{R}
@@ -3656,12 +3589,6 @@ name=Food Chain
 text=Exile a creature you control: Add X mana of any one color to your mana pool, where X is the exiled creature's converted mana cost plus one. Spend this mana only to cast creature spells.
 mana={2}{G}
 type=Enchantment
-[/card]
-[card]
-name=Forbidden Ritual
-text=Sacrifice a nontoken permanent. If you do, target opponent loses 2 life unless he or she sacrifices a permanent or discards a card. You may repeat this process any number of times.
-mana={2}{B}{B}
-type=Sorcery
 [/card]
 [card]
 name=Force Bubble
@@ -4284,15 +4211,6 @@ mana={5}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Goblin Grenadiers
-text=Whenever Goblin Grenadiers attacks and isn't blocked, you may sacrifice it. If you do, destroy target creature and target land.
-mana={3}{R}
-type=Creature
-subtype=Goblin
-power=2
-toughness=2
-[/card]
-[card]
 name=Goblin Haberdasher
 text=Menace (This creature can't be blocked except by two or more creatures.) -- Other creatures you control wearing hats in their art have menace.
 mana={2}{R}
@@ -4361,16 +4279,6 @@ name=Golgothian Sylex
 text={1}, {T}: Each nontoken permanent from the Antiquities expansion is sacrificed by its controller.
 mana={4}
 type=Artifact
-[/card]
-[card]
-name=Gomazoa
-abilities=defender,flying
-text=Defender, flying -- {T}: Put Gomazoa and each creature it's blocking on top of their owners' libraries, then those players shuffle their libraries.
-mana={2}{U}
-type=Creature
-subtype=Jellyfish
-power=0
-toughness=3
 [/card]
 [card]
 name=Goryo's Vengeance
@@ -5572,15 +5480,6 @@ power=3
 toughness=2
 [/card]
 [card]
-name=Kalitas, Bloodchief of Ghet
-text={B}{B}{B}, {T}: Destroy target creature. If that creature dies this way, put a black Vampire creature token onto the battlefield. Its power is equal to that creature's power and its toughness is equal to that creature's toughness.
-mana={5}{B}{B}
-type=Legendary Creature
-subtype=Vampire Warrior
-power=5
-toughness=5
-[/card]
-[card]
 name=Kamahl's Summons
 text=Each player may reveal any number of creature cards from his or her hand. Then each player puts a 2/2 green Bear creature token onto the battlefield for each card he or she revealed this way.
 mana={3}{G}
@@ -6686,21 +6585,6 @@ mana={4}{R}
 type=Instant
 [/card]
 [card]
-name=Meletis Charlatan
-text={2}{U}, {T}: The controller of target instant or sorcery spell copies it. That player may choose new targets for the copy.
-mana={2}{U}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=3
-[/card]
-[card]
-name=Memoricide
-text=Name a nonland card. Search target player's graveyard, hand, and library for any number of cards with that name and exile them. Then that player shuffles his or her library.
-mana={3}{B}
-type=Sorcery
-[/card]
-[card]
 name=Memory Crystal
 text=Buyback costs cost {2} less.
 mana={3}
@@ -6729,15 +6613,6 @@ type=Creature
 subtype=Human Mercenary
 power=3
 toughness=3
-[/card]
-[card]
-name=Merieke Ri Berit
-text=Merieke Ri Berit doesn't untap during your untap step. -- {T}: Gain control of target creature for as long as you control Merieke Ri Berit. When Merieke Ri Berit leaves the battlefield or becomes untapped, destroy that creature. It can't be regenerated.
-mana={W}{U}{B}
-type=Legendary Creature
-subtype=Human
-power=1
-toughness=1
 [/card]
 [card]
 name=Merseine
@@ -6846,13 +6721,6 @@ name=Mindblaze
 text=Name a nonland card and choose a number greater than 0. Target player reveals his or her library. If that library contains exactly the chosen number of the named card, Mindblaze deals 8 damage to that player. Then that player shuffles his or her library.
 mana={5}{R}
 type=Sorcery
-[/card]
-[card]
-name=Mindbreak Trap
-text=If an opponent cast three or more spells this turn, you may pay {0} rather than pay Mindbreak Trap's mana cost. -- Exile any number of target spells.
-mana={2}{U}{U}
-type=Instant
-subtype=Trap
 [/card]
 [card]
 name=Mindlock Orb
@@ -7605,16 +7473,6 @@ subtype=Eldrazi
 name=Nothing Can Stop Me Now
 text=(An ongoing scheme remains face up until it's abandoned.) -- If a source an opponent controls would deal damage to you, prevent 1 of that damage. -- At the beginning of each end step, if you've been dealt 5 or more damage this turn, abandon this scheme.
 type=Ongoing Scheme
-[/card]
-[card]
-name=Notion Thief
-abilities=flash
-text=Flash -- If an opponent would draw a card except the first one he or she draws in each of his or her draw steps, instead that player skips that draw and you draw a card.
-mana={2}{U}{B}
-type=Creature
-subtype=Human Rogue
-power=3
-toughness=1
 [/card]
 [card]
 name=Nova Pentacle
@@ -8559,12 +8417,6 @@ mana={3}{U}{U}
 type=Enchantment
 [/card]
 [card]
-name=Psychic Intrusion
-text=Target opponent reveals his or her hand. You choose a nonland card from that player's graveyard or hand and exile it. You may cast that card for as long as it remains exiled, and you may spend mana as though it were mana of any color to cast that spell.
-mana={3}{U}{B}
-type=Sorcery
-[/card]
-[card]
 name=Psychic Network
 text=Each player reveals the top card of his or her library to all other players by continuously holding it against his or her forehead. This does not allow a player to look at his or her own card. (That card still counts as the top card of your library. Whenever you draw a card, draw that one and replace it with the next card of your library.)
 mana={U}
@@ -8584,22 +8436,10 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=Psychic Surgery
-text=Whenever an opponent shuffles his or her library, you may look at the top two cards of that library. You may exile one of those cards. Then put the rest on top of that library in any order.
-mana={1}{U}
-type=Enchantment
-[/card]
-[card]
 name=Psychic Theft
 text=Target player reveals his or her hand. You choose an instant or sorcery card from it and exile that card. You may cast that card for as long as it remains exiled. At the beginning of the next end step, if you haven't cast the card, return it to its owner's hand.
 mana={1}{U}
 type=Sorcery
-[/card]
-[card]
-name=Psychogenic Probe
-text=Whenever a spell or ability causes a player to shuffle his or her library, Psychogenic Probe deals 2 damage to him or her.
-mana={2}
-type=Artifact
 [/card]
 [card]
 name=Puca's Mischief
@@ -8675,12 +8515,6 @@ type=Creature
 subtype=Elemental Cat
 power=0
 toughness=0
-[/card]
-[card]
-name=Pyromancer Ascension
-text=Whenever you cast an instant or sorcery spell that has the same name as a card in your graveyard, you may put a quest counter on Pyromancer Ascension. -- Whenever you cast an instant or sorcery spell while Pyromancer Ascension has two or more quest counters on it, you may copy that spell. You may choose new targets for the copy.
-mana={1}{R}
-type=Enchantment
 [/card]
 [card]
 name=Question Elemental?
@@ -9093,13 +8927,6 @@ mana={R}
 type=Enchantment
 [/card]
 [card]
-name=Ricochet Trap
-text=If an opponent cast a blue spell this turn, you may pay {R} rather than pay Ricochet Trap's mana cost. -- Change the target of target spell with a single target.
-mana={3}{R}
-type=Instant
-subtype=Trap
-[/card]
-[card]
 name=Riftsweeper
 text=When Riftsweeper enters the battlefield, choose target face-up exiled card. Its owner shuffles it into his or her library.
 mana={1}{G}
@@ -9238,12 +9065,6 @@ type=Artifact Creature
 subtype=Cyborg Advisor
 power=1
 toughness=1
-[/card]
-[card]
-name=Rumbling Aftershocks
-text=Whenever you cast a kicked spell, you may have Rumbling Aftershocks deal damage to target creature or player equal to the number of times that spell was kicked.
-mana={4}{R}
-type=Enchantment
 [/card]
 [card]
 name=Runed Halo
@@ -9894,12 +9715,6 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=Silumgar's Command
-text=Choose two — -- • Counter target noncreature spell. -- • Return target permanent to its owner's hand. -- • Target creature gets -3/-3 until end of turn. -- • Destroy target planeswalker.
-mana={3}{U}{B}
-type=Instant
-[/card]
-[card]
 name=Silver Wyvern
 abilities=flying
 text=Flying -- {U}: Change the target of target spell or ability that targets only Silver Wyvern. The new target must be a creature.
@@ -9993,12 +9808,6 @@ name=Skybreen
 text=Players play with the top card of their libraries revealed. -- Spells that share a card type with the top card of a library can't be cast. -- Whenever you roll {C}, target player loses life equal to the number of cards in his or her hand.
 type=Plane
 subtype=Kaldheim
-[/card]
-[card]
-name=Slaughter Games
-text=Slaughter Games can't be countered by spells or abilities. -- Name a nonland card. Search target opponent's graveyard, hand, and library for any number of cards with that name and exile them. Then that player shuffles his or her library.
-mana={2}{B}{R}
-type=Sorcery
 [/card]
 [card]
 name=Slaying Mantis
@@ -10579,12 +10388,6 @@ mana={3}
 type=Artifact
 [/card]
 [card]
-name=Stain the Mind
-text=Convoke (Your creatures can help cast this spell. Each creature you tap while casting this spell pays for {1} or one mana of that creature's color.) -- Name a nonland card. Search target player's graveyard, hand, and library for any number of cards with that name and exile them. Then that player shuffles his or her library.
-mana={4}{B}
-type=Sorcery
-[/card]
-[card]
 name=Stairs to Infinity
 text=Players have no maximum hand size. -- Whenever you roll the planar die, draw a card. -- Whenever you roll {K}, reveal the top card of your planar deck. You may put it on the bottom of your planar deck.
 type=Plane
@@ -10923,13 +10726,6 @@ power=0
 toughness=4
 [/card]
 [card]
-name=Summoning Trap
-text=If a creature spell you cast this turn was countered by a spell or ability an opponent controlled, you may pay {0} rather than pay Summoning Trap's mana cost. -- Look at the top seven cards of your library. You may put a creature card from among them onto the battlefield. Put the rest on the bottom of your library in any order.
-mana={4}{G}{G}
-type=Instant
-subtype=Trap
-[/card]
-[card]
 name=Suncleanser
 text=When Suncleanser enters the battlefield, choose one — -- • Remove all counters from target creature. It can't have counters put on it for as long as Suncleanser remains on the battlefield. -- • Target opponent loses all counters. That player can't get counters for as long as Suncleanser remains on the battlefield.
 mana={1}{W}
@@ -11128,12 +10924,6 @@ name=Targeting Rocket
 text=Whenever you crank Targeting Rocket, target creature blocks this turn if able.
 type=Artifact
 subtype=Contraption
-[/card]
-[card]
-name=Tariff
-text=Each player sacrifices the creature he or she controls with the highest converted mana cost unless he or she pays that creature's mana cost. If two creatures a player controls are tied for highest cost, that player chooses one.
-mana={1}{W}
-type=Sorcery
 [/card]
 [card]
 name=Tawnos's Coffin
@@ -12626,15 +12416,6 @@ type=Creature
 subtype=Unicorn Monger
 power=3
 toughness=3
-[/card]
-[card]
-name=Wood Sage
-text={T}: Name a creature card. Reveal the top four cards of your library and put all of them with that name into your hand. Put the rest into your graveyard.
-mana={G}{U}
-type=Creature
-subtype=Human Druid
-power=1
-toughness=1
 [/card]
 [card]
 name=Woodland Guidance

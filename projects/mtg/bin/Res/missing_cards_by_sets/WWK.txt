@@ -1,17 +1,4 @@
 [card]
-name=Ricochet Trap
-text=If an opponent cast a blue spell this turn, you may pay {R} rather than pay Ricochet Trap's mana cost. -- Change the target of target spell with a single target.
-mana={3}{R}
-type=Instant
-subtype=Trap
-[/card]
-[card]
-name=Rumbling Aftershocks
-text=Whenever you cast a kicked spell, you may have Rumbling Aftershocks deal damage to target creature or player equal to the number of times that spell was kicked.
-mana={4}{R}
-type=Enchantment
-[/card]
-[card]
 name=Razor Boomerang
 text=Equipped creature has "{T}, Unattach Razor Boomerang: Razor Boomerang deals 1 damage to target creature or player. Return Razor Boomerang to its owner's hand." -- Equip {2}
 mana={3}

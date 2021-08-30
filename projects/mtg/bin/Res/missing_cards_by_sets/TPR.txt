@@ -15,13 +15,6 @@ mana={2}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Corpse Dance
-buyback={2}{B}{2}
-text=Buyback {2} (You may pay an additional {2} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Return the top creature card of your graveyard to the battlefield. That creature gains haste until end of turn. Exile it at the beginning of the next end step.
-mana={2}{B}
-type=Instant
-[/card]
-[card]
 name=Volrath's Curse
 text=Enchant creature -- Enchanted creature can't attack or block, and its activated abilities can't be activated. That creature's controller may sacrifice a permanent for that player to ignore this effect until end of turn. -- {1}{U}: Return Volrath's Curse to its owner's hand.
 mana={1}{U}
@@ -103,15 +96,6 @@ text=You may choose not to untap Coffin Queen during your untap step. -- {2}{B},
 mana={2}{B}
 type=Creature
 subtype=Zombie Wizard
-power=1
-toughness=1
-[/card]
-[card]
-name=Wood Sage
-text={T}: Name a creature card. Reveal the top four cards of your library and put all of them with that name into your hand. Put the rest into your graveyard.
-mana={G}{U}
-type=Creature
-subtype=Human Druid
 power=1
 toughness=1
 [/card]

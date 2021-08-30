@@ -42,6 +42,7 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     monarch = 0;
     surveilOffset = 0;
     devotionOffset = 0;
+    lastShuffleTurn = -1;
     epic = 0;
     forcefield = 0;
     dealsdamagebycombat = 0;
