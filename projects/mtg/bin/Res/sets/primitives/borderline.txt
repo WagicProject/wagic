@@ -418,7 +418,7 @@ toughness=3
 [/card]
 [card]
 name=Admiral's Order
-target=*[-nofizzle]|stack
+target=*|stack
 other={U} name(Raid)
 otherrestriction=raid
 auto=fizzle
@@ -2762,7 +2762,7 @@ toughness=2
 [/card]
 [card]
 name=Archmage's Charm
-auto=choice name(counter) target(*[-nofizzle]|stack) fizzle
+auto=choice name(counter) target(*|stack) fizzle
 auto=choice name(draw) target(player) draw:2
 auto=choice name(control) target(*[manacost<=1]|opponentBattlefield) moveTo(myBattlefield)
 text=Choose one — -- • Counter target spell. -- • Target player draws two cards. -- • Gain control of target nonland permanent with converted mana cost 1 or less.
@@ -7966,7 +7966,7 @@ toughness=6
 [/card]
 [card]
 name=Brine Seer
-auto={2}{U}{T}:name(Counter spell) name(Counter spell) target(*[-nofizzle]|stack) transforms((,newability[thisforeach(variable{type:*[blue]:opponenthand}>0) pay[[{1}]] name(pay mana) donothing?fizzle])) oneshot
+auto={2}{U}{T}:name(Counter spell) name(Counter spell) target(*|stack) transforms((,newability[thisforeach(variable{type:*[blue]:opponenthand}>0) pay[[{1}]] name(pay mana) donothing?fizzle])) oneshot
 text={2}{U}, {T}: Reveal any number of blue cards in your hand. Counter target spell unless its controller pays {1} for each card revealed this way.
 mana={3}{U}
 type=Creature
@@ -8603,7 +8603,7 @@ type=Land
 [/card]
 [card]
 name=Calculated Dismissal
-target=*[-nofizzle]|stack
+target=*|stack
 aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveTo(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) oneshot
 auto=if type(*[instant;sorcery]|mygraveyard)~morethan~1 then scry:2 scrycore delayed dontshow donothing scrycoreend scryend
@@ -9648,7 +9648,7 @@ toughness=1
 [card]
 name=Censor
 abilities=cycling
-target=*[-nofizzle]|stack
+target=*|stack
 auto=transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
 autohand=__CYCLING__({U})
 text=Counter target spell unless its controller pays {1}. -- Cycling {U} ({U}, Discard this card: Draw a card.)
@@ -9693,7 +9693,7 @@ type=Instant
 [card]
 name=Cerulean Drake
 abilities=flying,protection from red
-auto={S}:target(*[-nofizzle]|stack) fizzle
+auto={S}:target(*|stack) fizzle
 text=Flying -- Protection from red (This creature can't be blocked, targeted, dealt damage, enchanted, or equipped by anything red.) -- Sacrifice Cerulean Drake: Counter target spell that targets you.
 mana={1}{U}
 type=Creature
@@ -12037,7 +12037,7 @@ type=Sorcery
 [card]
 name=Complicate
 abilities=cycling
-target=*[-nofizzle]|stack
+target=*|stack
 auto=transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) oneshot
 autohand=__CYCLING__({2}{U})
 auto=@discarded(this):transforms((,newability[pay[[{1}]] name(pay 3 mana) donothing?fizzle])) oneshot
@@ -12084,7 +12084,7 @@ subtype=Aura
 [/card]
 [card]
 name=Concerted Defense
-target=*[-creature;-nofizzle]|stack
+target=*[-creature]|stack
 auto=if compare(calculateparty)~equalto~0 then transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
 auto=if compare(calculateparty)~equalto~1 then transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
 auto=if compare(calculateparty)~equalto~2 then transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
@@ -12207,7 +12207,7 @@ type=Sorcery
 [/card]
 [card]
 name=Confound
-target=*[-nofizzle;-creature;-artifact;-planeswalker;-enchantment]|stack
+target=*[-creature;-artifact;-planeswalker;-enchantment]|stack
 auto=fizzle
 auto=draw:1 controller
 restriction=type(creature|battlefield)~morethan~0
@@ -12729,20 +12729,20 @@ type=Instant
 [/card]
 [card]
 name=Counterlash
-auto=if type(creature[-nofizzle]|opponentstack)~morethan~0 then choice name(Counter opponent creature) name(Counter opponent creature) target(creature[-nofizzle]|opponentstack) transforms((,newability[fizzle],newability[ability$!name(Cast a creature from hand) name(Cast a creature from hand) target(creature|myhand) activate castcard(normal)!$ opponent])) oneshot
-auto=if type(creature[-nofizzle]|mystack)~morethan~0 then choice name(Counter your creature) name(Counter your creature) target(creature[-nofizzle]|mystack) transforms((,newability[fizzle],newability[ability$!name(Cast a creature from hand) name(Cast a creature from hand) target(creature|myhand) activate castcard(normal)!$ controller])) oneshot
-auto=if type(instant[-nofizzle]|opponentstack)~morethan~0 then choice name(Counter opponent instant) name(Counter opponent instant) target(instant[-nofizzle]|opponentstack) transforms((,newability[fizzle],newability[ability$!name(Cast an instant from hand) name(Cast an instant from hand) target(instant|myhand) activate castcard(normal)!$ opponent])) oneshot
-auto=if type(other instant[-nofizzle]|mystack)~morethan~0 then choice name(Counter your instant) name(Counter your instant) target(instant[-nofizzle]|mystack) transforms((,newability[fizzle],newability[ability$!name(Cast an instant from hand) name(Cast an instant from hand) target(instant|myhand) activate castcard(normal)!$ controller])) oneshot
-auto=if type(sorcery[-nofizzle]|opponentstack)~morethan~0 then choice name(Counter opponent sorcery) name(Counter opponent sorcery) target(sorcery[-nofizzle]|opponentstack) transforms((,newability[fizzle],newability[ability$!name(Cast a sorcery from hand) name(Cast a sorcery from hand) target(sorcery|myhand) activate castcard(normal)!$ opponent])) oneshot
-auto=if type(sorcery[-nofizzle]|mystack)~morethan~0 then choice name(Counter your sorcery) name(Counter your sorcery) target(sorcery[-nofizzle]|mystack) transforms((,newability[fizzle],newability[ability$!name(Cast a sorcery from hand) name(Cast a sorcery from hand) target(sorcery|myhand) activate castcard(normal)!$ controller])) oneshot
-auto=if type(planeswalker[-nofizzle]|opponentstack)~morethan~0 then choice name(Counter opponent planeswalker) name(Counter opponent planeswalker) target(planeswalker[-nofizzle]|opponentstack) transforms((,newability[fizzle],newability[ability$!name(Cast a planeswalker from hand) name(Cast a planeswalker from hand) target(planeswalker|myhand) activate castcard(normal)!$ opponent])) oneshot
-auto=if type(planeswalker[-nofizzle]|mystack)~morethan~0 then choice name(Counter your planeswalker) name(Counter your planeswalker) target(planeswalker[-nofizzle]|mystack) transforms((,newability[fizzle],newability[ability$!name(Cast a planeswalker from hand) name(Cast a planeswalker from hand) target(planeswalker|myhand) activate castcard(normal)!$ controller])) oneshot
-auto=if type(artifact[-nofizzle]|opponentstack)~morethan~0 then choice name(Counter opponent artifact) name(Counter opponent artifact) target(artifact[-nofizzle]|opponentstack) transforms((,newability[fizzle],newability[ability$!name(Cast an artifact from hand) name(Cast an artifact from hand) target(artifact|myhand) activate castcard(normal)!$ opponent])) oneshot
-auto=if type(artifact[-nofizzle]|mystack)~morethan~0 then choice name(Counter your artifact) name(Counter your artifact) target(artifact[-nofizzle]|mystack) transforms((,newability[fizzle],newability[ability$!name(Cast an artifact from hand) name(Cast an artifact from hand) target(artifact|myhand) activate castcard(normal)!$ controller])) oneshot
-auto=if type(enchantment[-nofizzle]|opponentstack)~morethan~0 then choice name(Counter opponent enchantment) name(Counter opponent enchantment) target(enchantment[-nofizzle]|opponentstack) transforms((,newability[fizzle],newability[ability$!name(Cast an enchantment from hand) name(Cast an enchantment from hand) target(enchantment|myhand) activate castcard(normal)!$ opponent])) oneshot
-auto=if type(enchantment[-nofizzle]|mystack)~morethan~0 then choice name(Counter your enchantment) name(Counter your enchantment) target(enchantment[-nofizzle]|mystack) transforms((,newability[fizzle],newability[ability$!name(Cast an enchantment from hand) name(Cast an enchantment from hand) target(enchantment|myhand) activate castcard(normal)!$ controller])) oneshot
-auto=if type(tribal[-nofizzle]|opponentstack)~morethan~0 then choice name(Counter opponent tribal) name(Counter opponent tribal) target(tribal[-nofizzle]|opponentstack) transforms((,newability[fizzle],newability[ability$!name(Cast a tribal from hand) name(Cast a tribal from hand) target(tribal|myhand) activate castcard(normal)!$ opponent])) oneshot
-auto=if type(tribal[-nofizzle]|mystack)~morethan~0 then choice name(Counter your tribal) name(Counter your tribal) target(tribal[-nofizzle]|mystack) transforms((,newability[fizzle],newability[ability$!name(Cast a tribal from hand) name(Cast a tribal from hand) target(tribal|myhand) activate castcard(normal)!$ controller])) oneshot
+auto=if type(creature|opponentstack)~morethan~0 then choice name(Counter opponent creature) name(Counter opponent creature) target(creature|opponentstack) transforms((,newability[fizzle],newability[ability$!name(Cast a creature from hand) name(Cast a creature from hand) target(creature|myhand) activate castcard(normal)!$ opponent])) oneshot
+auto=if type(creature|mystack)~morethan~0 then choice name(Counter your creature) name(Counter your creature) target(creature|mystack) transforms((,newability[fizzle],newability[ability$!name(Cast a creature from hand) name(Cast a creature from hand) target(creature|myhand) activate castcard(normal)!$ controller])) oneshot
+auto=if type(instant|opponentstack)~morethan~0 then choice name(Counter opponent instant) name(Counter opponent instant) target(instant|opponentstack) transforms((,newability[fizzle],newability[ability$!name(Cast an instant from hand) name(Cast an instant from hand) target(instant|myhand) activate castcard(normal)!$ opponent])) oneshot
+auto=if type(other instant|mystack)~morethan~0 then choice name(Counter your instant) name(Counter your instant) target(instant|mystack) transforms((,newability[fizzle],newability[ability$!name(Cast an instant from hand) name(Cast an instant from hand) target(instant|myhand) activate castcard(normal)!$ controller])) oneshot
+auto=if type(sorcery|opponentstack)~morethan~0 then choice name(Counter opponent sorcery) name(Counter opponent sorcery) target(sorcery|opponentstack) transforms((,newability[fizzle],newability[ability$!name(Cast a sorcery from hand) name(Cast a sorcery from hand) target(sorcery|myhand) activate castcard(normal)!$ opponent])) oneshot
+auto=if type(sorcery|mystack)~morethan~0 then choice name(Counter your sorcery) name(Counter your sorcery) target(sorcery|mystack) transforms((,newability[fizzle],newability[ability$!name(Cast a sorcery from hand) name(Cast a sorcery from hand) target(sorcery|myhand) activate castcard(normal)!$ controller])) oneshot
+auto=if type(planeswalker|opponentstack)~morethan~0 then choice name(Counter opponent planeswalker) name(Counter opponent planeswalker) target(planeswalker|opponentstack) transforms((,newability[fizzle],newability[ability$!name(Cast a planeswalker from hand) name(Cast a planeswalker from hand) target(planeswalker|myhand) activate castcard(normal)!$ opponent])) oneshot
+auto=if type(planeswalker|mystack)~morethan~0 then choice name(Counter your planeswalker) name(Counter your planeswalker) target(planeswalker|mystack) transforms((,newability[fizzle],newability[ability$!name(Cast a planeswalker from hand) name(Cast a planeswalker from hand) target(planeswalker|myhand) activate castcard(normal)!$ controller])) oneshot
+auto=if type(artifact|opponentstack)~morethan~0 then choice name(Counter opponent artifact) name(Counter opponent artifact) target(artifact|opponentstack) transforms((,newability[fizzle],newability[ability$!name(Cast an artifact from hand) name(Cast an artifact from hand) target(artifact|myhand) activate castcard(normal)!$ opponent])) oneshot
+auto=if type(artifact|mystack)~morethan~0 then choice name(Counter your artifact) name(Counter your artifact) target(artifact|mystack) transforms((,newability[fizzle],newability[ability$!name(Cast an artifact from hand) name(Cast an artifact from hand) target(artifact|myhand) activate castcard(normal)!$ controller])) oneshot
+auto=if type(enchantment|opponentstack)~morethan~0 then choice name(Counter opponent enchantment) name(Counter opponent enchantment) target(enchantment|opponentstack) transforms((,newability[fizzle],newability[ability$!name(Cast an enchantment from hand) name(Cast an enchantment from hand) target(enchantment|myhand) activate castcard(normal)!$ opponent])) oneshot
+auto=if type(enchantment|mystack)~morethan~0 then choice name(Counter your enchantment) name(Counter your enchantment) target(enchantment|mystack) transforms((,newability[fizzle],newability[ability$!name(Cast an enchantment from hand) name(Cast an enchantment from hand) target(enchantment|myhand) activate castcard(normal)!$ controller])) oneshot
+auto=if type(tribal|opponentstack)~morethan~0 then choice name(Counter opponent tribal) name(Counter opponent tribal) target(tribal|opponentstack) transforms((,newability[fizzle],newability[ability$!name(Cast a tribal from hand) name(Cast a tribal from hand) target(tribal|myhand) activate castcard(normal)!$ opponent])) oneshot
+auto=if type(tribal|mystack)~morethan~0 then choice name(Counter your tribal) name(Counter your tribal) target(tribal|mystack) transforms((,newability[fizzle],newability[ability$!name(Cast a tribal from hand) name(Cast a tribal from hand) target(tribal|myhand) activate castcard(normal)!$ controller])) oneshot
 text=Counter target spell. You may cast a nonland card in your hand that shares a card type with that spell without paying its mana cost.
 mana={4}{U}{U}
 type=Instant
@@ -12750,7 +12750,7 @@ type=Instant
 [card]
 name=Countervailing Winds
 abilities=cycling
-target=*[-nofizzle]|stack
+target=*|stack
 auto=if cantargetcard(*|opponentstack) then transforms((,newability[pay[[{value:type:*:opponentgraveyard}]] name(pay {value} mana) donothing?fizzle])) forever else transforms((,newability[pay[[{value:type:*:mygraveyard}]] name(pay {value} mana) donothing?fizzle])) forever
 autohand=__CYCLING__({2})
 text=Counter target spell unless its controller pays {1} for each card in your graveyard. -- Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -13352,7 +13352,7 @@ type=Instant
 [/card]
 [card]
 name=Crush Dissent
-target=*[-nofizzle]|stack
+target=*|stack
 auto=transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
 auto=_AMASS_(2)
 text=Counter target spell unless its controller pays {2}. -- Amass 2. (Put two +1/+1 counters on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.)
@@ -14282,7 +14282,7 @@ subtype=Aura
 [/card]
 [card]
 name=Dash Hopes
-target=*[-nofizzle]|stack
+target=*|stack
 auto=transforms((,newability[pay[[{L:5}]] name(pay 5 life) donothing?fizzle])) oneshot
 text=When you cast Dash Hopes, any player may pay 5 life. If a player does, counter Dash Hopes.  -- Counter target spell.
 mana={B}{B}
@@ -14388,7 +14388,7 @@ type=Instant
 name=Dawn Charm
 auto=choice name(Prevent Damage) preventAllcombatDamage ueot
 auto=choice name(Regenerate Creature) regenerate target(creature)
-auto=choice name(Counter Spell) target(*[-nofizzle]|stack) fizzle
+auto=choice name(Counter Spell) target(*|stack) fizzle
 text=Choose one — Prevent all combat damage that would be dealt this turn; or regenerate target creature; or counter target spell that targets you.
 mana={1}{W}
 type=Instant
@@ -14939,7 +14939,7 @@ type=Instant
 [/card]
 [card]
 name=Declaration of Naught
-auto=chooseanameopp transforms((,newability[{U}:name(Counter named spell) target(*[chosenname;-nofizzle]|stack) fizzle])) forever chooseend nonland
+auto=chooseanameopp transforms((,newability[{U}:name(Counter named spell) target(*[chosenname]|stack) fizzle])) forever chooseend nonland
 text=As Declaration of Naught enters the battlefield, name a card. -- {U}: Counter target spell with the chosen name.
 mana={U}{U}
 type=Enchantment
@@ -16023,7 +16023,7 @@ type=Enchantment
 [/card]
 [card]
 name=Didn't Say Please
-target=*[-nofizzle]|stack
+target=*|stack
 auto=fizzle && deplete:3 targetcontroller
 text=Counter target spell. Its controller puts the top three cards of their library into their graveyard.
 mana={1}{U}{U}
@@ -16099,7 +16099,7 @@ toughness=3
 [/card]
 [card]
 name=Dimir Charm
-auto=choice target(sorcery[-nofizzle]|stack) fizzle
+auto=choice target(sorcery|stack) fizzle
 auto=choice destroy target(creature[power<=2])
 auto=choice target(player) name(Look) reveal:3 optionone name(Look) target(*|reveal) doNothing optiononeend optiontwo target(<1>*|reveal) moveto(ownerlibrary) optiontwoend revealend
 text=Choose one — • Counter target sorcery spell. • Destroy target creature with power 2 or less. • Look at the top three cards of target player’s library. Put one back and the rest into that player’s graveyard.
@@ -16176,7 +16176,7 @@ type=Instant
 [/card]
 [card]
 name=Diplomatic Escort
-auto={U}{T}{D(*|myhand)}:fizzle target(*[-nofizzle]|stack)
+auto={U}{T}{D(*|myhand)}:fizzle target(*|stack)
 text={U}, {T}, Discard a card: Counter target spell or ability that targets a creature.
 mana={1}{U}
 type=Creature
@@ -16331,7 +16331,7 @@ toughness=1
 [/card]
 [card]
 name=Disallow
-target=*[-nofizzle]|stack
+target=*|stack
 auto=fizzle
 text=Counter target spell, activated ability, or triggered ability. (Mana abilities can't be targeted.)
 mana={1}{U}{U}
@@ -16463,8 +16463,8 @@ type=Sorcery
 [card]
 name=Disrupting Shoal
 other={E(other *|myhand)} name(Exile Card)
-auto=if paid(alternative) then fizzle target(*[-nofizzle;manacost=storedmanacost]|stack)
-auto=ifnot paid(alternative) then fizzle target(*[-nofizzle;manacost=prex]|stack)
+auto=if paid(alternative) then fizzle target(*[manacost=storedmanacost]|stack)
+auto=ifnot paid(alternative) then fizzle target(*[manacost=prex]|stack)
 text=You may exile a blue card with converted mana cost X from your hand rather than pay Disrupting Shoal's mana cost. -- Counter target spell if its converted mana cost is X.
 mana={X}{U}{U}
 type=Instant
@@ -16927,7 +16927,7 @@ type=Instant
 [card]
 name=Dovin's Veto
 abilities=nofizzle
-target=*[-creature;-nofizzle]|stack
+target=*[-creature]|stack
 auto=fizzle
 text=This spell can't be countered. -- Counter target noncreature spell.
 mana={W}{U}
@@ -17834,7 +17834,7 @@ type=Instant
 [/card]
 [card]
 name=Drown in the Loch
-auto=choice name(Counter Spell) fizzle target(*[-nofizzle;manacost<=type:*:opponentGraveyard]|stack)
+auto=choice name(Counter Spell) fizzle target(*[manacost<=type:*:opponentGraveyard]|stack)
 auto=choice name(Destroy Creature) destroy target(creature[manacost<=type:*:opponentGraveyard]|opponentBattlefield)
 text=Choose one — -- • Counter target spell with converted mana cost less than or equal to the number of cards in its controller's graveyard. -- • Destroy target creature with converted mana cost less than or equal to the number of cards in its controller's graveyard.
 mana={U}{B}
@@ -20028,7 +20028,7 @@ toughness=1
 [/card]
 [card]
 name=Essence Capture
-target=creature[-nofizzle]|stack
+target=creature|stack
 auto=fizzle
 auto=may counter(1/1) target(creature|mybattlefield)
 text=Counter target creature spell. Put a +1/+1 counter on up to one target creature you control.
@@ -20242,7 +20242,7 @@ toughness=2
 [/card]
 [card]
 name=Evasive Action
-target=*[-nofizzle]|stack
+target=*|stack
 auto=if compare(pbasiclandtypes)~equalto~1 then transforms((,newability[pay[[{1}]] name(pay {1} mana) donothing?fizzle])) forever
 auto=if compare(pbasiclandtypes)~equalto~2 then transforms((,newability[pay[[{2}]] name(pay {2} mana) donothing?fizzle])) forever
 auto=if compare(pbasiclandtypes)~equalto~3 then transforms((,newability[pay[[{3}]] name(pay {3} mana) donothing?fizzle])) forever
@@ -21068,7 +21068,7 @@ toughness=2
 [/card]
 [card]
 name=Failure // Comply
-auto=ifnot paid(alternative) then target(*[-nofizzle]|stack) fizzleto(hand)
+auto=ifnot paid(alternative) then target(*|stack) fizzleto(hand)
 auto=if paid(alternative) then chooseanameopp maxcast(*[chosenname])0 opponent ueot && phaseaction[upkeep once] maxcast(*[lastnamechosen])0 opponent ueot chooseend nonland
 autograveyard={W}{E}:name(Comply) activate castcard(alternative) asSorcery
 text=Return target spell to its owner's hand. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Choose a card name. Until your next turn, your opponents can't cast spells with the chosen name.
@@ -22040,7 +22040,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Fierce Guardianship
-target=*[-creature;-nofizzle]|stack
+target=*[-creature]|stack
 auto=fizzle
 other={0} name(Cast without Paying its Mana Cost)
 otherrestriction=type(*[iscommander]|mybattlefield)~morethan~0
@@ -22724,7 +22724,7 @@ type=Sorcery
 [/card]
 [card]
 name=Flaccify
-target=*[-nofizzle]|stack
+target=*|stack
 auto=transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) oneshot
 text=Counter target spell unless its controller pays {3}.
 mana={2}{U}
@@ -23142,7 +23142,7 @@ type=Instant
 [card]
 name=Flusterstorm
 abilities=storm
-target=*[-nofizzle;-creature;-planeswalker;-artifact;-enchantment]|stack
+target=*[-creature;-planeswalker;-artifact;-enchantment]|stack
 auto=transforms((,newability[pay[[{1}]] name(pay {1} mana) donothing?fizzle])) forever
 text=Counter target instant or sorcery spell unless its controller pays {1}. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
 mana={U}
@@ -23293,7 +23293,7 @@ type=Instant
 [/card]
 [card]
 name=Force of Negation
-target=*[-creature;-nofizzle]|stack
+target=*[-creature]|stack
 auto=fizzleto(exile)
 other={E(other *[blue]|myhand)} name(Exile a Blue Card from Hand)
 text=If it's not your turn, you may exile a blue card from your hand rather than pay this spell's mana cost. -- Counter target noncreature spell. If that spell is countered this way, exile it instead of putting it into its owner's graveyard.
@@ -23327,7 +23327,7 @@ type=Instant
 [/card]
 [card]
 name=Forceful Denial
-target=*[-nofizzle]|stack
+target=*|stack
 auto=fizzle
 autostack=if casted(this) then cascade:plibrarycount
 text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom of your library in a random order.) -- Counter target spell.
@@ -23769,7 +23769,7 @@ toughness=1
 [/card]
 [card]
 name=Frightful Delusion
-target=*[-nofizzle]|stack
+target=*|stack
 auto=fizzle
 auto=transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
 auto=ability$!name(discard) notatarget(*|myhand) reject!$ opponent
@@ -23790,7 +23790,7 @@ toughness=2
 [card]
 name=Frilled Mystic
 abilities=flash
-auto=if type(*|stack)~morethan~0 then may name(Counter spell) target(*[-nofizzle]|stack) fizzle
+auto=if type(*|stack)~morethan~0 then may name(Counter spell) target(*|stack) fizzle
 text=Flash -- When Frilled Mystic enters the battlefield, you may counter target spell.
 mana={G}{G}{U}{U}
 type=Creature
@@ -23886,7 +23886,7 @@ toughness=3
 [card]
 name=Frontline Medic
 auto=_ATTACKING_restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:all(creature|mybattlefield) transforms((indestructible)) ueot
-auto={S}:name(counter spell) target(other *[-nofizzle]|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) oneshot
+auto={S}:name(counter spell) target(other *|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) oneshot
 text=Battalion — Whenever Frontline Medic and at least two other creatures attack, creatures you control gain indestructible until end of turn. -- Sacrifice Frontline Medic: Counter target spell with {X} in its mana cost unless its controller pays {3}.
 mana={2}{W}
 type=Creature
@@ -27724,7 +27724,7 @@ type=Artifact
 [/card]
 [card]
 name=Grip of Amnesia
-target=*[-nofizzle]|stack
+target=*|stack
 auto=transforms((,newability[choice name(Exile all cards) all(*|mygraveyard) moveto(exile)],newability[choice name(Counter spell) fizzle])) oneshot
 auto=draw:1 controller
 text=Counter target spell unless its controller exiles all cards from his or her graveyard. -- Draw a card.
@@ -28140,7 +28140,7 @@ toughness=1
 [card]
 name=Guile
 abilities=trheeblockers,shufflelibrarydeath
-auto={D(instant|myhand)}:target(*[-nofizzle]|stack) fizzleto(exile) && may activate castcard(copied noevent)
+auto={D(instant|myhand)}:target(*|stack) fizzleto(exile) && may activate castcard(copied noevent)
 text=Guile can't be blocked except by three or more creatures. -- If a spell or ability you control would counter a spell, instead exile that spell and you may play that card without paying its mana cost. -- When Guile is put into a graveyard from anywhere, shuffle it into its owner's library.
 mana={3}{U}{U}{U}
 type=Creature
@@ -29876,7 +29876,7 @@ toughness=6
 [/card]
 [card]
 name=Hinder
-target=*[-nofizzle]|stack
+target=*|stack
 auto=choice name(Put on top) fizzleto(librarytop)
 auto=choice name(Put on bottom) fizzleto(librarybottom)
 text=Counter target spell. If that spell is countered this way, put that card on the top or bottom of its owner's library instead of into that player's graveyard.
@@ -29885,7 +29885,7 @@ type=Instant
 [/card]
 [card]
 name=Hindering Light
-target=*[-nofizzle;-creature;-artifact;-enchantment;-planeswalker]|opponentstack
+target=*[-creature;-artifact;-enchantment;-planeswalker]|opponentstack
 auto=fizzle
 auto=draw:1 controller
 text=Counter target spell that targets you or a permanent you control. -- Draw a card.
@@ -30398,7 +30398,7 @@ toughness=3
 [/card]
 [card]
 name=Hornswoggle
-target=creature[-nofizzle]|stack
+target=creature|stack
 auto=fizzle
 auto=token(Treasure Sur)
 text=Counter target creature spell. You create a colorless Treasure artifact token with "{T}, Sacrifice this artifact: Add one mana of any color."
@@ -30941,7 +30941,7 @@ toughness=0
 [/card]
 [card]
 name=Hydromorph Guardian
-auto={U}{S} restriction{type(creature|myBattlefield)~morethan~0}:fizzle target(*[-nofizzle;-creature;-artifact;-enchantment;-planeswalker]|stack)
+auto={U}{S} restriction{type(creature|myBattlefield)~morethan~0}:fizzle target(*[-creature;-artifact;-enchantment;-planeswalker]|stack)
 text={U}, Sacrifice Hydromorph Guardian: Counter target spell that targets one or more creatures you control.
 mana={2}{U}
 type=Creature
@@ -30952,7 +30952,7 @@ toughness=2
 [card]
 name=Hydromorph Gull
 abilities=flying
-auto={U}{S} restriction{type(creature|myBattlefield)~morethan~0}:fizzle target(*[-nofizzle;-creature;-artifact;-enchantment;-planeswalker]|stack)
+auto={U}{S} restriction{type(creature|myBattlefield)~morethan~0}:fizzle target(*[-creature;-artifact;-enchantment;-planeswalker]|stack)
 text=Flying -- {U}, Sacrifice Hydromorph Gull: Counter target spell that targets one or more creatures you control.
 mana={3}{U}{U}
 type=Creature
@@ -30984,7 +30984,7 @@ name=Hypnotic Sprite // Mesmeric Glare
 abilities=flying,adventure,asflash
 restriction=can play creature
 other={2}{U} name(Adventure)
-auto=if paid(alternative) then name(Counter spell) name(Counter spell) target(*[-nofizzle;manacost<=3]|stack) fizzle
+auto=if paid(alternative) then name(Counter spell) name(Counter spell) target(*[manacost<=3]|stack) fizzle
 auto=if paid(alternative) then transforms((,newability[moveto(exile) and!( transforms((,newability[canplayfromexile])) forever )!])) forever
 text=Flying // Counter target spell with converted mana cost 3 or less. (Then exile this card. You may cast the creature later from exile.)
 mana={U}{U}
@@ -32549,7 +32549,7 @@ type=Instant
 [/card]
 [card]
 name=Insidious Will
-auto=choice name(Counter) target(*[-nofizzle;-creature;-artifact;-enchantment;-planeswalker]|stack) fizzle
+auto=choice name(Counter) target(*[-creature;-artifact;-enchantment;-planeswalker]|stack) fizzle
 auto=choice name(Change target) target(*|stack) fizzle && castcard(copied noevent)
 auto=choice name(Copy spell) target(*[instant;sorcery]|stack) castcard(copied noevent)
 text=Choose one — -- • Counter target spell. -- • You may choose new targets for target spell. -- • Copy target instant or sorcery spell. You may choose new targets for the copy.
@@ -32736,7 +32736,7 @@ type=Land
 [/card]
 [card]
 name=Intervene
-target=*[-nofizzle;-creature;-artifact;-enchantment;-planeswalker]|stack
+target=*[-creature;-artifact;-enchantment;-planeswalker]|stack
 restriction=type(creature|Battlefield)~morethan~0
 auto=fizzle
 text=Counter target spell that targets a creature.
@@ -32909,7 +32909,7 @@ subtype=Aura
 [/card]
 [card]
 name=Ionize
-target=*[-nofizzle]|stack
+target=*|stack
 auto=fizzle
 auto=damage:2 opponent
 text=Counter target spell. Ionize deals 2 damage to that spell's controller.
@@ -33167,7 +33167,7 @@ toughness=2
 [/card]
 [card]
 name=Ixidor's Will
-target=*[-nofizzle]|stack
+target=*|stack
 auto=if type(wizard|battlefield)~equalto~0 then transforms((,newability[pay[[{0}]] name(pay 0 mana) donothing?fizzle])) forever
 auto=if type(wizard|battlefield)~equalto~1 then transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
 auto=if type(wizard|battlefield)~equalto~2 then transforms((,newability[pay[[{4}]] name(pay 4 mana) donothing?fizzle])) forever
@@ -33220,7 +33220,7 @@ toughness=3
 [/card]
 [card]
 name=Izzet Charm
-auto=choice target(*[-creature;-nofizzle]|stack) transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
+auto=choice target(*[-creature]|stack) transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
 auto=choice target(creature) damage:2
 auto=choice draw:2 controller && transforms((,newability[target(<2>*|myhand) reject])) oneshot
 text=Choose one — • Counter target noncreature spell unless its controller pays {2}. • Izzet Charm deals 2 damage to target creature. • Draw two cards, then discard two cards.
@@ -33258,7 +33258,7 @@ type=Instant
 [/card]
 [card]
 name=Jace's Defeat
-target=*[blue;-nofizzle]|stack
+target=*[blue]|stack
 auto=fizzle
 aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=if casted(this) then if type(jace|opponentstack)~morethan~0 then scry:2 scrycore delayed dontshow donothing scrycoreend scryend
@@ -33395,12 +33395,12 @@ toughness=3
 [/card]
 [card]
 name=Jaded Response
-restriction=type(creature[-colorless]|mybattlefield)~morethan~0,type(*[-nofizzle]|stack)~morethan~0
-auto=if type(creature[blue]|mybattlefield)~morethan~0 then if type(*[blue;-nofizzle]|stack)~morethan~0 then choice name(Counter blue spell) name(Counter blue spell) name(Counter blue spell) target(*[blue;-nofizzle]|stack) fizzle
-auto=if type(creature[black]|mybattlefield)~morethan~0 then if type(*[black;-nofizzle]|stack)~morethan~0 then choice name(Counter black spell) name(Counter black spell) name(Counter black spell) target(*[black;-nofizzle]|stack) fizzle
-auto=if type(creature[red]|mybattlefield)~morethan~0 then if type(*[red;-nofizzle]|stack)~morethan~0 then choice name(Counter red spell) name(Counter red spell) name(Counter red spell) target(*[red;-nofizzle]|stack) fizzle
-auto=if type(creature[green]|mybattlefield)~morethan~0 then if type(*[green;-nofizzle]|stack)~morethan~0 then choice name(Counter green spell) name(Counter green spell) name(Counter green spell) target(*[green;-nofizzle]|stack) fizzle
-auto=if type(creature[white]|mybattlefield)~morethan~0 then if type(*[white;-nofizzle]|stack)~morethan~0 then choice name(Counter white spell) name(Counter white spell) name(Counter white spell) target(*[white;-nofizzle]|stack) fizzle
+restriction=type(creature[-colorless]|mybattlefield)~morethan~0,type(*|stack)~morethan~0
+auto=if type(creature[blue]|mybattlefield)~morethan~0 then if type(*[blue]|stack)~morethan~0 then choice name(Counter blue spell) name(Counter blue spell) name(Counter blue spell) target(*[blue]|stack) fizzle
+auto=if type(creature[black]|mybattlefield)~morethan~0 then if type(*[black]|stack)~morethan~0 then choice name(Counter black spell) name(Counter black spell) name(Counter black spell) target(*[black]|stack) fizzle
+auto=if type(creature[red]|mybattlefield)~morethan~0 then if type(*[red]|stack)~morethan~0 then choice name(Counter red spell) name(Counter red spell) name(Counter red spell) target(*[red]|stack) fizzle
+auto=if type(creature[green]|mybattlefield)~morethan~0 then if type(*[green]|stack)~morethan~0 then choice name(Counter green spell) name(Counter green spell) name(Counter green spell) target(*[green]|stack) fizzle
+auto=if type(creature[white]|mybattlefield)~morethan~0 then if type(*[white]|stack)~morethan~0 then choice name(Counter white spell) name(Counter white spell) name(Counter white spell) target(*[white]|stack) fizzle
 text=Counter target spell if it shares a color with a creature you control.
 mana={1}{U}
 type=Instant
@@ -33948,7 +33948,7 @@ name=Jwari Disruption
 restriction=compare(isflipped)~equalto~0
 anyzone={0}:doubleside(Jwari Ruins)
 autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Jwari Ruins) name(Jwari Ruins) flip(Jwari Ruins) forcetype(land)
-auto=name(Counter target spell) name(Counter target spell) target(*[-nofizzle]|stack) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
+auto=name(Counter target spell) name(Counter target spell) target(*|stack) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
 text=Counter target spell unless its controller pays {1}. // Jwari Ruins
 mana={1}{U}
 type=Instant
@@ -34566,7 +34566,7 @@ toughness=4
 [card]
 name=Keep Safe
 restriction=type(*|myBattlefield)~morethan~0
-target=*[-nofizzle]|stack
+target=*|stack
 auto=fizzle
 auto=draw:1 controller
 text=Counter target spell that targets a permanent you control. -- Draw a card.
@@ -37443,26 +37443,26 @@ toughness=3
 [card]
 name=Lilting Refrain
 auto=@each my upkeep:may counter(0/0.1.Verse)
-auto=this(counter{0/0.1.Verse}) {S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
-auto=this(counter{0/0.2.Verse}) {S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
-auto=this(counter{0/0.3.Verse}) {S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
-auto=this(counter{0/0.4.Verse}) {S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{4}]] name(pay 4 mana) donothing?fizzle])) forever
-auto=this(counter{0/0.5.Verse}) {S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{5}]] name(pay 5 mana) donothing?fizzle])) forever
-auto=this(counter{0/0.6.Verse}) {S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{6}]] name(pay 6 mana) donothing?fizzle])) forever
-auto=this(counter{0/0.7.Verse}) {S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{7}]] name(pay 7 mana) donothing?fizzle])) forever
-auto=this(counter{0/0.8.Verse}) {S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{8}]] name(pay 8 mana) donothing?fizzle])) forever
-auto=this(counter{0/0.9.Verse}) {S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{9}]] name(pay 9 mana) donothing?fizzle])) forever
-auto=this(counter{0/0.10.Verse}) {S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{10}]] name(pay 10 mana) donothing?fizzle])) forever
-auto=this(counter{0/0.11.Verse}) {S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{11}]] name(pay 11 mana) donothing?fizzle])) forever
-auto=this(counter{0/0.12.Verse}) {S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{12}]] name(pay 12 mana) donothing?fizzle])) forever
-auto=this(counter{0/0.13.Verse}) {S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{13}]] name(pay 13 mana) donothing?fizzle])) forever
-auto=this(counter{0/0.14.Verse}) {S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{14}]] name(pay 14 mana) donothing?fizzle])) forever
-auto=this(counter{0/0.15.Verse}) {S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{15}]] name(pay 15 mana) donothing?fizzle])) forever
-auto=this(counter{0/0.16.Verse}) {S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{16}]] name(pay 16 mana) donothing?fizzle])) forever
-auto=this(counter{0/0.17.Verse}) {S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{17}]] name(pay 17 mana) donothing?fizzle])) forever
-auto=this(counter{0/0.18.Verse}) {S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{18}]] name(pay 18 mana) donothing?fizzle])) forever
-auto=this(counter{0/0.19.Verse}) {S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{19}]] name(pay 19 mana) donothing?fizzle])) forever
-auto=this(counter{0/0.20.Verse}) {S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{20}]] name(pay 20 mana) donothing?fizzle])) forever
+auto=this(counter{0/0.1.Verse}) {S}:target(*|stack) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
+auto=this(counter{0/0.2.Verse}) {S}:target(*|stack) transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
+auto=this(counter{0/0.3.Verse}) {S}:target(*|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
+auto=this(counter{0/0.4.Verse}) {S}:target(*|stack) transforms((,newability[pay[[{4}]] name(pay 4 mana) donothing?fizzle])) forever
+auto=this(counter{0/0.5.Verse}) {S}:target(*|stack) transforms((,newability[pay[[{5}]] name(pay 5 mana) donothing?fizzle])) forever
+auto=this(counter{0/0.6.Verse}) {S}:target(*|stack) transforms((,newability[pay[[{6}]] name(pay 6 mana) donothing?fizzle])) forever
+auto=this(counter{0/0.7.Verse}) {S}:target(*|stack) transforms((,newability[pay[[{7}]] name(pay 7 mana) donothing?fizzle])) forever
+auto=this(counter{0/0.8.Verse}) {S}:target(*|stack) transforms((,newability[pay[[{8}]] name(pay 8 mana) donothing?fizzle])) forever
+auto=this(counter{0/0.9.Verse}) {S}:target(*|stack) transforms((,newability[pay[[{9}]] name(pay 9 mana) donothing?fizzle])) forever
+auto=this(counter{0/0.10.Verse}) {S}:target(*|stack) transforms((,newability[pay[[{10}]] name(pay 10 mana) donothing?fizzle])) forever
+auto=this(counter{0/0.11.Verse}) {S}:target(*|stack) transforms((,newability[pay[[{11}]] name(pay 11 mana) donothing?fizzle])) forever
+auto=this(counter{0/0.12.Verse}) {S}:target(*|stack) transforms((,newability[pay[[{12}]] name(pay 12 mana) donothing?fizzle])) forever
+auto=this(counter{0/0.13.Verse}) {S}:target(*|stack) transforms((,newability[pay[[{13}]] name(pay 13 mana) donothing?fizzle])) forever
+auto=this(counter{0/0.14.Verse}) {S}:target(*|stack) transforms((,newability[pay[[{14}]] name(pay 14 mana) donothing?fizzle])) forever
+auto=this(counter{0/0.15.Verse}) {S}:target(*|stack) transforms((,newability[pay[[{15}]] name(pay 15 mana) donothing?fizzle])) forever
+auto=this(counter{0/0.16.Verse}) {S}:target(*|stack) transforms((,newability[pay[[{16}]] name(pay 16 mana) donothing?fizzle])) forever
+auto=this(counter{0/0.17.Verse}) {S}:target(*|stack) transforms((,newability[pay[[{17}]] name(pay 17 mana) donothing?fizzle])) forever
+auto=this(counter{0/0.18.Verse}) {S}:target(*|stack) transforms((,newability[pay[[{18}]] name(pay 18 mana) donothing?fizzle])) forever
+auto=this(counter{0/0.19.Verse}) {S}:target(*|stack) transforms((,newability[pay[[{19}]] name(pay 19 mana) donothing?fizzle])) forever
+auto=this(counter{0/0.20.Verse}) {S}:target(*|stack) transforms((,newability[pay[[{20}]] name(pay 20 mana) donothing?fizzle])) forever
 text=At the beginning of your upkeep, you may put a verse counter on Lilting Refrain. -- Sacrifice Lilting Refrain: Counter target spell unless its controller pays {X}, where X is the number of verse counters on Lilting Refrain.
 mana={1}{U}
 type=Enchantment
@@ -37862,7 +37862,7 @@ toughness=2
 [/card]
 [card]
 name=Lofty Denial
-target=*[-nofizzle]|stack
+target=*|stack
 auto=if type(creature[flying]|myBattlefield)~morethan~0 then transforms((,newability[pay[[{4}]] name(pay 4 mana) donothing?fizzle])) oneshot
 auto=if type(creature[flying]|myBattlefield)~lessthan~1 then transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) oneshot
 text=Counter target spell unless its controller pays 1. If you control a creature with flying, counter that spell unless its controller pays 4 instead.
@@ -37871,7 +37871,7 @@ type=Instant
 [/card]
 [card]
 name=Logic Knot
-target=*[-nofizzle]|stack
+target=*|stack
 other={delve} name(Delve)
 auto=transforms((,newability[pay[[{value:storedx}]] name(pay {value} mana) donothing?fizzle])) forever
 text=Delve (You may exile any number of cards from your graveyard as you cast this spell. It costs {1} less to cast for each card exiled this way.) -- Counter target spell unless its controller pays {X}.
@@ -37966,7 +37966,7 @@ toughness=2
 [/card]
 [card]
 name=Lookout's Dispersal
-target=*[-nofizzle]|stack
+target=*|stack
 other={1}{U} name(You control a pirate)
 otherrestriction=type(pirate|myBattlefield)~morethan~0
 restriction=type(pirate|myBattlefield)~equalto~0
@@ -38113,7 +38113,7 @@ toughness=2
 [/card]
 [card]
 name=Lose Focus
-target=*[-nofizzle]|stack
+target=*|stack
 kicker=multi{U}
 auto=transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
 auto=thisforeach(variable{kicked}>0) all(this) activate castcard(copied)
@@ -39074,7 +39074,7 @@ toughness=5
 [/card]
 [card]
 name=Mana Drain
-target=*[-nofizzle]|stack
+target=*|stack
 auto=fizzle
 anyzone=if casted(this) then if compare(hasstorecard)~morethan~0 then if compare(restriction{opponentturnonly}~morethan~0) then transforms((,newability[becomes(,,blue),newability[thisforeach(variable{storedmanacost}>0) phaseaction[my firstmain once]:add{1}])) oneshot
 anyzone=if casted(this) then if compare(hasstorecard)~morethan~0 then if compare(restriction{myturnonly}~morethan~0) then if compare(currentphase)~lessthan~4 then transforms((,newability[becomes(,,blue),newability[thisforeach(variable{storedmanacost}>0) phaseaction[my firstmain once]:add{1}])) oneshot
@@ -39501,26 +39501,26 @@ toughness=1
 [/card]
 [card]
 name=Martyr of Frost
-auto=if type(*[blue]|myhand)~equalto~1 then {2}{S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
-auto=if type(*[blue]|myhand)~equalto~2 then {2}{S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
-auto=if type(*[blue]|myhand)~equalto~3 then {2}{S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
-auto=if type(*[blue]|myhand)~equalto~4 then {2}{S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{4}]] name(pay 4 mana) donothing?fizzle])) forever
-auto=if type(*[blue]|myhand)~equalto~5 then {2}{S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{5}]] name(pay 5 mana) donothing?fizzle])) forever
-auto=if type(*[blue]|myhand)~equalto~6 then {2}{S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{6}]] name(pay 6 mana) donothing?fizzle])) forever
-auto=if type(*[blue]|myhand)~equalto~7 then {2}{S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{7}]] name(pay 7 mana) donothing?fizzle])) forever
-auto=if type(*[blue]|myhand)~equalto~8 then {2}{S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{8}]] name(pay 8 mana) donothing?fizzle])) forever
-auto=if type(*[blue]|myhand)~equalto~9 then {2}{S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{9}]] name(pay 9 mana) donothing?fizzle])) forever
-auto=if type(*[blue]|myhand)~equalto~10 then {2}{S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{10}]] name(pay 10 mana) donothing?fizzle])) forever
-auto=if type(*[blue]|myhand)~equalto~11 then {2}{S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{11}]] name(pay 11 mana) donothing?fizzle])) forever
-auto=if type(*[blue]|myhand)~equalto~12 then {2}{S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{12}]] name(pay 12 mana) donothing?fizzle])) forever
-auto=if type(*[blue]|myhand)~equalto~13 then {2}{S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{13}]] name(pay 13 mana) donothing?fizzle])) forever
-auto=if type(*[blue]|myhand)~equalto~14 then {2}{S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{14}]] name(pay 14 mana) donothing?fizzle])) forever
-auto=if type(*[blue]|myhand)~equalto~15 then {2}{S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{15}]] name(pay 15 mana) donothing?fizzle])) forever
-auto=if type(*[blue]|myhand)~equalto~16 then {2}{S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{16}]] name(pay 16 mana) donothing?fizzle])) forever
-auto=if type(*[blue]|myhand)~equalto~17 then {2}{S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{17}]] name(pay 17 mana) donothing?fizzle])) forever
-auto=if type(*[blue]|myhand)~equalto~18 then {2}{S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{18}]] name(pay 18 mana) donothing?fizzle])) forever
-auto=if type(*[blue]|myhand)~equalto~19 then {2}{S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{19}]] name(pay 19 mana) donothing?fizzle])) forever
-auto=if type(*[blue]|myhand)~morethan~19 then {2}{S}:target(*[-nofizzle]|stack) transforms((,newability[pay[[{20}]] name(pay 20 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~1 then {2}{S}:target(*|stack) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~2 then {2}{S}:target(*|stack) transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~3 then {2}{S}:target(*|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~4 then {2}{S}:target(*|stack) transforms((,newability[pay[[{4}]] name(pay 4 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~5 then {2}{S}:target(*|stack) transforms((,newability[pay[[{5}]] name(pay 5 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~6 then {2}{S}:target(*|stack) transforms((,newability[pay[[{6}]] name(pay 6 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~7 then {2}{S}:target(*|stack) transforms((,newability[pay[[{7}]] name(pay 7 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~8 then {2}{S}:target(*|stack) transforms((,newability[pay[[{8}]] name(pay 8 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~9 then {2}{S}:target(*|stack) transforms((,newability[pay[[{9}]] name(pay 9 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~10 then {2}{S}:target(*|stack) transforms((,newability[pay[[{10}]] name(pay 10 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~11 then {2}{S}:target(*|stack) transforms((,newability[pay[[{11}]] name(pay 11 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~12 then {2}{S}:target(*|stack) transforms((,newability[pay[[{12}]] name(pay 12 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~13 then {2}{S}:target(*|stack) transforms((,newability[pay[[{13}]] name(pay 13 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~14 then {2}{S}:target(*|stack) transforms((,newability[pay[[{14}]] name(pay 14 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~15 then {2}{S}:target(*|stack) transforms((,newability[pay[[{15}]] name(pay 15 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~16 then {2}{S}:target(*|stack) transforms((,newability[pay[[{16}]] name(pay 16 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~17 then {2}{S}:target(*|stack) transforms((,newability[pay[[{17}]] name(pay 17 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~18 then {2}{S}:target(*|stack) transforms((,newability[pay[[{18}]] name(pay 18 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~19 then {2}{S}:target(*|stack) transforms((,newability[pay[[{19}]] name(pay 19 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~morethan~19 then {2}{S}:target(*|stack) transforms((,newability[pay[[{20}]] name(pay 20 mana) donothing?fizzle])) forever
 text={2}, Reveal X blue cards from your hand, Sacrifice Martyr of Frost: Counter target spell unless its controller pays {X}.
 mana={U}
 type=Creature
@@ -39991,7 +39991,7 @@ type=Sorcery
 [/card]
 [card]
 name=Memory Drain
-target=*[-nofizzle]|stack
+target=*|stack
 auto=fizzle
 aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto=scry:2 scrycore delayed dontshow donothing scrycoreend scryend
@@ -40915,7 +40915,7 @@ toughness=4
 [/card]
 [card]
 name=Miscast
-target=*[-nofizzle;-creature;-artifact;-enchantment;-planeswalker]|stack
+target=*[-creature;-artifact;-enchantment;-planeswalker]|stack
 auto=transforms((,newability[pay [[{3}]] name(pay 3 mana) donothing?fizzle])) oneshot
 text=Counter target instant or sorcery spell unless its controller pays 3 .
 mana={U}
@@ -41238,7 +41238,7 @@ type=Enchantment
 [/card]
 [card]
 name=Molten Influence
-target=*[-nofizzle;-creature;-artifact;-enchantment;-planeswalker]|stack
+target=*[-creature;-artifact;-enchantment;-planeswalker]|stack
 auto=transforms((,newability[pay[[{L:4}]] name(pay 4 life) donothing?fizzle])) forever
 text=Counter target instant or sorcery spell unless its controller has Molten Influence deal 4 damage to him or her.
 mana={1}{R}
@@ -41932,12 +41932,12 @@ toughness=1
 [/card]
 [card]
 name=Mystic Confluence
-auto=choice name(Choose 1, 2 and 3) target(*[-nofizzle]|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever && ability$!name(Return creature) name(Return creature) target(creature) moveto(ownerhand)!$ controller && draw:1 controller
-auto=choice name(Choose 1, 1 and 2) target(<2>*[-nofizzle]|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever && ability$!name(Return creature) name(Return creature) target(creature) moveto(ownerhand)!$ controller
-auto=choice name(Choose 1, 1 and 3) target(<2>*[-nofizzle]|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever && draw:1 controller
-auto=choice name(Choose 1, 1 and 1) target(<3>*[-nofizzle]|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
-auto=choice name(Choose 1, 2 and 2) target(*[-nofizzle]|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever && ability$!name(Return 2 creatures) name(Return 2 creatures) target(<2>creature) moveto(ownerhand)!$ controller
-auto=choice name(Choose 1, 3 and 3) target(*[-nofizzle]|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever && draw:2 controller
+auto=choice name(Choose 1, 2 and 3) target(*|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever && ability$!name(Return creature) name(Return creature) target(creature) moveto(ownerhand)!$ controller && draw:1 controller
+auto=choice name(Choose 1, 1 and 2) target(<2>*|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever && ability$!name(Return creature) name(Return creature) target(creature) moveto(ownerhand)!$ controller
+auto=choice name(Choose 1, 1 and 3) target(<2>*|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever && draw:1 controller
+auto=choice name(Choose 1, 1 and 1) target(<3>*|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
+auto=choice name(Choose 1, 2 and 2) target(*|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever && ability$!name(Return 2 creatures) name(Return 2 creatures) target(<2>creature) moveto(ownerhand)!$ controller
+auto=choice name(Choose 1, 3 and 3) target(*|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever && draw:2 controller
 auto=choice name(Choose 2, 2 and 2) target(<3>creature) moveto(ownerhand)
 auto=choice name(Choose 2, 2 and 3) target(<2>creature) moveto(ownerhand) && draw:1 controller
 auto=choice name(Choose 2, 3 and 3) target(creature) moveto(ownerhand) && draw:2 controller
@@ -42015,8 +42015,8 @@ subtype=Aura
 [card]
 name=Mystical Dispute
 other={U} name(Counter Blue)
-auto=if paid(alternative) then name(counter blue spell) target(*[blue;-nofizzle]|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
-auto=ifnot paid(alternative) then name(counter spell) target(*[-nofizzle]|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
+auto=if paid(alternative) then name(counter blue spell) target(*[blue]|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
+auto=ifnot paid(alternative) then name(counter spell) target(*|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
 text=This spell costs {2} less to cast if it targets a blue spell. -- Counter target spell unless its controller pays 3 .
 mana={2}{U}
 type=Instant
@@ -42810,7 +42810,7 @@ toughness=2
 [card]
 name=Neutralize
 abilities=cycling
-target=*[-nofizzle]|stack
+target=*|stack
 auto=fizzle
 autohand=__CYCLING__({2})
 text=Counter target spell. -- Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -44168,11 +44168,11 @@ toughness=6
 [card]
 name=Ojutai's Command
 auto=choice name(Choose 1 and 2) target(creature[manacost<=2]|mygraveyard) moveto(mybattlefield && life:4 controller
-auto=choice name(Choose 1 and 3) target(creature[manacost<=2]|mygraveyard) moveto(mybattlefield and!( transforms((,newability[name(Counter spell) fizzle target(*[-nofizzle]|stack)])) oneshot )!
+auto=choice name(Choose 1 and 3) target(creature[manacost<=2]|mygraveyard) moveto(mybattlefield and!( transforms((,newability[name(Counter spell) fizzle target(*|stack)])) oneshot )!
 auto=choice name(Choose 1 and 4) target(creature[manacost<=2]|mygraveyard) moveto(mybattlefield && draw:1 controller
-auto=choice name(Choose 2 and 3) life:4 controller && fizzle target(*[-nofizzle]|stack) 
+auto=choice name(Choose 2 and 3) life:4 controller && fizzle target(*|stack) 
 auto=choice name(Choose 2 and 4) life:4 controller && draw:1 controller
-auto=choice name(Choose 3 and 4) fizzle target(*[-nofizzle]|stack) && draw:1 controller
+auto=choice name(Choose 3 and 4) fizzle target(*|stack) && draw:1 controller
 text=Choose two — -- • Return target creature card with converted mana cost 2 or less from your graveyard to the battlefield. -- • You gain 4 life. -- • Counter target creature spell. -- • Draw a card.
 mana={2}{W}{U}
 type=Instant
@@ -44653,7 +44653,7 @@ toughness=3
 [/card]
 [card]
 name=Oppressive Will
-target=*[-nofizzle]|stack
+target=*|stack
 auto=if type(*|myhand)~equalto~1 then transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
 auto=if type(*|myhand)~equalto~2 then transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
 auto=if type(*|myhand)~equalto~3 then transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
@@ -45238,7 +45238,7 @@ type=Sorcery
 [/card]
 [card]
 name=Out of Bounds
-target=*[-nofizzle]|stack
+target=*|stack
 auto=fizzle
 auto=Counter target spell
 text=Assist (Another player can pay up to {3} of this spell's cost.) -- Counter target spell.
@@ -45303,7 +45303,7 @@ type=Enchantment
 [/card]
 [card]
 name=Outwit
-target=*[-nofizzle;-creature;-artifact;-enchantment;-planeswalker]|stack
+target=*[-creature;-artifact;-enchantment;-planeswalker]|stack
 auto=fizzle
 text=Counter target spell that targets a player.
 mana={U}
@@ -45378,7 +45378,7 @@ type=Sorcery
 [/card]
 [card]
 name=Overrule
-target=*[-nofizzle]|stack
+target=*|stack
 auto=transforms((,newability[pay[[{value:storedx}]] name(pay {value} mana) donothing?fizzle])) forever
 auto=life:X controller
 text=Counter target spell unless its controller pays {X}. You gain X life.
@@ -46984,8 +46984,8 @@ toughness=3
 [card]
 name=Planar Chaos
 auto=@each my upkeep:name(Flip a coin) flipacoin loseability sacrifice loseabilityend flipend
-auto=@movedTo(*|mystack):name(Flip a coin) flipacoin loseability fizzle target(*[-nofizzle]|mystack) loseabilityend flipend
-auto=@movedTo(*|opponentstack):ability$!name(Flip a coin) flipacoin loseability fizzle target(*[-nofizzle]|mystack) loseabilityend flipend!$ opponent
+auto=@movedTo(*|mystack):name(Flip a coin) flipacoin loseability fizzle target(*|mystack) loseabilityend flipend
+auto=@movedTo(*|opponentstack):ability$!name(Flip a coin) flipacoin loseability fizzle target(*|mystack) loseabilityend flipend!$ opponent
 text=At the beginning of your upkeep, flip a coin. If you lose the flip, sacrifice Planar Chaos. -- Whenever a player casts a spell, that player flips a coin. If he or she loses the flip, counter that spell.
 mana={2}{R}
 type=Enchantment
@@ -48161,8 +48161,8 @@ type=Instant
 [card]
 name=Prohibit
 kicker={2}
-auto=ifnot paid(kicker) then target(*[-nofizzle;manacost<=2]|stack) fizzle
-auto=if paid(kicker) then target(*[-nofizzle;manacost<=4]|stack) fizzle
+auto=ifnot paid(kicker) then target(*[manacost<=2]|stack) fizzle
+auto=if paid(kicker) then target(*[manacost<=4]|stack) fizzle
 text=Kicker {2} (You may pay an additional {2} as you cast this spell.) -- Counter target spell if its converted mana cost is 2 or less. If Prohibit was kicked, counter that spell if its converted mana cost is 4 or less instead.
 mana={1}{U}
 type=Instant
@@ -48674,7 +48674,7 @@ toughness=8
 [/card]
 [card]
 name=Put Away
-target=*[-nofizzle]|stack
+target=*|stack
 auto=fizzle
 auto=may name(Return a card) target(*|mygraveyard) moveto(mylibrary) and!( shuffle )!
 text=Counter target spell. You may shuffle up to one target card from your graveyard into your library.
@@ -49082,7 +49082,7 @@ type=Sorcery
 [/card]
 [card]
 name=Quench
-target=*[-nofizzle]|stack
+target=*|stack
 auto=fizzle
 auto=transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
 text=Counter target spell unless its controller pays {2}.
@@ -50412,7 +50412,7 @@ toughness=4
 [/card]
 [card]
 name=Rebuff the Wicked
-target=*[-nofizzle]|stack
+target=*|stack
 restriction=type(*|myBattlefield)~morethan~0
 auto=fizzle
 text=Counter target spell that targets a permanent you control.
@@ -50607,7 +50607,7 @@ type=Instant
 [/card]
 [card]
 name=Reduce // Rubble
-target=*[-nofizzle]|stack
+target=*|stack
 auto=transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever restriction{type(*|stack)~morethan~0}
 autograveyard={2}{R}{E}:target(<upto:3>land) freeze asSorcery
 text=Counter target spell unless its controller pays {3}. -- Aftermath (Cast this spell only from your graveyard. Then exile it.) Up to three target lands don't untap during their controller's next untap step.
@@ -50790,7 +50790,7 @@ type=Instant
 [/card]
 [card]
 name=Reinterpret
-target=*[-nofizzle]|stack
+target=*|stack
 auto=fizzle
 anyzone=if casted(this) then if compare(hasstorecard)~morethan~0 then name(Cast spell from hand) may name(Cast spell from hand) target(*[-land;manacost<=storedmanacost]|myhand) activate castcard(normal)
 text=Counter target spell. You may cast a spell with an equal or lesser mana value from your hand without paying its mana cost.
@@ -51060,9 +51060,9 @@ type=Sorcery
 [card]
 name=Repel Intruders
 other={3}{U} name(Pay blue mana)
-auto=if paid(alternative) then target(creature[-nofizzle]|stack) fizzle
+auto=if paid(alternative) then target(creature|stack) fizzle
 kicker={U}
-auto=kicker ifnot paid(alternative) then target(creature[-nofizzle]|stack) fizzle
+auto=kicker ifnot paid(alternative) then target(creature|stack) fizzle
 auto=ifnot paid(alternative) then ttoken(Kithkin Soldier,creature kithkin soldier,1/1,white)*2
 text=Put two 1/1 white Kithkin Soldier creature tokens onto the battlefield if {W} was spent to cast Repel Intruders. Counter up to one target creature spell if {U} was spent to cast Repel Intruders. (Do both if {W}{U} was spent.)
 mana={3}{W}
@@ -51113,7 +51113,7 @@ type=Enchantment
 name=Repudiate // Replicate
 other={1}{G}{U} name(Replicate)
 otherrestriction=myturnonly
-auto=ifnot paid(alternative) then name(Counter target spell) target(*[-nofizzle]|stack) fizzle
+auto=ifnot paid(alternative) then name(Counter target spell) target(*|stack) fizzle
 auto=if paid(alternative) then name(Copy creature) clone target(creature|mybattlefield)
 text=Counter target activated or triggered ability. -- (Mana abilities can't be targeted.) -- Create a token that's a copy of target creature you control.
 mana={GU}{GU}
@@ -52252,7 +52252,7 @@ type=Sorcery
 [/card]
 [card]
 name=Rites of Refusal
-target=*[-nofizzle]|stack
+target=*|stack
 auto=if type(*|myHand)~morethan~0 then choice ability$!name(X=1) target(*|myhand) reject!$ controller && transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
 auto=if type(*|myHand)~morethan~1 then choice ability$!name(X=2) target(<2>*|myhand) reject!$ controller && transforms((,newability[pay[[{6}]] name(pay 6 mana) donothing?fizzle])) forever
 auto=if type(*|myHand)~morethan~2 then choice ability$!name(X=3) target(<3>*|myhand) reject!$ controller && transforms((,newability[pay[[{9}]] name(pay 9 mana) donothing?fizzle])) forever
@@ -53256,7 +53256,7 @@ toughness=1
 [/card]
 [card]
 name=Rune Snag
-target=*[-nofizzle]|stack
+target=*|stack
 auto=if type(Rune Snag|graveyard)~equalto~0 then transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
 auto=if type(Rune Snag|graveyard)~equalto~1 then transforms((,newability[pay[[{4}]] name(pay 4 mana) donothing?fizzle])) forever
 auto=if type(Rune Snag|graveyard)~equalto~2 then transforms((,newability[pay[[{6}]] name(pay 6 mana) donothing?fizzle])) forever
@@ -54546,7 +54546,7 @@ toughness=3
 [card]
 name=Saw It Coming
 abilities=foretell
-target=*[-nofizzle]|stack
+target=*|stack
 auto=fizzle
 autohand={2}:name(Pay 2 and exile face-down) name(Pay 2 and exile face-down) doforetell myturnonly
 autoexile={1}{U} restriction{compare(canforetellcast)~morethan~0,type(*|stack)~morethan~0}:name(Cast with foretell) name(Cast with foretell) activate castcard(alternative)
@@ -54737,7 +54737,7 @@ toughness=1
 [/card]
 [card]
 name=Scent of Brine
-target=*[-nofizzle]|stack
+target=*|stack
 auto=if type(*[blue]|myhand)~equalto~1 then transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
 auto=if type(*[blue]|myhand)~equalto~2 then transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
 auto=if type(*[blue]|myhand)~equalto~3 then transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
@@ -57764,7 +57764,7 @@ type=Sorcery
 [/card]
 [card]
 name=Sinister Sabotage
-target=*[-nofizzle]|stack
+target=*|stack
 auto=fizzle
 aicode=activate transforms((,newability[surveil],newability[all(*[zpos<=psurveiloffsetplus1plusend]|mylibrary) transforms((,newability[if compare(genrand2)~equalto~1 then moveto(mygraveyard)])) oneshot])) oneshot
 auto=name(Surveil 1) reveal:psurveiloffsetplus1plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus1plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus1plusend>*|reveal) moveto(ownerlibrary) optiontwoend afterrevealed surveil afterrevealedend revealend
@@ -57859,7 +57859,7 @@ toughness=2
 [card]
 name=Siren Stormtamer
 abilities=flying
-auto={U}{S}:target(*[-nofizzle;-creature;-artifact;-enchantment;-planeswalker]|stack) fizzle
+auto={U}{S}:target(*[-creature;-artifact;-enchantment;-planeswalker]|stack) fizzle
 text=Flying -- {U}, Sacrifice Siren Stormtamer: Counter target spell or ability that targets you or a creature you control.
 mana={U}
 type=Creature
@@ -59609,9 +59609,9 @@ type=Artifact
 [/card]
 [card]
 name=Soul Manipulation
-auto=if type(creature[-nofizzle]|stack)~morethan~0 then choice name(Counter creature spell) name(Counter creature spell) target(creature[-nofizzle]|stack) fizzle
+auto=if type(creature|stack)~morethan~0 then choice name(Counter creature spell) name(Counter creature spell) target(creature|stack) fizzle
 auto=if type(creature|mygraveyard)~morethan~0 then choice name(Return creature to hand) name(Return creature to hand) target(creature|mygraveyard) moveto(myhand)
-auto=if type(creature[-nofizzle]|stack)~morethan~0 then if type(creature|mygraveyard)~morethan~0 then choice name(Choose both) name(Choose both) name(Choose both) target(creature|mygraveyard) moveto(myhand) and!( transforms((,newability[name(Counter creature) target(creature[-nofizzle]|stack) fizzle])) oneshot )!
+auto=if type(creature|stack)~morethan~0 then if type(creature|mygraveyard)~morethan~0 then choice name(Choose both) name(Choose both) name(Choose both) target(creature|mygraveyard) moveto(myhand) and!( transforms((,newability[name(Counter creature) target(creature|stack) fizzle])) oneshot )!
 text=Choose one or both — Counter target creature spell; and/or return target creature card from your graveyard to your hand.
 mana={1}{U}{B}
 type=Instant
@@ -60185,7 +60185,7 @@ subtype=Aura
 [/card]
 [card]
 name=Spell Crumple
-target=*[-nofizzle]|stack
+target=*|stack
 auto=fizzleto(librarybottom)
 auto=ability$!bottomoflibrary all(Spell Crumple|mystack)!$ controller
 text=Counter target spell. If that spell is countered this way, put it on the bottom of its owner's library instead of into that player's graveyard. Put Spell Crumple on the bottom of its owner's library.
@@ -60203,7 +60203,7 @@ type=Artifact
 [/card]
 [card]
 name=Spell Snuff
-target=*[-nofizzle]|stack
+target=*|stack
 auto=fizzle
 auto=this(controllerlife < 6) draw:1
 text=Counter target spell. -- Fateful hour — If you have 5 or less life, draw a card.
@@ -60212,7 +60212,7 @@ type=Instant
 [/card]
 [card]
 name=Spell Swindle
-target=*[-nofizzle]|stack
+target=*|stack
 auto=fizzle
 anyzone=if casted(this) then if compare(hasstorecard)~morethan~0 then token(Treasure Sur)*storedmanacost
 text=Counter target spell. Create X colorless Treasure artifact tokens, where X is that spell's converted mana cost. They have "{T}, Sacrifice this artifact: Add one mana of any color to your mana pool."
@@ -60221,7 +60221,7 @@ type=Instant
 [/card]
 [card]
 name=Spell Syphon
-auto=*[-nofizzle]|stack
+auto=*|stack
 auto=if cantargetcard(*|opponentstack) then transforms((,newability[pay[[{value:type:*[blue]:opponentbattlefield}]] name(pay {value} mana) donothing?fizzle])) forever else transforms((,newability[pay[[{value:type:*[blue]:mybattlefield}]] name(pay {value} mana) donothing?fizzle])) forever
 text=Counter target spell unless its controller pays {1} for each blue permanent you control.
 mana={1}{U}
@@ -60292,7 +60292,7 @@ toughness=1
 [/card]
 [card]
 name=Spellshift
-target=*[-nofizzle]|stack
+target=*|stack
 auto=fizzle
 auto=Reveal:1 revealzone(targetcontrollerlibrary) revealuntil(*[instant;sorcery]|targetcontrollerlibrary) optionone choice name(Put in play) target(*[instant;sorcery]|reveal) activate castcard(normal) optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend revealend
 text=Counter target instant or sorcery spell. Its controller reveals cards from the top of his or her library until he or she reveals an instant or sorcery card. That player may cast that card without paying its mana cost. Then he or she shuffles his or her library.
@@ -60753,7 +60753,7 @@ type=Instant
 name=Spite // Malice
 other={3}{B} name(Malice)
 auto=if paid(alternative) then bury target(creature[-black])
-auto=ifnot paid(alternative) then fizzle target(*[-creature;-nofizzle])
+auto=ifnot paid(alternative) then fizzle target(*[-creature])
 text=Counter target noncreature spell. // Destroy target nonblack creature. It can't be regenerated.
 mana={3}{U}
 type=Instant
@@ -62679,7 +62679,7 @@ type=Instant
 [/card]
 [card]
 name=Suffocating Blast
-target=*[-nofizzle]|stack
+target=*|stack
 auto=fizzle
 auto=ability$!name(Deal 3 damage) name(Deal 3 damage) damage:3 target(creature)!$ controller
 text=Counter target spell and Suffocating Blast deals 3 damage to target creature.
@@ -63021,7 +63021,7 @@ toughness=3
 [/card]
 [card]
 name=Supreme Will
-auto=choice transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever target(*[-nofizzle]|stack)
+auto=choice transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever target(*|stack)
 auto=choice reveal:4 optionone name(Get a card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend revealend
 text=Choose one — -- • Counter target spell unless its controller pays {3}. -- • Look at the top four cards of your library. Put one of them into your hand and the rest on the bottom of your library in any order.
 mana={2}{U}
@@ -64910,7 +64910,7 @@ type=Instant
 [/card]
 [card]
 name=Test of Talents
-target=*[-nofizzle;-creature;-artifact;-enchantment;-planeswalker]|stack
+target=*[-creature;-artifact;-enchantment;-planeswalker]|stack
 auto=transforms((,newability[fizzle],newability[all(*[share!name!]|mygraveyard) moveto(exile)],newability[all(*[share!name!]|myhand) transforms((,newability[moveto(exile)],newability[draw:1 controller])) oneshot],newability[all(*[share!name!]|mylibrary) moveto(exile) and!( shuffle )!])) oneshot
 text=Counter target instant or sorcery spell. Search its controller's graveyard, hand, and library for any number of cards with the same name as that spell and exile them. That player shuffles, then draws a card for each card exiled from their hand this way.
 mana={1}{U}
@@ -65048,7 +65048,7 @@ toughness=5
 name=Thassa's Intervention
 aicode=activate target(*[zpos<=X]|mylibrary) moveto(myhand) and!( all(*[zpos<=X]) moveto(myreveal) and!( bottomoflibrary )! )!
 auto=choice name(Look X cards) reveal:X optionone name(Get 2 cards) target(<upto:2>*|reveal) moveto(myhand) optiononeend optiontwo all(*|reveal) bottomoflibrary optiontwoend revealend
-auto=choice name(Counter target spell) target(*[-nofizzle]|stack) transforms((,newability[pay[[{value:twicestoredx}]] name(pay {X}{X} mana) donothing?fizzle])) oneshot
+auto=choice name(Counter target spell) target(*|stack) transforms((,newability[pay[[{value:twicestoredx}]] name(pay {X}{X} mana) donothing?fizzle])) oneshot
 text=Choose one - -- • Look at the top X cards of your library. Put up to two of them into your hand and the rest on the bottom of your library in a random order. -- • Counter target spell unless its controller pays twice {X}.
 mana={X}{U}{U}
 type=Instant
@@ -65876,7 +65876,7 @@ toughness=4
 [/card]
 [card]
 name=Thought Collapse
-target=*[-nofizzle]|stack
+target=*|stack
 auto=fizzle && deplete:3 targetcontroller
 text=Counter target spell. Its controller puts the top three cards of their library into their graveyard.
 mana={1}{U}{U}
@@ -66432,7 +66432,7 @@ toughness=2
 [/card]
 [card]
 name=Tibalt's Trickery
-target=*[-nofizzle]|stack
+target=*|stack
 auto=transforms((,newability[fizzle],newability[deplete:genrand3plus1plusend],newability[target(*[-land;notshare!name!]|mylibrary) activate castcard(normal)])) oneshot
 text=Counter target spell. Choose 1, 2, or 3 at random. Its controller mills that many cards, then exiles cards from the top of their library until they exile a nonland card with a different name than that spell. They may cast that card without paying its mana cost. Then they put the exiled cards on the bottom of their library in a random order.
 mana={1}{R}
@@ -67695,7 +67695,7 @@ subtype=Aura Curse
 [card]
 name=Trial // Error
 other={U}{B} name(Error)
-auto=if paid(alternative) then target(*[-nofizzle;multicolor]|stack) fizzle
+auto=if paid(alternative) then target(*[multicolor]|stack) fizzle
 auto=ifnot paid(alternative) then target(creature[blocked;blocking]) moveto(ownerhand)
 text=Return all creatures blocking or blocked by target creature to their owner's hand. // Counter target multicolored spell.
 mana={W}{U}
@@ -68138,7 +68138,7 @@ type=Instant
 [/card]
 [card]
 name=Turn Aside
-target=*[-nofizzle;-creature;-artifact;-enchantment;-planeswalker]|stack
+target=*[-creature;-artifact;-enchantment;-planeswalker]|stack
 auto=fizzle
 restriction=type(*|myBattlefield)~morethan~0
 text=Counter target spell that targets a permanent you control.
@@ -68521,7 +68521,7 @@ toughness=5
 [card]
 name=Ulamog's Nullifier
 abilities=devoid,flash,flying
-auto=if type(*|opponentexile)~morethan~1 then name(Return 2 cards) may name(Return 2 cards) target(<2>*|opponentexile) moveto(ownergraveyard) && ability$!name(Counter spell) name(Counter spell) target(*[-nofizzle]|stack) fizzle!$ controller
+auto=if type(*|opponentexile)~morethan~1 then name(Return 2 cards) may name(Return 2 cards) target(<2>*|opponentexile) moveto(ownergraveyard) && ability$!name(Counter spell) name(Counter spell) target(*|stack) fizzle!$ controller
 text=Devoid (This card has no color.) -- Flash -- Flying -- When Ulamog's Nullifier enters the battlefield, you may put two cards your opponents own from exile into their owners' graveyards. If you do, counter target spell.
 mana={2}{U}{B}
 type=Creature
@@ -69045,7 +69045,7 @@ type=Instant
 [card]
 name=Unsubstantiate
 auto=choice name(Return target creature) target(creature|battlefield) moveTo(ownerHand)
-auto=choice name(Return target spell) target(*[-nofizzle]|stack) fizzleto(hand) 
+auto=choice name(Return target spell) target(*|stack) fizzleto(hand) 
 text=Return target spell or creature to its owner’s hand.
 mana={1}{U}
 type=Instant
@@ -69093,7 +69093,7 @@ toughness=1
 [/card]
 [card]
 name=Unwind
-target=*[-creature;-nofizzle]|stack
+target=*[-creature]|stack
 auto=fizzle
 auto=may name(Untap lands) untap target(<upto:3>land)
 text=Counter target noncreature spell. Untap up to three lands.
@@ -71030,14 +71030,14 @@ toughness=5
 [/card]
 [card]
 name=Void Mirror
-auto=@movedto(*[-nofizzle]|stack):all(trigger) transforms((,newability[if compare(converge)~equalto~0 then target(*[share!name!]|stack) fizzle])) forever
+auto=@movedto(*|stack):all(trigger) transforms((,newability[if compare(converge)~equalto~0 then target(*[share!name!]|stack) fizzle])) forever
 text=Whenever a player casts a spell, if no colored mana was spent to cast it, counter that spell.
 mana={2}
 type=Artifact
 [/card]
 [card]
 name=Voidslime
-target=*[-nofizzle]|stack
+target=*|stack
 auto=fizzle
 text=Counter target spell, activated ability, or triggered ability. (Mana abilities can't be targeted.)
 mana={U}{U}{G}
@@ -71842,7 +71842,7 @@ type=Instant
 name=Warping Wail
 auto=choice name(Exile creature with power 1 or less) target(creature[power<=1]) moveto(exile)
 auto=choice name(Exile creature with toughness 1 or less) target(creature[toughness<=1]) moveto(exile)
-auto=choice name(Counter sorcery) target(sorcery[-nofizzle]|stack) fizzle
+auto=choice name(Counter sorcery) target(sorcery|stack) fizzle
 auto=choice name(Create Eldrazi Scion) token(Eldrazi Scion,Creature Eldrazi Scion,1/1) and!( transforms((,newability[{S}:Add{C}])) forever )! controller
 text=({C} represents colorless mana.) -- Choose one — -- • Exile target creature with power or toughness 1 or less. -- • Counter target sorcery spell. -- • Put a 1/1 colorless Eldrazi Scion creature token onto the battlefield. It has "Sacrifice this creature: Add {C} to your mana pool."
 mana={1}{C}
@@ -72349,7 +72349,7 @@ type=Instant
 [/card]
 [card]
 name=Whirlwind Denial
-auto=all(*[-nofizzle]|opponentstack) transforms((,newability[pay[[{4}]] name(pay 4 mana) donothing?fizzle])) forever
+auto=all(*|opponentstack) transforms((,newability[pay[[{4}]] name(pay 4 mana) donothing?fizzle])) forever
 text=For each spell and ability your opponents control, counter it unless its controller pays 4 .
 mana={2}{U}
 type=Instant
@@ -73159,7 +73159,7 @@ type=Instant
 [/card]
 [card]
 name=Wizard's Retort
-target=*[-nofizzle]|stack
+target=*|stack
 other={U}{U} name(reduced by Wizard)
 otherrestriction=type(Wizard|myBattlefield)~morethan~0
 restriction=type(Wizard|myBattlefield)~equalto~0
@@ -73887,7 +73887,7 @@ type=Sorcery
 [/card]
 [card]
 name=You Find the Villains' Lair
-auto=choice name(Counter spell) target(*[-nofizzle]|stack) fizzle
+auto=choice name(Counter spell) target(*|stack) fizzle
 auto=choice name(Draw and discard) draw:2 && transforms((,newability[target(<2>*|myhand) reject])) forever
 text=Choose one — -- • Foil Their Scheme — Counter target spell. -- • Learn Their Secrets — Draw two cards, then discard two cards.
 mana={1}{U}{U}
