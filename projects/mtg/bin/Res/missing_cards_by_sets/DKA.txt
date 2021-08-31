@@ -1,16 +1,4 @@
 [card]
-name=Counterlash
-text=Counter target spell. You may cast a nonland card in your hand that shares a card type with that spell without paying its mana cost.
-mana={4}{U}{U}
-type=Instant
-[/card]
-[card]
-name=Blood Feud
-text=Target creature fights another target creature. (Each deals damage equal to its power to the other.)
-mana={4}{R}{R}
-type=Sorcery
-[/card]
-[card]
 name=Call to the Kindred
 text=Enchant creature -- At the beginning of your upkeep, you may look at the top five cards of your library. If you do, you may put a creature card that shares a creature type with enchanted creature from among them onto the battlefield, then you put the rest of those cards on the bottom of your library in any order.
 mana={3}{U}

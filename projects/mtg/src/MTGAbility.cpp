@@ -2963,6 +2963,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         } else if (zone == "librarytop")
         {
             fizzleMode = ActionStack::PUT_IN_LIBRARY_TOP;
+        } else if (zone == "librarybottom")
+        {
+            fizzleMode = ActionStack::PUT_IN_LIBRARY_BOTTOM;
         }
         Spell * starget = NULL;
         if (spell)
@@ -2975,7 +2978,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
     //Fizzle (counterspell...)
     found = s.find("fizzle");
-    if (found != string::npos)
+    if (found != string::npos && s.find("nofizzle") == string::npos) //Fix to allow adding nofizzle ability to cards which originally have not (e.g. with transforms or lord keywords)
     {
         Spell * starget = NULL;
         if (spell)

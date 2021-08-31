@@ -28,15 +28,6 @@ power=0
 toughness=4
 [/card]
 [card]
-name=Phyrexian Revoker
-text=As Phyrexian Revoker enters the battlefield, name a nonland card. -- Activated abilities of sources with the chosen name can't be activated.
-mana={2}
-type=Artifact Creature
-subtype=Horror
-power=2
-toughness=1
-[/card]
-[card]
 name=Council's Judgment
 text=Will of the council  Starting with you, each player votes for a nonland permanent you don't control. Exile each permanent with the most votes or tied for most votes.
 mana={1}{W}{W}

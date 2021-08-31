@@ -321,7 +321,8 @@ class Constants
       WASCOMMANDER = 194,
       SHOWOPPONENTHAND = 195,
       SHOWCONTROLLERHAND = 196,
-      NB_BASIC_ABILITIES = 197,
+      HASREPLICATE = 197,
+      NB_BASIC_ABILITIES = 198,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

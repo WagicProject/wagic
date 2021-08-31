@@ -418,7 +418,7 @@ toughness=3
 [/card]
 [card]
 name=Admiral's Order
-target=spell
+target=*|stack
 other={U} name(Raid)
 otherrestriction=raid
 auto=fizzle
@@ -3999,7 +3999,7 @@ toughness=2
 [/card]
 [card]
 name=Avoid Fate
-target=instant,*[aura]|opponentstack
+target=*[instant;aura]|opponentstack
 auto=fizzle
 text=Counter target instant or Aura spell that targets a permanent you control.
 mana={G}
@@ -6228,6 +6228,19 @@ mana={2}{R}{R}
 type=Instant
 [/card]
 [card]
+name=Blind Hunter
+abilities=flying
+auto=name(Player loses 2 life) target(player) life:-2 && life:2 controller
+auto=_DIES_all(trigger[to]) transforms((,newability[moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) counter(0/0.1.BlindHaunted)])) oneshot )!])) oneshot
+autoexile=@movedto(creature[counter{0/0.1.BlindHaunted}]|graveyard) from(battlefield) once:name(Player loses 2 life) target(player) life:-2 && life:2 controller
+text=Flying -- Haunt (When this creature dies, exile it haunting target creature.) -- When Blind Hunter enters the battlefield or the creature it haunts dies, target player loses 2 life and you gain 2 life.
+mana={2}{W}{B}
+type=Creature
+subtype=Bat
+power=2
+toughness=2
+[/card]
+[card]
 name=Blindblast
 target=creature
 auto=damage:1
@@ -6477,6 +6490,14 @@ type=Creature
 subtype=Vampire
 power=5
 toughness=5
+[/card]
+[card]
+name=Blood Feud
+target=creature|battlefield
+auto=transforms((,newability[target(other creature|battlefield) dynamicability<!powerstrike eachother!>])) ueot
+text=Target creature fights another target creature. (Each deals damage equal to its power to the other.)
+mana={4}{R}{R}
+type=Sorcery
 [/card]
 [card]
 name=Blood for Bones
@@ -7450,6 +7471,16 @@ name=Boulderloft Pathway
 auto={T}:add{W}
 text={T}: Add {W}. // Branchloft Pathway
 type=Land
+[/card]
+[card]
+name=Bound // Determined
+other={G}{U} name(Determined)
+auto=if paid(alternative) then draw:1 controller
+auto=if paid(alternative) then all(*|myzones) transforms((,newability[lord(*|mystack) nofizzle])) ueot
+auto=ifnot paid(alternative) then name(Sacrifice a creature) name(Sacrifice a creature) target(creature|mybattlefield) transforms((,newability[sacrifice],newability[may name(Return cards) target(<upto:mycolnum>*|mygraveyard) moveto(myhand)])) oneshot
+text=Sacrifice a creature. Return up to X cards from your graveyard to your hand, where X is the number of colors that creature was. Exile this card. // Other spells you control can't be countered by spells or abilities this turn. -- Draw a card.
+mana={3}{B}{G}
+type=Instant
 [/card]
 [card]
 name=Bound in Gold
@@ -12176,10 +12207,10 @@ type=Sorcery
 [/card]
 [card]
 name=Confound
-target=*|stack
+target=*[-creature;-artifact;-planeswalker;-enchantment]|stack
 auto=fizzle
 auto=draw:1 controller
-restriction=target(creature)
+restriction=type(creature|battlefield)~morethan~0
 text=Counter target spell that targets one or more creatures. -- Draw a card.
 mana={1}{U}
 type=Instant
@@ -12694,6 +12725,26 @@ name=Costly Plunder
 auto=draw:2
 text=As an additional cost to cast Costly Plunder, sacrifice an artifact or creature. -- Draw two cards.
 mana={1}{B}{S(artifact,creature)}
+type=Instant
+[/card]
+[card]
+name=Counterlash
+auto=if type(creature|opponentstack)~morethan~0 then choice name(Counter opponent creature) name(Counter opponent creature) target(creature|opponentstack) transforms((,newability[fizzle],newability[ability$!name(Cast a creature from hand) name(Cast a creature from hand) target(creature|myhand) activate castcard(normal)!$ opponent])) oneshot
+auto=if type(creature|mystack)~morethan~0 then choice name(Counter your creature) name(Counter your creature) target(creature|mystack) transforms((,newability[fizzle],newability[ability$!name(Cast a creature from hand) name(Cast a creature from hand) target(creature|myhand) activate castcard(normal)!$ controller])) oneshot
+auto=if type(instant|opponentstack)~morethan~0 then choice name(Counter opponent instant) name(Counter opponent instant) target(instant|opponentstack) transforms((,newability[fizzle],newability[ability$!name(Cast an instant from hand) name(Cast an instant from hand) target(instant|myhand) activate castcard(normal)!$ opponent])) oneshot
+auto=if type(other instant|mystack)~morethan~0 then choice name(Counter your instant) name(Counter your instant) target(instant|mystack) transforms((,newability[fizzle],newability[ability$!name(Cast an instant from hand) name(Cast an instant from hand) target(instant|myhand) activate castcard(normal)!$ controller])) oneshot
+auto=if type(sorcery|opponentstack)~morethan~0 then choice name(Counter opponent sorcery) name(Counter opponent sorcery) target(sorcery|opponentstack) transforms((,newability[fizzle],newability[ability$!name(Cast a sorcery from hand) name(Cast a sorcery from hand) target(sorcery|myhand) activate castcard(normal)!$ opponent])) oneshot
+auto=if type(sorcery|mystack)~morethan~0 then choice name(Counter your sorcery) name(Counter your sorcery) target(sorcery|mystack) transforms((,newability[fizzle],newability[ability$!name(Cast a sorcery from hand) name(Cast a sorcery from hand) target(sorcery|myhand) activate castcard(normal)!$ controller])) oneshot
+auto=if type(planeswalker|opponentstack)~morethan~0 then choice name(Counter opponent planeswalker) name(Counter opponent planeswalker) target(planeswalker|opponentstack) transforms((,newability[fizzle],newability[ability$!name(Cast a planeswalker from hand) name(Cast a planeswalker from hand) target(planeswalker|myhand) activate castcard(normal)!$ opponent])) oneshot
+auto=if type(planeswalker|mystack)~morethan~0 then choice name(Counter your planeswalker) name(Counter your planeswalker) target(planeswalker|mystack) transforms((,newability[fizzle],newability[ability$!name(Cast a planeswalker from hand) name(Cast a planeswalker from hand) target(planeswalker|myhand) activate castcard(normal)!$ controller])) oneshot
+auto=if type(artifact|opponentstack)~morethan~0 then choice name(Counter opponent artifact) name(Counter opponent artifact) target(artifact|opponentstack) transforms((,newability[fizzle],newability[ability$!name(Cast an artifact from hand) name(Cast an artifact from hand) target(artifact|myhand) activate castcard(normal)!$ opponent])) oneshot
+auto=if type(artifact|mystack)~morethan~0 then choice name(Counter your artifact) name(Counter your artifact) target(artifact|mystack) transforms((,newability[fizzle],newability[ability$!name(Cast an artifact from hand) name(Cast an artifact from hand) target(artifact|myhand) activate castcard(normal)!$ controller])) oneshot
+auto=if type(enchantment|opponentstack)~morethan~0 then choice name(Counter opponent enchantment) name(Counter opponent enchantment) target(enchantment|opponentstack) transforms((,newability[fizzle],newability[ability$!name(Cast an enchantment from hand) name(Cast an enchantment from hand) target(enchantment|myhand) activate castcard(normal)!$ opponent])) oneshot
+auto=if type(enchantment|mystack)~morethan~0 then choice name(Counter your enchantment) name(Counter your enchantment) target(enchantment|mystack) transforms((,newability[fizzle],newability[ability$!name(Cast an enchantment from hand) name(Cast an enchantment from hand) target(enchantment|myhand) activate castcard(normal)!$ controller])) oneshot
+auto=if type(tribal|opponentstack)~morethan~0 then choice name(Counter opponent tribal) name(Counter opponent tribal) target(tribal|opponentstack) transforms((,newability[fizzle],newability[ability$!name(Cast a tribal from hand) name(Cast a tribal from hand) target(tribal|myhand) activate castcard(normal)!$ opponent])) oneshot
+auto=if type(tribal|mystack)~morethan~0 then choice name(Counter your tribal) name(Counter your tribal) target(tribal|mystack) transforms((,newability[fizzle],newability[ability$!name(Cast a tribal from hand) name(Cast a tribal from hand) target(tribal|myhand) activate castcard(normal)!$ controller])) oneshot
+text=Counter target spell. You may cast a nonland card in your hand that shares a card type with that spell without paying its mana cost.
+mana={4}{U}{U}
 type=Instant
 [/card]
 [card]
@@ -13335,6 +13386,17 @@ auto=draw:2 controller
 text=Each player loses 2 life. You draw two cards.
 mana={3}{B}
 type=Instant
+[/card]
+[card]
+name=Cry of Contrition
+abilities=exiledeath
+target=player
+auto=ability$!name(Discard a card) name(Discard a card) target(*|myhand) reject!$ targetedplayer
+auto=ability$!name(Haunt a creature) name(Haunt a creature) target(creature) counter(0/0.1.ContritionHaunted)!$ controller
+autoexile=@movedto(creature[counter{0/0.1.ContritionHaunted}]|graveyard) from(battlefield) once:name(A player discards a card) target(player) ability$!name(Discard a card) name(Discard a card) target(*|myhand) reject!$ targetedplayer
+text=Target player discards a card. -- Haunt (When this spell card is put into a graveyard after resolving, exile it haunting target creature.) -- When the creature Cry of Contrition haunts dies, target player discards a card.
+mana={B}
+type=Sorcery
 [/card]
 [card]
 name=Cry of the Carnarium
@@ -17143,6 +17205,16 @@ power=8
 toughness=8
 [/card]
 [card]
+name=Dragonlord's Prerogative
+abilities=nofizzle alternative
+auto=draw:4 controller
+other={4}{U}{U} name(Can't be countered)
+otherrestriction=compare(type:dragon:myhandplustype:dragon:mybattlefieldplusend)~morethan~0
+text=As an additional cost to cast Dragonlord's Prerogative, you may reveal a Dragon card from your hand. -- If you revealed a Dragon card or controlled a Dragon as you cast Dragonlord's Prerogative, Dragonlord's Prerogative can't be countered. -- Draw four cards.
+mana={4}{U}{U}
+type=Instant
+[/card]
+[card]
 name=Dragonsguard Elite
 auto=@movedto(*[instant;sorcery]|mystack):name(Put 1/1 counter) counter(1/1)
 auto={4}{G}{G}:name(Double 1/1 counters) thisforeach(counter{1/1.1}) counter(1/1,1)
@@ -18788,6 +18860,37 @@ auto=if type(*[creature]|myBattlefield)~morethan~19 then choice name(Sacrifice 2
 text=As an additional cost to cast Eliminate the Competition, sacrifice X creatures. -- Destroy X target creatures.
 mana={4}{B}
 type=Sorcery
+[/card]
+[card]
+name=Elite Arcanist
+auto=may name(Exile instant from hand) target(instant|myhand) imprint
+auto=this(variable{hasevict}>0) this(variable{evictmc}=0) {T}:name(Cast a copy of exiled instant) activate castcard(copied noevent named!:imprintedcard:!)
+auto=this(variable{hasevict}>0) this(variable{evictmc}=1) {1}{T}:name(Cast a copy of exiled instant) activate castcard(copied noevent named!:imprintedcard:!)
+auto=this(variable{hasevict}>0) this(variable{evictmc}=2) {2}{T}:name(Cast a copy of exiled instant) activate castcard(copied noevent named!:imprintedcard:!)
+auto=this(variable{hasevict}>0) this(variable{evictmc}=3) {3}{T}:name(Cast a copy of exiled instant) activate castcard(copied noevent named!:imprintedcard:!)
+auto=this(variable{hasevict}>0) this(variable{evictmc}=4) {4}{T}:name(Cast a copy of exiled instant) activate castcard(copied noevent named!:imprintedcard:!)
+auto=this(variable{hasevict}>0) this(variable{evictmc}=5) {5}{T}:name(Cast a copy of exiled instant) activate castcard(copied noevent named!:imprintedcard:!)
+auto=this(variable{hasevict}>0) this(variable{evictmc}=6) {6}{T}:name(Cast a copy of exiled instant) activate castcard(copied noevent named!:imprintedcard:!)
+auto=this(variable{hasevict}>0) this(variable{evictmc}=7) {7}{T}:name(Cast a copy of exiled instant) activate castcard(copied noevent named!:imprintedcard:!)
+auto=this(variable{hasevict}>0) this(variable{evictmc}=8) {8}{T}:name(Cast a copy of exiled instant) activate castcard(copied noevent named!:imprintedcard:!)
+auto=this(variable{hasevict}>0) this(variable{evictmc}=9) {9}{T}:name(Cast a copy of exiled instant) activate castcard(copied noevent named!:imprintedcard:!)
+auto=this(variable{hasevict}>0) this(variable{evictmc}=10) {10}{T}:name(Cast a copy of exiled instant) activate castcard(copied noevent named!:imprintedcard:!)
+auto=this(variable{hasevict}>0) this(variable{evictmc}=11) {11}{T}:name(Cast a copy of exiled instant) activate castcard(copied noevent named!:imprintedcard:!)
+auto=this(variable{hasevict}>0) this(variable{evictmc}=12) {12}{T}:name(Cast a copy of exiled instant) activate castcard(copied noevent named!:imprintedcard:!)
+auto=this(variable{hasevict}>0) this(variable{evictmc}=13) {13}{T}:name(Cast a copy of exiled instant) activate castcard(copied noevent named!:imprintedcard:!)
+auto=this(variable{hasevict}>0) this(variable{evictmc}=14) {14}{T}:name(Cast a copy of exiled instant) activate castcard(copied noevent named!:imprintedcard:!)
+auto=this(variable{hasevict}>0) this(variable{evictmc}=15) {15}{T}:name(Cast a copy of exiled instant) activate castcard(copied noevent named!:imprintedcard:!)
+auto=this(variable{hasevict}>0) this(variable{evictmc}=16) {16}{T}:name(Cast a copy of exiled instant) activate castcard(copied noevent named!:imprintedcard:!)
+auto=this(variable{hasevict}>0) this(variable{evictmc}=17) {17}{T}:name(Cast a copy of exiled instant) activate castcard(copied noevent named!:imprintedcard:!)
+auto=this(variable{hasevict}>0) this(variable{evictmc}=18) {18}{T}:name(Cast a copy of exiled instant) activate castcard(copied noevent named!:imprintedcard:!)
+auto=this(variable{hasevict}>0) this(variable{evictmc}=19) {19}{T}:name(Cast a copy of exiled instant) activate castcard(copied noevent named!:imprintedcard:!)
+auto=this(variable{hasevict}>0) this(variable{evictmc}>=20) {20}{T}:name(Cast a copy of exiled instant) activate castcard(copied noevent named!:imprintedcard:!)
+text=When Elite Arcanist enters the battlefield, you may exile an instant card from your hand. -- {X}, {T}: Copy the exiled card. You may cast the copy without paying its mana cost. X is the converted mana cost of the exiled card.
+mana={3}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
 [/card]
 [card]
 name=Elite Arrester
@@ -23039,7 +23142,7 @@ type=Instant
 [card]
 name=Flusterstorm
 abilities=storm
-target=instant,sorcery|stack
+target=*[-creature;-planeswalker;-artifact;-enchantment]|stack
 auto=transforms((,newability[pay[[{1}]] name(pay {1} mana) donothing?fizzle])) forever
 text=Counter target instant or sorcery spell unless its controller pays {1}. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
 mana={U}
@@ -24097,8 +24200,7 @@ toughness=3
 [/card]
 [card]
 name=Gaea's Herald
-auto=@targeted(creature|mystack) from(instant|opponentzones):choice name(Creaure can't be countered) name(Creaure can't be countered) all(instant|opponentzones) fizzle
-auto=@targeted(creature|opponentstack) from(instant|myzones):choice name(Creaure can't be countered) name(Creaure can't be countered) all(instant|myzones) fizzle
+auto=lord(creature|stack) nofizzle
 text=Creature spells can't be countered.
 mana={1}{G}
 type=Creature
@@ -25203,26 +25305,11 @@ type=Instant
 [/card]
 [card]
 name=Gigadrowse
-auto=choice name(Don't replicate) ability$!name(Tap 1 permanent) name(Tap 1 permanent) target(*) tap(noevent)!$ controller
-auto=choice name(Replicate 1 time) ability$!name(Tap 2 permanents) pay[[{U}]] name(Tap 2 permanents) target(<2>*) tap(noevent)!$ controller
-auto=choice name(Replicate 2 times) ability$!name(Tap 3 permanents) pay[[{U}{U}]] name(Tap 3 permanents) target(<3>*) tap(noevent)!$ controller
-auto=choice name(Replicate 3 times) ability$!name(Tap 4 permanents) pay[[{U}{U}{U}]] name(Tap 4 permanents) target(<4>*) tap(noevent)!$ controller
-auto=choice name(Replicate 4 times) ability$!name(Tap 5 permanents) pay[[{U}{U}{U}{U}]] name(Tap 5 permanents) target(<5>*) tap(noevent)!$ controller
-auto=choice name(Replicate 5 times) ability$!name(Tap 6 permanents) pay[[{U}{U}{U}{U}{U}]] name(Tap 6 permanents) target(<6>*) tap(noevent)!$ controller
-auto=choice name(Replicate 6 times) ability$!name(Tap 7 permanents) pay[[{U}{U}{U}{U}{U}{U}]] name(Tap 7 permanents) target(<7>*) tap(noevent)!$ controller
-auto=choice name(Replicate 7 times) ability$!name(Tap 8 permanents) pay[[{U}{U}{U}{U}{U}{U}{U}]] name(Tap 8 permanents) target(<8>*) tap(noevent)!$ controller
-auto=choice name(Replicate 8 times) ability$!name(Tap 9 permanents) pay[[{U}{U}{U}{U}{U}{U}{U}{U}]] name(Tap 9 permanents) target(<9>*) tap(noevent)!$ controller
-auto=choice name(Replicate 9 times) ability$!name(Tap 10 permanents) pay[[{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Tap 10 permanents) target(<10>*) tap(noevent)!$ controller
-auto=choice name(Replicate 10 times) ability$!name(Tap 11 permanents) pay[[{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Tap 11 permanents) target(<11>*) tap(noevent)!$ controller
-auto=choice name(Replicate 11 times) ability$!name(Tap 12 permanents) pay[[{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Tap 12 permanents) target(<12>*) tap(noevent)!$ controller
-auto=choice name(Replicate 12 times) ability$!name(Tap 13 permanents) pay[[{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Tap 13 permanents) target(<13>*) tap(noevent)!$ controller
-auto=choice name(Replicate 13 times) ability$!name(Tap 14 permanents) pay[[{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Tap 14 permanents) target(<14>*) tap(noevent)!$ controller
-auto=choice name(Replicate 14 times) ability$!name(Tap 15 permanents) pay[[{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Tap 15 permanents) target(<15>*) tap(noevent)!$ controller
-auto=choice name(Replicate 15 times) ability$!name(Tap 16 permanents) pay[[{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Tap 16 permanents) target(<16>*) tap(noevent)!$ controller
-auto=choice name(Replicate 16 times) ability$!name(Tap 17 permanents) pay[[{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Tap 17 permanents) target(<17>*) tap(noevent)!$ controller
-auto=choice name(Replicate 17 times) ability$!name(Tap 18 permanents) pay[[{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Tap 18 permanents) target(<18>*) tap(noevent)!$ controller
-auto=choice name(Replicate 18 times) ability$!name(Tap 19 permanents) pay[[{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Tap 19 permanents) target(<19>*) tap(noevent)!$ controller
-auto=choice name(Replicate 19 times) ability$!name(Tap 20 permanents) pay[[{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Tap 20 permanents) target(<20>*) tap(noevent)!$ controller
+abilities=hasnokicker,hasreplicate
+target=*|battlefield
+kicker=multi{U} name(Replicate)
+auto=name(Tap creature) tap
+auto=thisforeach(variable{kicked}>0) ability$!name(Copy Gigadrowse) name(Copy Gigadrowse) activate castcard(named!:Gigadrowse:!)!$ controller
 text=Replicate {U} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Tap target permanent.
 mana={U}
 type=Instant
@@ -26968,6 +27055,29 @@ mana={3}{W}{B}
 type=Sorcery
 [/card]
 [card]
+name=Grafted Exoskeleton
+auto={2}:equip
+auto=teach(creature) +2/+2
+auto=teach(creature) infect
+auto=teach(creature) transforms((,newability[counter(0/0.1.Hooked)]))
+auto=lord(*[counter{0/0.1.Hooked}]|mybattlefield) transforms((,newability[this(gear < 1) destroy]))
+text=Equipped creature gets +2/+2 and has infect. (It deals damage to creatures in the form of -1/-1 counters and to players in the form of poison counters.) -- Whenever Grafted Exoskeleton becomes unattached from a permanent, sacrifice that permanent. -- Equip {2}
+mana={4}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Grafted Wargear
+auto={0}:equip
+auto=teach(creature) +3/+2
+auto=teach(creature) transforms((,newability[counter(0/0.1.Hooked)]))
+auto=lord(*[counter{0/0.1.Hooked}]|mybattlefield) transforms((,newability[this(gear < 1) destroy]))
+text=Equipped creature gets +3/+2. -- Whenever Grafted Wargear becomes unattached from a permanent, sacrifice that permanent. -- Equip {0} ({0}: Attach to target creature you control. Equip only as a sorcery.)
+mana={3}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Grakmaw, Skyclave Ravager
 auto=counter(1/1,3)
 auto=@movedTo(other creature[counter{1/1}]|myGraveyard) from(mybattlefield):counter(1/1) all(this)
@@ -27166,6 +27276,19 @@ type=Artifact Creature
 subtype=Horror
 power=3
 toughness=1
+[/card]
+[card]
+name=Graven Dominator
+abilities=flying
+auto=name(Creatures become 1/1) all(other creature|battlefield) becomes(,1/1) ueot
+auto=_DIES_all(trigger[to]) transforms((,newability[moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) counter(0/0.1.GravenHaunted)])) oneshot )!])) oneshot
+autoexile=@movedto(creature[counter{0/0.1.GravenHaunted}]|graveyard) from(battlefield) once:name(Creatures become 1/1) all(other creature|battlefield) becomes(,1/1) ueot
+text=Flying -- Haunt (When this creature dies, exile it haunting target creature.) -- When Graven Dominator enters the battlefield or the creature it haunts dies, each other creature becomes 1/1 until end of turn.
+mana={4}{W}{W}
+type=Creature
+subtype=Gargoyle
+power=4
+toughness=4
 [/card]
 [card]
 name=Graven Lore
@@ -27601,9 +27724,9 @@ type=Artifact
 [/card]
 [card]
 name=Grip of Amnesia
+target=*|stack
+auto=transforms((,newability[choice name(Exile all cards) all(*|mygraveyard) moveto(exile)],newability[choice name(Counter spell) fizzle])) oneshot
 auto=draw:1 controller
-auto=if type(*|opponentGraveyard)~lessthan~10 then ability$!name(Choose one) choice name(Exile all cards from graveyard) all(*|mygraveyard) moveto(exile) _ choice name(Counter your spell) target(*|mystack) fizzle!$ opponent
-auto=if type(*|opponentGraveyard)~morethan~9 then ability$!name(Choose one) choice name(Counter your spell) target(*|mystack) fizzle _ choice name(Exile all cards from graveyard) all(*|mygraveyard) moveto(exile)!$ opponent
 text=Counter target spell unless its controller exiles all cards from his or her graveyard. -- Draw a card.
 mana={1}{U}
 type=Instant
@@ -29755,14 +29878,14 @@ toughness=6
 name=Hinder
 target=*|stack
 auto=choice name(Put on top) fizzleto(librarytop)
-auto=choice name(Put on bottom) fizzleto(librarytop) and!( all(*[zpos=1]|opponentlibrary) bottomoflibrary )! 
+auto=choice name(Put on bottom) fizzleto(librarybottom)
 text=Counter target spell. If that spell is countered this way, put that card on the top or bottom of its owner's library instead of into that player's graveyard.
 mana={1}{U}{U}
 type=Instant
 [/card]
 [card]
 name=Hindering Light
-target=*|opponentstack
+target=*[-creature;-artifact;-enchantment;-planeswalker]|opponentstack
 auto=fizzle
 auto=draw:1 controller
 text=Counter target spell that targets you or a permanent you control. -- Draw a card.
@@ -30277,6 +30400,7 @@ toughness=3
 name=Hornswoggle
 target=creature|stack
 auto=fizzle
+auto=token(Treasure Sur)
 text=Counter target creature spell. You create a colorless Treasure artifact token with "{T}, Sacrifice this artifact: Add one mana of any color."
 mana={2}{U}
 type=Instant
@@ -30817,7 +30941,7 @@ toughness=0
 [/card]
 [card]
 name=Hydromorph Guardian
-auto={U}{S}:fizzle target(*|stack)
+auto={U}{S} restriction{type(creature|myBattlefield)~morethan~0}:fizzle target(*[-creature;-artifact;-enchantment;-planeswalker]|stack)
 text={U}, Sacrifice Hydromorph Guardian: Counter target spell that targets one or more creatures you control.
 mana={2}{U}
 type=Creature
@@ -30828,7 +30952,7 @@ toughness=2
 [card]
 name=Hydromorph Gull
 abilities=flying
-auto={U}{S}:fizzle target(*|stack)
+auto={U}{S} restriction{type(creature|myBattlefield)~morethan~0}:fizzle target(*[-creature;-artifact;-enchantment;-planeswalker]|stack)
 text=Flying -- {U}, Sacrifice Hydromorph Gull: Counter target spell that targets one or more creatures you control.
 mana={3}{U}{U}
 type=Creature
@@ -32425,12 +32549,20 @@ type=Instant
 [/card]
 [card]
 name=Insidious Will
-auto=choice name(Counter) target(*|stack) fizzle
+auto=choice name(Counter) target(*[-creature;-artifact;-enchantment;-planeswalker]|stack) fizzle
 auto=choice name(Change target) target(*|stack) fizzle && castcard(copied noevent)
 auto=choice name(Copy spell) target(*[instant;sorcery]|stack) castcard(copied noevent)
 text=Choose one — -- • Counter target spell. -- • You may choose new targets for target spell. -- • Copy target instant or sorcery spell. You may choose new targets for the copy.
 mana={2}{U}{U}
 type=Instant
+[/card]
+[card]
+name=Insist
+auto=draw:1 controller
+auto=emblem transforms((,newability[@movedto(creature|mystack) turnlimited:all(trigger[to]) transforms((,newability[nofizzle])) oneshot])) ueot
+text=The next creature spell you cast this turn can't be countered by spells or abilities. -- Draw a card.
+mana={G}
+type=Sorcery
 [/card]
 [card]
 name=Inspire Awe
@@ -32604,7 +32736,8 @@ type=Land
 [/card]
 [card]
 name=Intervene
-target=*[instant;sorcery]|stack
+target=*[-creature;-artifact;-enchantment;-planeswalker]|stack
+restriction=type(creature|Battlefield)~morethan~0
 auto=fizzle
 text=Counter target spell that targets a creature.
 mana={U}
@@ -33262,12 +33395,12 @@ toughness=3
 [/card]
 [card]
 name=Jaded Response
-restriction=type(creature[blue;black;red;green;white]|mybattlefield)~morethan~0
-auto=if type(creature[blue]|mybattlefield)~morethan~0 then choice name(Counter blue spell) target(*[blue]|stack) fizzle
-auto=if type(creature[black]|mybattlefield)~morethan~0 then choice name(Counter black spell) target(*[black]|stack) fizzle
-auto=if type(creature[red]|mybattlefield)~morethan~0 then choice name(Counter red spell) target(*[red]|stack) fizzle
-auto=if type(creature[green]|mybattlefield)~morethan~0 then choice name(Counter green spell) target(*[green]|stack) fizzle
-auto=if type(creature[white]|mybattlefield)~morethan~0 then choice name(Counter white spell) target(*[white]|stack) fizzle
+restriction=type(creature[-colorless]|mybattlefield)~morethan~0,type(*|stack)~morethan~0
+auto=if type(creature[blue]|mybattlefield)~morethan~0 then if type(*[blue]|stack)~morethan~0 then choice name(Counter blue spell) name(Counter blue spell) name(Counter blue spell) target(*[blue]|stack) fizzle
+auto=if type(creature[black]|mybattlefield)~morethan~0 then if type(*[black]|stack)~morethan~0 then choice name(Counter black spell) name(Counter black spell) name(Counter black spell) target(*[black]|stack) fizzle
+auto=if type(creature[red]|mybattlefield)~morethan~0 then if type(*[red]|stack)~morethan~0 then choice name(Counter red spell) name(Counter red spell) name(Counter red spell) target(*[red]|stack) fizzle
+auto=if type(creature[green]|mybattlefield)~morethan~0 then if type(*[green]|stack)~morethan~0 then choice name(Counter green spell) name(Counter green spell) name(Counter green spell) target(*[green]|stack) fizzle
+auto=if type(creature[white]|mybattlefield)~morethan~0 then if type(*[white]|stack)~morethan~0 then choice name(Counter white spell) name(Counter white spell) name(Counter white spell) target(*[white]|stack) fizzle
 text=Counter target spell if it shares a color with a creature you control.
 mana={1}{U}
 type=Instant
@@ -33880,7 +34013,6 @@ type=Instant
 [/card]
 [card]
 name=Kadena's Silencer
-autofaceup=fizzle all(*|stack) target(opponent)
 facedown={3}
 autofacedown={1}{U}:morph
 autofaceup=counter(1/1,1)
@@ -34433,8 +34565,8 @@ toughness=4
 [/card]
 [card]
 name=Keep Safe
-restriction=@targeted(*|mybattlefield) from(stak)
-target=*|stak
+restriction=type(*|myBattlefield)~morethan~0
+target=*|stack
 auto=fizzle
 auto=draw:1 controller
 text=Counter target spell that targets a permanent you control. -- Draw a card.
@@ -36530,27 +36662,11 @@ toughness=2
 [/card]
 [card]
 name=Leap of Flame
-kicker=multi{U}{R}
-auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature) transforms((,newability[flying],newability[first strike],newability[1/0])) ueot
-auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>creature) transforms((,newability[flying],newability[first strike],newability[1/0])) ueot
-auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>creature) transforms((,newability[flying],newability[first strike],newability[1/0])) ueot
-auto=if compare(kicked)~equalto~3 then name(choose 4 creatures) name(choose 4 creatures) target(<upto:4>creature) transforms((,newability[flying],newability[first strike],newability[1/0])) ueot
-auto=if compare(kicked)~equalto~4 then name(choose 5 creatures) name(choose 5 creatures) target(<upto:5>creature) transforms((,newability[flying],newability[first strike],newability[1/0])) ueot
-auto=if compare(kicked)~equalto~5 then name(choose 6 creatures) name(choose 6 creatures) target(<upto:6>creature) transforms((,newability[flying],newability[first strike],newability[1/0])) ueot
-auto=if compare(kicked)~equalto~6 then name(choose 7 creatures) name(choose 7 creatures) target(<upto:7>creature) transforms((,newability[flying],newability[first strike],newability[1/0])) ueot
-auto=if compare(kicked)~equalto~7 then name(choose 8 creatures) name(choose 8 creatures) target(<upto:8>creature) transforms((,newability[flying],newability[first strike],newability[1/0])) ueot
-auto=if compare(kicked)~equalto~8 then name(choose 9 creatures) name(choose 9 creatures) target(<upto:9>creature) transforms((,newability[flying],newability[first strike],newability[1/0])) ueot
-auto=if compare(kicked)~equalto~9 then name(choose 10 creatures) name(choose 10 creatures) target(<upto:10>creature) transforms((,newability[flying],newability[first strike],newability[1/0])) ueot
-auto=if compare(kicked)~equalto~10 then name(choose 11 creatures) name(choose 11 creatures) target(<upto:11>creature) transforms((,newability[flying],newability[first strike],newability[1/0])) ueot
-auto=if compare(kicked)~equalto~11 then name(choose 12 creatures) name(choose 12 creatures) target(<upto:12>creature) transforms((,newability[flying],newability[first strike],newability[1/0])) ueot
-auto=if compare(kicked)~equalto~12 then name(choose 13 creatures) name(choose 13 creatures) target(<upto:13>creature) transforms((,newability[flying],newability[first strike],newability[1/0])) ueot
-auto=if compare(kicked)~equalto~13 then name(choose 14 creatures) name(choose 14 creatures) target(<upto:14>creature) transforms((,newability[flying],newability[first strike],newability[1/0])) ueot
-auto=if compare(kicked)~equalto~14 then name(choose 15 creatures) name(choose 15 creatures) target(<upto:15>creature) transforms((,newability[flying],newability[first strike],newability[1/0])) ueot
-auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16 creatures) target(<upto:16>creature) transforms((,newability[flying],newability[first strike],newability[1/0])) ueot
-auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>creature) transforms((,newability[flying],newability[first strike],newability[1/0])) ueot
-auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>creature) transforms((,newability[flying],newability[first strike],newability[1/0])) ueot
-auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>creature) transforms((,newability[flying],newability[first strike],newability[1/0])) ueot
-auto=if compare(kicked)~equalto~19 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[flying],newability[first strike],newability[1/0])) ueot
+abilities=hasnokicker,hasreplicate
+target=creature
+kicker=multi{U}{R} name(Replicate)
+auto=name(Creature gets 1/0) transforms((,newability[flying],newability[first strike],newability[1/0])) ueot
+auto=thisforeach(variable{kicked}>0) ability$!name(Copy Leap of Flame) name(Copy Leap of Flame) activate castcard(named!:Leap of Flame:!)!$ controller
 text=Replicate {U}{R} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Target creature gets +1/+0 and gains flying and first strike until end of turn.
 mana={U}{R}
 type=Instant
@@ -36923,8 +37039,7 @@ type=Enchantment
 [card]
 name=Leyline of Lifeforce
 abilities=leyline
-auto=@targeted(creature|mystack) from(instant|opponentzones):choice name(Creaure can't be countered) name(Creaure can't be countered) all(instant|opponentzones) fizzle
-auto=@targeted(creature|opponentstack) from(instant|myzones):choice name(Creaure can't be countered) name(Creaure can't be countered) all(instant|myzones) fizzle
+auto=lord(creature|mystack) nofizzle
 text=If Leyline of Lifeforce is in your opening hand, you may begin the game with it on the battlefield. -- Creature spells can't be countered.
 mana={2}{G}{G}
 type=Enchantment
@@ -37852,8 +37967,10 @@ toughness=2
 [card]
 name=Lookout's Dispersal
 target=*|stack
+other={1}{U} name(You control a pirate)
+otherrestriction=type(pirate|myBattlefield)~morethan~0
+restriction=type(pirate|myBattlefield)~equalto~0
 auto=name(counter spell) target(*|stack) transforms((,newability[pay[[{4}]] name(pay 4 mana) donothing?fizzle])) forever
-autohand=aslongas(pirate|mybattlefield) altercost(colorless,-1)
 text=Lookout's Dispersal costs {1} less to cast if you control a Pirate. -- Counter target spell unless its controller pays {4}.
 mana={2}{U}
 type=Instant
@@ -38982,7 +39099,7 @@ type=Artifact
 [/card]
 [card]
 name=Mana Reflection
-auto=@tappedformana(*|myBattlefield):all(trigger) transforms((,newability[produceextra:selectmana])) oneshot
+auto=lord(*|myBattlefield) transforms((,newability[producecolor:land],newability[producecolor:green],newability[producecolor:blue],newability[producecolor:red],newability[producecolor:black],newability[producecolor:white]))
 text=If you tap a permanent for mana, it produces twice as much of that mana instead.
 mana={4}{G}{G}
 type=Enchantment
@@ -39394,6 +39511,16 @@ auto=if type(*[blue]|myhand)~equalto~7 then {2}{S}:target(*|stack) transforms((,
 auto=if type(*[blue]|myhand)~equalto~8 then {2}{S}:target(*|stack) transforms((,newability[pay[[{8}]] name(pay 8 mana) donothing?fizzle])) forever
 auto=if type(*[blue]|myhand)~equalto~9 then {2}{S}:target(*|stack) transforms((,newability[pay[[{9}]] name(pay 9 mana) donothing?fizzle])) forever
 auto=if type(*[blue]|myhand)~equalto~10 then {2}{S}:target(*|stack) transforms((,newability[pay[[{10}]] name(pay 10 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~11 then {2}{S}:target(*|stack) transforms((,newability[pay[[{11}]] name(pay 11 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~12 then {2}{S}:target(*|stack) transforms((,newability[pay[[{12}]] name(pay 12 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~13 then {2}{S}:target(*|stack) transforms((,newability[pay[[{13}]] name(pay 13 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~14 then {2}{S}:target(*|stack) transforms((,newability[pay[[{14}]] name(pay 14 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~15 then {2}{S}:target(*|stack) transforms((,newability[pay[[{15}]] name(pay 15 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~16 then {2}{S}:target(*|stack) transforms((,newability[pay[[{16}]] name(pay 16 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~17 then {2}{S}:target(*|stack) transforms((,newability[pay[[{17}]] name(pay 17 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~18 then {2}{S}:target(*|stack) transforms((,newability[pay[[{18}]] name(pay 18 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~equalto~19 then {2}{S}:target(*|stack) transforms((,newability[pay[[{19}]] name(pay 19 mana) donothing?fizzle])) forever
+auto=if type(*[blue]|myhand)~morethan~19 then {2}{S}:target(*|stack) transforms((,newability[pay[[{20}]] name(pay 20 mana) donothing?fizzle])) forever
 text={2}, Reveal X blue cards from your hand, Sacrifice Martyr of Frost: Counter target spell unless its controller pays {X}.
 mana={U}
 type=Creature
@@ -40406,6 +40533,17 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Mimeofacture
+abilities=hasnokicker,hasreplicate
+target=*|opponentbattlefield
+kicker=multi{3}{U} name(Replicate)
+auto=name(Search same permanent) transforms((,newability[name(Search same card) target(*[share!name!]|mylibrary) moveto(opponentbattlefield) and!( shuffle )!])) forever
+auto=thisforeach(variable{kicked}>0) ability$!name(Copy Mimeofacture) name(Copy Mimeofacture) activate castcard(named!:Mimeofacture:!)!$ controller
+text=Replicate {3}{U} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Choose target permanent an opponent controls. Search that player's library for a card with the same name and put it onto the battlefield under your control. Then that player shuffles his or her library.
+mana={3}{U}
+type=Sorcery
+[/card]
+[card]
 name=Mimic
 auto={T}{S}:add{W}
 auto={T}{S}:add{B}
@@ -40777,7 +40915,7 @@ toughness=4
 [/card]
 [card]
 name=Miscast
-target=instant,sorcery|stack
+target=*[-creature;-artifact;-enchantment;-planeswalker]|stack
 auto=transforms((,newability[pay [[{3}]] name(pay 3 mana) donothing?fizzle])) oneshot
 text=Counter target instant or sorcery spell unless its controller pays 3 .
 mana={U}
@@ -41100,7 +41238,7 @@ type=Enchantment
 [/card]
 [card]
 name=Molten Influence
-target=*[instant;sorcery]|stack
+target=*[-creature;-artifact;-enchantment;-planeswalker]|stack
 auto=transforms((,newability[pay[[{L:4}]] name(pay 4 life) donothing?fizzle])) forever
 text=Counter target instant or sorcery spell unless its controller has Molten Influence deal 4 damage to him or her.
 mana={1}{R}
@@ -41386,7 +41524,7 @@ toughness=4
 [card]
 name=Mosswort Bridge
 auto=tap(noevent)
-aicode=activate target(*[zpos<=4]|mylibrary) imprint and!( all(*[zpos<=4]|opponentlibrary) moveto(myreveal) and!( bottomoflibrary )! )!
+aicode=activate target(*[zpos<=4]|mylibrary) imprint && all(*[zpos<=4]|opponentlibrary) moveto(myreveal) and!( bottomoflibrary )!
 auto=name(look) reveal:4 optionone name(Exile a card) target(*|reveal) imprint optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
 auto={T}:add{G}
 auto={G}{T} restriction{compare(hasevict)~morethan~0,compare(powertotalinplay)~morethan~9}:name(Cast exiled card) transforms((,newability[may name(Cast exiled card) target(*[evictname]|myexile) activate castcard(normal)])) forever
@@ -41794,11 +41932,11 @@ toughness=1
 [/card]
 [card]
 name=Mystic Confluence
-auto=choice name(Choose 1, 2 and 3) target(*|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever && target(creature) moveto(ownerhand) && draw:1 controller
-auto=choice name(Choose 1, 1 and 2) target(<2>*|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever && target(creature) moveto(ownerhand)
+auto=choice name(Choose 1, 2 and 3) target(*|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever && ability$!name(Return creature) name(Return creature) target(creature) moveto(ownerhand)!$ controller && draw:1 controller
+auto=choice name(Choose 1, 1 and 2) target(<2>*|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever && ability$!name(Return creature) name(Return creature) target(creature) moveto(ownerhand)!$ controller
 auto=choice name(Choose 1, 1 and 3) target(<2>*|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever && draw:1 controller
 auto=choice name(Choose 1, 1 and 1) target(<3>*|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
-auto=choice name(Choose 1, 2 and 2) target(*|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever && target(<2>creature) moveto(ownerhand)
+auto=choice name(Choose 1, 2 and 2) target(*|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever && ability$!name(Return 2 creatures) name(Return 2 creatures) target(<2>creature) moveto(ownerhand)!$ controller
 auto=choice name(Choose 1, 3 and 3) target(*|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever && draw:2 controller
 auto=choice name(Choose 2, 2 and 2) target(<3>creature) moveto(ownerhand)
 auto=choice name(Choose 2, 2 and 3) target(<2>creature) moveto(ownerhand) && draw:1 controller
@@ -43143,7 +43281,6 @@ toughness=3
 name=Nimble Obstructionist
 abilities=flash,flying,cycling
 autohand=__CYCLING__({2}{U})
-auto=@discarded(this):target(*|opponentstack) fizzle
 text=Flash -- Flying -- Cycling {2}{U} ({2}{U}, Discard this card: Draw a card.) -- When you cycle Nimble Obstructionist, counter target activated or triggered ability you don't control.
 mana={2}{U}
 type=Creature
@@ -43599,12 +43736,8 @@ type=Legendary Artifact
 [card]
 name=Nyxbloom Ancient
 abilities=trample
-auto=@tappedformana (land[-basic]|myBattlefield):add{C}{C}{C}
-auto=@tappedformana (land[forest]|myBattlefield):add{G}{G}{G}
-auto=@tappedformana (land[island]|myBattlefield):add{U}{U}{U}
-auto=@tappedformana (land[mountain]|myBattlefield):add{R}{R}{R}
-auto=@tappedformana (land[plains]|myBattlefield):add{W}{W}{W}
-auto=@tappedformana (land[swamp]|myBattlefield):add{B}{B}{B}
+auto=lord(*|myBattlefield) transforms((,newability[producecolor:land],newability[producecolor:green],newability[producecolor:blue],newability[producecolor:red],newability[producecolor:black],newability[producecolor:white]))
+auto=lord(*|myBattlefield) transforms((,newability[producecolor:land],newability[producecolor:green],newability[producecolor:blue],newability[producecolor:red],newability[producecolor:black],newability[producecolor:white]))
 text=Trample -- If you tap a permanent for mana, it produces three times as much of that mana instead.
 mana={4}{G}{G}{G}
 type=Enchantment Creature
@@ -44035,7 +44168,7 @@ toughness=6
 [card]
 name=Ojutai's Command
 auto=choice name(Choose 1 and 2) target(creature[manacost<=2]|mygraveyard) moveto(mybattlefield && life:4 controller
-auto=choice name(Choose 1 and 3) target(creature[manacost<=2]|mygraveyard) moveto(mybattlefield && fizzle target(*|stack)
+auto=choice name(Choose 1 and 3) target(creature[manacost<=2]|mygraveyard) moveto(mybattlefield and!( transforms((,newability[name(Counter spell) fizzle target(*|stack)])) oneshot )!
 auto=choice name(Choose 1 and 4) target(creature[manacost<=2]|mygraveyard) moveto(mybattlefield && draw:1 controller
 auto=choice name(Choose 2 and 3) life:4 controller && fizzle target(*|stack) 
 auto=choice name(Choose 2 and 4) life:4 controller && draw:1 controller
@@ -44976,6 +45109,18 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Orzhov Euthanist
+auto=name(Destroy damaged creature) target(creature[damaged]) destroy
+auto=_DIES_all(trigger[to]) transforms((,newability[moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) counter(0/0.1.EuthanistHaunted)])) oneshot )!])) oneshot
+autoexile=@movedto(creature[counter{0/0.1.EuthanistHaunted}]|graveyard) from(battlefield) once:name(Destroy damaged creature) target(creature[damaged]) destroy
+text=Haunt (When this creature dies, exile it haunting target creature.) -- When Orzhov Euthanist enters the battlefield or the creature it haunts dies, destroy target creature that was dealt damage this turn.
+mana={2}{B}
+type=Creature
+subtype=Human Assassin
+power=2
+toughness=2
+[/card]
+[card]
 name=Orzhov Locket
 auto={WB}{WB}{WB}{WB}{T}{S}:draw:2
 auto={T}:Add{W}
@@ -44983,6 +45128,18 @@ auto={T}:Add{B}
 text={T}: Add {W} or {B}. -- {W/B}{W/B}{W/B}{W/B}, {T}, Sacrifice Orzhov Locket: Draw two cards.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Orzhov Pontiff
+auto=name(Choose one) transforms((,newability[choice name(Your creature gets 1/1) all(creature|mybattlefield) 1/1 ueot],newability[choice name(Opponent creature gets -1/-1) all(creature|opponentbattlefield) -1/-1 ueot])) oneshot
+auto=_DIES_all(trigger[to]) transforms((,newability[moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) counter(0/0.1.PontiffHaunted)])) oneshot )!])) oneshot
+autoexile=@movedto(creature[counter{0/0.1.PontiffHaunted}]|graveyard) from(battlefield) once:name(Choose one) transforms((,newability[choice name(Your creature gets 1/1) all(creature|mybattlefield) 1/1 ueot],newability[choice name(Opponent creature gets -1/-1) all(creature|opponentbattlefield) -1/-1 ueot])) oneshot
+text=Haunt (When this creature dies, exile it haunting target creature.) -- When Orzhov Pontiff enters the battlefield or the creature it haunts dies, choose one — Creatures you control get +1/+1 until end of turn; or creatures you don't control get -1/-1 until end of turn.
+mana={1}{W}{B}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
 [/card]
 [card]
 name=Orzhov Racketeers
@@ -45146,7 +45303,7 @@ type=Enchantment
 [/card]
 [card]
 name=Outwit
-target=*[instant;sorcery]|stack
+target=*[-creature;-artifact;-enchantment;-planeswalker]|stack
 auto=fizzle
 text=Counter target spell that targets a player.
 mana={U}
@@ -45210,6 +45367,14 @@ type=Creature
 subtype=Elemental
 power=3
 toughness=2
+[/card]
+[card]
+name=Overmaster
+auto=draw:1 controller
+auto=emblem transforms((,newability[@movedto(*[instant;sorcery]|mystack) turnlimited:all(trigger[to]) transforms((,newability[nofizzle])) oneshot])) ueot
+text=The next instant or sorcery spell you cast this turn can't be countered by spells or abilities. -- Draw a card.
+mana={R}
+type=Sorcery
 [/card]
 [card]
 name=Overrule
@@ -46056,7 +46221,7 @@ toughness=3
 [/card]
 [card]
 name=Pest Infestation
-auto=target(<upto:halfpaid>*[artifact;enchantment]|battlefield) destroy
+auto=thisforeach(variable{halfpaid}>0) ability$!may name(Destroy artifact or enchantment) target(*[artifact;enchantment]|battlefield) destroy!$ controller
 auto=thisforeach(X) token(Pest,Creature Pest,1/1,green,blue) and!( transforms((,newability[_DIES_life:1 controller])) forever )!
 text=Destroy up to X target artifacts and/or enchantments. Create twice X 1/1 black and green Pest creature tokens with "When this creature dies, you gain 1 life."
 mana={X}{X}{G}
@@ -46375,6 +46540,16 @@ auto=token(Horror,Creature Artifact Horror,countedamount/countedamount)
 text=Destroy all creatures, then create an X/X colorless Horror artifact creature token, where X is the number of creatures destroyed this way.
 mana={4}{W}{W}
 type=Sorcery
+[/card]
+[card]
+name=Phyrexian Revoker
+auto=chooseanameopp lord(*[chosenname]) noactivatedability chooseend nonland
+text=As Phyrexian Revoker enters the battlefield, name a nonland card. -- Activated abilities of sources with the chosen name can't be activated.
+mana={2}
+type=Artifact Creature
+subtype=Horror
+power=2
+toughness=1
 [/card]
 [card]
 name=Phyrexian Scriptures
@@ -46952,6 +47127,36 @@ type=Creature
 subtype=Dwarf Barbarian
 power=2
 toughness=2
+[/card]
+[card]
+name=Plunge into Darkness
+other={1}{B}{B} name(Entwine)
+otherrestriction=compare(ishuman)~morethan~0
+aicode=activate target(*[zpos=1]|mylibrary) moveto(myhand) and!( life:-1 controller )!
+auto=ifnot paid(alternative) then if type(creature|mybattlefield)~morethan~0 then choice name(Sacrifice creatures) name(Sacrifice creatures) name(Sacrifice creatures) target(<anyamount>creature|myBattlefield) sacrifice and!( life:3 controller )!
+auto=choice name(Pay 1 life and look 1 card) life:-1 controller && name(look) reveal:1 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo name(Put in exile) all(*|reveal) moveto(myexile) optiontwoend afterrevealed if paid(alternative) then may name(Sacrifice creatures) target(<anyamount>creature|myBattlefield) sacrifice and!( life:3 controller )! afterrevealedend revealend
+auto=if compare(ishuman)~morethan~0 then choice name(Pay 2 life and look 2 cards) name(Pay 2 life and look 2 cards) life:-2 controller && name(look) reveal:2 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo name(Put in exile) all(*|reveal) moveto(myexile) optiontwoend afterrevealed if paid(alternative) then may name(Sacrifice creatures) target(<anyamount>creature|myBattlefield) sacrifice and!( life:3 controller )! afterrevealedend revealend
+auto=if compare(ishuman)~morethan~0 then choice name(Pay 3 life and look 3 cards) name(Pay 3 life and look 3 cards) life:-3 controller && name(look) reveal:3 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo name(Put in exile) all(*|reveal) moveto(myexile) optiontwoend afterrevealed if paid(alternative) then may name(Sacrifice creatures) target(<anyamount>creature|myBattlefield) sacrifice and!( life:3 controller )! afterrevealedend revealend
+auto=if compare(ishuman)~morethan~0 then choice name(Pay 4 life and look 4 cards) name(Pay 4 life and look 4 cards) life:-4 controller && name(look) reveal:4 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo name(Put in exile) all(*|reveal) moveto(myexile) optiontwoend afterrevealed if paid(alternative) then may name(Sacrifice creatures) target(<anyamount>creature|myBattlefield) sacrifice and!( life:3 controller )! afterrevealedend revealend
+auto=if compare(ishuman)~morethan~0 then choice name(Pay 5 life and look 5 cards) name(Pay 5 life and look 5 cards) life:-5 controller && name(look) reveal:5 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo name(Put in exile) all(*|reveal) moveto(myexile) optiontwoend afterrevealed if paid(alternative) then may name(Sacrifice creatures) target(<anyamount>creature|myBattlefield) sacrifice and!( life:3 controller )! afterrevealedend revealend
+auto=if compare(ishuman)~morethan~0 then choice name(Pay 6 life and look 6 cards) name(Pay 6 life and look 6 cards) life:-6 controller && name(look) reveal:6 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo name(Put in exile) all(*|reveal) moveto(myexile) optiontwoend afterrevealed if paid(alternative) then may name(Sacrifice creatures) target(<anyamount>creature|myBattlefield) sacrifice and!( life:3 controller )! afterrevealedend revealend
+auto=if compare(ishuman)~morethan~0 then choice name(Pay 7 life and look 7 cards) name(Pay 7 life and look 7 cards) life:-7 controller && name(look) reveal:7 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo name(Put in exile) all(*|reveal) moveto(myexile) optiontwoend afterrevealed if paid(alternative) then may name(Sacrifice creatures) target(<anyamount>creature|myBattlefield) sacrifice and!( life:3 controller )! afterrevealedend revealend
+auto=if compare(ishuman)~morethan~0 then choice name(Pay 8 life and look 8 cards) name(Pay 8 life and look 8 cards) life:-8 controller && name(look) reveal:8 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo name(Put in exile) all(*|reveal) moveto(myexile) optiontwoend afterrevealed if paid(alternative) then may name(Sacrifice creatures) target(<anyamount>creature|myBattlefield) sacrifice and!( life:3 controller )! afterrevealedend revealend
+auto=if compare(ishuman)~morethan~0 then choice name(Pay 9 life and look 9 cards) name(Pay 9 life and look 9 cards) life:-9 controller && name(look) reveal:9 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo name(Put in exile) all(*|reveal) moveto(myexile) optiontwoend afterrevealed if paid(alternative) then may name(Sacrifice creatures) target(<anyamount>creature|myBattlefield) sacrifice and!( life:3 controller )! afterrevealedend revealend
+auto=if compare(ishuman)~morethan~0 then choice name(Pay 10 life and look 10 cards) name(Pay 10 life and look 10 cards) life:-10 controller && name(look) reveal:10 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo name(Put in exile) all(*|reveal) moveto(myexile) optiontwoend afterrevealed if paid(alternative) then may name(Sacrifice creatures) target(<anyamount>creature|myBattlefield) sacrifice and!( life:3 controller )! afterrevealedend revealend
+auto=if compare(ishuman)~morethan~0 then choice name(Pay 11 life and look 11 cards) name(Pay 11 life and look 11 cards) life:-11 controller && name(look) reveal:11 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo name(Put in exile) all(*|reveal) moveto(myexile) optiontwoend afterrevealed if paid(alternative) then may name(Sacrifice creatures) target(<anyamount>creature|myBattlefield) sacrifice and!( life:3 controller )! afterrevealedend revealend
+auto=if compare(ishuman)~morethan~0 then choice name(Pay 12 life and look 12 cards) name(Pay 12 life and look 12 cards) life:-12 controller && name(look) reveal:12 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo name(Put in exile) all(*|reveal) moveto(myexile) optiontwoend afterrevealed if paid(alternative) then may name(Sacrifice creatures) target(<anyamount>creature|myBattlefield) sacrifice and!( life:3 controller )! afterrevealedend revealend
+auto=if compare(ishuman)~morethan~0 then choice name(Pay 13 life and look 13 cards) name(Pay 13 life and look 13 cards) life:-13 controller && name(look) reveal:13 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo name(Put in exile) all(*|reveal) moveto(myexile) optiontwoend afterrevealed if paid(alternative) then may name(Sacrifice creatures) target(<anyamount>creature|myBattlefield) sacrifice and!( life:3 controller )! afterrevealedend revealend
+auto=if compare(ishuman)~morethan~0 then choice name(Pay 14 life and look 14 cards) name(Pay 14 life and look 14 cards) life:-14 controller && name(look) reveal:14 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo name(Put in exile) all(*|reveal) moveto(myexile) optiontwoend afterrevealed if paid(alternative) then may name(Sacrifice creatures) target(<anyamount>creature|myBattlefield) sacrifice and!( life:3 controller )! afterrevealedend revealend
+auto=if compare(ishuman)~morethan~0 then choice name(Pay 15 life and look 15 cards) name(Pay 15 life and look 15 cards) life:-15 controller && name(look) reveal:15 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo name(Put in exile) all(*|reveal) moveto(myexile) optiontwoend afterrevealed if paid(alternative) then may name(Sacrifice creatures) target(<anyamount>creature|myBattlefield) sacrifice and!( life:3 controller )! afterrevealedend revealend
+auto=if compare(ishuman)~morethan~0 then choice name(Pay 16 life and look 16 cards) name(Pay 16 life and look 16 cards) life:-16 controller && name(look) reveal:16 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo name(Put in exile) all(*|reveal) moveto(myexile) optiontwoend afterrevealed if paid(alternative) then may name(Sacrifice creatures) target(<anyamount>creature|myBattlefield) sacrifice and!( life:3 controller )! afterrevealedend revealend
+auto=if compare(ishuman)~morethan~0 then choice name(Pay 17 life and look 17 cards) name(Pay 17 life and look 17 cards) life:-17 controller && name(look) reveal:17 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo name(Put in exile) all(*|reveal) moveto(myexile) optiontwoend afterrevealed if paid(alternative) then may name(Sacrifice creatures) target(<anyamount>creature|myBattlefield) sacrifice and!( life:3 controller )! afterrevealedend revealend
+auto=if compare(ishuman)~morethan~0 then choice name(Pay 18 life and look 18 cards) name(Pay 18 life and look 18 cards) life:-18 controller && name(look) reveal:18 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo name(Put in exile) all(*|reveal) moveto(myexile) optiontwoend afterrevealed if paid(alternative) then may name(Sacrifice creatures) target(<anyamount>creature|myBattlefield) sacrifice and!( life:3 controller )! afterrevealedend revealend
+auto=if compare(ishuman)~morethan~0 then choice name(Pay 19 life and look 19 cards) name(Pay 19 life and look 19 cards) life:-19 controller && name(look) reveal:19 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo name(Put in exile) all(*|reveal) moveto(myexile) optiontwoend afterrevealed if paid(alternative) then may name(Sacrifice creatures) target(<anyamount>creature|myBattlefield) sacrifice and!( life:3 controller )! afterrevealedend revealend
+auto=if compare(ishuman)~morethan~0 then choice name(Pay 20 life and look 20 cards) name(Pay 20 life and look 20 cards) life:-20 controller && name(look) reveal:20 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo name(Put in exile) all(*|reveal) moveto(myexile) optiontwoend afterrevealed if paid(alternative) then may name(Sacrifice creatures) target(<anyamount>creature|myBattlefield) sacrifice and!( life:3 controller )! afterrevealedend revealend
+text=Choose one — Sacrifice any number of creatures, then you gain 3 life for each sacrificed creature; or pay X life, then look at the top X cards of your library, put one of those cards into your hand, and exile the rest. -- Entwine {B} (Choose both if you pay the entwine cost.)
+mana={1}{B}
+type=Instant
 [/card]
 [card]
 name=Poet's Quill
@@ -48210,7 +48415,7 @@ toughness=5
 [card]
 name=Prowling Serpopard
 abilities=nofizzle
-auto=@targeted(creature|mystack) from(instant|opponentzones):choice name(Creaure can't be countered) name(Creaure can't be countered) all(instant|opponentzones) fizzle
+auto=lord(creature|mystack) nofizzle
 text=Prowling Serpopard can't be countered. -- Creature spells you control can't be countered.
 mana={1}{G}{G}
 type=Creature
@@ -48471,7 +48676,7 @@ toughness=8
 name=Put Away
 target=*|stack
 auto=fizzle
-auto=may moveto(mylibrary) target(*|mygraveyard) && shuffle controller
+auto=may name(Return a card) target(*|mygraveyard) moveto(mylibrary) and!( shuffle )!
 text=Counter target spell. You may shuffle up to one target card from your graveyard into your library.
 mana={2}{U}{U}
 type=Instant
@@ -48603,26 +48808,11 @@ toughness=1
 [/card]
 [card]
 name=Pyromatics
-auto=choice name(Don't replicate) ability$!name(Damage 1 target) name(Damage 1 target) target(player,creature,planeswalker) damage:1!$ controller
-auto=choice name(Replicate 1 time) ability$!name(Damage 2 targets) pay[[{1}{R}]] name(Damage 2 targets) target(<2>player,creature,planeswalker) damage:1!$ controller
-auto=choice name(Replicate 2 times) ability$!name(Damage 3 targets) pay[[{2}{R}{R}]] name(Damage 3 targets) target(<3>player,creature,planeswalker) damage:1!$ controller
-auto=choice name(Replicate 3 times) ability$!name(Damage 4 targets) pay[[{3}{R}{R}{R}]] name(Damage 4 targets) target(<4>player,creature,planeswalker) damage:1!$ controller
-auto=choice name(Replicate 4 times) ability$!name(Damage 5 targets) pay[[{4}{R}{R}{R}{R}]] name(Damage 5 targets) target(<5>player,creature,planeswalker) damage:1!$ controller
-auto=choice name(Replicate 5 times) ability$!name(Damage 6 targets) pay[[{5}{R}{R}{R}{R}{R}]] name(Damage 6 targets) target(<6>player,creature,planeswalker) damage:1!$ controller
-auto=choice name(Replicate 6 times) ability$!name(Damage 7 targets) pay[[{6}{R}{R}{R}{R}{R}{R}]] name(Damage 7 targets) target(<7>player,creature,planeswalker) damage:1!$ controller
-auto=choice name(Replicate 7 times) ability$!name(Damage 8 targets) pay[[{7}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 8 targets) target(<8>player,creature,planeswalker) damage:1!$ controller
-auto=choice name(Replicate 8 times) ability$!name(Damage 9 targets) pay[[{8}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 9 targets) target(<9>player,creature,planeswalker) damage:1!$ controller
-auto=choice name(Replicate 9 times) ability$!name(Damage 10 targets) pay[[{9}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 10 targets) target(<10>player,creature,planeswalker) damage:1!$ controller
-auto=choice name(Replicate 10 times) ability$!name(Damage 11 targets) pay[[{10}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 11 targets) target(<11>player,creature,planeswalker) damage:1!$ controller
-auto=choice name(Replicate 11 times) ability$!name(Damage 12 targets) pay[[{11}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 12 targets) target(<12>player,creature,planeswalker) damage:1!$ controller
-auto=choice name(Replicate 12 times) ability$!name(Damage 13 targets) pay[[{12}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 13 targets) target(<13>player,creature,planeswalker) damage:1!$ controller
-auto=choice name(Replicate 13 times) ability$!name(Damage 14 targets) pay[[{13}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 14 targets)target(<14>player,creature,planeswalker) damage:1!$ controller
-auto=choice name(Replicate 14 times) ability$!name(Damage 15 targets) pay[[{14}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 15 targets) target(<15>player,creature,planeswalker) damage:1!$ controller
-auto=choice name(Replicate 15 times) ability$!name(Damage 16 targets) pay[[{15}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 16 targets) target(<16>player,creature,planeswalker) damage:1!$ controller
-auto=choice name(Replicate 16 times) ability$!name(Damage 17 targets) pay[[{16}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 17 targets) target(<17>player,creature,planeswalker) damage:1!$ controller
-auto=choice name(Replicate 17 times) ability$!name(Damage 18 targets) pay[[{17}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 18 targets) target(<18>player,creature,planeswalker) damage:1!$ controller
-auto=choice name(Replicate 18 times) ability$!name(Damage 19 targets) pay[[{18}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 19 targets) target(<19>player,creature,planeswalker) damage:1!$ controller
-auto=choice name(Replicate 19 times) ability$!name(Damage 20 targets) pay[[{19}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Damage 20 targets) target(<20>player,creature,planeswalker) damage:1!$ controller
+abilities=hasnokicker,hasreplicate
+target=player,creature,planeswalker
+kicker=multi{1}{R} name(Replicate)
+auto=name(Deal 1 damage) damage:1
+auto=thisforeach(variable{kicked}>0) ability$!name(Copy Pyromatics) name(Copy Pyromatics) activate castcard(named!:Pyromatics:!)!$ controller
 text=Replicate {1}{R} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Pyromatics deals 1 damage to any target.
 mana={1}{R}
 type=Instant
@@ -50222,7 +50412,8 @@ toughness=4
 [/card]
 [card]
 name=Rebuff the Wicked
-target=*|opponentstack
+target=*|stack
+restriction=type(*|myBattlefield)~morethan~0
 auto=fizzle
 text=Counter target spell that targets a permanent you control.
 mana={W}
@@ -51512,8 +51703,8 @@ type=Sorcery
 [/card]
 [card]
 name=Rhythm of the Wild
-auto=@targeted(creature|mystack) from(instant|opponentzones):choice name(Creaure can't be countered) name(Creaure can't be countered) all(instant|opponentzones) fizzle
-auto=@movedto(creature[-token]|mybattlefield):choice name(Gains riot) name(Gains riot) all(trigger[to]) transforms((,newability[choice name(Counter 1/1) counter(1/1.1)],newability[choice name(Haste) haste all(this)])) forever 
+auto=lord(creature|mystack) nofizzle
+auto=@movedto(creature[-token]|mybattlefield):name(Gains riot) all(trigger[to]) transforms((,newability[choice name(Put 1/1 counter) counter(1/1)],newability[choice name(Gain haste) transforms((,newability[haste])) forever])) forever 
 text=Creature spells you control can't be countered. -- Nontoken creatures you control have riot. (They enter the battlefield with your choice of a +1/+1 counter or haste.)
 mana={1}{R}{G}
 type=Enchantment
@@ -54252,6 +54443,15 @@ mana={2}{G}
 type=Sorcery
 [/card]
 [card]
+name=Savage Summoning
+abilities=nofizzle
+auto=name(Choose a creature) target(creature|myrestrictedcastingzone) transforms((,newability[asflash])) ueot
+auto=emblem transforms((,newability[@movedto(creature|mystack) turnlimited:all(trigger[to]) transforms((,newability[nofizzle])) oneshot],newability[@movedto(creature|mybattlefield) turnlimited:all(trigger[to]) counter(1/1)])) ueot
+text=Savage Summoning can't be countered. -- The next creature card you cast this turn can be cast as though it had flash. That spell can't be countered. That creature enters the battlefield with an additional +1/+1 counter on it.
+mana={G}
+type=Instant
+[/card]
+[card]
 name=Savage Swipe
 target=creature[power=2]|myBattlefield
 auto=2/2 ueot
@@ -55401,6 +55601,17 @@ mana={2}{R}{D(*|myhand)}
 type=Sorcery
 [/card]
 [card]
+name=Seize the Soul
+abilities=exiledeath
+target=creature[-black;-white]
+auto=destroy && token(Spirit,Creature Spirit,1/1,white,flying) controller
+auto=ability$!name(Haunt a creature) name(Haunt a creature) target(creature) counter(0/0.1.SeizeHaunted)!$ controller
+autoexile=@movedto(creature[counter{0/0.1.SeizeHaunted}]|graveyard) from(battlefield) once:name(Destroy creature) transforms((,newability[name(Destroy creature) target(creature[-black;-white]|battlefield) destroy],newability[token(Spirit^Creature Spirit^1/1^white^flying) controller])) oneshot
+text=Destroy target nonwhite, nonblack creature. Put a 1/1 white Spirit creature token with flying onto the battlefield. -- Haunt (When this spell card is put into a graveyard after resolving, exile it haunting target creature.) -- When the creature Seize the Soul haunts dies, destroy target nonwhite, nonblack creature. Put a 1/1 white Spirit creature token with flying onto the battlefield.
+mana={2}{B}{B}
+type=Instant
+[/card]
+[card]
 name=Seizures
 target=creature
 auto=teach(creature) transforms((,newability[@tapped(this):pay[[{3}]] name(pay 3 mana) donothing?damage:3 controller])) forever
@@ -56321,26 +56532,11 @@ subtype=Aura
 [/card]
 [card]
 name=Shattering Spree
-auto=choice name(Don't Replicate) ability$!name(Destroy 1 artifact) name(Destroy 1 artifact) target(*[artifact]) destroy!$ controller
-auto=choice name(Replicate 1 time) ability$!name(Destroy 2 artifacts) pay[[{R}]] name(Destroy 2 artifacts) target(<2>*[artifact]) destroy!$ controller
-auto=choice name(Replicate 2 times) ability$!name(Destroy 3 artifacts) pay[[{R}{R}]] name(Destroy 3 artifacts) target(<3>*[artifact]) destroy!$ controller
-auto=choice name(Replicate 3 times) ability$!name(Destroy 4 artifacts) pay[[{R}{R}{R}]] name(Destroy 4 artifacts)target(<4>*[artifact]) destroy!$ controller
-auto=choice name(Replicate 4 times) ability$!name(Destroy 5 artifacts) pay[[{R}{R}{R}{R}]] name(Destroy 5 artifacts) target(<5>*[artifact]) destroy!$ controller
-auto=choice name(Replicate 5 times) ability$!name(Destroy 6 artifacts) pay[[{R}{R}{R}{R}{R}]] name(Destroy 6 artifacts) target(<6>*[artifact]) destroy!$ controller
-auto=choice name(Replicate 6 times) ability$!name(Destroy 7 artifacts) pay[[{R}{R}{R}{R}{R}{R}]] name(Destroy 7 artifacts) target(<7>*[artifact]) destroy!$ controller
-auto=choice name(Replicate 7 times) ability$!name(Destroy 8 artifacts) pay[[{R}{R}{R}{R}{R}{R}{R}]] name(Destroy 8 artifacts) target(<8>*[artifact]) destroy!$ controller
-auto=choice name(Replicate 8 times) ability$!name(Destroy 9 artifacts) pay[[{R}{R}{R}{R}{R}{R}{R}{R}]] name(Destroy 9 artifacts) target(<9>*[artifact]) destroy!$ controller
-auto=choice name(Replicate 9 times) ability$!name(Destroy 10 artifacts) pay[[{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Destroy 10 artifacts) target(<10>*[artifact]) destroy!$ controller
-auto=choice name(Replicate 10 times) ability$!name(Destroy 11 artifacts) pay[[{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Destroy 11 artifacts) target(<11>*[artifact]) destroy!$ controller
-auto=choice name(Replicate 11 times) ability$!name(Destroy 12 artifacts) pay[[{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Destroy 12 artifacts) target(<12>*[artifact]) destroy!$ controller
-auto=choice name(Replicate 12 times) ability$!name(Destroy 13 artifacts) pay[[{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Destroy 13 artifacts) target(<13>*[artifact]) destroy!$ controller
-auto=choice name(Replicate 13 times) ability$!name(Destroy 14 artifacts) pay[[{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Destroy 14 artifacts)target(<14>*[artifact]) destroy!$ controller
-auto=choice name(Replicate 14 times) ability$!name(Destroy 15 artifacts) pay[[{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Destroy 15 artifacts) target(<15>*[artifact]) destroy!$ controller
-auto=choice name(Replicate 15 times) ability$!name(Destroy 16 artifacts) pay[[{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Destroy 16 artifacts) target(<16>*[artifact]) destroy!$ controller
-auto=choice name(Replicate 16 times) ability$!name(Destroy 17 artifacts) pay[[{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Destroy 17 artifacts) target(<17>*[artifact]) destroy!$ controller
-auto=choice name(Replicate 17 times) ability$!name(Destroy 18 artifacts) pay[[{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Destroy 18 artifacts) target(<18>*[artifact]) destroy!$ controller
-auto=choice name(Replicate 18 times) ability$!name(Destroy 19 artifacts) pay[[{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Destroy 19 artifacts) target(<19>*[artifact]) destroy!$ controller
-auto=choice name(Replicate 19 times) ability$!name(Destroy 20 artifacts) pay[[{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(Destroy 20 artifacts) target(<20>*[artifact]) destroy!$ controller
+abilities=hasnokicker,hasreplicate
+target=artifact
+kicker=multi{1}{R} name(Replicate)
+auto=name(Destroy artifact) destroy
+auto=thisforeach(variable{kicked}>0) ability$!name(Copy Shattering Spree) name(Copy Shattering Spree) activate castcard(named!:Shattering Spree:!)!$ controller
 text=Replicate {R} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Destroy target artifact.
 mana={R}
 type=Instant
@@ -57077,27 +57273,11 @@ toughness=1
 [/card]
 [card]
 name=Siege of Towers
-kicker=multi{1}{R}
-auto=if compare(kicked)~equalto~0 then name(choose 1 mountain) name(choose 1 creature) target(land[mountain]) transforms((Creature,setpower=3,settoughness=1)) forever
-auto=if compare(kicked)~equalto~1 then name(choose 2 mountains) name(choose 2 mountains) target(<upto:2>land[mountain]) transforms((Creature,setpower=3,settoughness=1)) forever
-auto=if compare(kicked)~equalto~2 then name(choose 3 mountains) name(choose 3 mountains) target(<upto:3>land[mountain]) transforms((Creature,setpower=3,settoughness=1)) forever
-auto=if compare(kicked)~equalto~3 then name(choose 4 mountains) name(choose 4 mountains) target(<upto:4>land[mountain]) transforms((Creature,setpower=3,settoughness=1)) forever
-auto=if compare(kicked)~equalto~4 then name(choose 5 mountains) name(choose 5 mountains) target(<upto:5>land[mountain]) transforms((Creature,setpower=3,settoughness=1)) forever
-auto=if compare(kicked)~equalto~5 then name(choose 6 mountains) name(choose 6 mountains) target(<upto:6>land[mountain]) transforms((Creature,setpower=3,settoughness=1)) forever
-auto=if compare(kicked)~equalto~6 then name(choose 7 mountains) name(choose 7 mountains) target(<upto:7>land[mountain]) transforms((Creature,setpower=3,settoughness=1)) forever
-auto=if compare(kicked)~equalto~7 then name(choose 8 mountains) name(choose 8 mountains) target(<upto:8>land[mountain]) transforms((Creature,setpower=3,settoughness=1)) forever
-auto=if compare(kicked)~equalto~8 then name(choose 9 mountains) name(choose 9 mountains) target(<upto:9>land[mountain]) transforms((Creature,setpower=3,settoughness=1)) forever
-auto=if compare(kicked)~equalto~9 then name(choose 10 mountains) name(choose 10 mountains) target(<upto:10>land[mountain]) transforms((Creature,setpower=3,settoughness=1)) forever
-auto=if compare(kicked)~equalto~10 then name(choose 11 mountains) name(choose 11 mountains) target(<upto:11>land[mountain]) transforms((Creature,setpower=3,settoughness=1)) forever
-auto=if compare(kicked)~equalto~11 then name(choose 12 mountains) name(choose 12 mountains) target(<upto:12>land[mountain]) transforms((Creature,setpower=3,settoughness=1)) forever
-auto=if compare(kicked)~equalto~12 then name(choose 13 mountains) name(choose 13 mountains) target(<upto:13>land[mountain]) transforms((Creature,setpower=3,settoughness=1)) forever
-auto=if compare(kicked)~equalto~13 then name(choose 14 mountains) name(choose 14 mountains) target(<upto:14>land[mountain]) transforms((Creature,setpower=3,settoughness=1)) forever
-auto=if compare(kicked)~equalto~14 then name(choose 15 mountains) name(choose 15 mountains) target(<upto:15>land[mountain]) transforms((Creature,setpower=3,settoughness=1)) forever
-auto=if compare(kicked)~equalto~15 then name(choose 16 mountains) name(choose 16 mountains) target(<upto:16>land[mountain]) transforms((Creature,setpower=3,settoughness=1)) forever
-auto=if compare(kicked)~equalto~16 then name(choose 17 mountains) name(choose 17 mountains) target(<upto:17>land[mountain]) transforms((Creature,setpower=3,settoughness=1)) forever
-auto=if compare(kicked)~equalto~17 then name(choose 18 mountains) name(choose 18 mountains) target(<upto:18>land[mountain]) transforms((Creature,setpower=3,settoughness=1)) forever
-auto=if compare(kicked)~equalto~18 then name(choose 19 mountains) name(choose 19 mountains) target(<upto:19>land[mountain]) transforms((Creature,setpower=3,settoughness=1)) forever
-auto=if compare(kicked)~equalto~19 then name(choose 20 mountains) name(choose 20 mountains) target(<upto:20>land[mountain]) transforms((Creature,setpower=3,settoughness=1)) forever
+abilities=hasnokicker,hasreplicate
+target=mountain
+kicker=multi{1}{R} name(Replicate)
+auto=name(Becomes creature) transforms((Creature,setpower=3,settoughness=1)) forever
+auto=thisforeach(variable{kicked}>0) ability$!name(Copy Siege of Towers) name(Copy Siege of Towers) activate castcard(named!:Siege of Towers:!)!$ controller
 text=Replicate {1}{R} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Target Mountain becomes a 3/1 creature. It's still a land.
 mana={1}{R}
 type=Sorcery
@@ -57679,7 +57859,7 @@ toughness=2
 [card]
 name=Siren Stormtamer
 abilities=flying
-auto={U}{S}:target(*|stack) fizzle
+auto={U}{S}:target(*[-creature;-artifact;-enchantment;-planeswalker]|stack) fizzle
 text=Flying -- {U}, Sacrifice Siren Stormtamer: Counter target spell or ability that targets you or a creature you control.
 mana={U}
 type=Creature
@@ -59429,9 +59609,9 @@ type=Artifact
 [/card]
 [card]
 name=Soul Manipulation
-auto=choice name(Counter creature spell) target(*[creature]|stack) fizzle
-auto=choice name(Return creature to hand) target(*[creature]|mygraveyard) moveto(myhand)
-auto=choice name(Choose both) target(*[creature]|stack) fizzle && transforms((,newability[target(*[creature]|mygraveyard) moveto(myhand)])) oneshot
+auto=if type(creature|stack)~morethan~0 then choice name(Counter creature spell) name(Counter creature spell) target(creature|stack) fizzle
+auto=if type(creature|mygraveyard)~morethan~0 then choice name(Return creature to hand) name(Return creature to hand) target(creature|mygraveyard) moveto(myhand)
+auto=if type(creature|stack)~morethan~0 then if type(creature|mygraveyard)~morethan~0 then choice name(Choose both) name(Choose both) name(Choose both) target(creature|mygraveyard) moveto(myhand) and!( transforms((,newability[name(Counter creature) target(creature|stack) fizzle])) oneshot )!
 text=Choose one or both — Counter target creature spell; and/or return target creature card from your graveyard to your hand.
 mana={1}{U}{B}
 type=Instant
@@ -60005,9 +60185,9 @@ subtype=Aura
 [/card]
 [card]
 name=Spell Crumple
-target=*|opponentstack
-auto=fizzleto(library) && target(*[zpos=1]|opponentlibrary) bottomoflibrary
-auto=bottomoflibrary all(this)
+target=*|stack
+auto=fizzleto(librarybottom)
+auto=ability$!bottomoflibrary all(Spell Crumple|mystack)!$ controller
 text=Counter target spell. If that spell is countered this way, put it on the bottom of its owner's library instead of into that player's graveyard. Put Spell Crumple on the bottom of its owner's library.
 mana={1}{U}{U}
 type=Instant
@@ -60034,7 +60214,7 @@ type=Instant
 name=Spell Swindle
 target=*|stack
 auto=fizzle
-auto=token(435451)
+anyzone=if casted(this) then if compare(hasstorecard)~morethan~0 then token(Treasure Sur)*storedmanacost
 text=Counter target spell. Create X colorless Treasure artifact tokens, where X is that spell's converted mana cost. They have "{T}, Sacrifice this artifact: Add one mana of any color to your mana pool."
 mana={3}{U}{U}
 type=Instant
@@ -60050,7 +60230,7 @@ type=Instant
 [card]
 name=Spellbreaker Behemoth
 abilities=nofizzle
-auto=@targeted(creature[power>=5]|mystack) from(instant|opponentzones):choice name(Creaure can't be countered) name(Creaure can't be countered) all(instant|opponentzones) fizzle
+auto=lord(creature[manacost>=5]|mystack) nofizzle
 text=Spellbreaker Behemoth can't be countered. -- Creature spells you control with power 5 or greater can't be countered.
 mana={1}{R}{G}{G}
 type=Creature
@@ -60573,7 +60753,7 @@ type=Instant
 name=Spite // Malice
 other={3}{B} name(Malice)
 auto=if paid(alternative) then bury target(creature[-black])
-auto=if paid(alternative) then fizzle target(*[-creature])
+auto=ifnot paid(alternative) then fizzle target(*[-creature])
 text=Counter target noncreature spell. // Destroy target nonblack creature. It can't be regenerated.
 mana={3}{U}
 type=Instant
@@ -62173,27 +62353,12 @@ toughness=5
 [/card]
 [card]
 name=Stream of Thought
-kicker=multi{2}{U}{U}
-auto=if compare(kicked)~equalto~0 then ability$!name(Choose one) choice name(Target opponent) deplete:2 opponent && target(<upto:4>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! _ choice name(Target controller) deplete:2 controller && target(<upto:4>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! !$ controller
-auto=if compare(kicked)~equalto~1 then ability$!name(Choose one) choice name(Target opponent) deplete:4 opponent && target(<upto:8>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! _ choice name(Target controller) deplete:4 controller && target(<upto:8>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! !$ controller
-auto=if compare(kicked)~equalto~2 then ability$!name(Choose one) choice name(Target opponent) deplete:6 opponent && target(<upto:12>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! _ choice name(Target controller) deplete:6 controller && target(<upto:12>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! !$ controller
-auto=if compare(kicked)~equalto~3 then ability$!name(Choose one) choice name(Target opponent) deplete:8 opponent && target(<upto:16>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! _ choice name(Target controller) deplete:8 controller && target(<upto:26>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! !$ controller
-auto=if compare(kicked)~equalto~4 then ability$!name(Choose one) choice name(Target opponent) deplete:10 opponent && target(<upto:20>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! _ choice name(Target controller) deplete:10 controller && target(<upto:20>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! !$ controller
-auto=if compare(kicked)~equalto~5 then ability$!name(Choose one) choice name(Target opponent) deplete:12 opponent && target(<upto:24>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! _ choice name(Target controller) deplete:12 controller && target(<upto:24>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! !$ controller
-auto=if compare(kicked)~equalto~6 then ability$!name(Choose one) choice name(Target opponent) deplete:14 opponent && target(<upto:28>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! _ choice name(Target controller) deplete:14 controller && target(<upto:28>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! !$ controller
-auto=if compare(kicked)~equalto~7 then ability$!name(Choose one) choice name(Target opponent) deplete:16 opponent && target(<upto:32>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! _ choice name(Target controller) deplete:16 controller && target(<upto:32>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! !$ controller
-auto=if compare(kicked)~equalto~8 then ability$!name(Choose one) choice name(Target opponent) deplete:18 opponent && target(<upto:36>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! _ choice name(Target controller) deplete:18 controller && target(<upto:36>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! !$ controller
-auto=if compare(kicked)~equalto~9 then ability$!name(Choose one) choice name(Target opponent) deplete:20 opponent && target(<upto:40>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! _ choice name(Target controller) deplete:20 controller && target(<upto:40>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! !$ controller
-auto=if compare(kicked)~equalto~10 then ability$!name(Choose one) choice name(Target opponent) deplete:22 opponent && target(<upto:44>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! _ choice name(Target controller) deplete:22 controller && target(<upto:44>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! !$ controller
-auto=if compare(kicked)~equalto~11 then ability$!name(Choose one) choice name(Target opponent) deplete:24 opponent && target(<upto:48>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! _ choice name(Target controller) deplete:24 controller && target(<upto:48>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! !$ controller
-auto=if compare(kicked)~equalto~12 then ability$!name(Choose one) choice name(Target opponent) deplete:26 opponent && target(<upto:52>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! _ choice name(Target controller) deplete:26 controller && target(<upto:52>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! !$ controller
-auto=if compare(kicked)~equalto~13 then ability$!name(Choose one) choice name(Target opponent) deplete:28 opponent && target(<upto:56>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! _ choice name(Target controller) deplete:28 controller && target(<upto:56>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! !$ controller
-auto=if compare(kicked)~equalto~14 then ability$!name(Choose one) choice name(Target opponent) deplete:30 opponent && target(<upto:60>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! _ choice name(Target controller) deplete:30 controller && target(<upto:60>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! !$ controller
-auto=if compare(kicked)~equalto~15 then ability$!name(Choose one) choice name(Target opponent) deplete:32 opponent && target(<upto:64>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! _ choice name(Target controller) deplete:32 controller && target(<upto:64>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! !$ controller
-auto=if compare(kicked)~equalto~16 then ability$!name(Choose one) choice name(Target opponent) deplete:34 opponent && target(<upto:68>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! _ choice name(Target controller) deplete:34 controller && target(<upto:68>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! !$ controller
-auto=if compare(kicked)~equalto~17 then ability$!name(Choose one) choice name(Target opponent) deplete:36 opponent && target(<upto:72>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! _ choice name(Target controller) deplete:36 controller && target(<upto:72>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! !$ controller
-auto=if compare(kicked)~equalto~18 then ability$!name(Choose one) choice name(Target opponent) deplete:38 opponent && target(<upto:76>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! _ choice name(Target controller) deplete:38 controller && target(<upto:76>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! !$ controller
-auto=if compare(kicked)~equalto~19 then ability$!name(Choose one) choice name(Target opponent) deplete:40 opponent && target(<upto:80>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! _ choice name(Target controller) deplete:40 controller && target(<upto:80>*|mygraveyard) moveTo(mylibrary) and!(shuffle controller)! !$ controller
+abilities=hasnokicker,hasreplicate
+target=player
+kicker=multi{2}{U}{U} name(Replicate)
+auto=name(Mill 2 cars) deplete:2
+auto=may name(Return cards form graveyard) target(<upto:4>*|mygraveyard) moveto(mylibrary) and!( shuffle )!
+auto=thisforeach(variable{kicked}>0) ability$!name(Copy Stream of Thought) name(Copy Stream of Thought) activate castcard(named!:Stream of Thought:!)!$ controller
 text=Target player puts the top four cards of their library into their graveyard. You shuffle up to four cards from your graveyard into your library. -- Replicate {2}{U}{U} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.)
 mana={U}
 type=Sorcery
@@ -62516,7 +62681,7 @@ type=Instant
 name=Suffocating Blast
 target=*|stack
 auto=fizzle
-auto=ability$!name(Damage) damage:3 target(creature)!$ controller
+auto=ability$!name(Deal 3 damage) name(Deal 3 damage) damage:3 target(creature)!$ controller
 text=Counter target spell and Suffocating Blast deals 3 damage to target creature.
 mana={1}{U}{U}{R}
 type=Instant
@@ -62562,6 +62727,17 @@ auto=_ADDENDUM_ damage:5 else damage:3
 text=Summary Judgment deals 3 damage to target tapped creature. -- Addendum — If you cast this spell during your main phase, it deals 5 damage to that creature instead.
 mana={1}{W}
 type=Instant
+[/card]
+[card]
+name=Summoner's Egg
+auto=may name(Exile card from hand) target(*|myhand) imprint
+auto=this(variable{hasevict}>0) transforms((,newability[_DIES_name(Return exiled creature) target(creature[evictname]|myexile) moveto(myBattlefield)]))
+text=Imprint — When Summoner's Egg enters the battlefield, you may exile a card from your hand face down. -- When Summoner's Egg dies, turn the exiled card face up. If it's a creature card, put it onto the battlefield under your control.
+mana={4}
+type=Artifact Creature
+subtype=Construct
+power=0
+toughness=4
 [/card]
 [card]
 name=Summoning Trap
@@ -62914,7 +63090,7 @@ toughness=3
 [card]
 name=Surrak Dragonclaw
 abilities=flash,nofizzle
-auto=@targeted(creature|mystack) from(instant|opponentzones):choice name(Creaure can't be countered) name(Creaure can't be countered) all(instant|opponentzones) fizzle
+auto=lord(creature|mystack) nofizzle
 auto=lord(other creature|mybattlefield) trample
 text=Flash -- Surrak Dragonclaw can't be countered. -- Creature spells you control can't be countered. -- Other creatures you control have trample.
 mana={2}{G}{U}{R}
@@ -64734,7 +64910,7 @@ type=Instant
 [/card]
 [card]
 name=Test of Talents
-target=*[instant;sorcery]|stack
+target=*[-creature;-artifact;-enchantment;-planeswalker]|stack
 auto=transforms((,newability[fizzle],newability[all(*[share!name!]|mygraveyard) moveto(exile)],newability[all(*[share!name!]|myhand) transforms((,newability[moveto(exile)],newability[draw:1 controller])) oneshot],newability[all(*[share!name!]|mylibrary) moveto(exile) and!( shuffle )!])) oneshot
 text=Counter target instant or sorcery spell. Search its controller's graveyard, hand, and library for any number of cards with the same name as that spell and exile them. That player shuffles, then draws a card for each card exiled from their hand this way.
 mana={1}{U}
@@ -64870,11 +65046,10 @@ toughness=5
 [/card]
 [card]
 name=Thassa's Intervention
-target=*|stack
-aicode=activate target(*[zpos<=X]|mylibrary) moveto(myhand)
-auto=choice name(Look X cards) reveal:X optionone name(Get a Card) target(<2>*|reveal) moveto(myhand) optiononeend optiontwo target(<X>*|reveal) bottomoflibrary optiontwoend revealend
-auto=choice name(Counter target spell) transforms((,newability[pay[[{value:storedxx}]] name(pay {X}{X} mana) donothing?fizzle])) oneshot
-text=Choose one- • Look at the top X cards of your library. Put up to two of them into your hand and the rest on the bottom of your library in a random order. • Counter target spell unless its controller pays twice {X}.
+aicode=activate target(*[zpos<=X]|mylibrary) moveto(myhand) and!( all(*[zpos<=X]) moveto(myreveal) and!( bottomoflibrary )! )!
+auto=choice name(Look X cards) reveal:X optionone name(Get 2 cards) target(<upto:2>*|reveal) moveto(myhand) optiononeend optiontwo all(*|reveal) bottomoflibrary optiontwoend revealend
+auto=choice name(Counter target spell) target(*|stack) transforms((,newability[pay[[{value:twicestoredx}]] name(pay {X}{X} mana) donothing?fizzle])) oneshot
+text=Choose one - -- • Look at the top X cards of your library. Put up to two of them into your hand and the rest on the bottom of your library in a random order. -- • Counter target spell unless its controller pays twice {X}.
 mana={X}{U}{U}
 type=Instant
 [/card]
@@ -66033,7 +66208,7 @@ toughness=1
 name=Thryx, the Sudden Storm
 abilities=flying,flash
 auto=lord(*[manacost>=5]|mycastingzone) altercost(colorless,-1)
-auto=@targeted(*[manacosto>=5]|mystack) from(instant|opponentzones):choice name(Spell can't be countered) name(Spell can't be countered) all(instant|opponentzones) fizzle
+auto=lord(*[manacost>=5]|mystack) nofizzle
 text=Flash -- Flying -- Spells you cast with converted mana cost 5 or greater cost {1} less to cast and can’t be countered.
 mana={3}{U}{U}
 type=Legendary Creature
@@ -66074,26 +66249,10 @@ toughness=5
 [/card]
 [card]
 name=Thunderheads
-auto=choice name(Don't replicate) ability$!name(Create 1 token) name(Create 1 token) token(Weird,Creature Weird,3/3,blue,defender,flying,unearth)!$ controller
-auto=choice name(Replicate 1 time) ability$!name(Create 2 tokens) pay[[{2}{U}]] name(Create 2 tokens) token(Weird,Creature Weird,3/3,blue,defender,flying,unearth)*2!$ controller
-auto=choice name(Replicate 2 times) ability$!name(Create 3 tokens) pay[[{4}{U}{U}]] name(Create 3 tokens) token(Weird,Creature Weird,3/3,blue,defender,flying,unearth)*3!$ controller
-auto=choice name(Replicate 3 times) ability$!name(Create 4 tokens) pay[[{6}{U}{U}{U}]] name(Create 4 tokens) token(Weird,Creature Weird,3/3,blue,defender,flying,unearth)*4!$ controller
-auto=choice name(Replicate 4 times) ability$!name(Create 5 tokens) pay[[{8}{U}{U}{U}{U}]] name(Create 5 tokens) token(Weird,Creature Weird,3/3,blue,defender,flying,unearth)*5!$ controller
-auto=choice name(Replicate 5 times) ability$!name(Create 6 tokens) pay[[{10}{U}{U}{U}{U}{U}]] name(Create 6 tokens) token(Weird,Creature Weird,3/3,blue,defender,flying,unearth)*6!$ controller
-auto=choice name(Replicate 6 times) ability$!name(Create 7 tokens) pay[[{12}{U}{U}{U}{U}{U}{U}]] name(Create 7 tokens) token(Weird,Creature Weird,3/3,blue,defender,flying,unearth)*7!$ controller
-auto=choice name(Replicate 7 times) ability$!name(Create 8 tokens) pay[[{14}{U}{U}{U}{U}{U}{U}{U}]] name(Create 8 tokens) token(Weird,Creature Weird,3/3,blue,defender,flying,unearth)*8!$ controller
-auto=choice name(Replicate 8 times) ability$!name(Create 9 tokens) pay[[{16}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Create 9 tokens) token(Weird,Creature Weird,3/3,blue,defender,flying,unearth)*9!$ controller
-auto=choice name(Replicate 9 times) ability$!name(Create 10 tokens) pay[[{18}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Create 10 tokens) token(Weird,Creature Weird,3/3,blue,defender,flying,unearth)*10!$ controller
-auto=choice name(Replicate 10 times) ability$!name(Create 11 tokens) pay[[{20}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Create 11 tokens) token(Weird,Creature Weird,3/3,blue,defender,flying,unearth)*11!$ controller
-auto=choice name(Replicate 11 times) ability$!name(Create 12 tokens) pay[[{22}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Create 12 tokens) token(Weird,Creature Weird,3/3,blue,defender,flying,unearth)*12!$ controller
-auto=choice name(Replicate 12 times) ability$!name(Create 13 tokens) pay[[{24}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Create 13 tokens) token(Weird,Creature Weird,3/3,blue,defender,flying,unearth)*13!$ controller
-auto=choice name(Replicate 13 times) ability$!name(Create 14 tokens) pay[[{26}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Create 14 tokens) token(Weird,Creature Weird,3/3,blue,defender,flying,unearth)*14!$ controller
-auto=choice name(Replicate 14 times) ability$!name(Create 15 tokens) pay[[{28}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Create 15 tokens) token(Weird,Creature Weird,3/3,blue,defender,flying,unearth)*15!$ controller
-auto=choice name(Replicate 15 times) ability$!name(Create 16 tokens) pay[[{30}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Create 16 tokens) token(Weird,Creature Weird,3/3,blue,defender,flying,unearth)*16!$ controller
-auto=choice name(Replicate 16 times) ability$!name(Create 17 tokens) pay[[{32}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Create 17 tokens) token(Weird,Creature Weird,3/3,blue,defender,flying,unearth)*17!$ controller
-auto=choice name(Replicate 17 times) ability$!name(Create 18 tokens) pay[[{34}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Create 18 tokens) token(Weird,Creature Weird,3/3,blue,defender,flying,unearth)*18!$ controller
-auto=choice name(Replicate 18 times) ability$!name(Create 19 tokens) pay[[{36}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Create 19 tokens) token(Weird,Creature Weird,3/3,blue,defender,flying,unearth)*19!$ controller
-auto=choice name(Replicate 19 times) ability$!name(Create 20 tokens) pay[[{38}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Create 20 tokens) token(Weird,Creature Weird,3/3,blue,defender,flying,unearth)*20!$ controller
+abilities=hasnokicker,hasreplicate
+kicker=multi{2}{U} name(Replicate)
+auto=name(Create Weird) token(Weird,Creature Weird,3/3,blue,defender,flying,unearth)
+auto=thisforeach(variable{kicked}>0) ability$!name(Copy Thunderheads) name(Copy Thunderheads) activate castcard(named!:Thunderheads:!)!$ controller
 text=Replicate {2}{U} (When you cast this spell, copy it for each time you paid its replicate cost.) -- Create a 3/3 blue Weird creature token with defender and flying. Exile it at the beginning of the next end step.
 mana={2}{U}
 type=Instant
@@ -67247,9 +67406,10 @@ type=Enchantment
 [/card]
 [card]
 name=Train of Thought
-auto=draw:1 controller
-kicker=multi{1}{U}
-auto=if paid(kicker) then draw:kicked controller
+abilities=hasnokicker,hasreplicate
+auto=name(Draw a card) draw:1 controller
+kicker=multi{1}{U} name(Replicate)
+auto=thisforeach(variable{kicked}>0) ability$!name(Copy Train of Thought) name(Copy Train of Thought) activate castcard(named!:Train of Thought:!)!$ controller
 text=Replicate {1}{U} (When you cast this spell, copy it for each time you paid its replicate cost.) -- Draw a card.
 mana={1}{U}
 type=Sorcery
@@ -67978,9 +68138,9 @@ type=Instant
 [/card]
 [card]
 name=Turn Aside
-target=*|stack
+target=*[-creature;-artifact;-enchantment;-planeswalker]|stack
 auto=fizzle
-restriction=target(enchantment|myBattlefield)
+restriction=type(*|myBattlefield)~morethan~0
 text=Counter target spell that targets a permanent you control.
 mana={U}
 type=Instant
@@ -68361,7 +68521,7 @@ toughness=5
 [card]
 name=Ulamog's Nullifier
 abilities=devoid,flash,flying
-auto=if type(*|opponentexile)~morethan~1 then may target(<2>*|opponentexile) moveto(ownergraveyard) && ability$!name(Counter spell) target(*|stack) fizzle!$ controller
+auto=if type(*|opponentexile)~morethan~1 then name(Return 2 cards) may name(Return 2 cards) target(<2>*|opponentexile) moveto(ownergraveyard) && ability$!name(Counter spell) name(Counter spell) target(*|stack) fizzle!$ controller
 text=Devoid (This card has no color.) -- Flash -- Flying -- When Ulamog's Nullifier enters the battlefield, you may put two cards your opponents own from exile into their owners' graveyards. If you do, counter target spell.
 mana={2}{U}{B}
 type=Creature
@@ -68885,7 +69045,7 @@ type=Instant
 [card]
 name=Unsubstantiate
 auto=choice name(Return target creature) target(creature|battlefield) moveTo(ownerHand)
-auto=choice name(Return target spell) target(*[-land]|stack) fizzleto(hand) 
+auto=choice name(Return target spell) target(*|stack) fizzleto(hand) 
 text=Return target spell or creature to its owner’s hand.
 mana={1}{U}
 type=Instant
@@ -68935,7 +69095,7 @@ toughness=1
 name=Unwind
 target=*[-creature]|stack
 auto=fizzle
-auto=untap target(<upto:3>land)
+auto=may name(Untap lands) untap target(<upto:3>land)
 text=Counter target noncreature spell. Untap up to three lands.
 mana={2}{U}
 type=Instant
@@ -69143,26 +69303,11 @@ toughness=2
 [/card]
 [card]
 name=Vacuumelt
-auto=choice name(Don't replicate) ability$!name(Return 1 creature) name(Return 1 creature) target(<1>creature) moveto(ownerhand)!$ controller
-auto=choice name(Replicate 1 time) ability$!name(Return 2 creatures) pay[[{2}{U}]] name(Return 2 creatures) target(<2>creature) moveto(ownerhand)!$ controller
-auto=choice name(Replicate 2 times) ability$!name(Return 3 creatures) pay[[{4}{U}{U}]] name(Return 3 creatures) target(<3>creature) moveto(ownerhand)!$ controller
-auto=choice name(Replicate 3 times) ability$!name(Return 4 creatures) pay[[{6}{U}{U}{U}]] name(Return 4 creatures) target(<4>creature) moveto(ownerhand)!$ controller
-auto=choice name(Replicate 4 times) ability$!name(Return 5 creatures) pay[[{8}{U}{U}{U}{U}]] name(Return 5 creatures) target(<5>creature) moveto(ownerhand)!$ controller
-auto=choice name(Replicate 5 times) ability$!name(Return 6 creatures) pay[[{10}{U}{U}{U}{U}{U}]] name(Return 6 creatures) target(<6>creature) moveto(ownerhand)!$ controller
-auto=choice name(Replicate 6 times) ability$!name(Return 7 creatures) pay[[{12}{U}{U}{U}{U}{U}{U}]] name(Return 7 creatures) target(<7>creature) moveto(ownerhand)!$ controller
-auto=choice name(Replicate 7 times) ability$!name(Return 8 creatures) pay[[{14}{U}{U}{U}{U}{U}{U}{U}]] name(Return 8 creatures) target(<8>creature) moveto(ownerhand)!$ controller
-auto=choice name(Replicate 8 times) ability$!name(Return 9 creatures) pay[[{16}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Return 9 creatures) target(<9>creature) moveto(ownerhand)!$ controller
-auto=choice name(Replicate 9 times) ability$!name(Return 10 creatures) pay[[{18}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Return 10 creatures) target(<10>creature) moveto(ownerhand)!$ controller
-auto=choice name(Replicate 10 times) ability$!name(Return 11 creatures) pay[[{20}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Return 11 creatures) target(<11>creature) moveto(ownerhand)!$ controller
-auto=choice name(Replicate 11 times) ability$!name(Return 12 creatures) pay[[{22}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Return 12 creatures) target(<12>creature) moveto(ownerhand)!$ controller
-auto=choice name(Replicate 12 times) ability$!name(Return 13 creatures) pay[[{24}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Return 13 creatures) target(<13>creature) moveto(ownerhand)!$ controller
-auto=choice name(Replicate 13 times) ability$!name(Return 14 creatures) pay[[{26}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Return 14 creatures) target(<14>creature) moveto(ownerhand)!$ controller
-auto=choice name(Replicate 14 times) ability$!name(Return 15 creatures) pay[[{28}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Return 15 creatures) target(<15>creature) moveto(ownerhand)!$ controller
-auto=choice name(Replicate 15 times) ability$!name(Return 16 creatures) pay[[{30}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Return 16 creatures) target(<16>creature) moveto(ownerhand)!$ controller
-auto=choice name(Replicate 16 times) ability$!name(Return 17 creatures) pay[[{32}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Return 17 creatures) target(<17>creature) moveto(ownerhand)!$ controller
-auto=choice name(Replicate 17 times) ability$!name(Return 18 creatures) pay[[{34}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Return 18 creatures) target(<18>creature) moveto(ownerhand)!$ controller
-auto=choice name(Replicate 18 times) ability$!name(Return 19 creatures) pay[[{36}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Return 19 creatures) target(<19>creature) moveto(ownerhand)!$ controller
-auto=choice name(Replicate 19 times) ability$!name(Return 20 creatures) pay[[{38}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(Return 20 creatures) target(<20>creature) moveto(ownerhand)!$ controller
+abilities=hasnokicker,hasreplicate
+target=creature
+kicker=multi{2}{U} name(Replicate)
+auto=name(Return to hand) moveto(ownerhand)
+auto=thisforeach(variable{kicked}>0) ability$!name(Copy Vacuumelt) name(Copy Vacuumelt) activate castcard(named!:Vacuumelt:!)!$ controller
 text=Replicate {2}{U} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Return target creature to its owner’s hand.
 mana={2}{U}
 type=Sorcery
@@ -71045,7 +71190,7 @@ toughness=4
 [card]
 name=Voracious Greatshark
 abilities=flash
-auto=fizzle target(*[artifact,creature]|stak)
+auto=fizzle target(*[artifact;creature]|stack)
 text=Flash -- When Voracious Greatshark enters the battlefield, counter target artifact or creature spell.
 mana={3}{U}{U}
 type=Creature
@@ -71697,7 +71842,7 @@ type=Instant
 name=Warping Wail
 auto=choice name(Exile creature with power 1 or less) target(creature[power<=1]) moveto(exile)
 auto=choice name(Exile creature with toughness 1 or less) target(creature[toughness<=1]) moveto(exile)
-auto=choice name(Counter sorcery) target(*[sorcery]|stack) fizzle
+auto=choice name(Counter sorcery) target(sorcery|stack) fizzle
 auto=choice name(Create Eldrazi Scion) token(Eldrazi Scion,Creature Eldrazi Scion,1/1) and!( transforms((,newability[{S}:Add{C}])) forever )! controller
 text=({C} represents colorless mana.) -- Choose one — -- • Exile target creature with power or toughness 1 or less. -- • Counter target sorcery spell. -- • Put a 1/1 colorless Eldrazi Scion creature token onto the battlefield. It has "Sacrifice this creature: Add {C} to your mana pool."
 mana={1}{C}
@@ -73014,13 +73159,12 @@ type=Instant
 [/card]
 [card]
 name=Wizard's Retort
-auto=This spell costs {1} less to cast if you controlWizard
 target=*|stack
-auto=fizzle
-auto=Counter target spell
-text=This spell costs {1} less to cast if you control a Wizard. -- Counter target spell.
 other={U}{U} name(reduced by Wizard)
-otherrestriction=type(Wizard|myBattlefield)
+otherrestriction=type(Wizard|myBattlefield)~morethan~0
+restriction=type(Wizard|myBattlefield)~equalto~0
+auto=fizzle
+text=This spell costs {1} less to cast if you control a Wizard. -- Counter target spell.
 mana={1}{U}{U}
 type=Instant
 [/card]

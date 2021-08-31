@@ -662,9 +662,9 @@ subtype=Davriel
 [card]
 name=Domri, Anarch of Bolas
 auto=counter(0/0,3,loyalty)
-auto=lord(other creature|myBattlefield) +1/+0
-auto={C(0/0,1,Loyalty)}:name(+1: Add Red mana and creatures can't be countered this turn) transforms((,newability[add{R}],newability[@targeted(creature|mystack) from(instant|opponentzones):choice name(Creaure can't be countered) name(Creaure can't be countered) all(instant|opponentzones) fizzle])) ueot
-auto={C(0/0,1,Loyalty)}:name(+1: Add Green mana and creatures can't be countered this turn) transforms((,newability[add{G}],newability[@targeted(creature|mystack) from(instant|opponentzones):choice name(Creaure can't be countered) name(Creaure can't be countered) all(instant|opponentzones) fizzle])) ueot
+auto=lord(other creature|myBattlefield) 1/0
+auto={C(0/0,1,Loyalty)}:name(+1: Add Red mana and creatures can't be countered this turn) transforms((,newability[add{R}],newability[lord(creature|mystack) nofizzle])) ueot
+auto={C(0/0,1,Loyalty)}:name(+1: Add Green mana and creatures can't be countered this turn) transforms((,newability[add{G}],newability[lord(creature|mystack) nofizzle])) ueot
 auto={C(0/0,-2,Loyalty)}:name(-2: Target creature fights another creature) target(creature|myBattlefield) transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>])) ueot
 text=Creatures you control get +1/+0. -- +1: Add {R} or {G}. Creature spells you cast this turn can't be countered. -- -2: Target creature you control fights target creature you don't control.
 mana={1}{R}{G}

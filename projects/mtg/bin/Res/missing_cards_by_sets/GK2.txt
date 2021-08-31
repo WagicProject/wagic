@@ -36,15 +36,6 @@ power=4
 toughness=6
 [/card]
 [card]
-name=Orzhov Pontiff
-text=Haunt (When this creature dies, exile it haunting target creature.) -- When Orzhov Pontiff enters the battlefield or the creature it haunts dies, choose one  Creatures you control get +1/+1 until end of turn; or creatures you don't control get -1/-1 until end of turn.
-mana={1}{W}{B}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-[/card]
-[card]
 name=Rakdos, Lord of Riots
 text=You can't cast Rakdos, Lord of Riots unless an opponent lost life this turn. -- Flying, trample -- Creature spells you cast cost {1} less to cast for each 1 life your opponents have lost this turn.
 mana={B}{B}{R}{R}

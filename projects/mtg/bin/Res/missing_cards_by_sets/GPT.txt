@@ -23,56 +23,6 @@ mana={3}
 type=Artifact
 [/card]
 [card]
-name=Blind Hunter
-abilities=flying
-text=Flying -- Haunt (When this creature dies, exile it haunting target creature.) -- When Blind Hunter enters the battlefield or the creature it haunts dies, target player loses 2 life and you gain 2 life.
-mana={2}{W}{B}
-type=Creature
-subtype=Bat
-power=2
-toughness=2
-[/card]
-[card]
-name=Graven Dominator
-abilities=flying
-text=Flying -- Haunt (When this creature dies, exile it haunting target creature.) -- When Graven Dominator enters the battlefield or the creature it haunts dies, each other creature becomes 1/1 until end of turn.
-mana={4}{W}{W}
-type=Creature
-subtype=Gargoyle
-power=4
-toughness=4
-[/card]
-[card]
-name=Orzhov Euthanist
-text=Haunt (When this creature dies, exile it haunting target creature.) -- When Orzhov Euthanist enters the battlefield or the creature it haunts dies, destroy target creature that was dealt damage this turn.
-mana={2}{B}
-type=Creature
-subtype=Human Assassin
-power=2
-toughness=2
-[/card]
-[card]
-name=Mimeofacture
-text=Replicate {3}{U} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Choose target permanent an opponent controls. Search that player's library for a card with the same name and put it onto the battlefield under your control. Then that player shuffles his or her library.
-mana={3}{U}
-type=Sorcery
-[/card]
-[card]
-name=Orzhov Pontiff
-text=Haunt (When this creature dies, exile it haunting target creature.) -- When Orzhov Pontiff enters the battlefield or the creature it haunts dies, choose one  Creatures you control get +1/+1 until end of turn; or creatures you don't control get -1/-1 until end of turn.
-mana={1}{W}{B}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-[/card]
-[card]
-name=Cry of Contrition
-text=Target player discards a card. -- Haunt (When this spell card is put into a graveyard after resolving, exile it haunting target creature.) -- When the creature Cry of Contrition haunts dies, target player discards a card.
-mana={B}
-type=Sorcery
-[/card]
-[card]
 name=Bioplasm
 text=Whenever Bioplasm attacks, exile the top card of your library. If it's a creature card, Bioplasm gets +X/+Y until end of turn, where X is the exiled creature card's power and Y is its toughness.
 mana={3}{G}{G}
@@ -89,12 +39,6 @@ type=Creature
 subtype=Illusion
 power=1
 toughness=1
-[/card]
-[card]
-name=Seize the Soul
-text=Destroy target nonwhite, nonblack creature. Put a 1/1 white Spirit creature token with flying onto the battlefield. -- Haunt (When this spell card is put into a graveyard after resolving, exile it haunting target creature.) -- When the creature Seize the Soul haunts dies, destroy target nonwhite, nonblack creature. Put a 1/1 white Spirit creature token with flying onto the battlefield.
-mana={2}{B}{B}
-type=Instant
 [/card]
 [card]
 name=Burning-Tree Shaman

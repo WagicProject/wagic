@@ -1295,9 +1295,17 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
             }
         }
     }
-    else if (s == "ishuman")//return if controller is Human or AI
+    else if (s == "ishuman" || s == "mycolnum")//return if controller is Human or AI - return the number of colors of a card.
     {
-        intValue = (card->controller()->isAI())?0:1;
+        intValue = 0;
+        if (s == "ishuman")
+            intValue = (card->controller()->isAI())?0:1;
+        else if (s == "mycolnum") {
+            for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i){
+                if(card->hasColor(i))
+                    intValue +=1;
+            }
+        }
     }
     else if (s == "pexperience" || s == "oexperience")
     {

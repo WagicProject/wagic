@@ -38,15 +38,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Phyrexian Revoker
-text=As Phyrexian Revoker enters the battlefield, name a nonland card. -- Activated abilities of sources with the chosen name can't be activated.
-mana={2}
-type=Artifact Creature
-subtype=Horror
-power=2
-toughness=1
-[/card]
-[card]
 name=Hushwing Gryff
 abilities=flash,flying
 text=Flash -- Flying -- Creatures entering the battlefield don't cause abilities to trigger.

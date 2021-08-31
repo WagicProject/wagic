@@ -1,10 +1,4 @@
 [card]
-name=Dragonlord's Prerogative
-text=As an additional cost to cast Dragonlord's Prerogative, you may reveal a Dragon card from your hand. -- If you revealed a Dragon card or controlled a Dragon as you cast Dragonlord's Prerogative, Dragonlord's Prerogative can't be countered. -- Draw four cards.
-mana={4}{U}{U}
-type=Instant
-[/card]
-[card]
 name=Salt Road Ambushers
 text=Whenever another permanent you control is turned face up, if it's a creature, put two +1/+1 counters on it. -- Megamorph {3}{G}{G} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its megamorph cost and put a +1/+1 counter on it.)
 mana={3}{G}

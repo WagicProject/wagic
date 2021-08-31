@@ -1,19 +1,4 @@
 [card]
-name=Savage Summoning
-text=Savage Summoning can't be countered. -- The next creature card you cast this turn can be cast as though it had flash. That spell can't be countered. That creature enters the battlefield with an additional +1/+1 counter on it.
-mana={G}
-type=Instant
-[/card]
-[card]
-name=Elite Arcanist
-text=When Elite Arcanist enters the battlefield, you may exile an instant card from your hand. -- {X}, {T}: Copy the exiled card. You may cast the copy without paying its mana cost. X is the converted mana cost of the exiled card.
-mana={3}{U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-[/card]
-[card]
 name=Strionic Resonator
 text={2}, {T}: Copy target triggered ability you control. You may choose new targets for the copy. (A triggered ability uses the words "when," "whenever," or "at.")
 mana={2}

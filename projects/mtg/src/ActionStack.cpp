@@ -1377,7 +1377,21 @@ void ActionStack::Fizzle(Interruptible * action, FizzleMode fizzleMode)
             spell->source->controller()->game->putInExile(spell->source);
             break;
         case PUT_IN_LIBRARY_TOP:
-            spell->source->controller()->game->putInLibrary(spell->source);
+        case PUT_IN_LIBRARY_BOTTOM:
+            MTGCardInstance * _target = spell->source->controller()->game->putInLibrary(spell->source);
+            if (_target && fizzleMode == PUT_IN_LIBRARY_BOTTOM){
+                MTGLibrary * library = _target->owner->game->library;
+                vector<MTGCardInstance *>oldOrder = library->cards;
+                vector<MTGCardInstance *>newOrder;
+                newOrder.push_back(_target);
+                for(unsigned int k = 0;k < oldOrder.size();++k)
+                {
+                    MTGCardInstance * rearranged = oldOrder[k];
+                    if(rearranged != _target)
+                        newOrder.push_back(rearranged);
+                }
+                library->cards = newOrder;
+            }
             break;
         }
     }
