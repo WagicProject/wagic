@@ -227,7 +227,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "nomovetrigger", //no trigger when playing these cards (e.g. fake ability cards such as Davriel Conditions, Davriel Offers, Annihilation Rooms)
     "wascommander", //It was the current commander (e.g. after it flipped or morphed)
     "showopponenthand", //opponent plays with his hand revealed.
-    "showcontrollerhand" //controller plays with his hand revealed.
+    "showcontrollerhand", //controller plays with his hand revealed.
+    "hasreplicate" //Kicker cost is a replicate cost (eg. "Vacuumelt")
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

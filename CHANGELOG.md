@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 31/08/21
+- *Committed:* Added/fixed primitives, updated the "missing_cards_by_sets" folder, improved all cards with replicate (now they use a special version of multikicker but they don't count as kicked spell), improved all cards with "fizzle" and "fizzleto" ability and improved engine for "fizzle" and "nofizzle" ability (e.g. now it's possible to grant a card the nofizzle ability on stack), added new keyword "mycolnum" to count the number colors of a card. ([Vitty85](https://github.com/Vitty85)) 
+
 ### 30/08/21
-- *Committed:* Added/fixed primitives, updated the "missing_cards_by_sets" folder, added a new trigger when a player shuffles his/her library, added new keywords "plastshlturn" and "olastshlturn" to retrieve the last turn a player shuffled his/her library, refactoring of some source files. ([Vitty85](https://github.com/Vitty85)) 
+- *Committed:* Added/fixed primitives, updated the "missing_cards_by_sets" folder, added a new trigger when a player shuffles his/her library, added new keywords "plastshlturn" and "olastshlturn" to retrieve the last turn a player shuffled his/her library, refactoring of some source files. https://github.com/WagicProject/wagic/commit/45de20c8d3f0449e33286fad09b000a695b07c24 ([Vitty85](https://github.com/Vitty85)) 
 
 - *Committed:* Fixed dat file for J21 set, improved Android downloader for J21 set. https://github.com/WagicProject/wagic/commit/e1f91a50f6fa607ad3672433e00ceb1c25feb631 ([Vitty85](https://github.com/Vitty85)) 
 

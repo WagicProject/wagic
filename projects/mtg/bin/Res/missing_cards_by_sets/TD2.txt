@@ -1,7 +1,0 @@
-[card]
-name=Grafted Exoskeleton
-text=Equipped creature gets +2/+2 and has infect. (It deals damage to creatures in the form of -1/-1 counters and to players in the form of poison counters.) -- Whenever Grafted Exoskeleton becomes unattached from a permanent, sacrifice that permanent. -- Equip {2}
-mana={4}
-type=Artifact
-subtype=Equipment
-[/card]

@@ -526,7 +526,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
             while(previousManaPool->canAfford(withKickerCost,card->has(Constants::ANYTYPEOFMANA)))
             {
                 withKickerCost->add(withKickerCost->getKicker());
-                if(!card->basicAbilities[Constants::HASNOKICKER]) card->kicked += 1; //Some kicker costs are not a real kicker (e.g. Fuse cost).
+                if(!card->basicAbilities[Constants::HASNOKICKER] || card->basicAbilities[Constants::HASREPLICATE]) card->kicked += 1; //Some kicker costs are not a real kicker (e.g. Fuse cost) or they are a replicate cost (eg. "Vacuumelt").
             }
             for(int i = 0;i < card->kicked;i++)
                 player->getManaPool()->pay(card->getManaCost()->getKicker());
@@ -537,7 +537,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         {
             player->getManaPool()->pay(card->getManaCost()->getKicker());
             payResult = ManaCost::MANA_PAID_WITH_KICKER;
-            if(!card->basicAbilities[Constants::HASNOKICKER]) card->kicked = 1; //Some kicker costs are not a real kicker (e.g. Fuse cost).
+            if(!card->basicAbilities[Constants::HASNOKICKER] || card->basicAbilities[Constants::HASREPLICATE]) card->kicked = 1; //Some kicker costs are not a real kicker (e.g. Fuse cost) or they are a replicate cost (eg. "Vacuumelt").
             card->alternateCostPaid[ManaCost::MANA_PAID_WITH_KICKER] = 1;
         }
         delete withKickerCost;
@@ -681,7 +681,7 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
     {
         if (!game->targetListIsSet(card))
         {
-            if(!card->basicAbilities[Constants::HASNOKICKER]) card->kicked = 1; //Some kicker costs are not a real kicker (e.g. Fuse cost).
+            if(!card->basicAbilities[Constants::HASNOKICKER] || card->basicAbilities[Constants::HASREPLICATE]) card->kicked = 1; //Some kicker costs are not a real kicker (e.g. Fuse cost) or they are a replicate cost (eg. "Vacuumelt").
             return 0;
         }
     }
@@ -704,7 +704,7 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
             while(previousManaPool->canAfford(withKickerCost,card->has(Constants::ANYTYPEOFMANA)))
             {
                 withKickerCost->add(withKickerCost->getKicker());
-                if(!card->basicAbilities[Constants::HASNOKICKER]) card->kicked += 1; //Some kicker costs are not a real kicker (e.g. Fuse cost).
+                if(!card->basicAbilities[Constants::HASNOKICKER] || card->basicAbilities[Constants::HASREPLICATE]) card->kicked += 1; //Some kicker costs are not a real kicker (e.g. Fuse cost) or they are a replicate cost (eg. "Vacuumelt").
             }
             for(int i = 0;i < card->kicked;i++)
                 player->getManaPool()->pay(card->getManaCost()->getKicker());
@@ -715,7 +715,7 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
         {
             player->getManaPool()->pay(card->getManaCost()->getKicker());
             payResult = ManaCost::MANA_PAID_WITH_KICKER;
-            if(!card->basicAbilities[Constants::HASNOKICKER]) card->kicked = 1; //Some kicker costs are not a real kicker (e.g. Fuse cost).
+            if(!card->basicAbilities[Constants::HASNOKICKER] || card->basicAbilities[Constants::HASREPLICATE]) card->kicked = 1; //Some kicker costs are not a real kicker (e.g. Fuse cost) or they are a replicate cost (eg. "Vacuumelt").
             card->alternateCostPaid[ManaCost::MANA_PAID_WITH_KICKER] = 1;
         }
         delete withKickerCost;

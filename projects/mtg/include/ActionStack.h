@@ -197,7 +197,8 @@ public:
         PUT_IN_GRAVEARD,
         PUT_IN_HAND,
         PUT_IN_LIBRARY_TOP,
-        PUT_IN_EXILE
+        PUT_IN_EXILE,
+        PUT_IN_LIBRARY_BOTTOM
     } FizzleMode;
 
 protected:

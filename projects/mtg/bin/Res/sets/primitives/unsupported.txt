@@ -911,22 +911,6 @@ power=4
 toughness=3
 [/card]
 [card]
-name=Blind Hunter
-abilities=flying
-text=Flying -- Haunt (When this creature dies, exile it haunting target creature.) -- When Blind Hunter enters the battlefield or the creature it haunts dies, target player loses 2 life and you gain 2 life.
-mana={2}{W}{B}
-type=Creature
-subtype=Bat
-power=2
-toughness=2
-[/card]
-[card]
-name=Blood Feud
-text=Target creature fights another target creature. (Each deals damage equal to its power to the other.)
-mana={4}{R}{R}
-type=Sorcery
-[/card]
-[card]
 name=Blood Funnel
 text=Noncreature spells you cast cost {2} less to cast. -- Whenever you cast a noncreature spell, counter that spell unless you sacrifice a creature.
 mana={1}{B}
@@ -1111,12 +1095,6 @@ type=Creature
 subtype=Elephant Townsfolk
 power=1
 toughness=4
-[/card]
-[card]
-name=Bound // Determined
-text=Sacrifice a creature. Return up to X cards from your graveyard to your hand, where X is the number of colors that creature was. Exile this card. --  //  -- Other spells you control can't be countered by spells or abilities this turn. -- Draw a card.
-mana={3}{B}{G} // {G}{U}
-type=Instant // Instant
 [/card]
 [card]
 name=Brago's Favor
@@ -2037,12 +2015,6 @@ mana={U}{U}
 type=Enchantment
 [/card]
 [card]
-name=Counterlash
-text=Counter target spell. You may cast a nonland card in your hand that shares a card type with that spell without paying its mana cost.
-mana={4}{U}{U}
-type=Instant
-[/card]
-[card]
 name=Covenant of Minds
 text=Reveal the top three cards of your library. Target opponent may choose to put those cards into your hand. If he or she doesn't, put those cards into your graveyard and draw five cards.
 mana={4}{U}
@@ -2162,12 +2134,6 @@ name=Crumbling Sanctuary
 text=If damage would be dealt to a player, that player exiles that many cards from the top of his or her library instead.
 mana={5}
 type=Artifact
-[/card]
-[card]
-name=Cry of Contrition
-text=Target player discards a card. -- Haunt (When this spell card is put into a graveyard after resolving, exile it haunting target creature.) -- When the creature Cry of Contrition haunts dies, target player discards a card.
-mana={B}
-type=Sorcery
 [/card]
 [card]
 name=Cryptic Gateway
@@ -2800,12 +2766,6 @@ power=0
 toughness=0
 [/card]
 [card]
-name=Dragonlord's Prerogative
-text=As an additional cost to cast Dragonlord's Prerogative, you may reveal a Dragon card from your hand. -- If you revealed a Dragon card or controlled a Dragon as you cast Dragonlord's Prerogative, Dragonlord's Prerogative can't be countered. -- Draw four cards.
-mana={4}{U}{U}
-type=Instant
-[/card]
-[card]
 name=Drain Power
 text=Target player activates a mana ability of each land he or she controls. Then put all mana from that player's mana pool into yours.
 mana={U}{U}
@@ -2942,15 +2902,6 @@ text=Enchant permanent -- At the beginning of your precombat main phase, add man
 mana={2}{G}{G}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Elite Arcanist
-text=When Elite Arcanist enters the battlefield, you may exile an instant card from your hand. -- {X}, {T}: Copy the exiled card. You may cast the copy without paying its mana cost. X is the converted mana cost of the exiled card.
-mana={3}{U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
 [/card]
 [card]
 name=Elkin Lair
@@ -4294,20 +4245,6 @@ mana={1}
 type=Artifact
 [/card]
 [card]
-name=Grafted Exoskeleton
-text=Equipped creature gets +2/+2 and has infect. (It deals damage to creatures in the form of -1/-1 counters and to players in the form of poison counters.) -- Whenever Grafted Exoskeleton becomes unattached from a permanent, sacrifice that permanent. -- Equip {2}
-mana={4}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
-name=Grafted Wargear
-text=Equipped creature gets +3/+2. -- Whenever Grafted Wargear becomes unattached from a permanent, sacrifice that permanent. -- Equip {0} ({0}: Attach to target creature you control. Equip only as a sorcery.)
-mana={3}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
 name=Grand Ossuary
 text=Whenever a creature dies, its controller distributes a number of +1/+1 counters equal to its power among any number of target creatures he or she controls. -- Whenever you roll {K}, each player exiles all creatures he or she controls and puts X 1/1 green Saproling creature tokens onto the battlefield, where X is the total power of the creatures he or she exiled this way. Then planeswalk.
 type=Plane
@@ -4340,16 +4277,6 @@ type=Creature
 subtype=Elemental Beast
 power=5
 toughness=7
-[/card]
-[card]
-name=Graven Dominator
-abilities=flying
-text=Flying -- Haunt (When this creature dies, exile it haunting target creature.) -- When Graven Dominator enters the battlefield or the creature it haunts dies, each other creature becomes 1/1 until end of turn.
-mana={4}{W}{W}
-type=Creature
-subtype=Gargoyle
-power=4
-toughness=4
 [/card]
 [card]
 name=Graveyard Busybody
@@ -5212,12 +5139,6 @@ type=Creature
 subtype=Nephilim
 power=3
 toughness=3
-[/card]
-[card]
-name=Insist
-text=The next creature spell you cast this turn can't be countered by spells or abilities. -- Draw a card.
-mana={G}
-type=Sorcery
 [/card]
 [card]
 name=Inspiring Statuary
@@ -6687,12 +6608,6 @@ mana={5}{R}
 type=Enchantment
 [/card]
 [card]
-name=Mimeofacture
-text=Replicate {3}{U} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Choose target permanent an opponent controls. Search that player's library for a card with the same name and put it onto the battlefield under your control. Then that player shuffles his or her library.
-mana={3}{U}
-type=Sorcery
-[/card]
-[card]
 name=Minamo's Meddling
 text=Counter target spell. That spell's controller reveals his or her hand, then discards each card with the same name as a card spliced onto that spell.
 mana={2}{U}{U}
@@ -7799,24 +7714,6 @@ type=Plane
 subtype=Kamigawa
 [/card]
 [card]
-name=Orzhov Euthanist
-text=Haunt (When this creature dies, exile it haunting target creature.) -- When Orzhov Euthanist enters the battlefield or the creature it haunts dies, destroy target creature that was dealt damage this turn.
-mana={2}{B}
-type=Creature
-subtype=Human Assassin
-power=2
-toughness=2
-[/card]
-[card]
-name=Orzhov Pontiff
-text=Haunt (When this creature dies, exile it haunting target creature.) -- When Orzhov Pontiff enters the battlefield or the creature it haunts dies, choose one — Creatures you control get +1/+1 until end of turn; or creatures you don't control get -1/-1 until end of turn.
-mana={1}{W}{B}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-[/card]
-[card]
 name=Oubliette
 text=When Oubliette enters the battlefield, exile target creature and all Auras attached to it. Note the number and kind of counters that were on that creature. -- When Oubliette leaves the battlefield, return the exiled card to the battlefield under its owner's control tapped with the noted number and kind of counters on it. If you do, return the exiled Aura cards to the battlefield under their owner's control attached to that permanent.
 mana={1}{B}{B}
@@ -7862,12 +7759,6 @@ text=Each time target permanent would deal damage to a creature or player this t
 mana={3}{R}
 type=Instant
 subtype=Arcane
-[/card]
-[card]
-name=Overmaster
-text=The next instant or sorcery spell you cast this turn can't be countered by spells or abilities. -- Draw a card.
-mana={R}
-type=Sorcery
 [/card]
 [card]
 name=Overt Operative
@@ -8101,15 +7992,6 @@ mana={3}
 type=Artifact
 [/card]
 [card]
-name=Phyrexian Revoker
-text=As Phyrexian Revoker enters the battlefield, name a nonland card. -- Activated abilities of sources with the chosen name can't be activated.
-mana={2}
-type=Artifact Creature
-subtype=Horror
-power=2
-toughness=1
-[/card]
-[card]
 name=Pia's Revolution
 text=Whenever a nontoken artifact is put into your graveyard from the battlefield, return that card to your hand unless target opponent has Pia's Revolution deal 3 damage to him or her.
 mana={2}{R}
@@ -8237,12 +8119,6 @@ name=Plea for Power
 text=Will of the council — Starting with you, each player votes for time or knowledge. If time gets more votes, take an extra turn after this one. If knowledge gets more votes or the vote is tied, draw three cards.
 mana={3}{U}
 type=Sorcery
-[/card]
-[card]
-name=Plunge into Darkness
-text=Choose one — Sacrifice any number of creatures, then you gain 3 life for each sacrificed creature; or pay X life, then look at the top X cards of your library, put one of those cards into your hand, and exile the rest. -- Entwine {B} (Choose both if you pay the entwine cost.)
-mana={1}{B}
-type=Instant
 [/card]
 [card]
 name=Pointy Finger of Doom
@@ -9203,12 +9079,6 @@ mana={1}{R}{R}
 type=Instant
 [/card]
 [card]
-name=Savage Summoning
-text=Savage Summoning can't be countered. -- The next creature card you cast this turn can be cast as though it had flash. That spell can't be countered. That creature enters the battlefield with an additional +1/+1 counter on it.
-mana={G}
-type=Instant
-[/card]
-[card]
 name=Save Life
 text=Choose one Target player gains 2½ life; or prevent the next 2½ damage that would be dealt to target creature this turn. -- Gotcha Whenever an opponent says "Save" or "Life," you may say "Gotcha" If you do, return Save Life from your graveyard to your hand.
 mana={W}
@@ -9328,12 +9198,6 @@ type=Conspiracy
 name=Secrets of Paradise
 text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Creatures you control with the chosen name have "{T}: Add one mana of any color to your mana pool."
 type=Conspiracy
-[/card]
-[card]
-name=Seize the Soul
-text=Destroy target nonwhite, nonblack creature. Put a 1/1 white Spirit creature token with flying onto the battlefield. -- Haunt (When this spell card is put into a graveyard after resolving, exile it haunting target creature.) -- When the creature Seize the Soul haunts dies, destroy target nonwhite, nonblack creature. Put a 1/1 white Spirit creature token with flying onto the battlefield.
-mana={2}{B}{B}
-type=Instant
 [/card]
 [card]
 name=Selective Adaptation
@@ -10715,15 +10579,6 @@ type=Sorcery
 name=Summoner's Bond
 text=Double agenda (Start the game with this conspiracy face down in the command zone and secretly name two different cards. You may turn this conspiracy face up any time and reveal the chosen names.) -- Whenever you cast a creature spell with one of the chosen names, you may search your library for a creature card with the other chosen name, reveal it, put it into your hand, then shuffle your library.
 type=Conspiracy
-[/card]
-[card]
-name=Summoner's Egg
-text=Imprint — When Summoner's Egg enters the battlefield, you may exile a card from your hand face down. -- When Summoner's Egg dies, turn the exiled card face up. If it's a creature card, put it onto the battlefield under your control.
-mana={4}
-type=Artifact Creature
-subtype=Construct
-power=0
-toughness=4
 [/card]
 [card]
 name=Suncleanser

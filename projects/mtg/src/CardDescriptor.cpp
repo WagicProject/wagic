@@ -165,7 +165,7 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card)
     // Quantified restrictions are always AND-ed:
     if (foretoldComparisonMode && !valueInRange(foretoldComparisonMode, card->foretellTurn, foretellTurn))
         return NULL;
-    if (kickedComparisonMode && !valueInRange(kickedComparisonMode, card->kicked, kicked))
+    if (kickedComparisonMode && (!valueInRange(kickedComparisonMode, card->kicked, kicked) || card->has(Constants::HASREPLICATE)))
         return NULL;
     if (powerComparisonMode && !valueInRange(powerComparisonMode, card->getPower(), power))
         return NULL;
@@ -213,7 +213,7 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card)
 
     if (foretoldComparisonMode && !valueInRange(foretoldComparisonMode, card->foretellTurn, foretellTurn))
         match = NULL;
-    if (kickedComparisonMode && !valueInRange(kickedComparisonMode, card->kicked, kicked))
+    if (kickedComparisonMode && (!valueInRange(kickedComparisonMode, card->kicked, kicked) || card->has(Constants::HASREPLICATE)))
         match = NULL;
     if (powerComparisonMode && !valueInRange(powerComparisonMode, card->getPower(), power))
         match = NULL;

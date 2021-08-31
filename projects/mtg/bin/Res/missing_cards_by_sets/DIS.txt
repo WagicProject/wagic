@@ -6,12 +6,6 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Bound // Determined
-text=Sacrifice a creature. Return up to X cards from your graveyard to your hand, where X is the number of colors that creature was. Exile this card. --  //  -- Other spells you control can't be countered by spells or abilities this turn. -- Draw a card.
-mana={3}{B}{G} // {G}{U}
-type=Instant // Instant
-[/card]
-[card]
 name=Kill-Suit Cultist
 text=Kill-Suit Cultist attacks each turn if able. -- {B}, Sacrifice Kill-Suit Cultist: The next time damage would be dealt to target creature this turn, destroy that creature instead.
 mana={R}

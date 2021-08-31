@@ -62,9 +62,3 @@ text=The next time you would lose the game this turn, instead draw seven cards a
 mana={3}{B}
 type=Instant
 [/card]
-[card]
-name=Blood Feud
-text=Target creature fights another target creature. (Each deals damage equal to its power to the other.)
-mana={4}{R}{R}
-type=Sorcery
-[/card]

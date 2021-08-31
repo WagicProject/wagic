@@ -1,20 +1,8 @@
 [card]
-name=Insist
-text=The next creature spell you cast this turn can't be countered by spells or abilities. -- Draw a card.
-mana={G}
-type=Sorcery
-[/card]
-[card]
 name=Alter Reality
 text=Change the text of target spell or permanent by replacing all instances of one color word with another. (This effect lasts indefinitely.) -- Flashback {1}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{U}
 type=Instant
-[/card]
-[card]
-name=Overmaster
-text=The next instant or sorcery spell you cast this turn can't be countered by spells or abilities. -- Draw a card.
-mana={R}
-type=Sorcery
 [/card]
 [card]
 name=Radiate

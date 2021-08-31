@@ -20,25 +20,3 @@ mana={2}{U}
 type=Enchantment
 subtype=Aura
 [/card]
-[card]
-name=Grafted Wargear
-text=Equipped creature gets +3/+2. -- Whenever Grafted Wargear becomes unattached from a permanent, sacrifice that permanent. -- Equip {0} ({0}: Attach to target creature you control. Equip only as a sorcery.)
-mana={3}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
-name=Plunge into Darkness
-text=Choose one  Sacrifice any number of creatures, then you gain 3 life for each sacrificed creature; or pay X life, then look at the top X cards of your library, put one of those cards into your hand, and exile the rest. -- Entwine {B} (Choose both if you pay the entwine cost.)
-mana={1}{B}
-type=Instant
-[/card]
-[card]
-name=Summoner's Egg
-text=Imprint  When Summoner's Egg enters the battlefield, you may exile a card from your hand face down. -- When Summoner's Egg dies, turn the exiled card face up. If it's a creature card, put it onto the battlefield under your control.
-mana={4}
-type=Artifact Creature
-subtype=Construct
-power=0
-toughness=4
-[/card]
