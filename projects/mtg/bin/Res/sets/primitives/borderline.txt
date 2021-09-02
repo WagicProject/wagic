@@ -19252,7 +19252,7 @@ restriction=type(creature[attacking]|myBattlefield)~equalto~0
 autohand={2}{R}{R} restriction{type(creature[attacking]|myBattlefield)~equalto~2}:name(Cast Embercleave for 2 less) name(Cast Embercleave for 2 less) activate castcard(alternative)
 autohand={1}{R}{R} restriction{type(creature[attacking]|myBattlefield)~equalto~3}:name(Cast Embercleave for 3 less) name(Cast Embercleave for 3 less) activate castcard(alternative)
 autohand={R}{R} restriction{type(creature[attacking]|myBattlefield)~morethan~3}:name(Cast Embercleave for 4 less) name(Cast Embercleave for 4 less) activate castcard(alternative)
-auto=aslongas(parents) name(Attach to creature) rehook target(creature|myBattlefield) <1
+auto=name(Attach to creature) rehook target(creature|myBattlefield)
 auto=teach(creature) double strike
 auto=teach(creature) trample
 auto=teach(creature) 1/1
@@ -47050,7 +47050,7 @@ name=Pirate's Pillage
 auto=draw:2 controller
 auto=token(Treasure Sur)*2
 text=As an additional cost to cast this spell, discard a card. -- Draw two cards and create two Treasure tokens. (They're artifacts with " {T}, Sacrifice this artifact: Add one mana of any color.")
-mana={3}{R}{D(*|myhand)}
+mana={3}{R}{D(other *|myhand)}
 type=Sorcery
 [/card]
 [card]
@@ -49560,8 +49560,8 @@ name=Ragavan, Nimble Pilferer
 other={1}{R} name(Dash)
 auto=if paid(alternative) then transforms((,newability[haste],newability[phaseaction[endofturn once sourceinplay] moveto(ownerhand)])) forever
 auto=@combatdamaged(player) from(this):token(Treasure Sur)
-auto=@combatdamagefoeof(player) from(this):name(Exile top card) name(Exile top card) all(*[zpos=1]|opponentlibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[phaseaction[endofturn once checkex] moveTo(ownerexile)])) ueot )!
-auto=@combatdamageof(player) from(this):name(Exile top card) name(Exile top card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile])) ueot )!
+auto=@combatdamagefoeof(player) from(this):name(Exile top card) name(Exile top card) all(*[zpos=1]|opponentlibrary) moveto(myexile) and!( if cantargetcard(*[-land]|*) then transforms((,newability[canplayfromexile],newability[phaseaction[endofturn once checkex] moveTo(ownerexile)])) ueot )!
+auto=@combatdamageof(player) from(this):name(Exile top card) name(Exile top card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( if cantargetcard(*[-land]|*) then transforms((,newability[this(cantargetcard(*[-land]|*)) canplayfromexile])) ueot )!
 text=Whenever Ragavan, Nimble Pilferer deals combat damage to a player, create a Treasure token and exile the top card of that player's library. Until end of turn, you may cast that card. -- Dash {1}{R} (You may cast this spell for its dash cost. If you do, it gains haste, and it's returned from the battlefield to its owner's hand at the beginning of the next end step.)
 mana={R}
 type=Legendary Creature
@@ -55862,7 +55862,7 @@ name=Seize the Spoils
 auto=draw:2 controller
 auto=token(Treasure Sur)
 text=As an additional cost to cast this spell, discard a card. -- Draw two cards and create a Treasure token. (It’s an artifact with "{T}, Sacrifice this artifact: Add one mana of any color.")
-mana={2}{R}{D(*|myhand)}
+mana={2}{R}{D(other *|myhand)}
 type=Sorcery
 [/card]
 [card]

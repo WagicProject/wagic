@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 03/09/21
+- *Committed:* Fixed primitives, fixed some possible crashes on Commander Format. ([Vitty85](https://github.com/Vitty85))
+
 ### 02/09/21
-- *Committed:* Added/fixed primitives, updated the "missing_cards_by_sets" folder, fixed several crash on Commander Format, fixed a possible crash using "and!()!" with "imprint", added a new macros "_REBOUND_" and "_GOAD_" related to rebound and goad abilities and refactored all cards using them, implemented a new keywords "haunt", "hasprey", "preyname" and "isprey" related the haunting ability and improved all cards using it, Added "commander" and "\*" to HINT castpriority for AI decks in order to allow the user to give a cast priority to commanders. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Added/fixed primitives, updated the "missing_cards_by_sets" folder, fixed several crash on Commander Format, fixed a possible crash using "and!()!" with "imprint", added a new macros "_REBOUND_" and "_GOAD_" related to rebound and goad abilities and refactored all cards using them, implemented a new keywords "haunt", "hasprey", "preyname" and "isprey" related the haunting ability and improved all cards using it, Added "commander" and "\*" to HINT castpriority for AI decks in order to allow the user to give a cast priority to commanders. https://github.com/WagicProject/wagic/commit/001cea95bd501ca47b6510037af2725508f321d5 ([Vitty85](https://github.com/Vitty85))
 
 ### 31/08/21
 - *Committed:* Added/fixed primitives, updated the "missing_cards_by_sets" folder, improved all cards with replicate (now they use a special version of multikicker but they don't count as kicked spell), improved all cards with "fizzle" and "fizzleto" ability and improved engine for "fizzle" and "nofizzle" ability (e.g. now it's possible to grant a card the nofizzle ability on stack), added new keyword "mycolnum" to count the number colors of a card. https://github.com/WagicProject/wagic/commit/54d0c3203551b377146d4bbe7d5af0c642b1058e ([Vitty85](https://github.com/Vitty85)) 

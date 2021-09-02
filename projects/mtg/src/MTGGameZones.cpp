@@ -1482,7 +1482,7 @@ MTGGameZone * MTGGameZone::intToZone(GameObserver *g, int zoneId, MTGCardInstanc
 
     if (!source && g) //patchwork fix when g is NULL.
         p = g->currentlyActing();
-    else
+    else if (source)
         p = source->controller();
     if (!target && source) //patchwork fix when source is NULL.
     {
