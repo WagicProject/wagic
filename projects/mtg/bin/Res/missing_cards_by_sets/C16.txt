@@ -1,13 +1,4 @@
 [card]
-name=Corpsejack Menace
-text=If one or more +1/+1 counters would be placed on a creature you control, twice that many +1/+1 counters are placed on it instead.
-mana={2}{B}{G}
-type=Creature
-subtype=Fungus
-power=4
-toughness=4
-[/card]
-[card]
 name=Chain of Vapor
 text=Return target nonland permanent to its owner's hand. Then that permanent's controller may sacrifice a land. If the player does, he or she may copy this spell and may choose a new target for that copy.
 mana={U}
@@ -90,13 +81,6 @@ type=Creature
 subtype=Human Soldier
 power=1
 toughness=1
-[/card]
-[card]
-name=Curse of Vengeance
-text=Enchant player -- Whenever enchanted player casts a spell, put a spite counter on Curse of Vengeance. -- When enchanted player loses the game, you gain X life and draw X cards, where X is the number of spite counters on Curse of Vengeance.
-mana={B}
-type=Enchantment
-subtype=Aura Curse
 [/card]
 [card]
 name=Cruel Entertainment

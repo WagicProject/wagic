@@ -8,12 +8,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Deadly Designs
-text={2}: Put a plot counter on Deadly Designs. Any player may activate this ability. -- When there are five or more plot counters on Deadly Designs, sacrifice it. If you do, destroy up to two target creatures.
-mana={1}{B}
-type=Enchantment
-[/card]
-[card]
 name=Capital Punishment
 text=Council's dilemma  Starting with you, each player votes for death or taxes. Each opponent sacrifices a creature for each death vote and discards a card for each taxes vote.
 mana={4}{B}{B}
@@ -202,15 +196,6 @@ text=Equipped creature gets +1/+1 and has all names of nonlegendary creature car
 mana={2}
 type=Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Leovold, Emissary of Trest
-text=Each opponent can't draw more than one card each turn. -- Whenever you or a permanent you control becomes the target of a spell or ability an opponent controls, you may draw a card.
-mana={B}{G}{U}
-type=Legendary Creature
-subtype=Elf Advisor
-power=3
-toughness=3
 [/card]
 [card]
 name=Desertion

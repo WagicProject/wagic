@@ -280,6 +280,7 @@ void MTGCardInstance::initMTGCI()
     countTrini = 0;
     anymanareplacement = false;
     imprintedCards.clear();
+    hauntedCard = NULL;
     attackCost = 0;
     attackCostBackup = 0;
     attackPlaneswalkerCost = 0;

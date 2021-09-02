@@ -2254,6 +2254,7 @@ int AAImprint::resolve()
             {
                 andAbilityClone->addToGame();
             }
+            SAFE_DELETE(andAbility); //moved here because in destructor it can cause a crash.
         }
         return 1;
     }
@@ -2272,7 +2273,61 @@ AAImprint * AAImprint::clone() const
 
 AAImprint::~AAImprint()
 {
-    SAFE_DELETE(andAbility);
+}
+
+//AAHaunt
+AAHaunt::AAHaunt(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost) :
+    ActivatedAbility(observer, _id, _source, _cost, 0)
+{
+    target = _target;
+    andAbility = NULL;
+}
+
+int AAHaunt::resolve()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if (_target && _target->hasType(Subtypes::TYPE_CREATURE))
+    {
+        if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be haunted, they will follow the fate of top-card
+
+        while(_target->next)
+            _target = _target->next;
+
+        _target->basicAbilities[Constants::ISPREY] = 1;
+        source->hauntedCard = _target;
+
+        if(andAbility)
+        {
+            MTGAbility * andAbilityClone = andAbility->clone();
+            andAbilityClone->target = _target;
+            if(andAbility->oneShot)
+            {
+                andAbilityClone->resolve();
+                SAFE_DELETE(andAbilityClone);
+            }
+            else
+            {
+                andAbilityClone->addToGame();
+            }
+            SAFE_DELETE(andAbility); //moved here because in destructor it can cause a crash.
+        }
+        return 1;
+    }
+    return 0;
+}
+
+const string AAHaunt::getMenuText()
+{
+    return "Haunt";
+}
+
+AAHaunt * AAHaunt::clone() const
+{
+    return NEW AAHaunt(*this);
+}
+
+AAHaunt::~AAHaunt()
+{
 }
 
 //AAConjure

@@ -1961,15 +1961,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Corpsejack Menace
-text=If one or more +1/+1 counters would be placed on a creature you control, twice that many +1/+1 counters are placed on it instead.
-mana={2}{B}{G}
-type=Creature
-subtype=Fungus
-power=4
-toughness=4
-[/card]
-[card]
 name=Corrosion
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of your upkeep, put a rust counter on each artifact target opponent controls. Then destroy each artifact with converted mana cost less than or equal to the number of rust counters on it. Artifacts destroyed this way can't be regenerated. -- When Corrosion leaves the battlefield, remove all rust counters from all permanents.
 mana={1}{B}{R}
@@ -2025,12 +2016,6 @@ name=Cover of Winter
 text=Cumulative upkeep {S{i} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it. {S{i} can be paid with one mana from a snow permanent.) -- If a creature would deal combat damage to you and/or one or more creatures you control, prevent X of that damage, where X is the number of age counters on Cover of Winter. -- {S{i}: Put an age counter on Cover of Winter.
 mana={2}{W}
 type=Snow Enchantment
-[/card]
-[card]
-name=Covetous Urge
-text=Target opponent reveals their hand. You choose a nonland card from that player's graveyard or hand and exile it. You may cast that card for as long as it remains exiled, and you may spend mana as though it were mana of any color to cast that spell.
-mana={UB}{UB}{UB}{UB}
-type=Sorcery
 [/card]
 [card]
 name=Cowed by Wisdom
@@ -2163,76 +2148,6 @@ mana={4}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Curse of Chaos
-text=Enchant player -- Whenever a player attacks enchanted player with one or more creatures, that attacking player may discard a card. If the player does, he or she draws a card.
-mana={2}{R}
-type=Enchantment
-subtype=Aura Curse
-[/card]
-[card]
-name=Curse of Echoes
-text=Enchant player -- Whenever enchanted player casts an instant or sorcery spell, each other player may copy that spell and may choose new targets for the copy he or she controls.
-mana={4}{U}
-type=Enchantment
-subtype=Aura Curse
-[/card]
-[card]
-name=Curse of Inertia
-text=Enchant player -- Whenever a player attacks enchanted player with one or more creatures, that attacking player may tap or untap target permanent of his or her choice.
-mana={2}{U}
-type=Enchantment
-subtype=Aura Curse
-[/card]
-[card]
-name=Curse of Misfortunes
-text=Enchant player -- At the beginning of your upkeep, you may search your library for a Curse card that doesn't have the same name as a Curse attached to enchanted player, put it onto the battlefield attached to that player, then shuffle your library.
-mana={4}{B}
-type=Enchantment
-subtype=Aura Curse
-[/card]
-[card]
-name=Curse of Predation
-text=Enchant player -- Whenever a creature attacks enchanted player, put a +1/+1 counter on it.
-mana={2}{G}
-type=Enchantment
-subtype=Aura Curse
-[/card]
-[card]
-name=Curse of Shallow Graves
-text=Enchant player -- Whenever a player attacks enchanted player with one or more creatures, that attacking player may put a 2/2 black Zombie creature token onto the battlefield tapped.
-mana={2}{B}
-type=Enchantment
-subtype=Aura Curse
-[/card]
-[card]
-name=Curse of Vengeance
-text=Enchant player -- Whenever enchanted player casts a spell, put a spite counter on Curse of Vengeance. -- When enchanted player loses the game, you gain X life and draw X cards, where X is the number of spite counters on Curse of Vengeance.
-mana={B}
-type=Enchantment
-subtype=Aura Curse
-[/card]
-[card]
-name=Curse of the Cabal
-text=Target player sacrifices half the permanents he or she controls, rounded down. -- Suspend 2—{2}{B}{B} (Rather than cast this card from your hand, you may pay {2}{B}{B} and exile it with two time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- At the beginning of each player's upkeep, if Curse of the Cabal is suspended, that player may sacrifice a permanent. If he or she does, put two time counters on Curse of the Cabal.
-mana={9}{B}
-type=Sorcery
-[/card]
-[card]
-name=Curse of the Fire Penguin
-text=Curse of the Fire Penquin consumes and confuses enchanted creature. --  -- ——— --  -- Creature Penguin -- Trample --  -- 6/5 -- Whenthiscreatureisputintoagraveyardfromplay,returnCurseoftheFirePenguinfromyourgraveyardtoplay.
-mana={4}{R}{R}
-type=Enchant Creature
-power=
-toughness=
-[/card]
-[card]
-name=Curse of the Forsaken
-text=Enchant player -- Whenever a creature attacks enchanted player, its controller gains 1 life.
-mana={2}{W}
-type=Enchantment
-subtype=Aura Curse
-[/card]
-[card]
 name=Curtain of Light
 text=Cast Curtain of Light only during combat after blockers are declared. -- Target unblocked attacking creature becomes blocked. (This spell works on unblockable creatures.) -- Draw a card.
 mana={1}{W}
@@ -2342,15 +2257,6 @@ power=2
 toughness=4
 [/card]
 [card]
-name=Daxos of Meletis
-text=Daxos of Meletis can't be blocked by creatures with power 3 or greater. -- Whenever Daxos of Meletis deals combat damage to a player, exile the top card of that player's library. You gain life equal to that card's converted mana cost. Until end of turn, you may cast that card and you may spend mana as though it were mana of any color to cast it.
-mana={1}{W}{U}
-type=Legendary Creature
-subtype=Human Soldier
-power=2
-toughness=2
-[/card]
-[card]
 name=Day's Undoing
 text=Each player shuffles his or her hand and graveyard into his or her library, then draws seven cards. If it's your turn, end the turn. (Exile all spells and abilities on the stack, including this card. Discard down to your maximum hand size. Damage wears off, and "this turn" and "until end of turn" effects end.)
 mana={2}{U}
@@ -2362,12 +2268,6 @@ text=Put Deadhead into play. Use this ability only if any opponent loses contact
 mana={3}{B}
 type=Summon
 subtype=Zombie
-[/card]
-[card]
-name=Deadly Designs
-text={2}: Put a plot counter on Deadly Designs. Any player may activate this ability. -- When there are five or more plot counters on Deadly Designs, sacrifice it. If you do, destroy up to two target creatures.
-mana={1}{B}
-type=Enchantment
 [/card]
 [card]
 name=Deadly Poison Sampler
@@ -3426,22 +3326,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Firecat Blitz
-text=Put X 1/1 red Elemental Cat creature tokens with haste onto the battlefield. Exile them at the beginning of the next end step. -- Flashback—{R}{R}, Sacrifice X Mountains. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={X}{R}{R}
-type=Sorcery
-[/card]
-[card]
-name=Firestorm Phoenix
-abilities=flying
-text=Flying -- If Firestorm Phoenix would die, return Firestorm Phoenix to its owner's hand instead. Until that player's next turn, that player plays with that card revealed in his or her hand and can't play it.
-mana={4}{R}{R}
-type=Creature
-subtype=Phoenix
-power=3
-toughness=2
-[/card]
-[card]
 name=First Come, First Served
 text=The attacking or blocking creature with the lowest collector number has first strike. If two or more creatures are tied, they all have first strike.
 mana={1}{W}
@@ -3536,34 +3420,16 @@ mana={1}{G}
 type=Instant
 [/card]
 [card]
-name=Food Chain
-text=Exile a creature you control: Add X mana of any one color to your mana pool, where X is the exiled creature's converted mana cost plus one. Spend this mana only to cast creature spells.
-mana={2}{G}
-type=Enchantment
-[/card]
-[card]
 name=Force Bubble
 text=If damage would be dealt to you, put that many depletion counters on Force Bubble instead. -- When there are four or more depletion counters on Force Bubble, sacrifice it. -- At the beginning of each end step, remove all depletion counters from Force Bubble.
 mana={2}{W}{W}
 type=Enchantment
 [/card]
 [card]
-name=Force of Rage
-text=If it's not your turn, you may exile a red card from your hand rather than pay this spell's mana cost. -- Create two 3/1 red Elemental creature tokens with trample and haste. Sacrifice those tokens at the beginning of your next upkeep.
-mana={1}{R}{R}
-type=Instant
-[/card]
-[card]
 name=Forcefield
 text={1}: The next time an unblocked creature of your choice would deal combat damage to you this turn, prevent all but 1 of that damage.
 mana={3}
 type=Artifact
-[/card]
-[card]
-name=Foreshadow
-text=Name a card, then put the top card of target opponent's library into his or her graveyard. If that card is the named card, you draw a card. -- Draw a card at the beginning of the next turn's upkeep.
-mana={1}{U}
-type=Instant
 [/card]
 [card]
 name=Forethought Amulet
@@ -5863,12 +5729,6 @@ mana={4}{R}
 type=Sorcery
 [/card]
 [card]
-name=Laquatus's Disdain
-text=Counter target spell cast from a graveyard. -- Draw a card.
-mana={1}{U}
-type=Instant
-[/card]
-[card]
 name=Lash Out
 text=Lash Out deals 3 damage to target creature. Clash with an opponent. If you win, Lash Out deals 3 damage to that creature's controller. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={1}{R}
@@ -5964,15 +5824,6 @@ type=Creature
 subtype=Elf Rogue
 power=3
 toughness=2
-[/card]
-[card]
-name=Leovold, Emissary of Trest
-text=Each opponent can't draw more than one card each turn. -- Whenever you or a permanent you control becomes the target of a spell or ability an opponent controls, you may draw a card.
-mana={B}{G}{U}
-type=Legendary Creature
-subtype=Elf Advisor
-power=3
-toughness=3
 [/card]
 [card]
 name=Lesser Werewolf
@@ -6171,12 +6022,6 @@ name=Lost in the Woods
 text=Whenever a creature attacks you or a planeswalker you control, reveal the top card of your library. If it's a Forest card, remove that creature from combat. Then put the revealed card on the bottom of your library.
 mana={3}{G}{G}
 type=Enchantment
-[/card]
-[card]
-name=Lucky Clover
-text=Whenever you cast an Adventure instant or sorcery spell, copy it. You may choose new targets for the copy.
-mana={2}
-type=Artifact
 [/card]
 [card]
 name=Lurking Automaton
@@ -6490,16 +6335,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Medomai the Ageless
-abilities=flying
-text=Flying -- Whenever Medomai the Ageless deals combat damage to a player, take an extra turn after this one. -- Medomai the Ageless can't attack during extra turns.
-mana={4}{W}{U}
-type=Legendary Creature
-subtype=Sphinx
-power=4
-toughness=4
-[/card]
-[card]
 name=Melee
 text=Cast Melee only during your turn and only during combat before blockers are declared. -- You choose which creatures block this combat and how those creatures block. -- Whenever a creature attacks and isn't blocked this combat, untap it and remove it from combat.
 mana={4}{R}
@@ -6560,15 +6395,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Mesmeric Sliver
-text=All Slivers have "When this permanent enters the battlefield, you may fateseal 1." (To fateseal 1, its controller looks at the top card of an opponent's library, then he or she may put that card on the bottom of that library.)
-mana={3}{U}
-type=Creature
-subtype=Sliver
-power=2
-toughness=2
-[/card]
-[card]
 name=Messenger Jays
 text=Flying -- Council's dilemma — When Messenger Jays enters the battlefield, starting with you, each player votes for feather or quill. Put a +1/+1 counter on Messenger Jays for each feather vote and draw a card for each quill vote. For each card drawn this way, discard a card.
 mana={4}{U}
@@ -6576,12 +6402,6 @@ type=Creature
 subtype=Bird
 power=2
 toughness=1
-[/card]
-[card]
-name=Metamorphosis
-text=As an additional cost to cast Metamorphosis, sacrifice a creature. -- Add X mana of any one color to your mana pool, where X is one plus the sacrificed creature's converted mana cost. Spend this mana only to cast creature spells.
-mana={G}
-type=Sorcery
 [/card]
 [card]
 name=Midlife Upgrade
@@ -8883,15 +8703,6 @@ type=Instant
 subtype=Arcane
 [/card]
 [card]
-name=Robber of the Rich
-text=Reach, haste -- Whenever Robber of the Rich attacks, if defending player has more cards in hand than you, exile the top card of their library. During any turn you attacked with a Rogue, you may cast that card and you may spend mana as though it were mana of any color to cast that spell.
-mana={1}{R}
-type=Creature
-subtype=Human Archer Rogue
-power=2
-toughness=2
-[/card]
-[card]
 name=Robo-
 text=At the beginning of each end step, if an artifact entered the battlefield under your control this turn, -- Augment {2} ({2} , Reveal this card from your hand: Combine it with target host. Augment only as a sorcery.)
 type=Artifact Creature
@@ -9967,12 +9778,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Specter's Shriek
-text=Target opponent reveals their hand. You may choose a nonland card from it. If you do, that player exiles that card. If a nonblack card is exiled this way, exile a card from your hand.
-mana={B}
-type=Sorcery
-[/card]
-[card]
 name=Spectral Shift
 text=Choose one — Change the text of target spell or permanent by replacing all instances of one basic land type with another; or change the text of target spell or permanent by replacing all instances of one color word with another. (These effects last indefinitely.) -- Entwine {2} (Choose both if you pay the entwine cost.)
 mana={1}{U}
@@ -9986,7 +9791,7 @@ type=Instant
 [/card]
 [card]
 name=Spell Queller
-abilities=flash
+abilities=flash,flying
 text=Flash -- Flying -- When Spell Queller enters the battlefield, exile target spell with converted mana cost 4 or less. -- When Spell Queller leaves the battlefield, the exiled card's owner may cast that card without paying its mana cost.
 mana={1}{W}{U}
 type=Creature
@@ -9998,12 +9803,6 @@ toughness=3
 name=Spell Suck
 text=Counter target spell, then assemble a Contraption. (Put the top card of your Contraption deck face up onto one of your sprockets.)
 mana={2}{U}{U}
-type=Instant
-[/card]
-[card]
-name=Spelljack
-text=Counter target spell. If that spell is countered this way, exile it instead of putting it into its owner's graveyard. You may play it without paying its mana cost for as long as it remains exiled. (If it has X in its mana cost, X is 0.)
-mana={3}{U}{U}{U}
 type=Instant
 [/card]
 [card]
@@ -10085,16 +9884,6 @@ power=5
 toughness=6
 [/card]
 [card]
-name=Sphinx of the Chimes
-abilities=flying
-text=Flying -- Discard two nonland cards with the same name: Draw four cards.
-mana={4}{U}{U}
-type=Creature
-subtype=Sphinx
-power=5
-toughness=6
-[/card]
-[card]
 name=Spider Climb
 text=You may cast Spider Climb as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- Enchanted creature gets +0/+3 and has reach. (It can block creatures with flying.)
 mana={G}
@@ -10119,15 +9908,6 @@ type=Creature
 subtype=Kor Spirit
 power=2
 toughness=2
-[/card]
-[card]
-name=Spirit of the Labyrinth
-text=Each player can't draw more than one card each turn.
-mana={1}{W}
-type=Enchantment Creature
-subtype=Spirit
-power=3
-toughness=1
 [/card]
 [card]
 name=Spirit of the Season

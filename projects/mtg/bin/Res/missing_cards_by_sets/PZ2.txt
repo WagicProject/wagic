@@ -5,26 +5,11 @@ mana={R}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Metamorphosis
-text=As an additional cost to cast Metamorphosis, sacrifice a creature. -- Add X mana of any one color to your mana pool, where X is one plus the sacrificed creature's converted mana cost. Spend this mana only to cast creature spells.
-mana={G}
-type=Sorcery
-[/card]
-[card]
 name=Desperate Ritual
 text=Add {R}{R}{R} to your mana pool. -- Splice onto Arcane {1}{R} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={1}{R}
 type=Instant
 subtype=Arcane
-[/card]
-[card]
-name=Leovold, Emissary of Trest
-text=Each opponent can't draw more than one card each turn. -- Whenever you or a permanent you control becomes the target of a spell or ability an opponent controls, you may draw a card.
-mana={B}{G}{U}
-type=Legendary Creature
-subtype=Elf Advisor
-power=3
-toughness=3
 [/card]
 [card]
 name=Nylea's Colossus
@@ -145,11 +130,4 @@ name=Expropriate
 text=Council's dilemma  Starting with you, each player votes for time or money. For each time vote, take an extra turn after this one. For each money vote, choose a permanent owned by the voter and gain control of it. Exile Expropriate.
 mana={7}{U}{U}
 type=Sorcery
-[/card]
-[card]
-name=Curse of Vengeance
-text=Enchant player -- Whenever enchanted player casts a spell, put a spite counter on Curse of Vengeance. -- When enchanted player loses the game, you gain X life and draw X cards, where X is the number of spite counters on Curse of Vengeance.
-mana={B}
-type=Enchantment
-subtype=Aura Curse
 [/card]

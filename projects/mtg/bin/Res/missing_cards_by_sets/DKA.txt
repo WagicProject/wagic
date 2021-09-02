@@ -24,13 +24,6 @@ mana={3}{G}{G}
 type=Enchantment
 [/card]
 [card]
-name=Curse of Misfortunes
-text=Enchant player -- At the beginning of your upkeep, you may search your library for a Curse card that doesn't have the same name as a Curse attached to enchanted player, put it onto the battlefield attached to that player, then shuffle your library.
-mana={4}{B}
-type=Enchantment
-subtype=Aura Curse
-[/card]
-[card]
 name=Soul Seizer
 abilities=flying
 text=Flying -- When Soul Seizer deals combat damage to a player, you may transform it. If you do, attach it to target creature that player controls.
@@ -56,11 +49,4 @@ auto=this(controllerlife < 6) ability$! choice name(protection from white) all(*
 text=Target permanent you control gains protection from the color of your choice until end of turn. -- Fateful hour  If you have 5 or less life, instead you and each permanent you control gain protection from the color of your choice until end of turn.
 mana={W}
 type=Instant
-[/card]
-[card]
-name=Curse of Echoes
-text=Enchant player -- Whenever enchanted player casts an instant or sorcery spell, each other player may copy that spell and may choose new targets for the copy he or she controls.
-mana={4}{U}
-type=Enchantment
-subtype=Aura Curse
 [/card]

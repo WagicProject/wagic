@@ -79,9 +79,3 @@ text=Exile all nontoken permanents. Starting with you, each player chooses one o
 mana={4}{R}{R}{R}
 type=Sorcery
 [/card]
-[card]
-name=Food Chain
-text=Exile a creature you control: Add X mana of any one color to your mana pool, where X is the exiled creature's converted mana cost plus one. Spend this mana only to cast creature spells.
-mana={2}{G}
-type=Enchantment
-[/card]

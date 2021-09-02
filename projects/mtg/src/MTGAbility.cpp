@@ -3372,6 +3372,25 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         }
     }
 
+    //haunt a creature
+    found = s.find("haunt");
+    if (found != string::npos)
+    {
+        if (s.find("haunted") == string::npos)
+        {
+            MTGAbility * a = NEW AAHaunt(observer, id, card, target);
+            a->oneShot = 1;
+            //andability
+            if(storedAndAbility.size())
+            {
+                string stored = storedAndAbility;
+                storedAndAbility.clear();
+                ((AAHaunt*)a)->andAbility = parseMagicLine(stored, id, spell, card);
+            }
+            return a;
+        }
+    }
+
     //Conjure a card
     found = s.find("conjure");
     if (found != string::npos)
@@ -5305,6 +5324,8 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
     if (dynamic_cast<AAFlip *> (a))
         return BAKA_EFFECT_GOOD;
     if (dynamic_cast<AAImprint *> (a))
+        return BAKA_EFFECT_GOOD;
+    if (dynamic_cast<AAHaunt *> (a))
         return BAKA_EFFECT_GOOD;
     if (dynamic_cast<ABestow *> (a))
         return BAKA_EFFECT_GOOD;

@@ -23,31 +23,12 @@ mana={5}{R}
 type=Enchantment
 [/card]
 [card]
-name=Corpsejack Menace
-text=If one or more +1/+1 counters would be placed on a creature you control, twice that many +1/+1 counters are placed on it instead.
-mana={2}{B}{G}
-type=Creature
-subtype=Fungus
-power=4
-toughness=4
-[/card]
-[card]
 name=Rakdos, Lord of Riots
 text=You can't cast Rakdos, Lord of Riots unless an opponent lost life this turn. -- Flying, trample -- Creature spells you cast cost {1} less to cast for each 1 life your opponents have lost this turn.
 mana={B}{B}{R}{R}
 type=Legendary Creature
 subtype=Demon
 power=6
-toughness=6
-[/card]
-[card]
-name=Sphinx of the Chimes
-abilities=flying
-text=Flying -- Discard two nonland cards with the same name: Draw four cards.
-mana={4}{U}{U}
-type=Creature
-subtype=Sphinx
-power=5
 toughness=6
 [/card]
 [card]

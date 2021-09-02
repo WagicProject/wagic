@@ -4,22 +4,3 @@ text=Reveal the top five cards of your library and separate them into two piles.
 mana={2}{U}{R}
 type=Instant
 [/card]
-[card]
-name=Medomai the Ageless
-abilities=flying
-text=Flying -- Whenever Medomai the Ageless deals combat damage to a player, take an extra turn after this one. -- Medomai the Ageless can't attack during extra turns.
-mana={4}{W}{U}
-type=Legendary Creature
-subtype=Sphinx
-power=4
-toughness=4
-[/card]
-[card]
-name=Daxos of Meletis
-text=Daxos of Meletis can't be blocked by creatures with power 3 or greater. -- Whenever Daxos of Meletis deals combat damage to a player, exile the top card of that player's library. You gain life equal to that card's converted mana cost. Until end of turn, you may cast that card and you may spend mana as though it were mana of any color to cast it.
-mana={1}{W}{U}
-type=Legendary Creature
-subtype=Human Soldier
-power=2
-toughness=2
-[/card]

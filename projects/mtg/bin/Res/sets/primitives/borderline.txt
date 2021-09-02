@@ -111,8 +111,8 @@ type=Instant
 [card]
 name=Absolver Thrull
 auto=name(Destroy enchantment) target(enchantment|battlefield) destroy
-auto=_DIES_all(trigger[to]) transforms((,newability[moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) counter(0/0.1.ThrullHaunted)])) oneshot )!])) oneshot
-autoexile=@movedto(creature[counter{0/0.1.ThrullHaunted}]|graveyard) from(battlefield) once:name(Destroy enchantment) target(enchantment|battlefield) destroy
+auto=_DIES_name(Exile and haunt a creature) all(trigger[to]) transforms((,newability[if type(creature|battlefield)~morethan~0 then moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) haunt])) oneshot )!])) oneshot
+autoexile=this(variable{hasprey}>0) transforms((,newability[@movedto(creature[preyname&isprey]|graveyard) from(battlefield):name(Destroy enchantment) target(enchantment|battlefield) destroy]))
 text=Haunt (When this creature dies, exile it haunting target creature.) -- When Absolver Thrull enters the battlefield or the creature it haunts dies, destroy target enchantment.
 mana={3}{W}
 type=Creature
@@ -814,8 +814,8 @@ toughness=8
 [/card]
 [card]
 name=Agitator Ant
-auto=@each my endofturn:target(creature|mybattlefield) counter(1/1,2) && target(creature|opponentbattlefield) counter(1/1,2)
-auto=lord(creature[counter{1/1}]|battlefield) mustattack
+auto=@each my endofturn:may name(Put 1/1 counters and goad) target(creature|mybattlefield) transforms((,newability[counter(1/1.2)],newability[counter(0/0.1.Goaded)],newability[this(counter{0/0.1.Goaded}>0) mustattack],newability[phaseaction[endofturn next once sourceinplay] removeallcounters(0/0.-1.Goaded)])) forever
+auto=@each my endofturn:ability$!may name(Put 1/1 counters and goad) target(creature|mybattlefield) transforms((,newability[counter(1/1.2)],newability[counter(0/0.1.Goaded)],newability[this(counter{0/0.1.Goaded}>0) mustattack],newability[phaseaction[endofturn next once sourceinplay] removeallcounters(0/0.-1.Goaded)])) forever!$ opponent
 text=At the beginning of your end step, each player may put two +1/+1 counters on a creature they control. Goad each creature that had counters put on it this way. (Until your next turn, those creatures attack each combat if able and attack a player other than you if able.)
 mana={2}{R}
 type=Creature
@@ -5283,9 +5283,9 @@ toughness=4
 [card]
 name=Belfry Spirit
 abilities=flying
-auto=token(Bat,Creature Bat,1/1,black,flying)*2
-auto=_DIES_all(trigger[to]) transforms((,newability[moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) counter(0/0.1.BelfryHaunted)])) oneshot )!])) oneshot
-autoexile=@movedto(creature[counter{0/0.1.BelfryHaunted}]|graveyard) from(battlefield) once:token(Bat,Creature Bat,1/1,black,flying)*2
+auto=name(Create Bats) token(Bat,Creature Bat,1/1,black,flying)*2
+auto=_DIES_name(Exile and haunt a creature) all(trigger[to]) transforms((,newability[if type(creature|battlefield)~morethan~0 then moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) haunt])) oneshot )!])) oneshot
+autoexile=this(variable{hasprey}>0) transforms((,newability[@movedto(creature[preyname&isprey]|graveyard) from(battlefield):name(Create Bats) token(Bat^Creature Bat^1/1^black^flying)*2]))
 text=Flying -- Haunt (When this creature dies, exile it haunting target creature.) -- When Belfry Spirit enters the battlefield or the creature it haunts dies, put two 1/1 black Bat creature tokens with flying onto the battlefield.
 mana={3}{W}{W}
 type=Creature
@@ -5418,10 +5418,8 @@ type=Sorcery
 [/card]
 [card]
 name=Benediction of Moons
-abilities=exiledeath
-auto=life:2 controller
-auto=name(Haunt a creature) target(creature) counter(0/0.1.MoonsHaunted)
-autoexile=@movedto(creature[counter{0/0.1.MoonsHaunted}]|graveyard) from(battlefield) once:life:2 controller
+auto=name(Gain 2 life) life:2 controller
+auto=if type(creature|mybattlefield)~morethan~0 then name(Exile and haunt a creature) all(this|mystack) moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) haunt and!( counter(0/0.1.MoonsHaunted) )!],newability[@movedto(creature[isprey&counter{0/0.1.MoonsHaunted}]|graveyard) from(battlefield) once:name(Gain 2 life) life:2 controller])) forever )!
 text=You gain 1 life for each player. -- Haunt (When this spell card is put into a graveyard after resolving, exile it haunting target creature.) -- When the creature Benediction of Moons haunts dies, you gain 1 life for each player.
 mana={W}
 type=Sorcery
@@ -5509,7 +5507,7 @@ toughness=1
 [card]
 name=Besmirch
 target=creature
-auto=moveto(mybattlefield) and!(transforms((,newability[phaseaction[endofturn sourceinplay] moveTo(previousbattlefield)],newability[untap],haste,mustattack)) ueot)!
+auto=moveto(mybattlefield) and!( transforms((,newability[phaseaction[endofturn once sourceinplay] moveTo(ownerBattlefield)],newability[untap],newability[haste ueot],newability[counter(0/0.1.Goaded)],newability[this(counter{0/0.1.Goaded}>0) mustattack],newability[phaseaction[endofturn next once sourceinplay] removeallcounters(0/0.-1.Goaded)])) forever )!
 text=Until end of turn, gain control of target creature and it gains haste. Untap and goad that creature. (Until your next turn, that creature attacks each combat if able and attacks a player other than you if able.)
 mana={1}{R}{R}
 type=Sorcery
@@ -6099,8 +6097,7 @@ type=Instant
 name=Blessed Reincarnation
 target=creature|opponentbattlefield
 auto=moveto(exile) && ability$!name(Put first creature in play) name(Put first creature in play) target(*[zpos=findfirsttypecreature]|mylibrary) moveto(myBattlefield) and!( shuffle controller )! !$ opponent
-auto=if rebound then ability$!moveto(exile) all(Blessed Reincarnation|mystack)!$ controller
-autoexile=@rebounded:may activate castcard(normal)
+auto=_REBOUND_
 text=Exile target creature an opponent controls. That player reveals cards from the top of his or her library until a creature card is revealed. The player puts that card onto the battlefield, then shuffles the rest into his or her library. -- Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 mana={3}{U}
 type=Instant
@@ -6230,9 +6227,10 @@ type=Instant
 [card]
 name=Blind Hunter
 abilities=flying
-auto=name(Player loses 2 life) target(player) life:-2 && life:2 controller
-auto=_DIES_all(trigger[to]) transforms((,newability[moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) counter(0/0.1.BlindHaunted)])) oneshot )!])) oneshot
-autoexile=@movedto(creature[counter{0/0.1.BlindHaunted}]|graveyard) from(battlefield) once:name(Player loses 2 life) target(player) life:-2 && life:2 controller
+auto=name(Player loses 2 life) target(player) life:-2
+auto=name(Gain 2 life) life:2 controller
+auto=_DIES_name(Exile and haunt a creature) all(trigger[to]) transforms((,newability[if type(creature|battlefield)~morethan~0 then moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) haunt])) oneshot )!])) oneshot
+autoexile=this(variable{hasprey}>0) transforms((,newability[@movedto(creature[preyname&isprey]|graveyard) from(battlefield):name(Player loses 2 life) target(player) life:-2],newability[@movedto(creature[preyname&isprey]|graveyard) from(battlefield):name(Gain 2 life) life:2 controller]))
 text=Flying -- Haunt (When this creature dies, exile it haunting target creature.) -- When Blind Hunter enters the battlefield or the creature it haunts dies, target player loses 2 life and you gain 2 life.
 mana={2}{W}{B}
 type=Creature
@@ -6773,8 +6771,7 @@ name=Blossoming Calm
 auto=life:2 controller
 auto=all(*|myBattlefield) transforms((,newability[controllershroud])) uynt
 auto=token(BlossomingEffect,BlossomingEffect,0/0,shroud,indestructible,controllershroud) and!( transforms((,newability[phaseaction[opponent end once sourceinplay] sacrifice])) forever )!
-auto=if rebound then ability$!moveto(exile) all(Blossoming Calm|mystack)!$ controller
-autoexile=@rebounded:may activate castcard(normal)
+auto=_REBOUND_
 text=You gain hexproof until your next turn. You gain 2 life. -- Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 mana={W}
 type=Instant
@@ -11930,16 +11927,15 @@ type=Enchantment
 [/card]
 [card]
 name=Commander's Plate
-target=creature
 auto={5}:equip
-auto={3} restriction{type(creature[iscommander]|mybattlefield)~morethan~0}:name(equip commander) rehook target(creature[iscommander]|mybattlefield)
+auto=aslongas(*[iscommander]|myBattlefield) {3}:name(equip a commander) name(equip a commander) rehook target(creature[iscommander]|mybattlefield)
 auto=teach(creature) 3/3
-auto=if type(*[red]|myzones)~lessthan~1 then teach(creature) protection from red
-auto=if type(*[white]|myzones)~lessthan~1 then teach(creature) protection from white
-auto=if type(*[green]|myzones)~lessthan~1 then teach(creature) protection from green
-auto=if type(*[blue]|myzones)~lessthan~1 then teach(creature) protection from blue
-auto=if type(*[black]|myzones)~lessthan~1 then teach(creature) protection from black
-auto=if type(*[-black;-red;-white;-blue;-green]|myzones)~lessthan~1 then teach(creature) protection from(artifact)
+auto=aslongas(*[red]|myzones) teach(creature) protection from red <1
+auto=aslongas(*[white]|myzones) teach(creature) protection from white <1
+auto=aslongas(*[green]|myzones) teach(creature) protection from green <1
+auto=aslongas(*[blue]|myzones) teach(creature) protection from blue <1
+auto=aslongas(*[black]|myzones) then teach(creature) protection from black <1
+auto=aslongas(*[colorless]|myzones) teach(creature) protection from(artifact) <1
 text=Equipped creature gets +3/+3 and has protection from each color that's not in your commander's color identity. -- Equip commander {3} -- Equip {5}
 mana={1}
 type=Artifact
@@ -11947,13 +11943,13 @@ subtype=Equipment
 [/card]
 [card]
 name=Commander's Sphere
-auto=if type(*[red]|myzones)~morethan~0 then transforms((,newability[{T}:add{R}])) forever
-auto=if type(*[white]|myzones)~morethan~0 then transforms((,newability[{T}:add{W}])) forever
-auto=if type(*[green]|myzones)~morethan~0 then transforms((,newability[{T}:add{G}])) forever
-auto=if type(*[blue]|myzones)~morethan~0 then transforms((,newability[{T}:add{U}])) forever
-auto=if type(*[black]|myzones)~morethan~0 then transforms((,newability[{T}:add{B}])) forever
-auto=if type(*[-black;-red;-white;-blue;-green]|myzones)~morethan~0 then transforms((,newability[{T}:add{C}])) forever
-auto={S}:draw:1 controller
+auto={S}:name(Sacrifice and draw) draw:1 controller
+auto=aslongas(*[red]|myzones) {T}:add{R}
+auto=aslongas(*[white]|myzones) {T}:add{W}
+auto=aslongas(*[green]|myzones) {T}:add{G}
+auto=aslongas(*[blue]|myzones) {T}:add{U}
+auto=aslongas(*[black]|myzones) {T}:add{B}
+auto=aslongas(*[colorless]|myzones) {T}:add{C}
 text={T}: Add to your mana pool one mana of any color in your commander's color identity. -- Sacrifice Commander's Sphere: Draw a card.
 mana={3}
 type=Artifact
@@ -12592,6 +12588,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Corpsejack Menace
+auto=@counteradded(1/1) from(creature|battlefield) except(Corpsejack Menace):may target(creature[counter{1/1.1}]|Battlefield) counter(1/1) notrg
+text=If one or more +1/+1 counters would be placed on a creature you control, twice that many +1/+1 counters are placed on it instead.
+mana={2}{B}{G}
+type=Creature
+subtype=Fungus
+power=4
+toughness=4
+[/card]
+[card]
 name=Corpseweft
 auto={1}{B}{E(creature|mygraveyard)}:name(Exile 1 creature) token(Zombie,creature Zombie Horror,2/2,black) and!( tap(noevent) )!
 auto={1}{B}{E(creature|mygraveyard)}{E(creature|mygraveyard)}:name(Exile 2 creatures) token(Zombie,creature Zombie Horror,4/4,black) and!( tap(noevent) )!
@@ -12838,7 +12844,7 @@ type=Artifact
 [card]
 name=Coveted Peacock
 abilities=flying
-auto=_ATTACKING_may name(Goad creature) target(creature|opponentBattlefield) transforms((,newability[mustattack])) uynt
+auto=_ATTACKING_may name(Goad creature) target(creature|opponentBattlefield) _GOAD_
 text=Flying -- Whenever Coveted Peacock attacks, you may goad target creature defending player controls. (Until your next turn, that creature attacks each combat if able and attacks a player other than you if able.)
 mana={3}{U}{U}
 type=Creature
@@ -12856,6 +12862,15 @@ autohand=thisforeach(variable{calculateparty}>0) changecost(colorless:-1) forced
 auto=name(Reveal) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<1>*|reveal) moveto(myhand) and!(shuffle)! optiononeend optiontwo name(Put back) all(*|reveal) moveto(ownerlibrary) and!(shuffle)! optiontwoend afterrevealed if compare(calculateparty)~equalto~4 then may name(cast card with mana cost less than 4) activate name(cast card with mana cost less than 4) castcard(normal) target(*[-land;manacost<=4]|myHand) afterrevealedend revealend
 text=This spell costs {1} less to cast for each creature in your party. (Your party consists of up to one each of Cleric, Rogue, Warrior, and Wizard.) -- Search your library for a card, put it into your hand, then shuffle your library. If you have a full party, you may cast a spell with converted mana cost 4 or less from your hand without paying its mana cost.
 mana={4}{B}
+type=Sorcery
+[/card]
+[card]
+name=Covetous Urge
+auto=if type(*[-land]|opponentgraveyard)~morethan~0 then name(Exile non land card) name(Exile non land card) target(*[-land]|opponenthand,opponentgraveyard) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[anytypeofmana],newability[@each beginofturn:name(Can play from exile) transforms((,newability[canplayfromexile],newability[anytypeofmana])) forever])) forever )!
+auto=if type(*[-land]|opponentgraveyard)~equalto~0 then if type(*[-land]|opponenthand)~morethan~0 then name(Exile non land card) name(Exile non land card) name(Exile non land card) target(*[-land]|opponenthand) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[anytypeofmana],newability[@each beginofturn:name(Can play from exile) transforms((,newability[canplayfromexile],newability[anytypeofmana])) forever])) forever )!
+auto=if type(*[-land]|opponentgraveyard)~equalto~0 then if type(*[-land]|opponenthand)~equalto~0 then name(Look opponent hand) name(Look opponent hand) name(Look opponent hand) target(*|opponenthand) moveto(myreveal) and!( moveto(opponenthand) )!
+text=Target opponent reveals their hand. You choose a nonland card from that player's graveyard or hand and exile it. You may cast that card for as long as it remains exiled, and you may spend mana as though it were mana of any color to cast that spell.
+mana={UB}{UB}{UB}{UB}
 type=Sorcery
 [/card]
 [card]
@@ -13389,11 +13404,9 @@ type=Instant
 [/card]
 [card]
 name=Cry of Contrition
-abilities=exiledeath
 target=player
 auto=ability$!name(Discard a card) name(Discard a card) target(*|myhand) reject!$ targetedplayer
-auto=ability$!name(Haunt a creature) name(Haunt a creature) target(creature) counter(0/0.1.ContritionHaunted)!$ controller
-autoexile=@movedto(creature[counter{0/0.1.ContritionHaunted}]|graveyard) from(battlefield) once:name(A player discards a card) target(player) ability$!name(Discard a card) name(Discard a card) target(*|myhand) reject!$ targetedplayer
+auto=if type(creature|mybattlefield)~morethan~0 then name(Exile and haunt a creature) all(this|mystack) moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) haunt and!( counter(0/0.1.ContritionHaunted) )!],newability[@movedto(creature[isprey&counter{0/0.1.ContritionHaunted}]|graveyard) from(battlefield) once:name(A player discards a card) target(player) ability$!name(Discard a card) name(Discard a card) target(*|myhand) reject!$ targetedplayer )!])) forever )!
 text=Target player discards a card. -- Haunt (When this spell card is put into a graveyard after resolving, exile it haunting target creature.) -- When the creature Cry of Contrition haunts dies, target player discards a card.
 mana={B}
 type=Sorcery
@@ -13731,10 +13744,10 @@ toughness=3
 [/card]
 [card]
 name=Curse of Bloodletting
-target=player
-auto=@damaged(targetedplayer) from(*[instant;sorcery]|Stack,graveyard):damage:thatmuch all(trigger[to])
-auto=@damaged(targetedplayer) from(*[creature;artifact;land;planeswalker]|battlefield,graveyard):damage:thatmuch all(trigger[to])
-auto=@damaged(targetedplayer) from(enchantment[-Curse of Bloodletting]|battlefield,graveyard):damage:thatmuch all(trigger[to])
+target=opponent
+auto=@damaged(targetedplayer) from(*[instant;sorcery]|*):damage:thatmuch opponent
+auto=@damaged(targetedplayer) from(*[creature;artifact;land;planeswalker]|*):damage:thatmuch opponent
+auto=@damaged(targetedplayer) from(enchantment[-Curse of Bloodletting]|*):damage:thatmuch opponent
 text=Enchant player -- If a source would deal damage to enchanted player, it deals double that damage to that player instead.
 mana={3}{R}{R}
 type=Enchantment
@@ -13742,47 +13755,137 @@ subtype=Aura Curse
 [/card]
 [card]
 name=Curse of Bounty
-target=player
-auto=@combat(attacking) source(creature|myBattlefield) restriction{once}:untap all(*[-land]|myBattlefield)
+target=opponent
+auto=@combat(attacking) source(creature|mybattlefield) turnlimited:name(Untap all non-land permanents) untap all(*[-land]|myBattlefield)
 text=Enchant player -- Whenever enchanted player is attacked, untap all nonland permanents you control. Each opponent attacking that player untaps all nonland permanents they control.
 mana={1}{G}
 type=Enchantment
 subtype=Aura Curse
 [/card]
 [card]
+name=Curse of Chaos
+target=opponent
+auto=@combat(attacking) source(creature|mybattlefield) turnlimited:may name(Discard and draw) target(*|myhand) reject and!( draw:1 )!
+text=Enchant player -- Whenever a player attacks enchanted player with one or more creatures, that attacking player may discard a card. If the player does, he or she draws a card.
+mana={2}{R}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+[card]
 name=Curse of Disturbance
-target=player
-auto=@combat(attacking) source(creature|myBattlefield) restriction{once}:create(zombie:creature zombie:2/2:black)
+target=opponent
+auto=@combat(attacking) source(creature|mybattlefield) turnlimited:name(Create Zombie) token(Zombie Lil)
 text=Enchant player -- Whenever enchanted player is attacked, create a 2/2 black Zombie creature token. Each opponent attacking that player does the same.
 mana={2}{B}
 type=Enchantment
 subtype=Aura Curse
 [/card]
 [card]
+name=Curse of Echoes
+target=opponent
+auto=@movedto(*[instant;sorcery]|targetedpersonsstack):may name(Copy casted spell) all(trigger[to]) activate castcard(copied)
+text=Enchant player -- Whenever enchanted player casts an instant or sorcery spell, each other player may copy that spell and may choose new targets for the copy he or she controls.
+mana={4}{U}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+[card]
 name=Curse of Fool's Wisdom
 abilities=madness
-target=player
-auto=@drawn(targetedplayer):may life:-2 opponent
-auto=@drawn(targetedplayer):may life:2 controller
-autoexile=restriction{discarded} pay({3}{B}) name(pay 3B to cast) activate name(pay 2G to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+target=opponent
+auto=@drawn(targetedplayer):name(Lose life) life:-2 opponent && life:2 controller
+autoexile=restriction{discarded} pay({3}{B}) name(pay 3B to cast) activate name(pay 3B to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
 text=Enchant player -- Whenever enchanted player draws a card, they lose 2 life and you gain 2 life. -- Madness {3}{B} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)
 mana={4}{B}{B}
 type=Enchantment
 subtype=Aura Curse
 [/card]
 [card]
+name=Curse of Inertia
+target=opponent
+auto=@combat(attacking) source(creature|mybattlefield) turnlimited:may name(Tap or untap permanent) transforms((,newability[choice name(Tap a permanent) target(*|battlefield) tap],newability[choice name(Untap a permanent) target(*|battlefield) untap])) oneshot
+text=Enchant player -- Whenever a player attacks enchanted player with one or more creatures, that attacking player may tap or untap target permanent of his or her choice.
+mana={2}{U}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+[card]
+name=Curse of Misfortunes
+target=opponent
+auto=@each my upkeep:may name(Search curse) target(curse[-Curse of Misfortunes]|mylibrary) transforms((,newability[if type(curse[share!name!]|myBattlefield)~equalto~0 then moveto(myBattlefield) and!( shuffle )!])) oneshot
+text=Enchant player -- At the beginning of your upkeep, you may search your library for a Curse card that doesn't have the same name as a Curse attached to enchanted player, put it onto the battlefield attached to that player, then shuffle your library.
+mana={4}{B}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+[card]
 name=Curse of Opulence
-target=player
-auto=@combat(attacking) source(creature|myBattlefield) restriction{once}:token(435451)
-text=Enchant player -- Whenever enchanted player is attacked, create a colorless artifact token named Gold. It has "Sacrifice this artifact: Add one mana of any color." Each opponent attacking that player does the same.
+target=opponent
+auto=@combat(attacking) source(creature|myBattlefield) turnlimited:name(Create Gold) token(435451)
+text=Enchant player -- Whenever enchanted player is attacked, create a colorless artifact token named Gold. It has "Sacrifice this artifact: Add one mana of any color.". Each opponent attacking that player does the same.
 mana={R}
 type=Enchantment
 subtype=Aura Curse
 [/card]
 [card]
+name=Curse of Predation
+target=opponent
+auto=@combat(attacking) source(creature|myBattlefield):name(Put 1/1 counter) all(trigger[to]) counter(1/1)
+text=Enchant player -- Whenever a creature attacks enchanted player, put a +1/+1 counter on it.
+mana={2}{G}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+[card]
+name=Curse of Shallow Graves
+target=opponent
+auto=@combat(attacking) source(creature|mybattlefield) turnlimited:may name(Create Zombie) token(Zombie Lil) and!( tap(noevent) )!
+text=Enchant player -- Whenever a player attacks enchanted player with one or more creatures, that attacking player may put a 2/2 black Zombie creature token onto the battlefield tapped.
+mana={2}{B}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+[card]
+name=Curse of the Cabal
+auto=target(player) ability$!name(sacrifice half permanents) notatarget(<halfuptype:*:myBattlefield>*|myBattlefield) sacrifice!$ targetedplayer
+suspend(2)={2}{B}{B}
+autoexile=@each my upkeep suspended restriction{compare(hascnttime)~morethan~0}:ability$!name(Sacrifice a permanent) may name(Sacrifice a permanent) target(*|mybattlefield) transforms((,newability[sacrifice],newability[target(Curse of the Cabal[counter{0/0.1.Time}]|myexile) counter(0/0.2.Time)])) oneshot!$ controller
+autoexile=@each opponent upkeep suspended:ability$!name(Sacrifice a permanent) may name(Sacrifice a permanent) target(*|mybattlefield) transforms((,newability[sacrifice],newability[target(Curse of the Cabal[counter{0/0.1.Time}]|opponentexile) counter(0/0.2.Time)])) oneshot!$ opponent
+text=Target player sacrifices half the permanents he or she controls, rounded down. -- Suspend 2 - {2}{B}{B} (Rather than cast this card from your hand, you may pay {2}{B}{B} and exile it with two time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- At the beginning of each player's upkeep, if Curse of the Cabal is suspended, that player may sacrifice a permanent. If he or she does, put two time counters on Curse of the Cabal.
+mana={9}{B}
+type=Sorcery
+[/card]
+[card]
+name=Curse of the Fire Penguin
+abilities=inplaydeath
+text=Trample -- When this creature is put into a graveyard from play, return Curse of the Fire Penguin from your graveyard to play.
+mana={4}{R}{R}
+type=Creature Penguin
+power=6
+toughness=5
+[/card]
+[card]
+name=Curse of the Forsaken
+target=opponent
+auto=@combat(attacking) source(creature|mybattlefield):name(Gain 1 life) life:1 controller
+text=Enchant player -- Whenever a creature attacks enchanted player, its controller gains 1 life.
+mana={2}{W}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+[card]
+name=Curse of Vengeance
+target=opponent
+auto=@movedto(*[instant;sorcery]|targetedpersonsstack):name(Put spite counter) counter(0/0,1,Spite)
+text=Enchant player -- Whenever enchanted player casts a spell, put a spite counter on Curse of Vengeance. -- When enchanted player loses the game, you gain X life and draw X cards, where X is the number of spite counters on Curse of Vengeance.
+mana={B}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+[card]
 name=Curse of Verbosity
-target=player
-auto=@combat(attacking) source(creature|myBattlefield) restriction{once}:draw:1
+target=opponent
+auto=@combat(attacking) source(creature|myBattlefield) turnlimited:name(Draw a card) draw:1 controller
 text=Enchant player -- Whenever enchanted player is attacked, you draw a card. Each opponent attacking that player does the same.
 mana={2}{U}
 type=Enchantment
@@ -13790,8 +13893,8 @@ subtype=Aura Curse
 [/card]
 [card]
 name=Curse of Vitality
-target=player
-auto=@combat(attacking) source(creature|myBattlefield)restriction{once}:life:2
+target=opponent
+auto=@combat(attacking) source(creature|myBattlefield) turnlimited:name(Gain 2 life) life:2 controller
 text=Enchant player -- Whenever enchanted player is attacked, you gain 2 life. Each opponent attacking that player does the same.
 mana={2}{W}
 type=Enchantment
@@ -14489,6 +14592,18 @@ power=2
 toughness=*
 [/card]
 [card]
+name=Daxos of Meletis
+auto=cantbeblockedby(creature[power>=3])
+auto=@combatdamagefoeof(player) from(creature|mybattlefield):name(Exile top card) all(*[zpos=1]|opponentlibrary) moveto(exile) and!( if cantargetcard(*[-land]|*) then moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[anytypeofmana],newability[life:manacost controller],newability[phaseaction[endofturn once checkex] moveTo(ownerexile)])) ueot )! )!
+auto=@combatdamageof(player) from(creature|mybattlefield):name(Exile top card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( if cantargetcard(*[-land]|*) then transforms((,newability[canplayfromexile],newability[anytypeofmana],newability[life:manacost controller])) ueot )!
+text=Daxos of Meletis can't be blocked by creatures with power 3 or greater. -- Whenever Daxos of Meletis deals combat damage to a player, exile the top card of that player's library. You gain life equal to that card's converted mana cost. Until end of turn, you may cast that card and you may spend mana as though it were mana of any color to cast it.
+mana={1}{W}{U}
+type=Legendary Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
 name=Daybreak Chaplain
 abilities=lifelink
 text=Lifelink (Damage dealt by this creature also causes you to gain that much life.)
@@ -14740,6 +14855,14 @@ auto=name(Choose creature or planeswalker) target(*[creature;planeswalker]|battl
 text=Choose a creature or planeswalker, then destroy all other creatures and planeswalkers. // {2}{W} Selfless Glyphweaver
 mana={5}{B}{B}{B}
 type=Sorcery
+[/card]
+[card]
+name=Deadly Designs
+auto={2}:name(Put plot counter) counter(0/0,1,Plot)
+auto=@counteradded(0/0,1,Plot) from(this) restriction{compare(hascntplot)~morethan~4}:name(Sacrifice Deadly Designs) transforms((,newability[sacrifice],newability[may name(Destroy 2 creature) target(<upto:2>creature|battlefield) destroy])) oneshot
+text={2}: Put a plot counter on Deadly Designs. Any player may activate this ability. -- When there are five or more plot counters on Deadly Designs, sacrifice it. If you do, destroy up to two target creatures.
+mana={1}{B}
+type=Enchantment
 [/card]
 [card]
 name=Deadly Visit
@@ -16455,7 +16578,7 @@ type=Sorcery
 [/card]
 [card]
 name=Disrupt Decorum
-auto=mustattack all(creature|opponentBattlefield) uynt
+auto=all(creature|opponentBattlefield) _GOAD_
 text=Goad all creatures you don't control. (Until your next turn, those creatures attack each combat if able and attack a player other than you if able.)
 mana={2}{R}{R}
 type=Sorcery
@@ -17554,9 +17677,10 @@ subtype=Aura
 [/card]
 [card]
 name=Dream Devourer
-auto=@foretold(*|myzones):2/0 ueot
-auto=lord(*[-foretell;-land]|myhand) transforms((,newability[foretell],newability[{2}:name(Pay 2 and exile face-down) name(Pay 2 and exile face-down) doforetell myturnonly]))
-auto=@each upkeep:all(*[foretold;-foretell]|myexile) transforms((,newability[this(variable{canforetellcast}>0) canplayfromexile],newability[this(variable{canforetellcast}>0) changecost(colorless:-2) forcedalive])) ueot
+auto=lord(*[-land]|myhand) foretell
+auto={2}:name(Foretell a card) target(*[-land]|myhand) doforetell myturnonly
+auto=@foretold(*|myzones):name(Gains 2/0) 2/0 ueot
+auto=@each upkeep restriction{type(*[foretold;-foretell]|myexile)~morethan~0}:all(*[foretold;-foretell]|myexile) transforms((,newability[this(variable{canforetellcast}>0) canplayfromexile],newability[this(variable{canforetellcast}>0) changecost(colorless:-2) forcedalive])) ueot
 text=Each nonland card in your hand without foretell has foretell. Its foretell cost is equal to its mana cost reduced by {2}. (During your turn, you may pay {2} and exile it from your hand face down. Cast it on a later turn for its foretell cost.) -- Whenever you foretell a card, Dream Devourer gets +2/+0 until end of turn.
 mana={1}{B}
 type=Creature
@@ -19774,8 +19898,7 @@ toughness=5
 name=Ephemerate
 target=creature|mybattlefield)
 auto=moveto(exile) and!(moveto(ownerbattlefield))!
-auto=if rebound then ability$!moveto(exile) all(Ephemerate|mystack)!$ controller
-autoexile=@rebounded:may activate castcard(normal)
+auto=_REBOUND_
 text=Exile target creature you control, then return it to the battlefield under its owner's control. -- Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 mana={W}
 type=Instant
@@ -20501,8 +20624,8 @@ type=Sorcery
 [card]
 name=Exhumer Thrull
 auto=name(Return creature to hand) moveto(myhand) target(creature|mygraveyard)
-auto=_DIES_all(trigger[to]) transforms((,newability[moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) counter(0/0.1.ExhumerHaunted)])) oneshot )!])) oneshot
-autoexile=@movedto(creature[counter{0/0.1.ExhumerHaunted}]|graveyard) from(battlefield) once:name(Return creature to hand) moveto(myhand) target(creature|mygraveyard)
+auto=_DIES_name(Exile and haunt a creature) all(trigger[to]) transforms((,newability[if type(creature|battlefield)~morethan~0 then moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) haunt])) oneshot )!])) oneshot
+autoexile=this(variable{hasprey}>0) transforms((,newability[@movedto(creature[preyname&isprey]|graveyard) from(battlefield):name(Return creature to hand) moveto(myhand) target(creature|mygraveyard)]))
 text=Haunt (When this creature dies, exile it haunting target creature.) -- When Exhumer Thrull enters the battlefield or the creature it haunts dies, return target creature card from your graveyard to your hand.
 mana={5}{B}
 type=Creature
@@ -20512,8 +20635,7 @@ toughness=3
 [/card]
 [card]
 name=Exiled Doomsayer
-auto=lord(*[morph]|mycastingzone) altercost(colorless, +2)
-auto=lord(*[morph]|opponentcastingzone) altercost(colorless, +2)
+#It's not possible to alter the morph cost ATM.
 text=All morph costs cost {2} more. (This doesn't affect the cost to cast creature spells face down.)
 mana={1}{W}
 type=Creature
@@ -21118,8 +21240,7 @@ type=Enchantment
 [card]
 name=Faithless Salvaging
 auto=target(*|myHand) reject and!( transforms((,newability[name(Draw 1 card) draw:1 controller])) oneshot )!
-auto=if rebound then ability$!moveto(exile) all(Faithless Salvaging|mystack)!$ controller
-autoexile=@rebounded:may activate castcard(normal)
+auto=_REBOUND_
 text=Discard a card, then draw a card. -- Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 mana={1}{R}
 type=Instant
@@ -21913,8 +22034,7 @@ subtype=Island Swamp
 [/card]
 [card]
 name=Fevered Suspicion
-auto=if rebound then ability$!moveto(exile) all(Fevered Suspicion|mystack)!$ controller
-autoexile=@rebounded:may activate castcard(normal)
+auto=_REBOUND_
 auto=name(Exile cards) all(*[zpos<=oppofindfirsttypenonland]|opponentlibrary) moveto(exile) and!( counter(0/0.1.FeveredExiled) )!
 auto=token(FeveredEffect,FeveredEffect,0/0,shroud,indestructible) and!( transforms((,newability[{0}:name(Cast exiled card) target(*[-land;counter{0/0.1.FeveredExiled}]|opponentexile) activate castcard(normal)])) forever )!
 text=Each opponent exiles cards from the top of their library until they exile a nonland card. You may cast any number of spells from among those nonland cards without paying their mana costs. -- Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
@@ -22244,9 +22364,29 @@ type=Instant
 [/card]
 [card]
 name=Finale of Devastation
-auto=this(X>=10) all(creature|myBattlefield) haste
-auto=this(X>=10) all(creature|myBattlefield) +x/+x
-auto=moveTo(myBattlefield) target(creature[manacost<=X]|myLibrary,myGraveyard)
+auto=this(X>=10) all(creature|myBattlefield) transforms((,newability[haste])) ueot
+auto=this(X>=10) all(creature|myBattlefield) +x/+x ueot
+auto=this(X=0) target(creature[manacost=0]|myLibrary,myGraveyard) moveTo(myBattlefield)
+auto=this(X=1) target(creature[manacost<=1]|myLibrary,myGraveyard) moveTo(myBattlefield)
+auto=this(X=2) target(creature[manacost<=2]|myLibrary,myGraveyard) moveTo(myBattlefield)
+auto=this(X=3) target(creature[manacost<=3]|myLibrary,myGraveyard) moveTo(myBattlefield)
+auto=this(X=4) target(creature[manacost<=4]|myLibrary,myGraveyard) moveTo(myBattlefield)
+auto=this(X=5) target(creature[manacost<=5]|myLibrary,myGraveyard) moveTo(myBattlefield)
+auto=this(X=6) target(creature[manacost<=6]|myLibrary,myGraveyard) moveTo(myBattlefield)
+auto=this(X=7) target(creature[manacost<=7]|myLibrary,myGraveyard) moveTo(myBattlefield)
+auto=this(X=8) target(creature[manacost<=8]|myLibrary,myGraveyard) moveTo(myBattlefield)
+auto=this(X=9) target(creature[manacost<=9]|myLibrary,myGraveyard) moveTo(myBattlefield)
+auto=this(X=10) target(creature[manacost<=10]|myLibrary,myGraveyard) moveTo(myBattlefield) and!( transforms((,newability[haste],newability[10/10])) ueot )!
+auto=this(X=11) target(creature[manacost<=11]|myLibrary,myGraveyard) moveTo(myBattlefield) and!( transforms((,newability[haste],newability[11/11])) ueot )!
+auto=this(X=12) target(creature[manacost<=12]|myLibrary,myGraveyard) moveTo(myBattlefield) and!( transforms((,newability[haste],newability[12/12])) ueot )!
+auto=this(X=13) target(creature[manacost<=13]|myLibrary,myGraveyard) moveTo(myBattlefield) and!( transforms((,newability[haste],newability[13/13])) ueot )!
+auto=this(X=14) target(creature[manacost<=14]|myLibrary,myGraveyard) moveTo(myBattlefield) and!( transforms((,newability[haste],newability[14/14])) ueot )!
+auto=this(X=15) target(creature[manacost<=15]|myLibrary,myGraveyard) moveTo(myBattlefield) and!( transforms((,newability[haste],newability[15/15])) ueot )!
+auto=this(X=16) target(creature[manacost<=16]|myLibrary,myGraveyard) moveTo(myBattlefield) and!( transforms((,newability[haste],newability[16/16])) ueot )!
+auto=this(X=17) target(creature[manacost<=17]|myLibrary,myGraveyard) moveTo(myBattlefield) and!( transforms((,newability[haste],newability[17/17])) ueot )!
+auto=this(X=18) target(creature[manacost<=18]|myLibrary,myGraveyard) moveTo(myBattlefield) and!( transforms((,newability[haste],newability[18/18])) ueot )!
+auto=this(X=19) target(creature[manacost<=19]|myLibrary,myGraveyard) moveTo(myBattlefield) and!( transforms((,newability[haste],newability[19/19])) ueot )!
+auto=this(X>=20) target(creature[manacost<=20]|myLibrary,myGraveyard) moveTo(myBattlefield) and!( transforms((,newability[haste],newability[20/20])) ueot )!
 text=Search your library and/or graveyard for a creature card with converted mana cost X or less and put it onto the battlefield. If you search your library this way, shuffle it. If X is 10 or more, creatures you control get +X/+X and gain haste until end of turn.
 mana={X}{G}{G}
 type=Sorcery
@@ -22474,6 +22614,15 @@ mana={1}{R}{R}
 type=Sorcery
 [/card]
 [card]
+name=Firecat Blitz
+flashback={R}{R}
+auto=ifnot gravecast then token(Elemental Cat,Creature Elemental Cat,3/1,red,haste,unearth)*fullpaid
+auto=if gravecast then name(Sacrifice X mountains) name(Sacrifice X mountains) target(<anyamount>mountain|myBattlefield) sacrifice and!( token(Elemental Cat,Creature Elemental Cat,3/1,red,haste,unearth) )!
+text=Put X 1/1 red Elemental Cat creature tokens with haste onto the battlefield. Exile them at the beginning of the next end step. -- Flashback—{R}{R}, Sacrifice X Mountains. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={X}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Firefist Adept
 auto=damage:type:wizard:mybattlefield target(creature|opponentBattlefield)
 text=When Firefist Adept enters the battlefield, it deals X damage to target creature an opponent controls, where X is the number of Wizards you control.
@@ -22605,6 +22754,17 @@ auto=if type(*|myHand)~morethan~19 then choice ability$!name(X=20, damage 20 cre
 text=As an additional cost to cast Firestorm, discard X cards. -- Firestorm deals X damage to each of X target creatures and/or players.
 mana={R}
 type=Instant
+[/card]
+[card]
+name=Firestorm Phoenix
+abilities=flying,handdeath
+auto=@movedto(this|myhand) from(battlefield):emblem transforms((,newability[maxcast(*[Firestorm Phoenix])0 ueot])) ueot
+text=Flying -- If Firestorm Phoenix would die, return Firestorm Phoenix to its owner's hand instead. Until that player's next turn, that player plays with that card revealed in his or her hand and can't play it.
+mana={4}{R}{R}
+type=Creature
+subtype=Phoenix
+power=3
+toughness=2
 [/card]
 [card]
 name=Firja's Retribution
@@ -23236,6 +23396,17 @@ type=Artifact
 subtype=Food
 [/card]
 [card]
+name=Food Chain
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {E(creature|myBattlefield)}:name(Add White) thisforeach(variable{storedmanacostplus1plusend}) add{W}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {E(creature|myBattlefield)}:name(Add Blue) thisforeach(variable{storedmanacostplus1plusend}) add{U}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {E(creature|myBattlefield)}:name(Add Black) thisforeach(variable{storedmanacostplus1plusend}) add{B}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {E(creature|myBattlefield)}:name(Add Red) thisforeach(variable{storedmanacostplus1plusend}) add{R}
+auto=this(variable{type:creature:myrestrictedcastingzone}>0) {E(creature|myBattlefield)}:name(Add Green) thisforeach(variable{storedmanacostplus1plusend}) add{G}
+text=Exile a creature you control: Add X mana of any one color to your mana pool, where X is the exiled creature's converted mana cost plus one. Spend this mana only to cast creature spells.
+mana={2}{G}
+type=Enchantment
+[/card]
+[card]
 name=Footfall Crater
 abilities=cycling
 target=land
@@ -23294,15 +23465,26 @@ type=Instant
 [card]
 name=Force of Negation
 target=*[-creature]|stack
-auto=fizzleto(exile)
 other={E(other *[blue]|myhand)} name(Exile a Blue Card from Hand)
+otherrestriction=opponentturnonly
+auto=fizzleto(exile)
 text=If it's not your turn, you may exile a blue card from your hand rather than pay this spell's mana cost. -- Counter target noncreature spell. If that spell is countered this way, exile it instead of putting it into its owner's graveyard.
 mana={1}{U}{U}
 type=Instant
 [/card]
 [card]
+name=Force of Rage
+other={E(other *[red]|myhand)} name(Exile a Red Card from Hand)
+otherrestriction=opponentturnonly
+auto=token(Elemental,Creature Elemental,3/1,red,haste,trample)*2 and!( transforms((,newability[@each my upkeep:name(Sacrifice elemental token) sacrifice])) forever )!
+text=If it's not your turn, you may exile a red card from your hand rather than pay this spell's mana cost. -- Create two 3/1 red Elemental creature tokens with trample and haste. Sacrifice those tokens at the beginning of your next upkeep.
+mana={1}{R}{R}
+type=Instant
+[/card]
+[card]
 name=Force of Vigor
 other={E(*[green]|myhand)} name(Exile a Green Card from Hand)
+otherrestriction=opponentturnonly
 auto=destroy target(<upto:2>*[artifact,enchantment]|battlefield)
 text=If it's not your turn, you may exile a green card from your hand rather than pay this spell's mana cost. -- Destroy up to two target artifacts and/or enchantments.
 mana={2}{G}{G}
@@ -23310,8 +23492,9 @@ type=Instant
 [/card]
 [card]
 name=Force of Virtue
-other={E(*[white]|myhand)}
 abilities=flash
+other={E(*[white]|myhand)} name(Exile a White Card from Hand)
+otherrestriction=opponentturnonly
 auto=lord(creature|myBattlefield) 1/1
 text=If it's not your turn, you may exile a white card from your hand rather than pay this spell's mana cost. -- Flash -- Creatures you control get +1/+1.
 mana={2}{W}{W}
@@ -23399,6 +23582,14 @@ type=Creature
 subtype=Vampire Knight
 power=2
 toughness=2
+[/card]
+[card]
+name=Foreshadow
+auto=chooseanameopp name(Mill opponent) all(*[zpos=1]|opponentLibrary) moveto(opponentGraveyard) and!( if cantargetcard(*[chosenname]|*) then draw:1 controller )! chooseend
+auto=@next upkeep:draw:1 controller
+text=Name a card, then put the top card of target opponent's library into his or her graveyard. If that card is the named card, you draw a card. -- Draw a card at the beginning of the next turn's upkeep.
+mana={1}{U}
+type=Instant
 [/card]
 [card]
 name=Forever Young
@@ -24861,7 +25052,7 @@ toughness=3
 [card]
 name=Geode Rager
 abilities=first strike
-auto=_LANDFALL_name(Choose one) ability$!name(Choose one) choice name(Goad opponent creatures) mustattack all(creature|opponentBattlefield) uynt _ choice name(Goad your creatures) mustattack all(creature|myBattlefield) uynt!$ controller
+auto=_LANDFALL_name(Choose one) ability$!name(Choose one) choice name(Goad opponent creatures) all(creature|opponentBattlefield) _GOAD_ _ choice name(Goad your creatures) all(creature|myBattlefield) _GOAD_!$ controller
 text=First strike -- Landfall — Whenever a land enters the battlefield under your control, goad each creature target player controls. (Until your next turn, those creatures attack each combat if able and attack a player other than you if able.)
 mana={4}{R}{R}
 type=Creature
@@ -26425,7 +26616,7 @@ type=Enchantment
 [/card]
 [card]
 name=Goblin Racketeer
-auto=_ATTACKING_may name(Goad creature) target(creature|opponentBattlefield) transforms((,newability[mustattack])) uynt
+auto=_ATTACKING_may name(Goad creature) target(creature|opponentBattlefield) _GOAD_
 text=Whenever Goblin Racketeer attacks, you may goad target creature defending player controls. (Until your next turn, that creature attacks each combat if able and attacks a player other than you if able.)
 mana={3}{R}
 type=Creature
@@ -26803,6 +26994,7 @@ toughness=9
 name=Goldspan Dragon
 abilities=flying,haste
 auto=@targeted(this):token(Treasure Sur)
+auto=@combat(attacking) source(this):token(Treasure Sur)
 auto=lord(artifact[treasure]|mybattlefield) transforms((,newability[{T}{S}:add{W}{W}],newability[{T}{S}:add{R}{R}],newability[{T}{S}:add{U}{U}],newability[{T}{S}:add{G}{G}],newability[{T}{S}:add{B}{B}]))
 text=Flying, haste -- Whenever Goldspan Dragon attacks or becomes the target of a spell, create a Treasure token. -- Treasures you control have "{T}, Sacrifice this artifact: Add two mana of any one color."
 mana={3}{R}{R}
@@ -27281,8 +27473,8 @@ toughness=1
 name=Graven Dominator
 abilities=flying
 auto=name(Creatures become 1/1) all(other creature|battlefield) becomes(,1/1) ueot
-auto=_DIES_all(trigger[to]) transforms((,newability[moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) counter(0/0.1.GravenHaunted)])) oneshot )!])) oneshot
-autoexile=@movedto(creature[counter{0/0.1.GravenHaunted}]|graveyard) from(battlefield) once:name(Creatures become 1/1) all(other creature|battlefield) becomes(,1/1) ueot
+auto=_DIES_name(Exile and haunt a creature) all(trigger[to]) transforms((,newability[if type(creature|battlefield)~morethan~0 then moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) haunt])) oneshot )!])) oneshot
+autoexile=this(variable{hasprey}>0) transforms((,newability[@movedto(creature[preyname&isprey]|graveyard) from(battlefield):name(Creatures become 1/1) all(other creature|battlefield) becomes(^1/1) ueot]))
 text=Flying -- Haunt (When this creature dies, exile it haunting target creature.) -- When Graven Dominator enters the battlefield or the creature it haunts dies, each other creature becomes 1/1 until end of turn.
 mana={4}{W}{W}
 type=Creature
@@ -27481,10 +27673,10 @@ toughness=2
 [/card]
 [card]
 name=Grenzo, Havoc Raiser
-auto=@combatdamagefoeof(player) from(creature|mybattlefield) restriction{type(creature|opponentBattlefield)~morethan~0}:name(Goad creature) name(Goad creature) target(creature|opponentBattlefield) transforms((,newability[mustattack])) uynt
-auto=@combatdamagefoeof(player) from(creature|mybattlefield) restriction{type(creature|opponentBattlefield)~equalto~0}:name(Exile top card) name(Exile top card) all(*[zpos=1]|opponentlibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[anytypeofmana],newability[phaseaction[endofturn once] moveTo(ownerexile)])) ueot )!
-auto=@combatdamageof(player) from(creature|mybattlefield) restriction{type(creature|mybattlefield)~morethan~0}:name(Goad creature) name(Goad creature) target(creature|myBattlefield) transforms((,newability[mustattack])) uynt
-auto=@combatdamageof(player) from(creature|mybattlefield) restriction{type(creature|mybattlefield)~equalto~0}:name(Exile top card) name(Exile top card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[anytypeofmana])) ueot )!
+auto=@combatdamagefoeof(player) from(creature|mybattlefield) restriction{type(creature|opponentBattlefield)~morethan~0}:ability$!name(Choose one) choice name(Exile top card) all(*[zpos=1]|opponentlibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[anytypeofmana],newability[phaseaction[endofturn once] moveTo(ownerexile)])) ueot )! _ choice name(Goad opponent creature) _GOAD_!$ controller
+auto=@combatdamagefoeof(player) from(creature|mybattlefield) restriction{type(creature|opponentBattlefield)~equalto~0}:name(Exile top card) all(*[zpos=1]|opponentlibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[anytypeofmana],newability[phaseaction[endofturn once] moveTo(ownerexile)])) ueot )!
+auto=@combatdamageof(player) from(creature|mybattlefield) restriction{type(creature|mybattlefield)~morethan~0}:ability$!name(Choose one) choice name(Exile top card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[anytypeofmana])) ueot )! _ choice name(Goad your creature) target(creature|myBattlefield) _GOAD_!$ controller
+auto=@combatdamageof(player) from(creature|mybattlefield) restriction{type(creature|mybattlefield)~equalto~0}:name(Exile top card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[anytypeofmana])) ueot )!
 text=Whenever a creature you control deals combat damage to a player, choose one — -- • Goad target creature that player controls.  -- • Exile the top card of that player's library. Until end of turn, you may cast that card and you may spend mana as though it were mana of any color to cast it.
 mana={R}{R}
 type=Legendary Creature
@@ -29498,7 +29690,7 @@ toughness=3
 [/card]
 [card]
 name=Helm of the Host
-auto=teach(creature) @each my combatbegins:clone(mytgt) with (haste,-legendary)
+auto=teach(creature) transforms((,newability[@each my combatbegins:clone with(haste) options(nolegend)]))
 auto={5}:equip
 text=At the beginning of combat on your turn, create a token that's a copy of equipped creature, except the token isn't legendary if equipped creature is legendary. That token gains haste. -- Equip {5}
 mana={4}
@@ -33557,7 +33749,7 @@ type=Legendary Sorcery
 [/card]
 [card]
 name=Jeering Homunculus
-auto=may name(Goad creature) target(creature|battlefield) transforms((,newability[mustattack])) uynt
+auto=may name(Goad creature) target(creature|battlefield) _GOAD_
 text=When Jeering Homunculus enters the battlefield, you may goad target creature. (Until your next turn, that creature attacks each combat if able and attacks a player other than you if able.)
 mana={1}{U}
 type=Creature
@@ -33568,8 +33760,8 @@ toughness=4
 [card]
 name=Jeska's Will
 auto=choice name(Add Red mana) foreach(*|opponenthand) add{R}
-auto=choice name(Exile 3 cards) moveto(exile) and!( transforms((,canplayfromexile)) ueot )! all(*[zpos<=3]|mylibrary)
-auto=if type(*[iscommander]|mybattlefield)~morethan~0 then choice name(Choose both) name(Choose both) moveto(exile) and!( transforms((,canplayfromexile])) ueot )! all(*[zpos<=3]|mylibrary) && foreach(*|opponenthand) add{R}
+auto=choice name(Exile 3 cards) all(*[zpos<=3]|mylibrary) moveto(exile) and!( transforms((,newability[canplayfromexile])) ueot )! 
+auto=if type(*[iscommander]|mybattlefield)~morethan~0 then choice name(Choose both) name(Choose both) all(*[zpos<=3]|mylibrary) moveto(exile) and!( transforms((,newability[canplayfromexile])) ueot )! && foreach(*|opponenthand) add{R}
 text=Choose one. If you control a commander as you cast this spell, you may choose both. -- • Add {R} for each card in target opponent's hand. -- • Exile the top three cards of your library. You may play them this turn.
 mana={2}{R}
 type=Sorcery
@@ -34236,7 +34428,7 @@ type=Instant
 [/card]
 [card]
 name=Karazikar, the Eye Tyrant
-auto=@each my blockers:name(Tap opponent creature) target(creature|opponentbattlefield) transforms((,newability[tap(noevent)],newability[mustattack])) uynt
+auto=@each my blockers:name(Tap opponent creature) target(creature|opponentbattlefield) transforms((,newability[tap(noevent)],newability[counter(0/0.1.Goaded)],newability[this(counter{0/0.1.Goaded}>0) mustattack],newability[phaseaction[endofturn next once sourceinplay] removeallcounters(0/0.-1.Goaded)])) forever
 text=Whenever you attack a player, tap target creature that player controls and goad it. (Until your next turn, that creature attacks each combat if able and attacks a player other than you if able.) -- Whenever an opponent attacks another one of your opponents, you and the attacking player each draw a card and lose 1 life.
 mana={3}{B}{R}
 type=Legendary Creature
@@ -35063,7 +35255,7 @@ type=Sorcery
 [/card]
 [card]
 name=Kindred Summons
-auto=activatechooseatype transforms((,newability[reveal:plibrarycount optionone name(Get creatures) target(<type:creature[chosentype]:myBattlefield>creature[chosentype]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) all(*|reveal) moveto(mylibrary) and!( shuffle )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!( moveTo(myBattlefield) )! afterrevealedend revealend])) oneshot activatechooseend
+auto=chooseatype if type(creature[chosentype]|myBattlefield)~equalto~1 then name(Search 1 creature) name(Search 1 creature) target(<1>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~2 then name(Search 2 creatures) name(Search 2 creatures) target(<2>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~3 then name(Search 3 creatures) name(Search 3 creatures) target(<3>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~4 then name(Search 4 creatures) name(Search 4 creatures) target(<4>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~5 then name(Search 5 creatures) name(Search 5 creatures) target(<5>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~6 then name(Search 6 creatures) name(Search 6 creatures) target(<6>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~7 then name(Search 7 creatures) name(Search 7 creatures) target(<7>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~8 then name(Search 8 creatures) name(Search 8 creatures) target(<8>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~9 then name(Search 9 creatures) name(Search 9 creatures) target(<9>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~10 then name(Search 10 creatures) name(Search 10 creatures) target(<10>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~11 then name(Search 11 creatures) name(Search 11 creatures) target(<11>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~12 then name(Search 12 creatures) name(Search 12 creatures) target(<12>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~13 then name(Search 13 creatures) name(Search 13 creatures) target(<13>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~14 then name(Search 14 creatures) name(Search 14 creatures) target(<14>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~15 then name(Search 15 creatures) name(Search 15 creatures) target(<15>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~16 then name(Search 16 creatures) name(Search 16 creatures) target(<16>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~17 then name(Search 17 creatures) name(Search 17 creatures) target(<17>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~18 then name(Search 18 creatures) name(Search 18 creatures) target(<18>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~19 then name(Search 19 creatures) name(Search 19 creatures) target(<19>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~morethan~19 then name(Search 20 creatures) name(Search 20 creatures) target(<20>creature[chosentype]|mylibrary) moveto(myBattlefield) chooseend
 text=Choose a creature type. Reveal cards from the top of your library until you reveal X creature cards of the chosen type, where X is the number of creatures you control of that type. Put those cards onto the battlefield, then shuffle the rest of the revealed cards into your library.
 mana={5}{G}{G}
 type=Instant
@@ -36289,6 +36481,15 @@ power=4
 toughness=6
 [/card]
 [card]
+name=Laquatus's Disdain
+target=*|stack
+auto=transforms((,newability[if gravecast then fizzle])) forever
+auto=draw:1 controller
+text=Counter target spell cast from a graveyard. -- Draw a card.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
 name=Lash of Malice
 target=creature
 auto=2/-2 ueot
@@ -37051,6 +37252,18 @@ abilities=leyline,nolifegain,nolifegainopponent
 text=If Leyline of Punishment is in your opening hand, you may begin the game with it on the battlefield. -- Players can't gain life. -- Damage can't be prevented.
 mana={2}{R}{R}
 type=Enchantment
+[/card]
+[card]
+name=Leovold, Emissary of Trest
+auto=@drawfoeof(player) restriction{compare(odrewcount)~morethan~1}:name(Opponent can't draw more than 1) transforms((,newability[all(*[zpos=type:*:opponenthand]|opponenthand) moveto(ownerlibrary)])) oneshot
+auto=@movedto(*[instant;sorcery]|opponentstack):may name(Draw a card) draw:1 controller
+auto=@targeted(*|mybattlefield) from(*[-instant;-sorcery]|opponentzones):may name(Draw a card) draw:1 controller
+text=Each opponent can't draw more than one card each turn. -- Whenever you or a permanent you control becomes the target of a spell or ability an opponent controls, you may draw a card.
+mana={B}{G}{U}
+type=Legendary Creature
+subtype=Elf Advisor
+power=3
+toughness=3
 [/card]
 [card]
 name=Liberating Combustion
@@ -38329,6 +38542,14 @@ mana={3}{U}{U}
 type=Sorcery
 [/card]
 [card]
+name=Lucky Clover
+auto=@movedTo(instant[adventure]|myStack):all(trigger[to]) activate castcard(alternative copied)
+auto=@movedTo(sorcery[adventure]|myStack):all(trigger[to]) activate castcard(alternative copied)
+text=Whenever you cast an Adventure instant or sorcery spell, copy it. You may choose new targets for the copy.
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Ludevic, Necro-Alchemist
 abilities=partner
 auto=@each my end restriction{compare(oplifelost)~morethan~0}:may draw:1 controller
@@ -39449,7 +39670,7 @@ toughness=5
 [card]
 name=Martial Impetus
 target=creature
-auto=mustattack
+auto=teach(creature) transforms((,newability[counter(0/0.1.Goaded)],newability[this(counter{0/0.1.Goaded}>0) mustattack]))
 auto=1/1
 auto=_ATTACKING_all(creature[attacking]|myBattlefield) 1/1 ueot
 text=Enchant creature -- Enchanted creature gets +1/+1 and is goaded. (It attacks each combat if able and attacks a player other than you if able.) -- Whenever enchanted creature attacks, each other creature that’s attacking one of your opponents gets +1/+1 until end of turn.
@@ -39925,6 +40146,18 @@ type=Enchantment
 subtype=Saga
 [/card]
 [card]
+name=Medomai the Ageless
+abilities=flying
+auto=this(counter{0/0.1.ExtraTurn}>0) transforms((,newability[cantattack],newability[cantpwattack]))
+auto=@combatdamaged(player) from(this):name(Take an extra turn) transforms((,newability[phaseaction[endofturn next once sourceinplay] counter(0/0.-1.ExtraTurn)],newability[counter(0/0.1.ExtraTurn)],newability[turns:+1 controller])) oneshot
+text=Flying -- Whenever Medomai the Ageless deals combat damage to a player, take an extra turn after this one. -- Medomai the Ageless can't attack during extra turns.
+mana={4}{W}{U}
+type=Legendary Creature
+subtype=Sphinx
+power=4
+toughness=4
+[/card]
+[card]
 name=Meletis Charlatan
 auto={2}{U}{T}:name(Controller copies instant or sorcery) target(*[instant;sorcery]|stack) transforms((,newability[activate castcard(copied)])) oneshot
 text={2}{U}, {T}: The controller of target instant or sorcery spell copies it. That player may choose new targets for the copy.
@@ -40306,6 +40539,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Mesmeric Sliver
+aicode=activate target(*[zpos<=1]|opponentlibrary) moveto(myreveal) and!( bottomoflibrary )!
+auto=@movedto(sliver|battlefield):name(Fatseal 1) all(trigger[to]) transforms((,newability[may name(Look opponent top card) reveal:1 revealzone(opponentlibrary) optionone name(Put on bottom) target(<upto:1>*|reveal) bottomoflibrary optiononeend optiontwo name(Put back) all(*|reveal) moveto(ownerlibrary) optiontwoend revealend])) oneshot
+text=All Slivers have "When this permanent enters the battlefield, you may fateseal 1." (To fateseal 1, its controller looks at the top card of an opponent's library, then he or she may put that card on the bottom of that library.)
+mana={3}{U}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+[/card]
+[card]
 name=Mesmerizing Benthid
 auto=aslongas(Illusion|myBattlefield) opponentshroud
 auto=create(Illusion:creature Illusion:0/2:blue:creature[blocked]:freeze)*2
@@ -40334,6 +40578,18 @@ text=Enchant creature -- As Metamorphic Alteration enters the battlefield, choos
 mana={1}{U}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Metamorphosis
+restriction=type(creature|myrestrictedcastingzone)~morethan~0
+auto=choice name(White Mana) thisforeach(variable{storedmanacostplus1plusend}) add{W}
+auto=choice name(Blue Mana) thisforeach(variable{storedmanacostplus1plusend}) add{U}
+auto=choice name(Black Mana) thisforeach(variable{storedmanacostplus1plusend}) add{B}
+auto=choice name(Red Mana) thisforeach(variable{storedmanacostplus1plusend}) add{R}
+auto=choice name(Green Mana) thisforeach(variable{storedmanacostplus1plusend}) add{G}
+text=As an additional cost to cast Metamorphosis, sacrifice a creature. -- Add X mana of any one color to your mana pool, where X is one plus the sacrificed creature's converted mana cost. Spend this mana only to cast creature spells.
+mana={G}{S(creature|myBattlefield)}
+type=Sorcery
 [/card]
 [card]
 name=Meteor Blast
@@ -41428,9 +41684,9 @@ type=Instant
 [/card]
 [card]
 name=Moraug, Fury of Akoum
-auto=@combat(attacking) source(creature|myBattlefield):1/0 ueot
-auto=_LANDFALL_nextphasealter(add,combatphaseswithmain,controller,after<this>)
-auto=_LANDFALL_transforms((,newability[@each my combatbegins:untap all(creature|myBattlefield)])) oneshot
+auto=@combat(attacking) source(creature|myBattlefield):all(trigger[to]) 1/0 ueot
+auto=_LANDFALL_if compare(currentphase)~equalto~4 then nextphasealter(add,combatphaseswithmain,controller,after<this>) else if compare(currentphase)~equalto~10 then nextphasealter(add,combatphaseswithmain,controller,after<this>) else 
+auto=_LANDFALL_all(creature|mybattlefield) transforms((,newability[@each my combatends turnlimited:phaseaction[combatbegins once sourceinplay] untap])) ueot
 text=Each creature you control gets +1/+0 for each time it has attacked this turn. -- Landfall — Whenever a land enters the battlefield under your control, if it's your main phase, there's an additional combat phase after this phase. At the beginning of that combat, untap all creatures you control.
 mana={4}{R}{R}
 type=Legendary Creature
@@ -41524,10 +41780,10 @@ toughness=4
 [card]
 name=Mosswort Bridge
 auto=tap(noevent)
-aicode=activate target(*[zpos<=4]|mylibrary) imprint && all(*[zpos<=4]|opponentlibrary) moveto(myreveal) and!( bottomoflibrary )!
+aicode=activate target(*[zpos<=4]|mylibrary) imprint and!( all(*[zpos<=4]|opponentlibrary) moveto(myreveal) and!( bottomoflibrary )! )!
 auto=name(look) reveal:4 optionone name(Exile a card) target(*|reveal) imprint optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
 auto={T}:add{G}
-auto={G}{T} restriction{compare(hasevict)~morethan~0,compare(powertotalinplay)~morethan~9}:name(Cast exiled card) transforms((,newability[may name(Cast exiled card) target(*[evictname]|myexile) activate castcard(normal)])) forever
+auto=this(variable{hasevict}>0) {G}{T} restriction{compare(powertotalinplay)~morethan~9}:name(Cast exiled card) name(Cast exiled card) transforms((,newability[may name(Cast exiled card) target(*[evictname]|myexile) activate castcard(normal)])) forever
 text=Hideaway (This land enters the battlefield tapped. When it does, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library.) -- {T}: Add {G}. -- {G}, {T}: You may play the exiled card without paying its mana cost if creatures you control have total power 10 or greater.
 type=Land
 [/card]
@@ -45111,8 +45367,8 @@ toughness=2
 [card]
 name=Orzhov Euthanist
 auto=name(Destroy damaged creature) target(creature[damaged]) destroy
-auto=_DIES_all(trigger[to]) transforms((,newability[moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) counter(0/0.1.EuthanistHaunted)])) oneshot )!])) oneshot
-autoexile=@movedto(creature[counter{0/0.1.EuthanistHaunted}]|graveyard) from(battlefield) once:name(Destroy damaged creature) target(creature[damaged]) destroy
+auto=_DIES_name(Exile and haunt a creature) all(trigger[to]) transforms((,newability[if type(creature|battlefield)~morethan~0 then moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) haunt])) oneshot )!])) oneshot
+autoexile=this(variable{hasprey}>0) transforms((,newability[@movedto(creature[preyname&isprey]|graveyard) from(battlefield):name(Destroy damaged creature) target(creature[damaged]) destroy]))
 text=Haunt (When this creature dies, exile it haunting target creature.) -- When Orzhov Euthanist enters the battlefield or the creature it haunts dies, destroy target creature that was dealt damage this turn.
 mana={2}{B}
 type=Creature
@@ -45132,8 +45388,8 @@ type=Artifact
 [card]
 name=Orzhov Pontiff
 auto=name(Choose one) transforms((,newability[choice name(Your creature gets 1/1) all(creature|mybattlefield) 1/1 ueot],newability[choice name(Opponent creature gets -1/-1) all(creature|opponentbattlefield) -1/-1 ueot])) oneshot
-auto=_DIES_all(trigger[to]) transforms((,newability[moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) counter(0/0.1.PontiffHaunted)])) oneshot )!])) oneshot
-autoexile=@movedto(creature[counter{0/0.1.PontiffHaunted}]|graveyard) from(battlefield) once:name(Choose one) transforms((,newability[choice name(Your creature gets 1/1) all(creature|mybattlefield) 1/1 ueot],newability[choice name(Opponent creature gets -1/-1) all(creature|opponentbattlefield) -1/-1 ueot])) oneshot
+auto=_DIES_name(Exile and haunt a creature) all(trigger[to]) transforms((,newability[if type(creature|battlefield)~morethan~0 then moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) haunt])) oneshot )!])) oneshot
+autoexile=this(variable{hasprey}>0) transforms((,newability[@movedto(creature[preyname&isprey]|graveyard) from(battlefield):name(Choose one) transforms((,newability[choice name(Your creature gets 1/1) all(creature|mybattlefield) 1/1 ueot],newability[choice name(Opponent creature gets -1/-1) all(creature|opponentbattlefield) -1/-1 ueot])) oneshot]))
 text=Haunt (When this creature dies, exile it haunting target creature.) -- When Orzhov Pontiff enters the battlefield or the creature it haunts dies, choose one — Creatures you control get +1/+1 until end of turn; or creatures you don't control get -1/-1 until end of turn.
 mana={1}{W}{B}
 type=Creature
@@ -45761,9 +46017,8 @@ type=Enchantment
 [card]
 name=Parasitic Impetus
 target=creature
-auto=mustattack
+auto=teach(creature) transforms((,newability[counter(0/0.1.Goaded)],newability[this(counter{0/0.1.Goaded}>0) mustattack],newability[_ATTACKING_life:-2 controller],newability[_ATTACKING_life:2 opponent]))
 auto=2/2
-auto=_ATTACKING_life:-2 controller && life:2 opponent
 text=Enchant creature -- Enchanted creature gets +2/+2 and is goaded. (It attacks each combat if able and attacks a player other than you if able.) -- Whenever enchanted creature attacks, its controller loses 2 life and you gain 2 life.
 mana={2}{B}
 type=Enchantment
@@ -47649,8 +47904,7 @@ type=Sorcery
 [card]
 name=Predatory Impetus
 target=creature
-auto=lure
-auto=transforms((,newability[_ATTACKING_all(creature|opponentbattlefield) mustblock ueot])) forever
+auto=teach(creature) transforms((,newability[counter(0/0.1.Goaded)],newability[this(counter{0/0.1.Goaded}>0) mustattack],newability[_ATTACKING_all(creature|opponentbattlefield) transforms((,newability[mustblock])) ueot]))
 auto=3/3
 text=Enchant creature -- Enchanted creature gets +3/+3, must be blocked if able, and is goaded. (It attacks each combat if able and attacks a player other than you if able.)
 mana={4}{G}
@@ -48451,10 +48705,9 @@ type=Enchantment
 [card]
 name=Psychic Impetus
 target=creature
-auto=mustattack
-auto=2/2
 aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
-auto=_ATTACKING_scry:2 scrycore delayed dontshow donothing scrycoreend scryend
+auto=teach(creature) transforms((,newability[counter(0/0.1.Goaded)],newability[this(counter{0/0.1.Goaded}>0) mustattack],newability[_ATTACKING_scry:2 scrycore delayed dontshow donothing scrycoreend scryend]))
+auto=2/2
 text=Enchant creature -- Enchanted creature gets +2/+2 and is goaded. (It attacks each combat if able and attacks a player other than you if able.) -- Whenever enchanted creature attacks, you scry 2.
 mana={2}{U}
 type=Enchantment
@@ -48462,8 +48715,8 @@ subtype=Aura
 [/card]
 [card]
 name=Psychic Intrusion
-auto=if type(*[-land]|opponentgraveyard)~morethan~0 then name(Exile non land card) name(Exile non land card) target(*[-land]|opponenthand,opponentgraveyard) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[anytypeofmana])) forever )!
-auto=if type(*[-land]|opponentgraveyard)~equalto~0 then if type(*[-land]|opponenthand)~morethan~0 then name(Exile non land card) name(Exile non land card) name(Exile non land card) target(*[-land]|opponenthand) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[anytypeofmana])) forever )!
+auto=if type(*[-land]|opponentgraveyard)~morethan~0 then name(Exile non land card) name(Exile non land card) target(*[-land]|opponenthand,opponentgraveyard) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[anytypeofmana],newability[@each beginofturn:name(Can play from exile) transforms((,newability[canplayfromexile],newability[anytypeofmana])) forever])) forever )!
+auto=if type(*[-land]|opponentgraveyard)~equalto~0 then if type(*[-land]|opponenthand)~morethan~0 then name(Exile non land card) name(Exile non land card) name(Exile non land card) target(*[-land]|opponenthand) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[anytypeofmana],newability[@each beginofturn:name(Can play from exile) transforms((,newability[canplayfromexile],newability[anytypeofmana])) forever])) forever )!
 auto=if type(*[-land]|opponentgraveyard)~equalto~0 then if type(*[-land]|opponenthand)~equalto~0 then name(Look opponent hand) name(Look opponent hand) name(Look opponent hand) target(*|opponenthand) moveto(myreveal) and!( moveto(opponenthand) )!
 text=Target opponent reveals his or her hand. You choose a nonland card from that player's graveyard or hand and exile it. You may cast that card for as long as it remains exiled, and you may spend mana as though it were mana of any color to cast that spell.
 mana={3}{U}{B}
@@ -49304,8 +49557,8 @@ toughness=1
 [/card]
 [card]
 name=Ragavan, Nimble Pilferer
-other={R}{2} name(Dash)
-auto=if paid(alternative) then transforms((,newability[haste],newability[phaseaction[endofturn sourceinplay] moveto(ownerhand) all(this)])) forever
+other={1}{R} name(Dash)
+auto=if paid(alternative) then transforms((,newability[haste],newability[phaseaction[endofturn once sourceinplay] moveto(ownerhand)])) forever
 auto=@combatdamaged(player) from(this):token(Treasure Sur)
 auto=@combatdamagefoeof(player) from(this):name(Exile top card) name(Exile top card) all(*[zpos=1]|opponentlibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[phaseaction[endofturn once checkex] moveTo(ownerexile)])) ueot )!
 auto=@combatdamageof(player) from(this):name(Exile top card) name(Exile top card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile])) ueot )!
@@ -52478,6 +52731,18 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Robber of the Rich
+abilities=reach,haste
+auto=@combat(attacking) source(this) restriction{compare(ohandcount)~morethan~(compare(phandcount)}:name(Exile top card) all(*[zpos=1]|opponentlibrary) moveto(exile) and!( counter(0/0,1,RobberExiled) )!
+auto=emblem transforms((,newability[lord(rogue|myBattlefield) transforms((,newability[@combat(attacking) source(this):name(Can cast exiled cards) transforms((,newability[{0}:name(Cast exiled card) name(Cast exiled card) target(*[-land;counter{0/0.1.RobberExiled}]|opponentexile) moveto(myexile) and!( transforms((,newability[counter(0/0.1.RobberExiled)],newability[canplayfromexile],newability[anytypeofmana],newability[phaseaction[endofturn once checkex] moveTo(ownerexile)],newability[phaseaction[untap once checkex] counter(0/0.1.RobberExiled)])) ueot )!])) ueot]))])) forever dontremove
+text=Reach, haste -- Whenever Robber of the Rich attacks, if defending player has more cards in hand than you, exile the top card of their library. During any turn you attacked with a Rogue, you may cast that card and you may spend mana as though it were mana of any color to cast that spell.
+mana={1}{R}
+type=Creature
+subtype=Human Archer Rogue
+power=2
+toughness=2
+[/card]
+[card]
 name=Robe of Stars
 auto={1}:equip
 auto=teach(creature) 0/3
@@ -55602,11 +55867,9 @@ type=Sorcery
 [/card]
 [card]
 name=Seize the Soul
-abilities=exiledeath
 target=creature[-black;-white]
-auto=destroy && token(Spirit,Creature Spirit,1/1,white,flying) controller
-auto=ability$!name(Haunt a creature) name(Haunt a creature) target(creature) counter(0/0.1.SeizeHaunted)!$ controller
-autoexile=@movedto(creature[counter{0/0.1.SeizeHaunted}]|graveyard) from(battlefield) once:name(Destroy creature) transforms((,newability[name(Destroy creature) target(creature[-black;-white]|battlefield) destroy],newability[token(Spirit^Creature Spirit^1/1^white^flying) controller])) oneshot
+auto=destroy and!( token(Spirit,Creature Spirit,1/1,white,flying) controller )!
+auto=if type(creature|mybattlefield)~morethan~0 then name(Exile and haunt a creature) all(this|mystack) moveto(myexile) and!( transforms((,newability[name(Haunt a creature) target(creature) haunt and!( counter(0/0.1.SeizeHaunted) )!],newability[@movedto(creature[isprey&counter{0/0.1.SeizeHaunted}]|graveyard) from(battlefield) once:name(Destroy creature) target(creature[-black;-white]|battlefield) destroy and!( token(Spirit^Creature Spirit^1/1^white^flying) controller )!])) forever )!
 text=Destroy target nonwhite, nonblack creature. Put a 1/1 white Spirit creature token with flying onto the battlefield. -- Haunt (When this spell card is put into a graveyard after resolving, exile it haunting target creature.) -- When the creature Seize the Soul haunts dies, destroy target nonwhite, nonblack creature. Put a 1/1 white Spirit creature token with flying onto the battlefield.
 mana={2}{B}{B}
 type=Instant
@@ -56534,7 +56797,7 @@ subtype=Aura
 name=Shattering Spree
 abilities=hasnokicker,hasreplicate
 target=artifact
-kicker=multi{1}{R} name(Replicate)
+kicker=multi{R} name(Replicate)
 auto=name(Destroy artifact) destroy
 auto=thisforeach(variable{kicked}>0) ability$!name(Copy Shattering Spree) name(Copy Shattering Spree) activate castcard(named!:Shattering Spree:!)!$ controller
 text=Replicate {R} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Destroy target artifact.
@@ -56888,9 +57151,8 @@ subtype=Equipment
 [card]
 name=Shiny Impetus
 target=creature
-auto=mustattack
+auto=teach(creature) transforms((,newability[counter(0/0.1.Goaded)],newability[this(counter{0/0.1.Goaded}>0) mustattack],newability[_ATTACKING_token(Treasure Sur)]))
 auto=2/2
-auto=_ATTACKING_token(Treasure Sur)
 text=Enchant creature -- Enchanted creature gets +1/+1 and is goaded. (It attacks each combat if able and attacks a player other than you if able.) -- Whenever enchanted creature attacks, each other creature that’s attacking one of your opponents gets +1/+1 until end of turn.
 mana={2}{W}
 type=Enchantment
@@ -58862,7 +59124,7 @@ toughness=0
 [/card]
 [card]
 name=Sly Instigator
-auto={U}{T}:target(creature|opponentbattlefield) transforms((,newability[unblockable],newability[mustattack])) uynt
+auto={U}{T}:target(creature|opponentbattlefield) transforms((,newability[this(counter{0/0.1.Goaded}>0) unblockable],newability[counter(0/0.1.Goaded)],newability[this(counter{0/0.1.Goaded}>0) mustattack],newability[phaseaction[endofturn next once sourceinplay] removeallcounters(0/0.-1.Goaded)])) forever
 text={U}, {T}: Until your next turn, target creature an opponent controls can't be blocked. Goad that creature. (Until your next turn, that creature attacks each combat if able and attacks a player other than you if able.)
 mana={3}{U}
 type=Creature
@@ -60142,6 +60404,14 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Specter's Shriek
+auto=if type(*[-land]|opponenthand)~morethan~0 then name(Exile an opponent card) name(Exile an opponent card) target(*[-land]|opponenthand) moveto(exile) and!( if cantargetcard(*[-black]|*) then ability$!name(Exile a card) name(Exile a card) target(*|myhand) moveto(exile)!$ controller )!
+auto=if type(*[-land]|opponenthand)~equalto~0 then name(Look opponent hand) name(Look opponent hand) target(*|opponenthand) moveto(myreveal) and!( moveto(opponenthand) )!
+text=Target opponent reveals their hand. You may choose a nonland card from it. If you do, that player exiles that card. If a nonblack card is exiled this way, exile a card from your hand.
+mana={B}
+type=Sorcery
+[/card]
+[card]
 name=Spectral Deluge
 abilities=foretell
 autohand={2}:name(Pay 2 and exile face-down) name(Pay 2 and exile face-down) doforetell myturnonly
@@ -60257,6 +60527,14 @@ type=Creature
 subtype=Weird
 power=2
 toughness=2
+[/card]
+[card]
+name=Spelljack
+target=*[-nofizzle]|stack
+auto=fizzleto(exile) && ability$!name(Can cast countered card) name(Can cast countered card) target(*[fresh]|exile) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[zerocast],newability[@each beginofturn:name(Can play from exile) transforms((,newability[canplayfromexile],newability[zerocast])) forever])) forever )! !$ controller
+text=Counter target spell. If that spell is countered this way, exile it instead of putting it into its owner's graveyard. You may play it without paying its mana cost for as long as it remains exiled. (If it has X in its mana cost, X is 0.)
+mana={3}{U}{U}{U}
+type=Instant
 [/card]
 [card]
 name=Spellkeeper Weird
@@ -60461,6 +60739,17 @@ auto=draw:2
 text=Draw two cards. -- Addendum — If you cast this spell during your main phase, you gain 2 life.
 mana={2}{W}{U}
 type=Instant
+[/card]
+[card]
+name=Sphinx of the Chimes
+abilities=flying
+auto={0}:name(Discard 2 same name cards) target(*[-land]|myhand) transforms((,newability[if type(other *[-land;share!name!]|myhand)~morethan~0 then transforms((,newability[reject],newability[name(Discard same card again) target(*[-land;share!name!]|myhand) reject and!( draw:4 )!])) oneshot])) oneshot
+text=Flying -- Discard two nonland cards with the same name: Draw four cards.
+mana={4}{U}{U}
+type=Creature
+subtype=Sphinx
+power=5
+toughness=6
 [/card]
 [card]
 name=Spike Cannibal
@@ -60720,6 +61009,17 @@ type=Snow Creature
 subtype=Bear Spirit
 power=0
 toughness=4
+[/card]
+[card]
+name=Spirit of the Labyrinth
+auto=@drawfoeof(player) restriction{compare(odrewcount)~morethan~1}:name(Opponent can't draw more than 1) transforms((,newability[all(*[zpos=type:*:opponenthand]|opponenthand) moveto(ownerlibrary)])) oneshot
+auto=@drawof(player) restriction{compare(pdrewcount)~morethan~1}:name(You can't draw more than 1) transforms((,newability[all(*[zpos=type:*:myhand]|myhand) moveto(ownerlibrary)])) oneshot
+text=Each player can't draw more than one card each turn.
+mana={1}{W}
+type=Enchantment Creature
+subtype=Spirit
+power=3
+toughness=1
 [/card]
 [card]
 name=Spirit of the Spires
@@ -63416,7 +63716,7 @@ auto={2}:equip
 auto=teach(creature) protection from green
 auto=teach(creature) protection from white
 auto=teach(creature) 2/2
-auto=@combatdamaged(player) from(mytgt):may name(Exile a creature) target(creature|myBattlefield) moveto(exile) and!( transforms((,newability[moveto(myBattlefield) and!( tap(noevent) )!],newability[name(Search library) target(land[basic]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )!])) oneshot )!
+auto=@combatdamaged(player) from(mytgt):may name(Exile a creature) target(creature|myBattlefield) moveto(exile) and!( transforms((,newability[moveto(myBattlefield)],newability[name(Search basic land) target(land[basic]|mylibrary) moveto(mybattlefield)])) oneshot )!
 text=Equipped creature gets +2/+2 and has protection from green and from white. -- Whenever equipped creature deals combat damage to a player, exile up to one target creature you own, then search your library for a basic land card. Put both cards onto the battlefield under your control, then shuffle. -- Equip {2}
 mana={3}
 type=Artifact
@@ -63676,10 +63976,29 @@ toughness=2
 [/card]
 [card]
 name=Synthetic Destiny
-aicode=activate transforms((,newability[target(*[zpos=findfirsttypecreature]|mylibrary) bottomoflibrary and!( transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield) and!( shuffle )!])) ueot )!])) oneshot
 auto=count(type:creature:mybattlefield)
 auto=all(creature|myBattlefield) moveto(exile)
-auto=thisforeach(variable{countedamount}) ability$!name(Reveal from top) name(Reveal from top) reveal:1 revealuntil(creature|mylibrary) optionone name(Choose creature to play end of turn) target(creature|myreveal) bottomoflibrary and!( transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield) and!( shuffle )!])) ueot )! optiononeend optiontwo name(Put back) target(*|myreveal) moveto(mylibrary) and!( all(*|myreveal) moveto(mylibrary) )! optiontwoend revealend!$ controller
+auto=if compare(ishuman)~morethan~0 then thisforeach(variable{countedamount}) ability$!name(Reveal from top) name(Reveal from top) reveal:1 revealuntil(creature|mylibrary) optionone name(Choose creature to play end of turn) target(creature|myreveal) bottomoflibrary and!( transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot )! optiononeend optiontwo name(Put back) all(*|myreveal) moveto(mylibrary) optiontwoend revealend!$ controller
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~1 then target(creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~2 then target(<2>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~3 then target(<3>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~4 then target(<4>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~5 then target(<5>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~6 then target(<6>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~7 then target(<7>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~8 then target(<8>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~9 then target(<9>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~10 then target(<10>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~11 then target(<11>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~12 then target(<12>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~13 then target(<13>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~14 then target(<14>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~15 then target(<15>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~16 then target(<16>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~17 then target(<17>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~18 then target(<18>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~19 then target(<19>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~morethan~19 then target(<20>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
 text=Exile all creatures you control. At the beginning of the next end step, reveal cards from the top of your library until you reveal that many creature cards, put all creature cards revealed this way onto the battlefield, then shuffle the rest of the revealed cards into your library.
 mana={4}{U}{U}
 type=Instant
@@ -63820,7 +64139,9 @@ toughness=1
 [card]
 name=Taigam, Ojutai Master
 auto=lord(instant,sorcery,dragon|mycastingzone) nofizzle
-auto=@movedto(*[instant;sorcery]|mystack) restriction{lastturn(this[attacking]|myBattlefield)}: rebound
+auto=@combat(attacking) source(this):name(Next spells gain rebound) transforms((,newability[@movedTo(*[instant;sorcery]|myStack):all(trigger[to]) transforms((,newability[gainedexiledeath],newability[phaseaction[my upkeep once] counter(0/0.1.MasterExile)])) ueot])) ueot
+auto=@each my upkeep:all(*[instant;sorcery]|myexile) removeallcounters(0/0,-1,MasterExile)
+auto=@each my upkeep:foreach(*[counter{0/0.1.MasterExile}]|myexile) ability$!name(Choose one) choice name(Cast card from exile) activate castcard(normal) target(*[instant;sorcery;counter{0/0.1.MasterExile}]|myexile) _ choice name(Don't cast card from exile) donothing!$ controller
 text=Instant, sorcery, and Dragon spells you control can’t be countered. -- Whenever you cast an instant or sorcery spell from your hand, if Taigam, Ojutai Master attacked this turn, that spell gains rebound. (Exile the spell as it resolves. At the beginning of your next upkeep, you may cast that card from exile without paying its mana cost.)
 mana={2}{W}{U}
 type=Legendary Creature
@@ -64432,7 +64753,7 @@ toughness=3
 [/card]
 [card]
 name=Teferi's Ageless Insight
-auto=replacedraw draw:2 noreplace
+auto=replacedraw if compare(currentphase)~equalto~3 then draw:1 noreplace else draw:2 noreplace
 text=If you would draw a card except the first one you draw in each of your draw steps, draw two cards instead.
 mana={2}{U}{U}
 type=Legendary Enchantment
@@ -64794,8 +65115,7 @@ type=Sorcery
 [card]
 name=Terramorph
 auto=name(Search library) target(land[basic]|mylibrary) moveto(myBattlefield) and!( shuffle )!
-auto=if rebound then ability$!moveto(exile) all(Terramorph|mystack)!$ controller
-autoexile=@rebounded:may activate castcard(normal)
+auto=_REBOUND_
 text=Search your library for a basic land card, put it onto the battlefield, then shuffle. -- Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 mana={3}{G}
 type=Sorcery
@@ -66010,7 +66330,7 @@ toughness=4
 [card]
 name=Thrasios, Triton Hero
 abilities=partner
-aicode=activate if type(land[zpos=1]|mylibrary)~equalto~0 then draw:1 controller else all(land[zpos=1]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )!
+aicode=activate target(*[zpos<=1]|mylibrary) moveto(myhand) and!( if cantargetcard(*[land]|*) then moveto(mybattlefield) and!( tap(noevent) )! )!
 auto={4}:scry:1 scrycore delayed dontshow transforms((,newability[if type(land[zpos=1]|mylibrary)~equalto~0 then all(*[zpos=1]|mylibrary) moveto(myhand) else all(land[zpos=1]|mylibrary) moveto(mybattlefield) and!( tap(noevent) )!])) oneshot scrycoreend scryend
 text={4}: Scry 1, then reveal the top card of your library. If it’s a land card, put it onto the battlefield tapped. Otherwise, draw a card. -- Partner (You can have two commanders if both have partner.)
 mana={G}{U}
@@ -67004,10 +67324,10 @@ toughness=2
 [/card]
 [card]
 name=Tome of Legends
-auto=counter(0/0,1,Page) all(this)
-auto=@movedto(*[iscommander]|myBattlefield):conunter(0/0,1,Page) all(this)
-auto=@combat(attacking) source(creature[iscommander]|myBattlefield):conunter(0/0,1,Page) all(this)
-auto={1}{T}{C(0/0,-1,Page)}:Draw:1 controller
+auto=counter(0/0,1,Page)
+auto=@movedto(*[iscommander]|myBattlefield):name(Put a page counter) counter(0/0,1,Page)
+auto=@combat(attacking) source(creature[iscommander]|myBattlefield):name(Put a page counter) counter(0/0,1,Page)
+auto={1}{T}{C(0/0,-1,Page)}:name(Draw a card) draw:1 controller
 text=Tome of Legends enters the battlefield with a page counter on it. -- Whenever your commander enters the battlefield or attacks, put a page counter on Tome of Legends. -- {1}, {T}, Remove a page counter from Tome of Legends: Draw a card.
 mana={2}
 type=Artifact
@@ -67991,9 +68311,8 @@ toughness=3
 [/card]
 [card]
 name=Trumpeting Herd
-auto=create(Elephant:creature Elephant:3/3:green)
-auto=if rebound then ability$!moveto(exile) all(Trumpeting Herd|mystack)!$ controller
-autoexile=@rebounded:may activate castcard(normal)
+auto=token(Elephant,Creature Elephant,3/3,green)
+auto=_REBOUND_
 text=Create a 3/3 green Elephant creature token. -- Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 mana={2}{G}{G}
 type=Sorcery
@@ -69025,7 +69344,7 @@ toughness=3
 [card]
 name=Unsettled Mariner
 abilities=changeling
-auto=@movedto(*|opponentstack):target(*|opponentstack) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) oneshot
+auto=@movedto(*[instant;sorcery]|opponentstack):may name(Counter a spell that target you or your permanents) target(*[instant;sorcery]|opponentstack) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) oneshot
 text=Changeling (This card is every creature type.) -- Whenever you or a permanent you control becomes the target of a spell or ability an opponent controls, counter that spell or ability unless its controller pays {1}.
 mana={W}{U}
 type=Creature
@@ -69350,7 +69669,8 @@ name=Valakut Awakening
 restriction=compare(isflipped)~equalto~0
 anyzone={0}:doubleside(Valakut Stoneforge)
 autohand={0}:restriction{can play land,compare(isflipped)~equalto~1} name(Valakut Stoneforge) name(Valakut Stoneforge) flip(Valakut Stoneforge) forcetype(land)
-auto=name(Put cards and draw that many) name(Put cards and draw that many) all(*|myhand) transforms((,newability[draw:1],newability[bottomoflibrary])])) && draw:1
+auto=may name(Put cards on bottom and draw) target(<anyamount>*|myhand) bottomoflibrary and!( draw:1 )!
+auto=draw:1 controller
 text=Put any number of cards from your hand on the bottom of your library, then draw that many cards plus one. // Valakut Stoneforge
 mana={2}{R}
 type=Instant
@@ -69471,7 +69791,7 @@ toughness=1
 name=Valkmira, Protector's Shield
 auto=lord(*|mybattlefield) absorb
 auto=@damageof(player):life:1 controller
-auto=@movedto(*|opponentstack):target(*|opponentstack) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) oneshot
+auto=@movedto(*[instant;sorcery]|opponentstack):may name(Counter a spell that target you or your permanents) target(*[instant;sorcery]|opponentstack) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) oneshot
 text=If a source an opponent controls would deal damage to you or a permanent you control, prevent 1 of that damage. -- Whenever you or a permanent you control becomes the target of a spell or ability an opponent controls, counter that spell or ability unless its controller pays {1}. // {2}{W} Reidane, God of the Worthy
 mana={3}{W}
 type=Legendary Artifact
@@ -70042,9 +70362,9 @@ toughness=4
 [card]
 name=Vengeful Ancestor
 abilities=flying
-auto=name(Goad creature) target(creature|battlefield) transforms((,newability[mustattack])) uynt
-auto=_ATTACKING_name(Goad creature) target(creature|battlefield) transforms((,newability[mustattack],newability[_ATTACKING_damage:1 controller])) uynt
-auto=lord(creature[mustattack]|battlefield) transforms((,newability[_ATTACKING_damage:1 controller])) oneshot
+auto=name(Goad creature) target(creature|battlefield) _GOAD_
+auto=_ATTACKING_name(Goad creature) target(creature|battlefield) _GOAD_
+auto=lord(creature[counter{0/0.1.Goaded}]|battlefield) transforms((,newability[_ATTACKING_damage:1 controller]))
 text=Flying -- When Vengeful Ancestor enters the battlefield or attacks, goad target creature. (Until your next turn, that creature attacks each combat if able and attacks a player other than you if able.) -- Whenever a goaded creature attacks, it deals 1 damage to its controller.
 mana={2}{R}{R}
 type=Creature

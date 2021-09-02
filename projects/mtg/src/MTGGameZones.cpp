@@ -569,6 +569,10 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
         }
     }
 
+    // Save the haunted status... (solving the bug on comparison cards with haunted status before zone changing events)
+    if(card->has(Constants::ISPREY) && doCopy && !asCopy && !inplaytoinplay)
+        copy->basicAbilities[Constants::ISPREY] = 1;
+
     //Commander is going back to Command Zone, so we recalculate costs according to how many times it has been casted from there.
     if((to == g->players[0]->game->commandzone || to == g->players[1]->game->commandzone) && copy->numofcastfromcommandzone > 0){
         copy->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT,2*copy->numofcastfromcommandzone);
@@ -740,8 +744,12 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
             g->receiveEvent(e);
         }
 
+        // Reset the haunted status... (if the creature is moving from battlefield is no longer a prey)
+        if(doCopy && !inplaytoinplay && copy->has(Constants::ISPREY))
+            copy->basicAbilities[Constants::ISPREY] = 0;
+
         // Erasing counters from copy after the event has been triggered (no counter can survive to a zone changing except the perpetual ones)
-        if(doCopy && copy->counters && copy->counters->mCount > 0){
+        if(doCopy && !inplaytoinplay && copy->counters && copy->counters->mCount > 0){
             for (unsigned int i = 0; i < copy->counters->counters.size(); i++){
                 Counter * counter = copy->counters->counters[i];
                 for(int j = counter->nb; j > 0; j--){
@@ -1469,15 +1477,15 @@ MTGGameZone * MTGGameZone::intToZone(int zoneId, Player * p, Player * p2)
 
 MTGGameZone * MTGGameZone::intToZone(GameObserver *g, int zoneId, MTGCardInstance * source, MTGCardInstance * target)
 {
-    Player *p, *p2;
+    Player *p = NULL;
+    Player *p2 = NULL;
 
-    if (!source)
+    if (!source && g) //patchwork fix when g is NULL.
         p = g->currentlyActing();
     else
         p = source->controller();
-    if (!target)
+    if (!target && source) //patchwork fix when source is NULL.
     {
-        //TODO source may be NULL, need to handle the case when it is NULL.  method declaration has NULL being default value of source and target. 
         if(source->target)
         {
         //bug case, this is a patchwork fix for now
@@ -1492,10 +1500,15 @@ MTGGameZone * MTGGameZone::intToZone(GameObserver *g, int zoneId, MTGCardInstanc
             target = source;
         }
     }
-    else
+    else if (target)
         p2 = target->controller();
 
-
+    if(!p) { //patchwork fix when p is NULL.
+        if(!p2)
+            return NULL;
+        else 
+            p = p2;
+    }
     MTGGameZone * result = intToZone(zoneId, p, p2);
     if (result) return result;
     switch (zoneId)

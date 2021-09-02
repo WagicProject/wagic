@@ -5,12 +5,6 @@ mana={3}{U}{U}
 type=Instant
 [/card]
 [card]
-name=Food Chain
-text=Exile a creature you control: Add X mana of any one color to your mana pool, where X is the exiled creature's converted mana cost plus one. Spend this mana only to cast creature spells.
-mana={2}{G}
-type=Enchantment
-[/card]
-[card]
 name=Magister of Worth
 abilities=flying
 text=Flying -- Will of the council  When Magister of Worth enters the battlefield, starting with you, each player votes for grace or condemnation. If grace gets more votes, each player returns each creature card from his or her graveyard to the battlefield. If condemnation gets more votes or the vote is tied, destroy all creatures other than Magister of Worth.
@@ -52,15 +46,6 @@ name=Gifts Ungiven
 text=Search your library for four cards with different names and reveal them. Target opponent chooses two of those cards. Put the chosen cards into your graveyard and the rest into your hand. Then shuffle your library.
 mana={3}{U}
 type=Instant
-[/card]
-[card]
-name=Corpsejack Menace
-text=If one or more +1/+1 counters would be placed on a creature you control, twice that many +1/+1 counters are placed on it instead.
-mana={2}{B}{G}
-type=Creature
-subtype=Fungus
-power=4
-toughness=4
 [/card]
 [card]
 name=Glacial Ray

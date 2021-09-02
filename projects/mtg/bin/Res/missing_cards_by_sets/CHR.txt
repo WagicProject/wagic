@@ -43,12 +43,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Metamorphosis
-text=As an additional cost to cast Metamorphosis, sacrifice a creature. -- Add X mana of any one color to your mana pool, where X is one plus the sacrificed creature's converted mana cost. Spend this mana only to cast creature spells.
-mana={G}
-type=Sorcery
-[/card]
-[card]
 name=Goblin Artisans
 text={T}: Flip a coin. If you win the flip, draw a card. If you lose the flip, counter target artifact spell you control that isn't the target of an ability from another creature named Goblin Artisans.
 mana={R}

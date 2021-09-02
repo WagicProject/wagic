@@ -27,15 +27,6 @@ mana={2}{WU}{WU}
 type=Instant
 [/card]
 [card]
-name=Corpsejack Menace
-text=If one or more +1/+1 counters would be placed on a creature you control, twice that many +1/+1 counters are placed on it instead.
-mana={2}{B}{G}
-type=Creature
-subtype=Fungus
-power=4
-toughness=4
-[/card]
-[card]
 name=Oreskos Explorer
 text=When Oreskos Explorer enters the battlefield, search your library for up to X Plains cards, where X is the number of players who control more lands than you. Reveal those cards, put them into your hand, then shuffle your library.
 mana={1}{W}

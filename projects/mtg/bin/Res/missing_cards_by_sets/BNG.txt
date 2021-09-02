@@ -39,15 +39,6 @@ power=0
 toughness=1
 [/card]
 [card]
-name=Spirit of the Labyrinth
-text=Each player can't draw more than one card each turn.
-mana={1}{W}
-type=Enchantment Creature
-subtype=Spirit
-power=3
-toughness=1
-[/card]
-[card]
 name=Mindreaver
 text=Heroic  Whenever you cast a spell that targets Mindreaver, exile the top three cards of target player's library. -- {U}{U}, Sacrifice Mindreaver: Counter target spell with the same name as a card exiled with Mindreaver.
 mana={U}{U}
