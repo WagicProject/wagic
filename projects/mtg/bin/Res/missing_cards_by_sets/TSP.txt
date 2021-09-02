@@ -89,12 +89,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Curse of the Cabal
-text=Target player sacrifices half the permanents he or she controls, rounded down. -- Suspend 2{2}{B}{B} (Rather than cast this card from your hand, you may pay {2}{B}{B} and exile it with two time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- At the beginning of each player's upkeep, if Curse of the Cabal is suspended, that player may sacrifice a permanent. If he or she does, put two time counters on Curse of the Cabal.
-mana={9}{B}
-type=Sorcery
-[/card]
-[card]
 name=Dementia Sliver
 text=All Slivers have "{T}: Name a card. Target opponent reveals a card at random from his or her hand. If it's the named card, that player discards it. Activate this ability only during your turn."
 mana={3}{U}{B}

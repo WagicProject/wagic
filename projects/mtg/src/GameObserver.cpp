@@ -668,6 +668,14 @@ void GameObserver::gameStateBasedEffects()
                         card->removeColor(i);
                     }
                 }
+                //clear prey
+                if(card && isInExile(card) && card->hauntedCard)
+                {
+                    if(!isInPlay(card->hauntedCard)) 
+                    {
+                        card->hauntedCard = 0;
+                    }
+                }
                 //reset alternate paid
                 if(card && (isInGrave(card)||isInHand(card)||isInExile(card)))
                 {

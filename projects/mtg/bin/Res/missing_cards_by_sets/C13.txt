@@ -58,41 +58,6 @@ power=1
 toughness=3
 [/card]
 [card]
-name=Curse of the Forsaken
-text=Enchant player -- Whenever a creature attacks enchanted player, its controller gains 1 life.
-mana={2}{W}
-type=Enchantment
-subtype=Aura Curse
-[/card]
-[card]
-name=Curse of Shallow Graves
-text=Enchant player -- Whenever a player attacks enchanted player with one or more creatures, that attacking player may put a 2/2 black Zombie creature token onto the battlefield tapped.
-mana={2}{B}
-type=Enchantment
-subtype=Aura Curse
-[/card]
-[card]
-name=Curse of Predation
-text=Enchant player -- Whenever a creature attacks enchanted player, put a +1/+1 counter on it.
-mana={2}{G}
-type=Enchantment
-subtype=Aura Curse
-[/card]
-[card]
-name=Curse of Inertia
-text=Enchant player -- Whenever a player attacks enchanted player with one or more creatures, that attacking player may tap or untap target permanent of his or her choice.
-mana={2}{U}
-type=Enchantment
-subtype=Aura Curse
-[/card]
-[card]
-name=Curse of Chaos
-text=Enchant player -- Whenever a player attacks enchanted player with one or more creatures, that attacking player may discard a card. If the player does, he or she draws a card.
-mana={2}{R}
-type=Enchantment
-subtype=Aura Curse
-[/card]
-[card]
 name=Lim-Dul's Vault
 text=Look at the top five cards of your library. As many times as you choose, you may pay 1 life, put those cards on the bottom of your library in any order, then look at the top five cards of your library. Then shuffle your library and put the last cards you looked at this way on top of it in any order.
 mana={U}{B}

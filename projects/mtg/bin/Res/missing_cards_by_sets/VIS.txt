@@ -1,10 +1,4 @@
 [card]
-name=Foreshadow
-text=Name a card, then put the top card of target opponent's library into his or her graveyard. If that card is the named card, you draw a card. -- Draw a card at the beginning of the next turn's upkeep.
-mana={1}{U}
-type=Instant
-[/card]
-[card]
 name=Desertion
 text=Counter target spell. If an artifact or creature spell is countered this way, put that card onto the battlefield under your control instead of into its owner's graveyard.
 mana={3}{U}{U}

@@ -1,11 +1,4 @@
 [card]
-name=Curse of Predation
-text=Enchant player -- Whenever a creature attacks enchanted player, put a +1/+1 counter on it.
-mana={2}{G}
-type=Enchantment
-subtype=Aura Curse
-[/card]
-[card]
 name=Sphinx of Uthuun
 abilities=flying
 text=Flying -- When Sphinx of Uthuun enters the battlefield, reveal the top five cards of your library. An opponent separates those cards into two piles. Put one pile into your hand and the other into your graveyard.
@@ -14,13 +7,4 @@ type=Creature
 subtype=Sphinx
 power=5
 toughness=6
-[/card]
-[card]
-name=Corpsejack Menace
-text=If one or more +1/+1 counters would be placed on a creature you control, twice that many +1/+1 counters are placed on it instead.
-mana={2}{B}{G}
-type=Creature
-subtype=Fungus
-power=4
-toughness=4
 [/card]

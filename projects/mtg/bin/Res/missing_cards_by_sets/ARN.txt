@@ -92,12 +92,6 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-name=Metamorphosis
-text=As an additional cost to cast Metamorphosis, sacrifice a creature. -- Add X mana of any one color to your mana pool, where X is one plus the sacrificed creature's converted mana cost. Spend this mana only to cast creature spells.
-mana={G}
-type=Sorcery
-[/card]
-[card]
 name=Nafs Asp
 text=Whenever Nafs Asp deals damage to a player, that player loses 1 life at the beginning of his or her next draw step unless he or she pays {1} before that draw step.
 mana={G}

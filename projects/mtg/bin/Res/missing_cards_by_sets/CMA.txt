@@ -9,13 +9,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Curse of Inertia
-text=Enchant player -- Whenever a player attacks enchanted player with one or more creatures, that attacking player may tap or untap target permanent of his or her choice.
-mana={2}{U}
-type=Enchantment
-subtype=Aura Curse
-[/card]
-[card]
 name=Tempt with Glory
 text=Tempting offer  Put a +1/+1 counter on each creature you control. Each opponent may put a +1/+1 counter on each creature he or she controls. For each opponent who does, put a +1/+1 counter on each creature you control.
 mana={5}{W}
@@ -37,25 +30,11 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-name=Curse of the Forsaken
-text=Enchant player -- Whenever a creature attacks enchanted player, its controller gains 1 life.
-mana={2}{W}
-type=Enchantment
-subtype=Aura Curse
-[/card]
-[card]
 name=Flickerform
 text=Enchant creature -- {2}{W}{W}: Exile enchanted creature and all Auras attached to it. At the beginning of the next end step, return that card to the battlefield under its owner's control. If you do, return the other cards exiled this way to the battlefield under their owners' control attached to that creature.
 mana={1}{W}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Curse of Predation
-text=Enchant player -- Whenever a creature attacks enchanted player, put a +1/+1 counter on it.
-mana={2}{G}
-type=Enchantment
-subtype=Aura Curse
 [/card]
 [card]
 name=Mana-Charged Dragon

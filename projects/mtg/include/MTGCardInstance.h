@@ -297,7 +297,8 @@ public:
     ManaCost * computeNewCost(MTGCardInstance * card,ManaCost * oldCost, ManaCost * refCost,bool noTrinisphere = false, bool bestow = false);
     int countTrini;
     bool anymanareplacement;
-    vector<MTGCardInstance*>imprintedCards;
+    vector<MTGCardInstance*> imprintedCards;
+    MTGCardInstance* hauntedCard;
     int attackCost;
     int attackCostBackup;
     int attackPlaneswalkerCost;

@@ -59,26 +59,8 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Laquatus's Disdain
-text=Counter target spell cast from a graveyard. -- Draw a card.
-mana={1}{U}
-type=Instant
-[/card]
-[card]
-name=Firecat Blitz
-text=Put X 1/1 red Elemental Cat creature tokens with haste onto the battlefield. Exile them at the beginning of the next end step. -- Flashback{R}{R}, Sacrifice X Mountains. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={X}{R}{R}
-type=Sorcery
-[/card]
-[card]
 name=Breaking Point
 text=Any player may have Breaking Point deal 6 damage to him or her. If no one does, destroy all creatures. Creatures destroyed this way can't be regenerated.
 mana={1}{R}{R}
 type=Sorcery
-[/card]
-[card]
-name=Spelljack
-text=Counter target spell. If that spell is countered this way, exile it instead of putting it into its owner's graveyard. You may play it without paying its mana cost for as long as it remains exiled. (If it has X in its mana cost, X is 0.)
-mana={3}{U}{U}{U}
-type=Instant
 [/card]

@@ -1,10 +1,4 @@
 [card]
-name=Force of Rage
-text=If it's not your turn, you may exile a red card from your hand rather than pay this spell's mana cost. -- Create two 3/1 red Elemental creature tokens with trample and haste. Sacrifice those tokens at the beginning of your next upkeep.
-mana={1}{R}{R}
-type=Instant
-[/card]
-[card]
 name=Everdream
 text=Draw a card. -- Splice onto instant or sorcery {2}{U} (As you cast an instant or sorcery spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={1}{U}

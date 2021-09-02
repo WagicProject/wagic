@@ -173,14 +173,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Curse of the Fire Penguin
-text=Curse of the Fire Penquin consumes and confuses enchanted creature. --  --  --  -- Creature Penguin -- Trample --  -- 6/5 -- Whenthiscreatureisputintoagraveyardfromplay,returnCurseoftheFirePenguinfromyourgraveyardtoplay.
-mana={4}{R}{R}
-type=Enchant Creature
-power=
-toughness=
-[/card]
-[card]
 name=Water Gun Balloon Game
 text=As Water Gun Balloon Game comes into play, each player puts a pop counter on a 0. -- Whenever a player plays a spell, move that player's pop counter up 1. -- Whenever a player's pop counter hits 5, that player puts a 5/5 pink Giant Teddy Bear creature token into play and resets all pop counters to 0.
 mana={2}

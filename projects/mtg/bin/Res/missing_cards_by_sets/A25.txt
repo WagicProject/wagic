@@ -59,12 +59,6 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-name=Deadly Designs
-text={2}: Put a plot counter on Deadly Designs. Any player may activate this ability. -- When there are five or more plot counters on Deadly Designs, sacrifice it. If you do, destroy up to two target creatures.
-mana={1}{B}
-type=Enchantment
-[/card]
-[card]
 name=Gisela, Blade of Goldnight
 abilities=flying,first strike
 text=Flying, first strike -- If a source would deal damage to an opponent or a permanent an opponent controls, that source deals double that damage to that player or permanent instead. -- If a source would deal damage to you or a permanent you control, prevent half that damage, rounded up.

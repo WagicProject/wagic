@@ -1546,6 +1546,17 @@ public:
     AAImprint * clone() const;
     ~AAImprint();
 };
+//AAHaunt
+class AAHaunt: public ActivatedAbility
+{
+public:
+    MTGAbility * andAbility;
+    AAHaunt(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL);
+    int resolve();
+    const string getMenuText();
+    AAHaunt * clone() const;
+    ~AAHaunt();
+};
 //AAConjure
 class AAConjure: public ActivatedAbility
 {

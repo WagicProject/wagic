@@ -913,6 +913,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card)
         return 0;
 
     ManaCost * alternateCost = card->getManaCost()->getAlternative();
+    if(!alternateCost) return 0;
     card->paymenttype = MTGAbility::ALTERNATIVE_COST;
     if(alternateCost->extraCosts)
         for(unsigned int i = 0; i < alternateCost->extraCosts->costs.size();i++)
@@ -1139,6 +1140,7 @@ int MTGBuyBackRule::reactToClick(MTGCardInstance * card)
         return 0;
 
     ManaCost * buybackCost = card->getManaCost()->getBuyback();
+    if(!buybackCost) return 0;
     if(buybackCost->extraCosts)
         for(unsigned int i = 0; i < buybackCost->extraCosts->costs.size();i++)
         {
@@ -1190,6 +1192,7 @@ int MTGFlashBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 int MTGFlashBackRule::reactToClick(MTGCardInstance * card) 
 {
     ManaCost * flashbackCost = card->getManaCost()->getFlashback();
+    if(!flashbackCost) return 0;
     if(flashbackCost->extraCosts)
         for(unsigned int i = 0; i < flashbackCost->extraCosts->costs.size();i++)
         {
@@ -1239,6 +1242,7 @@ int MTGTempFlashBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * m
 int MTGTempFlashBackRule::reactToClick(MTGCardInstance * card) 
 {
     ManaCost * flashbackCost = card->getManaCost();
+    if(!flashbackCost) return 0;
     if(flashbackCost->extraCosts)
         for(unsigned int i = 0; i < flashbackCost->extraCosts->costs.size();i++)
         {
@@ -1306,6 +1310,7 @@ int MTGRetraceRule::reactToClick(MTGCardInstance * card)
         return 0;
 
     ManaCost * retraceCost = card->getManaCost()->getRetrace();
+    if(!retraceCost) return 0;
     if(retraceCost->extraCosts)
         for(unsigned int i = 0; i < retraceCost->extraCosts->costs.size();i++)
         {
@@ -1386,6 +1391,7 @@ int MTGSuspendRule::reactToClick(MTGCardInstance * card)
     Player *player = game->currentlyActing();
     ManaCost * playerMana = player->getManaPool();
     ManaCost * alternateCost = card->getManaCost()->getSuspend();
+    if(!alternateCost) return 0;
     //this handles extra cost payments at the moment a card is played.
     if (playerMana->canAfford(alternateCost,card->has(Constants::ANYTYPEOFMANA)))
     {
@@ -1512,6 +1518,7 @@ int MTGMorphCostRule::reactToClick(MTGCardInstance * card)
     ManaCost * cost = card->getManaCost();
     ManaCost * playerMana = player->getManaPool();
     ManaCost * morph = card->getManaCost()->getMorph();
+    if(!morph) return 0;
     if(morph->extraCosts){
         for(unsigned int i = 0; i < morph->extraCosts->costs.size();i++)
             morph->extraCosts->costs[i]->setSource(card);
@@ -1647,6 +1654,7 @@ int MTGPayZeroRule::reactToClick(MTGCardInstance * card)
 
     ManaCost * cost = NEW ManaCost(ManaCost::parseManaCost("{0}",NULL,NULL));
     ManaCost * newCost = card->computeNewCost(card,cost,cost);
+    if(!newCost) return 0;
     if(newCost->extraCosts)
         for(unsigned int i = 0; i < newCost->extraCosts->costs.size();i++)
         {
@@ -1693,6 +1701,7 @@ int MTGOverloadRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         return 0;
     }
     ManaCost * newCost = card->getManaCost()->getAlternative();
+    if(!newCost) return 0;
     if(newCost->extraCosts)
         for(unsigned int i = 0; i < newCost->extraCosts->costs.size();i++)
         {
@@ -1707,6 +1716,7 @@ int MTGOverloadRule::reactToClick(MTGCardInstance * card)
     if (!isReactingToClick(card))
         return 0;
     ManaCost * newCost = card->getManaCost()->getAlternative();
+    if(!newCost) return 0;
     if(newCost->extraCosts)
         for(unsigned int i = 0; i < newCost->extraCosts->costs.size();i++)
         {
@@ -1768,7 +1778,7 @@ int MTGBestowRule::reactToClick(MTGCardInstance * card)
     //this new method below in all alternative cost type causes a memleak, however, you cant safedelete the cost here as it cause a crash
     //TODO::::we need to get to the source of this leak and fix it.
     ManaCost * newCost = card->getManaCost()->getBestow();
-    
+    if(!newCost) return 0;
     if (newCost->extraCosts)
         for (unsigned int i = 0; i < newCost->extraCosts->costs.size(); i++)
         {

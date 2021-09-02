@@ -1,6 +1,6 @@
 [card]
 name=Spell Queller
-abilities=flash
+abilities=flash,flying
 text=Flash -- Flying -- When Spell Queller enters the battlefield, exile target spell with converted mana cost 4 or less. -- When Spell Queller leaves the battlefield, the exiled card's owner may cast that card without paying its mana cost.
 mana={1}{W}{U}
 type=Creature

@@ -76,15 +76,6 @@ mana={2}{B}
 type=Sorcery
 [/card]
 [card]
-name=Mesmeric Sliver
-text=All Slivers have "When this permanent enters the battlefield, you may fateseal 1." (To fateseal 1, its controller looks at the top card of an opponent's library, then he or she may put that card on the bottom of that library.)
-mana={3}{U}
-type=Creature
-subtype=Sliver
-power=2
-toughness=2
-[/card]
-[card]
 name=Nacatl War-Pride
 text=Nacatl War-Pride must be blocked by exactly one creature if able. -- Whenever Nacatl War-Pride attacks, put X tokens that are copies of Nacatl War-Pride onto the battlefield tapped and attacking, where X is the number of creatures defending player controls. Exile the tokens at the beginning of the next end step.
 mana={3}{G}{G}{G}

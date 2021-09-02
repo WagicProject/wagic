@@ -15,15 +15,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Leovold, Emissary of Trest
-text=Each opponent can't draw more than one card each turn. -- Whenever you or a permanent you control becomes the target of a spell or ability an opponent controls, you may draw a card.
-mana={B}{G}{U}
-type=Legendary Creature
-subtype=Elf Advisor
-power=3
-toughness=3
-[/card]
-[card]
 name=Sigarda, Host of Herons
 abilities=flying,opponentshroud
 text=Flying, hexproof -- Spells and abilities your opponents control can't cause you to sacrifice permanents.

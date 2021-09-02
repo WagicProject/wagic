@@ -15,6 +15,12 @@
 # Dies, Evergreen
 #AUTO_DEFINE _DIES_ @movedTo(this|graveyard) from(battlefield):
 
+# Goad
+#AUTO_DEFINE _GOAD_ transforms((,newability[counter(0/0.1.Goaded)],newability[this(counter{0/0.1.Goaded}>0) mustattack],newability[phaseaction[endofturn next once sourceinplay] removeallcounters(0/0.-1.Goaded)])) forever
+
+# Rebound
+#AUTO_DEFINE _REBOUND_ if rebound then all(this|mystack) moveto(exile) and!( transforms((,newability[@rebounded:may name(Cast rebounded card) activate castcard(normal)])) forever )!
+
 # Populate
 #AUTO_DEFINE _POPULATE_ name(Populate) clone notAtarget(creature[token]|myBattlefield)
 

@@ -1315,6 +1315,10 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
     {
         intValue = (s == "plastshlturn")?card->controller()->lastShuffleTurn:card->controller()->opponent()->lastShuffleTurn;
     }
+    else if (s == "hasprey")
+    {
+        intValue = (card->hauntedCard)?1:0;
+    }
     else if(!intValue)//found nothing, try parsing a atoi
     {
         intValue = atoi(s.c_str());

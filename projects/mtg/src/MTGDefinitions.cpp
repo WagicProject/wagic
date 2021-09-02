@@ -228,7 +228,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "wascommander", //It was the current commander (e.g. after it flipped or morphed)
     "showopponenthand", //opponent plays with his hand revealed.
     "showcontrollerhand", //controller plays with his hand revealed.
-    "hasreplicate" //Kicker cost is a replicate cost (eg. "Vacuumelt")
+    "hasreplicate", //Kicker cost is a replicate cost (eg. "Vacuumelt")
+    "isprey" //Creature has been haunted by some other card.
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

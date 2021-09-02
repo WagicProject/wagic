@@ -1930,6 +1930,7 @@ subtype=Narset
 [card]
 name=Narset, Parter of Veils
 auto=counter(0/0,5,loyalty)
+auto=@drawfoeof(player) restriction{compare(odrewcount)~morethan~1}:name(Opponent can't draw more than 1) transforms((,newability[all(*[zpos=type:*:opponenthand]|opponenthand) moveto(ownerlibrary)])) oneshot
 aicode=activate moveto(myhand) target(*[-creature;-land;zpos<=4]|mylibrary)
 auto={C(0/0,-2,Loyalty)}:name(-2: Look at the top four cards) name(look) reveal:4 optionone name(Get a card) target(<1>*[-creature;-land]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend revealend
 text=Each opponent can't draw more than one card each turn. -- −2: Look at the top four cards of your library. You may reveal a noncreature, nonland card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
@@ -1944,8 +1945,8 @@ aicode=activate target(*[-creature;-land;zpos=1]|mylibrary) moveto(myhand)
 auto={C(0/0,1,Loyalty)}:name(+1: Look at the top noncreature nonland) reveal:1 optionone target(<upto:1>*[-creature;-land]|reveal) moveTo(myHand) optiononeend optiontwo name(Put Back On Top) target(<1>*|reveal) moveTo(myLibrary) optiontwoend revealend 
 auto={C(0/0,-2,Loyalty)}:name(-2: Your next instant or sorcery has rebound) counter(0/0.1.ReboundActive) all(this)
 auto={C(0/0,-9,Loyalty)}:name(-9: Emblem: "Your opponents can't cast noncreature spells") emblem transforms((,newability[maxCast(*[-creature])0 opponent])) forever dontremove
-auto=@movedTo(*[instant;sorcery]|myStack):this(counter{0/0.1.ReboundActive}>=1) all(trigger[to]) transforms((,newability[gainedexiledeath],newability[phaseaction[my upkeep once] counter(0/0.1.PlayExile)])) ueot && counter(0/0.-1.ReboundActive) all(this)
-auto=@each my upkeep:if type(*[instant;sorcery;counter{0/0.1.PlayExile}]|myexile)~morethan~0 then ability$!name(Choose one) choice name(Cast card from exile) activate castcard(normal) target(*[instant;sorcery;counter{0/0.1.PlayExile}]|myexile) _ choice name(Don't cast card from exile) all(*[instant;sorcery;counter{0/0.1.PlayExile}]|myexile) counter(0/0.-1.PlayExile)!$ controller
+auto=@movedTo(*[instant;sorcery]|myStack):this(counter{0/0.1.ReboundActive}>=1) all(trigger[to]) transforms((,newability[gainedexiledeath],newability[phaseaction[my upkeep once] counter(0/0.1.NarsetExile)])) ueot && counter(0/0.-1.ReboundActive) all(this)
+auto=@each my upkeep:if type(*[instant;sorcery;counter{0/0.1.NarsetExile}]|myexile)~morethan~0 then ability$!name(Choose one) choice name(Cast card from exile) activate castcard(normal) target(*[instant;sorcery;counter{0/0.1.NarsetExile}]|myexile) _ choice name(Don't cast card from exile) all(*[instant;sorcery;counter{0/0.1.NarsetExile}]|myexile) removeallcounters(0/0.-1.NarsetExile)!$ controller
 text=+1: Look at the top card of your library. If it’s a noncreature, nonland card, you may reveal it and put it into your hand. -- −2: When you cast your next instant or sorcery spell from your hand this turn, it gains rebound. (Exile the spell as it resolves. At the beginning of your next upkeep, you may cast that card from exile without paying its mana cost.) -- −9: You get an emblem with “Your opponents can’t cast noncreature spells.”
 mana={2}{W}{U}
 type=Legendary Planeswalker
