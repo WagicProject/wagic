@@ -17677,9 +17677,10 @@ subtype=Aura
 [/card]
 [card]
 name=Dream Devourer
-auto=@foretold(*|myzones):2/0 ueot
-auto=lord(*[-foretell;-land]|myhand) transforms((,newability[foretell],newability[{2}:name(Pay 2 and exile face-down) name(Pay 2 and exile face-down) doforetell myturnonly]))
-auto=@each upkeep:all(*[foretold;-foretell]|myexile) transforms((,newability[this(variable{canforetellcast}>0) canplayfromexile],newability[this(variable{canforetellcast}>0) changecost(colorless:-2) forcedalive])) ueot
+auto=lord(*[-land]|myhand) foretell
+auto={2}:name(Foretell a card) target(*[-land]|myhand) doforetell myturnonly
+auto=@foretold(*|myzones):name(Gains 2/0) 2/0 ueot
+auto=@each upkeep restriction{type(*[foretold;-foretell]|myexile)~morethan~0}:all(*[foretold;-foretell]|myexile) transforms((,newability[this(variable{canforetellcast}>0) canplayfromexile],newability[this(variable{canforetellcast}>0) changecost(colorless:-2) forcedalive])) ueot
 text=Each nonland card in your hand without foretell has foretell. Its foretell cost is equal to its mana cost reduced by {2}. (During your turn, you may pay {2} and exile it from your hand face down. Cast it on a later turn for its foretell cost.) -- Whenever you foretell a card, Dream Devourer gets +2/+0 until end of turn.
 mana={1}{B}
 type=Creature
@@ -19251,7 +19252,7 @@ restriction=type(creature[attacking]|myBattlefield)~equalto~0
 autohand={2}{R}{R} restriction{type(creature[attacking]|myBattlefield)~equalto~2}:name(Cast Embercleave for 2 less) name(Cast Embercleave for 2 less) activate castcard(alternative)
 autohand={1}{R}{R} restriction{type(creature[attacking]|myBattlefield)~equalto~3}:name(Cast Embercleave for 3 less) name(Cast Embercleave for 3 less) activate castcard(alternative)
 autohand={R}{R} restriction{type(creature[attacking]|myBattlefield)~morethan~3}:name(Cast Embercleave for 4 less) name(Cast Embercleave for 4 less) activate castcard(alternative)
-auto=aslongas(parents) name(Attach to creature) rehook target(creature|myBattlefield) <1
+auto=name(Attach to creature) rehook target(creature|myBattlefield)
 auto=teach(creature) double strike
 auto=teach(creature) trample
 auto=teach(creature) 1/1
@@ -35254,7 +35255,7 @@ type=Sorcery
 [/card]
 [card]
 name=Kindred Summons
-auto=activatechooseatype transforms((,newability[reveal:plibrarycount optionone name(Get creatures) target(<type:creature[chosentype]:myBattlefield>creature[chosentype]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) all(*|reveal) moveto(mylibrary) and!( shuffle )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!( moveTo(myBattlefield) )! afterrevealedend revealend])) oneshot activatechooseend
+auto=chooseatype if type(creature[chosentype]|myBattlefield)~equalto~1 then name(Search 1 creature) name(Search 1 creature) target(<1>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~2 then name(Search 2 creatures) name(Search 2 creatures) target(<2>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~3 then name(Search 3 creatures) name(Search 3 creatures) target(<3>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~4 then name(Search 4 creatures) name(Search 4 creatures) target(<4>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~5 then name(Search 5 creatures) name(Search 5 creatures) target(<5>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~6 then name(Search 6 creatures) name(Search 6 creatures) target(<6>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~7 then name(Search 7 creatures) name(Search 7 creatures) target(<7>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~8 then name(Search 8 creatures) name(Search 8 creatures) target(<8>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~9 then name(Search 9 creatures) name(Search 9 creatures) target(<9>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~10 then name(Search 10 creatures) name(Search 10 creatures) target(<10>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~11 then name(Search 11 creatures) name(Search 11 creatures) target(<11>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~12 then name(Search 12 creatures) name(Search 12 creatures) target(<12>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~13 then name(Search 13 creatures) name(Search 13 creatures) target(<13>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~14 then name(Search 14 creatures) name(Search 14 creatures) target(<14>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~15 then name(Search 15 creatures) name(Search 15 creatures) target(<15>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~16 then name(Search 16 creatures) name(Search 16 creatures) target(<16>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~17 then name(Search 17 creatures) name(Search 17 creatures) target(<17>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~18 then name(Search 18 creatures) name(Search 18 creatures) target(<18>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~equalto~19 then name(Search 19 creatures) name(Search 19 creatures) target(<19>creature[chosentype]|mylibrary) moveto(myBattlefield) else if type(creature[chosentype]|myBattlefield)~morethan~19 then name(Search 20 creatures) name(Search 20 creatures) target(<20>creature[chosentype]|mylibrary) moveto(myBattlefield) chooseend
 text=Choose a creature type. Reveal cards from the top of your library until you reveal X creature cards of the chosen type, where X is the number of creatures you control of that type. Put those cards onto the battlefield, then shuffle the rest of the revealed cards into your library.
 mana={5}{G}{G}
 type=Instant
@@ -47049,7 +47050,7 @@ name=Pirate's Pillage
 auto=draw:2 controller
 auto=token(Treasure Sur)*2
 text=As an additional cost to cast this spell, discard a card. -- Draw two cards and create two Treasure tokens. (They're artifacts with " {T}, Sacrifice this artifact: Add one mana of any color.")
-mana={3}{R}{D(*|myhand)}
+mana={3}{R}{D(other *|myhand)}
 type=Sorcery
 [/card]
 [card]
@@ -49559,8 +49560,8 @@ name=Ragavan, Nimble Pilferer
 other={1}{R} name(Dash)
 auto=if paid(alternative) then transforms((,newability[haste],newability[phaseaction[endofturn once sourceinplay] moveto(ownerhand)])) forever
 auto=@combatdamaged(player) from(this):token(Treasure Sur)
-auto=@combatdamagefoeof(player) from(this):name(Exile top card) name(Exile top card) all(*[zpos=1]|opponentlibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[phaseaction[endofturn once checkex] moveTo(ownerexile)])) ueot )!
-auto=@combatdamageof(player) from(this):name(Exile top card) name(Exile top card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile])) ueot )!
+auto=@combatdamagefoeof(player) from(this):name(Exile top card) name(Exile top card) all(*[zpos=1]|opponentlibrary) moveto(myexile) and!( if cantargetcard(*[-land]|*) then transforms((,newability[canplayfromexile],newability[phaseaction[endofturn once checkex] moveTo(ownerexile)])) ueot )!
+auto=@combatdamageof(player) from(this):name(Exile top card) name(Exile top card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( if cantargetcard(*[-land]|*) then transforms((,newability[this(cantargetcard(*[-land]|*)) canplayfromexile])) ueot )!
 text=Whenever Ragavan, Nimble Pilferer deals combat damage to a player, create a Treasure token and exile the top card of that player's library. Until end of turn, you may cast that card. -- Dash {1}{R} (You may cast this spell for its dash cost. If you do, it gains haste, and it's returned from the battlefield to its owner's hand at the beginning of the next end step.)
 mana={R}
 type=Legendary Creature
@@ -55861,7 +55862,7 @@ name=Seize the Spoils
 auto=draw:2 controller
 auto=token(Treasure Sur)
 text=As an additional cost to cast this spell, discard a card. -- Draw two cards and create a Treasure token. (It’s an artifact with "{T}, Sacrifice this artifact: Add one mana of any color.")
-mana={2}{R}{D(*|myhand)}
+mana={2}{R}{D(other *|myhand)}
 type=Sorcery
 [/card]
 [card]
@@ -56796,7 +56797,7 @@ subtype=Aura
 name=Shattering Spree
 abilities=hasnokicker,hasreplicate
 target=artifact
-kicker=multi{1}{R} name(Replicate)
+kicker=multi{R} name(Replicate)
 auto=name(Destroy artifact) destroy
 auto=thisforeach(variable{kicked}>0) ability$!name(Copy Shattering Spree) name(Copy Shattering Spree) activate castcard(named!:Shattering Spree:!)!$ controller
 text=Replicate {R} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Destroy target artifact.
@@ -63975,10 +63976,29 @@ toughness=2
 [/card]
 [card]
 name=Synthetic Destiny
-aicode=activate transforms((,newability[target(*[zpos=findfirsttypecreature]|mylibrary) bottomoflibrary and!( transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield) and!( shuffle )!])) ueot )!])) oneshot
 auto=count(type:creature:mybattlefield)
 auto=all(creature|myBattlefield) moveto(exile)
-auto=thisforeach(variable{countedamount}) ability$!name(Reveal from top) name(Reveal from top) reveal:1 revealuntil(creature|mylibrary) optionone name(Choose creature to play end of turn) target(creature|myreveal) bottomoflibrary and!( transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield) and!( shuffle )!])) ueot )! optiononeend optiontwo name(Put back) target(*|myreveal) moveto(mylibrary) and!( all(*|myreveal) moveto(mylibrary) )! optiontwoend revealend!$ controller
+auto=if compare(ishuman)~morethan~0 then thisforeach(variable{countedamount}) ability$!name(Reveal from top) name(Reveal from top) reveal:1 revealuntil(creature|mylibrary) optionone name(Choose creature to play end of turn) target(creature|myreveal) bottomoflibrary and!( transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot )! optiononeend optiontwo name(Put back) all(*|myreveal) moveto(mylibrary) optiontwoend revealend!$ controller
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~1 then target(creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~2 then target(<2>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~3 then target(<3>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~4 then target(<4>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~5 then target(<5>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~6 then target(<6>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~7 then target(<7>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~8 then target(<8>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~9 then target(<9>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~10 then target(<10>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~11 then target(<11>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~12 then target(<12>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~13 then target(<13>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~14 then target(<14>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~15 then target(<15>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~16 then target(<16>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~17 then target(<17>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~18 then target(<18>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~equalto~19 then target(<19>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
+auto=if compare(ishuman)~equalto~0 then if compare(countedamount)~morethan~19 then target(<20>creature|mylibrary) transforms((,newability[phaseaction[endofturn once] moveTo(myBattlefield)])) ueot
 text=Exile all creatures you control. At the beginning of the next end step, reveal cards from the top of your library until you reveal that many creature cards, put all creature cards revealed this way onto the battlefield, then shuffle the rest of the revealed cards into your library.
 mana={4}{U}{U}
 type=Instant
