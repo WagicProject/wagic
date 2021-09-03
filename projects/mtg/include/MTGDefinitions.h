@@ -323,7 +323,8 @@ class Constants
       SHOWCONTROLLERHAND = 196,
       HASREPLICATE = 197,
       ISPREY = 198,
-      NB_BASIC_ABILITIES = 199,
+      HASDISTURB = 199,
+      NB_BASIC_ABILITIES = 200,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

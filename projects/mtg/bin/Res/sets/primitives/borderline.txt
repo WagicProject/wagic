@@ -1,7 +1,7 @@
 grade=borderline
 #Bordeline Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#I sorted this programatically - Vitty85 07-08-2021
+#I sorted this programatically - Vitty85 04-09-2021
 [card]
 name=+2 Mace
 auto={3}:equip
@@ -5081,11 +5081,12 @@ subtype=Equipment
 [/card]
 [card]
 name=Bearer of Overwhelming Truths
+backside=Daring Sleuth
 abilities=prowess
 auto=@movedTo(*[-creature]|mystack):1/1 ueot
 auto=@combatdamagefoeof(player) from(this):name(Create clue) token(Clue) controller
 auto=@combatdamageof(player) from(this):name(Create clue) token(Clue) controller
-text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.) -- Whenever Bearer of Overwhelming Truths deals combat damage to a player, investigate. (Create a colorless Clue artifact token with “{2}, Sacrifice this artifact: Draw a card.”)
+text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.) -- Whenever Bearer of Overwhelming Truths deals combat damage to a player, investigate. (Create a colorless Clue artifact token with “{2}, Sacrifice this artifact: Draw a card.”) // Daring Sleuth
 type=Creature
 subtype=Human Wizard
 power=3
@@ -10091,10 +10092,12 @@ type=Instant
 [/card]
 [card]
 name=Chandra, Fire of Kaladesh
-auto=@movedTo(*[red]|mystack):untap all(this)
-auto=@movedto(Moonmist|stack):name(Transform Human Shaman) moveto(ownerBattlefield) && flip(Chandra, Roaring Flame)
-auto={T}:damage:1 target(player) limit^moveto(exile) and!(moveto(mybattlefield) and!(counter(0/0,4,Loyalty) && flip(Chandra, Roaring Flame) )! )!^3
-text=Whenever you cast a red spell, untap Chandra, Fire of Kaladesh. -- {T}: Chandra, Fire of Kaladesh deals 1 damage to target player. If Chandra has dealt 3 or more damage this turn, exile her, then return her to the battlefield transformed under her owner's control.
+backside=Chandra, Roaring Flame
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(backside)
+auto=@movedTo(*[red]|mystack) restriction{compare(isflipped)~equalto~0}:untap
+auto={T}:name(Deal 1 damage) target(player) damage:1 && if compare(totaldmg)~morethan~2 then all(this) moveto(exile) and!( moveto(ownerbattlefield) and!( flip(backside) )! )!
+text=Whenever you cast a red spell, untap Chandra, Fire of Kaladesh. -- {T}: Chandra, Fire of Kaladesh deals 1 damage to target player. If Chandra has dealt 3 or more damage this turn, exile her, then return her to the battlefield transformed under her owner's control. // Chandra, Roaring Flame
 mana={1}{R}{R}
 type=Legendary Creature
 subtype=Human Shaman
@@ -14291,9 +14294,11 @@ toughness=1
 [/card]
 [card]
 name=Daring Sleuth
-auto=@movedto(Moonmist|stack):name(Transform Human Rogue) flip(Bearer of Overwhelming Truths)
-auto=@sacrificed(Clue|mybattlefield):flip(Bearer of Overwhelming Truths)
-text=When you sacrifice a Clue, transform Daring Sleuth.
+backside=Bearer of Overwhelming Truths
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(backside)
+auto=@sacrificed(Clue|mybattlefield):flip(backside)
+text=When you sacrifice a Clue, transform Daring Sleuth. // Bearer of Overwhelming Truths
 mana={1}{U}
 type=Creature
 subtype=Human Rogue
@@ -20632,16 +20637,6 @@ type=Creature
 subtype=Thrull
 power=3
 toughness=3
-[/card]
-[card]
-name=Exiled Doomsayer
-#It's not possible to alter the morph cost ATM.
-text=All morph costs cost {2} more. (This doesn't affect the cost to cast creature spells face down.)
-mana={1}{W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=2
 [/card]
 [card]
 name=Exotic Orchard
@@ -30086,10 +30081,11 @@ type=Instant
 [/card]
 [card]
 name=Hinterland Hermit
-auto=if cantargetcard(*[fresh]|*) then if compare(isflipped)~equalto~0 then if type(Vildin-Pack Alpha|mybattlefield)~morethan~0 then may name(Transform Human Werewolf) name(Transform Human Werewolf) name(Transform Human Werewolf) flip(Hinterland Scourge)
-auto=@movedto(Moonmist|stack):name(Transform Human Werewolf) flip(Hinterland Scourge)
-auto=@each upkeep restriction{lastturn(*|stack)~lessthan~1}:name(Transform Human Werewolf) flip(Hinterland Scourge)
-text=At the beginning of each upkeep, if no spells were cast last turn, transform Hinterland Hermit.
+backside=Hinterland Scourge
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(backside)
+auto=@each upkeep restriction{lastturn(*|stack)~lessthan~1}:name(Transform Human Werewolf) flip(backside)
+text=At the beginning of each upkeep, if no spells were cast last turn, transform Hinterland Hermit. // Hinterland Scourge
 mana={1}{R}
 type=Creature
 subtype=Human Werewolf
@@ -30101,7 +30097,7 @@ name=Hinterland Scourge
 auto=@each upkeep restriction{lastturn(*|mystack)~morethan~1,lastturn(*|opponentstack)~lessthan~2}:name(Transform Werewolf) flip(Hinterland Hermit)
 auto=@each upkeep restriction{lastturn(*|opponentstack)~morethan~1}:name(Transform Werewolf) flip(Hinterland Hermit)
 auto=_ATTACKING_all(creature|opponentbattlefield) transforms((,newability[mustblock])) ueot
-text=Hinterland Scourge must be blocked if able. -- At the beginning of each upkeep, if a player cast two or more spells last turn, transform Hinterland Scourge.
+text=Hinterland Scourge must be blocked if able. -- At the beginning of each upkeep, if a player cast two or more spells last turn, transform Hinterland Scourge. // Hinterland Hermit
 type=Creature
 subtype=Werewolf
 color=red
@@ -33510,10 +33506,11 @@ type=Sorcery
 [/card]
 [card]
 name=Jace, Vryn's Prodigy
-auto=@movedto(Moonmist|stack):name(Transform Human Wizard) flip(Jace, Telepath Unbound)
-auto={T}:draw:1 controller && ability$!name(Discard a card) reject notatarget(*|myhand)!$ controller restriction{type(*|mygraveyard)~lessthan~4}
-auto={T}:draw:1 controller && ability$!name(Discard a card) reject notatarget(*|myhand)!$ controller && moveto(exile) and!( moveto(mybattlefield) and!( haste && counter(0/0,5,Loyalty) && flip(Jace^ Telepath Unbound) )! )! restriction{type(*|mygraveyard)~morethan~3}
-text={T}: Draw a card, then discard a card. If there are five or more cards in your graveyard, exile Jace, Vryn's Prodigy, then return him to the battlefield transformed under his owner's control.
+backside=Jace, Telepath Unbound
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(backside)
+auto={T}:name(Draw and discard) draw:1 controller && transforms((,newability[name(Discard a card) target(*|myhand) reject and!( if type(*|mygraveyard)~morethan~4 then all(this) moveto(exile) and!( moveto(ownerbattlefield) and!( flip(backside) )! )! )!])) forever
+text={T}: Draw a card, then discard a card. If there are five or more cards in your graveyard, exile Jace, Vryn's Prodigy, then return him to the battlefield transformed under his owner's control. // Jace, Telepath Unbound
 mana={1}{U}
 type=Legendary Creature
 subtype=Human Wizard
@@ -36348,10 +36345,12 @@ type=Artifact
 [/card]
 [card]
 name=Kytheon, Hero of Akros
-auto=@movedto(Moonmist|stack):name(Transform Human Soldier) moveto(ownerBattlefield) && flip(Gideon, Battle-Forged)
-auto=_BATTALION_moveto(exile) and!( moveto(mybattlefield) and!(counter(0/0,3,Loyalty) && flip(Gideon, Battle-Forged)
-auto={2}{W}:all(this) indestructible ueot
-text=At end of combat, if Kytheon, Hero of Akros and at least two other creatures attacked this combat, exile Kytheon, then return him to the battlefield transformed under his owner's control. -- {2}{W}: Kytheon gains indestructible until end of turn.
+backside=Gideon, Battle-Forged
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(backside)
+auto=_BATTALION_moveto(exile) and!( moveto(ownerbattlefield) and!( flip(backside) )! )!
+auto={2}{W}:name(Gains indestructible) transforms((,newability[indestructible])) ueot
+text=At end of combat, if Kytheon, Hero of Akros and at least two other creatures attacked this combat, exile Kytheon, then return him to the battlefield transformed under his owner's control. -- {2}{W}: Kytheon gains indestructible until end of turn. // Gideon, Battle-Forged
 mana={W}
 type=Legendary Creature
 subtype=Human Soldier
@@ -37644,9 +37643,11 @@ type=Instant
 [card]
 name=Liliana, Heretical Healer
 abilities=lifelink
-auto=@movedto(Moonmist|stack):name(Transform Human Cleric) flip(Liliana, Defiant Necromancer)
-auto=@movedTo(other creature[-token]|graveyard) from(myBattlefield):name(Liliana, Defiant Necromancer) moveto(exile) and!( moveto(mybattlefield) and!( transforms((,newability[counter(0/0.3.Loyalty)],newability[flip(Liliana^ Defiant Necromancer)],newability[name(Create Zombie) token(Zombie Lil)])) oneshot )! )!
-text=Lifelink -- Whenever another nontoken creature you control dies, exile Liliana, Heretical Healer, then return her to the battlefield transformed under her owner's control. If you do, put a 2/2 black Zombie creature token onto the battlefield.
+backside=Liliana, Defiant Necromancer
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(backside)
+auto=@movedTo(other creature[-token]|graveyard) from(myBattlefield):name(Liliana, Defiant Necromancer) moveto(exile) and!( moveto(ownerbattlefield) and!( transforms((,newability[flip(backside)],newability[name(Create Zombie) token(Zombie Lil)])) oneshot )! )!
+text=Lifelink -- Whenever another nontoken creature you control dies, exile Liliana, Heretical Healer, then return her to the battlefield transformed under her owner's control. If you do, put a 2/2 black Zombie creature token onto the battlefield. // Liliana, Defiant Necromancer
 mana={1}{B}{B}
 type=Legendary Creature
 subtype=Human Cleric
@@ -38904,7 +38905,7 @@ toughness=4
 [/card]
 [card]
 name=Magda, Brazen Outlaw
-auto=lord(dwarf|mybattlefield) 1/0
+auto=lord(other dwarf|mybattlefield) 1/0
 auto=@tapped(dwarf|mybattlefield):token(Treasure Sur)
 auto={S(*[treasure]|mybattlefield)}{S(*[treasure]|mybattlefield)}{S(*[treasure]|mybattlefield)}{S(*[treasure]|mybattlefield)}{S(*[treasure]|mybattlefield)}:name(Search dragon or artifact) target(*[dragon;artifact]|mylibrary) moveto(myBattlefield) and!( shuffle )!
 text=Other Dwarves you control get +1/+0. -- Whenever a Dwarf you control becomes tapped, create a Treasure token. -- Sacrifice five Treasures: Search your library for an artifact or Dragon card, put that card onto the battlefield, then shuffle your library.
@@ -40751,12 +40752,12 @@ toughness=4
 [/card]
 [card]
 name=Mila, Crafty Companion
+backside=Lukka, Wayward Bonder
 other={4}{R}{R} name(Lukka, Wayward Bonder)
 otherrestriction=can play planeswalker,compare(isflipped)~equalto~1
 restriction=compare(isflipped)~equalto~0
-anyzone={0}:doubleside(Lukka, Wayward Bonder)
-autostack=if paid(alternative) then name(Lukka, Wayward Bonder) name(Lukka, Wayward Bonder) flip(Lukka, Wayward Bonder) forcetype(Legendary Planeswalker)
-auto=if paid(alternative) then counter(0/0,5,Loyalty)
+anyzone={0}:doubleside(backside)
+autostack=if paid(alternative) then name(Lukka, Wayward Bonder) name(Lukka, Wayward Bonder) flip(backside) forcetype(Legendary Planeswalker)
 auto=@each blockers restriction{compare(isflipped)~equalto~0,type(creature[attacking]|opponentbattlefield)~morethan~0}:may name(Opponent attacked planeswalker) all(*[planeswalker]|mybattlefield) counter(0/0,1,Loyalty)
 auto=@targeted(*|mybattlefield) from(*|opponentzones) restriction{compare(isflipped)~equalto~0}:may name(Draw a card) draw:1 controller
 text=Whenever an opponent attacks one or more planeswalkers you control, put a loyalty counter on each planeswalker you control. -- Whenever a permanent you control becomes the target of a spell or ability an opponent controls, you may draw a card. // {4}{R}{R} Lukka, Wayward Bonder
@@ -41677,6 +41678,7 @@ toughness=5
 [/card]
 [card]
 name=Moonmist
+auto=all(human[hasbackside]|battlefield) transforms((,newability[flip(backside)])) forever
 auto=preventAllCombatDamage from(creature[-wolf;-werewolf]|battlefield) ueot
 text=Transform all Humans. Prevent all combat damage that would be dealt this turn by creatures other than Werewolves and Wolves. (Only double-faced cards can be transformed.)
 mana={1}{G}
@@ -41685,8 +41687,8 @@ type=Instant
 [card]
 name=Moraug, Fury of Akoum
 auto=@combat(attacking) source(creature|myBattlefield):all(trigger[to]) 1/0 ueot
-auto=_LANDFALL_if compare(currentphase)~equalto~4 then nextphasealter(add,combatphaseswithmain,controller,after<this>) else if compare(currentphase)~equalto~10 then nextphasealter(add,combatphaseswithmain,controller,after<this>) else 
-auto=_LANDFALL_all(creature|mybattlefield) transforms((,newability[@each my combatends turnlimited:phaseaction[combatbegins once sourceinplay] untap])) ueot
+auto=_LANDFALL_if compare(currentphase)~equalto~4 then nextphasealter(add,combatphases,controller,after<this>) else if compare(currentphase)~equalto~10 then nextphasealter(add,combatphases,controller,after<this>) else 
+auto=_LANDFALL_if compare(currentphase)~equalto~4 then all(creature|mybattlefield) transforms((,newability[phaseaction[combatbegins next once sourceinplay] untap])) ueot else if compare(currentphase)~equalto~10 then all(creature|mybattlefield) transforms((,newability[phaseaction[combatbegins once sourceinplay] untap])) ueot
 text=Each creature you control gets +1/+0 for each time it has attacked this turn. -- Landfall — Whenever a land enters the battlefield under your control, if it's your main phase, there's an additional combat phase after this phase. At the beginning of that combat, untap all creatures you control.
 mana={4}{R}{R}
 type=Legendary Creature
@@ -43227,9 +43229,12 @@ toughness=2
 [card]
 name=Nicol Bolas, the Ravager
 abilities=flying
-auto=ability$!name(discard) reject notatarget(*|myhand)!$ opponent
-auto={4}{U}{B}{R}:moveto(exile) and!(moveto(mybattlefield) and!(counter(0/0,7,Loyalty) && flip(Nicol Bolas, the Arisen))! )! asSorcery
-text=Flying -- When Nicol Bolas, the Ravager enters the battlefield, each opponent discards a card. -- {4}{U}{B}{R}: Exile Nicol Bolas, the Ravager, then return him to the battlefield transformed under his owner's control. Activate this ability only any time you could cast a sorcery.
+backside=Nicol Bolas, the Arisen
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(backside)
+auto=ability$!name(Discard a card) name(Discard a card) reject notatarget(*|myhand)!$ opponent
+auto={4}{U}{B}{R}:name(Exile and transform) moveto(exile) and!(moveto(ownerbattlefield) and!( flip(backside) )! )! asSorcery
+text=Flying -- When Nicol Bolas, the Ravager enters the battlefield, each opponent discards a card. -- {4}{U}{B}{R}: Exile Nicol Bolas, the Ravager, then return him to the battlefield transformed under his owner's control. Activate this ability only any time you could cast a sorcery. // Nicol Bolas, the Arisen
 mana={1}{U}{B}{R}
 type=Legendary Creature
 subtype=Elder Dragon
@@ -43667,10 +43672,12 @@ subtype=Aura
 [/card]
 [card]
 name=Nissa, Vastwood Seer
-aicode=activate target(forest[basic]|mylibrary) moveto(myhand)
-auto=name(search card) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<1>forest[basic]|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto=@movedto(land|mybattlefield) restriction{type(land|mybattlefield)~morethan~6}:all(this) moveto(exile) and!( moveto(mybattlefield) and!(counter(0/0,3,Loyalty) && flip(Nissa, Sage Animist) )! )!
-text=When Nissa, Vastwood Seer enters the battlefield, you may search your library for a basic Forest card, reveal it, put it into your hand, then shuffle your library. -- Whenever a land enters the battlefield under your control, if you control seven or more lands, exile Nissa, then return her to the battlefield transformed under her owner's control.
+backside=Nissa, Sage Animist
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(backside)
+auto=may name(Search basic forest) target(forest[basic]|mylibrary) moveto(myhand) and!( shuffle )!
+auto=@movedto(land|mybattlefield) restriction{type(land|mybattlefield)~morethan~6}:name(Exile and transforms) moveto(exile) and!( moveto(mybattlefield) and!( flip(backside) )! )!
+text=When Nissa, Vastwood Seer enters the battlefield, you may search your library for a basic Forest card, reveal it, put it into your hand, then shuffle your library. -- Whenever a land enters the battlefield under your control, if you control seven or more lands, exile Nissa, then return her to the battlefield transformed under her owner's control. // Nissa, Sage Animist
 mana={2}{G}
 type=Legendary Creature
 subtype=Elf Scout
@@ -47950,9 +47957,10 @@ type=Instant
 [/card]
 [card]
 name=Price of Betrayal
-target=artifact,creature,planeswalker
-auto=counter(1/1,-5)
-auto=counter(0/0,-5,loyalty)
+auto=if type(artifact|battlefield)~morethan~0 then choice name(Remove 5 counters from an artifact) name(Remove 5 counters from an artifact) target(artifact) removesinglecountertype(1) && removesinglecountertype(1) && removesinglecountertype(1) && removesinglecountertype(1) && removesinglecountertype(1)
+auto=if type(creature|battlefield)~morethan~0 then choice name(Remove 5 counters from a creature) name(Remove 5 counters from a creature) target(creature) removesinglecountertype(1) && removesinglecountertype(1) && removesinglecountertype(1) && removesinglecountertype(1) && removesinglecountertype(1)
+auto=if type(planeswalker|battlefield)~morethan~0 then choice name(Remove 5 counters from a planeswalker) name(Remove 5 counters from a planeswalker) target(planeswalker) removesinglecountertype(1) && removesinglecountertype(1) && removesinglecountertype(1) && removesinglecountertype(1) && removesinglecountertype(1)
+auto=choice name(Remove 5 counters from opponent) target(opponent) removesinglecountertype(1) && removesinglecountertype(1) && removesinglecountertype(1) && removesinglecountertype(1) && removesinglecountertype(1)
 text=Remove up to five counters from target artifact, creature, planeswalker, or opponent.
 mana={B}
 type=Sorcery
@@ -60226,8 +60234,8 @@ type=Artifact
 [card]
 name=Spark Double
 auto=choice name(Don't copy anything) donothing
-auto=choice name(Copy creature) target(creature|mybattlefield) copy and!( transforms((-legendary)) forever and!(counter(1/1))! )!
-auto=choice name(Copy planeswalker) target(planeswalker|mybattlefield) copy and!( transforms((-legendary)) forever and!(counter(0/0,1,Loyalty))! )!
+auto=choice name(Copy creature) target(creature|mybattlefield) copy options(nolegend) and!( counter(1/1) )!
+auto=choice name(Copy planeswalker) target(planeswalker|mybattlefield) copy options(nolegend) and!( counter(0/0,1,Loyalty) )!
 text=You may have Spark Double enter the battlefield as a copy of a creature or planeswalker you control, except it enters with an additional +1/+1 counter on it if it's a creature, it enters with an additional loyalty counter on it if it's a planeswalker, and it isn't legendary if that permanent is legendary.
 mana={3}{U}
 type=Creature
@@ -69750,14 +69758,14 @@ toughness=1
 [/card]
 [card]
 name=Valki, God of Lies
+backside=Tibalt, Cosmic Impostor
 other={5}{B}{R} name(Tibalt, Cosmic Impostor)
 otherrestriction=can play planeswalker,compare(isflipped)~equalto~1
 restriction=compare(isflipped)~equalto~0
-anyzone={0}:doubleside(Tibalt, Cosmic Impostor)
-autostack=if paid(alternative) then flip(Tibalt, Cosmic Impostor) forcetype(Legendary Planeswalker)
+anyzone={0}:doubleside(backside)
+autostack=if paid(alternative) then flip(backside) forcetype(Legendary Planeswalker)
 auto=ifnot paid(alternative) then if type(creature|opponenthand)~morethan~0 then name(Reveal hand and exile creature) name(Reveal hand and exile creature) name(Reveal hand and exile creature) target(creature|opponenthand) imprint
 auto=ifnot paid(alternative) then if type(creature|opponenthand)~equalto~0 then name(Reveal hand) name(Reveal hand) name(Reveal hand) target(*|opponenthand) moveto(opponenthand)
-auto=if paid(alternative) then counter(0/0,5,Loyalty)
 auto=this(variable{hasevict}>0) this(variable{iscopied}<1) transforms((,newability[@movedto(this|nonbattlezone) from(battlefield):name(Put back exiled creature) target(creature[evictname]|opponentexile) moveTo(opponenthand)]))
 auto=this(variable{hasevict}>0) this(variable{evictmc}=0) this(variable{iscopied}<1) {0}:name(Becomes copy of exiled creature) copy target(creature[evictname]|opponentexile)
 auto=this(variable{hasevict}>0) this(variable{evictmc}=1) this(variable{iscopied}<1) {1}:name(Becomes copy of exiled creature) copy target(creature[evictname]|opponentexile)
@@ -72408,6 +72416,14 @@ auto=ifnot paid(alternative) then target(creature) 2/2 ueot
 auto=if paid(alternative) then target(enchantment) destroy
 text=Target creature gets +2/+2 until end of turn. // Destroy target enchantment.
 mana={G}
+type=Instant
+[/card]
+[card]
+name=Waxing Moon
+auto=may name(Transform a werewolf) target(werewolf[hasbackside]|mybattlefield) transforms((,newability[flip(backside)])) forever
+auto=all(creature|mybattlefield) transforms((,newability[trample])) ueot
+text=Transform up to one target Werewolf you control. Creatures you control gain trample until end of turn.
+mana={1}{G}
 type=Instant
 [/card]
 [card]

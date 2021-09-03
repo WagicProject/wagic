@@ -33,12 +33,6 @@ power=0
 toughness=3
 [/card]
 [card]
-name=Waxing Moon
-text=Transform up to one target Werewolf you control. Creatures you control gain trample until end of turn.
-mana={1}{G}
-type=Instant
-[/card]
-[card]
 name=Mirrorwing Dragon
 abilities=flying
 text=Flying -- Whenever a player casts an instant or sorcery spell that targets only Mirrorwing Dragon, that player copies that spell for each other creature he or she controls that the spell could target. Each copy targets a different one of those creatures.

@@ -74,6 +74,7 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     myconvertedcost = getManaCost()->getConvertedCost();
     revealedLast = NULL;
     MadnessPlay = false;
+    backSide = card->data->backSide;
 }
 
   MTGCardInstance * MTGCardInstance::createSnapShot()
@@ -140,7 +141,7 @@ void MTGCardInstance::copy(MTGCardInstance * card, bool nolegend)
 
     setText(data->text); //The text is retrieved from the data anyways
     setName(data->name);
-
+    backSide = data->backSide;
     power = data->power;//layer 7a
     toughness = data->toughness;//layer 7a
     power += pbonus;//layer 7b
@@ -242,14 +243,14 @@ void MTGCardInstance::initMTGCI()
     damageInflictedAsCommander = 0;
     numofcastfromcommandzone = 0;
     auras = 0;
-    combatdamageToOpponent = false;
-    damageToOpponent = false;
-    damageToController = false;
-    damageToCreature = false;
+    combatdamageToOpponent = 0;
+    damageToOpponent = 0;
+    damageToController = 0;
+    damageToCreature = 0;
     isProvoked = false;
     ProvokeTarget = NULL;
     Provoker = NULL;
-    wasDealtDamage = false;
+    wasDealtDamage = 0;
     isDualWielding = false;
     suspended = false;
     isBestowed = false;

@@ -66,11 +66,11 @@ public:
     int damageInflictedAsCommander;
     int numofcastfromcommandzone;
     int auras;
-    bool wasDealtDamage;
-    bool combatdamageToOpponent;
-    bool damageToOpponent;
-    bool damageToController;
-    bool damageToCreature;
+    int wasDealtDamage;
+    int combatdamageToOpponent;
+    int damageToOpponent;
+    int damageToController;
+    int damageToCreature;
     bool isProvoked;
     MTGCardInstance * ProvokeTarget;
     MTGCardInstance * Provoker;

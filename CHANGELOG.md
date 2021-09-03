@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 04/09/21
+- *Committed:* Added/fixed primitives, refactored and improved almost all transforming human cards (included all the Werewolves), improved "flip ability and "doubleside" ability adding a new "backside" option, fixed a bug on "doubleside" ability for planeswalkers, added "backside=" key to CardPrimitive in order to specify the other side of double-faced cards, added "hasbackside" option to target chooser in order to find cards which have a back side, added "dualfaced" that return 1 if a card has a backside card, fixed loyalty counter ability on planeswalker flip (is was not resolving correctly), changed type of damageToController, damageToOpponent, damageToCreature, wasDealtDamage, combatdamageToOpponent from bool to int in order to retrieve those values if needed, added "totaldmg" keyword that returns the total amount of damage dealt by a creature in the current turn, added new restriction "coven in order to check if a player controls three or more creatures with different powers, added new ability "hasdisturb" when the Retrace cost of a card is a disturb cost (e.g. "Beloved Beggar"). ([Vitty85](https://github.com/Vitty85))
+
 ### 03/09/21
-- *Committed:* Fixed primitives, fixed some possible crashes on Commander Format. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed primitives, fixed some possible crashes on Commander Format. https://github.com/WagicProject/wagic/commit/236f677f2a08d538191de5c16970340dcd39c5f0 ([Vitty85](https://github.com/Vitty85))
 
 ### 02/09/21
 - *Committed:* Added/fixed primitives, updated the "missing_cards_by_sets" folder, fixed several crash on Commander Format, fixed a possible crash using "and!()!" with "imprint", added a new macros "_REBOUND_" and "_GOAD_" related to rebound and goad abilities and refactored all cards using them, implemented a new keywords "haunt", "hasprey", "preyname" and "isprey" related the haunting ability and improved all cards using it, Added "commander" and "\*" to HINT castpriority for AI decks in order to allow the user to give a cast priority to commanders. https://github.com/WagicProject/wagic/commit/001cea95bd501ca47b6510037af2725508f321d5 ([Vitty85](https://github.com/Vitty85))

@@ -255,18 +255,18 @@ int Damage::resolve()
                 target->nonCombatDamage += damage;
         }
         if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && (((MTGCardInstance*)target)->basicAbilities[Constants::UNDAMAGEABLE] == 0)){
-            ((MTGCardInstance*)target)->wasDealtDamage = true;
-            ((MTGCardInstance*)source)->damageToCreature = true;
+            ((MTGCardInstance*)target)->wasDealtDamage += damage;
+            ((MTGCardInstance*)source)->damageToCreature += damage;
         }
         if (target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER)
         {
             if(target == source->controller())
             {
-                ((MTGCardInstance*)source)->damageToController = true;
+                ((MTGCardInstance*)source)->damageToController += damage;
             }
             else
             {
-                ((MTGCardInstance*)source)->damageToOpponent = true;
+                ((MTGCardInstance*)source)->damageToOpponent += damage;
                 if(((MTGCardInstance*)source)->basicAbilities[Constants::ISCOMMANDER])
                     ((MTGCardInstance*)source)->damageInflictedAsCommander += damage;
             }
@@ -274,7 +274,7 @@ int Damage::resolve()
             if ( typeOfDamage == 1 && target == source->controller()->opponent() )//add vector prowledtypes.
             {
                 source->controller()->dealsdamagebycombat = 1; // for restriction check
-                ((MTGCardInstance*)source)->combatdamageToOpponent = true; //check
+                ((MTGCardInstance*)source)->combatdamageToOpponent += damage; //check
                 vector<string> values = MTGAllCards::getCreatureValuesById();//getting a weird crash here. rarely.
                 for (size_t i = 0; i < values.size(); ++i)
                 {

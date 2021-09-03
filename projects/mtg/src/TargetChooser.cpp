@@ -583,6 +583,18 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->unsecureSetHasFlashbackCost(1);
                     }
                 }
+                //Has backside
+                else if (attribute.find("hasbackside") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->unsecureSetHasBackSide(-1);
+                    }
+                    else
+                    {
+                        cd->unsecureSetHasBackSide(1);
+                    }
+                }
                 //Token
                 else if (attribute.find("token") != string::npos)
                 {

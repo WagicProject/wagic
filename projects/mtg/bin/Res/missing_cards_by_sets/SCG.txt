@@ -97,6 +97,15 @@ mana={2}
 type=Artifact
 [/card]
 [card]
+name=Exiled Doomsayer
+text=All morph costs cost {2} more. (This doesn't affect the cost to cast creature spells face down.)
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=2
+[/card]
+[card]
 name=Grip of Chaos
 text=Whenever a spell or ability is put onto the stack, if it has a single target, reselect its target at random. (Select from among all legal targets.)
 mana={4}{R}{R}

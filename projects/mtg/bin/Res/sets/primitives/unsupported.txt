@@ -2,7 +2,7 @@ grade=unsupported
 #The cards in this file are not implemented/incomplete yet.
 #Updated Card lists not in primitives (Borderline, Crappy, Unsupported and Missing Cards up to Aether Revolt) as of 3/14/2017
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#I sorted this programatically - Vitty85 07-08-2021
+#I sorted this programatically - Vitty85 04-09-2021
 [card]
 name="Ach! Hans, Run!"
 text=At the beginning of your upkeep, you may say "Ach Hans, run It's the . . ." and name a creature card. If you do, search your library for the named card, put it into play, then shuffle your library. That creature has haste. Remove it from the game at end of turn.
@@ -3098,6 +3098,15 @@ name=Evil Presents
 text=Put a creature card from your hand into play under starget opponent's control. That creature attacks each turn if able... and always attacks its controller.
 mana={2}{B}{B}
 type=Sorcery
+[/card]
+[card]
+name=Exiled Doomsayer
+text=All morph costs cost {2} more. (This doesn't affect the cost to cast creature spells face down.)
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=2
 [/card]
 [card]
 name=Experiment Kraj
@@ -11820,12 +11829,6 @@ type=Artifact
 name=Watermarket
 text={T}: Add {1}{1} . Spend this mana only to cast spells with watermarks.
 type=Land
-[/card]
-[card]
-name=Waxing Moon
-text=Transform up to one target Werewolf you control. Creatures you control gain trample until end of turn.
-mana={1}{G}
-type=Instant
 [/card]
 [card]
 name=Wear Away
