@@ -693,7 +693,7 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
         check = restriction[i].find("didcombatdamagetofoe");
         if(check != string::npos)
         {
-            if(!card->combatdamageToOpponent)
+            if(card->combatdamageToOpponent == 0)
                 return 0;
         }
 
@@ -815,6 +815,28 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                         if(observer->currentPlayer->game->inPlay->cards[j]->hasType("land") && observer->currentPlayer->game->inPlay->cards[j]->name == observer->currentPlayer->game->inPlay->cards[i]->name){
                             for(unsigned int k = j+1; k < observer->currentPlayer->game->inPlay->cards.size() && !found; k++){
                                 if(observer->currentPlayer->game->inPlay->cards[k]->hasType("land") && observer->currentPlayer->game->inPlay->cards[k]->name == observer->currentPlayer->game->inPlay->cards[i]->name){
+                                    found = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if(!found)
+                return 0;
+        }
+        check = restriction[i].find("coven"); //Player controls three or more creatures with different powers
+        if(check != string::npos)
+        {
+            if(player != observer->currentPlayer)
+                return 0;
+            bool found = false;
+            for(unsigned int i = 0; i < observer->currentPlayer->game->inPlay->cards.size() && !found; i++){
+                if(observer->currentPlayer->game->inPlay->cards[i]->hasType(Subtypes::TYPE_CREATURE)){
+                    for(unsigned int j = i+1; j < observer->currentPlayer->game->inPlay->cards.size() && !found; j++){
+                        if(observer->currentPlayer->game->inPlay->cards[j]->hasType(Subtypes::TYPE_CREATURE) && observer->currentPlayer->game->inPlay->cards[j]->power != observer->currentPlayer->game->inPlay->cards[i]->power){
+                            for(unsigned int k = j+1; k < observer->currentPlayer->game->inPlay->cards.size() && !found; k++){
+                                if(observer->currentPlayer->game->inPlay->cards[k]->hasType(Subtypes::TYPE_CREATURE) && (observer->currentPlayer->game->inPlay->cards[k]->power != observer->currentPlayer->game->inPlay->cards[i]->power && observer->currentPlayer->game->inPlay->cards[k]->power != observer->currentPlayer->game->inPlay->cards[j]->power)){
                                     found = true;
                                 }
                             }
@@ -6531,15 +6553,17 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
                     return 0;
             }*/
             // Improved the check to avoid the multiple triggers in case of abilities gained from other cards (e.g. Kasmina, Enigma Sage)
-            for(unsigned int k = 0;k < card->getObserver()->mLayers->actionLayer()->mObjects.size();++k)
+            bool turnSide = false;
+            for(unsigned int k = 0; k < card->getObserver()->mLayers->actionLayer()->mObjects.size(); ++k)
             {
                 ActivatedAbility * check = dynamic_cast<ActivatedAbility*>(card->getObserver()->mLayers->actionLayer()->mObjects[k]);
-                if(check && check->source == card && check->counters)
+                turnSide = card->isFlipped && !card->isInPlay(card->getObserver());
+                if(!turnSide && check && check->source == card && check->counters)
                     return 0;
             }
             if (player != game->currentPlayer)
                 return 0;
-            if (cPhase != MTG_PHASE_FIRSTMAIN && cPhase != MTG_PHASE_SECONDMAIN)
+            if (!turnSide && (cPhase != MTG_PHASE_FIRSTMAIN && cPhase != MTG_PHASE_SECONDMAIN))
                 return 0;
         }
         if (source->has(Constants::NOACTIVATED) || (source->mutation && source->parentCards.size() > 0)) // Mutated Over/Under card doesn't have to react to click anymore

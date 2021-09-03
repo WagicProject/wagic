@@ -1026,12 +1026,12 @@ void GameObserver::gameStateBasedEffects()
                     c->flanked -= 1;
                 }
                 c->fresh = 0;
-                if(c->wasDealtDamage && c->isInPlay(this))
-                    c->wasDealtDamage = false;
-                c->damageToController = false;
-                c->damageToOpponent = false;
-                c->combatdamageToOpponent = false;
-                c->damageToCreature = false;
+                if(c->wasDealtDamage > 0 && c->isInPlay(this))
+                    c->wasDealtDamage = 0;
+                c->damageToController = 0;
+                c->damageToOpponent = 0;
+                c->combatdamageToOpponent = 0;
+                c->damageToCreature = 0;
                 c->isAttacking = NULL;
                 c->isProvoked = false;
                 c->ProvokeTarget = NULL;

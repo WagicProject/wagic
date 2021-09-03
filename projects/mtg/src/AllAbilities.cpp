@@ -4609,12 +4609,15 @@ int AATurnSide::resolve()
         if(_target->controller()->isAI() && _target->isFlipped) _target->isFlipped = false; // If it's AI calling back we just have to reset isFLipped flag and then return.
         if(!_target->isFlipped && _SideName == "") return 0; // No need to turn front if card has not been flipped before.
         if(!_target->isFlipped){
+            if(_SideName == "backside" && _target->backSide != "") 
+                _SideName = _target->backSide; // Added to allow to turn a card on its backside.
             fcard = MTGCollection()->getCardByName(_SideName);
             if(!fcard) return 0;
             sideCard = NEW MTGCardInstance(fcard, _target->controller()->game);
             _target->nameOrig = _target->name; 
             _target->name = sideCard->name;
             _target->setName(sideCard->name);
+            _target->backSide = sideCard->backSide;
             if(!sideCard) return 0;
             if(sideCard->getManaCost()){
                 if(_target->getManaCost()->getAlternative()){
@@ -4624,6 +4627,10 @@ int AATurnSide::resolve()
                 if(_target->getManaCost()->getMorph()){
                     sideCard->getManaCost()->setMorph(NEW ManaCost());
                     sideCard->getManaCost()->getMorph()->copy(_target->getManaCost()->getMorph()); // Keep orignal morph cost to cast the original card with morph.
+                }
+                if(_target->getManaCost()->getRetrace()){
+                    sideCard->getManaCost()->setRetrace(NEW ManaCost());
+                    sideCard->getManaCost()->getRetrace()->copy(_target->getManaCost()->getRetrace()); // Keep orignal retrace cost to cast the original card with retrace (e.g. cards with disturb cost).
                 }
                 _target->getManaCost()->copy(sideCard->getManaCost()); // Show the other side cost mana symbols.
                 if(_target->numofcastfromcommandzone > 0){ //In case you turn side of a previuosly casted commander
@@ -4733,9 +4740,11 @@ int AAFlip::resolve()
         if(flipStats.size())
         {
             if(flipStats == "myorigname" && _target->nameOrig != "") 
-                flipStats = _target->nameOrig; // Added to undo the copy effect at end of turn for a generic card (es. Shapeshifter transformations).
+                flipStats = _target->nameOrig; // Added to undo the copy effect at end of turn for a generic card (e.g. Shapeshifter transformations).
             else if(flipStats == "chosenname" && _target->chooseaname != "") 
                 flipStats = _target->chooseaname; // Added to allow the transformation of a card in a choosen name.
+            else if(flipStats == "backside" && _target->backSide != "") 
+                flipStats = _target->backSide; // Added to allow the transformation of a card in its backside (e.g. Werewolves transformations).
             MTGCard * fcard = MTGCollection()->getCardByName(flipStats);
             if(!fcard) return 0;
             MTGCardInstance * myFlip = NEW MTGCardInstance(fcard, _target->controller()->game);
@@ -4747,6 +4756,7 @@ int AAFlip::resolve()
                 _target->nameOrig = nameOrig; // Saves the orignal card name before to flip the card.
             _target->name = myFlip->name;
             _target->setName(myFlip->name);
+            _target->backSide = myFlip->backSide;
             if(!isflipcard)//transform card
             {
                 _target->getManaCost()->resetCosts();
@@ -4812,7 +4822,13 @@ int AAFlip::resolve()
                 {
                     if (a->oneShot)
                     {
-                        a->resolve();
+                        if(_target->hasType(Subtypes::TYPE_PLANESWALKER)){ // Fix to don't let planeswalker die on flip (since the counter ability is not resolving correctly during flip).
+                            AACounter * tmp = dynamic_cast<AACounter *>(a);
+                            if(tmp && tmp->counterstring.find("loyalty") != string::npos){
+                                for (int j = 0; j < tmp->nb; j++)
+                                    _target->counters->addCounter("loyalty", 0, 0, true); 
+                            } else a->resolve();
+                        } else a->resolve();
                         SAFE_DELETE(a);
                     }
                     else
@@ -4820,9 +4836,7 @@ int AAFlip::resolve()
                         a->addToGame();
                         MayAbility * dontAdd = dynamic_cast<MayAbility*>(a);
                         if(!dontAdd)
-                        {
                             _target->cardsAbilities.push_back(a);
-                        }
                     }
                 }
             }

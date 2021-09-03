@@ -1,7 +1,7 @@
 grade=borderline
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 07-08-2021
+#We sorted this in alphabetical order - Luruz & Vitty85 04-09-2021
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -557,11 +557,12 @@ subtype=Chandra
 [/card]
 [card]
 name=Chandra, Roaring Flame
-auto=counter(0/0.4.loyalty)
+backside=Chandra, Fire of Kaladesh
+auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Deals 2 damage to player or planeswalker) damage:2 target(player,planeswalker)
 auto={C(0/0,-2,Loyalty)}:name(-2: Deals 2 damage to creature) damage:2 target(creature)
-auto={C(0/0,-7,Loyalty)}:name(-7: Deals 6 damage with Emblem) damage:6 opponent && emblem transforms((,newability[@each opponent upkeep:damage:3 opponent])) forever dontremove
-text=+1: Chandra, Roaring Flame deals 2 damage to target player or planeswalker. -- −2: Chandra, Roaring Flame deals 2 damage to target creature. -- −7: Chandra, Roaring Flame deals 6 damage to each opponent. Each player dealt damage this way gets an emblem with “At the beginning of your upkeep, this emblem deals 3 damage to you.”
+auto={C(0/0,-7,Loyalty)}:name(-7: Deals 6 damage with Emblem) emblem transforms((newability[damage:6 opponent],newability[@each opponent upkeep:damage:3 opponent])) forever dontremove
+text=+1: Chandra, Roaring Flame deals 2 damage to target player or planeswalker. -- −2: Chandra, Roaring Flame deals 2 damage to target creature. -- −7: Chandra, Roaring Flame deals 6 damage to each opponent. Each player dealt damage this way gets an emblem with "At the beginning of your upkeep, this emblem deals 3 damage to you." // Chandra, Fire of Kaladesh
 type=Legendary Planeswalker
 subtype=Chandra
 color=red
@@ -904,22 +905,23 @@ subtype=Garruk
 [/card]
 [card]
 name=Garruk Relentless
+backside=Garruk, the Veil-Cursed
 auto=counter(0/0,3,loyalty)
-auto=this(counter{0/0.1.loyalty}<3) flip(Garruk, the Veil-Cursed)
-auto={0}:name(+0: Garruk fights target creature) target(creature) dynamicability<!mytgt powerstrike tosrc!> damage:3
+auto=this(counter{0/0.1.loyalty}<3) flip(backside)
+auto={0}:name(+0: Garruk fights a creature) target(creature) dynamicability<!powerstrike eachother!> && damage:3
 auto={0}:name(+0: Create a 2/2 Wolf) token(Wolf,Creature Wolf,2/2,green)
-text=When Garruk Relentless has two or fewer loyalty counters on him, transform him. -- 0: Garruk Relentless deals 3 damage to target creature. That creature deals damage equal to its power to him. -- 0: Put a 2/2 green Wolf creature token onto the battlefield.
+text=When Garruk Relentless has two or fewer loyalty counters on him, transform him. -- 0: Garruk Relentless deals 3 damage to target creature. That creature deals damage equal to its power to him. -- 0: Put a 2/2 green Wolf creature token onto the battlefield. // Garruk, the Veil-Cursed
 mana={3}{G}
 type=Legendary Planeswalker
 subtype=Garruk
 [/card]
 [card]
 name=Garruk, the Veil-Cursed
-aicode=activate target(creature|mylibrary) moveto(myhand)
+backside=Garruk Relentless
 auto={C(0/0,1,Loyalty)}:name(+1: Create a 1/1 Wolf) token(Wolf,Creature Wolf,1/1,black,deathtouch)
-auto={C(0/0,-1,Loyalty)}{S(creature|myBattlefield)}:name(-1: Search creature) Reveal:type:*:mylibrary revealzone(mylibrary) optionone name(choose card) target(<1>creature|reveal) transforms((,newability[all(other *|reveal) moveto(mylibrary) and!(shuffle)!],newability[moveto(myhand)])) optiononeend optiontwo name(shuffle) bottomoflibrary target(<1>*|reveal) and!( all(*|reveal) bottomoflibrary and!(shuffle)! )! optiontwoend revealend
-auto={C(0/0,-3,Loyalty)}:name(-3: Creatures gets +X/+X and trample) all(creature|mybattlefield) trample ueot && all(creature|mybattlefield) foreach(creature|mygraveyard) 1/1 ueot
-text=+1: Put a 1/1 black Wolf creature token with deathtouch onto the battlefield. -- -1: Sacrifice a creature. If you do, search your library for a creature card, reveal it, put it into your hand, then shuffle your library. -- -3: Creatures you control gain trample and get +X/+X until end of turn, where X is the number of creature cards in your graveyard.
+auto={C(0/0,-1,Loyalty)}{S(creature|myBattlefield)}:name(-1: Search creature) target(creature|mylibrary) moveto(myhand) and!( shuffle )!
+auto={C(0/0,-3,Loyalty)}:name(-3: Creatures gets +X/+X and trample) all(creature|mybattlefield) transforms((,newability[trample],newability[type:creature:mygraveyard/type:creature:mygraveyard])) ueot
+text=+1: Put a 1/1 black Wolf creature token with deathtouch onto the battlefield. -- -1: Sacrifice a creature. If you do, search your library for a creature card, reveal it, put it into your hand, then shuffle your library. -- -3: Creatures you control gain trample and get +X/+X until end of turn, where X is the number of creature cards in your graveyard. // Garruk Relentless
 type=Legendary Planeswalker
 subtype=Garruk
 color=black,green
@@ -1052,11 +1054,12 @@ subtype=Gideon
 [/card]
 [card]
 name=Gideon, Battle-Forged
+backside=Kytheon, Hero of Akros
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Target creature attacks Gideon) target(creature|opponentbattlefield) mustattack uynt
-auto={C(0/0,-1,Loyalty)}:name(+1: Target creature is indestructible and untap it) untap target(creature) && indestructible uynt
-auto={C(0/0,0,Loyalty)}:name(+0: Transforms Gideon into a 4/4 Human Indestructible) transforms((Human Soldier Creature Planeswalker,setpower=4,settoughness=4,indestructible)) ueot && transforms((,newability[preventAllDamage to(this)])) ueot
-text=+2: Up to one target creature an opponent controls attacks Gideon, Battle-Forged during its controller’s next turn if able. -- +1: Until your next turn, target creature gains indestructible. Untap that creature. -- 0: Until end of turn, Gideon, Battle-Forged becomes a 4/4 Human Soldier creature with indestructible that’s still a planeswalker. Prevent all damage that would be dealt to him this turn.
+auto={C(0/0,-1,Loyalty)}:name(+1: Target creature is indestructible and untap it) target(creature) transforms((,newability[untap],newability[indestructible])) uynt
+auto={C(0/0,0,Loyalty)}:name(+0: Transforms Gideon into a 4/4 Human Indestructible) transforms((Human Soldier Creature,setpower=4,settoughness=4,newability[indestructible],newability[preventAllDamage to(this)])) ueot
+text=+2: Up to one target creature an opponent controls attacks Gideon, Battle-Forged during its controller’s next turn if able. -- +1: Until your next turn, target creature gains indestructible. Untap that creature. -- 0: Until end of turn, Gideon, Battle-Forged becomes a 4/4 Human Soldier creature with indestructible that’s still a planeswalker. Prevent all damage that would be dealt to him this turn. // Kytheon, Hero of Akros
 type=Legendary Planeswalker
 subtype=Gideon
 color=white
@@ -1307,12 +1310,13 @@ subtype=Jace
 [/card]
 [card]
 name=Jace, Telepath Unbound
+backside=Jace, Vryn's Prodigy
 auto=counter(0/0,5,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: don't target any creature) donothing
 auto={C(0/0,1,Loyalty)}:name(+1: target creature gets -2/0) target(creature) -2/0 uynt
 auto={C(0/0,-3,Loyalty)}:name(-3: choose an instant or sorcery you may from graveyard) target(*[instant;sorcery]|mygraveyard) transforms((,newability[canplayfromgraveyard],newability[gainedexiledeath])) ueot
 auto={C(0/0,-9,Loyalty)}:name(-9: emblem mills opponent cards) emblem transforms((,newability[@movedTo(*|mystack):deplete:5 opponent])) forever dontremove
-text=+1: Up to one target creature gets -2/-0 until your next turn. -- -3: You may cast target instant or sorcery card from your graveyard this turn. If that card would be put into your graveyard this turn, exile it instead. -- -9: You get an emblem with "Whenever you cast a spell, target opponent puts the top five cards of his or her library into his or her graveyard."
+text=+1: Up to one target creature gets -2/-0 until your next turn. -- -3: You may cast target instant or sorcery card from your graveyard this turn. If that card would be put into your graveyard this turn, exile it instead. -- -9: You get an emblem with "Whenever you cast a spell, target opponent puts the top five cards of his or her library into his or her graveyard." // Jace, Vryn's Prodigy
 type=Legendary Planeswalker
 subtype=Jace
 color=blue
@@ -1657,6 +1661,7 @@ subtype=Liliana
 [/card]
 [card]
 name=Liliana, Defiant Necromancer
+backside=Liliana, Heretical Healer
 auto=counter(0/0,3,Loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Each player discards a card) transforms((,newability[ability$!name(Discard a card) name(Discard a card) notatarget(*|myhand) reject!$ controller],newability[ability$!name(Discard a card) name(Discard a card) notatarget(*|myhand) reject!$ opponent])) oneshot
 auto={C(0/0,0,Loyalty)}:name(-0: Reanimate non-legendary creature with manacost 0) moveto(mybattlefield) target(creature[-legendary;manacost=0]|mygraveyard)
@@ -1805,6 +1810,7 @@ subtype=Lukka
 [/card]
 [card]
 name=Lukka, Wayward Bonder
+backside=Mila, Crafty Companion
 auto=counter(0/0,5,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Don't discard any card) donothing
 auto={C(0/0,1,Loyalty)}:name(+1: Discard and draw) target(*|myhand) transforms((,newability[reject],newability[if cantargetcard(*[creature]|*) then draw:2 else draw:1])) oneshot
@@ -1820,7 +1826,7 @@ name=Mordenkainen
 auto=counter(0/0,5,Loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Draw 2 cards) draw:2 && transforms((,newability[name(Put on bottom) target(*|myhand) bottomoflibrary])) forever
 auto={C(0/0,-2,Loyalty)}:name(-2: Create Dog Illusion) token(Dog Mor)
-auto={C(0/0,-10,Loyalty)}:name(-10: Exchange hand and library) token(Mordenkainen Emblem,Emblem,0/0,shroud,indestructible) and!( transforms((,newability[nomaxhand],newability[all(*|myhand) moveto(myreveal) and!( all(*|mylibrary) moveto(myhand) and!( all(*|myreveal) moveto(mylibrary) and!( shuffle )! )! )!])) forever
+auto={C(0/0,-10,Loyalty)}:name(-10: Exchange hand and library) token(Mordenkainen Emblem,Emblem,0/0,shroud,indestructible,notrigger) and!( transforms((,newability[nomaxhand],newability[all(*|myhand) moveto(myreveal) and!( all(*|mylibrary) moveto(myhand) and!( all(*|myreveal) moveto(mylibrary) and!( shuffle )! )! )!])) forever
 text=+2: Draw two cards, then put a card from your hand on the bottom of your library. -- -2: Create a blue Dog Illusion creature token with "This creature’s power and toughness are each equal to twice the number of cards in your hand." -- -10: Exchange your hand and library, then shuffle. You get an emblem with "You have no maximum hand size."
 mana={4}{U}{U}
 type=Legendary Planeswalker
@@ -2000,13 +2006,14 @@ subtype=Bolas
 [/card]
 [card]
 name=Nicol Bolas, the Arisen
+backside=Nicol Bolas, the Ravager
 auto=counter(0/0,7,Loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Draw two cards) draw:2 controller
 auto={C(0/0,-3,Loyalty)}:name(-3: Deals 10 damage to creature or planeswalker) damage:10 target(creature,planeswalker)
 auto={C(0/0,-4,Loyalty)}:name(-4: Reanimate a creature or planeswalker) target(*[creature;planeswalker]|graveyard) moveto(myBattlefield)
 auto={C(0/0,-12,Loyalty)}:name(-12: Exile opponent library except one) moveTo(opponentexile) all(*[zpos<=type:*:opponentlibraryminus1minusend]|opponentlibrary)
 auto={C(0/0,-12,Loyalty)}:name(-12: Exile your library except one) moveTo(myexile) all(*[zpos<=type:*:mylibraryminus1minusend]|mylibrary)
-text=+2: Draw two cards. -- -3: Nicol Bolas, the Arisen deals 10 damage to target creature or planeswalker. -- -4: Put target creature or planeswalker card from a graveyard onto the battlefield under your control. -- -12: Exile all but the bottom card of target player's library.
+text=+2: Draw two cards. -- -3: Nicol Bolas, the Arisen deals 10 damage to target creature or planeswalker. -- -4: Put target creature or planeswalker card from a graveyard onto the battlefield under your control. -- -12: Exile all but the bottom card of target player's library. // Nicol Bolas, the Ravager
 type=Legendary Planeswalker
 subtype=Bolas
 color=blue,black,red
@@ -2087,12 +2094,13 @@ subtype=Nissa
 [/card]
 [card]
 name=Nissa, Sage Animist
+backside=Nissa, Vastwood Seer
 auto=counter(0/0,3,loyalty)
 aicode=activate transforms((,newability[if type(land[zpos=1]|mylibrary)~morethan~0 then target(land[zpos=1]|mylibrary) moveto(ownerbattlefield) else target(*[zpos=1]|mylibrary) moveto(ownerhand)])) ueot
 auto={C(0/0,1,Loyalty)}:name(+1: Reveal the top and put land on battlefield) reveal:1 optionone target(<1>land|reveal) moveto(ownerbattlefield) optiononeend optiontwo target(<1>*|reveal) moveto(ownerhand) optiontwoend revealend
 auto={C(0/0,-2,Loyalty)}:name(-2: Create a Legendary 4/4 Elemental named Ashaya) create(Ashaya, the Awoken World:Legendary Creature Elemental:4/4:green)
 auto={C(0/0,-7,Loyalty)}:name(-7: Untap up to six land an becomes 6/6) target(<upto:6>land) transforms((Creature Elemental,newability[untap],setpower=6,settoughness=6)) forever
-text=+1: Reveal the top card of your library. If it's a land card, put it onto the battlefield. Otherwise, put it into your hand. -- -2: Put a legendary 4/4 green Elemental creature token named Ashaya, the Awoken World onto the battlefield. -- -7: Untap up to six target lands. They become 6/6 Elemental creatures. They're still lands.
+text=+1: Reveal the top card of your library. If it's a land card, put it onto the battlefield. Otherwise, put it into your hand. -- -2: Put a legendary 4/4 green Elemental creature token named Ashaya, the Awoken World onto the battlefield. -- -7: Untap up to six target lands. They become 6/6 Elemental creatures. They're still lands. // Nissa, Vastwood Seer
 type=Legendary Planeswalker
 subtype=Nissa
 color=green
@@ -2844,8 +2852,9 @@ type=Legendary Planeswalker
 [/card]
 [card]
 name=Tibalt, Cosmic Impostor
+backside=Valki, God of Lies
 auto=counter(0/0,5,Loyalty)
-auto=token(Tibalt Emblem,Emblem,0/0,shroud,indestructible,notrigger,nomovetrigger) and!( transforms((,newability[lord(*[counter{0/0.1.TibaltExiled}]|myexile) canplayfromexile],newability[lord(*[counter{0/0.1.TibaltExiled}]|myexile) anytypeofmana],newability[{0}:name(Cast from opponent exile) target(*[counter{0/0.1.TibaltExiled}]|opponentexile) moveto(myexile) and!( transforms((,newability[counter(0/0.1.TibaltExiled)],newability[canplayfromexile],newability[anytypeofmana],newability[phaseaction[endofturn once checkex] moveTo(ownerexile)],newability[phaseaction[untap once checkex] counter(0/0.1.TibaltExiled)])) ueot )!])) forever )!
+auto=token(Tibalt Emblem,Emblem,0/0,shroud,indestructible,notrigger) and!( transforms((,newability[lord(*[counter{0/0.1.TibaltExiled}]|myexile) canplayfromexile],newability[lord(*[counter{0/0.1.TibaltExiled}]|myexile) anytypeofmana],newability[{0}:name(Cast from opponent exile) target(*[counter{0/0.1.TibaltExiled}]|opponentexile) moveto(myexile) and!( transforms((,newability[counter(0/0.1.TibaltExiled)],newability[canplayfromexile],newability[anytypeofmana],newability[phaseaction[endofturn once checkex] moveTo(ownerexile)],newability[phaseaction[untap once checkex] counter(0/0.1.TibaltExiled)])) ueot )!])) forever )!
 auto={C(0/0,2,Loyalty)}:name(+2: Exile the top card) all(*[zpos=1]|library) moveto(ownerexile) and!( counter(0/0,1,TibaltExiled) )!
 auto={C(0/0,-3,Loyalty)}:name(-3: Exile target artifact or creature) target(*[artifact;creature]|battlefield) moveto(ownerexile) and!( counter(0/0,1,TibaltExiled) )!
 auto={C(0/0,-8,Loyalty)}:name(-8: Exile all cards from all graveyards) all(*|graveyard) moveto(ownerexile) and!( counter(0/0,1,TibaltExiled) )!

@@ -669,7 +669,7 @@ ThisDamaged::ThisDamaged(int wasDealtDamage)
 int ThisDamaged::match(MTGCardInstance * card)
 {
 int result = 0;
-if(card->wasDealtDamage)
+if(card->wasDealtDamage > 0)
 result = 1;
     return matchValue(result);
 }

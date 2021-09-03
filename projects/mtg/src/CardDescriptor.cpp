@@ -24,6 +24,7 @@ CardDescriptor::CardDescriptor()
     zposition = -1;
     hasKickerCost = 0;
     hasFlashbackCost = 0;
+    hasBackSide = 0;
     hasXCost = 0;
     compareName ="";
     nameComparisonMode = COMPARISON_NONE;
@@ -70,6 +71,11 @@ void CardDescriptor::unsecureSetHasKickerCost(int k)
 void CardDescriptor::unsecureSetHasFlashbackCost(int k)
 {
     hasFlashbackCost = k;
+}
+
+void CardDescriptor::unsecureSetHasBackSide(int k)
+{
+    hasBackSide = k;
 }
 
 void CardDescriptor::unsecureSetTapped(int i)
@@ -277,6 +283,11 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
         match = NULL;
     }
 
+    if ((hasBackSide == -1 && card->backSide != "") || (hasBackSide == 1 && card->backSide == ""))
+    {
+        match = NULL;
+    }
+
     if ((hasXCost == -1 && card->getManaCost()->hasX()) || (hasXCost == 1 && !card->getManaCost()->hasX()))
     {
         match = NULL;
@@ -400,13 +411,13 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
         {
             match = NULL;
         }
-        if ((CDdamaged == -1 && card->wasDealtDamage) || (CDdamaged == 1 && !card->wasDealtDamage))
+        if ((CDdamaged == -1 && card->wasDealtDamage > 0) || (CDdamaged == 1 && card->wasDealtDamage == 0))
         {
             match = NULL;
         }
 
-        if ((CDdamager == -1 && (card->damageToOpponent || card->damageToController || card->damageToCreature)) 
-                || (CDdamager == 1 && !(card->damageToOpponent || card->damageToController || card->damageToCreature)))
+        if ((CDdamager == -1 && (card->damageToOpponent > 0 || card->damageToController > 0 || card->damageToCreature > 0)) 
+                || (CDdamager == 1 && !(card->damageToOpponent > 0 || card->damageToController > 0 || card->damageToCreature > 0)))
         {
             match = NULL;
         }
@@ -414,17 +425,17 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     if(CDopponentDamaged == -1 || CDopponentDamaged == 1 || CDcontrollerDamaged == -1 || CDcontrollerDamaged == 1)
     {
         Player * p = card->controller();
-        if ((CDopponentDamaged == -1 && card->damageToOpponent && card->controller() == p)
-            || (CDopponentDamaged == 1 && !card->damageToOpponent && card->controller() == p)
-            || (CDopponentDamaged == -1 && card->damageToController && card->controller() == p->opponent())
-            || (CDopponentDamaged == 1 && !card->damageToController && card->controller() == p->opponent()))
+        if ((CDopponentDamaged == -1 && card->damageToOpponent > 0 && card->controller() == p)
+            || (CDopponentDamaged == 1 && card->damageToOpponent == 0 && card->controller() == p)
+            || (CDopponentDamaged == -1 && card->damageToController > 0 && card->controller() == p->opponent())
+            || (CDopponentDamaged == 1 && card->damageToController == 0 && card->controller() == p->opponent()))
         {
             match = NULL;
         }
-        if ((CDcontrollerDamaged == -1 && card->damageToController && card->controller() == p)
-            || (CDcontrollerDamaged == 1 && !card->damageToController && card->controller() == p)
-            || (CDcontrollerDamaged == -1 && card->damageToOpponent && card->controller() == p->opponent())
-            || (CDcontrollerDamaged == 1 && !card->damageToOpponent && card->controller() == p->opponent()))
+        if ((CDcontrollerDamaged == -1 && card->damageToController > 0 && card->controller() == p)
+            || (CDcontrollerDamaged == 1 && card->damageToController == 0 && card->controller() == p)
+            || (CDcontrollerDamaged == -1 && card->damageToOpponent > 0 && card->controller() == p->opponent())
+            || (CDcontrollerDamaged == 1 && card->damageToOpponent == 0 && card->controller() == p->opponent()))
         {
             match = NULL;
         }

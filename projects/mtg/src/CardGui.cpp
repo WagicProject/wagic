@@ -444,11 +444,11 @@ void CardGui::Render()
         renderer->DrawRect(actX - (13 * actZ), actY + ymody + 4 * actZ, 25.5f * actZ, 14 * actZ,
             ARGB(((static_cast<unsigned char>(actA))),20,20,20));
         //damaged or buffed or powered down        
-        if(card->wasDealtDamage && card->life <= 2)
+        if(card->wasDealtDamage > 0 && card->life <= 2)
             mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,0,0));//red critical and damaged
-        else if(!card->wasDealtDamage && card->pbonus < 0)
+        else if(card->wasDealtDamage == 0 && card->pbonus < 0)
             mFont->SetColor(ARGB(static_cast<unsigned char>(actA),216,191,216));//thistle powered down
-        else if(!card->wasDealtDamage && card->pbonus >= 3)
+        else if(card->wasDealtDamage == 0 && card->pbonus >= 3)
             mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,0));//yellow buff
         else if(card->hasType("legendary") && card->hasType("eldrazi") && !card->has(Constants::CHANGELING))
             mFont->SetColor(ARGB(static_cast<unsigned char>(actA),238,130,238));//violet legendary eldrazi
@@ -1530,6 +1530,18 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                     else
                     {
                         cd.unsecureSetHasFlashbackCost(1);
+                    }
+                }
+                //Has backside
+                else if (attribute.find("hasbackside") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.unsecureSetHasBackSide(-1);
+                    }
+                    else
+                    {
+                        cd.unsecureSetHasBackSide(1);
                     }
                 }
                 //Token

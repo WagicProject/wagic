@@ -54,6 +54,7 @@ public:
     string text;
     string name;
     string nameOrig;
+    string backSide;
     int init();
 
     uint8_t colors;
