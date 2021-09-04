@@ -21,7 +21,6 @@ DeckMetaData::DeckMetaData(const string& filename, bool isAI)
     LoadDeck();
 }
 
-
 void DeckMetaData::LoadDeck()
 {
     if (!mDeckLoaded)
@@ -30,7 +29,7 @@ void DeckMetaData::LoadDeck()
         mName = trim(deck.meta_name);
         mDescription = trim(deck.meta_desc);
         mDeckId = atoi((mFilename.substr(mFilename.find("deck") + 4, mFilename.find(".txt"))).c_str());
-        isCommanderDeck = deck.meta_commander; //Added to read the command tag in deck's metafile.
+        mCommanderDeck = deck.meta_commander; //Added to read the command tag in deck's metafile.
 
         vector<string> requirements = split(deck.meta_unlockRequirements, ',');
         for(size_t i = 0; i < requirements.size(); ++i)
@@ -49,9 +48,7 @@ void DeckMetaData::LoadDeck()
         }        
     }
 
-
 }
-
 
 void DeckMetaData::LoadStats()
 {
@@ -65,7 +62,6 @@ void DeckMetaData::LoadStats()
             mGamesPlayed = 0;
             mColorIndex = "";
             mDifficulty = 0;
-            isCommanderDeck = false;
 
             stats->load(mPlayerDeck);
             DeckStat * opponentDeckStats = stats->getDeckStat(mStatsFilename);
@@ -115,6 +111,11 @@ int DeckMetaData::getAvatarId()
 
 //Accessors
 
+bool DeckMetaData::isCommanderDeck()
+{
+    return mCommanderDeck;
+}
+
 string DeckMetaData::getFilename()
 {
     return mFilename;
@@ -134,7 +135,6 @@ vector<int> DeckMetaData::getUnlockRequirements()
 {
     return mUnlockRequirements;
 }
-
 
 string DeckMetaData::getAvatarFilename()
 {

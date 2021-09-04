@@ -42,7 +42,7 @@ vector<DeckMetaData *> GameState::BuildDeckList(const string& path, const string
         if (meta)
         {
             found = 1;
-            if(!showall && ((meta->isCommanderDeck && type != GAME_TYPE_COMMANDER) || (!meta->isCommanderDeck && type == GAME_TYPE_COMMANDER))){
+            if(!showall && ((meta->isCommanderDeck() && type != GAME_TYPE_COMMANDER) || (!meta->isCommanderDeck() && type == GAME_TYPE_COMMANDER))){
                 meta = NULL; // It will show commander decks only in commander mode and it will hide them in other modes.
                 nbDecks++;
                 continue;
