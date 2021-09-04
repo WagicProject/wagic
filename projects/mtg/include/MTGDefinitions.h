@@ -324,7 +324,9 @@ class Constants
       HASREPLICATE = 197,
       ISPREY = 198,
       HASDISTURB = 199,
-      NB_BASIC_ABILITIES = 200,
+      DAYBOUND = 200,
+      NIGHTBOUND = 201,
+      NB_BASIC_ABILITIES = 202,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

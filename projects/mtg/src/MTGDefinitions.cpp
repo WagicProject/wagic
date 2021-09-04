@@ -230,7 +230,9 @@ const char* Constants::MTGBasicAbilities[] = {
     "showcontrollerhand", //controller plays with his hand revealed.
     "hasreplicate", //Kicker cost is a replicate cost (e.g. "Vacuumelt")
     "isprey", //Creature has been haunted by some other card.
-    "hasdisturb" //Retrace cost is a disturb cost (e.g. "Beloved Beggar")
+    "hasdisturb", //Retrace cost is a disturb cost (e.g. "Beloved Beggar")
+    "daybound", //Card has daybound (e.g. "Brutal Cathar")
+    "nightbound" //Card has nightbound (e.g. "Moonrage Brute")
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

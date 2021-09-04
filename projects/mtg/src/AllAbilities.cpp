@@ -9719,7 +9719,6 @@ MTGCardInstance * AACastCard::makeCard()
    card = NEW MTGCardInstance(cardData, source->controller()->game);
    card->owner = source->controller();
    card->lastController = source->controller();
-   //source->controller()->game->temp->addCard(card);
    source->controller()->game->sideboard->addCard(card);
    return card;
 }
@@ -9752,15 +9751,11 @@ int AACastCard::resolveSpell()
         {
             if(theNamedCard)
             {
-                //MTGCardInstance * copy =  source->controller()->game->putInZone(_target, _target->currentZone,  source->controller()->game->temp);
-                //copy->changeController(source->controller(),true);
-                Spell * spell = NEW Spell(game, -1,theNamedCard,NULL,NULL, 1);
+                _target = source->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, source->controller()->game->stack, noEvent); // Fixed a bug when using noevent option with namedcard option.
+                if(asCopy) 
+                    _target->isToken = 1; // Fixed a bug when using copied option with namedcard option.
+                Spell * spell = game->mLayers->stackLayer()->addSpell(_target, NULL, NULL, 1, 0);
                 spell->resolve();
-                delete spell;
-
-                this->forceDestroy = true;
-                processed = true;
-                return 1;
             }
             else
             {
@@ -9768,21 +9763,33 @@ int AACastCard::resolveSpell()
                 a->oneShot = true;
                 a->resolve();
                 SAFE_DELETE(a);
-
-                this->forceDestroy = true;
-                processed = true;
-                return 1;
             }
+            if(andAbility) // Allow to use and!()! with lands.
+            {
+                MTGAbility * andAbilityClone = andAbility->clone();
+                andAbilityClone->target = _target;
+                if(andAbility->oneShot)
+                {
+                    andAbilityClone->resolve();
+                    SAFE_DELETE(andAbilityClone);
+                }
+                else
+                {
+                    andAbilityClone->addToGame();
+                }
+            }
+            this->forceDestroy = true;
+            processed = true;
+            return 1;
         }
 
-        //
         if(theNamedCard)
         {
-            //MTGCardInstance * copy =  source->controller()->game->putInZone(_target, _target->currentZone,  source->controller()->game->temp);
-            //copy->changeController(source->controller(),true);
             Spell * spell = NULL;
-            MTGCardInstance * copy = source->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, source->controller()->game->stack);
-
+            MTGCardInstance * copy = source->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, source->controller()->game->stack, noEvent); // Fixed a bug when using noevent option with namedcard option.
+            
+            if(asCopy) 
+                copy->isToken = 1; // Fixed a bug when using copied option with namedcard option.
             if(alternative)
                 copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_ALTERNATIVE] = 1;
             if(kicked > 0){
@@ -9823,6 +9830,10 @@ int AACastCard::resolveSpell()
                     copy->castX = copy->X;
                 }
             }
+
+            if (putinplay && (copy->hasType(Subtypes::TYPE_ARTIFACT) || copy->hasType(Subtypes::TYPE_CREATURE) || copy->hasType(Subtypes::TYPE_ENCHANTMENT) || copy->hasType(Subtypes::TYPE_PLANESWALKER)))
+                spell->resolve(); // Fixed a crash when using and!()! with namedcard permanents.
+
             if(andAbility)
             {
                 MTGAbility * andAbilityClone = andAbility->clone();
@@ -9837,21 +9848,19 @@ int AACastCard::resolveSpell()
                     andAbilityClone->addToGame();
                 }
             }
-
             this->forceDestroy = true;
             processed = true;
             return 1;
         }
-        //
 
         Spell * spell = NULL;
         MTGCardInstance * copy = NULL;
         if ((normal || asNormalMadness)||(!_target->hasType(Subtypes::TYPE_INSTANT) && !_target->hasType(Subtypes::TYPE_SORCERY)))
         {
             if (putinplay && (_target->hasType(Subtypes::TYPE_ARTIFACT)||_target->hasType(Subtypes::TYPE_CREATURE)||_target->hasType(Subtypes::TYPE_ENCHANTMENT)||_target->hasType(Subtypes::TYPE_PLANESWALKER)))
-                copy =_target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->battlefield,noEvent);
+                copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->battlefield, noEvent);
             else
-               copy =_target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack,noEvent);
+               copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack, noEvent);
             copy->changeController(source->controller(),true);
             if(asNormalMadness)
                 copy->MadnessPlay = true;
@@ -9859,9 +9868,9 @@ int AACastCard::resolveSpell()
         else
         {
             if (putinplay && (_target->hasType(Subtypes::TYPE_ARTIFACT)||_target->hasType(Subtypes::TYPE_CREATURE)||_target->hasType(Subtypes::TYPE_ENCHANTMENT)||_target->hasType(Subtypes::TYPE_PLANESWALKER)))
-                copy =_target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->battlefield,noEvent);
+                copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->battlefield, noEvent);
             else
-                copy =_target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack,noEvent);
+                copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack, noEvent);
             copy->changeController(source->controller(),true);
         }
         if(alternative)
