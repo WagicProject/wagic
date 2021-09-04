@@ -1822,7 +1822,9 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
                 y2 = event.getY();
                 float deltaY = y2 - y1;
                 if (deltaY > DELTA_Y) 
-                    parent.showOptionMenu();
+                    parent.showOptionMenu(); // Emulate Android option menu button pressure.
+                else if (deltaY < -DELTA_Y)
+                    SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_BACK ); // Emulate Android back button pressure.
                 break;
         }
 

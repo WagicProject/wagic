@@ -896,10 +896,10 @@ MTGDeck::MTGDeck(const string& config_file, MTGAllCards * _allcards, int meta_on
     size_t dot = filename.find(".");
     meta_name = filename.substr(slash + 1, dot - slash - 1);
     meta_id = atoi(meta_name.substr(4).c_str());
-    meta_commander = false;
     std::string contents;
     if (JFileSystem::GetInstance()->readIntoString(config_file, contents))
     {
+        meta_commander = (contents.find("#CMD:")!=string::npos)?true:false; //Added to read the command tag in metafile.
         std::stringstream stream(contents);
         std::string s;
         while (std::getline(stream, s))
@@ -970,7 +970,6 @@ MTGDeck::MTGDeck(const string& config_file, MTGAllCards * _allcards, int meta_on
                 found = s.find("CMD:"); // Now it's possible to add a card to Command Zone even using their Name instead of ID such as normal deck cards.
                 if (found != string::npos)
                 {
-                    meta_commander = true; //Added to read the command tag in metafile.
                     if(!database) continue;
                     s = s.substr(found + 4);
                     s.erase(s.find_last_not_of("\t\n\v\f\r ") + 1);

@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 05/09/21
+- *Committed:* Fixed bug that was not correctly showing the full Commander decks list in the deck choosing menu page, added a new gesture for Android to emulate back button pressure: now sliding from down to up for almost all screen size will trigger the back button in game (e.g. pause match in gameplay, going back from shop, and so on). ([Vitty85](https://github.com/Vitty85))
+
 ### 04/09/21
-- *Committed:* Fixed several primitives with "castcard" ability, fixed a bug when using "noevent" and "copied" options togheter with "namedcard" option in "castcard" ability, allowed the usage of "and!()!" ability with "namedcard" option in "castcard" ability for permanents, added "daybound" and "nightbound" abilities. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed several primitives with "castcard" ability, fixed a bug when using "noevent" and "copied" options togheter with "namedcard" option in "castcard" ability, allowed the usage of "and!()!" ability with "namedcard" option in "castcard" ability for permanents, added "daybound" and "nightbound" abilities. https://github.com/WagicProject/wagic/commit/c211b2eaa481639725f29490d93f87797ea5a718 ([Vitty85](https://github.com/Vitty85))
 
 - *Committed:* Added/fixed primitives, refactored and improved almost all transforming human cards (included all the Werewolves), improved "flip ability and "doubleside" ability adding a new "backside" option, fixed a bug on "doubleside" ability for planeswalkers, added "backside=" key to CardPrimitive in order to specify the other side of double-faced cards, added "hasbackside" option to target chooser in order to find cards which have a back side, added "dualfaced" that return 1 if a card has a backside card, fixed loyalty counter ability on planeswalker flip (is was not resolving correctly), changed type of damageToController, damageToOpponent, damageToCreature, wasDealtDamage, combatdamageToOpponent from bool to int in order to retrieve those values if needed, added "totaldmg" keyword that returns the total amount of damage dealt by a creature in the current turn, added new restriction "coven in order to check if a player controls three or more creatures with different powers, added new ability "hasdisturb" when the Retrace cost of a card is a disturb cost (e.g. "Beloved Beggar"). https://github.com/WagicProject/wagic/commit/cc16db7256138febf26c1bf7fd4d9907c4f708fa ([Vitty85](https://github.com/Vitty85))
 
