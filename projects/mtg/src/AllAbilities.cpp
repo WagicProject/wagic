@@ -2461,7 +2461,7 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
         if (target)
         {
             MTGCardInstance * _target = (MTGCardInstance *) target;
-            if(_target->isFlipped && _target->hasType(Subtypes::TYPE_PLANESWALKER))//is flipping pw
+            if(_target->isFlipped > 0 && _target->hasType(Subtypes::TYPE_PLANESWALKER))//is flipping pw
                 return 0;
 
             AbilityFactory af(game);
@@ -4606,9 +4606,9 @@ int AATurnSide::resolve()
         if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be turned, they will follow the fate of top-card
         MTGCard * fcard;
         MTGCardInstance* sideCard;
-        if(_target->controller()->isAI() && _target->isFlipped) _target->isFlipped = false; // If it's AI calling back we just have to reset isFLipped flag and then return.
-        if(!_target->isFlipped && _SideName == "") return 0; // No need to turn front if card has not been flipped before.
-        if(!_target->isFlipped){
+        if(_target->controller()->isAI() && _target->isFlipped > 0) _target->isFlipped = 0; // If it's AI calling back we just have to reset isFLipped flag and then return.
+        if(_target->isFlipped == 0 && _SideName == "") return 0; // No need to turn front if card has not been flipped before.
+        if(_target->isFlipped == 0){
             if(_SideName == "backside" && _target->backSide != "") 
                 _SideName = _target->backSide; // Added to allow to turn a card on its backside.
             fcard = MTGCollection()->getCardByName(_SideName);
@@ -4673,7 +4673,7 @@ int AATurnSide::resolve()
         _target->formattedText = sideCard->formattedText;
         _target->magicText = sideCard->magicText;
         _target->colors = sideCard->colors;
-        _target->isFlipped = !_target->isFlipped;
+        _target->isFlipped = (_target->isFlipped > 0)?0:1;
         _target->mPropertiesChangedSinceLastUpdate = true;
         SAFE_DELETE(sideCard);
         return 1;
@@ -4704,7 +4704,7 @@ int AAFlip::resolve()
     int activatedanyability = 0;
     MTGCardInstance * Flipper = (MTGCardInstance*)source;
     this->oneShot = true;
-    if(Flipper->isFlipped && forcetype == "")
+    if(Flipper->isFlipped > 0 && forcetype == "")
     {
         game->removeObserver(this);
         return 0;
@@ -4735,7 +4735,7 @@ int AAFlip::resolve()
         }
 
         AbilityFactory af(game);
-        _target->isFlipped = true;
+        _target->isFlipped = 1;
         GameObserver * game = _target->getObserver();
         if(flipStats.size())
         {
@@ -4929,13 +4929,13 @@ int AAFlip::testDestroy()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if(target)
     {
-        if(_target->isFlipped)
+        if(_target->isFlipped > 0)
         {
             this->forceDestroy = 1;
             //_target->getObserver()->removeObserver(this);
             //originally added as a safegaurd to insure the ability was removed
             //it's been so long and so much has changed that it appears to do nothing but cause a crash now
-            _target->isFlipped = false;
+            _target->isFlipped = 0;
             return 1;
         }
     }

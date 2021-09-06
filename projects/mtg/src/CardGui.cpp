@@ -1561,11 +1561,11 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                 {
                     if (minus)
                     {
-                        cd.isFlipped = false;
+                        cd.isFlipped = -1;
                     }
                     else
                     {
-                        cd.isFlipped = true;
+                        cd.isFlipped = 1;
                     }
                 }
                 //Has x in cost

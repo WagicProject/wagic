@@ -293,7 +293,7 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
         match = NULL;
     }
 
-    if (isFlipped != card->isFlipped)
+    if ((isFlipped == -1 && card->isFlipped > 0) || (isFlipped == 1 && card->isFlipped == 0))
     {
         match = NULL;
     }

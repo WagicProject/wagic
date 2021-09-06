@@ -96,7 +96,7 @@ public:
     bool exerted;
     bool turningOver;
     bool isMorphed;
-    bool isFlipped;
+    int isFlipped;
     string MeldedFrom;
     bool isPhased;
     bool isCascaded;

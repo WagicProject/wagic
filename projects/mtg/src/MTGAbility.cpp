@@ -6223,7 +6223,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     {
         MTGPlayerCards * zones = card->controller()->game;
         MTGPlayerCards * Endzones = card->owner->game;//put them in thier owners respective zones as per rules.
-        if (card->basicAbilities[(int)Constants::EXILEDEATH] || card->basicAbilities[(int)Constants::GAINEDEXILEDEATH])
+        if (card->basicAbilities[(int)Constants::EXILEDEATH] || card->basicAbilities[(int)Constants::GAINEDEXILEDEATH] || (card->basicAbilities[(int)Constants::HASDISTURB] && card->alternateCostPaid[ManaCost::MANA_PAID_WITH_RETRACE] == 1))
         {
             card->basicAbilities[(int)Constants::GAINEDEXILEDEATH] = 0;
             card->controller()->game->putInZone(card, card->getCurrentZone(), card->owner->game->exile);
@@ -6557,7 +6557,7 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
             for(unsigned int k = 0; k < card->getObserver()->mLayers->actionLayer()->mObjects.size(); ++k)
             {
                 ActivatedAbility * check = dynamic_cast<ActivatedAbility*>(card->getObserver()->mLayers->actionLayer()->mObjects[k]);
-                turnSide = card->isFlipped && !card->isInPlay(card->getObserver());
+                turnSide = card->isFlipped > 0 && !card->isInPlay(card->getObserver());
                 if(!turnSide && check && check->source == card && check->counters)
                     return 0;
             }

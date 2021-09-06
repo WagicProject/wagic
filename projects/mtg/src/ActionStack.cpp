@@ -585,7 +585,7 @@ Interruptible(observer, id)
 int PutInGraveyard::resolve()
 {
     MTGGameZone * zone = card->getCurrentZone();
-    if (card->basicAbilities[(int)Constants::EXILEDEATH] || card->basicAbilities[(int)Constants::GAINEDEXILEDEATH])
+    if (card->basicAbilities[(int)Constants::EXILEDEATH] || card->basicAbilities[(int)Constants::GAINEDEXILEDEATH] || (card->basicAbilities[(int)Constants::HASDISTURB] && card->alternateCostPaid[ManaCost::MANA_PAID_WITH_RETRACE] == 1))
     {
         card->basicAbilities[(int)Constants::GAINEDEXILEDEATH] = 0;
         card->controller()->game->putInZone(card, zone, card->owner->game->exile);

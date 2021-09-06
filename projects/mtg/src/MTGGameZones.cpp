@@ -407,7 +407,7 @@ void MTGPlayerCards::showHand()
 // Moves a card to its owner's graveyard
 MTGCardInstance * MTGPlayerCards::putInGraveyard(MTGCardInstance * card)
 {
-    if (card->getCurrentZone() != card->controller()->game->hand && (card->basicAbilities[(int)Constants::EXILEDEATH] || card->basicAbilities[(int)Constants::GAINEDEXILEDEATH]))
+    if (card->getCurrentZone() != card->controller()->game->hand && (card->basicAbilities[(int)Constants::EXILEDEATH] || card->basicAbilities[(int)Constants::GAINEDEXILEDEATH] || (card->basicAbilities[(int)Constants::HASDISTURB] && card->alternateCostPaid[ManaCost::MANA_PAID_WITH_RETRACE] == 1)))
     {
          MTGCardInstance* ret = putInZone(card, card->getCurrentZone(), card->owner->game->exile);
          ret->basicAbilities[(int)Constants::GAINEDEXILEDEATH] = 0;

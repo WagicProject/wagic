@@ -326,7 +326,8 @@ class Constants
       HASDISTURB = 199,
       DAYBOUND = 200,
       NIGHTBOUND = 201,
-      NB_BASIC_ABILITIES = 202,
+      DECAYED = 202,
+      NB_BASIC_ABILITIES = 203,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

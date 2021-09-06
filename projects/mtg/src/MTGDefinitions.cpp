@@ -232,7 +232,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "isprey", //Creature has been haunted by some other card.
     "hasdisturb", //Retrace cost is a disturb cost (e.g. "Beloved Beggar")
     "daybound", //Card has daybound (e.g. "Brutal Cathar")
-    "nightbound" //Card has nightbound (e.g. "Moonrage Brute")
+    "nightbound", //Card has nightbound (e.g. "Moonrage Brute")
+    "decayed" //Card has decayd.
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;
