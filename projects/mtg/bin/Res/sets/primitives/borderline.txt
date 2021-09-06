@@ -17592,7 +17592,7 @@ target=creature
 auto=cantattack
 auto=cantpwattack
 auto=cantblock
-auto={2}{W}:all(this) moveTo(exile)
+auto={2}{W}:name(Exile enchanted creature) imprint
 text=Enchant creature -- Enchanted creature can’t attack or block. -- {2}{W}: Exile enchanted creature.
 mana={2}{W}
 type=Enchantment
@@ -18541,8 +18541,8 @@ type=Instant
 name=Eat to Extinction
 target=creature,planeswalker
 auto=moveto(exile) 
-aicode=activate may moveto(mygraveyard) all(*[zpos=1]|mylibrary)
-auto=name(Look) reveal:1 optionone name(Put On Top) target(*|reveal) moveto(mylibrary) optiononeend optiontwo name(put in graveyard) target(<1>*|reveal) moveto(mygraveyard) optiontwoend revealend
+aicode=activate may name(Put in graveyard) target(*[zpos=1]|mylibrary) moveto(mygraveyard)
+auto=name(Look) reveal:1 optionone name(Put On Top) target(<upto:1>*|reveal) moveto(mylibrary) optiononeend optiontwo name(put in graveyard) target(*|reveal) moveto(mygraveyard) optiontwoend revealend
 text=Exile target creature or planeswalker. Look at the top card of your library. You may put that card into your graveyard.
 mana={3}{B}
 type=Instant
@@ -72609,8 +72609,7 @@ toughness=3
 [card]
 name=Westgate Regent
 abilities=flying
-auto=@targeted(this) from(*|opponentzones) restriction{type(*|opponenthand)~equalto~0}:name(Counter spell) target(*|opponentzones) fizzle
-auto=@targeted(this) from(*|opponentzones) restriction{type(*|opponenthand)~morethan~0}:choice name(Discard or counter) name(Discard or counter) target(*|opponentzones) transforms((,newability[pay[[{0}]] name(Discard a card) target(*|myhand) reject?fizzle])) oneshot
+auto=@targeted(this) from(*|opponentzones):choice name(Discard a card to cast this spell) name(Discard a card to cast this spell) target(*|opponentzones) transforms((,newability[if type(*|myhand)~morethan~0 then choice name(Discard a card) name(Discard a card) donothing],newability[choice name(Don't discard card) fizzle])) oneshot
 auto=@combatdamaged(player) from(this):name(Put 1/1 counters) counter(1/1,thatmuch)
 text=Flying -- Ward — Discard a card. (Whenever this creature becomes the target of a spell or ability an opponent controls, counter it unless that player discards a card.) -- Whenever Westgate Regent deals combat damage to a player, put that many +1/+1 counters on it.
 mana={3}{B}{B}

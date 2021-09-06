@@ -269,6 +269,11 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::MY_HAND;
                 zones[nbzones++] = MTGGameZone::MY_COMMANDZONE;
             }
+            else if (zoneName.compare("mycommandplay") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_BATTLEFIELD;
+                zones[nbzones++] = MTGGameZone::MY_COMMANDZONE;
+            }
             else if (zoneName.compare("opponentcastingzone") == 0)
             {
                 zones[nbzones++] = MTGGameZone::OPPONENT_GRAVEYARD;
@@ -280,6 +285,11 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
             else if (zoneName.compare("opponentrestrictedcastingzone") == 0)
             {
                 zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
+                zones[nbzones++] = MTGGameZone::OPPONENT_COMMANDZONE;
+            }
+            else if (zoneName.compare("opponentcommandplay") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::OPPONENT_BATTLEFIELD;
                 zones[nbzones++] = MTGGameZone::OPPONENT_COMMANDZONE;
             }
             else if (zoneName.compare("mynonplaynonexile") == 0)
@@ -612,11 +622,11 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 {
                     if (minus)
                     {
-                        cd->isFlipped = false;
+                        cd->isFlipped = -1;
                     }
                     else
                     {
-                        cd->isFlipped = true;
+                        cd->isFlipped = 1;
                     }
                 }
                 //Has x in cost

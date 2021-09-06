@@ -230,7 +230,7 @@ void MTGCardInstance::initMTGCI()
     turningOver = false;
     isMorphed = false;
     MeldedFrom = "";
-    isFlipped = false;
+    isFlipped = 0;
     isPhased = false;
     isCascaded = false;
     phasedTurn = -1;
@@ -512,7 +512,7 @@ int MTGCardInstance::totem(bool noregen)
 int MTGCardInstance::toGrave( bool forced )
 {
     Player * p = controller();
-    if (basicAbilities[(int)Constants::EXILEDEATH] || basicAbilities[(int)Constants::GAINEDEXILEDEATH])
+    if (basicAbilities[(int)Constants::EXILEDEATH] || basicAbilities[(int)Constants::GAINEDEXILEDEATH] || (basicAbilities[(int)Constants::HASDISTURB] && alternateCostPaid[ManaCost::MANA_PAID_WITH_RETRACE] == 1))
     {
         p->game->putInZone(this, p->game->inPlay, owner->game->exile);
         basicAbilities[(int)Constants::GAINEDEXILEDEATH] = 0;
