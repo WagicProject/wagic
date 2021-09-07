@@ -1,13 +1,4 @@
 [card]
-name=Goldenhide Ox
-text=Constellation  Whenever Goldenhide Ox or another enchantment enters the battlefield under your control, target creature must be blocked this turn if able.
-mana={5}{G}
-type=Enchantment Creature
-subtype=Ox
-power=5
-toughness=4
-[/card]
-[card]
 name=Godsend
 text=Equipped creature gets +3/+3. -- Whenever equipped creature blocks or becomes blocked by one or more creatures, you may exile one of those creatures. -- Opponents can't cast cards with the same name as cards exiled with Godsend. -- Equip {3}
 mana={1}{W}{W}
@@ -44,19 +35,4 @@ name=Worst Fears
 text=You control target player during that player's next turn. Exile Worst Fears. (You see all cards that player could see and make all decisions for the player.)
 mana={7}{B}
 type=Sorcery
-[/card]
-[card]
-name=Disciple of Deceit
-text=Inspired  Whenever Disciple of Deceit becomes untapped, you may discard a nonland card. If you do, search your library for a card with the same converted mana cost as that card, reveal it, put it into your hand, then shuffle your library.
-mana={U}{B}
-type=Creature
-subtype=Human Rogue
-power=1
-toughness=3
-[/card]
-[card]
-name=Polymorphous Rush
-text=Strive  Polymorphous Rush costs {1}{U} more to cast for each target beyond the first. -- Choose a creature on the battlefield. Any number of target creatures you control each become a copy of that creature until end of turn.
-mana={2}{U}
-type=Instant
 [/card]

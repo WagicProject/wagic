@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 07/09/21
+- *Committed:* Added/fixed primitives, updated the "missing_cards_by_sets" folder, added new ability "hasstrive" to implement Strive cost with multikicker and refactored all cards with Strive cost (now they use a special version of multikicker but they don't count as kicked spell), improved "targeted" and "vampired" trigger to allow the "turnlimited" option, improved Android gesture to emulate "option menu" button pressure (slide down) and emulate "back" button pressure (slide up). ([Vitty85](https://github.com/Vitty85))
+
 ### 06/09/21
-- *Committed:* Fixed primitives, changed type of "isFlipped" card variable from bool to int and fixed a related bug on targeting cards with "isFlipped" attribute, improved "disturb" ability (now fi you counter a card casted with disturb it correctly goes to exile), added "decayed" ability, added two new zone alias "mycommandplay" and "opponentcommandplay" for targeting Battlefield and CommandZone at the same time. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed primitives, changed type of "isFlipped" card variable from bool to int and fixed a related bug on targeting cards with "isFlipped" attribute, improved "disturb" ability (now fi you counter a card casted with disturb it correctly goes to exile), added "decayed" ability, added two new zone alias "mycommandplay" and "opponentcommandplay" for targeting Battlefield and CommandZone at the same time. https://github.com/WagicProject/wagic/commit/9dabf121d3719aa0d684e9d5d9732dc1b4a92b3d ([Vitty85](https://github.com/Vitty85))
 
 ### 04/09/21
 - *Committed:* Fixed bug that was not correctly showing the full Commander decks list in the deck choosing menu page, added a new gesture for Android to emulate back button pressure: now sliding from down to up for almost all screen size will trigger the back button in game (e.g. pause match in gameplay, going back from shop, and so on). https://github.com/WagicProject/wagic/commit/ccae9673e620b8f47aa66e9b9f25cbd79a715d2b ([Vitty85](https://github.com/Vitty85))

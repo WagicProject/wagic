@@ -233,7 +233,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "hasdisturb", //Retrace cost is a disturb cost (e.g. "Beloved Beggar")
     "daybound", //Card has daybound (e.g. "Brutal Cathar")
     "nightbound", //Card has nightbound (e.g. "Moonrage Brute")
-    "decayed" //Card has decayd.
+    "decayed", //Card has decayed.
+    "hasstrive" //Kicker cost is a strive cost (e.g. "Aerial Formation")
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

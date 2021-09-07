@@ -1,14 +1,4 @@
 [card]
-name=Sin Prodder
-abilities=menace
-text=Menace -- At the beginning of your upkeep, reveal the top card of your library. Any opponent may have you put that card into your graveyard. If a player does, Sin Prodder deals damage to that player equal to that card's converted mana cost. Otherwise, put that card into your hand.
-mana={2}{R}
-type=Creature
-subtype=Devil
-power=3
-toughness=2
-[/card]
-[card]
 name=Epiphany at the Drownyard
 text=Reveal the top X plus one cards of your library and separate them into two piles. An opponent chooses one of those piles. Put that pile into your hand and the other into your graveyard.
 mana={X}{U}

@@ -34,14 +34,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Face of Divinity
-auto=teach(creature) 2/2
-text=Enchant creature -- Enchanted creature gets +2/+2. -- As long as another Aura is attached to enchanted creature, it has first strike and lifelink.
-mana={2}{W}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Mirrodin Besieged
 text=As Mirrodin Besieged enters the battlefield, choose Mirran or Phyrexian. --  Mirran  Whenever you cast an artifact spell, create a 1/1 colorless Myr artifact creature token. --  Phyrexian  At the beginning of your end step, draw a card, then discard a card. Then if there are fifteen or more artifact cards in your graveyard, target opponent loses the game.
 mana={2}{U}
