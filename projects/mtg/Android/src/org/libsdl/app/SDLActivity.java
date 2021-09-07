@@ -1811,7 +1811,6 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
 
     // Touch events
     public boolean onTouch(View v, MotionEvent event) {
-        // Show Menu for devices without sidebar (e.g. Android 10)
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_POINTER_DOWN:
@@ -1821,10 +1820,13 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
             case MotionEvent.ACTION_POINTER_UP:
                 y2 = event.getY();
                 float deltaY = y2 - y1;
-                if (deltaY > DELTA_Y) 
-                    parent.showOptionMenu(); // Emulate Android option menu button pressure.
-                else if (deltaY < -DELTA_Y)
-                    SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_BACK ); // Emulate Android back button pressure.
+                if (deltaY > DELTA_Y) {
+                    parent.showOptionMenu(); // Emulate Android "optionmenu" button pressure (for devices without sidebar, e.g. like Android 10).
+                    return true;
+                } else if (deltaY < -DELTA_Y){
+                    SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_BACK); // Emulate Android "back" button pressure (for devices without sidebar, e.g. like Android 10).
+                    return true;
+                }
                 break;
         }
 

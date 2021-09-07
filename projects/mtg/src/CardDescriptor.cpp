@@ -171,7 +171,7 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card)
     // Quantified restrictions are always AND-ed:
     if (foretoldComparisonMode && !valueInRange(foretoldComparisonMode, card->foretellTurn, foretellTurn))
         return NULL;
-    if (kickedComparisonMode && (!valueInRange(kickedComparisonMode, card->kicked, kicked) || card->has(Constants::HASREPLICATE)))
+    if (kickedComparisonMode && (!valueInRange(kickedComparisonMode, card->kicked, kicked) || card->has(Constants::HASREPLICATE) || card->has(Constants::HASSTRIVE))) //Some kicker costs are not a real kicker (e.g. Fuse cost, Replicate cost, Strive cost).
         return NULL;
     if (powerComparisonMode && !valueInRange(powerComparisonMode, card->getPower(), power))
         return NULL;
@@ -219,7 +219,7 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card)
 
     if (foretoldComparisonMode && !valueInRange(foretoldComparisonMode, card->foretellTurn, foretellTurn))
         match = NULL;
-    if (kickedComparisonMode && (!valueInRange(kickedComparisonMode, card->kicked, kicked) || card->has(Constants::HASREPLICATE)))
+    if (kickedComparisonMode && (!valueInRange(kickedComparisonMode, card->kicked, kicked) || card->has(Constants::HASREPLICATE) || card->has(Constants::HASSTRIVE))) //Some kicker costs are not a real kicker (e.g. Fuse cost, Replicate cost, Strive cost).
         match = NULL;
     if (powerComparisonMode && !valueInRange(powerComparisonMode, card->getPower(), power))
         match = NULL;
@@ -237,7 +237,6 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card)
 
 MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
 {
-
     MTGCardInstance * match = card;
     if (mode == CD_AND)
     {

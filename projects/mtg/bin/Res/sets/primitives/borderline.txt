@@ -545,7 +545,8 @@ toughness=4
 [/card]
 [card]
 name=Aerial Formation
-kicker=multi{2}{U}
+abilities=hasnokicker,hasstrive
+kicker=multi{2}{U} name(Strive)
 auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature) transforms((,newability[1/1],newability[flying])) ueot
 auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>creature) transforms((,newability[1/1],newability[flying])) ueot
 auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>creature) transforms((,newability[1/1],newability[flying])) ueot
@@ -565,8 +566,8 @@ auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16
 auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>creature) transforms((,newability[1/1],newability[flying])) ueot
 auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>creature) transforms((,newability[1/1],newability[flying])) ueot
 auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>creature) transforms((,newability[1/1],newability[flying])) ueot
-auto=if compare(kicked)~equalto~19 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[1/1],newability[flying])) ueot
-text=Strive — Aerial Formation costs {2}{U} more to cast for each target beyond the first. -- Any number of target creatures each get +1/+1 and gain flying until end of turn.
+auto=if compare(kicked)~morethan~18 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[1/1],newability[flying])) ueot
+text=Strive - Aerial Formation costs {2}{U} more to cast for each target beyond the first. -- Any number of target creatures each get +1/+1 and gain flying until end of turn.
 mana={U}
 type=Instant
 [/card]
@@ -940,7 +941,8 @@ type=Enchantment
 [/card]
 [card]
 name=Ajani's Presence
-kicker=multi{2}{W}
+abilities=hasnokicker,hasstrive
+kicker=multi{2}{W} name(Strive)
 auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature) transforms((,newability[1/1],newability[indestructible])) ueot
 auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>creature) transforms((,newability[1/1],newability[indestructible])) ueot
 auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>creature) transforms((,newability[1/1],newability[indestructible])) ueot
@@ -960,8 +962,8 @@ auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16
 auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>creature) transforms((,newability[1/1],newability[indestructible])) ueot
 auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>creature) transforms((,newability[1/1],newability[indestructible])) ueot
 auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>creature) transforms((,newability[1/1],newability[indestructible])) ueot
-auto=if compare(kicked)~equalto~19 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[1/1],newability[indestructible])) ueot
-text=Strive — Ajani's Presence costs {2}{W} more to cast for each target beyond the first. -- Any number of target creatures each get +1/+1 and gain indestructible until end of turn. (Damage and effects that say "destroy" don't destroy them.)
+auto=if compare(kicked)~morethan~18 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[1/1],newability[indestructible])) ueot
+text=Strive - Ajani's Presence costs {2}{W} more to cast for each target beyond the first. -- Any number of target creatures each get +1/+1 and gain indestructible until end of turn. (Damage and effects that say "destroy" don't destroy them.)
 mana={W}
 type=Instant
 [/card]
@@ -6261,27 +6263,29 @@ type=Instant
 [/card]
 [card]
 name=Blinding Flare
-auto=choice name(Don't strive) ability$!name(choose 1 creature) name(choose 1 creature) target(*[creature]) cantblock ueot!$ controller
-auto=choice name(Strive 1) ability$!name(choose 2 creatures) pay[[{R}]] name(choose 2 creatures) target(<2>*[creature]) cantblock ueot!$ controller
-auto=choice name(Strive 2) ability$!name(choose 3 creatures) pay[[{R}{R}]] name(choose 3 creatures) target(<3>*[creature]) cantblock ueot!$ controller
-auto=choice name(Strive 3) ability$!name(choose 4 creatures) pay[[{R}{R}{R}]] name(choose 4 creatures)target(<4>*[creature]) cantblock ueot!$ controller
-auto=choice name(Strive 4) ability$!name(choose 5 creatures) pay[[{R}{R}{R}{R}]] name(choose 5 creatures) target(<5>*[creature]) cantblock ueot!$ controller
-auto=choice name(Strive 5) ability$!name(choose 6 creatures) pay[[{R}{R}{R}{R}{R}]] name(choose 6 creatures) target(<6>*[creature]) cantblock ueot!$ controller
-auto=choice name(Strive 6) ability$!name(choose 7 creatures) pay[[{R}{R}{R}{R}{R}{R}]] name(choose 7 creatures) target(<7>*[creature]) cantblock ueot!$ controller
-auto=choice name(Strive 7) ability$!name(choose 8 creatures) pay[[{R}{R}{R}{R}{R}{R}{R}]] name(choose 8 creatures) target(<8>*[creature]) cantblock ueot!$ controller
-auto=choice name(Strive 8) ability$!name(choose 9 creatures) pay[[{R}{R}{R}{R}{R}{R}{R}{R}]] name(choose 9 creatures) target(<9>*[creature]) cantblock ueot!$ controller
-auto=choice name(Strive 9) ability$!name(choose 10 creatures) pay[[{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(choose 10 creatures) target(<10>*[creature]) cantblock ueot!$ controller
-auto=choice name(Strive 10) ability$!name(choose 11 creatures) pay[[{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(choose 11 creatures) target(<11>*[creature]) cantblock ueot!$ controller
-auto=choice name(Strive 11) ability$!name(choose 12 creatures) pay[[{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(choose 12 creatures) target(<12>*[creature]) cantblock ueot!$ controller
-auto=choice name(Strive 12) ability$!name(choose 13 creatures) pay[[{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(choose 13 creatures) target(<13>*[creature]) cantblock ueot!$ controller
-auto=choice name(Strive 13) ability$!name(choose 14 creatures) pay[[{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(choose 14 creatures)target(<14>*[creature]) cantblock ueot!$ controller
-auto=choice name(Strive 14) ability$!name(choose 15 creatures) pay[[{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(choose 15 creatures) target(<15>*[creature]) cantblock ueot!$ controller
-auto=choice name(Strive 15) ability$!name(choose 16 creatures) pay[[{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(choose 16 creatures) target(<16>*[creature]) cantblock ueot!$ controller
-auto=choice name(Strive 16) ability$!name(choose 17 creatures) pay[[{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(choose 17 creatures) target(<17>*[creature]) cantblock ueot!$ controller
-auto=choice name(Strive 17) ability$!name(choose 18 creatures) pay[[{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(choose 18 creatures) target(<18>*[creature]) cantblock ueot!$ controller
-auto=choice name(Strive 18) ability$!name(choose 19 creatures) pay[[{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(choose 19 creatures) target(<19>*[creature]) cantblock ueot!$ controller
-auto=choice name(Strive 19) ability$!name(choose 20 creatures) pay[[{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}]] name(choose 20 creatures) target(<20>*[creature]) cantblock ueot!$ controller
-text=Strive — Blinding Flare costs {R} more to cast for each target beyond the first. -- Any number of target creatures can't block this turn.
+abilities=hasnokicker,hasstrive
+kicker=multi{R} name(Strive)
+auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature) transforms((,newability[cantblock])) ueot
+auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>creature) transforms((,newability[cantblock])) ueot
+auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>creature) transforms((,newability[cantblock])) ueot
+auto=if compare(kicked)~equalto~3 then name(choose 4 creatures) name(choose 4 creatures) target(<upto:4>creature) transforms((,newability[cantblock])) ueot
+auto=if compare(kicked)~equalto~4 then name(choose 5 creatures) name(choose 5 creatures) target(<upto:5>creature) transforms((,newability[cantblock])) ueot
+auto=if compare(kicked)~equalto~5 then name(choose 6 creatures) name(choose 6 creatures) target(<upto:6>creature) transforms((,newability[cantblock])) ueot
+auto=if compare(kicked)~equalto~6 then name(choose 7 creatures) name(choose 7 creatures) target(<upto:7>creature) transforms((,newability[cantblock])) ueot
+auto=if compare(kicked)~equalto~7 then name(choose 8 creatures) name(choose 8 creatures) target(<upto:8>creature) transforms((,newability[cantblock])) ueot
+auto=if compare(kicked)~equalto~8 then name(choose 9 creatures) name(choose 9 creatures) target(<upto:9>creature) transforms((,newability[cantblock])) ueot
+auto=if compare(kicked)~equalto~9 then name(choose 10 creatures) name(choose 10 creatures) target(<upto:10>creature) transforms((,newability[cantblock])) ueot
+auto=if compare(kicked)~equalto~10 then name(choose 11 creatures) name(choose 11 creatures) target(<upto:11>creature) transforms((,newability[cantblock])) ueot
+auto=if compare(kicked)~equalto~11 then name(choose 12 creatures) name(choose 12 creatures) target(<upto:12>creature) transforms((,newability[cantblock])) ueot
+auto=if compare(kicked)~equalto~12 then name(choose 13 creatures) name(choose 13 creatures) target(<upto:13>creature) transforms((,newability[cantblock])) ueot
+auto=if compare(kicked)~equalto~13 then name(choose 14 creatures) name(choose 14 creatures) target(<upto:14>creature) transforms((,newability[cantblock])) ueot
+auto=if compare(kicked)~equalto~14 then name(choose 15 creatures) name(choose 15 creatures) target(<upto:15>creature) transforms((,newability[cantblock])) ueot
+auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16 creatures) target(<upto:16>creature) transforms((,newability[cantblock])) ueot
+auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>creature) transforms((,newability[cantblock])) ueot
+auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>creature) transforms((,newability[cantblock])) ueot
+auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>creature) transforms((,newability[cantblock])) ueot
+auto=if compare(kicked)~morethan~18 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[cantblock])) ueot
+text=Strive - Blinding Flare costs {R} more to cast for each target beyond the first. -- Any number of target creatures can't block this turn.
 mana={R}
 type=Sorcery
 [/card]
@@ -8657,8 +8661,9 @@ type=Sorcery
 [/card]
 [card]
 name=Call the Coppercoats
+abilities=hasstrive
 auto=foreach(creature|opponentBattlefield) token(Soldier Call)
-text=Strive — This spell costs {1}{W} more to cast for each target beyond the first. -- Choose any number of target opponents. Create X 1/1 white Human soldier creature tokens, where X is the number of creatures those opponents control.
+text=Strive - This spell costs {1}{W} more to cast for each target beyond the first. -- Choose any number of target opponents. Create X 1/1 white Human soldier creature tokens, where X is the number of creatures those opponents control.
 mana={2}{W}
 type=Instant
 [/card]
@@ -11706,7 +11711,8 @@ toughness=6
 [/card]
 [card]
 name=Colossal Heroics
-kicker=multi{1}{G}
+abilities=hasnokicker,hasstrive
+kicker=multi{1}{G} name(Strive)
 auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature) transforms((,newability[2/2],newability[untap])) ueot
 auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>creature) transforms((,newability[2/2],newability[untap])) ueot
 auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>creature) transforms((,newability[2/2],newability[untap])) ueot
@@ -11726,8 +11732,8 @@ auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16
 auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>creature) transforms((,newability[2/2],newability[untap])) ueot
 auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>creature) transforms((,newability[2/2],newability[untap])) ueot
 auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>creature) transforms((,newability[2/2],newability[untap])) ueot
-auto=if compare(kicked)~equalto~19 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[2/2],newability[untap])) ueot
-text=Strive — Colossal Heroics costs {1}{G} more to cast for each target beyond the first. -- Any number of target creatures each get +2/+2 until end of turn. Untap those creatures.
+auto=if compare(kicked)~morethan~18 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[2/2],newability[untap])) ueot
+text=Strive - Colossal Heroics costs {1}{G} more to cast for each target beyond the first. -- Any number of target creatures each get +2/+2 until end of turn. Untap those creatures.
 mana={2}{G}
 type=Instant
 [/card]
@@ -12329,27 +12335,29 @@ type=Instant
 [/card]
 [card]
 name=Consign to Dust
-auto=choice name(Don't strive) ability$!name(choose 1 artifact or enchantment) name(choose 1 artifact or enchantment) target(*[artifact;enchantment]) destroy!$ controller
-auto=choice name(Strive 1) ability$!name(choose 2 artifacts or enchantments) pay[[{2}{G}]] name(choose 2 artifacts or enchantments) target(<2>*[artifact;enchantment]) destroy!$ controller
-auto=choice name(Strive 2) ability$!name(choose 3 artifacts or enchantments) pay[[{4}{G}{G}]] name(choose 3 artifacts or enchantments) target(<3>*[artifact;enchantment]) destroy!$ controller
-auto=choice name(Strive 3) ability$!name(choose 4 artifacts or enchantments) pay[[{6}{G}{G}{G}]] name(choose 4 artifacts or enchantments)target(<4>*[artifact;enchantment]) destroy!$ controller
-auto=choice name(Strive 4) ability$!name(choose 5 artifacts or enchantments) pay[[{8}{G}{G}{G}{G}]] name(choose 5 artifacts or enchantments) target(<5>*[artifact;enchantment]) destroy!$ controller
-auto=choice name(Strive 5) ability$!name(choose 6 artifacts or enchantments) pay[[{10}{G}{G}{G}{G}{G}]] name(choose 6 artifacts or enchantments) target(<6>*[artifact;enchantment]) destroy!$ controller
-auto=choice name(Strive 6) ability$!name(choose 7 artifacts or enchantments) pay[[{12}{G}{G}{G}{G}{G}{G}]] name(choose 7 artifacts or enchantments) target(<7>*[artifact;enchantment]) destroy!$ controller
-auto=choice name(Strive 7) ability$!name(choose 8 artifacts or enchantments) pay[[{14}{G}{G}{G}{G}{G}{G}{G}]] name(choose 8 artifacts or enchantments) target(<8>*[artifact;enchantment]) destroy!$ controller
-auto=choice name(Strive 8) ability$!name(choose 9 artifacts or enchantments) pay[[{16}{G}{G}{G}{G}{G}{G}{G}{G}]] name(choose 9 artifacts or enchantments) target(<9>*[artifact;enchantment]) destroy!$ controller
-auto=choice name(Strive 9) ability$!name(choose 10 artifacts or enchantments) pay[[{18}{G}{G}{G}{G}{G}{G}{G}{G}{G}]] name(choose 10 artifacts or enchantments) target(<10>*[artifact;enchantment]) destroy!$ controller
-auto=choice name(Strive 10) ability$!name(choose 11 artifacts or enchantments) pay[[{20}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}]] name(choose 11 artifacts or enchantments) target(<11>*[artifact;enchantment]) destroy!$ controller
-auto=choice name(Strive 11) ability$!name(choose 12 artifacts or enchantments) pay[[{22}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}]] name(choose 12 artifacts or enchantments) target(<12>*[artifact;enchantment]) destroy!$ controller
-auto=choice name(Strive 12) ability$!name(choose 13 artifacts or enchantments) pay[[{24}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}]] name(choose 13 artifacts or enchantments) target(<13>*[artifact;enchantment]) destroy!$ controller
-auto=choice name(Strive 13) ability$!name(choose 14 artifacts or enchantments) pay[[{26}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}]] name(choose 14 artifacts or enchantments)target(<14>*[artifact;enchantment]) destroy!$ controller
-auto=choice name(Strive 14) ability$!name(choose 15 artifacts or enchantments) pay[[{28}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}]] name(choose 15 artifacts or enchantments) target(<15>*[artifact;enchantment]) destroy!$ controller
-auto=choice name(Strive 15) ability$!name(choose 16 artifacts or enchantments) pay[[{30}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}]] name(choose 16 artifacts or enchantments) target(<16>*[artifact;enchantment]) destroy!$ controller
-auto=choice name(Strive 16) ability$!name(choose 17 artifacts or enchantments) pay[[{32}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}]] name(choose 17 artifacts or enchantments) target(<17>*[artifact;enchantment]) destroy!$ controller
-auto=choice name(Strive 17) ability$!name(choose 18 artifacts or enchantments) pay[[{34}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}]] name(choose 18 artifacts or enchantments) target(<18>*[artifact;enchantment]) destroy!$ controller
-auto=choice name(Strive 18) ability$!name(choose 19 artifacts or enchantments) pay[[{36}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}]] name(choose 19 artifacts or enchantments) target(<19>*[artifact;enchantment]) destroy!$ controller
-auto=choice name(Strive 19) ability$!name(choose 20 artifacts or enchantments) pay[[{38}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}]] name(choose 20 artifacts or enchantments) target(<20>*[artifact;enchantment]) destroy!$ controller
-text=Strive — Consign to Dust costs {2}{G} more to cast for each target beyond the first. -- Destroy any number of target artifacts and/or enchantments.
+abilities=hasnokicker,hasstrive
+kicker=multi{2}{G} name(Strive)
+auto=if compare(kicked)~equalto~0 then name(choose 1 artifact or enchantment) name(choose 1 artifact or enchantment) target(*[artifact;enchantment]) destroy
+auto=if compare(kicked)~equalto~1 then name(choose 2 artifacts or enchantments) name(choose 2 artifacts or enchantments) target(<upto:2>*[artifact;enchantment]) destroy
+auto=if compare(kicked)~equalto~2 then name(choose 3 artifacts or enchantments) name(choose 3 artifacts or enchantments) target(<upto:3>*[artifact;enchantment]) destroy
+auto=if compare(kicked)~equalto~3 then name(choose 4 artifacts or enchantments) name(choose 4 artifacts or enchantments) target(<upto:4>*[artifact;enchantment]) destroy
+auto=if compare(kicked)~equalto~4 then name(choose 5 artifacts or enchantments) name(choose 5 artifacts or enchantments) target(<upto:5>*[artifact;enchantment]) destroy
+auto=if compare(kicked)~equalto~5 then name(choose 6 artifacts or enchantments) name(choose 6 artifacts or enchantments) target(<upto:6>*[artifact;enchantment]) destroy
+auto=if compare(kicked)~equalto~6 then name(choose 7 artifacts or enchantments) name(choose 7 artifacts or enchantments) target(<upto:7>*[artifact;enchantment]) destroy
+auto=if compare(kicked)~equalto~7 then name(choose 8 artifacts or enchantments) name(choose 8 artifacts or enchantments) target(<upto:8>*[artifact;enchantment]) destroy
+auto=if compare(kicked)~equalto~8 then name(choose 9 artifacts or enchantments) name(choose 9 artifacts or enchantments) target(<upto:9>*[artifact;enchantment]) destroy
+auto=if compare(kicked)~equalto~9 then name(choose 10 artifacts or enchantments) name(choose 10 artifacts or enchantments) target(<upto:10>*[artifact;enchantment]) destroy
+auto=if compare(kicked)~equalto~10 then name(choose 11 artifacts or enchantments) name(choose 11 artifacts or enchantments) target(<upto:11>*[artifact;enchantment]) destroy
+auto=if compare(kicked)~equalto~11 then name(choose 12 artifacts or enchantments) name(choose 12 artifacts or enchantments) target(<upto:12>*[artifact;enchantment]) destroy
+auto=if compare(kicked)~equalto~12 then name(choose 13 artifacts or enchantments) name(choose 13 artifacts or enchantments) target(<upto:13>*[artifact;enchantment]) destroy
+auto=if compare(kicked)~equalto~13 then name(choose 14 artifacts or enchantments) name(choose 14 artifacts or enchantments) target(<upto:14>*[artifact;enchantment]) destroy
+auto=if compare(kicked)~equalto~14 then name(choose 15 artifacts or enchantments) name(choose 15 artifacts or enchantments) target(<upto:15>*[artifact;enchantment]) destroy
+auto=if compare(kicked)~equalto~15 then name(choose 16 artifacts or enchantments) name(choose 16 artifacts or enchantments) target(<upto:16>*[artifact;enchantment]) destroy
+auto=if compare(kicked)~equalto~16 then name(choose 17 artifacts or enchantments) name(choose 17 artifacts or enchantments) target(<upto:17>*[artifact;enchantment]) destroy
+auto=if compare(kicked)~equalto~17 then name(choose 18 artifacts or enchantments) name(choose 18 artifacts or enchantments) target(<upto:18>*[artifact;enchantment]) destroy
+auto=if compare(kicked)~equalto~18 then name(choose 19 artifacts or enchantments) name(choose 19 artifacts or enchantments) target(<upto:19>*[artifact;enchantment]) destroy
+auto=if compare(kicked)~morethan~18 then name(choose 20 artifacts or enchantments) name(choose 20 artifacts or enchantments) target(<upto:20>*[artifact;enchantment]) destroy
+text=Strive - Consign to Dust costs {2}{G} more to cast for each target beyond the first. -- Destroy any number of target artifacts and/or enchantments.
 mana={2}{G}
 type=Instant
 [/card]
@@ -13323,7 +13331,8 @@ type=Instant
 [/card]
 [card]
 name=Cruel Feeding
-kicker=multi{2}{B}
+abilities=hasnokicker,hasstrive
+kicker=multi{2}{B} name(Strive)
 auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature) transforms((,newability[1/0],newability[lifelink])) ueot
 auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>creature) transforms((,newability[1/0],newability[lifelink])) ueot
 auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>creature) transforms((,newability[1/0],newability[lifelink])) ueot
@@ -13343,8 +13352,8 @@ auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16
 auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>creature) transforms((,newability[1/0],newability[lifelink])) ueot
 auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>creature) transforms((,newability[1/0],newability[lifelink])) ueot
 auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>creature) transforms((,newability[1/0],newability[lifelink])) ueot
-auto=if compare(kicked)~equalto~19 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[1/0],newability[lifelink])) ueot
-text=Strive — Cruel Feeding costs {2}{B} more to cast for each target beyond the first. -- Any number of target creatures each get +1/+0 and gain lifelink until end of turn. (Damage dealt by a creature with lifelink also causes its controller to gain that much life.)
+auto=if compare(kicked)~morethan~18 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[1/0],newability[lifelink])) ueot
+text=Strive - Cruel Feeding costs {2}{B} more to cast for each target beyond the first. -- Any number of target creatures each get +1/+0 and gain lifelink until end of turn. (Damage dealt by a creature with lifelink also causes its controller to gain that much life.)
 mana={B}
 type=Instant
 [/card]
@@ -15799,7 +15808,8 @@ type=Instant
 [/card]
 [card]
 name=Desperate Stand
-kicker=multi{R}{W}
+abilities=hasnokicker,hasstrive
+kicker=multi{R}{W} name(Strive)
 auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature) transforms((,newability[2/0],newability[first strike],newability[vigilance])) ueot
 auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>creature) transforms((,newability[2/0],newability[first strike],newability[vigilance])) ueot
 auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>creature) transforms((,newability[2/0],newability[first strike],newability[vigilance])) ueot
@@ -15819,8 +15829,8 @@ auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16
 auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>creature) transforms((,newability[2/0],newability[first strike],newability[vigilance])) ueot
 auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>creature) transforms((,newability[2/0],newability[first strike],newability[vigilance])) ueot
 auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>creature) transforms((,newability[2/0],newability[first strike],newability[vigilance])) ueot
-auto=if compare(kicked)~equalto~19 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[2/0],newability[first strike],newability[vigilance])) ueot
-text=Strive — Desperate Stand costs {R}{W} more to cast for each target beyond the first. -- Any number of target creatures each get +2/+0 and gain first strike and vigilance until end of turn.
+auto=if compare(kicked)~morethan~18 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[2/0],newability[first strike],newability[vigilance])) ueot
+text=Strive - Desperate Stand costs {R}{W} more to cast for each target beyond the first. -- Any number of target creatures each get +2/+0 and gain first strike and vigilance until end of turn.
 mana={R}{W}
 type=Sorcery
 [/card]
@@ -16479,6 +16489,16 @@ auto=name(Look top 4 cards) reveal:4 optionone name(Get a Card) target(*|reveal)
 text=Look at the top four cards of your library. Put one of them into your hand and the rest into your graveyard. You gain life equal to the greatest power among creature cards put into your graveyard this way.
 mana={2}{B}
 type=Sorcery
+[/card]
+[card]
+name=Disciple of Deceit
+auto=@untapped(this):may name(Discard a card) target(*[-land]|myhand) reject and!( transforms((,newability[name(Search another card] target(*[manacost=manacost]|mylibrary) moveto(myhand) and!( shuffle )!])) oneshot )!
+text=Inspired — Whenever Disciple of Deceit becomes untapped, you may discard a nonland card. If you do, search your library for a card with the same converted mana cost as that card, reveal it, put it into your hand, then shuffle your library.
+mana={U}{B}
+type=Creature
+subtype=Human Rogue
+power=1
+toughness=3
 [/card]
 [card]
 name=Disciple of the Sun
@@ -18894,7 +18914,7 @@ subtype=Lesson
 [card]
 name=Elemental Uprising
 target=land|mybattlefield
-auto=transforms(Land Creature Elemental,4/4,haste) with(newability[@combat(attacking,blocking) source(this): all(<anyamount>creature|opponentbattlefield) mustblock ueot]) ueot
+auto=transforms((Creature Elemental,setpower=4,settoughness=4,newability[haste],newability[@combat(attacking) source(this):all(creature|opponentbattlefield) transforms((,newability[mustblock])) ueot])) ueot
 text=Target land you control becomes a 4/4 Elemental creature with haste until end of turn. It’s still a land. It must be blocked this turn if able.
 mana={1}{G}
 type=Instant
@@ -19400,7 +19420,7 @@ type=Instant
 [card]
 name=Emergent Growth
 target=creature
-auto=transforms((,newability[5/5],newability[_ATTACKING_all(creature|opponentbattlefield) mustblock ueot])) ueot
+auto=transforms((,newability[5/5],newability[_ATTACKING_all(creature|opponentbattlefield) transforms((,newability[mustblock])) ueot])) ueot
 text=Target creature gets +5/+5 until end of turn and must be blocked this turn if able.
 mana={3}{G}
 type=Sorcery
@@ -21035,6 +21055,16 @@ auto={W}{U}{B}{R}{G}{T}:all(creature|myBattlefield) transforms((,newability[this
 text={W}{U}{B}{R}{G}, {T}: Creatures you control gain landwalk until end of turn.
 type=Legendary Land
 subtype=Mountain
+[/card]
+[card]
+name=Face of Divinity
+target=creature
+auto=teach(creature) 2/2
+auto=teach(creature) transforms((,newability[this(auras>=2) first strike],newability[this(auras>=2) lifelink]))
+text=Enchant creature -- Enchanted creature gets +2/+2. -- As long as another Aura is attached to enchanted creature, it has first strike and lifelink.
+mana={2}{W}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Faceless Agent
@@ -26924,6 +26954,17 @@ mana={1}{G}{U}
 type=Sorcery
 [/card]
 [card]
+name=Goldenhide Ox
+auto=name(Creature must be blocked) target(creature) transforms((,newability[_ATTACKING_all(creature|opponentbattlefield) transforms((,newability[mustblock])) ueot])) ueot
+auto=@movedto(enchantment|myBattlefield):name(Creature must be blocked) target(creature) transforms((,newability[_ATTACKING_all(creature|opponentbattlefield) transforms((,newability[mustblock])) ueot])) ueot
+text=Constellation — Whenever Goldenhide Ox or another enchantment enters the battlefield under your control, target creature must be blocked this turn if able.
+mana={5}{G}
+type=Enchantment Creature
+subtype=Ox
+power=5
+toughness=4
+[/card]
+[card]
 name=Goldmane Griffin
 abilities=flying,vigilance
 auto=moveto(myhand) target(Ajani^ Inspiring Leader|mylibrary)
@@ -29041,28 +29082,29 @@ type=Instant
 [/card]
 [card]
 name=Harness by Force
-kicker=multi{2}{R}
-auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
-auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
-auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueoteot
-auto=if compare(kicked)~equalto~3 then name(choose 4 creatures) name(choose 4 creatures) target(<upto:4>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
-auto=if compare(kicked)~equalto~4 then name(choose 5 creatures) name(choose 5 creatures) target(<upto:5>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
-auto=if compare(kicked)~equalto~5 then name(choose 6 creatures) name(choose 6 creatures) target(<upto:6>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
-auto=if compare(kicked)~equalto~6 then name(choose 7 creatures) name(choose 7 creatures) target(<upto:7>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
-auto=if compare(kicked)~equalto~7 then name(choose 8 creatures) name(choose 8 creatures) target(<upto:8>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
-auto=if compare(kicked)~equalto~8 then name(choose 9 creatures) name(choose 9 creatures) target(<upto:9>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
-auto=if compare(kicked)~equalto~9 then name(choose 10 creatures) name(choose 10 creatures) target(<upto:10>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
-auto=if compare(kicked)~equalto~10 then name(choose 11 creatures) name(choose 11 creatures) target(<upto:11>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
-auto=if compare(kicked)~equalto~11 then name(choose 12 creatures) name(choose 12 creatures) target(<upto:12>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
-auto=if compare(kicked)~equalto~12 then name(choose 13 creatures) name(choose 13 creatures) target(<upto:13>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
-auto=if compare(kicked)~equalto~13 then name(choose 14 creatures) name(choose 14 creatures) target(<upto:14>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
-auto=if compare(kicked)~equalto~14 then name(choose 15 creatures) name(choose 15 creatures) target(<upto:15>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
-auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16 creatures) target(<upto:16>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
-auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
-auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
-auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
-auto=if compare(kicked)~equalto~19 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
-text=Strive — Harness by Force costs {2}{R} more to cast for each target beyond the first. -- Gain control of any number of target creatures until end of turn. Untap those creatures. They gain haste until end of turn.
+abilities=hasnokicker,hasstrive
+kicker=multi{2}{R} name(Strive)
+auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],newability[haste])) ueot
+auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],newability[haste])) ueot
+auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],newability[haste])) ueot
+auto=if compare(kicked)~equalto~3 then name(choose 4 creatures) name(choose 4 creatures) target(<upto:4>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],newability[haste])) ueot
+auto=if compare(kicked)~equalto~4 then name(choose 5 creatures) name(choose 5 creatures) target(<upto:5>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],newability[haste])) ueot
+auto=if compare(kicked)~equalto~5 then name(choose 6 creatures) name(choose 6 creatures) target(<upto:6>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],newability[haste])) ueot
+auto=if compare(kicked)~equalto~6 then name(choose 7 creatures) name(choose 7 creatures) target(<upto:7>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],newability[haste])) ueot
+auto=if compare(kicked)~equalto~7 then name(choose 8 creatures) name(choose 8 creatures) target(<upto:8>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],newability[haste])) ueot
+auto=if compare(kicked)~equalto~8 then name(choose 9 creatures) name(choose 9 creatures) target(<upto:9>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],newability[haste])) ueot
+auto=if compare(kicked)~equalto~9 then name(choose 10 creatures) name(choose 10 creatures) target(<upto:10>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],newability[haste])) ueot
+auto=if compare(kicked)~equalto~10 then name(choose 11 creatures) name(choose 11 creatures) target(<upto:11>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],newability[haste])) ueot
+auto=if compare(kicked)~equalto~11 then name(choose 12 creatures) name(choose 12 creatures) target(<upto:12>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],newability[haste])) ueot
+auto=if compare(kicked)~equalto~12 then name(choose 13 creatures) name(choose 13 creatures) target(<upto:13>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],newability[haste])) ueot
+auto=if compare(kicked)~equalto~13 then name(choose 14 creatures) name(choose 14 creatures) target(<upto:14>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],newability[haste])) ueot
+auto=if compare(kicked)~equalto~14 then name(choose 15 creatures) name(choose 15 creatures) target(<upto:15>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],newability[haste])) ueot
+auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16 creatures) target(<upto:16>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],newability[haste])) ueot
+auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],newability[haste])) ueot
+auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],newability[haste])) ueot
+auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],newability[haste])) ueot
+auto=if compare(kicked)~morethan~18 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],newability[haste])) ueot
+text=Strive - Harness by Force costs {2}{R} more to cast for each target beyond the first. -- Gain control of any number of target creatures until end of turn. Untap those creatures. They gain haste until end of turn.
 mana={1}{R}{R}
 type=Sorcery
 [/card]
@@ -30662,28 +30704,29 @@ type=Instant
 [/card]
 [card]
 name=Hour of Need
-kicker=multi{1}{U}
-auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) moveto(ownerexile) target(creature) and!(token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller)!
-auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) moveto(ownerexile) target(<upto:2>creature) and!(token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller)!
-auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) moveto(ownerexile) target(<upto:3>creature) and!(token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller)!
-auto=if compare(kicked)~equalto~3 then name(choose 4 creatures) name(choose 4 creatures) moveto(ownerexile) target(<upto:4>creature) and!(token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller)!
-auto=if compare(kicked)~equalto~4 then name(choose 5 creatures) name(choose 5 creatures) moveto(ownerexile) target(<upto:5>creature) and!(token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller)!
-auto=if compare(kicked)~equalto~5 then name(choose 6 creatures) name(choose 6 creatures) moveto(ownerexile) target(<upto:6>creature) and!(token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller)!
-auto=if compare(kicked)~equalto~6 then name(choose 7 creatures) name(choose 7 creatures) moveto(ownerexile) target(<upto:7>creature) and!(token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller)!
-auto=if compare(kicked)~equalto~7 then name(choose 8 creatures) name(choose 8 creatures) moveto(ownerexile) target(<upto:8>creature) and!(token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller)!
-auto=if compare(kicked)~equalto~8 then name(choose 9 creatures) name(choose 9 creatures) moveto(ownerexile) target(<upto:9>creature) and!(token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller)!
-auto=if compare(kicked)~equalto~9 then name(choose 10 creatures) name(choose 10 creatures) moveto(ownerexile) target(<upto:10>creature) and!(token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller)!
-auto=if compare(kicked)~equalto~10 then name(choose 11 creatures) name(choose 11 creatures) moveto(ownerexile) target(<upto:11>creature) and!(token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller)!
-auto=if compare(kicked)~equalto~11 then name(choose 12 creatures) name(choose 12 creatures) moveto(ownerexile) target(<upto:12>creature) and!(token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller)!
-auto=if compare(kicked)~equalto~12 then name(choose 13 creatures) name(choose 13 creatures) moveto(ownerexile) target(<upto:13>creature) and!(token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller)!
-auto=if compare(kicked)~equalto~13 then name(choose 14 creatures) name(choose 14 creatures) moveto(ownerexile) target(<upto:14>creature) and!(token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller)!
-auto=if compare(kicked)~equalto~14 then name(choose 15 creatures) name(choose 15 creatures) moveto(ownerexile) target(<upto:15>creature) and!(token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller)!
-auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16 creatures) moveto(ownerexile) target(<upto:16>creature) and!(token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller)!
-auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) moveto(ownerexile) target(<upto:17>creature) and!(token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller)!
-auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) moveto(ownerexile) target(<upto:18>creature) and!(token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller)!
-auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) moveto(ownerexile) target(<upto:19>creature) and!(token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller)!
-auto=if compare(kicked)~equalto~19 then name(choose 20 creatures) name(choose 20 creatures) moveto(ownerexile) target(<upto:20>creature) and!(token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller)!
-text=Strive — Hour of Need costs {1}{U} more to cast for each target beyond the first. -- Exile any number of target creatures. For each creature exiled this way, its controller puts a 4/4 blue Sphinx creature token with flying onto the battlefield.
+abilities=hasnokicker,hasstrive
+kicker=multi{1}{U} name(Strive)
+auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature) moveto(ownerexile) and!( token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller )!
+auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>creature) moveto(ownerexile) and!( token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller )!
+auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>creature) moveto(ownerexile) and!( token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller )!
+auto=if compare(kicked)~equalto~3 then name(choose 4 creatures) name(choose 4 creatures) target(<upto:4>creature) moveto(ownerexile) and!( token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller )!
+auto=if compare(kicked)~equalto~4 then name(choose 5 creatures) name(choose 5 creatures) target(<upto:5>creature) moveto(ownerexile) and!( token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller )!
+auto=if compare(kicked)~equalto~5 then name(choose 6 creatures) name(choose 6 creatures) target(<upto:6>creature) moveto(ownerexile) and!( token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller )!
+auto=if compare(kicked)~equalto~6 then name(choose 7 creatures) name(choose 7 creatures) target(<upto:7>creature) moveto(ownerexile) and!( token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller )!
+auto=if compare(kicked)~equalto~7 then name(choose 8 creatures) name(choose 8 creatures) target(<upto:8>creature) moveto(ownerexile) and!( token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller )!
+auto=if compare(kicked)~equalto~8 then name(choose 9 creatures) name(choose 9 creatures) target(<upto:9>creature) moveto(ownerexile) and!( token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller )!
+auto=if compare(kicked)~equalto~9 then name(choose 10 creatures) name(choose 10 creatures) target(<upto:10>creature) moveto(ownerexile) and!( token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller )!
+auto=if compare(kicked)~equalto~10 then name(choose 11 creatures) name(choose 11 creatures) target(<upto:11>creature) moveto(ownerexile) and!( token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller )!
+auto=if compare(kicked)~equalto~11 then name(choose 12 creatures) name(choose 12 creatures) target(<upto:12>creature) moveto(ownerexile) and!( token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller )!
+auto=if compare(kicked)~equalto~12 then name(choose 13 creatures) name(choose 13 creatures) target(<upto:13>creature) moveto(ownerexile) and!( token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller )!
+auto=if compare(kicked)~equalto~13 then name(choose 14 creatures) name(choose 14 creatures) target(<upto:14>creature) moveto(ownerexile) and!( token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller )!
+auto=if compare(kicked)~equalto~14 then name(choose 15 creatures) name(choose 15 creatures) target(<upto:15>creature) moveto(ownerexile) and!( token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller )!
+auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16 creatures) target(<upto:16>creature) moveto(ownerexile) and!( token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller )!
+auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>creature) moveto(ownerexile) and!( token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller )!
+auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>creature) moveto(ownerexile) and!( token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller )!
+auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>creature) moveto(ownerexile) and!( token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller )!
+auto=if compare(kicked)~morethan~18 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) moveto(ownerexile) and!( token(Sphinx,Creature Sphinx,4/4,blue,flying) targetcontroller )!
+text=Strive - Hour of Need costs {1}{U} more to cast for each target beyond the first. -- Exile any number of target creatures. For each creature exiled this way, its controller puts a 4/4 blue Sphinx creature token with flying onto the battlefield.
 mana={2}{U}
 type=Instant
 [/card]
@@ -35326,9 +35369,9 @@ toughness=3
 [/card]
 [card]
 name=Kinnan, Bonder Prodigy
-auto=@tappedformana(*[-land]|myBattlefield):ability$! choice add{1} _ choice add{G} _ choice add{R} _ choice add{U} _ choice add{B} _ choice add{W} !$ controller
-aicode=activate target(creature[-human;zpos<=5]|mylibrary) moveto(mybattlefield)
-auto={5}{G}{U}:name(look) reveal:5 optionone name(Get non-Human) target(creature[-human]|reveal) moveto(mybattlefield) optiononeend optiontwo name(put on bottom) target(<5>*|reveal) bottomoflibrary optiontwoend revealend
+aicode=activate transforms((,newability[if type(creature[-human;zpos<=5]|myLibrary)~morethan~0 then target(creature[-human;zpos<=5]|myLibrary) moveTo(myBattlefield) and!( all(other *[zpos<=5]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )! else all(*[zpos<=5]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! ])) oneshot
+auto={5}{G}{U}:name(look) reveal:5 optionone name(Get a non-Human)target(<upto:1>creature[-human]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put on bottom) target(*|reveal) bottomoflibrary and!( all(*|reveal) bottomoflibrary )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!( moveto(myBattlefield) )! afterrevealedend revealend
+auto=lord(*[-land]|myBattlefield) transforms((,newability[@tappedformana(this|*):ability$!name(Add one mana) choice add{1} _ choice add{G} _ choice add{R} _ choice add{U} _ choice add{B} _ choice add{W} !$ controller]))
 text=Whenever you tap a nonland permanent for mana, add one mana of any type that permanent produced. -- {5}{G}{U}: Look at the top five cards of your library. You may put a non-Human creature card from among them onto the battlefield. Put the rest on the bottom of your library in a random order.
 mana={G}{U}
 type=Legendary Creature
@@ -35371,29 +35414,43 @@ toughness=6
 [/card]
 [card]
 name=Kiora's Dismissal
-auto=choice name(Don't strive) ability$!name(return 1 enchantment) name(return 1 enchantment) target(*[enchantment]) moveto(ownerhand)!$ controller
-auto=choice name(Strive 1) ability$!name(return 2 enchantments) pay[[{U}]] name(return 2 enchantments) target(<2>*[enchantment]) moveto(ownerhand)!$ controller
-auto=choice name(Strive 2) ability$!name(return 3 enchantments) pay[[{U}{U}]] name(return 3 enchantments) target(<3>*[enchantment]) moveto(ownerhand)!$ controller
-auto=choice name(Strive 3) ability$!name(return 4 enchantments) pay[[{U}{U}{U}]] name(return 4 enchantments)target(<4>*[enchantment]) moveto(ownerhand)!$ controller
-auto=choice name(Strive 4) ability$!name(return 5 enchantments) pay[[{U}{U}{U}{U}]] name(return 5 enchantments) target(<5>*[enchantment]) moveto(ownerhand)!$ controller
-auto=choice name(Strive 5) ability$!name(return 6 enchantments) pay[[{U}{U}{U}{U}{U}]] name(return 6 enchantments) target(<6>*[enchantment]) moveto(ownerhand)!$ controller
-auto=choice name(Strive 6) ability$!name(return 7 enchantments) pay[[{U}{U}{U}{U}{U}{U}]] name(return 7 enchantments) target(<7>*[enchantment]) moveto(ownerhand)!$ controller
-auto=choice name(Strive 7) ability$!name(return 8 enchantments) pay[[{U}{U}{U}{U}{U}{U}{U}]] name(return 8 enchantments) target(<8>*[enchantment]) moveto(ownerhand)!$ controller
-auto=choice name(Strive 8) ability$!name(return 9 enchantments) pay[[{U}{U}{U}{U}{U}{U}{U}{U}]] name(return 9 enchantments) target(<9>*[enchantment]) moveto(ownerhand)!$ controller
-auto=choice name(Strive 9) ability$!name(return 10 enchantments) pay[[{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(return 10 enchantments) target(<10>*[enchantment]) moveto(ownerhand)!$ controller
-auto=choice name(Strive 10) ability$!name(return 11 enchantments) pay[[{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(return 11 enchantments) target(<11>*[enchantment]) moveto(ownerhand)!$ controller
-auto=choice name(Strive 11) ability$!name(return 12 enchantments) pay[[{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(return 12 enchantments) target(<12>*[enchantment]) moveto(ownerhand)!$ controller
-auto=choice name(Strive 12) ability$!name(return 13 enchantments) pay[[{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(return 13 enchantments) target(<13>*[enchantment]) moveto(ownerhand)!$ controller
-auto=choice name(Strive 13) ability$!name(return 14 enchantments) pay[[{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(return 14 enchantments)target(<14>*[enchantment]) moveto(ownerhand)!$ controller
-auto=choice name(Strive 14) ability$!name(return 15 enchantments) pay[[{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(return 15 enchantments) target(<15>*[enchantment]) moveto(ownerhand)!$ controller
-auto=choice name(Strive 15) ability$!name(return 16 enchantments) pay[[{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(return 16 enchantments) target(<16>*[enchantment]) moveto(ownerhand)!$ controller
-auto=choice name(Strive 16) ability$!name(return 17 enchantments) pay[[{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(return 17 enchantments) target(<17>*[enchantment]) moveto(ownerhand)!$ controller
-auto=choice name(Strive 17) ability$!name(return 18 enchantments) pay[[{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(return 18 enchantments) target(<18>*[enchantment]) moveto(ownerhand)!$ controller
-auto=choice name(Strive 18) ability$!name(return 19 enchantments) pay[[{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(return 19 enchantments) target(<19>*[enchantment]) moveto(ownerhand)!$ controller
-auto=choice name(Strive 19) ability$!name(return 20 enchantments) pay[[{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}]] name(return 20 enchantments) target(<20>*[enchantment]) moveto(ownerhand)!$ controller
-text=Strive — Kiora's Dismissal costs {U} more to cast for each target beyond the first. -- Return any number of target enchantments to their owners' hands.
+abilities=hasnokicker,hasstrive
+kicker=multi{U} name(Strive)
+auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(enchantment) moveto(ownerhand)
+auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>enchantment) moveto(ownerhand)
+auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>enchantment) moveto(ownerhand)
+auto=if compare(kicked)~equalto~3 then name(choose 4 creatures) name(choose 4 creatures) target(<upto:4>enchantment) moveto(ownerhand)
+auto=if compare(kicked)~equalto~4 then name(choose 5 creatures) name(choose 5 creatures) target(<upto:5>enchantment) moveto(ownerhand)
+auto=if compare(kicked)~equalto~5 then name(choose 6 creatures) name(choose 6 creatures) target(<upto:6>enchantment) moveto(ownerhand)
+auto=if compare(kicked)~equalto~6 then name(choose 7 creatures) name(choose 7 creatures) target(<upto:7>enchantment) moveto(ownerhand)
+auto=if compare(kicked)~equalto~7 then name(choose 8 creatures) name(choose 8 creatures) target(<upto:8>enchantment) moveto(ownerhand)
+auto=if compare(kicked)~equalto~8 then name(choose 9 creatures) name(choose 9 creatures) target(<upto:9>enchantment) moveto(ownerhand)
+auto=if compare(kicked)~equalto~9 then name(choose 10 creatures) name(choose 10 creatures) target(<upto:10>enchantment) moveto(ownerhand)
+auto=if compare(kicked)~equalto~10 then name(choose 11 creatures) name(choose 11 creatures) target(<upto:11>enchantment) moveto(ownerhand)
+auto=if compare(kicked)~equalto~11 then name(choose 12 creatures) name(choose 12 creatures) target(<upto:12>enchantment) moveto(ownerhand)
+auto=if compare(kicked)~equalto~12 then name(choose 13 creatures) name(choose 13 creatures) target(<upto:13>enchantment) moveto(ownerhand)
+auto=if compare(kicked)~equalto~13 then name(choose 14 creatures) name(choose 14 creatures) target(<upto:14>enchantment) moveto(ownerhand)
+auto=if compare(kicked)~equalto~14 then name(choose 15 creatures) name(choose 15 creatures) target(<upto:15>enchantment) moveto(ownerhand)
+auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16 creatures) target(<upto:16>enchantment) moveto(ownerhand)
+auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>enchantment) moveto(ownerhand)
+auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>enchantment) moveto(ownerhand)
+auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>enchantment) moveto(ownerhand)
+auto=if compare(kicked)~morethan~18 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>enchantment) moveto(ownerhand)
+text=Strive - Kiora's Dismissal costs {U} more to cast for each target beyond the first. -- Return any number of target enchantments to their owners' hands.
 mana={U}
 type=Instant
+[/card]
+[card]
+name=Kira, Great Glass-Spinner
+abilities=flying
+auto=lord(other creature|mybattlefield) transforms((,newability[@targeted(this) turnlimited:name(Counter spell) all(trigger[from]) fizzle]))
+auto=@targeted(this) turnlimited:name(Counter spell) target(*|stack) fizzle
+text=Flying -- Creatures you control have "Whenever this creature becomes the target of a spell or ability for the first time in a turn, counter that spell or ability."
+mana={1}{U}{U}
+type=Legendary Creature
+subtype=Spirit
+power=2
+toughness=2
 [/card]
 [card]
 name=Kitchen Imp
@@ -36601,28 +36658,29 @@ toughness=3
 [/card]
 [card]
 name=Launch the Fleet
-kicker=multi{1}
-auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~3 then name(choose 4 creatures) name(choose 4 creatures) target(<upto:4>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~4 then name(choose 5 creatures) name(choose 5 creatures) target(<upto:5>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~5 then name(choose 6 creatures) name(choose 6 creatures) target(<upto:6>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~6 then name(choose 7 creatures) name(choose 7 creatures) target(<upto:7>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~7 then name(choose 8 creatures) name(choose 8 creatures) target(<upto:8>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~8 then name(choose 9 creatures) name(choose 9 creatures) target(<upto:9>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~9 then name(choose 10 creatures) name(choose 10 creatures) target(<upto:10>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~10 then name(choose 11 creatures) name(choose 11 creatures) target(<upto:11>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~11 then name(choose 12 creatures) name(choose 12 creatures) target(<upto:12>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~12 then name(choose 13 creatures) name(choose 13 creatures) target(<upto:13>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~13 then name(choose 14 creatures) name(choose 14 creatures) target(<upto:14>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~14 then name(choose 15 creatures) name(choose 15 creatures) target(<upto:15>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16 creatures) target(<upto:16>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-auto=if compare(kicked)~equalto~19 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[_ATTACKING_create(Soldier:Creature Soldier:1/1:white:battleready)])) ueot
-text=Strive — Launch the Fleet costs {1} more to cast for each target beyond the first. -- Until end of turn, any number of target creatures each gain "Whenever this creature attacks, put a 1/1 white Soldier creature token onto the battlefield tapped and attacking."
+abilities=hasnokicker,hasstrive
+kicker=multi{1} name(Strive)
+auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature) transforms((,newability[_ATTACKING_token(Soldier^Creature Soldier^1/1^white^battleready)])) ueot
+auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>creature) transforms((,newability[_ATTACKING_token(Soldier^Creature Soldier^1/1^white^battleready)])) ueot
+auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>creature) transforms((,newability[_ATTACKING_token(Soldier^Creature Soldier^1/1^white^battleready)])) ueot
+auto=if compare(kicked)~equalto~3 then name(choose 4 creatures) name(choose 4 creatures) target(<upto:4>creature) transforms((,newability[_ATTACKING_token(Soldier^Creature Soldier^1/1^white^battleready)])) ueot
+auto=if compare(kicked)~equalto~4 then name(choose 5 creatures) name(choose 5 creatures) target(<upto:5>creature) transforms((,newability[_ATTACKING_token(Soldier^Creature Soldier^1/1^white^battleready)])) ueot
+auto=if compare(kicked)~equalto~5 then name(choose 6 creatures) name(choose 6 creatures) target(<upto:6>creature) transforms((,newability[_ATTACKING_token(Soldier^Creature Soldier^1/1^white^battleready)])) ueot
+auto=if compare(kicked)~equalto~6 then name(choose 7 creatures) name(choose 7 creatures) target(<upto:7>creature) transforms((,newability[_ATTACKING_token(Soldier^Creature Soldier^1/1^white^battleready)])) ueot
+auto=if compare(kicked)~equalto~7 then name(choose 8 creatures) name(choose 8 creatures) target(<upto:8>creature) transforms((,newability[_ATTACKING_token(Soldier^Creature Soldier^1/1^white^battleready)])) ueot
+auto=if compare(kicked)~equalto~8 then name(choose 9 creatures) name(choose 9 creatures) target(<upto:9>creature) transforms((,newability[_ATTACKING_token(Soldier^Creature Soldier^1/1^white^battleready)])) ueot
+auto=if compare(kicked)~equalto~9 then name(choose 10 creatures) name(choose 10 creatures) target(<upto:10>creature) transforms((,newability[_ATTACKING_token(Soldier^Creature Soldier^1/1^white^battleready)])) ueot
+auto=if compare(kicked)~equalto~10 then name(choose 11 creatures) name(choose 11 creatures) target(<upto:11>creature) transforms((,newability[_ATTACKING_token(Soldier^Creature Soldier^1/1^white^battleready)])) ueot
+auto=if compare(kicked)~equalto~11 then name(choose 12 creatures) name(choose 12 creatures) target(<upto:12>creature) transforms((,newability[_ATTACKING_token(Soldier^Creature Soldier^1/1^white^battleready)])) ueot
+auto=if compare(kicked)~equalto~12 then name(choose 13 creatures) name(choose 13 creatures) target(<upto:13>creature) transforms((,newability[_ATTACKING_token(Soldier^Creature Soldier^1/1^white^battleready)])) ueot
+auto=if compare(kicked)~equalto~13 then name(choose 14 creatures) name(choose 14 creatures) target(<upto:14>creature) transforms((,newability[_ATTACKING_token(Soldier^Creature Soldier^1/1^white^battleready)])) ueot
+auto=if compare(kicked)~equalto~14 then name(choose 15 creatures) name(choose 15 creatures) target(<upto:15>creature) transforms((,newability[_ATTACKING_token(Soldier^Creature Soldier^1/1^white^battleready)])) ueot
+auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16 creatures) target(<upto:16>creature) transforms((,newability[_ATTACKING_token(Soldier^Creature Soldier^1/1^white^battleready)])) ueot
+auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>creature) transforms((,newability[_ATTACKING_token(Soldier^Creature Soldier^1/1^white^battleready)])) ueot
+auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>creature) transforms((,newability[_ATTACKING_token(Soldier^Creature Soldier^1/1^white^battleready)])) ueot
+auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>creature) transforms((,newability[_ATTACKING_token(Soldier^Creature Soldier^1/1^white^battleready)])) ueot
+auto=if compare(kicked)~morethan~18 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[_ATTACKING_token(Soldier^Creature Soldier^1/1^white^battleready)])) ueot
+text=Strive - Launch the Fleet costs {1} more to cast for each target beyond the first. -- Until end of turn, any number of target creatures each gain "Whenever this creature attacks, put a 1/1 white Soldier creature token onto the battlefield tapped and attacking."
 mana={W}
 type=Sorcery
 [/card]
@@ -42549,27 +42607,29 @@ subtype=Aura
 [/card]
 [card]
 name=Nature's Panoply
-auto=choice name(Don't strive) ability$!name(choose 1 creature) name(choose 1 creature) target(*[creature]) counter(1/1)!$ controller
-auto=choice name(Strive 1) ability$!name(choose 2 creatures) pay[[{2}{G}]] name(choose 2 creatures) target(<2>*[creature]) counter(1/1)!$ controller
-auto=choice name(Strive 2) ability$!name(choose 3 creatures) pay[[{4}{G}{G}]] name(choose 3 creatures) target(<3>*[creature]) counter(1/1)!$ controller
-auto=choice name(Strive 3) ability$!name(choose 4 creatures) pay[[{6}{G}{G}{G}]] name(choose 4 creatures)target(<4>*[creature]) counter(1/1)!$ controller
-auto=choice name(Strive 4) ability$!name(choose 5 creatures) pay[[{8}{G}{G}{G}{G}]] name(choose 5 creatures) target(<5>*[creature]) counter(1/1)!$ controller
-auto=choice name(Strive 5) ability$!name(choose 6 creatures) pay[[{10}{G}{G}{G}{G}{G}]] name(choose 6 creatures) target(<6>*[creature]) counter(1/1)!$ controller
-auto=choice name(Strive 6) ability$!name(choose 7 creatures) pay[[{12}{G}{G}{G}{G}{G}{G}]] name(choose 7 creatures) target(<7>*[creature]) counter(1/1)!$ controller
-auto=choice name(Strive 7) ability$!name(choose 8 creatures) pay[[{14}{G}{G}{G}{G}{G}{G}{G}]] name(choose 8 creatures) target(<8>*[creature]) counter(1/1)!$ controller
-auto=choice name(Strive 8) ability$!name(choose 9 creatures) pay[[{16}{G}{G}{G}{G}{G}{G}{G}{G}]] name(choose 9 creatures) target(<9>*[creature]) counter(1/1)!$ controller
-auto=choice name(Strive 9) ability$!name(choose 10 creatures) pay[[{18}{G}{G}{G}{G}{G}{G}{G}{G}{G}]] name(choose 10 creatures) target(<10>*[creature]) counter(1/1)!$ controller
-auto=choice name(Strive 10) ability$!name(choose 11 creatures) pay[[{20}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}]] name(choose 11 creatures) target(<11>*[creature]) counter(1/1)!$ controller
-auto=choice name(Strive 11) ability$!name(choose 12 creatures) pay[[{22}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}]] name(choose 12 creatures) target(<12>*[creature]) counter(1/1)!$ controller
-auto=choice name(Strive 12) ability$!name(choose 13 creatures) pay[[{24}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}]] name(choose 13 creatures) target(<13>*[creature]) counter(1/1)!$ controller
-auto=choice name(Strive 13) ability$!name(choose 14 creatures) pay[[{26}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}]] name(choose 14 creatures)target(<14>*[creature]) counter(1/1)!$ controller
-auto=choice name(Strive 14) ability$!name(choose 15 creatures) pay[[{28}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}]] name(choose 15 creatures) target(<15>*[creature]) counter(1/1)!$ controller
-auto=choice name(Strive 15) ability$!name(choose 16 creatures) pay[[{30}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}]] name(choose 16 creatures) target(<16>*[creature]) counter(1/1)!$ controller
-auto=choice name(Strive 16) ability$!name(choose 17 creatures) pay[[{32}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}]] name(choose 17 creatures) target(<17>*[creature]) counter(1/1)!$ controller
-auto=choice name(Strive 17) ability$!name(choose 18 creatures) pay[[{34}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}]] name(choose 18 creatures) target(<18>*[creature]) counter(1/1)!$ controller
-auto=choice name(Strive 18) ability$!name(choose 19 creatures) pay[[{36}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}]] name(choose 19 creatures) target(<19>*[creature]) counter(1/1)!$ controller
-auto=choice name(Strive 19) ability$!name(choose 20 creatures) pay[[{38}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}]] name(choose 20 creatures) target(<20>*[creature]) counter(1/1)!$ controller
-text=Strive — Nature's Panoply costs {2}{G} more to cast for each target beyond the first. -- Choose any number of target creatures. Put a +1/+1 counter on each of them.
+abilities=hasnokicker,hasstrive
+kicker=multi{2}{G} name(Strive)
+auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature) counter(1/1)
+auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>creature) counter(1/1)
+auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>creature) counter(1/1)
+auto=if compare(kicked)~equalto~3 then name(choose 4 creatures) name(choose 4 creatures) target(<upto:4>creature) counter(1/1)
+auto=if compare(kicked)~equalto~4 then name(choose 5 creatures) name(choose 5 creatures) target(<upto:5>creature) counter(1/1)
+auto=if compare(kicked)~equalto~5 then name(choose 6 creatures) name(choose 6 creatures) target(<upto:6>creature) counter(1/1)
+auto=if compare(kicked)~equalto~6 then name(choose 7 creatures) name(choose 7 creatures) target(<upto:7>creature) counter(1/1)
+auto=if compare(kicked)~equalto~7 then name(choose 8 creatures) name(choose 8 creatures) target(<upto:8>creature) counter(1/1)
+auto=if compare(kicked)~equalto~8 then name(choose 9 creatures) name(choose 9 creatures) target(<upto:9>creature) counter(1/1)
+auto=if compare(kicked)~equalto~9 then name(choose 10 creatures) name(choose 10 creatures) target(<upto:10>creature) counter(1/1)
+auto=if compare(kicked)~equalto~10 then name(choose 11 creatures) name(choose 11 creatures) target(<upto:11>creature) counter(1/1)
+auto=if compare(kicked)~equalto~11 then name(choose 12 creatures) name(choose 12 creatures) target(<upto:12>creature) counter(1/1)
+auto=if compare(kicked)~equalto~12 then name(choose 13 creatures) name(choose 13 creatures) target(<upto:13>creature) counter(1/1)
+auto=if compare(kicked)~equalto~13 then name(choose 14 creatures) name(choose 14 creatures) target(<upto:14>creature) counter(1/1)
+auto=if compare(kicked)~equalto~14 then name(choose 15 creatures) name(choose 15 creatures) target(<upto:15>creature) counter(1/1)
+auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16 creatures) target(<upto:16>creature) counter(1/1)
+auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>creature) counter(1/1)
+auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>creature) counter(1/1)
+auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>creature) counter(1/1)
+auto=if compare(kicked)~morethan~18 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) counter(1/1)
+text=Strive - Nature's Panoply costs {2}{G} more to cast for each target beyond the first. -- Choose any number of target creatures. Put a +1/+1 counter on each of them.
 mana={G}
 type=Instant
 [/card]
@@ -43192,6 +43252,18 @@ autograveyard=moveTo(ownerlibrary) all(*|ownergraveyard) && shuffle
 text=Take an extra turn after this one. -- If Nexus of Fate would be put into a graveyard from anywhere, reveal Nexus of Fate and shuffle it into its owner's library instead.
 mana={5}{U}{U}
 type=Instant
+[/card]
+[card]
+name=Neyith of the Dire Hunt
+auto=@combat(blocked) source(creature|mybattlefield) turnlimited:name(Draw a card) draw:1 controller
+auto=@damaged(creature) from(creature[-attacking]|mybattlefield) turnlimited:may name(Draw a card) draw:1 controller
+auto=@each my combatbegins:name(Pay and double creature's power) pay({2}{RG}) name(Pay and double creature's power) target(creature) transforms((,newability[p/0],newability[all(creature|opponentbattlefield) transforms((,newability[mustblock])) ueot])) ueot
+text=Whenever one or more creatures you control fight or become blocked, draw a card. -- At the beginning of combat on your turn, you may pay {2}{R} or {G}. If you do, double target creature's power until end of turn. That creature must be blocked this combat if able. ( {R} or {G} can be paid with either {R} or {G}.)
+mana={2}{G}{G}
+type=Legendary Creature
+subtype=Human Warrior
+power=3
+toughness=3
 [/card]
 [card]
 name=Nezahal, Primal Tide
@@ -46555,27 +46627,29 @@ subtype=Aura
 [/card]
 [card]
 name=Phalanx Formation
-auto=choice name(Don't strive) ability$!name(choose 1 creature) name(choose 1 creature) target(*[creature]) double strike ueot!$ controller
-auto=choice name(Strive 1) ability$!name(choose 2 creatures) pay[[{1}{W}]] name(choose 2 creatures) target(<2>*[creature]) double strike ueot!$ controller
-auto=choice name(Strive 2) ability$!name(choose 3 creatures) pay[[{2}{W}{W}]] name(choose 3 creatures) target(<3>*[creature]) double strike ueot!$ controller
-auto=choice name(Strive 3) ability$!name(choose 4 creatures) pay[[{3}{W}{W}{W}]] name(choose 4 creatures)target(<4>*[creature]) double strike ueot!$ controller
-auto=choice name(Strive 4) ability$!name(choose 5 creatures) pay[[{4}{W}{W}{W}{W}]] name(choose 5 creatures) target(<5>*[creature]) double strike ueot!$ controller
-auto=choice name(Strive 5) ability$!name(choose 6 creatures) pay[[{5}{W}{W}{W}{W}{W}]] name(choose 6 creatures) target(<6>*[creature]) double strike ueot!$ controller
-auto=choice name(Strive 6) ability$!name(choose 7 creatures) pay[[{6}{W}{W}{W}{W}{W}{W}]] name(choose 7 creatures) target(<7>*[creature]) double strike ueot!$ controller
-auto=choice name(Strive 7) ability$!name(choose 8 creatures) pay[[{7}{W}{W}{W}{W}{W}{W}{W}]] name(choose 8 creatures) target(<8>*[creature]) double strike ueot!$ controller
-auto=choice name(Strive 8) ability$!name(choose 9 creatures) pay[[{8}{W}{W}{W}{W}{W}{W}{W}{W}]] name(choose 9 creatures) target(<9>*[creature]) double strike ueot!$ controller
-auto=choice name(Strive 9) ability$!name(choose 10 creatures) pay[[{9}{W}{W}{W}{W}{W}{W}{W}{W}{W}]] name(choose 10 creatures) target(<10>*[creature]) double strike ueot!$ controller
-auto=choice name(Strive 10) ability$!name(choose 11 creatures) pay[[{10}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}]] name(choose 11 creatures) target(<11>*[creature]) double strike ueot!$ controller
-auto=choice name(Strive 11) ability$!name(choose 12 creatures) pay[[{11}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}]] name(choose 12 creatures) target(<12>*[creature]) double strike ueot!$ controller
-auto=choice name(Strive 12) ability$!name(choose 13 creatures) pay[[{12}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}]] name(choose 13 creatures) target(<13>*[creature]) double strike ueot!$ controller
-auto=choice name(Strive 13) ability$!name(choose 14 creatures) pay[[{13}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}]] name(choose 14 creatures)target(<14>*[creature]) double strike ueot!$ controller
-auto=choice name(Strive 14) ability$!name(choose 15 creatures) pay[[{14}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}]] name(choose 15 creatures) target(<15>*[creature]) double strike ueot!$ controller
-auto=choice name(Strive 15) ability$!name(choose 16 creatures) pay[[{15}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}]] name(choose 16 creatures) target(<16>*[creature]) double strike ueot!$ controller
-auto=choice name(Strive 16) ability$!name(choose 17 creatures) pay[[{16}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}]] name(choose 17 creatures) target(<17>*[creature]) double strike ueot!$ controller
-auto=choice name(Strive 17) ability$!name(choose 18 creatures) pay[[{17}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}]] name(choose 18 creatures) target(<18>*[creature]) double strike ueot!$ controller
-auto=choice name(Strive 18) ability$!name(choose 19 creatures) pay[[{18}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}]] name(choose 19 creatures) target(<19>*[creature]) double strike ueot!$ controller
-auto=choice name(Strive 19) ability$!name(choose 20 creatures) pay[[{19}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}]] name(choose 20 creatures) target(<20>*[creature]) double strike ueot!$ controller
-text=Strive — Phalanx Formation costs {1}{W} more to cast for each target beyond the first. -- Any number of target creatures each gain double strike until end of turn. (They deal both first-strike and regular combat damage.)
+abilities=hasnokicker,hasstrive
+kicker=multi{1}{W} name(Strive)
+auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature) transforms((,newability[double strike])) ueot
+auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>creature) transforms((,newability[double strike])) ueot
+auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>creature) transforms((,newability[double strike])) ueot
+auto=if compare(kicked)~equalto~3 then name(choose 4 creatures) name(choose 4 creatures) target(<upto:4>creature) transforms((,newability[double strike])) ueot
+auto=if compare(kicked)~equalto~4 then name(choose 5 creatures) name(choose 5 creatures) target(<upto:5>creature) transforms((,newability[double strike])) ueot
+auto=if compare(kicked)~equalto~5 then name(choose 6 creatures) name(choose 6 creatures) target(<upto:6>creature) transforms((,newability[double strike])) ueot
+auto=if compare(kicked)~equalto~6 then name(choose 7 creatures) name(choose 7 creatures) target(<upto:7>creature) transforms((,newability[double strike])) ueot
+auto=if compare(kicked)~equalto~7 then name(choose 8 creatures) name(choose 8 creatures) target(<upto:8>creature) transforms((,newability[double strike])) ueot
+auto=if compare(kicked)~equalto~8 then name(choose 9 creatures) name(choose 9 creatures) target(<upto:9>creature) transforms((,newability[double strike])) ueot
+auto=if compare(kicked)~equalto~9 then name(choose 10 creatures) name(choose 10 creatures) target(<upto:10>creature) transforms((,newability[double strike])) ueot
+auto=if compare(kicked)~equalto~10 then name(choose 11 creatures) name(choose 11 creatures) target(<upto:11>creature) transforms((,newability[double strike])) ueot
+auto=if compare(kicked)~equalto~11 then name(choose 12 creatures) name(choose 12 creatures) target(<upto:12>creature) transforms((,newability[double strike])) ueot
+auto=if compare(kicked)~equalto~12 then name(choose 13 creatures) name(choose 13 creatures) target(<upto:13>creature) transforms((,newability[double strike])) ueot
+auto=if compare(kicked)~equalto~13 then name(choose 14 creatures) name(choose 14 creatures) target(<upto:14>creature) transforms((,newability[double strike])) ueot
+auto=if compare(kicked)~equalto~14 then name(choose 15 creatures) name(choose 15 creatures) target(<upto:15>creature) transforms((,newability[double strike])) ueot
+auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16 creatures) target(<upto:16>creature) transforms((,newability[double strike])) ueot
+auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>creature) transforms((,newability[double strike])) ueot
+auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>creature) transforms((,newability[double strike])) ueot
+auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>creature) transforms((,newability[double strike])) ueot
+auto=if compare(kicked)~morethan~18 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[double strike])) ueot
+text=Strive - Phalanx Formation costs {1}{W} more to cast for each target beyond the first. -- Any number of target creatures each gain double strike until end of turn. (They deal both first-strike and regular combat damage.)
 mana={2}{W}
 type=Instant
 [/card]
@@ -47542,6 +47616,16 @@ auto=ifnot paid(alternative) then all(creature|opponentbattlefield) transforms((
 auto=ifnot paid(alternative) then all(creature|opponentbattlefield) transforms((Frog,blue)) ueot
 text=Until end of turn, each creature target player controls loses all abilities and becomes a blue Frog with base power and toughness 1/1.
 mana={1}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Polymorphous Rush
+abilities=hasnokicker,hasstrive
+kicker=multi{1}{U} name(Strive)
+autostack=name(Choose a creature to copy) target(creature) transforms((,newability[phaseaction[endofturn once] counter(0/0.-1.RushEffect)],newability[counter(0/0.1.RushEffect)])) oneshot
+auto=name(Creatures become copy) name(Creatures become copy) target(<upto:kickedplus1plusend>creature) transforms((,newability[all(creature[counter{0/0.1.RushEffect}]|battlefield) copy and!( all(this) transforms((,newability[phaseaction[endofturn once] flip(myorigname) undocpy])) ueot )!])) ueot
+text=Strive - Polymorphous Rush costs {1}{U} more to cast for each target beyond the first. -- Choose a creature on the battlefield. Any number of target creatures you control each become a copy of that creature until end of turn.
+mana={2}{U}
 type=Instant
 [/card]
 [card]
@@ -52089,6 +52173,16 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Riftsweeper
+auto=name(Shuffle back exiled card) target(*|exile) moveto(ownerlibrary) and!( shuffle )!
+text=When Riftsweeper enters the battlefield, choose target face-up exiled card. Its owner shuffles it into his or her library.
+mana={1}{G}
+type=Creature
+subtype=Elf Shaman
+power=2
+toughness=2
+[/card]
+[card]
 name=Rigging Runner
 abilities=first strike
 auto=if raid then counter(1/1,1)
@@ -53160,7 +53254,8 @@ type=Sorcery
 [/card]
 [card]
 name=Rouse the Mob
-kicker=multi{2}{R}
+abilities=hasnokicker,hasstrive
+kicker=multi{2}{R} name(Strive)
 auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature) transforms((,newability[2/0],newability[trample])) ueot
 auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>creature) transforms((,newability[2/0],newability[trample])) ueot
 auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>creature) transforms((,newability[2/0],newability[trample])) ueot
@@ -53180,8 +53275,8 @@ auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16
 auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>creature) transforms((,newability[2/0],newability[trample])) ueot
 auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>creature) transforms((,newability[2/0],newability[trample])) ueot
 auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>creature) transforms((,newability[2/0],newability[trample])) ueot
-auto=if compare(kicked)~equalto~19 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[2/0],newability[trample])) ueot
-text=Strive — Rouse the Mob costs {2}{R} more to cast for each target beyond the first. -- Any number of target creatures each get +2/+0 and gain trample until end of turn.
+auto=if compare(kicked)~morethan~18 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[2/0],newability[trample])) ueot
+text=Strive - Rouse the Mob costs {2}{R} more to cast for each target beyond the first. -- Any number of target creatures each get +2/+0 and gain trample until end of turn.
 mana={R}
 type=Instant
 [/card]
@@ -56336,28 +56431,29 @@ toughness=1
 [/card]
 [card]
 name=Setessan Tactics
-kicker=multi{G}
-auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature) transforms((,newability[1/1 ueot],newability[{T}:target(other creature) dynamicability<!powerstrike eachother!>])) ueot
-auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>creature) transforms((,newability[1/1 ueot],newability[{T}:target(other creature) dynamicability<!powerstrike eachother!>])) ueot
-auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>creature) transforms((,newability[1/1 ueot],newability[{T}:target(other creature) dynamicability<!powerstrike eachother!>])) ueot
-auto=if compare(kicked)~equalto~3 then name(choose 4 creatures) name(choose 4 creatures) target(<upto:4>creature) transforms((,newability[1/1 ueot],newability[{T}:target(other creature) dynamicability<!powerstrike eachother!>])) ueot
-auto=if compare(kicked)~equalto~4 then name(choose 5 creatures) name(choose 5 creatures) target(<upto:5>creature) transforms((,newability[1/1 ueot],newability[{T}:target(other creature) dynamicability<!powerstrike eachother!>])) ueot
-auto=if compare(kicked)~equalto~5 then name(choose 6 creatures) name(choose 6 creatures) target(<upto:6>creature) transforms((,newability[1/1 ueot],newability[{T}:target(other creature) dynamicability<!powerstrike eachother!>])) ueot
-auto=if compare(kicked)~equalto~6 then name(choose 7 creatures) name(choose 7 creatures) target(<upto:7>creature) transforms((,newability[1/1 ueot],newability[{T}:target(other creature) dynamicability<!powerstrike eachother!>])) ueot
-auto=if compare(kicked)~equalto~7 then name(choose 8 creatures) name(choose 8 creatures) target(<upto:8>creature) transforms((,newability[1/1 ueot],newability[{T}:target(other creature) dynamicability<!powerstrike eachother!>])) ueot
-auto=if compare(kicked)~equalto~8 then name(choose 9 creatures) name(choose 9 creatures) target(<upto:9>creature) transforms((,newability[1/1 ueot],newability[{T}:target(other creature) dynamicability<!powerstrike eachother!>])) ueot
-auto=if compare(kicked)~equalto~9 then name(choose 10 creatures) name(choose 10 creatures) target(<upto:10>creature) transforms((,newability[1/1 ueot],newability[{T}:target(other creature) dynamicability<!powerstrike eachother!>])) ueot
-auto=if compare(kicked)~equalto~10 then name(choose 11 creatures) name(choose 11 creatures) target(<upto:11>creature) transforms((,newability[1/1 ueot],newability[{T}:target(other creature) dynamicability<!powerstrike eachother!>])) ueot
-auto=if compare(kicked)~equalto~11 then name(choose 12 creatures) name(choose 12 creatures) target(<upto:12>creature) transforms((,newability[1/1 ueot],newability[{T}:target(other creature) dynamicability<!powerstrike eachother!>])) ueot
-auto=if compare(kicked)~equalto~12 then name(choose 13 creatures) name(choose 13 creatures) target(<upto:13>creature) transforms((,newability[1/1 ueot],newability[{T}:target(other creature) dynamicability<!powerstrike eachother!>])) ueot
-auto=if compare(kicked)~equalto~13 then name(choose 14 creatures) name(choose 14 creatures) target(<upto:14>creature) transforms((,newability[1/1 ueot],newability[{T}:target(other creature) dynamicability<!powerstrike eachother!>])) ueot
-auto=if compare(kicked)~equalto~14 then name(choose 15 creatures) name(choose 15 creatures) target(<upto:15>creature) transforms((,newability[1/1 ueot],newability[{T}:target(other creature) dynamicability<!powerstrike eachother!>])) ueot
-auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16 creatures) target(<upto:16>creature) transforms((,newability[1/1 ueot],newability[{T}:target(other creature) dynamicability<!powerstrike eachother!>])) ueot
-auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>creature) transforms((,newability[1/1 ueot],newability[{T}:target(other creature) dynamicability<!powerstrike eachother!>])) ueot
-auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>creature) transforms((,newability[1/1 ueot],newability[{T}:target(other creature) dynamicability<!powerstrike eachother!>])) ueot
-auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>creature) transforms((,newability[1/1 ueot],newability[{T}:target(other creature) dynamicability<!powerstrike eachother!>])) ueot
-auto=if compare(kicked)~equalto~19 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[1/1 ueot],newability[{T}:target(other creature) dynamicability<!powerstrike eachother!>])) ueot
-text=Strive — Setessan Tactics costs {G} more to cast for each target beyond the first. -- Until end of turn, any number of target creatures each get +1/+1 and gain "{T}: This creature fights another target creature."
+abilities=hasnokicker,hasstrive
+kicker=multi{G} name(Strive)
+auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature) transforms((,newability[1/1],newability[{T}:name(Fight another creature) target(other creature) dynamicability<!powerstrike eachother!>])) ueot
+auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>creature) transforms((,newability[1/1],newability[{T}:name(Fight another creature) target(other creature) dynamicability<!powerstrike eachother!>])) ueot
+auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>creature) transforms((,newability[1/1],newability[{T}:name(Fight another creature) target(other creature) dynamicability<!powerstrike eachother!>])) ueot
+auto=if compare(kicked)~equalto~3 then name(choose 4 creatures) name(choose 4 creatures) target(<upto:4>creature) transforms((,newability[1/1],newability[{T}:name(Fight another creature) target(other creature) dynamicability<!powerstrike eachother!>])) ueot
+auto=if compare(kicked)~equalto~4 then name(choose 5 creatures) name(choose 5 creatures) target(<upto:5>creature) transforms((,newability[1/1],newability[{T}:name(Fight another creature) target(other creature) dynamicability<!powerstrike eachother!>])) ueot
+auto=if compare(kicked)~equalto~5 then name(choose 6 creatures) name(choose 6 creatures) target(<upto:6>creature) transforms((,newability[1/1],newability[{T}:name(Fight another creature) target(other creature) dynamicability<!powerstrike eachother!>])) ueot
+auto=if compare(kicked)~equalto~6 then name(choose 7 creatures) name(choose 7 creatures) target(<upto:7>creature) transforms((,newability[1/1],newability[{T}:name(Fight another creature) target(other creature) dynamicability<!powerstrike eachother!>])) ueot
+auto=if compare(kicked)~equalto~7 then name(choose 8 creatures) name(choose 8 creatures) target(<upto:8>creature) transforms((,newability[1/1],newability[{T}:name(Fight another creature) target(other creature) dynamicability<!powerstrike eachother!>])) ueot
+auto=if compare(kicked)~equalto~8 then name(choose 9 creatures) name(choose 9 creatures) target(<upto:9>creature) transforms((,newability[1/1],newability[{T}:name(Fight another creature) target(other creature) dynamicability<!powerstrike eachother!>])) ueot
+auto=if compare(kicked)~equalto~9 then name(choose 10 creatures) name(choose 10 creatures) target(<upto:10>creature) transforms((,newability[1/1],newability[{T}:name(Fight another creature) target(other creature) dynamicability<!powerstrike eachother!>])) ueot
+auto=if compare(kicked)~equalto~10 then name(choose 11 creatures) name(choose 11 creatures) target(<upto:11>creature) transforms((,newability[1/1],newability[{T}:name(Fight another creature) target(other creature) dynamicability<!powerstrike eachother!>])) ueot
+auto=if compare(kicked)~equalto~11 then name(choose 12 creatures) name(choose 12 creatures) target(<upto:12>creature) transforms((,newability[1/1],newability[{T}:name(Fight another creature) target(other creature) dynamicability<!powerstrike eachother!>])) ueot
+auto=if compare(kicked)~equalto~12 then name(choose 13 creatures) name(choose 13 creatures) target(<upto:13>creature) transforms((,newability[1/1],newability[{T}:name(Fight another creature) target(other creature) dynamicability<!powerstrike eachother!>])) ueot
+auto=if compare(kicked)~equalto~13 then name(choose 14 creatures) name(choose 14 creatures) target(<upto:14>creature) transforms((,newability[1/1],newability[{T}:name(Fight another creature) target(other creature) dynamicability<!powerstrike eachother!>])) ueot
+auto=if compare(kicked)~equalto~14 then name(choose 15 creatures) name(choose 15 creatures) target(<upto:15>creature) transforms((,newability[1/1],newability[{T}:name(Fight another creature) target(other creature) dynamicability<!powerstrike eachother!>])) ueot
+auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16 creatures) target(<upto:16>creature) transforms((,newability[1/1],newability[{T}:name(Fight another creature) target(other creature) dynamicability<!powerstrike eachother!>])) ueot
+auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>creature) transforms((,newability[1/1],newability[{T}:name(Fight another creature) target(other creature) dynamicability<!powerstrike eachother!>])) ueot
+auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>creature) transforms((,newability[1/1],newability[{T}:name(Fight another creature) target(other creature) dynamicability<!powerstrike eachother!>])) ueot
+auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>creature) transforms((,newability[1/1],newability[{T}:name(Fight another creature) target(other creature) dynamicability<!powerstrike eachother!>])) ueot
+auto=if compare(kicked)~morethan~18 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[1/1],newability[{T}:name(Fight another creature) target(other creature) dynamicability<!powerstrike eachother!>])) ueot
+text=Strive - Setessan Tactics costs {G} more to cast for each target beyond the first. -- Until end of turn, any number of target creatures each get +1/+1 and gain "{T}: This creature fights another target creature."
 mana={1}{G}
 type=Instant
 [/card]
@@ -57656,7 +57752,8 @@ toughness=2
 [/card]
 [card]
 name=Silence the Believers
-kicker=multi{2}{B}
+abilities=hasnokicker,hasstrive
+kicker=multi{2}{B} name(Strive)
 auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature) transforms((,newability[moveto(ownerexile) all(mychild)],newability[moveto(ownerexile)])) forever
 auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>creature) transforms((,newability[moveto(ownerexile) all(mychild)],newability[moveto(ownerexile)])) forever
 auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>creature) transforms((,newability[moveto(ownerexile) all(mychild)],newability[moveto(ownerexile)])) forever
@@ -57676,8 +57773,8 @@ auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16
 auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>creature) transforms((,newability[moveto(ownerexile) all(mychild)],newability[moveto(ownerexile)])) forever
 auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>creature) transforms((,newability[moveto(ownerexile) all(mychild)],newability[moveto(ownerexile)])) forever
 auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>creature) transforms((,newability[moveto(ownerexile) all(mychild)],newability[moveto(ownerexile)])) forever
-auto=if compare(kicked)~equalto~19 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[moveto(ownerexile) all(mychild)],newability[moveto(ownerexile)])) forever
-text=Strive — Silence the Believers costs {2}{B} more to cast for each target beyond the first. -- Exile any number of target creatures and all Auras attached to them.
+auto=if compare(kicked)~morethan~18 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[moveto(ownerexile) all(mychild)],newability[moveto(ownerexile)])) forever
+text=Strive - Silence the Believers costs {2}{B} more to cast for each target beyond the first. -- Exile any number of target creatures and all Auras attached to them.
 mana={2}{B}{B}
 type=Instant
 [/card]
@@ -58009,6 +58106,17 @@ type=Creature
 subtype=Mutant Wizard
 power=0
 toughness=1
+[/card]
+[card]
+name=Sin Prodder
+abilities=menace
+auto=@each my upkeep:name(Reveal top card) all(*[zpos=1]|mylibrary) moveto(opponenthand) and!( transforms((,newability[choice name(Put in opponent hand) moveto(opponenthand)],newability[choice name(put in opponent graveyard) moveto(opponentgraveyard) and!( damage:manacost controller)!])) oneshot )!
+text=Menace -- At the beginning of your upkeep, reveal the top card of your library. Any opponent may have you put that card into your graveyard. If a player does, Sin Prodder deals damage to that player equal to that card's converted mana cost. Otherwise, put that card into your hand.
+mana={2}{R}
+type=Creature
+subtype=Devil
+power=3
+toughness=2
 [/card]
 [card]
 name=Sindbad
@@ -59573,7 +59681,8 @@ subtype=Aura
 [/card]
 [card]
 name=Solidarity of Heroes
-kicker=multi{1}{G}
+abilities=hasnokicker,hasstrive
+kicker=multi{1}{G} name(Strive)
 auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature) transforms((,newability[thisforeach(counter{1/1.1}) counter(1/1) all(this)])) oneshot
 auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>creature) transforms((,newability[thisforeach(counter{1/1.1}) counter(1/1) all(this)])) oneshot
 auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>creature) transforms((,newability[thisforeach(counter{1/1.1}) counter(1/1) all(this)])) oneshot
@@ -59593,8 +59702,8 @@ auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16
 auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>creature) transforms((,newability[thisforeach(counter{1/1.1}) counter(1/1) all(this)])) oneshot
 auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>creature) transforms((,newability[thisforeach(counter{1/1.1}) counter(1/1) all(this)])) oneshot
 auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>creature) transforms((,newability[thisforeach(counter{1/1.1}) counter(1/1) all(this)])) oneshot
-auto=if compare(kicked)~equalto~19 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[thisforeach(counter{1/1.1}) counter(1/1) all(this)])) oneshot
-text=Strive — Solidarity of Heroes costs {1}{G} more to cast for each target beyond the first. -- Choose any number of target creatures. Double the number of +1/+1 counters on each of them.
+auto=if compare(kicked)~morethan~18 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature) transforms((,newability[thisforeach(counter{1/1.1}) counter(1/1) all(this)])) oneshot
+text=Strive - Solidarity of Heroes costs {1}{G} more to cast for each target beyond the first. -- Choose any number of target creatures. Double the number of +1/+1 counters on each of them.
 mana={1}{G}
 type=Instant
 [/card]
@@ -64280,6 +64389,14 @@ mana={1}{W}
 type=Sorcery
 [/card]
 [card]
+name=Tale's End
+target=*[legendary]|stack
+auto=fizzle
+text=Counter target activated ability, triggered ability, or legendary spell.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
 name=Tales of the Ancestors
 abilities=foretell
 autohand={2}:name(Pay 2 and exile face-down) name(Pay 2 and exile face-down) doforetell myturnonly
@@ -64765,6 +64882,15 @@ auto=replacedraw if compare(currentphase)~equalto~3 then draw:1 noreplace else d
 text=If you would draw a card except the first one you draw in each of your draw steps, draw two cards instead.
 mana={2}{U}{U}
 type=Legendary Enchantment
+[/card]
+[card]
+name=Teferi's Protection
+abilities=exiledeath
+auto=all(*|myBattlefield) phaseout
+auto=token(Teferi's Protection,Emblem,0/0,indestructible,shroud,cantchangelife,controllershroud,notrigger) and!( transforms((,newability[@each my untap:sacrifice])) forever )!
+text=Until your next turn, your life total can't change and you gain protection from everything. All permanents you control phase out. (While they're phased out, they're treated as though they don't exist. They phase in before you untap during your untap step.) -- Exile Teferi's Protection.
+mana={2}{W}
+type=Instant
 [/card]
 [card]
 name=Teferi's Protege
@@ -68633,7 +68759,8 @@ toughness=3
 [/card]
 [card]
 name=Twinflame
-kicker=multi{2}{R}
+abilities=hasnokicker,hasstrive
+kicker=multi{2}{R} name(Strive)
 auto=if compare(kicked)~equalto~0 then name(choose 1 creature) name(choose 1 creature) target(creature|myBattlefield) clone with(unearth,haste)
 auto=if compare(kicked)~equalto~1 then name(choose 2 creatures) name(choose 2 creatures) target(<upto:2>creature|myBattlefield) clone with(unearth,haste)
 auto=if compare(kicked)~equalto~2 then name(choose 3 creatures) name(choose 3 creatures) target(<upto:3>creature|myBattlefield) clone with(unearth,haste)
@@ -68653,8 +68780,8 @@ auto=if compare(kicked)~equalto~15 then name(choose 16 creatures) name(choose 16
 auto=if compare(kicked)~equalto~16 then name(choose 17 creatures) name(choose 17 creatures) target(<upto:17>creature|myBattlefield) clone with(unearth,haste)
 auto=if compare(kicked)~equalto~17 then name(choose 18 creatures) name(choose 18 creatures) target(<upto:18>creature|myBattlefield) clone with(unearth,haste)
 auto=if compare(kicked)~equalto~18 then name(choose 19 creatures) name(choose 19 creatures) target(<upto:19>creature|myBattlefield) clone with(unearth,haste)
-auto=if compare(kicked)~equalto~19 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature|myBattlefield) clone with(unearth,haste)
-text=Strive — Twinflame costs {2}{R} more to cast for each target beyond the first. -- Choose any number of target creatures you control. For each of them, put a token that's a copy of that creature onto the battlefield. Those tokens have haste. Exile them at the beginning of the next end step.
+auto=if compare(kicked)~morethan~18 then name(choose 20 creatures) name(choose 20 creatures) target(<upto:20>creature|myBattlefield) clone with(unearth,haste)
+text=Strive - Twinflame costs {2}{R} more to cast for each target beyond the first. -- Choose any number of target creatures you control. For each of them, put a token that's a copy of that creature onto the battlefield. Those tokens have haste. Exile them at the beginning of the next end step.
 mana={1}{R}
 type=Sorcery
 [/card]

@@ -1150,31 +1150,31 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
 
     //Card unTapped
     if (TargetChooser *tc = parseSimpleTC(s,"untapped", card))
-        return NEW TrCardTapped(observer, id, card, tc, false,once);
+        return NEW TrCardTapped(observer, id, card, tc, false, once);
 
     //Card Tapped
     if (TargetChooser *tc = parseSimpleTC(s,"tapped", card))
-        return NEW TrCardTapped(observer, id, card, tc, true,once);
+        return NEW TrCardTapped(observer, id, card, tc, true, once);
 
     //Card Tapped for mana
     if (TargetChooser *tc = parseSimpleTC(s,"tappedformana", card))
-        return NEW TrCardTappedformana(observer, id, card, tc, true,once);
+        return NEW TrCardTappedformana(observer, id, card, tc, true, once);
     
     //Card Transforms
     if (TargetChooser *tc = parseSimpleTC(s,"transformed", card))
-        return NEW TrCardTransformed(observer, id, card, tc,once);
+        return NEW TrCardTransformed(observer, id, card, tc, once);
 
     //Card Faces Up
     if (TargetChooser *tc = parseSimpleTC(s,"facedup", card))
-        return NEW TrCardFaceUp(observer, id, card, tc,once);
+        return NEW TrCardFaceUp(observer, id, card, tc, once);
 
     //Card Phases In
     if (TargetChooser *tc = parseSimpleTC(s,"phasedin", card))
-        return NEW TrCardPhasesIn(observer, id, card, tc,once);
+        return NEW TrCardPhasesIn(observer, id, card, tc, once);
 
     //Card Exerted
     if (TargetChooser *tc = parseSimpleTC(s,"exerted", card))
-        return NEW TrCardExerted(observer, id, card, tc,once);
+        return NEW TrCardExerted(observer, id, card, tc, once);
 
 //CombatTrigger
     //Card card attacked and is blocked
@@ -1210,8 +1210,8 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
 
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         
-        return NEW TrCombatTrigger(observer, id, card, tc, fromTc,once,limitOnceATurn,sourceUntapped,opponentPoisoned,
-            attackingTrigger,attackedAloneTrigger,notBlockedTrigger,attackBlockedTrigger,blockingTrigger);
+        return NEW TrCombatTrigger(observer, id, card, tc, fromTc, once, limitOnceATurn, sourceUntapped, opponentPoisoned,
+            attackingTrigger, attackedAloneTrigger, notBlockedTrigger, attackBlockedTrigger, blockingTrigger);
     }
 
     //energized player - controller of card
@@ -1349,7 +1349,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
 
     //Card is sacrificed
     if (TargetChooser * tc = parseSimpleTC(s, "sacrificed", card))
-        return NEW TrCardSacrificed(observer, id, card, tc ,once);
+        return NEW TrCardSacrificed(observer, id, card, tc, once);
 
     //Card is Discarded
     if (TargetChooser * tc = parseSimpleTC(s, "discarded", card))
@@ -1357,69 +1357,69 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
 
     //Card is cycled
     if (TargetChooser * tc = parseSimpleTC(s, "cycled", card))
-        return NEW TrCardDiscarded(observer, id, card, tc,once,true);
+        return NEW TrCardDiscarded(observer, id, card, tc, once, true);
 
     //Card Damaging non combat current controller
     if (TargetChooser * tc = parseSimpleTC(s, "noncombatdamageof", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        return NEW TrDamaged(observer, id, card, tc, fromTc, 2,false,false,once,true,false);
+        return NEW TrDamaged(observer, id, card, tc, fromTc, 2, false, false, once, true, false);
     }
 
     //Card Damaging non combat current opponent
     if (TargetChooser * tc = parseSimpleTC(s, "noncombatdamagefoeof", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        return NEW TrDamaged(observer, id, card, tc, fromTc, 2,false,false,once,false,true);
+        return NEW TrDamaged(observer, id, card, tc, fromTc, 2, false, false, once, false, true);
     }
 
     //Card Damaging non combat static
     if (TargetChooser * tc = parseSimpleTC(s, "noncombatdamaged", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        return NEW TrDamaged(observer, id, card, tc, fromTc, 2,once);
+        return NEW TrDamaged(observer, id, card, tc, fromTc, 2, once);
     }
 
     //Card Damaging combat current controller
     if (TargetChooser * tc = parseSimpleTC(s, "combatdamageof", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        return NEW TrDamaged(observer, id, card, tc, fromTc, 1,sourceUntapped,limitOnceATurn,once,true,false);
+        return NEW TrDamaged(observer, id, card, tc, fromTc, 1, sourceUntapped, limitOnceATurn, once, true, false);
     }
 
     //Card Damaging combat current opponent
     if (TargetChooser * tc = parseSimpleTC(s, "combatdamagefoeof", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        return NEW TrDamaged(observer, id, card, tc, fromTc, 1,sourceUntapped,limitOnceATurn,once,false,true);
+        return NEW TrDamaged(observer, id, card, tc, fromTc, 1, sourceUntapped, limitOnceATurn, once, false, true);
     }
 
     //Card Damaging combat static
     if (TargetChooser * tc = parseSimpleTC(s, "combatdamaged", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        return NEW TrDamaged(observer, id, card, tc, fromTc, 1,sourceUntapped,limitOnceATurn,once);
+        return NEW TrDamaged(observer, id, card, tc, fromTc, 1, sourceUntapped, limitOnceATurn, once);
     }
 
     //Card Damaging current controller
     if (TargetChooser * tc = parseSimpleTC(s, "damageof", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        return NEW TrDamaged(observer, id, card, tc, fromTc, 0,sourceUntapped,limitOnceATurn,once,true,false);
+        return NEW TrDamaged(observer, id, card, tc, fromTc, 0, sourceUntapped, limitOnceATurn, once, true, false);
     }
 
     //Card Damaging current opponent
     if (TargetChooser * tc = parseSimpleTC(s, "damagefoeof", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        return NEW TrDamaged(observer, id, card, tc, fromTc, 0,sourceUntapped,limitOnceATurn,once,false,true);
+        return NEW TrDamaged(observer, id, card, tc, fromTc, 0, sourceUntapped, limitOnceATurn, once, false, true);
     }
 
     //Card Damaging static
     if (TargetChooser * tc = parseSimpleTC(s, "damaged", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        return NEW TrDamaged(observer, id, card, tc, fromTc, 0,sourceUntapped,limitOnceATurn,once);
+        return NEW TrDamaged(observer, id, card, tc, fromTc, 0, sourceUntapped, limitOnceATurn, once);
     }
 
     //Lifed current controller
@@ -1428,9 +1428,9 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop (eg. Angels of Vitality)
         if(exception)
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,true,false,limitOnceATurn,exception->source);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0, sourceUntapped, once, true, false, limitOnceATurn, exception->source);
         else
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,true,false,limitOnceATurn);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0, sourceUntapped, once, true, false, limitOnceATurn);
     }
 
     //Lifed current opponent
@@ -1439,9 +1439,9 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop (eg. Angels of Vitality)
         if(exception)
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,false,true,limitOnceATurn,exception->source); 
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0, sourceUntapped,once, false, true, limitOnceATurn, exception->source); 
         else
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,false,true,limitOnceATurn);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0, sourceUntapped,once, false, true, limitOnceATurn);
     }
 
     //Lifed static
@@ -1450,9 +1450,9 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop (eg. Angels of Vitality)
         if(exception)
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,false,false,limitOnceATurn,exception->source);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0, sourceUntapped, once, false, false, limitOnceATurn, exception->source);
         else
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,false,false,limitOnceATurn);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0, sourceUntapped, once, false, false, limitOnceATurn);
     }
 
     //Life Loss current player
@@ -1461,9 +1461,9 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop (eg. Angels of Vitality)
         if(exception)
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1,sourceUntapped,once,true,false,limitOnceATurn,exception->source);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1, sourceUntapped, once, true, false, limitOnceATurn, exception->source);
         else
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1,sourceUntapped,once,true,false,limitOnceATurn);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1, sourceUntapped, once, true, false, limitOnceATurn);
     }
 
     //Life Loss current opponent
@@ -1472,9 +1472,9 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop (eg. Angels of Vitality)
         if(exception)
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1,sourceUntapped,once,false,true,limitOnceATurn,exception->source);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1, sourceUntapped, once, false, true, limitOnceATurn,exception->source);
         else
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1,sourceUntapped,once,false,true,limitOnceATurn);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1, sourceUntapped, once, false, true, limitOnceATurn);
     }
 
     //Life Loss static
@@ -1483,23 +1483,23 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop (eg. Angels of Vitality)
         if(exception)
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1,sourceUntapped,once,false,false,limitOnceATurn,exception->source);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1, sourceUntapped, once, false, false, limitOnceATurn, exception->source);
         else
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1,sourceUntapped,once,false,false,limitOnceATurn);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1, sourceUntapped, once, false, false, limitOnceATurn);
     }
 
     //Card Damaged and killed by a creature this turn
     if (TargetChooser * tc = parseSimpleTC(s, "vampired", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        return NEW TrVampired(observer, id, card, tc, fromTc,once);
+        return NEW TrVampired(observer, id, card, tc, fromTc, once, limitOnceATurn);
     }
 
     //when card becomes the target of a spell or ability
     if (TargetChooser * tc = parseSimpleTC(s, "targeted", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        return NEW TrTargeted(observer, id, card, tc, fromTc, 0,once);
+        return NEW TrTargeted(observer, id, card, tc, fromTc, 0, once, limitOnceATurn);
     }
 
     if (s.find("counteradded(") != string::npos)
@@ -1569,7 +1569,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
             found = s.find(Constants::MTGPhaseCodeNames[i]);
             if (found != string::npos)
             {
-                return NEW TriggerNextPhase(observer, id, card, target, i, who,sourceUntapped,once);
+                return NEW TriggerNextPhase(observer, id, card, target, i, who, sourceUntapped, once);
             }
         }
     }
@@ -1583,7 +1583,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
             found = s.find(Constants::MTGPhaseCodeNames[i]);
             if (found != string::npos)
             {
-                return NEW TriggerAtPhase(observer, id, card, target, i, who,sourceUntapped,sourceTap,lifelost,lifeamount,once);
+                return NEW TriggerAtPhase(observer, id, card, target, i, who, sourceUntapped, sourceTap, lifelost, lifeamount, once);
             }
         }
     }
@@ -1592,7 +1592,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     found = s.find("rebounded");
     if (found != string::npos)
     {
-        return NEW TriggerRebound(observer, id, card, target, 2, 1,sourceUntapped,once);
+        return NEW TriggerRebound(observer, id, card, target, 2, 1, sourceUntapped, once);
     }
 
     return NULL;

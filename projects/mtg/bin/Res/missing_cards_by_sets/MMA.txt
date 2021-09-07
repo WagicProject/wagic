@@ -9,25 +9,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Kira, Great Glass-Spinner
-abilities=flying
-text=Flying -- Creatures you control have "Whenever this creature becomes the target of a spell or ability for the first time in a turn, counter that spell or ability."
-mana={1}{U}{U}
-type=Legendary Creature
-subtype=Spirit
-power=2
-toughness=2
-[/card]
-[card]
-name=Riftsweeper
-text=When Riftsweeper enters the battlefield, choose target face-up exiled card. Its owner shuffles it into his or her library.
-mana={1}{G}
-type=Creature
-subtype=Elf Shaman
-power=2
-toughness=2
-[/card]
-[card]
 name=Gifts Ungiven
 text=Search your library for four cards with different names and reveal them. Target opponent chooses two of those cards. Put the chosen cards into your graveyard and the rest into your hand. Then shuffle your library.
 mana={3}{U}

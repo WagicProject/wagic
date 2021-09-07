@@ -2483,15 +2483,6 @@ mana={U}
 type=Instant
 [/card]
 [card]
-name=Disciple of Deceit
-text=Inspired — Whenever Disciple of Deceit becomes untapped, you may discard a nonland card. If you do, search your library for a card with the same converted mana cost as that card, reveal it, put it into your hand, then shuffle your library.
-mana={U}{B}
-type=Creature
-subtype=Human Rogue
-power=1
-toughness=3
-[/card]
-[card]
 name=Discontinuity
 text=As long as it's your turn, this spell costs {2}{U}{U} less to cast. -- End the turn. (Exile all spells and abilities from the stack, including this card. The player whose turn it is discards down to their maximum hand size. Damage wears off, and "this turn" and "until end of turn" effects end.)
 mana={3}{U}{U}{U}
@@ -3149,14 +3140,6 @@ name=Eye to Eye
 text=You and target creature's controller have a staring contest. If you win, destroy that creature.
 mana={2}{B}
 type=Instant
-[/card]
-[card]
-name=Face of Divinity
-auto=teach(creature) 2/2
-text=Enchant creature -- Enchanted creature gets +2/+2. -- As long as another Aura is attached to enchanted creature, it has first strike and lifelink.
-mana={2}{W}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Face to Face
@@ -4090,15 +4073,6 @@ text=Equipped creature gets +3/+3. -- Whenever equipped creature blocks or becom
 mana={1}{W}{W}
 type=Legendary Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Goldenhide Ox
-text=Constellation — Whenever Goldenhide Ox or another enchantment enters the battlefield under your control, target creature must be blocked this turn if able.
-mana={5}{G}
-type=Enchantment Creature
-subtype=Ox
-power=5
-toughness=4
 [/card]
 [card]
 name=Golgothian Sylex
@@ -5403,16 +5377,6 @@ name=Kindslaver
 text={5}, {T}, Sacrifice Kindslaver: A person outside the game controls target player during that player's next turn. Neither player may advise that person until the end of that turn.
 mana={5}
 type=Legendary Artifact
-[/card]
-[card]
-name=Kira, Great Glass-Spinner
-abilities=flying
-text=Flying -- Creatures you control have "Whenever this creature becomes the target of a spell or ability for the first time in a turn, counter that spell or ability."
-mana={1}{U}{U}
-type=Legendary Creature
-subtype=Spirit
-power=2
-toughness=2
 [/card]
 [card]
 name=Kithkin Armor
@@ -7114,15 +7078,6 @@ type=Artifact
 subtype=Contraption
 [/card]
 [card]
-name=Neyith of the Dire Hunt
-text=Whenever one or more creatures you control fight or become blocked, draw a card. -- At the beginning of combat on your turn, you may pay {2}{R} or {G}. If you do, double target creature's power until end of turn. That creature must be blocked this combat if able. ( {R} or {G} can be paid with either {R} or {G}.)
-mana={2}{G}{G}
-type=Legendary Creature
-subtype=Human Warrior
-power=3
-toughness=3
-[/card]
-[card]
 name=Ninja
 text=You may activate Ninja's augment ability any time you could cast an instant. -- Whenever this creature deals combat damage to a player, -- Augment {2}{B} ({2}{B}, Reveal this card from your hand: Combine it with target host. Augment only as—oh, nevermind.)
 type=Creature
@@ -7968,12 +7923,6 @@ mana={W}
 type=Instant
 [/card]
 [card]
-name=Polymorphous Rush
-text=Strive — Polymorphous Rush costs {1}{U} more to cast for each target beyond the first. -- Choose a creature on the battlefield. Any number of target creatures you control each become a copy of that creature until end of turn.
-mana={2}{U}
-type=Instant
-[/card]
-[card]
 name=Pools of Becoming
 text=At the beginning of your end step, put the cards in your hand on the bottom of your library in any order, then draw that many cards. -- Whenever you roll {C}, reveal the top three cards of your planar deck. Each of the revealed cards' {C} abilities triggers. Then put the revealed cards on the bottom of your planar deck in any order.
 type=Plane
@@ -8630,15 +8579,6 @@ name=Ricochet
 text=Whenever any spell targets a single player, each player rolls a six-sided die. That spell is redirected to the player or players with the lowest die roll. If two or more players tie for the lowest die roll, they reroll until there is no tie.
 mana={R}
 type=Enchantment
-[/card]
-[card]
-name=Riftsweeper
-text=When Riftsweeper enters the battlefield, choose target face-up exiled card. Its owner shuffles it into his or her library.
-mana={1}{G}
-type=Creature
-subtype=Elf Shaman
-power=2
-toughness=2
 [/card]
 [card]
 name=Righteous Aura
@@ -9415,16 +9355,6 @@ mana={GU}{GU}
 type=Creature
 subtype=Elf Wizard
 power=2
-toughness=2
-[/card]
-[card]
-name=Sin Prodder
-abilities=menace
-text=Menace -- At the beginning of your upkeep, reveal the top card of your library. Any opponent may have you put that card into your graveyard. If a player does, Sin Prodder deals damage to that player equal to that card's converted mana cost. Otherwise, put that card into your hand.
-mana={2}{R}
-type=Creature
-subtype=Devil
-power=3
 toughness=2
 [/card]
 [card]
@@ -10546,12 +10476,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Tale's End
-text=Counter target activated ability, triggered ability, or legendary spell.
-mana={1}{U}
-type=Instant
-[/card]
-[card]
 name=Talent of the Telepath
 text=Target opponent reveals the top seven cards of his or her library. You may cast an instant or sorcery card from among them without paying its mana cost. Then that player puts the rest into his or her graveyard. -- Spell mastery — If there are two or more instant and/or sorcery cards in your graveyard, you may cast up to two revealed instant and/or sorcery cards instead of one.
 mana={2}{U}{U}
@@ -10607,13 +10531,6 @@ type=Creature
 subtype=Cat Bird Scientist
 power=2
 toughness=1
-[/card]
-[card]
-name=Teferi's Protection
-abilities=exiledeath
-text=Until your next turn, your life total can't change and you gain protection from everything. All permanents you control phase out. (While they're phased out, they're treated as though they don't exist. They phase in before you untap during your untap step.) -- Exile Teferi's Protection.
-mana={2}{W}
-type=Instant
 [/card]
 [card]
 name=Teferi's Response

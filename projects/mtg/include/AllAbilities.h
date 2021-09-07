@@ -1105,7 +1105,9 @@ class TrVampired: public Trigger
 {
 public:
     TargetChooser * fromTc;
-    TrVampired(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, bool once = false) :
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrVampired(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, bool once = false, bool limitOnceATurn = false) :
     Trigger(observer, id, source, once, tc), fromTc(fromTc)
     {
     }
@@ -1115,7 +1117,8 @@ public:
         WEventVampire * vamp = dynamic_cast<WEventVampire*>(event);
         if (!vamp)
             return 0;
-
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
         if(fromTc && !fromTc->canTarget(vamp->source))
             return 0;
         tc->setAllZones();
@@ -1123,8 +1126,8 @@ public:
         //setting allzones, as we don't care since we know the preexisting condiations cover the zones.
         if(!tc->canTarget(vamp->victem))
             return 0;
+        triggeredTurn = game->turn;
         return 1;
-
     }
 
     ~TrVampired()
@@ -1144,7 +1147,9 @@ class TrTargeted: public Trigger
 public:
     TargetChooser * fromTc;
     int type;
-    TrTargeted(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0, bool once = false) :
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrTargeted(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0, bool once = false, bool limitOnceATurn = false) :
     Trigger(observer, id, source, once, tc), fromTc(fromTc), type(type)
     {
     }
@@ -1153,9 +1158,11 @@ public:
     {
         WEventTarget * e = dynamic_cast<WEventTarget *> (event);
         if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
         if (!tc->canTarget(e->card)) return 0;
         if (fromTc && !fromTc->canTarget(e->source)) return 0;
-
+        triggeredTurn = game->turn;
         return 1;
     }
 
