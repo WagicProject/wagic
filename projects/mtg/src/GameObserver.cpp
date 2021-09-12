@@ -1172,8 +1172,8 @@ void GameObserver::Affinity()
 {
     for (int dd = 0; dd < 2; dd++)
     {
-        MTGGameZone * dzones[] = { players[dd]->game->graveyard, players[dd]->game->hand, players[dd]->game->library, players[dd]->game->exile };
-        for (int kk = 0; kk < 4; kk++)
+        MTGGameZone * dzones[] = { players[dd]->game->graveyard, players[dd]->game->hand, players[dd]->game->library, players[dd]->game->commandzone, players[dd]->game->exile };
+        for (int kk = 0; kk < 5; kk++)
         { 
             MTGGameZone * zone = dzones[kk];
             for (int cc = zone->nb_cards - 1; cc >= 0; cc--)
@@ -1278,6 +1278,9 @@ void GameObserver::Affinity()
                     )
                     DoReduceIncrease = true;
                 if (!DoReduceIncrease)
+                    continue;
+
+                if (mExtraPayment != NULL && card == mExtraPayment->source) // Fix to avoid crash when the card paying extracost has also a cost alteration (e.g. combo with "Pirate's Pillage" and "Ruby Medallion").
                     continue;
 
                 //above we check if there are even any cards that effect cards manacost

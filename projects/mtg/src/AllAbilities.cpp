@@ -2031,6 +2031,10 @@ int AACopier::resolve()
         /*since we look for the real card it will not copy granted haste ability however for token we copy all*/
         /*but how to do backup for token so we just copy the backup???*/
         bool nolegend = options.find("nolegend") != string::npos; // Check if the copy has to be legendary or not. (e.g. Echoing Equation)
+        string keepname = "";
+        if(options.find("keepname") != string::npos){ // Keep the original name after the copy. (e.g. "Olag, Ludevic's Hubris")
+            keepname = source->getName();
+        }
         if(tokencopied && !_target->isACopier && !_target->getMTGId())
         {
             source->copy(_target->tokCard, nolegend);
@@ -2138,6 +2142,8 @@ int AACopier::resolve()
                     andAbilityClone->addToGame();
                 }
             }
+            if(keepname != "")
+                source->name = keepname; // Keep the original name after the copy. (e.g. "Olag, Ludevic's Hubris")
         }
         currentAbilities.clear();
         return 1;
@@ -4822,21 +4828,25 @@ int AAFlip::resolve()
                 {
                     if (a->oneShot)
                     {
-                        if(_target->hasType(Subtypes::TYPE_PLANESWALKER)){ // Fix to don't let planeswalker die on flip (since the counter ability is not resolving correctly during flip).
-                            AACounter * tmp = dynamic_cast<AACounter *>(a);
-                            if(tmp && tmp->counterstring.find("loyalty") != string::npos){
-                                for (int j = 0; j < tmp->nb; j++)
-                                    _target->counters->addCounter("loyalty", 0, 0, true); 
+                        if(!backfromcopy){ // Fix to avoid triggering of oneshot abilities when flip is used to return from a copy.
+                            if(_target->hasType(Subtypes::TYPE_PLANESWALKER)){ // Fix to don't let planeswalker die on flip (since the counter ability is not resolving correctly during flip).
+                                AACounter * tmp = dynamic_cast<AACounter *>(a);
+                                if(tmp && tmp->counterstring.find("loyalty") != string::npos){
+                                    for (int j = 0; j < tmp->nb; j++)
+                                        _target->counters->addCounter("loyalty", 0, 0, true); 
+                                } else a->resolve();
                             } else a->resolve();
-                        } else a->resolve();
+                        }
                         SAFE_DELETE(a);
                     }
                     else
                     {
-                        a->addToGame();
                         MayAbility * dontAdd = dynamic_cast<MayAbility*>(a);
-                        if(!dontAdd)
+                        if(!dontAdd){
+                            a->addToGame();
                             _target->cardsAbilities.push_back(a);
+                        } else if(!backfromcopy) // Fix to avoid triggering of may abilities when flip is used to return from a copy (e.g. Mirror of the Forebears).
+                            a->addToGame();
                     }
                 }
             }
@@ -10270,11 +10280,17 @@ void PopulateColorIndexVector(list<int>& colors, const string& colorStringList, 
     vector<string> abilitiesList = split(colorStringList, delimiter);
     for (vector<string>::iterator iter = abilitiesList.begin(); iter != abilitiesList.end(); ++iter)
     {
+        // if the text is not a basic ability but contains a valid color add it to the color vector
+        if((*iter).find("newcolors[") != string::npos){
+            size_t start_pos = (*iter).find("newcolors[");
+            (*iter).replace(start_pos, 10, "");
+            start_pos = (*iter).find("]");
+            (*iter).replace(start_pos, 1, "");
+        }
         for (int colorIndex = Constants::MTG_COLOR_ARTIFACT; colorIndex < Constants::NB_Colors; ++colorIndex)
         {
-            // if the text is not a basic ability but contains a valid color add it to the color vector
-            if ((Constants::GetBasicAbilityIndex(*iter) == -1)
-                    && ((*iter).find(Constants::MTGColorStrings[colorIndex]) != string::npos))
+            // We match now exactly the color to avoid wrong color assignment from gained abilities (e.g. protection from blue)
+            if ((Constants::GetBasicAbilityIndex(*iter) == -1) && ((*iter) == Constants::MTGColorStrings[colorIndex]))
                 colors.push_back(colorIndex);
         }
     }

@@ -2473,12 +2473,11 @@ type=Land
 [/card]
 [card]
 name=Arcane Signet
-auto=if type(*[red]|myzones)~morethan~0 then transforms((,newability[{T}:add{R}])) forever
-auto=if type(*[white]|myzones)~morethan~0 then transforms((,newability[{T}:add{W}])) forever
-auto=if type(*[green]|myzones)~morethan~0 then transforms((,newability[{T}:add{G}])) forever
-auto=if type(*[blue]|myzones)~morethan~0 then transforms((,newability[{T}:add{U}])) forever
-auto=if type(*[black]|myzones)~morethan~0 then transforms((,newability[{T}:add{B}])) forever
-auto=if type(*[-black;-red;-white;-blue;-green]|myzones)~morethan~0 then transforms((,newability[{T}:add{C}])) forever
+auto=aslongas(*[iscommander&red]|myzones) {T}:add{R}
+auto=aslongas(*[iscommander&white]|myzones) {T}:add{W}
+auto=aslongas(*[iscommander&green]|myzones) {T}:add{G}
+auto=aslongas(*[iscommander&blue]|myzones) {T}:add{U}
+auto=aslongas(*[iscommander&black]|myzones) {T}:add{B}
 text={T}: Add one mana of any color in your commander's color identity.
 mana={2}
 type=Artifact
@@ -5265,7 +5264,7 @@ type=Instant
 name=Belbe, Corrupted Observer
 text=At the beginning of each player's postcombat main phase, that player adds {C}{C} for each of your opponents who lost life this turn. (Damage causes loss of life.)
 auto=@each my secondmain restriction{compare(oplifelost)~morethan~0}:add{C}{C}
-auto=@each opponent secondmain restriction{compare(lifelost)~morethan~0}:add{C}{C} opponent
+auto=@each opponent secondmain restriction{compare(oplifelost)~morethan~0}:add{C}{C} opponent
 mana={B}{G}
 type=Legendary Creature
 subtype=Zombie Elf
@@ -11894,12 +11893,11 @@ type=Land
 [/card]
 [card]
 name=Command Tower
-auto=if type(*[red]|myzones)~morethan~0 then transforms((,newability[{T}:add{R}])) forever
-auto=if type(*[white]|myzones)~morethan~0 then transforms((,newability[{T}:add{W}])) forever
-auto=if type(*[green]|myzones)~morethan~0 then transforms((,newability[{T}:add{G}])) forever
-auto=if type(*[blue]|myzones)~morethan~0 then transforms((,newability[{T}:add{U}])) forever
-auto=if type(*[black]|myzones)~morethan~0 then transforms((,newability[{T}:add{B}])) forever
-auto=if type(*[-black;-red;-white;-blue;-green]|myzones)~morethan~0 then transforms((,newability[{T}:add{C}])) forever
+auto=aslongas(*[iscommander&red]|myzones) {T}:add{R}
+auto=aslongas(*[iscommander&white]|myzones) {T}:add{W}
+auto=aslongas(*[iscommander&green]|myzones) {T}:add{G}
+auto=aslongas(*[iscommander&blue]|myzones) {T}:add{U}
+auto=aslongas(*[iscommander&black]|myzones) {T}:add{B}
 text={T}: Add to your mana pool one mana of any color in your commander's color identity.
 type=Land
 [/card]
@@ -11939,12 +11937,11 @@ name=Commander's Plate
 auto={5}:equip
 auto=aslongas(*[iscommander]|myBattlefield) {3}:name(equip a commander) name(equip a commander) rehook target(creature[iscommander]|mybattlefield)
 auto=teach(creature) 3/3
-auto=aslongas(*[red]|myzones) teach(creature) protection from red <1
-auto=aslongas(*[white]|myzones) teach(creature) protection from white <1
-auto=aslongas(*[green]|myzones) teach(creature) protection from green <1
-auto=aslongas(*[blue]|myzones) teach(creature) protection from blue <1
-auto=aslongas(*[black]|myzones) then teach(creature) protection from black <1
-auto=aslongas(*[colorless]|myzones) teach(creature) protection from(artifact) <1
+auto=aslongas(*[red]|myzones) <1 teach(creature) aslongas(*[iscommander]|myzones) protection from red
+auto=aslongas(*[white]|myzones) <1 teach(creature) aslongas(*[iscommander]|myzones) protection from white
+auto=aslongas(*[green]|myzones) <1 teach(creature) aslongas(*[iscommander]|myzones) protection from green
+auto=aslongas(*[blue]|myzones) <1 teach(creature) aslongas(*[iscommander]|myzones) protection from blue
+auto=aslongas(*[black]|myzones) <1 teach(creature) aslongas(*[iscommander]|myzones) protection from black
 text=Equipped creature gets +3/+3 and has protection from each color that's not in your commander's color identity. -- Equip commander {3} -- Equip {5}
 mana={1}
 type=Artifact
@@ -11953,12 +11950,11 @@ subtype=Equipment
 [card]
 name=Commander's Sphere
 auto={S}:name(Sacrifice and draw) draw:1 controller
-auto=aslongas(*[red]|myzones) {T}:add{R}
-auto=aslongas(*[white]|myzones) {T}:add{W}
-auto=aslongas(*[green]|myzones) {T}:add{G}
-auto=aslongas(*[blue]|myzones) {T}:add{U}
-auto=aslongas(*[black]|myzones) {T}:add{B}
-auto=aslongas(*[colorless]|myzones) {T}:add{C}
+auto=aslongas(*[iscommander&red]|myzones) {T}:add{R}
+auto=aslongas(*[iscommander&white]|myzones) {T}:add{W}
+auto=aslongas(*[iscommander&green]|myzones) {T}:add{G}
+auto=aslongas(*[iscommander&blue]|myzones) {T}:add{U}
+auto=aslongas(*[iscommander&black]|myzones) {T}:add{B}
 text={T}: Add to your mana pool one mana of any color in your commander's color identity. -- Sacrifice Commander's Sphere: Draw a card.
 mana={3}
 type=Artifact
@@ -21147,7 +21143,7 @@ toughness=0
 [card]
 name=Faerie Artisans
 abilities=flying
-auto=@movedto(creature[-token]|opponentBattlefield) clone(creature[-token]|opponentBattlefield) with (transform[artifact]) then moveTo(exile all[other tokens creature]|myBattlefield)
+auto=@movedto(creature[-token]|opponentBattlefield):name(Copy creature) all(trigger[to]) clone addtype(artifact) and!( transform((,newability[counter(0/0.1.ArtisanCreated)],newability[name(Exile other tokens) all(other creature[counter{0/0.1.ArtisanCreated}]|myBattlefield) moveTo(exile)])) oneshot )!
 text=Flying -- Whenever a nontoken creature enters the battlefield under an opponent’s control, create a token that’s a copy of that creature except it’s an artifact in addition to its other types. Then exile all other tokens created with Faerie Artisans.
 mana={3}{U}
 type=Creature
@@ -22118,7 +22114,7 @@ type=Sorcery
 [card]
 name=Field of Ruin
 auto={T}:Add{1}
-auto={2}{T}{S}:destroy target(land[-basic]|opponentlbattlefield) && moveto(mybattlefield) target(basic|mylibrary) && ability$!moveto(mybattlefield) target(basic|mylibrary)!$ opponent
+auto={2}{T}{S}:name(Destroy non-basic land) target(land[-basic]|opponentbattlefield) destroy && ability$!name(Search library) name(Search library) target(land[basic]|mylibrary) moveto(mybattlefield) and!( shuffle )! !$ controller && ability$!name(Search library) name(Search library) target(land[basic]|mylibrary) moveto(mybattlefield) and!( shuffle )! !$ opponent
 text={T}: Add {1} to your mana pool. -- {2}, {T}, Sacrifice Field of Ruin: Destroy target nonbasic land an opponent controls. Each player searches his or her library for a basic land card, puts it onto the battlefield, then shuffles his or her library.
 type=Land
 [/card]
@@ -41206,7 +41202,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Mirror of the Forebears
-auto=chooseatype transforms(([{1}:becomes [clone target(creature[chosentype]|myBattlefield)] && transforms(artifact)])) chooseend ueot
+auto=chooseatype transforms((,newability[{1}:name(Becomes copy) target(creature[chosentype]|myBattlefield) copy and!( all(this) transforms((Artifact,newability[phaseaction[endofturn once] flip(Mirror of the Forebears) undocpy])) forever )!])) forever chooseend
 text=As Mirror of the Forebears enters the battlefield, choose a creature type. -- {1}: Until end of turn, Mirror of the Forebears becomes a copy of target creature you control of the chosen type, except it’s an artifact in addition to its other types.
 mana={2}
 type=Artifact
@@ -44901,8 +44897,8 @@ type=Enchantment
 [/card]
 [card]
 name=Opal Acrolith
-auto=@movedTo(creature|opponentstack):transforms((removetypes)) forever && transforms((Soldier Creature,setpower=2,settoughness=4)) forever
-auto={0}:transforms((removetypes,newability[becomes(Enchantment)])) forever
+auto=@movedTo(creature|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Soldier Creature,setpower=2,settoughness=4)) forever
+auto={0}:name(Becomes an enchantment) transforms((removetypes,newability[becomes(Enchantment)])) forever
 text=Whenever an opponent casts a creature spell, if Opal Acrolith is an enchantment, Opal Acrolith becomes a 2/4 Soldier creature. -- {0}: Opal Acrolith becomes an enchantment.
 mana={2}{W}
 type=Enchantment
@@ -44910,22 +44906,46 @@ type=Enchantment
 [card]
 name=Opal Palace
 auto={T}:add{C}
-auto=if type(*[red]|myzones)~morethan~0 then transforms((,newability[{T}:add{R}])) forever
-auto=if type(*[white]|myzones)~morethan~0 then transforms((,newability[{T}:add{W}])) forever
-auto=if type(*[green]|myzones)~morethan~0 then transforms((,newability[{T}:add{G}])) forever
-auto=if type(*[blue]|myzones)~morethan~0 then transforms((,newability[{T}:add{U}])) forever
-auto=if type(*[black]|myzones)~morethan~0 then transforms((,newability[{T}:add{B}])) forever
-auto=@movedto(*[iscommander]|mybattlefield) from(mycommandzone):all(trigger[to]) counter(1/1,pnumofcommandcast) limit:1
+auto=aslongas(*[iscommander&red]|myzones) {1}{T}:name(Add red mana) name(Add red mana) transforms((,newability[add{R}],newability[if type(*[iscommander]|myrestrictedcastingzone)~morethan~0 then counter(0/0.1.OpalEffect)])) oneshot
+auto=aslongas(*[iscommander&white]|myzones) {1}{T}:name(Add white mana) name(Add white mana) transforms((,newability[add{W}],newability[if type(*[iscommander]|myrestrictedcastingzone)~morethan~0 then counter(0/0.1.OpalEffect)])) oneshot
+auto=aslongas(*[iscommander&green]|myzones) {1}{T}:name(Add green mana) name(Add green mana) transforms((,newability[add{G}],newability[if type(*[iscommander]|myrestrictedcastingzone)~morethan~0 then counter(0/0.1.OpalEffect)])) oneshot
+auto=aslongas(*[iscommander&blue]|myzones) {1}{T}:name(Add blue mana) name(Add blue mana) transforms((,newability[add{U}],newability[if type(*[iscommander]|myrestrictedcastingzone)~morethan~0 then counter(0/0.1.OpalEffect)])) oneshot
+auto=aslongas(*[iscommander&black]|myzones) {1}{T}:name(Add black mana) name(Add black mana) transforms((,newability[add{B}],newability[if type(*[iscommander]|myrestrictedcastingzone)~morethan~0 then counter(0/0.1.OpalEffect)])) oneshot
+auto=@movedto(*[iscommander]|mybattlefield) restriction{compare(hascntopaleffect)~morethan~0}:name(Put 1/1 counter) all(trigger[to]) name(Put 1/1 counter) transforms((,newability[counter(1/1.numofcommandcast)])) oneshot
+auto=@movedto(*[iscommander]|mybattlefield) restriction{compare(hascntopaleffect)~morethan~0}:name(Effect ends) removeallcounters(0/0.1.OpalEffect)
+auto=@each endofturn restriction{compare(hascntopaleffect)~morethan~0}:name(Effect ends) removeallcounters(0/0.1.OpalEffect)
 text={T}: Add {C} to your mana pool. -- {1}, {T}: Add to your mana pool one mana of any color in your commander's color identity. If you spend this mana to cast your commander, it enters the battlefield with a number of additional +1/+1 counters on it equal to the number of times it's been cast from the command zone this game.
 type=Land
 [/card]
 [card]
 name=Opal Titan
-auto=@movedTo(creature[blue]|opponentstack):transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,newability[protection from blue)) forever
-auto=@movedTo(creature[white]|opponentstack):transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,newability[protection from white)) forever
-auto=@movedTo(creature[green]|opponentstack):transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,newability[protection from green)) forever
-auto=@movedTo(creature[black]|opponentstack):transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,newability[protection from black)) forever
-auto=@movedTo(creature[red]|opponentstack):transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,newability[protection from red)) forever
+auto=@movedTo(creature[blue;-multicolor]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from blue])) forever
+auto=@movedTo(creature[white;-multicolor]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from white])) forever
+auto=@movedTo(creature[green;-multicolor]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from green])) forever
+auto=@movedTo(creature[black;-multicolor]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from black])) forever
+auto=@movedTo(creature[red;-multicolor]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from red])) forever
+auto=@movedto(creature[red&blue;-green;-black;-white]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from blue],newability[protection from red])) forever
+auto=@movedto(creature[red&green;-blue;-black;-white]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from green],newability[protection from red])) forever
+auto=@movedto(creature[red&black;-blue;-green;-white]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from black],newability[protection from red])) forever
+auto=@movedto(creature[red&white;-blue;-green;-black]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from white],newability[protection from red])) forever
+auto=@movedto(creature[white&blue;-green;-black;-red]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from blue],newability[protection from white])) forever
+auto=@movedto(creature[white&green;-blue;-black;-red]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from white],newability[protection from green])) forever
+auto=@movedto(creature[white&black;-blue;-green;-red]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from white],newability[protection from black])) forever
+auto=@movedto(creature[black&blue;-green;-black;-red]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from blue],newability[protection from black])) forever
+auto=@movedto(creature[black&green;-blue;-black;-red]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from black],newability[protection from green])) forever
+auto=@movedto(creature[green&blue;-red;-black;-white]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from blue],newability[protection from green])) forever
+auto=@movedto(creature[green&blue&red;-black;-white]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from green],newability[protection from blue],newability[protection from red])) forever
+auto=@movedto(creature[green&blue&black;-red;-white]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from blue],newability[protection from black],newability[protection from green])) forever
+auto=@movedto(creature[green&blue&white;-red;-black]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from green],newability[protection from blue],newability[protection from white])) forever
+auto=@movedto(creature[red&blue&black;-green;-white]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from blue],newability[protection from black],newability[protection from red])) forever
+auto=@movedto(creature[red&blue&white;-green;-black]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from blue],newability[protection from white],newability[protection from red])) forever
+auto=@movedto(creature[black&blue&white;-green;-red]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from black],newability[protection from blue],newability[protection from white])) forever
+auto=@movedto(creature[black&blue&white&green;-red]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from black],newability[protection from blue],newability[protection from white],newability[protection from green])) forever
+auto=@movedto(creature[black&blue&white&red;-green]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from black],newability[protection from blue],newability[protection from white],newability[protection from red])) forever
+auto=@movedto(creature[black&blue&red&green;-white]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from black],newability[protection from blue],newability[protection from green],newability[protection from red])) forever
+auto=@movedto(creature[black&red&white&green;-blue]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from black],newability[protection from red],newability[protection from white],newability[protection from green])) forever
+auto=@movedto(creature[blue&red&white&green;-black]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from blue],newability[protection from red],newability[protection from white],newability[protection from green])) forever
+auto=@movedto(creature[black&blue&white&green&red]|opponentstack):if cantargetcard(*[enchantment]|*) then transforms((removetypes)) forever && transforms((Giant Creature,setpower=4,settoughness=4,white,newability[protection from white],newability[protection from black],newability[protection from green],newability[protection from blue],newability[protection from red])) forever
 text=When an opponent casts a creature spell, if Opal Titan is an enchantment, Opal Titan becomes a 4/4 Giant creature with protection from each of that spell's colors.
 mana={2}{W}{W}
 type=Enchantment
@@ -46267,12 +46287,14 @@ toughness=4
 name=Path of Ancestry
 auto=tap(noevent)
 aicode=activate transforms((,newability[all(*[zpos<=1]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
-auto=if type(*[red]|myzones)~morethan~0 then transforms((,newability[{T}:add{R} && scry:1 scrycore delayed dontshow donothing scrycoreend scryend])) forever
-auto=if type(*[white]|myzones)~morethan~0 then transforms((,newability[{T}:add{W} && scry:1 scrycore delayed dontshow donothing scrycoreend scryend}])) forever
-auto=if type(*[green]|myzones)~morethan~0 then transforms((,newability[{T}:add{G} && scry:1 scrycore delayed dontshow donothing scrycoreend scryend])) forever
-auto=if type(*[blue]|myzones)~morethan~0 then transforms((,newability[{T}:add{U} && scry:1 scrycore delayed dontshow donothing scrycoreend scryend])) forever
-auto=if type(*[black]|myzones)~morethan~0 then transforms((,newability[{T}:add{B} && scry:1 scrycore delayed dontshow donothing scrycoreend scryend])) forever
-auto=if type(*[-black;-red;-white;-blue;-green]|myzones)~morethan~0 then transforms((,newability[{T}:add{C} && scry:1 scrycore delayed dontshow donothing scrycoreend scryend])) forever
+auto=aslongas(*[iscommander&red]|myzones) {T}:name(Add red mana) name(Add red mana) transforms((,newability[add{R}],newability[if type(creature|myrestrictedcastingzone)~morethan~0 then counter(0/0.1.PathEffect)])) oneshot
+auto=aslongas(*[iscommander&white]|myzones) {T}:name(Add white mana) name(Add white mana) transforms((,newability[add{W}],newability[if type(creature|myrestrictedcastingzone)~morethan~0 then counter(0/0.1.PathEffect)])) oneshot
+auto=aslongas(*[iscommander&green]|myzones) {T}:name(Add green mana) name(Add green mana) transforms((,newability[add{G}],newability[if type(creature|myrestrictedcastingzone)~morethan~0 then counter(0/0.1.PathEffect)])) oneshot
+auto=aslongas(*[iscommander&blue]|myzones) {T}:name(Add blue mana) name(Add blue mana) transforms((,newability[add{U}],newability[if type(creature|myrestrictedcastingzone)~morethan~0 then counter(0/0.1.PathEffect)])) oneshot
+auto=aslongas(*[iscommander&black]|myzones) {T}:name(Add black mana) name(Add black mana) transforms((,newability[add{B}],newability[if type(creature|myrestrictedcastingzone)~morethan~0 then counter(0/0.1.PathEffect)])) oneshot
+auto=@movedto(creature|mybattlefield) restriction{compare(hascntpatheffect)~morethan~0}:name(Scry if share type) all(trigger[to]) name(Scry if share type) transforms((,newability[if type(*[iscommander&share!types!]|myzones)~morethan~0 then scry:1 scrycore delayed dontshow donothing scrycoreend scryend])) oneshot
+auto=@movedto(creature|mybattlefield) restriction{compare(hascntpatheffect)~morethan~0}:name(Effect ends) removeallcounters(0/0.1.PathEffect)
+auto=@each endofturn restriction{compare(hascntpatheffect)~morethan~0}:name(Effect ends) removeallcounters(0/0.1.PathEffect)
 text=Path of Ancestry enters the battlefield tapped. -- {T}: Add one mana of any color in your commander's color identity. When that mana is spent to cast a creature spell that shares a creature type with your commander, scry 1.
 type=Land
 [/card]
@@ -46833,7 +46855,7 @@ toughness=3
 [/card]
 [card]
 name=Phyrexian Metamorph
-auto=may copy NotATarget(creature,artifact) transform(artifact) forever
+auto=may name(Copy artifact or creature) target(*[creature;artifact]|battlefield) copy and!( transforms((Artifact)) forever )!
 text=({U/P} can be paid with either {U} or 2 life.) -- You may have Phyrexian Metamorph enter the battlefield as a copy of any artifact or creature on the battlefield, except it’s an artifact in addition to its other types.
 mana={3}{P(U)}
 type=Artifact Creature
@@ -47118,7 +47140,7 @@ color=red
 [/card]
 [card]
 name=Pirate's Cutlass
-auto=aslongas(parents) name(Attach to creature) rehook target(creature|myBattlefield) <1
+auto=name(Attach to creature) rehook target(creature|myBattlefield)
 auto=teach(creature) 2/1
 auto={2}:equip
 text=When Pirate's Cutlass enters the battlefield, attach it to target Pirate you control. -- Equipped creature gets +2/+1. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
@@ -47130,7 +47152,7 @@ subtype=Equipment
 name=Pirate's Pillage
 auto=draw:2 controller
 auto=token(Treasure Sur)*2
-text=As an additional cost to cast this spell, discard a card. -- Draw two cards and create two Treasure tokens. (They're artifacts with " {T}, Sacrifice this artifact: Add one mana of any color.")
+text=As an additional cost to cast this spell, discard a card. -- Draw two cards and create two Treasure tokens. (They're artifacts with "{T}, Sacrifice this artifact: Add one mana of any color.")
 mana={3}{R}{D(other *|myhand)}
 type=Sorcery
 [/card]
@@ -47174,6 +47196,13 @@ type=Creature
 subtype=Wall
 power=2
 toughness=5
+[/card]
+[card]
+name=Pithing Needle
+auto=chooseanameopp lord(*[chosenname]) noactivatedability chooseend
+text=As Pithing Needle enters the battlefield, name a card. -- Activated abilities of sources with the chosen name can't be activated unless they're mana abilities.
+mana={1}
+type=Artifact
 [/card]
 [card]
 name=Pitiless Gorgon
@@ -54039,9 +54068,9 @@ type=Instant
 [/card]
 [card]
 name=Saheeli's Artistry
-auto=choice clone target(artifact)
-auto=choice clone target(creature) && transforms(artifact) forever
-auto=choice clone target(artifact) then clone target(creature) && transforms(artifact) forever
+auto=if type(artifact|battlefield)~morethan~0 then choice name(Clone an artifact) name(Clone an artifact) target(artifact) clone
+auto=if type(creature|battlefield)~morethan~0 then choice name(Clone a creature) name(Clone a creature) target(creature) clone addtype(artifact)
+auto=if type(artifact|battlefield)~morethan~0 then if type(creature|battlefield)~morethan~0 then choice name(Choose both) name(Choose both) name(Choose both) target(artifact) clone && ability$!name(Clone a creature) name(Clone a creature) target(creature) clone addtype(artifact)!$ controller
 text=Choose one or both — • Create a token that’s a copy of target artifact. • Create a token that’s a copy of target creature, except it’s an artifact in addition to its other types.
 mana={4}{U}{U}
 type=Sorcery
@@ -72096,7 +72125,8 @@ toughness=3
 [/card]
 [card]
 name=War Barge
-auto={3}:target(creature) islandwalk ueot && transforms((,newability[@movedto(War Barge|graveyard) from(battlefield):bury all(this)])) forever
+auto={3}:name(Your creature gains islandwalk) target(creature|myBattlefield) transforms((,newability[islandwalk],newability[@movedto(War Barge|nonbattlezone) from(mybattlefield):bury])) ueot
+auto={3}:name(Opponent creature gains islandwalk) target(creature|opponentBattlefield) transforms((,newability[islandwalk],newability[@movedto(War Barge|nonbattlezone) from(opponentBattlefield):bury])) ueot
 text={3}: Target creature gains islandwalk until end of turn. When War Barge leaves the battlefield this turn, destroy that creature. A creature destroyed this way can't be regenerated.
 mana={4}
 type=Artifact
@@ -72104,11 +72134,7 @@ type=Artifact
 [card]
 name=War Room
 auto={T}:add{C}
-auto={L:1}{3}{T}:name(1 color in your identity) name(1 color in your identity) draw:1 controller
-auto={L:2}{3}{T}:name(2 colors in your identity) name(2 colors in your identity) draw:1 controller
-auto={L:3}{3}{T}:name(3 colors in your identity) name(3 colors in your identity) draw:1 controller
-auto={L:4}{3}{T}:name(4 colors in your identity) name(4 colors in your identity) draw:1 controller
-auto={L:5}{3}{T}:name(5 colors in your identity) name(5 colors in your identity) draw:1 controller
+auto=aslongas(*[iscommander]|myzones) {L:pnumofidentitycols}{3}{T}:name(Draw a card) name(Draw a card) draw:1 controller
 text={T}: Add {C}. -- {3}, {T}, Pay life equal to the number of colors in your commanders' color identity: Draw a card.
 type=Land
 [/card]

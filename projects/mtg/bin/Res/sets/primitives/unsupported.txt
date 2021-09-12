@@ -7846,12 +7846,6 @@ mana={U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Pithing Needle
-text=As Pithing Needle enters the battlefield, name a card. -- Activated abilities of sources with the chosen name can't be activated unless they're mana abilities.
-mana={1}
-type=Artifact
-[/card]
-[card]
 name=Plague of Vermin
 text=Starting with you, each player may pay any amount of life. Repeat this process until no one pays life. Each player puts a 1/1 black Rat creature token onto the battlefield for each 1 life he or she paid this way.
 mana={6}{B}
