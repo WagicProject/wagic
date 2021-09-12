@@ -11,12 +11,6 @@ mana={W}
 type=Instant
 [/card]
 [card]
-name=Pithing Needle
-text=As Pithing Needle enters the battlefield, name a card. -- Activated abilities of sources with the chosen name can't be activated unless they're mana abilities.
-mana={1}
-type=Artifact
-[/card]
-[card]
 name=Mirror of Fate
 text={T}, Sacrifice Mirror of Fate: Choose up to seven face-up exiled cards you own. Exile all the cards from your library, then put the chosen cards on top of your library.
 mana={5}

@@ -117,9 +117,3 @@ subtype=Zubera Spirit
 power=3
 toughness=3
 [/card]
-[card]
-name=Pithing Needle
-text=As Pithing Needle enters the battlefield, name a card. -- Activated abilities of sources with the chosen name can't be activated unless they're mana abilities.
-mana={1}
-type=Artifact
-[/card]

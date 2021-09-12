@@ -424,13 +424,35 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
             intValue = card->previous->previous->sunburst;
         }
     }
-    else if (s == "converge")
+    else if (s == "converge" || s == "totmanaspent")
     {
         intValue = 0;
-        for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i)
-        {
-            if(card->getManaCost()->getManaUsedToCast()->hasColor(i))
-                intValue +=1;
+        if(s == "converge"){
+            for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i){
+                if(card->getManaCost()->getManaUsedToCast() && card->getManaCost()->getManaUsedToCast()->hasColor(i))
+                    intValue +=1;
+            }
+        } else if(s == "totmanaspent") { // Return the real amount of mana spent to cast the card (e.g. Memory Deluge)
+            if(card->getManaCost()->getManaUsedToCast())
+                intValue = card->getManaCost()->getManaUsedToCast()->getConvertedCost();
+            else {
+                if(card->alternateCostPaid[ManaCost::MANA_PAID_WITH_RETRACE] == 1 && card->getManaCost()->getRetrace())
+                    intValue = card->getManaCost()->getRetrace()->getConvertedCost();
+                else if(card->alternateCostPaid[ManaCost::MANA_PAID_WITH_FLASHBACK] == 1 && card->getManaCost()->getFlashback())
+                    intValue = card->getManaCost()->getFlashback()->getConvertedCost();
+                else if(card->alternateCostPaid[ManaCost::MANA_PAID_WITH_ALTERNATIVE] == 1 && card->getManaCost()->getAlternative())
+                    intValue = card->getManaCost()->getAlternative()->getConvertedCost();
+                else if(card->alternateCostPaid[ManaCost::MANA_PAID_WITH_BESTOW] == 1 && card->getManaCost()->getBestow())
+                    intValue = card->getManaCost()->getBestow()->getConvertedCost();
+                else if(card->alternateCostPaid[ManaCost::MANA_PAID_WITH_BUYBACK] == 1 && card->getManaCost()->getBuyback())
+                    intValue = card->getManaCost()->getBuyback()->getConvertedCost();
+                else if(card->alternateCostPaid[ManaCost::MANA_PAID_WITH_MORPH] == 1 && card->getManaCost()->getMorph())
+                    intValue = card->getManaCost()->getMorph()->getConvertedCost();
+                else if(card->alternateCostPaid[ManaCost::MANA_PAID_WITH_SUSPEND] == 1 && card->getManaCost()->getSuspend())
+                    intValue = card->getManaCost()->getSuspend()->getConvertedCost();
+                else
+                    intValue = card->getManaCost()->getConvertedCost();
+            }
         }
     }
     else if (s == "penergy" || s == "oenergy")
@@ -469,9 +491,52 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
     {
         intValue = (s == "countmycrespell")?card->controller()->game->stack->seenThisTurn("creature", Constants::CAST_ALL):card->controller()->game->stack->seenThisTurn("*[-creature]", Constants::CAST_ALL);
     }
-    else if(s == "pnumofcommandcast" || s == "onumofcommandcast")
+    else if(s == "numofcommandcast" || s == "pnumofcommandcast" || s == "onumofcommandcast" ||  s == "pnumofidentitycols" || s == "onumofidentitycols")
     {
-        intValue = (s == "pnumofcommandcast")?card->controller()->numOfCommandCast:card->controller()->opponent()->numOfCommandCast;
+        intValue = 0;
+        if(s == "pnumofcommandcast") //Return how many times controller casted a commander (e.g. Skull Storm).
+            intValue = card->controller()->numOfCommandCast;
+        else if(s == "onumofcommandcast") //Return how many times controller casted a commander (e.g. Commander's Insight).
+            intValue = card->controller()->opponent()->numOfCommandCast;
+        else if(s == "numofcommandcast") //Return how many times this commander has been casted from command zone (e.g. Opal Palace).
+            intValue = card->numofcastfromcommandzone;
+        else if (s == "pnumofidentitycols" || s == "onumofidentitycols") //Return the total amount of commander identity colors for controller or opponent (e.g. War Room)
+        {
+            intValue = 0;
+            bool blueFound = false;
+            bool redFound = false;
+            bool whiteFound = false;
+            bool greenFound = false;
+            bool blackFound = false;
+            Player* p = card->controller();
+            if (s == "onumofidentitycols")
+                p = card->controller()->opponent();
+            MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->commandzone, p->game->sideboard };
+            for(int i = 0; i < 7; i++){
+                for(int j = 0; j < zones[i]->nb_cards; j++){
+                    if(zones[i]->cards[j]->has(Constants::ISCOMMANDER) && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_RED) && !redFound){
+                        intValue++;
+                        redFound = true;
+                    }
+                    if(zones[i]->cards[j]->has(Constants::ISCOMMANDER) && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_BLACK) && !blackFound){
+                        intValue++;
+                        blackFound = true;
+                    }
+                    if(zones[i]->cards[j]->has(Constants::ISCOMMANDER) && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_BLUE) && !blueFound){
+                        intValue++;
+                        blueFound = true;
+                    }
+                    if(zones[i]->cards[j]->has(Constants::ISCOMMANDER) && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_GREEN) && !greenFound){
+                        intValue++;
+                        greenFound = true;
+                    }
+                    if(zones[i]->cards[j]->has(Constants::ISCOMMANDER) && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_WHITE) && !whiteFound){
+                        intValue++;
+                        whiteFound = true;
+                    }
+                }
+            }
+        }
     }
     else if (s == "isflipped" || s == "iscopied") // Return 1 if card has been flipped -- Return 1 if card has copied another card
     {
@@ -1230,7 +1295,12 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
     {
         intValue = 0;
         for (int j = card->controller()->game->inPlay->nb_cards - 1; j >= 0; --j){
-            if ((s.find("totcntcre") != string::npos || s.find("totcntall") != string::npos) && card->controller()->game->inPlay->cards[j]->hasType(Subtypes::TYPE_CREATURE)){
+            if ((s.find("totcntcre") != string::npos && card->controller()->game->inPlay->cards[j]->hasType(Subtypes::TYPE_CREATURE)) || 
+                (s.find("totcntpla") != string::npos && card->controller()->game->inPlay->cards[j]->hasType(Subtypes::TYPE_PLANESWALKER)) || 
+                (s.find("totcntart") != string::npos && card->controller()->game->inPlay->cards[j]->hasType(Subtypes::TYPE_ARTIFACT)) ||
+                (s.find("totcntenc") != string::npos && card->controller()->game->inPlay->cards[j]->hasType(Subtypes::TYPE_ENCHANTMENT)) ||
+                (s.find("totcntlan") != string::npos && card->controller()->game->inPlay->cards[j]->hasType(Subtypes::TYPE_LAND)) || 
+                s.find("totcntall") != string::npos){
                 if (card->controller()->game->inPlay->cards[j]->counters){
                     Counters * counters = card->controller()->game->inPlay->cards[j]->counters;
                     for(size_t i = 0; i < counters->counters.size(); ++i){
@@ -1323,6 +1393,60 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
             intValue = (card->backSide != "")?1:0;
         else if (s == "totaldmg")
             intValue = (card->damageToController + card->damageToCreature + card->damageToOpponent);
+    }
+    else if (s.find("totalcololorsinplay") != string::npos || s.find("oppototalcololorsinplay") != string::npos) //Return the total amount of colors on controller or opponent battlefield (e.g. Moonveil Regent)
+    {
+        intValue = 0;
+        bool blueFound = false;
+        bool redFound = false;
+        bool whiteFound = false;
+        bool greenFound = false;
+        bool blackFound = false;
+        Player* p = card->controller();
+        if (s == "oppototalcololorsinplay")
+            p = card->controller()->opponent();
+        for( int j = 0; j < p->inPlay()->nb_cards; j++){
+            if(p->inPlay()->cards[j]->hasColor(Constants::MTG_COLOR_RED) && !redFound){
+                intValue++;
+                redFound = true;
+            }
+            if(p->inPlay()->cards[j]->hasColor(Constants::MTG_COLOR_BLACK) && !blackFound){
+                intValue++;
+                blackFound = true;
+            }
+            if(p->inPlay()->cards[j]->hasColor(Constants::MTG_COLOR_BLUE) && !blueFound){
+                intValue++;
+                blueFound = true;
+            }
+            if(p->inPlay()->cards[j]->hasColor(Constants::MTG_COLOR_GREEN) && !greenFound){
+                intValue++;
+                greenFound = true;
+            }
+            if(p->inPlay()->cards[j]->hasColor(Constants::MTG_COLOR_WHITE) && !whiteFound){
+                intValue++;
+                whiteFound = true;
+            }
+        }
+    }
+    else if(s.find("pcoven") != string::npos || s.find("ocoven") != string::npos){ //Player or opponent controls three or more creatures with different powers (e.g. Augur of Autumn)
+        intValue = 0;
+        bool opponent = (s.find("ocoven")!=string::npos)?true:false;
+        Player* p = card->controller();
+        if (opponent)
+            p = card->controller()->opponent();
+        for(unsigned int i = 0; i < p->game->inPlay->cards.size() && intValue == 0; i++){
+            if(p->game->inPlay->cards[i]->hasType(Subtypes::TYPE_CREATURE)){
+                for(unsigned int j = i+1; j < p->game->inPlay->cards.size() && intValue == 0; j++){
+                    if(p->game->inPlay->cards[j]->hasType(Subtypes::TYPE_CREATURE) && p->game->inPlay->cards[j]->power != p->game->inPlay->cards[i]->power){
+                        for(unsigned int k = j+1; k < p->game->inPlay->cards.size() && intValue == 0; k++){
+                            if(p->game->inPlay->cards[k]->hasType(Subtypes::TYPE_CREATURE) && (p->game->inPlay->cards[k]->power != p->game->inPlay->cards[i]->power && p->game->inPlay->cards[k]->power != p->game->inPlay->cards[j]->power)){
+                                intValue = 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     else if(!intValue)//found nothing, try parsing a atoi
     {
