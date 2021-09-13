@@ -2866,7 +2866,7 @@ int AADuplicateCounters::resolve()
         a->oneShot = true;
         pcounters.push_back(a);
     }
-    else if(pTarget && pTarget->energyCount)
+    if(pTarget && pTarget->energyCount)
     {
         MTGAbility * a = NULL;
         if(single)
@@ -2876,7 +2876,7 @@ int AADuplicateCounters::resolve()
         a->oneShot = true;
         pcounters.push_back(a);
     }
-    else if(pTarget && pTarget->experienceCount)
+    if(pTarget && pTarget->experienceCount)
     {
         MTGAbility * a = NULL;
         if(single)
@@ -2886,7 +2886,7 @@ int AADuplicateCounters::resolve()
         a->oneShot = true;
         pcounters.push_back(a);
     }
-    else if (cTarget && cTarget->counters)
+    if (cTarget && cTarget->counters)
     {
         Counters * counters = cTarget->counters;
         for(size_t i = 0; i < counters->counters.size(); ++i)
@@ -2954,25 +2954,25 @@ int AAProliferate::resolve()
     Player * pTarget = dynamic_cast<Player *>(target);
     MTGCardInstance * cTarget = dynamic_cast<MTGCardInstance *>(target);
 
-    if(pTarget && pTarget->poisonCount && pTarget != source->controller())
+    if(pTarget && pTarget->poisonCount)
     {
         MTGAbility * a = NEW AAAlterPoison(game, game->mLayers->actionLayer()->getMaxId(), source, target, 1, NULL);
         a->oneShot = true;
         pcounters.push_back(a);
     }
-    else if(pTarget && pTarget->energyCount && pTarget == source->controller())
+    if(pTarget && pTarget->energyCount)
     {
         MTGAbility * a = NEW AAAlterEnergy(game, game->mLayers->actionLayer()->getMaxId(), source, target, 1, NULL);
         a->oneShot = true;
         pcounters.push_back(a);
     }
-    else if(pTarget && pTarget->experienceCount && pTarget == source->controller())
+    if(pTarget && pTarget->experienceCount)
     {
         MTGAbility * a = NEW AAAlterExperience(game, game->mLayers->actionLayer()->getMaxId(), source, target, 1, NULL);
         a->oneShot = true;
         pcounters.push_back(a);
     }
-    else if (cTarget && cTarget->counters)
+    if (cTarget && cTarget->counters)
     {
         Counters * counters = cTarget->counters;
         for(size_t i = 0; i < counters->counters.size(); ++i)

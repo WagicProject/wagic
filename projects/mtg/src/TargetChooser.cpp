@@ -148,6 +148,8 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //Any Damageable target (player, creature, planeswalker)
         found = s.find("planeswalker^creature");
         if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //Any Damageable target (player, creature, planeswalker)
+        found = s.find("permanent");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "permanent"); //Any player or permanet (player, creature, planeswalker, artifact, land, enchantment)
         found = s.find("creature");
         if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other); //2 Damageable target (player, creature)
         found = s.find("planeswalker");
@@ -1466,16 +1468,25 @@ bool CardTargetChooser::equals(TargetChooser * tc)
 TypeTargetChooser::TypeTargetChooser(GameObserver *observer, const char * _type, MTGCardInstance * card, int _maxtargets, bool other,bool targetMin) :
     TargetZoneChooser(observer, card, _maxtargets, other,targetMin)
 {
+    nbtypes = 0;
     if(!strcmp(_type,"creature,planeswalker")){
         int id = MTGAllCards::findType("creature");
-        nbtypes = 0;
         addType(id);
         id = MTGAllCards::findType("planeswalker");
         addType(id);
-    }
-    else {
+    } else if(!strcmp(_type,"permanent")){
+        int id = MTGAllCards::findType("creature");
+        addType(id);
+        id = MTGAllCards::findType("planeswalker");
+        addType(id);
+        id = MTGAllCards::findType("land");
+        addType(id);
+        id = MTGAllCards::findType("artifact");
+        addType(id);
+        id = MTGAllCards::findType("enchantment");
+        addType(id);
+    } else {
         int id = MTGAllCards::findType(_type);
-        nbtypes = 0;
         addType(id);
     }
     int default_zones[] = { MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD };
