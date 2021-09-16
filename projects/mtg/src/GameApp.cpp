@@ -550,6 +550,9 @@ void GameApp::playMusic(string filename, bool loop)
     if (filename.compare(currentMusicFile) == 0 && music)
         return;
 
+    if(!WResourceManager::Instance()->ssLoadMusic(filename.c_str()))
+       return; // Added to avoid opening not existing file.
+
     if (music)
     {
         JSoundSystem::GetInstance()->StopMusic(music);

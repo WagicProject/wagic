@@ -12496,7 +12496,7 @@ toughness=2
 [card]
 name=Contamination
 auto=upcost[{S(creature|mybattlefield)}] sacrifice
-auto=lord(land) transforms((removetypes,newability[becomes(Swamp)])) forever
+auto=lord(land) transforms((,newability[loseabilities],newability[losesubtypesof(land)],newability[becomes(swamp)]))
 text=At the beginning of your upkeep, sacrifice Contamination unless you sacrifice a creature. -- If a land is tapped for mana, it produces {B} instead of any other type and amount.
 mana={2}{B}
 type=Enchantment

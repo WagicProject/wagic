@@ -142,6 +142,8 @@ void GameStateOptions::Start()
     optionsMenu->Add(kCancelMenuID, "Cancel");
 
     optionsTabs->Entering(JGE_BTN_NONE);
+
+    GameApp::playMusic("Track3.mp3"); // Added music for options.
 }
 
 void GameStateOptions::End()

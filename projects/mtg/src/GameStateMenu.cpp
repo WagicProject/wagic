@@ -141,8 +141,15 @@ void GameStateMenu::Start()
     subMenuController = NULL;
     SAFE_DELETE(mGuiController);
 
-    GameApp::playMusic("Track0.mp3");
-
+    char temp[4096];
+    string musicFilename = "";
+    sprintf(temp, "MainMenu/TrackMenu%i.mp3", std::rand() % 20); // Now it's possibile to use up to 20 sound tracks for main menu.
+    musicFilename.assign(temp);
+    musicFilename = WResourceManager::Instance()->musicFile(musicFilename);
+    if (musicFilename.length() < 1 || !FileExists(musicFilename))
+        musicFilename = "Track0.mp3";
+    GameApp::playMusic(musicFilename);
+    
     hasChosenGameType = false;
     mParent->gameType = GAME_TYPE_CLASSIC;
 
