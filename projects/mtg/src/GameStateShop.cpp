@@ -147,6 +147,8 @@ void GameStateShop::Start()
         pspIcons[i]->SetHotSpot(16, 16);
     }
 
+    GameApp::playMusic("Track2.mp3"); // Added music for shop.
+
     JRenderer::GetInstance()->EnableVSync(true);
 
     taskList = NULL;

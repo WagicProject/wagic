@@ -770,16 +770,27 @@ void GameStateDuel::Update(float dt)
                 sprintf(temp, "ai_baka_music%i.mp3", OpponentsDeckid);
                 musictrack.assign(temp);
             }
-            else if (mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_COMMANDER)
-                musictrack = "ai_baka_music.mp3";
-            else if (mParent->gameType == GAME_TYPE_MOMIR)
-                musictrack = "ai_baka_music_momir.mp3";
-            else if (mParent->gameType == GAME_TYPE_RANDOM1 || mParent->gameType == GAME_TYPE_RANDOM2) musictrack
-                = "ai_baka_music_random.mp3";
-            else if (mParent->gameType == GAME_TYPE_RANDOM3 || mParent->gameType == GAME_TYPE_RANDOM5) musictrack
-                = "ai_baka_music_random.mp3";
-            else if (mParent->gameType == GAME_TYPE_HORDE || mParent->gameType == GAME_TYPE_SET_LIMITED) musictrack
-                = "ai_baka_music_momir.mp3";
+            // Now it's possibile to use up to 20 sound tracks for duels.
+            if (!MusicExist(musictrack)){
+                char temp[4096];
+                sprintf(temp, "Battlefield/TrackDuel%i.mp3", std::rand() % 20);
+                musictrack.assign(temp);
+            }
+            // Try if there is a sound track for specific game type.
+            if (!MusicExist(musictrack)){
+                if (mParent->gameType == GAME_TYPE_CLASSIC)
+                    musictrack = "ai_baka_music.mp3";
+                else if (mParent->gameType == GAME_TYPE_COMMANDER)
+                    musictrack = "ai_baka_music_commander.mp3";
+                else if (mParent->gameType == GAME_TYPE_MOMIR)
+                    musictrack = "ai_baka_music_momir.mp3";
+                else if (mParent->gameType == GAME_TYPE_RANDOM1 || mParent->gameType == GAME_TYPE_RANDOM2 || mParent->gameType == GAME_TYPE_RANDOM3 || mParent->gameType == GAME_TYPE_RANDOM5)
+                    musictrack = "ai_baka_music_random.mp3";
+                else if (mParent->gameType == GAME_TYPE_HORDE) 
+                    musictrack = "ai_baka_music_horde.mp3";
+                else if (mParent->gameType == GAME_TYPE_SET_LIMITED)
+                    musictrack = "ai_baka_music_limited.mp3";
+            }
             if (!MusicExist(musictrack)) 
                 musictrack = "ai_baka_music.mp3";
 

@@ -147,6 +147,8 @@ void GameStateAwards::Start()
     detailview = NULL;
     setSrc = NULL;
     showMenu = false;
+
+    GameApp::playMusic("Track4.mp3"); // Added music for trophies.
 }
 
 void GameStateAwards::Create()

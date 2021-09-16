@@ -2857,7 +2857,7 @@ auto=counter(0/0,5,Loyalty)
 auto=token(Tibalt Emblem,Emblem,0/0,shroud,indestructible,notrigger) and!( transforms((,newability[lord(*[counter{0/0.1.TibaltExiled}]|myexile) canplayfromexile],newability[lord(*[counter{0/0.1.TibaltExiled}]|myexile) anytypeofmana],newability[{0}:name(Cast from opponent exile) target(*[counter{0/0.1.TibaltExiled}]|opponentexile) moveto(myexile) and!( transforms((,newability[counter(0/0.1.TibaltExiled)],newability[canplayfromexile],newability[anytypeofmana],newability[phaseaction[endofturn once checkex] moveTo(ownerexile)],newability[phaseaction[untap once checkex] counter(0/0.1.TibaltExiled)])) ueot )!])) forever )!
 auto={C(0/0,2,Loyalty)}:name(+2: Exile the top card) all(*[zpos=1]|library) moveto(ownerexile) and!( counter(0/0,1,TibaltExiled) )!
 auto={C(0/0,-3,Loyalty)}:name(-3: Exile target artifact or creature) target(*[artifact;creature]|battlefield) moveto(ownerexile) and!( counter(0/0,1,TibaltExiled) )!
-auto={C(0/0,-8,Loyalty)}:name(-8: Exile all cards from all graveyards) all(*|graveyard) moveto(ownerexile) and!( counter(0/0,1,TibaltExiled) )!
+auto={C(0/0,-8,Loyalty)}:name(-8: Exile all cards from all graveyards) add{R}{R}{R} && ability$!all(*|graveyard) moveto(ownerexile) and!( counter(0/0.1.TibaltExiled) )! !$ controller
 text=As Tibalt enters the battlefield, you get an emblem with "You may play cards exiled with Tibalt, Cosmic Impostor, and you may spend mana as though it were mana of any color to cast those spells." -- +2: Exile the top card of each player’s library. -- -3: Exile target artifact or creature. -- -8: Exile all cards from all graveyards. Add {R}{R}{R}. // {1}{B} Valki, God of Lies
 mana={5}{B}{R}
 type=Legendary Planeswalker
