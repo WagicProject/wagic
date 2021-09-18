@@ -20,12 +20,6 @@ mana={2}{R}
 type=Enchantment
 [/card]
 [card]
-name=Praetor's Grasp
-text=Search target opponent's library for a card and exile it face down. Then that player shuffles his or her library. You may look at and play that card for as long as it remains exiled.
-mana={1}{B}{B}
-type=Sorcery
-[/card]
-[card]
 name=Omen Machine
 text=Players can't draw cards. -- At the beginning of each player's draw step, that player exiles the top card of his or her library. If it's a land card, the player puts it onto the battlefield. Otherwise, the player casts it without paying its mana cost if able.
 mana={6}

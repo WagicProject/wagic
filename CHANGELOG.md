@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 17/09/21
+- *Committed:* Added/fixed primitives, updated the "missing_cards_by_sets" folder. ([Vitty85](https://github.com/Vitty85))
+
 ### 16/09/21
-- *Committed:* Fixed primitives, improved sound tracks management, now it's possbile to add a custom tracks for Shop section (Track2.mp3), Option window (Track3.mp3) and Awards section (Track4.mp3) and it's also possible to add two subfolders "MainMenu" and "Battlefield" within "suound" folder where it's possbile to add twenty custom songs ("TrackMenuXX.mp3" and "TrackDuelXX.mp3") that will be played randomly in main menu windows and matches. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed primitives, improved sound tracks management, now it's possbile to add a custom tracks for Shop section (Track2.mp3), Option window (Track3.mp3) and Awards section (Track4.mp3) and it's also possible to add two subfolders "MainMenu" and "Battlefield" within "suound" folder where it's possbile to add twenty custom songs ("TrackMenuXX.mp3" and "TrackDuelXX.mp3") that will be played randomly in main menu windows and when match starts. https://github.com/WagicProject/wagic/commit/f671f617137ccd1b006428a188cd15f38e4795cd ([Vitty85](https://github.com/Vitty85))
 
 ### 13/09/21
 - *Committed:* Fixed AFR, STA, STX and J21 sets, fixed "_PROLIFERATE_" macro and fixed primitives with "proliferate" ability, fixed all primitives with "mutate" ability, improved "proliferate" and "duplicatecounters" keywords, added a new target "permanent" to target togheter a player and permanents on battlefield (e.g. cards with "proliferate"). https://github.com/WagicProject/wagic/commit/2af470e42b9621a64373094db2ce454263d6bc51 ([Vitty85](https://github.com/Vitty85))

@@ -20205,6 +20205,7 @@ type=Sorcery
 [/card]
 [card]
 name=Essence Symbiote
+abilities=iscommander
 auto=@mutated(creature|mybattlefield):all(trigger[to]) counter(1/1)
 auto=@mutated(creature|mybattlefield):life:2 controller
 text=Whenever a creature you control mutates, put a +1/+1 counter on that creature and you gain 2 life.
@@ -35854,12 +35855,15 @@ toughness=6
 [/card]
 [card]
 name=Kolaghan's Command
-auto=if type(creature|mygraveyard)~morethan~0 then choice name(Return creature and discard card) name(Return creature and discard card) moveto(myhand) target(creature|mygraveyard) && ability$!name(Discard a card) name(Discard a card) notatarget(*|myhand) reject!$ opponent
-auto=if type(creature|mygraveyard)~morethan~0 then if type(artifact|battlefield)~morethan~0 then choice name(Return creature and destroy artifact) name(Return creature and destroy artifact) name(Return creature and destroy artifact) moveto(myhand) target(creature|mygraveyard) && ability$!name(Destroy artifact) name(Destroy artifact) destroy target(artifact)!$ controller 
-auto=if type(creature|mygraveyard)~morethan~0 then choice name(Return creature and deals damage) name(Return creature and deals damage) moveto(myhand) target(creature|mygraveyard) && ability$!name(Deals 2 damage) name(Deals 2 damage) damage:2 target(creature,player)!$ controller
-auto=if type(artifact|battlefield)~morethan~0 then choice name(Discard card and destroy artifact) name(Discard card and destroy artifact) ability$!name(Discard a card) name(Discard a card) notatarget(*|myhand) reject!$ opponent && destroy target(artifact)
-auto=choice name(Discard card and deals damage) ability$!name(Discard a card) name(Discard a card) notatarget(*|myhand) reject!$ opponent && damage:2 target(creature,player)
-auto=if type(artifact|battlefield)~morethan~0 then choice name(Destroy artifact and deals damage) name(Destroy artifact and deals damage) destroy target(artifact) && ability$!name(Deals 2 damage) name(Deals 2 damage) damage:2 target(creature,player)!$ controller
+auto=if type(creature|mygraveyard)~morethan~0 then choice name(Return creature and opponent discards) name(Return creature and opponent discards) target(creature|mygraveyard) moveto(myhand) && ability$!name(Discard a card) name(Discard a card) notatarget(*|myhand) reject!$ opponent
+auto=if type(creature|mygraveyard)~morethan~0 then choice name(Return creature and you discard) name(Return creature and you discard) target(creature|mygraveyard) moveto(myhand) && ability$!name(Discard a card) name(Discard a card) notatarget(*|myhand) reject!$ controller
+auto=if type(creature|mygraveyard)~morethan~0 then if type(artifact|battlefield)~morethan~0 then choice name(Return creature and destroy artifact) name(Return creature and destroy artifact) name(Return creature and destroy artifact) target(creature|mygraveyard) moveto(myhand) && ability$!name(Destroy artifact) name(Destroy artifact) destroy target(artifact)!$ controller
+auto=if type(creature|mygraveyard)~morethan~0 then choice name(Return creature and deals damage) name(Return creature and deals damage) target(creature|mygraveyard) moveto(myhand) && ability$!name(Deals 2 damage) name(Deals 2 damage) damage:2 target(player,creature)!$ controller
+auto=if type(artifact|battlefield)~morethan~0 then choice name(Destroy artifact and opponent discards) name(Destroy artifact and opponent discards) target(artifact) destroy && ability$!name(Discard a card) name(Discard a card) notatarget(*|myhand) reject!$ opponent
+auto=if type(artifact|battlefield)~morethan~0 then choice name(Destroy artifact and you discard) name(Destroy artifact and you discard) target(artifact) destroy && ability$!name(Discard a card) name(Discard a card) notatarget(*|myhand) reject!$ controller
+auto=choice name(Deals damage and opponent discards) damage:2 target(player,creature) && ability$!name(Discard a card) name(Discard a card) notatarget(*|myhand) reject!$ opponent
+auto=choice name(Deals damage and you discard) damage:2 target(player,creature) && ability$!name(Discard a card) name(Discard a card) notatarget(*|myhand) reject!$ controller
+auto=if type(artifact|battlefield)~morethan~0 then choice name(Destroy artifact and deals damage) name(Destroy artifact and deals damage) target(artifact) destroy && ability$!name(Deals 2 damage) name(Deals 2 damage) damage:2 target(player,creature)!$ controller
 text=Choose two — -- • Return target creature card from your graveyard to your hand. -- • Target player discards a card. -- • Destroy target artifact. -- • Kolaghan's Command deals 2 damage to target creature or player.
 mana={1}{B}{R}
 type=Instant
@@ -47314,6 +47318,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Plague of Vermin
+auto=if compare(ishuman)~equalto~0 then thisforeach(variable{opponentlifetotal}) ability$!may name(Pay 1 life and create rat) life:-1 && token(Rat,Creature Rat,1/1,black)!$ opponent
+auto=if compare(ishuman)~equalto~0 then thisforeach(variable{lifetotal}>15) ability$!may name(Pay 1 life and create rat) token(Rat,Creature Rat,1/1,black) and!( life:-1 controller )! !$ controller
+auto=if compare(ishuman)~equalto~1 then thisforeach(variable{opponentlifetotal}>15) ability$!may name(Pay 1 life and create rat) life:-1 && token(Rat,Creature Rat,1/1,black)!$ opponent
+auto=if compare(ishuman)~equalto~1 then thisforeach(variable{lifetotal}) ability$!may name(Pay 1 life and create rat) token(Rat,Creature Rat,1/1,black) and!( life:-1 controller )! !$ controller
+text=Starting with you, each player may pay any amount of life. Repeat this process until no one pays life. Each player puts a 1/1 black Rat creature token onto the battlefield for each 1 life he or she paid this way.
+mana={6}{B}
+type=Sorcery
+[/card]
+[card]
 name=Plague Reaver
 auto=@each my endofturn:sacrifice all(other creature|mybattlefield)
 auto={D(*|myhand)}{D(*|myhand)}:sacrifice and!(phaseaction[opponent upkeep once] name(choose Plague Reaver) moveto(opponentbattlefield) target(Plague Reaver[fresh]|mygraveyard))!
@@ -47405,6 +47419,41 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Planeswalker's Favor
+auto={3}{G}:name(Opponent reveals card) moverandom(*) from(opponenthand) to(myhand) and!( transforms((,newability[choice name(Creature gets X/X) moveto(ownerhand) and!( target(creature) manacost/manacost ueot )!])) oneshot )!
+text={3}{G}: Target opponent reveals a card at random from his or her hand. Target creature gets +X/+X until end of turn, where X is the revealed card's converted mana cost.
+mana={2}{G}
+type=Enchantment
+[/card]
+[card]
+name=Planeswalker's Fury
+auto={3}{R}:name(Opponent reveals card) moverandom(*) from(opponenthand) to(myhand) and!( transforms((,newability[choice name(Deal damage) moveto(ownerhand) and!( damage:manacost opponent )!])) oneshot )!
+text={3}{R}: Target opponent reveals a card at random from his or her hand. Planeswalker's Fury deals damage equal to that card's converted mana cost to that player. Activate this ability only any time you could cast a sorcery.
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
+name=Planeswalker's Mirth
+auto={3}{W}:name(Opponent reveals card) moverandom(*) from(opponenthand) to(myhand) and!( transforms((,newability[choice name(You gain life) moveto(ownerhand) and!( life:manacost controller )!])) oneshot )!
+text={3}{W}: Target opponent reveals a card at random from his or her hand. You gain life equal to that card's converted mana cost.
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
+name=Planeswalker's Mischief
+auto={3}{U}:name(Opponent reveals card) moverandom(*) from(opponenthand) to(myhand) and!( transforms((,newability[if cantargetcard(*[instant;sorcery]|*) then choice name(Put to exile) name(Put to exile) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[zerocast],newability[phaseaction[endofturn once checkex] moveto(ownerhand)])) ueot)!],newability[if cantargetcard(*[-instant;-sorcery]|*) then choice name(Put back) name(Put back) moveto(ownerhand)])) oneshot )! asSorcery
+text={3}{U}: Target opponent reveals a card at random from his or her hand. If it's an instant or sorcery card, exile it. You may cast it without paying its mana cost for as long as it remains exiled. (If it has X in its mana cost, X is 0.) At the beginning of the next end step, if you haven't cast it, return it to its owner's hand. Activate this ability only any time you could cast a sorcery.
+mana={2}{U}
+type=Enchantment
+[/card]
+[card]
+name=Planeswalker's Scorn
+auto={3}{B}:name(Opponent reveals card) moverandom(*) from(opponenthand) to(myhand) and!( transforms((,newability[choice name(Creature gets -X/-X) moveto(ownerhand) and!( target(creature) -manacost/-manacost ueot )!])) oneshot )!
+text={3}{B}: Target opponent reveals a card at random from his or her hand. Target creature gets -X/-X until end of turn, where X is the revealed card's converted mana cost. Activate this ability only any time you could cast a sorcery.
+mana={2}{B}
+type=Enchantment
+[/card]
+[card]
 name=Planewide Celebration
 auto=thisforeach(variable{4}) ability$!name(Choose one) choice name(Create citizen) token(Citizen,Creature Citizen,2/2,white,blue,black,red,green) _ choice name(Return permanent) target(*[-instant;-sorcery]|mygraveyard) moveto(ownerhand) _ choice name(Proliferate) notatarget(<anyamount>player,permanent) proliferate _choice name(Gain life) life:4 controller!$ controller
 text=Choose four. You may choose the same mode more than once. -- • Create a 2/2 Citizen creature token that's all colors. -- • Return target permanent card from your graveyard to your hand. -- • Proliferate. -- • You gain 4 life.
@@ -47427,6 +47476,15 @@ type=Legendary Creature
 subtype=Orc Shaman
 power=2
 toughness=2
+[/card]
+[card]
+name=Plasm Capture
+target=*|stack
+auto=fizzle
+anyzone=if casted(this) then if compare(hasstorecard)~morethan~0 then transforms((,newability[counter(0/0.1.PlasmEffect)],newability[@each my firstmain restriction{compare(hascntplasmeffect)~morethan~0}:name(Effect ends) removeallcounters(0/0.1.PlasmEffect)],newability[@each my firstmain restriction{compare(hascntplasmeffect)~morethan~0}:name(Add mana) thisforeach(variable{storedmanacost}>0) ability$!name(Choose color) choice name(Add red mana) add{R} _ choice name(Add green mana) add{G} _ choice name(Add white mana) add{W} _ choice name(Add black mana) add{B} _ choice name(Add blue mana) add{U}!$ controller])) forever
+text=Counter target spell. At the beginning of your next precombat main phase, add X mana in any combination of colors to your mana pool, where X is that spell's converted mana cost.
+mana={G}{G}{U}{U}
+type=Instant
 [/card]
 [card]
 name=Plate Armor
@@ -47589,6 +47647,16 @@ auto=moveto(opponentbattlefield) target(land|mybattlefield)
 text=Exchange control of target land you control and target land an opponent controls. (This effect lasts indefinitely.)
 mana={2}{U}
 type=Sorcery
+[/card]
+[card]
+name=Pollen Remedy
+abilities=hasotherkicker
+other={W}{S(land|myBattlefield)} name(Pay kicker)
+auto=if paid(alternative) then thisforeach(variable{6}) ability$!name(Prevent 1 damage) name(Prevent 1 damage) target(player,creature) prevent:1!$ controller
+auto=ifnot paid(alternative) then thisforeach(variable{3}) ability$!name(Prevent 1 damage) name(Prevent 1 damage) target(player,creature) prevent:1!$ controller
+text=Kicker—Sacrifice a land. (You may sacrifice a land in addition to any other costs as you cast this spell.) -- Prevent the next 3 damage that would be dealt this turn to any number of target creatures and/or players, divided as you choose. If Pollen Remedy was kicked, prevent the next 6 damage this way instead.
+mana={W}
+type=Instant
 [/card]
 [card]
 name=Pollenbright Druid
@@ -47967,6 +48035,13 @@ auto=damage:twicecalculateparty
 text=Choose target attacking or blocking creature. Practiced Tactics deals damage to that creature equal to twice the number of creatures in your party. (Your party consists of up to one each of Cleric, Rogue, Warrior, and Wizard.)
 mana={W}
 type=Instant
+[/card]
+[card]
+name=Praetor's Grasp
+auto=name(Search opponent library) target(*|opponentlibrary) moveto(myexile) and!( transforms((,newability[shuffle opponent],newability[canplayfromexile],newability[@each beginofturn:name(Can play from exile) transforms((,newability[canplayfromexile])) forever])) forever )!
+text=Search target opponent's library for a card and exile it face down. Then that player shuffles his or her library. You may look at and play that card for as long as it remains exiled.
+mana={1}{B}{B}
+type=Sorcery
 [/card]
 [card]
 name=Pramikon, Sky Rampart
@@ -53021,6 +53096,7 @@ text=First strike, menace, trample -- Partner (You can have two commanders if bo
 mana={0}
 type=Legendary Creature
 subtype=Kobold Warrior
+color=red
 power=0
 toughness=1
 [/card]
