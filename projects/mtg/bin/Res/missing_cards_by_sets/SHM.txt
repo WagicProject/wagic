@@ -5,12 +5,6 @@ mana={3}{R}
 type=Sorcery
 [/card]
 [card]
-name=Plague of Vermin
-text=Starting with you, each player may pay any amount of life. Repeat this process until no one pays life. Each player puts a 1/1 black Rat creature token onto the battlefield for each 1 life he or she paid this way.
-mana={6}{B}
-type=Sorcery
-[/card]
-[card]
 name=Strip Bare
 text=Destroy all Auras and Equipment attached to target creature.
 mana={W}

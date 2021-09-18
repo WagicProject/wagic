@@ -7846,51 +7846,9 @@ mana={U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Plague of Vermin
-text=Starting with you, each player may pay any amount of life. Repeat this process until no one pays life. Each player puts a 1/1 black Rat creature token onto the battlefield for each 1 life he or she paid this way.
-mana={6}{B}
-type=Sorcery
-[/card]
-[card]
-name=Planeswalker's Favor
-text={3}{G}: Target opponent reveals a card at random from his or her hand. Target creature gets +X/+X until end of turn, where X is the revealed card's converted mana cost.
-mana={2}{G}
-type=Enchantment
-[/card]
-[card]
-name=Planeswalker's Fury
-text={3}{R}: Target opponent reveals a card at random from his or her hand. Planeswalker's Fury deals damage equal to that card's converted mana cost to that player. Activate this ability only any time you could cast a sorcery.
-mana={2}{R}
-type=Enchantment
-[/card]
-[card]
-name=Planeswalker's Mirth
-text={3}{W}: Target opponent reveals a card at random from his or her hand. You gain life equal to that card's converted mana cost.
-mana={2}{W}
-type=Enchantment
-[/card]
-[card]
-name=Planeswalker's Mischief
-text={3}{U}: Target opponent reveals a card at random from his or her hand. If it's an instant or sorcery card, exile it. You may cast it without paying its mana cost for as long as it remains exiled. (If it has X in its mana cost, X is 0.) At the beginning of the next end step, if you haven't cast it, return it to its owner's hand. Activate this ability only any time you could cast a sorcery.
-mana={2}{U}
-type=Enchantment
-[/card]
-[card]
-name=Planeswalker's Scorn
-text={3}{B}: Target opponent reveals a card at random from his or her hand. Target creature gets -X/-X until end of turn, where X is the revealed card's converted mana cost. Activate this ability only any time you could cast a sorcery.
-mana={2}{B}
-type=Enchantment
-[/card]
-[card]
 name=Planewide Disaster
 text=When you encounter Planewide Disaster, destroy all creatures. (Then planeswalk away from this phenomenon.)
 type=Phenomenon
-[/card]
-[card]
-name=Plasm Capture
-text=Counter target spell. At the beginning of your next precombat main phase, add X mana in any combination of colors to your mana pool, where X is that spell's converted mana cost.
-mana={G}{G}{U}{U}
-type=Instant
 [/card]
 [card]
 name=Plea for Power
@@ -7908,12 +7866,6 @@ type=Artifact
 name=Pollen Lullaby
 text=Prevent all combat damage that would be dealt this turn. Clash with an opponent. If you win, creatures that player controls don't untap during the player's next untap step. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={1}{W}
-type=Instant
-[/card]
-[card]
-name=Pollen Remedy
-text=Kicker—Sacrifice a land. (You may sacrifice a land in addition to any other costs as you cast this spell.) -- Prevent the next 3 damage that would be dealt this turn to any number of target creatures and/or players, divided as you choose. If Pollen Remedy was kicked, prevent the next 6 damage this way instead.
-mana={W}
 type=Instant
 [/card]
 [card]
@@ -7963,12 +7915,6 @@ name=Powerleech
 text=Whenever an artifact an opponent controls becomes tapped or an opponent activates an artifact's ability without {T} in its activation cost, you gain 1 life.
 mana={G}{G}
 type=Enchantment
-[/card]
-[card]
-name=Praetor's Grasp
-text=Search target opponent's library for a card and exile it face down. Then that player shuffles his or her library. You may look at and play that card for as long as it remains exiled.
-mana={1}{B}{B}
-type=Sorcery
 [/card]
 [card]
 name=Precursor Golem

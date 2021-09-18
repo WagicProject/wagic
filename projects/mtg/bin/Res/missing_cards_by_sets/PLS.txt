@@ -12,39 +12,9 @@ mana={1}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Pollen Remedy
-text=KickerSacrifice a land. (You may sacrifice a land in addition to any other costs as you cast this spell.) -- Prevent the next 3 damage that would be dealt this turn to any number of target creatures and/or players, divided as you choose. If Pollen Remedy was kicked, prevent the next 6 damage this way instead.
-mana={W}
-type=Instant
-[/card]
-[card]
 name=Keldon Twilight
 text=At the beginning of each player's end step, if no creatures attacked this turn, that player sacrifices a creature he or she controlled since the beginning of the turn.
 mana={1}{B}{R}
-type=Enchantment
-[/card]
-[card]
-name=Planeswalker's Mirth
-text={3}{W}: Target opponent reveals a card at random from his or her hand. You gain life equal to that card's converted mana cost.
-mana={2}{W}
-type=Enchantment
-[/card]
-[card]
-name=Planeswalker's Scorn
-text={3}{B}: Target opponent reveals a card at random from his or her hand. Target creature gets -X/-X until end of turn, where X is the revealed card's converted mana cost. Activate this ability only any time you could cast a sorcery.
-mana={2}{B}
-type=Enchantment
-[/card]
-[card]
-name=Planeswalker's Mischief
-text={3}{U}: Target opponent reveals a card at random from his or her hand. If it's an instant or sorcery card, exile it. You may cast it without paying its mana cost for as long as it remains exiled. (If it has X in its mana cost, X is 0.) At the beginning of the next end step, if you haven't cast it, return it to its owner's hand. Activate this ability only any time you could cast a sorcery.
-mana={2}{U}
-type=Enchantment
-[/card]
-[card]
-name=Planeswalker's Fury
-text={3}{R}: Target opponent reveals a card at random from his or her hand. Planeswalker's Fury deals damage equal to that card's converted mana cost to that player. Activate this ability only any time you could cast a sorcery.
-mana={2}{R}
 type=Enchantment
 [/card]
 [card]
@@ -52,10 +22,4 @@ name=Goblin Game
 text=Each player hides at least one item, then all players reveal them simultaneously. Each player loses life equal to the number of items he or she revealed. The player who revealed the fewest items then loses half his or her life, rounded up. If two or more players are tied for fewest, each loses half his or her life, rounded up.
 mana={5}{R}{R}
 type=Sorcery
-[/card]
-[card]
-name=Planeswalker's Favor
-text={3}{G}: Target opponent reveals a card at random from his or her hand. Target creature gets +X/+X until end of turn, where X is the revealed card's converted mana cost.
-mana={2}{G}
-type=Enchantment
 [/card]
