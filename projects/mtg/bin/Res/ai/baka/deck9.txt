@@ -2,76 +2,21 @@
 #DESC:See all your efforts shattered
 #DESC:by the all-consuming power
 #DESC:of righteous fury.
-#2x Shatter
-1316
-1316
-#2xDisenchant
-1343
-1343
-#4x Anaba BodyGuard
-134753
-134753
-134753
-134753
-#4xAncestor's chosen
-130550
-130550
-130550
-130550
-#4xAngelic Wall
-129671
-129671
-129671
-129671
-#4xThundering Giant
-130381
-130381
-130381
-130381
-#2x Tempest of Light
-132131
-132131
-#2x Suntail Hawk
-129753
-129753
-#4x Steadfast Guard
-132111
-132111
-132111
-132111
-#4xRock Badger
-129715
-129715
-129715
-129715
-#4x lightning bolt
-1303
-1303
-1303
-1303
-#12plains
-129680
-129681
-129682
-129683
-129680
-129681
-129682
-129683
-129680
-129681
-129682
-129683
-#12mountains
-129649
-129650
-129651
-129652
-129649
-129650
-129651
-129652
-129649
-129650
-129651
-129652
+# Land(s)
+Mountain (8ED) * 12
+Plains (8ED) * 12
+
+# Creature(s)
+Anaba Bodyguard (10E) * 4
+Ancestor's Chosen (10E) * 4
+Angelic Wall (10E) * 4
+Rock Badger (10E) * 4
+Steadfast Guard (10E) * 4
+Suntail Hawk (8ED) * 2
+Thundering Giant (10E) * 4
+
+# Instant(s)
+Disenchant (M20) * 2
+Lightning Bolt (M10) * 4
+Shatter (8ED) * 2
+Tempest of Light (MRD) * 2
