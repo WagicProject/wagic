@@ -27,7 +27,7 @@ type=Legendary Artifact
 [/card]
 [card]
 name=Jegantha, the Wellspring
-text=Companion  No card in your starting deck has more than one of the same mana symbol in its mana cost. (If this card is your chosen companion, you may cast it once from outside the game.) -- {T}: Add {W}{U}{B}{R}{G}. This mana can't be spent to pay generic mana costs.
+text=Companion - No card in your starting deck has more than one of the same mana symbol in its mana cost. (If this card is your chosen companion, you may cast it once from outside the game.) -- {T}: Add {W}{U}{B}{R}{G}. This mana can't be spent to pay generic mana costs.
 mana={4}{RG}
 type=Legendary Creature
 subtype=Elemental Elk
@@ -36,7 +36,7 @@ toughness=5
 [/card]
 [card]
 name=Gyruda, Doom of Depths
-text=Companion  Your starting deck contains only cards with even converted mana costs. (If this card is your chosen companion, you may cast it once from outside the game.) -- When Gyruda enters the battlefield, each player puts the top four cards of their library into their graveyard. Put a creature card with an even converted mana cost from among those cards onto the battlefield under your control.
+text=Companion - Your starting deck contains only cards with even converted mana costs. (If this card is your chosen companion, you may cast it once from outside the game.) -- When Gyruda enters the battlefield, each player puts the top four cards of their library into their graveyard. Put a creature card with an even converted mana cost from among those cards onto the battlefield under your control.
 mana={4}{UB}{UB}
 type=Legendary Creature
 subtype=Demon Kraken
@@ -45,7 +45,7 @@ toughness=6
 [/card]
 [card]
 name=Umori, the Collector
-text=Companion  Each nonland card in your starting deck shares a card type. (If this card is your chosen companion, you may cast it once from outside the game.) -- As Umori, the CollectorUmori, the Collector enters the battlefield, choose a card type. -- Spells you cast of the chosen type cost 1 less to cast.
+text=Companion - Each nonland card in your starting deck shares a card type. (If this card is your chosen companion, you may cast it once from outside the game.) -- As Umori, the CollectorUmori, the Collector enters the battlefield, choose a card type. -- Spells you cast of the chosen type cost 1 less to cast.
 mana={2}{BG}{BG}
 type=Legendary Creature
 subtype=Ooze
@@ -54,7 +54,7 @@ toughness=5
 [/card]
 [card]
 name=Zirda, the Dawnwaker
-text=Companion  Each permanent card in your starting deck has an activated ability. (If this card is your chosen companion, you may cast it once from outside the game.) -- Abilities you activate that aren't mana abilities cost {2} less to activate. This effect can't reduce the mana in that cost to less than one mana. -- {1}, {T}: Target creature can't block this turn.
+text=Companion - Each permanent card in your starting deck has an activated ability. (If this card is your chosen companion, you may cast it once from outside the game.) -- Abilities you activate that aren't mana abilities cost {2} less to activate. This effect can't reduce the mana in that cost to less than one mana. -- {1}, {T}: Target creature can't block this turn.
 mana={1}{RW}{RW}
 type=Legendary Creature
 subtype=Elemental Fox
@@ -63,7 +63,7 @@ toughness=3
 [/card]
 [card]
 name=Obosh, the Preypiercer
-text=Companion  Your starting deck contains only cards with odd converted mana costs and land cards. (If this card is your chosen companion, you may cast it once from outside the game.) -- If a source you control with an odd converted mana cost would deal damage to a permanent or player, it deals double that damage to that permanent or player instead.
+text=Companion - Your starting deck contains only cards with odd converted mana costs and land cards. (If this card is your chosen companion, you may cast it once from outside the game.) -- If a source you control with an odd converted mana cost would deal damage to a permanent or player, it deals double that damage to that permanent or player instead.
 mana={3}{BR}{BR}
 type=Legendary Creature
 subtype=Hellion Horror
@@ -72,7 +72,7 @@ toughness=5
 [/card]
 [card]
 name=Lutri, the Spellchaser
-text=Companion  Each nonland card in your starting deck has a different name. (If this card is your chosen companion, you may cast it once from outside the game.) -- Flash -- When Lutri, the Spellchaser enters the battlefield, if you cast it, copy target instant or sorcery spell you control. You may choose new targets for the copy.
+text=Companion - Each nonland card in your starting deck has a different name. (If this card is your chosen companion, you may cast it once from outside the game.) -- Flash -- When Lutri, the Spellchaser enters the battlefield, if you cast it, copy target instant or sorcery spell you control. You may choose new targets for the copy.
 mana={1}{UR}{UR}
 type=Legendary Creature
 subtype=Elemental Otter
@@ -81,7 +81,7 @@ toughness=2
 [/card]
 [card]
 name=Kaheera, the Orphanguard
-text=Companion  Each creature card in your starting deck is a Cat, Elemental, Nightmare, Dinosaur, or Beast card. (If this card is your chosen companion, you may cast it once from outside the game.) -- Vigilance -- Each other creature you control that's a Cat, Elemental, Nightmare, Dinosaur, or Beast gets +1/+1 and has vigilance.
+text=Companion - Each creature card in your starting deck is a Cat, Elemental, Nightmare, Dinosaur, or Beast card. (If this card is your chosen companion, you may cast it once from outside the game.) -- Vigilance -- Each other creature you control that's a Cat, Elemental, Nightmare, Dinosaur, or Beast gets +1/+1 and has vigilance.
 mana={1}{GW}{GW}
 type=Legendary Creature
 subtype=Cat Beast
@@ -90,7 +90,7 @@ toughness=2
 [/card]
 [card]
 name=Keruga, the Macrosage
-text=Companion  Your starting deck contains only cards with converted mana cost 3 or greater and land cards. (If this card is your chosen companion, you may cast it once from outside the game.) -- When Keruga, the Macrosage enters the battlefield, draw a card for each other permanent you control with converted mana cost 3 or greater.
+text=Companion - Your starting deck contains only cards with converted mana cost 3 or greater and land cards. (If this card is your chosen companion, you may cast it once from outside the game.) -- When Keruga, the Macrosage enters the battlefield, draw a card for each other permanent you control with converted mana cost 3 or greater.
 mana={3}{GU}{GU}
 type=Legendary Creature
 subtype=Dinosaur Hippo

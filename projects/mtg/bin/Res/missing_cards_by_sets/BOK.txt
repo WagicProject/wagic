@@ -1,6 +1,6 @@
 [card]
 name=Veil of Secrecy
-text=Target creature gains shroud until end of turn and is unblockable this turn. -- Splice onto ArcaneReturn a blue creature you control to its owner's hand. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+text=Target creature gains shroud until end of turn and is unblockable this turn. -- Splice onto Arcane-Return a blue creature you control to its owner's hand. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={1}{U}
 type=Instant
 subtype=Arcane
@@ -14,7 +14,7 @@ subtype=Arcane
 [/card]
 [card]
 name=Horobi's Whisper
-text=If you control a Swamp, destroy target nonblack creature. -- Splice onto ArcaneExile four cards from your graveyard. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+text=If you control a Swamp, destroy target nonblack creature. -- Splice onto Arcane-Exile four cards from your graveyard. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={1}{B}{B}
 type=Instant
 subtype=Arcane
@@ -31,7 +31,7 @@ toughness=4
 [/card]
 [card]
 name=Roar of Jukai
-text=If you control a Forest, each blocked creature gets +2/+2 until end of turn. -- Splice onto ArcaneAn opponent gains 5 life. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+text=If you control a Forest, each blocked creature gets +2/+2 until end of turn. -- Splice onto Arcane-An opponent gains 5 life. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={2}{G}
 type=Instant
 subtype=Arcane
@@ -62,7 +62,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Torrent of Stone
-text=Torrent of Stone deals 4 damage to target creature. -- Splice onto ArcaneSacrifice two Mountains. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+text=Torrent of Stone deals 4 damage to target creature. -- Splice onto Arcane-Sacrifice two Mountains. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={3}{R}
 type=Instant
 subtype=Arcane
@@ -113,7 +113,7 @@ subtype=Aura
 [/card]
 [card]
 name=Hundred-Talon Strike
-text=Target creature gets +1/+0 and gains first strike until end of turn. -- Splice onto ArcaneTap an untapped white creature you control. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+text=Target creature gets +1/+0 and gains first strike until end of turn. -- Splice onto Arcane-Tap an untapped white creature you control. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={W}
 type=Instant
 subtype=Arcane

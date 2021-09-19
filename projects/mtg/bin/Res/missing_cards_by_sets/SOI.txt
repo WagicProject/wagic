@@ -35,15 +35,6 @@ mana={2}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Cult of the Waxing Moon
-text=Whenever a permanent you control transforms into a non-Human creature, put a 2/2 green Wolf creature token onto the battlefield.
-mana={4}{G}
-type=Creature
-subtype=Human Shaman
-power=5
-toughness=4
-[/card]
-[card]
 name=Briarbridge Patrol
 text=Whenever Briarbridge Patrol deals damage to one or more creatures, investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.") -- At the beginning of each end step, if you sacrificed three or more Clues this turn, you may put a creature card from your hand onto the battlefield.
 mana={3}{G}

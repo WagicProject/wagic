@@ -97,7 +97,7 @@ subtype=Dinosaur
 [/card]
 [card]
 name=Toy Boat
-text=Cumulative upkeepSay "Toy Boat" quickly. (At the beginning of your upkeep, put an age counter on Toy Boat, then sacrifice it unless you say "Toy Boat" once for each age counter on itwithout pausing between or fumbling it.)
+text=Cumulative upkeep-Say "Toy Boat" quickly. (At the beginning of your upkeep, put an age counter on Toy Boat, then sacrifice it unless you say "Toy Boat" once for each age counter on it-without pausing between or fumbling it.)
 mana={3}
 type=Artifact Creature
 subtype=Ship
@@ -399,7 +399,7 @@ toughness=4
 [/card]
 [card]
 name=Head to Head
-text=You and target opponent play Seven Questions about the top card of that player's library. (That player looks at the card, then you ask up to six yes-or-no questions about the card that he or she answers truthfully. You guess the card's namethat's question sevenand the player reveals the card.) If you win, prevent all damage that would be dealt this turn by a source of your choice.
+text=You and target opponent play Seven Questions about the top card of that player's library. (That player looks at the card, then you ask up to six yes-or-no questions about the card that he or she answers truthfully. You guess the card's name-that's question seven-and the player reveals the card.) If you win, prevent all damage that would be dealt this turn by a source of your choice.
 mana={W}
 type=Instant
 [/card]

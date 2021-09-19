@@ -3,7 +3,9 @@
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
 ### 19/09/21
-- *Committed:* Added/fixed primitives, updated the "missing_cards_by_sets" folder, added MID, MIC and CC2 sets, improved Android downloader for new added sets. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed typos in several primitives, updated the "missing_cards_by_sets" folder, fixed MID, MIC and CC2 sets. ([Vitty85](https://github.com/Vitty85))
+
+- *Committed:* Added/fixed primitives, updated the "missing_cards_by_sets" folder, added MID, MIC and CC2 sets, improved Android downloader for new added sets. https://github.com/WagicProject/wagic/commit/c2482a50f53eafcef18932b42f7cc00f3809a14f ([Vitty85](https://github.com/Vitty85))
 
 - *Committed:* Added/fixed primitives, added MID, MIC and CC2 sets, improved Android downloader for new added sets. https://github.com/WagicProject/wagic/commit/ddda01dd8696790d44ba0e2f0c8c4f3dd10d31d9 ([Vitty85](https://github.com/Vitty85))
 

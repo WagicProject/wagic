@@ -6,7 +6,7 @@ type=Instant
 [/card]
 [card]
 name=Minds Aglow
-text=Join forces  Starting with you, each player may pay any amount of mana. Each player draws X cards, where X is the total amount of mana paid this way.
+text=Join forces - Starting with you, each player may pay any amount of mana. Each player draws X cards, where X is the total amount of mana paid this way.
 mana={U}
 type=Sorcery
 [/card]
@@ -22,7 +22,7 @@ toughness=1
 [/card]
 [card]
 name=Collective Voyage
-text=Join forces  Starting with you, each player may pay any amount of mana. Each player searches his or her library for up to X basic land cards, where X is the total amount of mana paid this way, puts them onto the battlefield tapped, then shuffles his or her library.
+text=Join forces - Starting with you, each player may pay any amount of mana. Each player searches his or her library for up to X basic land cards, where X is the total amount of mana paid this way, puts them onto the battlefield tapped, then shuffles his or her library.
 mana={G}
 type=Sorcery
 [/card]
@@ -34,7 +34,7 @@ type=Enchantment
 [/card]
 [card]
 name=Tempt with Discovery
-text=Tempting offer  Search your library for a land card and put it onto the battlefield. Each opponent may search his or her library for a land card and put it onto the battlefield. For each opponent who searches a library this way, search your library for a land card and put it onto the battlefield. Then each player who searched a library this way shuffles it.
+text=Tempting offer - Search your library for a land card and put it onto the battlefield. Each opponent may search his or her library for a land card and put it onto the battlefield. For each opponent who searches a library this way, search your library for a land card and put it onto the battlefield. Then each player who searched a library this way shuffles it.
 mana={3}{G}
 type=Sorcery
 [/card]

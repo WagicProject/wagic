@@ -67,7 +67,7 @@ toughness=0
 [/card]
 [card]
 name=Timebender
-text=Morph {U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Timebender is turned face up, choose one  Remove two time counters from target permanent or suspended card; or put two time counters on target permanent with a time counter on it or suspended card.
+text=Morph {U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Timebender is turned face up, choose one - Remove two time counters from target permanent or suspended card; or put two time counters on target permanent with a time counter on it or suspended card.
 mana={U}
 type=Creature
 subtype=Human Wizard

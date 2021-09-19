@@ -827,7 +827,7 @@ auto={C(0/0,-1,Loyalty)}:name(-1: Up to two creature gets +2/+1) target(<upto:2>
 auto={C(0/0,-2,Loyalty)}:name(-2: Create two human soldiers) token(Human Soldier,Creature Human Soldier,1/1,white)*2
 auto={C(0/0,-6,Loyalty)}:name(-6: Gain 5 life) life:5 controller
 retrace={4}{W}{W}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)}{E(other *|myGraveyard)} name(Escape)
-text=-1: Up to two target creatures you control each get +2/+1 until end of turn. -- -2: Create two 1/1 white Human Soldier creature tokens. -- -3: You gain 5 life. -- Escape—{4}{W}{W}, Exile four other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
+text=-1: Up to two target creatures you control each get +2/+1 until end of turn. -- -2: Create two 1/1 white Human Soldier creature tokens. -- -3: You gain 5 life. -- Escape-{4}{W}{W}, Exile four other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)
 mana={2}{W}{W}
 type=Legendary Planeswalker
 subtype=Elspeth
@@ -2094,7 +2094,7 @@ auto=_LANDFALL_counter(0/0,1,Loyalty) all(this)
 auto={C(0/0,1,Loyalty)}:name(+1: Untap a land) target(land|myBattlefield) untap
 auto={C(0/0,1,Loyalty)}:name(+1: Untap a land and becomes creature) target(land|myBattlefield) transforms((Creature Elemental,setpower=3,settoughness=3,newability[untap],newability[haste],newability[menace])) ueot
 auto={C(0/0,-5,Loyalty)}:name(-5: May put a creature from hand or graveyard) target(creature[manacost<=type:land:myBattlefield]|myGraveyard,myHand) moveTo(myBattlefield) and!(counter(1/1,2))!
-text=Landfall — Whenever a land enters the battlefield under your control, put a loyalty counter on Nissa of Shadowed Boughs. -- +1: Untap target land you control. You may have it become a 3/3 Elemental creature with haste and menace until end of turn. It's still a land. -- -5: You may put a creature card with converted mana cost less than or equal to the number of lands you control onto the battlefield from your hand or graveyard with two +1/+1 counters on it.
+text=Landfall - Whenever a land enters the battlefield under your control, put a loyalty counter on Nissa of Shadowed Boughs. -- +1: Untap target land you control. You may have it become a 3/3 Elemental creature with haste and menace until end of turn. It's still a land. -- -5: You may put a creature card with converted mana cost less than or equal to the number of lands you control onto the battlefield from your hand or graveyard with two +1/+1 counters on it.
 mana={2}{B}{G}
 type=Legendary Planeswalker
 subtype=Nissa
@@ -2258,7 +2258,7 @@ aicode=activate transforms((,newability[target(*[zpos<=3]|mylibrary) moveto(myha
 auto={C(0/0,1,Loyalty)}:name(+1: Lose life and look cards) life:-1 controller && name(Look top cards) reveal:3 optionone name(Get a Card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put in grave) all(*|reveal) moveto(mygraveyard) optiontwoend revealend
 auto={C(0/0,-3,Loyalty)}:name(-3: Sacrifice creature) ability$!name(Sacrifice creature) name(Sacrifice creature) sacrifice notatarget(creature[power=power:highest:creature:myBattlefield]|mybattlefield)!$ opponent
 auto={C(0/0,-8,Loyalty)}:name(-8: Discard or lose life) name(-8: Discard or lose life) life:-7minusohandcountminusend opponent && life:-7minusohandcountminusend opponent && life:-7minusohandcountminusend opponent && ability$!name(Choose cards) name(Choose cards) target(<7>*|myhand) transforms((,newability[choice name(Discard this card) reject],newability[choice name(Lose 3 life) life:-3 controller])) oneshot!$ opponent
-text=Magecraft — Whenever you cast or copy an instant or sorcery spell, each opponent loses 2 life and you gain 2 life. -- +1: You lose 1 life. Look at the top three cards of your library. Put one of them into your hand and the rest into your graveyard. -- −3: Each opponent sacrifices a creature with the greatest power among creatures that player controls. -- −8: Each opponent may discard a card. If they don't, they lose 3 life. Repeat this process six more times.
+text=Magecraft - Whenever you cast or copy an instant or sorcery spell, each opponent loses 2 life and you gain 2 life. -- +1: You lose 1 life. Look at the top three cards of your library. Put one of them into your hand and the rest into your graveyard. -- −3: Each opponent sacrifices a creature with the greatest power among creatures that player controls. -- −8: Each opponent may discard a card. If they don't, they lose 3 life. Repeat this process six more times.
 mana={4}{B}{B}
 type=Legendary Planeswalker
 subtype=Liliana

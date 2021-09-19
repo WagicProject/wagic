@@ -6,7 +6,7 @@ type=Legendary Artifact
 [/card]
 [card]
 name=Mirror Golem
-text=Imprint  When Mirror Golem enters the battlefield, you may exile target card from a graveyard. -- Mirror Golem has protection from each of the exiled card's card types. (Artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal are card types.)
+text=Imprint - When Mirror Golem enters the battlefield, you may exile target card from a graveyard. -- Mirror Golem has protection from each of the exiled card's card types. (Artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal are card types.)
 mana={6}
 type=Artifact Creature
 subtype=Golem
@@ -102,7 +102,7 @@ toughness=4
 [/card]
 [card]
 name=Spellweaver Helix
-text=Imprint  When Spellweaver Helix enters the battlefield, you may exile two target sorcery cards from a single graveyard.  -- Whenever a player casts a card, if it has the same name as one of the cards exiled with Spellweaver Helix, you may copy the other. If you do, you may cast the copy without paying its mana cost.
+text=Imprint - When Spellweaver Helix enters the battlefield, you may exile two target sorcery cards from a single graveyard.  -- Whenever a player casts a card, if it has the same name as one of the cards exiled with Spellweaver Helix, you may copy the other. If you do, you may cast the copy without paying its mana cost.
 mana={3}
 type=Artifact
 [/card]
@@ -120,7 +120,7 @@ type=Legendary Artifact
 [/card]
 [card]
 name=Mourner's Shield
-text=Imprint  When Mourner's Shield enters the battlefield, you may exile target card from a graveyard. -- {2}, {T}: Prevent all damage that would be dealt this turn by a source of your choice that shares a color with the exiled card.
+text=Imprint - When Mourner's Shield enters the battlefield, you may exile target card from a graveyard. -- {2}, {T}: Prevent all damage that would be dealt this turn by a source of your choice that shares a color with the exiled card.
 mana={4}
 type=Artifact
 [/card]
@@ -132,7 +132,7 @@ type=Artifact
 [/card]
 [card]
 name=Thought Prison
-text=Imprint  When Thought Prison enters the battlefield, you may have target player reveal his or her hand. If you do, choose a nonland card from it and exile that card. -- Whenever a player casts a spell that shares a color or converted mana cost with the exiled card, Thought Prison deals 2 damage to that player.
+text=Imprint - When Thought Prison enters the battlefield, you may have target player reveal his or her hand. If you do, choose a nonland card from it and exile that card. -- Whenever a player casts a spell that shares a color or converted mana cost with the exiled card, Thought Prison deals 2 damage to that player.
 mana={5}
 type=Artifact
 [/card]

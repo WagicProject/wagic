@@ -1,6 +1,6 @@
 [card]
 name=Spectral Shift
-text=Choose one  Change the text of target spell or permanent by replacing all instances of one basic land type with another; or change the text of target spell or permanent by replacing all instances of one color word with another. (These effects last indefinitely.) -- Entwine {2} (Choose both if you pay the entwine cost.)
+text=Choose one -- Change the text of target spell or permanent by replacing all instances of one basic land type with another; or change the text of target spell or permanent by replacing all instances of one color word with another. (These effects last indefinitely.) -- Entwine {2} (Choose both if you pay the entwine cost.)
 mana={1}{U}
 type=Instant
 [/card]

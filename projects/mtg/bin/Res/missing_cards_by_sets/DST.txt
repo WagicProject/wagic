@@ -29,7 +29,7 @@ subtype=Aura
 [/card]
 [card]
 name=Death-Mask Duplicant
-text=Imprint  {1}: Exile target creature card from your graveyard. -- As long as a card exiled with Death-Mask Duplicant has flying, Death-Mask Duplicant has flying. The same is true for fear, first strike, double strike, haste, landwalk, protection, and trample.
+text=Imprint - {1}: Exile target creature card from your graveyard. -- As long as a card exiled with Death-Mask Duplicant has flying, Death-Mask Duplicant has flying. The same is true for fear, first strike, double strike, haste, landwalk, protection, and trample.
 mana={7}
 type=Artifact Creature
 subtype=Shapeshifter

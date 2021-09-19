@@ -33,7 +33,7 @@ type=Artifact
 [/card]
 [card]
 name=Library of Lat-Nam
-text=An opponent chooses one  You draw three cards at the beginning of the next turn's upkeep; or you search your library for a card, put that card into your hand, then shuffle your library.
+text=An opponent chooses one -- You draw three cards at the beginning of the next turn's upkeep; or you search your library for a card, put that card into your hand, then shuffle your library.
 mana={4}{U}
 type=Sorcery
 [/card]

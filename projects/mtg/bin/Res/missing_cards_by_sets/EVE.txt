@@ -6,13 +6,13 @@ type=Instant
 [/card]
 [card]
 name=Light from Within
-text=Chroma  Each creature you control gets +1/+1 for each white mana symbol in its mana cost.
+text=Chroma - Each creature you control gets +1/+1 for each white mana symbol in its mana cost.
 mana={2}{W}{W}
 type=Enchantment
 [/card]
 [card]
 name=Fiery Bombardment
-text=Chroma  {2}, Sacrifice a creature: Fiery Bombardment deals damage to target creature or player equal to the number of red mana symbols in the sacrificed creature's mana cost.
+text=Chroma - {2}, Sacrifice a creature: Fiery Bombardment deals damage to target creature or player equal to the number of red mana symbols in the sacrificed creature's mana cost.
 mana={1}{R}
 type=Enchantment
 [/card]
@@ -34,7 +34,7 @@ type=Enchantment
 [/card]
 [card]
 name=Phosphorescent Feast
-text=Chroma  Reveal any number of cards in your hand. You gain 2 life for each green mana symbol in those cards' mana costs.
+text=Chroma - Reveal any number of cards in your hand. You gain 2 life for each green mana symbol in those cards' mana costs.
 mana={2}{G}{G}{G}
 type=Sorcery
 [/card]

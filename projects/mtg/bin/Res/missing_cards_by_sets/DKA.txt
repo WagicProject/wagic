@@ -46,7 +46,7 @@ toughness=4
 name=Faith's Shield
 auto=this(controllerlife > 5) ability$! choice name(protection from white) target(*|myBattlefield) protection from white ueot _ choice name(protection from blue) target(*|myBattlefield) protection from blue ueot _ choice name(protection from black) target(*|myBattlefield) protection from black ueot _ choice name(protection from red) target(*|myBattlefield) protection from red ueot _ choice name(protection from green) target(*|myBattlefield) protection from green ueot !$ controller
 auto=this(controllerlife < 6) ability$! choice name(protection from white) all(*|myBattlefield) protection from white ueot _ choice name(protection from blue) all(*|myBattlefield) protection from blue ueot _ choice name(protection from black) all(*|myBattlefield) protection from black ueot _ choice name(protection from red) all(*|myBattlefield) protection from red ueot _ choice name(protection from green) all(*|myBattlefield) protection from green ueot !$ controller
-text=Target permanent you control gains protection from the color of your choice until end of turn. -- Fateful hour  If you have 5 or less life, instead you and each permanent you control gain protection from the color of your choice until end of turn.
+text=Target permanent you control gains protection from the color of your choice until end of turn. -- Fateful hour - If you have 5 or less life, instead you and each permanent you control gain protection from the color of your choice until end of turn.
 mana={W}
 type=Instant
 [/card]

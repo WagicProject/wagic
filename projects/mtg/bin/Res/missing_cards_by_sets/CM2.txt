@@ -10,7 +10,7 @@ toughness=5
 [/card]
 [card]
 name=Minds Aglow
-text=Join forces  Starting with you, each player may pay any amount of mana. Each player draws X cards, where X is the total amount of mana paid this way.
+text=Join forces - Starting with you, each player may pay any amount of mana. Each player draws X cards, where X is the total amount of mana paid this way.
 mana={U}
 type=Sorcery
 [/card]
@@ -82,7 +82,7 @@ toughness=1
 [/card]
 [card]
 name=Shared Trauma
-text=Join forces  Starting with you, each player may pay any amount of mana. Each player puts the top X cards of his or her library into his or her graveyard, where X is the total amount of mana paid this way.
+text=Join forces - Starting with you, each player may pay any amount of mana. Each player puts the top X cards of his or her library into his or her graveyard, where X is the total amount of mana paid this way.
 mana={B}
 type=Sorcery
 [/card]

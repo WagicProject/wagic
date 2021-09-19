@@ -39,7 +39,7 @@ type=Sorcery
 [/card]
 [card]
 name=Tempt with Discovery
-text=Tempting offer  Search your library for a land card and put it onto the battlefield. Each opponent may search his or her library for a land card and put it onto the battlefield. For each opponent who searches a library this way, search your library for a land card and put it onto the battlefield. Then each player who searched a library this way shuffles it.
+text=Tempting offer - Search your library for a land card and put it onto the battlefield. Each opponent may search his or her library for a land card and put it onto the battlefield. For each opponent who searches a library this way, search your library for a land card and put it onto the battlefield. Then each player who searched a library this way shuffles it.
 mana={3}{G}
 type=Sorcery
 [/card]
@@ -124,7 +124,7 @@ toughness=7
 [/card]
 [card]
 name=Gift of Doom
-text=Enchant creature -- Enchanted creature has deathtouch and indestructible. -- MorphSacrifice another creature. (You may cast this card face down as a 2/2 creature for 3 . Turn it face up any time for its morph cost.) -- As Gift of Doom is turned face up, you may attach it to a creature.
+text=Enchant creature -- Enchanted creature has deathtouch and indestructible. -- Morph-Sacrifice another creature. (You may cast this card face down as a 2/2 creature for 3 . Turn it face up any time for its morph cost.) -- As Gift of Doom is turned face up, you may attach it to a creature.
 mana={4}{B}
 type=Enchantment
 subtype=Aura

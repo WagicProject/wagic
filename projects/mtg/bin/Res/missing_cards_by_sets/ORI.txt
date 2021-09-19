@@ -1,6 +1,6 @@
 [card]
 name=Psychic Rebuttal
-text=Counter target instant or sorcery spell that targets you. -- Spell mastery  If there are two or more instant and/or sorcery cards in your graveyard, you may copy the spell countered this way. You may choose new targets for the copy.
+text=Counter target instant or sorcery spell that targets you. -- Spell mastery - If there are two or more instant and/or sorcery cards in your graveyard, you may copy the spell countered this way. You may choose new targets for the copy.
 mana={1}{U}
 type=Instant
 [/card]
@@ -16,7 +16,7 @@ toughness=4
 [/card]
 [card]
 name=Talent of the Telepath
-text=Target opponent reveals the top seven cards of his or her library. You may cast an instant or sorcery card from among them without paying its mana cost. Then that player puts the rest into his or her graveyard. -- Spell mastery  If there are two or more instant and/or sorcery cards in your graveyard, you may cast up to two revealed instant and/or sorcery cards instead of one.
+text=Target opponent reveals the top seven cards of his or her library. You may cast an instant or sorcery card from among them without paying its mana cost. Then that player puts the rest into his or her graveyard. -- Spell mastery - If there are two or more instant and/or sorcery cards in your graveyard, you may cast up to two revealed instant and/or sorcery cards instead of one.
 mana={2}{U}{U}
 type=Sorcery
 [/card]
@@ -45,7 +45,7 @@ type=Sorcery
 [/card]
 [card]
 name=Demonic Pact
-text=At the beginning of your upkeep, choose one that hasn't been chosen  --  Demonic Pact deals 4 damage to target creature or player and you gain 4 life. --  Target opponent discards two cards. --  Draw two cards. --  You lose the game.
+text=At the beginning of your upkeep, choose one that hasn't been chosen -- Demonic Pact deals 4 damage to target creature or player and you gain 4 life. -- Target opponent discards two cards. -- Draw two cards. -- You lose the game.
 mana={2}{B}{B}
 type=Enchantment
 [/card]

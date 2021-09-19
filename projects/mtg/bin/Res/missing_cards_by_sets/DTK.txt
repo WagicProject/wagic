@@ -9,7 +9,7 @@ toughness=3
 [/card]
 [card]
 name=Dromoka's Command
-text=Choose two  --  Prevent all damage target instant or sorcery spell would deal this turn. --  Target player sacrifices an enchantment. --  Put a +1/+1 counter on target creature. --  Target creature you control fights target creature you don't control.
+text=Choose two -- Prevent all damage target instant or sorcery spell would deal this turn. -- Target player sacrifices an enchantment. -- Put a +1/+1 counter on target creature. -- Target creature you control fights target creature you don't control.
 mana={G}{W}
 type=Instant
 [/card]

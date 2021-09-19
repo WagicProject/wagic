@@ -47,9 +47,3 @@ text=Creature cards can't enter the battlefield from graveyards or libraries. --
 mana={1}
 type=Artifact
 [/card]
-[card]
-name=Tale's End
-text=Counter target activated ability, triggered ability, or legendary spell.
-mana={1}{U}
-type=Instant
-[/card]

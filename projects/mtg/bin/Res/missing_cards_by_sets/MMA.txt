@@ -1,7 +1,7 @@
 [card]
 name=Pardic Dragon
 abilities=flying
-text=Flying -- {R}: Pardic Dragon gets +1/+0 until end of turn. -- Suspend 2{R}{R} -- Whenever an opponent casts a spell, if Pardic Dragon is suspended, that player may put a time counter on Pardic Dragon.
+text=Flying -- {R}: Pardic Dragon gets +1/+0 until end of turn. -- Suspend 2-{R}{R} -- Whenever an opponent casts a spell, if Pardic Dragon is suspended, that player may put a time counter on Pardic Dragon.
 mana={4}{R}{R}
 type=Creature
 subtype=Dragon
@@ -25,7 +25,7 @@ toughness=1
 [/card]
 [card]
 name=Horobi's Whisper
-text=If you control a Swamp, destroy target nonblack creature. -- Splice onto ArcaneExile four cards from your graveyard. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+text=If you control a Swamp, destroy target nonblack creature. -- Splice onto Arcane-Exile four cards from your graveyard. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={1}{B}{B}
 type=Instant
 subtype=Arcane
@@ -53,7 +53,7 @@ subtype=Arcane
 [/card]
 [card]
 name=Torrent of Stone
-text=Torrent of Stone deals 4 damage to target creature. -- Splice onto ArcaneSacrifice two Mountains. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+text=Torrent of Stone deals 4 damage to target creature. -- Splice onto Arcane-Sacrifice two Mountains. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={3}{R}
 type=Instant
 subtype=Arcane

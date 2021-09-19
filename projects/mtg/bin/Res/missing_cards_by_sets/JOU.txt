@@ -7,7 +7,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Daring Thief
-text=Inspired  Whenever Daring Thief becomes untapped, you may exchange control of target nonland permanent you control and target permanent an opponent controls that shares a card type with it.
+text=Inspired - Whenever Daring Thief becomes untapped, you may exchange control of target nonland permanent you control and target permanent an opponent controls that shares a card type with it.
 mana={2}{U}
 type=Creature
 subtype=Human Rogue
