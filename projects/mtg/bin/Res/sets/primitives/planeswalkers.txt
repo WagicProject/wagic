@@ -1,7 +1,7 @@
 grade=borderline
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 04-09-2021
+#We sorted this in alphabetical order - Luruz & Vitty85 19-09-2021
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -223,9 +223,12 @@ subtype=Angrath
 [card]
 name=Arlinn Kord
 auto=counter(0/0,3,loyalty)
+backside=Arlinn, Embraced by the Moon
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(backside)
 auto={C(0/0,1,Loyalty)}:name(+1: Put a loyalty counter) donothing restriction{compare(cantargetcre)~lessthan~1}
 auto={C(0/0,1,Loyalty)}:name(+1: Target creature gets +2/+2) target(creature) 2/2 ueot
-auto={C(0/0,0,Loyalty)}:name(0: Create a Wolf and transform) create(Wolf:Creature Wolf:2/2:green) && flip(Arlinn, Embraced by the Moon)
+auto={C(0/0,0,Loyalty)}:name(0: Create a Wolf and transform) create(Wolf:Creature Wolf:2/2:green) && flip(backside)
 text=+1: Until end of turn, up to one target creature gets +2/+2 and gains vigilance and haste. -- 0: Put a 2/2 green Wolf creature token onto the battlefield. Transform Arlinn Kord.
 mana={2}{R}{G}
 type=Legendary Planeswalker
@@ -233,6 +236,7 @@ subtype=Arlinn
 [/card]
 [card]
 name=Arlinn, Embraced by the Moon
+backside=Arlinn Kord
 auto={C(0/0,1,Loyalty)}:name(+1: Creatures gets +1/+1 & trample) all(creature|mybattlefield) 1/1 ueot && all(creature|mybattlefield) trample ueot
 auto={C(0/0,-1,Loyalty)}:name(-1: Deals 3 damage and transform) ability$!name(Choose one) choice name(Damage player) damage:3 target(player) _ choice name(Damage creature) damage:3 target(creature) _ choice name(Damage planeswalker) damage:3 target(planeswalker)!$ controller && all(this) flip(Arlinn Kord)
 auto={C(0/0,-6,Loyalty)}:name(-6: Emblem: Creatures get ability powerstrike) emblem transforms((,newability[lord(creature|mybattlefield) {T}:target(creature,player) dynamicability<!powerstrike!>],newability[lord(creature|mybattlefield) haste])) forever dontremove
@@ -240,6 +244,35 @@ text=+1: Creatures you control get +1/+1 and gain trample until end of turn. -- 
 type=Legendary Planeswalker
 subtype=Arlinn
 color=red,green
+[/card]
+[card]
+name=Arlinn, the Pack's Hope
+abilities=daybound
+backside=Arlinn, the Moon's Fury
+restriction=compare(isflipped)~equalto~0
+anyzone={0}:doubleside(backside)
+auto=if type(*[day;night]|battlefield)~equalto~0 then name(It becomes day) activate castcard(noevent named!:Day:!)
+auto=if compare(hascntloyalty)~equalto~0 then counter(0/0,4,loyalty)
+auto={C(0/0,1,Loyalty)}:name(+1: Cast creatures with flash) transforms((,newability[counter(0/0.1.ArlinnEffect)],newability[phaseaction[my untap once sourceinplay] removeallcounters(0/0.1.ArlinnEffect)])) forever
+auto={C(0/0,-3,Loyalty)}:name(-3: Create 2 Wolves) token(Wolf,Creature Wolf,2/2,green)*2
+auto=this(counter{0/0.1.ArlinnEffect}>0) transforms((,newability[lord(creature|mycastingzone) asflash],newability[@movedto(creature|mybattlefield):name(Put 1/1 counter) all(trigger[to]) counter(1/1)]))
+text=Daybound (If a player casts no spells during their own turn, it becomes night next turn.) -- +1: Until your next turn, you may cast creature spells as though they had flash, and each creature you control enters the battlefield with an additional +1/+1 counter on it. -- −3: Create two 2/2 green Wolf creature tokens. // Arlinn, the Moon's Fury
+mana={2}{R}{G}
+type=Legendary Planeswalker
+subtype=Arlinn
+[/card]
+[card]
+name=Arlinn, the Moon's Fury
+abilities=nightbound
+backside=Arlinn, the Pack's Hope
+auto=if type(*[day;night]|battlefield)~equalto~0 then name(It becomes night) activate castcard(noevent named!:Night:!)
+auto=if compare(hascntloyalty)~equalto~0 then counter(0/0,4,loyalty)
+auto={C(0/0,2,Loyalty)}:name(+2: Add red and green mana) add{R}{G}
+auto={C(0/0,0,Loyalty)}:name(0: Becomes werewolf) transforms((Creature Werewolf,setpower=5,settoughness=5,newability[trample],newability[indestructible],newability[haste])) ueot
+text=Nightbound (If a player casts at least two spells during their own turn, it becomes day next turn.) -- +2: Add {R}{G}. -- 0: Until end of turn, Arlinn, the Moon’s Fury becomes a 5/5 Werewolf creature with trample, indestructible, and haste. // Arlinn, the Pack's Hope
+color=red,green
+type=Legendary Planeswalker
+subtype=Arlinn
 [/card]
 [card]
 name=Arlinn, Voice of the Pack
@@ -2694,6 +2727,23 @@ type=Legendary Planeswalker
 subtype=Teferi
 [/card]
 [card]
+name=Teferi, Who Slows the Sunset
+auto=counter(0/0,4,loyalty)
+aicode=activate transforms((,newability[target(*[zpos<=3]|mylibrary) moveto(myhand) and!( all(*[zpos<=3]|mylibrary) moveto(myreveal) and!( bottomoflibrary)! )!])) oneshot
+auto={C(0/0,1,Loyalty)}:name(+1: Tap or untap permanents) counter(0/0.1.TeferiEffect)
+auto={C(0/0,-2,Loyalty)}:name(+2: Reveal top 3 cards) ability$!name(Reveal) reveal:3 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo name(Put on bopttom) all(*|reveal) bottomoflibrary optiontwoend revealend!$ controller
+auto={C(0/0,-7,Loyalty)}:name(-7: Get untap and draw emblem) emblem transforms((,newability[@each opponent untap:name(Untap all permanents) all(*|myBattlefield) untap],newability[@each opponent draw:name(Draw a card) draw:1 controller])) forever dontremove
+auto=@counteradded(0/0.1.TeferiEffect) from(this):name(Effect Ends) removeallcounters(0/0,1,TeferiEffect)
+auto=@counteradded(0/0.1.TeferiEffect) from(this):name(Gain 2 life) life:2 controller
+auto=@counteradded(0/0.1.TeferiEffect) from(this) restriction{type(artifact|battlefield)~morethan~0}:may name(Choose an artifact) ability$!name(Choose artifact) choice name(Choose your artifact) target(artifact|myBattlefield) untap _ choice name(Choose opponent artifact) target(artifact|opponentbattlefield) tap!$ controller
+auto=@counteradded(0/0.1.TeferiEffect) from(this) restriction{type(creature|battlefield)~morethan~0}:may name(Choose a creature) ability$!name(Choose creature) choice name(Choose your creature) target(creature|myBattlefield) untap _ choice name(Choose opponent creature) target(creature|opponentbattlefield) tap!$ controller
+auto=@counteradded(0/0.1.TeferiEffect) from(this) restriction{type(land|battlefield)~morethan~0}:may name(Choose a land) ability$!name(Choose land) choice name(Choose your land) target(land|myBattlefield) untap _ choice name(Choose opponent land) target(land|opponentbattlefield) tap!$ controller
+text=+1: Choose up to one target artifact, up to one target creature, and up to one target land. Untap the chosen permanents you control. Tap the chosen permanents you don’t control. You gain 2 life. -- −2: Look at the top three cards of your library. Put one of them into your hand and the rest on the bottom of your library in any order. -- −7: You get an emblem with "Untap all permanents you control during each opponent’s untap step" and "You draw a card during each opponent’s draw step."
+mana={2}{W}{U}
+type=Legendary Planeswalker
+subtype=Teferi
+[/card]
+[card]
 name=Tevesh Szat, Doom of Fools
 abilities=partner,canbecommander
 auto=counter(0/0,4,loyalty)
@@ -2900,8 +2950,8 @@ subtype=Tyvar
 name=Ugin, the Ineffable
 auto=counter(0/0,4,loyalty)
 auto=lord(*[colorless]|mycastingzone) altercost(colorless,-2)
-auto={C(0/0,1,Loyalty)}:name(+1: Exile top card and create a 2/2 spirit) moveTo(Exile) all(*[zpos=1]|myLibrary) && create(Spirit:Creature Spirit:2/2:colorless) and!( transforms((,newability[@movedto(this|nonbattlezone):moveTo(myHand) target(*|myExile)])])) forever )!
-auto={C(0/0,-3,Loyalty)}:name(-3: Destroy target colored permanent) destroy target(*[white;blue;black;red;green])
+auto={C(0/0,1,Loyalty)}:name(+1: Exile top card and create a 2/2 spirit) token(Spirit,Creature Spirit,2/2) and!( transforms((,newability[all(*[zpos=1]|myLibrary) imprint],newability[this(variable{hasevict}>0) transforms((,newability[@movedto(this|nonbattlezone):name(Return exiled card) moveto(myHand) target(*[evictname]|myExile)])) forever])) forever )!
+auto={C(0/0,-3,Loyalty)}:name(-3: Destroy target colored permanent) destroy target(*[white;red;blue;green;black]|battlefield)
 text=Colorless spells you cast cost {2} less to cast. -- +1: Exile the top card of your library face down and look at it. Create a 2/2 colorless Spirit creature token. When that token leaves the battlefield, put the exiled card into your hand. -- -3: Destroy target permanent that's one or more colors.
 mana={6}
 type=Legendary Planeswalker
@@ -3106,6 +3156,19 @@ text=Instant and sorcery spells you cast cost {1} less to cast. -- +1: Up to one
 mana={4}{U}
 type=Legendary Planeswalker
 subtype=Will
+[/card]
+[card]
+name=Wrenn and Seven
+auto=counter(0/0,5,loyalty)
+aicode=activate transforms((,newability[all(land[zpos<=4]|mylibrary) moveto(myhand)],newability[all(*[-land;zpos<=4]|mylibrary) moveto(mygraveyard)])) oneshot
+auto={C(0/0,1,Loyalty)}:name(+1: Reveal top 4 cards) reveal:4 optionone name(Put lands in hand) target(<4>land|reveal) moveto(myhand) optiononeend optiontwo name(Put in graveyard) all(*[-land]|reveal) moveto(mygraveyard) optiontwoend revealend
+auto={C(0/0,0,Loyalty)}:name(0: Put lands in play) target(<anyamount>land|myhand) moveto(mybattlefield) and!( tap(noevent) )!
+auto={C(0/0,-3,Loyalty)}:name(-3: Create Treefolk) token(Treefolk Wre)
+auto={C(0/0,-8,Loyalty)}:name(-8: Return permanents and get emblem) emblem transforms((,newability[all(*[-instant;-sorcery]|mygraveyard) moveto(myhand)],newability[lord(*|mybattlefield) nomaxhand])) forever dontremove
+text=+1: Reveal the top four cards of your library. Put all land cards revealed this way into your hand and the rest into your graveyard. -- 0: Put any number of land cards from your hand onto the battlefield tapped. -- −3: Create a green Treefolk creature token with reach and "This creature's power and toughness are each equal to the number of lands you control." -- −8: Return all permanent cards from your graveyard to your hand. You get an emblem with "You have no maximum hand size."
+mana={3}{G}{G}
+type=Legendary Planeswalker
+subtype=Wrenn
 [/card]
 [card]
 name=Wrenn and Six

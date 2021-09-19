@@ -1,0 +1,67 @@
+[meta]
+author=Wagic Team
+name=Commander Collection: Black
+orderindex=COM-T.CC2
+year=2021-12-31
+total=12
+[/meta]
+[card]
+primitive=Snake
+id=-296823
+rarity=T
+[/card]
+[card]
+primitive=Zombie
+id=-296822
+rarity=T
+[/card]
+[card]
+primitive=Zombie
+id=-296820
+rarity=T
+[/card]
+[card]
+primitive=Liliana, Heretical Healer
+id=296820
+rarity=M
+[/card]
+[card]
+primitive=Liliana, Defiant Necromancer
+id=296821
+rarity=T
+[/card]
+[card]
+primitive=Ghoulcaller Gisa
+id=296822
+rarity=M
+[/card]
+[card]
+primitive=Ophiomancer
+id=296823
+rarity=R
+[/card]
+[card]
+primitive=Phyrexian Arena
+id=296824
+rarity=R
+[/card]
+[card]
+primitive=Reanimate
+id=296825
+rarity=R
+[/card]
+[card]
+primitive=Toxic Deluge
+id=296826
+rarity=R
+[/card]
+[card]
+primitive=Sol Ring
+id=296827
+rarity=R
+[/card]
+[card]
+primitive=Command Tower
+id=296828
+rarity=R
+[/card]
