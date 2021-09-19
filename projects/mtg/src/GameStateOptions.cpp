@@ -143,7 +143,9 @@ void GameStateOptions::Start()
 
     optionsTabs->Entering(JGE_BTN_NONE);
 
+#if !defined (PSP)
     GameApp::playMusic("Track3.mp3"); // Added music for options.
+#endif
 }
 
 void GameStateOptions::End()
