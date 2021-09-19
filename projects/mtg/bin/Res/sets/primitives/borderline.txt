@@ -12,7 +12,7 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=AEther Rift
+name=Aether Rift
 auto=@each my upkeep restriction{compare(phandcount)~equalto~1}:all(*|myhand) moveto(mygraveyard) and!( counter(0/0,1,RiftEffect) )!
 auto=@each my upkeep restriction{compare(phandcount)~equalto~2}:transforms((,newability[all(*[zpos=genrand2plus1plusend]|myhand) moveto(mygraveyard) and!( counter(0/0.1.RiftEffect) )!])) oneshot
 auto=@each my upkeep restriction{compare(phandcount)~equalto~3}:transforms((,newability[all(*[zpos=genrand3plus1plusend]|myhand) moveto(mygraveyard) and!( counter(0/0.1.RiftEffect) )!])) oneshot
@@ -29,10 +29,10 @@ mana={1}{R}{G}
 type=Enchantment
 [/card]
 [card]
-name=AEther Tide
+name=Aether Tide
 target=<prex>creature|myhand
 auto=reject && ability$!name(Return a creature) name(Return a creature) moveTo(ownerhand) target(creature|battlefield)!$ controller
-text=As an additional cost to cast AEther Tide, discard X creature cards. -- Return X target creatures to their owners' hands.
+text=As an additional cost to cast Aether Tide, discard X creature cards. -- Return X target creatures to their owners' hands.
 mana={X}{U}
 type=Sorcery
 [/card]

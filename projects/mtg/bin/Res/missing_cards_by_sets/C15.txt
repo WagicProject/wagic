@@ -58,7 +58,7 @@ power=5
 toughness=5
 [/card]
 [card]
-name=AEthersnatch
+name=Aethersnatch
 text=Gain control of target spell. You may choose new targets for it. (If that spell becomes a permanent, it enters the battlefield under your control.)
 mana={4}{U}{U}
 type=Instant

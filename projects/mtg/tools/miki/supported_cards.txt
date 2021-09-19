@@ -1,20 +1,20 @@
-AErathi Berserker
-AEther Adept
-AEther Charge
-AEther Figment
-AEther Flash
-AEther Membrane
-AEther Mutation
-AEther Shockwave
-AEther Snap
-AEther Spellbomb
-AEther Sting
-AEther Tradewinds
-AEther Vial
-AEther Web
-AEtherflame Wall
-AEthersnipe
-AEthertow
+Aerathi Berserker
+Aether Adept
+Aether Charge
+Aether Figment
+Aether Flash
+Aether Membrane
+Aether Mutation
+Aether Shockwave
+Aether Snap
+Aether Spellbomb
+Aether Sting
+Aether Tradewinds
+Aether Vial
+Aether Web
+Aetherflame Wall
+Aethersnipe
+Aethertow
 Abandoned Outpost
 Abattoir Ghoul
 Abbey Gargoyles
@@ -345,7 +345,7 @@ Argothian Swine
 Argothian Treefolk
 Arid Mesa
 Ark of Blight
-Arm with AEther
+Arm with Aether
 Armadillo Cloak
 Armageddon
 Armageddon Clock
@@ -2850,7 +2850,7 @@ Frostling
 Frostweb Spider
 Frostwielder
 Frostwind Invoker
-Frozen AEther
+Frozen Aether
 Frozen Shade
 Frozen Solid
 Fruition
@@ -8409,7 +8409,7 @@ Vec Townships
 Vectis Agents
 Vectis Silencers
 Vector Asp
-Vedalken AEthermage
+Vedalken Aethermage
 Vedalken Anatomist
 Vedalken Archmage
 Vedalken Certarch

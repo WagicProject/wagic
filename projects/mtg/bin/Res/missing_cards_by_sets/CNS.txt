@@ -19,8 +19,8 @@ mana={3}{U}
 type=Sorcery
 [/card]
 [card]
-name=AEther Searcher
-text=Reveal AEther Searcher as you draft it. Reveal the next card you draft and note its name.  -- When AEther Searcher enters the battlefield, you may search your hand and/or library for a card with a name noted as you drafted cards named AEther Searcher. You may cast it without paying its mana cost. If you searched your library this way, shuffle it.
+name=Aether Searcher
+text=Reveal Aether Searcher as you draft it. Reveal the next card you draft and note its name.  -- When Aether Searcher enters the battlefield, you may search your hand and/or library for a card with a name noted as you drafted cards named Aether Searcher. You may cast it without paying its mana cost. If you searched your library this way, shuffle it.
 mana={7}
 type=Artifact Creature
 subtype=Construct

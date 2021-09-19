@@ -1,11 +1,11 @@
 "Ach! Hans, Run!"
 AEther Barrier
-AEther Burst
-AEther Rift
-AEther Storm
-AEther Tide
-AEthermage's Touch
-AEtherplasm
+Aether Burst
+Aether Rift
+Aether Storm
+Aether Tide
+Aethermage's Touch
+Aetherplasm
 AWOL
 Abandon Hope
 Abeyance
@@ -81,7 +81,7 @@ Arcum's Whistle
 Ardent Plea
 Arena
 Argothian Wurm
-Arm with AEther
+Arm with Aether
 Armor of Thorns
 Arrest
 Arrogant Wurm
@@ -133,7 +133,7 @@ Avoid Fate
 Awe Strike
 Awesome Presence
 Ayesha Tanaka
-Azorius AEthermage
+Azorius Aethermage
 Azorius Guildmage
 Azorius Ploy
 B-I-N-G-O
@@ -919,7 +919,7 @@ Fluctuator
 Flusterstorm
 Flux
 Fog Patch
-Fold into AEther
+Fold into Aether
 Food Chain
 Forbidden Crypt
 Forbidden Ritual
@@ -981,7 +981,7 @@ Gamekeeper
 Gargantuan Gorilla
 Garruk's Horde
 Garza's Assassin
-Gate to the AEther
+Gate to the Aether
 Gatekeeper of Malakir
 Gather Courage
 Gather Specimens
@@ -2739,7 +2739,7 @@ Suppression Field
 Surestrike Trident
 Surge of Strength
 Surgespanner
-Surging AEther
+Surging Aether
 Surging Dementia
 Surging Flame
 Surging Might
@@ -2765,7 +2765,7 @@ Syncopate
 Synod Artificer
 Tablet of Epityr
 Tahngarth's Glare
-Tainted AEther
+Tainted Aether
 Tainted Monkey
 Tainted Pact
 Tainted Specter
@@ -3157,7 +3157,7 @@ Yawgmoth's Agenda
 Yawgmoth's Will
 Yawning Fissure
 Ydwen Efreet
-Yet Another AEther Vortex
+Yet Another Aether Vortex
 Yixlid Jailer
 Yosei, the Morning Star
 Zanam Djinn

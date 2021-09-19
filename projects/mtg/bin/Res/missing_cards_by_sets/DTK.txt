@@ -93,8 +93,8 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Obscuring AEther
-text=Face-down creature spells you cast cost {1} less to cast. -- {1}{G}: Turn Obscuring AEther face down. (It becomes a 2/2 creature.)
+name=Obscuring Aether
+text=Face-down creature spells you cast cost {1} less to cast. -- {1}{G}: Turn Obscuring Aether face down. (It becomes a 2/2 creature.)
 mana={G}
 type=Enchantment
 [/card]
