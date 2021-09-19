@@ -41,7 +41,7 @@ subtype=Contraption
 [/card]
 [card]
 name=Very Cryptic Command (b)
-text=Choose two  --  Untap two target permanents. --  Tap each permanent target player controls with exactly one word in its name. --  Discard all the cards in your hand, then draw that many cards. --  Return target instant or sorcery card from your graveyard to your hand.
+text=Choose two -- Untap two target permanents. -- Tap each permanent target player controls with exactly one word in its name. -- Discard all the cards in your hand, then draw that many cards. -- Return target instant or sorcery card from your graveyard to your hand.
 mana={1}{U}{U}{U}
 type=Instant
 [/card]
@@ -232,7 +232,7 @@ toughness=3
 [/card]
 [card]
 name=Ninja
-text=You may activate Ninja's augment ability any time you could cast an instant. -- Whenever this creature deals combat damage to a player, -- Augment {2}{B} ({2}{B}, Reveal this card from your hand: Combine it with target host. Augment only asoh, nevermind.)
+text=You may activate Ninja's augment ability any time you could cast an instant. -- Whenever this creature deals combat damage to a player, -- Augment {2}{B} ({2}{B}, Reveal this card from your hand: Combine it with target host. Augment only as-oh, nevermind.)
 type=Creature
 subtype=Ninja
 power=+1
@@ -560,7 +560,7 @@ toughness=1
 [/card]
 [card]
 name=Garbage Elemental (f)
-text=Last strike (This creature deals combat damage after creatures without last strike.) -- Battalion  Whenever Garbage Elemental and at least two other creatures attack, target creature can't block this turn.
+text=Last strike (This creature deals combat damage after creatures without last strike.) -- Battalion - Whenever Garbage Elemental and at least two other creatures attack, target creature can't block this turn.
 mana={4}{R}
 type=Creature
 subtype=Elemental
@@ -655,7 +655,7 @@ toughness=3
 [/card]
 [card]
 name=Ineffable Blessing (a)
-text=As Ineffable Blessing enters the battlefield, choose Flavorful or Bland. --  Flavorful  Whenever a creature with flavor text enters the battlefield under your control, draw a card. --  Bland  Whenever a creature without flavor text enters the battlefield under your control, draw a card.
+text=As Ineffable Blessing enters the battlefield, choose Flavorful or Bland. -- Flavorful - Whenever a creature with flavor text enters the battlefield under your control, draw a card. -- Bland - Whenever a creature without flavor text enters the battlefield under your control, draw a card.
 mana={1}{G}
 type=Enchantment
 [/card]
@@ -703,7 +703,7 @@ toughness=+4
 [/card]
 [card]
 name=Very Cryptic Command (f)
-text=Choose two  --  Scry 3. --  Create a 2/2 black Rogue creature token with menace. --  Add or subtract 1 or one from a number or number word on target spell or permanent until end of turn. --  Return all artifacts target player controls to their owner's hand.
+text=Choose two -- Scry 3. -- Create a 2/2 black Rogue creature token with menace. -- Add or subtract 1 or one from a number or number word on target spell or permanent until end of turn. -- Return all artifacts target player controls to their owner's hand.
 mana={1}{U}{U}{U}
 type=Instant
 [/card]
@@ -727,7 +727,7 @@ toughness=5
 [/card]
 [card]
 name=Very Cryptic Command (e)
-text=Choose two  --  Counter target black-bordered spell. --  Return target creature to its owner's hand. --  Untap each permanent you control with a watermark. --  Roll two six-sided dice. Target player puts the top X cards of their library into their graveyard, where X is the total of those results.
+text=Choose two -- Counter target black-bordered spell. -- Return target creature to its owner's hand. -- Untap each permanent you control with a watermark. -- Roll two six-sided dice. Target player puts the top X cards of their library into their graveyard, where X is the total of those results.
 mana={1}{U}{U}{U}
 type=Instant
 [/card]
@@ -832,7 +832,7 @@ toughness=2
 [/card]
 [card]
 name=Buzzing Whack-a-Doodle
-text=As Buzzing Whack-a-Doodle enters the battlefield, you and an opponent each secretly choose Whack or Doodle. Then those choices are revealed. If the choices match, Buzzing Whack-a-Doodle has that ability. Otherwise, it has Buzz. --  Whack  {T}: Target player loses 2 life. --  Doodle  {T}: You gain 3 life. --  Buzz  {2}, {T}: Draw a card.
+text=As Buzzing Whack-a-Doodle enters the battlefield, you and an opponent each secretly choose Whack or Doodle. Then those choices are revealed. If the choices match, Buzzing Whack-a-Doodle has that ability. Otherwise, it has Buzz. -- Whack - {T}: Target player loses 2 life. -- Doodle - {T}: You gain 3 life. -- Buzz - {2}, {T}: Draw a card.
 mana={4}
 type=Artifact
 [/card]
@@ -933,7 +933,7 @@ toughness=3
 [/card]
 [card]
 name=Very Cryptic Command (a)
-text=Choose two  --  Switch target creature's power and toughness until end of turn. --  Target creature can't be blocked this turn. --  Draw a card. If that card's art is by Wayne England, you may reveal it and draw another card. --  Assemble a Contraption.
+text=Choose two -- Switch target creature's power and toughness until end of turn. -- Target creature can't be blocked this turn. -- Draw a card. If that card's art is by Wayne England, you may reveal it and draw another card. -- Assemble a Contraption.
 mana={1}{U}{U}{U}
 type=Instant
 [/card]
@@ -981,13 +981,13 @@ toughness=2
 [/card]
 [card]
 name=Very Cryptic Command (d)
-text=Choose two  --  Return target permanent to its controller's hand. --  Draw two cards, then discard a card. --  Change the target of target spell with a single target. --  Turn over target nontoken creature.
+text=Choose two -- Return target permanent to its controller's hand. -- Draw two cards, then discard a card. -- Change the target of target spell with a single target. -- Turn over target nontoken creature.
 mana={1}{U}{U}{U}
 type=Instant
 [/card]
 [card]
 name=Oddly Uneven
-text=Choose one  --  Destroy each creature with an odd number of words in its name. (Hyphenated words are one word.) --  Destroy each creature with an even number of words in its name.
+text=Choose one -- Destroy each creature with an odd number of words in its name. (Hyphenated words are one word.) -- Destroy each creature with an even number of words in its name.
 mana={3}{W}{W}
 type=Sorcery
 [/card]
@@ -1000,7 +1000,7 @@ subtype=Urza
 [/card]
 [card]
 name=Very Cryptic Command (c)
-text=Choose two  --  Draw a card from an opponent's library. --  Copy target instant or sorcery spell. You may choose new targets for the copy. --  Until end of turn, target creature loses all abilities and becomes a blue Frog with base power and toughness 1/1. --  Create a 1/1 colorless Gnome artifact creature token.
+text=Choose two -- Draw a card from an opponent's library. -- Copy target instant or sorcery spell. You may choose new targets for the copy. -- Until end of turn, target creature loses all abilities and becomes a blue Frog with base power and toughness 1/1. -- Create a 1/1 colorless Gnome artifact creature token.
 mana={1}{U}{U}{U}
 type=Instant
 [/card]

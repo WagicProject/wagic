@@ -1,6 +1,6 @@
 [card]
 name=Messenger Jays
-text=Flying -- Council's dilemma  When Messenger Jays enters the battlefield, starting with you, each player votes for feather or quill. Put a +1/+1 counter on Messenger Jays for each feather vote and draw a card for each quill vote. For each card drawn this way, discard a card.
+text=Flying -- Council's dilemma - When Messenger Jays enters the battlefield, starting with you, each player votes for feather or quill. Put a +1/+1 counter on Messenger Jays for each feather vote and draw a card for each quill vote. For each card drawn this way, discard a card.
 mana={4}{U}
 type=Creature
 subtype=Bird
@@ -9,7 +9,7 @@ toughness=1
 [/card]
 [card]
 name=Capital Punishment
-text=Council's dilemma  Starting with you, each player votes for death or taxes. Each opponent sacrifices a creature for each death vote and discards a card for each taxes vote.
+text=Council's dilemma - Starting with you, each player votes for death or taxes. Each opponent sacrifices a creature for each death vote and discards a card for each taxes vote.
 mana={4}{B}{B}
 type=Sorcery
 [/card]
@@ -120,7 +120,7 @@ toughness=3
 [/card]
 [card]
 name=Lieutenants of the Guard
-text=Council's dilemma  When Lieutenants of the Guard enters the battlefield, starting with you, each player votes for strength or numbers. Put a +1/+1 counter on Lieutenants of the Guard for each strength vote and put a 1/1 white Soldier creature token onto the battlefield for each numbers vote.
+text=Council's dilemma - When Lieutenants of the Guard enters the battlefield, starting with you, each player votes for strength or numbers. Put a +1/+1 counter on Lieutenants of the Guard for each strength vote and put a 1/1 white Soldier creature token onto the battlefield for each numbers vote.
 mana={4}{W}
 type=Creature
 subtype=Human Soldier
@@ -147,7 +147,7 @@ toughness=3
 [/card]
 [card]
 name=Expropriate
-text=Council's dilemma  Starting with you, each player votes for time or money. For each time vote, take an extra turn after this one. For each money vote, choose a permanent owned by the voter and gain control of it. Exile Expropriate.
+text=Council's dilemma - Starting with you, each player votes for time or money. For each time vote, take an extra turn after this one. For each money vote, choose a permanent owned by the voter and gain control of it. Exile Expropriate.
 mana={7}{U}{U}
 type=Sorcery
 [/card]
@@ -162,13 +162,13 @@ toughness=3
 [/card]
 [card]
 name=Selvala's Stampede
-text=Council's dilemma  Starting with you, each player votes for wild or free. Reveal cards from the top of your library until you reveal a creature card for each wild vote. Put those creature cards onto the battlefield, then shuffle the rest into your library. You may put a permanent card from your hand onto the battlefield for each free vote.
+text=Council's dilemma - Starting with you, each player votes for wild or free. Reveal cards from the top of your library until you reveal a creature card for each wild vote. Put those creature cards onto the battlefield, then shuffle the rest into your library. You may put a permanent card from your hand onto the battlefield for each free vote.
 mana={4}{G}{G}
 type=Sorcery
 [/card]
 [card]
 name=Orchard Elemental
-text=Council's dilemma  When Orchard Elemental enters the battlefield, starting with you, each player votes for sprout or harvest. Put two +1/+1 counters on Orchard Elemental for each sprout vote. You gain 3 life for each harvest vote.
+text=Council's dilemma - When Orchard Elemental enters the battlefield, starting with you, each player votes for sprout or harvest. Put two +1/+1 counters on Orchard Elemental for each sprout vote. You gain 3 life for each harvest vote.
 mana={5}{G}
 type=Creature
 subtype=Elemental

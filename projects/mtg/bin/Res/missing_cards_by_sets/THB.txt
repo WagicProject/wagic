@@ -27,7 +27,7 @@ toughness=2
 [/card]
 [card]
 name=Protean Thaumaturge
-text=Constellation  Whenever an enchantment enters the battlefield under your control, you may have Protean Thaumaturge become a copy of another target creature, except it has this ability.
+text=Constellation - Whenever an enchantment enters the battlefield under your control, you may have Protean Thaumaturge become a copy of another target creature, except it has this ability.
 mana={1}{U}
 type=Creature
 subtype=Human Wizard

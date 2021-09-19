@@ -16,7 +16,7 @@ type=Instant
 [/card]
 [card]
 name=Flash of Insight
-text=Look at the top X cards of your library. Put one of them into your hand and the rest on the bottom of your library in any order. -- Flashback{1}{U}, Exile X blue cards from your graveyard. (You may cast this card from your graveyard for its flashback cost, then exile it. You can't exile Flash of Insight to pay for its own flashback cost.)
+text=Look at the top X cards of your library. Put one of them into your hand and the rest on the bottom of your library in any order. -- Flashback-{1}{U}, Exile X blue cards from your graveyard. (You may cast this card from your graveyard for its flashback cost, then exile it. You can't exile Flash of Insight to pay for its own flashback cost.)
 mana={X}{1}{U}
 type=Instant
 [/card]

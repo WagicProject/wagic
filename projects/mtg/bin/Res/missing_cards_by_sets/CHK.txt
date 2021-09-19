@@ -26,7 +26,7 @@ subtype=Arcane
 [/card]
 [card]
 name=Akki Lavarunner
-text=Haste -- Whenever Akki Lavarunner deals damage to an opponent, flip it. --  --  --  -- Tok-Tok, Volcano Born -- Legendary Creature  Goblin Shaman --  -- Protection from red -- If a red source would deal damage to a player, it deals that much damage plus 1 to that player instead. -- 2/2
+text=Haste -- Whenever Akki Lavarunner deals damage to an opponent, flip it. // Tok-Tok, Volcano Born -- Legendary Creature - Goblin Shaman -- Protection from red -- If a red source would deal damage to a player, it deals that much damage plus 1 to that player instead. -- 2/2
 mana={3}{R}
 type=Creature
 subtype=Goblin Warrior

@@ -18,7 +18,7 @@ toughness=6
 [/card]
 [card]
 name=Marath, Will of the Wild
-text=Marath, Will of the Wild enters the battlefield with a number of +1/+1 counters on it equal to the amount of mana spent to cast it. -- {X}, Remove X +1/+1 counters from Marath: Choose one  --  Put X +1/+1 counters on target creature. X can't be 0. --  Marath deals X damage to target creature or player. X can't be 0. --  Put an X/X green Elemental creature token onto the battlefield. X can't be 0.
+text=Marath, Will of the Wild enters the battlefield with a number of +1/+1 counters on it equal to the amount of mana spent to cast it. -- {X}, Remove X +1/+1 counters from Marath: Choose one -- Put X +1/+1 counters on target creature. X can't be 0. -- Marath deals X damage to target creature or player. X can't be 0. -- Put an X/X green Elemental creature token onto the battlefield. X can't be 0.
 mana={R}{G}{W}
 type=Legendary Creature
 subtype=Elemental Beast

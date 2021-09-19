@@ -9,7 +9,7 @@ toughness=4
 [/card]
 [card]
 name=Demonic Pact
-text=At the beginning of your upkeep, choose one that hasn't been chosen  --  Demonic Pact deals 4 damage to target creature or player and you gain 4 life. --  Target opponent discards two cards. --  Draw two cards. --  You lose the game.
+text=At the beginning of your upkeep, choose one that hasn't been chosen -- Demonic Pact deals 4 damage to target creature or player and you gain 4 life. -- Target opponent discards two cards. -- Draw two cards. -- You lose the game.
 mana={2}{B}{B}
 type=Enchantment
 [/card]

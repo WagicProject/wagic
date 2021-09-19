@@ -8,7 +8,7 @@ subtype=Aura
 [card]
 name=Magister of Worth
 abilities=flying
-text=Flying -- Will of the council  When Magister of Worth enters the battlefield, starting with you, each player votes for grace or condemnation. If grace gets more votes, each player returns each creature card from his or her graveyard to the battlefield. If condemnation gets more votes or the vote is tied, destroy all creatures other than Magister of Worth.
+text=Flying -- Will of the council - When Magister of Worth enters the battlefield, starting with you, each player votes for grace or condemnation. If grace gets more votes, each player returns each creature card from his or her graveyard to the battlefield. If condemnation gets more votes or the vote is tied, destroy all creatures other than Magister of Worth.
 mana={4}{W}{B}
 type=Creature
 subtype=Angel
@@ -42,7 +42,7 @@ toughness=1
 [/card]
 [card]
 name=Tyrant's Choice
-text=Will of the council  Starting with you, each player votes for death or torture. If death gets more votes, each opponent sacrifices a creature. If torture gets more votes or the vote is tied, each opponent loses 4 life.
+text=Will of the council - Starting with you, each player votes for death or torture. If death gets more votes, each opponent sacrifices a creature. If torture gets more votes or the vote is tied, each opponent loses 4 life.
 mana={1}{B}
 type=Sorcery
 [/card]
@@ -54,7 +54,7 @@ type=Artifact
 [/card]
 [card]
 name=Plea for Power
-text=Will of the council  Starting with you, each player votes for time or knowledge. If time gets more votes, take an extra turn after this one. If knowledge gets more votes or the vote is tied, draw three cards.
+text=Will of the council - Starting with you, each player votes for time or knowledge. If time gets more votes, take an extra turn after this one. If knowledge gets more votes or the vote is tied, draw three cards.
 mana={3}{U}
 type=Sorcery
 [/card]
@@ -72,13 +72,13 @@ type=Sorcery
 [/card]
 [card]
 name=Coercive Portal
-text=Will of the council  At the beginning of your upkeep, starting with you, each player votes for carnage or homage. If carnage gets more votes, sacrifice Coercive Portal and destroy all nonland permanents. If homage gets more votes or the vote is tied, draw a card.
+text=Will of the council - At the beginning of your upkeep, starting with you, each player votes for carnage or homage. If carnage gets more votes, sacrifice Coercive Portal and destroy all nonland permanents. If homage gets more votes or the vote is tied, draw a card.
 mana={4}
 type=Artifact
 [/card]
 [card]
 name=Council's Judgment
-text=Will of the council  Starting with you, each player votes for a nonland permanent you don't control. Exile each permanent with the most votes or tied for most votes.
+text=Will of the council - Starting with you, each player votes for a nonland permanent you don't control. Exile each permanent with the most votes or tied for most votes.
 mana={1}{W}{W}
 type=Sorcery
 [/card]

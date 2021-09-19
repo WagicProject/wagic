@@ -68,7 +68,7 @@ type=Enchantment
 [/card]
 [card]
 name=Howl of the Horde
-text=When you cast your next instant or sorcery spell this turn, copy that spell. You may choose new targets for the copy. -- Raid  If you attacked with a creature this turn, when you cast your next instant or sorcery spell this turn, copy that spell an additional time. You may choose new targets for the copy.
+text=When you cast your next instant or sorcery spell this turn, copy that spell. You may choose new targets for the copy. -- Raid - If you attacked with a creature this turn, when you cast your next instant or sorcery spell this turn, copy that spell an additional time. You may choose new targets for the copy.
 mana={2}{R}
 type=Sorcery
 [/card]

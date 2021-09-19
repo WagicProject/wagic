@@ -1,12 +1,12 @@
 [card]
 name=Minds Aglow
-text=Join forces  Starting with you, each player may pay any amount of mana. Each player draws X cards, where X is the total amount of mana paid this way.
+text=Join forces - Starting with you, each player may pay any amount of mana. Each player draws X cards, where X is the total amount of mana paid this way.
 mana={U}
 type=Sorcery
 [/card]
 [card]
 name=Collective Voyage
-text=Join forces  Starting with you, each player may pay any amount of mana. Each player searches his or her library for up to X basic land cards, where X is the total amount of mana paid this way, puts them onto the battlefield tapped, then shuffles his or her library.
+text=Join forces - Starting with you, each player may pay any amount of mana. Each player searches his or her library for up to X basic land cards, where X is the total amount of mana paid this way, puts them onto the battlefield tapped, then shuffles his or her library.
 mana={G}
 type=Sorcery
 [/card]
@@ -37,13 +37,13 @@ subtype=Arcane
 [/card]
 [card]
 name=Alliance of Arms
-text=Join forces  Starting with you, each player may pay any amount of mana. Each player puts X 1/1 white Soldier creature tokens onto the battlefield, where X is the total amount of mana paid this way.
+text=Join forces - Starting with you, each player may pay any amount of mana. Each player puts X 1/1 white Soldier creature tokens onto the battlefield, where X is the total amount of mana paid this way.
 mana={W}
 type=Sorcery
 [/card]
 [card]
 name=Jotun Grunt
-text=Cumulative upkeepPut two cards from a single graveyard on the bottom of their owner's library. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+text=Cumulative upkeep-Put two cards from a single graveyard on the bottom of their owner's library. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
 mana={1}{W}
 type=Creature
 subtype=Giant Soldier
@@ -98,7 +98,7 @@ type=Instant
 [/card]
 [card]
 name=Shared Trauma
-text=Join forces  Starting with you, each player may pay any amount of mana. Each player puts the top X cards of his or her library into his or her graveyard, where X is the total amount of mana paid this way.
+text=Join forces - Starting with you, each player may pay any amount of mana. Each player puts the top X cards of his or her library into his or her graveyard, where X is the total amount of mana paid this way.
 mana={B}
 type=Sorcery
 [/card]
@@ -111,7 +111,7 @@ type=Instant
 [card]
 name=Mana-Charged Dragon
 abilities=flying,trample
-text=Flying, trample -- Join forces  Whenever Mana-Charged Dragon attacks or blocks, each player starting with you may pay any amount of mana. Mana-Charged Dragon gets +X/+0 until end of turn, where X is the total amount of mana paid this way.
+text=Flying, trample -- Join forces - Whenever Mana-Charged Dragon attacks or blocks, each player starting with you may pay any amount of mana. Mana-Charged Dragon gets +X/+0 until end of turn, where X is the total amount of mana paid this way.
 mana={4}{R}{R}
 type=Creature
 subtype=Dragon

@@ -12,7 +12,7 @@ type=Sorcery
 [/card]
 [card]
 name=Timebender
-text=Morph {U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Timebender is turned face up, choose one  Remove two time counters from target permanent or suspended card; or put two time counters on target permanent with a time counter on it or suspended card.
+text=Morph {U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Timebender is turned face up, choose one - Remove two time counters from target permanent or suspended card; or put two time counters on target permanent with a time counter on it or suspended card.
 mana={U}
 type=Creature
 subtype=Human Wizard
@@ -55,7 +55,7 @@ toughness=3
 [/card]
 [card]
 name=Dichotomancy
-text=For each tapped nonland permanent target opponent controls, search that player's library for a card with the same name as that permanent and put it onto the battlefield under your control. Then that player shuffles his or her library. -- Suspend 3{1}{U}{U} (Rather than cast this card from your hand, you may pay {1}{U}{U} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
+text=For each tapped nonland permanent target opponent controls, search that player's library for a card with the same name as that permanent and put it onto the battlefield under your control. Then that player shuffles his or her library. -- Suspend 3-{1}{U}{U} (Rather than cast this card from your hand, you may pay {1}{U}{U} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
 mana={7}{U}{U}
 type=Sorcery
 [/card]
@@ -70,7 +70,7 @@ toughness=6
 [/card]
 [card]
 name=Fungal Behemoth
-text=Fungal Behemoth's power and toughness are each equal to the number of +1/+1 counters on creatures you control. -- Suspend X{X}{G}{G}. X can't be 0. (Rather than cast this card from your hand, you may pay {X}{G}{G} and exile it with X time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever a time counter is removed from Fungal Behemoth while it's exiled, you may put a +1/+1 counter on target creature.
+text=Fungal Behemoth's power and toughness are each equal to the number of +1/+1 counters on creatures you control. -- Suspend X-{X}{G}{G}. X can't be 0. (Rather than cast this card from your hand, you may pay {X}{G}{G} and exile it with X time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever a time counter is removed from Fungal Behemoth while it's exiled, you may put a +1/+1 counter on target creature.
 mana={3}{G}
 type=Creature
 subtype=Fungus

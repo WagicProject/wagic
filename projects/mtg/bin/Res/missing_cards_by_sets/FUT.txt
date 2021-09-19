@@ -19,7 +19,7 @@ toughness=1
 [/card]
 [card]
 name=Phosphorescent Feast
-text=Chroma  Reveal any number of cards in your hand. You gain 2 life for each green mana symbol in those cards' mana costs.
+text=Chroma - Reveal any number of cards in your hand. You gain 2 life for each green mana symbol in those cards' mana costs.
 mana={2}{G}{G}{G}
 type=Sorcery
 [/card]
@@ -56,7 +56,7 @@ type=Enchantment
 [/card]
 [card]
 name=Reality Strobe
-text=Return target permanent to its owner's hand. Exile Reality Strobe with three time counters on it. -- Suspend 3{2}{U} (Rather than cast this card from your hand, you may pay {2}{U} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
+text=Return target permanent to its owner's hand. Exile Reality Strobe with three time counters on it. -- Suspend 3-{2}{U} (Rather than cast this card from your hand, you may pay {2}{U} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
 mana={4}{U}{U}
 type=Sorcery
 [/card]
@@ -99,7 +99,7 @@ type=Enchantment
 [/card]
 [card]
 name=Linessa, Zephyr Mage
-text={X}{U}{U}, {T}: Return target creature with converted mana cost X to its owner's hand. -- Grandeur  Discard another card named Linessa, Zephyr Mage: Target player returns a creature he or she controls to its owner's hand, then repeats this process for an artifact, an enchantment, and a land.
+text={X}{U}{U}, {T}: Return target creature with converted mana cost X to its owner's hand. -- Grandeur - Discard another card named Linessa, Zephyr Mage: Target player returns a creature he or she controls to its owner's hand, then repeats this process for an artifact, an enchantment, and a land.
 mana={3}{U}
 type=Legendary Creature
 subtype=Human Wizard

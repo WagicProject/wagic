@@ -13,7 +13,7 @@ subtype=Arcane
 [/card]
 [card]
 name=Nylea's Colossus
-text=Constellation  Whenever Nylea's Colossus or another enchantment enters the battlefield under your control, double target creature's power and toughness until end of turn.
+text=Constellation - Whenever Nylea's Colossus or another enchantment enters the battlefield under your control, double target creature's power and toughness until end of turn.
 mana={6}{G}
 type=Enchantment Creature
 subtype=Giant
@@ -86,7 +86,7 @@ toughness=5
 [card]
 name=Custodi Squire
 abilities=flying
-text=Flying -- Will of the council  When Custodi Squire enters the battlefield, starting with you, each player votes for an artifact, creature, or enchantment card in your graveyard. Return each card with the most votes or tied for most votes to your hand.
+text=Flying -- Will of the council - When Custodi Squire enters the battlefield, starting with you, each player votes for an artifact, creature, or enchantment card in your graveyard. Return each card with the most votes or tied for most votes to your hand.
 mana={4}{W}
 type=Creature
 subtype=Spirit Cleric
@@ -114,13 +114,13 @@ toughness=1
 [/card]
 [card]
 name=Selvala's Stampede
-text=Council's dilemma  Starting with you, each player votes for wild or free. Reveal cards from the top of your library until you reveal a creature card for each wild vote. Put those creature cards onto the battlefield, then shuffle the rest into your library. You may put a permanent card from your hand onto the battlefield for each free vote.
+text=Council's dilemma - Starting with you, each player votes for wild or free. Reveal cards from the top of your library until you reveal a creature card for each wild vote. Put those creature cards onto the battlefield, then shuffle the rest into your library. You may put a permanent card from your hand onto the battlefield for each free vote.
 mana={4}{G}{G}
 type=Sorcery
 [/card]
 [card]
 name=Expropriate
-text=Council's dilemma  Starting with you, each player votes for time or money. For each time vote, take an extra turn after this one. For each money vote, choose a permanent owned by the voter and gain control of it. Exile Expropriate.
+text=Council's dilemma - Starting with you, each player votes for time or money. For each time vote, take an extra turn after this one. For each money vote, choose a permanent owned by the voter and gain control of it. Exile Expropriate.
 mana={7}{U}{U}
 type=Sorcery
 [/card]

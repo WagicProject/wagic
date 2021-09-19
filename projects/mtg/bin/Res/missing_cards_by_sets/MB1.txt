@@ -18,7 +18,7 @@ type=Instant
 [/card]
 [card]
 name=Lieutenants of the Guard
-text=Council's dilemma  When Lieutenants of the Guard enters the battlefield, starting with you, each player votes for strength or numbers. Put a +1/+1 counter on Lieutenants of the Guard for each strength vote and put a 1/1 white Soldier creature token onto the battlefield for each numbers vote.
+text=Council's dilemma - When Lieutenants of the Guard enters the battlefield, starting with you, each player votes for strength or numbers. Put a +1/+1 counter on Lieutenants of the Guard for each strength vote and put a 1/1 white Soldier creature token onto the battlefield for each numbers vote.
 mana={4}{W}
 type=Creature
 subtype=Human Soldier
@@ -113,7 +113,7 @@ type=Instant
 [/card]
 [card]
 name=Expropriate
-text=Council's dilemma  Starting with you, each player votes for time or money. For each time vote, take an extra turn after this one. For each money vote, choose a permanent owned by the voter and gain control of it. Exile Expropriate.
+text=Council's dilemma - Starting with you, each player votes for time or money. For each time vote, take an extra turn after this one. For each money vote, choose a permanent owned by the voter and gain control of it. Exile Expropriate.
 mana={7}{U}{U}
 type=Sorcery
 [/card]
@@ -129,7 +129,7 @@ toughness=9
 [/card]
 [card]
 name=Sapphire Charm
-text=Choose one  Target player draws a card at the beginning of the next turn's upkeep; or target creature gains flying until end of turn; or target creature an opponent controls phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step.)
+text=Choose one -- Target player draws a card at the beginning of the next turn's upkeep; or target creature gains flying until end of turn; or target creature an opponent controls phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step.)
 mana={U}
 type=Instant
 [/card]
@@ -144,13 +144,13 @@ toughness=1
 [/card]
 [card]
 name=Tempt with Discovery
-text=Tempting offer  Search your library for a land card and put it onto the battlefield. Each opponent may search his or her library for a land card and put it onto the battlefield. For each opponent who searches a library this way, search your library for a land card and put it onto the battlefield. Then each player who searched a library this way shuffles it.
+text=Tempting offer - Search your library for a land card and put it onto the battlefield. Each opponent may search his or her library for a land card and put it onto the battlefield. For each opponent who searches a library this way, search your library for a land card and put it onto the battlefield. Then each player who searched a library this way shuffles it.
 mana={3}{G}
 type=Sorcery
 [/card]
 [card]
 name=Messenger Jays
-text=Flying -- Council's dilemma  When Messenger Jays enters the battlefield, starting with you, each player votes for feather or quill. Put a +1/+1 counter on Messenger Jays for each feather vote and draw a card for each quill vote. For each card drawn this way, discard a card.
+text=Flying -- Council's dilemma - When Messenger Jays enters the battlefield, starting with you, each player votes for feather or quill. Put a +1/+1 counter on Messenger Jays for each feather vote and draw a card for each quill vote. For each card drawn this way, discard a card.
 mana={4}{U}
 type=Creature
 subtype=Bird

@@ -176,7 +176,7 @@ subtype=Ravnica
 [/card]
 [card]
 name=Akki Lavarunner
-text=Haste -- Whenever Akki Lavarunner deals damage to an opponent, flip it. --  -- ——— --  -- Tok-Tok, Volcano Born -- Legendary Creature — Goblin Shaman --  -- Protection from red -- If a red source would deal damage to a player, it deals that much damage plus 1 to that player instead. -- 2/2
+text=Haste -- Whenever Akki Lavarunner deals damage to an opponent, flip it. // Tok-Tok, Volcano Born -- Legendary Creature - Goblin Shaman -- Protection from red -- If a red source would deal damage to a player, it deals that much damage plus 1 to that player instead. -- 2/2
 mana={3}{R}
 type=Creature
 subtype=Goblin Warrior
@@ -214,7 +214,7 @@ type=Scheme
 [/card]
 [card]
 name=Alliance of Arms
-text=Join forces — Starting with you, each player may pay any amount of mana. Each player puts X 1/1 white Soldier creature tokens onto the battlefield, where X is the total amount of mana paid this way.
+text=Join forces - Starting with you, each player may pay any amount of mana. Each player puts X 1/1 white Soldier creature tokens onto the battlefield, where X is the total amount of mana paid this way.
 mana={W}
 type=Sorcery
 [/card]
@@ -423,7 +423,7 @@ type=Instant
 [/card]
 [card]
 name=Ascent of the Worthy
-text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I, II — Choose a creature you control. Until your next turn, all damage that would be dealt to creatures you control is dealt to that creature instead. -- III — Return target creature card from your graveyard to the battlefield with a flying counter on it. That creature is an Angel Warrior in addition to its other types.
+text=(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.) -- I, II - Choose a creature you control. Until your next turn, all damage that would be dealt to creatures you control is dealt to that creature instead. -- III - Return target creature card from your graveyard to the battlefield with a flying counter on it. That creature is an Angel Warrior in addition to its other types.
 mana={1}{W}{B}
 type=Enchantment
 subtype=Saga
@@ -841,7 +841,7 @@ toughness=4
 [/card]
 [card]
 name=Bite of the Black Rose
-text=Will of the council — Starting with you, each player votes for sickness or psychosis. If sickness gets more votes, creatures your opponents control get -2/-2 until end of turn. If psychosis gets more votes or the vote is tied, each opponent discards two cards.
+text=Will of the council - Starting with you, each player votes for sickness or psychosis. If sickness gets more votes, creatures your opponents control get -2/-2 until end of turn. If psychosis gets more votes or the vote is tied, each opponent discards two cards.
 mana={3}{B}
 type=Sorcery
 [/card]
@@ -1223,7 +1223,7 @@ toughness=3
 [/card]
 [card]
 name=Brutal Expulsion
-text=Devoid (This card has no color.) -- Choose one or both — -- • Return target spell or creature to its owner's hand. -- • Brutal Expulsion deals 2 damage to target creature or planeswalker. If that permanent would be put into a graveyard this turn, exile it instead.
+text=Devoid (This card has no color.) -- Choose one or both -- Return target spell or creature to its owner's hand. -- Brutal Expulsion deals 2 damage to target creature or planeswalker. If that permanent would be put into a graveyard this turn, exile it instead.
 mana={2}{U}{R}
 type=Instant
 [/card]
@@ -1289,7 +1289,7 @@ subtype=Contraption
 [/card]
 [card]
 name=Buzzing Whack-a-Doodle
-text=As Buzzing Whack-a-Doodle enters the battlefield, you and an opponent each secretly choose Whack or Doodle. Then those choices are revealed. If the choices match, Buzzing Whack-a-Doodle has that ability. Otherwise, it has Buzz. -- • Whack — {T}: Target player loses 2 life. -- • Doodle — {T}: You gain 3 life. -- • Buzz — {2}, {T}: Draw a card.
+text=As Buzzing Whack-a-Doodle enters the battlefield, you and an opponent each secretly choose Whack or Doodle. Then those choices are revealed. If the choices match, Buzzing Whack-a-Doodle has that ability. Otherwise, it has Buzz. -- Whack - {T}: Target player loses 2 life. -- Doodle - {T}: You gain 3 life. -- Buzz - {2}, {T}: Draw a card.
 mana={4}
 type=Artifact
 [/card]
@@ -1379,7 +1379,7 @@ subtype=Arcane
 [/card]
 [card]
 name=Capital Punishment
-text=Council's dilemma — Starting with you, each player votes for death or taxes. Each opponent sacrifices a creature for each death vote and discards a card for each taxes vote.
+text=Council's dilemma - Starting with you, each player votes for death or taxes. Each opponent sacrifices a creature for each death vote and discards a card for each taxes vote.
 mana={4}{B}{B}
 type=Sorcery
 [/card]
@@ -1799,7 +1799,7 @@ subtype=Aura
 [/card]
 [card]
 name=Coercive Portal
-text=Will of the council — At the beginning of your upkeep, starting with you, each player votes for carnage or homage. If carnage gets more votes, sacrifice Coercive Portal and destroy all nonland permanents. If homage gets more votes or the vote is tied, draw a card.
+text=Will of the council - At the beginning of your upkeep, starting with you, each player votes for carnage or homage. If carnage gets more votes, sacrifice Coercive Portal and destroy all nonland permanents. If homage gets more votes or the vote is tied, draw a card.
 mana={4}
 type=Artifact
 [/card]
@@ -1871,7 +1871,7 @@ type=Artifact
 [/card]
 [card]
 name=Collective Voyage
-text=Join forces — Starting with you, each player may pay any amount of mana. Each player searches his or her library for up to X basic land cards, where X is the total amount of mana paid this way, puts them onto the battlefield tapped, then shuffles his or her library.
+text=Join forces - Starting with you, each player may pay any amount of mana. Each player searches his or her library for up to X basic land cards, where X is the total amount of mana paid this way, puts them onto the battlefield tapped, then shuffles his or her library.
 mana={G}
 type=Sorcery
 [/card]
@@ -1983,7 +1983,7 @@ toughness=2
 [/card]
 [card]
 name=Council Guardian
-text=Will of the council — When Council Guardian enters the battlefield, starting with you, each player votes for blue, black, red, or green. Council Guardian gains protection from each color with the most votes or tied for most votes.
+text=Will of the council - When Council Guardian enters the battlefield, starting with you, each player votes for blue, black, red, or green. Council Guardian gains protection from each color with the most votes or tied for most votes.
 mana={5}{W}
 type=Creature
 subtype=Giant Soldier
@@ -2001,7 +2001,7 @@ toughness=4
 [/card]
 [card]
 name=Council's Judgment
-text=Will of the council — Starting with you, each player votes for a nonland permanent you don't control. Exile each permanent with the most votes or tied for most votes.
+text=Will of the council - Starting with you, each player votes for a nonland permanent you don't control. Exile each permanent with the most votes or tied for most votes.
 mana={1}{W}{W}
 type=Sorcery
 [/card]
@@ -2162,7 +2162,7 @@ toughness=3
 [card]
 name=Custodi Squire
 abilities=flying
-text=Flying -- Will of the council — When Custodi Squire enters the battlefield, starting with you, each player votes for an artifact, creature, or enchantment card in your graveyard. Return each card with the most votes or tied for most votes to your hand.
+text=Flying -- Will of the council - When Custodi Squire enters the battlefield, starting with you, each player votes for an artifact, creature, or enchantment card in your graveyard. Return each card with the most votes or tied for most votes to your hand.
 mana={4}{W}
 type=Creature
 subtype=Spirit Cleric
@@ -2210,7 +2210,7 @@ type=Scheme
 [/card]
 [card]
 name=Daring Thief
-text=Inspired — Whenever Daring Thief becomes untapped, you may exchange control of target nonland permanent you control and target permanent an opponent controls that shares a card type with it.
+text=Inspired - Whenever Daring Thief becomes untapped, you may exchange control of target nonland permanent you control and target permanent an opponent controls that shares a card type with it.
 mana={2}{U}
 type=Creature
 subtype=Human Rogue
@@ -2295,7 +2295,7 @@ type=Sorcery
 [/card]
 [card]
 name=Death-Mask Duplicant
-text=Imprint — {1}: Exile target creature card from your graveyard. -- As long as a card exiled with Death-Mask Duplicant has flying, Death-Mask Duplicant has flying. The same is true for fear, first strike, double strike, haste, landwalk, protection, and trample.
+text=Imprint - {1}: Exile target creature card from your graveyard. -- As long as a card exiled with Death-Mask Duplicant has flying, Death-Mask Duplicant has flying. The same is true for fear, first strike, double strike, haste, landwalk, protection, and trample.
 mana={7}
 type=Artifact Creature
 subtype=Shapeshifter
@@ -2389,7 +2389,7 @@ type=Instant
 [/card]
 [card]
 name=Demonic Pact
-text=At the beginning of your upkeep, choose one that hasn't been chosen — -- • Demonic Pact deals 4 damage to target creature or player and you gain 4 life. -- • Target opponent discards two cards. -- • Draw two cards. -- • You lose the game.
+text=At the beginning of your upkeep, choose one that hasn't been chosen -- Demonic Pact deals 4 damage to target creature or player and you gain 4 life. -- Target opponent discards two cards. -- Draw two cards. -- You lose the game.
 mana={2}{B}{B}
 type=Enchantment
 [/card]
@@ -2448,7 +2448,7 @@ subtype=Arcane
 [/card]
 [card]
 name=Dichotomancy
-text=For each tapped nonland permanent target opponent controls, search that player's library for a card with the same name as that permanent and put it onto the battlefield under your control. Then that player shuffles his or her library. -- Suspend 3—{1}{U}{U} (Rather than cast this card from your hand, you may pay {1}{U}{U} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
+text=For each tapped nonland permanent target opponent controls, search that player's library for a card with the same name as that permanent and put it onto the battlefield under your control. Then that player shuffles his or her library. -- Suspend 3-{1}{U}{U} (Rather than cast this card from your hand, you may pay {1}{U}{U} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
 mana={7}{U}{U}
 type=Sorcery
 [/card]
@@ -2673,7 +2673,7 @@ type=Artifact
 [/card]
 [card]
 name=Dromoka's Command
-text=Choose two — -- • Prevent all damage target instant or sorcery spell would deal this turn. -- • Target player sacrifices an enchantment. -- • Put a +1/+1 counter on target creature. -- • Target creature you control fights target creature you don't control.
+text=Choose two -- Prevent all damage target instant or sorcery spell would deal this turn. -- Target player sacrifices an enchantment. -- Put a +1/+1 counter on target creature. -- Target creature you control fights target creature you don't control.
 mana={G}{W}
 type=Instant
 [/card]
@@ -3107,7 +3107,7 @@ toughness=6
 [/card]
 [card]
 name=Expropriate
-text=Council's dilemma — Starting with you, each player votes for time or money. For each time vote, take an extra turn after this one. For each money vote, choose a permanent owned by the voter and gain control of it. Exile Expropriate.
+text=Council's dilemma - Starting with you, each player votes for time or money. For each time vote, take an extra turn after this one. For each money vote, choose a permanent owned by the voter and gain control of it. Exile Expropriate.
 mana={7}{U}{U}
 type=Sorcery
 [/card]
@@ -3160,7 +3160,7 @@ subtype=Contraption
 name=Faith's Shield
 auto=this(controllerlife > 5) ability$! choice name(protection from white) target(*|myBattlefield) protection from white ueot _ choice name(protection from blue) target(*|myBattlefield) protection from blue ueot _ choice name(protection from black) target(*|myBattlefield) protection from black ueot _ choice name(protection from red) target(*|myBattlefield) protection from red ueot _ choice name(protection from green) target(*|myBattlefield) protection from green ueot !$ controller
 auto=this(controllerlife < 6) ability$! choice name(protection from white) all(*|myBattlefield) protection from white ueot _ choice name(protection from blue) all(*|myBattlefield) protection from blue ueot _ choice name(protection from black) all(*|myBattlefield) protection from black ueot _ choice name(protection from red) all(*|myBattlefield) protection from red ueot _ choice name(protection from green) all(*|myBattlefield) protection from green ueot !$ controller
-text=Target permanent you control gains protection from the color of your choice until end of turn. -- Fateful hour — If you have 5 or less life, instead you and each permanent you control gain protection from the color of your choice until end of turn.
+text=Target permanent you control gains protection from the color of your choice until end of turn. -- Fateful hour - If you have 5 or less life, instead you and each permanent you control gain protection from the color of your choice until end of turn.
 mana={W}
 type=Instant
 [/card]
@@ -3223,7 +3223,7 @@ toughness=3{1/2}
 [/card]
 [card]
 name=Fatal Lore
-text=An opponent chooses one — You draw three cards; or you destroy up to two target creatures that opponent controls and that player draws up to three cards. Those creatures can't be regenerated.
+text=An opponent chooses one -- You draw three cards; or you destroy up to two target creatures that opponent controls and that player draws up to three cards. Those creatures can't be regenerated.
 mana={2}{B}{B}
 type=Sorcery
 [/card]
@@ -3283,7 +3283,7 @@ subtype=Moag
 [/card]
 [card]
 name=Fiery Bombardment
-text=Chroma — {2}, Sacrifice a creature: Fiery Bombardment deals damage to target creature or player equal to the number of red mana symbols in the sacrificed creature's mana cost.
+text=Chroma - {2}, Sacrifice a creature: Fiery Bombardment deals damage to target creature or player equal to the number of red mana symbols in the sacrificed creature's mana cost.
 mana={1}{R}
 type=Enchantment
 [/card]
@@ -3346,7 +3346,7 @@ type=Instant
 [/card]
 [card]
 name=Flash of Insight
-text=Look at the top X cards of your library. Put one of them into your hand and the rest on the bottom of your library in any order. -- Flashback—{1}{U}, Exile X blue cards from your graveyard. (You may cast this card from your graveyard for its flashback cost, then exile it. You can't exile Flash of Insight to pay for its own flashback cost.)
+text=Look at the top X cards of your library. Put one of them into your hand and the rest on the bottom of your library in any order. -- Flashback-{1}{U}, Exile X blue cards from your graveyard. (You may cast this card from your graveyard for its flashback cost, then exile it. You can't exile Flash of Insight to pay for its own flashback cost.)
 mana={X}{1}{U}
 type=Instant
 [/card]
@@ -3552,7 +3552,7 @@ type=Sorcery
 [/card]
 [card]
 name=Frontier Siege
-text=As Frontier Siege enters the battlefield, choose Khans or Dragons. -- • Khans — At the beginning of each of your main phases, add {G}{G} to your mana pool. -- • Dragons — Whenever a creature with flying enters the battlefield under your control, you may have it fight target creature you don't control.
+text=As Frontier Siege enters the battlefield, choose Khans or Dragons. -- Khans - At the beginning of each of your main phases, add {G}{G} to your mana pool. -- Dragons - Whenever a creature with flying enters the battlefield under your control, you may have it fight target creature you don't control.
 mana={3}{G}
 type=Enchantment
 [/card]
@@ -3570,7 +3570,7 @@ type=Instant
 [/card]
 [card]
 name=Fungal Behemoth
-text=Fungal Behemoth's power and toughness are each equal to the number of +1/+1 counters on creatures you control. -- Suspend X—{X}{G}{G}. X can't be 0. (Rather than cast this card from your hand, you may pay {X}{G}{G} and exile it with X time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever a time counter is removed from Fungal Behemoth while it's exiled, you may put a +1/+1 counter on target creature.
+text=Fungal Behemoth's power and toughness are each equal to the number of +1/+1 counters on creatures you control. -- Suspend X-{X}{G}{G}. X can't be 0. (Rather than cast this card from your hand, you may pay {X}{G}{G} and exile it with X time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever a time counter is removed from Fungal Behemoth while it's exiled, you may put a +1/+1 counter on target creature.
 mana={3}{G}
 type=Creature
 subtype=Fungus
@@ -3665,7 +3665,7 @@ toughness=3
 [/card]
 [card]
 name=Garbage Elemental (f)
-text=Last strike (This creature deals combat damage after creatures without last strike.) -- Battalion — Whenever Garbage Elemental and at least two other creatures attack, target creature can't block this turn.
+text=Last strike (This creature deals combat damage after creatures without last strike.) -- Battalion - Whenever Garbage Elemental and at least two other creatures attack, target creature can't block this turn.
 mana={4}{R}
 type=Creature
 subtype=Elemental
@@ -3811,7 +3811,7 @@ subtype=Contraption
 [/card]
 [card]
 name=Gift of Doom
-text=Enchant creature -- Enchanted creature has deathtouch and indestructible. -- Morph—Sacrifice another creature. (You may cast this card face down as a 2/2 creature for 3 . Turn it face up any time for its morph cost.) -- As Gift of Doom is turned face up, you may attach it to a creature.
+text=Enchant creature -- Enchanted creature has deathtouch and indestructible. -- Morph-Sacrifice another creature. (You may cast this card face down as a 2/2 creature for 3 . Turn it face up any time for its morph cost.) -- As Gift of Doom is turned face up, you may attach it to a creature.
 mana={4}{B}
 type=Enchantment
 subtype=Aura
@@ -4244,7 +4244,7 @@ type=Artifact
 [/card]
 [card]
 name=Gyruda, Doom of Depths
-text=Companion — Your starting deck contains only cards with even converted mana costs. (If this card is your chosen companion, you may cast it once from outside the game.) -- When Gyruda enters the battlefield, each player puts the top four cards of their library into their graveyard. Put a creature card with an even converted mana cost from among those cards onto the battlefield under your control.
+text=Companion - Your starting deck contains only cards with even converted mana costs. (If this card is your chosen companion, you may cast it once from outside the game.) -- When Gyruda enters the battlefield, each player puts the top four cards of their library into their graveyard. Put a creature card with an even converted mana cost from among those cards onto the battlefield under your control.
 mana={4}{UB}{UB}
 type=Legendary Creature
 subtype=Demon Kraken
@@ -4431,7 +4431,7 @@ subtype=Contraption
 [/card]
 [card]
 name=Head to Head
-text=You and target opponent play Seven Questions about the top card of that player's library. (That player looks at the card, then you ask up to six yes-or-no questions about the card that he or she answers truthfully. You guess the card's name—that's question seven—and the player reveals the card.) If you win, prevent all damage that would be dealt this turn by a source of your choice.
+text=You and target opponent play Seven Questions about the top card of that player's library. (That player looks at the card, then you ask up to six yes-or-no questions about the card that he or she answers truthfully. You guess the card's name-that's question seven-and the player reveals the card.) If you win, prevent all damage that would be dealt this turn by a source of your choice.
 mana={W}
 type=Instant
 [/card]
@@ -4477,7 +4477,7 @@ type=Artifact
 [card]
 name=Herald of Leshrac
 abilities=flying
-text=Flying -- Cumulative upkeep—Gain control of a land you don't control. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Herald of Leshrac gets +1/+1 for each land you control but don't own. -- When Herald of Leshrac leaves the battlefield, each player gains control of each land he or she owns that you control.
+text=Flying -- Cumulative upkeep-Gain control of a land you don't control. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Herald of Leshrac gets +1/+1 for each land you control but don't own. -- When Herald of Leshrac leaves the battlefield, each player gains control of each land he or she owns that you control.
 mana={6}{B}
 type=Creature
 subtype=Avatar
@@ -4577,7 +4577,7 @@ subtype=Pyrulea
 [/card]
 [card]
 name=Horobi's Whisper
-text=If you control a Swamp, destroy target nonblack creature. -- Splice onto Arcane—Exile four cards from your graveyard. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+text=If you control a Swamp, destroy target nonblack creature. -- Splice onto Arcane-Exile four cards from your graveyard. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={1}{B}{B}
 type=Instant
 subtype=Arcane
@@ -4599,7 +4599,7 @@ type=Sorcery
 [/card]
 [card]
 name=Howl of the Horde
-text=When you cast your next instant or sorcery spell this turn, copy that spell. You may choose new targets for the copy. -- Raid — If you attacked with a creature this turn, when you cast your next instant or sorcery spell this turn, copy that spell an additional time. You may choose new targets for the copy.
+text=When you cast your next instant or sorcery spell this turn, copy that spell. You may choose new targets for the copy. -- Raid - If you attacked with a creature this turn, when you cast your next instant or sorcery spell this turn, copy that spell an additional time. You may choose new targets for the copy.
 mana={2}{R}
 type=Sorcery
 [/card]
@@ -4628,7 +4628,7 @@ toughness=+3
 [/card]
 [card]
 name=Hundred-Talon Strike
-text=Target creature gets +1/+0 and gains first strike until end of turn. -- Splice onto Arcane—Tap an untapped white creature you control. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+text=Target creature gets +1/+0 and gains first strike until end of turn. -- Splice onto Arcane-Tap an untapped white creature you control. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={W}
 type=Instant
 subtype=Arcane
@@ -4866,7 +4866,7 @@ type=Sorcery
 [/card]
 [card]
 name=Ineffable Blessing (a)
-text=As Ineffable Blessing enters the battlefield, choose Flavorful or Bland. -- • Flavorful — Whenever a creature with flavor text enters the battlefield under your control, draw a card. -- • Bland — Whenever a creature without flavor text enters the battlefield under your control, draw a card.
+text=As Ineffable Blessing enters the battlefield, choose Flavorful or Bland. -- Flavorful - Whenever a creature with flavor text enters the battlefield under your control, draw a card. -- Bland - Whenever a creature without flavor text enters the battlefield under your control, draw a card.
 mana={1}{G}
 type=Enchantment
 [/card]
@@ -5029,7 +5029,7 @@ subtype=Arcane
 [/card]
 [card]
 name=Introductions Are in Order
-text=When you set this scheme in motion, choose one — Search your library for a creature card, reveal it, put it into your hand, then shuffle your library; or you may put a creature card from your hand onto the battlefield.
+text=When you set this scheme in motion, choose one -- Search your library for a creature card, reveal it, put it into your hand, then shuffle your library; or you may put a creature card from your hand onto the battlefield.
 type=Scheme
 [/card]
 [card]
@@ -5132,7 +5132,7 @@ subtype=Contraption
 [/card]
 [card]
 name=Jegantha, the Wellspring
-text=Companion — No card in your starting deck has more than one of the same mana symbol in its mana cost. (If this card is your chosen companion, you may cast it once from outside the game.) -- {T}: Add {W}{U}{B}{R}{G}. This mana can't be spent to pay generic mana costs.
+text=Companion - No card in your starting deck has more than one of the same mana symbol in its mana cost. (If this card is your chosen companion, you may cast it once from outside the game.) -- {T}: Add {W}{U}{B}{R}{G}. This mana can't be spent to pay generic mana costs.
 mana={4}{RG}
 type=Legendary Creature
 subtype=Elemental Elk
@@ -5194,7 +5194,7 @@ type=Artifact
 [/card]
 [card]
 name=Jotun Grunt
-text=Cumulative upkeep—Put two cards from a single graveyard on the bottom of their owner's library. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+text=Cumulative upkeep-Put two cards from a single graveyard on the bottom of their owner's library. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
 mana={1}{W}
 type=Creature
 subtype=Giant Soldier
@@ -5239,7 +5239,7 @@ toughness=3
 [/card]
 [card]
 name=Kaheera, the Orphanguard
-text=Companion — Each creature card in your starting deck is a Cat, Elemental, Nightmare, Dinosaur, or Beast card. (If this card is your chosen companion, you may cast it once from outside the game.) -- Vigilance -- Each other creature you control that's a Cat, Elemental, Nightmare, Dinosaur, or Beast gets +1/+1 and has vigilance.
+text=Companion - Each creature card in your starting deck is a Cat, Elemental, Nightmare, Dinosaur, or Beast card. (If this card is your chosen companion, you may cast it once from outside the game.) -- Vigilance -- Each other creature you control that's a Cat, Elemental, Nightmare, Dinosaur, or Beast gets +1/+1 and has vigilance.
 mana={1}{GW}{GW}
 type=Legendary Creature
 subtype=Cat Beast
@@ -5269,7 +5269,7 @@ toughness=5
 [/card]
 [card]
 name=Karplusan Minotaur
-text=Cumulative upkeep—Flip a coin. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Whenever you win a coin flip, Karplusan Minotaur deals 1 damage to target creature or player. -- Whenever you lose a coin flip, Karplusan Minotaur deals 1 damage to target creature or player of an opponent's choice.
+text=Cumulative upkeep-Flip a coin. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Whenever you win a coin flip, Karplusan Minotaur deals 1 damage to target creature or player. -- Whenever you lose a coin flip, Karplusan Minotaur deals 1 damage to target creature or player of an opponent's choice.
 mana={2}{R}{R}
 type=Creature
 subtype=Minotaur Warrior
@@ -5311,7 +5311,7 @@ type=Enchantment
 [/card]
 [card]
 name=Keruga, the Macrosage
-text=Companion — Your starting deck contains only cards with converted mana cost 3 or greater and land cards. (If this card is your chosen companion, you may cast it once from outside the game.) -- When Keruga, the Macrosage enters the battlefield, draw a card for each other permanent you control with converted mana cost 3 or greater.
+text=Companion - Your starting deck contains only cards with converted mana cost 3 or greater and land cards. (If this card is your chosen companion, you may cast it once from outside the game.) -- When Keruga, the Macrosage enters the battlefield, draw a card for each other permanent you control with converted mana cost 3 or greater.
 mana={3}{GU}{GU}
 type=Legendary Creature
 subtype=Dinosaur Hippo
@@ -5558,7 +5558,7 @@ type=Scheme
 [/card]
 [card]
 name=Knowledge Pool
-text=Imprint — When Knowledge Pool enters the battlefield, each player exiles the top three cards of his or her library. -- Whenever a player casts a spell from his or her hand, that player exiles it. If the player does, he or she may cast another nonland card exiled with Knowledge Pool without paying that card's mana cost.
+text=Imprint - When Knowledge Pool enters the battlefield, each player exiles the top three cards of his or her library. -- Whenever a player casts a spell from his or her hand, that player exiles it. If the player does, he or she may cast another nonland card exiled with Knowledge Pool without paying that card's mana cost.
 mana={6}
 type=Artifact
 [/card]
@@ -5831,7 +5831,7 @@ type=Artifact
 [/card]
 [card]
 name=Library of Lat-Nam
-text=An opponent chooses one — You draw three cards at the beginning of the next turn's upkeep; or you search your library for a card, put that card into your hand, then shuffle your library.
+text=An opponent chooses one -- You draw three cards at the beginning of the next turn's upkeep; or you search your library for a card, put that card into your hand, then shuffle your library.
 mana={4}{U}
 type=Sorcery
 [/card]
@@ -5852,7 +5852,7 @@ toughness=4
 [/card]
 [card]
 name=Lieutenants of the Guard
-text=Council's dilemma — When Lieutenants of the Guard enters the battlefield, starting with you, each player votes for strength or numbers. Put a +1/+1 counter on Lieutenants of the Guard for each strength vote and put a 1/1 white Soldier creature token onto the battlefield for each numbers vote.
+text=Council's dilemma - When Lieutenants of the Guard enters the battlefield, starting with you, each player votes for strength or numbers. Put a +1/+1 counter on Lieutenants of the Guard for each strength vote and put a 1/1 white Soldier creature token onto the battlefield for each numbers vote.
 mana={4}{W}
 type=Creature
 subtype=Human Soldier
@@ -5868,7 +5868,7 @@ subtype=Arcane
 [/card]
 [card]
 name=Light from Within
-text=Chroma — Each creature you control gets +1/+1 for each white mana symbol in its mana cost.
+text=Chroma - Each creature you control gets +1/+1 for each white mana symbol in its mana cost.
 mana={2}{W}{W}
 type=Enchantment
 [/card]
@@ -5899,7 +5899,7 @@ type=Enchantment
 [/card]
 [card]
 name=Linessa, Zephyr Mage
-text={X}{U}{U}, {T}: Return target creature with converted mana cost X to its owner's hand. -- Grandeur — Discard another card named Linessa, Zephyr Mage: Target player returns a creature he or she controls to its owner's hand, then repeats this process for an artifact, an enchantment, and a land.
+text={X}{U}{U}, {T}: Return target creature with converted mana cost X to its owner's hand. -- Grandeur - Discard another card named Linessa, Zephyr Mage: Target player returns a creature he or she controls to its owner's hand, then repeats this process for an artifact, an enchantment, and a land.
 mana={3}{U}
 type=Legendary Creature
 subtype=Human Wizard
@@ -6004,7 +6004,7 @@ toughness=0
 [/card]
 [card]
 name=Lutri, the Spellchaser
-text=Companion — Each nonland card in your starting deck has a different name. (If this card is your chosen companion, you may cast it once from outside the game.) -- Flash -- When Lutri, the Spellchaser enters the battlefield, if you cast it, copy target instant or sorcery spell you control. You may choose new targets for the copy.
+text=Companion - Each nonland card in your starting deck has a different name. (If this card is your chosen companion, you may cast it once from outside the game.) -- Flash -- When Lutri, the Spellchaser enters the battlefield, if you cast it, copy target instant or sorcery spell you control. You may choose new targets for the copy.
 mana={1}{UR}{UR}
 type=Legendary Creature
 subtype=Elemental Otter
@@ -6058,7 +6058,7 @@ toughness=2
 [card]
 name=Magister of Worth
 abilities=flying
-text=Flying -- Will of the council — When Magister of Worth enters the battlefield, starting with you, each player votes for grace or condemnation. If grace gets more votes, each player returns each creature card from his or her graveyard to the battlefield. If condemnation gets more votes or the vote is tied, destroy all creatures other than Magister of Worth.
+text=Flying -- Will of the council - When Magister of Worth enters the battlefield, starting with you, each player votes for grace or condemnation. If grace gets more votes, each player returns each creature card from his or her graveyard to the battlefield. If condemnation gets more votes or the vote is tied, destroy all creatures other than Magister of Worth.
 mana={4}{W}{B}
 type=Creature
 subtype=Angel
@@ -6125,7 +6125,7 @@ type=Artifact
 [card]
 name=Mana-Charged Dragon
 abilities=flying,trample
-text=Flying, trample -- Join forces — Whenever Mana-Charged Dragon attacks or blocks, each player starting with you may pay any amount of mana. Mana-Charged Dragon gets +X/+0 until end of turn, where X is the total amount of mana paid this way.
+text=Flying, trample -- Join forces - Whenever Mana-Charged Dragon attacks or blocks, each player starting with you may pay any amount of mana. Mana-Charged Dragon gets +X/+0 until end of turn, where X is the total amount of mana paid this way.
 mana={4}{R}{R}
 type=Creature
 subtype=Dragon
@@ -6166,7 +6166,7 @@ type=Sorcery
 [/card]
 [card]
 name=Marath, Will of the Wild
-text=Marath, Will of the Wild enters the battlefield with a number of +1/+1 counters on it equal to the amount of mana spent to cast it. -- {X}, Remove X +1/+1 counters from Marath: Choose one — -- • Put X +1/+1 counters on target creature. X can't be 0. -- • Marath deals X damage to target creature or player. X can't be 0. -- • Put an X/X green Elemental creature token onto the battlefield. X can't be 0.
+text=Marath, Will of the Wild enters the battlefield with a number of +1/+1 counters on it equal to the amount of mana spent to cast it. -- {X}, Remove X +1/+1 counters from Marath: Choose one -- Put X +1/+1 counters on target creature. X can't be 0. -- Marath deals X damage to target creature or player. X can't be 0. -- Put an X/X green Elemental creature token onto the battlefield. X can't be 0.
 mana={R}{G}{W}
 type=Legendary Creature
 subtype=Elemental Beast
@@ -6366,7 +6366,7 @@ toughness=1
 [/card]
 [card]
 name=Messenger Jays
-text=Flying -- Council's dilemma — When Messenger Jays enters the battlefield, starting with you, each player votes for feather or quill. Put a +1/+1 counter on Messenger Jays for each feather vote and draw a card for each quill vote. For each card drawn this way, discard a card.
+text=Flying -- Council's dilemma - When Messenger Jays enters the battlefield, starting with you, each player votes for feather or quill. Put a +1/+1 counter on Messenger Jays for each feather vote and draw a card for each quill vote. For each card drawn this way, discard a card.
 mana={4}{U}
 type=Creature
 subtype=Bird
@@ -6435,7 +6435,7 @@ type=Artifact
 [/card]
 [card]
 name=Mindreaver
-text=Heroic — Whenever you cast a spell that targets Mindreaver, exile the top three cards of target player's library. -- {U}{U}, Sacrifice Mindreaver: Counter target spell with the same name as a card exiled with Mindreaver.
+text=Heroic - Whenever you cast a spell that targets Mindreaver, exile the top three cards of target player's library. -- {U}{U}, Sacrifice Mindreaver: Counter target spell with the same name as a card exiled with Mindreaver.
 mana={U}{U}
 type=Creature
 subtype=Human Wizard
@@ -6444,7 +6444,7 @@ toughness=1
 [/card]
 [card]
 name=Minds Aglow
-text=Join forces — Starting with you, each player may pay any amount of mana. Each player draws X cards, where X is the total amount of mana paid this way.
+text=Join forces - Starting with you, each player may pay any amount of mana. Each player draws X cards, where X is the total amount of mana paid this way.
 mana={U}
 type=Sorcery
 [/card]
@@ -6468,13 +6468,13 @@ type=Enchantment
 [/card]
 [card]
 name=Mirrodin Besieged
-text=As Mirrodin Besieged enters the battlefield, choose Mirran or Phyrexian. -- • Mirran — Whenever you cast an artifact spell, create a 1/1 colorless Myr artifact creature token. -- • Phyrexian — At the beginning of your end step, draw a card, then discard a card. Then if there are fifteen or more artifact cards in your graveyard, target opponent loses the game.
+text=As Mirrodin Besieged enters the battlefield, choose Mirran or Phyrexian. -- Mirran - Whenever you cast an artifact spell, create a 1/1 colorless Myr artifact creature token. -- Phyrexian - At the beginning of your end step, draw a card, then discard a card. Then if there are fifteen or more artifact cards in your graveyard, target opponent loses the game.
 mana={2}{U}
 type=Enchantment
 [/card]
 [card]
 name=Mirror Golem
-text=Imprint — When Mirror Golem enters the battlefield, you may exile target card from a graveyard. -- Mirror Golem has protection from each of the exiled card's card types. (Artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal are card types.)
+text=Imprint - When Mirror Golem enters the battlefield, you may exile target card from a graveyard. -- Mirror Golem has protection from each of the exiled card's card types. (Artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal are card types.)
 mana={6}
 type=Artifact Creature
 subtype=Golem
@@ -6621,7 +6621,7 @@ toughness=5
 [/card]
 [card]
 name=Molten Psyche
-text=Each player shuffles the cards from his or her hand into his or her library, then draws that many cards. -- Metalcraft — If you control three or more artifacts, Molten Psyche deals damage to each opponent equal to the number of cards that player has drawn this turn.
+text=Each player shuffles the cards from his or her hand into his or her library, then draws that many cards. -- Metalcraft - If you control three or more artifacts, Molten Psyche deals damage to each opponent equal to the number of cards that player has drawn this turn.
 mana={1}{R}{R}
 type=Sorcery
 [/card]
@@ -6636,7 +6636,7 @@ toughness=*
 [/card]
 [card]
 name=Monastery Siege
-text=As Monastery Siege enters the battlefield, choose Khans or Dragons. -- • Khans — At the beginning of your draw step, draw an additional card, then discard a card. -- • Dragons — Spells your opponents cast that target you or a permanent you control cost {2} more to cast.
+text=As Monastery Siege enters the battlefield, choose Khans or Dragons. -- Khans - At the beginning of your draw step, draw an additional card, then discard a card. -- Dragons - Spells your opponents cast that target you or a permanent you control cost {2} more to cast.
 mana={2}{U}
 type=Enchantment
 [/card]
@@ -6734,7 +6734,7 @@ type=Land
 [/card]
 [card]
 name=Mourner's Shield
-text=Imprint — When Mourner's Shield enters the battlefield, you may exile target card from a graveyard. -- {2}, {T}: Prevent all damage that would be dealt this turn by a source of your choice that shares a color with the exiled card.
+text=Imprint - When Mourner's Shield enters the battlefield, you may exile target card from a graveyard. -- {2}, {T}: Prevent all damage that would be dealt this turn by a source of your choice that shares a color with the exiled card.
 mana={4}
 type=Artifact
 [/card]
@@ -6858,7 +6858,7 @@ toughness=6
 [/card]
 [card]
 name=Myr Welder
-text=Imprint — {T}: Exile target artifact card from a graveyard. -- Myr Welder has all activated abilities of all cards exiled with it.
+text=Imprint - {T}: Exile target artifact card from a graveyard. -- Myr Welder has all activated abilities of all cards exiled with it.
 mana={3}
 type=Artifact Creature
 subtype=Myr
@@ -7076,7 +7076,7 @@ subtype=Contraption
 [/card]
 [card]
 name=Ninja
-text=You may activate Ninja's augment ability any time you could cast an instant. -- Whenever this creature deals combat damage to a player, -- Augment {2}{B} ({2}{B}, Reveal this card from your hand: Combine it with target host. Augment only as—oh, nevermind.)
+text=You may activate Ninja's augment ability any time you could cast an instant. -- Whenever this creature deals combat damage to a player, -- Augment {2}{B} ({2}{B}, Reveal this card from your hand: Combine it with target host. Augment only as-oh, nevermind.)
 type=Creature
 subtype=Ninja
 power=+1
@@ -7211,7 +7211,7 @@ toughness=1
 [/card]
 [card]
 name=Nylea's Colossus
-text=Constellation — Whenever Nylea's Colossus or another enchantment enters the battlefield under your control, double target creature's power and toughness until end of turn.
+text=Constellation - Whenever Nylea's Colossus or another enchantment enters the battlefield under your control, double target creature's power and toughness until end of turn.
 mana={6}{G}
 type=Enchantment Creature
 subtype=Giant
@@ -7270,7 +7270,7 @@ toughness=4
 [/card]
 [card]
 name=Obosh, the Preypiercer
-text=Companion — Your starting deck contains only cards with odd converted mana costs and land cards. (If this card is your chosen companion, you may cast it once from outside the game.) -- If a source you control with an odd converted mana cost would deal damage to a permanent or player, it deals double that damage to that permanent or player instead.
+text=Companion - Your starting deck contains only cards with odd converted mana costs and land cards. (If this card is your chosen companion, you may cast it once from outside the game.) -- If a source you control with an odd converted mana cost would deal damage to a permanent or player, it deals double that damage to that permanent or player instead.
 mana={3}{BR}{BR}
 type=Legendary Creature
 subtype=Hellion Horror
@@ -7285,7 +7285,7 @@ type=Enchantment
 [/card]
 [card]
 name=Oddly Uneven
-text=Choose one — -- • Destroy each creature with an odd number of words in its name. (Hyphenated words are one word.) -- • Destroy each creature with an even number of words in its name.
+text=Choose one -- Destroy each creature with an odd number of words in its name. (Hyphenated words are one word.) -- Destroy each creature with an even number of words in its name.
 mana={3}{W}{W}
 type=Sorcery
 [/card]
@@ -7441,7 +7441,7 @@ toughness=1
 [/card]
 [card]
 name=Orchard Elemental
-text=Council's dilemma — When Orchard Elemental enters the battlefield, starting with you, each player votes for sprout or harvest. Put two +1/+1 counters on Orchard Elemental for each sprout vote. You gain 3 life for each harvest vote.
+text=Council's dilemma - When Orchard Elemental enters the battlefield, starting with you, each player votes for sprout or harvest. Put two +1/+1 counters on Orchard Elemental for each sprout vote. You gain 3 life for each harvest vote.
 mana={5}{G}
 type=Creature
 subtype=Elemental
@@ -7628,7 +7628,7 @@ type=Enchantment
 [card]
 name=Pardic Dragon
 abilities=flying
-text=Flying -- {R}: Pardic Dragon gets +1/+0 until end of turn. -- Suspend 2—{R}{R} -- Whenever an opponent casts a spell, if Pardic Dragon is suspended, that player may put a time counter on Pardic Dragon.
+text=Flying -- {R}: Pardic Dragon gets +1/+0 until end of turn. -- Suspend 2-{R}{R} -- Whenever an opponent casts a spell, if Pardic Dragon is suspended, that player may put a time counter on Pardic Dragon.
 mana={4}{R}{R}
 type=Creature
 subtype=Dragon
@@ -7737,7 +7737,7 @@ toughness=3
 [/card]
 [card]
 name=Phosphorescent Feast
-text=Chroma — Reveal any number of cards in your hand. You gain 2 life for each green mana symbol in those cards' mana costs.
+text=Chroma - Reveal any number of cards in your hand. You gain 2 life for each green mana symbol in those cards' mana costs.
 mana={2}{G}{G}{G}
 type=Sorcery
 [/card]
@@ -7849,7 +7849,7 @@ type=Phenomenon
 [/card]
 [card]
 name=Plea for Power
-text=Will of the council — Starting with you, each player votes for time or knowledge. If time gets more votes, take an extra turn after this one. If knowledge gets more votes or the vote is tied, draw three cards.
+text=Will of the council - Starting with you, each player votes for time or knowledge. If time gets more votes, take an extra turn after this one. If knowledge gets more votes or the vote is tied, draw three cards.
 mana={3}{U}
 type=Sorcery
 [/card]
@@ -7988,7 +7988,7 @@ type=Sorcery
 [/card]
 [card]
 name=Protean Thaumaturge
-text=Constellation — Whenever an enchantment enters the battlefield under your control, you may have Protean Thaumaturge become a copy of another target creature, except it has this ability.
+text=Constellation - Whenever an enchantment enters the battlefield under your control, you may have Protean Thaumaturge become a copy of another target creature, except it has this ability.
 mana={1}{U}
 type=Creature
 subtype=Human Wizard
@@ -8022,7 +8022,7 @@ subtype=Arcane
 [/card]
 [card]
 name=Psychic Rebuttal
-text=Counter target instant or sorcery spell that targets you. -- Spell mastery — If there are two or more instant and/or sorcery cards in your graveyard, you may copy the spell countered this way. You may choose new targets for the copy.
+text=Counter target instant or sorcery spell that targets you. -- Spell mastery - If there are two or more instant and/or sorcery cards in your graveyard, you may copy the spell countered this way. You may choose new targets for the copy.
 mana={1}{U}
 type=Instant
 [/card]
@@ -8094,7 +8094,7 @@ toughness=2
 [/card]
 [card]
 name=Pyramids
-text={2}: Choose one — Destroy target Aura attached to a land; or the next time target land would be destroyed this turn, remove all damage marked on it instead.
+text={2}: Choose one -- Destroy target Aura attached to a land; or the next time target land would be destroyed this turn, remove all damage marked on it instead.
 mana={6}
 type=Artifact
 [/card]
@@ -8270,7 +8270,7 @@ type=Phenomenon
 [/card]
 [card]
 name=Reality Strobe
-text=Return target permanent to its owner's hand. Exile Reality Strobe with three time counters on it. -- Suspend 3—{2}{U} (Rather than cast this card from your hand, you may pay {2}{U} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
+text=Return target permanent to its owner's hand. Exile Reality Strobe with three time counters on it. -- Suspend 3-{2}{U} (Rather than cast this card from your hand, you may pay {2}{U} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
 mana={4}{U}{U}
 type=Sorcery
 [/card]
@@ -8583,7 +8583,7 @@ toughness=2
 [/card]
 [card]
 name=Roar of Jukai
-text=If you control a Forest, each blocked creature gets +2/+2 until end of turn. -- Splice onto Arcane—An opponent gains 5 life. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+text=If you control a Forest, each blocked creature gets +2/+2 until end of turn. -- Splice onto Arcane-An opponent gains 5 life. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={2}{G}
 type=Instant
 subtype=Arcane
@@ -8765,7 +8765,7 @@ subtype=Contraption
 [/card]
 [card]
 name=Sapphire Charm
-text=Choose one — Target player draws a card at the beginning of the next turn's upkeep; or target creature gains flying until end of turn; or target creature an opponent controls phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step.)
+text=Choose one -- Target player draws a card at the beginning of the next turn's upkeep; or target creature gains flying until end of turn; or target creature an opponent controls phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step.)
 mana={U}
 type=Instant
 [/card]
@@ -8926,7 +8926,7 @@ toughness=1
 [/card]
 [card]
 name=Selvala's Stampede
-text=Council's dilemma — Starting with you, each player votes for wild or free. Reveal cards from the top of your library until you reveal a creature card for each wild vote. Put those creature cards onto the battlefield, then shuffle the rest into your library. You may put a permanent card from your hand onto the battlefield for each free vote.
+text=Council's dilemma - Starting with you, each player votes for wild or free. Reveal cards from the top of your library until you reveal a creature card for each wild vote. Put those creature cards onto the battlefield, then shuffle the rest into your library. You may put a permanent card from your hand onto the battlefield for each free vote.
 mana={4}{G}{G}
 type=Sorcery
 [/card]
@@ -9096,7 +9096,7 @@ type=Enchantment
 [/card]
 [card]
 name=Shared Trauma
-text=Join forces — Starting with you, each player may pay any amount of mana. Each player puts the top X cards of his or her library into his or her graveyard, where X is the total amount of mana paid this way.
+text=Join forces - Starting with you, each player may pay any amount of mana. Each player puts the top X cards of his or her library into his or her graveyard, where X is the total amount of mana paid this way.
 mana={B}
 type=Sorcery
 [/card]
@@ -9655,7 +9655,7 @@ toughness=1
 [/card]
 [card]
 name=Spectral Shift
-text=Choose one — Change the text of target spell or permanent by replacing all instances of one basic land type with another; or change the text of target spell or permanent by replacing all instances of one color word with another. (These effects last indefinitely.) -- Entwine {2} (Choose both if you pay the entwine cost.)
+text=Choose one -- Change the text of target spell or permanent by replacing all instances of one basic land type with another; or change the text of target spell or permanent by replacing all instances of one color word with another. (These effects last indefinitely.) -- Entwine {2} (Choose both if you pay the entwine cost.)
 mana={1}{U}
 type=Instant
 [/card]
@@ -9692,7 +9692,7 @@ toughness=4
 [/card]
 [card]
 name=Spellweaver Helix
-text=Imprint — When Spellweaver Helix enters the battlefield, you may exile two target sorcery cards from a single graveyard.  -- Whenever a player casts a card, if it has the same name as one of the cards exiled with Spellweaver Helix, you may copy the other. If you do, you may cast the copy without paying its mana cost.
+text=Imprint - When Spellweaver Helix enters the battlefield, you may exile two target sorcery cards from a single graveyard.  -- Whenever a player casts a card, if it has the same name as one of the cards exiled with Spellweaver Helix, you may copy the other. If you do, you may cast the copy without paying its mana cost.
 mana={3}
 type=Artifact
 [/card]
@@ -9818,7 +9818,7 @@ type=Sorcery
 [/card]
 [card]
 name=Split Decision
-text=Will of the council — Choose target instant or sorcery spell. Starting with you, each player votes for denial or duplication. If denial gets more votes, counter the spell. If duplication gets more votes or the vote is tied, copy the spell. You may choose new targets for the copy.
+text=Will of the council - Choose target instant or sorcery spell. Starting with you, each player votes for denial or duplication. If denial gets more votes, counter the spell. If duplication gets more votes or the vote is tied, copy the spell. You may choose new targets for the copy.
 mana={1}{U}
 type=Instant
 [/card]
@@ -10117,7 +10117,7 @@ type=Enchantment
 [/card]
 [card]
 name=Strata Scythe
-text=Imprint — When Strata Scythe enters the battlefield, search your library for a land card, exile it, then shuffle your library. -- Equipped creature gets +1/+1 for each land on the battlefield with the same name as the exiled card. -- Equip {3}
+text=Imprint - When Strata Scythe enters the battlefield, search your library for a land card, exile it, then shuffle your library. -- Equipped creature gets +1/+1 for each land on the battlefield with the same name as the exiled card. -- Equip {3}
 mana={3}
 type=Artifact
 subtype=Equipment
@@ -10238,7 +10238,7 @@ type=Conspiracy
 [/card]
 [card]
 name=Suncleanser
-text=When Suncleanser enters the battlefield, choose one — -- • Remove all counters from target creature. It can't have counters put on it for as long as Suncleanser remains on the battlefield. -- • Target opponent loses all counters. That player can't get counters for as long as Suncleanser remains on the battlefield.
+text=When Suncleanser enters the battlefield, choose one -- Remove all counters from target creature. It can't have counters put on it for as long as Suncleanser remains on the battlefield. -- Target opponent loses all counters. That player can't get counters for as long as Suncleanser remains on the battlefield.
 mana={1}{W}
 type=Creature
 subtype=Human Cleric
@@ -10414,7 +10414,7 @@ subtype=Aura
 [/card]
 [card]
 name=Talent of the Telepath
-text=Target opponent reveals the top seven cards of his or her library. You may cast an instant or sorcery card from among them without paying its mana cost. Then that player puts the rest into his or her graveyard. -- Spell mastery — If there are two or more instant and/or sorcery cards in your graveyard, you may cast up to two revealed instant and/or sorcery cards instead of one.
+text=Target opponent reveals the top seven cards of his or her library. You may cast an instant or sorcery card from among them without paying its mana cost. Then that player puts the rest into his or her graveyard. -- Spell mastery - If there are two or more instant and/or sorcery cards in your graveyard, you may cast up to two revealed instant and/or sorcery cards instead of one.
 mana={2}{U}{U}
 type=Sorcery
 [/card]
@@ -10505,31 +10505,31 @@ toughness=3
 [/card]
 [card]
 name=Tempt with Discovery
-text=Tempting offer — Search your library for a land card and put it onto the battlefield. Each opponent may search his or her library for a land card and put it onto the battlefield. For each opponent who searches a library this way, search your library for a land card and put it onto the battlefield. Then each player who searched a library this way shuffles it.
+text=Tempting offer - Search your library for a land card and put it onto the battlefield. Each opponent may search his or her library for a land card and put it onto the battlefield. For each opponent who searches a library this way, search your library for a land card and put it onto the battlefield. Then each player who searched a library this way shuffles it.
 mana={3}{G}
 type=Sorcery
 [/card]
 [card]
 name=Tempt with Glory
-text=Tempting offer — Put a +1/+1 counter on each creature you control. Each opponent may put a +1/+1 counter on each creature he or she controls. For each opponent who does, put a +1/+1 counter on each creature you control.
+text=Tempting offer - Put a +1/+1 counter on each creature you control. Each opponent may put a +1/+1 counter on each creature he or she controls. For each opponent who does, put a +1/+1 counter on each creature you control.
 mana={5}{W}
 type=Sorcery
 [/card]
 [card]
 name=Tempt with Immortality
-text=Tempting offer — Return a creature card from your graveyard to the battlefield. Each opponent may return a creature card from his or her graveyard to the battlefield. For each player who does, return a creature card from your graveyard to the battlefield.
+text=Tempting offer - Return a creature card from your graveyard to the battlefield. Each opponent may return a creature card from his or her graveyard to the battlefield. For each player who does, return a creature card from your graveyard to the battlefield.
 mana={4}{B}
 type=Sorcery
 [/card]
 [card]
 name=Tempt with Reflections
-text=Tempting offer — Choose target creature you control. Put a token onto the battlefield that's a copy of that creature. Each opponent may put a token onto the battlefield that's a copy of that creature. For each opponent who does, put a token onto the battlefield that's a copy of that creature.
+text=Tempting offer - Choose target creature you control. Put a token onto the battlefield that's a copy of that creature. Each opponent may put a token onto the battlefield that's a copy of that creature. For each opponent who does, put a token onto the battlefield that's a copy of that creature.
 mana={3}{U}
 type=Sorcery
 [/card]
 [card]
 name=Tempt with Vengeance
-text=Tempting offer — Put X 1/1 red Elemental creature tokens with haste onto the battlefield. Each opponent may put X 1/1 red Elemental creature tokens with haste onto the battlefield. For each player who does, put X 1/1 red Elemental creature tokens with haste onto the battlefield.
+text=Tempting offer - Put X 1/1 red Elemental creature tokens with haste onto the battlefield. Each opponent may put X 1/1 red Elemental creature tokens with haste onto the battlefield. For each player who does, put X 1/1 red Elemental creature tokens with haste onto the battlefield.
 mana={X}{R}
 type=Sorcery
 [/card]
@@ -10691,7 +10691,7 @@ subtype=Kyneth
 [/card]
 [card]
 name=Thermal Flux
-text=Choose one — Target nonsnow permanent becomes snow until end of turn; or target snow permanent isn't snow until end of turn. -- Draw a card at the beginning of the next turn's upkeep.
+text=Choose one - Target nonsnow permanent becomes snow until end of turn; or target snow permanent isn't snow until end of turn. -- Draw a card at the beginning of the next turn's upkeep.
 mana={U}
 type=Instant
 [/card]
@@ -10753,7 +10753,7 @@ type=Sorcery
 [/card]
 [card]
 name=Thought Prison
-text=Imprint — When Thought Prison enters the battlefield, you may have target player reveal his or her hand. If you do, choose a nonland card from it and exile that card. -- Whenever a player casts a spell that shares a color or converted mana cost with the exiled card, Thought Prison deals 2 damage to that player.
+text=Imprint - When Thought Prison enters the battlefield, you may have target player reveal his or her hand. If you do, choose a nonland card from it and exile that card. -- Whenever a player casts a spell that shares a color or converted mana cost with the exiled card, Thought Prison deals 2 damage to that player.
 mana={5}
 type=Artifact
 [/card]
@@ -10891,7 +10891,7 @@ type=Instant
 [/card]
 [card]
 name=Timebender
-text=Morph {U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Timebender is turned face up, choose one — Remove two time counters from target permanent or suspended card; or put two time counters on target permanent with a time counter on it or suspended card.
+text=Morph {U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Timebender is turned face up, choose one - Remove two time counters from target permanent or suspended card; or put two time counters on target permanent with a time counter on it or suspended card.
 mana={U}
 type=Creature
 subtype=Human Wizard
@@ -10973,7 +10973,7 @@ type=Artifact
 [/card]
 [card]
 name=Torrent of Stone
-text=Torrent of Stone deals 4 damage to target creature. -- Splice onto Arcane—Sacrifice two Mountains. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+text=Torrent of Stone deals 4 damage to target creature. -- Splice onto Arcane-Sacrifice two Mountains. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={3}{R}
 type=Instant
 subtype=Arcane
@@ -10992,7 +10992,7 @@ type=Sorcery
 [/card]
 [card]
 name=Toy Boat
-text=Cumulative upkeep—Say "Toy Boat" quickly. (At the beginning of your upkeep, put an age counter on Toy Boat, then sacrifice it unless you say "Toy Boat" once for each age counter on it—without pausing between or fumbling it.)
+text=Cumulative upkeep-Say "Toy Boat" quickly. (At the beginning of your upkeep, put an age counter on Toy Boat, then sacrifice it unless you say "Toy Boat" once for each age counter on it-without pausing between or fumbling it.)
 mana={3}
 type=Artifact Creature
 subtype=Ship
@@ -11155,7 +11155,7 @@ toughness=7
 [/card]
 [card]
 name=Tyrant's Choice
-text=Will of the council — Starting with you, each player votes for death or torture. If death gets more votes, each opponent sacrifices a creature. If torture gets more votes or the vote is tied, each opponent loses 4 life.
+text=Will of the council - Starting with you, each player votes for death or torture. If death gets more votes, each opponent sacrifices a creature. If torture gets more votes or the vote is tied, each opponent loses 4 life.
 mana={1}{B}
 type=Sorcery
 [/card]
@@ -11176,7 +11176,7 @@ toughness=2
 [/card]
 [card]
 name=Umori, the Collector
-text=Companion — Each nonland card in your starting deck shares a card type. (If this card is your chosen companion, you may cast it once from outside the game.) -- As Umori, the CollectorUmori, the Collector enters the battlefield, choose a card type. -- Spells you cast of the chosen type cost 1 less to cast.
+text=Companion - Each nonland card in your starting deck shares a card type. (If this card is your chosen companion, you may cast it once from outside the game.) -- As Umori, the CollectorUmori, the Collector enters the battlefield, choose a card type. -- Spells you cast of the chosen type cost 1 less to cast.
 mana={2}{BG}{BG}
 type=Legendary Creature
 subtype=Ooze
@@ -11311,7 +11311,7 @@ type=Enchantment
 [/card]
 [card]
 name=Veil of Secrecy
-text=Target creature gains shroud until end of turn and is unblockable this turn. -- Splice onto Arcane—Return a blue creature you control to its owner's hand. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+text=Target creature gains shroud until end of turn and is unblockable this turn. -- Splice onto Arcane-Return a blue creature you control to its owner's hand. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={1}{U}
 type=Instant
 subtype=Arcane
@@ -11334,37 +11334,37 @@ type=Instant
 [/card]
 [card]
 name=Very Cryptic Command (a)
-text=Choose two — -- • Switch target creature's power and toughness until end of turn. -- • Target creature can't be blocked this turn. -- • Draw a card. If that card's art is by Wayne England, you may reveal it and draw another card. -- • Assemble a Contraption.
+text=Choose two -- Switch target creature's power and toughness until end of turn. -- Target creature can't be blocked this turn. -- Draw a card. If that card's art is by Wayne England, you may reveal it and draw another card. -- Assemble a Contraption.
 mana={1}{U}{U}{U}
 type=Instant
 [/card]
 [card]
 name=Very Cryptic Command (b)
-text=Choose two — -- • Untap two target permanents. -- • Tap each permanent target player controls with exactly one word in its name. -- • Discard all the cards in your hand, then draw that many cards. -- • Return target instant or sorcery card from your graveyard to your hand.
+text=Choose two -- Untap two target permanents. -- Tap each permanent target player controls with exactly one word in its name. -- Discard all the cards in your hand, then draw that many cards. -- Return target instant or sorcery card from your graveyard to your hand.
 mana={1}{U}{U}{U}
 type=Instant
 [/card]
 [card]
 name=Very Cryptic Command (c)
-text=Choose two — -- • Draw a card from an opponent's library. -- • Copy target instant or sorcery spell. You may choose new targets for the copy. -- • Until end of turn, target creature loses all abilities and becomes a blue Frog with base power and toughness 1/1. -- • Create a 1/1 colorless Gnome artifact creature token.
+text=Choose two -- Draw a card from an opponent's library. -- Copy target instant or sorcery spell. You may choose new targets for the copy. -- Until end of turn, target creature loses all abilities and becomes a blue Frog with base power and toughness 1/1. -- Create a 1/1 colorless Gnome artifact creature token.
 mana={1}{U}{U}{U}
 type=Instant
 [/card]
 [card]
 name=Very Cryptic Command (d)
-text=Choose two — -- • Return target permanent to its controller's hand. -- • Draw two cards, then discard a card. -- • Change the target of target spell with a single target. -- • Turn over target nontoken creature.
+text=Choose two -- Return target permanent to its controller's hand. -- Draw two cards, then discard a card. -- Change the target of target spell with a single target. -- Turn over target nontoken creature.
 mana={1}{U}{U}{U}
 type=Instant
 [/card]
 [card]
 name=Very Cryptic Command (e)
-text=Choose two — -- • Counter target black-bordered spell. -- • Return target creature to its owner's hand. -- • Untap each permanent you control with a watermark. -- • Roll two six-sided dice. Target player puts the top X cards of their library into their graveyard, where X is the total of those results.
+text=Choose two -- Counter target black-bordered spell. -- Return target creature to its owner's hand. -- Untap each permanent you control with a watermark. -- Roll two six-sided dice. Target player puts the top X cards of their library into their graveyard, where X is the total of those results.
 mana={1}{U}{U}{U}
 type=Instant
 [/card]
 [card]
 name=Very Cryptic Command (f)
-text=Choose two — -- • Scry 3. -- • Create a 2/2 black Rogue creature token with menace. -- • Add or subtract 1 or one from a number or number word on target spell or permanent until end of turn. -- • Return all artifacts target player controls to their owner's hand.
+text=Choose two -- Scry 3. -- Create a 2/2 black Rogue creature token with menace. -- Add or subtract 1 or one from a number or number word on target spell or permanent until end of turn. -- Return all artifacts target player controls to their owner's hand.
 mana={1}{U}{U}{U}
 type=Instant
 [/card]
@@ -11412,7 +11412,7 @@ toughness=2{1/2}
 [/card]
 [card]
 name=Vision Charm
-text=Choose one — Target player puts the top four cards of his or her library into his or her graveyard; or choose a land type and a basic land type, and each land of the first chosen type becomes the second chosen type until end of turn; or target artifact phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step.)
+text=Choose one -- Target player puts the top four cards of his or her library into his or her graveyard; or choose a land type and a basic land type, and each land of the first chosen type becomes the second chosen type until end of turn; or target artifact phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step.)
 mana={U}
 type=Instant
 [/card]
@@ -12121,7 +12121,7 @@ toughness=2
 [/card]
 [card]
 name=Zirda, the Dawnwaker
-text=Companion — Each permanent card in your starting deck has an activated ability. (If this card is your chosen companion, you may cast it once from outside the game.) -- Abilities you activate that aren't mana abilities cost {2} less to activate. This effect can't reduce the mana in that cost to less than one mana. -- {1}, {T}: Target creature can't block this turn.
+text=Companion - Each permanent card in your starting deck has an activated ability. (If this card is your chosen companion, you may cast it once from outside the game.) -- Abilities you activate that aren't mana abilities cost {2} less to activate. This effect can't reduce the mana in that cost to less than one mana. -- {1}, {T}: Target creature can't block this turn.
 mana={1}{RW}{RW}
 type=Legendary Creature
 subtype=Elemental Fox
