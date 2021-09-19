@@ -550,8 +550,10 @@ void GameApp::playMusic(string filename, bool loop)
     if (filename.compare(currentMusicFile) == 0 && music)
         return;
 
+#if !defined (PSP)
     if(!WResourceManager::Instance()->ssLoadMusic(filename.c_str()))
-       return; // Added to avoid opening not existing file.
+        return; // Added to avoid opening not existing file.
+#endif
 
     if (music)
     {

@@ -148,7 +148,9 @@ void GameStateAwards::Start()
     setSrc = NULL;
     showMenu = false;
 
+#if !defined (PSP)
     GameApp::playMusic("Track4.mp3"); // Added music for trophies.
+#endif
 }
 
 void GameStateAwards::Create()

@@ -709,7 +709,7 @@ unwilling_recruit.txt
 urzas_lands.txt
 urzas_lands2.txt
 urzas_mine_i287.txt
-[at]Vampired#1.txt
+#[at]Vampired#1.txt
 vampire_bats.txt
 vampiric_link.txt
 vanishing.txt

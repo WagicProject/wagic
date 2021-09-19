@@ -794,6 +794,9 @@ void GameStateDuel::Update(float dt)
             if (!MusicExist(musictrack)) 
                 musictrack = "ai_baka_music.mp3";
 
+#if defined (PSP)
+                musictrack = "ai_baka_music.mp3";
+#endif
             GameApp::playMusic(musictrack);
             // init Score table
             if ( (mParent->gameType == GAME_TYPE_COMMANDER || mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO) && mParent->players[1] == PLAYER_TYPE_CPU)

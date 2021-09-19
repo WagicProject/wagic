@@ -141,6 +141,9 @@ void GameStateMenu::Start()
     subMenuController = NULL;
     SAFE_DELETE(mGuiController);
 
+#if defined (PSP)
+    GameApp::playMusic("Track0.mp3");
+#else
     char temp[4096];
     string musicFilename = "";
     sprintf(temp, "MainMenu/TrackMenu%i.mp3", std::rand() % 20); // Now it's possibile to use up to 20 sound tracks for main menu.
@@ -149,7 +152,8 @@ void GameStateMenu::Start()
     if (musicFilename.length() < 1 || !FileExists(musicFilename))
         musicFilename = "Track0.mp3";
     GameApp::playMusic(musicFilename);
-    
+#endif
+
     hasChosenGameType = false;
     mParent->gameType = GAME_TYPE_CLASSIC;
 
