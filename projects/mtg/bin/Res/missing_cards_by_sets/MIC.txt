@@ -1,0 +1,9 @@
+[card]
+name=Stitcher Geralf
+text={2}{U}, {T}: Each player puts the top three cards of his or her library into his or her graveyard. Exile up to two creature cards put into graveyards this way. Put an X/X blue Zombie creature token onto the battlefield, where X is the total power of the cards exiled this way.
+mana={3}{U}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=3
+toughness=4
+[/card]
