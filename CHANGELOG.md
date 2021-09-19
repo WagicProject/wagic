@@ -2,8 +2,13 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 19/09/21
+- *Committed:* Added/fixed primitives, added MID, MIC and CC2 sets, improved Andorid downloader for new added sets. ([Vitty85](https://github.com/Vitty85))
+
 ### 17/09/21
-- *Committed:* Added/fixed primitives, updated the "missing_cards_by_sets" folder. ([Vitty85](https://github.com/Vitty85))
+- *Merged pull-request:*  Merge pull request #1070 from remigiusz-suwalski/refactor-89dae6523 - Upgraded AI decks 7, 9, 10 to modern frames in a human-friendly format. https://github.com/WagicProject/wagic/commit/8cc3a5b4e3ca3d6c7f24801cf5faec8f2b5c9eb8 ([remigiusz-suwalski](https://github.com/remigiusz-suwalski))
+
+- *Committed:* Added/fixed primitives, updated the "missing_cards_by_sets" folder. https://github.com/WagicProject/wagic/commit/1306a43f33104db4f1ae6580bc06114046d4b75f ([Vitty85](https://github.com/Vitty85))
 
 ### 16/09/21
 - *Committed:* Fixed primitives, improved sound tracks management, now it's possbile to add a custom tracks for Shop section (Track2.mp3), Option window (Track3.mp3) and Awards section (Track4.mp3) and it's also possible to add two subfolders "MainMenu" and "Battlefield" within "suound" folder where it's possbile to add twenty custom songs ("TrackMenuXX.mp3" and "TrackDuelXX.mp3") that will be played randomly in main menu windows and when match starts. https://github.com/WagicProject/wagic/commit/f671f617137ccd1b006428a188cd15f38e4795cd ([Vitty85](https://github.com/Vitty85))
