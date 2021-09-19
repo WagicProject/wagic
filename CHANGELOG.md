@@ -3,7 +3,9 @@
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
 ### 19/09/21
-- *Committed:* Added/fixed primitives, added MID, MIC and CC2 sets, improved Andorid downloader for new added sets. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Added/fixed primitives, updated the "missing_cards_by_sets" folder, added MID, MIC and CC2 sets, improved Android downloader for new added sets. ([Vitty85](https://github.com/Vitty85))
+
+- *Committed:* Added/fixed primitives, added MID, MIC and CC2 sets, improved Android downloader for new added sets. https://github.com/WagicProject/wagic/commit/ddda01dd8696790d44ba0e2f0c8c4f3dd10d31d9 ([Vitty85](https://github.com/Vitty85))
 
 ### 17/09/21
 - *Merged pull-request:*  Merge pull request #1070 from remigiusz-suwalski/refactor-89dae6523 - Upgraded AI decks 7, 9, 10 to modern frames in a human-friendly format. https://github.com/WagicProject/wagic/commit/8cc3a5b4e3ca3d6c7f24801cf5faec8f2b5c9eb8 ([remigiusz-suwalski](https://github.com/remigiusz-suwalski))
