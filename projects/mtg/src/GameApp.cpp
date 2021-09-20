@@ -235,6 +235,13 @@ void GameApp::Create()
 #if !defined (PSP)
     WResourceManager::Instance()->RetrieveTexture("backdrop.jpg", RETRIEVE_MANAGE);
     WResourceManager::Instance()->RetrieveTexture("backdropframe.png", RETRIEVE_MANAGE);
+    for(int i = 1 ; i < 7; i++){
+        char temp[4096];
+        string fileName = "";
+        sprintf(temp, "background/backdrop%i.jpg", i); //Now it's possibile to randomly use up to other 6 background images for match.
+        fileName.assign(temp);
+        WResourceManager::Instance()->RetrieveTexture(fileName, RETRIEVE_MANAGE);
+    }
 #else
     WResourceManager::Instance()->RetrieveTexture("pspbackdrop.jpg", RETRIEVE_MANAGE);
     WResourceManager::Instance()->RetrieveTexture("pspbackdropframe.png", RETRIEVE_MANAGE);

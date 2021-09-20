@@ -49,6 +49,7 @@ protected:
     bool mShowDetailsScreen;
     bool mAlwaysShowDetailsButton;
     bool mClosed;
+    bool isOpponent;
 
 public:
     VerticalTextScroller * mScroller;
@@ -67,7 +68,7 @@ public:
     JQuadPtr pspIcons[8];
     JTexture * pspIconsTexture;
 
-    DeckMenu(int id, JGuiListener* listener, int fontId, const string _title = "", const int& startIndex = 0, bool alwaysShowDetailsButton = false);
+    DeckMenu(int id, JGuiListener* listener, int fontId, const string _title = "", const int& startIndex = 0, bool alwaysShowDetailsButton = false, bool chooseOpponent = false);
     ~DeckMenu();
 
     DeckMetaData * getSelectedDeck();

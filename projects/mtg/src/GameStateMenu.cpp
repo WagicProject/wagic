@@ -144,9 +144,10 @@ void GameStateMenu::Start()
 #if defined (PSP)
     GameApp::playMusic("Track0.mp3");
 #else
+    // Now it's possibile to randomly use up to 20 new sound tracks for main menu (if random index is 20, it will be played the default "Track0.mp3").
     char temp[4096];
     string musicFilename = "";
-    sprintf(temp, "MainMenu/TrackMenu%i.mp3", std::rand() % 20); // Now it's possibile to use up to 20 sound tracks for main menu.
+    sprintf(temp, "MainMenu/TrackMenu%i.mp3", std::rand() % 21);
     musicFilename.assign(temp);
     musicFilename = WResourceManager::Instance()->musicFile(musicFilename);
     if (musicFilename.length() < 1 || !FileExists(musicFilename))

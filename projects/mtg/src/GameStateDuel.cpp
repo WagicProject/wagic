@@ -240,7 +240,7 @@ void GameStateDuel::Start()
             decksneeded = 1;
 
             deckmenu = NEW DeckMenu(DUEL_MENU_CHOOSE_DECK, this, Fonts::OPTION_FONT, "Choose a Deck",
-                GameStateDuel::selectedPlayerDeckId, true);
+                GameStateDuel::selectedPlayerDeckId, true, false);
             deckmenu->enableDisplayDetailsOverride();
             DeckManager *deckManager = DeckManager::GetInstance();
             vector<DeckMetaData *> playerDeckList = BuildDeckList(options.profileFile(), "", NULL, 0, mParent->gameType);
@@ -288,7 +288,7 @@ void GameStateDuel::Start()
     else if(createDeckMenu && (mParent->players[0] == PLAYER_TYPE_CPU && mParent->players[1] == PLAYER_TYPE_CPU))
     {
         //DeckManager::EndInstance();
-        deckmenu = NEW DeckMenu(DUEL_MENU_CHOOSE_DECK, this, Fonts::OPTION_FONT, "Choose a Deck", GameStateDuel::selectedPlayerDeckId, true);
+        deckmenu = NEW DeckMenu(DUEL_MENU_CHOOSE_DECK, this, Fonts::OPTION_FONT, "Choose a Deck", GameStateDuel::selectedPlayerDeckId, true, true);
         int nmbDecks = options[Options::CHEATMODEAIDECK].number ? 1000 : options[Options::AIDECKS_UNLOCKED].number;
         if (nmbDecks > 1)
         {
@@ -386,7 +386,7 @@ void GameStateDuel::ConstructOpponentMenu()
     if (opponentMenu == NULL)
     {
         opponentMenu = NEW DeckMenu(DUEL_MENU_CHOOSE_OPPONENT, this, Fonts::OPTION_FONT, "Choose Opponent",
-            GameStateDuel::selectedAIDeckId, true);
+            GameStateDuel::selectedAIDeckId, true, true);
 
         int nbUnlockedDecks = options[Options::CHEATMODEAIDECK].number ? 1000 : options[Options::AIDECKS_UNLOCKED].number;
         if ((mParent->gameType == GAME_TYPE_COMMANDER || mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO) && mParent->players[1] == PLAYER_TYPE_CPU)
@@ -770,10 +770,10 @@ void GameStateDuel::Update(float dt)
                 sprintf(temp, "ai_baka_music%i.mp3", OpponentsDeckid);
                 musictrack.assign(temp);
             }
-            // Now it's possibile to use up to 20 sound tracks for duels.
+            // Now it's possibile to randomly use up to 20 new sound tracks for duels (if random index is 20, it will be played the default "ai_baka_music.mp3" file).
             if (!MusicExist(musictrack)){
                 char temp[4096];
-                sprintf(temp, "Battlefield/TrackDuel%i.mp3", std::rand() % 20);
+                sprintf(temp, "Battlefield/TrackDuel%i.mp3", std::rand() % 21);
                 musictrack.assign(temp);
             }
             // Try if there is a sound track for specific game type.
