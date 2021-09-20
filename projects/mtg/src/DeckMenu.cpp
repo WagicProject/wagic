@@ -34,7 +34,7 @@ hgeParticleSystem* DeckMenu::stars = NULL;
 //  TODO:        
 //    *** Need to make this configurable in a file somewhere to allow for class reuse
 
-DeckMenu::DeckMenu(int id, JGuiListener* listener, int fontId, const string _title, const int&, bool showDetailsOverride) :
+DeckMenu::DeckMenu(int id, JGuiListener* listener, int fontId, const string _title, const int&, bool showDetailsOverride, bool chooseOpponent) :
 JGuiController(JGE::GetInstance(), id, listener), fontId(fontId), mShowDetailsScreen( showDetailsOverride )
 {
 
@@ -85,6 +85,7 @@ JGuiController(JGE::GetInstance(), id, listener), fontId(fontId), mShowDetailsSc
     selectionT = 0;
     timeOpen = 0;
     mClosed = false;
+    isOpponent = chooseOpponent;
 
     if (mFont->GetStringWidth(title.c_str()) > titleWidth)
         titleFontScale = SCALE_SHRINK;
@@ -256,7 +257,12 @@ void DeckMenu::Render()
     menuholder = WResourceManager::Instance()->RetrieveTempQuad("pspmenuholder.png");//new graphics menuholder for PSP
 #else
     avatarholder = WResourceManager::Instance()->RetrieveTempQuad("avatarholder.png");//new graphics avatarholder
-    menupanel = WResourceManager::Instance()->RetrieveTempQuad("menupanel.jpg");//new graphics menupanel
+    if(isOpponent){
+        menupanel = WResourceManager::Instance()->RetrieveTempQuad("menupanel2.jpg");//try to load the new graphics menupanel for opponent.
+        if(!menupanel.get())
+            menupanel = WResourceManager::Instance()->RetrieveTempQuad("menupanel.jpg");//fallback to new graphics menupanel for player
+    } else
+        menupanel = WResourceManager::Instance()->RetrieveTempQuad("menupanel.jpg");//new graphics menupanel for player
     menuholder = WResourceManager::Instance()->RetrieveTempQuad("menuholder.png");//new graphics menuholder
 #endif
     bool inDeckMenu = backgroundName.find("DeckMenuBackdrop") != string::npos;
