@@ -3,7 +3,10 @@
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
 ### 20/09/21
-- *Committed:* Fixed primitives, improved background images management, now it's possbile to add a different background for opponent deck choosing (menupanel2.jpg) and added a new sub-folder "background" for custom themes where it will be possbile to store up to six new background images for battlefield (from "backdrop1.jpg" to "backdrop6.jpg") that will be randomly choosen when match starts. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed primitives, fixed STA set, fixed a bug in new background images management. ([Vitty85](https://github.com/Vitty85))
+
+### 20/09/21
+- *Committed:* Fixed primitives, improved background images management, now it's possbile to add a different background for opponent deck choosing (menupanel2.jpg) and added a new sub-folder "background" for custom themes where it will be possbile to store up to six new background images for battlefield (from "backdrop1.jpg" to "backdrop6.jpg") that will be randomly choosen when match starts. https://github.com/WagicProject/wagic/commit/832d033488dade9603c1be6b5c4039bde020fcd5 ([Vitty85](https://github.com/Vitty85))
 
 ### 19/09/21
 - *Committed:* Fixed a bug on sound tracks for PSP/PSVita devices, removed a test on vampired trigger due to a fake error on test suite. https://github.com/WagicProject/wagic/commit/e2a1705b3f5ec84d975e468af9d1e48b7be5c581 ([Vitty85](https://github.com/Vitty85))
