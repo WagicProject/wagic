@@ -14,16 +14,6 @@ mana={1}{R}
 type=Legendary Artifact
 [/card]
 [card]
-name=Blightbeetle
-abilities=protection from green
-text=Protection from green (This creature can't be blocked, targeted, dealt damage, enchanted, or equipped by anything green.) -- Creatures your opponents control can't have +1/+1 counters put on them.
-mana={1}{B}
-type=Creature
-subtype=Insect
-power=1
-toughness=1
-[/card]
-[card]
 name=Yarok, the Desecrated
 text=Deathtouch, lifelink -- If a permanent entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.
 mana={2}{B}{G}{U}

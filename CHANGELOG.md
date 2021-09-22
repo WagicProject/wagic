@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 21/09/21
+- *Committed:* Added/fixed primitives, replaced all occurrences of "AEther" with "Aether" in each ".txt" and ".dat" file according to the new naming convention (pull request #1072 by @remigiusz-suwalski). ([Vitty85](https://github.com/Vitty85))
+
 ### 20/09/21
-- *Committed:* Fixed primitives, fixed STA set, fixed a bug in new background images management. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed primitives, fixed STA set, fixed a bug in new background images management. https://github.com/WagicProject/wagic/commit/e2ac10be9589ce69c67c7c1c1aec21f38e570278 ([Vitty85](https://github.com/Vitty85))
 
 ### 20/09/21
 - *Committed:* Fixed primitives, improved background images management, now it's possbile to add a different background for opponent deck choosing (menupanel2.jpg) and added a new sub-folder "background" for custom themes where it will be possbile to store up to six new background images for battlefield (from "backdrop1.jpg" to "backdrop6.jpg") that will be randomly choosen when match starts. https://github.com/WagicProject/wagic/commit/832d033488dade9603c1be6b5c4039bde020fcd5 ([Vitty85](https://github.com/Vitty85))

@@ -28,8 +28,8 @@ text=When you set this scheme in motion, until your next turn, whenever a player
 type=Scheme
 [/card]
 [card]
-name=AEther Searcher
-text=Reveal AEther Searcher as you draft it. Reveal the next card you draft and note its name.  -- When AEther Searcher enters the battlefield, you may search your hand and/or library for a card with a name noted as you drafted cards named AEther Searcher. You may cast it without paying its mana cost. If you searched your library this way, shuffle it.
+name=Aether Searcher
+text=Reveal Aether Searcher as you draft it. Reveal the next card you draft and note its name.  -- When Aether Searcher enters the battlefield, you may search your hand and/or library for a card with a name noted as you drafted cards named Aether Searcher. You may cast it without paying its mana cost. If you searched your library this way, shuffle it.
 mana={7}
 type=Artifact Creature
 subtype=Construct
@@ -37,8 +37,8 @@ power=6
 toughness=4
 [/card]
 [card]
-name=AEtherplasm
-text=Whenever AEtherplasm blocks a creature, you may return AEtherplasm to its owner's hand. If you do, you may put a creature card from your hand onto the battlefield blocking that creature.
+name=Aetherplasm
+text=Whenever Aetherplasm blocks a creature, you may return Aetherplasm to its owner's hand. If you do, you may put a creature card from your hand onto the battlefield blocking that creature.
 mana={2}{U}{U}
 type=Creature
 subtype=Illusion
@@ -46,7 +46,7 @@ power=1
 toughness=1
 [/card]
 [card]
-name=AEthersnatch
+name=Aethersnatch
 text=Gain control of target spell. You may choose new targets for it. (If that spell becomes a permanent, it enters the battlefield under your control.)
 mana={4}{U}{U}
 type=Instant
@@ -879,27 +879,11 @@ power=0
 toughness=3
 [/card]
 [card]
-name=Blazing Salvo
-text=Blazing Salvo deals 3 damage to target creature unless that creature's controller has Blazing Salvo deal 5 damage to him or her.
-mana={R}
-type=Instant
-[/card]
-[card]
 name=Blessed Breath
 text=Target creature you control gains protection from the color of your choice until end of turn. -- Splice onto Arcane {W} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={W}
 type=Instant
 subtype=Arcane
-[/card]
-[card]
-name=Blightbeetle
-abilities=protection from green
-text=Protection from green (This creature can't be blocked, targeted, dealt damage, enchanted, or equipped by anything green.) -- Creatures your opponents control can't have +1/+1 counters put on them.
-mana={1}{B}
-type=Creature
-subtype=Insect
-power=1
-toughness=1
 [/card]
 [card]
 name=Blim, Comedic Genius
@@ -968,15 +952,6 @@ mana={5}{B}
 type=Creature
 subtype=Goblin Warrior
 power=4
-toughness=1
-[/card]
-[card]
-name=Bomat Courier
-text=Haste -- Whenever Bomat Courier attacks, exile the top card of your library face down. (You can't look at it.) -- {R}, Discard your hand, Sacrifice Bomat Courier: Put all cards exiled with Bomat Courier into their owners' hands.
-mana={1}
-type=Artifact Creature
-subtype=Construct
-power=1
 toughness=1
 [/card]
 [card]
@@ -1583,8 +1558,8 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-name=Chaotic AEther
-text=When you encounter Chaotic AEther, each blank roll of the planar die is a CHAOS roll until a player planeswalks away from a plane. (Then planeswalk away from this phenomenon.)
+name=Chaotic Aether
+text=When you encounter Chaotic Aether, each blank roll of the planar die is a CHAOS roll until a player planeswalks away from a plane. (Then planeswalk away from this phenomenon.)
 type=Phenomenon
 [/card]
 [card]
@@ -7278,8 +7253,8 @@ power=3
 toughness=5
 [/card]
 [card]
-name=Obscuring AEther
-text=Face-down creature spells you cast cost {1} less to cast. -- {1}{G}: Turn Obscuring AEther face down. (It becomes a 2/2 creature.)
+name=Obscuring Aether
+text=Face-down creature spells you cast cost {1} less to cast. -- {1}{G}: Turn Obscuring Aether face down. (It becomes a 2/2 creature.)
 mana={G}
 type=Enchantment
 [/card]
@@ -10553,8 +10528,8 @@ power=2
 toughness=2
 [/card]
 [card]
-name=The AEther Flues
-text=When you planeswalk to The AEther Flues or at the beginning of your upkeep, you may sacrifice a creature. If you do, reveal cards from the top of your library until you reveal a creature card, put that card onto the battlefield, then shuffle all other cards revealed this way into your library. -- Whenever you roll {C}, you may put a creature card from your hand onto the battlefield.
+name=The Aether Flues
+text=When you planeswalk to The Aether Flues or at the beginning of your upkeep, you may sacrifice a creature. If you do, reveal cards from the top of your library until you reveal a creature card, put that card onto the battlefield, then shuffle all other cards revealed this way into your library. -- Whenever you roll {C}, you may put a creature card from your hand onto the battlefield.
 type=Plane
 subtype=Iquatana
 [/card]
@@ -12038,7 +12013,7 @@ power=3
 toughness=5
 [/card]
 [card]
-name=Yet Another AEther Vortex
+name=Yet Another Aether Vortex
 text=All creatures have haste. -- Players play with the top card of their libraries revealed. -- Noninstant, nonsorcery cards on top of a library are in play under their owner's control in addition to being in that library.
 mana={3}{R}{R}
 type=Enchantment

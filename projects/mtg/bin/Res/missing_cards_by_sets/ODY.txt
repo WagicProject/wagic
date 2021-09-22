@@ -149,9 +149,3 @@ text=Whenever a player casts a spell, Dwarven Shrine deals X damage to that play
 mana={1}{R}{R}
 type=Enchantment
 [/card]
-[card]
-name=Blazing Salvo
-text=Blazing Salvo deals 3 damage to target creature unless that creature's controller has Blazing Salvo deal 5 damage to him or her.
-mana={R}
-type=Instant
-[/card]
