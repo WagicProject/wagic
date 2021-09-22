@@ -6935,17 +6935,24 @@ int TriggeredAbility::receiveEvent(WEvent * e)
     {
     if(dynamic_cast<WEventTarget*>(e))
     {
-    //@targetted trigger as per mtg rules is a state based trigger
-    //that resolves instantly before the event that targetted it.
+        //@targetted trigger as per mtg rules is a state based trigger
+        //that resolves instantly before the event that targetted it.
         resolve();
         return 1;
     }
     if(dynamic_cast<WEventCardSacrifice*>(e))
     {
-    //sacrificed event
-    //thraximundar vs bloodfore collosus, thraximundar 
-    //must be able to survive a sacrificed bloodfire collosus,
-    //same with mortician beetle vs phyrexian denouncer test
+        //sacrificed event
+        //thraximundar vs bloodfore collosus, thraximundar 
+        //must be able to survive a sacrificed bloodfire collosus,
+        //same with mortician beetle vs phyrexian denouncer test
+        resolve();
+        return 1;
+    }
+    if(dynamic_cast<WEventCardDiscard*>(e))
+    {
+        //discard event must resolve instantly or by the time they do the cards that triggered them 
+        //have already been put in graveyard.
         resolve();
         return 1;
     }

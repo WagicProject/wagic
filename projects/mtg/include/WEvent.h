@@ -66,7 +66,7 @@ struct WEventCounters : public WEvent {
   MTGCardInstance * source;
   WEventCounters(Counters *counter,string name,int power, int toughness,bool added = false, bool removed = false, MTGCardInstance * source = NULL);
   using WEvent::getTarget;
-  virtual Targetable * getTarget();
+  virtual Targetable * getTarget(int target);
 };
 
 struct WEventLife : public WEvent {
