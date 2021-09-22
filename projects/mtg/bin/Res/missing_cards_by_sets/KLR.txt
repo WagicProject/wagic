@@ -41,15 +41,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Bomat Courier
-text=Haste -- Whenever Bomat Courier attacks, exile the top card of your library face down. (You can't look at it.) -- {R}, Discard your hand, Sacrifice Bomat Courier: Put all cards exiled with Bomat Courier into their owners' hands.
-mana={1}
-type=Artifact Creature
-subtype=Construct
-power=1
-toughness=1
-[/card]
-[card]
 name=Combustible Gearhulk
 abilities=first strike
 text=First strike -- When Combustible Gearhulk enters the battlefield, target opponent may have you draw three cards. If the player doesn't, put the top three cards of your library into your graveyard, then Combustible Gearhulk deals damage to that player equal to the total converted mana cost of those cards.

@@ -1,13 +1,4 @@
 [card]
-name=Bomat Courier
-text=Haste -- Whenever Bomat Courier attacks, exile the top card of your library face down. (You can't look at it.) -- {R}, Discard your hand, Sacrifice Bomat Courier: Put all cards exiled with Bomat Courier into their owners' hands.
-mana={1}
-type=Artifact Creature
-subtype=Construct
-power=1
-toughness=1
-[/card]
-[card]
 name=Midnight Oil
 text=Midnight Oil enters the battlefield with seven hour counters on it. -- At the beginning of your draw step, draw an additional card and remove two hour counters from Midnight Oil. -- Your maximum hand size is equal to the number of hour counters on Midnight Oil. -- Whenever you discard a card, you lose 1 life.
 mana={2}{B}{B}
