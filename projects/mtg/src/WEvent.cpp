@@ -379,7 +379,7 @@ Targetable * WEventLife::getTarget(int target)
     return NULL;
 }
 
-Targetable * WEventCounters::getTarget()
+Targetable * WEventCounters::getTarget(int target)
 {
     return targetCard;
 }

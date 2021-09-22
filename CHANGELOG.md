@@ -2,10 +2,12 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
-### 21/09/21
-- *Committed:* Added/fixed primitives, replaced all occurrences of "AEther" with "Aether" in each ".txt" and ".dat" file according to the new naming convention (pull request #1072 by @remigiusz-suwalski). ([Vitty85](https://github.com/Vitty85))
+### 22/09/21
+- *Committed:* Fixed primitives, improved "@discarded", "@counteradded" and "@counterremoved" triggers in order to user "all(trigger)" target. ([Vitty85](https://github.com/Vitty85))
 
-### 20/09/21
+- *Committed:* Added/fixed primitives, replaced all occurrences of "AEther" with "Aether" in each ".txt" and ".dat" file according to the new naming convention (pull request #1072 by @remigiusz-suwalski). https://github.com/WagicProject/wagic/commit/6be219f5864226acabf58c76a874b74474f6fb04 ([Vitty85](https://github.com/Vitty85))
+
+### 21/09/21
 - *Committed:* Fixed primitives, fixed STA set, fixed a bug in new background images management. https://github.com/WagicProject/wagic/commit/e2ac10be9589ce69c67c7c1c1aec21f38e570278 ([Vitty85](https://github.com/Vitty85))
 
 ### 20/09/21
