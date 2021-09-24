@@ -2,20 +2,25 @@
 #DESC:If you ever thought
 #DESC:  that YOU had bad dreams ...
 #DESC:Wait until you meet these.
-Black Vise (RV) *1
-Wheel of Fortune (RV) *1
-Howling Mine (M10) *4
-Underworld Dreams (10E) *4
-Spiteful Visions (SHM) *4
-Sudden Impact (10E) *4
-Font of Mythos (CFX) *2
-Damnation (PLC) *4
-Infest (ALA) *4
-Lightning Bolt (M10) *4
-Terminate (ARB) *4
-Swamp (RAV) *4
-Swamp (TSP) *4
-Swamp (LRW) *4
-Swamp (ALA) *4
-Mountain (RAV) *4
-Mountain (TSP) *4
+# Land(s)
+Mountain (M10) * 8
+Swamp (M10) * 16
+
+# Artifact(s)
+Black Vise (V10) * 1
+Font of Mythos (CFX) * 2
+Howling Mine (8ED) * 4
+
+# Enchantment(s)
+Spiteful Visions (SHM) * 4
+Underworld Dreams (8ED) * 4
+
+# Instant(s)
+Lightning Bolt (M10) * 4
+Sudden Impact (8ED) * 4
+Terminate (ARB) * 4
+
+# Sorcery(s)
+Damnation (PLC) * 4
+Infest (ALA) * 4
+Wheel of Fortune (VMA) * 1
