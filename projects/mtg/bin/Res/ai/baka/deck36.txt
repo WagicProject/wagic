@@ -1,53 +1,7 @@
 #NAME:Master of Ether
-#
 #DESC:"Surrounded by the things I built
 #DESC: my power will grow
 #DESC: boundlessly."
-#
-
-Master of Etherium (ALA) *4  # gets stronger with every artifact
-
-Vedalken Archmage (MRD)  *2  # draws card when summoning artifact
-
-Ornithopter (10E)        *4  # cheap artifact, later air defense
-Nuisance Engine (MRD)    *4  # create more cheap artifacts
-
-Cathodion (MRD)          *4  # 3-drop 3/3 creature without a down-
-#                            # side since manaburn was abolished
-
-Steel Wall (MRD)         *2  # mainly for defending
-Yotian Soldier (MRD)     *2  # cheap defender
-
-Coiled Tinviper (TMP)    *1  # first strike attacker
-
-Scarecrone (EVE)         *2  # brings back artifacts
-
-Glaze Fiend (ALA)        *2  # temp. bonus for playing artifacts
-
-Salvage Slasher (CFX)    *2  # grows stronger with artifacts in
-#                            # graveyard - nice effect if opponent
-#                            # has destroyed all artifacts
-
-Silver Myr (MRD)         *4  # artifact source of blue mana (which
-#                            # is needed for the 6 Vedalken)
-
-Akroma's Memorial (FUT)  *2  # massive bonuses incl. Trample
-
-
-Island (10E)             *3  # more blue mana
-
-Seat of the Synod (MRD)  *4  # 20 artifact lands for huge bonuses
-Vault of Whispers (MRD)  *4  # on Master of Etherium and Tolarian
-Great Furnace (MRD)      *4  # Academy.
-Tree of Tales (MRD)      *4
-Ancient Den (MRD)        *4
-
-Academy Ruins (TSP)      *1  # brings back artifacts
-
-Tolarian Academy (USG)   *1  # Generates massive amounts of mana
-#                            # in this deck - which the AI usually
-#                            # wastes.
-
 
 # Cards considered, but not included:
 # Gaea's Cradle - would make the deck even stronger, but doesn't
@@ -55,3 +9,30 @@ Tolarian Academy (USG)   *1  # Generates massive amounts of mana
 #
 # Cards removed from the deck:
 # Sculpting Steel - reported to lead to crashes
+
+# Land(s)
+Ancient Den (MRD) * 4        # 20 artifact lands for huge bonuses on Master of Etherium and Tolarian Academy.
+Great Furnace (MRD) * 4
+Seat of the Synod (MRD) * 4
+Tree of Tales (MRD) * 4
+Vault of Whispers (MRD) * 4
+Academy Ruins (TSP) * 1      # brings back artifacts
+Tolarian Academy (VMA) * 1   # Generates massive amounts of mana in this deck - which the AI usually wastes.
+Island (10E) * 3
+
+# Creature(s)
+Cathodion (C14) * 4          # 3-drop 3/3 creature without a down-side since manaburn was abolished
+Coiled Tinviper (TPR) * 1    # first strike attacker
+Glaze Fiend (ALA) * 2        # temp. bonus for playing artifacts
+Master of Etherium (ALA) * 4 # gets stronger with every artifact
+Ornithopter (MRD) * 4        # cheap artifact, later air defense
+Salvage Slasher (CFX) * 2    # grows stronger with artifacts in graveyard - nice effect if opponent has destroyed all artifacts
+Scarecrone (EVE) * 2         # brings back artifacts
+Silver Myr (MRD) * 4         # artifact source of blue mana (which is needed for the 6 Vedalken)
+Steel Wall (MRD) * 2         # mainly for defending
+Vedalken Archmage (MRD) * 2  # draws card when summoning artifact
+Yotian Soldier (MRD) * 2     # cheap defender
+
+# Artifact(s)
+Akroma's Memorial (FUT) * 2  # massive bonuses incl. Trample
+Nuisance Engine (MRD) * 4    # create more cheap artifacts

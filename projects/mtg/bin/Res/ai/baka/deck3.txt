@@ -4,94 +4,36 @@
 #DESC:there is no time for dispute
 #DESC:or rivalries
 #DESC:in Eladamri and Gerrard's army
-#2x Black Vise
-1097
-1097
-#2x The Rack
-1139
-1139
-#2x Cockatrice
-1238
-1238
-#2x Craw Wurm
-1239
-1239
-#2x Giant Spider
-1249
-1249
-#2x Grizzly Bears
-1250
-1250
-#2x Ironroot Treefolk
-1253
-1253
-#1x Living Lands 
-1259
-#3x Scryb Sprites
-1264
-1264
-1264
-#4x Shanodin Dryads
-1265
-1265
-1265
-1265
-#2x Thicket Basilisk
-1267
-1267
-#1x War Mammoth 
-1277
-#1x Armageddon
-1328
 # (PSY) 2x Benalish Hero not available any more, removed (deck has still >60 cards)
-#2x Benalish Hero
-#1330
-#1330
-#2x Castle
-1334
-1334
-#2x Crusade
-1341
-1341
 # (PSY) 2x Mesa Pegasus not available any more, removed (deck has still >60 cards)
-#2x Mesa Pegasus
-#1354
-#1354
-#2x Pearled Unicorn
-1356
-1356
-#2x Savannah Lions
-1365
-1365
-#2x Serra Angel
-1366
-1366
-#2x Wrath of God
-1372
-1372
-# Forest (RV)
-1386
-1386
-1386
-1386
-1387
-1387
-1387
-1387
-1388
-1388
-1388
-1388
-# Plains (RV)
-1395
-1395
-1395
-1395
-1396
-1396
-1396
-1396
-1397
-1397
-1397
-1397
+
+# Land(s)
+Forest (8ED) * 13
+Plains (8ED) * 9
+
+# Creature(s)
+Cockatrice (TSB) * 2
+Craw Wurm (9ED) * 2
+Giant Spider (AKH) * 2
+Grizzly Bears (8ED) * 2
+Spitting Spider (8ED) * 2
+Ronom Unicorn (CSP) * 2
+Savannah Lions (A25) * 2
+Scute Mob (ZEN) * 3
+Serra Angel (M13) * 2
+Jukai Messenger (CHK) * 4
+Kessig Recluse (DKA) * 2
+Rhox Charger (ALA) * 1
+
+# Artifact(s)
+Black Vise (V10) * 2
+The Rack (DPA) * 2
+
+# Enchantment(s)
+Builder's Blessing (AVR) * 2
+Crusade (DDF) * 2
+Living Lands (ME4) * 1
+
+# Sorcery(s)
+Armageddon (VMA) * 1
+Wrath of God (8ED) * 2
