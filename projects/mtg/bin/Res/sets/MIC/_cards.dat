@@ -3,7 +3,7 @@ author=Wagic Team
 name=Midnight Hunt Commander
 orderindex=COM-S.MIC
 year=2021-09-24
-total=184
+total=188
 [/meta]
 [card]
 primitive=Beast Som2
@@ -18,6 +18,36 @@ rarity=T
 [card]
 primitive=Wolf Som
 id=-54047311
+rarity=T
+[/card]
+[card]
+primitive=Rhino
+id=-53941713
+rarity=T
+[/card]
+[card]
+primitive=Centaur
+id=-53941712
+rarity=T
+[/card]
+[card]
+primitive=Knight
+id=-53941711
+rarity=T
+[/card]
+[card]
+primitive=Elephant
+id=-53939513
+rarity=T
+[/card]
+[card]
+primitive=Wolf
+id=-53939512
+rarity=T
+[/card]
+[card]
+primitive=Snake
+id=-53939511
 rarity=T
 [/card]
 [card]
@@ -56,11 +86,6 @@ id=-540460
 rarity=T
 [/card]
 [card]
-primitive=Rhino
-id=-539417
-rarity=T
-[/card]
-[card]
 primitive=Soldier
 id=-539416
 rarity=T
@@ -78,11 +103,6 @@ rarity=T
 [card]
 primitive=Eldrazi Spawn
 id=-539400
-rarity=T
-[/card]
-[card]
-primitive=Elephant
-id=-539395
 rarity=T
 [/card]
 [card]
@@ -161,7 +181,7 @@ id=-539366
 rarity=T
 [/card]
 [card]
-primitive=Zombie
+primitive=Zombie Sti
 id=-539365
 rarity=T
 [/card]

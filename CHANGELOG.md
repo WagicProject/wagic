@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 23/09/21
+- *Committed:* Fixed primitives, fixed MIC set, improved Android downloader, added "Dungeon" and "Emblem" types in "Subtypes.h" enum definition, added a fix in "GameObserver::Affinity()" method in order to avoid a crash when the card is null or if it's a Dungeon in the commandzone. ([Vitty85](https://github.com/Vitty85))
+
 ### 22/09/21
-- *Committed:* Fixed primitives, improved "@discarded", "@counteradded" and "@counterremoved" triggers in order to user "all(trigger)" target. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed primitives, improved "@discarded", "@counteradded" and "@counterremoved" triggers in order to user "all(trigger)" target. https://github.com/WagicProject/wagic/commit/cd677111b79a4f523fa386d9db8349664b5e0b72 ([Vitty85](https://github.com/Vitty85))
 
 - *Committed:* Added/fixed primitives, replaced all occurrences of "AEther" with "Aether" in each ".txt" and ".dat" file according to the new naming convention (pull request #1072 by @remigiusz-suwalski). https://github.com/WagicProject/wagic/commit/6be219f5864226acabf58c76a874b74474f6fb04 ([Vitty85](https://github.com/Vitty85))
 

@@ -30,7 +30,9 @@ public:
         TYPE_PLANE = 15,
         TYPE_SCHEME = 16,
         TYPE_VANGUARD = 17,
-        LAST_TYPE = TYPE_VANGUARD,
+        TYPE_DUNGEON = 18,
+        TYPE_EMBLEM = 19,
+        LAST_TYPE = TYPE_EMBLEM,
     };
 
 protected:

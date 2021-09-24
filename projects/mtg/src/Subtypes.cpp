@@ -23,6 +23,8 @@ Subtypes::Subtypes()
     find("Plane");
     find("Scheme");
     find("Vanguard");
+    find("Dungeon");
+    find("Emblem");
 }
 
 int Subtypes::find(string value, bool forceAdd)
