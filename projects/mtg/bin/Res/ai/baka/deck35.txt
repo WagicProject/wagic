@@ -8,54 +8,30 @@
 #DESC:into a squirming mass
 #DESC:of these small, yet dangerous
 #DESC:... things ...
-#
-#
 
-Winged Sliver (TMP)  *2 # gives Flying
+# Land(s)
+Forest (8ED) * 12
+Island (8ED) * 3
+Mountain (8ED) * 6
+Plains (8ED) * 3
 
-Horned Sliver (TMP)  *3 # gives Trample, also 2/2 isn't bad for a
-#                       # 3-drop creature that others will pump 
+# Creature(s)
+Bonesplitter Sliver (TSP) * 4 # nice cumulative +2/+0 bonus
+Crystalline Sliver (H09) * 1  # Shroud is nice, especially in a deck with no non-creature spells
+Fury Sliver (TSP) * 2         # gives double strike, only 2 because it's a 6-drop creature
+Gemhide Sliver (TSP) * 4      # Additional mana source to get Might Slivers out faster
+Heart Sliver (H09) * 2        # gives Haste
+Horned Sliver (TPR) * 3       # gives Trample, also 2/2 isn't bad for a 3-drop creature that others will pump
+Might Sliver (TSP) * 4        # nice cumulative +2/+2 bonus
+Muscle Sliver (H09) * 4       # cheap and the +1/+1 bonus is cumulative and can't be misused by the AI
+Shadow Sliver (TSP) * 1       # might be great or bad - thrown in as an element of surprise
+Spined Sliver (H09) * 2       # gives Rampage
+Spinneret Sliver (TSP) * 3    # 2/2 Sliver for only 2 mana, also gives Reach to all slivers, which is good because we only have
+#                             # two Winged Slivers in the deck, and those might not even be played because we have few Islands.
+Talon Sliver (*) * 3          # gives First Strike
+Watcher Sliver (TSP) * 1      # nice cumulative +0/+2 bonus, but too expensive to have more of them, and we have 3 plains in the deck
+Winged Sliver (H09) * 2       # gives Flying
 
-Muscle Sliver (TMP)  *4 # cheap and the +1/+1 bonus is cumulative
-#                       # and can't be misused by the AI
-
-Heart Sliver (TMP)   *2 # gives Haste
-
-Talon Sliver (TMP)   *3 # gives First Strike
-
-Watcher Sliver (TSP) *1 # nice cumulative +0/+2 bonus, but too
-#                       # expensive to have more of them, and we
-#                       # only have 3 plains in the deck
-
-Shadow Sliver (TSP) *1  # might be great or bad - thrown in as
-#                       # an element of surprise
-
-Crystalline Sliver (STH) *1 # Shroud is nice, especially in a
-#                           # deck with no non-creature spells
-
-Bonesplitter Sliver (TSP) *4  # nice cumulative +2/+0 bonus
-
-Fury Sliver (TSP) *2    # gives double strike, only 2 because
-#                       # it's a 6-drop creature
-
-Might Sliver (TSP) *4   # nice cumulative +2/+2 bonus
-#
-Spined Sliver (STH) *2  # gives Rampage
-
-Spinneret Sliver (TSP) *3  # 2/2 Sliver for only 2 mana, also
-# gives Reach to all slivers, which is good because we only have
-# two Winged Slivers in the deck, and those might not even be
-# played because we have few Islands.
-
-Gemhide Sliver (TSP) *4 # Additional mana source to get Might
-#                       # Slivers out faster
-
-Forest (M10)   *12      # (most slivers in the deck are green)
-Island (M10)   *3       # only 4 blue creatures in the deck
-Mountain (M10) *6
-Plains (M10)   *3       # only 5 white creatures in the deck
-
-#
 # Cards considered, but not included:
 # Basal Sliver - AI too eager to sacrifice
 # Clot Sliver - would be the only black sliver left after Basal

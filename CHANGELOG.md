@@ -2,8 +2,17 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
-### 23/09/21
-- *Committed:* Fixed primitives, fixed MIC set, improved Android downloader, added "Dungeon" and "Emblem" types in "Subtypes.h" enum definition, added a fix in "GameObserver::Affinity()" method in order to avoid a crash when the card is null or if it's a Dungeon in the commandzone. ([Vitty85](https://github.com/Vitty85))
+### 25/09/21
+- *Committed:* Fixed changelog after pull merge. ([Vitty85](https://github.com/Vitty85))
+
+- *Committed:* Fixed changelog after pull merge. https://github.com/WagicProject/wagic/commit/f9f1f0f53d263d630dfd118b509f529cf1c91c77 ([Vitty85](https://github.com/Vitty85))
+
+- *Merged pull-request:* Merge pull request #1074 from remigiusz-suwalski/refactor-202d46176 - Upgrade AI decks 3, 30-36, 38 to modern frames. https://github.com/WagicProject/wagic/commit/1efc38ef0f82985b9adff5caf78783c3c347a896 ([Vitty85](https://github.com/Vitty85))
+
+- *Committed:* Fixed primitives, fixed MIC set, improved Android downloader, added "Dungeon" and "Emblem" types in "Subtypes.h" enum definition, added a fix in "GameObserver::Affinity()" method in order to avoid a crash when the card is null or if it's a Dungeon in the commandzone. https://github.com/WagicProject/wagic/commit/6538f1625eec677612478fa8ff235c9e350e517c ([Vitty85](https://github.com/Vitty85))
+
+### 24/09/21
+- *Committed:* Upgrade AI decks 3, 30-36, 38 to modern frames. https://github.com/WagicProject/wagic/commit/5810a3661085b8e2b7546d67b5ada3737e934432 ([remigiusz-suwalski](https://github.com/remigiusz-suwalski))
 
 ### 22/09/21
 - *Committed:* Fixed primitives, improved "@discarded", "@counteradded" and "@counterremoved" triggers in order to user "all(trigger)" target. https://github.com/WagicProject/wagic/commit/cd677111b79a4f523fa386d9db8349664b5e0b72 ([Vitty85](https://github.com/Vitty85))

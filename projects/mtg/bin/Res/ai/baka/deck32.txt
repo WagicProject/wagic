@@ -3,20 +3,24 @@
 #DESC:and barely present,
 #DESC:but if you let them grow
 #DESC:they will crush your army.
-Crusade (RV) *4
-Glorious Anthem (10E) *4
-Honor of the Pure (M10) *4
-Armored Ascension (M10) *2
-Swords to Plowshares (ICE) *4
-Disenchant (TMP) *3
-Paladin en-Vec (10E) *2
-Knight of Meadowgrain (LRW) *4
-Kitchen Finks (SHM) *3
-Spectral Procession (SHM) *4
-Stillmoon Cavalier (EVE) *3
-Plains (10E) *4
-Plains (M10) *4
-Plains (ALA) *4
-Plains (LRW) *4
-Plains (SHM) *4
-Plains (RAV) *3
+# Land(s)
+Plains (M21) * 23
+
+# Creature(s)
+Kitchen Finks (SHM) * 3
+Knight of Meadowgrain (LRW) * 4
+Paladin en-Vec (10E) * 2
+Stillmoon Cavalier (EVE) * 3
+
+# Enchantment(s)
+Armored Ascension (SHM) * 2
+Crusade (DDF) * 4
+Glorious Anthem (8ED) * 4
+Honor of the Pure (M10) * 4
+
+# Instant(s)
+Disenchant (TPR) * 3
+Swords to Plowshares (DDF) * 4
+
+# Sorcery(s)
+Spectral Procession (SHM) * 4
