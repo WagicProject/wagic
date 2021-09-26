@@ -3,7 +3,7 @@
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
 ### 26/09/21
-- *Committed:* Added new sets for AI, improved "genrand", "altercost" and "changecost" keywords in order to allow the usage of a variable instead of a simple number (e.g. "altercost(colorless, -phandcount)"). ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Added new decks for AI, improved "genrand", "altercost" and "changecost" keywords in order to allow the usage of a variable instead of a simple number (e.g. "altercost(colorless, -phandcount)"). ([Vitty85](https://github.com/Vitty85))
 
 ### 25/09/21
 - *Committed:* Fixed changelog after pull merge. https://github.com/WagicProject/wagic/commit/8ae7439978ace71b0759f2cfe55dfbac2cc9e253 ([Vitty85](https://github.com/Vitty85))
