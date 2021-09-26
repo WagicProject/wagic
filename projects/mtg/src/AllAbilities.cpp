@@ -7388,8 +7388,8 @@ void AAlterCost::refreshCost(MTGCardInstance * card)
         original->remove(card->getReducedManaCost());
     card->getManaCost()->copy(original);
     delete original;
-        return;
-    }
+    return;
+}
 void AAlterCost::increaseTheCost(MTGCardInstance * card)
 {
     if(card->getIncreasedManaCost()->getConvertedCost())

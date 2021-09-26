@@ -1,0 +1,27 @@
+#NAME: Kai Buide 1999
+#DESC: 1999 World Championship Deck 
+#DESC: by Kai Buide
+Mountain (*) *13
+Voltaic Key (*) * 4
+Thran Dynamo (*) * 4
+Grim Monolith (*) * 4
+Fire Diamond (*) *4
+Mishra's Helix (*) *2
+Worn Powerstone (*) *2
+City of Traitors (*) *4
+Wildfire (*) *4
+Masticore (*) *3
+Ancient Tomb (*) *3
+Karn, Silver Golem (*) *1
+Covetous Dragon (*) *4
+Earthquake (*) *4 
+Temporal Aperture (*) * 4
+
+
+#SB: Mishra's Helix (*) *1
+#SB: Spellshock (*) *4 
+#SB: Boil (*) *2
+#SB: Phyrexian Processor (*) *1
+#SB: Cursed Scroll (*) *4 
+#SB: Rack and Ruin (*) *2
+#SB: Shattering Pulse (*) *2

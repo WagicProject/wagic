@@ -1,0 +1,22 @@
+#NAME: CounterDeck
+#DESC: The Best Counter Deck Ever 
+Aetherize (*) *4
+Artificer's Epiphany (*) *4
+Counterspell (*) *2
+Dissipate (*) *2
+Downsize (*) *3
+Elixir of Immortality (*) *3
+Essence Scatter (*) *3
+Guttersnipe (*) *3
+Hydrolash (*) *2
+Island (*) *14
+Mountain (*) *8
+Opportunity (*) *2
+Prism Ring (*) *4
+Young Pyromancer (*) *3
+Cyclonic Rift (*) *3
+
+#SB: Aetherling (*) *1
+#SB: Spellheart Chimera (*) *1
+#SB: Flashfreeze (*) *3
+#SB: Negate (*) *2

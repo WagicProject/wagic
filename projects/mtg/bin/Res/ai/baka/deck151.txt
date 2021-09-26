@@ -1,0 +1,99 @@
+#NAME:Arcades Commander
+#DESC:Original Deck by ashby4 (tappedout.net),
+#DESC:refined for Wagic by Bob
+#HINT:castpriority(commander,*)
+Adarkar Wastes (*) * 1
+Akroma's Will (*) * 1
+Arcane Signet (*) * 1
+Assault Formation (*) * 1
+Aura Shards (*) * 1
+Axebane Guardian (*) * 1
+Azorius Signet (*) * 1
+Bant Panorama (*) * 1
+Blossoming Sands (*) * 1
+Bountiful Promenade (*) * 1
+Branchloft Pathway (*) * 1
+Brushland (*) * 1
+Canopy Vista (*) * 1
+Carven Caryatid (*) * 1
+Colossus of Akros (*) * 1
+Command Tower (*) * 1
+Crashing Drawbridge (*) * 1
+Dismantling Wave (*) * 1
+Drift of Phantasms (*) * 1
+Dusk // Dawn (*) * 1 
+Edge of Autumn (*) * 1
+Farseek (*) * 1
+Fell the Mighty (*) * 1
+Forest (*) * 6 
+Fortified Rampart (*) * 1
+Fortified Village (*) * 1
+Glacial Fortress (*) * 1
+Glacial Wall (*) * 1
+Hallowed Fountain (*) * 1
+High Alert (*) * 1
+Hinterland Harbor (*) * 1
+Hover Barrier (*) * 1
+Irrigated Farmland (*) * 1
+Island (*) * 2
+Jeskai Barricade (*) * 1
+Jungle Barrier (*) * 1
+Leyline of Vitality (*) * 1
+Lightning Greaves (MPS) (*) * 1
+Lumithread Field (*) * 1
+Meekstone (*) * 1
+Mirror Shield (*) * 1
+Monastery Flock (*) * 1
+Noetic Scales (*) * 1
+Oathsworn Giant (*) * 1
+Overgrown Battlement (*) * 1
+Perimeter Captain (*) * 1
+Plains (*) * 5
+Port Town (*) * 1
+Prairie Stream (*) * 1
+Rejuvenating Springs (*) * 1
+Sakura-Tribe Elder (*) * 1
+Scattered Groves (*) * 1
+Sea of Clouds (*) * 1
+Seaside Citadel (*) * 1
+Selesnya Signet (CMA) (*) * 1
+Shield Sphere (*) * 1
+Simic Signet (*) * 1
+Slagwurm Armor (*) * 1
+Slaughter the Strong (*) * 1
+Sol Ring (*) * 1
+Soulsworn Jury (DIS) (*) * 1
+Spidersilk Armor (*) * 1
+Stalwart Shield-Bearers (*) * 1
+Sunpetal Grove (*) * 1
+Sunscape Familiar (*) * 1
+Swiftfoot Boots (*) * 1
+Swords to Plowshares (*) * 1
+Sylvan Caryatid (*) * 1
+Temple Garden (*) * 1
+Temple of Enlightenment (*) * 1
+Temple of Mystery (*) * 1
+Temple of Plenty (*) * 1
+Tetsuko Umezawa, Fugitive (*) * 1
+Teyo, the Shieldmage (*) * 1
+Thallid Shell-Dweller (TSR) (*) * 1
+Thornwood Falls (*) * 1
+Tower Defense (*) * 1
+Towering Titan (*) * 1
+Tranquil Cove (*) * 1
+Tree of Redemption (*) * 1
+Treva's Ruins (*) * 1
+Vine Trellis (*) * 1
+Wall of Blossoms (*) * 1
+Wall of Denial (*) * 1
+Wall of Faith (*) * 1
+Wall of Glare (*) * 1
+Wall of Ice (*) * 1
+Wall of Junk (*) * 1
+Wall of Omens (*) * 1
+Wall of Roots (*) * 1
+Wall of Stolen Identity (*) * 1
+Wall of Tanglecord (*) * 1
+Wave of Reckoning (*) * 1
+Yavimaya Coast (*) * 1
+#CMD:Arcades, the Strategist (*) * 1
