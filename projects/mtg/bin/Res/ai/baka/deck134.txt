@@ -1,0 +1,37 @@
+#NAME: UrzaTron
+#DESC: Hellsau, 1st MTGO
+#DESC: Pauper League
+Dinrova Horror (*) *1
+Stonehorn Dignitary (*) *1
+Mnemonic Wall (*) *3
+Mulldrifter (*) *4
+Condescend (*) *2
+Forbidden Alchemy (*) *2
+Ghostly Flicker (*) *2
+Mystical Teachings (*) *2
+Counterspell (*) *2
+Impulse (*) *3
+Moment's Peace (*) *4
+Compelling Argument (*) *1
+Pulse of Murasa (*) *2
+Expedition Map (*) *4
+Prophetic Prism (*) *4
+Remote Isle (*) *1
+Island (*) *3
+Unknown Shores (*) *3
+Thornwood Falls (*) *4
+Urza's Mine (*) *4
+Urza's Power Plant (*) *4
+Urza's Tower (*) *4
+
+#SB: Dinrova Horror (*) *1
+#SB: Stonehorn Dignitary (*) *1
+#SB: Pulse of Murasa (*) *1
+#SB: Circle of Protection: Red (*) *2
+#SB: Dispel (*) *1
+#SB: Electrickery (*) *1
+#SB: Hydroblast (*) *2
+#SB: Pyroblast (*) *3
+#SB: Shattering Pulse (*) *1
+#SB: Sprout Swarm (*) *1
+#SB: Tangle (*) *1

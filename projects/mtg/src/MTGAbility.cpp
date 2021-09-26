@@ -4639,7 +4639,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         if(splitChangeCost[1].size())
         {
             vector<string> ccParameters = split( splitChangeCost[1], ':');
-            int amount = atoi(ccParameters[1].c_str());
+            WParsedInt * value = NEW WParsedInt(ccParameters[1].c_str(), NULL, card);
+            int amount = value->getValue();
             int color = Constants::GetColorStringIndex(ccParameters[0]);
             if(ccParameters[0] == "colorless")
                 color = 0;
@@ -6263,7 +6264,8 @@ MTGAbility * AbilityFactory::getManaReduxAbility(string s, int id, Spell *, MTGC
 {
     int color = -1;
     string manaCost = s.substr(s.find(",") + 1);
-
+    replace(manaCost.begin(), manaCost.end(), ')', ' ');
+    trim(manaCost);
     const string ColorStrings[] = { Constants::kManaColorless, Constants::kManaGreen, Constants::kManaBlue, Constants::kManaRed, Constants::kManaBlack, Constants::kManaWhite };
 
     for (unsigned int i = 0; i < sizeof(ColorStrings)/sizeof(ColorStrings[0]); ++i)
@@ -6280,7 +6282,8 @@ MTGAbility * AbilityFactory::getManaReduxAbility(string s, int id, Spell *, MTGC
         return NULL;
     }
     // figure out the mana cost
-    int amount = atoi(manaCost.c_str());
+    WParsedInt * value = NEW WParsedInt(manaCost.c_str(), NULL, card);
+    int amount = value->getValue();
     return NEW AAlterCost(observer, id, card, target, amount, color);
 }
 

@@ -1,0 +1,93 @@
+#NAME:Golgari ramp
+#DESC:The first Commander Format Deck
+#HINT:castpriority(commander,*)
+Mardu Shadowspear (*) *1
+Night Market Lookout (*) *1
+Pulse Tracker (*) *1
+Thornbow Archer (*) *1
+Vicious Conquistador (*) *1
+Archers' Parapet (*) *1
+Shepherd of Rot (*) *1
+Loyal Subordinate (*) *1
+Crypt Ghast (*) *1
+Rankle, Master of Pranks (*) *1
+Spawn of Mayhem (*) *1
+Twilight Prophet (*) *1
+Conduit of Ruin (*) *1
+Duplicant (*) *1
+Oblivion Sower (*) *1
+Wurmcoil Engine (*) *1
+World Breaker (*) *1
+Platinum Emperion (*) *1
+Apex Devastator (*) *1
+Blightsteel Colossus (*) *1
+Ugin, the Ineffable (*) *1
+Malakir Rebirth (*) *1
+Nature's Claim (*) *1
+Veil of Summer (*) *1
+Vicious Rumors (*) *1
+Worldly Tutor (*) *1
+Assassin's Trophy (*) *1
+Damnable Pact (*) *1
+Demonic Tutor (*) *1
+Exsanguinate (*) *1
+Farseek (*) *1
+Heroic Intervention (*) *1
+Rampant Growth (*) *1
+Three Visits (*) *1
+Torment of Hailfire (*) *1
+Agadeem's Awakening (*) *1
+Barrier Breach (*) *1
+Beast Within (*) *1
+Cultivate (*) *1
+Grim Tutor (*) *1
+Kodama's Reach (*) *1
+Toxic Deluge (*) *1
+Skyshroud Claim (*) *1
+Return of the Wildspeaker (*) *1
+Beseech the Queen (*) *1
+Turntimber Symbiosis (*) *1
+Decree of Pain (*) *1
+In Garruk's Wake (*) *1
+Sol Ring (*) *1
+Arcane Signet (*) *1
+Lightning Greaves (*) *1
+Swiftfoot Boots (*) *1
+Talisman of Resilience (*) *1
+Thought Vessel (*) *1
+God-Pharaoh's Statue (*) *1
+Staff of Nin (*) *1
+The Immortal Sun (*) *1
+Ward of Bones (*) *1
+Cryptolith Rite (*) *1
+Sanctum of Stone Fangs (*) *1
+Phyrexian Arena (*) *1
+Retreat to Hagra (*) *1
+Court of Ambition (*) *1
+Eldrazi Conscription (*) *1
+Sandwurm Convergence (*) *1
+Ancient Tomb (*) *1
+Blast Zone (*) *1
+Bojuka Bog (*) *1
+Cabal Coffers (*) *1
+Castle Garenbrig (*) *1
+Castle Locthwain (*) *1
+Command Tower (*) *1
+Crawling Barrens (*) *1
+Forest (*) *7
+Leechridden Swamp (*) *1
+Llanowar Wastes (*) *1
+Nurturing Peatland (*) *1
+Overgrown Tomb (*) *1
+Phyrexian Tower (*) *1
+Prismatic Vista (*) *1
+Reliquary Tower (*) *1
+Sanctum of Ugin (*) *1
+Swamp (*) *5
+Twilight Mire (*) *1
+Undergrowth Stadium (*) *1
+Urborg, Tomb of Yawgmoth (*) *1
+Verdant Catacombs (*) *1
+War Room (*) *1
+Woodland Cemetery (*) *1
+#CMD:Belbe, Corrupted Observer (*) *1

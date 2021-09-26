@@ -1,0 +1,26 @@
+#NAME: The New Mutatants
+#DESC: The First Ikoria Mutation Deck
+Arboreal Grazer (*) *4
+Pollywog Symbiote (*) *3
+Dryad of the Ilysian Grove (*) *2
+Vadrok, Apex of Thunder	(*) *2
+Everquill Phoenix (*) *3
+Gemrazer (*) *4
+Migratory Greathorn (*) *4
+Snapdax, Apex of the Hunt (*) *2
+Brokkos, Apex of Forever (*) *2
+Illuna, Apex of Wishes (*) *2
+Nethroi, Apex of Death (*) *2
+Beanstalk Giant // Fertile Footsteps (*) *4
+Nissa, Who Shakes the World (*) *2
+Breeding Pool (*) *2
+Forest (*) *3
+Island (*) *2
+Mountain (*) *2
+Overgrown Tomb (*) *2
+Plains (*) *2
+Sacred Foundry (*) *2
+Steam Vents (*) *1
+Stomping Ground (*) *3
+Swamp (*) *2
+Temple Garden (*) *3

@@ -1,0 +1,26 @@
+#NAME:Selesnya Magecraft
+#DESC:The Fastest Deck in 2022
+Arctic Treeline (*) * 4
+Blizzard Brawl (*) * 2
+Branchloft Pathway (*) * 4
+Charge Through (*) * 4
+Clarion Spirit (*) * 4
+Clever Lumimancer (*) * 4
+Dragonsguard Elite (*) * 4
+Guiding Voice (*) * 4
+Hall of Oracles (*) * 2
+Leonin Lightscribe (*) * 4
+Mage Duel (*) * 2
+Mavinda, Students' Advocate (*) * 2
+Monk of the Open Hand (*) * 4
+Show of Confidence (*) * 2
+Snakeskin Veil (*) * 4
+Snow-Covered Forest (*) * 4
+Snow-Covered Plains (*) * 6
+#SB:Basic Conjuration (*) * 1
+#SB:Containment Breach (*) * 1
+#SB:Environmental Sciences (*) * 1
+#SB:Expanded Anatomy (*) * 1
+#SB:Inkling Summoning (*) * 1
+#SB:Mascot Exhibition (*) * 1
+#SB:Pest Summoning (*) * 1

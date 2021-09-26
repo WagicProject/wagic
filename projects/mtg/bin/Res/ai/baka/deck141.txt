@@ -1,0 +1,90 @@
+#NAME:Omnath Commander
+#DESC:The Budget league Omnath Deck
+#HINT:castpriority(commander,*)
+Smokebraider (*) *1
+Cloudkin Seer (*) *1
+Flickerwisp (*) *1
+Kazandu Mammoth (*) *1
+Risen Reef (*) *1
+Soulherder (*) *1
+Springbloom Druid (*) *1
+Angel of Finality (*) *1
+Archaeomancer (*) *1
+Emeria Angel (*) *1
+Felidar Guardian (*) *1
+Mina and Denn, Wildborn (*) *1
+Slithermuse (*) *1
+Acidic Slime (*) *1
+Cataclysmic Gearhulk (*) *1
+Cavalier of Thorns (*) *1
+Mnemonic Wall (*) *1
+Mulldrifter (*) *1
+Yorion, Sky Nomad (*) *1
+Multani, Yavimaya's Avatar (*) *1
+Phylath, World Sculptor (*) *1
+Rampaging Baloths (*) *1
+Omnath, Locus of Rage (*) *1
+Ephemerate (*) *1
+Gelatinous Genesis (*) *1
+Path to Exile (*) *1
+Spikefield Hazard (*) *1
+Wildest Dreams (*) *1
+Disdainful Stroke (*) *1
+Growth Spiral (*) *1
+Reap the Past (*) *1
+Sejiri Shelter (*) *1
+Starstorm (*) *1
+Eerie Interlude (*) *1
+Far Wanderings (*) *1
+Ghostly Flicker (*) *1
+Harrow (*) *1
+Release to the Wind (*) *1
+Roiling Regrowth (*) *1
+Silundi Vision (*) *1
+Whirlwind Denial (*) *1
+Circuitous Route (*) *1
+Crush Contraband (*) *1
+Fact or Fiction (*) *1
+Summary Dismissal (*) *1
+Sylvan Reclamation (*) *1
+Time Wipe (*) *1
+Tragic Arrogance (*) *1
+Urban Evolution (*) *1
+Austere Command (*) *1
+Hour of Revelation (*) *1
+Nissa's Renewal (*) *1
+Sublime Epiphany (*) *1
+Ondu Inversion (*) *1
+Khalni Heart Expedition (*) *1
+Rites of Flourishing (*) *1
+Court of Bounty (*) *1
+Felidar Retreat (*) *1
+Retreat to Emeria (*) *1
+Wilderness Reclamation (*) *1
+Zendikar's Roil (*) *1
+Blighted Woodland (*) *1
+Command Tower (*) *1
+Evolving Wilds (*) *1
+Exotic Orchard (*) *1
+Field of Ruin (*) *1
+Forest (*) *7
+Frontier Bivouac (*) *1
+Gruul Guildgate (*) *1
+Gruul Turf (*) *1
+Island (*) *3
+Jungle Shrine (*) *1
+Krosan Verge (*) *1
+Mountain (*) *4
+Myriad Landscape (*) *1
+Mystic Monastery (*) *1
+Naya Panorama (*) *1
+Path of Ancestry (*) *1
+Plains (*) *4
+Scavenger Grounds (*) *1
+Seaside Citadel (*) *1
+Selesnya Guildgate (*) *1
+Selesnya Sanctuary (*) *1
+Simic Growth Chamber (*) *1
+Simic Guildgate (*) *1
+Terramorphic Expanse (*) *1
+#CMD:Omnath, Locus of Creation (*) *1
