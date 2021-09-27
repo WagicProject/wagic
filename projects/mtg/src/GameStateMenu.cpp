@@ -267,7 +267,7 @@ int GameStateMenu::gamePercentComplete() {
     for (map<string, Unlockable *>::iterator it = Unlockable::unlockables.begin(); it !=  Unlockable::unlockables.end(); ++it) {
         total++;
         if (it->second->isUnlocked())
-            total++;
+            done++;
     }
 
     total++;
