@@ -3,7 +3,9 @@
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
 ### 27/09/21
-- *Committed:* Fixed a bug on game achievements percentage calculation. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed typos on "Teferi, Who Slows the Sunset" primitive. ([Vitty85](https://github.com/Vitty85))
+
+- *Committed:* Fixed a bug on game achievements percentage calculation. https://mega.nz/file/rK4SGRQR#TzQ-2A9BH3tZIxXcsKmwKsOzXRipHH3AYEsyXoNSeY4 ([Vitty85](https://github.com/Vitty85))
 
 ### 26/09/21
 - *Committed:* Added new decks for AI, improved "genrand", "altercost" and "changecost" keywords in order to allow the usage of a variable instead of a simple number (e.g. "altercost(colorless, -phandcount)"). https://github.com/WagicProject/wagic/commit/9e3caa635dc00f60d5e908723c015dbac3bf6f7a ([Vitty85](https://github.com/Vitty85))
