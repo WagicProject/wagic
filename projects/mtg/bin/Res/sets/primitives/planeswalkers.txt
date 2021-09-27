@@ -2731,7 +2731,7 @@ name=Teferi, Who Slows the Sunset
 auto=counter(0/0,4,loyalty)
 aicode=activate transforms((,newability[target(*[zpos<=3]|mylibrary) moveto(myhand) and!( all(*[zpos<=3]|mylibrary) moveto(myreveal) and!( bottomoflibrary)! )!])) oneshot
 auto={C(0/0,1,Loyalty)}:name(+1: Tap or untap permanents) counter(0/0.1.TeferiEffect)
-auto={C(0/0,-2,Loyalty)}:name(+2: Reveal top 3 cards) ability$!name(Reveal) reveal:3 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo name(Put on bopttom) all(*|reveal) bottomoflibrary optiontwoend revealend!$ controller
+auto={C(0/0,-2,Loyalty)}:name(-2: Reveal top 3 cards) ability$!name(Reveal) reveal:3 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo name(Put on bopttom) all(*|reveal) bottomoflibrary optiontwoend revealend!$ controller
 auto={C(0/0,-7,Loyalty)}:name(-7: Get untap and draw emblem) emblem transforms((,newability[@each opponent untap:name(Untap all permanents) all(*|myBattlefield) untap],newability[@each opponent draw:name(Draw a card) draw:1 controller])) forever dontremove
 auto=@counteradded(0/0.1.TeferiEffect) from(this):name(Effect Ends) removeallcounters(0/0,1,TeferiEffect)
 auto=@counteradded(0/0.1.TeferiEffect) from(this):name(Gain 2 life) life:2 controller
