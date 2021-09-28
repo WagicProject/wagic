@@ -25,6 +25,7 @@ Subtypes::Subtypes()
     find("Vanguard");
     find("Dungeon");
     find("Emblem");
+    find("Conspiracy");
 }
 
 int Subtypes::find(string value, bool forceAdd)

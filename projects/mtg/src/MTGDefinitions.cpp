@@ -234,7 +234,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "daybound", //Card has daybound (e.g. "Brutal Cathar")
     "nightbound", //Card has nightbound (e.g. "Moonrage Brute")
     "decayed", //Card has decayed.
-    "hasstrive" //Kicker cost is a strive cost (e.g. "Aerial Formation")
+    "hasstrive", //Kicker cost is a strive cost (e.g. "Aerial Formation")
+    "isconspiracy" //The card is a conspiracy (e.g. "Double Stroke")
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

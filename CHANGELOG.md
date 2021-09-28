@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 28/09/21
+- *Committed:* Added/fixed primitives, updated the "missing_cards_by_sets" folder, added missing Conspicacy cards and tokens in CNS set, added Conspicacy cards management, added new ability "isconspiracy" to identify the Conspicacy cards into the Sideboard, added "Conspiracy" type in "Subtypes.h" enum definition, added a fix in "GameObserver::Affinity()" method in order to avoid a crash when the card is a Conspiracy in the commandzone. ([Vitty85](https://github.com/Vitty85))
+
 ### 27/09/21
-- *Committed:* Fixed typos on "Teferi, Who Slows the Sunset" primitive. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed typos on "Teferi, Who Slows the Sunset" primitive. https://github.com/WagicProject/wagic/commit/d3fad48367996118f30d4adfed60f6a5fb94955f ([Vitty85](https://github.com/Vitty85))
 
 - *Committed:* Fixed a bug on game achievements percentage calculation. https://mega.nz/file/rK4SGRQR#TzQ-2A9BH3tZIxXcsKmwKsOzXRipHH3AYEsyXoNSeY4 ([Vitty85](https://github.com/Vitty85))
 

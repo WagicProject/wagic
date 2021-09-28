@@ -328,7 +328,8 @@ class Constants
       NIGHTBOUND = 201,
       DECAYED = 202,
       HASSTRIVE = 203,
-      NB_BASIC_ABILITIES = 204,
+      ISCONSPIRACY = 204,
+      NB_BASIC_ABILITIES = 205,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

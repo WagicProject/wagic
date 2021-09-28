@@ -32,66 +32,6 @@ power=3
 toughness=2
 [/card]
 [card]
-name=Assemble the Rank and Vile
-text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Creatures you control with the chosen name have "When this creature dies, you may pay {B}. If you do, put a 2/2 black Zombie creature token onto the battlefield tapped."
-type=Conspiracy
-[/card]
-[card]
-name=Adriana's Valor
-text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Whenever a creature you control with the chosen name attacks, you may pay {W}. If you do, that creature gains indestructible until end of turn. (Damage and effects that say "destroy" don't destroy it.)
-type=Conspiracy
-[/card]
-[card]
-name=Sovereign's Realm
-text=(Start the game with this conspiracy face up in the command zone.) -- Your deck can't have basic land cards and your starting hand size is five. -- Exile a card from your hand: This turn, you may play basic land cards from outside the game. -- Basic lands you control have "{T}: Add one mana of any color to your mana pool."
-type=Conspiracy
-[/card]
-[card]
-name=Natural Unity
-text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Creatures you control with the chosen name have "At the beginning of combat on your turn, you may pay {G}. If you do, put a +1/+1 counter on this creature."
-type=Conspiracy
-[/card]
-[card]
-name=Incendiary Dissent
-text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Creatures you control with the chosen name have "{R}: This creature gets +1/+0 until end of turn."
-type=Conspiracy
-[/card]
-[card]
-name=Hymn of the Wilds
-text=(Start the game with this conspiracy face up in the command zone.) -- The first creature spell you cast each turn costs {1} less to cast. -- You can't cast instant or sorcery spells.
-type=Conspiracy
-[/card]
-[card]
-name=Hold the Perimeter
-text=(Start the game with this conspiracy face up in the command zone.) -- At the beginning of your first upkeep, put a 1/2 white Soldier creature token with defender onto the battlefield. -- At the beginning of each other player's first upkeep, that player puts a 1/1 red Goblin creature token onto the battlefield with "This creature can't block."
-type=Conspiracy
-[/card]
-[card]
-name=Hired Heist
-text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Whenever a creature you control with the chosen name deals combat damage to a player, you may pay {U}. If you do, draw a card.
-type=Conspiracy
-[/card]
-[card]
-name=Emissary's Ploy
-text=(Start the game with this conspiracy face up in the command zone.) -- Before drawing your opening hand, choose 1, 2, or 3. -- You may spend mana as though it were mana of any color to cast creature spells with converted mana cost equal to the chosen number.
-type=Conspiracy
-[/card]
-[card]
-name=Echoing Boon
-text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Whenever you cast an instant or sorcery spell, if it targets a creature you control with the chosen name, you may copy that spell and may choose new targets for the copy.
-type=Conspiracy
-[/card]
-[card]
-name=Weight Advantage
-text=(Start the game with this conspiracy face up in the command zone.) -- Each creature you control assigns combat damage equal to its toughness rather than its power.
-type=Conspiracy
-[/card]
-[card]
-name=Summoner's Bond
-text=Double agenda (Start the game with this conspiracy face down in the command zone and secretly name two different cards. You may turn this conspiracy face up any time and reveal the chosen names.) -- Whenever you cast a creature spell with one of the chosen names, you may search your library for a creature card with the other chosen name, reveal it, put it into your hand, then shuffle your library.
-type=Conspiracy
-[/card]
-[card]
 name=Ballot Broker
 text=While voting, you may vote an additional time. (The votes can be for different choices or for the same choice.)
 mana={2}{W}

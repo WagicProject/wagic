@@ -38,6 +38,7 @@ auto=bestowrule
 life:40
 offerinterruptonphase=draw
 auto=ability$!all(*[iscommander]|myzones) moveto(mycommandzone)!$ controller
+auto=ability$!all(*[isconspiracy]|mysideboard) transforms((,newability[may name(Put in commandzone) name(Put in commandzone) moveto(mycommandzone)])) onehot!$ controller
 
 auto=shuffle
 auto=draw:7

@@ -81,12 +81,6 @@ mana={2}{W}
 type=Enchantment
 [/card]
 [card]
-name=Breaking Wave
-text=You may cast Breaking Wave any time you could cast an instant if you pay {2} more to cast it. -- Simultaneously untap all tapped creatures and tap all untapped creatures.
-mana={2}{U}{U}
-type=Sorcery
-[/card]
-[card]
 name=Teferi's Response
 text=Counter target spell or ability an opponent controls that targets a land you control. If a permanent's ability is countered this way, destroy that permanent. --  Draw two cards.
 mana={1}{U}

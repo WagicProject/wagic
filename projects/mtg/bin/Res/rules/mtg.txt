@@ -40,6 +40,7 @@ auto=bestowrule
 [PLAYERS]
 life:20
 offerinterruptonphase=draw
+auto=ability$!all(*[isconspiracy]|mysideboard) transforms((,newability[may name(Put in commandzone) name(Put in commandzone) moveto(mycommandzone)])) onehot!$ controller
 
 auto=sethand:7
 auto=@each my draw:draw:1

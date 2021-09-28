@@ -98,12 +98,3 @@ subtype=Human Wizard
 power=5
 toughness=5
 [/card]
-[card]
-name=Brain Gorgers
-text=When you cast Brain Gorgers, any player may sacrifice a creature. If a player does, counter Brain Gorgers. -- Madness {1}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
-mana={3}{B}
-type=Creature
-subtype=Zombie
-power=4
-toughness=2
-[/card]

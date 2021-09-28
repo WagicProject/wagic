@@ -118,16 +118,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Adriana's Valor
-text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Whenever a creature you control with the chosen name attacks, you may pay {W}. If you do, that creature gains indestructible until end of turn. (Damage and effects that say "destroy" don't destroy it.)
-type=Conspiracy
-[/card]
-[card]
-name=Advantageous Proclamation
-text=(Start the game with this conspiracy face up in the command zone.) -- Your minimum deck size is reduced by five.
-type=Conspiracy
-[/card]
-[card]
 name=Adventurers' Guildhouse
 text=Green legendary creatures you control have "bands with other legendary creatures." (Any legendary creatures can attack in a band as long as at least one has "bands with other legendary creatures." Bands are blocked as a group. If at least two legendary creatures you control, one of which has "bands with other legendary creatures," are blocking or being blocked by the same creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 type=Land
@@ -464,11 +454,6 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Assemble the Rank and Vile
-text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Creatures you control with the chosen name have "When this creature dies, you may pay {B}. If you do, put a 2/2 black Zombie creature token onto the battlefield tapped."
-type=Conspiracy
-[/card]
-[card]
 name=Assquatch
 text=Each other Donkey gets +1½/+1½. -- Whenever another Donkey comes into play, untap target creature and gain control of it until end of turn. That creature gains haste until end of turn.
 mana={4}{R}
@@ -624,11 +609,6 @@ name=Backslide
 text=Turn target creature with morph face down. -- Cycling {U} ({U}, Discard this card: Draw a card.)
 mana={1}{U}
 type=Instant
-[/card]
-[card]
-name=Backup Plan
-text=(Start the game with this conspiracy face up in the command zone.) -- Draw an additional hand of seven cards as the game begins. Before taking mulligans, shuffle all but one of your hands into your library.
-type=Conspiracy
 [/card]
 [card]
 name=Bad Ass
@@ -1072,11 +1052,6 @@ power=1
 toughness=4
 [/card]
 [card]
-name=Brago's Favor
-text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Spells with the chosen name you cast cost {1} less to cast.
-type=Conspiracy
-[/card]
-[card]
 name=Brago's Representative
 text=While voting, you get an additional vote. (The votes can be for different choices or for the same choice.)
 mana={2}{W}
@@ -1086,46 +1061,10 @@ power=1
 toughness=4
 [/card]
 [card]
-name=Brain Gorgers
-text=When you cast Brain Gorgers, any player may sacrifice a creature. If a player does, counter Brain Gorgers. -- Madness {1}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
-mana={3}{B}
-type=Creature
-subtype=Zombie
-power=4
-toughness=2
-[/card]
-[card]
-name=Brain Pry
-text=Name a nonland card. Target player reveals his or her hand. That player discards a card with that name. If he or she can't, you draw a card.
-mana={1}{B}
-type=Sorcery
-[/card]
-[card]
 name=Break Open
 text=Turn target face-down creature an opponent controls face up.
 mana={1}{R}
 type=Instant
-[/card]
-[card]
-name=Breaking Point
-text=Any player may have Breaking Point deal 6 damage to him or her. If no one does, destroy all creatures. Creatures destroyed this way can't be regenerated.
-mana={1}{R}{R}
-type=Sorcery
-[/card]
-[card]
-name=Breaking Wave
-text=You may cast Breaking Wave any time you could cast an instant if you pay {2} more to cast it. -- Simultaneously untap all tapped creatures and tap all untapped creatures.
-mana={2}{U}{U}
-type=Sorcery
-[/card]
-[card]
-name=Briarbridge Patrol
-text=Whenever Briarbridge Patrol deals damage to one or more creatures, investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.") -- At the beginning of each end step, if you sacrificed three or more Clues this turn, you may put a creature card from your hand onto the battlefield.
-mana={3}{G}
-type=Creature
-subtype=Human Warrior
-power=3
-toughness=3
 [/card]
 [card]
 name=Brilliant Ultimatum
@@ -2600,11 +2539,6 @@ mana={3}{G}{G}
 type=Sorcery
 [/card]
 [card]
-name=Double Stroke
-text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Whenever you cast an instant or sorcery spell with the chosen name, you may copy it. You may choose new targets for the copy.
-type=Conspiracy
-[/card]
-[card]
 name=Doubling Chant
 text=For each creature you control, you may search your library for a creature card with the same name as that creature. Put those cards onto the battlefield, then shuffle your library.
 mana={5}{G}
@@ -2749,11 +2683,6 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Echoing Boon
-text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Whenever you cast an instant or sorcery spell, if it targets a creature you control with the chosen name, you may copy that spell and may choose new targets for the copy.
-type=Conspiracy
-[/card]
-[card]
 name=Edge of Malacol
 text=If a creature you control would untap during your untap step, put two +1/+1 counters on it instead. -- Whenever you roll {K}, untap each creature you control.
 type=Plane
@@ -2827,11 +2756,6 @@ type=Creature
 subtype=Efreet
 power=6
 toughness=5
-[/card]
-[card]
-name=Emissary's Ploy
-text=(Start the game with this conspiracy face up in the command zone.) -- Before drawing your opening hand, choose 1, 2, or 3. -- You may spend mana as though it were mana of any color to cast creature spells with converted mana cost equal to the chosen number.
-type=Conspiracy
 [/card]
 [card]
 name=Emrakul, the Promised End
@@ -4504,11 +4428,6 @@ mana={W}
 type=Enchantment
 [/card]
 [card]
-name=Hired Heist
-text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Whenever a creature you control with the chosen name deals combat damage to a player, you may pay {U}. If you do, draw a card.
-type=Conspiracy
-[/card]
-[card]
 name=Hoarder's Greed
 text=You lose 2 life and draw two cards, then clash with an opponent. If you win, repeat this process. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={3}{B}
@@ -4532,11 +4451,6 @@ type=Creature
 subtype=Zombie
 power=2
 toughness=1
-[/card]
-[card]
-name=Hold the Perimeter
-text=(Start the game with this conspiracy face up in the command zone.) -- At the beginning of your first upkeep, put a 1/2 white Soldier creature token with defender onto the battlefield. -- At the beginning of each other player's first upkeep, that player puts a 1/1 red Goblin creature token onto the battlefield with "This creature can't block."
-type=Conspiracy
 [/card]
 [card]
 name=Honorable Passage
@@ -4624,11 +4538,6 @@ type=Creature
 subtype=Hippogriff
 power=2
 toughness=1
-[/card]
-[card]
-name=Hymn of the Wilds
-text=(Start the game with this conspiracy face up in the command zone.) -- The first creature spell you cast each turn costs {1} less to cast. -- You can't cast instant or sorcery spells.
-type=Conspiracy
 [/card]
 [card]
 name=Hypnotic Swirly Disc
@@ -4787,11 +4696,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Immediate Action
-text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Creatures you control with the chosen name have haste.
-type=Conspiracy
-[/card]
-[card]
 name=Immersturm
 text=Whenever a creature enters the battlefield, that creature's controller may have it deal damage equal to its power to target creature or player of his or her choice. -- Whenever you roll {C}, exile target creature, then return it to the battlefield under its owner's control.
 type=Plane
@@ -4827,11 +4731,6 @@ name=Impulsive Maneuvers
 text=Whenever a creature attacks, flip a coin. If you win the flip, the next time that creature would deal combat damage this turn, it deals double that damage instead. If you lose the flip, the next time that creature would deal combat damage this turn, prevent that damage.
 mana={2}{R}{R}
 type=Enchantment
-[/card]
-[card]
-name=Incendiary Dissent
-text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Creatures you control with the chosen name have "{R}: This creature gets +1/+0 until end of turn."
-type=Conspiracy
 [/card]
 [card]
 name=Incite Insight
@@ -5056,11 +4955,6 @@ type=Creature
 subtype=Elemental Horror
 power=5
 toughness=4
-[/card]
-[card]
-name=Iterative Analysis
-text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Whenever you cast an instant or sorcery spell with the chosen name, you may draw a card.
-type=Conspiracy
 [/card]
 [card]
 name=Ixidor, Reality Sculptor
@@ -6792,11 +6686,6 @@ text=When you encounter Mutual Epiphany, each player draws four cards. (Then pla
 type=Phenomenon
 [/card]
 [card]
-name=Muzzio's Preparations
-text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Each creature you control with the chosen name enters the battlefield with an additional +1/+1 counter on it.
-type=Conspiracy
-[/card]
-[card]
 name=My Crushing Masterstroke
 text=When you set this scheme in motion, gain control of all nonland permanents your opponents control until end of turn. Untap those permanents. They gain haste until end of turn. Each of them attacks its owner this turn if able.
 type=Scheme
@@ -6933,11 +6822,6 @@ type=Creature
 subtype=Elf Warrior
 power=4
 toughness=2
-[/card]
-[card]
-name=Natural Unity
-text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Creatures you control with the chosen name have "At the beginning of combat on your turn, you may pay {G}. If you do, put a +1/+1 counter on this creature."
-type=Conspiracy
 [/card]
 [card]
 name=Nature Demands an Offering
@@ -7919,15 +7803,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Prince of Thralls
-text=Whenever a permanent an opponent controls is put into a graveyard, put that card onto the battlefield under your control unless that opponent pays 3 life.
-mana={4}{U}{B}{B}{R}
-type=Creature
-subtype=Demon
-power=7
-toughness=7
-[/card]
-[card]
 name=Prismatic Circle
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- As Prismatic Circle enters the battlefield, choose a color. -- {1}: The next time a source of your choice of the chosen color would deal damage to you this turn, prevent that damage.
 mana={2}{W}
@@ -8862,16 +8737,6 @@ mana={G}{U}
 type=Enchantment
 [/card]
 [card]
-name=Secret Summoning
-text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Whenever a creature with the chosen name enters the battlefield under your control, you may search your library for any number of cards with that name, reveal them, put them into your hand, then shuffle your library.
-type=Conspiracy
-[/card]
-[card]
-name=Secrets of Paradise
-text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Creatures you control with the chosen name have "{T}: Add one mana of any color to your mana pool."
-type=Conspiracy
-[/card]
-[card]
 name=Selective Adaptation
 text=Reveal the top seven cards of your library. Choose from among them a card with flying, a card with first strike, and so on for double strike, deathtouch, haste, hexproof, indestructible, lifelink, menace, reach, trample, and vigilance. Put one of the chosen cards onto the battlefield, the other chosen cards into your hand, and the rest into your graveyard.
 mana={4}{G}{G}
@@ -8913,11 +8778,6 @@ type=Artifact Creature
 subtype=Shapeshifter
 power=1
 toughness=1
-[/card]
-[card]
-name=Sentinel Dispatch
-text=(Start the game with this conspiracy face up in the command zone.) -- At the beginning of the first upkeep, put a 1/1 colorless Construct artifact creature token with defender onto the battlefield.
-type=Conspiracy
 [/card]
 [card]
 name=Sentry Oak
@@ -9585,11 +9445,6 @@ type=Instant
 subtype=Arcane
 [/card]
 [card]
-name=Sovereign's Realm
-text=(Start the game with this conspiracy face up in the command zone.) -- Your deck can't have basic land cards and your starting hand size is five. -- Exile a card from your hand: This turn, you may play basic land cards from outside the game. -- Basic lands you control have "{T}: Add one mana of any color to your mana pool."
-type=Conspiracy
-[/card]
-[card]
 name=Spark Fiend
 text=When Spark Fiend comes into play, roll two six-sided dice. On a total of 2, 3, or 12, sacrifice Spark Fiend. On a total of 7 or 11, do not roll dice for Spark Fiend during any of your following upkeep phases. If you roll any other total, note it. -- During your upkeep, roll two six-sided dice. On a total of 7, sacrifice Spark Fiend. If you roll the noted total, do not roll dice for Spark Fiend during any of your following upkeep phases. On any other roll, there is no effect.
 mana={4}{R}
@@ -10205,11 +10060,6 @@ name=Summon the Pack
 text=Open a sealed Magic booster pack, reveal the cards, and put all creature cards revealed this way onto the battlefield under your control. They're Zombies in addition to their other types. (Remove those cards from your deck before beginning a new game.)
 mana={7}{B}
 type=Sorcery
-[/card]
-[card]
-name=Summoner's Bond
-text=Double agenda (Start the game with this conspiracy face down in the command zone and secretly name two different cards. You may turn this conspiracy face up any time and reveal the chosen names.) -- Whenever you cast a creature spell with one of the chosen names, you may search your library for a creature card with the other chosen name, reveal it, put it into your hand, then shuffle your library.
-type=Conspiracy
 [/card]
 [card]
 name=Suncleanser
@@ -11191,11 +11041,6 @@ text={T}: Add {X}. -- {T}: Add one mana of any color. Spend this mana only to pa
 type=Land
 [/card]
 [card]
-name=Unexpected Potential
-text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- You may spend mana as though it were mana of any color to cast spells with the chosen name.
-type=Conspiracy
-[/card]
-[card]
 name=Unholy Citadel
 text=Black legendary creatures you control have "bands with other legendary creatures." (Any legendary creatures can attack in a band as long as at least one has "bands with other legendary creatures." Bands are blocked as a group. If at least two legendary creatures you control, one of which has "bands with other legendary creatures," are blocking or being blocked by the same creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 type=Land
@@ -11693,11 +11538,6 @@ mana={3}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Weight Advantage
-text=(Start the game with this conspiracy face up in the command zone.) -- Each creature you control assigns combat damage equal to its toughness rather than its power.
-type=Conspiracy
-[/card]
-[card]
 name=Weight of Conscience
 text=Enchant creature -- Enchanted creature can't attack. -- Tap two untapped creatures you control that share a creature type: Exile enchanted creature.
 mana={1}{W}
@@ -11930,11 +11770,6 @@ name=World-Bottling Kit
 text={5}, Sacrifice World-Bottling Kit: Choose a Magic set. Remove from the game all permanents with that set's expansion symbol except for basic lands.
 mana={5}
 type=Artifact
-[/card]
-[card]
-name=Worldknit
-text=(Start the game with this conspiracy face up in the command zone.) -- As long as every card in your card pool started the game in your library or in the command zone, lands you control have "{T}: Add one mana of any color to your mana pool."
-type=Conspiracy
 [/card]
 [card]
 name=Worst Fears
