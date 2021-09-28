@@ -90,12 +90,6 @@ mana={1}{G}{U}
 type=Instant
 [/card]
 [card]
-name=Brain Pry
-text=Name a nonland card. Target player reveals his or her hand. That player discards a card with that name. If he or she can't, you draw a card.
-mana={1}{B}
-type=Sorcery
-[/card]
-[card]
 name=Muse Vessel
 text={3}, {T}: Target player exiles a card from his or her hand. Activate this ability only any time you could cast a sorcery. -- {1}: Choose a card exiled with Muse Vessel. You may play that card this turn.
 mana={4}

@@ -35,15 +35,6 @@ mana={2}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Briarbridge Patrol
-text=Whenever Briarbridge Patrol deals damage to one or more creatures, investigate. (Put a colorless Clue artifact token onto the battlefield with "{2}, Sacrifice this artifact: Draw a card.") -- At the beginning of each end step, if you sacrificed three or more Clues this turn, you may put a creature card from your hand onto the battlefield.
-mana={3}{G}
-type=Creature
-subtype=Human Warrior
-power=3
-toughness=3
-[/card]
-[card]
 name=Moonlight Hunt
 text=Choose target creature you don't control. Each creature you control that's a Wolf or a Werewolf deals damage equal to its power to that creature.
 mana={1}{G}

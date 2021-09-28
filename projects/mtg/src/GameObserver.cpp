@@ -1179,7 +1179,7 @@ void GameObserver::Affinity()
             for (int cc = zone->nb_cards - 1; cc >= 0; cc--)
             {//start
                 MTGCardInstance * card = zone->cards[cc];
-                if (!card || card->hasType(Subtypes::TYPE_DUNGEON)) // Fix to avoid crash when the card is null or if is a Dungeon in the commandzone.
+                if (!card || card->hasType(Subtypes::TYPE_DUNGEON) || card->hasType(Subtypes::TYPE_CONSPIRACY)) // Fix to avoid crash when the card is null or if is a Dungeon/Conspiracy in the commandzone.
                     continue;
 
                 bool checkAuraP = false;

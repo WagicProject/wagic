@@ -77,11 +77,6 @@ mana={4}
 type=Legendary Artifact
 [/card]
 [card]
-name=Iterative Analysis
-text=Hidden agenda (Start the game with this conspiracy face down in the command zone and secretly name a card. You may turn this conspiracy face up any time and reveal the chosen name.) -- Whenever you cast an instant or sorcery spell with the chosen name, you may draw a card.
-type=Conspiracy
-[/card]
-[card]
 name=Krark's Thumb
 text=If you would flip a coin, instead flip two coins and ignore one.
 mana={2}

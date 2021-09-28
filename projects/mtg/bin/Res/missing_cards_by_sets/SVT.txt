@@ -1,6 +1,0 @@
-[card]
-name=Breaking Point
-text=Any player may have Breaking Point deal 6 damage to him or her. If no one does, destroy all creatures. Creatures destroyed this way can't be regenerated.
-mana={1}{R}{R}
-type=Sorcery
-[/card]

@@ -32,7 +32,8 @@ public:
         TYPE_VANGUARD = 17,
         TYPE_DUNGEON = 18,
         TYPE_EMBLEM = 19,
-        LAST_TYPE = TYPE_EMBLEM,
+        TYPE_CONSPIRACY = 20,
+        LAST_TYPE = TYPE_CONSPIRACY,
     };
 
 protected:
