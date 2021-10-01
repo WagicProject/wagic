@@ -63,15 +63,6 @@ power=5
 toughness=5
 [/card]
 [card]
-name=Urza's Avenger
-text={0}: Urza's Avenger gets -1/-1 and gains your choice of banding, flying, first strike, or trample until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
-mana={6}
-type=Artifact Creature
-subtype=Shapeshifter
-power=4
-toughness=4
-[/card]
-[card]
 name=Tawnos's Coffin
 text=You may choose not to untap Tawnos's Coffin during your untap step. -- {3}, {T}: Exile target creature and all Auras attached to it. Note the number and kind of counters that were on that creature. When Tawnos's Coffin leaves the battlefield or becomes untapped, return the exiled card to the battlefield under its owner's control tapped with the noted number and kind of counters on it, and if you do, return the exiled Aura cards to the battlefield under their owner's control attached to that permanent.
 mana={4}

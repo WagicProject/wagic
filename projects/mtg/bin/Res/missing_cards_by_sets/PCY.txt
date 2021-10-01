@@ -14,12 +14,6 @@ mana={R}
 type=Enchantment
 [/card]
 [card]
-name=Psychic Theft
-text=Target player reveals his or her hand. You choose an instant or sorcery card from it and exile that card. You may cast that card for as long as it remains exiled. At the beginning of the next end step, if you haven't cast the card, return it to its owner's hand.
-mana={1}{U}
-type=Sorcery
-[/card]
-[card]
 name=Search for Survivors
 text=Reorder your graveyard at random. An opponent chooses a card at random in your graveyard. If it's a creature card, put it onto the battlefield. Otherwise, exile it.
 mana={2}{R}

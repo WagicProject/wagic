@@ -61,15 +61,6 @@ mana={4}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Unblinking Bleb
-text=Morph {2}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- Whenever Unblinking Bleb or another permanent is turned face up, you may scry 2. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
-mana={3}{U}
-type=Creature
-subtype=Illusion
-power=1
-toughness=3
-[/card]
-[card]
 name=Bitter Ordeal
 text=Search target player's library for a card and exile it. Then that player shuffles his or her library. -- Gravestorm (When you cast this spell, copy it for each permanent put into a graveyard this turn. You may choose new targets for the copies.)
 mana={2}{B}

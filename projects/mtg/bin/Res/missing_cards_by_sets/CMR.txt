@@ -8,15 +8,6 @@ power=2
 toughness=4
 [/card]
 [card]
-name=Rakdos, Lord of Riots
-text=You can't cast Rakdos, Lord of Riots unless an opponent lost life this turn. -- Flying, trample -- Creature spells you cast cost {1} less to cast for each 1 life your opponents have lost this turn.
-mana={B}{B}{R}{R}
-type=Legendary Creature
-subtype=Demon
-power=6
-toughness=6
-[/card]
-[card]
 name=Marath, Will of the Wild
 text=Marath, Will of the Wild enters the battlefield with a number of +1/+1 counters on it equal to the amount of mana spent to cast it. -- {X}, Remove X +1/+1 counters from Marath: Choose one -- Put X +1/+1 counters on target creature. X can't be 0. -- Marath deals X damage to target creature or player. X can't be 0. -- Put an X/X green Elemental creature token onto the battlefield. X can't be 0.
 mana={R}{G}{W}
