@@ -219,15 +219,6 @@ mana={U}
 type=Instant
 [/card]
 [card]
-name=Urza's Avenger
-text={0}: Urza's Avenger gets -1/-1 and gains your choice of banding, flying, first strike, or trample until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
-mana={6}
-type=Artifact Creature
-subtype=Shapeshifter
-power=4
-toughness=4
-[/card]
-[card]
 name=Shapeshifter
 text=As Shapeshifter enters the battlefield, choose a number between 0 and 7. -- At the beginning of your upkeep, you may choose a number between 0 and 7. -- Shapeshifter's power is equal to the last chosen number and its toughness is equal to 7 minus that number.
 mana={6}

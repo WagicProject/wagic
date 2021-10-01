@@ -1,11 +1,4 @@
 [card]
-name=Rakdos Riteknife
-text=Equipped creature gets +1/+0 for each blood counter on Rakdos Riteknife and has "{T}, Sacrifice a creature: Put a blood counter on Rakdos Riteknife." -- {B}{R}, Sacrifice Rakdos Riteknife: Target player sacrifices a permanent for each blood counter on Rakdos Riteknife. -- Equip {2}
-mana={2}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
 name=Kill-Suit Cultist
 text=Kill-Suit Cultist attacks each turn if able. -- {B}, Sacrifice Kill-Suit Cultist: The next time damage would be dealt to target creature this turn, destroy that creature instead.
 mana={R}

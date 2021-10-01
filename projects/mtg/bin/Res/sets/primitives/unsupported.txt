@@ -1136,12 +1136,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Brutal Expulsion
-text=Devoid (This card has no color.) -- Choose one or both -- Return target spell or creature to its owner's hand. -- Brutal Expulsion deals 2 damage to target creature or planeswalker. If that permanent would be put into a graveyard this turn, exile it instead.
-mana={2}{U}{R}
-type=Instant
-[/card]
-[card]
 name=Brutal Suppression
 text=Activated abilities of nontoken Rebels cost an additional "Sacrifice a land" to activate.
 mana={R}
@@ -7815,15 +7809,6 @@ mana={W}
 type=Sorcery
 [/card]
 [card]
-name=Profaner of the Dead
-text=Exploit (When this creature enters the battlefield, you may sacrifice a creature.) -- When Profaner of the Dead exploits a creature, return to their owners' hands all creatures your opponents control with toughness less than the exploited creature's toughness.
-mana={3}{U}
-type=Creature
-subtype=Naga Wizard
-power=3
-toughness=3
-[/card]
-[card]
 name=Proper Laboratory Attire
 text=Equipped creature gets +2/+1 and has protection from die rolls. (Nothing that lets a player roll a die can block, target, deal damage to, or attach to equipped creature.) -- Equip {2}
 mana={1}
@@ -7875,12 +7860,6 @@ name=Psychic Rebuttal
 text=Counter target instant or sorcery spell that targets you. -- Spell mastery - If there are two or more instant and/or sorcery cards in your graveyard, you may copy the spell countered this way. You may choose new targets for the copy.
 mana={1}{U}
 type=Instant
-[/card]
-[card]
-name=Psychic Theft
-text=Target player reveals his or her hand. You choose an instant or sorcery card from it and exile that card. You may cast that card for as long as it remains exiled. At the beginning of the next end step, if you haven't cast the card, return it to its owner's hand.
-mana={1}{U}
-type=Sorcery
 [/card]
 [card]
 name=Puca's Mischief
@@ -8050,22 +8029,6 @@ name=Raiding Party
 text=Raiding Party can't be the target of white spells or abilities from white sources. --  -- Sacrifice an Orc: Each player may tap any number of untapped white creatures he or she controls. For each creature tapped this way, that player chooses up to two Plains. Then destroy all Plains that weren't chosen this way by any player.
 mana={2}{R}
 type=Enchantment
-[/card]
-[card]
-name=Rakdos Riteknife
-text=Equipped creature gets +1/+0 for each blood counter on Rakdos Riteknife and has "{T}, Sacrifice a creature: Put a blood counter on Rakdos Riteknife." -- {B}{R}, Sacrifice Rakdos Riteknife: Target player sacrifices a permanent for each blood counter on Rakdos Riteknife. -- Equip {2}
-mana={2}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
-name=Rakdos, Lord of Riots
-text=You can't cast Rakdos, Lord of Riots unless an opponent lost life this turn. -- Flying, trample -- Creature spells you cast cost {1} less to cast for each 1 life your opponents have lost this turn.
-mana={B}{B}{R}{R}
-type=Legendary Creature
-subtype=Demon
-power=6
-toughness=6
 [/card]
 [card]
 name=Rally the Horde
@@ -8511,15 +8474,6 @@ power=2
 toughness=5
 [/card]
 [card]
-name=Rushing-Tide Zubera
-text=When Rushing-Tide Zubera dies, if 4 or more damage was dealt to it this turn, draw three cards.
-mana={2}{U}{U}
-type=Creature
-subtype=Zubera Spirit
-power=3
-toughness=3
-[/card]
-[card]
 name=Rust
 text=Counter target activated ability from an artifact source. (Mana abilities can't be targeted.)
 mana={G}
@@ -8814,12 +8768,6 @@ type=Creature
 subtype=Wurm
 power=+3
 toughness=+3
-[/card]
-[card]
-name=Serpentine Spike
-text=Devoid (This card has no color.) -- Serpentine Spike deals 2 damage to target creature, 3 damage to another target creature, and 4 damage to a third target creature. If a creature dealt damage this way would die this turn, exile it instead.
-mana={5}{R}{R}
-type=Sorcery
 [/card]
 [card]
 name=Serra's Hymn
@@ -10739,12 +10687,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Titan's Presence
-text=As an additional cost to cast Titan's Presence, reveal a colorless creature card from your hand. -- Exile target creature if its power is less than or equal to the revealed card's power.
-mana={3}
-type=Instant
-[/card]
-[card]
 name=Titan's Revenge
 text=Titan's Revenge deals X damage to target creature or player. Clash with an opponent. If you win, return Titan's Revenge to its owner's hand. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={X}{R}{R}
@@ -11009,15 +10951,6 @@ power=4
 toughness=5
 [/card]
 [card]
-name=Unblinking Bleb
-text=Morph {2}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- Whenever Unblinking Bleb or another permanent is turned face up, you may scry 2. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
-mana={3}{U}
-type=Creature
-subtype=Illusion
-power=1
-toughness=3
-[/card]
-[card]
 name=Unbound Flourishing
 text=Whenever you cast a permanent spell with a mana cost that contains {X}, double the value of X. -- Whenever you cast an instant or sorcery spell or activate an ability, if that spell's mana cost or that ability's activation cost contains {X}, copy that spell or ability. You may choose new targets for the copy.
 mana={2}{G}
@@ -11050,15 +10983,6 @@ name=Unpredictable Cyclone
 text=If a cycling ability of another nonland card would cause you to draw a card, instead exile cards from the top of your library until you exile a card that shares a card type with the cycled card. You may cast that card without paying its mana cost. Then put the exiled cards that weren't cast this way on the bottom of your library in a random order. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={3}{R}{R}
 type=Enchantment
-[/card]
-[card]
-name=Urza's Avenger
-text={0}: Urza's Avenger gets -1/-1 and gains your choice of banding, flying, first strike, or trample until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
-mana={6}
-type=Artifact Creature
-subtype=Shapeshifter
-power=4
-toughness=4
 [/card]
 [card]
 name=Urza's Contact Lenses

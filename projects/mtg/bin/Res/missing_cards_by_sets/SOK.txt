@@ -13,15 +13,6 @@ type=Sorcery
 subtype=Arcane
 [/card]
 [card]
-name=Rushing-Tide Zubera
-text=When Rushing-Tide Zubera dies, if 4 or more damage was dealt to it this turn, draw three cards.
-mana={2}{U}{U}
-type=Creature
-subtype=Zubera Spirit
-power=3
-toughness=3
-[/card]
-[card]
 name=Sakashima the Impostor
 text=You may have Sakashima the Impostor enter the battlefield as a copy of any creature on the battlefield, except its name is still Sakashima the Impostor, it's legendary in addition to its other types, and it gains "{2}{U}{U}: Return Sakashima the Impostor to its owner's hand at the beginning of the next end step."
 mana={2}{U}{U}

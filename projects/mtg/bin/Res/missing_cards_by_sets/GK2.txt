@@ -35,12 +35,3 @@ subtype=Ooze Mutant
 power=4
 toughness=6
 [/card]
-[card]
-name=Rakdos, Lord of Riots
-text=You can't cast Rakdos, Lord of Riots unless an opponent lost life this turn. -- Flying, trample -- Creature spells you cast cost {1} less to cast for each 1 life your opponents have lost this turn.
-mana={B}{B}{R}{R}
-type=Legendary Creature
-subtype=Demon
-power=6
-toughness=6
-[/card]

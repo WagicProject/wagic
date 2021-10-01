@@ -23,15 +23,6 @@ mana={5}{R}
 type=Enchantment
 [/card]
 [card]
-name=Rakdos, Lord of Riots
-text=You can't cast Rakdos, Lord of Riots unless an opponent lost life this turn. -- Flying, trample -- Creature spells you cast cost {1} less to cast for each 1 life your opponents have lost this turn.
-mana={B}{B}{R}{R}
-type=Legendary Creature
-subtype=Demon
-power=6
-toughness=6
-[/card]
-[card]
 name=Tablet of the Guilds
 text=As Tablet of the Guilds enters the battlefield, choose two colors. -- Whenever you cast a spell, if it's at least one of the chosen colors, you gain 1 life for each of the chosen colors it is.
 mana={2}
