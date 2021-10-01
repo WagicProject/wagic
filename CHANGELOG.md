@@ -3,7 +3,9 @@
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
 ### 01/10/21
-- *Committed:* Added/fixed primitives, updated the "missing_cards_by_sets" folder. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Added "--no-check-certificate" option to download the PSP SDK. ([Vitty85](https://github.com/Vitty85))
+
+- *Committed:* Added/fixed primitives, updated the "missing_cards_by_sets" folder. https://github.com/WagicProject/wagic/commit/89024241a874102cebb9a5c8b0c764973171c2eb ([Vitty85](https://github.com/Vitty85))
 
 ### 28/09/21
 - *Committed:* Added/fixed primitives, updated the "missing_cards_by_sets" folder, added missing Conspicacy cards and tokens in CNS set, added Conspicacy cards management, added new ability "isconspiracy" to identify the Conspicacy cards into the Sideboard, added "Conspiracy" type in "Subtypes.h" enum definition, added a fix in "GameObserver::Affinity()" method in order to avoid a crash when the card is a Conspiracy in the commandzone. https://github.com/WagicProject/wagic/commit/c60ffba70d75469ae22d74b06e9fd66fa67c1abe ([Vitty85](https://github.com/Vitty85))
