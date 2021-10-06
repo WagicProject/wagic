@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 06/10/21
+- *Committed:* Fixed primitive "Armament Master" (issue #1075 opened by @remigiusz-suwalski). ([Vitty85](https://github.com/Vitty85))
+
 ### 01/10/21
-- *Committed:* Added "--no-check-certificate" option to download the PSP SDK. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Added "--no-check-certificate" option to download the PSP SDK. https://github.com/WagicProject/wagic/commit/b84745e063baf669aaa085ed9c8bcdd9c943649a ([Vitty85](https://github.com/Vitty85))
 
 - *Committed:* Added/fixed primitives, updated the "missing_cards_by_sets" folder. https://github.com/WagicProject/wagic/commit/89024241a874102cebb9a5c8b0c764973171c2eb ([Vitty85](https://github.com/Vitty85))
 
