@@ -103,10 +103,10 @@ void DeckMetaData::LoadStats()
 
 }
 
-// since we only have 100 stock avatar images, we need to recycle the images for deck numbers > 99
+// Removed the previous limit of 99 images, if "avatarXX.jpg" image is not present, for AI it will be used "baka.jpg" image instead.
 int DeckMetaData::getAvatarId()
 {
-    return mDeckId % 100;
+    return mDeckId;
 }
 
 //Accessors
