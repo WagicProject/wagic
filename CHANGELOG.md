@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 07/10/21
+- *Committed:* Removed the previous limit of 99 avatars images, if "avatarXX.jpg" image is not present, for deckXX.txt of AI it will be used "baka.jpg" image instead. ([Vitty85](https://github.com/Vitty85))
+
 ### 06/10/21
-- *Committed:* Fixed primitive "Armament Master" (issue #1075 opened by @remigiusz-suwalski). ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed primitive "Armament Master" (issue #1075 opened by @remigiusz-suwalski). https://github.com/WagicProject/wagic/commit/99b501105d1d83588d07ed3026ead0b182b00978 ([Vitty85](https://github.com/Vitty85))
 
 ### 01/10/21
 - *Committed:* Added "--no-check-certificate" option to download the PSP SDK. https://github.com/WagicProject/wagic/commit/b84745e063baf669aaa085ed9c8bcdd9c943649a ([Vitty85](https://github.com/Vitty85))
