@@ -2180,13 +2180,41 @@ bool ProliferateChooser::canTarget(Targetable * target,bool withoutProtections)
 {
     if (MTGCardInstance * card = dynamic_cast<MTGCardInstance*>(target))
     {
+        if (source && card->isInPlay(observer) && !withoutProtections)
+        { 
+            if (card->has(Constants::SHROUD)) return source->bypassTC;
+            if (card->protectedAgainst(source)) return source->bypassTC;
+            if (card->CantBeTargetby(source)) return source->bypassTC;
+            if ((source->controller() != card->controller()) && card->has(Constants::OPPONENTSHROUD)) return source->bypassTC;
+            if (card->has(Constants::PROTECTIONFROMCOLOREDSPELLS)){
+                if((source->spellTargetType.size()) && (source->hasColor(1)||source->hasColor(2)||source->hasColor(3)||source->hasColor(4)||source->hasColor(5)))
+                    return source->bypassTC;
+            }
+        }
         if(card->counters && card->counters->counters.empty())
             return false;
         return true;
     }
     else if (Player * p = dynamic_cast<Player*>(target))
     {
-        if(!p->poisonCount)
+        if (source)
+        {
+            if ((source->controller() != source->controller()->opponent())
+                && (source->controller()->opponent()->game->inPlay->hasAbility(Constants::CONTROLLERSHROUD))
+                && source->controller() != target)
+                    return source->bypassTC;
+            if ((source->controller()->opponent()->game->inPlay->hasAbility(Constants::PLAYERSHROUD))
+                && source->controller()->opponent() == target)
+                    return source->bypassTC;
+            if ((source->controller()->game->inPlay->hasAbility(Constants::PLAYERSHROUD))
+                && source->controller() == target)
+                    return source->bypassTC;
+            if(source->controller()->isAI() && p == source->controller() && p->poisonCount)
+                return false; // prevent AI to target itself when it has some poison counters.
+            if(source->controller()->isAI() && p != source->controller() && !p->poisonCount)
+                return false; // prevent AI to target opponent when there are no poison counters.
+        }
+        if(!p->poisonCount && !p->energyCount && !p->experienceCount)
             return false;
         return true;
     }
