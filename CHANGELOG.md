@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 08/10/21
+- *Committed:* Fixed a bug on deck choosing menu when an AI deck has no avatar image (it will be used "baka.jpg"), added new default avatar images for AI decks (up to 200), fixed "_PROLIFERATE_" macro and fixed all primitives with "proliferate" ability, improved the "proliferation" keyword for target chooser in order to avoid targeting permanents or players without counters and/or with some protections (e.g. hexproof, shroud and similar). ([Vitty85](https://github.com/Vitty85))
+
 ### 07/10/21
-- *Committed:* Removed the previous limit of 99 avatars images, if "avatarXX.jpg" image is not present, for deckXX.txt of AI it will be used "baka.jpg" image instead. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Removed the previous limit of 99 avatars images, if "avatarXX.jpg" image is not present, for deckXX.txt of AI it will be used "baka.jpg" image instead. https://github.com/WagicProject/wagic/commit/aafaadb76ffacda5b7b9430df4435e143d1bcba4 ([Vitty85](https://github.com/Vitty85))
 
 ### 06/10/21
 - *Committed:* Fixed primitive "Armament Master" (issue #1075 opened by @remigiusz-suwalski). https://github.com/WagicProject/wagic/commit/99b501105d1d83588d07ed3026ead0b182b00978 ([Vitty85](https://github.com/Vitty85))

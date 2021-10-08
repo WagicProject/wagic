@@ -94,7 +94,7 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 #AUTO_DEFINE _CONSPIRE_ @movedTo(this|myStak):may {T(creature|myBattlefield)}{T(creature|myBattlefield)} castcard(copied noevent) target(*|myStack)
 
 # Proliferate
-#AUTO_DEFINE _PROLIFERATE_ name(Proliferate) notatarget(<anyamount>player^permanent) proliferate
+#AUTO_DEFINE _PROLIFERATE_ name(Proliferate) notatarget(proliferation) proliferate
 
 # Scavenge
 #AUTO_DEFINE _SCAVENGE_($cost) name(Scavenge) autograveyard={$cost}{E}:counter(1/1,$c) target(creature) asSorcery
