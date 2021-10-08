@@ -3,7 +3,9 @@
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
 ### 09/10/21
-- *Committed:* Fixed "Force of Vigor" and "Slogurk, the Overslime" primitives. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed "Tergrid, God of Fright" primitive. ([Vitty85](https://github.com/Vitty85))
+
+- *Committed:* Fixed "Force of Vigor" and "Slogurk, the Overslime" primitives. https://github.com/WagicProject/wagic/commit/1f6db302777019a22b832fe2bba4e5be81f2b776 ([Vitty85](https://github.com/Vitty85))
 
 ### 08/10/21
 - *Committed:* Fixed a bug on deck choosing menu when an AI deck has no avatar image (it will be used "baka.jpg"), added new default avatar images for AI decks (up to 200), fixed "_PROLIFERATE_" macro and fixed all primitives with "proliferate" ability, improved the "proliferation" keyword for target chooser in order to avoid targeting permanents or players without counters and/or with some protections (e.g. hexproof, shroud and similar). https://github.com/WagicProject/wagic/commit/fd76775923635a8106cfa542473a99bd06fb159f ([Vitty85](https://github.com/Vitty85))
