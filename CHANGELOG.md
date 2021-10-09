@@ -3,7 +3,9 @@
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
 ### 09/10/21
-- *Committed:* Fixed the Proliferation and Damageable target chooser in order to avoid targeting permanents or players without counters and/or with some protections (e.g. hexproof, shroud and similar). ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed the Proliferation and Damageable target chooser in order to avoid targeting permanents or players without counters and/or with some protections (e.g. hexproof, shroud and similar), fixed a Travis build toolchain error. ([Vitty85](https://github.com/Vitty85))
+
+- *Committed:* Fixed the Proliferation and Damageable target chooser in order to avoid targeting permanents or players without counters and/or with some protections (e.g. hexproof, shroud and similar). https://github.com/WagicProject/wagic/commit/4e18b6d79933b6d437cbdc1f5f007d39553113a2 ([Vitty85](https://github.com/Vitty85))
 
 - *Committed:* Fixed "Tergrid, God of Fright" primitive. https://github.com/WagicProject/wagic/commit/45b077e930b6f649d9116800d31854deced92368 ([Vitty85](https://github.com/Vitty85))
 
