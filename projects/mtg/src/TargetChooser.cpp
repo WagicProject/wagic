@@ -1828,11 +1828,11 @@ bool DamageableTargetChooser::canTarget(Targetable * target, bool withoutProtect
 {
     if (Player * p = dynamic_cast<Player*>(target))
     {
-        if (source && (source->controller() != source->controller()->opponent()) && (source->controller()->opponent()->game->inPlay->hasAbility(Constants::CONTROLLERSHROUD)) && source->controller() != target)
+        if (source && (source->controller() != source->controller()->opponent()) && (source->controller()->opponent()->game->inPlay->hasAbility(Constants::CONTROLLERSHROUD)) && source->controller() != p)
             return false;
-        if (source && source->controller()->opponent()->game->inPlay->hasAbility(Constants::PLAYERSHROUD) && source->controller()->opponent() == target)
+        if (source && source->controller()->opponent()->game->inPlay->hasAbility(Constants::PLAYERSHROUD) && source->controller()->opponent() == p)
             return false;
-        if (source && source->controller()->game->inPlay->hasAbility(Constants::PLAYERSHROUD) && source->controller() == target)
+        if (source && source->controller()->game->inPlay->hasAbility(Constants::PLAYERSHROUD) && source->controller() == p)
             return false;
         return true;
     }
