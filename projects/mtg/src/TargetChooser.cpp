@@ -1824,28 +1824,33 @@ bool PlayerTargetChooser::equals(TargetChooser * tc)
 }
 
 /*Damageable Target */
-bool DamageableTargetChooser::canTarget(Targetable * target,bool withoutProtections)
+bool DamageableTargetChooser::canTarget(Targetable * target, bool withoutProtections)
 {
-    // TODO: get rid of common code with PlayerTargetChooser
-    if (source && targetter)
+    if (Player * p = dynamic_cast<Player*>(target))
     {
-        if ((targetter->controller() != targetter->controller()->opponent())
-            && (targetter->controller()->opponent()->game->inPlay->hasAbility(Constants::CONTROLLERSHROUD))
-            && targetter->controller() != target)
-                return false;
-        if ((targetter->controller()->opponent()->game->inPlay->hasAbility(Constants::PLAYERSHROUD))
-            && targetter->controller()->opponent() == target)
-                return false;
-        if ((targetter->controller()->game->inPlay->hasAbility(Constants::PLAYERSHROUD))
-            && targetter->controller() == target)
-                return false;
-    }
-
-    if (dynamic_cast<Player *>(target))
-    {
+        if (source && (source->controller() != source->controller()->opponent()) && (source->controller()->opponent()->game->inPlay->hasAbility(Constants::CONTROLLERSHROUD)) && source->controller() != target)
+            return false;
+        if (source && source->controller()->opponent()->game->inPlay->hasAbility(Constants::PLAYERSHROUD) && source->controller()->opponent() == target)
+            return false;
+        if (source && source->controller()->game->inPlay->hasAbility(Constants::PLAYERSHROUD) && source->controller() == target)
+            return false;
         return true;
     }
-    return TypeTargetChooser::canTarget(target,withoutProtections);
+    else if (MTGCardInstance * card = dynamic_cast<MTGCardInstance*>(target))
+    {
+        if (source && card->isInPlay(observer) && !withoutProtections)
+        { 
+            if (card->has(Constants::SHROUD)) return source->bypassTC;
+            if (card->protectedAgainst(targetter)) return source->bypassTC;
+            if (card->CantBeTargetby(targetter)) return source->bypassTC;
+            if ((source->controller() != card->controller()) && card->has(Constants::OPPONENTSHROUD)) return source->bypassTC;
+            if (card->has(Constants::PROTECTIONFROMCOLOREDSPELLS)){
+                if((source->spellTargetType.size()) && (source->hasColor(1)||source->hasColor(2)||source->hasColor(3)||source->hasColor(4)||source->hasColor(5)))
+                    return source->bypassTC;
+            }
+        }
+    }
+    return TypeTargetChooser::canTarget(target, withoutProtections);
 }
 
 DamageableTargetChooser* DamageableTargetChooser::clone() const
@@ -2176,9 +2181,25 @@ bool dredgeChooser::equals(TargetChooser * tc)
 //-----------
 //-----------
 /*Proliferate Target */
-bool ProliferateChooser::canTarget(Targetable * target,bool withoutProtections)
+bool ProliferateChooser::canTarget(Targetable * target, bool withoutProtections)
 {
-    if (MTGCardInstance * card = dynamic_cast<MTGCardInstance*>(target))
+    if (Player * p = dynamic_cast<Player*>(target))
+    {
+        if (source && (source->controller() != source->controller()->opponent()) && (source->controller()->opponent()->game->inPlay->hasAbility(Constants::CONTROLLERSHROUD)) && source->controller() != target)
+            return source->bypassTC;
+        if (source && (source->controller()->opponent()->game->inPlay->hasAbility(Constants::PLAYERSHROUD)) && source->controller()->opponent() == target)
+            return source->bypassTC;
+        if (source && (source->controller()->game->inPlay->hasAbility(Constants::PLAYERSHROUD)) && source->controller() == target)
+            return source->bypassTC;
+        if(source && source->controller()->isAI() && p == source->controller() && p->poisonCount)
+            return false; // prevent AI to target itself when it has some poison counters.
+        if(source && source->controller()->isAI() && p != source->controller() && !p->poisonCount)
+            return false; // prevent AI to target opponent when there are no poison counters.
+        if(!p->poisonCount && !p->energyCount && !p->experienceCount)
+            return false;
+        return true;
+    }
+    else if (MTGCardInstance * card = dynamic_cast<MTGCardInstance*>(target))
     {
         if (source && card->isInPlay(observer) && !withoutProtections)
         { 
@@ -2195,30 +2216,7 @@ bool ProliferateChooser::canTarget(Targetable * target,bool withoutProtections)
             return false;
         return true;
     }
-    else if (Player * p = dynamic_cast<Player*>(target))
-    {
-        if (source)
-        {
-            if ((source->controller() != source->controller()->opponent())
-                && (source->controller()->opponent()->game->inPlay->hasAbility(Constants::CONTROLLERSHROUD))
-                && source->controller() != target)
-                    return source->bypassTC;
-            if ((source->controller()->opponent()->game->inPlay->hasAbility(Constants::PLAYERSHROUD))
-                && source->controller()->opponent() == target)
-                    return source->bypassTC;
-            if ((source->controller()->game->inPlay->hasAbility(Constants::PLAYERSHROUD))
-                && source->controller() == target)
-                    return source->bypassTC;
-            if(source->controller()->isAI() && p == source->controller() && p->poisonCount)
-                return false; // prevent AI to target itself when it has some poison counters.
-            if(source->controller()->isAI() && p != source->controller() && !p->poisonCount)
-                return false; // prevent AI to target opponent when there are no poison counters.
-        }
-        if(!p->poisonCount && !p->energyCount && !p->experienceCount)
-            return false;
-        return true;
-    }
-    return TypeTargetChooser::canTarget(target,withoutProtections);
+    return false;
 }
 
 ProliferateChooser* ProliferateChooser::clone() const
