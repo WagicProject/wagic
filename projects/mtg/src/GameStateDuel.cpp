@@ -959,6 +959,8 @@ void GameStateDuel::Update(float dt)
                     if(game->getCurrentGamePhase() == MTG_PHASE_COMBATATTACKERS && game->currentlyActing() == (Player*)game->currentPlayer){ // During attack phase it shows a button to toggle all creatures to attack mode
                         menu->Add(MENUITEM_TOGGLEATTACK_ALL_CREATURES, "Toggle Attack all Creatures");
                     }
+                    if(game->getCurrentTargetChooser() && game->getCurrentTargetChooser()->source->controller() == game->currentlyActing())
+                        menu->Add(MENUITEM_SELECT_ALL, "Select all possible targets");
                     menu->Add(MENUITEM_MAIN_MENU, "Back to main menu");
 #ifdef TESTSUITE
                     menu->Add(MENUITEM_UNDO, "Undo");
@@ -1706,6 +1708,24 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
                 if(game->players[0]->inPlay()->cards[i]->canAttack()){
                     game->players[0]->inPlay()->cards[i]->toggleAttacker();
                 }
+            }
+            menu->Close();
+            setGamePhase(DUEL_STATE_CANCEL);
+            break;
+        case MENUITEM_SELECT_ALL:
+            if(game->getCurrentTargetChooser() && game->getCurrentTargetChooser()->source && game->getCurrentTargetChooser()->source->isInPlay(game) && game->getCurrentTargetChooser()->canTarget(game->getCurrentTargetChooser()->source))
+                 game->cardClick(game->getCurrentTargetChooser()->source, game->getCurrentTargetChooser()->source);
+            if(game->getCurrentTargetChooser() && game->getCurrentTargetChooser()->canTarget(game->players[0]))
+                game->cardClick(NULL, game->players[0]);
+            if(game->getCurrentTargetChooser() && game->getCurrentTargetChooser()->canTarget(game->players[1]))
+                game->cardClick(NULL, game->players[1]);
+            for(unsigned int i = 0; i < game->players[1]->inPlay()->cards.size(); i++){
+                if(game->getCurrentTargetChooser() && game->getCurrentTargetChooser()->canTarget(game->players[1]->inPlay()->cards[i]))
+                    game->cardClick(game->players[1]->inPlay()->cards[i], game->players[1]->inPlay()->cards[i]);
+            }
+            for(unsigned int i = 0; i < game->players[0]->inPlay()->cards.size(); i++){
+                if(game->getCurrentTargetChooser() && game->getCurrentTargetChooser()->source != game->players[0]->inPlay()->cards[i] && game->getCurrentTargetChooser()->canTarget(game->players[0]->inPlay()->cards[i]))
+                    game->cardClick(game->players[0]->inPlay()->cards[i], game->players[0]->inPlay()->cards[i]);
             }
             menu->Close();
             setGamePhase(DUEL_STATE_CANCEL);
