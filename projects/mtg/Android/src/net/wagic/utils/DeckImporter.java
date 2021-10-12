@@ -38,9 +38,9 @@ public class DeckImporter
                         line = line.trim();
                         if (line.equals("")) {
                             line = scanner.nextLine();
+                            prefix = "#SB:"; // Sideboard started from next card.
                             if (line.equals("")) {
-                                line = scanner.nextLine();
-                                prefix = "#SB:"; // Sideboard started from next card (we assumed that there are 2 blank lines from main deck and sideboard).
+                                line = scanner.nextLine(); // Sometimes there are 2 blank lines from main deck and sideboard.
                             }
                         }
                         if (!line.equals("")) // don't write out blank lines
