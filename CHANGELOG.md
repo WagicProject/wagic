@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 12/10/21
+- *Committed:* Added a new menu choice to instantly choose all the possible targets (on battlefield) of an ability during its target selection (e.g. Proliferation ability can target a lot of permanents and players so using that menu choice all the targets will be instantly chosen and then the current player will be able to remove any of them or confirm the entire selection). ([Vitty85](https://github.com/Vitty85))
+
 ### 09/10/21
-- *Committed:* Fixed the Proliferation and Damageable target chooser in order to avoid targeting permanents or players without counters and/or with some protections (e.g. hexproof, shroud and similar), fixed a Travis build toolchain error. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed the Proliferation and Damageable target chooser in order to avoid targeting permanents or players without counters and/or with some protections (e.g. hexproof, shroud and similar), fixed a Travis build toolchain error. https://github.com/WagicProject/wagic/commit/4623167b0f608a8322de81b09d96f8642e1b33cd ([Vitty85](https://github.com/Vitty85))
 
 - *Committed:* Fixed the Proliferation and Damageable target chooser in order to avoid targeting permanents or players without counters and/or with some protections (e.g. hexproof, shroud and similar). https://github.com/WagicProject/wagic/commit/4e18b6d79933b6d437cbdc1f5f007d39553113a2 ([Vitty85](https://github.com/Vitty85))
 
