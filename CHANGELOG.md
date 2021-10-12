@@ -3,7 +3,9 @@
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
 ### 12/10/21
-- *Committed:* Added a new menu choice to instantly choose all the possible targets (on battlefield) of an ability during its target selection (e.g. Proliferation ability can target a lot of permanents and players so using that menu choice all the targets will be instantly chosen and then the current player will be able to remove any of them or confirm the entire selection). ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed and improved the Deck Importer (from MTGO) in Android application. ([Vitty85](https://github.com/Vitty85))
+
+- *Committed:* Added a new menu choice to instantly choose all the possible targets (on battlefield) of an ability during its target selection (e.g. Proliferation ability can target a lot of permanents and players so using that menu choice all the targets will be instantly chosen and then the current player will be able to remove any of them or confirm the entire selection). https://github.com/WagicProject/wagic/commit/c1f391329564a962907c9179c8b6c9b382c6bafb ([Vitty85](https://github.com/Vitty85))
 
 ### 09/10/21
 - *Committed:* Fixed the Proliferation and Damageable target chooser in order to avoid targeting permanents or players without counters and/or with some protections (e.g. hexproof, shroud and similar), fixed a Travis build toolchain error. https://github.com/WagicProject/wagic/commit/4623167b0f608a8322de81b09d96f8642e1b33cd ([Vitty85](https://github.com/Vitty85))
