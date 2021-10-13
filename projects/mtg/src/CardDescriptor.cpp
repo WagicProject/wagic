@@ -277,7 +277,7 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
         match = NULL; //Some kicker costs are not a real kicker (e.g. Fuse cost).
     }
 
-    if ((hasFlashbackCost == -1 && card->getManaCost()->getFlashback()) || (hasFlashbackCost == 1 && !card->getManaCost()->getFlashback()))
+    if ((hasFlashbackCost == -1 && (card->getManaCost()->getFlashback() && !card->has(Constants::HASAFTERMATH))) || (hasFlashbackCost == 1 && (!card->getManaCost()->getFlashback() || (card->getManaCost()->getFlashback() && card->has(Constants::HASAFTERMATH)))))
     {
         match = NULL;
     }

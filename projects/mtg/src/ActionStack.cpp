@@ -1356,7 +1356,7 @@ int ActionStack::garbageCollect()
 }
 
 // Fizzle action and put it in targetZone
-void ActionStack::Fizzle(Interruptible * action, FizzleMode fizzleMode)
+void ActionStack::Fizzle(Interruptible * action, MTGCardInstance * fizzler, FizzleMode fizzleMode)
 {
     if (!action)
     {
@@ -1366,6 +1366,8 @@ void ActionStack::Fizzle(Interruptible * action, FizzleMode fizzleMode)
     if (action->type == ACTION_SPELL)
     {
         Spell * spell = (Spell *) action;
+        MTGCardInstance * _target = NULL;
+        unsigned int position = 0;
         switch (fizzleMode) {
         case PUT_IN_GRAVEARD:
             spell->source->controller()->game->putInGraveyard(spell->source);
@@ -1374,17 +1376,49 @@ void ActionStack::Fizzle(Interruptible * action, FizzleMode fizzleMode)
             spell->source->controller()->game->putInHand(spell->source);
             break;
         case PUT_IN_EXILE:
-            spell->source->controller()->game->putInExile(spell->source);
+        case PUT_IN_EXILE_IMPRINT:
+            _target = spell->source->controller()->game->putInExile(spell->source);
+            if (_target && fizzler && fizzleMode == PUT_IN_EXILE_IMPRINT){
+                fizzler->imprintedCards.push_back(_target);
+                if (fizzler->imprintedCards.size()){
+                    if (fizzler->imprintedCards.back()->getName().size()){
+                        fizzler->currentimprintName = fizzler->imprintedCards.back()->getName();
+                        fizzler->imprintedNames.push_back(fizzler->imprintedCards.back()->getName());
+                    }
+                }
+            }
             break;
         case PUT_IN_LIBRARY_TOP:
+        case PUT_IN_LIBRARY_SECOND:
         case PUT_IN_LIBRARY_BOTTOM:
-            MTGCardInstance * _target = spell->source->controller()->game->putInLibrary(spell->source);
+            _target = spell->source->controller()->game->putInLibrary(spell->source);
             if (_target && fizzleMode == PUT_IN_LIBRARY_BOTTOM){
                 MTGLibrary * library = _target->owner->game->library;
                 vector<MTGCardInstance *>oldOrder = library->cards;
                 vector<MTGCardInstance *>newOrder;
                 newOrder.push_back(_target);
-                for(unsigned int k = 0;k < oldOrder.size();++k)
+                for(unsigned int k = 0 ;k < oldOrder.size(); ++k)
+                {
+                    MTGCardInstance * rearranged = oldOrder[k];
+                    if(rearranged != _target)
+                        newOrder.push_back(rearranged);
+                }
+                library->cards = newOrder;
+            } else if (_target && fizzleMode == PUT_IN_LIBRARY_SECOND){
+                position = 2;
+                MTGLibrary * library = _target->owner->game->library;
+                vector<MTGCardInstance *>oldOrder = library->cards;
+                vector<MTGCardInstance *>newOrder;
+                if(position > oldOrder.size())
+                    position = oldOrder.size(); //Avoid to exceed the library dimension.
+                for(unsigned int k = 0; k < oldOrder.size() - position; ++k)
+                {
+                    MTGCardInstance * rearranged = oldOrder[k];
+                    if(rearranged != _target)
+                        newOrder.push_back(rearranged);
+                }
+                newOrder.push_back(_target);
+                for(unsigned int k = oldOrder.size() - position ; k < oldOrder.size(); ++k)
                 {
                     MTGCardInstance * rearranged = oldOrder[k];
                     if(rearranged != _target)

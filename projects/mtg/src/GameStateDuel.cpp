@@ -963,7 +963,7 @@ void GameStateDuel::Update(float dt)
                         if(game->getCurrentTargetChooser()->getNbTargets() < 1)
                             menu->Add(MENUITEM_TOGGLE_SELECT_ALL, "Select all Targets");
                         else {
-                            menu->Add(MENUITEM_TOGGLE_SELECT_ALL, "Remove Selection");
+                            menu->Add(MENUITEM_TOGGLE_SELECT_ALL, "Clear Selection");
                             menu->Add(MENUITEM_CONFIRM_SELECT_ALL, "Confirm Selection");
                         }
                     }

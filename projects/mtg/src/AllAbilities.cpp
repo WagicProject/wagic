@@ -3890,6 +3890,8 @@ ActivatedAbility(observer, _id, card, _cost, 0)
 
     // by default we put the spell to graveyard after fizzling
     fizzleMode = ActionStack::PUT_IN_GRAVEARD;
+    // by default fizzle is not used to put spell somewhere
+    spellMover = false;
 }
 
 int AAFizzler::resolve()
@@ -3910,9 +3912,9 @@ int AAFizzler::resolve()
     MTGCardInstance* sCard = NULL;
     if (sTarget)
         sCard = sTarget->source;
-    if (!sCard || !sTarget || sCard->has(Constants::NOFIZZLE))
+    if (!sCard || !sTarget || (sCard->has(Constants::NOFIZZLE) && !spellMover))
         return 0;
-    if (sCard->has(Constants::NOFIZZLEALTERNATIVE) && sCard->alternateCostPaid[ManaCost::MANA_PAID_WITH_ALTERNATIVE]) // No fizzle if card has been paid with alternative cost.
+    if (sCard->has(Constants::NOFIZZLEALTERNATIVE) && (sCard->alternateCostPaid[ManaCost::MANA_PAID_WITH_ALTERNATIVE] && !spellMover)) // No fizzle if card has been paid with alternative cost.
         return 0;
     if (source->alias == 111057 && sTarget)//Draining Whelk
     {
@@ -3921,7 +3923,7 @@ int AAFizzler::resolve()
             source->counters->addCounter(1,1);
         }
     }
-    stack->Fizzle(sTarget, fizzleMode);
+    stack->Fizzle(sTarget, source, fizzleMode);
     if(!source->storedCard)
         source->storedCard = sCard; // Store the fizzled card to retrive target information later (e.g. manacost for Reinterpret)
     return 1;

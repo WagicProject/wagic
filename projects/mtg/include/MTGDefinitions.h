@@ -329,7 +329,8 @@ class Constants
       DECAYED = 202,
       HASSTRIVE = 203,
       ISCONSPIRACY = 204,
-      NB_BASIC_ABILITIES = 205,
+      HASAFTERMATH = 205,
+      NB_BASIC_ABILITIES = 206,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics
