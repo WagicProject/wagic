@@ -1353,11 +1353,11 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
 
     //Card is Discarded
     if (TargetChooser * tc = parseSimpleTC(s, "discarded", card))
-        return NEW TrCardDiscarded(observer, id, card, tc, once);
+        return NEW TrCardDiscarded(observer, id, card, tc, once, limitOnceATurn);
 
     //Card is cycled
     if (TargetChooser * tc = parseSimpleTC(s, "cycled", card))
-        return NEW TrCardDiscarded(observer, id, card, tc, once, true);
+        return NEW TrCardDiscarded(observer, id, card, tc, once, limitOnceATurn, true);
 
     //Card Damaging non combat current controller
     if (TargetChooser * tc = parseSimpleTC(s, "noncombatdamageof", card))

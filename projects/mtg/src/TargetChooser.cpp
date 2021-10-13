@@ -1241,6 +1241,7 @@ TargetChooser::TargetChooser(GameObserver *observer, MTGCardInstance * card, int
     other = _other;
     targetMin = _targetMin;
     done = false;
+    autoChoice = false;
     attemptsToFill = 0;
     if(source)
         Owner = source->controller();
@@ -2201,7 +2202,9 @@ bool ProliferateChooser::canTarget(Targetable * target, bool withoutProtections)
     }
     else if (MTGCardInstance * card = dynamic_cast<MTGCardInstance*>(target))
     {
-        if (source && card->isInPlay(observer) && !withoutProtections)
+        if(!observer || !card->isInPlay(observer))
+            return false;
+        if (source && !withoutProtections)
         { 
             if (card->has(Constants::SHROUD)) return source->bypassTC;
             if (card->protectedAgainst(source)) return source->bypassTC;
@@ -2212,7 +2215,7 @@ bool ProliferateChooser::canTarget(Targetable * target, bool withoutProtections)
                     return source->bypassTC;
             }
         }
-        if(card->counters && card->counters->counters.empty())
+        if(!card->counters || (card->counters && card->counters->counters.empty()))
             return false;
         return true;
     }

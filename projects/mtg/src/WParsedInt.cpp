@@ -1157,6 +1157,10 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
                 intValue++;
         }
     }
+    else if (s == "pcycledcount" || s == "ocycledcount") //return how may cards have been cycled this turn from a specific player.
+    {
+        intValue = (s == "pcycledcount")?card->controller()->cycledCount:card->controller()->opponent()->cycledCount;
+    }
     else //Continue parsing in another method to avoid compiler C1061 error.
     {
         extendedParse(s, spell, card);

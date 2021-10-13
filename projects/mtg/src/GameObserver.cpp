@@ -215,8 +215,10 @@ void GameObserver::nextGamePhase()
         currentPlayer->nonCombatDamage = 0;
         currentPlayer->drawCounter = 0;
         currentPlayer->raidcount = 0;
+        currentPlayer->cycledCount = 0;
         currentPlayer->dealsdamagebycombat = 0; //clear check for restriction
         currentPlayer->opponent()->raidcount = 0;
+        currentPlayer->opponent()->cycledCount = 0;
         currentPlayer->prowledTypes.clear();
         currentPlayer->opponent()->damageCount = 0; //added to clear odcount
         currentPlayer->opponent()->nonCombatDamage = 0;
@@ -322,6 +324,7 @@ void GameObserver::userRequestNextGamePhase(bool allowInterrupt, bool log)
     if(getCurrentTargetChooser() && getCurrentTargetChooser()->maxtargets == 1000)
     {
         getCurrentTargetChooser()->done = true;
+        getCurrentTargetChooser()->autoChoice = false;
         if(getCurrentTargetChooser()->source)
             cardClick(getCurrentTargetChooser()->source, 0, false);
     }
@@ -613,8 +616,10 @@ void GameObserver::Update(float dt)
 //Handles game state based effects
 void GameObserver::gameStateBasedEffects()
 {
-    if(getCurrentTargetChooser() && int(getCurrentTargetChooser()->getNbTargets()) == getCurrentTargetChooser()->maxtargets)
+    if(getCurrentTargetChooser() && int(getCurrentTargetChooser()->getNbTargets()) == getCurrentTargetChooser()->maxtargets){
         getCurrentTargetChooser()->done = true;
+        getCurrentTargetChooser()->autoChoice = false;
+    }
     /////////////////////////////////////
     for (int d = 0; d < 2; d++)
     {

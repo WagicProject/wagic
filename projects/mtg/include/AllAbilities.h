@@ -955,8 +955,10 @@ public:
 class TrCardDiscarded: public Trigger
 {
 public:
+    bool limitOnceATurn;
+    int triggeredTurn;
     bool cycledTrigger;
-    TrCardDiscarded(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool cycledTrigger = false) :
+    TrCardDiscarded(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false, bool cycledTrigger = false) :
     Trigger(observer, id, source, once, tc),cycledTrigger(cycledTrigger)
     {
     }
@@ -964,6 +966,8 @@ public:
     int triggerOnEventImpl(WEvent * event)
     {
         MTGCardInstance * targetCard = NULL;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
         if(cycledTrigger)
         {
             WEventCardCycle * c = dynamic_cast<WEventCardCycle *> (event);
@@ -977,6 +981,7 @@ public:
             targetCard = e->card;
         }
         if (!targetCard || !tc->canTarget(targetCard)) return 0;
+        triggeredTurn = game->turn;
         return 1;
     }
 

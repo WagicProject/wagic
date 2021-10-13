@@ -513,6 +513,7 @@ int CycleCost::doPay()
         WEvent * e2 = NEW WEventCardCycle(_source);
         game->receiveEvent(e2);
         _source->controller()->game->putInGraveyard(_source);
+        _source->controller()->cycledCount++;
         if (tc)
             tc->initTargets();
         return 1;
