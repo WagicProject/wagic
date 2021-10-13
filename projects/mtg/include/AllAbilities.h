@@ -1335,7 +1335,7 @@ class AAFizzler: public ActivatedAbility
 {
 public:
     ActionStack::FizzleMode fizzleMode; // action to do after fizzling
-
+    bool spellMover; // use fizzle to move spell to exile or hand (is not a real counter so nofizzle ability is not considerated).
     AAFizzler(GameObserver* observer, int _id, MTGCardInstance * card, Spell * _target, ManaCost * _cost = NULL);
     int resolve();
     const string getMenuText();

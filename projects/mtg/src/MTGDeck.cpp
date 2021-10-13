@@ -197,6 +197,16 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
                     string value = val;
                     std::transform(value.begin(), value.end(), value.begin(), ::tolower);
                     cost->setFlashback(ManaCost::parseManaCost(value));
+                    size_t name = value.find("name(");
+                    string theName = "";
+                    if(name != string::npos)
+                    {
+                        size_t endName = value.find(")",name);
+                        theName = value.substr(name + 5,endName - name - 5);
+                        value.erase(name, endName - name + 1);
+                    }
+                    if(theName.size())
+                        cost->getFlashback()->alternativeName.append(theName);
                 }
             }
             break;

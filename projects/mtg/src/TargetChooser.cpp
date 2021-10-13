@@ -1076,6 +1076,16 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                             cd->nameComparisonMode = COMPARISON_EQUAL;
                     }
 
+                    if (attribute.find("storedname") != string::npos && card->storedCard)
+                    {
+                        attributefound = 1;
+                        cd->compareName = card->storedCard->getName();
+                        if (minus)
+                            cd->nameComparisonMode = COMPARISON_UNEQUAL;
+                        else
+                            cd->nameComparisonMode = COMPARISON_EQUAL;
+                    }
+
                     if (attribute.find("preyname") != string::npos && card->hauntedCard)
                     {
                         attributefound = 1;
