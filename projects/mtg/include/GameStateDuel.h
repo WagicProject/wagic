@@ -283,7 +283,8 @@ public:
 /////// End Tournament Mod ///////////
         MENUITEM_TOGGLEATTACK_ALL_CREATURES = -32,
         MENUITEM_TASKBOARD = -33,
-        MENUITEM_SELECT_ALL = -34,
+        MENUITEM_TOGGLE_SELECT_ALL = -34,
+        MENUITEM_CONFIRM_SELECT_ALL = -35,
         MENUITEM_MORE_INFO = kInfoMenuID
     };
 

@@ -109,8 +109,10 @@ int AIAction::clickMultiAct(vector<Targetable*>& actionTargets)
     {
         if (MTGCardInstance * card = dynamic_cast<MTGCardInstance *>(actionTargets[k]))
         {
-            if(k+1 == int(actionTargets.size()))
+            if(k+1 == int(actionTargets.size())){
                 tc->done = true;
+                tc->autoChoice = false;
+            }
             g->cardClick(card);
         }
     }

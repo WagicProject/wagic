@@ -44,6 +44,7 @@ public:
     MTGCardInstance * targetter; //Optional, usually equals source, used for protection from...
     int maxtargets;
     bool done;
+    bool autoChoice; // added to allow choice from game menu.
     bool targetMin;
     bool validTargetsExist(int maxTarget = 1);
     int attemptsToFill;

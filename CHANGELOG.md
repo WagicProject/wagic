@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 13/10/21
+- *Committed:* Fixed primitives, fixed "proliferate" target chooser, improved "cycled" and "discarded" triggers, added new keywords "pcycledcount" and "ocycledcount" to calculate how may cards have been cycled this turn from a specific player, added new menu choices to instantly select/deselect and confirm all the possible targets (in any zone) during the target selection of an ability (e.g. Proliferation ability can target a lot of permanents and players so using that menu choice all the targets will be instantly chosen and then the current player will be able to remove any of them or confirm the entire selection). ([Vitty85](https://github.com/Vitty85))
+
 ### 12/10/21
-- *Committed:* Fixed and improved the Deck Importer (from MTGO) in Android application. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed and improved the Deck Importer (from MTGO) in Android application. https://github.com/WagicProject/wagic/commit/371d4c9f857f39b3998872dc2de99c9a3ad52a56 ([Vitty85](https://github.com/Vitty85))
 
 - *Committed:* Added a new menu choice to instantly choose all the possible targets (on battlefield) of an ability during its target selection (e.g. Proliferation ability can target a lot of permanents and players so using that menu choice all the targets will be instantly chosen and then the current player will be able to remove any of them or confirm the entire selection). https://github.com/WagicProject/wagic/commit/c1f391329564a962907c9179c8b6c9b382c6bafb ([Vitty85](https://github.com/Vitty85))
 

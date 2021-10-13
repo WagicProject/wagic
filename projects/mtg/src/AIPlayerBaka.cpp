@@ -1972,6 +1972,7 @@ int AIPlayerBaka::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, Rank
         if(a->getActionTc()->getNbTargets() && a->getActionTc()->attemptsToFill > 4)
         {
             a->getActionTc()->done = true;
+            a->getActionTc()->autoChoice = false;
             return 0;
         }
         while(potentialTargets.size())

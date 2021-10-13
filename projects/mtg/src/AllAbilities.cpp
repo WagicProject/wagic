@@ -441,6 +441,7 @@ bool MTGRevealingCards::CheckUserInput(JButton key)
         if (tc && (tc->targetMin == false || tc->maxtargets == TargetChooser::UNLITMITED_TARGETS))
         {
             tc->done = true;
+            tc->autoChoice = false;
             tc->forceTargetListReadyByPlayer = 1;
             //this is for when we have <upto:x> targets but only want to move Y targets, it allows us to
             //tell the targetchooser we are done.
@@ -749,6 +750,7 @@ bool MTGScryCards::CheckUserInput(JButton key)
         if (tc && (tc->targetMin == false || tc->maxtargets == TargetChooser::UNLITMITED_TARGETS))
         {
             tc->done = true;
+            tc->autoChoice = false;
             tc->forceTargetListReadyByPlayer = 1;
             if (!abilitySecond && !tc->getNbTargets() && tc->source)
             {

@@ -56,6 +56,7 @@ public:
     int dealsdamagebycombat;
     int initLife;
     int raidcount;
+    int cycledCount;
     int handmodifier;
     int snowManaG;
     int snowManaR;
