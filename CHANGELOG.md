@@ -3,7 +3,9 @@
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
 ### 15/10/21
-- *Committed:* Fixed "Sylvan Awakening", "Sylvan Library" and "Sylvia Brightspear" primitives. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed "Cursed Mirror". ([Vitty85](https://github.com/Vitty85))
+
+- *Committed:* Fixed "Sylvan Awakening", "Sylvan Library" and "Sylvia Brightspear" primitives. https://github.com/WagicProject/wagic/commit/316e2b21b4d8cdc2b75f26a2adf6fba86078b680 ([Vitty85](https://github.com/Vitty85))
 
 - *Committed:* Fixed all primitives with damage modifier, improved "damaged" trigger for Planeswalkers. https://github.com/WagicProject/wagic/commit/984aac51f4240508ef8796729e48746fdc637aee ([Vitty85](https://github.com/Vitty85))
 
