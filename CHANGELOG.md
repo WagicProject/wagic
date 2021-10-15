@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 15/10/21
+- *Committed:* Fixed all primitives with damage modifier, improved "damaged" trigger for Planeswalkers. ([Vitty85](https://github.com/Vitty85))
+
 ### 14/10/21
-- *Committed:* Fixed primitives, improved Aftermath casting rule: now the casted card becomes instant or sorcery in the stack according to the casted half, fixed a bug with the previous zone of cards casted using the "putinplay" option of "castcard" keyword. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed primitives, improved Aftermath casting rule: now the casted card becomes instant or sorcery in the stack according to the casted half, fixed a bug with the previous zone of cards casted using the "putinplay" option of "castcard" keyword. https://github.com/WagicProject/wagic/commit/eb35e3589bae52d9fa35f1bcefbede9763f13289 ([Vitty85](https://github.com/Vitty85))
 
 ### 13/10/21
 - *Committed:* Fixed primitives, added new ability "hasaftermath" to implement Aftermath cost with Flashback and refactored all cards with Aftermath cost (now they use a special version of Flashback but they don't count as flashback spell), added a new ability "spellmover" to implement all cards that have to target a spell on stack to move to some other zone (they are not real counters so they don't care about "nofizzle" or "nofizzlealternative" abilites of their target), fixed all primitives with "spellmover" ability, added a new keyword "storedname" to target card with a specifc previously stored name, improved "fizzleto" ability in order to allow to move the fizzled card on second place from the top or to exile and imprint the target name. https://github.com/WagicProject/wagic/commit/9c2eee7d7e74f0f494339b10f4f1c3279076bd50 ([Vitty85](https://github.com/Vitty85))
