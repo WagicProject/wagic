@@ -1420,8 +1420,10 @@ subtype=Jaya
 [card]
 name=Jaya, Venerated Firemage
 auto=counter(0/0,5,Loyalty)
-auto=@damaged(*|opponentBattlefield) from(*[red]|myBattlefield,myStack,myGraveyard,mySideboard):all(trigger) damage:1
-auto=@damaged(opponent) from(*[red]|myBattlefield,myStack,myGraveyard,mySideboard):damage:1 opponent
+auto=@damaged(*|opponentBattlefield) from(other *[red]|*):all(trigger[to]) damage:1
+auto=@damaged(*|mybattlefield) from(other *[red]|myzones):all(trigger[to]) damage:1
+auto=@damageof(player) from(other *[red]|myzones):damage:1 controller
+auto=@damagefoeof(player) from(other *[red]|*):damage:1 opponent
 auto={C(0/0,-2,Loyalty)}:name(-2: Deals 2 damage to any target) damage:2 target(player,creature,planeswalker)
 text=If another red source you control would deal damage to a permanent or player, it deals that much damage plus 1 to that permanent or player instead. -- −2: Jaya, Venerated Firemage deals 2 damage to any target.
 mana={2}{R}{R}{R}

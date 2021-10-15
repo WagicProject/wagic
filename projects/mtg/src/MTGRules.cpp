@@ -3963,18 +3963,17 @@ int MTGPlaneswalkerDamage::receiveEvent(WEvent * event)
         if (d->damage > 0 && card && card->hasType(Subtypes::TYPE_PLANESWALKER))
         {
             int howMany = d->damage;
-            for(int k = 0;k < howMany;k++)
+            for(int k = 0; k < howMany; k++)
             {
-                card->counters->removeCounter("loyalty",0,0);
+                card->counters->removeCounter("loyalty", 0, 0);
             }
-            d->damage = 0;
             return 1;
         }
     }
     if (WEventCounters * removel = dynamic_cast<WEventCounters*>(event))
     {
         if(removel->removed && removel->targetCard && removel->targetCard->hasType(Subtypes::TYPE_PLANESWALKER))
-            if(!removel->targetCard->counters->hasCounter("loyalty",0,0))
+            if(!removel->targetCard->counters->hasCounter("loyalty", 0, 0))
             {
                 removel->targetCard->toGrave(true);
                 return 1;
