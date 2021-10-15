@@ -3,7 +3,9 @@
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
 ### 15/10/21
-- *Committed:* Fixed all primitives with damage modifier, improved "damaged" trigger for Planeswalkers. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed "Sylvan Awakening", "Sylvan Library" and "Sylvia Brightspear" primitives. ([Vitty85](https://github.com/Vitty85))
+
+- *Committed:* Fixed all primitives with damage modifier, improved "damaged" trigger for Planeswalkers. https://github.com/WagicProject/wagic/commit/984aac51f4240508ef8796729e48746fdc637aee ([Vitty85](https://github.com/Vitty85))
 
 ### 14/10/21
 - *Committed:* Fixed primitives, improved Aftermath casting rule: now the casted card becomes instant or sorcery in the stack according to the casted half, fixed a bug with the previous zone of cards casted using the "putinplay" option of "castcard" keyword. https://github.com/WagicProject/wagic/commit/eb35e3589bae52d9fa35f1bcefbede9763f13289 ([Vitty85](https://github.com/Vitty85))
