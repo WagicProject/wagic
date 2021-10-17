@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 17/10/21
+- *Committed:* Added a new deck named "Krenko Commander" for AI (credits to Bob). ([Vitty85](https://github.com/Vitty85))
+
 ### 15/10/21
-- *Committed:* Fixed "Cursed Mirror". ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed "Cursed Mirror". https://github.com/WagicProject/wagic/commit/6d1e16441ed71e9cfc9319b5607e503e13d60e51 ([Vitty85](https://github.com/Vitty85))
 
 - *Committed:* Fixed "Sylvan Awakening", "Sylvan Library" and "Sylvia Brightspear" primitives. https://github.com/WagicProject/wagic/commit/316e2b21b4d8cdc2b75f26a2adf6fba86078b680 ([Vitty85](https://github.com/Vitty85))
 
