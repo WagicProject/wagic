@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 18/10/21
+- *Committed:* Fixed "Krenko Commander" and "Plane of the Apes" decks for AI, added a commandline trace to check which soundtrack file is currently playing. ([Vitty85](https://github.com/Vitty85))
+
 ### 17/10/21
-- *Committed:* Added a new deck named "Krenko Commander" for AI (credits to Bob). ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Added a new deck named "Krenko Commander" for AI (credits to Bob). https://github.com/WagicProject/wagic/commit/5bf5e1dfbae0208a10d93c754aef20f5d06b2148 ([Vitty85](https://github.com/Vitty85))
 
 ### 15/10/21
 - *Committed:* Fixed "Cursed Mirror". https://github.com/WagicProject/wagic/commit/6d1e16441ed71e9cfc9319b5607e503e13d60e51 ([Vitty85](https://github.com/Vitty85))

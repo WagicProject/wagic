@@ -9,6 +9,7 @@ Battle Cry Goblin (*) * 1
 Blasphemous Act (*) * 1
 Blood Moon (*) * 1
 Bloodmark Mentor (SHM) (*) * 1
+Boggart Shenanigans (*) * 1
 Chancellor of the Forge (*) * 1
 Coat of Arms (*) * 1
 Dragon Fodder (ALA) (*) * 1
@@ -40,7 +41,6 @@ Goblin Wizard (*) * 1
 Homeward Path (*) * 1
 Horde of Boggarts (*) * 1
 Hordeling Outburst (*) * 1
-Illusionist's Bracers (*) * 1
 Impact Tremors (*) * 1
 Intimidator Initiate (*) * 1
 Krenko's Enforcer (*) * 1

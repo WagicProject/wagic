@@ -554,6 +554,8 @@ void GameApp::playMusic(string filename, bool loop)
 {
     if(filename == "") filename = currentMusicFile;
 
+    JGE::GetInstance()->SendCommand("\nSelected soundtrack is: " + filename + "\n");
+
     if (filename.compare(currentMusicFile) == 0 && music)
         return;
 
