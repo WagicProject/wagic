@@ -1,4 +1,4 @@
-#NAME:Plane ofthe Apes
+#NAME:Plane of the Apes
 #DESC:A plane where apes
 #DESC:evolved from men?
 #DESC:There's got to be an answer!
