@@ -1,0 +1,57 @@
+[meta]
+author=Wagic Team
+name=Pioneer Challenge Decks 2021
+orderindex=PRO-ZF.Q06
+year=2021-10-15
+total=10
+[/meta]
+[card]
+primitive=Approach of the Second Sun
+id=296830
+rarity=R
+[/card]
+[card]
+primitive=Ethereal Armor
+id=296831
+rarity=C
+[/card]
+[card]
+primitive=Isolate
+id=296832
+rarity=R
+[/card]
+[card]
+primitive=Silkwrap
+id=296833
+rarity=U
+[/card]
+[card]
+primitive=Hidden Strings
+id=296834
+rarity=C
+[/card]
+[card]
+primitive=Chandra, Torch of Defiance
+id=296835
+rarity=M
+[/card]
+[card]
+primitive=Searing Blood
+id=296836
+rarity=U
+[/card]
+[card]
+primitive=Wild Slash
+id=296837
+rarity=U
+[/card]
+[card]
+primitive=Lurrus of the Dream-Den
+id=296838
+rarity=R
+[/card]
+[card]
+primitive=Spell Queller
+id=296839
+rarity=R
+[/card]

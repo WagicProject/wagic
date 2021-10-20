@@ -2411,9 +2411,8 @@ public:
                 _target->addptbonus(wppt->power.getValue(),wppt->toughness.getValue());
         }
         if(_target->has(Constants::INDESTRUCTIBLE) && wppt->toughness.getValue() < 0 && _target->toughness <= 0)
-        {
-            _target->controller()->game->putInGraveyard(_target);
-        }
+            _target->toGrave(true); // The indestructible creatures can have different destination zone after death.
+
         return MTGAbility::addToGame();
     }
     int destroy()
