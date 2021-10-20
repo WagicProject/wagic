@@ -9444,16 +9444,6 @@ mana={2}{U}{U}
 type=Instant
 [/card]
 [card]
-name=Spell Queller
-abilities=flash,flying
-text=Flash -- Flying -- When Spell Queller enters the battlefield, exile target spell with converted mana cost 4 or less. -- When Spell Queller leaves the battlefield, the exiled card's owner may cast that card without paying its mana cost.
-mana={1}{W}{U}
-type=Creature
-subtype=Spirit
-power=2
-toughness=3
-[/card]
-[card]
 name=Spell Suck
 text=Counter target spell, then assemble a Contraption. (Put the top card of your Contraption deck face up onto one of your sprockets.)
 mana={2}{U}{U}
