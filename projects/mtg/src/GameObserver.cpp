@@ -927,6 +927,8 @@ void GameObserver::gameStateBasedEffects()
                 {
                     if(card->life < 1 && !card->has(Constants::INDESTRUCTIBLE))
                         card->destroy();//manor gargoyle... recheck
+                    if(card->toughness <= 0 && card->has(Constants::INDESTRUCTIBLE))
+                        card->toGrave(true);// Fixed a bug when indestructible creatures have toughness = 0 (e.g. March of the Machines with manacost = 0 artifacts).
                 }
             }
 

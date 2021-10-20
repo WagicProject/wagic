@@ -183,7 +183,7 @@ int Damage::resolve()
             _target->counters->addCounter(-1, -1);
         }
         if(_target->toughness <= 0 && _target->has(Constants::INDESTRUCTIBLE))
-            _target->controller()->game->putInGraveyard(_target);
+            _target->toGrave(true); // The indestructible creatures can have different destination zone after death.
     }
     else if (target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER && (source->has(Constants::INFECT)||source->has(Constants::POISONDAMAGER)))
     {

@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 20/10/21
+- *Committed:* Added Q06 set, improved Android downloader, fixed bug for indestructible creatures that have to go different zone after death (e.g. if they have exiledeath ability), fixed a bug when indestructible creatures have toughness = 0 (e.g. "March of the Machines" with manacost = 0 artifacts). ([Vitty85](https://github.com/Vitty85))
+
 ### 18/10/21
-- *Committed:* Fixed "Krenko Commander" and "Plane of the Apes" decks for AI, added a commandline trace to check which soundtrack file is currently playing. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed "Krenko Commander" and "Plane of the Apes" decks for AI, added a commandline trace to check which soundtrack file is currently playing. https://github.com/WagicProject/wagic/commit/fcb073ccd6cdf2c7c9422ab24f9de227202851c6 ([Vitty85](https://github.com/Vitty85))
 
 ### 17/10/21
 - *Committed:* Added a new deck named "Krenko Commander" for AI (credits to Bob). https://github.com/WagicProject/wagic/commit/5bf5e1dfbae0208a10d93c754aef20f5d06b2148 ([Vitty85](https://github.com/Vitty85))

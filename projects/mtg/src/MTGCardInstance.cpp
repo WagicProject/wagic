@@ -511,6 +511,9 @@ int MTGCardInstance::totem(bool noregen)
 }
 int MTGCardInstance::toGrave( bool forced )
 {
+    if(basicAbilities[(int)Constants::INDESTRUCTIBLE] && !forced)
+        return 0; // Fixed bug for indestructible creatures that have to go different zone after death.
+
     Player * p = controller();
     if (basicAbilities[(int)Constants::EXILEDEATH] || basicAbilities[(int)Constants::GAINEDEXILEDEATH] || (basicAbilities[(int)Constants::HASDISTURB] && alternateCostPaid[ManaCost::MANA_PAID_WITH_RETRACE] == 1))
     {
@@ -542,17 +545,9 @@ int MTGCardInstance::toGrave( bool forced )
             ret->counters->addCounter(1, 1, false);
         return 1;
     }
-    if (!basicAbilities[(int)Constants::INDESTRUCTIBLE])
-    {
-        p->game->putInZone(this, p->game->inPlay, owner->game->graveyard);
-        return 1;
-    }
-    if (forced)
-    {
-        p->game->putInZone(this, p->game->inPlay, owner->game->graveyard);
-        return 1;
-    }
-    return 0;
+    // Let's put the creature in the default zone after death (graveyard).
+    p->game->putInZone(this, p->game->inPlay, owner->game->graveyard);
+    return 1;
 }
 int MTGCardInstance::destroy()
 {

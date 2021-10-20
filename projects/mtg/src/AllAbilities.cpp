@@ -2540,7 +2540,7 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
 
             //specail cases, indestructible creatures which recieve enough counters to kill it are destroyed as a state based effect
             if(_target->toughness <= 0 && _target->has(Constants::INDESTRUCTIBLE) && toughness < 0)
-                _target->controller()->game->putInGraveyard(_target);
+                _target->toGrave(true); // The indestructible cards can have different destination zone after death.
             return nb;
         }
         return 0;
