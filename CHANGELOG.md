@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 21/10/21
+- *Committed:* Added/fixed primitives, updated the "missing_cards_by_sets" folder, renamed several decks for AI, added "noentertrg" and "nodietrg" keywords to allow creatures enter the battlefield or die without causing abilities to trigger (e.g. "Hushbringer"). ([Vitty85](https://github.com/Vitty85))
+
 ### 20/10/21
-- *Committed:* Added "Spell Queller" primitive, updated the "missing_cards_by_sets" folder. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Added "Spell Queller" primitive, updated the "missing_cards_by_sets" folder. https://github.com/WagicProject/wagic/commit/41a89c7324713f7d8c1fb08932b491db91a3fae1 ([Vitty85](https://github.com/Vitty85))
 
 - *Committed:* Added Q06 set, improved Android downloader, fixed bug for indestructible creatures that have to go different zone after death (e.g. if they have exiledeath ability), fixed a bug when indestructible creatures have toughness = 0 (e.g. "March of the Machines" with manacost = 0 artifacts). https://github.com/WagicProject/wagic/commit/3130049c632662334ab3f708bf89bad5a79ecfdb ([Vitty85](https://github.com/Vitty85))
 

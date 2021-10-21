@@ -1,4 +1,4 @@
-#NAME: UrzaTron
+#NAME: Urza's Control
 #DESC: Hellsau, 1st MTGO
 #DESC: Pauper League
 Dinrova Horror (*) *1

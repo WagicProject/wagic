@@ -1,4 +1,4 @@
-#NAME:Rack them all
+#NAME:Racked Mind
 #DESC:Notch by notch
 #DESC:I turn the wheel
 #DESC:stretching your bonded limbs.

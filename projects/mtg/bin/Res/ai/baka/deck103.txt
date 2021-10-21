@@ -1,4 +1,4 @@
-#NAME:Smoke and mirrors
+#NAME:Smoke & Mirrors
 Order of the Ebon Hand	 (FEM) *2
 Combat Medic	 (FEM) *1
 Combat Medic	 (FEM) *1

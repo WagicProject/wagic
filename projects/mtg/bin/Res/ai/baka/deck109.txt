@@ -1,4 +1,4 @@
-#NAME:Red Deck Wins
+#NAME:Krenko's Hellrider
 #DESC:Standard R Aggro
 #DESC:ISD-M13-RTR
 #HINT:combo hold(Hellrider|myhand)^until(creature|mybattlefield)^cast(Hellrider|myhand)^restriction{type(creature|mybattlefield)~morethan~2}^totalmananeeded({2}{R}{R})

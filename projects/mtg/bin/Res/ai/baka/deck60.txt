@@ -1,4 +1,4 @@
-#NAME:No Bushwhacker
+#NAME:No Bushwhacked
 #DESC:"Attack! Heal! Attack! Heal!
 #DESC: And again and again and again.
 #DESC: Oh, how I miss my days

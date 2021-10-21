@@ -1,4 +1,4 @@
-#NAME:SilverBlade
+#NAME:Silver Blade
 #DESC:Don't worry -
 #DESC:it will not hurt ... much.
 #DESC:

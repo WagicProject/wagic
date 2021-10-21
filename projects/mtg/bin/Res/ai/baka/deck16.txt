@@ -1,5 +1,5 @@
 #Black/White Deck 10E/RV
-#NAME:Panda Hive
+#NAME:The Hive
 #DESC:When the last living being
 #DESC:succumbs to the terrible blight
 #DESC:the wasps will rise

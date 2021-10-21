@@ -236,7 +236,9 @@ const char* Constants::MTGBasicAbilities[] = {
     "decayed", //Card has decayed.
     "hasstrive", //Kicker cost is a strive cost (e.g. "Aerial Formation")
     "isconspiracy", //The card is a conspiracy (e.g. "Double Stroke")
-    "hasaftermath" //Flashback cost is an aftemath cost (e.g. "Claim // Fame")
+    "hasaftermath", //Flashback cost is an aftemath cost (e.g. "Claim // Fame")
+    "noentertrg", //Creatures entering the battlefield don't cause abilities to trigger (e.g. "Hushbringer").
+    "nodietrg" //Creatures dying don't cause abilities to trigger (e.g. "Hushbringer").
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;
