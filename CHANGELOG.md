@@ -3,7 +3,9 @@
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
 ### 21/10/21
-- *Committed:* Added/fixed primitives, updated the "missing_cards_by_sets" folder, renamed several decks for AI, added "noentertrg" and "nodietrg" keywords to allow creatures enter the battlefield or die without causing abilities to trigger (e.g. "Hushbringer"). ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Renamed a deck for AI, fixed test suite (one test seems to randomly fail on AI choice without a real bug). ([Vitty85](https://github.com/Vitty85))
+
+- *Committed:* Added/fixed primitives, updated the "missing_cards_by_sets" folder, renamed several decks for AI, added "noentertrg" and "nodietrg" keywords to allow creatures enter the battlefield or die without causing abilities to trigger (e.g. "Hushbringer"). https://github.com/WagicProject/wagic/commit/78658a6a9e3ec995ac908a25c0a2435174bd29fc ([Vitty85](https://github.com/Vitty85))
 
 ### 20/10/21
 - *Committed:* Added "Spell Queller" primitive, updated the "missing_cards_by_sets" folder. https://github.com/WagicProject/wagic/commit/41a89c7324713f7d8c1fb08932b491db91a3fae1 ([Vitty85](https://github.com/Vitty85))
