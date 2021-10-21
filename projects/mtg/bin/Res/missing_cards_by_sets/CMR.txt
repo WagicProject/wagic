@@ -38,7 +38,7 @@ toughness=6
 [card]
 name=Hullbreacher
 abilities=flash
-text=Flash -- If an opponent would draw a card except the first one they draw in each of their draw steps, instead you create a Treasure token. (It's an artifact with " {T}, Sacrifice this artifact: Add one mana of any color.")
+text=Flash -- If an opponent would draw a card except the first one they draw in each of their draw steps, instead you create a Treasure token. (It's an artifact with "{T}, Sacrifice this artifact: Add one mana of any color.")
 mana={2}{U}
 type=Creature
 subtype=Merfolk Pirate

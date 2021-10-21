@@ -1,4 +1,4 @@
-#NAME:AshenmoorCohort
+#NAME:Ashenmoor Cohort
 #
 #DESC: How does it feel
 #DESC: to be dead

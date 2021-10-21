@@ -1,4 +1,4 @@
-#NAME:Mindwracked
+#NAME:Mind Wracked
 #DESC:"What was it, what was it ... I know
 #DESC: there was something I wanted to tell
 #DESC: you. Or was it something you wanted

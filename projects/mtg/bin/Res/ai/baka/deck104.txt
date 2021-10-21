@@ -1,4 +1,4 @@
-#NAME:Kill by Numbers
+#NAME:Kazandu the Redeemed
 #DESC:They just keep multiplying.
 #HINT:castpriority(enchantment,instant,sorcery,artifact,creature)
 #HINT:dontattackwith(Rhys the Redeemed)

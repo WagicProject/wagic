@@ -20,15 +20,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Grave Sifter
-text=When Grave Sifter enters the battlefield, each player chooses a creature type and returns any number of cards of that type from his or her graveyard to his or her hand.
-mana={5}{G}
-type=Creature
-subtype=Elemental Beast
-power=5
-toughness=7
-[/card]
-[card]
 name=Bitter Feud
 text=As Bitter Feud enters the battlefield, choose two players. -- If a source controlled by one of the chosen players would deal damage to the other chosen player or a permanent that player controls, that source deals double that damage to that player or permanent instead.
 mana={4}{R}

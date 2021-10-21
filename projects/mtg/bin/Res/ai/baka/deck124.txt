@@ -1,4 +1,4 @@
-#NAME:Sweep The Tomb
+#NAME:Wipe them out!
 #DESC:Modern RBW Control
 #HINT:castpriority(enchantment,sorcery,artifact,instant)
 #HINT:combo hold(Devour Flesh|myhand)^until(creature|opponentbattlefield)^cast(Devour Flesh|myhand)^totalmananeeded({1}{B})

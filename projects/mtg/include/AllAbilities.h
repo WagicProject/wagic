@@ -190,8 +190,21 @@ public:
 
         //Battlefield is a special case. We usually don't want to trigger when a card comes from battlefield to battlefield
         // http://code.google.com/p/wagic/issues/detail?id=179
-        if ((e->from == game->players[0]->game->battlefield || e->from == game->players[1]->game->battlefield) && (e->to
-                == game->players[0]->game->battlefield || e->to == game->players[1]->game->battlefield))
+        if ((e->from == game->players[0]->game->battlefield || e->from == game->players[1]->game->battlefield) 
+            && (e->to == game->players[0]->game->battlefield || e->to == game->players[1]->game->battlefield))
+        {
+            return 0;
+        }
+        //Creatures entering the battlefield don't cause abilities to trigger (e.g. "Hushbringer").
+        if (e->card->isCreature() && (game->players[0]->game->battlefield->hasAbility(Constants::NOENTERTRG) || game->players[1]->game->battlefield->hasAbility(Constants::NOENTERTRG)) 
+            && (e->to == game->players[0]->game->battlefield || e->to == game->players[1]->game->battlefield))
+        {
+            return 0;
+        }
+        //Creatures dying don't cause abilities to trigger (e.g. "Hushbringer").
+        if (e->card->isCreature() && (game->players[0]->game->battlefield->hasAbility(Constants::NODIETRG) || game->players[1]->game->battlefield->hasAbility(Constants::NODIETRG)) 
+            && (e->from == game->players[0]->game->battlefield || e->from == game->players[1]->game->battlefield)
+            && (e->to == game->players[0]->game->graveyard || e->to == game->players[1]->game->graveyard))
         {
             return 0;
         }

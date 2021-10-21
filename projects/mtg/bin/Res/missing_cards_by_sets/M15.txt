@@ -38,16 +38,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Hushwing Gryff
-abilities=flash,flying
-text=Flash -- Flying -- Creatures entering the battlefield don't cause abilities to trigger.
-mana={2}{W}
-type=Creature
-subtype=Hippogriff
-power=2
-toughness=1
-[/card]
-[card]
 name=Kurkesh, Onakke Ancient
 text=Whenever you activate an ability of an artifact, if it isn't a mana ability, you may pay {R}. If you do, copy that ability. You may choose new targets for the copy.
 mana={2}{R}{R}

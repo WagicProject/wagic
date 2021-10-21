@@ -1,5 +1,5 @@
-#NAME: Mono Black Midrange
-#DESC: First Eldraine Deck
+#NAME: Yarok of Pranks
+#DESC: The First Eldraine Deck
 Midnight Reaper (*) *2
 Cavalier of Night (*) *3
 Dread Presence (*) *4

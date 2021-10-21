@@ -3501,12 +3501,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Gaea's Balance
-text=As an additional cost to cast Gaea's Balance, sacrifice five lands. -- Search your library for a land card of each basic land type and put them onto the battlefield. Then shuffle your library.
-mana={3}{G}
-type=Sorcery
-[/card]
-[card]
 name=Gaea's Liege
 text=As long as Gaea's Liege isn't attacking, its power and toughness are each equal to the number of Forests you control. As long as Gaea's Liege is attacking, its power and toughness are each equal to the number of Forests defending player controls. -- {T}: Target land becomes a Forest until Gaea's Liege leaves the battlefield.
 mana={3}{G}{G}{G}
@@ -4009,15 +4003,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Grave Sifter
-text=When Grave Sifter enters the battlefield, each player chooses a creature type and returns any number of cards of that type from his or her graveyard to his or her hand.
-mana={5}{G}
-type=Creature
-subtype=Elemental Beast
-power=5
-toughness=7
-[/card]
-[card]
 name=Graveyard Busybody
 text=All graveyards are also your graveyards. -- Graveyard Busybody's power and toughness are each equal to the number of cards with flavor text in your graveyards.
 mana={4}{U}{U}
@@ -4494,7 +4479,7 @@ type=Land
 [card]
 name=Hullbreacher
 abilities=flash
-text=Flash -- If an opponent would draw a card except the first one they draw in each of their draw steps, instead you create a Treasure token. (It's an artifact with " {T}, Sacrifice this artifact: Add one mana of any color.")
+text=Flash -- If an opponent would draw a card except the first one they draw in each of their draw steps, instead you create a Treasure token. (It's an artifact with "{T}, Sacrifice this artifact: Add one mana of any color.")
 mana={2}{U}
 type=Creature
 subtype=Merfolk Pirate
@@ -4522,16 +4507,6 @@ text=Denimwalk (If defending player is wearing any clothing made of denim, this 
 mana={2}{R}
 type=Summon
 subtype=Minotaur
-[/card]
-[card]
-name=Hushwing Gryff
-abilities=flash,flying
-text=Flash -- Flying -- Creatures entering the battlefield don't cause abilities to trigger.
-mana={2}{W}
-type=Creature
-subtype=Hippogriff
-power=2
-toughness=1
 [/card]
 [card]
 name=Hypnotic Swirly Disc
@@ -10721,12 +10696,6 @@ type=Creature
 subtype=Shapeshifter
 power=3
 toughness=3
-[/card]
-[card]
-name=Torpor Orb
-text=Creatures entering the battlefield don't cause abilities to trigger.
-mana={2}
-type=Artifact
 [/card]
 [card]
 name=Torrent of Stone

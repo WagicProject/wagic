@@ -51,12 +51,6 @@ mana={1}{W}
 type=Sorcery
 [/card]
 [card]
-name=Gaea's Balance
-text=As an additional cost to cast Gaea's Balance, sacrifice five lands. -- Search your library for a land card of each basic land type and put them onto the battlefield. Then shuffle your library.
-mana={3}{G}
-type=Sorcery
-[/card]
-[card]
 name=Mind Extraction
 text=As an additional cost to cast Mind Extraction, sacrifice a creature. -- Target player reveals his or her hand and discards all cards of each of the sacrificed creature's colors.
 mana={2}{B}

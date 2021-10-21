@@ -52,6 +52,11 @@ power=1
 toughness=5
 [/card]
 [card]
+name=Power Play
+text=(Start the game with this conspiracy face up in the command zone.) -- You are the starting player. If multiple players would be the starting player, one of those players is chosen at random.
+type=Conspiracy
+[/card]
+[card]
 name=Bite of the Black Rose
 text=Will of the council - Starting with you, each player votes for sickness or psychosis. If sickness gets more votes, creatures your opponents control get -2/-2 until end of turn. If psychosis gets more votes or the vote is tied, each opponent discards two cards.
 mana={3}{B}
@@ -218,9 +223,4 @@ type=Creature
 subtype=Angel
 power=4
 toughness=4
-[/card]
-[card]
-name=Power Play
-text=(Start the game with this conspiracy face up in the command zone.) -- You are the starting player. If multiple players would be the starting player, one of those players is chosen at random.
-type=Conspiracy
 [/card]

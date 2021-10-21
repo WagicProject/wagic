@@ -330,7 +330,9 @@ class Constants
       HASSTRIVE = 203,
       ISCONSPIRACY = 204,
       HASAFTERMATH = 205,
-      NB_BASIC_ABILITIES = 206,
+      NOENTERTRG = 206,
+      NODIETRG = 207,
+      NB_BASIC_ABILITIES = 208,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

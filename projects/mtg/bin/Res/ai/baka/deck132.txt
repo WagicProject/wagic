@@ -1,5 +1,5 @@
-#NAME: Ajani's Deck
-#DECRIPTION: The Fist M20 Deck
+#NAME: Ajani's Chaplain
+#DECRIPTION: The First M20 Deck
 Ajani, Inspiring Leader (M20) *1
 Serra's Guardian (M20) *1
 Daybreak Chaplain (M20) *4

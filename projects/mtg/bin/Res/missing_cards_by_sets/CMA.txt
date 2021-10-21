@@ -15,15 +15,6 @@ mana={5}{W}
 type=Sorcery
 [/card]
 [card]
-name=Grave Sifter
-text=When Grave Sifter enters the battlefield, each player chooses a creature type and returns any number of cards of that type from his or her graveyard to his or her hand.
-mana={5}{G}
-type=Creature
-subtype=Elemental Beast
-power=5
-toughness=7
-[/card]
-[card]
 name=Surveyor's Scope
 text={T}, Exile Surveyor's Scope: Search your library for up to X basic land cards, where X is the number of players who control at least two more lands than you. Put those cards onto the battlefield, then shuffle your library.
 mana={2}

@@ -1,4 +1,4 @@
-#NAME:Elfball
+#NAME:Imperious Vanguard
 #DESC:An endless stream
 #DESC:of elvish warriors
 #DESC:will overwhelm you,

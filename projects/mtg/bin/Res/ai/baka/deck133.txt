@@ -1,5 +1,5 @@
-#NAME: Mono-Black Devotion
-#DESC: The Fist MH1 Deck
+#NAME: Phyrexian Asphodel
+#DESC: The First MH1 Deck
 Bloodghast (*) *4
 Geralf's Messenger (*) *4
 Phyrexian Obliterator (*) *4

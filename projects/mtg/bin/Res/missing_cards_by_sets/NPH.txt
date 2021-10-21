@@ -32,12 +32,6 @@ mana={4}{PR}
 type=Artifact
 [/card]
 [card]
-name=Torpor Orb
-text=Creatures entering the battlefield don't cause abilities to trigger.
-mana={2}
-type=Artifact
-[/card]
-[card]
 name=Myr Superion
 text=Spend only mana produced by creatures to cast Myr Superion.
 mana={2}
