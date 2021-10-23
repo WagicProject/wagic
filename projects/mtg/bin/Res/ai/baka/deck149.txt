@@ -1,4 +1,4 @@
-#NAME:Tatiyova Commander 
+#NAME:Tatyova Commander 
 #DESC:The Tatiyova Commander Deck
 #HINT:castpriority(commander,*)
 Mana Crypt (VMA) *1

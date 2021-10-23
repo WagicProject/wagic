@@ -1,4 +1,4 @@
-#NAME:Twin Pricks
+#NAME:Malakir Seeker
 #DESC:"The cattle has arrived.
 #DESC: Time to feed ..."
 Bad Moon (RV)                * 4 #
