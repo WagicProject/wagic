@@ -3,7 +3,9 @@
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
 ### 23/10/21
-- *Committed:* Renamed some decks for AI. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed a Bug in MusicExist method of GameStateDuel class when filename parameter was empty (this could lead to a wrong check on which soundtrack has to be played). ([Vitty85](https://github.com/Vitty85))
+
+- *Committed:* Renamed some decks for AI. https://github.com/WagicProject/wagic/commit/63c5ff2789776a4faa70245b0f97f9b3828501b0 ([Vitty85](https://github.com/Vitty85))
 
 ### 21/10/21
 - *Committed:* Renamed a deck for AI, fixed test suite (one test seems to randomly fail on AI choice without a real bug). https://github.com/WagicProject/wagic/commit/31530215a527d37e219fbe2c9d47dab5cc584e59 ([Vitty85](https://github.com/Vitty85))

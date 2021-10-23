@@ -375,6 +375,8 @@ void GameStateDuel::End()
 //TODO Move This to utils or ResourceManager. Don't we have more generic functions that can do that?
 bool GameStateDuel::MusicExist(string FileName)
 {
+    if (FileName.length() < 1) return false; // Fixed a problem when Music filename is empty.
+
     string musicFilename = WResourceManager::Instance()->musicFile(FileName);
     if (musicFilename.length() < 1) return false;
 
