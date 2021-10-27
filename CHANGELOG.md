@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 27/10/21
+- *Committed:* Fixed "Mindbreak Trap", "Summary Dismissa" and "Obeka, Brute Chronologis" primitives. ([Vitty85](https://github.com/Vitty85))
+
 ### 23/10/21
-- *Committed:* Fixed a Bug in MusicExist method of GameStateDuel class when filename parameter was empty (this could lead to a wrong check on which soundtrack has to be played). ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed a Bug in MusicExist method of GameStateDuel class when filename parameter was empty (this could lead to a wrong check on which soundtrack has to be played). https://github.com/WagicProject/wagic/commit/0824ea39843003d2ef1af1e4b7fdf11e35347fd7 ([Vitty85](https://github.com/Vitty85))
 
 - *Committed:* Renamed some decks for AI. https://github.com/WagicProject/wagic/commit/63c5ff2789776a4faa70245b0f97f9b3828501b0 ([Vitty85](https://github.com/Vitty85))
 
