@@ -15,6 +15,9 @@
 # Dies, Evergreen
 #AUTO_DEFINE _DIES_ @movedTo(this|graveyard) from(battlefield):
 
+# Training
+#AUTO_DEFINE _TRAINING_ @combat(attacking) source(this) restriction{trainer}:name(Training) dotrain
+
 # Goad
 #AUTO_DEFINE _GOAD_ transforms((,newability[counter(0/0.1.Goaded)],newability[this(counter{0/0.1.Goaded}>0) mustattack],newability[phaseaction[endofturn next once sourceinplay] removeallcounters(0/0.-1.Goaded)])) forever
 

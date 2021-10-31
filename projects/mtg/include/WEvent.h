@@ -395,6 +395,12 @@ struct WEventCardForetold : public WEventCardUpdate {
     virtual Targetable * getTarget(int target);
 };
 
+//training event
+struct WEventCardTrained : public WEventCardUpdate {
+    WEventCardTrained(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
 //scry event
 struct WEventCardScryed : public WEventCardUpdate {
     WEventCardScryed(MTGCardInstance * card);

@@ -2262,7 +2262,6 @@ int AAImprint::resolve()
             {
                 andAbilityClone->addToGame();
             }
-            SAFE_DELETE(andAbility); //moved here because in destructor it can cause a crash.
         }
         return 1;
     }
@@ -2276,11 +2275,15 @@ const string AAImprint::getMenuText()
 
 AAImprint * AAImprint::clone() const
 {
-    return NEW AAImprint(*this);
+    AAImprint * a = NEW AAImprint(*this);
+    if(andAbility)
+        a->andAbility = andAbility->clone();
+    return a;
 }
 
 AAImprint::~AAImprint()
 {
+    SAFE_DELETE(andAbility);
 }
 
 //AAHaunt
@@ -2317,7 +2320,6 @@ int AAHaunt::resolve()
             {
                 andAbilityClone->addToGame();
             }
-            SAFE_DELETE(andAbility); //moved here because in destructor it can cause a crash.
         }
         return 1;
     }
@@ -2331,11 +2333,76 @@ const string AAHaunt::getMenuText()
 
 AAHaunt * AAHaunt::clone() const
 {
-    return NEW AAHaunt(*this);
+    AAHaunt * a = NEW AAHaunt(*this);
+    if(andAbility)
+        a->andAbility = andAbility->clone();
+    return a;
 }
 
 AAHaunt::~AAHaunt()
 {
+    SAFE_DELETE(andAbility);
+}
+
+//AATrain
+AATrain::AATrain(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost) :
+    ActivatedAbility(observer, _id, _source, _cost, 0)
+{
+    target = _target;
+    andAbility = NULL;
+}
+
+int AATrain::resolve()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if (_target && _target->hasType(Subtypes::TYPE_CREATURE) && _target->isAttacker())
+    {
+        if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be trained, they will follow the fate of top-card
+
+        while(_target->next)
+            _target = _target->next;
+
+        if(_target->counters)
+            _target->counters->addCounter(1,1);
+
+        WEvent * e = NEW WEventCardTrained(_target);
+        game->receiveEvent(e);
+
+        if(andAbility)
+        {
+            MTGAbility * andAbilityClone = andAbility->clone();
+            andAbilityClone->target = _target;
+            if(andAbility->oneShot)
+            {
+                andAbilityClone->resolve();
+                SAFE_DELETE(andAbilityClone);
+            }
+            else
+            {
+                andAbilityClone->addToGame();
+            }
+        }
+        return 1;
+    }
+    return 0;
+}
+
+const string AATrain::getMenuText()
+{
+    return "Training";
+}
+
+AATrain * AATrain::clone() const
+{
+    AATrain * a = NEW AATrain(*this);
+    if(andAbility)
+        a->andAbility = andAbility->clone();
+    return a;
+}
+
+AATrain::~AATrain()
+{
+    SAFE_DELETE(andAbility);
 }
 
 //AAConjure
@@ -2401,7 +2468,10 @@ const string AAConjure::getMenuText()
 
 AAConjure * AAConjure::clone() const
 {
-    return NEW AAConjure(*this);
+    AAConjure * a = NEW AAConjure(*this);
+    if(andAbility)
+        a->andAbility = andAbility->clone();
+    return a;
 }
 
 AAConjure::~AAConjure()
@@ -4271,8 +4341,8 @@ AAFrozen * AAFrozen::clone() const
 }
 
 // chose a new target for an aura or enchantment and equip it note: VERY basic right now.
-AANewTarget::AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,bool retarget, ManaCost * _cost, bool reequip, bool newhook, int mutation) :
-ActivatedAbility(observer, id, card, _cost, 0),retarget(retarget),reequip(reequip),newhook(newhook),mutation(mutation)
+AANewTarget::AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost, bool retarget, bool reequip, bool newhook, int mutation, bool fromplay) :
+ActivatedAbility(observer, id, card, _cost, 0),retarget(retarget),reequip(reequip),newhook(newhook),mutation(mutation),fromplay(fromplay)
 {
     target = _target;
 }
@@ -4288,17 +4358,18 @@ int AANewTarget::resolve()
     if (_target && !reequip && !mutation)
     {
         while (_target->next)
-            _target = _target->next; 
-        _target->controller()->game->putInZone(_target, _target->currentZone,
-            _target->owner->game->exile);
-        _target = _target->next;
-
-        MTGCardInstance * refreshed = source->controller()->game->putInZone(_target,_target->currentZone,source->controller()->game->battlefield);
+            _target = _target->next;
+        if(!fromplay){
+            _target->controller()->game->putInZone(_target, _target->currentZone, _target->owner->game->exile);
+            _target = _target->next;
+        }
+        MTGCardInstance * refreshed = source->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->battlefield);
         Spell * reUp = NEW Spell(game, refreshed);
         if(reUp->source->hasSubtype(Subtypes::TYPE_AURA))
         {
             reUp->source->target = source;
             reUp->resolve();
+            if(reUp->source->spellTargetType == "") reUp->source->spellTargetType = "creature"; // Fix to prevent flipped auras go to graveyard.
         }
         if(_target->hasSubtype(Subtypes::TYPE_EQUIPMENT))
         {
@@ -4706,6 +4777,7 @@ AAFlip::AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardIn
 InstantAbility(observer, id, card, _target),flipStats(flipStats),isflipcard(isflipcard),forcedcopy(forcedcopy),forcetype(forcetype),backfromcopy(backfromcopy)
 {
     target = _target;
+    andAbility = NULL;
 }
 
 int AAFlip::resolve()
@@ -4773,6 +4845,7 @@ int AAFlip::resolve()
                 if(myFlip->getManaCost())
                     _target->getManaCost()->copy(myFlip->getManaCost());
             }
+            _target->spellTargetType = myFlip->spellTargetType; // Fix to prevent flipped auras go to graveyard.
             _target->colors = myFlip->colors;
             _target->types = myFlip->types;
             _target->text = myFlip->text;
@@ -4931,7 +5004,20 @@ int AAFlip::resolve()
                 }
             }
         }
-
+        if(andAbility)
+        {
+            MTGAbility * andAbilityClone = andAbility->clone();
+            andAbilityClone->target = _target;
+            if(andAbility->oneShot)
+            {
+                andAbilityClone->resolve();
+                SAFE_DELETE(andAbilityClone);
+            }
+            else
+            {
+                andAbilityClone->addToGame();
+            }
+        }
         currentAbilities.clear();
         testDestroy();
     }
@@ -4966,9 +5052,17 @@ const string AAFlip::getMenuText()
 AAFlip * AAFlip::clone() const
 {
     AAFlip * a = NEW AAFlip(*this);
+    if(andAbility)
+        a->andAbility = andAbility->clone();
     a->forceDestroy = 1;
     return a;
 }
+
+AAFlip::~AAFlip()
+{
+    SAFE_DELETE(andAbility);
+}
+
 // AADYNAMIC: dynamic ability builder
 AADynamic::AADynamic(GameObserver* observer, int id, MTGCardInstance * card, Damageable * _target,int type,int effect,int who,int amountsource,MTGAbility * storedAbility, ManaCost * _cost) :
 ActivatedAbility(observer, id, card, _cost, 0),type(type),effect(effect),who(who),amountsource(amountsource),storedAbility(storedAbility)

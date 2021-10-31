@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 31/10/21
+- *Committed:* Fixed primitives, added new macro "_TRAINING_" for new ability "Training", added new trigger "trained", added "trainer" restriction to check if player controls an attacking creature with greater power than the current one, improved "ninjutsu" ability when the targeted card is already in play (e.g. "Olivia, Crimson Bride"), improved "flip" ability in order to add the "andability" option and in ordeer to prevent flipped auras go to graveyard, improved "andability" option for "imprint", "haunt" and "conjure" ability, improved "retarget" and "newtarget" keywords with "fromplay" option (to use with flipped auras e.g. "Vengeful Strangler"), replaced old "praidcount" and "oraidcount" with new keywords "pattackedcount" and "oattackedcount". ([Vitty85](https://github.com/Vitty85))
+
 ### 27/10/21
-- *Committed:* Fixed "Mindbreak Trap", "Summary Dismissa" and "Obeka, Brute Chronologis" primitives. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed "Mindbreak Trap", "Summary Dismissa" and "Obeka, Brute Chronologis" primitives. https://github.com/WagicProject/wagic/commit/051f498e54b186bf71c44d7b6595754fbf0d6ab1 ([Vitty85](https://github.com/Vitty85))
 
 ### 23/10/21
 - *Committed:* Fixed a Bug in MusicExist method of GameStateDuel class when filename parameter was empty (this could lead to a wrong check on which soundtrack has to be played). https://github.com/WagicProject/wagic/commit/0824ea39843003d2ef1af1e4b7fdf11e35347fd7 ([Vitty85](https://github.com/Vitty85))
