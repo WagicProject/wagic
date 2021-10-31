@@ -332,7 +332,8 @@ class Constants
       HASAFTERMATH = 205,
       NOENTERTRG = 206,
       NODIETRG = 207,
-      NB_BASIC_ABILITIES = 208,
+      TRAINING = 208,
+      NB_BASIC_ABILITIES = 209,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

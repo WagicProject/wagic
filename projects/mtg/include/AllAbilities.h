@@ -772,6 +772,33 @@ public:
     }
 };
 
+class TrCardTrained: public Trigger
+{
+public:
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardTrained(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
+        Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardTrained * e = dynamic_cast<WEventCardTrained *> (event);
+        if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
+        return 1;
+    }
+
+    TrCardTrained * clone() const
+    {
+        return NEW TrCardTrained(*this);
+    }
+};
+
 class TrCardScryed: public Trigger
 {
 public:
@@ -1582,6 +1609,17 @@ public:
     AAHaunt * clone() const;
     ~AAHaunt();
 };
+//AATrain
+class AATrain: public ActivatedAbility
+{
+public:
+    MTGAbility * andAbility;
+    AATrain(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL);
+    int resolve();
+    const string getMenuText();
+    AATrain * clone() const;
+    ~AATrain();
+};
 //AAConjure
 class AAConjure: public ActivatedAbility
 {
@@ -1750,18 +1788,21 @@ public:
 
     int resolve()
     {
-    MTGCardInstance * _target = (MTGCardInstance *) target;
-    if(!_target)
-    return 0;
-        MTGCardInstance * copy = _target->controller()->game->putInZone(_target,_target->currentZone,
-                source->controller()->game->temp);
-        Spell * spell = NEW Spell(game, copy);
-        spell->resolve();
-        MTGCardInstance * newcard = spell->source;
+        MTGCardInstance * _target = (MTGCardInstance *) target;
+        if(!_target)
+            return 0;
+        MTGCardInstance * newcard = _target;
+        Spell * spell = NULL;
+        if(_target->currentZone != _target->controller()->game->battlefield){ // If the card is already in play no need to recast a spell (e.g. "Olivia, Crimson Bride").
+            MTGCardInstance * copy = _target->controller()->game->putInZone(_target,_target->currentZone, source->controller()->game->temp);
+            spell = NEW Spell(game, copy);
+            spell->resolve();
+            newcard = spell->source;
+        }
         newcard->summoningSickness = 0;
         newcard->tap();
         newcard->setAttacker(1);
-        delete spell;
+        SAFE_DELETE(spell);
         return 1;
     }
 
@@ -4359,11 +4400,12 @@ public:
 class AANewTarget: public ActivatedAbility
 {
 public:
-bool retarget;
-bool reequip;
-bool newhook;
-int mutation;
-    AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, bool retarget = false, ManaCost * _cost = NULL, bool reequip = false, bool newhook = false, int mutation = 0);
+    bool retarget;
+    bool reequip;
+    bool newhook;
+    int mutation;
+    bool fromplay;
+    AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL, bool retarget = false, bool reequip = false, bool newhook = false, int mutation = 0, bool fromplay = false);
     int resolve();
     const string getMenuText();
     AANewTarget * clone() const;
@@ -4419,6 +4461,7 @@ public:
 class AAFlip: public InstantAbility
 {
 public:
+    MTGAbility * andAbility;
     vector<MTGAbility *> currentAbilities;
     string flipStats;
     bool isflipcard;
@@ -4430,6 +4473,7 @@ public:
     int testDestroy();
     const string getMenuText();
     AAFlip * clone() const;
+    ~AAFlip();
 };
 /* dynamic ability build*/
 class AADynamic: public ActivatedAbility

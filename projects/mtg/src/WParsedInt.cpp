@@ -475,9 +475,9 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
     {
         intValue = (s == "pdevotionoffset")?card->controller()->devotionOffset:card->controller()->opponent()->devotionOffset;
     }
-    else if (s == "praidcount" || s == "oraidcount")
+    else if (s == "pattackedcount" || s == "oattackedcount")
     {
-        intValue = (s == "praidcount")?card->controller()->raidcount:card->controller()->opponent()->raidcount;
+        intValue = (s == "pattackedcount")?card->controller()->raidcount:card->controller()->opponent()->raidcount;
     }
     else if (s == "pstormcount" || s == "ostormcount")
     {

@@ -847,6 +847,20 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
             if(!found)
                 return 0;
         }
+        check = restriction[i].find("trainer"); //Player controls an attacking creature with greater power than the current one.
+        if(check != string::npos)
+        {
+            if(player != observer->currentPlayer || !card->isAttacker())
+                return 0;
+            bool found = false;
+            for(unsigned int i = 0; i < observer->currentPlayer->game->inPlay->cards.size() && !found; i++){
+                if(observer->currentPlayer->game->inPlay->cards[i]->hasType(Subtypes::TYPE_CREATURE) && observer->currentPlayer->game->inPlay->cards[i]->isAttacker() && observer->currentPlayer->game->inPlay->cards[i]->power > card->power){
+                    found = true;
+                }
+            }
+            if(!found)
+                return 0;
+        }
         check = restriction[i].find("can play");
         if(check != string::npos)
         {
@@ -1273,6 +1287,10 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     //Foretell has been performed from a card
     if (TargetChooser * tc = parseSimpleTC(s, "foretold", card))
         return NEW TrCardForetold(observer, id, card, tc, once, limitOnceATurn);
+
+    //Train has been performed from a card
+    if (TargetChooser * tc = parseSimpleTC(s, "trained", card))
+        return NEW TrCardTrained(observer, id, card, tc, once, limitOnceATurn);
 
     //Scry has been performed from a card
     if (TargetChooser * tc = parseSimpleTC(s, "scryed", card))
@@ -3422,6 +3440,22 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         }
     }
 
+    //train a creature
+    found = s.find("dotrain");
+    if (found != string::npos)
+    {
+        MTGAbility * a = NEW AATrain(observer, id, card, target);
+        a->oneShot = 1;
+        //andability
+        if(storedAndAbility.size())
+        {
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((AATrain*)a)->andAbility = parseMagicLine(stored, id, spell, card);
+        }
+        return a;
+    }
+
     //Conjure a card
     found = s.find("conjure");
     if (found != string::npos)
@@ -4638,6 +4672,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         bool backfromcopy = (s.find("undocpy") != string::npos)?true:false; // Added to undo the copy effect at end of turn (es. Scion of the Ur-Dragon).
         bool transmode = card->getdoubleFaced() == "kamiflip"?true:false;
         MTGAbility * a = NEW AAFlip(observer, id, card, target, flipStats, transmode, false, forcetype, backfromcopy);
+        //andability
+        if(storedAndAbility.size())
+        {
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((AAFlip*)a)->andAbility = parseMagicLine(stored, id, spell, card);
+        }
         return a;
     }
 
@@ -4859,10 +4900,10 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
-    //get a new target - retarget and newtarget makes the card refreshed - from exile to play...
+    //get a new target - retarget and newtarget makes the card refreshed - from exile to play (or from play to play)...
     if ((s.find("retarget") != string::npos) || s.find("newtarget") != string::npos)
     {
-        MTGAbility * a = NEW AANewTarget(observer, id, card,target, (s.find("retarget") != string::npos));
+        MTGAbility * a = NEW AANewTarget(observer, id, card, target, NULL, (s.find("retarget") != string::npos), false, false, 0, (s.find("fromplay") != string::npos));
         a->oneShot = 1;
         return a;
     }
@@ -4870,15 +4911,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     //get a new target for puresteel paladin...etc for equipments inplay only.. newhook & rehook supports stone hewer basic... the card is reequipped
     if ((s.find("rehook") != string::npos) || s.find("newhook") != string::npos)
     {
-        MTGAbility * a = NEW AANewTarget(observer, id, card,target, false,NULL,true,(s.find("newhook") != string::npos));
+        MTGAbility * a = NEW AANewTarget(observer, id, card,target, NULL, false, true, (s.find("newhook") != string::npos));
         a->oneShot = 1;
         return a;
     }
 
-    //get a new target for muatations
+    //get a new target for mutations
     if ((s.find("mutateover") != string::npos) || s.find("mutateunder") != string::npos)
     {
-        MTGAbility * a = NEW AANewTarget(observer, id, card,target, false,NULL,false,false,(s.find("mutateover") != string::npos)?1:2);
+        MTGAbility * a = NEW AANewTarget(observer, id, card, target, NULL, false, false, false, (s.find("mutateover") != string::npos)?1:2);
         a->oneShot = 1;
         return a;
     }
@@ -5358,6 +5399,8 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
     if (dynamic_cast<AAImprint *> (a))
         return BAKA_EFFECT_GOOD;
     if (dynamic_cast<AAHaunt *> (a))
+        return BAKA_EFFECT_GOOD;
+    if (dynamic_cast<AATrain *> (a))
         return BAKA_EFFECT_GOOD;
     if (dynamic_cast<ABestow *> (a))
         return BAKA_EFFECT_GOOD;

@@ -238,7 +238,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "isconspiracy", //The card is a conspiracy (e.g. "Double Stroke")
     "hasaftermath", //Flashback cost is an aftemath cost (e.g. "Claim // Fame")
     "noentertrg", //Creatures entering the battlefield don't cause abilities to trigger (e.g. "Hushbringer").
-    "nodietrg" //Creatures dying don't cause abilities to trigger (e.g. "Hushbringer").
+    "nodietrg", //Creatures dying don't cause abilities to trigger (e.g. "Hushbringer").
+    "training" //Has training ability (e.g. "Gryff Rider")
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;
