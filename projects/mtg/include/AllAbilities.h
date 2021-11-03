@@ -167,7 +167,7 @@ public:
     int triggeredTurn;
     TrCardAddedToZone(GameObserver* observer, int id, MTGCardInstance * source, TargetZoneChooser * toTcZone, TargetChooser * toTcCard,
             TargetZoneChooser * fromTcZone = NULL, TargetChooser * fromTcCard = NULL, bool once = false, bool sourceUntapped = false, bool isSuspended = false, bool limitOnceATurn = false) :
-        Trigger(observer, id, source, once), toTcZone(toTcZone), fromTcZone(fromTcZone), toTcCard(toTcCard), fromTcCard(fromTcCard),sourceUntapped(sourceUntapped),isSuspended(isSuspended),limitOnceATurn(limitOnceATurn)
+        Trigger(observer, id, source, once), toTcZone(toTcZone), fromTcZone(fromTcZone), toTcCard(toTcCard), fromTcCard(fromTcCard), sourceUntapped(sourceUntapped), isSuspended(isSuspended), limitOnceATurn(limitOnceATurn)
     {
         triggeredTurn = -1;
     };
@@ -490,7 +490,7 @@ class TrplayerEnergized: public Trigger
 public:
     bool thiscontroller, thisopponent;
     TrplayerEnergized(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false) :
-        Trigger(observer, id, source,once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent)
+        Trigger(observer, id, source, once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent)
     {
     }
 
@@ -519,7 +519,7 @@ class TrplayerExperienced: public Trigger
 public:
     bool thiscontroller, thisopponent;
     TrplayerExperienced(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false) :
-        Trigger(observer, id, source,once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent)
+        Trigger(observer, id, source, once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent)
     {
     }
 
@@ -608,7 +608,7 @@ public:
     bool limitOnceATurn;
     int triggeredTurn;
     TrcardDrawn(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false, bool limitOnceATurn = false) :
-        Trigger(observer, id, source,once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent),limitOnceATurn(limitOnceATurn)
+        Trigger(observer, id, source, once, tc), thiscontroller(thiscontroller), thisopponent(thisopponent), limitOnceATurn(limitOnceATurn)
     {
         triggeredTurn = -1;
     }
@@ -642,7 +642,7 @@ public:
     bool limitOnceATurn;
     int triggeredTurn;
     TrCardMutated(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
-        Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn)
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn)
     {
         triggeredTurn = -1;
     }
@@ -670,8 +670,9 @@ public:
     bool limitOnceATurn;
     int triggeredTurn;
     TrCardExplored(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
-        Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn)
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
@@ -697,8 +698,9 @@ public:
     bool limitOnceATurn;
     int triggeredTurn;
     TrCardBoasted(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
-        Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn)
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
@@ -724,8 +726,9 @@ public:
     bool limitOnceATurn;
     int triggeredTurn;
     TrCardSurveiled(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
-        Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn)
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
@@ -751,8 +754,9 @@ public:
     bool limitOnceATurn;
     int triggeredTurn;
     TrCardForetold(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
-        Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn)
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
@@ -778,8 +782,9 @@ public:
     bool limitOnceATurn;
     int triggeredTurn;
     TrCardTrained(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
-        Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn)
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
@@ -805,8 +810,9 @@ public:
     bool limitOnceATurn;
     int triggeredTurn;
     TrCardScryed(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
-        Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn)
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
@@ -836,8 +842,9 @@ public:
     int totaldng;
     string playerName;
     TrCardDungeonCompleted(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false, int totaldng = 0, string playerName = "") :
-    Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn), totaldng(totaldng), playerName(playerName)
+    Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn), totaldng(totaldng), playerName(playerName)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
@@ -869,8 +876,9 @@ public:
     int rollresult;
     string playerName;
     TrCardRolledDie(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false, int rollresult = 0, string playerName = "") :
-    Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn), rollresult(rollresult), playerName(playerName)
+    Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn), rollresult(rollresult), playerName(playerName)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
@@ -904,8 +912,9 @@ public:
     int flipresult;
     string playerName;
     TrCardFlippedCoin(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false, int flipresult = -1, string playerName = "") :
-    Trigger(observer, id, source,once, tc),limitOnceATurn(limitOnceATurn), flipresult(flipresult), playerName(playerName)
+    Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn), flipresult(flipresult), playerName(playerName)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
@@ -940,8 +949,9 @@ public:
     bool limitOnceATurn;
     int triggeredTurn;
     TrTokenCreated(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
-        Trigger(observer, id, source,once, tc)
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
@@ -967,8 +977,9 @@ public:
     bool limitOnceATurn;
     int triggeredTurn;
     TrCardSacrificed(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
-        Trigger(observer, id, source, once, tc)
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
@@ -1008,8 +1019,9 @@ public:
     bool limitOnceATurn;
     int triggeredTurn;
     TrCardExploited(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
-        Trigger(observer, id, source, once, tc)
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
@@ -1050,8 +1062,9 @@ public:
     int triggeredTurn;
     bool cycledTrigger;
     TrCardDiscarded(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false, bool cycledTrigger = false) :
-    Trigger(observer, id, source, once, tc),cycledTrigger(cycledTrigger)
+    Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn), cycledTrigger(cycledTrigger)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
@@ -1093,7 +1106,7 @@ public:
     bool thiscontroller;
     bool thisopponent;
     TrDamaged(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0, bool sourceUntapped = false, bool limitOnceATurn = false, bool once = false, bool thiscontroller = false, bool thisopponent = false) :
-        Trigger(observer, id, source, once, tc), fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped),limitOnceATurn(limitOnceATurn),thiscontroller(thiscontroller),thisopponent(thisopponent)
+        Trigger(observer, id, source, once, tc), fromTc(fromTc), type(type), sourceUntapped(sourceUntapped), limitOnceATurn(limitOnceATurn), thiscontroller(thiscontroller), thisopponent(thisopponent)
     {
         triggeredTurn = -1;
     }
@@ -1153,7 +1166,7 @@ public:
     int triggeredTurn;
     MTGCardInstance * gainException; //added exception to avid a gainlife loop (eg. Angels of Vitality)
     TrLifeGained(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0, bool sourceUntapped = false, bool once = false, bool thiscontroller = false, bool thisopponent = false, bool limitOnceATurn = false, MTGCardInstance * gainException = NULL) :
-        Trigger(observer, id, source, once , tc),  fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped), thiscontroller(thiscontroller), thisopponent(thisopponent), limitOnceATurn(limitOnceATurn), gainException(gainException)
+        Trigger(observer, id, source, once , tc),  fromTc(fromTc), type(type), sourceUntapped(sourceUntapped), thiscontroller(thiscontroller), thisopponent(thisopponent), limitOnceATurn(limitOnceATurn), gainException(gainException)
     {
         triggeredTurn = -1;
     }
@@ -1204,8 +1217,9 @@ public:
     bool limitOnceATurn;
     int triggeredTurn;
     TrVampired(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, bool once = false, bool limitOnceATurn = false) :
-    Trigger(observer, id, source, once, tc), fromTc(fromTc)
+    Trigger(observer, id, source, once, tc), fromTc(fromTc), limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
@@ -1246,8 +1260,9 @@ public:
     bool limitOnceATurn;
     int triggeredTurn;
     TrTargeted(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0, bool once = false, bool limitOnceATurn = false) :
-    Trigger(observer, id, source, once, tc), fromTc(fromTc), type(type)
+    Trigger(observer, id, source, once, tc), fromTc(fromTc), type(type), limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)

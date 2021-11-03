@@ -583,7 +583,7 @@ reinforcements_1.txt
 Rending_Vines.txt
 Rending_Vines2.txt
 Replenish.txt
-#resounding_roar.txt
+resounding_roar.txt
 resurrection.txt
 resuscitate_i210.txt
 restinpeace.txt
@@ -709,7 +709,7 @@ unwilling_recruit.txt
 urzas_lands.txt
 urzas_lands2.txt
 urzas_mine_i287.txt
-#[at]Vampired#1.txt
+[at]Vampired#1.txt
 vampire_bats.txt
 vampiric_link.txt
 vanishing.txt
