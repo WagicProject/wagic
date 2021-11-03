@@ -937,7 +937,9 @@ class TrTokenCreated: public Trigger
 {
 public:
     bool thiscontroller, thisopponent;
-    TrTokenCreated(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false) :
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrTokenCreated(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
         Trigger(observer, id, source,once, tc)
     {
     }
@@ -946,7 +948,10 @@ public:
     {
         WEventTokenCreated * e = dynamic_cast<WEventTokenCreated *> (event);
         if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
         if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
         return 1;
     }
 
@@ -959,7 +964,9 @@ public:
 class TrCardSacrificed: public Trigger
 {
 public:
-    TrCardSacrificed(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false) :
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardSacrificed(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
         Trigger(observer, id, source, once, tc)
     {
     }
@@ -968,6 +975,8 @@ public:
     {
         WEventCardSacrifice * e = dynamic_cast<WEventCardSacrifice *> (event);
         if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
         MTGCardInstance * check = e->cardAfter;
         MTGGameZone * oldZone = e->cardAfter->currentZone;
         check->currentZone = check->previousZone;
@@ -983,12 +992,54 @@ public:
             return 0;
         }
         check->currentZone = oldZone;
+        triggeredTurn = game->turn;
         return 1;
     }
 
     TrCardSacrificed * clone() const
     {
         return NEW TrCardSacrificed(*this);
+    }
+};
+
+class TrCardExploited: public Trigger
+{
+public:
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardExploited(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
+        Trigger(observer, id, source, once, tc)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardExploited * e = dynamic_cast<WEventCardExploited *> (event);
+        if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
+        MTGCardInstance * check = e->cardAfter;
+        MTGGameZone * oldZone = e->cardAfter->currentZone;
+        check->currentZone = check->previousZone;
+        if (check->next && (check->next->currentZone|| check->isToken))
+        {
+            check = e->cardAfter->next;
+            oldZone = e->cardAfter->next->currentZone;
+            check->currentZone = e->cardAfter->next->previousZone;
+        }
+        if (!tc->canTarget(check,true))
+        {
+            check->currentZone = oldZone;
+            return 0;
+        }
+        check->currentZone = oldZone;
+        triggeredTurn = game->turn;
+        return 1;
+    }
+
+    TrCardExploited * clone() const
+    {
+        return NEW TrCardExploited(*this);
     }
 };
 
@@ -1732,6 +1783,7 @@ class AASacrificeCard: public ActivatedAbility
 {
 public:
     MTGAbility * andAbility;
+    bool isExploited;
     AASacrificeCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target);
     int resolve();
     const string getMenuText();

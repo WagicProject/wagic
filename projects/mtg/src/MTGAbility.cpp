@@ -1363,11 +1363,15 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
 
     //Token has been created
     if (TargetChooser * tc = parseSimpleTC(s, "tokencreated", card))
-        return NEW TrTokenCreated(observer, id, card, tc, once);
+        return NEW TrTokenCreated(observer, id, card, tc, once, limitOnceATurn);
 
     //Card is sacrificed
     if (TargetChooser * tc = parseSimpleTC(s, "sacrificed", card))
-        return NEW TrCardSacrificed(observer, id, card, tc, once);
+        return NEW TrCardSacrificed(observer, id, card, tc, once, limitOnceATurn);
+
+    //Card is exploited
+    if (TargetChooser * tc = parseSimpleTC(s, "exploited", card))
+        return NEW TrCardExploited(observer, id, card, tc, once, limitOnceATurn);
 
     //Card is Discarded
     if (TargetChooser * tc = parseSimpleTC(s, "discarded", card))
@@ -3626,10 +3630,11 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
-    if (s.find("sacrifice") != string::npos)
+    if (s.find("sacrifice") != string::npos || s.find("exploits") != string::npos)
     {
         MTGAbility *a = NEW AASacrificeCard(observer, id, card, target);
         a->oneShot = 1;
+        ((AASacrificeCard*)a)->isExploited = (s.find("exploits") != string::npos)?true:false; // added to allow the Exploit trigger.
         if(storedAndAbility.size())
         {
             string stored = storedAndAbility;
@@ -7001,6 +7006,13 @@ int TriggeredAbility::receiveEvent(WEvent * e)
         //thraximundar vs bloodfore collosus, thraximundar 
         //must be able to survive a sacrificed bloodfire collosus,
         //same with mortician beetle vs phyrexian denouncer test
+        resolve();
+        return 1;
+    }
+    if(dynamic_cast<WEventCardExploited*>(e))
+    {
+        //exploited event must resolve instantly or by the time they do the cards that triggered them 
+        //have already been put in graveyard.
         resolve();
         return 1;
     }
