@@ -110,6 +110,11 @@ WEventCardSacrifice::WEventCardSacrifice(MTGCardInstance * card, MTGCardInstance
 {
 }
 
+WEventCardExploited::WEventCardExploited(MTGCardInstance * card, MTGCardInstance * after) :
+    WEventCardUpdate(card),cardAfter(after)
+{
+}
+
 WEventCardDiscard::WEventCardDiscard(MTGCardInstance * card) :
     WEventCardUpdate(card)
 {
@@ -432,6 +437,15 @@ Targetable * WEventCardAttackedAlone::getTarget(int target)
 }
 
 Targetable * WEventCardSacrifice::getTarget(int target)
+{
+    if (target)
+    {
+            return cardAfter;
+    }
+    return NULL;
+}
+
+Targetable * WEventCardExploited::getTarget(int target)
 {
     if (target)
     {

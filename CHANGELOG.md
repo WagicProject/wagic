@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 03/11/21
+- *Committed:* Fixed primitives, added new ability "exploits" to sacrifice a creature, added new trigger "exploited" and improved all primitives with Exploit ability, improved "tokencreated" and "sacrificed" triggers to allow "turnlimited" option, improved "flip" ability in order to keep track of current zone before flip. ([Vitty85](https://github.com/Vitty85))
+
 ### 31/10/21
-- *Committed:* Fixed primitives, added new macro "_TRAINING_" for new ability "Training", added new trigger "trained", added "trainer" restriction to check if player controls an attacking creature with greater power than the current one, improved "ninjutsu" ability when the targeted card is already in play (e.g. "Olivia, Crimson Bride"), improved "flip" ability in order to add the "andability" option and in ordeer to prevent flipped auras go to graveyard, improved "andability" option for "imprint", "haunt" and "conjure" ability, improved "retarget" and "newtarget" keywords with "fromplay" option (to use with flipped auras e.g. "Vengeful Strangler"), replaced old "praidcount" and "oraidcount" with new keywords "pattackedcount" and "oattackedcount". ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed primitives, added new macro "_TRAINING_" for new ability "Training", added new trigger "trained", added "trainer" restriction to check if player controls an attacking creature with greater power than the current one, improved "ninjutsu" ability when the targeted card is already in play (e.g. "Olivia, Crimson Bride"), improved "flip" ability in order to add the "andability" option and in ordeer to prevent flipped auras go to graveyard, improved "andability" option for "imprint", "haunt" and "conjure" ability, improved "retarget" and "newtarget" keywords with "fromplay" option (to use with flipped auras e.g. "Vengeful Strangler"), replaced old "praidcount" and "oraidcount" with new keywords "pattackedcount" and "oattackedcount". https://github.com/WagicProject/wagic/commit/3baa6acaaf8a994b0fea3c142d14d99d20246da5 ([Vitty85](https://github.com/Vitty85))
 
 ### 27/10/21
 - *Committed:* Fixed "Mindbreak Trap", "Summary Dismissa" and "Obeka, Brute Chronologis" primitives. https://github.com/WagicProject/wagic/commit/051f498e54b186bf71c44d7b6595754fbf0d6ab1 ([Vitty85](https://github.com/Vitty85))

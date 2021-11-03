@@ -195,6 +195,13 @@ struct WEventCardSacrifice : public WEventCardUpdate {
     virtual Targetable * getTarget(int target);
 };
 
+//event when card is exploited.
+struct WEventCardExploited : public WEventCardUpdate {
+    MTGCardInstance * cardAfter;
+    WEventCardExploited(MTGCardInstance * card,MTGCardInstance * afterCard);
+    virtual Targetable * getTarget(int target);
+};
+
 //event when card is discarded.
 struct WEventCardDiscard : public WEventCardUpdate {
   WEventCardDiscard(MTGCardInstance * card);

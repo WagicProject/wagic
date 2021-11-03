@@ -4133,6 +4133,7 @@ AASacrificeCard::AASacrificeCard(GameObserver* observer, int _id, MTGCardInstanc
 {
     target = _target;
     andAbility = NULL;
+    isExploited = false;
 }
 
 int AASacrificeCard::resolve()
@@ -4140,14 +4141,18 @@ int AASacrificeCard::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
-        if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be sacrificed, they will follow the fate of top-card
+        if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be sacrificed or exploited, they will follow the fate of top-card
         Player * p = _target->controller();
         MTGCardInstance * beforeCard = _target;
         p->game->putInGraveyard(_target);
         while(_target->next)
             _target = _target->next;
-        WEvent * e = NEW WEventCardSacrifice(beforeCard,_target);
+        WEvent * e = NEW WEventCardSacrifice(beforeCard, _target);
         game->receiveEvent(e);
+        if(isExploited){
+            WEvent * e = NEW WEventCardExploited(beforeCard, _target);
+            game->receiveEvent(e);
+        }
         if(andAbility)
         {
             MTGAbility * andAbilityClone = andAbility->clone();
@@ -4169,7 +4174,10 @@ int AASacrificeCard::resolve()
 
 const string AASacrificeCard::getMenuText()
 {
-    return "Sacrifice";
+    if(isExploited)
+        return "Exploit";
+    else
+        return "Sacrifice";
 }
 
 AASacrificeCard * AASacrificeCard::clone() const
@@ -4802,10 +4810,12 @@ int AAFlip::resolve()
         }
 
         while (_target->next)
-            _target = _target->next; 
+            _target = _target->next;
 
+        MTGGameZone * currentZone = NULL;
         if(forcetype != "" && _target) // Added to flip Modal Double Faced cards (e.g. Zendikar Rising).
         {
+            currentZone = _target->currentZone; // Added to keep track of current zone before flip.
             for (int i = ((int)_target->types.size())-1; i >= 0; --i)
                 _target->removeType(_target->types[i]);
             list<int> typesToAdd;
@@ -4994,9 +5004,10 @@ int AAFlip::resolve()
 
                 if(forcetype != "" && _target && _target->isPermanent()) // Added to flip Modal Double Faced cards (e.g. Zendikar Rising).
                 {
+                    if(!currentZone) currentZone = _target->controller()->game->hand; // If NULL, we consider hand as the default currentZone.
                     _target->castMethod = Constants::CAST_NORMALLY;
                     _target->controller()->game->battlefield->addCard(_target);
-                    WEvent * e = NEW WEventZoneChange(_target, _target->controller()->game->hand, _target->controller()->game->battlefield);
+                    WEvent * e = NEW WEventZoneChange(_target, currentZone, _target->controller()->game->battlefield);
                     game->receiveEvent(e);
                 } else {
                     WEvent * e = NEW WEventCardTransforms(_target);
