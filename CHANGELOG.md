@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
-### 03/11/21
-- *Committed:* Fixed a bug on several triggers related to the "turnlimited" option, restored some test of regression suite after this bug resolution. ([Vitty85](https://github.com/Vitty85))
+### 07/11/21
+- *Committed:* Fixed primitives, fixed a problem on "flip" ability for some backside cards (e.g. "Edgar Markov's Coffin"), added new keywords "pnumcreswp" and "onumcreswp" to calculate the number of creatures that have toughness greater than their power. ([Vitty85](https://github.com/Vitty85))
+
+### 04/11/21
+- *Committed:* Fixed a bug related to the "turnlimited" option on several ability triggers (e.g. Vampired, Discarded, etc.), restored some test of regression suite after this bug resolution. ([Vitty85](https://github.com/Vitty85))
 
 - *Committed:* Fixed primitives, added new ability "exploits" to sacrifice a creature, added new trigger "exploited" and improved all primitives with Exploit ability, improved "tokencreated" and "sacrificed" triggers to allow "turnlimited" option, improved "flip" ability in order to keep track of current zone before flip.  https://github.com/WagicProject/wagic/commit/79e560e2b299d763fde9783a098e55b4d8a08c9d ([Vitty85](https://github.com/Vitty85))
 

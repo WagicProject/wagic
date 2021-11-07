@@ -4794,7 +4794,7 @@ int AAFlip::resolve()
     int activatedanyability = 0;
     MTGCardInstance * Flipper = (MTGCardInstance*)source;
     this->oneShot = true;
-    if(Flipper->isFlipped > 0 && forcetype == "")
+    if(Flipper->isFlipped > 0 && forcetype == "" && flipStats != "myorigname" && flipStats != "chosenname" && flipStats != "backside") // Fixed a problem on some backside cards (e.g. "Edgar Markov's Coffin").
     {
         game->removeObserver(this);
         return 0;
