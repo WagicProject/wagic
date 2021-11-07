@@ -1453,6 +1453,18 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
             }
         }
     }
+    else if(s.find("pnumcreswp") != string::npos || s.find("onumcreswp") != string::npos){ //Number of creatures that have toughness greater than their power.
+        intValue = 0;
+        bool opponent = (s.find("onumcreswp")!=string::npos)?true:false;
+        Player* p = card->controller();
+        if (opponent)
+            p = card->controller()->opponent();
+        for(unsigned int i = 0; i < p->game->inPlay->cards.size(); i++){
+            if(p->game->inPlay->cards[i]->hasType(Subtypes::TYPE_CREATURE) && p->game->inPlay->cards[i]->toughness > p->game->inPlay->cards[i]->power){
+                intValue++;
+            }
+        }
+    }
     else if(!intValue)//found nothing, try parsing a atoi
     {
         intValue = atoi(s.c_str());
