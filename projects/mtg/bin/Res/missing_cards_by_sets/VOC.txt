@@ -1,0 +1,28 @@
+[card]
+name=Custodi Squire
+abilities=flying
+text=Flying -- Will of the council - When Custodi Squire enters the battlefield, starting with you, each player votes for an artifact, creature, or enchantment card in your graveyard. Return each card with the most votes or tied for most votes to your hand.
+mana={4}{W}
+type=Creature
+subtype=Spirit Cleric
+power=3
+toughness=3
+[/card]
+[card]
+name=Falkenrath Gorger
+text=Each Vampire creature card you own that isn't on the battlefield has madness. The madness cost is equal to its mana cost. (If you discard a card with madness, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)
+mana={R}
+type=Creature
+subtype=Vampire Berserker
+power=2
+toughness=1
+[/card]
+[card]
+name=Dark Impostor
+text={4}{B}{B}: Exile target creature and put a +1/+1 counter on Dark Impostor. -- Dark Impostor has all activated abilities of all creature cards exiled with it.
+mana={2}{B}
+type=Creature
+subtype=Vampire Assassin
+power=2
+toughness=2
+[/card]
