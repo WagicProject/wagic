@@ -2764,7 +2764,7 @@ public class ImgDownloader {
                 id.equals("295229") || id.equals("295387") || id.equals("295206") || id.equals("295706") || id.equals("497549") || id.equals("497666") ||
                 id.equals("503860") || id.equals("522280") || id.equals("522111") || id.equals("527288") || id.equals("531927") || id.equals("527295") ||
                 id.equals("111220") || id.equals("416829") || id.equals("296545") || id.equals("296694") || id.equals("540473") || id.equals("540464") ||
-                id.equals("540708") || id.equals("539395") || id.equals("539417"))
+                id.equals("540708") || id.equals("539395") || id.equals("539417") || id.equals("540991"))
             return false;
         return true;
     }
@@ -3022,7 +3022,7 @@ public class ImgDownloader {
                     set.equals("ISD") || set.equals("ORI") || set.equals("RIX") || set.equals("V17") ||
                     set.equals("UNH") || set.equals("XLN") || set.equals("SOI") || set.equals("SOK") ||
                     set.equals("BOK") || set.equals("CHK") || set.equals("ZNR") || set.equals("KHM") ||
-                    set.equals("STX") || set.equals("MID") || set.equals("CC2"))
+                    set.equals("STX") || set.equals("MID") || set.equals("CC2") || set.equals("VOW"))
                 rarity = "";
             if(id != null && !rarity.equals("t") && (negativeId || id.equals("209162") || id.equals("209163") || id.equals("401721") ||
                     id.equals("401722") || id.equals("999902")))

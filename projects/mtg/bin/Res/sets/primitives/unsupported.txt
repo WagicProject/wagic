@@ -2,7 +2,7 @@ grade=unsupported
 #The cards in this file are not implemented/incomplete yet.
 #Updated Card lists not in primitives (Borderline, Crappy, Unsupported and Missing Cards)
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#I sorted this programatically - Vitty85 19-09-2021
+#I sorted this programatically - Vitty85 10-11-2021
 [card]
 name="Ach! Hans, Run!"
 text=At the beginning of your upkeep, you may say "Ach Hans, run It's the . . ." and name a creature card. If you do, search your library for the named card, put it into play, then shuffle your library. That creature has haste. Remove it from the game at end of turn.
@@ -1022,15 +1022,6 @@ mana={1}{G}
 type=Creature
 subtype=Elf Scout
 power=3
-toughness=1
-[/card]
-[card]
-name=Boreas Charger
-text=Flying -- When Boreas Charger leaves the battlefield, choose an opponent who controls more lands than you. Search your library for a number of Plains cards equal to the difference and reveal them. Put one of them onto the battlefield tapped and the rest into your hand. Then shuffle your library.
-mana={2}{W}
-type=Creature
-subtype=Pegasus
-power=2
 toughness=1
 [/card]
 [card]
@@ -3251,12 +3242,6 @@ type=Creature
 subtype=Bird Advisor
 power=2
 toughness=2
-[/card]
-[card]
-name=Flesh Allergy
-text=As an additional cost to cast Flesh Allergy, sacrifice a creature. -- Destroy target creature. Its controller loses life equal to the number of creatures that died this turn.
-mana={2}{B}{B}
-type=Sorcery
 [/card]
 [card]
 name=Flickerform
