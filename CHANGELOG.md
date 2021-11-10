@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 10/11/21
+- *Committed:* Added/fixed primitives, added VOW and VOC sets, fixed order index of CC2 set, updated the "missing_cards_by_sets" folder, added new keyword "findlasttype" to find the index of latest card with specified type in target player graveyard (e.g. "Timothar, Baron of Bats"), improved Android downloader. ([Vitty85](https://github.com/Vitty85))
+
 ### 07/11/21
-- *Committed:* Fixed primitives, fixed a problem on "flip" ability for some backside cards (e.g. "Edgar Markov's Coffin"), added new keywords "pnumcreswp" and "onumcreswp" to calculate the number of creatures that have toughness greater than their power. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed primitives, fixed a problem on "flip" ability for some backside cards (e.g. "Edgar Markov's Coffin"), added new keywords "pnumcreswp" and "onumcreswp" to calculate the number of creatures that have toughness greater than their power. https://github.com/WagicProject/wagic/commit/8012672a7047e809f8df34e4e957ddc9619bc021 ([Vitty85](https://github.com/Vitty85))
 
 ### 04/11/21
 - *Committed:* Fixed a bug related to the "turnlimited" option on several ability triggers (e.g. Vampired, Discarded, etc.), restored some test of regression suite after this bug resolution. ([Vitty85](https://github.com/Vitty85))

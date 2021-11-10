@@ -1133,6 +1133,35 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
             }
         }
     }
+    else if (s.find("findlasttype") != string::npos)//find the index of latest card with specified type in target player graveyard
+    {
+        intValue = 0;
+        bool opponent = (s.find("oppofindlasttype")!=string::npos)?true:false;
+        string type = (s.find("oppofindlasttype")!=string::npos)?s.substr(16):s.substr(12);
+        bool negate = (type.find("non")!=string::npos)?true:false;
+        type = negate?type.substr(3):type;
+        Player* p = card->controller();
+        if (opponent)
+            p = card->controller()->opponent();
+        for (int j = p->game->graveyard->nb_cards - 1; j >= 0; --j){
+            if (type == "permanent" && !negate && !p->game->graveyard->cards[j]->hasType(Subtypes::TYPE_INSTANT) && !p->game->graveyard->cards[j]->hasType(Subtypes::TYPE_SORCERY)){
+                intValue = j + 1;
+                break;
+            }
+            else if (type == "permanent" && negate && (p->game->graveyard->cards[j]->hasType(Subtypes::TYPE_INSTANT) || p->game->graveyard->cards[j]->hasType(Subtypes::TYPE_SORCERY))){
+                intValue = j + 1;
+                break;
+            }
+            else if (type != "permanent" && !negate && p->game->graveyard->cards[j]->hasType(type)){
+                intValue = j + 1;
+                break;
+            }
+            else if (type != "permanent" && negate && !p->game->graveyard->cards[j]->hasType(type)){
+                intValue = j + 1;
+                break;
+            }
+        }
+    }
     else if (s == "scryedcards" || s == "numoftypes")//returns how many card have been scryed from current card -- returns the number of types of the card
     {
         if(s == "scryedcards")

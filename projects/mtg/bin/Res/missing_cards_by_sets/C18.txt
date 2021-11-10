@@ -55,15 +55,6 @@ mana={6}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Boreas Charger
-text=Flying -- When Boreas Charger leaves the battlefield, choose an opponent who controls more lands than you. Search your library for a number of Plains cards equal to the difference and reveal them. Put one of them onto the battlefield tapped and the rest into your hand. Then shuffle your library.
-mana={2}{W}
-type=Creature
-subtype=Pegasus
-power=2
-toughness=1
-[/card]
-[card]
 name=Nylea's Colossus
 text=Constellation - Whenever Nylea's Colossus or another enchantment enters the battlefield under your control, double target creature's power and toughness until end of turn.
 mana={6}{G}

@@ -46,12 +46,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Flesh Allergy
-text=As an additional cost to cast Flesh Allergy, sacrifice a creature. -- Destroy target creature. Its controller loses life equal to the number of creatures that died this turn.
-mana={2}{B}{B}
-type=Sorcery
-[/card]
-[card]
 name=Fulgent Distraction
 text=Choose two target creatures. Tap those creatures, then unattach all Equipment from them.
 mana={2}{W}
