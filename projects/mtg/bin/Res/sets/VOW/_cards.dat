@@ -101,11 +101,6 @@ id=-541065
 rarity=T
 [/card]
 [card]
-primitive=Blood
-id=-540959
-rarity=T
-[/card]
-[card]
 primitive=Insect Tok
 id=-541055
 rarity=T
@@ -213,6 +208,11 @@ rarity=T
 [card]
 primitive=Blood
 id=-540962
+rarity=T
+[/card]
+[card]
+primitive=Blood
+id=-540959
 rarity=T
 [/card]
 [card]
