@@ -2,10 +2,13 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
-### 10/11/21
-- *Committed:* Added/fixed primitives, added VOW and VOC sets, fixed order index of CC2 set, updated the "missing_cards_by_sets" folder, added new keyword "findlasttype" to find the index of latest card with specified type in target player graveyard (e.g. "Timothar, Baron of Bats"), improved Android downloader. ([Vitty85](https://github.com/Vitty85))
+### 11/11/21
+- *Committed:* Fixed VOW and VOC sets, improved Android downloader for VOC and VOW sets. ([Vitty85](https://github.com/Vitty85))
 
-### 07/11/21
+### 10/11/21
+- *Committed:* Added/fixed primitives, added VOW and VOC sets, fixed order index of CC2 set, updated the "missing_cards_by_sets" folder, added new keyword "findlasttype" to find the index of latest card with specified type in target player graveyard (e.g. "Timothar, Baron of Bats"), improved Android downloader. https://github.com/WagicProject/wagic/commit/6d4646786132d6055986e0b4a4d3fe326bef3156 ([Vitty85](https://github.com/Vitty85))
+
+### 08/11/21
 - *Committed:* Fixed primitives, fixed a problem on "flip" ability for some backside cards (e.g. "Edgar Markov's Coffin"), added new keywords "pnumcreswp" and "onumcreswp" to calculate the number of creatures that have toughness greater than their power. https://github.com/WagicProject/wagic/commit/8012672a7047e809f8df34e4e957ddc9619bc021 ([Vitty85](https://github.com/Vitty85))
 
 ### 04/11/21
