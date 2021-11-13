@@ -2347,7 +2347,7 @@ public class ImgDownloader {
                 id.equals("541002t") || id.equals("541001t") || id.equals("540999t") || id.equals("540989t") || id.equals("540988t") ||
                 id.equals("540980t") || id.equals("540979t") || id.equals("540976t") || id.equals("540964t") || id.equals("540962t") ||
                 id.equals("540943t") || id.equals("540939t") || id.equals("540928t") || id.equals("540869t") || id.equals("546990t") ||
-                id.equals("546987t")) //Blood
+                id.equals("546987t") || id.equals("541117t")) //Blood
             cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/a/6/a6f374bc-cd29-469f-808a-6a6c004ee8aa.jpg?1636041263";
         else if(id.equals("541110t")) // Vampire 1/1 Black&White
             cardurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/7/e/7eee78d3-c65f-4454-bd3c-1c55388422f5.jpg?1636630265";
@@ -2364,7 +2364,7 @@ public class ImgDownloader {
                 id.equals("296696t") ||  id.equals("296697t") || id.equals("296606t")) //Squirrel 1/1
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/9/7/977ddd05-1aae-46fc-95ce-866710d1c5c6.jpg?1626092815";
         else if(id.equals("546983t") || id.equals("547250t")) // Blood
-            tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/c/8/c865bc02-0562-408c-b18e-0e66da906fc6.jpg?1632410368";
+            tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/a/6/a6f374bc-cd29-469f-808a-6a6c004ee8aa.jpg?1636041263";
         else if(id.equals("545775t")) // Angel 4/4
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/f/f/ff0335da-631f-46b8-bfa1-b2f210c91f5f.jpg?1598311447";
         else if(id.equals("546982t")) // Vampire 1/1 Black&White

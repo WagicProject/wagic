@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 13/11/21
+- *Committed:* Fixed VOW set, added new AI deck, improved Android downloader for VOC and VOW sets. ([Vitty85](https://github.com/Vitty85))
+
 ### 11/11/21
-- *Committed:* Fixed VOW and VOC sets, improved Android downloader for VOC and VOW sets. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed VOW and VOC sets, improved Android downloader for VOC and VOW sets. https://github.com/WagicProject/wagic/commit/8b91048d124be38bbb845c47c00857ce5a32cdac ([Vitty85](https://github.com/Vitty85))
 
 ### 10/11/21
 - *Committed:* Added/fixed primitives, added VOW and VOC sets, fixed order index of CC2 set, updated the "missing_cards_by_sets" folder, added new keyword "findlasttype" to find the index of latest card with specified type in target player graveyard (e.g. "Timothar, Baron of Bats"), improved Android downloader. https://github.com/WagicProject/wagic/commit/6d4646786132d6055986e0b4a4d3fe326bef3156 ([Vitty85](https://github.com/Vitty85))

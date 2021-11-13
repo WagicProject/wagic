@@ -1,0 +1,34 @@
+#NAME:Crimson Marriage
+#DESC:The First Crimson Vow Deck
+Cemetery Protector (VOW) * 1
+Hallowed Haunting (VOW) * 1
+Faithbound Judge (VOW) * 1
+Katilda, Dawnhart Martyr (VOW) * 1
+Lantern Flare (VOW) * 2
+Savior of Ollenbock (VOW) * 1
+Sigarda's Summons (VOW) * 2
+Wedding Announcement (VOW) * 2
+Welcoming Vampire (VOW) * 2
+Voice of the Blessed (VOW) * 2
+Cemetery Gatekeeper (VOW) * 2
+Ill-Tempered Loner (VOW) * 2
+Chandra, Dressed to Kill (VOW) * 2
+Manaform Hellkite (VOW) * 2
+Stensia Uprising (VOW) * 2
+Volatile Arsonist (VOW) * 2
+Kessig Wolfrider (VOW) * 2
+Dominating Vampire (VOW) * 2
+Creepy Puppeteer (VOW) * 2
+Dollhouse of Horrors (VOW) * 1
+Odric, Blood-Cursed (VOW) * 2
+Sundown Pass (VOW) * 4
+Plains (VOW) * 10
+Mountain (VOW) * 10
+#SB:By Invitation Only (VOW) * 1
+#SB:Markov Waltzer (VOW) * 2
+#SB:Hopeful Initiate (VOW) * 2
+#SB:Sanctify (VOW) * 3
+#SB:Thalia, Guardian of Thraben (VOW) * 2
+#SB:Kessig Wolfrider (VOW) * 2
+#SB:Dominating Vampire (VOW) * 1
+#SB:Change of Fortune (VOW) * 2
