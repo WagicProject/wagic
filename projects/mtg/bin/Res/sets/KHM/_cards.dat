@@ -1533,12 +1533,12 @@ rarity=U
 [card]
 primitive=Alpine Meadow
 id=503864
-rarity=L
+rarity=C
 [/card]
 [card]
 primitive=Arctic Treeline
 id=503865
-rarity=L
+rarity=C
 [/card]
 [card]
 primitive=Axgard Armory
@@ -1593,7 +1593,7 @@ rarity=U
 [card]
 primitive=Glacial Floodplain
 id=503876
-rarity=L
+rarity=C
 [/card]
 [card]
 primitive=Gnottvold Slumbermound
@@ -1618,12 +1618,12 @@ rarity=T
 [card]
 primitive=Highland Forest
 id=503881
-rarity=L
+rarity=C
 [/card]
 [card]
 primitive=Ice Tunnel
 id=503882
-rarity=L
+rarity=C
 [/card]
 [card]
 primitive=Immersturm Skullcairn
@@ -1643,7 +1643,7 @@ rarity=U
 [card]
 primitive=Rimewood Falls
 id=503886
-rarity=L
+rarity=C
 [/card]
 [card]
 primitive=Shimmerdrift Vale
@@ -1658,12 +1658,12 @@ rarity=U
 [card]
 primitive=Snowfield Sinkhole
 id=503889
-rarity=L
+rarity=C
 [/card]
 [card]
 primitive=Sulfurous Mire
 id=503890
-rarity=L
+rarity=C
 [/card]
 [card]
 primitive=Surtland Frostpyre
@@ -1678,12 +1678,12 @@ rarity=R
 [card]
 primitive=Volatile Fjord
 id=503893
-rarity=L
+rarity=C
 [/card]
 [card]
 primitive=Woodland Chasm
 id=503894
-rarity=L
+rarity=C
 [/card]
 [card]
 primitive=The World Tree
@@ -1693,52 +1693,52 @@ rarity=R
 [card]
 primitive=Snow-Covered Plains
 id=503896
-rarity=L
+rarity=C
 [/card]
 [card]
 primitive=Snow-Covered Plains
 id=503897
-rarity=L
+rarity=C
 [/card]
 [card]
 primitive=Snow-Covered Island
 id=503898
-rarity=L
+rarity=C
 [/card]
 [card]
 primitive=Snow-Covered Island
 id=503899
-rarity=L
+rarity=C
 [/card]
 [card]
 primitive=Snow-Covered Swamp
 id=503900
-rarity=L
+rarity=C
 [/card]
 [card]
 primitive=Snow-Covered Swamp
 id=503901
-rarity=L
+rarity=C
 [/card]
 [card]
 primitive=Snow-Covered Mountain
 id=503902
-rarity=L
+rarity=C
 [/card]
 [card]
 primitive=Snow-Covered Mountain
 id=503903
-rarity=L
+rarity=C
 [/card]
 [card]
 primitive=Snow-Covered Forest
 id=503904
-rarity=L
+rarity=C
 [/card]
 [card]
 primitive=Snow-Covered Forest
 id=503905
-rarity=L
+rarity=C
 [/card]
 [card]
 primitive=Valkyrie Harbinger
