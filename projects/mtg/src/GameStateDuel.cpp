@@ -133,6 +133,7 @@ enum ENUM_OPERATION_LEVELS
 
 int GameStateDuel::selectedPlayerDeckId = 0;
 int GameStateDuel::selectedAIDeckId = 0;
+static std::string kBgFile = "";
 
 GameStateDuel::GameStateDuel(GameApp* parent) :
 GameState(parent, "duel")
@@ -181,6 +182,7 @@ GameStateDuel::~GameStateDuel()
 {
     End();
     SAFE_DELETE(tournament);
+    kBgFile = ""; //Reset the chosen backgorund.
 }
 
 void GameStateDuel::Start()
@@ -370,6 +372,7 @@ void GameStateDuel::End()
 #endif
 
     MTGAbility::deletedpointers.clear(); // Clear the list of deallocated pointer.
+    kBgFile = ""; //Reset the chosen backgorund.
 }
 
 //TODO Move This to utils or ResourceManager. Don't we have more generic functions that can do that?
@@ -1084,10 +1087,29 @@ void GameStateDuel::Render()
         JRenderer::GetInstance()->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
     }
 #else
-    JTexture * wpTex = WResourceManager::Instance()->RetrieveTexture("bgdeckeditor.jpg");
+    //Now it's possibile to randomly use up to 3 background images for deck selection (if random index is 0, it will be rendered the default "bgdeckeditor.jpg" image).
+    JTexture * wpTex = NULL;
+    if(kBgFile == ""){
+        char temp[4096];
+        sprintf(temp, "bgdeckeditor%i.jpg", std::rand() % 3);
+        kBgFile.assign(temp);
+        wpTex = WResourceManager::Instance()->RetrieveTexture(kBgFile);
+        if (wpTex) {
+            JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad(kBgFile);
+            if (wpQuad.get())
+                JRenderer::GetInstance()->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
+            else {
+               kBgFile = "bgdeckeditor.jpg"; //Fallback to default background image for deck selection.
+               wpTex = NULL;
+            }
+        } else
+            kBgFile = "bgdeckeditor.jpg"; //Fallback to default background image for deck selection.
+    }
+    if(!wpTex)
+        wpTex = WResourceManager::Instance()->RetrieveTexture(kBgFile);
     if (wpTex)
     {
-        JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad("bgdeckeditor.jpg");
+        JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad(kBgFile);
         JRenderer::GetInstance()->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
     }
 #endif

@@ -27,6 +27,8 @@ namespace GameStateAwardsConst
     const int kBackToMainMenuID = 1;
 }
 
+static std::string kAwardFile = "";
+
 GameStateAwards::GameStateAwards(GameApp* parent) :
     GameState(parent, "trophies")
 {
@@ -35,7 +37,7 @@ GameStateAwards::GameStateAwards(GameApp* parent) :
 
 GameStateAwards::~GameStateAwards()
 {
-
+    kAwardFile = ""; //Reset the chosen backgorund.
 }
 
 void GameStateAwards::End()
@@ -47,6 +49,8 @@ void GameStateAwards::End()
 
     if (saveMe)
         options.save();
+
+    kAwardFile = ""; //Reset the chosen backgorund.
 }
 void GameStateAwards::Start()
 {
@@ -168,7 +172,18 @@ void GameStateAwards::Render()
 #if defined (PSP)
     JQuadPtr background = WResourceManager::Instance()->RetrieveTempQuad("pspawardback.jpg", TEXTURE_SUB_5551);
 #else
-    JQuadPtr background = WResourceManager::Instance()->RetrieveTempQuad("awardback.jpg", TEXTURE_SUB_5551);
+    //Now it's possibile to randomly use up to 3 background images for trophies room (if random index is 0, it will be rendered the default "awardback.jpg" image).
+    JQuadPtr background;
+    if(kAwardFile == ""){
+        char temp[4096];
+        sprintf(temp, "awardback%i.jpg", std::rand() % 3);
+        kAwardFile.assign(temp);
+        JQuadPtr background = WResourceManager::Instance()->RetrieveTempQuad(kAwardFile);
+        if (!background.get())
+            kAwardFile = "awardback.jpg"; //Fallback to default background image for trophies room.
+    }
+    background = WResourceManager::Instance()->RetrieveTempQuad(kAwardFile, TEXTURE_SUB_5551);
+    //JQuadPtr background = WResourceManager::Instance()->RetrieveTempQuad("awardback.jpg", TEXTURE_SUB_5551);
 #endif
 
     if (background.get())
