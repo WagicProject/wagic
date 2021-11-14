@@ -10,7 +10,21 @@
 DeckEditorMenu::DeckEditorMenu(int id, JGuiListener* listener, int fontId, const string& _title, DeckDataWrapper *_selectedDeck, StatsWrapper *stats) :
     DeckMenu(id, listener, fontId, _title), selectedDeck(_selectedDeck), stw(stats)
 {
+#if !defined (PSP)
+    //Now it's possibile to randomly use up to 3 background images for deck editor selection (if random index is 0, it will be rendered the default "menubgdeckeditor.jpg" image).
+    ostringstream bgFilename;
+    char temp[4096];
+    sprintf(temp, "menubgdeckeditor%i", std::rand() % 3);
+    backgroundName.assign(temp);
+    bgFilename << backgroundName << ".jpg";
+    JQuadPtr background = WResourceManager::Instance()->RetrieveTempQuad(bgFilename.str(), TEXTURE_SUB_5551);
+    if (!background.get()){
+        backgroundName = "menubgdeckeditor"; //Fallback to default background image for deck editor selection.
+    }
+#else
     backgroundName = "menubgdeckeditor";
+#endif
+
     mShowDetailsScreen = false;
     deckTitle = selectedDeck ? selectedDeck->parent->meta_name : "";
 

@@ -28,6 +28,8 @@
 
 #define NO_USER_ACTIVITY_HELP_DELAY 10
 
+static std::string kBgFile = "";
+
 GameStateDeckViewer::GameStateDeckViewer(GameApp* parent) :
     GameState(parent, "deckeditor"), mView(NULL), mCurrentView(CAROUSEL_VIEW)
 {
@@ -102,6 +104,7 @@ GameStateDeckViewer::~GameStateDeckViewer()
         SAFE_DELETE(myCollection);
     }
     SAFE_DELETE(filterMenu);
+    kBgFile = ""; //Reset the chosen backgorund.
 }
 
 void GameStateDeckViewer::rebuildFilters()
@@ -303,6 +306,7 @@ void GameStateDeckViewer::End()
     SAFE_DELETE(playerdata);
     SAFE_DELETE(filterMenu);
     SAFE_DELETE(source);
+    kBgFile = ""; //Reset the chosen backgorund.
 }
 
 void GameStateDeckViewer::addRemove(MTGCard * card)
@@ -1570,13 +1574,32 @@ void GameStateDeckViewer::Render()
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     JRenderer::GetInstance()->ClearScreen(ARGB(0,0,0,0));
 #if !defined (PSP)
-    JTexture * wpTex = WResourceManager::Instance()->RetrieveTexture("bgdeckeditor.jpg");
+    //Now it's possibile to randomly use up to 3 background images for deck editor background (if random index is 0, it will be rendered the default "bgdeckeditor.jpg" image).
+    JTexture * wpTex = NULL;
+    if(kBgFile == ""){
+        char temp[4096];
+        sprintf(temp, "bgdeckeditor%i.jpg", std::rand() % 3);
+        kBgFile.assign(temp);
+        wpTex = WResourceManager::Instance()->RetrieveTexture(kBgFile);
+        if (wpTex) {
+            JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad(kBgFile);
+            if (wpQuad.get())
+                JRenderer::GetInstance()->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
+            else {
+               kBgFile = "bgdeckeditor.jpg"; //Fallback to default background image for deck editor background.
+               wpTex = NULL;
+            }
+        } else
+            kBgFile = "bgdeckeditor.jpg"; //Fallback to default background image for deck editor background.
+    }
+    if(!wpTex)
+        wpTex = WResourceManager::Instance()->RetrieveTexture(kBgFile);
     if (wpTex)
     {
-        JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad("bgdeckeditor.jpg");
+        JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad(kBgFile);
         JRenderer::GetInstance()->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
-    }/*
-    if (mView->deck() == myDeck && mStage != STAGE_MENU)
+    }
+    /*if (mView->deck() == myDeck && mStage != STAGE_MENU)
         renderDeckBackground();*/
 #else
     JTexture * wpTex = WResourceManager::Instance()->RetrieveTexture("pspbgdeckeditor.jpg");
@@ -1584,8 +1607,8 @@ void GameStateDeckViewer::Render()
     {
         JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad("pspbgdeckeditor.jpg");
         JRenderer::GetInstance()->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
-    }/*
-    if (mView->deck() == myDeck && mStage != STAGE_MENU)
+    }
+    /*if (mView->deck() == myDeck && mStage != STAGE_MENU)
         renderDeckBackground();*/
 #endif
     mView->Render();

@@ -2,8 +2,13 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 14/11/21
+- *Committed:* Fixed primitives, improved background images management for game settings, deck selection, deck editor background, post-match credits, deck editor selection and trophies room (now it's possibile to randomly use up to 3 background images and if the chosen image is not available, it will be rendered the default one). ([Vitty85](https://github.com/Vitty85))
+
+- *Committed:* Fixed primitives, several bugs and crashes. https://github.com/WagicProject/wagic/commit/96f7072a77f566718fc49c2bfe3b0b192452faf6 ([EduardoMunozGomez](https://github.com/EduardoMunozGomez))
+
 ### 13/11/21
-- *Committed:* Fixed VOW set, added new AI deck, improved Android downloader for VOC and VOW sets. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed VOW set, added new AI deck, improved Android downloader for VOC and VOW sets. https://github.com/WagicProject/wagic/commit/9957719e0c3e2467fd12039c213d54f151664fdd ([Vitty85](https://github.com/Vitty85))
 
 ### 11/11/21
 - *Committed:* Fixed VOW and VOC sets, improved Android downloader for VOC and VOW sets. https://github.com/WagicProject/wagic/commit/8b91048d124be38bbb845c47c00857ce5a32cdac ([Vitty85](https://github.com/Vitty85))

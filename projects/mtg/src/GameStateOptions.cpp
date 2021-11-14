@@ -16,12 +16,16 @@ namespace GameStateOptionsConst
     const int kReloadID = 5;
 }
 
+static std::string kBgFile = "";
+
 GameStateOptions::GameStateOptions(GameApp* parent) :
     GameState(parent, "options"), mReload(false), grabber(NULL), optionsMenu(NULL), optionsTabs(NULL)
 {
 }
+
 GameStateOptions::~GameStateOptions()
 {
+    kBgFile = ""; //Reset the chosen backgorund.
 }
 
 void GameStateOptions::Start()
@@ -153,6 +157,7 @@ void GameStateOptions::End()
     JRenderer::GetInstance()->EnableVSync(false);
     SAFE_DELETE(optionsTabs);
     SAFE_DELETE(optionsMenu);
+    kBgFile = ""; //Reset the chosen backgorund.
 }
 
 void GameStateOptions::Update(float dt)
@@ -237,10 +242,29 @@ void GameStateOptions::Render()
     //Erase
     JRenderer::GetInstance()->ClearScreen(ARGB(0,0,0,0));
 #if !defined (PSP)
-    JTexture * wpTex = WResourceManager::Instance()->RetrieveTexture("bgdeckeditor.jpg");
+    //Now it's possibile to randomly use up to 3 background images for game settings (if random index is 0, it will be rendered the default "bgdeckeditor.jpg" image).
+    JTexture * wpTex = NULL;
+    if(kBgFile == ""){
+        char temp[4096];
+        sprintf(temp, "bgdeckeditor%i.jpg", std::rand() % 3);
+        kBgFile.assign(temp);
+        wpTex = WResourceManager::Instance()->RetrieveTexture(kBgFile);
+        if (wpTex) {
+            JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad(kBgFile);
+            if (wpQuad.get())
+                JRenderer::GetInstance()->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
+            else {
+               kBgFile = "bgdeckeditor.jpg"; //Fallback to default background image for game settings.
+               wpTex = NULL;
+            }
+        } else
+            kBgFile = "bgdeckeditor.jpg"; //Fallback to default background image for game settings.
+    }
+    if(!wpTex)
+        wpTex = WResourceManager::Instance()->RetrieveTexture(kBgFile);
     if (wpTex)
     {
-        JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad("bgdeckeditor.jpg");
+        JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad(kBgFile);
         JRenderer::GetInstance()->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
     }
 #else
