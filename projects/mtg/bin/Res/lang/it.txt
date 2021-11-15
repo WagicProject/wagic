@@ -873,8 +873,10 @@ Mute=Muto
 Misc=Altri
 Card Display Options=Opzioni di visualizzazione delle carte
 All Black Borders=Tutti i bordi neri
+Show Borders=Mostra i bordi
+Sort decks by date=Ordina i mazzi per data
 Show Tokens in Editor=Mostra i token nell'editor
-Warning!!=Avvertimento!!
+Warning!!!=Avvertimento!!!
 Show Large Images in Grid Deck View=Mostra immagini grandi nella vista a griglia
 Enable Prefetching=Abilita la pre-elaborazione
 
@@ -953,7 +955,7 @@ Offer Choice=Offri la scelta
 Always Pay=Paga sempre
 
 #Comandi:
-Key Bindings=Associazione dei comandi
+Key Bindings=Comandi
 Load Defaults...=Caricare impostazioni di default...
 Press a key to associate.=Premere un tasto per associare.
 New binding...=Nuova associazione...
@@ -995,6 +997,8 @@ Seconds to pause for an Interrupt=Secondi di pausa per le interruzioni
 Interrupt my abilities=Interrompi le mie abilita'
 Interrupt my spells=Interrompi i miei incantesimi
 Interrupt opponent's end of turn=Interrompi la fine del turno dell'avversario
+
+Credits=Ringraziamenti
 
 ###########
 # TROFEOS #

@@ -161,18 +161,18 @@ void DeckView::renderCard(int index, int alpha, bool asThumbnail, bool griddeckv
     if (last_user_activity < 3)
     {
         int fontAlpha = alpha;
-        float qtY = cardPosition.y - 135 * cardPosition.scale;
-        float qtX = cardPosition.x + 40 * cardPosition.scale;
+        float qtY = cardPosition.y - 115 * cardPosition.scale;
+        float qtX = cardPosition.x + 62 * cardPosition.scale;
         char buffer[4096];
         sprintf(buffer, "x%i", deck()->count(cardPosition.card));
         WFont * font = mFont;
         font->SetScale(1.4f);
         font->SetColor(ARGB(fontAlpha/2,0,0,0));
-        JRenderer::GetInstance()->FillRect(qtX, qtY, font->GetStringWidth(buffer) + 6, 18, ARGB(fontAlpha/2,0,0,0));
-        JRenderer::GetInstance()->DrawRect(qtX, qtY, font->GetStringWidth(buffer) + 6, 18, ARGB(fontAlpha/2,240,240,240));
-        font->DrawString(buffer, qtX + 5, qtY + 3);
+        JRenderer::GetInstance()->FillRect(qtX, qtY, font->GetStringWidth(buffer) + 6, 15, ARGB(fontAlpha/2,0,0,0));
+        JRenderer::GetInstance()->DrawRect(qtX, qtY, font->GetStringWidth(buffer) + 6, 15, ARGB(fontAlpha/2,240,240,240));
+        font->DrawString(buffer, qtX + 5, qtY + 0);
         font->SetColor(ARGB(fontAlpha,255,255,255));
-        font->DrawString(buffer, qtX + 4, qtY + 2);
+        font->DrawString(buffer, qtX + 4, qtY - 1);
         font->SetColor(ARGB(255,255,255,255));
         font->SetScale(1.0f);
     }

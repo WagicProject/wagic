@@ -63,6 +63,8 @@ void GameStateOptions::Start()
     optionsList->Add(NEW OptionInteger(Options::SHOWBORDER, "Show Borders"));
     //black border
     optionsList->Add(NEW OptionInteger(Options::BLKBORDER, "All Black Borders"));
+    //Sort deck by date
+    optionsList->Add(NEW OptionInteger(Options::SORTINGDECKS, "Sort decks by date"));
     //show tokens in editor
     optionsList->Add(NEW OptionInteger(Options::SHOWTOKENS, "Show Tokens in Editor"));
     WDecoStyled * wMisc = NEW WDecoStyled(NEW WGuiHeader("Warning!!!"));

@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 15/11/21
+- *Committed:* Fixed primitives, updated italian lang file, added a new setting to sort decks by creation date (by default they will be sorted by name), added new filters to match cards that don't contain a particular color or that are multicolored, fixed an issue when the transformation with uynt is triggered by instant/sorcery or by card that left the battlefield before the ability ending turn, fixed a rendering overlap on mana symbols in deck editor, fixed some crashes on ManaCost parser (e.g. Filter by mana producer). ([Vitty85](https://github.com/Vitty85))
+
 ### 14/11/21
-- *Committed:* Fixed "Mana Hellkite" and added its token primitive, fixed token in VOW set. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed "Mana Hellkite" and added its token primitive, fixed token in VOW set. https://github.com/WagicProject/wagic/commit/2eed51dea6339a6c835f0fe89ddfe1caa61ddf1a ([Vitty85](https://github.com/Vitty85))
 
 - *Committed:* Fixed primitives, improved background images management for game settings, deck selection, deck editor background, post-match credits, deck editor selection and trophies room (now it's possibile to randomly use up to 3 background images and if the chosen image is not available, it will be rendered the default one). https://github.com/WagicProject/wagic/commit/c55c9c25071af5e8a0d62d664b915e7edf1b9491 ([Vitty85](https://github.com/Vitty85))
 

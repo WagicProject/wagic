@@ -2809,7 +2809,7 @@ subtype=Teyo
 [/card]
 [card]
 name=Teyo, the Shieldmage
-abilities=playershroud
+abilities=controllershroud
 auto=counter(0/0,5,loyalty)
 auto={C(0/0,-2,Loyalty)}:name(-2: Create a 0/3 Wall with defender) create(Wall:Creature Wall:0/3:white:defender)
 text=You have hexproof. (You can't be the target of spells or abilities your opponents control.) -- -2: Create a 0/3 white Wall creature token with defender.

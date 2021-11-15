@@ -94,10 +94,13 @@ vector<DeckMetaData *> GameState::BuildDeckList(const string& path, const string
         }
         meta = NULL;
     }
+    // Now decks can be sorted by name or by creation date.
+    if(!options[Options::SORTINGDECKS].number)
+        std::sort(retList.begin(), retList.end(), sortByName); // Ordered by name from A to Z.
+    else
+        std::reverse(retList.begin(), retList.end()); // Ordered by creation date from the last to the first one (e.g. we consider deck2.txt newer than deck1.txt).
 
-    std::sort(retList.begin(), retList.end(), sortByName);
     return retList;
-
 }
 
 // build a menu with the given deck list and return a vector of the deck ids created.

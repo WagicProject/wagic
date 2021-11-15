@@ -46,6 +46,7 @@ public:
         CHEATMODEAIDECK,
         SHOWBORDER,
         BLKBORDER,
+        SORTINGDECKS,
         SHOWTOKENS,
         SORTINGSETS,
         GDVLARGEIMAGE,
