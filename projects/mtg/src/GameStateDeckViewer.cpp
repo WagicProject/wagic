@@ -893,9 +893,9 @@ void GameStateDeckViewer::renderOnScreenBasicInfo()
     float w = mFont->GetStringWidth(buffer);
     PIXEL_TYPE backupColor = mFont->GetColor();
 
-    renderer->FillRoundRect(SCREEN_WIDTH - (w + 27), y + 5, w + 10, 15, 5, ARGB(hudAlpha/2,0,0,0));
+    renderer->FillRoundRect(SCREEN_WIDTH - (w + 27), y, w + 5, 4, 5, ARGB(hudAlpha/2,0,0,0));
     mFont->SetColor(ARGB(hudAlpha,255,255,255));
-    mFont->DrawString(buffer, SCREEN_WIDTH - 22, y + 15, JGETEXT_RIGHT);
+    mFont->DrawString(buffer, SCREEN_WIDTH - 20, y + 1, JGETEXT_RIGHT);
     mFont->SetColor(backupColor);
     
     if (mView->filter() != 0) renderer->RenderQuad(mIcons[mView->filter() - 1].get(), SCREEN_WIDTH - 10, y + 15, 0.0f, 0.5, 0.5);

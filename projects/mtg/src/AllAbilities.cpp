@@ -7782,9 +7782,8 @@ int ATransformer::addToGame()
         if(UYNT)
         {
             if(myCurrentTurn != 1000 && game->turn > myCurrentTurn && source->controller()->getId() == game->currentPlayer->getId())
-            {
                 return 1;
-            }
+            return 0; // Fixed an issue when the transformation with uynt is triggered by instant/sorcery or by card that left the battlefield before the ability ending turn.
         }
         return MTGAbility::testDestroy();
     }
@@ -7793,6 +7792,7 @@ int ATransformer::destroy()
 {
     if(aForever)
         return 0;
+        
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {

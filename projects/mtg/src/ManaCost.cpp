@@ -266,6 +266,8 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                     case 'p' :
                         {
                             SAFE_DELETE(tc);
+                            if (value.find("power") != string::npos) // Fix to avoid crash on ManaCost parse (e.g. Filter by mana producer).
+                                break;
                             size_t start = value.find("(");
                             size_t end = value.rfind(")");
                             string manaType = value.substr(start + 1, end - start - 1);
@@ -298,6 +300,8 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                         break;
                     case 'c': //Counters or cycle
                         {
+                            if (value.find("compare(") != string::npos) // Fix to avoid crash on ManaCost parse (e.g. Filter by mana producer).
+                                break;
                             if (value.find("convoke") != string::npos)
                             {
                                 if (!tc)

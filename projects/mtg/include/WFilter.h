@@ -289,6 +289,29 @@ protected:
 };
 
 /**
+  Matches a card that does not contain a particular color (inclusively). 
+*/
+class WCFilterNotColor: public WCardFilter
+{
+public:
+    WCFilterNotColor(int _c)
+    {
+        color = _c;
+    }
+    ;
+    WCFilterNotColor(string arg);
+    bool isMatch(MTGCard * c);
+    string getCode();
+    float filterFee()
+    {
+        return 0.2f;
+    }
+    ;
+protected:
+    int color;
+};
+
+/**
   Matches a card that is a particular color (exclusively). 
 */
 class WCFilterOnlyColor: public WCFilterColor

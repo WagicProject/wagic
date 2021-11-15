@@ -22,6 +22,7 @@ const string Options::optionNames[] = {
   "cheatmodedecks",
   "ShowBorder",
   "BlackBorder",
+  "SortDecksByDate",
   "ShowTokens",
   "SortingSets",
   "GDVLargeImages",

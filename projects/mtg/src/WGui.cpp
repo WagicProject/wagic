@@ -2186,6 +2186,13 @@ void WGuiFilterItem::updateValue()
             mParent->addArg("Exclusively Black", "xc:b;");
             mParent->addArg("Exclusively Red", "xc:r;");
             mParent->addArg("Exclusively Green", "xc:g;");
+            mParent->addArg("Not White", "nc:w;");
+            mParent->addArg("Not Blue", "nc:u;");
+            mParent->addArg("Not Black", "nc:b;");
+            mParent->addArg("Not Red", "nc:r;");
+            mParent->addArg("Not Green", "nc:g;");
+            mParent->addArg("Not Colorless", "nc:x;");
+            mParent->addArg("Only Multicolored", "nc:m;");
         }
         else if (filterType == FILTER_PRODUCE)
         {
