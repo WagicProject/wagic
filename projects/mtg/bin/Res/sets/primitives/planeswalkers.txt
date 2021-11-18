@@ -561,7 +561,7 @@ auto={C(0/0,1,Loyalty)}:name(+1: Add red mana) add{R} controller
 auto={C(0/0,1,Loyalty)}:name(+1: Add red and deal damage) target(creature,planeswalker) damage:1 && add{R} controller 
 auto={C(0/0,1,Loyalty)}:name(+1: Exile top card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( if cantargetcard(*[red]|*) then canplayfromexile ueot )!
 auto={C(0/0,-7,Loyalty)}:name(-7: Exile top 5 cards) emblem transforms((,newability[@movedto(*[red]|mystack):all(trigger[to]) transforms((,newability[name(Deals damage) target(player^creature^planeswalker) damage:totmanaspent])) oneshot],newability[all(*[zpos<=5]|mylibrary) moveto(myexile) and!( if cantargetcard(*[red]|*) then canplayfromexile ueot )!])) forever dontremove 
-text=+1: Add {R}. Chandra, Dressed to Kill deals 1 damage to up to one target player or planeswalker. -- +1: Exile the top card of your library. If itâ??s red, you may cast it this turn. -- â??7: Exile the top five cards of your library. You may cast red spells from among them this turn. You get an emblem with "Whenever you cast a red spell, this emblem deals X damage to any target, where X is the amount of mana spent to cast that spell."
+text=+1: Add {R}. Chandra, Dressed to Kill deals 1 damage to up to one target player or planeswalker. -- +1: Exile the top card of your library. If it's red, you may cast it this turn. -- -7: Exile the top five cards of your library. You may cast red spells from among them this turn. You get an emblem with "Whenever you cast a red spell, this emblem deals X damage to any target, where X is the amount of mana spent to cast that spell."
 mana={1}{R}{R}
 type=Legendary Planeswalker
 subtype=Chandra
@@ -1579,7 +1579,7 @@ auto={C(0/0,1,Loyalty)}:name(+1: Creatures gain deathtouch) all(creature|mybattl
 auto={C(0/0,1,Loyalty)}:name(+1: Creatures gain deathtouch and put counter) target(creature[token]|mybattlefield) counter(1/1) && all(creature|mybattlefield) transforms((,newability[deathtouch])) ueot
 auto={C(0/0,-2,Loyalty)}:name(-2: Double the tokens) transforms((,newability[@tokencreated(*|myBattlefield):name(Double the token) all(trigger) clone options(notrigger)])) ueot
 auto={C(0/0,-6,Loyalty)}:name(-6: Exile cards) all(*|graveyard) moveto(exile) and!( token(Spirit,Creature Spirit,1/1,white,flying) )!
-text=+1: Creatures you control gain deathtouch until end of turn. Put a +1/+1 counter on up to one target creature token you control. -- â??2: Until end of turn, if one or more tokens would be created under your control, twice that many of those tokens are created instead. -- â??6: Exile all cards from all graveyards, then create a 1/1 white Spirit creature token with flying for each card exiled this way.
+text=+1: Creatures you control gain deathtouch until end of turn. Put a +1/+1 counter on up to one target creature token you control. -- -2: Until end of turn, if one or more tokens would be created under your control, twice that many of those tokens are created instead. -- -6: Exile all cards from all graveyards, then create a 1/1 white Spirit creature token with flying for each card exiled this way.
 mana={1}{W}{B}
 type=Legendary Planeswalker
 subtype=Kaya
@@ -2601,7 +2601,7 @@ auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Look top card) all(*[zpos=1]|mylibrary) moveto(myhand) and!( transforms((,newability[choice name(Put in hand) life:-manacost controller],newability[choice name(Put back in library) moveto(mylibrary)])) oneshot )!
 auto={C(0/0,-2,Loyalty)}:name(-2: Create Vampire) token(Vampire,Creature Vampire,2/3,black,flying,lifelink)
 auto={C(0/0,-7,Loyalty)}:name(-7: Deal 13 damage) damage:13 target(player,creature,planeswalker) && life:13 controller 
-text=+1: Look at the top card of your library. You may reveal that card and put it into your hand. If you do, you lose life equal to its mana value. -- â??2: Create a 2/3 black Vampire creature token with flying and lifelink. -- â??7: Sorin the Mirthless deals 13 damage to any target. You gain 13 life.
+text=+1: Look at the top card of your library. You may reveal that card and put it into your hand. If you do, you lose life equal to its mana value. -- -2: Create a 2/3 black Vampire creature token with flying and lifelink. -- -7: Sorin the Mirthless deals 13 damage to any target. You gain 13 life.
 mana={2}{B}{B}
 type=Legendary Planeswalker
 subtype=Sorin

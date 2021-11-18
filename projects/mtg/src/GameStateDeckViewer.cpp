@@ -53,8 +53,8 @@ GameStateDeckViewer::GameStateDeckViewer(GameApp* parent) :
     statsPrevButton = NEW InteractiveButton(NULL, kPrevStatsButtonId, Fonts::MAIN_FONT, "Stats",  SCREEN_WIDTH_F - 35, SCREEN_HEIGHT_F - 20, JGE_BTN_PREV);
     toggleDeckButton = NEW InteractiveButton(NULL, kToggleDeckActionId, Fonts::MAIN_FONT, "View Deck", 10, SCREEN_HEIGHT_F - 20, JGE_BTN_PRI);
     sellCardButton = NEW InteractiveButton(NULL, kSellCardActionId, Fonts::MAIN_FONT, "Sell Card", (SCREEN_WIDTH_F/ 2) - 125, SCREEN_HEIGHT_F - 20, JGE_BTN_SEC);
-    sb_cmd_dng_Button = NEW InteractiveButton(NULL, kSBActionId, Fonts::MAIN_FONT, "View SB", (SCREEN_WIDTH_F/ 2) - 35, SCREEN_HEIGHT_F - 20, JGE_BTN_SOUND);
-    filterButton = NEW InteractiveButton(NULL, kFilterButtonId, Fonts::MAIN_FONT, "Filter", (SCREEN_WIDTH_F - 116), SCREEN_HEIGHT_F - 20, JGE_BTN_CTRL);
+    sb_cmd_dng_Button = NEW InteractiveButton(NULL, kSBActionId, Fonts::MAIN_FONT, "View SB", (SCREEN_WIDTH_F/ 2) - 35, SCREEN_HEIGHT_F - 20, JGE_BTN_CTRL);
+    filterButton = NEW InteractiveButton(NULL, kFilterButtonId, Fonts::MAIN_FONT, "Filter", (SCREEN_WIDTH_F - 116), SCREEN_HEIGHT_F - 20, JGE_BTN_SOUND);
     //TODO: Check if that button is available:
     toggleViewButton = NEW InteractiveButton(NULL, kSwitchViewButton, Fonts::MAIN_FONT, "Grid", (SCREEN_WIDTH_F/ 2) + 50, SCREEN_HEIGHT_F - 20, JGE_BTN_MAX);
     toggleUpButton = NEW InteractiveButton(NULL, kToggleUpButton, Fonts::MAIN_FONT, "UP", 10, 25, JGE_BTN_DOWN);
@@ -212,6 +212,7 @@ void GameStateDeckViewer::buildEditorMenu()
     deckMenu->Add(MENU_ITEM_SAVE_RETURN_MAIN_MENU, _("Save & Quit Editor"), _("Save changes. Return to the main menu"));
     deckMenu->Add(MENU_ITEM_SAVE_AS_AI_DECK, _("Save As AI Deck"), _("All changes are final."));
     deckMenu->Add(MENU_ITEM_MAIN_MENU, _("Quit Editor"), _("No changes. Return to the main menu."));
+    deckMenu->Add(MENU_ITEM_TOGGLE_VIEW, _("Toggle View"), _("Toggle view grid/carousel."));
     deckMenu->Add(MENU_ITEM_EDITOR_CANCEL, _("Cancel"), _("Close menu."));
 }
 
@@ -710,7 +711,7 @@ void GameStateDeckViewer::Update(float dt)
         case JGE_BTN_CANCEL:
             options[Options::DISABLECARDS].number = !options[Options::DISABLECARDS].number;
             break;
-        case JGE_BTN_SOUND:
+        case JGE_BTN_CTRL:
             if (last_user_activity > 0.2)
             {
                 last_user_activity = 0;
@@ -770,7 +771,8 @@ void GameStateDeckViewer::Update(float dt)
         case JGE_BTN_MENU:
             if(mView->deck() == mySideboard || mView->deck() == myCommandZone || mView->deck() == myDungeonZone)
             {
-                toggleSB_CMD_DNG();
+                mView->SetDeck(myCollection);
+                sb_cmd_dng_Button->setText("View SB");
             }
             else
             {
@@ -778,7 +780,7 @@ void GameStateDeckViewer::Update(float dt)
                 buildEditorMenu();
             }
             break;
-        case JGE_BTN_CTRL:
+        case JGE_BTN_SOUND:
             if (mView->deck() == mySideboard || mView->deck() == myCommandZone || mView->deck() == myDungeonZone)
                 break;//SB is for viewing add or remove only
             else if(!mView->ButtonPressed(JGE_BTN_CTRL))
@@ -1971,6 +1973,11 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
             mStage = STAGE_FILTERS;
             if (!filterMenu) rebuildFilters();
             filterMenu->Entering(JGE_BTN_NONE);
+            break;
+        case MENU_ITEM_TOGGLE_VIEW:
+            mStage = STAGE_WAITING;
+            last_user_activity = 0;
+            toggleView();
             break;
         }
         break;
