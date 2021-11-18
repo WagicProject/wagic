@@ -151,7 +151,7 @@ void DeckMenu::RenderBackground()
 {
     ostringstream bgFilename;
 #if !defined (PSP)
-    if(backgroundName.find("menubgdeckeditor") != string::npos) //Now it's possibile to randomly use up to 3 background images for deck editor selection.
+    if(backgroundName.find("menubgdeckeditor") != string::npos) //Now it's possibile to randomly use up to 10 background images for deck editor selection.
         bgFilename << backgroundName << ".jpg";
     else
         bgFilename << backgroundName << ".png";

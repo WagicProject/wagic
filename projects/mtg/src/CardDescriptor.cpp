@@ -25,6 +25,7 @@ CardDescriptor::CardDescriptor()
     hasKickerCost = 0;
     hasFlashbackCost = 0;
     hasBackSide = 0;
+    hasPartner = 0;
     hasXCost = 0;
     compareName ="";
     nameComparisonMode = COMPARISON_NONE;
@@ -76,6 +77,11 @@ void CardDescriptor::unsecureSetHasFlashbackCost(int k)
 void CardDescriptor::unsecureSetHasBackSide(int k)
 {
     hasBackSide = k;
+}
+
+void CardDescriptor::unsecureSetHasPartner(int k)
+{
+    hasPartner = k;
 }
 
 void CardDescriptor::unsecureSetTapped(int i)
@@ -283,6 +289,11 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     }
 
     if ((hasBackSide == -1 && card->backSide != "") || (hasBackSide == 1 && card->backSide == ""))
+    {
+        match = NULL;
+    }
+
+    if ((hasPartner == -1 && card->partner != "") || (hasPartner == 1 && card->partner == ""))
     {
         match = NULL;
     }

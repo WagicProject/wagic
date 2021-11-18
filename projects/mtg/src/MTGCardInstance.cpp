@@ -75,6 +75,7 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     revealedLast = NULL;
     MadnessPlay = false;
     backSide = card->data->backSide;
+    partner = card->data->partner;
 }
 
   MTGCardInstance * MTGCardInstance::createSnapShot()
@@ -142,6 +143,7 @@ void MTGCardInstance::copy(MTGCardInstance * card, bool nolegend)
     setText(data->text); //The text is retrieved from the data anyways
     setName(data->name);
     backSide = data->backSide;
+    partner = data->partner;
     power = data->power;//layer 7a
     toughness = data->toughness;//layer 7a
     power += pbonus;//layer 7b

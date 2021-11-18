@@ -1419,12 +1419,14 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
     {
         intValue = (s == "plastshlturn")?card->controller()->lastShuffleTurn:card->controller()->opponent()->lastShuffleTurn;
     }
-    else if (s == "hasprey" || s == "dualfaced" || s == "totaldmg")
+    else if (s == "hasprey" || s == "dualfaced" || s == "withpartner" || s == "totaldmg")
     {
         if (s == "hasprey")
             intValue = (card->hauntedCard)?1:0;
         else if (s == "dualfaced")
             intValue = (card->backSide != "")?1:0;
+        else if (s == "withpartner")
+            intValue = (card->partner != "")?1:0;
         else if (s == "totaldmg")
             intValue = (card->damageToController + card->damageToCreature + card->damageToOpponent);
     }

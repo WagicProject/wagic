@@ -18,6 +18,9 @@
 # Training
 #AUTO_DEFINE _TRAINING_ @combat(attacking) source(this) restriction{trainer}:name(Training) dotrain
 
+# Partner
+#AUTO_DEFINE _PARTNER_  may name(Put partner in hand) moveto(myhand) target(*[partname]|mylibrary)
+
 # Goad
 #AUTO_DEFINE _GOAD_ transforms((,newability[counter(0/0.1.Goaded)],newability[this(counter{0/0.1.Goaded}>0) mustattack],newability[phaseaction[endofturn next once sourceinplay] removeallcounters(0/0.-1.Goaded)])) forever
 

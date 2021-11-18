@@ -1574,11 +1574,11 @@ void GameStateDeckViewer::Render()
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     JRenderer::GetInstance()->ClearScreen(ARGB(0,0,0,0));
 #if !defined (PSP)
-    //Now it's possibile to randomly use up to 3 background images for deck editor background (if random index is 0, it will be rendered the default "bgdeckeditor.jpg" image).
+    //Now it's possibile to randomly use up to 10 background images for deck editor background (if random index is 0, it will be rendered the default "bgdeckeditor.jpg" image).
     JTexture * wpTex = NULL;
     if(kBgFile == ""){
         char temp[4096];
-        sprintf(temp, "bgdeckeditor%i.jpg", std::rand() % 3);
+        sprintf(temp, "bgdeckeditor%i.jpg", std::rand() % 10);
         kBgFile.assign(temp);
         wpTex = WResourceManager::Instance()->RetrieveTexture(kBgFile);
         if (wpTex) {
