@@ -436,6 +436,7 @@ Save=Salva
 Set=Edizione
 Switch decks without saving=Cambia mazzo senza salvare
 Switch Decks=Cambia mazzo
+Toggle View=Cambia vista
 --UNLOCK CARDS--=-SBLOCCA CARTE-
 
 #Vista collezione
@@ -739,16 +740,18 @@ Next color=Colore successivo
 Prev. color=Colore precedente
 
 #Informacion - Botones:
-Add card=Aggiungi carta
+Add card=Aggiungi Carta
 Display collection=Mostra raccolta
 Display Deck=Mostra mazzo
-filter=filtro
-Remove card=Rimuovi carta
+Filter=Filtro
+Grid=Griglia
+Carousel=Carosello
+Remove card=Rimuovi Carta
 Sell Card=Vendi Carta
-Stats=Statistiche
-Toggle Images=Mostra immagini
-View Collection=Vedi Collezione
-View Deck=Visualizza mazzo
+Stats=Stat.
+Toggle Images=Immagini Si/No
+Collection=Vedi Collezione
+View Deck=Vedi Mazzo
 
 #Informacion - Explicaciones:
 Use SQUARE to view your deck,=Usa QUADRATO per vedere il tuo mazzo,
@@ -765,6 +768,7 @@ Do not make any changes to deck. Return to the main menu.=Non apportare modifich
 Do not make any changes. View another deck.=Non apportare modifiche. Vedi un altro mazzo.
 Narrow down the list of cards. =Riduci l'elenco delle carte.
 Save changes. Return to the main menu=Salvare le modifiche. Torna al menu' principale.
+Toggle view grid/carousel.=Cambia la vista griglia/carosello.
 
 ##########
 # FILTRO #
@@ -1208,15 +1212,6 @@ Task Board=Bacheca obiettivi
 Check Task Board=Controlla Bacheca obiettivi
 Open Task Board=Apri Bacheca obiettivi
 Close Task Board=Chiudi Bacheca obiettivi
-
-Toggle Images=Immagini Si/No
-View Deck=Vedi Mazzo
-View Collection=Guarda Collez.
-Use SQUARE to view your deck,=Usa QUADRATO per vedere il mazzo,
-Use SQUARE to view collection,=Usa QUADRATO per la collezione,
-
-
-
 
 # new lines - abilities - why did i forget these before? u.U
 trample=travolgere
