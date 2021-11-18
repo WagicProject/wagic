@@ -172,18 +172,17 @@ void GameStateAwards::Render()
 #if defined (PSP)
     JQuadPtr background = WResourceManager::Instance()->RetrieveTempQuad("pspawardback.jpg", TEXTURE_SUB_5551);
 #else
-    //Now it's possibile to randomly use up to 3 background images for trophies room (if random index is 0, it will be rendered the default "awardback.jpg" image).
+    //Now it's possibile to randomly use up to 10 background images for trophies room (if random index is 0, it will be rendered the default "awardback.jpg" image).
     JQuadPtr background;
     if(kAwardFile == ""){
         char temp[4096];
-        sprintf(temp, "awardback%i.jpg", std::rand() % 3);
+        sprintf(temp, "awardback%i.jpg", std::rand() % 10);
         kAwardFile.assign(temp);
-        JQuadPtr background = WResourceManager::Instance()->RetrieveTempQuad(kAwardFile);
+        JQuadPtr background = WResourceManager::Instance()->RetrieveTempQuad(kAwardFile, TEXTURE_SUB_5551);
         if (!background.get())
             kAwardFile = "awardback.jpg"; //Fallback to default background image for trophies room.
     }
     background = WResourceManager::Instance()->RetrieveTempQuad(kAwardFile, TEXTURE_SUB_5551);
-    //JQuadPtr background = WResourceManager::Instance()->RetrieveTempQuad("awardback.jpg", TEXTURE_SUB_5551);
 #endif
 
     if (background.get())

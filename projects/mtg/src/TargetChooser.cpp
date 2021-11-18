@@ -607,6 +607,18 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->unsecureSetHasBackSide(1);
                     }
                 }
+                //Has partner
+                else if (attribute.find("haspartner") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->unsecureSetHasPartner(-1);
+                    }
+                    else
+                    {
+                        cd->unsecureSetHasPartner(1);
+                    }
+                }
                 //Token
                 else if (attribute.find("token") != string::npos)
                 {
@@ -1070,6 +1082,26 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     {
                         attributefound = 1;
                         cd->compareName = card->currentimprintName;
+                        if (minus)
+                            cd->nameComparisonMode = COMPARISON_UNEQUAL;
+                        else
+                            cd->nameComparisonMode = COMPARISON_EQUAL;
+                    }
+
+                    if (attribute.find("backname") != string::npos && card->backSide != "")
+                    {
+                        attributefound = 1;
+                        cd->compareName = card->backSide;
+                        if (minus)
+                            cd->nameComparisonMode = COMPARISON_UNEQUAL;
+                        else
+                            cd->nameComparisonMode = COMPARISON_EQUAL;
+                    }
+
+                    if (attribute.find("partname") != string::npos && card->partner != "")
+                    {
+                        attributefound = 1;
+                        cd->compareName = card->partner;
                         if (minus)
                             cd->nameComparisonMode = COMPARISON_UNEQUAL;
                         else

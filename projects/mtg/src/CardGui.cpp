@@ -1544,6 +1544,18 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                         cd.unsecureSetHasBackSide(1);
                     }
                 }
+                //Has partner
+                else if (attribute.find("haspartner") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.unsecureSetHasPartner(-1);
+                    }
+                    else
+                    {
+                        cd.unsecureSetHasPartner(1);
+                    }
+                }
                 //Token
                 else if (attribute.find("token") != string::npos)
                 {

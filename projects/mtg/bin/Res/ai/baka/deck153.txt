@@ -57,13 +57,13 @@ Mogg Flunkies (*) * 1
 Mogg Maniac (*) * 1
 Mogg Raider (*) * 1
 Moggcatcher (*) * 1
-Mon's Goblin Raiders (*) * 1
+Mons's Goblin Raiders (*) * 1
 Mountain (4ED) (*) * 4
 Mountain (M10) (*) * 4
 Mountain (ICE) (*) * 4
 Mountain (M20) (*) * 4
 Mountain (MIR) (*) * 4
-Mountain (LEA) (*) * 4
+Mountain (LEA) (*) * 3
 Mountain (5ED) (*) * 3
 Pashalik Mons (*) * 1
 Prophetic Ravings (*) * 1
@@ -82,7 +82,6 @@ Sol Ring (*) * 1
 Swiftfoot Boots (*) * 1
 Valakut, the Molten Pinnacle (*) * 1
 Vandalblast (*) * 1
-Voracious Dragon (*) * 1
 Warren Instigator (*) * 1
 Whispersilk Cloak (*) * 1
 #CMD:Krenko, Mob Boss (*) * 1

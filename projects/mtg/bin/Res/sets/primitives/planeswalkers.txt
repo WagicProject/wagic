@@ -2350,6 +2350,7 @@ subtype=Rowan
 [card]
 name=Rowan Kenrith
 abilities=partner,canbecommander
+partner=Will Kenrith
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Opponent creatures must attack) all(creature|opponentbattlefield) mustattack ueot
 auto={C(0/0,2,Loyalty)}:name(+2: Your creatures must attack) all(creature|mybattlefield) mustattack ueot
@@ -3173,6 +3174,7 @@ subtype=Vraska
 [card]
 name=Will Kenrith
 abilities=partner,canbecommander
+partner=Rowan Kenrith
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Up to two creatures 0/3 no abilities) target(<upto:2>creatures) transforms(setpower=0,settoughness=3,loseabilities) uynt
 auto={C(0/0,-2,Loyalty)}:name(-2: Draw two cards and cost {2} less) target(player) draw:2 targetedplayer && all(this) transforms((,newability[lord(*[instant;sorcery;planeswalker]|mycastingzone) altercost(colorless,-2)])) uynt

@@ -314,6 +314,11 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
             map<string, CardPrimitive*>::iterator it = primitives.find(val);
             if (it != primitives.end()) card->setPrimitive(it->second);
         }
+        else if (key[1] == 'a' && key[2] == 'r')
+        { //partner
+            if (!primitive) primitive = NEW CardPrimitive();
+            primitive->partner = val;
+        }
         else
         { //power
             if (!primitive) primitive = NEW CardPrimitive();
@@ -993,7 +998,7 @@ MTGDeck::MTGDeck(const string& config_file, MTGAllCards * _allcards, int meta_on
                         else if(CommandZone.size() == 1 && newcard->data->hasType("Legendary") && (newcard->data->hasType("Creature") || newcard->data->basicAbilities[Constants::CANBECOMMANDER])){ // If a commander has been added you can add a new one just if both have partner ability.
                             if(newcard && newcard->data->basicAbilities[Constants::PARTNER]){
                                 MTGCard * oldcard = database->getCardById(atoi((CommandZone.at(0)).c_str()));
-                                if(oldcard && oldcard->data->basicAbilities[Constants::PARTNER] && oldcard->data->name != newcard->data->name)
+                                if(oldcard && oldcard->data->basicAbilities[Constants::PARTNER] && (oldcard->data->name != newcard->data->name) && ((oldcard->data->partner == "" && newcard->data->partner == "") || (oldcard->data->partner == newcard->data->name && newcard->data->partner == oldcard->data->name)))
                                     CommandZone.push_back(s);
                             }
                         }
@@ -1010,7 +1015,7 @@ MTGDeck::MTGDeck(const string& config_file, MTGAllCards * _allcards, int meta_on
                             else if(CommandZone.size() == 1 && newcard->data->hasType("Legendary") && (newcard->data->hasType("Creature") || newcard->data->basicAbilities[Constants::CANBECOMMANDER])){ // If a commander has been added you can add a new one just if both have partner ability.
                                 if(newcard->data->basicAbilities[Constants::PARTNER]){
                                     MTGCard * oldcard = database->getCardById(atoi((CommandZone.at(0)).c_str()));
-                                    if(oldcard && oldcard->data->basicAbilities[Constants::PARTNER] && oldcard->data->name != newcard->data->name)
+                                    if(oldcard && oldcard->data->basicAbilities[Constants::PARTNER] && (oldcard->data->name != newcard->data->name) && ((oldcard->data->partner == "" && newcard->data->partner == "") || (oldcard->data->partner == newcard->data->name && newcard->data->partner == oldcard->data->name)))
                                         CommandZone.push_back(str_id.str());
                                 }
                             }

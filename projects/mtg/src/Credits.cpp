@@ -517,11 +517,11 @@ void Credits::Render()
         return;
     JRenderer * r = JRenderer::GetInstance();
 #if !defined (PSP)
-    //Now it's possibile to randomly use up to 3 background images for post-match credits (if random index is 0, it will be rendered the default "bgdeckeditor.jpg" image).
+    //Now it's possibile to randomly use up to 10 background images for post-match credits (if random index is 0, it will be rendered the default "bgdeckeditor.jpg" image).
     JTexture * wpTex = NULL;
     if(kBgFile == ""){
         char temp[4096];
-        sprintf(temp, "bgdeckeditor%i.jpg", std::rand() % 3);
+        sprintf(temp, "bgdeckeditor%i.jpg", std::rand() % 10);
         kBgFile.assign(temp);
         wpTex = WResourceManager::Instance()->RetrieveTexture(kBgFile);
         if (wpTex) {

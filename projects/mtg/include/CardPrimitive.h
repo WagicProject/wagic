@@ -55,6 +55,7 @@ public:
     string name;
     string nameOrig;
     string backSide;
+    string partner;
     int init();
 
     uint8_t colors;
