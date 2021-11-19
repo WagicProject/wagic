@@ -1917,10 +1917,11 @@ subtype=Yanling
 [card]
 name=Mu Yanling, Sky Dancer
 auto=counter(0/0,2,loyalty)
-auto={C(0/0,2,Loyalty)}:name(+2: Target creature gets +2/+0 and Flying) target(creature) -2/0 && -flying uynt
+auto={C(0/0,2,Loyalty)}:name(+2: No Target) donothing
+auto={C(0/0,2,Loyalty)}:name(+2: Target creature gets -2/-0 and lose Flying) target(creature) -2/0 && -flying uynt
 auto={C(0/0,-3,Loyalty)}:name(-3: Create an Creature Elemental Bird 4/4 blue with flying) create(Elemental Bird:Creature Elemental Bird:4/4:blue:flying)
 auto={C(0/0,-8,Loyalty)}:name(-8: Emblem: All islands have: Draw a card) all(island|mybattlefield) transforms((,newability[{T}:draw:1 controller])) forever dontremove
-text=+2: Until your next turn, up to one target creature gets -2/-0 and loses flying. -- -3: Create a 4/4 blue Elemental Bird creature token with flying. -- -8: You get an emblem with "Islands you control have ‘ {T}: Draw a card.'"
+text=+2: Until your next turn, up to one target creature gets -2/-0 and loses flying. -- -3: Create a 4/4 blue Elemental Bird creature token with flying. -- -8: You get an emblem with "Islands you control have '{T}: Draw a card.'"
 mana={1}{U}{U}
 type=Legendary Planeswalker
 subtype=Yanling
