@@ -2,8 +2,13 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 19/11/21
+- *Committed:* Updated the changelog. ([Vitty85](https://github.com/Vitty85))
+
+- *Committed:* Bug fixes on primitives. https://github.com/WagicProject/wagic/commit/14103a840d8316ace0a7f979c4aada63e35ac178 ([EduardoMunozGomez](https://github.com/EduardoMunozGomez))
+
 ### 18/11/21
-- *Committed:* Fixed typos in primitives text, improved Deck Editor menu' commands (now select button toggle the Sideboard/Commanders/Dungeons view while the Note Button open the quick filter), added a new menu' option in Deck Editor to toggle Grid/Carousel view (useful on PSP/PSVita). ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed typos in primitives text, improved Deck Editor menu' commands (now select button toggle the Sideboard/Commanders/Dungeons view while the Note Button open the quick filter), added a new menu' option in Deck Editor to toggle Grid/Carousel view (useful on PSP/PSVita). https://github.com/WagicProject/wagic/commit/31b3a7e78562fd8b2d05dd622d6dbcdcc18d13f8 ([Vitty85](https://github.com/Vitty85))
 
 - *Committed:* Fixed primitives, fixed a commander deck for AI, improved all cards with partner ability, added a "partner=" key to associate the partner to a primitive, added new keywords "withpartner", "partname" and "haspartner" to improve the Target Chooser for cards with partner, improved the Commander rules to allow double commander just with specifc partner, improved background images management for game settings, deck selection, deck editor background, post-match credits, deck editor selection and trophies room (now it's possibile to randomly use up to 10 background images). https://github.com/WagicProject/wagic/commit/152dafc90fad8ecab32bbeb44b1c5e0b64915286 ([Vitty85](https://github.com/Vitty85))
 
