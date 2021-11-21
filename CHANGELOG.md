@@ -3,7 +3,9 @@
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
 ### 21/11/21
-- *Committed:* Fixed primitives, added a new keyword "eval()" in ManaCost parser to allow the usage of a variable in the manacost (e.g. "{eval(evictmc)}" in primitive "Prototype Portal"). ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed primitives. ([Vitty85](https://github.com/Vitty85))
+
+- *Committed:* Fixed primitives, added a new keyword "eval()" in ManaCost parser to allow the usage of a variable in the manacost (e.g. "{eval(evictmc)}" in primitive "Prototype Portal"). https://github.com/WagicProject/wagic/commit/d11facd7d4847a9fac4edceae71c96716afe016b ([Vitty85](https://github.com/Vitty85))
 
 ### 19/11/21
 - *Committed:* Updated the changelog. https://github.com/WagicProject/wagic/commit/6ca5291790bac73d45b0963c9ddce9ab89eb0fd3 ([Vitty85](https://github.com/Vitty85))
