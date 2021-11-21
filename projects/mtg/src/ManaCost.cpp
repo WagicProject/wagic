@@ -165,6 +165,17 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                                 tc = tcf.createTargetChooser("creature|mybattlefield", c);
                             manaCost->addExtraCost(NEW Offering(tc,true));
                         }
+                        else if(value.find("eval(") != string::npos) // Added to parse a variable in manacost.
+                        {
+                            size_t var_start = value.find("(");
+                            size_t var_end = value.find(")", var_start);
+                            string varString = value.substr(var_start + 1, var_end - var_start - 1);
+                            WParsedInt * value = NEW WParsedInt(varString.c_str(),NULL,c);
+                            if(value)
+                                manaCost->add(Constants::MTG_COLOR_ARTIFACT,  value->getValue());
+                            else
+                                break;
+                        }
                         else if(value.substr(0,2) == "e:")
                         {//Energy Cost
                             vector<string>valSplit = parseBetween(value,"e:"," ",false);
@@ -222,6 +233,13 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                             {
                                 if(c && c->model)
                                     manaCost->add(c->model->data->getManaCost());
+                                else
+                                    break;
+                            }
+                            else if (value == "myevictcost")
+                            {
+                                if(c && c->imprintedCards.size() && c->imprintedCards.back()->model)
+                                    manaCost->add(c->imprintedCards.back()->model->data->getManaCost());
                                 else
                                     break;
                             }
