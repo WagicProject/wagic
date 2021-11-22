@@ -2878,8 +2878,8 @@ public:
         for (int i = 0; i < 2; i++)
         {
             Player * p = game->players[i];
-            MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile };
-            for (int k = 0; k < 5; k++)
+            MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->commandzone, p->game->sideboard };
+            for (int k = 0; k < 7; k++)
             {
                 MTGGameZone * zone = zones[k];
                 Value = zone->countByCanTarget(tc);

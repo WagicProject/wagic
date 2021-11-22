@@ -229,8 +229,8 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                         for (int w = 0; w < 2; ++w)
                         {
                             Player *p = observer->players[w];
-                            MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile };
-                            for (int k = 0; k < 6; k++)
+                            MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile, p->game->commandzone, p->game->sideboard, p->game->reveal };
+                            for (int k = 0; k < 9; k++)
                             {
                                 MTGGameZone * z = zones[k];
                                 if (stc->targetsZone(z))
@@ -946,8 +946,8 @@ int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option)
     {
         if (player && player != observer->players[i])
             continue;
-        MTGGameZone * zones[] = { observer->players[i]->game->inPlay, observer->players[i]->game->graveyard, observer->players[i]->game->hand, observer->players[i]->game->exile };
-        for (int k = 0; k < 4; k++)
+        MTGGameZone * zones[] = { observer->players[i]->game->inPlay, observer->players[i]->game->graveyard, observer->players[i]->game->hand, observer->players[i]->game->exile, observer->players[i]->game->commandzone };
+        for (int k = 0; k < 5; k++)
         {
             for (int j = zones[k]->nb_cards - 1; j >= 0; j--)
             {

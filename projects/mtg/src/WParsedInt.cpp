@@ -285,7 +285,7 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
         for (int i = 0; i < 2; i++)
         {
             Player * p = card->getObserver()->players[i];
-            MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->commandzone, p->game->sideboard };//wish cards use sideboard
+            MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->commandzone, p->game->sideboard };
             for (int k = 0; k < 7; k++)
             {
                 MTGGameZone * zone = zones[k];
@@ -384,8 +384,8 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
         for (int i = 0; i < 2; i++)
         {
             Player * p = card->getObserver()->players[i];
-            MTGGameZone * zones[] = { p->game->battlefield, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->reveal };
-            for (int k = 0; k < 6; k++)
+            MTGGameZone * zones[] = { p->game->battlefield, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->commandzone, p->game->sideboard, p->game->reveal, p->game->stack };
+            for (int k = 0; k < 9; k++)
             {
                 MTGGameZone * zone = zones[k];
                 if(tc->targetsZone(zone,target))

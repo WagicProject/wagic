@@ -543,13 +543,15 @@ bool GameObserver::operator==(const GameObserver& aGame)
         {
             error++;
         }
-        MTGGameZone * aZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay, p->game->exile };
+        MTGGameZone * aZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay, p->game->exile, p->game->commandzone, p->game->sideboard };
         MTGGameZone * thisZones[] = { players[i]->game->graveyard,
                                          players[i]->game->library,
                                          players[i]->game->hand,
                                          players[i]->game->inPlay,
-                                         players[i]->game->exile };
-        for (int j = 0; j < 5; j++)
+                                         players[i]->game->exile,
+                                         players[i]->game->commandzone,
+                                         players[i]->game->sideboard };
+        for (int j = 0; j < 7; j++)
         {
             MTGGameZone * zone = aZones[j];
             if (zone->nb_cards != thisZones[j]->nb_cards)
@@ -649,8 +651,8 @@ void GameObserver::gameStateBasedEffects()
         if (players[d]->snowManaW < 0)
             players[d]->snowManaW = 0;
 
-        MTGGameZone * dzones[] = { players[d]->game->inPlay, players[d]->game->graveyard, players[d]->game->hand, players[d]->game->library, players[d]->game->exile, players[d]->game->stack };
-        for (int k = 0; k < 6; k++)
+        MTGGameZone * dzones[] = { players[d]->game->inPlay, players[d]->game->graveyard, players[d]->game->hand, players[d]->game->library, players[d]->game->exile, players[d]->game->stack, players[d]->game->commandzone, players[d]->game->sideboard, players[d]->game->reveal };
+        for (int k = 0; k < 9; k++)
         {
             MTGGameZone * zone = dzones[k];
             if (mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)

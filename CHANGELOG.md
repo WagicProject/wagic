@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 22/11/21
+- *Committed:* Improved zones management for commandzone and sideboard (e.g. now the game consider those zone as all the others for every ability such as "lord" and "aslongas"). ([Vitty85](https://github.com/Vitty85))
+
 ### 21/11/21
-- *Committed:* Fixed primitives. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed primitives. https://github.com/WagicProject/wagic/commit/217a5aa93e6e5c80fb8eb95aa4f972a50ca6a817 ([Vitty85](https://github.com/Vitty85))
 
 - *Committed:* Fixed primitives, added a new keyword "eval()" in ManaCost parser to allow the usage of a variable in the manacost (e.g. "{eval(evictmc)}" in primitive "Prototype Portal"). https://github.com/WagicProject/wagic/commit/d11facd7d4847a9fac4edceae71c96716afe016b ([Vitty85](https://github.com/Vitty85))
 
