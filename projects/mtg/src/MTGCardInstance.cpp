@@ -1249,8 +1249,8 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
             for (int w = 0; w < 2; ++w)
             {
                 Player *p = getObserver()->players[w];
-                MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile };
-                for (int k = 0; k < 6; k++)
+                MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile, p->game->commandzone, p->game->sideboard, p->game->reveal };
+                for (int k = 0; k < 9; k++)
                 {
                     MTGGameZone * z = zones[k];
                     if (tcn->targetsZone(z))
