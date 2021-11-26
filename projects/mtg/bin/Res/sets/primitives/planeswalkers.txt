@@ -2258,9 +2258,9 @@ subtype=Oko
 [card]
 name=Oko, Thief of Crowns
 auto=counter(0/0,4,loyalty)
-auto={C(0/0,2,Loyalty)}:name(+2: Food) token(Food)
-auto={C(0/0,1,Loyalty)}:name(+1: Transform Artifact) target(artifact) loseabilities && transforms((,setpower=3,settoughness=3)) && transforms((Elk,green))
-auto={C(0/0,-5,Loyalty)}:name(-5: Exchange) moveto(mybattlefield) target(creature[power<=3]|opponentbattlefield) && moveto(opponentbattlefield) target(*[creature;artifact]|mybattlefield)
+auto={C(0/0,2,Loyalty)}:name(+2: Create food) token(Food)
+auto={C(0/0,1,Loyalty)}:name(+1: Transform artifact or creature) target(*[creature;artifact]|battlefield) transforms((Creature Elk,newcolors[green],setpower=3,settoughness=3,newability[loseabilities])) forever
+auto={C(0/0,-5,Loyalty)}:name(-5: Exchange control) target(*[creature;artifact]|mybattlefield) moveto(opponentbattlefield) and!( target(other creature[power<=3]|opponentbattlefield) moveto(mybattlefield) )!
 text=+2: Create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.") -- +1: Target artifact or creature loses all abilities and becomes a green Elk creature with base power and toughness 3/3. -- -5: Exchange control of target artifact or creature you control and target creature an opponent controls with power 3 or less.
 mana={1}{G}{U}
 type=Legendary Planeswalker
