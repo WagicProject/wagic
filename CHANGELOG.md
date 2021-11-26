@@ -2,8 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 26/11/21
+- *Committed:* Fixed "Oko, Thief of Crowns" primitive. ([Vitty85](https://github.com/Vitty85))
+
 ### 22/11/21
-- *Committed:* Improved zones management for commandzone and sideboard (e.g. now the game consider those zone as all the others for every ability such as "lord" and "aslongas"). ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Improved zones management for commandzone and sideboard (e.g. now the game consider those zone as all the others for every ability such as "lord" and "aslongas"). https://github.com/WagicProject/wagic/commit/e47f3f547143ba22b4d25772dc14aa050f3fec2e ([Vitty85](https://github.com/Vitty85))
 
 ### 21/11/21
 - *Committed:* Fixed primitives. https://github.com/WagicProject/wagic/commit/217a5aa93e6e5c80fb8eb95aa4f972a50ca6a817 ([Vitty85](https://github.com/Vitty85))
