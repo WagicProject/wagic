@@ -302,7 +302,7 @@ WCFilterNotColor::WCFilterNotColor(string arg)
 bool WCFilterOnlyColor::isMatch(MTGCard * c)
 {
     if (!c || !c->data) return false;
-    for (int i = 0; i < Constants::NB_Colors; i++)
+    for (int i = 1; i < Constants::NB_Colors; i++)
     {
         if (i == color) continue;
         if (c->data->hasColor(i)) return false;
