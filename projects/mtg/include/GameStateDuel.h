@@ -136,7 +136,7 @@ public:
     void leaveOutAIvsAIMatches();
     void updateScoreforTournament();
     int getHardRandomDeck();
-    int getRandomDeck(bool noEasyDecks);
+    int getRandomDeck(bool noEasyDecks, GameType type);
     int remainingDecksToNextStage();
 private:
     bool mCompetition;

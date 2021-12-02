@@ -2,8 +2,14 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 02/12/21
+- *Committed:* Fixed primitives, avoided a crash when destroying "transforms" ability for cards in library, added random deck selection to Stone Hewer Basic mode, fixed random deck selection from Commander mode, improved exclusive color filter to include monocolored artifacts, added PSP_LARGE_MEMORY define to Makefile to allow more RAM for PSP version. ([Vitty85](https://github.com/Vitty85))
+
+### 30/11/21
+- *Committed:* Bug fixes and Egg creature type update. https://github.com/WagicProject/wagic/commit/d969b6ce7ae66af17c25037e32adffa564bf0cee ([EduardoMunozGomez](https://github.com/EduardoMunozGomez))
+
 ### 26/11/21
-- *Committed:* Fixed "Oko, Thief of Crowns" primitive. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed "Oko, Thief of Crowns" primitive. https://github.com/WagicProject/wagic/commit/b5c1b09c0486bdd9a114ae62479ad6edd5bb0c3e ([Vitty85](https://github.com/Vitty85))
 
 ### 22/11/21
 - *Committed:* Improved zones management for commandzone and sideboard (e.g. now the game consider those zone as all the others for every ability such as "lord" and "aslongas"). https://github.com/WagicProject/wagic/commit/e47f3f547143ba22b4d25772dc14aa050f3fec2e ([Vitty85](https://github.com/Vitty85))

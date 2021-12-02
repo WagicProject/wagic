@@ -428,6 +428,10 @@ void GameStateDuel::ConstructOpponentMenu()
                 }
 
             }
+        } else if (mParent->gameType == GAME_TYPE_STONEHEWER && mParent->players[1] == PLAYER_TYPE_CPU){
+            opponentMenu->Add(MENUITEM_RANDOM_AI, "Random");
+            if (mParent->players[0] ==  PLAYER_TYPE_HUMAN)
+               opponentMenu->Add(MENUITEM_RANDOM_AI_HARD, "Random (Not easy)",_("Selects a random AI deck with hard or normal difficulty.").c_str());
         }
         if (options[Options::EVILTWIN_MODE_UNLOCKED].number && !tournamentSelection)
             opponentMenu->Add(MENUITEM_EVIL_TWIN, "Evil Twin", _("Can you defeat yourself?").c_str());
@@ -1421,8 +1425,14 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
         switch (controlId)
         {
         case MENUITEM_RANDOM_AI:
-            game->loadPlayer(1, mParent->players[1]);
-            tournament->addDeck(1,game->players.at(1)->deckId,mParent->players[1]);
+            {
+                int deck = tournament->getRandomDeck(false, mParent->gameType);
+                if (deck>0)
+                {
+                    game->loadPlayer(1, mParent->players[1], deck);
+                    tournament->addDeck(1,game->players.at(1)->deckId,mParent->players[1]);
+                }
+            }
             setAISpeed();
             if (opponentMenu) opponentMenu->Close();
             if (tournamentSelection)
@@ -1432,7 +1442,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             break;
         case MENUITEM_RANDOM_AI_HARD:
             {
-                int deck=tournament->getRandomDeck(true);
+                int deck = tournament->getRandomDeck(true, mParent->gameType);
                 if (deck>0)
                 {
                     game->loadPlayer(1, mParent->players[1], deck, premadeDeck);
@@ -1453,7 +1463,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
                 int deck=0;
                 do
                 {
-                    deck=tournament->getRandomDeck(controlId==MENUITEM_FILL_NEXT_STAGE_HARD);
+                    deck = tournament->getRandomDeck(controlId==MENUITEM_FILL_NEXT_STAGE_HARD, mParent->gameType);
                     if (deck>0)
                     {
                         game->loadPlayer(1, mParent->players[1], deck, premadeDeck);
@@ -1977,7 +1987,7 @@ void Tournament::initTournamentResults()
 
 
 
-int Tournament::getRandomDeck(bool noEasyDecks)
+int Tournament::getRandomDeck(bool noEasyDecks, GameType type)
 {
     DeckManager *deckManager = DeckManager::GetInstance();
     vector<DeckMetaData *> *deckList =  deckManager->getAIDeckOrderList();
@@ -1987,15 +1997,21 @@ int Tournament::getRandomDeck(bool noEasyDecks)
     int k=0;
     bool isDouble=true;
     vector<unsigned int> decks;
-    for (unsigned int i=0;i<deckList->size();i++)
-        if (noEasyDecks && (deckList->at(i)->getDifficulty()==HARD || deckList->at(i)->getDifficulty()==NORMAL))
-        {
-            decks.push_back(i);
-            //printf("hard deck%i/%i\n",i,deckList->size());
-        } else
-            decks.push_back(i);
-
-
+    for (unsigned int i=0;i<deckList->size();i++){
+        if(type == GAME_TYPE_COMMANDER && deckList->at(i)->isCommanderDeck()){
+            if (noEasyDecks && (deckList->at(i)->getDifficulty()==HARD || deckList->at(i)->getDifficulty()==NORMAL)){
+                decks.push_back(i);
+            } else {
+                decks.push_back(i);
+            }
+        } else if(type != GAME_TYPE_COMMANDER){
+            if (noEasyDecks && (deckList->at(i)->getDifficulty()==HARD || deckList->at(i)->getDifficulty()==NORMAL)){
+                decks.push_back(i);
+            } else {
+                decks.push_back(i);
+            }
+        }
+    }
     while(isDouble && decks.size()>0)
     {
         isDouble=false;

@@ -68,6 +68,7 @@ EXTRA_TARGETS = EBOOT.PBP
 PSP_EBOOT_TITLE = Wagic, the Homebrew?!
 PSP_EBOOT_ICON = icon.png
 #PSP_EBOOT_ICON1 = icon1.pmf
+PSP_LARGE_MEMORY = 1
 PSP_EBOOT_UNKPNG = pic0.png
 PSP_EBOOT_PIC1 = pic1.png
 INCDIR = ../../JGE/include ../../JGE/src/zipFS ../../JGE/include/psp ../../JGE/include/psp/freetype2 ../../JGE/src ../../projects/mtg/include ../../Boost
