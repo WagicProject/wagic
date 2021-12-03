@@ -5897,17 +5897,18 @@ public:
         ActivatedAbility(observer, _id, _source, NEW ManaCost())
     {
         getCost()->add(Constants::MTG_COLOR_ARTIFACT, 2);
+        getCost()->addExtraCost(NEW TapCost);
     }
 
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL)
     {
-        if (!source->controller()->game->hand->hasCard(source->controller()->game->library->lastCardDrawn)) return 0;
+        if (!source->controller()->game->library->lastCardDrawn || !source->controller()->game->hand->hasCard(source->controller()->game->library->lastCardDrawn) || !source->controller()->game->library->lastCardDrawn->fresh) return 0;
         return ActivatedAbility::isReactingToClick(card, mana);
     }
 
     int resolve()
     {
-        source->tap(true);
+        if (!source->controller()->game->library->lastCardDrawn || !source->controller()->game->hand->hasCard(source->controller()->game->library->lastCardDrawn) || !source->controller()->game->library->lastCardDrawn->fresh) return 0;
         source->controller()->game->putInGraveyard(source->controller()->game->library->lastCardDrawn);
         game->mLayers->stackLayer()->addDraw(source->controller());
         return 1;

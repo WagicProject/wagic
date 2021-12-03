@@ -2,6 +2,11 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 03/12/21
+- *Committed:* Fixed "Jandor's Ring" primitive, added DBL set, improved Android downloader. ([Vitty85](https://github.com/Vitty85))
+
+- *Committed:* Fixes to primitives. https://github.com/WagicProject/wagic/commit/68e08783c668e45ca0e6f2c2cf3081b6767ae626 ([EduardoMunozGomez](https://github.com/EduardoMunozGomez))
+
 ### 02/12/21
 - *Committed:* Fixed primitives, avoided a crash when destroying "transforms" ability for cards in library, added random deck selection to Stone Hewer Basic mode, fixed random deck selection from Commander mode, improved exclusive color filter to include monocolored artifacts, added PSP_LARGE_MEMORY define to Makefile to allow more RAM for PSP version. ([Vitty85](https://github.com/Vitty85))
 
