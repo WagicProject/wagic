@@ -2,8 +2,17 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 08/12/21
+- *Committed:* Fixed DBL set. ([Vitty85](https://github.com/Vitty85))
+
+### 07/12/21
+- *Committed:* Fixes to primitives. https://github.com/WagicProject/wagic/commit/a4670f0b82ed3fee875712f9b009abd745f393a0 ([EduardoMunozGomez](https://github.com/EduardoMunozGomez))
+
+### 06/12/21
+- *Committed:* Fixes to primitives. https://github.com/WagicProject/wagic/commit/5421c0cfda2740d0aa231e72da27e4a7d2a499bd ([EduardoMunozGomez](https://github.com/EduardoMunozGomez))
+
 ### 03/12/21
-- *Committed:* Fixed "Jandor's Ring" primitive, added DBL set, improved Android downloader. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed "Jandor's Ring" primitive, added DBL set, improved Android downloader. https://github.com/WagicProject/wagic/commit/b8435778fef3254929a02027378b7462b6e4f3c5 ([Vitty85](https://github.com/Vitty85))
 
 - *Committed:* Fixes to primitives. https://github.com/WagicProject/wagic/commit/68e08783c668e45ca0e6f2c2cf3081b6767ae626 ([EduardoMunozGomez](https://github.com/EduardoMunozGomez))
 
