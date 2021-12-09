@@ -1286,9 +1286,8 @@ subtype=Jace
 name=Jace, Mirror Mage
 kicker={2}
 auto=counter(0/0,1,loyalty)
-auto=if paid(kicker) then clone
+auto=if paid(kicker) then clone options(nolegend)
 auto=if casted(this) then counter(0/0,3,loyalty)
-auto=if casted(this) then becomes(Legendary) all(this)
 aicode=activate transforms((,newability[all(*[zpos<=2]|mylibrary) transforms((,newability[may name(Put on bottom of library) moveto(myreveal) and!( bottomoflibrary )!])) oneshot])) oneshot
 auto={C(0/0,1,Loyalty)}:name(+1: Scry 2) scry:2 scrycore delayed dontshow donothing scrycoreend scryend
 auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 restriction{type(*[manacost=0;zpos=1]|mylibrary)~morethan~0}
@@ -3029,7 +3028,7 @@ name=Venser, the Sojourner
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Exile target permanent and return) target(*|mybattlefield) (blink)ueot
 auto={C(0/0,-1,Loyalty)}:name(-1: All creatures are unblockable) all(creature) unblockable ueot
-auto={C(0/0,-8,Loyalty)}:name(-8: Emblem: "Whenever you cast a spell, exile permanent") emblem transforms((,newability[@movedto(*|mystack):moveTo(exile) target(*|battlefield)])) forever dontremove
+auto={C(0/0,-8,Loyalty)}:name(-8: Emblem: "Whenever you cast a spell, exile permanent") emblem transforms((,newability[@movedto(*|mystack):moveTo(exile) target(*|battlefield)])) forever dontremove controller
 text=+2: Exile target permanent you own. Return it to the battlefield under your control at the beginning of the next end step. -- -1: Creatures are unblockable this turn. -- -8: You get an emblem with "Whenever you cast a spell, exile target permanent."
 mana={3}{W}{U}
 type=Legendary Planeswalker
