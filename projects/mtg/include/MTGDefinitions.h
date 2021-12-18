@@ -333,7 +333,10 @@ class Constants
       NOENTERTRG = 206,
       NODIETRG = 207,
       TRAINING = 208,
-      NB_BASIC_ABILITIES = 209,
+      ENERGYSHROUD = 209,
+      EXPSHROUD = 210,
+      COUNTERSHROUD = 211,
+      NB_BASIC_ABILITIES = 212,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

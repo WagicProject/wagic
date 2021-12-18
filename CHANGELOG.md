@@ -2,8 +2,14 @@
 
 ## [master] (https://github.com/WagicProject/wagic/tree/master)
 
+### 18/12/21
+- *Committed:* Fixed several primitives, added a new Commander Deck for AI, Fixed an issue on "blink" return ability (e.g. "Otherworldly Journey"), improved "exerted" trigger adding "turnlimited" option, added a new keyword "losesatype" to remove a specific type from a card (e.g. "Conversion"), improved "vanishing", "fading" and "bloodthirst" keywords in order to allow the usage of variables (e.g. "Tidewalker"), added new triggers "poisonedof" and "poisonedfoeof" to handle the event when a player gets a poison counter, added new keywords "countershroud" to avoid a card can get any kind of counter, added new keywords "expshroud" and "energyshroud" to avoid a player can get one of those counters, added new option "uent" for "transforms" keyword ability to allow transformation effects end at the end of your next turn, fixed an issue on "swap" keyword when a non-creature card is firstly transformed into a creature (e.g. "Wandering Fumarole"). ([Vitty85](https://github.com/Vitty85))
+
+### 09/12/21
+- *Committed:* Fixes to primitives. https://github.com/WagicProject/wagic/commit/8551f556364d5eae66fe72fc81753361f28244e7 ([EduardoMunozGomez](https://github.com/EduardoMunozGomez))
+
 ### 08/12/21
-- *Committed:* Fixed DBL set. ([Vitty85](https://github.com/Vitty85))
+- *Committed:* Fixed DBL set. https://github.com/WagicProject/wagic/commit/059107b00741c127e1f60608289b38d82dca8f64 ([Vitty85](https://github.com/Vitty85))
 
 ### 07/12/21
 - *Committed:* Fixes to primitives. https://github.com/WagicProject/wagic/commit/a4670f0b82ed3fee875712f9b009abd745f393a0 ([EduardoMunozGomez](https://github.com/EduardoMunozGomez))

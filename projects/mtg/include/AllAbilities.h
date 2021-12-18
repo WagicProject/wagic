@@ -347,16 +347,22 @@ public:
 class TrCardExerted: public Trigger
 {
 public:
-    TrCardExerted(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false) :
-        Trigger(observer, id, source, once, tc)
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardExerted(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
     {
         WEventCardExerted * e = dynamic_cast<WEventCardExerted *> (event);
         if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
         if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
         return 1;
     }
 
@@ -482,6 +488,35 @@ public:
     TrCombatTrigger * clone() const
     {
         return NEW TrCombatTrigger(*this);
+    }
+};
+
+class TrplayerPoisoned: public Trigger
+{
+public:
+    bool thiscontroller, thisopponent;
+    TrplayerPoisoned(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false) :
+        Trigger(observer, id, source, once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventplayerPoisoned * e = dynamic_cast<WEventplayerPoisoned *> (event);
+        if (!e) return 0;
+        if (!tc->canTarget(e->player)) return 0;
+        if(thiscontroller)
+            if(e->player != source->controller())
+                return 0;
+        if(thisopponent)
+            if(e->player == source->controller())
+                return 0;
+        return 1;
+    }
+
+    TrplayerPoisoned * clone() const
+    {
+        return NEW TrplayerPoisoned(*this);
     }
 };
 
@@ -4904,9 +4939,10 @@ public:
     bool newAbilityFound;
     bool aForever;
     bool UYNT;
+    bool UENT;
     int myCurrentTurn;
     string menutext; //this overrides the previous.
-    ATransformer(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower, bool newpowerfound,string newtoughness, bool newtoughnessfound,vector<string> newAbilitiesList, bool newAbilityFound = false, bool aForever = false , bool UYNT = false,string menutext = "");
+    ATransformer(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower, bool newpowerfound,string newtoughness, bool newtoughnessfound,vector<string> newAbilitiesList, bool newAbilityFound = false, bool aForever = false, bool UYNT = false, bool UENT = false, string menutext = "");
     int addToGame();
     int reapplyCountersBonus(MTGCardInstance * rtarget= NULL, bool powerapplied=false, bool toughnessapplied=false);
     int testDestroy();
@@ -4930,9 +4966,10 @@ public:
     bool newAbilityFound;
     bool aForever;
     bool UYNT;
+    bool UENT;
     string menu;
 
-    ATransformerInstant(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string types = "", string abilities = "",string newpower = "", bool newpowerfound = false, string newtoughness = "", bool newtoughnessfound = false, vector<string>newAbilitiesList = vector<string>(), bool newAbilityFound = false, bool aForever = false, bool UYNT = false, string menutext = "");
+    ATransformerInstant(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string types = "", string abilities = "",string newpower = "", bool newpowerfound = false, string newtoughness = "", bool newtoughnessfound = false, vector<string>newAbilitiesList = vector<string>(), bool newAbilityFound = false, bool aForever = false, bool UYNT = false, bool UENT = false, string menutext = "");
     int resolve();
     const string getMenuText();
     ATransformerInstant * clone() const;
@@ -5087,8 +5124,9 @@ class ALoseSubtypes: public MTGAbility
 {
 public:
     int parentType;
+    bool specificType; // added to remove a specific type (e.g. "Conversion").
     vector <int> storedSubtypes;
-    ALoseSubtypes(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, int parentType);
+    ALoseSubtypes(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, int parentType, bool specificType = false);
     int addToGame();
     int destroy();
     ALoseSubtypes * clone() const;

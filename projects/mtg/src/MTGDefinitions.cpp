@@ -239,7 +239,10 @@ const char* Constants::MTGBasicAbilities[] = {
     "hasaftermath", //Flashback cost is an aftemath cost (e.g. "Claim // Fame")
     "noentertrg", //Creatures entering the battlefield don't cause abilities to trigger (e.g. "Hushbringer").
     "nodietrg", //Creatures dying don't cause abilities to trigger (e.g. "Hushbringer").
-    "training" //Has training ability (e.g. "Gryff Rider")
+    "training", //Has training ability (e.g. "Gryff Rider")
+    "energyshroud", //Player can't get energy counters (e.g. "Solemnity").
+    "expshroud", //Player can't get experience counters (e.g. "Solemnity").
+    "countershroud" //Card can't get any kind of counter (e.g. "Solemnity").
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

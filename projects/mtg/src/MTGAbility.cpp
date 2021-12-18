@@ -1188,7 +1188,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
 
     //Card Exerted
     if (TargetChooser *tc = parseSimpleTC(s,"exerted", card))
-        return NEW TrCardExerted(observer, id, card, tc, once);
+        return NEW TrCardExerted(observer, id, card, tc, once, limitOnceATurn);
 
 //CombatTrigger
     //Card card attacked and is blocked
@@ -1227,6 +1227,14 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         return NEW TrCombatTrigger(observer, id, card, tc, fromTc, once, limitOnceATurn, sourceUntapped, opponentPoisoned,
             attackingTrigger, attackedAloneTrigger, notBlockedTrigger, attackBlockedTrigger, blockingTrigger);
     }
+
+    //poisoned player - controller of card
+    if (TargetChooser * tc = parseSimpleTC(s, "poisonedof", card))
+        return NEW TrplayerPoisoned(observer, id, card, tc, once, true, false);
+
+    //poisoned player - opponent of card controller
+    if (TargetChooser * tc = parseSimpleTC(s, "poisonedfoeof", card))
+        return NEW TrplayerPoisoned(observer, id, card, tc, once, false, true);
 
     //energized player - controller of card
     if (TargetChooser * tc = parseSimpleTC(s, "energizedof", card))
@@ -3723,6 +3731,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     bool oneShot = false;
     bool forceForever = false;
     bool untilYourNextTurn = false;
+    bool untilYourNextEndTurn = false;
     found = s.find("ueot");
     if (found != string::npos)
         forceUEOT = true;
@@ -3735,6 +3744,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("uynt");
     if (found != string::npos)
         untilYourNextTurn = true;
+    found = s.find("uent");
+    if (found != string::npos)
+        untilYourNextEndTurn = true;
     //Prevent Damage
     const string preventDamageKeywords[] = { "preventallcombatdamage", "preventallnoncombatdamage", "preventalldamage", "fog" };
     const int preventDamageTypes[] = {0, 2, 1, 0}; //TODO enum ?
@@ -4147,7 +4159,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (splitLoseTypes.size())
     {
         int parentType = MTGAllCards::findType(splitLoseTypes[1]);
-        return NEW ALoseSubtypes(observer, id, card, target, parentType);
+        return NEW ALoseSubtypes(observer, id, card, target, parentType, false);
+    }
+
+    //Lose a specific type (e.g. "Conversion").
+    vector<string> splitLoseSpecType = parseBetween(s, "losesatype(", ")");
+    if (splitLoseSpecType.size())
+    {
+        int typeToLose = MTGAllCards::findType(splitLoseSpecType[1]);
+        return NEW ALoseSubtypes(observer, id, card, target, typeToLose, true);
     }
 
     //Cast/Play Restrictions
@@ -4448,9 +4468,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             }
         }
         if (oneShot || forceUEOT || forceForever)
-            return NEW ATransformerInstant(observer, id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceForever,untilYourNextTurn);
+            return NEW ATransformerInstant(observer, id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceForever,untilYourNextTurn,untilYourNextEndTurn);
 
-        return  NEW ATransformer(observer, id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceForever,untilYourNextTurn);
+        return  NEW ATransformer(observer, id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceForever,untilYourNextTurn,untilYourNextEndTurn);
     }
 
     //Remake... (animate artifact...: Remake(Creature: manacost/manacost) - alternative
@@ -4484,30 +4504,36 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             }
         }
         if (oneShot || forceUEOT || forceForever)
-            return NEW ATransformerInstant(observer, id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceForever,untilYourNextTurn);
+            return NEW ATransformerInstant(observer, id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceForever,untilYourNextTurn,untilYourNextEndTurn);
 
-        return  NEW ATransformer(observer, id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceForever,untilYourNextTurn);
+        return  NEW ATransformer(observer, id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceForever,untilYourNextTurn,untilYourNextEndTurn);
     }
 
     //bloodthirst
     vector<string> splitBloodthirst = parseBetween(s, "bloodthirst:", " ", false);
     if (splitBloodthirst.size())
     {
-        return NEW ABloodThirst(observer, id, card, target, atoi(splitBloodthirst[1].c_str()));
+        WParsedInt* parser = NEW WParsedInt(splitBloodthirst[1], card);
+        int nb = parser->intValue;
+        return NEW ABloodThirst(observer, id, card, target, nb);
     }
 
     //Vanishing
     vector<string> splitVanishing = parseBetween(s, "vanishing:", " ", false);
     if (splitVanishing.size())
     {
-        return NEW AVanishing(observer, id, card, NULL, restrictions, atoi(splitVanishing[1].c_str()), "time");
+        WParsedInt* parser = NEW WParsedInt(splitVanishing[1], card);
+        int nb = parser->intValue;
+        return NEW AVanishing(observer, id, card, NULL, restrictions, nb, "time");
     }
 
     //Fading
     vector<string> splitFading = parseBetween(s, "fading:", " ", false);
     if (splitFading.size())
     {
-        return NEW AVanishing(observer, id, card, NULL, restrictions, atoi(splitFading[1].c_str()), "fade");
+        WParsedInt* parser = NEW WParsedInt(splitFading[1], card);
+        int nb = parser->intValue;
+        return NEW AVanishing(observer, id, card, NULL, restrictions, nb, "fade");
     }
 
     //Alter cost
@@ -4581,9 +4607,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             sabilities.replace(pos, 14, "transforms((" + storedString + "))");
 
         if (oneShot || forceUEOT || forceForever)
-            return NEW ATransformerInstant(observer, id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound,forceForever,untilYourNextTurn,newName);
+            return NEW ATransformerInstant(observer, id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound,forceForever,untilYourNextTurn,untilYourNextEndTurn,newName);
         
-        return NEW ATransformer(observer, id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound,forceForever,untilYourNextTurn,newName);
+        return NEW ATransformer(observer, id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound,forceForever,untilYourNextTurn,untilYourNextEndTurn,newName);
 
     }
     

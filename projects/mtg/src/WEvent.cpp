@@ -287,6 +287,11 @@ WEventCombatStepChange::WEventCombatStepChange(CombatStep step) :
 {
 }
 
+WEventplayerPoisoned::WEventplayerPoisoned(Player * player, int nb_count) :
+    player(player), nb_count(nb_count)
+{
+}
+
 WEventplayerEnergized::WEventplayerEnergized(Player * player, int nb_count) :
     player(player), nb_count(nb_count)
 {
@@ -631,6 +636,12 @@ Targetable * WEventCardFlipCoin::getTarget(int target)
 Targetable * WEventTokenCreated::getTarget(int target)
 {
     if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventplayerPoisoned::getTarget(Player * player)
+{
+    if (player) return player;
     return NULL;
 }
 

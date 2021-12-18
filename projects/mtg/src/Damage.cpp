@@ -189,8 +189,14 @@ int Damage::resolve()
     {
         // Poison on player
         Player * _target = (Player *) target;
-        if(!_target->inPlay()->hasAbility(Constants::POISONSHROUD))
+        if(!_target->inPlay()->hasAbility(Constants::POISONSHROUD)){
             _target->poisonCount += damage;//this will be changed to poison counters.
+            if(damage > 0)
+            {
+                WEvent * e = NEW WEventplayerPoisoned(_target, damage); // Added an event when player receives any poison counter.
+                _target->getObserver()->receiveEvent(e);
+            }
+        }
         _target->damageCount += damage;
         if(typeOfDamage == 2)
             _target->nonCombatDamage += damage;
@@ -225,20 +231,23 @@ int Damage::resolve()
         }
         if(!_target->inPlay()->hasAbility(Constants::POISONSHROUD))
         {
+            int poison = 0;
             if (source->has(Constants::POISONTOXIC))
             {
-                _target->poisonCount += 1;
+                poison = 1;
             }
             else if (source->has(Constants::POISONTWOTOXIC))
             {
-                _target->poisonCount += 2;
+                poison = 2;
             }
             else
             {
-                _target->poisonCount += 3;
+                poison = 3;
             }
+            _target->poisonCount += poison;
+             WEvent * e = NEW WEventplayerPoisoned(_target, damage); // Added an event when player receives any poison counter.
+            _target->getObserver()->receiveEvent(e);
         }
-
     }
     else
     {

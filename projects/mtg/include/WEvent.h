@@ -350,6 +350,15 @@ struct WEventCardCopiedACard : public WEventCardUpdate {
     virtual Targetable * getTarget(int target);
 };
 
+//alterpoison event
+struct WEventplayerPoisoned : public WEvent {
+    WEventplayerPoisoned(Player * player, int nb_count);
+    Player * player;
+    int nb_count;
+    using WEvent::getTarget;
+    virtual Targetable * getTarget(Player * player);
+};
+
 //alterenergy event
 struct WEventplayerEnergized : public WEvent {
     WEventplayerEnergized(Player * player, int nb_count);

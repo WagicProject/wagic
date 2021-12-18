@@ -926,6 +926,10 @@ void MTGCardInstance::switchPT(bool apply)
     stripPTbonus();
     swapP = power;
     swapT = toughness;
+    if(!origpower && !origtoughness){ // Fix when a non-creature card is firstly transformed into a creature (e.g. "Wandering Fumarole").
+        origpower = power;
+        origtoughness = toughness;
+    }
     power += origpower;
     power -= swapP;
     addToToughness(origtoughness);

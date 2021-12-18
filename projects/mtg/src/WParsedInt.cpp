@@ -965,7 +965,7 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
                 intValue += card->controller()->game->graveyard->cards[j]->myconvertedcost;
         }
     }
-    else if (s == "powertotalinplay")//Count Total Power of Creatures you control... Formidable
+    else if (s == "powertotalinplay" || s == "pwrtotalinplay")//Count Total Power of Creatures you control... Formidable
     {
         intValue = 0;
         for (int j = card->controller()->game->inPlay->nb_cards - 1; j >= 0; --j)
@@ -974,7 +974,7 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
                 intValue += card->controller()->game->inPlay->cards[j]->getCurrentPower();
         }
     }
-    else if (s == "toughnesstotalinplay")//Count Total toughness of Creatures you control...
+    else if (s == "toughnesstotalinplay" || s == "thstotalinplay")//Count Total toughness of Creatures you control...
     {
         intValue = 0;
         for (int j = card->controller()->game->inPlay->nb_cards - 1; j >= 0; --j)

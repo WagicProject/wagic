@@ -1037,8 +1037,16 @@ int AAAlterPoison::resolve()
     if (_target)
     {
         Player * pTarget = (Player*)_target;
-        if(!pTarget->inPlay()->hasAbility(Constants::POISONSHROUD) || poison < 0)
+        if(!pTarget->inPlay()->hasAbility(Constants::POISONSHROUD) || poison < 0){
             _target->poisonCount += poison;
+            if(pTarget->poisonCount < 0)
+                pTarget->poisonCount = 0;
+            if(poison > 0)
+            {
+                WEvent * e = NEW WEventplayerPoisoned(pTarget, poison); // Added an event when player receives any poison counter.
+                game->receiveEvent(e);
+            }//todo loses poison event
+        }
     }
     return 0;
 }
@@ -1377,14 +1385,16 @@ int AAAlterEnergy::resolve()
         Player * pTarget = (Player*)_target;
         if(pTarget)
         {
-            pTarget->energyCount += energy;
-            if(pTarget->energyCount < 0)
-                pTarget->energyCount = 0;
-            if(energy > 0)
-            {
-                WEvent * e = NEW WEventplayerEnergized(pTarget, energy);
-                game->receiveEvent(e);
-            }//todo loses enegy event
+            if(!pTarget->inPlay()->hasAbility(Constants::ENERGYSHROUD) || energy < 0){
+                pTarget->energyCount += energy;
+                if(pTarget->energyCount < 0)
+                    pTarget->energyCount = 0;
+                if(energy > 0)
+                {
+                    WEvent * e = NEW WEventplayerEnergized(pTarget, energy);
+                    game->receiveEvent(e);
+                }//todo loses enegy event
+            }
         }
     }
     return 0;
@@ -1420,14 +1430,16 @@ int AAAlterExperience::resolve()
         Player * pTarget = (Player*)_target;
         if(pTarget)
         {
-            pTarget->experienceCount += experience;
-            if(pTarget->experienceCount < 0)
-                pTarget->experienceCount = 0;
-            if(experience > 0)
-            {
-                WEvent * e = NEW WEventplayerExperienced(pTarget, experience);
-                game->receiveEvent(e);
-            }//todo loses experience event
+            if(!pTarget->inPlay()->hasAbility(Constants::EXPSHROUD) || experience < 0){
+                pTarget->experienceCount += experience;
+                if(pTarget->experienceCount < 0)
+                    pTarget->experienceCount = 0;
+                if(experience > 0)
+                {
+                    WEvent * e = NEW WEventplayerExperienced(pTarget, experience);
+                    game->receiveEvent(e);
+                }//todo loses experience event
+            }
         }
     }
     return 0;
@@ -2551,6 +2563,9 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
             }
             if (nb > 0)
             {
+               if(_target->has(Constants::COUNTERSHROUD)) // Added to avoid the counter increasement (e.g. "Solemnity").
+                   return 0;
+
                 for (int i = 0; i < nb; i++)
                 {
                     while (_target->next)
@@ -7533,8 +7548,8 @@ AAlterCost::~AAlterCost()
 }
 
 // ATransformer
-ATransformer::ATransformer(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string> newAbilitiesList,bool newAbilityFound,bool aForever, bool aUntilNext,string _menu) :
-    MTGAbility(observer, id, source, target),newpower(newpower),newpowerfound(newpowerfound),newtoughness(newtoughness),newtoughnessfound(newtoughnessfound),newAbilitiesList(newAbilitiesList),newAbilityFound(newAbilityFound),aForever(aForever),UYNT(aUntilNext),menutext(_menu)
+ATransformer::ATransformer(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string> newAbilitiesList,bool newAbilityFound,bool aForever,bool aUntilNext,bool aUntilEndNext,string _menu) :
+    MTGAbility(observer, id, source, target),newpower(newpower),newpowerfound(newpowerfound),newtoughness(newtoughness),newtoughnessfound(newtoughnessfound),newAbilitiesList(newAbilitiesList),newAbilityFound(newAbilityFound),aForever(aForever),UYNT(aUntilNext),UENT(aUntilEndNext),menutext(_menu)
 {
 
     if (target != source) {
@@ -7576,7 +7591,7 @@ ATransformer::ATransformer(GameObserver* observer, int id, MTGCardInstance * sou
 
 int ATransformer::addToGame()
 {
-    if(UYNT)
+    if(UYNT || UENT)
         myCurrentTurn = game->turn;
     MTGCardInstance * _target = NULL;
         Interruptible * action = (Interruptible *) target;
@@ -7784,6 +7799,12 @@ int ATransformer::addToGame()
             if(myCurrentTurn != 1000 && game->turn > myCurrentTurn && source->controller()->getId() == game->currentPlayer->getId())
                 return 1;
             return 0; // Fixed an issue when the transformation with uynt is triggered by instant/sorcery or by card that left the battlefield before the ability ending turn.
+        } 
+        else if(UENT)
+        {
+            if(myCurrentTurn != 1000 && game->turn > (myCurrentTurn + 1) && source->controller()->getId() != game->currentPlayer->getId())
+                return 1;
+            return 0; // Fixed an issue when the transformation with uent is triggered by instant/sorcery or by card that left the battlefield before the ability ending turn.
         }
         return MTGAbility::testDestroy();
     }
@@ -7896,10 +7917,10 @@ ATransformer::~ATransformer()
 }
 
 //ATransformerInstant
-ATransformerInstant::ATransformerInstant(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string>newAbilitiesList,bool newAbilityFound,bool aForever,bool aUntilNext,string _menu) :
-    InstantAbility(observer, id, source, target),newpower(newpower),newpowerfound(newpowerfound),newtoughness(newtoughness),newtoughnessfound(newtoughnessfound),newAbilitiesList(newAbilitiesList),newAbilityFound(newAbilityFound),aForever(aForever),UYNT(aUntilNext),menu(_menu)
+ATransformerInstant::ATransformerInstant(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string>newAbilitiesList,bool newAbilityFound,bool aForever,bool aUntilNext,bool aUntilEndNext,string _menu) :
+    InstantAbility(observer, id, source, target),newpower(newpower),newpowerfound(newpowerfound),newtoughness(newtoughness),newtoughnessfound(newtoughnessfound),newAbilitiesList(newAbilitiesList),newAbilityFound(newAbilityFound),aForever(aForever),UYNT(aUntilNext),UENT(aUntilEndNext),menu(_menu)
 {
-    ability = NEW ATransformer(game, id, source, target, types, abilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound,aForever,aUntilNext,_menu);
+    ability = NEW ATransformer(game, id, source, target, types, abilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound,aForever,aUntilNext,aUntilEndNext,_menu);
     aType = MTGAbility::STANDARD_BECOMES;
 }
 
@@ -8163,8 +8184,8 @@ ALoseAbilities * ALoseAbilities::clone() const
 }
 
 //ALoseSubtypes
-ALoseSubtypes::ALoseSubtypes(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target, int parentType) :
-    MTGAbility(observer, id, source), parentType(parentType)
+ALoseSubtypes::ALoseSubtypes(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target, int parentType, bool specificType) :
+MTGAbility(observer, id, source), parentType(parentType), specificType(specificType)
 {
     target = _target;
 }
@@ -8181,7 +8202,7 @@ int ALoseSubtypes::addToGame()
     for (int i = ((int)_target->types.size())-1; i >= 0; --i)
     {
         int subtype = _target->types[i];
-        if (MTGAllCards::isSubtypeOfType(subtype, parentType))
+        if ((!specificType && MTGAllCards::isSubtypeOfType(subtype, parentType)) || (specificType && subtype == parentType)) // added to remove a specific type (e.g. "Conversion").
         {
             storedSubtypes.push_back(subtype);
             _target->removeType(subtype);
@@ -9328,7 +9349,10 @@ void ABlink::returnCardIntoPlay(MTGCardInstance* _target) {
     spell->source->toughness = spell->source->origtoughness;
     spell->source->X = 0;
     if (!spell->source->hasSubtype(Subtypes::TYPE_AURA)) {
+        MTGGameZone* prev = spell->source->previousZone; // Save the previous zone of card before spell resolution.
         spell->resolve();
+        if(prev && spell->source->currentZone == spell->source->previousZone)
+            spell->source->previousZone = prev; // Fixed issue on previous zone (e.g. "Otherworldly Journey").
         if (stored)
         {
             MTGAbility * clonedStored = stored->clone();
