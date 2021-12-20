@@ -1496,6 +1496,11 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
             }
         }
     }
+    else if(s.find("startingplayer") != string::npos){ //Return who was the starting player (0 is controller, 1 is opponent).
+        intValue = card->controller()->getObserver()->turn%2;
+        if(card->controller()->getObserver()->currentlyActing() != card->controller())
+            intValue = 1 - intValue;
+    }
     else if(!intValue)//found nothing, try parsing a atoi
     {
         intValue = atoi(s.c_str());

@@ -336,7 +336,9 @@ class Constants
       ENERGYSHROUD = 209,
       EXPSHROUD = 210,
       COUNTERSHROUD = 211,
-      NB_BASIC_ABILITIES = 212,
+      NONIGHT = 212,
+      NODAMAGEREMOVED = 213,
+      NB_BASIC_ABILITIES = 214,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

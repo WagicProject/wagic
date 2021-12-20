@@ -242,7 +242,9 @@ const char* Constants::MTGBasicAbilities[] = {
     "training", //Has training ability (e.g. "Gryff Rider")
     "energyshroud", //Player can't get energy counters (e.g. "Solemnity").
     "expshroud", //Player can't get experience counters (e.g. "Solemnity").
-    "countershroud" //Card can't get any kind of counter (e.g. "Solemnity").
+    "countershroud", //Card can't get any kind of counter (e.g. "Solemnity").
+    "nonight", //It can't become night (e.g. "Angel of Eternal Dawn").
+    "nodamageremoved" //Damage is not removed from card (e.g. "Patient Zero").
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

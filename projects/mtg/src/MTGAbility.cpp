@@ -329,6 +329,21 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 if(!count)
                     return 0;
         }
+        check = restriction[i].find("librarycast");
+        if(check != string::npos)
+        {
+                int count = 0;
+                for(unsigned int k = 0; k < player->game->stack->cardsSeenThisTurn.size(); k++)
+                {
+                    MTGCardInstance * stackCard = player->game->stack->cardsSeenThisTurn[k];
+                    if(stackCard->next && stackCard->next == card && (card->previousZone == card->controller()->game->library||card->previousZone == card->controller()->opponent()->game->library))
+                        count++;
+                    if(stackCard == card && (card->previousZone == card->controller()->game->library||card->previousZone == card->controller()->opponent()->game->library))
+                        count++;
+                }
+                if(!count)
+                    return 0;
+        }
         check = restriction[i].find("rebound");
         if(check != string::npos)
         {
@@ -3479,6 +3494,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
             cardName = splitCard[1];
         }
+        if(cardName == "myname")
+            cardName = card->name; // Added to refer the orginal source card name (e.g. "Clone Crafter").
         string cardZone = "";
         vector<string> splitZone = parseBetween(s, "zone(", ")");
         if (splitZone.size())

@@ -3901,7 +3901,8 @@ ADrawReplacer::~ADrawReplacer()
 int AAResetDamage::resolve()
 {
     MTGCardInstance * _target =  (MTGCardInstance *)target; 
-    _target->life = _target->toughness;
+    if(!_target->has(Constants::NODAMAGEREMOVED)) // Added to avoid damage is removed from a card (e.g. "Patient Zero").
+        _target->life = _target->toughness;
     return 1;
 }
 
@@ -6330,6 +6331,8 @@ const string AARandomMover::getMenuText()
 AARandomMover * AARandomMover::clone() const
 {
     AARandomMover * a = NEW AARandomMover(*this);
+    if(andAbility)
+        a->andAbility = andAbility->clone();
     return a;
 }
 

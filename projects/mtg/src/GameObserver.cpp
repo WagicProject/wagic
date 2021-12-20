@@ -1035,7 +1035,7 @@ void GameObserver::gameStateBasedEffects()
                     c->flanked -= 1;
                 }
                 c->fresh = 0;
-                if(c->wasDealtDamage > 0 && c->isInPlay(this))
+                if(c->wasDealtDamage > 0 && c->isInPlay(this) && !c->has(Constants::NODAMAGEREMOVED)) // Added to avoid damage is removed from a card (e.g. "Patient Zero").
                     c->wasDealtDamage = 0;
                 c->damageToController = 0;
                 c->damageToOpponent = 0;
