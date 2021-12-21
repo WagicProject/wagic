@@ -77,12 +77,6 @@ power=3
 toughness=6
 [/card]
 [card]
-name=Cytoshape
-text=Choose a nonlegendary creature on the battlefield. Target creature becomes a copy of that creature until end of turn.
-mana={1}{G}{U}
-type=Instant
-[/card]
-[card]
 name=Muse Vessel
 text={3}, {T}: Target player exiles a card from his or her hand. Activate this ability only any time you could cast a sorcery. -- {1}: Choose a card exiled with Muse Vessel. You may play that card this turn.
 mana={4}
