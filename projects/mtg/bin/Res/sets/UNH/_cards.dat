@@ -1,8 +1,8 @@
 [meta]
 author=Wagic Team
 name=Unhinged
-block=Un-Serious
-year=2004
+orderindex=UN-2.UNH
+year=2004-11-19
 total=141
 [/meta]
 [card]
@@ -691,7 +691,7 @@ id=74334
 rarity=R
 [/card]
 [card]
-primitive=Yet Another AEther Vortex
+primitive=Yet Another Aether Vortex
 id=74331
 rarity=R
 [/card]

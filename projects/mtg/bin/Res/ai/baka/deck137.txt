@@ -1,0 +1,26 @@
+#NAME: Selesnya Adventures
+#DESC: First Adventure Deck
+Edgewall Innkeeper (*) *4
+Faerie Guidemother // Gift of the Fae (ELD) *4
+Flaxen Intruder // Welcome Home (ELD) *2
+Giant Killer // Chop Down (ELD) *4
+Lovestruck Beast // Heart's Desire (ELD) *4
+Shepherd of the Flock // Usher to Safety (ELD) *1
+Venerated Loxodon (*) *4
+Emmara, Soul of the Accord (*) *1
+Trostani Discordant (*) *2
+Forest (*) *8
+Plains (*) *8
+Castle Ardenvale (*) *1
+Temple Garden (*) *4
+March of the Multitudes (*) *4
+Once Upon a Time (*) *4
+Unbreakable Formation (*) *1
+Flower // Flourish (*) *4
+
+#SB: Knight of Autumn (*) *2
+#SB: Unbreakable Formation (*) *1
+#SB: Veil of Summer (*) *3
+#SB: Questing Beast (*) *3
+#SB: Gideon Blackblade (*) *2
+#SB: Devout Decree (*) *4

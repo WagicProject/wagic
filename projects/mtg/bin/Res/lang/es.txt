@@ -1,23 +1,25 @@
 #LANG:Espanol
-#Traduccion de Wagic The Homebrew 18.6 al Espanol por Inquisidor, blender2005, carslove54 y Atriel.
+#Traduccion de Wagic The Homebrew 0.18.6 al Espanol por Inquisidor, blender2005, carslove54 y Atriel.
+#Revisión de Wagic The Homebrew 0.22.3 al Español por Luruz 11/09/2020
 
 ##################
 # MENU PRINCIPAL #
 ##################
 
 #Inicializar:
-LOADING PRIMITIVES=CARGANDO DATOS
+LOADING PRIMITIVES=CARGANDO PRIMITIVAS
 LOADING...=CARGANDO...
 LOADING SET: %s=CARGANDO EDICIONES: %s
 
 #Menu Principal:
-Play=JUGAR
-Deck Editor=EDITOR DE MAZO
-Shop=TIENDA
-Options=OPCIONES
-Exit=SALIR
-Trophy Room=Sala de trofeos
-achieved: %i%%=Logros: %i%%
+Play=Juega
+Deck Editor=Editor de mazos
+Shop=Tienda
+Options=Opciones
+Exit=Salir
+Trophy Room=SALA DE TROFEOS
+achieved: %i%%=Completado: %i%%
+Credits: %s%%=Creditos: %s%%
 
 #Numero de cartas:
 %s: %i cards (%i) (%i unique)=%s: %i cartas - Total: %i (%i unicas)
@@ -26,21 +28,23 @@ achieved: %i%%=Logros: %i%%
 %i cards=%i cartas
 
 #Texto Rotativo:
-Interested in playing Momir Basic? You'll have to unlock it first :)=Estas interesado en jugar en el modo Momir Basico? Primero deberas desbloquearlo :).
-Love Equipment and want a real challenge? Unlock Stone Hewer Basic:)=Adoras las cartas de equipo y quieres un reto real? Desbloquea el modo Stone Hewer Basico :).
+Interested in playing Momir Basic? You'll have to unlock it first :)=Estas interesado en jugar en el modo Momir basico? Primero deberas desbloquearlo :).
+Love Equipment and want a real challenge? Unlock Stone Hewer Basic:)=Te encantan los equipamientos y quieres un verdadero desafio? Desbloquear Forjador :).
 More cards and mods at http://wololo.net/wagic=Mas cartas y mods en http://wololo.net/wagic.
 The cards in your collection have an average value of %i credits=Las cartas de tu coleccion tienen un valor promedio de %i creditos.
-The shopkeeper would buy your entire collection for around %i credits=El tendero compraria tu coleccion entera por aproximadamente %i creditos.
-These stats will be updated next time you run Wagic=Esta configuracion sera aplicada cuando reinicies Wagic.
-Unlock the difficult mode for more challenging duels!=Desbloquea el modo Dificil para duelos mas competitivos!.
+The shopkeeper would buy your entire collection for around %i credits=El comerciante compraria toda tu coleccion por aproximadamente %i creditos.
+These stats will be updated next time you run Wagic=Estas configuracion se actualizarán la próxima vez que reinicies Wagic.
+Unlock the difficult mode for more challenging duels!=Desbloquea las Opciones de Dificultad para duelos mas desafiantes!.
 You currently have %i credits=Actualmente tienes %i creditos.
 You have a %i%% victory ratio with "%s"=Tienes un %i%% de victorias con el mazo: "%s".
 You have a total of %i cards in your collection=Tienes un total de %i cartas en tu coleccion.
 You have played %i games with "%s"=Has jugado %i partidas con el mazo: "%s".
 You have played a total of %i games=Has jugado un total de %i partidas.
 You have unlocked %i expansions out of %i=Has desbloqueado %i ediciones de %i.
-You haven't unlocked the evil twin mode yet=No has desbloqueado el modo Gemelo Malvado aun...
+You haven't unlocked the evil twin mode yet=Aun no has desbloqueado el modo Gemelo Malvado...
 You haven't unlocked the random deck mode yet=No has desbloqueado el modo Mazo Aleatorio aun...
+Like to play fast? Unlock Blitzkrieg Mode :)=Te gusta jugar rápido? Desbloquea el modo Asalto relampago :)
+Utopia! Bring me down to the Paradise City.=Utopia! Traeme a la Ciudad Paraíso.
 
 #################
 # MODO HISTORIA #
@@ -50,17 +54,138 @@ Game Manual=Manual del juego
 01.Where it all begins=Donde comienza todo
 Temple of Faith=Templo de la fe
 
+#Historia
+Welcome young adventurer=Bienvenido joven aventurero
+So you want to become a sorcerer?=Asi que quieres convertirte en un hechicero?
+You've come to the right place. I'm myself just=Has venido al lugar correcto. Solo soy
+a humble retailer, but I've met a lot of adventurers like you=tan solo un humilde comerciante minorista, pero me he conocido muchos aventureros como tu
+in my life, enough to understand the basics of their craft...=en mi vida, lo suficiente como para entender las bases de su oficio.
+Continue=Continuar
+Push "start" at any time to go back to the main menu=Pulsa "inicio" en cualquier momento para regresar al menu principal
+Tapping lands for mana=Girar tierras por mana
+I unlocked Revised Edition=He desbloqueado la Edicion Revisada
+In your quests you will have to fight against other wizards.=En tu busqueda lucharas contra otros hechiceros.
+You will only have your brain and your spells to help you.=Solo tendras tu cerebro y tus hechizos para ayudarte.
+The basic Energy to cast your spells in Wagic si called mana.=La Energia basica para lanzar tus hechizos en Wagic se llama mana.
+The most frequent sources of Mana are called "Lands".=Las fuentes mas frecuentes de Mana son llamadas "Tierras".
+For a land to produce mana, you just have to click on it with the action button (CIRCLE by default)= Para que una tierra produzca mana, solo tienes que dar click en ella con el boton de accion (CIRCULO por predeterminado)
+Go ahead and tap some mana!=¡Adelante y giremos algo de mana!
+
 #######################
 # INTERFAZ DE USUARIO #
 #######################
+
+#Numero de Jugadores:
+1 Player=1 Jugador
+2 Players=2 Jugadores
+Play Game=Inicia el juego
+Demo=Demostracion
+Test Suite=Modo de prueba
+
+#Tipos de Juego:
+Mode Blitzkrieg=Modo Asalto relampago
+Momir Basic=Modo Momir basico
+Morifen=Modo Morinfen
+Hermit Druid Basic=Modo Druida ermitano
+Stone Hewer Basic=Modo Forjador
+Paradise=Modo Paraiso
+Tribal Wars=Modo Horda
+False God=Modo Diosa falsa
+Titania=Modo Titania
+Classic=Modo Clasico
+Story=Modo Historia
+Random 1 Color=Aleatorio de 1 color
+Random 2 Colors=Aleatorio de 2 colores
+Random 3 Colors=Aleatorio de 3 colores
+Random 5 Colors=Aleatorio de 5 colores
+Set Limited=Edicion Limitada
+Blitzkrieg Mode Unlocked=Modo Asalto relampago desbloqueado
+Commander Format=Modo Comandante
+
+#Juegos por partida:
+How many games per match?=Cuantos juegos por partida?
+Single Game=Un solo juego
+Best of 3=El mejor de 3
+Best of 5=El mejor de 5
+Best of 7=El mejor de 7
+Best of 13=El mejor de 13
+2 wins difference=Con 2 victorias de diferencia
+3 wins difference=Con 3 victorias de diferencia
+2 in a row=Con 2 victorias consecutivas
+3 in a row=Con 3 victorias consecutivas
+
+#Elige un Mazo:
+Choose a Deck=Elige un mazo
+Create your Deck!=¡Crea tu mazo!
+Highly recommended to get the full Wagic experience!=Altamente recomendado para disfrutar de la experiencia de Wagic!.
+New Deck...=Nuevo mazo...
+Main Menu=Menu principal
+Return to Main Menu=Regresa al Menu principal
+NO DECK AVAILABLE,=NO HAY MAZO DISPONIBLE,
+PRESS CIRCLE TO GO TO THE DECK EDITOR!=¡PRESIONA C PARA IR AL EDITOR DEL MAZO!.
+Detailed Info=Detalles del Mazo
+Deck: =Mazo: 
+Difficulty: =Dificultad: 
+Victory %: =Victorias %: 
+Games Played: =Partidas jugadas: 
+Cards: =Cartas: 
+Player Deck: =Mazo del jugador: 
+Create a new deck to play with.=Crea un nuevo mazo para jugar con el.
+Return to Main Menu=Regresa al menu principal.
+
+-----Deck Summary-----=-----Resumen del Mazo-----
+Cards: %s=Cartas: %s
+Creatures: %s=Criaturas: %s
+Enchantments: %s=Encantamientos: %s
+Instants:  %s=Instantaneos:  %s
+Sorceries:  %s=Conjuros:  %s
+Lands:=Tierras:
+A:%s=Art:%s
+G:%s=Ver:%s
+R:%s=Roj:%s
+U:%s=Azu:%s
+B:%s=Neg:%s
+W:%s=Bla:%s
+---Mana Curve---=---Curva de Mana---
+---Average Cost---=---Costo promedio---
+Creature:%s=Criatura:%s
+Spell:%s=Hechizo:%s
+
+
+#Elige un Oponente:
+Choose Opponent=Elige un oponente
+Player Deck: =Mazo del jugador: 
+KO Tournament= Torneo por eliminacion
+Starts a Knockout Tournament against selected AI-Decks! You have to win all matches. 4 Decks->2 Matches, 7 Decks->3 Matches, 16 Decks->4 Matches, 32 Decks->5 Matches, 64 Decks->6 Matches, 128 Decks->7 Matches, 256 Decks->8 Matches.=Comienza un torneo de eliminación contra Mazos de inteligencia artificial! Tienes que ganar todas las partidas. 4 Mazos a 2 Partidas. 7 Mazos a 3 Partidas. 16 Mazos a 4 Partidas. 32 Mazos a 5 Partidas. 64 Mazos a 6 Partidas. 128 Mazos a 7 Partidas. 256 Mazos a 6 Partidas.
+Double KO=Doble eliminacion
+Round Robin Tournament=Torneo de Jaula
+Starts an all vs all tournament!. Firstly, in a selection process participating AI-Decks can be chosen. The tournament state is saved after each game and can be continued!.=Comienza un torneo de todos contra todos! En primer lugar, en un proceso de seleccion, se pueden elegir Mazos de inteligencia artificial. El estado del torneo se guarda despues de cada juego y se puede continuar!
+Random=Aleatorio
+Random (Not easy)=Aleatorio (Sin Facil)
+Selects a random AI deck with hard or normal difficulty.=Se elige un mazo de inteligencia artificial aleatoreamente con la dificultad normal o dificil.
+Evil Twin=Gemelo Malvado
+Can you defeat yourself?=Puedes vencerte a ti mismo?
+
+#Mazos del oponente
+Air Sea Battle=Batalla del mar y el aire
+Meet the darker side of fairies and merfolk.=Conoce el lado oscuro de las hadas y los tritones.
+
+(easy)=(facil)
+(hard)=(difícil)
+
+LOADING DECKS=CARGANDO MAZOS
+
+Play with a random deck.=Juega con un mazo aleatorio.
+Choose a different player deck=Elige un mazo diferente.
+Detailed Info=INFO DEL MAZO
 
 #Opciones:
 Yes=Si
 No=No
 Player=Jugador
 Cancel=Cancelar
-Save & Back to Main Menu=Guardar y volver al menu
-Back to Main Menu=Volver al menu
+Save & Back to Main Menu=Guardar y vuelve al Menu Principal
+Back to Main Menu=Volver al Menu
 Back to main menu=Volver al menu
 
 #Botones:
@@ -68,110 +193,289 @@ Spacebar=Espacio
 Del=Supr
 Caps=Mayusculas
 Confirm=Confirmar
-continue=Continuar
+continue=continuar
 Help=Ayuda
-
-#Numero de Jugadores:
-1 Player=1 Jugador
-2 Players=2 Jugadores
-Play Game=Jugar
-Demo=Demo
-Test Suite=Modo de prueba
-
-#Tipos de Juego:
-Momir Basic=Momir Basico
-Hermit Druid Basic=Druida Ermitano Basico
-Stone Hewer Basic=Stone Hewer Basico
-Classic=Clasico
-Story=Historia
-Random 1 Color=Aleatorio de 1 color
-Random 2 Colors=Aleatorio de 2 colores
-
-#Elige un Mazo:
-Choose a Deck=ELIGE UN MAZO
-Create your Deck!=Crea tu mazo!
-Highly recommended to get the full Wagic experience!=Altamente recomendado para disfrutar de la experiencia de Wagic!.
-New Deck...=Nuevo mazo...
-Main Menu=Menu principal
-Return to Main Menu=Volver al Menu principal
-NO DECK AVAILABLE,=NO HAY MAZO DISPONIBLE,
-PRESS CIRCLE TO GO TO THE DECK EDITOR!=PRESIONA C PARA IR AL EDITOR DEL MAZO!.
-Detailed Info=Detalles del Mazo          
-Deck: =Mazo: 
-Difficulty: =Dificultad: 
-Victory %: =Victorias %: 
-Games Played: =Veces Jugado: 
-Cards: =Cartas: 
-Create a new deck to play with.=Crea un nuevo mazo para jugar con el.
-Return to Main Menu=Regresar al menu principal.
-
-#Elige un Oponente:
-Choose Opponent=ELIGE UN OPONENTE
-(easy)=(facil)
-(hard)=(dificil)
-Random=Aleatorio
-Evil Twin=Gemelo Malvado
-LOADING DECKS=CARGANDO MAZOS
-Can you defeat yourself?=Puedes ganarte a ti mismo?.
-Play with a random deck.=Juega con un mazo aleatorio.
-Choose a different player deck=Elige un mazo diferente.
-Detailed Info=INFO DEL MAZO
-Player Deck:=Mazo del jugador:
 
 ##########
 # DUELO  #
 ##########
 
+#Menu pausa
+Mulligan=Mulligan
+Load=Cargar
+Show current score=Mostrar el puntaje actual
+
 #Jugadores:
 Player 1=Jugador 1
-Player 2=Jugador 2 
+Player 2=Jugador 2
 
 #Turnos:
-opponent's turn=Turno contrario
+opponent's turn=Turno del oponente
 your turn=Tu turno
-you play=Tu juegas
-opponent plays=Oponente juega
+you play=Tu Lanzas
+opponent plays=El oponente lanza
+Draw=: Roba
+Draw =: Roba
+End=: Finaliza
+End =: Finaliza
+Combat damage=: Dano de combate
+Combat damage =: Dano de combate
+Combat ends=Fin del combate
+Combat ends =Fin del combate
+
+#Interrupciones:
+Interrupt?=¿Interrupir?
+: Interrupt=: Interrumpir
+: No=: No
+: No To All=: No a todo
+untap land=Enderezar tierra
+Put in Hand=Poner en la mano
+create pest=Crear Plaga
+That Many Counters!=Esa cantidad de contadores!
+Becomes mutant=Se convierte en mutante
+
+#Habilidades activadas
+Add =Agrega 
+ 1/1 Counter=Contador +1/+1
+ 1/1 Counter =Contador +1/+1
+ -1/-1 Counter =Contador -1/-1
+ -1/-1 Counter=Contador -1/-1
+put a charge counter=Pon un contador de carga
+put two charge counters=Pon dos contadores de carga
+pake an additional turn after this one=Toma un turno adicional despues de este
+charge Counter=Pon un contador de carga
+charge Counter: 2=Pon dos contadores de carga
+Deal %s Damage=Hace %s punto de dano
+Becomes =Se convierte
+Combat damage=Dano de combate
+Combat ends=Fin de combate
+Draw=Roba
+End=Fin
+Charge: %i=Carga %1
+move 1/1 counter=Mueve contador +1/+1
+
+
+#Habilidades de eleccion
+choose opponent=Elige un oponente
+Cast Card Normally=Lanzar carta con normalidad
+Pay Kicker=Pagar estimulo
+Attack Player=Atacar al jugador
+Remove Blocker=Remover bloqueador
+Remove Attacker=Remover atacante
+Choose a type=Elige un tipo
+put back=Colocar de regreso
+Zero Cast From Anywhere=Lanzar desde cualquier lugar por cero
+choose card=Elige una carta
+Put in Graveyard=Poner en el cementerio
+Draw 1=Roba 1 carta
+Draw 2=Roba 2 cartas
+Draw 3=Roba 3 cartas
+Draw 4=Roba 4 cartas
+Draw 5=Roba 5 cartas
+Draw 6=Roba 6 cartas
+Draw 7=Roba 7 cartas
+Draw 8=Roba 8 cartas
+Draw 9=Roba 9 cartas
+Draw 10=Roba 10 cartas
+Draw 11=Roba 11 cartas
+Draw 12=Roba 12 cartas
+Draw 13=Roba 13 cartas
+Draw 14=Roba 14 cartas
+Draw 15=Roba 15 cartas
+Draw 16=Roba 16 cartas
+Draw 17=Roba 17 cartas
+Draw 18=Roba 18 cartas
+Draw 19=Roba 19 cartas
+Draw 20=Roba 20 cartas
+Legendary Rule=Regla de las leyendas
+search card=Busca una carta
+Tape to Hand=Devuelve a la mano
+Take 1 Extra Turn(s)=Toma 1 turno extra
+target player=Jugador objetivo
+exploit=Aprovechar
+Deal 0 Damage=Hace 0 puntos de dano
+Deal 1 Damage=Hace 1 punto de dano
+Deal 2 Damage=Hace 2 puntos de dano
+Deal 3 Damage=Hace 3 puntos de dano
+Deal 4 Damage=Hace 4 puntos de dano
+Deal 5 Damage=Hace 5 puntos de dano
+Deal 6 Damage=Hace 6 puntos de dano
+Deal 7 Damage=Hace 7 puntos de dano
+Deal 8 Damage=Hace 8 puntos de dano
+Deal 9 Damage=Hace 9 puntos de dano
+Deal 10 Damage=Hace 10 puntos de dano
+Deal 11 Damage=Hace 11 puntos de dano
+Deal 12 Damage=Hace 12 puntos de dano
+Deal 13 Damage=Hace 13 puntos de dano
+Deal 14 Damage=Hace 14 puntos de dano
+Deal 15 Damage=Hace 15 puntos de dano
+Deal 16 Damage=Hace 16 puntos de dano
+Deal 17 Damage=Hace 17 puntos de dano
+Deal 18 Damage=Hace 18 puntos de dano
+Deal 19 Damage=Hace 19 puntos de dano
+Deal 20 Damage=Hace 20 puntos de dano
+
+#Habilidades de planeswalker
+
+#Ajani
+
++1: gain 2 life=+1: Gana 2 vidas
+-1: put a +1/+1 counter on each...=-1: Pon un contador +1/+1 sobre cada...
+-6: create a white avatar...=-6: Crea un Avatar blanco...
++1: put a loyalty counter=+1: Pon un contador de lealtad
++1: target creature gets +1/+1, first strike...=+1: La criatura objetivo obtiene +1/+1, dana primero...
+-2: put a +1/+1 counter and loyalty counters on others...=-2: Pon un contador +1/+1 y de lealtad sobre otros...
+-7: get an emblem: "prevent all but 1"=-7: Obten un emblema: "Preven todo excepto 1"
++2: reveal the top three cards...=+2: Muestra las tres primeras cartas...
+-2: exile target creature=-2: Exilia la criatura objetivo
+-9: put five +1/+1 and Loyalty counters on others...=-9: Pon cinco contadores +1/+1 y de lealtad sobre otros...
++1: target permanent doesn't untap=+1: El permanente objetivo no se endereza
+-2: ajani deals 3 damage and gain 3 life=-2: Ajani hace 3 puntos de daño y ganas 3 vidas
+-7: destroy all lands target player controls=-7: Destruye todas las tierras que controla el jugador objetivo
++1: put a +1/+1 counter on up to two...=+1: Pon un contador +1/+1 hasta en dos...
+-2: Return target creature from your graveyard...=-2: Regresa la criatura objetivo desde el cementerio...
+-7: gen an emblem: create three creature tokens...=-7: Obten un emblema: Crea tres fichas de criatura...
++1: put a +1/+1 counter on up to...=+1: pon un contador +1/+1 hasta en...
+-3: target creature gains double strike and flying=-3: La criatura objetivo gana la habilidad de dañar dos veces y vuela
+-8: create white Cat creature tokens equal to your life=-8: Crea fichas de criatura Felino blancas igual a tu vida
++1: gain 3 life=+1: Gana 3 vidas
+-2: Put a +1/+1 and Loyalty counters on others...=-2: Pon un contador +1/+1 y de lealtad sobre otros...
++2: put two loyalty counter=+2: Pon dos contador de lealtad
++2: put two +1/+1 counter on up to...=+2: Pon dos contadores +1/+1 hasta en...
++1: reveal cards from the top...=+1: Muestra las primeras cartas...
+-11: put X +1/+1 counters on target creature...=-11: Pon X contadores +1/+1 sobre la criatura objetivo...
+
+#Angrath
+
++1: put a +1/+1 counter on...=+1: Pon un contador +1/+1 sobre...
+-3: target creature gains double strike and flying=-3: La criatura objetivo gana dañar dos veces y vuela
+-8: put X creature tokens...=-8: Crea X fichas de criatura...
++2: put a loyalty counter=+2: Pon un contador de lealtad
++2: put two +1/+1 counter=+2: Pon dos contadores +1/+1 
++1: reveal cards from your library...=Muestra las primeras cartas de tu biblioteca...
+-11: put X +1/+1 counters on...=-11: Pon X contadores +1/+1 sobre...
++1: target creature gets +2/+2 haste and vigilance=+1: La criatura objetivo obtiene +2/+2 prisa y vigilancia
+0: create a wolf token and transform=0: Crea una ficha de Lobo y transforma
++1: Creatures you control gets +1/+1 and trample=+1: Las criaturas que controlas obtienen +1/+1 y arrollar
+-1: Deals 3 damage to any target and transform=-1: Hace 3 puntos de dano a cualquier objetivo y transforma
+-6: Emblem: Creatures you control have haste and T: Deal damage=-6: Emblema: Las criaturas que controlas tienen prisa y T: Hace dano
++1: Discard a card...=+1: Descarta una carta...
+-2: Each player discard his or her hand...=-2: Cada jugador descarta su mano...
+-7: Cast any instants or sorceries without paying...=-7: Lanza cualquier conjuro o instantaneo sin pagar...
++1: deals 1 damage to target player=+1: Hace 1 punto de dano al jugador objetivo
+-1: deals 1 damage to target creature=-1: Hace 1 punto de dano a la criatura objetivo
+-2: deals 2 damage to target creature=-2: Hace 2 puntos de dano a la criatura objetivo
+-3: deals 3 damage to target creature=-3: Hace 3 puntos de dano a la criatura objetivo
+-4: deals 4 damage to target creature=-4: Hace 4 puntos de dano a la criatura objetivo
+-5: deals 5 damage to target creature=-5: Hace 5 puntos de dano a la criatura objetivo
+-6: deals 6 damage to target creature=-6: Hace 6 puntos de dano a la criatura objetivo
+-7: deals 7 damage to target creature=-7: Hace 7 puntos de dano a la criatura objetivo
+-8: deals 8 damage to target creature=-8: Hace 8 puntos de dano a la criatura objetivo
+-9: deals 9 damage to target creature=-9: Hace 9 puntos de dano a la criatura objetivo
+-10: deals 10 damage to target creature=-10: Hace 10 puntos de dano a la criatura objetivo
+-11: deals 11 damage to target creature=-11: Hace 11 puntos de dano a la criatura objetivo
+-12: deals 12 damage to target creature=-12: Hace 12 puntos de dano a la criatura objetivo
+-13: deals 13 damage to target creature=-13: Hace 13 puntos de dano a la criatura objetivo
+-14: deals 14 damage to target creature=-14: Hace 14 puntos de dano a la criatura objetivo
+-15: deals 15 damage to target creature=-15: Hace 15 puntos de dano a la criatura objetivo
+-16: deals 16 damage to target creature=-16: Hace 16 puntos de dano a la criatura objetivo
+-17: deals 17 damage to target creature=-17: Hace 17 puntos de dano a la criatura objetivo
+-18: deals 18 damage to target creature=-18: Hace 18 puntos de dano a la criatura objetivo
+-19: deals 19 damage to target creature=-19: Hace 19 puntos de dano a la criatura objetivo
+-20: deals 20 damage to target creature=-20: Hace 20 puntos de dano a la criatura objetivo
+-8: deals 10 damage to target player and each creature his or her controls=-8: Hace 10 puntos de dano al jugador y a cada criatura que controla
++1: add two red mana and deals 2 damage to target player=+1: Agrega dos manás rojos y hace 2 puntos de dano al jugador objetivo
+-3: deals 3 damage to target creature or planeswalker=-3: Hace 3 puntos de dano a la criatura o camina planos objetivo
+-7: deals 10 damage to target player and on each his or her creatures and planeswalkers=-7: Hace 10 puntos de dano al jugador objetivo y a cada una de sus criaturas y camina planos
++1: create two Elemental 3/1 with haste=+1: Crea dos Elementales 3/1 con prisa
+0: discard your hand and drawn the same=0: Descarta tu mano y roba la misma...
+-1: deals 1 damage to each creature=-1: Hace 1 punto de dano a cada criatura
+-2: deals 2 damage to each creature=-2: Hace 2 puntos de dano a cada criatura
+-3: deals 3 damage to each creature=-3: Hace 3 puntos de dano a cada criatura
+-4: deals 3 damage to each creature=-4: Hace 4 puntos de dano a cada criatura
+-5: deals 3 damage to each creature=-5: Hace 5 puntos de dano a cada criatura
+-6: deals 3 damage to each creature=-6: Hace 6 puntos de dano a cada criatura
+-7: deals 3 damage to each creature=-7: Hace 7 puntos de dano a cada criatura
+-8: deals 3 damage to each creature=-8: Hace 8 puntos de dano a cada criatura
+-9: deals 3 damage to each creature=-9: Hace 9 puntos de dano a cada criatura
+-10: deals 3 damage to each creature=-10: Hace 10 puntos de dano a cada criatura
+-11: deals 3 damage to each creature=-11: Hace 11 puntos de dano a cada criatura
+-12: deals 3 damage to each creature=-12: Hace 12 puntos de dano a cada criatura
+-13: deals 3 damage to each creature=-13: Hace 13 puntos de dano a cada criatura
+-14: deals 3 damage to each creature=-14: Hace 14 puntos de dano a cada criatura
+-15: deals 3 damage to each creature=-15: Hace 15 puntos de dano a cada criatura
+-16: deals 3 damage to each creature=-16: Hace 16 puntos de dano a cada criatura
+-17: deals 3 damage to each creature=-17: Hace 17 puntos de dano a cada criatura
+-18: deals 3 damage to each creature=-18: Hace 18 puntos de dano a cada criatura
+-19: deals 3 damage to each creature=-19: Hace 19 puntos de dano a cada criatura
+-20: deals 3 damage to each creature=-20: Hace 20 puntos de dano a cada criatura
++2: deals 2 damage each opponent=+2: Hace 2 puntos de dano a cada oponente
+-3: deals 4 damage to target creature=-3: Hace 4 puntos de dano a la criatura objetivo
+-10: deals 6 damage to target player and each creature his...=-10: Hace 6 puntos de dano al jugador objetivo y a cada criatura que...
++1: exile top card. if you can't cast it, deals damage=+1: Exilia la primera carta. Si no puedes lanzarla, haz dano
++1: add two red mana=+1: Agrega dos manas rojos
+-3: deals 4 damage to target creature=-3: Hace 4 puntos de dano a la criatura objetivo
+-7: Emblem: Whenever cast a spell, deals 5 damage=-7: Emblema: Siempre que lances un hechizo, hace 5 puntos de dano
+
++2: gain life=+2: Gana vida
+-2: soldier=-2: Crea una ficha de soldado
+-5: ultimate=-5: Definitiva
++1: put a loyalty counter=+1: Pon un contador de lealtad
++2: put two counters=+2: Pon dos contadores
+-3: target creature deals=-3: La criatura objetivo hace
+-9: creatures my control get...=-9: Las criaturas que controlo obtienen...
++2: draw two cards=+2: Roba dos cartas
+-3: deals 10 damage to target creature or...=-3: Hace 10 puntos de dano a la criatura objetivo o...
+-4: put target creature or planeswalker...=-4: Pon la criatura objetivo o camina planos...
+-12: exile all but...=-12: Exilia todo excepto...
+get a card=Obten una carta
+put on bottom=Poner en el fondo
+Create zombie=Crea un zombie
+add mana=Agrega mana
+canattack=Pueden atacar
+khans=kans
+dragons=dragones
+1/1 Counter:2=2 Contadores +1/+1
+target creature=Criatura objetivo
+Skip A Turn(s)=Saltate un turno
+Imprint=Estampar
 
 #Fases:
 Untap=Enderezar
 Upkeep=Mantenimiento
 Draw=Robar
-Main phase 1=1a fase Principal
+Main phase 1=1ra Fase Principal
 Combat begins=Inicio del combate
 Attackers=Declara atacantes
-Blockers=Asigna bloqueadores
-Combat damage=Solucion del combate
+Blockers=Declara bloqueadores
+Combat damage=Dano de combate
 Combat ends=Fin del combate
-Main phase 2=2a fase principal
+Main phase 2=2da Fase principal
 End=Fase final
 Cleanup=Limpieza
 
-#Interrupciones:
-Interrupt?=Interrupcion?
-: Interrupt=: Interrumpir
-: No=: No
-: No To All=: No a todo
+
 
 #Resoluciones:
-Deals %i damage to=Hace %i a
+Deals %i damage to=Hace %i de dano a
 is exiled=es exiliado
 Player %i draws %i card=Jugador %i roba %i cartas
 goes to graveyard=Va al cementerio
 %s goes to graveyard=%s Va al cementerio
 Fetch=Buscar
-Becomes golem artifact creature=Convertir en criatura artefacto golem
-Put in Play=Poner en juego
-Create beast=Crear bestia
+Becomes golem artifact creature=Se convierte en una criatura artefacto Golem
+Put in Play=Pon en el campo de batalla
+Create beast=Crear una bestia
 Create Damaged Garruk=Hacer dano a Garruk
-Bury=Enterrar
+Bury=Destruye
 quest Counter=Contador de busqueda
 %i/%i Counter:%i=Contador %i/%i: %i
 %i/%i counters: %i=contadores %i/%i: %i
 %i/%i Counter =Contador %i/%i
 Turn:%i=Turno:%i
 No Bushwhacker=No guerrillero
-Persistence=Persistencia
-First strike damage=Dana primero
+Persistence=Persistencia.
+First strike damage=Dana primero.
 Player gains %i life=Jugador gana %i vidas
 Player loses %i life=Jugador pierde %i vidas
 Nothing happened=No sucede nada
@@ -180,7 +484,7 @@ Nothing happened=No sucede nada
 %i/%i Counter: %i=%i/%i Contadores: %i
 %s counters: %i=%s contadores: %i=
 Ability=Habilidad
-Assign To Block=Asignar como bloqueo
+Assign To Block=Asignar para bloquear
 Attack Planeswalker=Atacar a Caminante de planos
 Attacker=Atacante
 Becomes artifact=Se convierte en artefacto
@@ -188,29 +492,29 @@ Becomes=Transformar
 Blocker=Bloqueador
 cast card normally=Jugar carta con normalidad
 Cast Restriction=Restriccion de hechizo
-Choose a color=Escoge un color
-Choose an Artifact=Escoge un artefacto
-choose and artifact=Escoger un artefacto
-Choose card to Discard=Escoge carta para descartar
+Choose a color=Elige un color
+Choose an Artifact=Elige un Artefacto
+choose and artifact=Elige un artefacto
+Choose card to Discard=Elige una carta para descartar
 Choose Location=Escoger lugar
 Clone=Clonar
 Copy=Copia
 Counters=Contadores
 Create %s=Crear %s
-Create Choose an Artifact=Escoger un artefacto
-Create Choose Location=Elegir localizacion
-Create elf warrior=Crear Guerrero Elfo
-Create Look at the Card=Mirar al principio biblioteca
-Create cat=Crear Felino
-Create soldier=Crear Soldado
-Create vampire=Crear Vampiro
-Create=Crear
+Create Choose an Artifact=Elige un artefacto
+Create Choose Location=Elije una localización
+Create elf warrior=Crea una ficha de Guerrero Elfo
+Create Look at the Card=Mirar la primera carta de la biblioteca
+Create cat=Crea una ficha de Felino
+Create soldier=Crea una ficha de Soldado
+Create vampire=Crea una ficha de Vampiro
+Create=Crea
 cycling + effect=Usar ciclo + efecto
 Cycling=Ciclo
-cycling=Usar ciclo
+cycling=ciclar
 Damage=Dano
 deals 3 damage to each creature=Hacer 3 puntos de dano a cada criatura
-deals 3 damage to each player=Hacer 3 puntos de dano a cada jugador
+deals 3 damage to each player=Hacer 3 puntos de daño a cada jugador
 Deathtouch=Toque mortal
 Destroy=Destruir
 Discard=Descartar
@@ -218,11 +522,11 @@ Draw=Robar
 Equip=Equipar
 Exile Target=Exilia objetivo
 fetch basic land=Buscar tierra basica
-Fizzle=Chisporrotear
+Fizzle=Contrarrestar
 flying=Volar
 Freeze=Congelar
-Kicker=Estimular
-leave on top=Poner al principio de biblioteca
+Kicker=Estímulo
+leave on top=Dejar encima de la biblioteca
 level Counter=Contador de nivel
 Life Loss=Perder vida
 Life=Vida
@@ -234,19 +538,19 @@ PowerLife=Ganar vida igual a fuerza
 PowerStrike=Golpe de poder
 Put 2 on top=Pon dos al principio
 Put a card on top of Library=Pon una carta encima de tu biblioteca
-Put in Library=Poner en tu biblioteca
-Put into play=Poner en juego
-Reanimate=Reanimar
-Regenerate=Regenerar
+Put in Library=Pon en tu biblioteca
+Put into play=Pon en el campo de batalla
+Reanimate=Reanima
+Regenerate=Regenera
 Return Target to Hand=Devuelve objetivo a la mano
-Sacrifice=Sacrificar
+Sacrifice=Sacrifica
 Select unblocked attacker=Escoge atacante desbloqueado
-shuffle into deck=Barajar en la biblioteca
+shuffle into deck=Baraja en la biblioteca
 Tap=Girar
 Tap Target=Gira objetivo
 ToughLife=Ganar vida
 Transform:lord of lineage=Transformar: Senor del linaje
-unblockable=Imbloqueable
+unblockable=No puede ser bloqueada
 Untap Target=Endereza objetivo
 
 #Habilidades Planeswalkers
@@ -392,8 +696,13 @@ Life Delta Bonus=Bonificacion por vida adicional
 Miller Bonus=Bonificacion por molino
 Mods, additional cards, updates and more at:=Mods, cartas adicioanles, actualizaciones y mas en:
 Player %i wins (%i)=El jugador %i gana (%i)
+Please support this project !=Porfavor apoya este proyecto !
 Please check your deck (not enough cards?)=Por favor, revisa tu mazo (No tienes suficientes cartas)
 There's more!=Hay mas!
+Wagic is free, open source, and developed on the little free time I have=Wagic es gratuito, de código abierto y se desarrolló con el poco tiempo libre que tengo.
+If you enjoy this game, please consider donating a few bucks=Si disfrutas de este juego, considera donar unos dólares
+(Seriously, donate or I'll kill this cute little bunny)=(En serio, dona o mataré a este lindo conejito o_o )
+Thanks in advance for your support.=Gracias de antemano por su apoyo.
 Victory=Victoria!
 You have been defeated=Has sido derrotado
 
@@ -407,57 +716,341 @@ AN ERROR OCCURRED, CHECK FILE NAMES=HA OCURRIDO UN ERROR, REVISA EL NOMBRE DE LO
 #Menu del Editor:
 *Complete collection & reset*=*Completar coleccion y reiniciar*
 Cancel=Deshacer
-Choose Deck To Edit=Elige un mazo
+Choose Deck To Edit=Edita un mazo
 Filter by...=Filtrar por...
-Filter By...=Filtrar por...
---NEW--=-- Nuevo --
+Filter By...=Filtrar Por...
+--NEW--=-NUEVO-
 Quit Editor=Salir del editor
-Rename Deck=Renombrar mazo
-Save & Quit Editor=Guarda y sale
-Save & Rename=Renombrar y guardar
+Rename Deck=Renombra el mazo
+Save & Quit Editor=Guardar y salir del editor
+Save & Rename=Renombra y guarda
 Save As AI Deck=Guardar como mazo IA
 Save=Guardar
 Set=Edicion
-Switch decks without saving=Cancelar y cambiar de mazo
-Switch Decks=Cambiar mazos
---UNLOCK CARDS--=-- Desbloquear Cartas --
+Switch decks without saving=Cambia de mazo sin guardar
+Switch Decks=Cambia de mazo
+--UNLOCK CARDS--=-DESBLOQUEAR CARTAS-
+
+#Vista de la coleccion
+Click on the card image=Haz click en la imagen
+to add card to deck.=para agregar la carta al mazo.
+Your Deck: =Tu mazo
+Sideboard: =El Sideboard
+Remove Card=Remueve la carta
+Add/Remove Cards=Agregar/Remover cartas
+Add to Deck=Agregar al Mazo
+Add to Sideboard=Agregar al Sideboard
+
+
+#Ediciones:
+
+-Beginners-
+Portal Second Age=Portal, la segunda era
+Portal Three Kingdoms=Portal, los tres reinos
+Starter 1999=Comienzos 1999
+Starter 2000=Comienzos 2000
+Welcome Deck 2016=Mazo de bienvenida 2016
+Welcome Deck 2017=Mazo de bienvenida 2017
+
+-Commander-
+Planechase=Persecucion planar
+Archenemy=Archienemigo
+Magic: The Gathering-Commander=Comandante 2011
+Planechase 2012 Edition=Persecucion planar - Edicion 2012
+Commander's Arsenal=El arsenal del Comandante 2012
+Commander 2013 Edition=Comandante 2013
+Magic: The Gathering—Conspiracy=Conspiracion
+Commander 2014=Comandante 2014
+Commander 2015=Comandante 2015
+Conspiracy: Take the Crown=Conspiracion: La toma de la corona
+Commander 2016=Comandante 2016
+Planechase Anthology=Antologia de la persecucion planar
+Commander Anthology=Antologia del Comandante
+Archenemy: Nicol Bolas=Archienemigo: Nicol Bolas
+Commander 2017=Comandante 2017
+Explorers of Ixalan=Exploradores de Ixalan
+Battlebond=Vinculo de batalla
+Commander Anthology Volume II=Antologia del Comandante: Volumen II
+Commander 2018=Comandante 2018
+Commander 2019=Comandante 2019
+Commander 2020=Comandante 2020
+Commander Collection: Green=Coleccion del Comandante: Verde
+Commander Legends=Leyendas del Comandante
+
+-Core Sets-
+Limited Edition Alpha=Edicion limitada: Alfa
+Limited Edition Beta=Edicion limitada: Beta
+Unlimited Edition=Edicion ilimitada
+Revised Edition=Edicion revisada
+Fourth Edition=4ta edicion
+Fifth Edition=5ta edicion
+Classic Sixth Edition=6ta edicion clasica
+Seventh Edition=7ma edicion
+Eighth Edition=8va edicion
+Ninth Edition=9na edicion
+Tenth Edition=10ma edicion
+Magic 2010=Coleccion basica 2010
+Magic 2011=Coleccion basica 2011
+Magic 2012=Coleccion basica 2012
+Magic 2013=Coleccion basica 2013
+Magic 2014 Core Set=Coleccion basica 2014
+Magic 2015 Core Set=Coleccion basica 2015
+Magic Origins=Magic origenes
+Core Set 2019=Coleccion basica 2019
+Core Set 2020=Coleccion basica 2020
+Core Set 2021=Coleccion basica 2021
+
+-Duel decks-
+
+Duel Decks: Elves vs. Goblins=Mazos de duelo: Elfos vs. Trasgos
+Duel Decks: Jace vs. Chandra=Mazos de duelo: Jace vs. Chandra
+Duel Decks: Divine vs. Demonic=Mazos de duelo: Divino vs. Demoniaco
+Duel Decks: Garruk vs. Liliana=Mazos de duelo: Garruk vs. Liliana
+Duel Decks: Phyrexia vs. the Coalition=Mazos de duelo: Pirexia vs. la Coalicion
+Duel Decks: Elspeth vs. Tezzeret=Mazos de duelo: Elspeth vs. Tezzeret
+Duel Decks: Knights vs. Dragons=Mazos de duelo: Caballeros vs. Dragones
+Duel Decks: Mirrodin Pure vs. New Phyrexia=Mazos de duelo: Mirrodin puro vs. Nueva pirexia
+Duel Decks: Ajani vs. Nicol Bolas=Mazos de duelo: Ajani vs. Nicol Bolas
+Duel Decks: Venser vs. Koth=Mazos de duelo: Venser vs. Koth
+Duel Decks: Izzet vs. Golgari=Mazos de duelo: Izzet vs. Golgari
+Duel Decks: Sorin vs. Tibalt=Mazos de duelo: Sorin vs. Tibalt
+Duel Decks: Heroes vs. Monsters=Mazos de duelo: Heroes vs. Monstruos
+Duel Decks: Jace vs. Vraska=Mazos de duelo: Jace vs. Vraska
+Duel Decks: Speed vs. Cunning=Mazos de duelo: Velocidad vs. Astucia
+Duel Decks: Elspeth vs. Kiora=Mazos de duelo: Elspeth vs. Kiora
+Duel Decks: Zendikar vs. Eldrazi=Mazos de duelo: Zendikar vs. Eldrazi
+Duel Decks: Blessed vs. Cursed=Mazos de duelo: Benditos vs. Malditos
+Duel Decks: Nissa vs. Ob Nixilis=Mazos de duelo: Nissa vs. Ob Nixilis
+Duel Decks: Mind vs. Might=Mazos de duelo: Mente vs. Fuerza
+Duel Decks: Merfolk vs. Goblins=Mazos de duelo: Trasgos vs. Tritones
+Duel Decks: Elves vs. Inventors=Mazos de duelo: Elfos vs. Inventores
+
+-Expansions-
+
+Arabian Nights=Las mil y una noches
+Antiquities=Antiguedades
+Legends=Leyendas
+The Dark=La oscuridad
+Fallen Empires=Imperios caidos
+Homelands=Tierras natales
+Ice Age=Era glacial
+Alliances=Alianzas
+Mirage=Espejismo
+Visions=Visiones
+Weatherlight=Viento ligero
+Tempest=Tempestad
+Stronghold=Fortaleza
+Exodus=Exodo
+Urza's Saga=La saga de Urza
+Urza's Legacy=El legado de Urza
+Urza's Destiny=El destino de Urza
+Mercadian Masques=Mascaras de Mercadia
+Nemesis=Nemesis
+Prophecy=Profecia
+Invasion=Invasion
+Planeshift=Transmigracion
+Apocalipsis=Apocalipsis
+Odyssey=Odisea
+Torment=Tormento
+Judgment=Juicio
+Onslaught=Embestida
+Legions=Legiones
+Scourge=Azote
+Mirrodin=Mirrodin
+Darksteel=Acero oscuro
+Fifth Dawn=Quinto amanecer
+Champions of Kamigawa=Campeones de Kamigawa
+Betrayers of Kamigawa=Traidores de Kamigawa
+Saviors of Kamigawa=Salvadores de Kamigawa
+Ravnica: City of Guilds=Ravnica: Ciudad de Gremios
+Guildpact=El pacto entre Gremios
+Dissension=Discordia
+Coldsnap=Ola de frio
+Time Spiral=Espiral del tiempo
+Time Spiral "Timeshifted"=Espiral del tiempo "Tiempo alterado"
+Planar Chaos= Caos planar
+Future Sight=Vision del futuro
+Morningtide=Alborada
+Shadowmoor=Paramo sombrio
+Eventide=Crepusculo
+Shards of Alara=Fragmentos de Alara
+Conflux=Confluencia
+Alara Reborn=Alara renacida
+Worldwake=Despertar del mundo
+Rise of the Eldrazi=Levantamiento de los Eldrazi
+Scars of Mirrodin=Cicatrices de Mirrodin
+Mirrodin Besieged=Mirrodin sitiado
+New Phyrexia=Nueva Pirexia
+Dark Ascension=Ascenso siniestro
+Avacyn Restored=Avacyn restituida
+Return to Ravnica=Regreso a Ravnica
+Gatecrash=Intrusion
+Dragon's Maze=Laberinto del dragon
+Born of the Gods=Nacidos de los Dioses
+Journey into Nyx=Travesia hacia Nyx
+Khans of Tarkir=Kans de Tarkir
+Fate Reforged=Destino reescrito
+Dragons of Tarkir=Dragones de Tarkir
+Battle for Zendikar=La batalla por Zendikar
+Oath of the Gatewatch=El juramento de los Guardianes
+Shadows over Innistrad=Sombras sobre Innistrad
+Eldritch Moon=Luna de horrores
+Aether Revolt=La revuelta del eter
+Hour of Devastation=La hora de la devastacion
+Rivals of Ixalan=Rivales de Ixalan
+Guilds of Ravnica=Gremios de Ravnica
+Ravnica Allegiance=La lealtad de Ravnica
+War of the Spark=La guerra de la chispa
+Throne of Eldraine=El Trono de Eldraine
+Theros Beyond Death=Theros mas alla de la muerte
+Ikoria: Lair of Behemoths=Ikoria: Mundo de Behemonts
+Zendikar Rising=El resurgir de Zendikar
+
+-From the vault-
+
+From the Vault: Dragons=Desde la boveda: Dragones
+From the Vault: Exiled=Desde la boveda: Exiliado
+From the Vault: Relics=Desde la boveda: Reliquias
+From the Vault: Legends=Desde la boveda: Leyendas
+From the Vault: Realms=Desde la boveda: Reinos
+From the Vault: Twenty=Desde la boveda: Veinte
+From the Vault: Annihilation=Desde la boveda: Aniquilacion
+From the Vault: Angels=Desde la boveda: Angeles
+From the Vault: Lore=Desde la boveda: Sabiduria
+From the Vault: Transform=Desde la boveda: Transformacion
+
+-Global Series-
+Global Series: Jiang Yanggu & Mu Yanling=Series globales: Jiang Yanggu & Mu Yanling
+
+-Online-
+
+Magic Online Promos=Promocionales de Magic online
+Masters Edition=Magic en linea: Edicion maestra
+Masters Edition II=Magic en linea: Edicion maestra II
+Masters Edition III=Magic en linea: Edicion maestra III
+Magic Online Theme Decks=Mazos tematicos de Magic online
+Masters Edition IV=Magic en linea: Edicion maestra IV
+Vintage Masters=Maestros clasicos
+Tempest Remastered=Tempestad remasterizada
+Legendary Cube=Cubo legendario
+Treasure Chest=Cofre del tesoro
+Historic Anthology 1=Antologia historica vol. 1
+Historic Anthology 2=Antologia historica vol. 2
+Historic Anthology 3=Antologia historica vol. 3
+Amonkhet Remastered=Amonkhet Remasterizado
+
+-Other-
+
+GRN Guild Kit=Gremios de Ravnica estuche de gremio
+Game Night=Noche de juego
+RNA Guild Kit=La lealtad de Ravnica estuche de gremio
+Game Night 2019=Noche de juego 2019
+
+-Premium Deck Series-
+
+Premium Deck Series: Slivers=Serie de mazos premium: Fragmentados
+Premium Deck Series: Fire and Lightning=Serie de mazos premium: Fuego y Relampago
+Premium Deck Series: Graveborn=Serie de mazos premium: Nacida de la tumba
+Modern Event Deck=Mazo de evento de Modern
+Secret Lair Drop Series=Series de lanzamiento "La Guarida Secreta"
+
+-Promotional-
+
+Arena League 1996=Liga de ARENA 1996
+Arena League 1999=Liga de ARENA 1999
+Arena League 2000=Liga de ARENA 2000
+Arena League 2001=Liga de ARENA 2001
+Arena League 2002=Liga de ARENA 2002
+Arena League 2003=Liga de ARENA 2003
+Arena League 2004=Liga de ARENA 2004
+Arena League 2005=Liga de ARENA 2005
+Arena League 2006=Liga de ARENA 2006
+Magic Premiere Shop 2005=Primera Tienda de Magic 2005
+Magic Premiere Shop 2006=Primera Tienda de Magic 2006
+Magic Premiere Shop 2007=Primera Tienda de Magic 2007
+Magic Premiere Shop 2008=Primera Tienda de Magic 2008
+Magic Premiere Shop 2009=Primera Tienda de Magic 2009
+Magic Premiere Shop 2010=Primera Tienda de Magic 2010
+Magic Premiere Shop 2011=Primera Tienda de Magic 2011
+Duels of the Planeswalkers=Duelo de los Caminaplanos
+Duels of the Planeswalker Promo 2009-2010=Duelo promocional de los Caminaplanos 2009-2010
+Duels of the Planeswalkers 2011=Duelo promocional de los Caminaplanos 2011
+Duels of the Planeswalkers 2012=Duelo promocional de los Caminaplanos 2012
+Duels of the Planeswalkers 2013=Duelo promocional de los Caminaplanos 2013
+Duels of the Planeswalkers 2014=Duelo promocional de los Caminaplanos 2014
+Zendikar Expeditions=Expediciones de Zendikar
+Kaladesh Inventions=Invenciones de Kaladesh
+Kaladesh Remastered=Kaladesh Remasterizado
+Amonkhet Invocations=Invocaciones de Amonkhet
+Arena New Player Experience=Experiencia de nuevos jugadores de ARENA
+Heroes of the Realm 2016=Heroes del Reino 2016
+Heroes of the Realm 2017=Heroes del Reino 2017
+Mythic Edition=Edicion mitica
+Ultimate Box Topper=Primera caja definitiva
+Arena Beginner Set=Ediciones principiantes de ARENA
+
+-Reprints-
+
+Chronicles=Cronicas
+Anthologies=Antologias
+Battle Royale Box Set=Edicion de caja: Batalla campal
+Beatdown Box Set=Ediciones de caja: Abatir
+Deckmasters=Ediciones de caja: Maestros del mazo
+Modern Masters=Maestros de Modern
+Modern Masters 2015 Edition=Maestros de Modern - Edicion 2015
+Eternal Masters=Maestros eternos
+Modern Masters 2017=Maestros de Modern 2017
+Iconic Masters=Maestros iconicos
+Masters 25=Maestros 25
+Ultimate Masters=Maestros definitivos
+Modern Horizon=Horizontes de Modern
+Mystery Booster=Refuerzo Misterioso
+Jumpstart=Inicios
+Double Masters=Maestros dobles
+
+-Signature Spellbooks-
+
+Signature Spellbook: Jace=Asignatura del libro de hechizos: Jace
+Signature Spellbok: Gideon=Asignatura del libro de hechizos: Gideon
+Signature Spellbok: Chandra=Asignatura del libro de hechizos: Chandra
 
 #Informacion - Flechas:
-Prev. edition=Ed. anterior
-Next edition=Siguiente ed.
+Prev. edition=Edición ant.
+Next edition=Edición sig.
 Prev.=Anterior
 Next=Siguiente
-card=Carta
+card=carta
 Next color=Color siguiente
 Prev. color=Color anterior
 
 #Informacion - Botones:
-Add card=AGREGAR
-Display collection=Mostrar coleccion
+Add card=Agregar carta
+Display collection=Mostrar colección
 Display Deck=Mostrar mazo
-filter=FILTRO
-Remove card=QUITAR
-Sell Card=VENDER
-Stats=ESTADO
-Toggle Images=Imagenes Si/No
-View Collection=COLECCION
-View Deck=MAZO
+filter=filtro
+Remove card=Quitar carta
+Sell Card=Vender Carta
+Stats=Estado
+Toggle Images=Mostrar Imagenes
+View Collection=Ver Coleccion
+View Deck=Ver Mazo
 
 #Informacion - Explicaciones:
 Use SQUARE to view your deck,=Usa Z para ver tu mazo,
-Use SQUARE to view collection,=Usa Z para ver tu coleccion,
+Use SQUARE to view collection,=Usa Z para ver tu colección,
 Press L/R to cycle through=Presiona A/D para Ver todas 
 deck statistics.=Estadisticas del mazo.
-Click on the card image=Haz click en la imagen de la
-to add card to deck.=carta para agregarla a tu mazo
-to remove card from deck.=carta para quitarla de tu mazo.
 
-All changes are final.=Los cambios son finales.
+to remove card from deck.=remueve la carta del mazo.
+
+All changes are final.=Todos los cambios son definitivos.
 Change the name of the deck=Cambiar el nombre del mazo.
-Close menu.=Cerrar menu.
+Close menu.=Cerrar menu
+No changes. Return to the main menu.=Sin cambios. Regresar al menu.
+No changes. View another deck.=Sin cambios. Ver otro mazo.
 Do not make any changes to deck. Return to the main menu.=No hacer ningun cambio. Regresar al menu principal.
 Do not make any changes. View another deck.=No hacer ningun cambio. Ver otro mazo.
-Narrow down the list of cards. =Disminuir el numero de cartas.
+Narrow down the list of cards. =Reducir la lista de cartas.
 Save changes. Return to the main menu=Guardar cambios. Regresar al menu principal.
 
 #Otros:
@@ -465,16 +1058,23 @@ Collection=Coleccion
 Deck=Mazo
 No Card=Sin cartas
 Your Deck: %i cards=Tu mazo: %i cartas
-menu=MENU
-filter=FILTRO
-in: collection=COLECCION
-in: deck= MAZO
+menu=menu
+filter=filtro
+in: collection= en la: coleccion
+in: deck= en el: mazo
 %s : %i credits=%s : %i creditos
- credits= Creditos
+credits= creditos
 
 ################
 # ESTADISTICAS #
 ################
+
+UP=Ant.
+DN=Sig.
+View SB=Ver el SideBoard
+Grid=Cuadricula
+Filter=Filtro
+Carousel=Carrusel
 
 #Estadisticas - Pagina 1:
 Statistics Summary=Resumen estadistico
@@ -486,9 +1086,9 @@ Sorceries=Conjuros
 Spells=Hechizos
 Average converted mana cost=Coste promedio de mana conv.
 Probabilities=Probabilidades
-No land in 1st hand=Sin tierras en 1a mano
-No land in 9 cards=Sin tierras en 1as 9 cartas
-No creatures in 1st hand=Sin criaturas en 1a mano
+No land in 1st hand=Sin tierras en la 1ra mano
+No land in 9 cards=Sin tierras en 1as primeras 9 cartas
+No creatures in 1st hand=Sin criaturas en la 1ra mano
 Playgame statistics=Estadisticas del Juego
 Games played=Partidas Jugadas
 Victory ratio: %i%%=Relacion de Victorias :%i%% 
@@ -512,7 +1112,7 @@ Non-creature spell counts per mana cost:=Hechizos (no criaturas) por coste de ma
 #Estadisticas - Pagina 5:
 Mana production=Produccion de mana
 Counts of manasources per type and color:=Cuenta de fuente de mana por tipo y color
-BL - Basic lands=BL - Tierras basicas
+BL - Basic lands=TB - Tierras basicas
 NB - Non-basic lands=NB - Tierras no basicas
 O - Other (non-land) manasources=O - Otras fuentes de mana 
 T - Totals=T - Totales
@@ -539,21 +1139,21 @@ Victory ratio: %i%%=Porcentaje de victorias: %i%%
  --- Average Cost --- = --- Coste medio --- 
   --- Card color count ---  =  --- Curva de Mana ---  
 ------- Deck Summary -----=------- Resumen del Mazo -----
-A: =A:
-B: =N:
+
+B: =Neg:
 Cards: =Cartas: 
 Creature: =Criatura: 
 Creatures: =Criaturas: 
   Enchantments: =  Encantamientos: 
-G: =V:
+G: =Ver:
 Instants: =Instantaneos: 
 Lands: =Tierras: 
 Mana: =Mana: 
-R: =R:
+R: =Roj:
    Sorceries:      =   Conjuros:      
 Spell: =Hechizo.
-U: =U:
-W: =B:
+U: =Azu:
+W: =Bla:
 
 ###########
 # TIENDA  #
@@ -566,27 +1166,33 @@ Credits: =Creditos:
 ??? Pack (15-30 cards) =Pack de ??? (15-30 cartas)
 %s (%i)=%s (%i)
 : Other cards=: Otras cartas
-Check task board=Ver tareas disponibles
+Check task board=Revisar las tareas en la  pizarra
+Open Task Board=Abrir las tareas en la  pizarra
+Close Task Board=Cerrar las tareas en la  pizarra
+
 Steal it=Robar
-Steal 1,000 credits=Robar 1.000 creditos
+Steal 1,000 credits=Robar 1,000 creditos
+Steal 2,000 credits=Robar 2,000 creditos
 Ask about...=Preguntar por...
 Return to shop=Volver a la tienda
-Save And Exit=Guardar y Salir
-Add Filter=Crear filtro
+Save And Exit=Guardar y salir
+Add Filter=Agregar filtro
+Return=Regresar
 Clear=Borrar
 Done=Hecho
-%s : SOLD OUT=%s : AGOTADO
+%s : SOLD OUT=%s : AGOTADO=%s
 SOLD OUT=AGOTADO
 Sold Out=Agotado
-Not enough credits=Sin creditos suficientes
-Show List=Lista
-New Cards=Mas Cartas
+Not enough credits=No tienes creditos suficientes
+Show List=Mostrar Lista
+New Cards=Nuevas Cartas
 
 ##########
 # FILTRO #
 ##########
 
 Cards...=Cartas...
+Artifact Creature=Criatura artefacto
 Type=Tipo
 Subtype=Subtipo
 Rarity=Rareza
@@ -596,7 +1202,7 @@ Mana Ability=Habilidad de mana
 Power=Fuerza
 Toughness=Resistencia
 First Letter=Primera letra
-Remove=Borrar
+Remove=Remover
 Filter:=Filtro:
 
 #Filtro Habilidad de Mana:
@@ -638,6 +1244,10 @@ Colorless mana abiltity=Habilidad de mana incoloro
 11 toughness=Resistencia 11
 12 toughness=Resistencia 12
 13 toughness=Resistencia 13
+14 toughness=Resistencia 14
+15 toughness=Resistencia 15
+16 toughness=Resistencia 16
+17 toughness=Resistencia 17
 
 #Filtro Primera Letra:
 Letter A=Letra A
@@ -716,49 +1326,50 @@ You have to defeat %s before it causes too much harm.=Vence a %s antes de que se
 ############
 
 #Opciones:
-Settings=OPCIONES
-General Options=OPCIONES GENERALES
+Settings=Opciones
+General Options=Opciones Generales
 Music volume=Volumen de la musica
 SFX volume=Volumen del sonido
-Max=Max
+Max=Maximo
 Mute=Silencio
-Difficulty=Dificultad
-Economic Difficuly=Dificultad economica
-Normal=Normal
-Hard=Medio
-Harder=Dificil
-Evil=Mortal
-Luck=Azar
-Easy=Facil
-Display InGame extra information=Informacion adicional durante el Juego
-Enable cheat mode=Activar modo trampas
-Seconds to pause for an Interrupt=Pausa de interrupcion en seg.
-Interrupt my abilities=Interrumpir mis habilidades
-Interrupt my spells=Interrumpir mis hechizos
-Interrupt opponent's end of turn=Interrumpir fin de turno contrario
+
+#Otros:
+Misc=Otros
+Card Display Options=Opciones de visualizacion de las cartas
+All Black Borders=Todos los bordes negros
+Show Tokens in Editor=Mostrar las fichas en el editor
+Warning!!=Avertencia!!
+Show Large Images in Grid Deck View=Mostrar imagenes grandes en la vista cuadricular
+Enable Prefetching=Habilitar captura previa
 
 #Juego:
-Game=JUEGO
-Interface Options=OPCIONES DE INTERFAZ
+Game=Juego
+Interface Options=Opciones de Interfaz
+Sort sets by=Solicitar ediciones por
+Sector=Sector
+Name=Nombre
+Date=Fecha
 Language=Idioma
 Closed hand=Cartas en mano
 visible=Visible
 invisible=Invisible
-Hand direction=Orientacion de mano
+Hand direction=Orientacion de la mano
 horizontal=Horizontal
 vertical=Vertical
-Mana display=Mostrar mana
-Eye candy=Efecto
+Mana display=Muestreo del mana
+Eye candy=Esfera con efecto
 Simple=Simple
 Both=Ambos
 No Glitter=Sin brillo
-Reverse left and right triggers=Invetir gatillos R/L
+Reverse left and right triggers=Invetir disparadores Derecho con Izquierdo
 Disable card images=Desactivar la imagen de la carta
 Disable screen transitions=Desactivar transiciones de pantalla
+Display InGame extra information=Informacion adicional durante el Juego
 
 #Usuario:
-User=USUARIO
-User Options=OPCIONES DE USUARIO
+User=Usuario
+Default=Predeterminado
+User Options=Opciones del Usuario
 Credits: %i=Creditos %i
 Cards: %i=Cartas: %i
 Sets: %i (of %i)=Ediciones: %i (de %i)
@@ -772,6 +1383,9 @@ Light=Luz
 Stone=Piedra
 Water=Agua
 Use this Style=Usar este estilo
+Enable Cheat Mode=Habilitar modo tramposo
+Optimize Starting Hand=Optimizar la mano con la que inicias
+Unlock All Ai Decks=Desbloquear todos los mazos de inteligencia artificial
 
 Artist: %s=Artista: %s
 Default=Predeterminado
@@ -780,12 +1394,20 @@ Use this Profile=Utilizar este perfil
 Use this Theme=Utilizar este tema
 
 #Avanzado:
-Advanced=AVANZADO
-Advanced Options=OPCIONES AVANZADAS
-The following options require a restart.=Las siguientes opciones requieren reiniciar el sistema.
-Minimum Card Grade=Minimo grado de tarjetas
+Advanced=Avanzado
+Advanced Options=Opciones Avanzadas
+The following options require a restart.=Las siguientes opciones requieren reinicio.
+
+Minimum Card Grade=Minimo grado de las cartas
+1: 100% Supported=1: 100% Soportado
+0: Borderline (99% OK)=0: Al limite (99% Ok)
+-1: Unofficial (unverified cards)=-1: No oficiales (cartas sin verificar)
+-2: Crappy (bugs)=-2: Defectuoso (fallos)
+-3: Unsupported=-3 Sin soporte
+-4: Dangerous (risk of crash)=-4: Peligroso (riesgo de cierre)
+
 Phase Skip Automation=Saltar la fase de automatizacion
-First Turn Player=Primer jugador del turno
+First Turn Player=Primer turno del jugador
 Opponent=Oponente
 Full=Completo
 Safe=Prudente
@@ -795,9 +1417,24 @@ Offer Choice=Ofrecer eleccion
 Always Pay=Pagar Siempre
 
 #Teclado:
-Key Bindings=TECLAS
+Key Bindings=Asociar teclas
+Load Defaults...=Cargar predeterminadas...
+Press a key to associate.=Presiona una tecla para asociar.
 New binding...=Nuevas teclas...
+Return=Regresar
+Space=Barra espaciadora
+Sound=Sonido
+Fullscreen=Pantalla completa
+Keypad Enter=Tecla Enter
+VolumeUp=Subir volumen
+VolumeDown=Bajar volumen
+Left Ctrl=Control izquierdo
+Right Ctrl=Control derecho
 Delete this binding=Borrar esta tecla
+Open hand/Next item=Abrir mano/Opcion siguiente
+Next phase/Previous item=Fase siguiente/Opcion anterior
+Secondary=Secundario
+Primary=Primario
 Right trigger=Disparador derecho
 Left trigger=Dispardor izquierdo
 Cross=Cruz
@@ -808,13 +1445,12 @@ Down=Abajo
 Up=Arriba
 Left=Izquierda
 Right=Derecha
-Select=Select
-Start=Start
+Select=Seleccionar
+Start=Comenzar
 
 #Creditos:
-Credits=CREDITOS
-Wagic, The Homebrew?! by Wololo=Wagic, The Homebrew?! por Wololo
-updates, new cards, and more on http://wololo.net/wagic=actualizaciones, cartas nuevas, y mas en http://wololo.net/wagic
+Credits=Creditos
+Wagic, The Homebrew?! by Wololo  updates, new cards, and more on http://wololo.net/wagic=actualizaciones, cartas nuevas, y mas en http://wololo.net/wagic
 Many thanks to the people who help this project=Muchas gracias a las personas que ayudaron en este proyecto
 Art: Ilya B, Julio, Jeck, J, Kaioshin, Lakeesha=Graficos: Ilya B, Julio, Jeck, J, Kaioshin, Lakeesha
 Check themeinfo.txt for the full credits of each theme!=Lee el themeinfo.txt para todos los creditos de cada tema!
@@ -836,62 +1472,107 @@ SFX From www.soundsnap.com=SFX de www.soundsnap.com
 This work is not related to or endorsed by Wizards of the Coast, Inc=Este trabajo no esta relacionado con Wizards of the Coast, Inc
 Please support this project with donations at http://wololo.net/wagic=Por favor, apoya a este proyecto con donaciones en http://wololo.net/wagic
 
+
+
+Difficulty=Dificultad
+Economic Difficuly=Dificultad económica
+Normal=Normal
+Hard=Difícil
+Harder=Muy difícil
+Evil=Infierno
+Luck=Al azar
+Easy=Facil
+
+
+Seconds to pause for an Interrupt=Segundos disponibles para interrumpir
+Interrupt my abilities=Interrumpir mis habilidades
+Interrupt my spells=Interrumpir mis hechizos
+Interrupt opponent's end of turn=Interrumpir el fin de turno del oponente
+
+
 ###########
 # TROFEOS #
 ###########
 
-Achievements=TROFEOS
-Difficulty Modes=MODO DIFICIL
+Achievements=Logros
+Difficulty Modes=Modos de dificultad
 Achieved a 66% victory ratio.=Promedio de 66% de victorias.
-Momir Mode=MODO MOMIR
-Won with exactly 8 lands.=Victoria con 8 tierras en juego.
-Evil Twin Mode=MODO 'GEMELO MALVADO'
-Won with same army size.=Victoria con el mismo ejercito.
-Random Deck Mode=MODO MAZO ALEATORIO
-Won against a higher difficulty.=Victoria en modo mortal.
-Stone Hewer Mode=MODO STONE HEWER
-Won with more than 10 equipments.=Gana con mas de 10 cartas de equipo.
-Hermit Druid Mode=DRUIDA ERMITANO BASICO
-Won with less than 10 lands.=Gana con menos de 20 tierras.
-Valuable Collection=Coleccion Valiosa
-Collection valued over 10,000c.=Coleccion tasada en mas de 10000c.
-Collection Info=Informacion de coleccion
+Blitzkrieg Mode=Modo Asalto relampago
+Won with more than 18 lands.=Gana con mas de 18 tierras.
+Horde=Modo Horda
+Won with more than 25 life.=Gana con mas de 25 vidas.
+Paradise=Modo Paraiso
+Won with Birds of Paradise on the battlefield.=Gana con las Aves del paraiso en el campo de batalla.
+False God=Modo Diosa falsa
+Devotion to red more than 7.=Tu devocion al rojo debe ser mayor a 7.
+Titania Mode=Modo Titania
+Devotion to green more than 7.=Tu devocion al verde debe ser mayor a 7.
+Morinfen Mode=Modo Morinfen
+Won with less than 5 life.=Gana con menos de 5 vidas.
+Momir Mode=Modo Momir basico
+Won with exactly 8 lands.=Gana exactamente con 8 tierras.
+Evil Twin Mode=Modo Gemelo malvado
+Won with same army size.=Gana con el mismo tamano de permanentes que tu enemigo.
+Random Deck Mode=Modo Mazo aleatorio
+Won against a higher difficulty.=Gana contra el mayor nivel de dificultad.
+Stone Hewer Mode=Modo Forjador
+Won with more than 10 equipments.=Gana con mas de 10 equipos.
+Hermit Druid Mode=Modo Druida ermitano
+Won with less than 10 lands.=Gana con menos de 10 tierras.
+Do you think you can dominate over other commanders? Take a big challenge in the commander format.=¿Crees que puedes dominar a otros comandantes? Acepta un gran desafío en el formato de comandante.
+Commander Format Unlocked=Modo Comandante desbloqueado
+Win a game with 40 or more life and with less cards in your graveyard than your opponent.=Gana con 40 vidas o más y con menos cartas en tu cementerio que tu oponente.
+
+Valuable Collection=El valor de la coleccion
+Collection valued over 10,000c.=La coleccion esta valuada en mas de 10,000 creditos.
+Collection Info=Info. de coleccion
+
+Collection Stats=Estadisticas de coleccion
+Total Value: %ic=Valor Total: %i creditos.
+Total Cards (including duplicates): %i=Total de cartas (con duplicados): %i
+Unique Cards: %i=Cartas unicas: %i
+Most Duplicates: %i (%s)=Con mas duplicados: %i (%s)
+Favorite Set: %s=Set favorito: %s
+Highest Mana Cost: %i (%s)=Coste de mana mas alto: %i (%s)
+Most Powerful: %i (%s)=Con el mayor ataque: %i (%s)
+Toughest: %i (%s)=Con la mayor resistencia: %i (%s)
+
+%i locked sets remain.=Faltan %i ediciones por bloquear.
+Unlocked all %i sets.=Desbloqueadas las %i ediciones.
+
 Card Spoiler=Ver cartas
-%i locked sets remain.=FALTAN %i EDICIONES
-Unlocked all %i sets.=Desbloqueados las %i ediciones.
+
+Back to Trophies=Regresar a los Trofeos
+Back to Main Menu=Volver al Menu Principal
+Cancel=Deshacer
+
+Wagic Team (%s%%): %i%% : %s%%/%s%% cards=Equipo Wagic (%s%%): %i%% : %s%%/%s%% cartas
 %i cards=%i cartas.
 %s (%i): %i cards=%s (%i): %i cartas.
 %s: %i cards.=%s: %i cartas.
 
-Back to Trophies=Regresar a los trofeos
-Back to Main Menu=Volver al menu principal
-Cancel=Deshacer
+
 
 Booster=Sobre
 Cards=Cartas
 
 Details=Detalles
-Collection Stats=Estadisticas de coleccion
-Total Value: %ic=Valor Total: %i cr.
-Total Cards (including duplicates): %i=Total de cartas (con duplicados): %i
-Unique Cards: %i=Cartas unicas: %i
-Most Duplicates: %i (%s)=Carta favorita: %i (%s)
-Favorite Set: %s=Set favorito: %s
-Highest Mana Cost: %i (%s)=Coste mas alto de mana: %i (%s)
-Most Powerful: %i (%s)=Mayor ataque: %i (%s)
-Toughest: %i (%s)=Resistencia: %i (%s)
+
+
 
 ##################
 # CARTAS: RAREZA #
 ##################
 
 Common=Comun
-Land=Tierra
-Mythic=Mitica
+Uncommon=Poco comun
 Rare=Rara
-Special=Especial
+Mythic=Rara Mitica
+Special Rarity=Rareza especial
+Special=Rareza especial
+Land=Tierra
 Token=Ficha
-Uncommon=Infrecuente
+
 
 ################
 # CARTAS:TIPOS #
@@ -924,11 +1605,11 @@ Blue=Azul
 Black=Negro
 Red=Rojo
 Green=Verde
-Exclusively White=Exclusivamente blanco
-Exclusively Blue=Exclusivamente azul
-Exclusively Black=Exclusivamente negro
-Exclusively Red=Exclusivamente rojo
-Exclusively Green=Exclusivamente verde
+Exclusively White=Exclusivamente Blanco
+Exclusively Blue=Exclusivamente Azul
+Exclusively Black=Exclusivamente Negro
+Exclusively Red=Exclusivamente Rojo
+Exclusively Green=Exclusivamente Verde
 
 #####################
 # CARTAS: SUBTIPOS  #
@@ -942,90 +1623,80 @@ Equipment=Equipo
 Fortification=Fortificacion
 
 #Subtipos de encantamiento:
-Aura=Aura
 Shrine=Altar
 
 #Subtipos de tierra:
 Desert=Desierto
+Gate=Portal
 Lair=Guarida
-Locus=Local
+Locus=Sitio
 Mine=Mina
 Power-Plant=Planta de poder
 Tower=Torre
-Urza's=Urzas
+Urza's=Urza
 
 #Otros subtipos:
 Aggressor=Agresor
-Advisor=Asesor
+Advisor=Consejero
 Ally=Aliado
 Antelope=Antilope
 Ape=Simio
 Archer=Arquero
 Archon=Arconte
-Artificer=Artificiero
+Artificer=Artifice
 Assassin=Asesino
 Aurochs=Bisonte
 Badger=Tejon
-Badlands=Tierras inhospitas
 Barbarian=Barbaro
 Basilisk=Basilisco
 Bat=Murcielago
 Bear=Oso
 Beast=Bestia
-Berserker=Rabioso
+Berserker=Frenetico
 Bird=Ave
 Boar=Jabali
 Bringer=Adalid
 Brushwagg=Yerbamala
-Caltrops=Cebos
 Camel=Camello
 Carrier=Portador
-Cat=Gato
+Cat=Felino
 Centaur=Centauro
 Cephalid=Cefalido
 Chimera=Quimera
 Citizen=Ciudadano
 Cleric=Clerigo
 Colony=Colonia
-Construct=Constructor
+Construct=Constructo
 Crab=Cangrejo
 Crocodile=Cocodrilo
-Crosswinds=Vientos cruzados
 Curse=Maldicion
 Cyclops=Ciclope
 Dauthi=Dauti
 Demon=Demonio
 Devil=Diablo
-Dismiss=Descartar
 Drake=Draco
 Drone=Zangano
 Druid=Druida
 Dryad=Driada
-Duress=Coaccion
 Dwarf=Enano
 Efreet=Efrit
 Egg=Huevo
-Eight-and-a-half-tails=Ocho-colas-y-media
 Elder=Anciano
 Elephant=Elefante
 Elf=Elfo
 Elk=Alce
-emblem=Emblema
-Everglades=Marisma
 Eye=Ojo
 Faerie=Hada
 Fish=Pez
 Fox=Zorro
 Frog=Rana
-Fungus=Hongos
+Fungus=Hongo
 Gargoyle=Gargola
-Gate=Puerta
 Giant=Gigante
 Gnome=Gnomo
 Goat=Cabra
 Goblin=Trasgo
 Gorgon=Gorgona
-Grasslands=Pradera
 Griffin=Grifo
 Hag=Bruja
 Harpy=Arpia
@@ -1035,7 +1706,7 @@ Homarid=Homarido
 Homunculus=Homunculo
 Hornet=Avispa
 Horse=Caballo
-Hound=Sabueso
+Hound=Perro
 Human=Humano
 Hydra=Hidra
 Hyena=Hiena
@@ -1043,31 +1714,25 @@ Illusion=Ilusion
 Imp=Diablillo
 Incarnation=Encarnacion
 Insect=Insecto
-Jailbreaker=Fugaz
 Jellyfish=Medusa
 Knight=Caballero
 Leech=Sanguijuela
-Level=Nivel
-Levelup=Sube de nivel
 Lizard=Lagarto
 Manticore=Manticora
 Melfolk=Triton
 Mercenary=Mercenario
 Merfolk=Triton
-Minion=Lacayo
+Minion=Sicario
 Minotaur=Minotaurio
 Mongoose=Mangosta
 Monk=Monje
-Moonfolk=Pueblo lunar
+Moonfolk=Gente lunar
 Mutant=Mutante
 Mystic=Mistico
-Nautilus=Nautilo
-Nephilim=Nefilin
 Nightstalker=Cazador nocturno
 Nomad=Nomada
 Octopus=Pulpo
 Ogre=Ogro
-Ooce=Cieno
 Ooze=Cieno
 Orc=Orco
 Ouphe=Oufe
@@ -1076,20 +1741,15 @@ Pegasus=Pegaso
 Pentavus=Pentavo
 Pest=Plaga
 Phoenix=Fenix
-Phyresis=Piresis
 Pirate=Pirata
-Plain=Llanura
 Plant=Planta
 Praetor=Pretor
-Rabbit=Conejo
+Rabbit=Liebre
 Rat=Rata
 Rebel=Rebelde
-Regress=Regresion
-Reinforcements=Refuerzos
 Rhino=Rinoceronte
 Rigger=Aparejador
-Rogue=Picaro
-Roots=Raices
+Rogue=Bribon
 Salamander=Salamandra
 Saproling=Saprolin
 Satyr=Satiro
@@ -1097,7 +1757,6 @@ Scarecrow=Espantapajaros
 Scorpion=Escorpion
 Scout=Explorador
 Serpent=Serpiente
-Shackles=Grilletes
 Shade=Sombra
 Shaman=Chaman
 Shapeshifter=Metamorfo
@@ -1106,37 +1765,29 @@ Siren=Sirena
 Skeleton=Esqueleto
 Slith=Slit
 Sliver=Fragmentado
-Sluggishness=Flojera
-Snake=Serpiente
+Snake=Vibora
 Soldier=Soldado
 Spawn=Engendro
 Specter=Espectro
-Spellshaper=Cambiahechizos
+Spellshaper=Cambia hechizos
 Sphinx=Esfinge
 Spider=Arana
-Spike=Descarga
+Spike=Perforador
 Spirit=Espiritu
 Sponge=Esponja
 Squid=Calamar
 Squirrel=Ardilla
-Stasis=Estasis
-Steadfastness=Tenacidad
-Stonehands=Manos de Piedra
 Tertavite=Tertavita
 Thalakos=Talakos
 Thopter=Toptero
-Thumbscrews=Empulgueras
-Tombspawn=Tumba de spawn
 Trap=Trampa
-Treefolk=Pueblo arboreo
+Treefolk=Gente arborea
 Troll=Trol
 Turtle=Tortuga
 Unicorn=Unicornio
 Vampire=Vampiro
-Verdigris=Moho
 Wall=Muro
 Warrior=Guerrero
-Weakness=Debilidad
 Weird=Extrano
 Werewolf=Licantropo
 Whale=Orca
@@ -1254,38 +1905,38 @@ Aegis of Honor=Egida del Honor
 Aegis of the Meek=Egida de los Mansos
 Aeolipile=Aeolipilo
 Aeon Chronicler=Cronista de los Eones
-AErathi Berserker=Berserker Aerathi
+Aerathi Berserker=Berserker Aerathi
 Aerial Caravan=Caravana aerea
 Aerial Maneuver=Maniobra aerea
 Aerial Predation=Depredacion Aerea
 Aerie Mystics=Misticos del Nido
 Aerie Ouphes=Oufes del Nido
 Aesthir Glider=Planeador Aesthir
-AEther Adept=Perito del Eter
-AEther Barrier=Barrera de eter
-AEther Burst=Estallido del Eter
-AEther Charge=Carga de Eter
-AEther Figment=Imaginario del Eter
-AEther Flash=Destello del Eter
-AEther Membrane=Membrana de Eter
-AEther Mutation=Mutacion del Eter
-AEther Rift=Grieta de eter
-AEther Shockwave=Onda expansiva de Eter
-AEther Snap=Chasquido del Eter
-AEther Spellbomb=Bombahechizo de Eter
-AEther Sting=Piquete de Eter
-AEther Storm=Tormenta del Eter
-AEther Tide=Corriente de eter
-AEther Tradewinds=Vientos Alisios del Eter
-AEther Vial=Frasco de Eter
-AEther Web=Telarana de Eter
-AEtherflame Wall=Muro Llama de Eter
-AEtherize=Eterizar
-AEthermage's Touch=Toque del Mago Etereo
-AEtherplasm=Eterplasma
-AEthersnipe=Mito de Eter
-AEthertow=Marea de Eter
-AEthertow=Marea del eter
+Aether Adept=Perito del Eter
+Aether Barrier=Barrera de eter
+Aether Burst=Estallido del Eter
+Aether Charge=Carga de Eter
+Aether Figment=Imaginario del Eter
+Aether Flash=Destello del Eter
+Aether Membrane=Membrana de Eter
+Aether Mutation=Mutacion del Eter
+Aether Rift=Grieta de eter
+Aether Shockwave=Onda expansiva de Eter
+Aether Snap=Chasquido del Eter
+Aether Spellbomb=Bombahechizo de Eter
+Aether Sting=Piquete de Eter
+Aether Storm=Tormenta del Eter
+Aether Tide=Corriente de eter
+Aether Tradewinds=Vientos Alisios del Eter
+Aether Vial=Frasco de Eter
+Aether Web=Telarana de Eter
+Aetherflame Wall=Muro Llama de Eter
+Aetherize=Eterizar
+Aethermage's Touch=Toque del Mago Etereo
+Aetherplasm=Eterplasma
+Aethersnipe=Mito de Eter
+Aethertow=Marea de Eter
+Aethertow=Marea del eter
 Affa Guard Hound=Perro Guardian de Affa
 Afflict=Afligir
 Afflicted Deserter=Desertor Afligido
@@ -1500,9 +2151,9 @@ Animal Boneyard=Cementerio de Animales
 Animal Magnetism=Magnetismo animal
 Animar, Soul of Elements=Animar, Alma de los Elementos
 Animate Artifact=Animar Artefacto
-Animate Dead=Animar a los Muertos
+Animate Dead=Animar a los muertos
 Animate Land=Animar la Tierra
-Animate Wall=Animar Muro
+Animate Wall=Animar muro
 Ankh of Mishra=Ankh de Mishra
 Annex=Anexar
 Annihilate=Aniquilar
@@ -1633,7 +2284,7 @@ Argothian Treefolk=Pueblo Arboreo de Argoth
 Argothian Wurm=Sierpe argotiana
 Arid Mesa=Meseta Arida
 Ark of Blight=Arca de arruinamiento
-Arm with AEther=Armar con Eter
+Arm with Aether=Armar con Eter
 Armada Wurm=Sierpe de la Armada
 Armadillo Cloak=Capa de Armadillo
 Armageddon Clock=Reloj del Armagedon
@@ -1840,7 +2491,7 @@ Aysen Highway=Camino Real de Aysen
 Ayumi, the Last Visitor=Ayumi, la Ultima Visitante
 Azami, Lady of Scrolls=Azami, Senora de los Pergaminos
 Azamuki, Treachery Incarnate=Azamuki, la traicion encarnada
-Azorius AEthermage=Maga Eterea Azoria
+Azorius Aethermage=Maga Eterea Azoria
 Azorius Arrester=Encarceladora Azoria
 Azorius Chancery=Tribunal Azorio
 Azorius Charm=Amuleto Azorio
@@ -2057,7 +2708,7 @@ Benalish Cavalry=Caballeria Benalita
 Benalish Commander=Comandante Benalita
 Benalish Emissary=Emisaria Benalita
 Benalish Heralds=Heraldos Benalitas
-Benalish Hero=Heroe Benalita
+Benalish Hero=Heroe benalita
 Benalish Infantry=Infanteria Benalita
 Benalish Knight=Caballero Benalita
 Benalish Lancer=Lancero Benalita
@@ -2114,7 +2765,7 @@ Black Poplar Shaman=Chaman Alamo Negro
 Black Scarab=Escarabajo Negro
 Black Sun's Zenith=Cenit del sol Negro
 Black Vise=Tornillo Siniestro
-Black Ward=Guarda de Negro
+Black Ward=Proteccion contra negro
 Blackcleave Cliffs=Acantilados Filonegro
 Blackcleave Goblin=Trasgo de Filonegro
 Blackmail=Chantaje
@@ -2140,7 +2791,7 @@ Blaster Mage=Mago Explosivo
 Blasting Station=Puesto de Rafagas
 Blastoderm=Blastodermo
 Blatant Thievery=Robo Descarado
-Blaze of Glory=Llamarada de Gloria
+Blaze of Glory=Llamarada de gloria
 Blaze=Llamarada
 Blazethorn Scarecrow=Espantapajaros Espinas Ardientes
 Blazing Archon=Arconte Llameante
@@ -2295,7 +2946,7 @@ Bog Serpent=Serpiente de la Cienaga
 Bog Smugglers=Contrabandistas del Pantano
 Bog Tatters=Harapo de la Cienaga
 Bog Witch=Brujo del Pantano
-Bog Wraith=Aparicion de la Cienaga
+Bog Wraith=Aparicion de la cienaga
 Bog Wreckage=Despojos en la Cienaga
 Bogardan Firefiend=Demonio de Fuego Bogardano
 Bogardan Hellkite=Engendro de Bogardan
@@ -3508,7 +4159,7 @@ Dark Maze=Laberinto Oscuro
 Dark Offering=Ofrenda Oscura
 Dark Privilege=Privilegio Siniestro
 Dark Revenant=Aparecido Oscuro
-Dark Ritual=Ritual Siniestro
+Dark Ritual=Ritual siniestro
 Dark Sphere=Esfera Oscura
 Dark Supplicant=Suplicante Siniestro
 Dark Suspicions=Sospechas siniestras
@@ -3641,10 +4292,10 @@ Deathcurse Ogre=Ogro Muertemaldita
 Deathforge Shaman=Chaman Fragua Mortal
 Deathgazer=Contemplador Mortal
 Deathgreeter=Recibemuerte
-Deathgrip=Tenaza Mortal
+Deathgrip=Agarre mortal
 Death-Hood Cobra=Cobra Capucha Mortal
 Deathknell Kami=Kami Tanido de Muerte
-Deathlace=Atadura Mortal
+Deathlace=Atadura mortal
 Deathless Angel=Angel Inmortal
 Deathmark Prelate=Perlado Marca de Muerte
 Deathmark=Marca Mortal
@@ -3745,7 +4396,7 @@ Demonic Attorney=Juicio Demoniaco
 Demonic Collusion=Confabulacion Demoniaca
 Demonic Consultation=Consulta demoniaca
 Demonic Dread=Pavor demoniaco
-Demonic Hordes=Hordas Demoniacas
+Demonic Hordes=Hordas demoniacas
 Demonic Rising=Sublevacion Demoniaca
 Demonic Taskmaster=Capataz Demoniaco
 Demonic Torment=Tormento Demoniaco
@@ -5032,7 +5683,7 @@ Fog of Gnats=Niebla de Mosquitos
 Fog Patch=Area de niebla
 Fog=Niebla
 Foil=Inutilizar
-Fold into AEther=Plegar Hacia el Eter
+Fold into Aether=Plegar Hacia el Eter
 Folk Medicine=Medicina Popular
 Folk of An-Havva=Habitantes de An-Havva
 Folk of the Pines=Pueblo de los Pinos
@@ -5153,7 +5804,7 @@ Frostling=Cria de Escarcha
 Frostweb Spider=Arana Tela Escarchada
 Frostwielder=Blandescarcha
 Frostwind Invoker=Invocador del Viento Helado
-Frozen AEther=Eter Congelado
+Frozen Aether=Eter Congelado
 Frozen Shade=Sombra Gelida
 Frozen Solid=Congelado en un Tempano
 Fruition=Complacencia
@@ -8209,7 +8860,7 @@ Moriok Replica=Replica de Moriok
 Moriok Rigger=Aparejador Moriok
 Moriok Scavenger=Carronera moriok
 Morkrut Banshee=Banshee de Morkrut
-Morningtide=Corriente Matutina
+Morningtide=Alborada
 Moroii=Moroii
 Morphling=Morfoide
 Morsel Theft=Robar un Bocado
@@ -8742,7 +9393,7 @@ One with Nothing=En Armonia con la Nada
 One-Eyed Scarecrow=Espantapajaros Tuerto
 Oni of Wild Places=Oni de Lugares Salvajes
 Oni Possession=Posesion Oni
-Onslaught=Embestida violenta
+Onslaught=Embestida
 Onulet=Pebetero
 Onyx Goblet=Caliz de Onix
 Onyx Mage=Mago de Onix
@@ -9103,8 +9754,7 @@ Phylactery Lich=Liche de la Filacteria
 Phyresis=Piresis
 Phyrexian Altar=Altar Pirexiano
 Phyrexian Arena=Arena Pirexiana
-Phyrexian Battleflies=Moscas de Combate Phyrexianas
-Phyrexian Bloodstock=Buscasangre pirexiano
+Phyrexian Battleflies=Moscas de Combate Pirexianas
 Phyrexian Bloodstock=Buscasangre Pirexiano 
 Phyrexian Boon=Dadiva Pirexiana
 Phyrexian Broodlings=Espezoides Pirexianos
@@ -9112,7 +9762,7 @@ Phyrexian Colossus=Coloso Pirexiano
 Phyrexian Crusader=Cruzado Pirexiano
 Phyrexian Debaser=Envilecedor Pirexiano
 Phyrexian Defiler=Profanador Pirexiano
-Phyrexian Delver=Cavador Phyrexiano
+Phyrexian Delver=Cavador Pirexiano
 Phyrexian Denouncer=Delator Pirexiano
 Phyrexian Devourer=Devorador Pirexiano
 Phyrexian Digester=Digestor Pirexiano
@@ -9125,7 +9775,7 @@ Phyrexian Gremlins=Greemlins Pirexianos
 Phyrexian Grimoire=Grimorio pirexiano
 Phyrexian Hulk=Titan Pirexiano
 Phyrexian Hydra=Hidra Pirexiana
-Phyrexian Infiltrator=Espia Phyrexiano
+Phyrexian Infiltrator=Espia Pirexiano
 Phyrexian Ironfoot=Pie de Hierro Pirexiano
 Phyrexian Juggernaut=Destructor Pirexiano
 Phyrexian Lens=Lente Pirexiano
@@ -9138,19 +9788,19 @@ Phyrexian Portal=Portal de Pirexia
 Phyrexian Processor=Procesador pirexiano
 Phyrexian Prowler=Merodeador Pirexiano
 Phyrexian Rager=Iracundo Pirexiano
-Phyrexian Reaper=Segador Phyrexiano
+Phyrexian Reaper=Segador Pirexiano
 Phyrexian Rebirth=Renacimiento pirexiano
 Phyrexian Reclamation=Recuperacion pirexiana
 Phyrexian Revoker=Revocador pirexiano
 Phyrexian Scuta=Escuta Pirexiano
-Phyrexian Slayer=Matador Phyrexiano
+Phyrexian Slayer=Matador Pirexiano
 Phyrexian Snowcrusher=Trituranieve Pirexiano
 Phyrexian Soulgorger=Tragaalmas Pirexiano
 Phyrexian Splicer=Variador pirexiano
 Phyrexian Swarmlord=Senor de Enjambres Pirexiano
 Phyrexian Totem=Totem Pirexiano
 Phyrexian Tower=Torre Pirexiana
-Phyrexian Tyranny=Kavu radiante
+Phyrexian Tyranny=Tirano pirexiano
 Phyrexian Unlife=No-vida Pirexiana
 Phyrexian Vatmother=Madretanque Pirexiana
 Phyrexian Vault=Boveda Pirexiana
@@ -10486,7 +11136,7 @@ Scoria Cat=Felino de Escoria
 Scoria Elemental=Elemental de Escoria
 Scoria Wurm=Sierpe de la Escoria
 Scorned Villager=Aldeana Desdenada
-Scornful AEther-Lich=Liche Etereo Desdenoso
+Scornful Aether-Lich=Liche Etereo Desdenoso
 Scornful Egotist=Egotista Desdenoso
 Scour=Depurar
 Scourge Devil=Diablo del Azote
@@ -11952,7 +12602,7 @@ Surge of Thoughtweft=Oleada de Trama Mental
 Surge of Zeal=Oleada de Fanatismo
 Surgespanner=Cubreolas
 Surgical Extraction=Extraccion Quirurgica
-Surging AEther=Eter Pulsante
+Surging Aether=Eter Pulsante
 Surging Dementia=Demencia Pulsante
 Surging Flame=Llama Pulsante
 Surging Might=Poder Pulsante
@@ -12055,7 +12705,7 @@ Tahngarth, Talruum Hero=Tahngarth, Heroe de Talruum
 Tahngarth's Glare=Mirada de Tahngarth
 Tahngarth's Rage=La ira de Tahngarth
 Taiga=Taiga
-Tainted AEther=Eter Corrompido
+Tainted Aether=Eter Corrompido
 Tainted Field=Campo Contaminado
 Tainted Isle=Isla Contaminada
 Tainted Pact=Pacto Corrompido
@@ -12465,7 +13115,7 @@ Time of Heroes=El Tiempo de los Heroes
 Time of Need=Tiempos Dificiles
 Time Reversal=Revertir el Tiempo
 Time Sieve=Tamiz Temporal
-Time Spiral=Espiral del Tiempo
+Time Spiral=Espiral del tiempo
 Time Stop=Detener el Tiempo
 Time Stretch=Expansion de Tiempo
 Time Vault=Camara del Tiempo
@@ -13000,7 +13650,7 @@ Vectis Agents=Agentes de Vectis
 Vectis Dominator=Dominador de Vectis
 Vectis Silencers=Silenciadores de Vectis
 Vector Asp=Aspid Vectorial
-Vedalken AEthermage=Maga Eterea Vedalken
+Vedalken Aethermage=Maga Eterea Vedalken
 Vedalken Anatomist=Anatomista Vedalken
 Vedalken Archmage=Archimago vedalken
 Vedalken Certarch=Certarca Vedalken

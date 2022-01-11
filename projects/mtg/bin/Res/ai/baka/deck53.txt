@@ -1,4 +1,4 @@
-#NAME:VampireViscounts
+#NAME:Ascendant Bloodwitch
 #DESC:Oh to sink one's teeth
 #DESC:into the warm softness
 #DESC:of pulsating flesh!

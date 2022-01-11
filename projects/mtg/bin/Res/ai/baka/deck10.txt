@@ -7,75 +7,24 @@
 # (would've been better to add creatures, but all creatures in the
 # deck were already at 4 pieces))
 
-#Spark Elemental
-129577
-129577
-129577
-129577
-#Raging Goblin
-129688
-129688
-129688
-129688
-#Goblin Piker
-129580
-129580
-129580
-129580
-#Goblin King
-129578
-129578
-129578
-129578
-#Goblin Striker
-48592
-48592
-48592
-48592
-#Lightning Bolt
-1303
-1303
-1303
-1303
-#Wheel of Fate
-1326
-#Black Vise
-1097
-1097
-1097
-1097
-#Hearthfire Hobgoblin
-157201
-157201
-157201
-157201
-#Howling Mine
-129598
-129598
-129598
-#Goblin Mountaineer
-174938
-174938
-174938
-174938
-#Mountain
-1390
-1390
-1390
-1390
-1390
-1390
-1390
-1390
-1390
-1390
-1390
-1390
-1390
-1390
-1390
-1390
-1390
-1390
-1390
-1390
+# Land(s)
+Mountain (8ED) * 20
+
+# Creature(s)
+Goblin King (8ED) * 4
+Goblin Mountaineer (9ED) * 4
+Goblin Piker (9ED) * 4
+Goblin Striker (MRD) * 4
+Hearthfire Hobgoblin (EVE) * 4
+Raging Goblin (8ED) * 4
+Spark Elemental (5DN) * 4
+
+# Artifact(s)
+Black Vise (V10) * 4
+Howling Mine (8ED) * 3
+
+# Instant(s)
+Lightning Bolt (M10) * 4
+
+# Sorcery(s)
+Wheel of Fortune (VMA) * 1

@@ -23,8 +23,9 @@ private:
     vector<int> mUnlockRequirements;
     int mDeckId;
     string mAvatarFilename;
-    string  mColorIndex;
-    
+    string mColorIndex;
+    bool mCommanderDeck; //Added to read the command tag in deck's metafile.
+
     // statistical information
     int mGamesPlayed, mVictories, mPercentVictories, mDifficulty;
     int getAvatarId();
@@ -33,12 +34,12 @@ private:
 
 public:
 
-
     DeckMetaData(const string& filename, bool isAI = false);
     void LoadDeck();
     void LoadStats();
 
     // Accessors
+    bool isCommanderDeck(); //Added to read the command tag in deck's metafile.
     string getFilename();
     string getDescription();
     string getName();

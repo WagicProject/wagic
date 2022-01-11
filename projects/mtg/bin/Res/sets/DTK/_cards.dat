@@ -2,7 +2,8 @@
 author=Wagic Team
 name=Dragons of Tarkir
 block=Khans of Tarkir
-year=2015
+orderindex=EXP-ZX.DTK
+year=2015-03-27
 total=264
 [/meta]
 [card]
@@ -766,7 +767,7 @@ id=394636
 rarity=C
 [/card]
 [card]
-primitive=Obscuring AEther
+primitive=Obscuring Aether
 id=394637
 rarity=R
 [/card]

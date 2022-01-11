@@ -16,7 +16,7 @@ public class DeckImporter
         String message = "";
         String deck = "";
         String deckname = "";
-        String prefix = "#SB:";
+        String prefix = "";
         int cardcount = 0;
         if(f.exists() && !f.isDirectory())
         { 
@@ -36,7 +36,14 @@ public class DeckImporter
                     {
                         String line = scanner.nextLine();
                         line = line.trim();
-                        if (!line.equals("") && cardcount < 61) // don't write out blank lines
+                        if (line.equals("")) {
+                            line = scanner.nextLine();
+                            prefix = "#SB:"; // Sideboard started from next card.
+                            if (line.equals("")) {
+                                line = scanner.nextLine(); // Sometimes there are 2 blank lines from main deck and sideboard.
+                            }
+                        }
+                        if (!line.equals("")) // don't write out blank lines
                         {
                             String[] slines = line.split("\\s+");
                             String arranged = "";
@@ -50,60 +57,57 @@ public class DeckImporter
                                 {
                                     arranged = arranged.substring(5);
                                     slines[1] = slines[1].replaceAll("\\[", "").replaceAll("\\]", "");
-                                    deck += arranged + " (" + renameSet(slines[1]) + ") * " + slines[0] + "\n";
+                                    deck += prefix + arranged + " (" + renameSet(slines[1]) + ") * " + slines[0] + "\n";
                                 } else
                                 {
-                                    deck += arranged + "(*) * " + slines[0] + "\n";
+                                    deck += prefix + arranged + "(*) * " + slines[0] + "\n";
                                 }
                                 cardcount += Integer.parseInt(slines[0]);
                             }
                         }
                     }
-                    File profile = new File(activePath + "/Res/settings/options.txt");
+                    File profile = new File(activePath + "/User/settings/options.txt");
+                    String profileName = "Default";
                     if (profile.exists() && !profile.isDirectory())
+                        profileName = getActiveProfile(profile);
+                    File rootDecks = null;
+                    if (!profileName.equalsIgnoreCase("Default"))
+                        rootDecks = new File(activePath + "/User/profiles/" + profileName);
+                    else
+                        rootDecks = new File(activePath + "/User/player/");
+                    if (rootDecks.exists() && rootDecks.isDirectory())
                     {
-                        String profileName = getActiveProfile(profile);
-                        if (profileName != "Missing!")
+                        //save deck
+                        int countdeck = 1;
+                        File[] files = rootDecks.listFiles();
+                        for (int i = 0; i < files.length; i++)
+                        {//check if there is available deck...
+                            if (files[i].getName().startsWith("deck"))
+                                countdeck++;
+                        }
+                        File toSave = new File(rootDecks + "/deck" + countdeck + ".txt");
+                        try
                         {
-                            File rootProfiles = new File(activePath + "/Res/profiles/" + profileName);
-                            if (rootProfiles.exists() && rootProfiles.isDirectory())
-                            {
-                                //save deck
-                                int countdeck = 1;
-                                File[] files = rootProfiles.listFiles();
-                                for (int i = 0; i < files.length; i++)
-                                {//check if there is available deck...
-                                    if (files[i].getName().startsWith("deck"))
-                                        countdeck++;
-                                }
-                                File toSave = new File(rootProfiles + "/deck" + countdeck + ".txt");
-                                try
-                                {
-                                    FileOutputStream fop = new FileOutputStream(toSave);
+                            FileOutputStream fop = new FileOutputStream(toSave);
 
-                                    // if file doesn't exists, then create it
-                                    if (!toSave.exists())
-                                    {
-                                        toSave.createNewFile();
-                                    }
-                                    // get the content in bytes
-                                    byte[] contentInBytes = deck.getBytes();
-                                    fop.write(contentInBytes);
-                                    fop.flush();
-                                    fop.close();
-                                    message = "Import Deck Success!\n" + cardcount + " total cards in this deck\n\n" + deck;
-                                } catch (IOException e)
-                                {
-                                    message = e.getMessage();
-                                }
-                            } else
+                            // if file doesn't exists, then create it
+                            if (!toSave.exists())
                             {
-                                message = "Missing Folder!";
+                                toSave.createNewFile();
                             }
+                            // get the content in bytes
+                            byte[] contentInBytes = deck.getBytes();
+                            fop.write(contentInBytes);
+                            fop.flush();
+                            fop.close();
+                            message = "The deck has been successfully imported as: " + toSave.getName() + "\n" + cardcount + " total cards in this deck\n\n" + deck;
+                        } catch (IOException e)
+                        {
+                            message = e.getMessage();
                         }
                     } else
                     {
-                        message = "Invalid Profile!";
+                        message = "Problem opening decks folder: " + rootDecks.getAbsolutePath();
                     }
                 } else
                 {
@@ -143,12 +147,12 @@ public class DeckImporter
                 }
                 else
                 {
-                    return "Missing!";
+                    return "Default";
                 }
             }
             catch(IOException e)
             {
-                return "Missing!";
+                return "Default";
             }
         return name;
     }

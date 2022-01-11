@@ -141,7 +141,19 @@ void GameStateMenu::Start()
     subMenuController = NULL;
     SAFE_DELETE(mGuiController);
 
+#if defined (PSP)
     GameApp::playMusic("Track0.mp3");
+#else
+    // Now it's possibile to randomly use up to 20 new sound tracks for main menu (if random index is 20, it will be played the default "Track0.mp3").
+    char temp[4096];
+    string musicFilename = "";
+    sprintf(temp, "MainMenu/TrackMenu%i.mp3", std::rand() % 21);
+    musicFilename.assign(temp);
+    musicFilename = WResourceManager::Instance()->musicFile(musicFilename);
+    if (musicFilename.length() < 1 || !FileExists(musicFilename))
+        musicFilename = "Track0.mp3";
+    GameApp::playMusic(musicFilename);
+#endif
 
     hasChosenGameType = false;
     mParent->gameType = GAME_TYPE_CLASSIC;
@@ -149,8 +161,13 @@ void GameStateMenu::Start()
     //Manual clean up of some cache Data. Ideally those should clean themselves up, so this is kind of a hack for now
     WResourceManager::Instance()->ClearUnlocked();
 
+#if defined (PSP)
+    bgTexture = WResourceManager::Instance()->RetrieveTexture("pspmenutitle.png", RETRIEVE_LOCK);
+    mBg = WResourceManager::Instance()->RetrieveQuad("pspmenutitle.png", 0, 0, 0, 0); // Create background quad for rendering.
+#else
     bgTexture = WResourceManager::Instance()->RetrieveTexture("menutitle.png", RETRIEVE_LOCK);
     mBg = WResourceManager::Instance()->RetrieveQuad("menutitle.png", 0, 0, 0, 0); // Create background quad for rendering.
+#endif
 
     if (mBg)
         mBg->SetHotSpot(mBg->mWidth/2, 0);
@@ -217,6 +234,8 @@ void GameStateMenu::fillScroller()
         scroller->Add(_("You haven't unlocked the random deck mode yet"));
     if (!options[Options::EVILTWIN_MODE_UNLOCKED].number)
         scroller->Add(_("You haven't unlocked the evil twin mode yet"));
+    if (!options[Options::COMMANDER_MODE_UNLOCKED].number)
+        scroller->Add(_("You haven't unlocked the commander format yet"));
 
     //Unlocked sets
     int nbunlocked = 0;
@@ -248,7 +267,7 @@ int GameStateMenu::gamePercentComplete() {
     for (map<string, Unlockable *>::iterator it = Unlockable::unlockables.begin(); it !=  Unlockable::unlockables.end(); ++it) {
         total++;
         if (it->second->isUnlocked())
-            total++;
+            done++;
     }
 
     total++;
@@ -257,6 +276,10 @@ int GameStateMenu::gamePercentComplete() {
 
     total++;
     if (options[Options::EVILTWIN_MODE_UNLOCKED].number)
+        done++;
+
+    total++;
+    if (options[Options::COMMANDER_MODE_UNLOCKED].number)
         done++;
 
     //Unlocked sets
@@ -316,8 +339,9 @@ string GameStateMenu::loadRandomWallpaper()
 
     vector<string> wallpapers;
     izfstream file;
-    if (! JFileSystem::GetInstance()->openForRead(file, "graphics/wallpapers.txt"))
-        return wallpaper;
+    if (! JFileSystem::GetInstance()->openForRead(file, "themes/" + options[Options::ACTIVE_THEME].str + "/wallpapers.txt")) // Added to search wallpaers in theme folder before default folder.
+        if (! JFileSystem::GetInstance()->openForRead(file, "graphics/wallpapers.txt"))
+            return wallpaper;
 
     string s;
     while (std::getline(file, s))
@@ -550,6 +574,9 @@ void GameStateMenu::Update(float dt)
         }
         if (!nextSetFolder("sets/", "_cards.dat"))
         {
+            //Reset LimitedCardsMap
+            MTGCollection()->limitedCardsMap.clear();
+
             //Remove temporary translations
             Translator::GetInstance()->tempValues.clear();
 

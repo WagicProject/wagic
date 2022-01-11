@@ -2,11 +2,12 @@
 author=Wagic Team
 name=Lorwyn
 block=Lorwyn
-year=2007
+orderindex=EXP-Z9.LRW
+year=2007-10-12
 total=301
 [/meta]
 [card]
-primitive=AEthersnipe
+primitive=Aethersnipe
 id=145817
 rarity=C
 [/card]

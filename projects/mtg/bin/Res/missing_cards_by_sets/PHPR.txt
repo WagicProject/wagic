@@ -1,0 +1,5 @@
+[card]
+name=Arena
+text={3}, {T}: Tap target creature you control and target creature of an opponent's choice he or she controls. Those creatures fight each other. (Each deals damage equal to its power to the other.)
+type=Land
+[/card]

@@ -165,6 +165,17 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                                 tc = tcf.createTargetChooser("creature|mybattlefield", c);
                             manaCost->addExtraCost(NEW Offering(tc,true));
                         }
+                        else if(value.find("eval(") != string::npos) // Added to parse a variable in manacost.
+                        {
+                            size_t var_start = value.find("(");
+                            size_t var_end = value.find(")", var_start);
+                            string varString = value.substr(var_start + 1, var_end - var_start - 1);
+                            WParsedInt * value = NEW WParsedInt(varString.c_str(),NULL,c);
+                            if(value)
+                                manaCost->add(Constants::MTG_COLOR_ARTIFACT,  value->getValue());
+                            else
+                                break;
+                        }
                         else if(value.substr(0,2) == "e:")
                         {//Energy Cost
                             vector<string>valSplit = parseBetween(value,"e:"," ",false);
@@ -225,6 +236,13 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                                 else
                                     break;
                             }
+                            else if (value == "myevictcost")
+                            {
+                                if(c && c->imprintedCards.size() && c->imprintedCards.back()->model)
+                                    manaCost->add(c->imprintedCards.back()->model->data->getManaCost());
+                                else
+                                    break;
+                            }
                             else
                                 manaCost->addExtraCost(NEW MillCost(tc));
                         }
@@ -266,6 +284,8 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                     case 'p' :
                         {
                             SAFE_DELETE(tc);
+                            if (value.find("power") != string::npos) // Fix to avoid crash on ManaCost parse (e.g. Filter by mana producer).
+                                break;
                             size_t start = value.find("(");
                             size_t end = value.rfind(")");
                             string manaType = value.substr(start + 1, end - start - 1);
@@ -298,6 +318,8 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                         break;
                     case 'c': //Counters or cycle
                         {
+                            if (value.find("compare(") != string::npos) // Fix to avoid crash on ManaCost parse (e.g. Filter by mana producer).
+                                break;
                             if (value.find("convoke") != string::npos)
                             {
                                 if (!tc)
@@ -579,6 +601,8 @@ int ManaCost::hasAnotherCost()
     if(kicker)
         result = 1;
     //kicker is the only one ai knows for now, later hasAnotherCost() can be used to determine other cost types.
+    if(Retrace || BuyBack || alternative || FlashBack || morph || suspend || Bestow)
+        result = 1;
     return result;
 }
 
@@ -730,7 +754,7 @@ int ManaCost::getCost(int color)
 {
     if (cost.size() <= (size_t)color)
     {
-        DebugTrace("Seems ManaCost was not properly initialized");
+        DebugTrace("in GetCost Seems ManaCost was not properly initialized");
         return 0;
     }
     return cost[color];
@@ -1018,6 +1042,19 @@ int ManaCost::pay(ManaCost * _cost)
     {
         cost[i] = diff->getCost(i);
     }
+    for (unsigned int i = 0; i < cost.size(); i++){ // Added to avoid negative values in Manapool (e.g. anytypeofmana)
+        if(cost[i] < 0){
+            for (int j = 0; j < Constants::NB_Colors; j++){
+                if((unsigned int)j != i && cost[j] > 0 && cost[j] <= abs(cost[i])){
+                    cost[i] += cost[j];
+                    cost[j] = 0;
+                } else if((unsigned int)j != i && cost[j] > 0 && cost[j] > abs(cost[i])){
+                    cost[j] += cost[i];
+                    cost[i] = 0;
+                }
+            }
+        }
+    }
     delete diff;
     delete toPay;
     return result;
@@ -1025,9 +1062,17 @@ int ManaCost::pay(ManaCost * _cost)
 }
 
 //return 1 if _cost can be paid with current data, 0 otherwise
-int ManaCost::canAfford(ManaCost * _cost)
+int ManaCost::canAfford(ManaCost * _cost, int anytypeofmana)
 {
     ManaCost * diff = Diff(_cost);
+    if(anytypeofmana > 0){
+        int convertedC = _cost->getConvertedCost();
+        ManaCost * tmp = NEW ManaCost(ManaCost::parseManaCost("{0}", NULL, NULL));
+        for (int jj = 0; jj < convertedC; jj++)
+            tmp->add(Constants::MTG_COLOR_ARTIFACT, 1);
+        diff = Diff(tmp);
+        delete tmp;
+    }
     int positive = diff->isPositive();
     delete diff;
     if (positive)

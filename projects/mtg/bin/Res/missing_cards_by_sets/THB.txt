@@ -1,0 +1,36 @@
+[card]
+name=Haktos the Unscarred
+text=Haktos the Unscarred attacks each combat if able. -- As Haktos enters the battlefield, choose 2, 3, or 4 at random. -- Haktos has protection from each converted mana cost other than the chosen number.
+mana={R}{R}{W}{W}
+type=Legendary Creature
+subtype=Human Warrior
+power=6
+toughness=1
+[/card]
+[card]
+name=Bronzehide Lion
+text={G}{W}: Bronzehide Lion gains indestructible until end of turn. -- When Bronzehide Lion dies, return it to the battlefield. It's an Aura enchantment with enchant creature you control and "{G}{W}: Enchanted creature gains indestructible until end of turn," and it loses all other abilities.
+mana={G}{W}
+type=Creature
+subtype=Cat
+power=3
+toughness=3
+[/card]
+[card]
+name=Atris, Oracle of Half-Truths
+text=Menace -- When Atris, Oracle of Half-Truths enters the battlefield, target opponent looks at the top three cards of your library and separates them into a face-down pile and a face-up pile. Put one pile into your hand and the other into your graveyard.
+mana={2}{U}{B}
+type=Legendary Creature
+subtype=Human Advisor
+power=3
+toughness=2
+[/card]
+[card]
+name=Protean Thaumaturge
+text=Constellation - Whenever an enchantment enters the battlefield under your control, you may have Protean Thaumaturge become a copy of another target creature, except it has this ability.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]

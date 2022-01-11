@@ -87,6 +87,22 @@ class MTGGameZone {
     SIDEBOARD = 85,
     OWNER_SIDEBOARD = 86,
     TARGETED_PLAYER_SIDEBOARD = 87,
+
+    MY_COMMANDZONE = 88,
+    OPPONENT_COMMANDZONE = 89,
+    TARGET_OWNER_COMMANDZONE = 90,
+    TARGET_CONTROLLER_COMMANDZONE = 91,
+    COMMANDZONE = 92,
+    OWNER_COMMANDZONE = 93,
+    TARGETED_PLAYER_COMMANDZONE = 94,
+
+    MY_TEMP = 95,
+    OPPONENT_TEMP = 96,
+    TARGET_OWNER_TEMP = 97,
+    TARGET_CONTROLLER_TEMP = 98,
+    TEMP = 99,
+    OWNER_TEMP = 100,
+    TARGETED_PLAYER_TEMP = 101,
    };
 
    Player * owner;
@@ -214,6 +230,7 @@ public:
     MTGGameZone * garbageLastTurn;
     MTGGameZone * reveal;
     MTGGameZone * sideboard;
+    MTGGameZone * commandzone;
     MTGGameZone * temp;
 
     MTGPlayerCards();
@@ -221,7 +238,7 @@ public:
     MTGPlayerCards(MTGDeck * deck);
     ~MTGPlayerCards();
     void initGame(int shuffle = 1, int draw = 1);
-        void OptimizedHand(Player * who,int amount = 7,int lands = 3,int creatures = 0,int othercards = 4);
+    void OptimizedHand(Player * who,int amount = 7,int lands = 3,int creatures = 0,int othercards = 4);
     void setOwner(Player * player);
     void discardRandom(MTGGameZone * from,MTGCardInstance * source);
     void drawFromLibrary();
@@ -233,6 +250,7 @@ public:
     MTGCardInstance * putInExile(MTGCardInstance * card);
     MTGCardInstance * putInLibrary(MTGCardInstance * card);
     MTGCardInstance * putInHand(MTGCardInstance * card);
+    MTGCardInstance * putInSideboard(MTGCardInstance * card);
     MTGCardInstance * putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to, bool asCopy = false);
     int isInPlay(MTGCardInstance * card);
     int isInGrave(MTGCardInstance * card);

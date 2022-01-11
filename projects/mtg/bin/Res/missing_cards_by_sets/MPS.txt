@@ -1,0 +1,22 @@
+[card]
+name=Scroll Rack
+text={1}, {T}: Exile any number of cards from your hand face down. Put that many cards from the top of your library into your hand. Then look at the exiled cards and put them on top of your library in any order.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Rings of Brighthearth
+text=Whenever you activate an ability, if it isn't a mana ability, you may pay {2}. If you do, copy that ability. You may choose new targets for the copy.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Combustible Gearhulk
+abilities=first strike
+text=First strike -- When Combustible Gearhulk enters the battlefield, target opponent may have you draw three cards. If the player doesn't, put the top three cards of your library into your graveyard, then Combustible Gearhulk deals damage to that player equal to the total converted mana cost of those cards.
+mana={4}{R}{R}
+type=Artifact Creature
+subtype=Construct
+power=6
+toughness=6
+[/card]

@@ -4,6 +4,7 @@
     android:id="@+id/mainLayout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:keepScreenOn="true"
     >
 <TextView  
     android:layout_width="fill_parent" 

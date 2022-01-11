@@ -1,0 +1,347 @@
+[meta]
+author=Wagic Team
+name=Game Night
+orderindex=OTH-2.GNT
+year=2018-11-16
+total=68
+[/meta]
+[card]
+primitive=Militant Angel
+id=456521
+rarity=M
+[/card]
+[card]
+primitive=Inspired Sphinx
+id=456522
+rarity=M
+[/card]
+[card]
+primitive=Rot Hulk
+id=456523
+rarity=M
+[/card]
+[card]
+primitive=Goblin Goliath
+id=456524
+rarity=M
+[/card]
+[card]
+primitive=Avatar of Growth
+id=456525
+rarity=M
+[/card]
+[card]
+primitive=Aerial Responder
+id=456526
+rarity=U
+[/card]
+[card]
+primitive=Always Watching
+id=456527
+rarity=R
+[/card]
+[card]
+primitive=Benalish Marshal
+id=456528
+rarity=R
+[/card]
+[card]
+primitive=Bright Reprisal
+id=456529
+rarity=U
+[/card]
+[card]
+primitive=Call the Cavalry
+id=456530
+rarity=C
+[/card]
+[card]
+primitive=Everdawn Champion
+id=456531
+rarity=U
+[/card]
+[card]
+primitive=Fan Bearer
+id=456532
+rarity=C
+[/card]
+[card]
+primitive=Inspired Charge
+id=456533
+rarity=C
+[/card]
+[card]
+primitive=Inspiring Captain
+id=456534
+rarity=C
+[/card]
+[card]
+primitive=Mesa Unicorn
+id=456535
+rarity=C
+[/card]
+[card]
+primitive=Serra Angel
+id=456536
+rarity=U
+[/card]
+[card]
+primitive=Subjugator Angel
+id=456537
+rarity=U
+[/card]
+[card]
+primitive=Advanced Stitchwing
+id=456538
+rarity=U
+[/card]
+[card]
+primitive=Air Elemental
+id=456539
+rarity=U
+[/card]
+[card]
+primitive=Claustrophobia
+id=456540
+rarity=C
+[/card]
+[card]
+primitive=Favorable Winds
+id=456541
+rarity=U
+[/card]
+[card]
+primitive=Hydrolash
+id=456542
+rarity=U
+[/card]
+[card]
+primitive=Reckless Scholar
+id=456543
+rarity=U
+[/card]
+[card]
+primitive=Soulblade Djinn
+id=456544
+rarity=R
+[/card]
+[card]
+primitive=Whirler Rogue
+id=456545
+rarity=U
+[/card]
+[card]
+primitive=Zahid, Djinn of the Lamp
+id=456546
+rarity=R
+[/card]
+[card]
+primitive=Bone Splinters
+id=456547
+rarity=C
+[/card]
+[card]
+primitive=Cruel Revival
+id=456548
+rarity=U
+[/card]
+[card]
+primitive=Fleshbag Marauder
+id=456549
+rarity=U
+[/card]
+[card]
+primitive=Gruesome Fate
+id=456550
+rarity=C
+[/card]
+[card]
+primitive=Languish
+id=456551
+rarity=R
+[/card]
+[card]
+primitive=Liliana's Mastery
+id=456552
+rarity=R
+[/card]
+[card]
+primitive=Lord of the Accursed
+id=456553
+rarity=U
+[/card]
+[card]
+primitive=Tattered Mummy
+id=456554
+rarity=C
+[/card]
+[card]
+primitive=Thallid Soothsayer
+id=456555
+rarity=U
+[/card]
+[card]
+primitive=Zulaport Cutthroat
+id=456556
+rarity=U
+[/card]
+[card]
+primitive=Bombard
+id=456557
+rarity=C
+[/card]
+[card]
+primitive=Captivating Crew
+id=456558
+rarity=R
+[/card]
+[card]
+primitive=Dragon Fodder
+id=456559
+rarity=C
+[/card]
+[card]
+primitive=Rolling Thunder
+id=456560
+rarity=U
+[/card]
+[card]
+primitive=Seismic Elemental
+id=456561
+rarity=U
+[/card]
+[card]
+primitive=Siege-Gang Commander
+id=456562
+rarity=R
+[/card]
+[card]
+primitive=Tormenting Voice
+id=456563
+rarity=C
+[/card]
+[card]
+primitive=Ghalta, Primal Hunger
+id=456564
+rarity=R
+[/card]
+[card]
+primitive=Jungle Delver
+id=456565
+rarity=C
+[/card]
+[card]
+primitive=Llanowar Elves
+id=456566
+rarity=C
+[/card]
+[card]
+primitive=Nissa's Revelation
+id=456567
+rarity=R
+[/card]
+[card]
+primitive=Overcome
+id=456568
+rarity=U
+[/card]
+[card]
+primitive=Seek the Wilds
+id=456569
+rarity=C
+[/card]
+[card]
+primitive=Thrashing Brontodon
+id=456570
+rarity=U
+[/card]
+[card]
+primitive=Eager Construct
+id=456571
+rarity=C
+[/card]
+[card]
+primitive=Filigree Familiar
+id=456572
+rarity=U
+[/card]
+[card]
+primitive=Howling Golem
+id=456573
+rarity=U
+[/card]
+[card]
+primitive=Manalith
+id=456574
+rarity=C
+[/card]
+[card]
+primitive=Pilgrim's Eye
+id=456575
+rarity=U
+[/card]
+[card]
+primitive=Rhonas's Monument
+id=456576
+rarity=U
+[/card]
+[card]
+primitive=Snare Thopter
+id=456577
+rarity=U
+[/card]
+[card]
+primitive=Welder Automaton
+id=456578
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=456579
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=456580
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=456581
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=456582
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=456583
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=456584
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=456585
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=456586
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=456587
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=456588
+rarity=L
+[/card]

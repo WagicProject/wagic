@@ -1,8 +1,9 @@
 [meta]
 author=Wagic Team
 name=Commander 2014
-year=2014
-total=337
+orderindex=COM-8.C14
+year=2014-11-07
+total=342
 [/meta]
 [card]
 primitive=Abyssal Persecutor
@@ -15,12 +16,12 @@ id=389423
 rarity=R
 [/card]
 [card]
-primitive=AEther Gale
+primitive=Aether Gale
 id=389424
 rarity=R
 [/card]
 [card]
-primitive=AEther Snap
+primitive=Aether Snap
 id=389425
 rarity=R
 [/card]
@@ -490,7 +491,7 @@ id=389517
 rarity=U
 [/card]
 [card]
-primitive=Fish
+primitive=Fish Reef
 id=-3896521
 rarity=T
 [/card]
@@ -780,7 +781,7 @@ id=389574
 rarity=C
 [/card]
 [card]
-primitive=Kraken
+primitive=Kraken Reef
 id=-3896523
 rarity=T
 [/card]
@@ -1635,7 +1636,7 @@ id=389743
 rarity=C
 [/card]
 [card]
-primitive=Whale
+primitive=Whale Reef
 id=-3896522
 rarity=T
 [/card]

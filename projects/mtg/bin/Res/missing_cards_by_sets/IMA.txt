@@ -1,0 +1,10 @@
+[card]
+name=Sphinx of Uthuun
+abilities=flying
+text=Flying -- When Sphinx of Uthuun enters the battlefield, reveal the top five cards of your library. An opponent separates those cards into two piles. Put one pile into your hand and the other into your graveyard.
+mana={5}{U}{U}
+type=Creature
+subtype=Sphinx
+power=5
+toughness=6
+[/card]

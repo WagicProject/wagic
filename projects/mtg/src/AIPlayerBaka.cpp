@@ -46,14 +46,16 @@ int OrderedAIAction::getEfficiency(AADamager * aad)
         return  0;
     }
 
-    if(p == target->controller())
-        return 0;
+     if(p && target)
+         if(p == target->controller())
+             return 0;
 
-    if (dTarget && aad && (aad->getDamage() >= dTarget->toughness))
+    if (dTarget && aad && (aad->getDamage() == dTarget->toughness))
         return 100;
-
-    if (dTarget && dTarget->toughness)
-        return (50 * aad->getDamage()) / dTarget->toughness;
+    else if (dTarget && aad && (aad->getDamage() > dTarget->toughness))
+        return 10 * (10 - (aad->getDamage() - dTarget->toughness)); //less eff the more dmg above toughness
+    else
+        return 10;
 
     return 0;
 }
@@ -129,8 +131,8 @@ int OrderedAIAction::getEfficiency()
             {
                 efficiency = 95;
             }
-            //TODO If the card is the target of a damage spell
-            break;
+             //TODO If the card is the target of a damage spell                      
+             break;
         }
     case MTGAbility::STANDARD_PREVENT:
         {
@@ -147,8 +149,7 @@ int OrderedAIAction::getEfficiency()
                     break;
                 if ((target->defenser || target->blockers.size()) && target->preventable < nextOpponent->power)
                     NeedPreventing = true;
-                if (p == target->controller() && target->controller()->isAI() && NeedPreventing  && !(nextOpponent->has(Constants::DEATHTOUCH)
-                    ||nextOpponent->has(Constants::WITHER)))
+                if (p == target->controller() && target->controller()->isAI() && NeedPreventing  && !(nextOpponent->has(Constants::DEATHTOUCH) || nextOpponent->has(Constants::PERPETUALDEATHTOUCH) || nextOpponent->has(Constants::WITHER)))
                 {
                     efficiency = 20 * (target->DangerRanking());//increase this chance to be used in combat if the creature blocking/blocked could kill the creature this chance is taking into consideration how good the creature is, best creature will always be the first "saved"..
                     if (target->toughness == 1 && nextOpponent->power == 1)
@@ -271,13 +272,17 @@ int OrderedAIAction::getEfficiency()
         }
     case MTGAbility::STANDARD_PUMP:
         {
-            efficiency = 0;
+             efficiency = 0;
             if(!coreAbilityCardTarget)
                 break;
             if(!target && !dynamic_cast<ALord*> (a) && (((MTGCardInstance *)a->source)->hasSubtype(Subtypes::TYPE_AURA) || ((MTGCardInstance *)a->source)->hasSubtype(Subtypes::TYPE_EQUIPMENT)))
             {
                 if(a->source->target)
                     coreAbilityCardTarget = a->source->target; //TODO use intermediate value?
+                target = a->source;
+            }
+            else //if(how to know cards like Basking Rootwalla that pump themselves)
+            {
                 target = a->source;
             }
             if (!target && !dynamic_cast<ALord*> (a))
@@ -291,9 +296,9 @@ int OrderedAIAction::getEfficiency()
             int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
             //i do not set a starting eff. on this ability, this allows Ai to sometimes randomly do it as it normally does.
             int currentPhase = g->getCurrentGamePhase();
-            if ((currentPhase == MTG_PHASE_COMBATBLOCKERS) || (currentPhase == MTG_PHASE_COMBATATTACKERS))
+             if ((currentPhase == MTG_PHASE_COMBATBLOCKERS) || (currentPhase == MTG_PHASE_COMBATATTACKERS))            
             {
-                if (suggestion == BAKA_EFFECT_GOOD && target->controller() == p)
+                 if (suggestion == BAKA_EFFECT_GOOD && target->controller() == p)                 
                 {
                     if(coreAbilityCardTarget->defenser || coreAbilityCardTarget->blockers.size())
                     {
@@ -311,7 +316,7 @@ int OrderedAIAction::getEfficiency()
                     {
                         //this means im heading directly for the player, pump this creature as much as possible.
                         efficiency = 100;
-                        if(coreAbilityCardTarget->power > 50)
+                        if(coreAbilityCardTarget->power > 20) // to be realistic
                             efficiency -= coreAbilityCardTarget->power;//we don't need to go overboard. better to not put all your eggs in a single basket.
                     }
                 }
@@ -326,28 +331,41 @@ int OrderedAIAction::getEfficiency()
         {
             if(!coreAbilityCardTarget)
                 break;
-
-            //nothing huge here, just ensuring that Ai makes his noncreature becomers into creatures during first main, so it can actually use them in combat.
-            if (coreAbilityCardTarget && !coreAbilityCardTarget->isCreature() && currentPhase == MTG_PHASE_FIRSTMAIN)
+            // It used to skip most effects, with no other condition efficiency is -1
+            // Becomes is generally good so setting a value, but don't want to spam it
+            if (coreAbilityCardTarget && !coreAbilityCardTarget->isLand())
             {
-                efficiency = 100;
+                // Bonus if almost no cards in hand
+                if (p->game->hand->nb_cards <= 1)
+                {
+                    efficiency = 50;
+                }
+                else efficiency = 30;
             }
+            //nothing huge here, just ensuring that Ai makes his noncreature becomers into creatures during first main, so it can actually use them in combat.
+            if (coreAbilityCardTarget && !coreAbilityCardTarget->isCreature() && !coreAbilityCardTarget->isTapped() && currentPhase == MTG_PHASE_FIRSTMAIN)
+            {
+                efficiency = 50;
+            }            
             break;
         }
     case MTGAbility::MANA_PRODUCER://only way to hit this condition is nested manaabilities, ai skips manaproducers by defualt when finding an ability to use.
     {
-        AManaProducer * manamaker = dynamic_cast<AManaProducer*>(a);
-        GenericActivatedAbility * GAA = dynamic_cast<GenericActivatedAbility*>(ability);
-        AForeach * forMana = dynamic_cast<AForeach*>(GAA->ability);
-        if (manamaker && forMana)
-        {
-            int outPut = forMana->checkActivation();
-            if (ability->getCost() && outPut > int(ability->getCost()->getConvertedCost() +1) && currentPhase == MTG_PHASE_FIRSTMAIN && ability->source->controller()->game->hand->nb_cards > 1)
-                efficiency = 90;//might be a bit random, but better than never using them.
-        }
-        else
-        efficiency = 0;
-        break;
+         AManaProducer * manamaker = dynamic_cast<AManaProducer*>(a);
+         GenericActivatedAbility * GAA = dynamic_cast<GenericActivatedAbility*>(ability);
+         if(GAA)
+         {
+             AForeach * forMana = dynamic_cast<AForeach*>(GAA->ability);
+             if (manamaker && forMana)
+             {
+                  int outPut = forMana->checkActivation();
+                 if (ability->getCost() && outPut > int(ability->getCost()->getConvertedCost() +1) && currentPhase == MTG_PHASE_FIRSTMAIN && ability->source->controller()->game->hand->nb_cards > 1)
+                    efficiency = 60;//might be a bit random, but better than never using them.
+             }
+         }
+         else
+             efficiency = 0;
+         break; 
     }
     case MTGAbility::STANDARDABILITYGRANT:
         {
@@ -426,11 +444,12 @@ int OrderedAIAction::getEfficiency()
 
     case MTGAbility::LIFER:
         {
-            //use life abilities whenever possible.
+            //use life abilities whenever possible. Well yes, but actually no
+            //limits mana and in case of Zuran Orb it just sacrifices all lands
             AALifer * alife = (AALifer *) a;
             Targetable * _t = alife->getTarget();
 
-            efficiency = 100;
+            efficiency = 80;
             AbilityFactory af(g);
             int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
 
@@ -567,6 +586,12 @@ int OrderedAIAction::getEfficiency()
                 if (z == p->game->hand)
                     efficiency = 10 + (owner->getRandomGenerator()->random() % 10);//random chance to bounce their own card;
             }
+            // We don't want to return cards in play to own hand, save rare combos
+            else if(target->currentZone == p->game->inPlay)
+            {
+                if (z == p->game->hand || z == p->game->library)
+                    efficiency = (owner->getRandomGenerator()->random() % 10);//random chance to bounce their own card;
+            }
             else
             {
                 efficiency = 10 + (owner->getRandomGenerator()->random() % 5);
@@ -574,7 +599,11 @@ int OrderedAIAction::getEfficiency()
         }
         else
         {
-            efficiency = 50;
+            // We don't want to return the ability source cards that are in play to own hand, save rare combos
+            // cards like Blinking Spirit used to be auto lose for AI
+            if(z == p->game->hand || z == p->game->library)
+                efficiency = 1;
+            else efficiency = 50;
             //may abilities target the source until thier nested ability is activated, so 50% chance to use this
             //mover, until we can come up with something more elegent....
         }
@@ -602,6 +631,12 @@ int OrderedAIAction::getEfficiency()
             efficiency = 90;
         }
     }
+    else if (AATurnSide * ats = dynamic_cast<AATurnSide *>(a))
+    {
+        efficiency = 0; // AI does not have to use the doubleside ability to avoid loops but it can randomly choose to flip card and cast its back side.
+        if(std::rand() % 2)
+            ats->source->isFlipped = (ats->source->isFlipped > 0)?0:1;
+    }
     else if (ATokenCreator * atc = dynamic_cast<ATokenCreator *>(a))
     {
         efficiency = 80;
@@ -622,15 +657,25 @@ int OrderedAIAction::getEfficiency()
         if(grA->source->getAICustomCode().size() && grA->source->alias != 185709)//Sphinx of Jwar Isle so the ai will ignore it
         {
             //efficiency = 45 + (owner->getRandomGenerator()->random() % 50);
-            
             AbilityFactory af(g);
             MTGAbility * parsedAICC = af.parseMagicLine(cReplaceString(grA->source->getAICustomCode(),"activate",""),0,NULL,grA->source);
             efficiency = getRevealedEfficiency(parsedAICC);
             SAFE_DELETE(parsedAICC);
-
         }
-        else
-            efficiency = 0;
+        else // this is why the AI never chooses any card at all? reveal is used to get cards so it should be at better value
+            efficiency = 60;
+    }
+    else if (GenericScryAbility * grA = dynamic_cast<GenericScryAbility *>(a))
+    {
+        if(grA->source->getAICustomCode().size())
+        {           
+            AbilityFactory af(g);
+            MTGAbility * parsedAICC = af.parseMagicLine(cReplaceString(grA->source->getAICustomCode(),"activate",""),0,NULL,grA->source);
+            efficiency = getRevealedEfficiency(parsedAICC);
+            SAFE_DELETE(parsedAICC);
+        }
+        else // this is why the AI never chooses any card at all? scry is used to get cards so it should be at better value
+            efficiency = 60;
     }
     //At this point the "basic" efficiency is computed, we further tweak it depending on general decisions, independent of theAbility type
 
@@ -652,8 +697,11 @@ int OrderedAIAction::getEfficiency()
             for(unsigned int i = 0; i < ec->costs.size();i++)
             {
                 ExtraCost * tapper = dynamic_cast<TapCost*>(ec->costs[i]);
+                ExtraCost * sacrifice = dynamic_cast<SacrificeCost*>(ec->costs[i]);
                 if(tapper)
-                    continue;
+                    continue;                
+                else if(sacrifice)
+                    efficiency = efficiency / 3;
                 else
                     efficiency = efficiency / 2;
             }
@@ -672,6 +720,20 @@ int OrderedAIAction::getEfficiency()
     {
         efficiency += 55;
     }
+    
+    if (ability->source)
+    {
+        if(ability->source->hasType(Subtypes::TYPE_PLANESWALKER))
+            efficiency += 40;
+        else if(ability->source->hasType(Subtypes::TYPE_LAND))
+            { // probably a shockland, don't pay life if hand is empty
+                if (p->life<=2)
+                    // check that's not a manland(like Celestial Colonnade)
+                    if(efficiency < 50)
+                        efficiency = 0;
+            } 
+    }
+
     SAFE_DELETE(transAbility);
     return efficiency;
 }
@@ -761,8 +823,7 @@ int OrderedAIAction::getRevealedEfficiency(MTGAbility * ability2)
                     break;
                 if ((target->defenser || target->blockers.size()) && target->preventable < nextOpponent->power)
                     NeedPreventing = true;
-                if (p == target->controller() && target->controller()->isAI() && NeedPreventing  && !(nextOpponent->has(Constants::DEATHTOUCH)
-                    ||nextOpponent->has(Constants::WITHER)))
+                if (p == target->controller() && target->controller()->isAI() && NeedPreventing  && !(nextOpponent->has(Constants::DEATHTOUCH) || nextOpponent->has(Constants::PERPETUALDEATHTOUCH) || nextOpponent->has(Constants::WITHER)))
                 {
                     eff2 = 20 * (target->DangerRanking());//increase this chance to be used in combat if the creature blocking/blocked could kill the creature this chance is taking into consideration how good the creature is, best creature will always be the first "saved"..
                     if (target->toughness == 1 && nextOpponent->power == 1)
@@ -944,7 +1005,7 @@ int OrderedAIAction::getRevealedEfficiency(MTGAbility * ability2)
             //nothing huge here, just ensuring that Ai makes his noncreature becomers into creatures during first main, so it can actually use them in combat.
             if (coreAbilityCardTarget && !coreAbilityCardTarget->isCreature() && currentPhase == MTG_PHASE_FIRSTMAIN)
             {
-                eff2 = 100;
+                eff2 = 70;
             }
             break;
         }
@@ -957,7 +1018,7 @@ int OrderedAIAction::getRevealedEfficiency(MTGAbility * ability2)
         {
             int outPut = forMana->checkActivation();
             if (ability2->getCost() && outPut > int(ability2->getCost()->getConvertedCost() +1) && currentPhase == MTG_PHASE_FIRSTMAIN && ability2->source->controller()->game->hand->nb_cards > 1)
-                eff2 = 90;//might be a bit random, but better than never using them.
+                eff2 = 60;//might be a bit random, but better than never using them.
         }
         else
         eff2 = 0;
@@ -1294,8 +1355,8 @@ MTGCardInstance * AIPlayerBaka::chooseCard(TargetChooser * tc, MTGCardInstance *
     }
     for(int players = 0; players < 2;++players)
     {
-        MTGGameZone * zones[] = { playerZones->hand, playerZones->library, playerZones->inPlay, playerZones->graveyard,playerZones->stack,playerZones->exile };
-        for (int j = 0; j < 6; j++)
+        MTGGameZone * zones[] = { playerZones->hand, playerZones->library, playerZones->inPlay, playerZones->graveyard, playerZones->stack, playerZones->exile, playerZones->commandzone };
+        for (int j = 0; j < 7; j++)
         {
             MTGGameZone * zone = zones[j];
             for (int k = 0; k < zone->nb_cards; k++)
@@ -1313,7 +1374,7 @@ MTGCardInstance * AIPlayerBaka::chooseCard(TargetChooser * tc, MTGCardInstance *
     return NULL;
 }
 
-bool AIPlayerBaka::payTheManaCost(ManaCost * cost, MTGCardInstance * target,vector<MTGAbility*>gotPayments)
+bool AIPlayerBaka::payTheManaCost(ManaCost * cost, int anytypeofmana, MTGCardInstance * target,vector<MTGAbility*>gotPayments)
 {
      DebugTrace("AIPlayerBaka: AI attempting to pay a mana cost." << endl
             << "-  Target: " << (target ? target->name : "None" ) << endl
@@ -1390,7 +1451,7 @@ bool AIPlayerBaka::payTheManaCost(ManaCost * cost, MTGCardInstance * target,vect
             }
             if(k == gotPayments.size()-1)//only add it once, and at the end.
             paid->add(this->getManaPool());//incase some of our payments were mana already in the pool/.
-            if(paid->canAfford(cost))
+            if(paid->canAfford(cost, anytypeofmana))
             {
                 if((!cost->hasX() && !cost->hasAnotherCost()) || k == gotPayments.size()-1)
                 {
@@ -1424,7 +1485,7 @@ bool AIPlayerBaka::payTheManaCost(ManaCost * cost, MTGCardInstance * target,vect
         cost = pMana;//{x}:effect, set x to max.
     }
 
-    if(!pMana->canAfford(cost))
+    if(!pMana->canAfford(cost, 0))
     {
         delete pMana;
         return false;
@@ -1509,17 +1570,19 @@ ManaCost * AIPlayerBaka::getPotentialMana(MTGCardInstance * target)
     return result;
 }
 
-vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost * cost)
+vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target, ManaCost * cost, int anytypeofmana)
 {
     if(!cost || (cost && !cost->getConvertedCost()) || !target)
         return vector<MTGAbility*>();
     map<MTGCardInstance*, bool> usedCards;
  
-    return canPayMana(target, cost, usedCards);
+    return canPayMana(target, cost, anytypeofmana, usedCards);
 }
 
-vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost * cost, map<MTGCardInstance*,bool> &used ,bool searchingAgain)
+vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target, ManaCost * _cost, int anytypeofmana, map<MTGCardInstance*,bool> &used ,bool searchingAgain)
 {
+    ManaCost * cost = _cost;
+
     if(!cost->getConvertedCost())
         return vector<MTGAbility*>();
     ManaCost * result = NEW ManaCost();
@@ -1530,6 +1593,14 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
         //adding the current manapool if any.
         result->add(this->getManaPool());
     }
+
+    if(anytypeofmana){
+        int convertedC = cost->getConvertedCost();
+        cost = NEW ManaCost(ManaCost::parseManaCost("{0}", NULL, target));
+        for (int jj = 0; jj < convertedC; jj++)
+            cost->add(Constants::MTG_COLOR_ARTIFACT, 1);
+    }
+
     int needColorConverted = cost->getConvertedCost() - int(cost->getCost(0)+cost->getCost(7));
     int fullColor = 0;
     for (size_t i = 0; i < observer->mLayers->actionLayer()->manaObjects.size(); i++)
@@ -1542,7 +1613,7 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
         {
             if(cost->hasColor(0) && amp)//find colorless after color mana.
             {
-                if(result->canAfford(cost))
+                if(result->canAfford(cost,0))
                     continue;
                 if (canHandleCost(amp))
                 {
@@ -1551,7 +1622,7 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
                         used[card] = true; //http://code.google.com/p/wagic/issues/detail?id=76
                     if (!used[card] && amp->isReactingToClick(card) && amp->output->getConvertedCost() >= 1)
                     {
-                        if(!(result->canAfford(cost)))//if we got to this point we should be filling colorless mana requirements.
+                        if(!(result->canAfford(cost,0)))//if we got to this point we should be filling colorless mana requirements.
                         {
                             payments.push_back(amp);
                             result->add(amp->output);
@@ -1606,7 +1677,7 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
                         check->add(k,cost->getCost(k));
                         ManaCost * checkResult = NEW ManaCost();
                         checkResult->add(k,result->getCost(k));
-                        if(!(checkResult->canAfford(check)))
+                        if(!(checkResult->canAfford(check,0)))
                         {
                             payments.push_back(amp);
                             result->add(k,amp->output->getCost(k));
@@ -1651,7 +1722,7 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
                             check->add(foundColor1?hybridCost->color1:hybridCost->color2,foundColor1?hybridCost->value1:hybridCost->value2);
                             ManaCost * checkResult = NEW ManaCost();
                             checkResult->add(foundColor1?hybridCost->color1:hybridCost->color2,result->getCost(foundColor1?hybridCost->color1:hybridCost->color2));
-                            if(((foundColor1 && !foundColor2)||(!foundColor1 && foundColor2)) &&!(checkResult->canAfford(check)))
+                            if(((foundColor1 && !foundColor2)||(!foundColor1 && foundColor2)) &&!(checkResult->canAfford(check,0)))
                             {
                                 payments.push_back(amp);
                                 result->add(foundColor1?hybridCost->color1:hybridCost->color2,amp->output->getCost(foundColor1?hybridCost->color1:hybridCost->color2));
@@ -1675,7 +1746,7 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
         {
             check->add(k,cost->getCost(k));
             checkResult->add(k,result->getCost(k));
-            if(!(checkResult->canAfford(check)))
+            if(!(checkResult->canAfford(check,0)))
             {
                 SAFE_DELETE(check);
                 SAFE_DELETE(checkResult);
@@ -1692,7 +1763,7 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
             bool keepLooking = true;
             while(keepLooking)
             {
-                kickerPayment = canPayMana(target, withKickerCost, used,true);
+                kickerPayment = canPayMana(target, withKickerCost, target->has(Constants::ANYTYPEOFMANA), used, true);
                 if(kickerPayment.size())
                 {
                     for(unsigned int w = 0;w < kickerPayment.size();++w)
@@ -1729,9 +1800,11 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
             }
         }
     }
-    if(!result->canAfford(cost))
+    if(!result->canAfford(cost,0))
         payments.clear();
     SAFE_DELETE(result);
+    if(anytypeofmana)
+        SAFE_DELETE(cost);
     return payments;
 }
 
@@ -1770,7 +1843,7 @@ vector<MTGAbility*> AIPlayerBaka::canPaySunBurst(ManaCost * cost)
                         check->add(k,1);
                         ManaCost * checkResult = NEW ManaCost();
                         checkResult->add(k,result->getCost(k));
-                        if(!(checkResult->canAfford(check)))
+                        if(!(checkResult->canAfford(check,card->has(Constants::ANYTYPEOFMANA))))
                         {
                             payments.push_back(amp);
                             result->add(k,amp->output->getCost(k));
@@ -1796,7 +1869,7 @@ vector<MTGAbility*> AIPlayerBaka::canPaySunBurst(ManaCost * cost)
                 MTGCardInstance * card = amp->source;
                 if (!used[card] && amp->isReactingToClick(card) && amp->output->getConvertedCost() >= 1)
                 {
-                    if(!(result->canAfford(cost)))//if we got to this point we should be filling colorless mana requirements.
+                    if(!(result->canAfford(cost,card->has(Constants::ANYTYPEOFMANA))))//if we got to this point we should be filling colorless mana requirements.
                     {
                         payments.push_back(amp);
                         result->add(amp->output);
@@ -1806,7 +1879,7 @@ vector<MTGAbility*> AIPlayerBaka::canPaySunBurst(ManaCost * cost)
             }
         }
     }
-    if(!result->canAfford(cost))
+    if(!result->canAfford(cost,0))
         payments.clear();
     SAFE_DELETE(result);
     return payments;
@@ -1861,7 +1934,7 @@ int AIPlayerBaka::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, Rank
     for (int i = 0; i < 2; i++)
     {
         Player * p = observer->players[i];
-        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay,p->game->stack,p->game->exile, p->game->reveal, p->game->sideboard };
+        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay, p->game->stack, p->game->exile, p->game->commandzone, p->game->sideboard, p->game->reveal };
         if(a->getActionTc()->canTarget((Targetable*)p))
         {
             if(a->getActionTc()->maxtargets == 1)
@@ -1872,7 +1945,7 @@ int AIPlayerBaka::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, Rank
             else
                 potentialTargets.push_back(p);
         }
-        for (int j = 0; j < 6; j++)
+        for (int j = 0; j < 9; j++)
         {
             MTGGameZone * zone = playerZones[j];
             for (int k = 0; k < zone->nb_cards; k++)
@@ -1899,6 +1972,7 @@ int AIPlayerBaka::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, Rank
         if(a->getActionTc()->getNbTargets() && a->getActionTc()->attemptsToFill > 4)
         {
             a->getActionTc()->done = true;
+            a->getActionTc()->autoChoice = false;
             return 0;
         }
         while(potentialTargets.size())
@@ -1977,7 +2051,7 @@ int AIPlayerBaka::selectHintAbility()
         if (!clickstream.size())
         {
             DebugTrace("AIPlayer:Using Activated ability");
-            if (payTheManaCost(action->ability->getCost(), action->click))
+            if (payTheManaCost(action->ability->getCost(), action->click->has(Constants::ANYTYPEOFMANAABILITY), action->click))
             {
                 clickstream.push(action);
                 SAFE_DELETE(totalPotentialMana);
@@ -1998,10 +2072,10 @@ int AIPlayerBaka::selectAbility()
         check = dynamic_cast<ExtraManaCost*>(observer->mExtraPayment->costs[0]);
         if(check)
         {
-            vector<MTGAbility*> CostToPay = canPayMana(observer->mExtraPayment->source,check->costToPay);
+            vector<MTGAbility*> CostToPay = canPayMana(observer->mExtraPayment->source,check->costToPay,check->source->has(Constants::ANYTYPEOFMANAABILITY));
             if(CostToPay.size())
             {
-                payTheManaCost(check->costToPay,check->source,CostToPay);
+                payTheManaCost(check->costToPay,check->source->has(Constants::ANYTYPEOFMANAABILITY),check->source,CostToPay);
             }
             else
             {
@@ -2034,13 +2108,165 @@ int AIPlayerBaka::selectAbility()
         //Skip mana abilities for performance
         if (dynamic_cast<AManaProducer*> (a))
             continue;
-        //Make sure we can use the ability
+        //Make sure we can use the ability with card in play
         for (int j = 0; j < game->inPlay->nb_cards; j++)
         {
             MTGCardInstance * card = game->inPlay->cards[j];
             if(a->getCost() && !a->isReactingToClick(card, totalPotentialMana))//for performance reason only look for specific mana if the payment couldnt be made with potential.
             {
-                abilityPayment = canPayMana(card,a->getCost());
+                abilityPayment = canPayMana(card,a->getCost(),card->has(Constants::ANYTYPEOFMANAABILITY));
+            }
+            if (a->isReactingToClick(card, totalPotentialMana) || abilityPayment.size())
+            { //This test is to avoid the huge call to getPotentialManaCost after that
+                if(a->getCost() && a->getCost()->hasX() && totalPotentialMana->getConvertedCost() < a->getCost()->getConvertedCost()+1)
+                    continue;
+                //don't even bother to play an ability with {x} if you can't even afford x=1.
+                if (abilityPayment.size())
+                {
+                    ManaCost *fullPayment = NEW ManaCost();
+                    for(int ch = 0; ch < int(abilityPayment.size());ch++)
+                    {
+                        AManaProducer * ampp = dynamic_cast<AManaProducer*> (abilityPayment[ch]);
+                        if(ampp)
+                            fullPayment->add(ampp->output);
+                    }
+                    if (fullPayment && a->isReactingToClick(card, fullPayment))
+                        createAbilityTargets(a, card, ranking);
+                    delete fullPayment;
+                }
+                else
+                {
+                    ManaCost * pMana = getPotentialMana(card);
+                    pMana->add(this->getManaPool());
+                    if (a->isReactingToClick(card, pMana))
+                    {
+                        createAbilityTargets(a, card, ranking);
+                    }
+                    delete (pMana);
+                }     
+            }
+        }
+        //Make sure we can use the ability with card in commandzone
+        for (int j = 0; j < game->commandzone->nb_cards; j++)
+        {
+            MTGCardInstance * card = game->commandzone->cards[j];
+            if(a->getCost() && !a->isReactingToClick(card, totalPotentialMana))//for performance reason only look for specific mana if the payment couldnt be made with potential.
+            {
+                abilityPayment = canPayMana(card,a->getCost(),card->has(Constants::ANYTYPEOFMANAABILITY));
+            }
+            if (a->isReactingToClick(card, totalPotentialMana) || abilityPayment.size())
+            { //This test is to avoid the huge call to getPotentialManaCost after that
+                if(a->getCost() && a->getCost()->hasX() && totalPotentialMana->getConvertedCost() < a->getCost()->getConvertedCost()+1)
+                    continue;
+                //don't even bother to play an ability with {x} if you can't even afford x=1.
+                if (abilityPayment.size())
+                {
+                    ManaCost *fullPayment = NEW ManaCost();
+                    for(int ch = 0; ch < int(abilityPayment.size());ch++)
+                    {
+                        AManaProducer * ampp = dynamic_cast<AManaProducer*> (abilityPayment[ch]);
+                        if(ampp)
+                            fullPayment->add(ampp->output);
+                    }
+                    if (fullPayment && a->isReactingToClick(card, fullPayment))
+                        createAbilityTargets(a, card, ranking);
+                    delete fullPayment;
+                }
+                else
+                {
+                    ManaCost * pMana = getPotentialMana(card);
+                    pMana->add(this->getManaPool());
+                    if (a->isReactingToClick(card, pMana))
+                    {
+                        createAbilityTargets(a, card, ranking);
+                    }
+                    delete (pMana);
+                }     
+            }
+        }
+        //Make sure we can use the ability with card in hand
+        for (int j = 0; j < game->hand->nb_cards; j++)
+        {
+            MTGCardInstance * card = game->hand->cards[j];
+            if(a->getCost() && !a->isReactingToClick(card, totalPotentialMana))//for performance reason only look for specific mana if the payment couldnt be made with potential.
+            {
+                abilityPayment = canPayMana(card,a->getCost(),card->has(Constants::ANYTYPEOFMANAABILITY));
+            }
+            if (a->isReactingToClick(card, totalPotentialMana) || abilityPayment.size())
+            { //This test is to avoid the huge call to getPotentialManaCost after that
+                if(a->getCost() && a->getCost()->hasX() && totalPotentialMana->getConvertedCost() < a->getCost()->getConvertedCost()+1)
+                    continue;
+                //don't even bother to play an ability with {x} if you can't even afford x=1.
+                if (abilityPayment.size())
+                {
+                    ManaCost *fullPayment = NEW ManaCost();
+                    for(int ch = 0; ch < int(abilityPayment.size());ch++)
+                    {
+                        AManaProducer * ampp = dynamic_cast<AManaProducer*> (abilityPayment[ch]);
+                        if(ampp)
+                            fullPayment->add(ampp->output);
+                    }
+                    if (fullPayment && a->isReactingToClick(card, fullPayment))
+                        createAbilityTargets(a, card, ranking);
+                    delete fullPayment;
+                }
+                else
+                {
+                    ManaCost * pMana = getPotentialMana(card);
+                    pMana->add(this->getManaPool());
+                    if (a->isReactingToClick(card, pMana))
+                    {
+                        createAbilityTargets(a, card, ranking);
+                    }
+                    delete (pMana);
+                }     
+            }
+        }
+        //Make sure we can use the ability with card in graveyard
+        for (int j = 0; j < game->graveyard->nb_cards; j++)
+        {
+            MTGCardInstance * card = game->graveyard->cards[j];
+            if(a->getCost() && !a->isReactingToClick(card, totalPotentialMana))//for performance reason only look for specific mana if the payment couldnt be made with potential.
+            {
+                abilityPayment = canPayMana(card,a->getCost(),card->has(Constants::ANYTYPEOFMANAABILITY));
+            }
+            if (a->isReactingToClick(card, totalPotentialMana) || abilityPayment.size())
+            { //This test is to avoid the huge call to getPotentialManaCost after that
+                if(a->getCost() && a->getCost()->hasX() && totalPotentialMana->getConvertedCost() < a->getCost()->getConvertedCost()+1)
+                    continue;
+                //don't even bother to play an ability with {x} if you can't even afford x=1.
+                if (abilityPayment.size())
+                {
+                    ManaCost *fullPayment = NEW ManaCost();
+                    for(int ch = 0; ch < int(abilityPayment.size());ch++)
+                    {
+                        AManaProducer * ampp = dynamic_cast<AManaProducer*> (abilityPayment[ch]);
+                        if(ampp)
+                            fullPayment->add(ampp->output);
+                    }
+                    if (fullPayment && a->isReactingToClick(card, fullPayment))
+                        createAbilityTargets(a, card, ranking);
+                    delete fullPayment;
+                }
+                else
+                {
+                    ManaCost * pMana = getPotentialMana(card);
+                    pMana->add(this->getManaPool());
+                    if (a->isReactingToClick(card, pMana))
+                    {
+                        createAbilityTargets(a, card, ranking);
+                    }
+                    delete (pMana);
+                }     
+            }
+        }
+        //Make sure we can use the ability with card in exile
+        for (int j = 0; j < game->exile->nb_cards; j++)
+        {
+            MTGCardInstance * card = game->exile->cards[j];
+            if(a->getCost() && !a->isReactingToClick(card, totalPotentialMana))//for performance reason only look for specific mana if the payment couldnt be made with potential.
+            {
+                abilityPayment = canPayMana(card,a->getCost(),card->has(Constants::ANYTYPEOFMANAABILITY));
             }
             if (a->isReactingToClick(card, totalPotentialMana) || abilityPayment.size())
             { //This test is to avoid the huge call to getPotentialManaCost after that
@@ -2092,7 +2318,7 @@ int AIPlayerBaka::selectAbility()
                     DebugTrace(" Ai knows exactly what mana to use for this ability.");
                 }
                 DebugTrace("AIPlayer:Using Activated ability");
-                if (payTheManaCost(action.ability->getCost(), action.click,abilityPayment))
+                if (payTheManaCost(action.ability->getCost(),action.click->has(Constants::ANYTYPEOFMANAABILITY),action.click,abilityPayment))
                     clickstream.push(NEW AIAction(action));
             }
         }
@@ -2110,10 +2336,10 @@ int AIPlayerBaka::doAbility(MTGAbility * Specific, MTGCardInstance * withCard)
         check = dynamic_cast<ExtraManaCost*>(observer->mExtraPayment->costs[0]);
         if (check)
         {
-            vector<MTGAbility*> CostToPay = canPayMana(observer->mExtraPayment->source, check->costToPay);
+            vector<MTGAbility*> CostToPay = canPayMana(observer->mExtraPayment->source, check->costToPay, check->source->has(Constants::ANYTYPEOFMANAABILITY));
             if (CostToPay.size())
             {
-                payTheManaCost(check->costToPay, check->source, CostToPay);
+                payTheManaCost(check->costToPay, check->source->has(Constants::ANYTYPEOFMANAABILITY), check->source, CostToPay);
             }
             else
             {
@@ -2141,7 +2367,7 @@ int AIPlayerBaka::doAbility(MTGAbility * Specific, MTGCardInstance * withCard)
         //Make sure we can use the ability
         if (a->getCost() && !a->isReactingToClick(card, totalPotentialMana))//for performance reason only look for specific mana if the payment couldnt be made with potential.
         {
-            abilityPayment = canPayMana(card, a->getCost());
+            abilityPayment = canPayMana(card, a->getCost(), card->has(Constants::ANYTYPEOFMANAABILITY));
         }
         if (a->isReactingToClick(card, totalPotentialMana) || abilityPayment.size())
         { //This test is to avoid the huge call to getPotentialManaCost after that
@@ -2176,14 +2402,14 @@ int AIPlayerBaka::doAbility(MTGAbility * Specific, MTGCardInstance * withCard)
                         {
                             ManaCost * specificCost = NEW ManaCost(ManaCost::parseManaCost("{0}", NULL, NULL));
                             specificCost->add(0, card->attackCostBackup);
-                            abilityPayment = canPayMana(card, specificCost);
+                            abilityPayment = canPayMana(card, specificCost, card->has(Constants::ANYTYPEOFMANAABILITY));
                             SAFE_DELETE(specificCost);
                         }
                         else if (a->aType == MTGAbility::BLOCK_COST)
                         {
                             ManaCost * specificCost = NEW ManaCost(ManaCost::parseManaCost("{0}", NULL, NULL));
                             specificCost->add(0, card->blockCostBackup);
-                            abilityPayment = canPayMana(card, specificCost);
+                            abilityPayment = canPayMana(card, specificCost, card->has(Constants::ANYTYPEOFMANAABILITY));
                             SAFE_DELETE(specificCost);
                         }
                     }
@@ -2219,7 +2445,7 @@ int AIPlayerBaka::doAbility(MTGAbility * Specific, MTGCardInstance * withCard)
                     {
                         ManaCost * specificCost = NEW ManaCost(ManaCost::parseManaCost("{0}", NULL, NULL));
                         specificCost->add(0, action.click->attackCostBackup);
-                        if (payTheManaCost(specificCost, action.click, abilityPayment))
+                        if (payTheManaCost(specificCost, action.click->has(Constants::ANYTYPEOFMANAABILITY), action.click, abilityPayment))
                             clickstream.push(NEW AIAction(action));
                         SAFE_DELETE(specificCost);
                     }
@@ -2227,14 +2453,14 @@ int AIPlayerBaka::doAbility(MTGAbility * Specific, MTGCardInstance * withCard)
                     {
                         ManaCost * specificCost = NEW ManaCost(ManaCost::parseManaCost("{0}", NULL, NULL));
                         specificCost->add(0, action.click->blockCostBackup);
-                        if (payTheManaCost(specificCost, action.click, abilityPayment))
+                        if (payTheManaCost(specificCost, action.click->has(Constants::ANYTYPEOFMANAABILITY), action.click, abilityPayment))
                             clickstream.push(NEW AIAction(action));
                         SAFE_DELETE(specificCost);
                     }
                 }
                 else
                 {
-                    if (payTheManaCost(action.ability->getCost(), action.click, abilityPayment))
+                    if (payTheManaCost(action.ability->getCost(), action.click->has(Constants::ANYTYPEOFMANAABILITY), action.click, abilityPayment))
                         clickstream.push(NEW AIAction(action));
                 }
             }
@@ -2327,6 +2553,10 @@ int AIPlayerBaka::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCard
             cardEffect = af.abilityEfficiency(withoutGuessing,this,MODE_TARGET,tc,NULL);
             delete withoutGuessing;
         }
+        // Don't really like it but green mana producing auras targeting the player is one of the most reported bugs
+        if(cardEffect == BAKA_EFFECT_DONTKNOW && tc->source->hasSubtype(Subtypes::TYPE_AURA) && tc->source->hasColor(Constants::MTG_COLOR_GREEN))
+            cardEffect = BAKA_EFFECT_GOOD;
+
         if (cardEffect != BAKA_EFFECT_GOOD)
         {
             target = this->opponent();
@@ -2344,8 +2574,8 @@ int AIPlayerBaka::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCard
             }
         }
         MTGPlayerCards * playerZones = target->game;
-        MTGGameZone * zones[] = { playerZones->hand, playerZones->library, playerZones->inPlay, playerZones->graveyard,playerZones->stack,playerZones->exile,playerZones->reveal, playerZones->sideboard };
-        for (int j = 0; j < 8; j++)
+        MTGGameZone * zones[] = { playerZones->hand, playerZones->library, playerZones->inPlay, playerZones->graveyard, playerZones->stack, playerZones->exile, playerZones->commandzone, playerZones->sideboard, playerZones->reveal };
+        for (int j = 0; j < 9; j++)
         {
             MTGGameZone * zone = zones[j];
             for (int k = 0; k < zone->nb_cards; k++)
@@ -2447,11 +2677,10 @@ int AIPlayerBaka::getEfficiency(MTGAbility * ability)
 int AIPlayerBaka::selectMenuOption()
 {
     ActionLayer * object = observer->mLayers->actionLayer();
-    int doThis = -1;
+    int doThis = 0; // The AI just passes on things if set to -1, getEfficiency should be improved
     if (object->menuObject)
     {
         int checkedLast = 0;
-        
         if(object->abilitiesMenu->isMultipleChoice && object->currentActionCard)
         {
             MenuAbility * currentMenu = NULL;
@@ -2510,8 +2739,8 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     {
         nextCardToPlay = comboCards.back();
         gotPayments.clear();
-        if((!pMana->canAfford(nextCardToPlay->getManaCost()) || nextCardToPlay->getManaCost()->getKicker()))
-            gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost());
+        if((!pMana->canAfford(nextCardToPlay->getManaCost(),0) || nextCardToPlay->getManaCost()->getKicker() || nextCardToPlay->getManaCost()->getBestow()))
+            gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
         DebugTrace("ai is doing a combo:" << nextCardToPlay->getName());
         comboCards.pop_back();
         if(!comboHint->cardTargets.size() && !comboCards.size())
@@ -2520,166 +2749,211 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     }
     CardDescriptor cd;
     cd.init();
-    cd.setType(type);
+    if(!strcmp(type,"commander")) //Added to allow the casting priority for commanders
+        cd.basicAbilities[Constants::ISCOMMANDER] = 1;
+    else if(strcmp(type,"*")) //Added to allow the wildcard in casting priority
+        cd.setType(type);
     card = NULL;
+    payAlternative = NONE;
     gotPayments = vector<MTGAbility*>();
     //canplayfromgraveyard
-    while ((card = cd.nextmatch(game->graveyard, card))&& card->has(Constants::CANPLAYFROMGRAVEYARD))
-    {
-        if (!CanHandleCost(card->getManaCost(),card))
-            continue;
+     while ((card = cd.nextmatch(game->graveyard, card)))
+     {
+        bool hasFlashback = false;
 
-        if (card->hasType(Subtypes::TYPE_LAND))
+        if(card->getManaCost())
+            if(card->getManaCost()->getFlashback())
+                hasFlashback = true;
+
+        bool hasRetrace = false;
+
+        if(card->getManaCost())
+            if(card->getManaCost()->getRetrace())
+                hasRetrace = true;
+
+        if( card->has(Constants::CANPLAYFROMGRAVEYARD) || card->has(Constants::TEMPFLASHBACK) || hasFlashback || hasRetrace)
         {
-            if (game->playRestrictions->canPutIntoZone(card, game->inPlay) == PlayRestriction::CANT_PLAY)
+            if (!CanHandleCost(card->getManaCost(),card))
                 continue;
-        }
-        else
-        {
-            if (game->playRestrictions->canPutIntoZone(card, game->stack) == PlayRestriction::CANT_PLAY)
+
+            if (hasFlashback && !CanHandleCost(card->getManaCost()->getFlashback(),card))
                 continue;
-        }
 
-        if (card->hasType(Subtypes::TYPE_LEGENDARY) && game->inPlay->findByName(card->name))
-            continue;
-        //glimmervoid alias to avoid ai stalling the game as the hint combo is stuck
-        //next card to play was galvanic blast but on activate combo it clashes with glimmervoid...
-        if ((card->alias == 48132) && (card->controller()->game->inPlay->countByType("artifact") < 1))
-            continue;
+            if (hasRetrace && !CanHandleCost(card->getManaCost()->getRetrace(),card))
+                continue;
 
-        if (card->has(Constants::TREASON) && observer->getCurrentGamePhase() != MTG_PHASE_FIRSTMAIN)
-            continue;
+            /*// Case were manacost is equal to flashback cost, if they are different the AI hangs
+            if (hasFlashback && (card->getManaCost() != card->getManaCost()->getFlashback()))
+                continue;
 
-        if (card->hasType(Subtypes::TYPE_PLANESWALKER) && card->types.size() > 0 && game->inPlay->hasTypeSpecificInt(Subtypes::TYPE_PLANESWALKER,card->types[1]))
-            continue;
+            // Case were manacost is equal to retrace cost, if they are different the AI hangs
+            if (hasRetrace && (card->getManaCost() != card->getManaCost()->getRetrace()))
+                continue;*/
+
+            if (card->hasType(Subtypes::TYPE_LAND))
+            {
+                if (game->playRestrictions->canPutIntoZone(card, game->inPlay) == PlayRestriction::CANT_PLAY)
+                    continue;
+            }
+            else
+            {
+                if (game->playRestrictions->canPutIntoZone(card, game->stack) == PlayRestriction::CANT_PLAY)
+                    continue;
+            }
+
+            if (card->hasType(Subtypes::TYPE_LEGENDARY) && game->inPlay->findByName(card->name))
+                continue;
+            //glimmervoid alias to avoid ai stalling the game as the hint combo is stuck
+            //next card to play was galvanic blast but on activate combo it clashes with glimmervoid...
+            if ((card->alias == 48132) && (card->controller()->game->inPlay->countByType("artifact") < 1))
+                continue;
+
+            if (card->has(Constants::TREASON) && observer->getCurrentGamePhase() != MTG_PHASE_FIRSTMAIN)
+                continue;
+
+            if (card->hasType(Subtypes::TYPE_PLANESWALKER) && card->types.size() > 0 && game->inPlay->hasTypeSpecificInt(Subtypes::TYPE_PLANESWALKER,card->types[1]))
+                continue;
         
-        if(hints && hints->HintSaysItsForCombo(observer,card))
-        {
-            if(hints->canWeCombo(observer,card,this))
+            if(hints && hints->HintSaysItsForCombo(observer,card))
             {
-                AbilityFactory af(observer);
-                int canPlay = af.parseCastRestrictions(card,card->controller(),card->getRestrictions());
-                if(!canPlay)
-                    continue;
-                nextCardToPlay = card;
-                gotPayments.clear();
-                if((!pMana->canAfford(nextCardToPlay->getManaCost()) || nextCardToPlay->getManaCost()->getKicker()))
-                    gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost());
-                return activateCombo();
-            }
-            else
-            {
-                nextCardToPlay = NULL;
-                    continue;
-            }
-        }
-        int currentCost = card->getManaCost()->getConvertedCost();
-        int hasX = card->getManaCost()->hasX();
-        gotPayments.clear();
-        if((!pMana->canAfford(card->getManaCost()) || card->getManaCost()->getKicker()))
-            gotPayments = canPayMana(card,card->getManaCost());
-            //for preformence reason we only look for specific mana if the payment couldn't be made with pmana.
-        if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(card->getManaCost())))
-        {
-            TargetChooserFactory tcf(observer);
-            TargetChooser * tc = tcf.createTargetChooser(card);
-            int shouldPlayPercentage = 0;
-            if (tc)
-            {
-                int hasTarget = chooseTarget(tc,NULL,NULL,true);
-                if(
-                    (tc->maxtargets > hasTarget && tc->maxtargets > 1 && !tc->targetMin && tc->maxtargets != TargetChooser::UNLITMITED_TARGETS) ||//target=<3>creature
-                    (tc->maxtargets == TargetChooser::UNLITMITED_TARGETS && hasTarget < 1)//target=creatures
-                    )
-                    hasTarget = 0;
-                if (!hasTarget)//single target covered here.
+                if(hints->canWeCombo(observer,card,this))
                 {
-                    SAFE_DELETE(tc);
-                    continue;
-                }
-                shouldPlayPercentage = 90;
-                if(tc->targetMin && hasTarget < tc->maxtargets)
-                    shouldPlayPercentage = 0;
-                if(tc->maxtargets > 1 && tc->maxtargets != TargetChooser::UNLITMITED_TARGETS && hasTarget <= tc->maxtargets)
-                {
-                    int maxA = hasTarget-tc->maxtargets;
-                    shouldPlayPercentage += (10*maxA);//reduce the chances of playing multitarget if we are not above max targets.
-                }
-                if(tc->maxtargets == TargetChooser::UNLITMITED_TARGETS)
-                {
-                    shouldPlayPercentage = 40 + (10*hasTarget);
-                    int totalCost = pMana->getConvertedCost()-currentCost;
-                    int totalTargets = hasTarget+hasTarget;
-                    if(hasX &&  totalCost <= totalTargets)// {x} spell with unlimited targeting tend to divide damage, we want atleast 1 damage per target before casting.
-                    {
-                        shouldPlayPercentage = 0;
-                    }
-                }
-                SAFE_DELETE(tc);
-            }
-            else
-            {
-                int shouldPlay = effectBadOrGood(card);
-                if (shouldPlay == BAKA_EFFECT_GOOD)
-                {
-                    shouldPlayPercentage = 90;
-                }
-                else if (BAKA_EFFECT_DONTKNOW == shouldPlay)
-                {
-                    //previously shouldPlayPercentage = 80;, I found this a little to high
-                    //for cards which AI had no idea how to use.
-                    shouldPlayPercentage = 60;
-                }
-                else if (card->isLand())
-                {
-                    shouldPlayPercentage = 90;
+                    AbilityFactory af(observer);
+                    int canPlay = af.parseCastRestrictions(card,card->controller(),card->getRestrictions());
+                    if(!canPlay)
+                        continue;
+                    nextCardToPlay = card;
+                    gotPayments.clear();
+                    if((!pMana->canAfford(nextCardToPlay->getManaCost(),0) || nextCardToPlay->getManaCost()->getKicker()))
+                        gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
+                    return activateCombo();
                 }
                 else
                 {
-                    // shouldPlay == baka_effect_bad giving it a 1 for odd ball lottery chance.
-                    shouldPlayPercentage = 1;
+                    nextCardToPlay = NULL;
+                        continue;
                 }
-
             }
-            //Reduce the chances of playing a spell with X cost if available mana is low
-            if (hasX)
-            {
-                int xDiff = pMana->getConvertedCost() - currentCost;
-                if (xDiff < 0)
-                    xDiff = 0;
-                shouldPlayPercentage = shouldPlayPercentage - static_cast<int> ((shouldPlayPercentage * 1.9f) / (1 + xDiff));
+            int currentCost = card->getManaCost()->getConvertedCost();
+            int hasX = card->getManaCost()->hasX();
+            gotPayments.clear();
+            ManaCost* manaToPay = card->getManaCost();
+            if(hasFlashback && !card->has(Constants::CANPLAYFROMGRAVEYARD) && !card->has(Constants::TEMPFLASHBACK) && !card->getManaCost()->getKicker()){
+                manaToPay = card->getManaCost()->getFlashback();
+                gotPayments = canPayMana(card,manaToPay,card->has(Constants::ANYTYPEOFMANA));
             }
-            if(card->getManaCost() && card->getManaCost()->getKicker() && card->getManaCost()->getKicker()->isMulti)
-            {
-                shouldPlayPercentage = 10* size_t(gotPayments.size())/int(1+(card->getManaCost()->getConvertedCost()+card->getManaCost()->getKicker()->getConvertedCost()));
-                if(shouldPlayPercentage <= 10)
-                    shouldPlayPercentage = shouldPlayPercentage/3;
+            if(hasRetrace && !card->has(Constants::CANPLAYFROMGRAVEYARD) && !card->has(Constants::TEMPFLASHBACK) && !card->getManaCost()->getKicker()){
+                manaToPay = card->getManaCost()->getRetrace();
+                gotPayments = canPayMana(card,manaToPay,card->has(Constants::ANYTYPEOFMANA));
             }
-            DebugTrace("Should I play " << (card ? card->name : "Nothing" ) << "?" << endl 
-                <<"shouldPlayPercentage = "<< shouldPlayPercentage);
-            if(card->getRestrictions().size())
+            else {
+                if((!pMana->canAfford(card->getManaCost(),0) || card->getManaCost()->getKicker()))
+                    gotPayments = canPayMana(card,card->getManaCost(),card->has(Constants::ANYTYPEOFMANA));
+            }
+            //for preformence reason we only look for specific mana if the payment couldn't be made with pmana.
+            if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(manaToPay,card->has(Constants::ANYTYPEOFMANA))))
             {
-                AbilityFactory af(observer);
-                int canPlay = af.parseCastRestrictions(card,card->controller(),card->getRestrictions());
-                if(!canPlay)
+                TargetChooserFactory tcf(observer);
+                TargetChooser * tc = tcf.createTargetChooser(card);
+                int shouldPlayPercentage = 0;
+                if (tc)
+                {
+                    int hasTarget = chooseTarget(tc,NULL,NULL,true);
+                    if(
+                        (tc->maxtargets > hasTarget && tc->maxtargets > 1 && !tc->targetMin && tc->maxtargets != TargetChooser::UNLITMITED_TARGETS) ||//target=<3>creature
+                        (tc->maxtargets == TargetChooser::UNLITMITED_TARGETS && hasTarget < 1)//target=creatures
+                        )
+                        hasTarget = 0;
+                    if (!hasTarget)//single target covered here.
+                    {
+                        SAFE_DELETE(tc);
+                        continue;
+                    }
+                    shouldPlayPercentage = 90;
+                    if(tc->targetMin && hasTarget < tc->maxtargets)
+                        shouldPlayPercentage = 0;
+                    if(tc->maxtargets > 1 && tc->maxtargets != TargetChooser::UNLITMITED_TARGETS && hasTarget <= tc->maxtargets)
+                    {
+                        int maxA = hasTarget-tc->maxtargets;
+                        shouldPlayPercentage += (10*maxA);//reduce the chances of playing multitarget if we are not above max targets.
+                    }
+                    if(tc->maxtargets == TargetChooser::UNLITMITED_TARGETS)
+                    {
+                        shouldPlayPercentage = 40 + (10*hasTarget);
+                        int totalCost = pMana->getConvertedCost()-currentCost;
+                        int totalTargets = hasTarget+hasTarget;
+                        if(hasX &&  totalCost <= totalTargets)// {x} spell with unlimited targeting tend to divide damage, we want atleast 1 damage per target before casting.
+                        {
+                            shouldPlayPercentage = 0;
+                        }
+                    }
+                    SAFE_DELETE(tc);
+                }
+                else
+                {
+                    // Refactor to not check effect of lands since it always returned BAKA_EFFECT_DONTKNOW
+                    // If it is a land, play it
+                    if (card->isLand())
+                    {
+                        shouldPlayPercentage = 90;
+                    }                
+                    else {
+                        int shouldPlay = effectBadOrGood(card);
+                        if (shouldPlay == BAKA_EFFECT_GOOD)    {
+                            shouldPlayPercentage = 90;
+                        }                
+                        else if (BAKA_EFFECT_DONTKNOW == shouldPlay) {
+                            //previously shouldPlayPercentage = 80;, I found this a little to high
+                            //for cards which AI had no idea how to use.
+                            shouldPlayPercentage = 60;
+                        }                
+                        else {
+                            // shouldPlay == baka_effect_bad giving it a 10 for odd ball lottery chance.
+                            shouldPlayPercentage = 10;
+                        }
+                    }
+                }
+                //Reduce the chances of playing a spell with X cost if available mana is low
+                if (hasX)
+                {
+                    int xDiff = pMana->getConvertedCost() - currentCost;
+                    if (xDiff < 0)
+                        xDiff = 0;
+                    shouldPlayPercentage = shouldPlayPercentage - static_cast<int> ((shouldPlayPercentage * 1.9f) / (1 + xDiff));
+                }
+                if(card->getManaCost() && card->getManaCost()->getKicker() && card->getManaCost()->getKicker()->isMulti)
+                {
+                    shouldPlayPercentage = 10* size_t(gotPayments.size())/int(1+(card->getManaCost()->getConvertedCost()+card->getManaCost()->getKicker()->getConvertedCost()));
+                    if(shouldPlayPercentage <= 10)
+                        shouldPlayPercentage = shouldPlayPercentage/3;
+                }
+                DebugTrace("Should I play from grave " << (card ? card->name : "Nothing" ) << "?" << endl 
+                    <<"shouldPlayPercentage = "<< shouldPlayPercentage);
+                if(card->getRestrictions().size())
+                {
+                    AbilityFactory af(observer);
+                    int canPlay = af.parseCastRestrictions(card,card->controller(),card->getRestrictions());
+                    if(!canPlay)
+                        continue;
+                }
+                int randomChance = randomGenerator.random();
+                int chance = randomChance % 100;
+                if (chance > shouldPlayPercentage)
                     continue;
+                if(shouldPlayPercentage <= 10)
+                {
+                    DebugTrace("shouldPlayPercentage was less than 10 this was a lottery roll on RNG");
+                }
+                nextCardToPlay = card;
+                maxCost = currentCost;
+                if (hasX)
+                    maxCost = pMana->getConvertedCost();
             }
-            int randomChance = randomGenerator.random();
-            int chance = randomChance % 100;
-            if (chance > shouldPlayPercentage)
-                continue;
-            if(shouldPlayPercentage <= 10)
-            {
-                DebugTrace("shouldPlayPercentage was less than 10 this was a lottery roll on RNG");
-            }
-            nextCardToPlay = card;
-            maxCost = currentCost;
-            if (hasX)
-                maxCost = pMana->getConvertedCost();
         }
     }
     //canplayfromexile
-    while ((card = cd.nextmatch(game->exile, card))&& card->has(Constants::CANPLAYFROMEXILE))
+    card = NULL; // fixed bug causing AI never play a card there are one or more cards in graveyard or other zones...
+    while ((card = cd.nextmatch(game->exile, card)) && card->has(Constants::CANPLAYFROMEXILE))
     {
         if (!CanHandleCost(card->getManaCost(),card))
             continue;
@@ -2718,8 +2992,8 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                     continue;
                 nextCardToPlay = card;
                 gotPayments.clear();
-                if((!pMana->canAfford(nextCardToPlay->getManaCost()) || nextCardToPlay->getManaCost()->getKicker()))
-                    gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost());
+                if((!pMana->canAfford(nextCardToPlay->getManaCost(),0) || nextCardToPlay->getManaCost()->getKicker()))
+                    gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
                 return activateCombo();
             }
             else
@@ -2731,10 +3005,10 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
         int currentCost = card->getManaCost()->getConvertedCost();
         int hasX = card->getManaCost()->hasX();
         gotPayments.clear();
-        if((!pMana->canAfford(card->getManaCost()) || card->getManaCost()->getKicker()))
-            gotPayments = canPayMana(card,card->getManaCost());
+        if((!pMana->canAfford(card->getManaCost(),0) || card->getManaCost()->getKicker()))
+            gotPayments = canPayMana(card,card->getManaCost(),card->has(Constants::ANYTYPEOFMANA));
             //for preformence reason we only look for specific mana if the payment couldn't be made with pmana.
-        if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(card->getManaCost())))
+        if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(card->getManaCost(),card->has(Constants::ANYTYPEOFMANA))))
         {
             TargetChooserFactory tcf(observer);
             TargetChooser * tc = tcf.createTargetChooser(card);
@@ -2774,27 +3048,27 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
             }
             else
             {
-                int shouldPlay = effectBadOrGood(card);
-                if (shouldPlay == BAKA_EFFECT_GOOD)
+                // Refactor to not check effect of lands since it always returned BAKA_EFFECT_DONTKNOW
+                // If it is a land, play it
+                if (card->isLand())
                 {
                     shouldPlayPercentage = 90;
+                }                
+                else {
+                    int shouldPlay = effectBadOrGood(card);
+                    if (shouldPlay == BAKA_EFFECT_GOOD)    {
+                        shouldPlayPercentage = 90;
+                    }                
+                    else if (BAKA_EFFECT_DONTKNOW == shouldPlay) {
+                        //previously shouldPlayPercentage = 80;, I found this a little to high
+                        //for cards which AI had no idea how to use.
+                        shouldPlayPercentage = 60;
+                    }                
+                    else {
+                        // shouldPlay == baka_effect_bad giving it a 10 for odd ball lottery chance.
+                        shouldPlayPercentage = 10;
+                    }
                 }
-                else if (BAKA_EFFECT_DONTKNOW == shouldPlay)
-                {
-                    //previously shouldPlayPercentage = 80;, I found this a little to high
-                    //for cards which AI had no idea how to use.
-                    shouldPlayPercentage = 60;
-                }
-                else if (card->isLand())
-                {
-                    shouldPlayPercentage = 90;
-                }
-                else
-                {
-                    // shouldPlay == baka_effect_bad giving it a 1 for odd ball lottery chance.
-                    shouldPlayPercentage = 1;
-                }
-
             }
             //Reduce the chances of playing a spell with X cost if available mana is low
             if (hasX)
@@ -2810,7 +3084,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                 if(shouldPlayPercentage <= 10)
                     shouldPlayPercentage = shouldPlayPercentage/3;
             }
-            DebugTrace("Should I play " << (card ? card->name : "Nothing" ) << "?" << endl 
+            DebugTrace("Should I play from exile" << (card ? card->name : "Nothing" ) << "?" << endl 
                 <<"shouldPlayPercentage = "<< shouldPlayPercentage);
             if(card->getRestrictions().size())
             {
@@ -2833,33 +3107,17 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                 maxCost = pMana->getConvertedCost();
         }
     }
-    while ((card = cd.nextmatch(game->hand, card)))
+    //play from commandzone
+    card = NULL; // fixed bug causing AI never play a card there are one or more cards in exile or other zones...
+    while ((card = cd.nextmatch(game->commandzone, card)))
     {
         if (!CanHandleCost(card->getManaCost(),card))
             continue;
 
-        if (card->hasType(Subtypes::TYPE_LAND))
-        {
-            if (game->playRestrictions->canPutIntoZone(card, game->inPlay) == PlayRestriction::CANT_PLAY)
-                continue;
-        }
-        else
-        {
-            if (game->playRestrictions->canPutIntoZone(card, game->stack) == PlayRestriction::CANT_PLAY)
-                continue;
-        }
-
+        if (game->playRestrictions->canPutIntoZone(card, game->stack) == PlayRestriction::CANT_PLAY)
+            continue;
+        
         if (card->hasType(Subtypes::TYPE_LEGENDARY) && game->inPlay->findByName(card->name))
-            continue;
-        //glimmervoid alias to avoid ai stalling the game as the hint combo is stuck
-        //next card to play was galvanic blast but on activate combo it clashes with glimmervoid...
-        if ((card->alias == 48132) && (card->controller()->game->inPlay->countByType("artifact") < 1))
-            continue;
-
-        if (card->has(Constants::TREASON) && observer->getCurrentGamePhase() != MTG_PHASE_FIRSTMAIN)
-            continue;
-
-        if (card->hasType(Subtypes::TYPE_PLANESWALKER) && card->types.size() > 0 && game->inPlay->hasTypeSpecificInt(Subtypes::TYPE_PLANESWALKER,card->types[1]))
             continue;
         
         if(hints && hints->HintSaysItsForCombo(observer,card))
@@ -2872,8 +3130,8 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                     continue;
                 nextCardToPlay = card;
                 gotPayments.clear();
-                if((!pMana->canAfford(nextCardToPlay->getManaCost()) || nextCardToPlay->getManaCost()->getKicker()))
-                    gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost());
+                if((!pMana->canAfford(nextCardToPlay->getManaCost(),0) || nextCardToPlay->getManaCost()->getKicker()))
+                    gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
                 return activateCombo();
             }
             else
@@ -2885,10 +3143,10 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
         int currentCost = card->getManaCost()->getConvertedCost();
         int hasX = card->getManaCost()->hasX();
         gotPayments.clear();
-        if((!pMana->canAfford(card->getManaCost()) || card->getManaCost()->getKicker()))
-            gotPayments = canPayMana(card,card->getManaCost());
+        if((!pMana->canAfford(card->getManaCost(),0) || card->getManaCost()->getKicker()))
+            gotPayments = canPayMana(card,card->getManaCost(),card->has(Constants::ANYTYPEOFMANA));
             //for preformence reason we only look for specific mana if the payment couldn't be made with pmana.
-        if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(card->getManaCost())))
+        if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(card->getManaCost(),card->has(Constants::ANYTYPEOFMANA))))
         {
             TargetChooserFactory tcf(observer);
             TargetChooser * tc = tcf.createTargetChooser(card);
@@ -2929,26 +3187,18 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
             else
             {
                 int shouldPlay = effectBadOrGood(card);
-                if (shouldPlay == BAKA_EFFECT_GOOD)
-                {
+                if (shouldPlay == BAKA_EFFECT_GOOD)    {
                     shouldPlayPercentage = 90;
-                }
-                else if (BAKA_EFFECT_DONTKNOW == shouldPlay)
-                {
+                }                
+                else if (BAKA_EFFECT_DONTKNOW == shouldPlay) {
                     //previously shouldPlayPercentage = 80;, I found this a little to high
                     //for cards which AI had no idea how to use.
                     shouldPlayPercentage = 60;
+                }                
+                else {
+                    // shouldPlay == baka_effect_bad giving it a 10 for odd ball lottery chance.
+                    shouldPlayPercentage = 10;
                 }
-                else if (card->isLand())
-                {
-                    shouldPlayPercentage = 90;
-                }
-                else
-                {
-                    // shouldPlay == baka_effect_bad giving it a 1 for odd ball lottery chance.
-                    shouldPlayPercentage = 1;
-                }
-
             }
             //Reduce the chances of playing a spell with X cost if available mana is low
             if (hasX)
@@ -2964,7 +3214,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                 if(shouldPlayPercentage <= 10)
                     shouldPlayPercentage = shouldPlayPercentage/3;
             }
-            DebugTrace("Should I play " << (card ? card->name : "Nothing" ) << "?" << endl 
+            DebugTrace("Should I play from commandzone" << (card ? card->name : "Nothing" ) << "?" << endl 
                 <<"shouldPlayPercentage = "<< shouldPlayPercentage);
             if(card->getRestrictions().size())
             {
@@ -2982,6 +3232,224 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                 DebugTrace("shouldPlayPercentage was less than 10 this was a lottery roll on RNG");
             }
             nextCardToPlay = card;
+            maxCost = currentCost;
+            if (hasX)
+                maxCost = pMana->getConvertedCost();
+        }
+    }
+    //play from hand
+    card = NULL; // fixed bug causing AI never play a card there are one or more cards in exile or other zones...
+    while ((card = cd.nextmatch(game->hand, card)))
+    {
+        int localpayAlternative = NONE;
+
+        if (!CanHandleCost(card->getManaCost(),card))
+            continue;
+
+        if (card->hasType(Subtypes::TYPE_LAND))
+        {
+            if (game->playRestrictions->canPutIntoZone(card, game->inPlay) == PlayRestriction::CANT_PLAY)
+                continue;
+        }
+        else
+        {
+            if (game->playRestrictions->canPutIntoZone(card, game->stack) == PlayRestriction::CANT_PLAY)
+                continue;
+        }
+
+        if (card->hasType(Subtypes::TYPE_LEGENDARY) && game->inPlay->findByName(card->name))
+            continue;
+        //glimmervoid alias to avoid ai stalling the game as the hint combo is stuck
+        //next card to play was galvanic blast but on activate combo it clashes with glimmervoid...
+        if ((card->alias == 48132) && (card->controller()->game->inPlay->countByType("artifact") < 1))
+            continue;
+
+        if (card->has(Constants::TREASON) && observer->getCurrentGamePhase() != MTG_PHASE_FIRSTMAIN)
+            continue;
+
+        //PLaneswalkers are now legendary so this is redundant
+        //if (card->hasType(Subtypes::TYPE_PLANESWALKER) && card->types.size() > 0 && game->inPlay->hasTypeSpecificInt(Subtypes::TYPE_PLANESWALKER,card->types[1]))
+            //continue;
+        
+        if(hints && hints->HintSaysItsForCombo(observer,card))
+        {
+            if(hints->canWeCombo(observer,card,this))
+            {
+                AbilityFactory af(observer);
+                int canPlay = af.parseCastRestrictions(card,card->controller(),card->getRestrictions());
+                if(!canPlay)
+                    continue;
+                nextCardToPlay = card;
+                gotPayments.clear();
+                if((!pMana->canAfford(nextCardToPlay->getManaCost(),0) || nextCardToPlay->getManaCost()->getKicker()))
+                    gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
+                return activateCombo();
+            }
+            else
+            {
+                nextCardToPlay = NULL;
+                    continue;
+            }
+        }
+        int currentCost = card->getManaCost()->getConvertedCost();
+        int hasX = card->getManaCost()->hasX();
+        gotPayments.clear();
+        ManaCost* manaToPay = card->getManaCost();
+        if((!pMana->canAfford(card->getManaCost(),0) || card->getManaCost()->getKicker()))
+            gotPayments = canPayMana(card,card->getManaCost(),card->has(Constants::ANYTYPEOFMANA));
+        bool hasConvoke = false; //Fix a crash when AI try to pay convoke cost.
+        bool hasOffering = card->basicAbilities[Constants::OFFERING]; //Fix a hang when AI try to pay emerge cost.
+        bool hasDelve = false; //Fix a hang when AI try to pay delve cost.
+        if(card->getManaCost()->getAlternative() && !gotPayments.size() && !pMana->canAfford(card->getManaCost(),0) && !card->getManaCost()->getKicker()){ //Now AI can cast cards using alternative cost.
+            ManaCost * extra = card->getManaCost()->getAlternative(); 
+            if(extra->extraCosts){
+                for(unsigned int i = 0; i < extra->extraCosts->costs.size() && !hasConvoke && !hasOffering && !hasDelve; i++){
+                    if(dynamic_cast<Convoke*> (extra->extraCosts->costs[i]))
+                        hasConvoke = true;
+                    else if(dynamic_cast<Offering*> (extra->extraCosts->costs[i]))
+                        hasOffering = true;
+                    else if(dynamic_cast<Delve*> (extra->extraCosts->costs[i]))
+                        hasDelve = true;
+                }
+            }
+            if(!hasOffering && !hasConvoke && !hasDelve){
+                localpayAlternative = OTHER;
+                manaToPay = card->getManaCost()->getAlternative();
+                if(!pMana->canAfford(manaToPay,0))
+                    gotPayments = canPayMana(card,card->getManaCost()->getAlternative(),card->has(Constants::ANYTYPEOFMANA));
+            }
+        }
+        if(card->getManaCost()->getMorph() && !gotPayments.size() && !pMana->canAfford(card->getManaCost(),0) && !card->getManaCost()->getKicker() && !card->getManaCost()->getAlternative()){ //Now AI can cast cards using morph cost.
+            localpayAlternative = MORPH;
+            manaToPay = card->getManaCost()->getMorph();
+            if(!pMana->canAfford(manaToPay,0))
+                gotPayments = canPayMana(card,card->getManaCost()->getMorph(),card->has(Constants::ANYTYPEOFMANA));
+        }
+        //for preformence reason we only look for specific mana if the payment couldn't be made with pmana.
+        if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(manaToPay,card->has(Constants::ANYTYPEOFMANA))))
+        {
+            TargetChooserFactory tcf(observer);
+            TargetChooser * tc = tcf.createTargetChooser(card);
+            int shouldPlayPercentage = 0;
+            if (tc)
+            {
+                int hasTarget = chooseTarget(tc,NULL,NULL,true);
+                if(
+                    (tc->maxtargets > hasTarget && tc->maxtargets > 1 && !tc->targetMin && tc->maxtargets != TargetChooser::UNLITMITED_TARGETS) ||//target=<3>creature
+                    (tc->maxtargets == TargetChooser::UNLITMITED_TARGETS && hasTarget < 1)//target=creatures
+                    )
+                    hasTarget = 0;
+                if (!hasTarget)//single target covered here.
+                {
+                    SAFE_DELETE(tc);
+                    continue;
+                }
+                shouldPlayPercentage = 90;
+                if(tc->targetMin && hasTarget < tc->maxtargets)
+                    shouldPlayPercentage = 0;
+                if(tc->maxtargets > 1 && tc->maxtargets != TargetChooser::UNLITMITED_TARGETS && hasTarget <= tc->maxtargets)
+                {
+                    int maxA = hasTarget-tc->maxtargets;
+                    shouldPlayPercentage += (10*maxA);//reduce the chances of playing multitarget if we are not above max targets.
+                }
+                if(tc->maxtargets == TargetChooser::UNLITMITED_TARGETS)
+                {
+                    shouldPlayPercentage = 40 + (10*hasTarget);
+                    int totalCost = pMana->getConvertedCost()-currentCost;
+                    int totalTargets = hasTarget+hasTarget;
+                    if(hasX &&  totalCost <= totalTargets)// {x} spell with unlimited targeting tend to divide damage, we want atleast 1 damage per target before casting.
+                    {
+                        shouldPlayPercentage = 0;
+                    }
+                }
+                SAFE_DELETE(tc);
+            }
+            else
+            {
+                // Refactor to not check effect of lands since it always returned BAKA_EFFECT_DONTKNOW
+                // If it is a land, play it
+                if (card->isLand())
+                {
+                    shouldPlayPercentage = 90;
+                }                
+                else {
+                    int shouldPlay = effectBadOrGood(card);
+                    if (shouldPlay == BAKA_EFFECT_GOOD)    {
+                        shouldPlayPercentage = 90;
+                    }                
+                    else if (BAKA_EFFECT_DONTKNOW == shouldPlay) {
+                        //previously shouldPlayPercentage = 80;, I found this a little to high
+                        //for cards which AI had no idea how to use.
+                        shouldPlayPercentage = 60;
+                    }                
+                    else {
+                        // shouldPlay == baka_effect_bad giving it a 10 for odd ball lottery chance.
+                        shouldPlayPercentage = 10;
+                    }
+                }
+            }
+            //Reduce the chances of playing a spell with X cost if available mana is low
+            if (hasX)
+            {
+                int xDiff = pMana->getConvertedCost() - currentCost;
+                if (xDiff < 0)
+                    xDiff = 0;
+                shouldPlayPercentage = shouldPlayPercentage - static_cast<int> ((shouldPlayPercentage * 1.9f) / (1 + xDiff));
+            }
+            if(card->getManaCost() && card->getManaCost()->getKicker() && card->getManaCost()->getKicker()->isMulti)
+            {
+                shouldPlayPercentage = 10* size_t(gotPayments.size())/int(1+(card->getManaCost()->getConvertedCost()+card->getManaCost()->getKicker()->getConvertedCost()));
+                if(shouldPlayPercentage <= 10)
+                    shouldPlayPercentage = shouldPlayPercentage/3;
+            }
+            DebugTrace("Should I play from hand" << (card ? card->name : "Nothing" ) << "?" << endl 
+                <<"shouldPlayPercentage = "<< shouldPlayPercentage);
+            if(localpayAlternative != NONE){
+                if(card->getOtherRestrictions().size())
+                {
+                    AbilityFactory af(observer);
+                    int canPlay = af.parseCastRestrictions(card,card->controller(),card->getOtherRestrictions());
+                    if(!canPlay){ 
+                        localpayAlternative = NONE;
+                        canPlay = true;
+                        if(card->getRestrictions().size())
+                            canPlay = af.parseCastRestrictions(card,card->controller(),card->getRestrictions()); //Check if card can be casted at least with normal cost.
+                    }
+                    if(!canPlay)
+                        continue;
+                }
+            } else{
+                if(card->getRestrictions().size())
+                {
+                    AbilityFactory af(observer);
+                    int canPlay = af.parseCastRestrictions(card,card->controller(),card->getRestrictions());
+                    if(!canPlay && (card->getManaCost()->getAlternative() || card->getManaCost()->getMorph())){
+                        canPlay = true;
+                        if(card->getOtherRestrictions().size())
+                            canPlay = af.parseCastRestrictions(card,card->controller(),card->getOtherRestrictions()); //Check if card can be casted at least with alternative costs (e.g. other or morph).
+                        if(canPlay) {
+                            if(card->getManaCost()->getAlternative() && !hasOffering && !hasConvoke && !hasDelve)
+                                localpayAlternative = OTHER;
+                            else if(card->getManaCost()->getMorph())
+                                localpayAlternative = MORPH;
+                            else 
+                                canPlay = false;
+                        }
+                    }
+                    if(!canPlay)
+                        continue;
+                }
+            }
+            int randomChance = randomGenerator.random();
+            int chance = randomChance % 100;
+            if (chance > shouldPlayPercentage)
+                continue;
+            if(shouldPlayPercentage <= 10)
+            {
+                DebugTrace("shouldPlayPercentage was less than 10 this was a lottery roll on RNG");
+            }
+            nextCardToPlay = card;
+            payAlternative = localpayAlternative;
             maxCost = currentCost;
             if (hasX)
                 maxCost = pMana->getConvertedCost();
@@ -2989,8 +3457,24 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     }
     if(nextCardToPlay)
     {
-        if(!pMana->canAfford(nextCardToPlay->getManaCost()) || nextCardToPlay->getManaCost()->getKicker())
-            gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost());
+        if(game->graveyard->hasCard(nextCardToPlay) && !nextCardToPlay->has(Constants::CANPLAYFROMGRAVEYARD) && !nextCardToPlay->has(Constants::TEMPFLASHBACK)){ //Now AI can play cards with flashback and retrace costs.
+            if(nextCardToPlay->getManaCost()->getFlashback()){
+                if(!pMana->canAfford(nextCardToPlay->getManaCost()->getFlashback(),0))
+                    gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost()->getFlashback(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
+            } else if(nextCardToPlay->getManaCost()->getRetrace()){
+                if(!pMana->canAfford(nextCardToPlay->getManaCost()->getRetrace(),0))
+                    gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost()->getRetrace(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
+            }
+        } else if(payAlternative == OTHER){
+            if(!pMana->canAfford(nextCardToPlay->getManaCost()->getAlternative(),0)) // Now AI can cast cards using alternative cost.
+                gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost()->getAlternative(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
+        } else if(payAlternative == MORPH){
+            if(!pMana->canAfford(nextCardToPlay->getManaCost()->getMorph(),0)) // Now AI can cast cards using morph cost.
+                gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost()->getMorph(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
+        } else {
+            if(!pMana->canAfford(nextCardToPlay->getManaCost(),0) || nextCardToPlay->getManaCost()->getKicker())
+                gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost(),nextCardToPlay->has(Constants::ANYTYPEOFMANA));
+        }
         DebugTrace(" AI wants to play card." << endl
             << "- Next card to play: " << (nextCardToPlay ? nextCardToPlay->name : "None" ) << endl );
 
@@ -3026,7 +3510,7 @@ MTGCardInstance * AIPlayerBaka::activateCombo()
         }
         SAFE_DELETE(hintTc);
     }
-    if(payTheManaCost(totalCost,nextCardToPlay,gotPayments))
+    if(payTheManaCost(totalCost,0,nextCardToPlay,gotPayments)) //Fix crash when nextCardToPlay is null.
     {
         if(comboCards.size())
         {
@@ -3122,7 +3606,10 @@ int AIPlayerBaka::computeActions()
         //am im not interupting my own spell, or the stack contains nothing.
     {
         bool ipotential = false;
-        if(p->game->hand->hasType("instant") || p->game->hand->hasAbility(Constants::FLASH))
+        if(p->game->hand->hasType("instant") || p->game->hand->hasAbility(Constants::FLASH) || p->game->hand->hasAbility(Constants::ASFLASH) ||
+            p->game->graveyard->hasType("instant") || p->game->graveyard->hasAbility(Constants::FLASH) || p->game->graveyard->hasAbility(Constants::ASFLASH) ||
+            p->game->exile->hasType("instant") || p->game->exile->hasAbility(Constants::FLASH) || p->game->exile->hasAbility(Constants::ASFLASH) || 
+            p->game->commandzone->hasAbility(Constants::FLASH) || p->game->commandzone->hasAbility(Constants::ASFLASH)) //Now AI will not search just for instant cards.
         {
 #ifndef AI_CHANGE_TESTING
             findingCard = true;
@@ -3136,8 +3623,30 @@ int AIPlayerBaka::computeActions()
             }
             if (!nextCardToPlay)
             {
-                nextCardToPlay = FindCardToPlay(icurrentMana, "instant");
-                if (game->playRestrictions->canPutIntoZone(nextCardToPlay, game->stack) == PlayRestriction::CANT_PLAY)
+                nextCardToPlay = FindCardToPlay(icurrentMana, ""); //Now AI will not search just for instant cards.
+                bool canPlay = false;
+                if(nextCardToPlay && p->game->hand->hasCard(nextCardToPlay)){
+                    if(nextCardToPlay->hasType(Subtypes::TYPE_INSTANT) || nextCardToPlay->has(Constants::FLASH) || nextCardToPlay->has(Constants::ASFLASH))
+                        canPlay = true;
+                } else if(nextCardToPlay && p->game->graveyard->hasCard(nextCardToPlay)){
+                    if((nextCardToPlay->hasType(Subtypes::TYPE_INSTANT) || nextCardToPlay->has(Constants::FLASH) || nextCardToPlay->has(Constants::ASFLASH)) && nextCardToPlay->has(Constants::CANPLAYFROMGRAVEYARD))
+                        canPlay = true;
+                    else if((nextCardToPlay->hasType(Subtypes::TYPE_INSTANT) || nextCardToPlay->has(Constants::FLASH) || nextCardToPlay->has(Constants::ASFLASH)) && nextCardToPlay->has(Constants::TEMPFLASHBACK))
+                        canPlay = true;
+                    else if((nextCardToPlay->hasType(Subtypes::TYPE_INSTANT) || nextCardToPlay->has(Constants::FLASH) || nextCardToPlay->has(Constants::ASFLASH)) && nextCardToPlay->getManaCost()->getFlashback())
+                        canPlay = true;
+                    else if((nextCardToPlay->hasType(Subtypes::TYPE_INSTANT) || nextCardToPlay->has(Constants::FLASH) || nextCardToPlay->has(Constants::ASFLASH)) && nextCardToPlay->getManaCost()->getRetrace())
+                        canPlay = true;
+                } else if(nextCardToPlay && p->game->exile->hasCard(nextCardToPlay)){
+                    if((nextCardToPlay->hasType(Subtypes::TYPE_INSTANT) || nextCardToPlay->has(Constants::FLASH) || nextCardToPlay->has(Constants::ASFLASH)) && nextCardToPlay->has(Constants::CANPLAYFROMEXILE))
+                        canPlay = true;
+                } else if(nextCardToPlay && p->game->commandzone->hasCard(nextCardToPlay)){
+                    if(nextCardToPlay->has(Constants::FLASH) || nextCardToPlay->has(Constants::ASFLASH))
+                        canPlay = true;
+                }
+                if(!canPlay)
+                    nextCardToPlay = NULL;
+                if (nextCardToPlay && game->playRestrictions->canPutIntoZone(nextCardToPlay, game->stack) == PlayRestriction::CANT_PLAY)
                     nextCardToPlay = NULL;
             }
             SAFE_DELETE (icurrentMana);
@@ -3150,11 +3659,43 @@ int AIPlayerBaka::computeActions()
         {
             if (ipotential)
             {
-                if(payTheManaCost(nextCardToPlay->getManaCost(),nextCardToPlay,gotPayments))
-                {
-                    AIAction * a = NEW AIAction(this, nextCardToPlay);
-                    clickstream.push(a);
-                    gotPayments.clear();
+                if(game->graveyard->hasCard(nextCardToPlay) && !nextCardToPlay->has(Constants::CANPLAYFROMGRAVEYARD) && !nextCardToPlay->has(Constants::TEMPFLASHBACK)){ //Now AI can play cards with flashback and retrace costs.
+                    if(nextCardToPlay->getManaCost()->getFlashback()){
+                        if(payTheManaCost(nextCardToPlay->getManaCost()->getFlashback(),nextCardToPlay->has(Constants::ANYTYPEOFMANA),nextCardToPlay,gotPayments))
+                        {
+                            AIAction * a = NEW AIAction(this, nextCardToPlay);
+                            clickstream.push(a);
+                            gotPayments.clear();
+                        }
+                    } else if(nextCardToPlay->getManaCost()->getRetrace()){
+                        if(payTheManaCost(nextCardToPlay->getManaCost()->getRetrace(),nextCardToPlay->has(Constants::ANYTYPEOFMANA),nextCardToPlay,gotPayments))
+                        {
+                            AIAction * a = NEW AIAction(this, nextCardToPlay);
+                            clickstream.push(a);
+                            gotPayments.clear();
+                        }
+                    }
+                } else if(payAlternative == OTHER){ // Now AI can cast cards using other cost.
+                    if(payTheManaCost(nextCardToPlay->getManaCost()->getAlternative(),nextCardToPlay->has(Constants::ANYTYPEOFMANA),nextCardToPlay,gotPayments))
+                    {
+                        AIAction * a = NEW AIAction(this, nextCardToPlay);
+                        clickstream.push(a);
+                        gotPayments.clear();
+                    }
+                } else if(payAlternative == MORPH){ // Now AI can cast cards using morph cost.
+                    if(payTheManaCost(nextCardToPlay->getManaCost()->getMorph(),nextCardToPlay->has(Constants::ANYTYPEOFMANA),nextCardToPlay,gotPayments))
+                    {
+                        AIAction * a = NEW AIAction(this, nextCardToPlay);
+                        clickstream.push(a);
+                        gotPayments.clear();
+                    }
+                } else {
+                    if(payTheManaCost(nextCardToPlay->getManaCost(),nextCardToPlay->has(Constants::ANYTYPEOFMANA),nextCardToPlay,gotPayments))
+                    {
+                        AIAction * a = NEW AIAction(this, nextCardToPlay);
+                        clickstream.push(a);
+                        gotPayments.clear();
+                    }
                 }
             }
 #ifndef AI_CHANGE_TESTING
@@ -3229,7 +3770,7 @@ int AIPlayerBaka::computeActions()
                         CardDescriptor cd;
                         if (game->hand->hasAbility(Constants::PAYZERO))
                         {
-                            //Attempt to put free cards into play
+                            //Attempt to put free cards into play from hand
                             cd.init();
                             cd.SetExclusionColor(Constants::MTG_COLOR_LAND);
                             MTGCardInstance *freecard = cd.match(game->hand);
@@ -3244,7 +3785,7 @@ int AIPlayerBaka::computeActions()
                         }
                         if (game->graveyard->hasAbility(Constants::PAYZERO) && game->graveyard->hasAbility(Constants::CANPLAYFROMGRAVEYARD))
                         {
-                            //Attempt to put free cards into play
+                            //Attempt to put free cards into play from graveyard
                             cd.init();
                             cd.SetExclusionColor(Constants::MTG_COLOR_LAND);
                             MTGCardInstance *freecard = cd.match(game->graveyard);
@@ -3259,12 +3800,27 @@ int AIPlayerBaka::computeActions()
                         }
                         if (game->exile->hasAbility(Constants::PAYZERO) && game->exile->hasAbility(Constants::CANPLAYFROMEXILE))
                         {
-                            //Attempt to put free cards into play
+                            //Attempt to put free cards into play from exile
                             cd.init();
                             cd.SetExclusionColor(Constants::MTG_COLOR_LAND);
                             MTGCardInstance *freecard = cd.match(game->exile);
                             int canCastCard = game->playRestrictions->canPutIntoZone(freecard, game->inPlay);
                             if (freecard && (canCastCard == PlayRestriction::CAN_PLAY) && freecard->has(Constants::PAYZERO) && freecard->has(Constants::CANPLAYFROMEXILE) && (freecard->getIncreasedManaCost()->getConvertedCost() < 1) && (!freecard->isCDA))
+                            {
+                                MTGAbility * castFreeCard = observer->mLayers->actionLayer()->getAbility(MTGAbility::PAYZERO_COST);
+                                AIAction * aa = NEW AIAction(this, castFreeCard, freecard); //TODO putinplay action
+                                clickstream.push(aa);
+                                break;
+                            }
+                        }
+                        if (game->commandzone->hasAbility(Constants::PAYZERO))
+                        {
+                            //Attempt to put free cards into play from commandzone
+                            cd.init();
+                            cd.SetExclusionColor(Constants::MTG_COLOR_LAND);
+                            MTGCardInstance *freecard = cd.match(game->commandzone);
+                            int canCastCard = game->playRestrictions->canPutIntoZone(freecard, game->inPlay);
+                            if (freecard && (canCastCard == PlayRestriction::CAN_PLAY) && freecard->has(Constants::PAYZERO) && (freecard->getIncreasedManaCost()->getConvertedCost() < 1) && (!freecard->isCDA))
                             {
                                 MTGAbility * castFreeCard = observer->mLayers->actionLayer()->getAbility(MTGAbility::PAYZERO_COST);
                                 AIAction * aa = NEW AIAction(this, castFreeCard, freecard); //TODO putinplay action
@@ -3284,7 +3840,7 @@ int AIPlayerBaka::computeActions()
                         //this does not teach it to use manaproducer more effectively, it simply allow it to 
                         //use the manaproducers it does understand better on sunburst by force.
                         vector<MTGAbility*>checking = canPaySunBurst(nextCardToPlay->getManaCost());
-                        if(payTheManaCost(nextCardToPlay->getManaCost(),NULL,checking))
+                        if(payTheManaCost(nextCardToPlay->getManaCost(),0,NULL,checking))
                         {
                             AIAction * a = NEW AIAction(this, nextCardToPlay);
                             clickstream.push(a);
@@ -3294,11 +3850,43 @@ int AIPlayerBaka::computeActions()
                         gotPayments.clear();//if any.
                         return 1;
                     }
-                    if(payTheManaCost(nextCardToPlay->getManaCost(),nextCardToPlay,gotPayments))
-                    {
-                        AIAction * a = NEW AIAction(this, nextCardToPlay);
-                        clickstream.push(a);
-                        gotPayments.clear();
+                    if(game->graveyard->hasCard(nextCardToPlay) && !nextCardToPlay->has(Constants::CANPLAYFROMGRAVEYARD) && !nextCardToPlay->has(Constants::TEMPFLASHBACK)){ //Now AI can play cards with flashback and retrace costs.
+                        if(nextCardToPlay->getManaCost()->getFlashback()){
+                            if(payTheManaCost(nextCardToPlay->getManaCost()->getFlashback(),nextCardToPlay->has(Constants::ANYTYPEOFMANA),nextCardToPlay,gotPayments))
+                            {
+                                AIAction * a = NEW AIAction(this, nextCardToPlay);
+                                clickstream.push(a);
+                                gotPayments.clear();
+                            }
+                        } else if(nextCardToPlay->getManaCost()->getRetrace()){
+                            if(payTheManaCost(nextCardToPlay->getManaCost()->getRetrace(),nextCardToPlay->has(Constants::ANYTYPEOFMANA),nextCardToPlay,gotPayments))
+                            {
+                                AIAction * a = NEW AIAction(this, nextCardToPlay);
+                                clickstream.push(a);
+                                gotPayments.clear();
+                            }
+                        }
+                    } else if(payAlternative == OTHER){ // Now AI can cast cards using other cost.
+                        if(payTheManaCost(nextCardToPlay->getManaCost()->getAlternative(),nextCardToPlay->has(Constants::ANYTYPEOFMANA),nextCardToPlay,gotPayments))
+                        {
+                            AIAction * a = NEW AIAction(this, nextCardToPlay);
+                            clickstream.push(a);
+                            gotPayments.clear();
+                        }
+                    } else if(payAlternative == MORPH){ // Now AI can cast cards using morph cost.
+                        if(payTheManaCost(nextCardToPlay->getManaCost()->getMorph(),nextCardToPlay->has(Constants::ANYTYPEOFMANA),nextCardToPlay,gotPayments))
+                        {
+                            AIAction * a = NEW AIAction(this, nextCardToPlay);
+                            clickstream.push(a);
+                            gotPayments.clear();
+                        }
+                    } else {
+                        if(payTheManaCost(nextCardToPlay->getManaCost(),nextCardToPlay->has(Constants::ANYTYPEOFMANA),nextCardToPlay,gotPayments))
+                        {
+                            AIAction * a = NEW AIAction(this, nextCardToPlay);
+                            clickstream.push(a);
+                            gotPayments.clear();
+                        }
                     }
                     return 1;
                 }
@@ -3391,12 +3979,17 @@ int AIPlayerBaka::getCreaturesInfo(Player * player, int neededInfo, int untapMod
 
 int AIPlayerBaka::chooseAttackers()
 {
+     int myCreatures = getCreaturesInfo(this, INFO_NBCREATURES, -1, 1);
+     if (myCreatures < 1)
+         return 0;
     //Attack with all creatures
     //How much damage can the other player do during his next Attack ?
     int opponentForce = getCreaturesInfo(opponent(), INFO_CREATURESPOWER);
     int opponentCreatures = getCreaturesInfo(opponent(), INFO_NBCREATURES);
     int myForce = getCreaturesInfo(this, INFO_CREATURESPOWER, -1, 1);
-    int myCreatures = getCreaturesInfo(this, INFO_NBCREATURES, -1, 1);
+     if(opponent()->life < 5)
+         agressivity += 31;
+
     bool attack = ((myCreatures > opponentCreatures) || (myForce > opponentForce) || (myForce > 2 * opponent()->life));
     if (agressivity > 80 && !attack && life > opponentForce)
     {
@@ -3413,7 +4006,7 @@ int AIPlayerBaka::chooseAttackers()
     MTGCardInstance * card = NULL;
     while ((card = cd.nextmatch(game->inPlay, card)))
     {
-        if (hints && hints->HintSaysAlwaysAttack(observer, card))
+         if ((hints && hints->HintSaysAlwaysAttack(observer, card)) || card->has(Constants::UNBLOCKABLE))
         {
             if (!card->isAttacker())
             {
@@ -3576,15 +4169,19 @@ int AIPlayerBaka::chooseBlockers()
                 else
                 {
                     MTGCardInstance * attacker = card->defenser;
-                    if (opponentsToughness[attacker] <= 0 || (card->toughness <= attacker->power && opponentForce * 2 < life
-                            && !canFirstStrikeKill(card, attacker)) || attacker->nbOpponents() > 1)
+                    if (opponentsToughness[attacker] <= 0 || (card->toughness <= attacker->power && opponentForce * 2 < life && !canFirstStrikeKill(card, attacker)) || attacker->nbOpponents() > 1)
                     {
                         if (card->blockCost)
                         {
                             MTGAbility * a = observer->mLayers->actionLayer()->getAbility(MTGAbility::BLOCK_COST);
                             doAbility(a, card);
                         }
-                        observer->cardClick(card, MTGAbility::MTG_BLOCK_RULE);
+                        if((!attacker->basicAbilities[Constants::MENACE] && !attacker->basicAbilities[Constants::THREEBLOCKERS]) || 
+                            (attacker->basicAbilities[Constants::MENACE] && attacker->blockers.size() > 2) ||
+                            (attacker->basicAbilities[Constants::THREEBLOCKERS] && attacker->blockers.size() > 3))
+                            observer->cardClick(card, MTGAbility::MTG_BLOCK_RULE);
+                        else
+                            set = 1;
                     }
                     else
                     {
@@ -3696,7 +4293,7 @@ AIPlayerBaka::AIPlayerBaka(GameObserver *observer, string file, string fileSmall
     {
         avatarFile = "avatar";
         char buffer[3];
-        sprintf(buffer, "%i", int(observer->getRandomGenerator()->random()%100));
+        sprintf(buffer, "%i", int(observer->getRandomGenerator()->random()%200));
         avatarFile.append(buffer);
         avatarFile.append(".jpg");
         if(!loadAvatar(avatarFile, "bakaAvatar"))
@@ -3758,10 +4355,10 @@ int AIPlayerBaka::Act(float dt)
                 check = dynamic_cast<ExtraManaCost*>(observer->mExtraPayment->costs[0]);
                 if(check)
                 {
-                    vector<MTGAbility*> CostToPay = canPayMana(observer->mExtraPayment->source,check->costToPay);
+                    vector<MTGAbility*> CostToPay = canPayMana(observer->mExtraPayment->source,check->costToPay,check->source->has(Constants::ANYTYPEOFMANAABILITY));
                     if(CostToPay.size())
                     {
-                        payTheManaCost(check->costToPay,check->source,CostToPay);
+                        payTheManaCost(check->costToPay,check->source->has(Constants::ANYTYPEOFMANAABILITY),check->source,CostToPay);
                     }
                     else
                     {

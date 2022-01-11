@@ -50,16 +50,83 @@ MTGPlayerCards::MTGPlayerCards(MTGDeck * deck)
 void MTGPlayerCards::initDeck(MTGDeck * deck)
 {
     resetLibrary();
+    //commander zone init
+    if(deck->CommandZone.size())
+    {
+        for(unsigned int j = 0; j < deck->CommandZone.size(); j++)
+        {
+            string cardID = deck->CommandZone[j];
+            MTGCard * card = MTGCollection()->getCardById(atoi(cardID.c_str()));
+            if(card)
+            {
+                MTGCardInstance * newCard = NEW MTGCardInstance(card, this);
+                //the card is marked as commander ad added to library.
+                newCard->basicAbilities[Constants::ISCOMMANDER] = 1;
+                library->addCard(newCard);
+            }
+        }
+    }
     map<int, int>::iterator it;
     for (it = deck->cards.begin(); it != deck->cards.end(); it++)
     {
         MTGCard * card = deck->getCardById(it->first);
         if (card)
         {
-            for (int i = 0; i < it->second; i++)
+            for (int j = 0; j < it->second; j++)
             {
                 MTGCardInstance * newCard = NEW MTGCardInstance(card, this);
-                library->addCard(newCard);
+                if(!deck->CommandZone.size()){ //If no commander format there are no limitations for cards.
+                    library->addCard(newCard);
+                } else {
+                    if(newCard->hasType("Land") && newCard->hasType("Basic")){ //There are no limitations for basic lands cards.
+                        library->addCard(newCard);
+                    } else{
+                        bool colorFound = false; // All the cards have to share at least one color with commander identity color (any symbol in manacost or magic text).
+                        bool colorless = false; // Colorless card can be always added to deck.
+                        for(unsigned int i = 0; i < deck->CommandZone.size() && !colorFound; i++){
+                            MTGCard * cmdcard = MTGCollection()->getCardById(atoi(deck->CommandZone[i].c_str()));
+                            if(cmdcard){
+                                MTGCardInstance * commander = NEW MTGCardInstance(cmdcard, this);
+                                if((newCard->hasColor(Constants::MTG_COLOR_WHITE) && commander->hasColor(Constants::MTG_COLOR_WHITE)) ||
+                                    (newCard->hasColor(Constants::MTG_COLOR_BLACK) && commander->hasColor(Constants::MTG_COLOR_BLACK)) ||
+                                    (newCard->hasColor(Constants::MTG_COLOR_RED) && commander->hasColor(Constants::MTG_COLOR_RED)) ||
+                                    (newCard->hasColor(Constants::MTG_COLOR_BLUE) && commander->hasColor(Constants::MTG_COLOR_BLUE)) ||
+                                    (newCard->hasColor(Constants::MTG_COLOR_GREEN) && commander->hasColor(Constants::MTG_COLOR_GREEN)) ||
+                                    (newCard->hasColor(Constants::MTG_COLOR_WHITE) && commander->magicText.find("{w}") != std::string::npos) ||
+                                    (newCard->hasColor(Constants::MTG_COLOR_BLACK) && commander->magicText.find("{b}") != std::string::npos)||
+                                    (newCard->hasColor(Constants::MTG_COLOR_RED) && commander->magicText.find("{r}") != std::string::npos) ||
+                                    (newCard->hasColor(Constants::MTG_COLOR_BLUE) && commander->magicText.find("{u}") != std::string::npos) ||
+                                    (newCard->hasColor(Constants::MTG_COLOR_GREEN) && commander->magicText.find("{g}") != std::string::npos) || 
+                                    (newCard->magicText.find("{w}") != std::string::npos && commander->hasColor(Constants::MTG_COLOR_WHITE)) ||
+                                    (newCard->magicText.find("{b}") != std::string::npos && commander->hasColor(Constants::MTG_COLOR_BLACK)) ||
+                                    (newCard->magicText.find("{r}") != std::string::npos && commander->hasColor(Constants::MTG_COLOR_RED)) ||
+                                    (newCard->magicText.find("{u}") != std::string::npos && commander->hasColor(Constants::MTG_COLOR_BLUE)) ||
+                                    (newCard->magicText.find("{g}") != std::string::npos && commander->hasColor(Constants::MTG_COLOR_GREEN)) ||
+                                    (newCard->magicText.find("{w}") != std::string::npos && commander->magicText.find("{w}") != std::string::npos) ||
+                                    (newCard->magicText.find("{b}") != std::string::npos && commander->magicText.find("{b}") != std::string::npos)||
+                                    (newCard->magicText.find("{r}") != std::string::npos && commander->magicText.find("{r}") != std::string::npos) ||
+                                    (newCard->magicText.find("{u}") != std::string::npos && commander->magicText.find("{u}") != std::string::npos) ||
+                                    (newCard->magicText.find("{g}") != std::string::npos && commander->magicText.find("{g}") != std::string::npos)){
+                                    colorFound = true;
+                                }
+                            }
+                        }
+                        if(!colorFound)
+                            colorless = (newCard->magicText.find("{g}") == std::string::npos && newCard->magicText.find("{w}") == std::string::npos && newCard->magicText.find("{b}") == std::string::npos && 
+                            newCard->magicText.find("{r}") == std::string::npos && newCard->magicText.find("{u}") == std::string::npos && !newCard->hasColor(Constants::MTG_COLOR_BLUE) && 
+                            !newCard->hasColor(Constants::MTG_COLOR_RED) &&  !newCard->hasColor(Constants::MTG_COLOR_WHITE) && !newCard->hasColor(Constants::MTG_COLOR_GREEN) && 
+                            !newCard->hasColor(Constants::MTG_COLOR_BLACK));
+                        if(colorFound || colorless){
+                            bool onlyInstance = true; // In commander format only single cards are allowed if they are not basic lands.
+                            for(unsigned int k = 0; k < library->cards.size() && onlyInstance; k++){
+                                if(library->cards[k]->name == newCard->name)
+                                    onlyInstance = false;
+                            }
+                            if(onlyInstance)
+                                library->addCard(newCard);
+                        }
+                    }
+                }
             }
         }
     }
@@ -78,10 +145,32 @@ void MTGPlayerCards::initDeck(MTGDeck * deck)
             }
         }
     }
+    //dungeon init
+    if(deck->DungeonZone.size())
+    {
+        for(unsigned int j = 0; j < deck->DungeonZone.size(); j++)
+        {
+            string cardID = deck->DungeonZone[j];
+            MTGCard * card = MTGCollection()->getCardById(atoi(cardID.c_str()));
+            if(card)
+            {
+                MTGCardInstance * newCard = NEW MTGCardInstance(card, this);
+                //Dungeons will be added to sideboard zone...
+                sideboard->addCard(newCard);
+            }
+        }
+    }
 }
 
 MTGPlayerCards::~MTGPlayerCards()
 {
+    if(temp->cards.size() > 0){
+        for(size_t i = 0; i < library->placeOnTop.size(); i++){
+            if(temp->hasCard(library->placeOnTop[i])){
+                temp->removeCard(library->placeOnTop[i]); // Fix crash when temp zone contains library place on top cards.
+            }
+        }
+    }
     SAFE_DELETE(library);
     SAFE_DELETE(graveyard);
     SAFE_DELETE(hand);
@@ -91,6 +180,7 @@ MTGPlayerCards::~MTGPlayerCards()
     SAFE_DELETE(garbage);
     SAFE_DELETE(reveal);
     SAFE_DELETE(sideboard);
+    SAFE_DELETE(commandzone);
     SAFE_DELETE(temp);
     SAFE_DELETE(playRestrictions);
 }
@@ -110,6 +200,7 @@ void MTGPlayerCards::beforeBeginPhase()
     garbage->beforeBeginPhase();
     reveal->beforeBeginPhase();
     sideboard->beforeBeginPhase();
+    commandzone->beforeBeginPhase();
     temp->beforeBeginPhase();
 }
 
@@ -126,6 +217,7 @@ void MTGPlayerCards::setOwner(Player * player)
     garbageLastTurn->setOwner(player);
     reveal->setOwner(player);
     sideboard->setOwner(player);
+    commandzone->setOwner(player);
     temp->setOwner(player);
 }
 
@@ -242,7 +334,6 @@ void MTGPlayerCards::drawFromLibrary()
         return;
     }
     MTGCardInstance * toMove = library->cards[library->nb_cards - 1];
-    library->lastCardDrawn = toMove;
     if (!library->miracle)
     {
         library->miracle = true;
@@ -270,9 +361,12 @@ void MTGPlayerCards::drawFromLibrary()
         }
     }
 
-    if(putInZone(toMove, library, hand))
+    MTGCardInstance * ret = putInZone(toMove, library, hand);
+    if(ret)
     {
         toMove->currentZone = hand;
+        ret->currentZone = hand;
+        library->lastCardDrawn = ret;
     }
 }
 
@@ -299,6 +393,7 @@ void MTGPlayerCards::init()
     garbageLastTurn = garbage;
     reveal = NEW MTGGameZone();
     sideboard = NEW MTGGameZone();
+    commandzone = NEW MTGGameZone();
     temp = NEW MTGGameZone();
 
     playRestrictions = NEW PlayRestrictions();
@@ -312,12 +407,43 @@ void MTGPlayerCards::showHand()
 // Moves a card to its owner's graveyard
 MTGCardInstance * MTGPlayerCards::putInGraveyard(MTGCardInstance * card)
 {
-    if (card->basicAbilities[(int)Constants::EXILEDEATH])
+    if (card->getCurrentZone() != card->controller()->game->hand && (card->basicAbilities[(int)Constants::EXILEDEATH] || card->basicAbilities[(int)Constants::GAINEDEXILEDEATH] || (card->basicAbilities[(int)Constants::HASDISTURB] && card->alternateCostPaid[ManaCost::MANA_PAID_WITH_RETRACE] == 1)))
     {
-        putInZone(card, card->getCurrentZone(), card->owner->game->exile);
-
+         MTGCardInstance* ret = putInZone(card, card->getCurrentZone(), card->owner->game->exile);
+         ret->basicAbilities[(int)Constants::GAINEDEXILEDEATH] = 0;
+         return ret;
+    }
+    else if (card->getCurrentZone() != card->controller()->game->hand && (card->basicAbilities[(int)Constants::HANDDEATH] || card->basicAbilities[(int)Constants::GAINEDHANDDEATH]))
+    {
+         MTGCardInstance* ret = putInZone(card, card->getCurrentZone(), card->owner->game->hand);
+         ret->basicAbilities[(int)Constants::GAINEDHANDDEATH] = 0;
+         return ret;
+    }
+    else if (card->getCurrentZone() != card->controller()->game->hand && (card->basicAbilities[(int)Constants::DOUBLEFACEDEATH] || card->basicAbilities[(int)Constants::GAINEDDOUBLEFACEDEATH]))
+    {
+         MTGCardInstance* ret = putInZone(card, card->getCurrentZone(), card->owner->game->temp);
+         ret->basicAbilities[(int)Constants::GAINEDDOUBLEFACEDEATH] = 0;
+         return ret;
+    }
+    else if (card->getCurrentZone() != card->controller()->game->hand && (card->basicAbilities[(int)Constants::INPLAYDEATH] || card->basicAbilities[(int)Constants::INPLAYTAPDEATH]))
+    {
+        bool toTap = card->basicAbilities[(int)Constants::INPLAYTAPDEATH];
+        bool addCounter = card->basicAbilities[(int)Constants::COUNTERDEATH];
+        MTGCardInstance* ret = putInZone(card, card->getCurrentZone(), card->owner->game->graveyard);
+        ret = putInZone(ret, ret->getCurrentZone(), ret->owner->game->battlefield);
+        if(toTap)
+            ret->tap(true);
+        if(addCounter)
+            ret->counters->addCounter(1, 1, false);
+        return ret;
     }
     return putInZone(card, card->currentZone, card->owner->game->graveyard);
+}
+
+// Moves a card to its owner's sideboard
+MTGCardInstance * MTGPlayerCards::putInSideboard(MTGCardInstance * card)
+{
+    return putInZone(card, card->currentZone, card->owner->game->sideboard);
 }
 
 // Moves a card to its owner's exile
@@ -391,7 +517,7 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
         }
 
         //close the currently open MAIN display.
-        if (from == g->players[i]->game->library || from == g->players[i]->game->graveyard || from == g->players[i]->game->exile)
+        if (from == g->players[i]->game->library || from == g->players[i]->game->graveyard || from == g->players[i]->game->exile || from == g->players[i]->game->commandzone || from == g->players[i]->game->sideboard)
         {
             if (g->guiOpenDisplay)
             {
@@ -416,8 +542,45 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
         inplaytoinplay = true;//try sending different event...
     }
 
+    //Increase the number of time this card has been casted from commandzone to recalculate cost.
+    if(from != to && (from == g->players[0]->game->commandzone || from == g->players[1]->game->commandzone)){
+        card->numofcastfromcommandzone++;
+        card->controller()->numOfCommandCast++;
+    }
+
     if (!(copy = from->removeCard(card, doCopy)))
         return NULL; //ERROR
+
+    // Set the mana value used to cast this spell
+    if((to == g->players[0]->game->stack || to == g->players[1]->game->stack) && card->getManaCost() && card->getManaCost()->getManaUsedToCast()){
+        copy->getManaCost()->setManaUsedToCast(NEW ManaCost());
+        copy->getManaCost()->getManaUsedToCast()->copy(card->getManaCost()->getManaUsedToCast());
+    }
+
+    if(!card->hasType(Subtypes::TYPE_LEGENDARY) && copy->hasType(Subtypes::TYPE_LEGENDARY)) // This fix issue when cloning a card with nolegend option (e.g. Double Major)
+        copy->removeType(Subtypes::TYPE_LEGENDARY);
+
+    // Copy all the counters of the original card... (solving the bug on comparison cards with counter before zone changing events)
+    if(card->counters && doCopy && !asCopy && !inplaytoinplay){
+        for (unsigned int i = 0; i < card->counters->counters.size(); i++){
+            Counter * counter = card->counters->counters[i];
+            for(int j = 0; j < counter->nb; j++)
+                copy->counters->addCounter(counter->name.c_str(), counter->power, counter->toughness, true);
+        }
+    }
+
+    // Save the haunted status... (solving the bug on comparison cards with haunted status before zone changing events)
+    if(card->has(Constants::ISPREY) && doCopy && !asCopy && !inplaytoinplay)
+        copy->basicAbilities[Constants::ISPREY] = 1;
+
+    //Commander is going back to Command Zone, so we recalculate costs according to how many times it has been casted from there.
+    if((to == g->players[0]->game->commandzone || to == g->players[1]->game->commandzone) && copy->numofcastfromcommandzone > 0){
+        copy->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT,2*copy->numofcastfromcommandzone);
+        if(copy->getManaCost()->getAlternative())
+            copy->getManaCost()->getAlternative()->add(Constants::MTG_COLOR_ARTIFACT,2*copy->numofcastfromcommandzone);
+        if(copy->getManaCost()->getMorph())
+            copy->getManaCost()->getMorph()->add(Constants::MTG_COLOR_ARTIFACT,2*copy->numofcastfromcommandzone);
+    }
 
     if (card->miracle)
     {
@@ -567,13 +730,48 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
         if(shufflelibrary)
             copy->owner->game->library->shuffle();//shouldnt we only ever do this if you clicked close on your library gui??????
 
-    WEvent * e = NEW WEventZoneChange(copy, from, to);
-    g->receiveEvent(e);
+        if(copy->has(Constants::ADVENTURE) && copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_ALTERNATIVE] == 1 && //Added to correctly set the adventure cards type on stack.
+            (to == g->players[0]->game->stack || to == g->players[1]->game->stack)){
+                copy->types.clear();
+                if(copy->has(Constants::ASFLASH))
+                    copy->types.push_back(Subtypes::TYPE_INSTANT);
+                else
+                    copy->types.push_back(Subtypes::TYPE_SORCERY);
+        }
+
+        if(copy->has(Constants::HASAFTERMATH) && copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_FLASHBACK] == 1 && //Added to correctly set the aftermath cards type on stack.
+            (to == g->players[0]->game->stack || to == g->players[1]->game->stack)){
+                copy->types.clear();
+                if(copy->has(Constants::ASFLASH))
+                    copy->types.push_back(Subtypes::TYPE_INSTANT);
+                else
+                    copy->types.push_back(Subtypes::TYPE_SORCERY);
+        }
+
+        if(!copy->has(Constants::NOMOVETRIGGER)){//no trigger when playing these cards (e.g. fake ability cards such as Davriel Conditions, Davriel Offers, Annihilation Rooms)
+            WEvent * e = NEW WEventZoneChange(copy, from, to);
+            g->receiveEvent(e);
+        }
+
+        // Reset the haunted status... (if the creature is moving from battlefield is no longer a prey)
+        if(doCopy && !inplaytoinplay && copy->has(Constants::ISPREY))
+            copy->basicAbilities[Constants::ISPREY] = 0;
+
+        // Erasing counters from copy after the event has been triggered (no counter can survive to a zone changing except the perpetual ones)
+        if(doCopy && !inplaytoinplay && copy->counters && copy->counters->mCount > 0){
+            for (unsigned int i = 0; i < copy->counters->counters.size(); i++){
+                Counter * counter = copy->counters->counters[i];
+                for(int j = counter->nb; j > 0; j--){
+                    if(counter->name.find("perpetual") == string::npos)
+                        copy->counters->removeCounter(counter->name.c_str(), counter->power, counter->toughness, true);
+                }
+            }
+        }
     }
     if(inplaytoinplay)
     {
-    WEvent * ep = NEW WEventCardControllerChange(copy);
-    g->receiveEvent(ep);
+        WEvent * ep = NEW WEventCardControllerChange(copy);
+        g->receiveEvent(ep);
     }
     return ret;
 
@@ -693,6 +891,15 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy
                 copy->storedSourceCard = card->storedSourceCard;
                 copy->lastController = card->controller();
                 copy->previousController = card->controller();
+                copy->basicAbilities[Constants::ISCOMMANDER] = (card->basicAbilities[Constants::ISCOMMANDER] | card->basicAbilities[Constants::WASCOMMANDER]);
+                copy->basicAbilities[Constants::GAINEDEXILEDEATH] = card->basicAbilities[Constants::GAINEDEXILEDEATH];
+                copy->basicAbilities[Constants::GAINEDHANDDEATH] = card->basicAbilities[Constants::GAINEDHANDDEATH];
+                copy->basicAbilities[Constants::GAINEDDOUBLEFACEDEATH] = card->basicAbilities[Constants::GAINEDDOUBLEFACEDEATH];
+                copy->basicAbilities[Constants::DUNGEONCOMPLETED] = card->basicAbilities[Constants::DUNGEONCOMPLETED];
+                copy->basicAbilities[Constants::PERPETUALDEATHTOUCH] = card->basicAbilities[Constants::PERPETUALDEATHTOUCH];
+                copy->basicAbilities[Constants::PERPETUALLIFELINK] = card->basicAbilities[Constants::PERPETUALLIFELINK];
+                copy->damageInflictedAsCommander = card->damageInflictedAsCommander;
+                copy->numofcastfromcommandzone = card->numofcastfromcommandzone;
                 for (int i = 0; i < ManaCost::MANA_PAID_WITH_BESTOW +1; i++)
                     copy->alternateCostPaid[i] = card->alternateCostPaid[i];
 
@@ -1007,6 +1214,11 @@ void MTGGameZone::cleanupPhase()
 void MTGGameZone::shuffle()
 {
     owner->getObserver()->getRandomGenerator()->random_shuffle(cards.begin(), cards.end());
+    if(this == owner->game->library){
+        owner->lastShuffleTurn = owner->getObserver()->turn;
+        WEvent * e = NEW WEventplayerShuffled(owner); //Added to trigger an event when a player shuffles his/her library.
+        owner->getObserver()->receiveEvent(e);
+    }
 }
 
 void MTGGameZone::addCard(MTGCardInstance * card)
@@ -1138,6 +1350,7 @@ void MTGInPlay::untapAll()
                 if (card->frozen >= 1)
                 {
                     card->frozen = 0;
+                    card->resetUntapping(); // Fix to avoid the untap on frozen card by clicking on them after the untap phase.
                 }
             }
             else
@@ -1150,6 +1363,7 @@ void MTGInPlay::untapAll()
                 if (card->frozen >= 1)
                 {
                     card->frozen = 0;
+                    card->resetUntapping(); // Fix to avoid the untap on frozen card by clicking on them after the untap phase.
                 }
             }
         }
@@ -1217,6 +1431,20 @@ MTGGameZone * MTGGameZone::intToZone(int zoneId, Player * p, Player * p2)
     case SIDEBOARD:
         return p->game->sideboard;
 
+    case MY_COMMANDZONE:
+        return p->game->commandzone;
+    case OPPONENT_COMMANDZONE:
+        return p->opponent()->game->commandzone;
+    case COMMANDZONE:
+        return p->game->commandzone;
+
+    case MY_TEMP:
+        return p->game->temp;
+    case OPPONENT_TEMP:
+        return p->opponent()->game->temp;
+    case TEMP:
+        return p->game->temp;
+
     }
     if (!p2) return NULL;
     switch (zoneId)
@@ -1245,6 +1473,12 @@ MTGGameZone * MTGGameZone::intToZone(int zoneId, Player * p, Player * p2)
     case TARGET_CONTROLLER_SIDEBOARD:
         return p2->game->sideboard;
 
+    case TARGET_CONTROLLER_COMMANDZONE:
+        return p2->game->commandzone;
+
+    case TARGET_CONTROLLER_TEMP:
+        return p2->game->temp;
+
     default:
         return NULL;
     }
@@ -1252,15 +1486,15 @@ MTGGameZone * MTGGameZone::intToZone(int zoneId, Player * p, Player * p2)
 
 MTGGameZone * MTGGameZone::intToZone(GameObserver *g, int zoneId, MTGCardInstance * source, MTGCardInstance * target)
 {
-    Player *p, *p2;
+    Player *p = NULL;
+    Player *p2 = NULL;
 
-    if (!source)
+    if (!source && g) //patchwork fix when g is NULL.
         p = g->currentlyActing();
-    else
+    else if (source)
         p = source->controller();
-    if (!target)
+    if (!target && source) //patchwork fix when source is NULL.
     {
-        //TODO source may be NULL, need to handle the case when it is NULL.  method declaration has NULL being default value of source and target. 
         if(source->target)
         {
         //bug case, this is a patchwork fix for now
@@ -1275,10 +1509,15 @@ MTGGameZone * MTGGameZone::intToZone(GameObserver *g, int zoneId, MTGCardInstanc
             target = source;
         }
     }
-    else
+    else if (target)
         p2 = target->controller();
 
-
+    if(!p) { //patchwork fix when p is NULL.
+        if(!p2)
+            return NULL;
+        else 
+            p = p2;
+    }
     MTGGameZone * result = intToZone(zoneId, p, p2);
     if (result) return result;
     switch (zoneId)
@@ -1365,6 +1604,28 @@ MTGGameZone * MTGGameZone::intToZone(GameObserver *g, int zoneId, MTGCardInstanc
             return source->playerTarget->game->sideboard;
         else return source->controller()->game->sideboard;
 
+    case TARGET_OWNER_COMMANDZONE:
+        return target->owner->game->commandzone;
+    case COMMANDZONE:
+        return target->owner->game->commandzone;
+    case OWNER_COMMANDZONE:
+        return target->owner->game->commandzone;
+    case TARGETED_PLAYER_COMMANDZONE:
+        if (source->playerTarget)
+            return source->playerTarget->game->commandzone;
+        else return source->controller()->game->commandzone;
+
+    case TARGET_OWNER_TEMP:
+        return target->owner->game->temp;
+    case TEMP:
+        return target->owner->game->temp;
+    case OWNER_TEMP:
+        return target->owner->game->temp;
+    case TARGETED_PLAYER_TEMP:
+        if (source->playerTarget)
+            return source->playerTarget->game->temp;
+        else return source->controller()->game->temp;
+
     default:
         return NULL;
     }
@@ -1396,6 +1657,10 @@ int MTGGameZone::zoneStringToId(string zoneName)
 
                     "mysideboard", "opponentsideboard", "targetownersideboard", "targetcontrollersideboard", "ownersideboard", "sideboard","targetedpersonssideboard",
 
+                    "mycommandzone", "opponentcommandzone", "targetownercommandzone", "targetcontrollercommandzone", "ownercommandzone", "commandzone","targetedpersonscommandzone",
+
+                    "mytemp", "opponenttemp", "targetownertemp", "targetcontrollertemp", "ownertemp", "temp","targetedpersonstemp",
+
     };
 
     int values[] = { MY_GRAVEYARD, OPPONENT_GRAVEYARD, TARGET_OWNER_GRAVEYARD, TARGET_CONTROLLER_GRAVEYARD, OWNER_GRAVEYARD,
@@ -1419,7 +1684,11 @@ int MTGGameZone::zoneStringToId(string zoneName)
 
                     MY_REVEAL, OPPONENT_REVEAL, TARGET_OWNER_REVEAL, TARGET_CONTROLLER_REVEAL, OWNER_REVEAL, REVEAL,TARGETED_PLAYER_REVEAL,
 
-                    MY_SIDEBOARD, OPPONENT_SIDEBOARD, TARGET_OWNER_SIDEBOARD, TARGET_CONTROLLER_SIDEBOARD, OWNER_SIDEBOARD, SIDEBOARD,TARGETED_PLAYER_SIDEBOARD };
+                    MY_SIDEBOARD, OPPONENT_SIDEBOARD, TARGET_OWNER_SIDEBOARD, TARGET_CONTROLLER_SIDEBOARD, OWNER_SIDEBOARD, SIDEBOARD,TARGETED_PLAYER_SIDEBOARD,
+
+                    MY_COMMANDZONE, OPPONENT_COMMANDZONE, TARGET_OWNER_COMMANDZONE, TARGET_CONTROLLER_COMMANDZONE, OWNER_COMMANDZONE, COMMANDZONE,TARGETED_PLAYER_COMMANDZONE,
+
+                    MY_TEMP, OPPONENT_TEMP, TARGET_OWNER_TEMP, TARGET_CONTROLLER_TEMP, OWNER_TEMP, TEMP,TARGETED_PLAYER_TEMP };
 
     int max = sizeof(values) / sizeof *(values);
 

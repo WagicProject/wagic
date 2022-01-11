@@ -1,0 +1,15 @@
+[card]
+name=Harsh Mentor
+text=Whenever an opponent activates an ability of an artifact, creature, or land on the battlefield, if it isn't a mana ability, Harsh Mentor deals 2 damage to that player.
+mana={1}{R}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=2
+[/card]
+[card]
+name=Glorious End
+text=End the turn. (Exile all spells and abilities from the stack, including this card. The player whose turn it is discards down to their maximum hand size. Damage wears off, and "this turn" and "until end of turn" effects end.) -- At the beginning of your next end step, you lose the game.
+mana={2}{R}
+type=Instant
+[/card]

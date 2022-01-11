@@ -1,0 +1,182 @@
+[meta]
+author=Wagic Team
+name=Secret Lair Drop Series
+orderindex=PRE-5.SLD
+year=2019-12-02
+total=35
+[/meta]
+[card]
+primitive=Cat
+id=-19472
+rarity=T
+[/card]
+[card]
+primitive=Cat
+id=-19471
+rarity=T
+[/card]
+[card]
+primitive=Rogue
+id=-19461
+rarity=T
+[/card]
+[card]
+primitive=Snow-Covered Plains
+id=19450
+rarity=L
+[/card]
+[card]
+primitive=Snow-Covered Island
+id=19451
+rarity=L
+[/card]
+[card]
+primitive=Snow-Covered Swamp
+id=19452
+rarity=L
+[/card]
+[card]
+primitive=Snow-Covered Mountain
+id=19453
+rarity=L
+[/card]
+[card]
+primitive=Snow-Covered Forest
+id=19454
+rarity=L
+[/card]
+[card]
+primitive=Bloodghast
+id=19455
+rarity=R
+[/card]
+[card]
+primitive=Golgari Thug
+id=19456
+rarity=R
+[/card]
+[card]
+primitive=Life from the Loam
+id=19457
+rarity=R
+[/card]
+[card]
+primitive=Reaper King
+id=19458
+rarity=M
+[/card]
+[card]
+primitive=Sliver Overlord
+id=19459
+rarity=M
+[/card]
+[card]
+primitive=The Ur-Dragon
+id=19460
+rarity=M
+[/card]
+[card]
+primitive=Bitterblossom
+id=19461
+rarity=M
+[/card]
+[card]
+primitive=Faerie Rogue
+id=19462
+rarity=T
+[/card]
+[card]
+primitive=Faerie Rogue
+id=19463
+rarity=T
+[/card]
+[card]
+primitive=Faerie Rogue
+id=19464
+rarity=T
+[/card]
+[card]
+primitive=Faerie Rogue
+id=19465
+rarity=T
+[/card]
+[card]
+primitive=Goblin Bushwhacker
+id=19466
+rarity=R
+[/card]
+[card]
+primitive=Goblin Sharpshooter
+id=19467
+rarity=R
+[/card]
+[card]
+primitive=Goblin King
+id=19468
+rarity=R
+[/card]
+[card]
+primitive=Goblin Lackey
+id=19469
+rarity=R
+[/card]
+[card]
+primitive=Goblin Piledriver
+id=19470
+rarity=R
+[/card]
+[card]
+primitive=Leonin Warleader
+id=19471
+rarity=R
+[/card]
+[card]
+primitive=Regal Caracal
+id=19472
+rarity=R
+[/card]
+[card]
+primitive=Qasali Slingers
+id=19473
+rarity=R
+[/card]
+[card]
+primitive=Arahbo, Roar of the World
+id=19474
+rarity=M
+[/card]
+[card]
+primitive=Mirri, Weatherlight Duelist
+id=19475
+rarity=M
+[/card]
+[card]
+primitive=Cat
+id=19476
+rarity=T
+[/card]
+[card]
+primitive=Cat
+id=19477
+rarity=T
+[/card]
+[card]
+primitive=Serum Visions
+id=19478
+rarity=R
+[/card]
+[card]
+primitive=Serum Visions
+id=19479
+rarity=R
+[/card]
+[card]
+primitive=Serum Visions
+id=19480
+rarity=R
+[/card]
+[card]
+primitive=Serum Visions
+id=19481
+rarity=R
+[/card]

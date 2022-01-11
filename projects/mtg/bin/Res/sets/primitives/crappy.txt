@@ -2,6 +2,8 @@ grade=crappy
 ##the following are not added becuase they are not choosen discard.
 ###1. Decimate should only be castable if there are 4 legal targets.###
 ###2. Decimate should fizzle if 1 or more of the 4 targets become illegal or cease to exist.###
+#Please keep these card alphabetized, and try to have the "name=" line at the top of each card
+#I sorted this programatically so the other comments are removed except for AUTO_DEFINE - Vitty85 30-11-2020
 [card]
 name=Decimate
 auto=ability$!destroy target(artifact)!$ controller

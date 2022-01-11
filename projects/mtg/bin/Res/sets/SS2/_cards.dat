@@ -1,0 +1,47 @@
+[meta]
+author=Wagic Team
+name=Signature Spellbok: Gideon
+orderindex=SIG-2.SS2
+year=2019-06-28
+total=8
+[/meta]
+[card]
+primitive=Gideon Jura
+id=470539
+rarity=M
+[/card]
+[card]
+primitive=Martyr's Bond
+id=470540
+rarity=R
+[/card]
+[card]
+primitive=Path to Exile
+id=470541
+rarity=R
+[/card]
+[card]
+primitive=Rest in Peace
+id=470542
+rarity=R
+[/card]
+[card]
+primitive=Shielded by Faith
+id=470543
+rarity=R
+[/card]
+[card]
+primitive=True Conviction
+id=470544
+rarity=R
+[/card]
+[card]
+primitive=Worship
+id=470545
+rarity=R
+[/card]
+[card]
+primitive=Blackblade Reforged
+id=470546
+rarity=R
+[/card]

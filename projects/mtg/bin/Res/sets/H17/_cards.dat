@@ -1,0 +1,32 @@
+[meta]
+author=Wagic Team
+name=HasCon 2017
+orderindex=PRO-X.H17
+year=2017-09-20
+total=5
+[/meta]
+[card]
+primitive=Dragon
+id=-16809
+rarity=T
+[/card]
+[card]
+primitive=Grimlock, Dinobot Leader
+id=16806
+rarity=M
+[/card]
+[card]
+primitive=Grimlock, Ferocious King
+id=16807
+rarity=M
+[/card]
+[card]
+primitive=Nerf War
+id=16808
+rarity=M
+[/card]
+[card]
+primitive=Sword of Dungeons & Dragons
+id=16809
+rarity=M
+[/card]

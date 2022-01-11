@@ -62,12 +62,15 @@ public:
     int frozen;
     int sunburst;
     int equipment;
+    int mutation;
+    int damageInflictedAsCommander;
+    int numofcastfromcommandzone;
     int auras;
-    bool wasDealtDamage;
-    bool combatdamageToOpponent;
-    bool damageToOpponent;
-    bool damageToController;
-    bool damageToCreature;
+    int wasDealtDamage;
+    int combatdamageToOpponent;
+    int damageToOpponent;
+    int damageToController;
+    int damageToCreature;
     bool isProvoked;
     MTGCardInstance * ProvokeTarget;
     MTGCardInstance * Provoker;
@@ -93,7 +96,7 @@ public:
     bool exerted;
     bool turningOver;
     bool isMorphed;
-    bool isFlipped;
+    int isFlipped;
     string MeldedFrom;
     bool isPhased;
     bool isCascaded;
@@ -101,6 +104,7 @@ public:
     bool handEffects;
     bool graveEffects;
     bool exileEffects;
+    bool commandZoneEffects;
     bool suspended;
     bool miracle;
     bool hasCopiedToken;
@@ -108,8 +112,14 @@ public:
     bool isFacedown;
     int chooseacolor;
     string chooseasubtype;
+    string chooseaname;
     int coinSide;//1 = tails
-        
+    int lastFlipResult;
+    int dieSide;
+    int lastRollResult;
+    int dieNumFaces;
+    int scryedCards;
+
     int stillInUse();
     int didattacked;
     int didblocked;
@@ -239,9 +249,10 @@ public:
     int removeCantBeBlockerOfCard(MTGCardInstance * card, int erase = 0);
     int cantBeBlockerOfCard(MTGCardInstance * card);
 
-    void copy(MTGCardInstance * card);
+    void copy(MTGCardInstance * card, bool nolegend = false);
 
     void setUntapping();
+    void resetUntapping(); // Fix to avoid the untap on frozen card by clicking on them after the untap phase.
     int isUntapping();
     int isTapped();
     void untap();
@@ -286,7 +297,8 @@ public:
     ManaCost * computeNewCost(MTGCardInstance * card,ManaCost * oldCost, ManaCost * refCost,bool noTrinisphere = false, bool bestow = false);
     int countTrini;
     bool anymanareplacement;
-    vector<MTGCardInstance*>imprintedCards;
+    vector<MTGCardInstance*> imprintedCards;
+    MTGCardInstance* hauntedCard;
     int attackCost;
     int attackCostBackup;
     int attackPlaneswalkerCost;
@@ -298,6 +310,7 @@ public:
     int imprintR;
     int imprintB;
     int imprintW;
+    int foretellTurn;
     int bushidoPoints;
     int modularPoints;
     int canproduceMana(int color = -1);

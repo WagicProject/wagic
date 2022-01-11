@@ -2,76 +2,24 @@
 #DESC:O miserable of happy 
 #DESC:Is this the end
 #DESC:Of this new glorious world 
-#3x Wrath of God
-129808
-129808
-129808
-#4x Savannah Lions
-1365
-1365
-1365
-1365
-#4x Sigiled Paladin {W}{W}, first strike exalted 2/2
-174958
-174958
-174958
-174958
-#4x Serra Angel
-129726
-129726
-129726
-129726
-#4 x Guardian of Akrasa {2}{W} - defender 0/4 exalted
-175103
-175103
-175103
-175103
-#3x Skyhunter Skirmisher {1}{W}{W} - flying double strike, 1/1
-129513
-129513
-129513
-#1x Paladin en-Vec {1}{W}{W} - 2/2
-129668
-#4x Crusade
-1341
-1341
-1341
-1341
-#4x Sword to plowshares
-1367
-1367
-1367
-1367
-#4x White Knight
-1370
-1370
-1370
-1370
-#4x Armageddon
-1328
-1328
-1328
-1328
-# Plains (RV)
-1395
-1395
-1395
-1395
-1396
-1396
-1396
-1397
-1397
-1397
-# Plains (10E)
-175030
-175030
-175030
-175030
-175030
-175030
-175030
-175030
-175030
-175030
-175030
+# Land(s)
+Plains (8ED) * 21
+
+# Creature(s)
+Guardians of Akrasa (ALA) * 4
+Paladin en-Vec (9ED) * 1
+Savannah Lions (8ED) * 4
+Serra Angel (8ED) * 4
+Sigiled Paladin (ALA) * 4
+Skyhunter Skirmisher (5DN) * 3
+White Knight (M10) * 4
+
+# Enchantment(s)
+Crusade (DDF) * 4
+
+# Instant(s)
+Swords to Plowshares (DDF) * 4
+
+# Sorcery(s)
+Armageddon (VMA) * 4
+Wrath of God (8ED) * 3

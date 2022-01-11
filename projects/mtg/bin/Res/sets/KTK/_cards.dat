@@ -2,8 +2,9 @@
 author=Wagic Team
 name=Khans of Tarkir
 block=Khans of Tarkir
-year=2014
-total=269
+orderindex=EXP-ZV.KTK
+year=2014-09-26
+total=270
 [/meta]
 [card]
 primitive=Abomination of Gudul

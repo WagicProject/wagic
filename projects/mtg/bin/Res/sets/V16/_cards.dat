@@ -1,0 +1,87 @@
+[meta]
+author=Wagic Team
+name=From the Vault: Lore
+orderindex=FRO-9.V16
+year=2016-08-19
+total=16
+[/meta]
+[card]
+primitive=Beseech the Queen
+id=416743
+rarity=M
+[/card]
+[card]
+primitive=Cabal Ritual
+id=416744
+rarity=M
+[/card]
+[card]
+primitive=Conflux
+id=416745
+rarity=M
+[/card]
+[card]
+primitive=Dark Depths
+id=416746
+rarity=M
+[/card]
+[card]
+primitive=Glissa, the Traitor
+id=416747
+rarity=M
+[/card]
+[card]
+primitive=Helvault
+id=416748
+rarity=M
+[/card]
+[card]
+primitive=Memnarch
+id=416749
+rarity=M
+[/card]
+[card]
+primitive=Mind's Desire
+id=416750
+rarity=M
+[/card]
+[card]
+primitive=Momir Vig, Simic Visionary
+id=416751
+rarity=M
+[/card]
+[card]
+primitive=Near-Death Experience
+id=416752
+rarity=M
+[/card]
+[card]
+primitive=Obliterate
+id=416753
+rarity=M
+[/card]
+[card]
+primitive=Phyrexian Processor
+id=416754
+rarity=M
+[/card]
+[card]
+primitive=Tolaria West
+id=416755
+rarity=M
+[/card]
+[card]
+primitive=Umezawa's Jitte
+id=416756
+rarity=M
+[/card]
+[card]
+primitive=Unmask
+id=416757
+rarity=M
+[/card]
+[card]
+primitive=Marit Lage
+id=-416746
+rarity=T
+[/card]

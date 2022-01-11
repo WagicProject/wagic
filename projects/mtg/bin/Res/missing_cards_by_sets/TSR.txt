@@ -1,0 +1,92 @@
+[card]
+name=Panharmonicon
+text=If an artifact or creature entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Baral, Chief of Compliance
+text=Instant and sorcery spells you cast cost {1} less to cast. -- Whenever a spell or ability you control counters a spell, you may draw a card. If you do, discard a card.
+mana={1}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=1
+toughness=3
+[/card]
+[card]
+name=Epic Experiment
+text=Exile the top X cards of your library. For each instant and sorcery card with converted mana cost X or less among them, you may cast that card without paying its mana cost. Then put all cards exiled this way that weren't cast into your graveyard.
+mana={X}{U}{R}
+type=Sorcery
+[/card]
+[card]
+name=Secret Plans
+text=Face-down creatures you control get +0/+1. -- Whenever a permanent you control is turned face up, draw a card.
+mana={G}{U}
+type=Enchantment
+[/card]
+[card]
+name=Kor Dirge
+text=All damage that would be dealt this turn to target creature you control by a source of your choice is dealt to another target creature instead.
+mana={2}{B}
+type=Instant
+[/card]
+[card]
+name=Muck Drubb
+abilities=flash
+text=Flash (You may cast this spell any time you could cast an instant.) -- When Muck Drubb enters the battlefield, change the target of target spell that targets only a single creature to Muck Drubb. -- Madness {2}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={3}{B}{B}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
+[/card]
+[card]
+name=Thick-Skinned Goblin
+text=You may pay {0} rather than pay the echo cost for permanents you control. -- {R}: Thick-Skinned Goblin gains protection from red until end of turn.
+mana={1}{R}
+type=Creature
+subtype=Goblin Shaman
+power=2
+toughness=1
+[/card]
+[card]
+name=Muraganda Petroglyphs
+text=Creatures with no abilities get +2/+2.
+mana={3}{G}
+type=Enchantment
+[/card]
+[card]
+name=Vesuvan Shapeshifter
+text=As Vesuvan Shapeshifter enters the battlefield or is turned face up, you may choose another creature on the battlefield. If you do, until Vesuvan Shapeshifter is turned face down, it becomes a copy of that creature and gains "At the beginning of your upkeep, you may turn this creature face down." -- Morph {1}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={3}{U}{U}
+type=Creature
+subtype=Shapeshifter
+power=0
+toughness=0
+[/card]
+[card]
+name=Timebender
+text=Morph {U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Timebender is turned face up, choose one - Remove two time counters from target permanent or suspended card; or put two time counters on target permanent with a time counter on it or suspended card.
+mana={U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Delay
+text=Counter target spell. If the spell is countered this way, exile it with three time counters on it instead of putting it into its owner's graveyard. If it doesn't have suspend, it gains suspend. (At the beginning of its owner's upkeep, remove a counter from that card. When the last is removed, the player plays it without paying its mana cost. If it's a creature, it has haste.)
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Outrider en-Kor
+abilities=flanking
+text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- {0}: The next 1 damage that would be dealt to Outrider en-Kor this turn is dealt to target creature you control instead.
+mana={2}{W}
+type=Creature
+subtype=Kor Rebel Knight
+power=2
+toughness=2
+[/card]

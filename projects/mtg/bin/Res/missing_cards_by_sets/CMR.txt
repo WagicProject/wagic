@@ -1,0 +1,125 @@
+[card]
+name=Zedruu the Greathearted
+text=At the beginning of your upkeep, you gain X life and draw X cards, where X is the number of permanents you own that your opponents control. -- {R}{W}{U}: Target opponent gains control of target permanent you control.
+mana={1}{R}{W}{U}
+type=Legendary Creature
+subtype=Minotaur Monk
+power=2
+toughness=4
+[/card]
+[card]
+name=Marath, Will of the Wild
+text=Marath, Will of the Wild enters the battlefield with a number of +1/+1 counters on it equal to the amount of mana spent to cast it. -- {X}, Remove X +1/+1 counters from Marath: Choose one -- Put X +1/+1 counters on target creature. X can't be 0. -- Marath deals X damage to target creature or player. X can't be 0. -- Put an X/X green Elemental creature token onto the battlefield. X can't be 0.
+mana={R}{G}{W}
+type=Legendary Creature
+subtype=Elemental Beast
+power=0
+toughness=0
+[/card]
+[card]
+name=Tromokratis
+text=Tromokratis has hexproof unless it's attacking or blocking. -- Tromokratis can't be blocked unless all creatures defending player controls block it. (If any creature that player controls doesn't block this creature, it can't be blocked.)
+mana={5}{U}{U}
+type=Legendary Creature
+subtype=Kraken
+power=8
+toughness=8
+[/card]
+[card]
+name=Sphinx of Uthuun
+abilities=flying
+text=Flying -- When Sphinx of Uthuun enters the battlefield, reveal the top five cards of your library. An opponent separates those cards into two piles. Put one pile into your hand and the other into your graveyard.
+mana={5}{U}{U}
+type=Creature
+subtype=Sphinx
+power=5
+toughness=6
+[/card]
+[card]
+name=Hullbreacher
+abilities=flash
+text=Flash -- If an opponent would draw a card except the first one they draw in each of their draw steps, instead you create a Treasure token. (It's an artifact with "{T}, Sacrifice this artifact: Add one mana of any color.")
+mana={2}{U}
+type=Creature
+subtype=Merfolk Pirate
+power=3
+toughness=2
+[/card]
+[card]
+name=Bell Borca, Spectral Sergeant
+text=Note the converted mana cost of each card as it's put into exile. -- Bell Borca, Spectral Sergeant's power is equal to the greatest number noted for it this turn. -- At the beginning of your upkeep, exile the top card of your library. You may play that card this turn.
+mana={2}{R}{W}
+type=Legendary Creature
+subtype=Spirit Soldier
+power=*
+toughness=5
+[/card]
+[card]
+name=Blim, Comedic Genius
+text=Flying -- Whenever Blim, Comedic Genius deals combat damage to a player, that player gains control of target permanent you control. Then each player loses life and discards cards equal to the number of permanents they control but don't own.
+mana={2}{B}{R}
+type=Legendary Creature
+subtype=Imp
+power=4
+toughness=3
+[/card]
+[card]
+name=Deflecting Palm
+text=The next time a source of your choice would deal damage to you this turn, prevent that damage. If damage is prevented this way, Deflecting Palm deals that much damage to that source's controller.
+mana={R}{W}
+type=Instant
+[/card]
+[card]
+name=Araumi of the Dead Tide
+text={T}, Exile cards from your graveyard equal to the number of opponents you have: Target creature card in your graveyard gains encore until end of turn. The encore cost is equal to its mana cost. (Exile the creature card and pay its mana cost: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
+mana={1}{U}{B}
+type=Legendary Creature
+subtype=Merfolk Wizard
+power=1
+toughness=4
+[/card]
+[card]
+name=Averna, the Chaos Bloom
+text=As you cascade, you may put a land card from among the exiled cards onto the battlefield tapped. (Do this after the last card is exiled but before deciding whether to cast a nonland card.)
+mana={G}{U}{R}
+type=Legendary Creature
+subtype=Elemental Shaman
+power=4
+toughness=2
+[/card]
+[card]
+name=Opposition Agent
+text=Flash -- You control your opponents while they're searching their libraries. -- While an opponent is searching their library, they exile each card they find. You may play those cards for as long as they remain exiled, and you may spend mana as though it were mana of any color to cast them.
+mana={2}{B}
+type=Creature
+subtype=Human Rogue
+power=3
+toughness=2
+[/card]
+[card]
+name=Scroll Rack
+text={1}, {T}: Exile any number of cards from your hand face down. Put that many cards from the top of your library into your hand. Then look at the exiled cards and put them on top of your library in any order.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Wheel of Misfortune
+text=Each player secretly chooses a number 0 or greater, then all players reveal those numbers simultaneously and determine the highest and lowest numbers revealed this way. Wheel of Misfortune deals damage equal to the highest number to each player who chose that number. Each player who didn't choose the lowest number discards their hand, then draws seven cards.
+mana={2}{R}
+type=Sorcery
+[/card]
+[card]
+name=Rings of Brighthearth
+text=Whenever you activate an ability, if it isn't a mana ability, you may pay {2}. If you do, copy that ability. You may choose new targets for the copy.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Oreskos Explorer
+text=When Oreskos Explorer enters the battlefield, search your library for up to X Plains cards, where X is the number of players who control more lands than you. Reveal those cards, put them into your hand, then shuffle your library.
+mana={1}{W}
+type=Creature
+subtype=Cat Scout
+power=2
+toughness=2
+[/card]

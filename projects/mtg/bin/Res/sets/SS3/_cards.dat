@@ -1,0 +1,52 @@
+[meta]
+author=Wagic Team
+name=Signature Spellbok: Chandra
+orderindex=SIG-3.SS3
+year=2020-06-26
+total=9
+[/meta]
+[card]
+primitive=Elemental
+id=-294717
+rarity=T
+[/card]
+[card]
+primitive=Chandra, Torch of Defiance
+id=294710
+rarity=M
+[/card]
+[card]
+primitive=Cathartic Reunion
+id=294711
+rarity=R
+[/card]
+[card]
+primitive=Fiery Confluence
+id=294712
+rarity=R
+[/card]
+[card]
+primitive=Past in Flames
+id=294713
+rarity=M
+[/card]
+[card]
+primitive=Pyroblast
+id=294714
+rarity=R
+[/card]
+[card]
+primitive=Pyromancer Ascension
+id=294715
+rarity=R
+[/card]
+[card]
+primitive=Rite of Flame
+id=294716
+rarity=R
+[/card]
+[card]
+primitive=Young Pyromancer
+id=294717
+rarity=R
+[/card]

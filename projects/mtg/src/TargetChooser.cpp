@@ -54,6 +54,13 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         return NEW TotemChooser(observer, card, maxtargets);
     };
 
+    found = s.find("myeqp");
+    if (found != string::npos)
+    {
+        int maxtargets = 1;
+        return NEW EqpChooser(observer, card, maxtargets);
+    };
+
     found = s.find("mytgt");
     if (found == 0)
     {
@@ -121,10 +128,32 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
     if (found != string::npos)
     {
         int maxtargets = 1;
-        size_t several = s.find("<anyamount>");
+        size_t several = s.find("<");
+        if (several != string::npos){
+            size_t idx = s.find(">");
+            if(idx != string::npos){
+                string tmp = s.substr(several+1,idx-1);
+                WParsedInt* parser = NEW WParsedInt(tmp, card);
+                maxtargets = parser->intValue;
+                SAFE_DELETE(parser);
+            }
+        }
+        several = s.find("<anyamount>");
         if (several != string::npos) maxtargets = TargetChooser::UNLITMITED_TARGETS;
+        found = s.find("creature,planeswalker");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //Any Damageable target (player, creature, planeswalker)
+        found = s.find("planeswalker,creature");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //Any Damageable target (player, creature, planeswalker)
+        found = s.find("creature^planeswalker");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //Any Damageable target (player, creature, planeswalker)
+        found = s.find("planeswalker^creature");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //Any Damageable target (player, creature, planeswalker)
+        found = s.find("permanent");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "permanent"); //Any player or permanet (player, creature, planeswalker, artifact, land, enchantment)
         found = s.find("creature");
-        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other); //Any Damageable target (player, creature)
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other); //2 Damageable target (player, creature)
+        found = s.find("planeswalker");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "planeswalker"); //2 Damageable target (player, planeswalker)
         return NEW PlayerTargetChooser(observer, card, maxtargets); //Any player
     }
 
@@ -151,6 +180,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         s2 = s.substr(found + 1);
         while (s2.size())
         {
+            replace(s2.begin(), s2.end(), '^', ','); // To allow the usage of ^ instead of , char (e.g. target multiple zones within transforms keyword)
             found = s2.find(",");
             string zoneName;
             if (found != string::npos)
@@ -174,6 +204,11 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
             {
                 zones[nbzones++] = MTGGameZone::MY_SIDEBOARD;
                 zones[nbzones++] = MTGGameZone::OPPONENT_SIDEBOARD;
+            }
+            else if (zoneName.compare("commandzone") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_COMMANDZONE;
+                zones[nbzones++] = MTGGameZone::OPPONENT_COMMANDZONE;
             }
             else if (zoneName.compare("reveal") == 0)
             {
@@ -210,6 +245,8 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
                 zones[nbzones++] = MTGGameZone::MY_EXILE;
                 zones[nbzones++] = MTGGameZone::OPPONENT_EXILE;
+                zones[nbzones++] = MTGGameZone::MY_COMMANDZONE;
+                zones[nbzones++] = MTGGameZone::OPPONENT_COMMANDZONE;
             }
             else if (zoneName.compare("stack") == 0)
             {
@@ -227,7 +264,22 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::MY_LIBRARY;
                 zones[nbzones++] = MTGGameZone::MY_HAND;
                 zones[nbzones++] = MTGGameZone::MY_EXILE;
-                zones[nbzones++] = MTGGameZone::MY_SIDEBOARD;
+                zones[nbzones++] = MTGGameZone::MY_COMMANDZONE;
+            }
+            else if (zoneName.compare("myrestrictedcastingzone") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_HAND;
+                zones[nbzones++] = MTGGameZone::MY_COMMANDZONE;
+            }
+            else if (zoneName.compare("mycommandplay") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_BATTLEFIELD;
+                zones[nbzones++] = MTGGameZone::MY_COMMANDZONE;
+            }
+            else if (zoneName.compare("myhandlibrary") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_HAND;
+                zones[nbzones++] = MTGGameZone::MY_LIBRARY;
             }
             else if (zoneName.compare("opponentcastingzone") == 0)
             {
@@ -235,17 +287,47 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::OPPONENT_LIBRARY;
                 zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
                 zones[nbzones++] = MTGGameZone::OPPONENT_EXILE;
+                zones[nbzones++] = MTGGameZone::OPPONENT_COMMANDZONE;
+            }
+            else if (zoneName.compare("opponentrestrictedcastingzone") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
+                zones[nbzones++] = MTGGameZone::OPPONENT_COMMANDZONE;
+            }
+            else if (zoneName.compare("opponentcommandplay") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::OPPONENT_BATTLEFIELD;
+                zones[nbzones++] = MTGGameZone::OPPONENT_COMMANDZONE;
+            }
+            else if (zoneName.compare("opponenthandlibrary") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
+                zones[nbzones++] = MTGGameZone::OPPONENT_LIBRARY;
             }
             else if (zoneName.compare("mynonplaynonexile") == 0)
             {
                 zones[nbzones++] = MTGGameZone::MY_GRAVEYARD;
                 zones[nbzones++] = MTGGameZone::MY_LIBRARY;
                 zones[nbzones++] = MTGGameZone::MY_HAND;
+                zones[nbzones++] = MTGGameZone::MY_COMMANDZONE;
             }
             else if (zoneName.compare("opponentnonplaynonexile") == 0)
             {
                 zones[nbzones++] = MTGGameZone::OPPONENT_GRAVEYARD;
                 zones[nbzones++] = MTGGameZone::OPPONENT_LIBRARY;
+                zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
+                zones[nbzones++] = MTGGameZone::OPPONENT_COMMANDZONE;
+            }
+            else if (zoneName.compare("myhandexilegrave") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_GRAVEYARD;
+                zones[nbzones++] = MTGGameZone::MY_EXILE;
+                zones[nbzones++] = MTGGameZone::MY_HAND;
+            }
+            else if (zoneName.compare("opponenthandexilegrave") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::OPPONENT_GRAVEYARD;
+                zones[nbzones++] = MTGGameZone::OPPONENT_EXILE;
                 zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
             }
             else if (zoneName.compare("myzones") == 0)
@@ -256,6 +338,8 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::MY_LIBRARY;
                 zones[nbzones++] = MTGGameZone::MY_HAND;
                 zones[nbzones++] = MTGGameZone::MY_EXILE;
+                zones[nbzones++] = MTGGameZone::MY_SIDEBOARD;
+                zones[nbzones++] = MTGGameZone::MY_COMMANDZONE;
             }
             else if (zoneName.compare("opponentzones") == 0)
             {
@@ -265,6 +349,8 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::OPPONENT_LIBRARY;
                 zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
                 zones[nbzones++] = MTGGameZone::OPPONENT_EXILE;
+                zones[nbzones++] = MTGGameZone::OPPONENT_SIDEBOARD;
+                zones[nbzones++] = MTGGameZone::OPPONENT_COMMANDZONE;
             }
             else
             {
@@ -349,6 +435,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         }
 
         //Advanced cards caracteristics ?
+        replace(typeName.begin(), typeName.end(), '^', ','); // To allow the usage of ^ instead of , char (e.g. target card with ',' char in name)
         found = typeName.find("[");
         if (found != string::npos)
         {
@@ -481,8 +568,68 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     {
                         cd->unsecureSetTapped(1);
                     }
-                    //Token
                 }
+                //Has been foretold
+                else if (attribute.find("foretold") != string::npos)
+                {
+                    cd->foretellTurn = comparisonCriterion;
+                    cd->foretoldComparisonMode = comparisonMode;
+                }
+                //Has been kicked
+                else if (attribute.find("kicked") != string::npos)
+                {
+                    cd->kicked = comparisonCriterion;
+                    cd->kickedComparisonMode = comparisonMode;
+                }
+                //Has kicker cost
+                else if (attribute.find("haskicker") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->unsecureSetHasKickerCost(-1);
+                    }
+                    else
+                    {
+                        cd->unsecureSetHasKickerCost(1);
+                    }
+                }
+                //Has flashback cost
+                else if (attribute.find("hasflashback") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->unsecureSetHasFlashbackCost(-1);
+                    }
+                    else
+                    {
+                        cd->unsecureSetHasFlashbackCost(1);
+                    }
+                }
+                //Has backside
+                else if (attribute.find("hasbackside") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->unsecureSetHasBackSide(-1);
+                    }
+                    else
+                    {
+                        cd->unsecureSetHasBackSide(1);
+                    }
+                }
+                //Has partner
+                else if (attribute.find("haspartner") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->unsecureSetHasPartner(-1);
+                    }
+                    else
+                    {
+                        cd->unsecureSetHasPartner(1);
+                    }
+                }
+                //Token
                 else if (attribute.find("token") != string::npos)
                 {
                     if (minus)
@@ -493,8 +640,44 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     {
                         cd->isToken = 1;
                     }
-                    //put in its zone this turn
                 }
+                //Has been flipped
+                else if (attribute.find("isflipped") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->isFlipped = -1;
+                    }
+                    else
+                    {
+                        cd->isFlipped = 1;
+                    }
+                }
+                //Has x in cost
+                else if (attribute.find("hasx") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->hasXCost = -1;
+                    }
+                    else
+                    {
+                        cd->hasXCost = 1;
+                    }
+                }
+                //has been discarded
+                else if (attribute.find("discarded") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDdiscarded = -1;
+                    }
+                    else
+                    {
+                        cd->CDdiscarded = 1;
+                    }
+                }
+                //put in its zone this turn
                 else if (attribute.find("fresh") != string::npos)
                 {
                     if (minus)
@@ -517,7 +700,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->unsecuresetrecent(1);
                     }
                 }
-                else if (attribute.find("geared") != string::npos)
+                else if (attribute.find("geared") != string::npos || attribute.find("equipped") != string::npos)
                 {
                     if (minus)
                     {
@@ -526,6 +709,17 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     else
                     {
                         cd->CDgeared = 1;
+                    }
+                }
+                else if (attribute.find("attached") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDattached = -1;
+                    }
+                    else
+                    {
+                        cd->CDattached = 1;
                     }
                 }
                 //creature is a level up creature
@@ -694,25 +888,24 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     //Power restrictions
                     cd->setPower(comparisonCriterion);
                     cd->powerComparisonMode = comparisonMode;
-                    //Toughness restrictions
                 }
                 else if (attribute.find("toughness") != string::npos)
                 {
+                    //Toughness restrictions
                     cd->setToughness(comparisonCriterion);
                     cd->toughnessComparisonMode = comparisonMode;
-                    //zpos restrictions
                 }
                 else if (attribute.find("zpos") != string::npos)
                 {
+                    //zpos restrictions
                     cd->zposition = comparisonCriterion;
                     cd->zposComparisonMode = comparisonMode;
-                    //Manacost restrictions
                 }
                 else if (attribute.find("manacost") != string::npos)
                 {
+                    //Manacost restrictions
                     cd->convertedManacost = comparisonCriterion;
                     cd->manacostComparisonMode = comparisonMode;
-                    //Counter Restrictions
                 }
                 else if (attribute.find("share!") != string::npos)
                 {
@@ -738,7 +931,10 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         else
                             cd->compareName = card->name;
 
-                        cd->nameComparisonMode = COMPARISON_EQUAL;
+                        if (attribute.find("notshare!") != string::npos)
+                            cd->nameComparisonMode = COMPARISON_UNEQUAL;
+                        else
+                            cd->nameComparisonMode = COMPARISON_EQUAL;
                     }
                     else if( CDtype.find("color") != string::npos )
                     {
@@ -746,8 +942,11 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                             cd->colors = card->target->colors;
                         else
                             cd->colors = card->colors;
-                       
-                        cd->mode = CardDescriptor::CD_OR;
+
+                        if (attribute.find("notshare!") != string::npos)                       
+                            cd->mode = CardDescriptor::CD_NOR;
+                        else
+                            cd->mode = CardDescriptor::CD_OR;
                     }
                     else if( CDtype.find("types") != string::npos )
                     {
@@ -769,7 +968,17 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->removeType("creature");
                         cd->removeType("planeswalker");
                         cd->removeType("tribal");
-                        cd->mode = CardDescriptor::CD_OR;
+                        if (!cd->types.size()){
+                            int i = rand() % 10000 + 1;
+                            ostringstream subt;
+                            subt << card->getName() << "_DummyType_" << i;
+                            cd->setSubtype(subt.str()); // Fix to avoid type vector size is 0 causing the always true match issue.
+                        }
+
+                        if (attribute.find("notshare!") != string::npos)                       
+                            cd->mode = CardDescriptor::CD_NOR;
+                        else
+                            cd->mode = CardDescriptor::CD_OR;
                     }
                 }
                 else if (attribute.find("counter") != string::npos)
@@ -859,6 +1068,76 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         }
                     }
 
+                    if (attribute.find("chosenname") != string::npos && card->chooseaname != "")
+                    {
+                        attributefound = 1;
+                        cd->compareName = card->chooseaname;
+                        if (minus)
+                            cd->nameComparisonMode = COMPARISON_UNEQUAL;
+                        else
+                            cd->nameComparisonMode = COMPARISON_EQUAL;
+                    }
+
+                    if (attribute.find("lastnamechosen") != string::npos && card->controller()->lastChosenName != "")
+                    {
+                        attributefound = 1;
+                        cd->compareName = card->controller()->lastChosenName;
+                        if (minus)
+                            cd->nameComparisonMode = COMPARISON_UNEQUAL;
+                        else
+                            cd->nameComparisonMode = COMPARISON_EQUAL;
+                    }
+
+                    if (attribute.find("evictname") != string::npos && card->imprintedCards.size())
+                    {
+                        attributefound = 1;
+                        cd->compareName = card->currentimprintName;
+                        if (minus)
+                            cd->nameComparisonMode = COMPARISON_UNEQUAL;
+                        else
+                            cd->nameComparisonMode = COMPARISON_EQUAL;
+                    }
+
+                    if (attribute.find("backname") != string::npos && card->backSide != "")
+                    {
+                        attributefound = 1;
+                        cd->compareName = card->backSide;
+                        if (minus)
+                            cd->nameComparisonMode = COMPARISON_UNEQUAL;
+                        else
+                            cd->nameComparisonMode = COMPARISON_EQUAL;
+                    }
+
+                    if (attribute.find("partname") != string::npos && card->partner != "")
+                    {
+                        attributefound = 1;
+                        cd->compareName = card->partner;
+                        if (minus)
+                            cd->nameComparisonMode = COMPARISON_UNEQUAL;
+                        else
+                            cd->nameComparisonMode = COMPARISON_EQUAL;
+                    }
+
+                    if (attribute.find("storedname") != string::npos && card->storedCard)
+                    {
+                        attributefound = 1;
+                        cd->compareName = card->storedCard->getName();
+                        if (minus)
+                            cd->nameComparisonMode = COMPARISON_UNEQUAL;
+                        else
+                            cd->nameComparisonMode = COMPARISON_EQUAL;
+                    }
+
+                    if (attribute.find("preyname") != string::npos && card->hauntedCard)
+                    {
+                        attributefound = 1;
+                        cd->compareName = card->hauntedCard->getName();
+                        if (minus)
+                            cd->nameComparisonMode = COMPARISON_UNEQUAL;
+                        else
+                            cd->nameComparisonMode = COMPARISON_EQUAL;
+                    }
+
                     if (!attributefound)
                     {
                         //Abilities
@@ -925,7 +1204,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     ctc->setAllZones();
                     return ctc;
                 }
-                else if (typeName.compare("mystored") == 0)
+                else if (typeName.compare("mysource") == 0)
                 {
                     return NEW CardTargetChooser(observer, card->storedSourceCard, card, zones, nbzones);
                 }
@@ -1014,6 +1293,7 @@ TargetChooser::TargetChooser(GameObserver *observer, MTGCardInstance * card, int
     other = _other;
     targetMin = _targetMin;
     done = false;
+    autoChoice = false;
     attemptsToFill = 0;
     if(source)
         Owner = source->controller();
@@ -1131,8 +1411,8 @@ bool TargetChooser::validTargetsExist(int maxTargets)
         int maxAmount = 0;
         Player *p = observer->players[i];
         if (canTarget(p)) return true;
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack, p->game->reveal, p->game->sideboard };
-        for (int k = 0; k < 8; k++)
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack, p->game->commandzone, p->game->sideboard, p->game->reveal };
+        for (int k = 0; k < 9; k++)
         {
             MTGGameZone * z = zones[k];
             if (targetsZone(z))
@@ -1165,8 +1445,8 @@ int TargetChooser::countValidTargets(bool withoutProtections)
         Player *p = observer->players[i];
         if(canTarget(p))
             result++;
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack, p->game->reveal, p->game->sideboard };
-        for (int k = 0; k < 8; k++)
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack, p->game->commandzone, p->game->sideboard, p->game->reveal };
+        for (int k = 0; k < 9; k++)
         {
             MTGGameZone * z = zones[k];
             if (targetsZone(z))
@@ -1241,9 +1521,27 @@ bool CardTargetChooser::equals(TargetChooser * tc)
 TypeTargetChooser::TypeTargetChooser(GameObserver *observer, const char * _type, MTGCardInstance * card, int _maxtargets, bool other,bool targetMin) :
     TargetZoneChooser(observer, card, _maxtargets, other,targetMin)
 {
-    int id = MTGAllCards::findType(_type);
     nbtypes = 0;
-    addType(id);
+    if(!strcmp(_type,"creature,planeswalker")){
+        int id = MTGAllCards::findType("creature");
+        addType(id);
+        id = MTGAllCards::findType("planeswalker");
+        addType(id);
+    } else if(!strcmp(_type,"permanent")){
+        int id = MTGAllCards::findType("creature");
+        addType(id);
+        id = MTGAllCards::findType("planeswalker");
+        addType(id);
+        id = MTGAllCards::findType("land");
+        addType(id);
+        id = MTGAllCards::findType("artifact");
+        addType(id);
+        id = MTGAllCards::findType("enchantment");
+        addType(id);
+    } else {
+        int id = MTGAllCards::findType(_type);
+        addType(id);
+    }
     int default_zones[] = { MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD };
     init(default_zones, 2);
 }
@@ -1579,28 +1877,33 @@ bool PlayerTargetChooser::equals(TargetChooser * tc)
 }
 
 /*Damageable Target */
-bool DamageableTargetChooser::canTarget(Targetable * target,bool withoutProtections)
+bool DamageableTargetChooser::canTarget(Targetable * target, bool withoutProtections)
 {
-    // TODO: get rid of common code with PlayerTargetChooser
-    if (source && targetter)
+    if (Player * p = dynamic_cast<Player*>(target))
     {
-        if ((targetter->controller() != targetter->controller()->opponent())
-            && (targetter->controller()->opponent()->game->inPlay->hasAbility(Constants::CONTROLLERSHROUD))
-            && targetter->controller() != target)
-                return false;
-        if ((targetter->controller()->opponent()->game->inPlay->hasAbility(Constants::PLAYERSHROUD))
-            && targetter->controller()->opponent() == target)
-                return false;
-        if ((targetter->controller()->game->inPlay->hasAbility(Constants::PLAYERSHROUD))
-            && targetter->controller() == target)
-                return false;
-    }
-
-    if (dynamic_cast<Player *>(target))
-    {
+        if (source && (source->controller() != source->controller()->opponent()) && (source->controller()->opponent()->game->inPlay->hasAbility(Constants::CONTROLLERSHROUD)) && source->controller() != p)
+            return false;
+        if (source && source->controller()->opponent()->game->inPlay->hasAbility(Constants::PLAYERSHROUD) && source->controller()->opponent() == p)
+            return false;
+        if (source && source->controller()->game->inPlay->hasAbility(Constants::PLAYERSHROUD) && source->controller() == p)
+            return false;
         return true;
     }
-    return TypeTargetChooser::canTarget(target,withoutProtections);
+    else if (MTGCardInstance * card = dynamic_cast<MTGCardInstance*>(target))
+    {
+        if (source && card->isInPlay(observer) && !withoutProtections)
+        { 
+            if (card->has(Constants::SHROUD)) return source->bypassTC;
+            if (card->protectedAgainst(targetter)) return source->bypassTC;
+            if (card->CantBeTargetby(targetter)) return source->bypassTC;
+            if ((source->controller() != card->controller()) && card->has(Constants::OPPONENTSHROUD)) return source->bypassTC;
+            if (card->has(Constants::PROTECTIONFROMCOLOREDSPELLS)){
+                if((source->spellTargetType.size()) && (source->hasColor(1)||source->hasColor(2)||source->hasColor(3)||source->hasColor(4)||source->hasColor(5)))
+                    return source->bypassTC;
+            }
+        }
+    }
+    return TypeTargetChooser::canTarget(target, withoutProtections);
 }
 
 DamageableTargetChooser* DamageableTargetChooser::clone() const
@@ -1931,21 +2234,44 @@ bool dredgeChooser::equals(TargetChooser * tc)
 //-----------
 //-----------
 /*Proliferate Target */
-bool ProliferateChooser::canTarget(Targetable * target,bool withoutProtections)
+bool ProliferateChooser::canTarget(Targetable * target, bool withoutProtections)
 {
-    if (MTGCardInstance * card = dynamic_cast<MTGCardInstance*>(target))
+    if (Player * p = dynamic_cast<Player*>(target))
     {
-        if(card->counters && card->counters->counters.empty())
+        if (source && (source->controller() != source->controller()->opponent()) && (source->controller()->opponent()->game->inPlay->hasAbility(Constants::CONTROLLERSHROUD)) && source->controller() != target)
+            return source->bypassTC;
+        if (source && (source->controller()->opponent()->game->inPlay->hasAbility(Constants::PLAYERSHROUD)) && source->controller()->opponent() == target)
+            return source->bypassTC;
+        if (source && (source->controller()->game->inPlay->hasAbility(Constants::PLAYERSHROUD)) && source->controller() == target)
+            return source->bypassTC;
+        if(source && source->controller()->isAI() && p == source->controller() && p->poisonCount)
+            return false; // prevent AI to target itself when it has some poison counters.
+        if(source && source->controller()->isAI() && p != source->controller() && !p->poisonCount)
+            return false; // prevent AI to target opponent when there are no poison counters.
+        if(!p->poisonCount && !p->energyCount && !p->experienceCount)
             return false;
         return true;
     }
-    else if (Player * p = dynamic_cast<Player*>(target))
+    else if (MTGCardInstance * card = dynamic_cast<MTGCardInstance*>(target))
     {
-        if(!p->poisonCount)
+        if(!observer || !card->isInPlay(observer))
+            return false;
+        if (source && !withoutProtections)
+        { 
+            if (card->has(Constants::SHROUD)) return source->bypassTC;
+            if (card->protectedAgainst(source)) return source->bypassTC;
+            if (card->CantBeTargetby(source)) return source->bypassTC;
+            if ((source->controller() != card->controller()) && card->has(Constants::OPPONENTSHROUD)) return source->bypassTC;
+            if (card->has(Constants::PROTECTIONFROMCOLOREDSPELLS)){
+                if((source->spellTargetType.size()) && (source->hasColor(1)||source->hasColor(2)||source->hasColor(3)||source->hasColor(4)||source->hasColor(5)))
+                    return source->bypassTC;
+            }
+        }
+        if(!card->counters || (card->counters && card->counters->counters.empty()))
             return false;
         return true;
     }
-    return TypeTargetChooser::canTarget(target,withoutProtections);
+    return false;
 }
 
 ProliferateChooser* ProliferateChooser::clone() const
@@ -2106,5 +2432,44 @@ bool TotemChooser::equals(TargetChooser * tc)
 }
 
 TotemChooser::~TotemChooser()
+{
+}
+
+//equipment chooser
+bool EqpChooser::canTarget(Targetable * target,bool withoutProtections)
+{
+    if (MTGCardInstance * card = dynamic_cast<MTGCardInstance*>(target))
+    {
+        if(card == source)
+            return false;
+        if(!card->isInPlay(observer))
+            return false;
+        if(card->parentCards.size())
+        {
+            if((card->parentCards.at(0)) == source && (card->hasType(Subtypes::TYPE_EQUIPMENT)))
+                return true;
+        }
+        return false;
+    }
+    return false;
+}
+
+EqpChooser* EqpChooser::clone() const
+{
+    EqpChooser * a = NEW EqpChooser(*this);
+    return a;
+}
+
+bool EqpChooser::equals(TargetChooser * tc)
+{
+
+    EqpChooser  * dtc = dynamic_cast<EqpChooser  *> (tc);
+    if (!dtc)
+        return false;
+
+    return TypeTargetChooser::equals(tc);
+}
+
+EqpChooser::~EqpChooser()
 {
 }

@@ -2,11 +2,12 @@
 author=Wagic Team
 name=Gatecrash
 block=Return to Ravnica
-year=2013
+orderindex=EXP-ZQ.GTC
+year=2013-02-01
 total=249
 [/meta]
 [card]
-primitive=AEtherize
+primitive=Aetherize
 id=366273
 rarity=U
 [/card]

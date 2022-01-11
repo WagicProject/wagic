@@ -1,0 +1,109 @@
+[card]
+name=Radiant Performer
+text=Flash -- When Radiant Performer enters the battlefield, if you cast it from your hand, choose target spell or ability that targets only a single permanent or player. Copy that spell or ability for each other permanent or player the spell or ability could target. Each copy targets a different one of those permanents and players.
+mana={3}{R}{R}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Battlemage's Bracers
+text=Equipped creature has haste. -- Whenever an ability of equipped creature is activated, if it isn't a mana ability, you may pay {1}. If you do, copy that ability. You may choose new targets for the copy. -- Equip {2}
+mana={2}{R}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Inkshield
+text=Prevent all combat damage that would be dealt to you this turn. For each 1 damage prevented this way, create a 2/1 white and black Inkling creature token with flying.
+mana={3}{W}{B}
+type=Instant
+[/card]
+[card]
+name=Ruxa, Patient Professor
+text=Whenever Ruxa, Patient Professor enters the battlefield or attacks, return target creature card with no abilities from your graveyard to your hand. -- Creatures you control with no abilities get +1/+1. -- You may have creatures you control with no abilities assign their combat damage as though they weren't blocked.
+mana={2}{G}{G}
+type=Legendary Creature
+subtype=Bear Druid
+power=4
+toughness=4
+[/card]
+[card]
+name=Wildfire Devils
+text=When Wildfire Devils enters the battlefield and at the beginning of your upkeep, choose a player at random. That player exiles an instant or sorcery card from their graveyard. Copy that card. You may cast the copy without paying its mana cost.
+mana={3}{R}
+type=Creature
+subtype=Devil
+power=4
+toughness=2
+[/card]
+[card]
+name=Magister of Worth
+abilities=flying
+text=Flying -- Will of the council - When Magister of Worth enters the battlefield, starting with you, each player votes for grace or condemnation. If grace gets more votes, each player returns each creature card from his or her graveyard to the battlefield. If condemnation gets more votes or the vote is tied, destroy all creatures other than Magister of Worth.
+mana={4}{W}{B}
+type=Creature
+subtype=Angel
+power=4
+toughness=4
+[/card]
+[card]
+name=Selfless Squire
+abilities=flash
+text=Flash -- When Selfless Squire enters the battlefield, prevent all damage that would be dealt to you this turn. -- Whenever damage that would be dealt to you is prevented, put that many +1/+1 counters on Selfless Squire.
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+[card]
+name=Oreskos Explorer
+text=When Oreskos Explorer enters the battlefield, search your library for up to X Plains cards, where X is the number of players who control more lands than you. Reveal those cards, put them into your hand, then shuffle your library.
+mana={1}{W}
+type=Creature
+subtype=Cat Scout
+power=2
+toughness=2
+[/card]
+[card]
+name=Epic Experiment
+text=Exile the top X cards of your library. For each instant and sorcery card with converted mana cost X or less among them, you may cast that card without paying its mana cost. Then put all cards exiled this way that weren't cast into your graveyard.
+mana={X}{U}{R}
+type=Sorcery
+[/card]
+[card]
+name=Living Lore
+text=As Living Lore enters the battlefield, exile an instant or sorcery card from your graveyard. -- Living Lore's power and toughness are each equal to the exiled card's converted mana cost. -- Whenever Living Lore deals combat damage, you may sacrifice it. If you do, you may cast the exiled card without paying its mana cost.
+mana={3}{U}
+type=Creature
+subtype=Avatar
+power=*
+toughness=*
+[/card]
+[card]
+name=Bloodthirsty Blade
+auto=teach(creature) 2/0
+auto=teach(creature) mustattack
+text=Equipped creature gets +2/+0 and is goaded. (It attacks each combat if able and attacks a player other than you if able.) -- {1}: Attach Bloodthirsty Blade to target creature an opponent controls. Activate this ability only any time you could cast a sorcery.
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Pendant of Prosperity
+text=Pendant of Prosperity enters the battlefield under the control of an opponent of your choice. -- {2}, {T}: Draw a card, then you may put a land card from your hand onto the battlefield. Pendant of Prosperity's owner draws a card, then that player may put a land card from their hand onto the battlefield.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Combustible Gearhulk
+abilities=first strike
+text=First strike -- When Combustible Gearhulk enters the battlefield, target opponent may have you draw three cards. If the player doesn't, put the top three cards of your library into your graveyard, then Combustible Gearhulk deals damage to that player equal to the total converted mana cost of those cards.
+mana={4}{R}{R}
+type=Artifact Creature
+subtype=Construct
+power=6
+toughness=6
+[/card]

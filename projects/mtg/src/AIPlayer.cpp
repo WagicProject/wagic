@@ -109,8 +109,10 @@ int AIAction::clickMultiAct(vector<Targetable*>& actionTargets)
     {
         if (MTGCardInstance * card = dynamic_cast<MTGCardInstance *>(actionTargets[k]))
         {
-            if(k+1 == int(actionTargets.size()))
+            if(k+1 == int(actionTargets.size())){
                 tc->done = true;
+                tc->autoChoice = false;
+            }
             g->cardClick(card);
         }
     }
@@ -206,7 +208,7 @@ int AIPlayer::clickSingleTarget(TargetChooser *, vector<Targetable*>& potentialT
 AIPlayer * AIPlayerFactory::createAIPlayer(GameObserver *observer, MTGAllCards * collection, Player * opponent, int deckid)
 {
     char deckFile[512];
-    string avatarFilename; // default imagename
+    string avatarFilename = ""; // default imagename
     char deckFileSmall[512];
     
     if (deckid == GameStateDuel::MENUITEM_EVIL_TWIN)
@@ -228,7 +230,8 @@ AIPlayer * AIPlayerFactory::createAIPlayer(GameObserver *observer, MTGAllCards *
         }
         sprintf(deckFile, "ai/baka/deck%i.txt", deckid);
         DeckMetaData *aiMeta = observer->getDeckManager()->getDeckMetaDataByFilename( deckFile, true);
-        avatarFilename = aiMeta->getAvatarFilename();
+        if(aiMeta)
+            avatarFilename = aiMeta->getAvatarFilename();
         sprintf(deckFileSmall, "ai_baka_deck%i", deckid);
     }
 

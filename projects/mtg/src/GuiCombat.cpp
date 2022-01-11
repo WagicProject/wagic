@@ -131,7 +131,7 @@ void GuiCombat::autoaffectDamage(AttackerDamaged* attacker, CombatStep step)
     {
         (*it)->clearDamage();
         unsigned actual_damage = MIN(damage, (unsigned)MAX((*it)->card->toughness, 0));
-        if (attacker->card->has(Constants::DEATHTOUCH) && actual_damage > 1)
+        if ((attacker->card->has(Constants::DEATHTOUCH) || attacker->card->has(Constants::PERPETUALDEATHTOUCH)) && actual_damage > 1)
             actual_damage = 1;
         (*it)->addDamage(actual_damage, attacker);
         attacker->addDamage((*it)->card->stepPower(step), *it);
@@ -159,7 +159,7 @@ void GuiCombat::removeOne(DefenserDamaged* blocker, CombatStep)
 {
     blocker->addDamage(-1, activeAtk);
     for (vector<DamagerDamaged*>::iterator it = activeAtk->blockers.begin(); it != activeAtk->blockers.end(); ++it)
-        if (activeAtk->card->has(Constants::DEATHTOUCH) ? ((*it)->sumDamages() < 1) : (!(*it)->hasLethalDamage()))
+        if ((activeAtk->card->has(Constants::DEATHTOUCH) || activeAtk->card->has(Constants::PERPETUALDEATHTOUCH)) ? ((*it)->sumDamages() < 1) : (!(*it)->hasLethalDamage()))
         {
             (*it)->addDamage(1, activeAtk);
             return;
@@ -363,7 +363,7 @@ bool GuiCombat::CheckUserInput(JButton key)
                     damage -= now;
                     if (damage > 0)
                         addOne(active, step);
-                    else if (activeAtk->card->has(Constants::DEATHTOUCH))
+                    else if (activeAtk->card->has(Constants::DEATHTOUCH) || activeAtk->card->has(Constants::PERPETUALDEATHTOUCH))
                         for (; now >= 1; --now)
                             removeOne(active, step);
                     else

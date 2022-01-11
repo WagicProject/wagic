@@ -1,11 +1,12 @@
 [meta]
 author=Wagic Team
 name=Homelands
-year=1995
-total=140
+orderindex=EXP-6.HML
+year=1995-10-01
+total=141
 [/meta]
 [card]
-primitive=AEther Storm
+primitive=Aether Storm
 id=2935
 rarity=U
 [/card]

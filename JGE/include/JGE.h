@@ -394,6 +394,7 @@ class JGE
    void SetJNIEnv(JNIEnv * env, jclass cls);
    void sendJNICommand(std::string command);
    std::string getFileSystemLocation();
+   std::string getFileUserFolderPath();
 #endif 
   
  protected:

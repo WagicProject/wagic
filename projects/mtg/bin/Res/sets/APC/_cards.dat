@@ -2,11 +2,12 @@
 author=Wagic Team
 name=Apocalypse
 block=Invasion
-year=2001
+orderindex=EXP-O.APC
+year=2001-06-04
 total=143
 [/meta]
 [card]
-primitive=AEther Mutation
+primitive=Aether Mutation
 id=28669
 rarity=U
 [/card]

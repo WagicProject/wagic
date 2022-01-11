@@ -1,8 +1,9 @@
 [meta]
 author=Wagic Team
 name=Fourth Edition
-year=1995
-total=378
+orderindex=COR-4.4ED
+year=1995-04-01
+total=379
 [/meta]
 [card]
 primitive=Abomination

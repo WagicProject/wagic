@@ -2,11 +2,12 @@
 author=Wagic Team
 name=Dragon's Maze
 block=Return to Ravnica
-year=2013
-total=156
+orderindex=EXP-ZR.DGM
+year=2013-05-03
+total=160
 [/meta]
 [card]
-primitive=AEtherling
+primitive=Aetherling
 id=368961
 rarity=R
 [/card]

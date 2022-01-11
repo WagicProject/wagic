@@ -1,0 +1,22 @@
+[meta]
+author=Wagic Team
+name=Duels of the Planeswalkers 2012
+orderindex=PRO-N.PDP12
+year=2012-01-01
+total=3
+[/meta]
+[card]
+primitive=Primordial Hydra
+id=17896
+rarity=M
+[/card]
+[card]
+primitive=Serra Avatar
+id=17897
+rarity=M
+[/card]
+[card]
+primitive=Vampire Nocturnus
+id=17898
+rarity=M
+[/card]

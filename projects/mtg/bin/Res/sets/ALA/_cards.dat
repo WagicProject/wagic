@@ -1,9 +1,10 @@
 [meta]
 author=Wagic Team
 name=Shards of Alara
-block=Shards of Alara
-year=2008
-total=249
+block=Alara
+orderindex=EXP-ZD.ALA
+year=2008-10-03
+total=250
 [/meta]
 [card]
 primitive=Ad Nauseam

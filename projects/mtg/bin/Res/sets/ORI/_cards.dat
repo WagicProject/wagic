@@ -1,7 +1,8 @@
 [meta]
 author=Wagic Team
 name=Magic Origins
-year=2015
+orderindex=COR-H.ORI
+year=2015-07-17
 total=293
 [/meta]
 [card]
@@ -60,7 +61,7 @@ id=398603
 rarity=C
 [/card]
 [card]
-primitive=Anchor to the AEther
+primitive=Anchor to the Aether
 id=398474
 rarity=U
 [/card]
@@ -495,7 +496,7 @@ id=398448
 rarity=U
 [/card]
 [card]
-primitive=Ghirapur AEther Grid
+primitive=Ghirapur Aether Grid
 id=398517
 rarity=U
 [/card]

@@ -2,8 +2,9 @@
 author=Wagic Team
 name=Dark Ascension
 block=Innistrad
-year=2012
-total=171
+orderindex=EXP-ZN.DKA
+year=2012-02-03
+total=172
 [/meta]
 [card]
 primitive=Afflicted Deserter

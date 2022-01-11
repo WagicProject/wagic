@@ -1,4 +1,4 @@
-#NAME:Elfball
+#NAME:Imperious Vanguard
 #DESC:An endless stream
 #DESC:of elvish warriors
 #DESC:will overwhelm you,
@@ -9,21 +9,23 @@
 #DESC:
 #DESC:You have no chance!
 
-Llanowar Elves (M10) *4
-Wellwisher (ONS) *4
-Elvish Vanguard (ONS) *4
-Elvish Visionary (M10) *4
-Elvish Hexhunter (SHM) *4
-Elvish Promenade (LRW) *4
-Elvish Archdruid (M10) *4
-Imperious Perfect (LRW) *4
-Drove of Elves (SHM) *1
-Heedless One (ONS) *3
-Overrun (10E) *2
-Forest (10E) *4
-Forest (M10) *4
-Forest (ALA) *4
-Forest (LRW) *4
-Forest (RAV) *4
-Pendelhaven (LEG) *1
-Gaea's Cradle (USG) *1
+# Land(s)
+Forest (M12) * 20
+Gaea's Cradle (PRM) * 1
+Pendelhaven (A25) * 1
+
+# Creature(s)
+Drove of Elves (SHM) * 1
+Elvish Archdruid (M10) * 4
+Elvish Hexhunter (SHM) * 4
+Elvish Vanguard (EMA) * 4
+Elvish Visionary (ALA) * 4
+Heedless One (PSAL) * 3
+Imperious Perfect (LRW) * 4
+Llanowar Elves (9ED) * 4
+Wellwisher (C14) * 4
+
+# Sorcery(s)
+Elvish Promenade (LRW) * 4
+Overrun (10E) * 2
+

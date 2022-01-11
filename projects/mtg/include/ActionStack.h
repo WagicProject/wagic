@@ -197,7 +197,10 @@ public:
         PUT_IN_GRAVEARD,
         PUT_IN_HAND,
         PUT_IN_LIBRARY_TOP,
-        PUT_IN_EXILE
+        PUT_IN_EXILE,
+        PUT_IN_LIBRARY_BOTTOM,
+        PUT_IN_LIBRARY_SECOND,
+        PUT_IN_EXILE_IMPRINT
     } FizzleMode;
 
 protected:
@@ -222,7 +225,7 @@ public:
     int getPreviousIndex(Interruptible * next, int type = 0, int state = 0 , int display = -1);
     Interruptible * getNext(Interruptible * previous, int type = 0, int state = 0 , int display = -1);
     int getNextIndex(Interruptible * previous, int type = 0, int state = 0 , int display = -1);
-    void Fizzle(Interruptible * action, FizzleMode fizzleMode = PUT_IN_GRAVEARD);
+    void Fizzle(Interruptible * action, MTGCardInstance* fizzler = NULL, FizzleMode fizzleMode = PUT_IN_GRAVEARD);
     Interruptible * getAt(int id);
     void cancelInterruptOffer(InterruptDecision cancelMode = DONT_INTERRUPT, bool log = true);
     void endOfInterruption(bool log = true);

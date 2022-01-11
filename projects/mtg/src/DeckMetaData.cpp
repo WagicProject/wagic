@@ -21,7 +21,6 @@ DeckMetaData::DeckMetaData(const string& filename, bool isAI)
     LoadDeck();
 }
 
-
 void DeckMetaData::LoadDeck()
 {
     if (!mDeckLoaded)
@@ -30,6 +29,7 @@ void DeckMetaData::LoadDeck()
         mName = trim(deck.meta_name);
         mDescription = trim(deck.meta_desc);
         mDeckId = atoi((mFilename.substr(mFilename.find("deck") + 4, mFilename.find(".txt"))).c_str());
+        mCommanderDeck = deck.meta_commander; //Added to read the command tag in deck's metafile.
 
         vector<string> requirements = split(deck.meta_unlockRequirements, ',');
         for(size_t i = 0; i < requirements.size(); ++i)
@@ -48,9 +48,7 @@ void DeckMetaData::LoadDeck()
         }        
     }
 
-
 }
-
 
 void DeckMetaData::LoadStats()
 {
@@ -105,13 +103,18 @@ void DeckMetaData::LoadStats()
 
 }
 
-// since we only have 100 stock avatar images, we need to recycle the images for deck numbers > 99
+// Removed the previous limit of 99 images, if "avatarXX.jpg" image is not present, for AI it will be used "baka.jpg" image instead.
 int DeckMetaData::getAvatarId()
 {
-    return mDeckId % 100;
+    return mDeckId;
 }
 
 //Accessors
+
+bool DeckMetaData::isCommanderDeck()
+{
+    return mCommanderDeck;
+}
 
 string DeckMetaData::getFilename()
 {
@@ -132,7 +135,6 @@ vector<int> DeckMetaData::getUnlockRequirements()
 {
     return mUnlockRequirements;
 }
-
 
 string DeckMetaData::getAvatarFilename()
 {

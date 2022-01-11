@@ -1,0 +1,9 @@
+[card]
+name=Fervent Champion
+text=First strike, haste -- Whenever Fervent Champion attacks, another target attacking Knight you control gets +1/+0 until end of turn. -- Equip abilities you activate that target Fervent Champion cost 3 less to activate.
+mana={R}
+type=Creature
+subtype=Human Knight
+power=1
+toughness=1
+[/card]

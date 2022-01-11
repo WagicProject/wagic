@@ -1,12 +1,12 @@
 [meta]
 author=Wagic Team
 name=Duel Decks: Jace vs. Chandra
-block=Duel
-year=2008
+orderindex=DUE-2.JVC
+year=2014-12-05
 total=62
 [/meta]
 [card]
-primitive=AEthersnipe
+primitive=Aethersnipe
 id=189211
 rarity=C
 [/card]

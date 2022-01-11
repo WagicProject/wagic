@@ -1,0 +1,52 @@
+[meta]
+author=Wagic Team
+name=Commander Collection: Green
+orderindex=COM-O.CC1
+year=2020-12-04
+total=9
+[/meta]
+[card]
+primitive=Elf Druid
+id=-295810
+rarity=T
+[/card]
+[card]
+primitive=Freyalise, Llanowar's Fury
+id=295810
+rarity=M
+[/card]
+[card]
+primitive=Omnath, Locus of Mana
+id=295811
+rarity=M
+[/card]
+[card]
+primitive=Bane of Progress
+id=295812
+rarity=R
+[/card]
+[card]
+primitive=Seedborn Muse
+id=295813
+rarity=R
+[/card]
+[card]
+primitive=Sylvan Library
+id=295814
+rarity=R
+[/card]
+[card]
+primitive=Worldly Tutor
+id=295815
+rarity=R
+[/card]
+[card]
+primitive=Sol Ring
+id=295816
+rarity=R
+[/card]
+[card]
+primitive=Command Tower
+id=295817
+rarity=R
+[/card]

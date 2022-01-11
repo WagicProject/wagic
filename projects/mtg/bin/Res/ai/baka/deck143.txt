@@ -1,0 +1,79 @@
+#NAME:Phantom Premonition
+#HINT:castpriority(commander,*)
+Angel of Finality (*) * 1
+Angel of Serenity (*) * 1
+Arcane Artisan (*) * 1
+Arcane Signet (*) * 1
+Azorius Chancery (*) * 1
+Azorius Guildgate (*) * 1
+Azorius Signet (*) * 1
+Banishing Light (*) * 1
+Behold the Multiverse (*) * 1
+Brago, King Eternal (*) * 1
+Burnished Hart (*) * 1
+Cleansing Nova (*) * 1
+Cloudblazer (*) * 1
+Cloudgoat Ranger (*) * 1
+Command Tower (*) * 1
+Commander's Sphere (*) * 1
+Cosmic Intervention (*) * 1
+Cryptic Caves (*) * 1
+Curse of the Swine (*) * 1
+Day of the Dragons (*) * 1
+Eerie Interlude (*) * 1
+Empyrean Eagle (*) * 1
+Ethereal Valkyrie (*) * 1
+Evangel of Heliod (*) * 1
+Flickerwisp (*) * 1
+Gates of Istfell (*) * 1
+Geist-Honored Monk (*) * 1
+Ghostly Flicker (*) * 1
+Ghostly Prison (*) * 1
+Glacial Floodplain (*) * 1
+Goldnight Commander (*) * 1
+Hero of Bretagard (*) * 1
+Inspired Sphinx (*) * 1
+Iron Verdict (*) * 1
+Island (*) * 12
+Kor Cartographer (*) * 1
+Marble Diamond (*) * 1
+Marshal's Anthem (*) * 1
+Meandering River (*) * 1
+Meteor Golem (*) * 1
+Migratory Route (*) * 1
+Mind Stone (*) * 1
+Mist Raven (*) * 1
+Mistmeadow Witch (*) * 1
+Momentary Blink (*) * 1
+Mulldrifter (*) * 1
+Myriad Landscape (*) * 1
+Niko Defies Destiny (*) * 1
+Opal Palace (*) * 1
+Plains (*) * 13
+Ravenform (*) * 1
+Replicating Ring (*) * 1
+Restoration Angel (*) * 1
+Return to Dust (*) * 1
+Sage of the Beyond (*) * 1
+Saw It Coming (*) * 1
+Sea Gate Oracle (*) * 1
+Sejiri Refuge (*) * 1
+Sky Diamond (*) * 1
+Sol Ring (*) * 1
+Soulherder (*) * 1
+Spectral Deluge (*) * 1
+Stoic Farmer (*) * 1
+Storm Herd (*) * 1
+Sun Titan (*) * 1
+Surtland Elementalist (*) * 1
+Swiftfoot Boots (*) * 1
+Synthetic Destiny (*) * 1
+Tales of the Ancestors (*) * 1
+Thunderclap Wyvern (*) * 1
+Tranquil Cove (*) * 1
+Vega, the Watcher (*) * 1
+Wall of Omens (*) * 1
+Warhorn Blast (*) * 1
+Whirler Rogue (*) * 1
+Windfall (*) * 1
+#CMD:Ranar the Ever-Watchful (*) * 1

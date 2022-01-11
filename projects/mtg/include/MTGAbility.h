@@ -176,6 +176,7 @@ public:
     virtual ostream& toString(ostream& out) const;
     virtual int addToGame();
     virtual int removeFromGame();
+    static vector<void *> deletedpointers;
 
     /*Poor man's casting */
     /* Todo replace that crap with dynamic casting */

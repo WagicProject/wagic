@@ -1,0 +1,222 @@
+[meta]
+author=Wagic Team
+name=Modern Horizons "Timeshifted"
+orderindex=REP-I.H1R
+year=2021-06-18
+total=43
+[/meta]
+[card]
+primitive=Squirrel
+id=-296389
+rarity=T
+[/card]
+[card]
+primitive=Construct
+id=-296380
+rarity=T
+[/card]
+[card]
+primitive=Elephant
+id=-296371
+rarity=T
+[/card]
+[card]
+primitive=Ephemerate
+id=296370
+rarity=U
+[/card]
+[card]
+primitive=Generous Gift
+id=296371
+rarity=U
+[/card]
+[card]
+primitive=Giver of Runes
+id=296372
+rarity=R
+[/card]
+[card]
+primitive=King of the Pride
+id=296373
+rarity=U
+[/card]
+[card]
+primitive=Ranger-Captain of Eos
+id=296374
+rarity=M
+[/card]
+[card]
+primitive=Sisay, Weatherlight Captain
+id=296375
+rarity=R
+[/card]
+[card]
+primitive=Archmage's Charm
+id=296376
+rarity=R
+[/card]
+[card]
+primitive=Faerie Seer
+id=296377
+rarity=U
+[/card]
+[card]
+primitive=Force of Negation
+id=296378
+rarity=R
+[/card]
+[card]
+primitive=Tribute Mage
+id=296379
+rarity=U
+[/card]
+[card]
+primitive=Urza, Lord High Artificer
+id=296380
+rarity=M
+[/card]
+[card]
+primitive=Changeling Outcast
+id=296381
+rarity=U
+[/card]
+[card]
+primitive=Defile
+id=296382
+rarity=U
+[/card]
+[card]
+primitive=Plague Engineer
+id=296383
+rarity=R
+[/card]
+[card]
+primitive=Undead Augur
+id=296384
+rarity=U
+[/card]
+[card]
+primitive=Goblin Engineer
+id=296385
+rarity=R
+[/card]
+[card]
+primitive=Magmatic Sinkhole
+id=296386
+rarity=U
+[/card]
+[card]
+primitive=Shenanigans
+id=296387
+rarity=U
+[/card]
+[card]
+primitive=Ayula, Queen Among Bears
+id=296388
+rarity=R
+[/card]
+[card]
+primitive=Deep Forest Hermit
+id=296389
+rarity=R
+[/card]
+[card]
+primitive=Force of Vigor
+id=296390
+rarity=R
+[/card]
+[card]
+primitive=Llanowar Tribe
+id=296391
+rarity=U
+[/card]
+[card]
+primitive=Scale Up
+id=296392
+rarity=U
+[/card]
+[card]
+primitive=Weather the Storm
+id=296393
+rarity=U
+[/card]
+[card]
+primitive=Etchings of the Chosen
+id=296394
+rarity=U
+[/card]
+[card]
+primitive=The First Sliver
+id=296395
+rarity=M
+[/card]
+[card]
+primitive=Ice-Fang Coatl
+id=296396
+rarity=R
+[/card]
+[card]
+primitive=Ingenious Infiltrator
+id=296397
+rarity=U
+[/card]
+[card]
+primitive=Lavabelly Sliver
+id=296398
+rarity=U
+[/card]
+[card]
+primitive=Soulherder
+id=296399
+rarity=U
+[/card]
+[card]
+primitive=Sword of Sinew and Steel
+id=296400
+rarity=M
+[/card]
+[card]
+primitive=Sword of Truth and Justice
+id=296401
+rarity=M
+[/card]
+[card]
+primitive=Talisman of Conviction
+id=296402
+rarity=U
+[/card]
+[card]
+primitive=Talisman of Creativity
+id=296403
+rarity=U
+[/card]
+[card]
+primitive=Talisman of Curiosity
+id=296404
+rarity=U
+[/card]
+[card]
+primitive=Talisman of Hierarchy
+id=296405
+rarity=U
+[/card]
+[card]
+primitive=Talisman of Resilience
+id=296406
+rarity=U
+[/card]
+[card]
+primitive=Universal Automaton
+id=296407
+rarity=U
+[/card]
+[card]
+primitive=Hall of Heliod's Generosity
+id=296408
+rarity=R
+[/card]
+[card]
+primitive=Prismatic Vista
+id=296409
+rarity=R
+[/card]

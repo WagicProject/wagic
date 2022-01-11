@@ -1,0 +1,29 @@
+#NAME: Yarok of Pranks
+#DESC: The First Eldraine Deck
+Midnight Reaper (*) *2
+Cavalier of Night (*) *3
+Dread Presence (*) *4
+Knight of the Ebon Legion (*) *4
+Yarok's Fenlurker (*) *4
+Foulmire Knight (*) *3
+Rankle, Master of Pranks (*) *3
+Murderous Rider (*) *4
+Ritual of Soot (*) *2
+Mausoleum Secrets (*) *1
+Command the Dreadhorde (*) *1
+Legion's End (*) *2
+Swamp (*) *19
+Witch's Cottage (*) *4
+Castle Locthwain (*) *2
+Ugin, the Ineffable (*) *1
+Liliana, Dreadhorde General (*) *1
+
+#SB: Massacre Girl (*) *1
+#SB: Ayara, First of Locthwain (*) *1
+#SB: The Elderspell (*) *1
+#SB: Duress (*) *2
+#SB: Noxious Grasp (*) *3
+#SB: Covetous Urge (*) *2
+#SB: Witch's Vengeance (*) *2
+#SB: Epic Downfall (*) *2
+#SB: The Cauldron of Eternity (*) *1

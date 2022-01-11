@@ -2,7 +2,8 @@
 author=Wagic Team
 name=Rise of the Eldrazi
 block=Zendikar
-year=2010
+orderindex=EXP-ZI.ROE
+year=2010-04-23
 total=248
 [/meta]
 [card]

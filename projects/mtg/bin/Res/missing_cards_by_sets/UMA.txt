@@ -1,0 +1,61 @@
+[card]
+name=Goryo's Vengeance
+text=Return target legendary creature card from your graveyard to the battlefield. That creature gains haste. Exile it at the beginning of the next end step. -- Splice onto Arcane {2}{B} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+mana={1}{B}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
+name=Gaddock Teeg
+text=Noncreature spells with converted mana cost 4 or greater can't be cast. -- Noncreature spells with {X} in their mana costs can't be cast.
+mana={G}{W}
+type=Legendary Creature
+subtype=Kithkin Advisor
+power=2
+toughness=2
+[/card]
+[card]
+name=Living Lore
+text=As Living Lore enters the battlefield, exile an instant or sorcery card from your graveyard. -- Living Lore's power and toughness are each equal to the exiled card's converted mana cost. -- Whenever Living Lore deals combat damage, you may sacrifice it. If you do, you may cast the exiled card without paying its mana cost.
+mana={3}{U}
+type=Creature
+subtype=Avatar
+power=*
+toughness=*
+[/card]
+[card]
+name=Through the Breach
+text=You may put a creature card from your hand onto the battlefield. That creature gains haste. Sacrifice that creature at the beginning of the next end step. -- Splice onto Arcane {2}{R}{R} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+mana={4}{R}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
+name=Runed Halo
+text=As Runed Halo enters the battlefield, name a card. -- You have protection from the chosen name. (You can't be targeted, dealt damage, or enchanted by anything with that name.)
+mana={W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Desperate Ritual
+text=Add {R}{R}{R} to your mana pool. -- Splice onto Arcane {1}{R} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+mana={1}{R}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
+name=Spoils of the Vault
+text=Name a card. Reveal cards from the top of your library until you reveal the named card, then put that card into your hand. Exile all other cards revealed this way, and you lose 1 life for each of the exiled cards.
+mana={B}
+type=Instant
+[/card]
+[card]
+name=Sigarda, Host of Herons
+abilities=flying,opponentshroud
+text=Flying, hexproof -- Spells and abilities your opponents control can't cause you to sacrifice permanents.
+mana={2}{G}{W}{W}
+type=Legendary Creature
+subtype=Angel
+power=5
+toughness=5
+[/card]

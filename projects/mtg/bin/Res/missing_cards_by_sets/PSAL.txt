@@ -1,0 +1,76 @@
+[card]
+name=Struggle for Sanity
+text=Target opponent reveals his or her hand. That player exiles a card from it, then you exile a card from it. Repeat this process until all cards in that hand have been exiled. That player returns the cards he or she exiled this way to his or her hand and puts the rest into his or her graveyard.
+mana={2}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Suppress
+text=Target player exiles all cards from his or her hand face down. At the beginning of the end step of that player's next turn, that player returns those cards to his or her hand.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Auratouched Mage
+text=When Auratouched Mage enters the battlefield, search your library for an Aura card that could enchant it. If Auratouched Mage is still on the battlefield, put that Aura card onto the battlefield attached to it. Otherwise, reveal the Aura card and put it into your hand. Then shuffle your library.
+mana={5}{W}
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=3
+[/card]
+[card]
+name=Jetting Glasskite
+abilities=flying
+text=Flying -- Whenever Jetting Glasskite becomes the target of a spell or ability for the first time in a turn, counter that spell or ability.
+mana={4}{U}{U}
+type=Creature
+subtype=Spirit
+power=4
+toughness=4
+[/card]
+[card]
+name=Deflection
+text=Change the target of target spell with a single target.
+mana={3}{U}
+type=Instant
+[/card]
+[card]
+name=Three Dreams
+text=Search your library for up to three Aura cards with different names, reveal them, and put them into your hand. Then shuffle your library.
+mana={4}{W}
+type=Sorcery
+[/card]
+[card]
+name=Booby Trap
+text=As Booby Trap enters the battlefield, name a card other than a basic land card and choose an opponent. -- The chosen player reveals each card he or she draws. -- When the chosen player draws the named card, sacrifice Booby Trap. If you do, Booby Trap deals 10 damage to that player.
+mana={6}
+type=Artifact
+[/card]
+[card]
+name=Auratouched Mage
+text=When Auratouched Mage enters the battlefield, search your library for an Aura card that could enchant it. If Auratouched Mage is still on the battlefield, put that Aura card onto the battlefield attached to it. Otherwise, reveal the Aura card and put it into your hand. Then shuffle your library.
+mana={5}{W}
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=3
+[/card]
+[card]
+name=Leonin Shikari
+text=You may activate equip abilities any time you could cast an instant.
+mana={1}{W}
+type=Creature
+subtype=Cat Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Nacatl War-Pride
+text=Nacatl War-Pride must be blocked by exactly one creature if able. -- Whenever Nacatl War-Pride attacks, put X tokens that are copies of Nacatl War-Pride onto the battlefield tapped and attacking, where X is the number of creatures defending player controls. Exile the tokens at the beginning of the next end step.
+mana={3}{G}{G}{G}
+type=Creature
+subtype=Cat Warrior
+power=3
+toughness=3
+[/card]

@@ -33,6 +33,7 @@ void GuiAvatar::Render()
     int life = player->life;
     int poisonCount = player->poisonCount;
     int energyCount = player->energyCount;
+    int experienceCount = player->experienceCount;
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     TargetChooser * tc = NULL;
@@ -120,13 +121,13 @@ void GuiAvatar::Render()
     case TOP_LEFT:
         mFont->SetColor(ARGB((int)actA / 4, 0, 0, 0));
         mFont->DrawString(buffer, actX + 2, actY - 2);
-        mFont->SetScale(1.3f);
+        mFont->SetScale(1.5f);
         mFont->SetColor(ARGB((int)actA, lx, ly, lz));
         mFont->DrawString(buffer, actX + 1, actY - 1);
         mFont->SetScale(1);
         break;
     case BOTTOM_RIGHT:
-        mFont->SetScale(1.3f);
+        mFont->SetScale(1.4f);
         mFont->SetColor(ARGB((int)actA, lx, ly, lz));
         mFont->DrawString(buffer, actX, actY - 14, JGETEXT_RIGHT);
         mFont->SetScale(1);
@@ -163,6 +164,23 @@ void GuiAvatar::Render()
         case BOTTOM_RIGHT:
             mFont->SetColor(ARGB((int)actA / 1 ,255, 255, 0));
             mFont->DrawString(energy, actX, actY - 27, JGETEXT_RIGHT);
+            break;
+        }
+    }
+    //experience
+    char experience[15];
+    if (experienceCount > 0)
+    {
+        sprintf(experience, "%i", experienceCount);
+        switch (corner)
+        {
+        case TOP_LEFT:
+            mFont->SetColor(ARGB((int)actA / 1, 255, 0, 255));
+            mFont->DrawString(experience, actX + 2, actY + 24);
+            break;
+        case BOTTOM_RIGHT:
+            mFont->SetColor(ARGB((int)actA / 1 ,255, 0, 255));
+            mFont->DrawString(experience, actX - 10, actY - 27, JGETEXT_RIGHT);
             break;
         }
     }
@@ -207,7 +225,7 @@ void GuiGameZone::Render()
     bool showopponenttop = (zone && zone->owner->opponent()->game->battlefield->nb_cards && zone->owner->opponent()->game->battlefield->hasAbility(Constants::SHOWOPPONENTTOPLIBRARY))?true:false;
 
     quad->SetColor(ARGB((int)(actA),255,255,255));
-    if(type == GUI_EXILE)
+    if(type == GUI_EXILE || type == GUI_COMMANDZONE || type == GUI_SIDEBOARD)
     {
         quad->SetColor(ARGB((int)(actA),255,240,255));
     }
@@ -217,7 +235,9 @@ void GuiGameZone::Render()
     JQuadPtr iconhand = WResourceManager::Instance()->RetrieveTempQuad("iconhand.png");
     JQuadPtr iconlibrary = WResourceManager::Instance()->RetrieveTempQuad("iconlibrary.png");
     JQuadPtr iconexile = WResourceManager::Instance()->RetrieveTempQuad("iconexile.png");
-    
+    JQuadPtr iconcommandzone = WResourceManager::Instance()->RetrieveTempQuad("iconcommandzone.png");
+    JQuadPtr iconsideboard = WResourceManager::Instance()->RetrieveTempQuad("iconsideboard.png");
+
     if(iconlibrary && type == GUI_LIBRARY)
     {
         scale2 = defaultHeight / iconlibrary->mHeight;
@@ -232,7 +252,7 @@ void GuiGameZone::Render()
         modx = -0.f;
         mody = -2.f;
         iconhand->SetColor(ARGB((int)(actA),255,255,255));
-        quad = iconhand;
+        quad = iconhand;       
     }
     if(iconcard && type == GUI_GRAVEYARD)
     {
@@ -250,7 +270,22 @@ void GuiGameZone::Render()
         iconexile->SetColor(ARGB((int)(actA),255,255,255));
         quad = iconexile;
     }
-    //
+    if(iconcommandzone && type == GUI_COMMANDZONE)
+    {
+        scale2 = defaultHeight / iconcommandzone->mHeight;
+        modx = -0.f;
+        mody = -2.f;
+        iconcommandzone->SetColor(ARGB((int)(actA),255,255,255));
+        quad = iconcommandzone;
+    }
+    if(iconsideboard && type == GUI_SIDEBOARD)
+    {
+        scale2 = defaultHeight / iconsideboard->mHeight;
+        modx = -0.f;
+        mody = -2.f;
+        iconsideboard->SetColor(ARGB((int)(actA),255,255,255));
+        quad = iconsideboard;
+    }
 
     if(type == GUI_LIBRARY && zone->nb_cards && !showCards)
     {
@@ -261,32 +296,26 @@ void GuiGameZone::Render()
             if(card && card->getObserver())
             {
                 replaced = true;
-                /*TargetChooser * tc = card->getObserver()->getCurrentTargetChooser();
-                if(tc && tc->canTarget(card) && !tc->done)
-                    replaced = false;
+                JQuadPtr kquad = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
+                if(kquad)
+                {
+                    kquad->SetColor(ARGB((int)(actA),255,255,255));
+                    scale2 = defaultHeight / kquad->mHeight;
+                    modx = (35/4)+1;
+                    mody = (50/4)+1;
+                    quad = kquad;
+                }
                 else
-                {*/
-                    JQuadPtr kquad = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
-                    if(kquad)
+                {
+                    quad = CardGui::AlternateThumbQuad(card);
+                    if(quad)
                     {
-                        kquad->SetColor(ARGB((int)(actA),255,255,255));
-                        scale2 = defaultHeight / kquad->mHeight;
+                        quad->SetColor(ARGB((int)(actA),255,255,255));
+                        scale2 = defaultHeight / quad->mHeight;
                         modx = (35/4)+1;
                         mody = (50/4)+1;
-                        quad = kquad;
                     }
-                    else
-                    {
-                        quad = CardGui::AlternateThumbQuad(card);
-                        if(quad)
-                        {
-                            quad->SetColor(ARGB((int)(actA),255,255,255));
-                            scale2 = defaultHeight / quad->mHeight;
-                            modx = (35/4)+1;
-                            mody = (50/4)+1;
-                        }
-                    }
-                //}
+                }
             }
         }
     }
@@ -518,6 +547,98 @@ int GuiExile::receiveEventMinus(WEvent* e)
 ostream& GuiExile::toString(ostream& out) const
 {
     return out << "GuiExile :::";
+}
+
+GuiCommandZone::GuiCommandZone(float x, float y, bool hasFocus, Player * player, GuiAvatars* parent) :
+    GuiGameZone(x, y, hasFocus, player->game->commandzone, parent), player(player)
+{
+    type = GUI_COMMANDZONE;
+}
+
+int GuiCommandZone::receiveEventPlus(WEvent* e)
+{
+    if (WEventZoneChange* event = dynamic_cast<WEventZoneChange*>(e))
+        if (event->to == zone)
+        {
+            CardView* t;
+            if (event->card->view)
+                t = NEW CardView(CardView::nullZone, event->card, *(event->card->view));
+            else
+                t = NEW CardView(CardView::nullZone, event->card, x, y);
+            t->x = x + Width / 2;
+            t->y = y + Height / 2;
+            t->zoom = 0.6f;
+            t->alpha = 0;
+            cards.push_back(t);
+            return 1;
+        }
+    return 0;
+}
+
+int GuiCommandZone::receiveEventMinus(WEvent* e)
+{
+    if (WEventZoneChange* event = dynamic_cast<WEventZoneChange*>(e))
+        if (event->from == zone)
+            for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
+                if (event->card->previous == (*it)->card)
+                {
+                    CardView* cv = *it;
+                    cards.erase(it);
+                    zone->owner->getObserver()->mTrash->trash(cv);
+                    return 1;
+                }
+    return 0;
+}
+
+ostream& GuiCommandZone::toString(ostream& out) const
+{
+    return out << "GuiCommandZone :::";
+}
+
+GuiSideboard::GuiSideboard(float x, float y, bool hasFocus, Player * player, GuiAvatars* parent) :
+    GuiGameZone(x, y, hasFocus, player->game->sideboard, parent), player(player)
+{
+    type = GUI_SIDEBOARD;
+}
+
+int GuiSideboard::receiveEventPlus(WEvent* e)
+{
+    if (WEventZoneChange* event = dynamic_cast<WEventZoneChange*>(e))
+        if (event->to == zone)
+        {
+            CardView* t;
+            if (event->card->view)
+                t = NEW CardView(CardView::nullZone, event->card, *(event->card->view));
+            else
+                t = NEW CardView(CardView::nullZone, event->card, x, y);
+            t->x = x + Width / 2;
+            t->y = y + Height / 2;
+            t->zoom = 0.6f;
+            t->alpha = 0;
+            cards.push_back(t);
+            return 1;
+        }
+    return 0;
+}
+
+int GuiSideboard::receiveEventMinus(WEvent* e)
+{
+    if (WEventZoneChange* event = dynamic_cast<WEventZoneChange*>(e))
+        if (event->from == zone)
+            for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
+                if (event->card->previous == (*it)->card)
+                {
+                    CardView* cv = *it;
+                    cards.erase(it);
+                    zone->owner->getObserver()->mTrash->trash(cv);
+                    return 1;
+                }
+    return 0;
+}
+
+ostream& GuiSideboard::toString(ostream& out) const
+{
+    return out << "GuiSideboard :::";
 }
 
 //opponenthand begins

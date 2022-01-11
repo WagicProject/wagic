@@ -1,30 +1,23 @@
 [card]
-name=Aid from the Cowl
-text=Revolt — At the beginning of your end step, if a permanent you controlled left the battlefield this turn, reveal the top card of your library. If it's a permanent card, you may put it onto the battlefield. Otherwise, you may put it on the bottom of your library.
-mana={3}{G}{G}
+name=Pia's Revolution
+text=Whenever a nontoken artifact is put into your graveyard from the battlefield, return that card to your hand unless target opponent has Pia's Revolution deal 3 damage to him or her.
+mana={2}{R}
 type=Enchantment
 [/card]
 [card]
-name=Ajani's Aid
-text=When Ajani's Aid enters the battlefield, you may search your library and/or graveyard for a card named Ajani, Valiant Protector, reveal it, and put it into your hand. If you search your library this way, shuffle it. -- Sacrifice Ajani's Aid: Prevent all combat damage a creature of your choice would deal this turn.
-mana={2}{G}{W}
-type=Enchantment
-[/card]
-[card]
-name=Baral, Chief of Compliance
-text=Instant and sorcery spells you cast cost {1} less to cast. -- Whenever a spell or ability you control counters a spell, you may draw a card. If you do, discard a card.
-mana={1}{U}
-type=Legendary Creature
-subtype=Human Wizard
-power=1
-toughness=3
-[/card]
-[card]
-name=Battle at the Bridge
-other={improvise} name(Improvise)
-text=Improvise (Your artifacts can help cast this spell. Each artifact you tap after you're done activating mana abilities pays for {1}.) -- Target creature gets -X/-X until end of turn. You gain X life.
-mana={X}{B}
+name=Dark Intimations
+text=Each opponent sacrifices a creature or planeswalker, then discards a card. You return a creature or planeswalker card from your graveyard to your hand, then draw a card. -- When you cast a Bolas planeswalker spell, exile Dark Intimations from your graveyard. That planeswalker enters the battlefield with an additional loyalty counter on it.
+mana={2}{U}{B}{R}
 type=Sorcery
+[/card]
+[card]
+name=Winding Constrictor
+text=If one or more counters would be placed on an artifact or creature you control, that many plus one of each of those kinds of counters are placed on that permanent instead. -- If you would get one or more counters, you get that many plus one of each of those kinds of counters instead.
+mana={B}{G}
+type=Creature
+subtype=Snake
+power=2
+toughness=3
 [/card]
 [card]
 name=Crackdown Construct
@@ -36,114 +29,17 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Dark Intimations
-text=Each opponent sacrifices a creature or planeswalker, then discards a card. You return a creature or planeswalker card from your graveyard to your hand, then draw a card. -- When you cast a Bolas planeswalker spell, exile Dark Intimations from your graveyard. That planeswalker enters the battlefield with an additional loyalty counter on it.
-mana={2}{U}{B}{R}
-type=Sorcery
-[/card]
-[card]
-name=Deft Dismissal
-text=Deft Dismissal deals 3 damage divided as you choose among one, two, or three target attacking or blocking creatures.
-mana={3}{W}
-type=Instant
-[/card]
-[card]
-name=Destructive Tampering
-text=Choose one — --Destroy target artifact. --Creatures without flying can't block this turn.
-mana={2}{R}
-type=Sorcery
-[/card]
-[card]
-name=Disallow
-text=Counter target spell, activated ability, or triggered ability. (Mana abilities can't be targeted.)
-mana={1}{U}{U}
-type=Instant
-[/card]
-[card]
-name=Exquisite Archangel
-abilities=flying
-text=Flying -- If you would lose the game, instead exile Exquisite Archangel and your life total becomes equal to your starting life total.
-mana={5}{W}{W}
-type=Creature
-subtype=Angel
-power=5
-toughness=5
-[/card]
-[card]
-name=Hungry Flames
-text=Hungry Flames deals 3 damage to target creature and 2 damage to target player.
-mana={2}{R}
-type=Instant
-[/card]
-[card]
-name=Indomitable Creativity
-target=<prex>artifact,creature|battlefield
-auto=destroy and!( if cantargetcard(*[creature;artifact]|nonbattlezone) then reveal:x revealzone(targetcontrollerlibrary) revealuntil(*[creature;artifact]|targetcontrollerlibrary) optionone all(*|reveal)  moveto(exile) and!(moveto(ownerbattlefield))! optiononeend revealend )!
-text=Destroy X target artifacts and/or creatures. For each permanent destroyed this way, its controller reveals cards from the top of his or her library until an artifact or creature card is revealed and exiles that card. Those players put the exiled cards onto the battlefield, then shuffle their libraries.
-mana={X}{R}{R}{R}
-type=Sorcery
-[/card]
-[card]
 name=Inspiring Statuary
 text=Nonartifact spells you cast have improvise. (Your artifacts can help cast those spells. Each artifact you tap after you're done activating mana abilities pays for {1}.)
 mana={3}
 type=Artifact
 [/card]
 [card]
-name=Invigorated Rampage
-text=Choose one — --Target creature gets +4/+0 and gains trample until end of turn. --Two target creatures each get +2/+0 and gain trample until end of turn.
-mana={1}{R}
-type=Instant
-[/card]
-[card]
-name=Merchant's Dockhand
-text={3}{U}, {T}, Tap X untapped artifacts you control: Look at the top X cards of your library. Put one of them into your hand and the rest on the bottom of your library in any order.
-mana={1}
-type=Artifact Creature
-subtype=Construct
+name=Baral, Chief of Compliance
+text=Instant and sorcery spells you cast cost {1} less to cast. -- Whenever a spell or ability you control counters a spell, you may draw a card. If you do, discard a card.
+mana={1}{U}
+type=Legendary Creature
+subtype=Human Wizard
 power=1
-toughness=2
-[/card]
-[card]
-name=Monstrous Onslaught
-text=Monstrous Onslaught deals X damage divided as you choose among any number of target creatures, where X is the greatest power among creatures you control as you cast Monstrous Onslaught.
-mana={3}{G}{G}
-type=Sorcery
-[/card]
-[card]
-name=Night Market Guard
-text=Night Market Guard can block an additional creature each combat.
-mana={3}
-type=Artifact Creature
-subtype=Construct
-power=3
-toughness=1
-[/card]
-[card]
-name=Pia's Revolution
-text=Whenever a nontoken artifact is put into your graveyard from the battlefield, return that card to your hand unless target opponent has Pia's Revolution deal 3 damage to him or her.
-mana={2}{R}
-type=Enchantment
-[/card]
-[card]
-name=Tezzeret's Betrayal
-text=Destroy target creature. You may search your library and/or graveyard for a card named Tezzeret, Master of Metal, reveal it, and put it into your hand. If you search your library this way, shuffle it.
-mana={3}{U}{B}
-type=Sorcery
-[/card]
-[card]
-name=Whir of Invention
-other={improvise} name(Improvise)
-text=Improvise (Your artifacts can help cast this spell. Each artifact you tap after you're done activating mana abilities pays for {1}.) -- Search your library for an artifact card with converted mana cost X or less, put it onto the battlefield, then shuffle your library.
-mana={X}{U}{U}{U}
-type=Instant
-[/card]
-[card]
-name=Winding Constrictor
-text=If one or more counters would be placed on an artifact or creature you control, that many plus one of each of those kinds of counters are placed on that permanent instead. -- If you would get one or more counters, you get that many plus one of each of those kinds of counters instead.
-mana={B}{G}
-type=Creature
-subtype=Snake
-power=2
 toughness=3
 [/card]

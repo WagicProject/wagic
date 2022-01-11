@@ -1,23 +1,99 @@
 [meta]
 author=Wagic Team
-name=Magic: The Gathering—Conspiracy
-year=2014
-total=197
+name=Conspiracy
+orderindex=COM-7.CNS
+year=2014-06-06
+total=224
 [/meta]
 [card]
-primitive=AEther Searcher
-id=382207
-rarity=R
+primitive=Wolf
+id=-382408
+rarity=T
 [/card]
 [card]
-primitive=AEther Tradewinds
-id=382208
-rarity=C
+primitive=Zombie
+id=-382403
+rarity=T
+[/card]
+[card]
+primitive=Elephant
+id=-382382
+rarity=T
+[/card]
+[card]
+primitive=Squirrel
+id=-382374
+rarity=T
+[/card]
+[card]
+primitive=Construct
+id=-382360
+rarity=T
+[/card]
+[card]
+primitive=Elephant
+id=-382358
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-382348
+rarity=T
+[/card]
+[card]
+primitive=Demon
+id=-382343
+rarity=T
+[/card]
+[card]
+primitive=Wolf
+id=-382333
+rarity=T
+[/card]
+[card]
+primitive=Ogre
+id=-382278
+rarity=T
+[/card]
+[card]
+primitive=Construct
+id=-382269
+rarity=T
+[/card]
+[card]
+primitive=Elephant
+id=-382258
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-382252
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-382242
+rarity=T
 [/card]
 [card]
 primitive=Academy Elite
 id=382205
 rarity=R
+[/card]
+[card]
+primitive=Advantageous Proclamation
+id=382206
+rarity=U
+[/card]
+[card]
+primitive=Aether Searcher
+id=382207
+rarity=R
+[/card]
+[card]
+primitive=Aether Tradewinds
+id=382208
+rarity=C
 [/card]
 [card]
 primitive=Agent of Acquisitions
@@ -55,6 +131,11 @@ id=382215
 rarity=C
 [/card]
 [card]
+primitive=Backup Plan
+id=382216
+rarity=R
+[/card]
+[card]
 primitive=Barbed Shocker
 id=382217
 rarity=U
@@ -75,14 +156,19 @@ id=382220
 rarity=U
 [/card]
 [card]
-primitive=Brago's Representative
-id=382223
-rarity=C
-[/card]
-[card]
 primitive=Brago, King Eternal
 id=382221
 rarity=R
+[/card]
+[card]
+primitive=Brago's Favor
+id=382222
+rarity=C
+[/card]
+[card]
+primitive=Brago's Representative
+id=382223
+rarity=C
 [/card]
 [card]
 primitive=Brainstorm
@@ -230,6 +316,11 @@ id=382252
 rarity=C
 [/card]
 [card]
+primitive=Double Stroke
+id=382253
+rarity=U
+[/card]
+[card]
 primitive=Drakestown Forgotten
 id=382254
 rarity=R
@@ -340,6 +431,11 @@ id=382275
 rarity=C
 [/card]
 [card]
+primitive=Grenzo, Dungeon Warden
+id=382276
+rarity=R
+[/card]
+[card]
 primitive=Grenzo's Cutthroat
 id=382277
 rarity=C
@@ -347,11 +443,6 @@ rarity=C
 [card]
 primitive=Grenzo's Rebuttal
 id=382278
-rarity=R
-[/card]
-[card]
-primitive=Grenzo, Dungeon Warden
-id=382276
 rarity=R
 [/card]
 [card]
@@ -405,6 +496,11 @@ id=382288
 rarity=R
 [/card]
 [card]
+primitive=Immediate Action
+id=382289
+rarity=C
+[/card]
+[card]
 primitive=Infectious Horror
 id=382290
 rarity=C
@@ -412,6 +508,11 @@ rarity=C
 [card]
 primitive=Intangible Virtue
 id=382291
+rarity=U
+[/card]
+[card]
+primitive=Iterative Analysis
+id=382292
 rarity=U
 [/card]
 [card]
@@ -465,6 +566,11 @@ id=382302
 rarity=C
 [/card]
 [card]
+primitive=Marchesa, the Black Rose
+id=382303
+rarity=M
+[/card]
+[card]
 primitive=Marchesa's Emissary
 id=382304
 rarity=C
@@ -478,11 +584,6 @@ rarity=U
 primitive=Marchesa's Smuggler
 id=382306
 rarity=U
-[/card]
-[card]
-primitive=Marchesa, the Black Rose
-id=382303
-rarity=M
 [/card]
 [card]
 primitive=Minamo Scrollkeeper
@@ -523,6 +624,11 @@ rarity=U
 primitive=Muzzio, Visionary Architect
 id=382314
 rarity=M
+[/card]
+[card]
+primitive=Muzzio's Preparations
+id=382315
+rarity=C
 [/card]
 [card]
 primitive=Nature's Claim
@@ -603,6 +709,11 @@ rarity=C
 primitive=Power of Fire
 id=382331
 rarity=C
+[/card]
+[card]
+primitive=Power Play
+id=382332
+rarity=U
 [/card]
 [card]
 primitive=Predator's Howl
@@ -715,6 +826,21 @@ id=382354
 rarity=C
 [/card]
 [card]
+primitive=Secret Summoning
+id=382355
+rarity=U
+[/card]
+[card]
+primitive=Secrets of Paradise
+id=382356
+rarity=C
+[/card]
+[card]
+primitive=Selvala, Explorer Returned
+id=382357
+rarity=R
+[/card]
+[card]
 primitive=Selvala's Charge
 id=382358
 rarity=U
@@ -725,9 +851,9 @@ id=382359
 rarity=C
 [/card]
 [card]
-primitive=Selvala, Explorer Returned
-id=382357
-rarity=R
+primitive=Sentinel Dispatch
+id=382360
+rarity=C
 [/card]
 [card]
 primitive=Shoreline Ranger
@@ -890,6 +1016,11 @@ id=382392
 rarity=U
 [/card]
 [card]
+primitive=Unexpected Potential
+id=382393
+rarity=U
+[/card]
+[card]
 primitive=Unhallowed Pact
 id=382394
 rarity=C
@@ -973,6 +1104,11 @@ rarity=U
 primitive=Woodvine Elemental
 id=382410
 rarity=U
+[/card]
+[card]
+primitive=Worldknit
+id=382411
+rarity=R
 [/card]
 [card]
 primitive=Wrap in Flames

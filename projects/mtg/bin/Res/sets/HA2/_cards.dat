@@ -1,0 +1,147 @@
+[meta]
+author=Wagic Team
+name=Historic Anthology 2
+orderindex=PRO-Z6.HA2
+year=2020-03-12
+total=28
+[/meta]
+[card]
+primitive=Dragon
+id=-19510
+rarity=T
+[/card]
+[card]
+primitive=Zombie
+id=-19509
+rarity=T
+[/card]
+[card]
+primitive=Angel
+id=-19502
+rarity=T
+[/card]
+[card]
+primitive=Nyx-Fleece Ram
+id=19500
+rarity=U
+[/card]
+[card]
+primitive=Ranger of Eos
+id=19501
+rarity=R
+[/card]
+[card]
+primitive=Sigil of the Empty Throne
+id=19502
+rarity=R
+[/card]
+[card]
+primitive=Thalia, Guardian of Thraben
+id=19503
+rarity=R
+[/card]
+[card]
+primitive=Merrow Reejerey
+id=19504
+rarity=U
+[/card]
+[card]
+primitive=Inexorable Tide
+id=19505
+rarity=R
+[/card]
+[card]
+primitive=Brain Maggot
+id=19506
+rarity=U
+[/card]
+[card]
+primitive=Pack Rat
+id=19507
+rarity=R
+[/card]
+[card]
+primitive=Virulent Plague
+id=19508
+rarity=U
+[/card]
+[card]
+primitive=Waste Not
+id=19509
+rarity=R
+[/card]
+[card]
+primitive=Dragonmaster Outcast
+id=19510
+rarity=M
+[/card]
+[card]
+primitive=Goblin Ruinblaster
+id=19511
+rarity=U
+[/card]
+[card]
+primitive=Ancestral Mask
+id=19512
+rarity=C
+[/card]
+[card]
+primitive=Terravore
+id=19513
+rarity=R
+[/card]
+[card]
+primitive=Knight of the Reliquary
+id=19514
+rarity=R
+[/card]
+[card]
+primitive=Maelstrom Pulse
+id=19515
+rarity=R
+[/card]
+[card]
+primitive=Meddling Mage
+id=19516
+rarity=R
+[/card]
+[card]
+primitive=Platinum Angel
+id=19517
+rarity=M
+[/card]
+[card]
+primitive=Barren Moor
+id=19518
+rarity=C
+[/card]
+[card]
+primitive=Bojuka Bog
+id=19519
+rarity=C
+[/card]
+[card]
+primitive=Forgotten Cave
+id=19520
+rarity=C
+[/card]
+[card]
+primitive=Ghost Quarter
+id=19521
+rarity=U
+[/card]
+[card]
+primitive=Lonely Sandbar
+id=19522
+rarity=C
+[/card]
+[card]
+primitive=Secluded Steppe
+id=19523
+rarity=C
+[/card]
+[card]
+primitive=Tranquil Thicket
+id=19524
+rarity=C
+[/card]

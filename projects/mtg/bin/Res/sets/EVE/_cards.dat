@@ -2,8 +2,9 @@
 author=Wagic Team
 name=Eventide
 block=Shadowmoor
-year=2008
-total=180
+orderindex=EXP-ZC.EVE
+year=2008-07-25
+total=182
 [/meta]
 [card]
 primitive=Aerie Ouphes

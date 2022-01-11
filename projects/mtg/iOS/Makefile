@@ -135,6 +135,7 @@ wagic_FILES = ../../../JGE/src/iOS/main.m\
     ../src/WFilter.cpp\
     ../src/WFont.cpp\
     ../src/WGui.cpp\
+    ../src/WParsedInt.cpp\
     ../src/WResourceManager.cpp \
     ../src/AIPlayerBakaB.cpp \
     ../src/TestSuiteAI.cpp\

@@ -1,11 +1,12 @@
 [meta]
 author=Wagic Team
 name=Seventh Edition
-year=2001
+orderindex=COR-7.7ED
+year=2001-04-11
 total=350
 [/meta]
 [card]
-primitive=AEther Flash
+primitive=Aether Flash
 id=25678
 rarity=U
 [/card]
@@ -1520,7 +1521,7 @@ id=11524
 rarity=L
 [/card]
 [card]
-primitive=Tainted AEther
+primitive=Tainted Aether
 id=25643
 rarity=R
 [/card]

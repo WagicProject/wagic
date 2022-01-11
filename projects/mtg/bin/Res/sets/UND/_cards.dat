@@ -1,0 +1,512 @@
+[meta]
+author=Wagic Team
+name=Unsanctioned
+orderindex=UN-4.UND
+year=2020-02-29
+total=101
+[/meta]
+[card]
+primitive=Bear
+id=-479473
+rarity=T
+[/card]
+[card]
+primitive=Dragon
+id=-479472
+rarity=T
+[/card]
+[card]
+primitive=Squirrel
+id=-479460
+rarity=T
+[/card]
+[card]
+primitive=Goblin
+id=-479440
+rarity=T
+[/card]
+[card]
+primitive=Beeble
+id=-479414
+rarity=T
+[/card]
+[card]
+primitive=AWOL
+id=479401
+rarity=C
+[/card]
+[card]
+primitive=Emcee
+id=479402
+rarity=U
+[/card]
+[card]
+primitive=Flavor Judge
+id=479403
+rarity=R
+[/card]
+[card]
+primitive=Frankie Peanuts
+id=479404
+rarity=R
+[/card]
+[card]
+primitive=GO TO JAIL
+id=479405
+rarity=C
+[/card]
+[card]
+primitive=Knight of the Hokey Pokey
+id=479406
+rarity=C
+[/card]
+[card]
+primitive=Look at Me, I'm R&D
+id=479407
+rarity=R
+[/card]
+[card]
+primitive=Look at Me, I'm the DCI
+id=479408
+rarity=R
+[/card]
+[card]
+primitive=Old Guard
+id=479409
+rarity=C
+[/card]
+[card]
+primitive=Staying Power
+id=479410
+rarity=R
+[/card]
+[card]
+primitive=Syr Cadian, Knight Owl
+id=479411
+rarity=R
+[/card]
+[card]
+primitive=Alexander Clamilton
+id=479412
+rarity=R
+[/card]
+[card]
+primitive=Avatar of Me
+id=479413
+rarity=R
+[/card]
+[card]
+primitive=B.O.B. (Bevy of Beebles)
+id=479414
+rarity=M
+[/card]
+[card]
+primitive=Carnivorous Death-Parrot
+id=479415
+rarity=C
+[/card]
+[card]
+primitive=Cheatyface
+id=479416
+rarity=U
+[/card]
+[card]
+primitive=Chicken a la King
+id=479417
+rarity=R
+[/card]
+[card]
+primitive=Common Courtesy
+id=479418
+rarity=U
+[/card]
+[card]
+primitive=Johnny, Combo Player
+id=479419
+rarity=R
+[/card]
+[card]
+primitive=Magic Word
+id=479420
+rarity=C
+[/card]
+[card]
+primitive=Richard Garfield, Ph.D.
+id=479421
+rarity=R
+[/card]
+[card]
+primitive=Rings a Bell
+id=479422
+rarity=U
+[/card]
+[card]
+primitive=Time Out
+id=479423
+rarity=C
+[/card]
+[card]
+primitive=Topsy Turvy
+id=479424
+rarity=U
+[/card]
+[card]
+primitive=Wall of Fortune
+id=479425
+rarity=C
+[/card]
+[card]
+primitive=Acornelia, Fashionable Filcher
+id=479426
+rarity=R
+[/card]
+[card]
+primitive=Booster Tutor
+id=479427
+rarity=U
+[/card]
+[card]
+primitive=Duh
+id=479428
+rarity=C
+[/card]
+[card]
+primitive=Enter the Dungeon
+id=479429
+rarity=R
+[/card]
+[card]
+primitive=Hoisted Hireling
+id=479430
+rarity=C
+[/card]
+[card]
+primitive=Infernal Spawn of Evil
+id=479431
+rarity=R
+[/card]
+[card]
+primitive=Infernal Spawn of Infernal Spawn of Evil
+id=479432
+rarity=R
+[/card]
+[card]
+primitive=Infernius Spawnington III, Esq.
+id=479433
+rarity=R
+[/card]
+[card]
+primitive=Inhumaniac
+id=479434
+rarity=U
+[/card]
+[card]
+primitive=Jumbo Imp
+id=479435
+rarity=U
+[/card]
+[card]
+primitive=Poultrygeist
+id=479436
+rarity=C
+[/card]
+[card]
+primitive=Skull Saucer
+id=479437
+rarity=U
+[/card]
+[card]
+primitive=Snickering Squirrel
+id=479438
+rarity=C
+[/card]
+[card]
+primitive=Abstract Iguanart
+id=479439
+rarity=U
+[/card]
+[card]
+primitive=Blast from the Past
+id=479440
+rarity=R
+[/card]
+[card]
+primitive=Boomstacker
+id=479441
+rarity=R
+[/card]
+[card]
+primitive=Goblin Haberdasher
+id=479442
+rarity=U
+[/card]
+[card]
+primitive=Goblin S.W.A.T. Team
+id=479443
+rarity=C
+[/card]
+[card]
+primitive=Goblin Tutor
+id=479444
+rarity=U
+[/card]
+[card]
+primitive=Infinity Elemental
+id=479445
+rarity=M
+[/card]
+[card]
+primitive=Painiac
+id=479446
+rarity=C
+[/card]
+[card]
+primitive=Six-y Beast
+id=479447
+rarity=U
+[/card]
+[card]
+primitive=Stet, Draconic Proofreader
+id=479448
+rarity=R
+[/card]
+[card]
+primitive=Strategy, Schmategy
+id=479449
+rarity=R
+[/card]
+[card]
+primitive=Super-Duper Death Ray
+id=479450
+rarity=U
+[/card]
+[card]
+primitive=Yet Another Aether Vortex
+id=479451
+rarity=R
+[/card]
+[card]
+primitive=B-I-N-G-O
+id=479452
+rarity=R
+[/card]
+[card]
+primitive=Elvish Impersonators
+id=479453
+rarity=C
+[/card]
+[card]
+primitive=Free-Range Chicken
+id=479454
+rarity=C
+[/card]
+[card]
+primitive=Growth Spurt
+id=479455
+rarity=C
+[/card]
+[card]
+primitive=Old Fogey
+id=479456
+rarity=R
+[/card]
+[card]
+primitive=Pippa, Duchess of Dice
+id=479457
+rarity=R
+[/card]
+[card]
+primitive=Slaying Mantis
+id=479458
+rarity=U
+[/card]
+[card]
+primitive=Spirit of the Season
+id=479459
+rarity=U
+[/card]
+[card]
+primitive=Squirrel Farm
+id=479460
+rarity=R
+[/card]
+[card]
+primitive=Surgeon General Commander
+id=479461
+rarity=M
+[/card]
+[card]
+primitive=Timmy, Power Gamer
+id=479462
+rarity=R
+[/card]
+[card]
+primitive=Who // What // When // Where // Why
+id=479463
+rarity=R
+[/card]
+[card]
+primitive=Bronze Calendar
+id=479464
+rarity=U
+[/card]
+[card]
+primitive=Entirely Normal Armchair
+id=479465
+rarity=U
+[/card]
+[card]
+primitive=Jack-in-the-Mox
+id=479466
+rarity=R
+[/card]
+[card]
+primitive=Krark's Other Thumb
+id=479467
+rarity=U
+[/card]
+[card]
+primitive=Paper Tiger
+id=479468
+rarity=C
+[/card]
+[card]
+primitive=Pointy Finger of Doom
+id=479469
+rarity=R
+[/card]
+[card]
+primitive=Rock Lobster
+id=479470
+rarity=C
+[/card]
+[card]
+primitive=Scissors Lizard
+id=479471
+rarity=C
+[/card]
+[card]
+primitive=Sword of Dungeons & Dragons
+id=479472
+rarity=M
+[/card]
+[card]
+primitive=Water Gun Balloon Game
+id=479473
+rarity=R
+[/card]
+[card]
+primitive=Underdome
+id=479474
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=479475
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=479476
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=479477
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=479478
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=479479
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=479480
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=479481
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=479482
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=479483
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=479484
+rarity=C
+[/card]
+[card]
+primitive=Adorable Kitten
+id=479485
+rarity=C
+[/card]
+[card]
+primitive=Humming-
+id=479486
+rarity=C
+[/card]
+[card]
+primitive=Ordinary Pony
+id=479487
+rarity=C
+[/card]
+[card]
+primitive=Strutting Turkey
+id=479488
+rarity=U
+[/card]
+[card]
+primitive=Mer Man
+id=479489
+rarity=C
+[/card]
+[card]
+primitive=Bat-
+id=479490
+rarity=U
+[/card]
+[card]
+primitive=Dirty Rat
+id=479491
+rarity=C
+[/card]
+[card]
+primitive=Stinging Scorpion
+id=479492
+rarity=C
+[/card]
+[card]
+primitive=Common Iguana
+id=479493
+rarity=C
+[/card]
+[card]
+primitive=Half-Squirrel, Half-
+id=479494
+rarity=U
+[/card]
+[card]
+primitive=Mother Kangaroo
+id=479495
+rarity=C
+[/card]
+[card]
+primitive=Wild Crocodile
+id=479496
+rarity=C
+[/card]

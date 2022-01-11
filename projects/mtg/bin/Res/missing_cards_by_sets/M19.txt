@@ -1,0 +1,33 @@
+[card]
+name=Suncleanser
+text=When Suncleanser enters the battlefield, choose one -- Remove all counters from target creature. It can't have counters put on it for as long as Suncleanser remains on the battlefield. -- Target opponent loses all counters. That player can't get counters for as long as Suncleanser remains on the battlefield.
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=4
+[/card]
+[card]
+name=Phylactery Lich
+text=As Phylactery Lich enters the battlefield, put a phylactery counter on an artifact you control. -- Phylactery Lich is indestructible. -- When you control no permanents with phylactery counters on them, sacrifice Phylactery Lich.
+mana={B}{B}{B}
+type=Creature
+subtype=Zombie
+power=5
+toughness=5
+[/card]
+[card]
+name=Amulet of Safekeeping
+text=Whenever you become the target of a spell or ability an opponent controls, counter that spell or ability unless its controller pays {1}. -- Creature tokens get -1/-0.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Runic Armasaur
+text=Whenever an opponent activates an ability of a creature or land that isn't a mana ability, you may draw a card.
+mana={1}{G}{G}
+type=Creature
+subtype=Dinosaur
+power=2
+toughness=5
+[/card]

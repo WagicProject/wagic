@@ -77,6 +77,14 @@ class ThisOpponentlife:public ThisDescriptor{
     ThisOpponentlife * clone() const;
 };
 
+class ThisMutation:public ThisDescriptor{
+ public:
+    virtual int match(MTGCardInstance * card);
+
+    ThisMutation(int mutation);
+    ThisMutation * clone() const;
+};
+
 class ThisEquip:public ThisDescriptor{
  public:
     virtual int match(MTGCardInstance * card);

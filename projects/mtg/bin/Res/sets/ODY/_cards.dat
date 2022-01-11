@@ -2,11 +2,12 @@
 author=Wagic Team
 name=Odyssey
 block=Odyssey
-year=2001
+orderindex=EXP-P.ODY
+year=2001-10-01
 total=350
 [/meta]
 [card]
-primitive=AEther Burst
+primitive=Aether Burst
 id=29725
 rarity=C
 [/card]

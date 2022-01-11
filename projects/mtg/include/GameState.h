@@ -73,14 +73,11 @@ public:
     // it makes it easier to manipulate the deck information menus.
 
     // generate the Deck Meta Data and build the menu items of the menu given
-    static vector<DeckMetaData *> fillDeckMenu(SimpleMenu * _menu, const string& path, const string& smallDeckPrefix = "", Player * statsPlayer = NULL);
-
-    // generate the Deck Meta Data and build the menu items of the menu given
-    // Will display up to maxDecks if maxDecks is non 0,all decks in path otherwise
-    static vector<DeckMetaData *> fillDeckMenu(DeckMenu * _menu, const string& path, const string& smallDeckPrefix = "", Player * statsPlayer = NULL, int maxDecks = 0);
+    // Will display up to maxDecks if maxDecks is non 0, all decks in path otherwise and it will show or not commander decks according to the current game type or according to "showall" option (e.g. DeckEditorMenu)
+    static vector<DeckMetaData *> fillDeckMenu(DeckMenu * _menu, const string& path, const string& smallDeckPrefix = "", Player * statsPlayer = NULL, int maxDecks = 0, GameType type = GAME_TYPE_CLASSIC, bool showall = false);
 
     // build a vector of decks with the information passsed in.
-    static vector<DeckMetaData *> BuildDeckList(const string& path, const string& smallDeckPrefix = "", Player * statsPlayer = NULL, int maxDecks = 0);
+    static vector<DeckMetaData *> BuildDeckList(const string& path, const string& smallDeckPrefix = "", Player * statsPlayer = NULL, int maxDecks = 0, GameType type = GAME_TYPE_CLASSIC, bool showall = false);
 
     // build menu items based on the vector<DeckMetaData *>
     static void renderDeckMenu(SimpleMenu * _menu, const vector<DeckMetaData *>& deckMetaDataList);

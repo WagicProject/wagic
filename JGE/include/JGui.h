@@ -30,6 +30,7 @@ const int kInfoMenuID = -200;
 const int kRandomPlayerMenuID = -11;
 const int kRandomAIPlayerMenuID = -12;
 const int kEvilTwinMenuID = -14;
+const int kCommanderMenuID = -33;
 
 class JGuiListener
 {

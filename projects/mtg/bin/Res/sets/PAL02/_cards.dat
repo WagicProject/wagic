@@ -1,0 +1,32 @@
+[meta]
+author=Wagic Team
+name=Arena League 2002
+orderindex=PRO-6.PAL02
+year=2002-01-01
+total=5
+[/meta]
+[card]
+primitive=Island
+id=17996
+rarity=R
+[/card]
+[card]
+primitive=Man-o'-War
+id=17997
+rarity=R
+[/card]
+[card]
+primitive=Arc Lightning
+id=17998
+rarity=R
+[/card]
+[card]
+primitive=Dauthi Slayer
+id=17999
+rarity=R
+[/card]
+[card]
+primitive=Mana Leak
+id=18000
+rarity=R
+[/card]

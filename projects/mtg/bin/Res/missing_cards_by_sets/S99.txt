@@ -4,9 +4,3 @@ text=Until end of turn, you may tap lands you don't control for mana. Spend this
 mana={U}{U}
 type=Sorcery
 [/card]
-[card]
-name=Psychic Transfer
-text=If the difference between your life total and target player's life total is 5 or less, exchange life totals with that player.
-mana={4}{U}
-type=Sorcery
-[/card]

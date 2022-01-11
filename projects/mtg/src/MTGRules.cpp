@@ -304,7 +304,7 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
     int cardsinhand = game->players[0]->game->hand->nb_cards;
     defaultPlayName = card->isLand()?"Play Land":"Cast Card Normally";
     Player * player = game->currentlyActing();
-    if (!player->game->hand->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->library->hasCard(card))
+    if (!player->game->hand->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->library->hasCard(card) && !player->game->commandzone->hasCard(card))
          return 0;
     if ((player->game->library->hasCard(card) && !card->canPlayFromLibrary()) || (player->game->graveyard->hasCard(card) && !card->has(Constants::CANPLAYFROMGRAVEYARD)) || (player->game->exile->hasCard(card) && !card->has(Constants::CANPLAYFROMEXILE)))
          return 0;
@@ -349,11 +349,17 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 #ifdef WIN32
         cost->Dump();
 #endif
-        if (playerMana->canAfford(cost))
+        if (playerMana->canAfford(cost,card->has(Constants::ANYTYPEOFMANA)))
         {
             //-------
             if (card->has(Constants::SUNBURST))
             {
+                if(card->has(Constants::ANYTYPEOFMANA) > 0 && card->sunburst == 0){
+                    int convertedC = card->getManaCost()->getConvertedCost();
+                    card->getManaCost()->changeCostTo( NEW ManaCost(ManaCost::parseManaCost("{0}", NULL, card)) );
+                    for (int jj = 0; jj < convertedC; jj++)
+                        card->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 1);
+                }
                 for (int i = 1; i != 6; i++)
                 {
                     if (player->getManaPool()->hasColor(i))
@@ -413,11 +419,24 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         else
             colorlessx -= costcx;
         int options = cost->hasSpecificX() ? amountx + 1 +colorlessx : (playerMana->getConvertedCost() - cost->getConvertedCost()) + 1;
+        int discountx = 0; //Try to calculate the correct cost reduction for X.
+        if(card->getReducedManaCost()->getManaSymbols(Constants::MTG_COLOR_ARTIFACT) > 0){
+            MTGCard * tmpcard = MTGCollection()->getCardByName(card->name);
+            if(tmpcard){
+                MTGCardInstance * tmpinst = NEW MTGCardInstance(tmpcard, card->controller()->game);
+                if(tmpinst){
+                    ManaCost * origcost = tmpinst->getManaCost();
+                    discountx = card->getReducedManaCost()->getManaSymbols(Constants::MTG_COLOR_ARTIFACT) - origcost->getManaSymbols(Constants::MTG_COLOR_ARTIFACT);
+                    SAFE_DELETE(tmpinst);
+                    if(discountx < 0) discountx = 0;
+                }
+            }
+        }
+        options += discountx;
         //you can set up to 20 for specific X, if you cant afford it, it cancels. I couldnt think of a equation that would 
         //give me the correct amount sorry.
         for (int i = 0; i < options; ++i)
         {
-
             MTGAbility * setX = NEW AAWhatsX(game, game->mLayers->actionLayer()->getMaxId(), card, card, i, this);
             MTGAbility * setCardX = setX->clone();
             setCardX->oneShot = true;
@@ -449,8 +468,22 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         ManaCost * Xcost = NEW ManaCost();
         Xcost->copy(cost);
         Xcost->add(Constants::MTG_COLOR_ARTIFACT, card->setX);
-        Xcost->remove(7, 1);
-        if (playerMana->canAfford(Xcost))
+        Xcost->remove(7, 1); //remove the X
+        int discountx = 0; //Try to calculate the correct cost reduction for X.
+        if(card->getReducedManaCost()->getManaSymbols(Constants::MTG_COLOR_ARTIFACT) > 0){
+            MTGCard * tmpcard = MTGCollection()->getCardByName(card->name);
+            if(tmpcard){
+                MTGCardInstance * tmpinst = NEW MTGCardInstance(tmpcard, card->controller()->game);
+                if(tmpinst){
+                    ManaCost * origcost = tmpinst->getManaCost();
+                    discountx = card->getReducedManaCost()->getManaSymbols(Constants::MTG_COLOR_ARTIFACT) - origcost->getManaSymbols(Constants::MTG_COLOR_ARTIFACT);
+                    SAFE_DELETE(tmpinst);
+                    if(discountx < 0) discountx = 0;
+                }
+            }
+        }
+        Xcost->remove(Constants::MTG_COLOR_ARTIFACT, discountx); //Try to Apply cost reduction to X.
+        if (playerMana->canAfford(Xcost,card->has(Constants::ANYTYPEOFMANA)))
         {
             cost->copy(Xcost);
             SAFE_DELETE(Xcost);
@@ -483,28 +516,46 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
     
     ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
     int payResult = player->getManaPool()->pay(card->getManaCost());
-    if (card->getManaCost()->getKicker() && (OptionKicker::KICKER_ALWAYS == options[Options::KICKERPAYMENT].number || card->controller()->isAI()))
+    if (card->getManaCost()->getKicker() && (card->kicked || OptionKicker::KICKER_ALWAYS == options[Options::KICKERPAYMENT].number || card->controller()->isAI()))
     {
         ManaCost * withKickerCost= NEW ManaCost(card->getManaCost());
         withKickerCost->add(withKickerCost->getKicker());
+        card->kicked = 0;
         if (card->getManaCost()->getKicker()->isMulti)
         {
-            while(previousManaPool->canAfford(withKickerCost))
+            while(previousManaPool->canAfford(withKickerCost,card->has(Constants::ANYTYPEOFMANA)))
             {
                 withKickerCost->add(withKickerCost->getKicker());
-                card->kicked += 1;
+                if(!card->basicAbilities[Constants::HASNOKICKER] || card->basicAbilities[Constants::HASREPLICATE] || card->basicAbilities[Constants::HASSTRIVE]) card->kicked += 1; //Some kicker costs are not a real kicker (e.g. Fuse cost, Replicate cost, Strive cost).
             }
             for(int i = 0;i < card->kicked;i++)
                 player->getManaPool()->pay(card->getManaCost()->getKicker());
             payResult = ManaCost::MANA_PAID_WITH_KICKER;
+            card->alternateCostPaid[ManaCost::MANA_PAID_WITH_KICKER] = 1;
         }
-        else if (previousManaPool->canAfford(withKickerCost))
+        else if (previousManaPool->canAfford(withKickerCost,card->has(Constants::ANYTYPEOFMANA)))
         {
             player->getManaPool()->pay(card->getManaCost()->getKicker());
             payResult = ManaCost::MANA_PAID_WITH_KICKER;
+            if(!card->basicAbilities[Constants::HASNOKICKER] || card->basicAbilities[Constants::HASREPLICATE] || card->basicAbilities[Constants::HASSTRIVE]) card->kicked = 1; //Some kicker costs are not a real kicker (e.g. Fuse cost, Replicate cost, Strive cost).
+            card->alternateCostPaid[ManaCost::MANA_PAID_WITH_KICKER] = 1;
         }
         delete withKickerCost;
     }
+    if (card->getManaCost()->getBestow())
+    {  
+        ManaCost * withBestowCost= NEW ManaCost(card->getManaCost());
+        withBestowCost->add(withBestowCost->getBestow());
+        
+        DebugTrace("AltCost BESTOW " << withBestowCost);
+        if (previousManaPool->canAfford(withBestowCost,card->has(Constants::ANYTYPEOFMANA)))
+        {
+            player->getManaPool()->pay(card->getManaCost()->getBestow());
+            payResult = ManaCost::MANA_PAID_WITH_BESTOW;
+        }
+        delete withBestowCost;
+    }
+
     card->getManaCost()->doPayExtra();
     ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());
 
@@ -520,6 +571,10 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
     else
     {
         Spell * spell = NULL;
+        if (spellCost && !card->getManaCost()->getManaUsedToCast()){
+            card->getManaCost()->setManaUsedToCast(NEW ManaCost());
+            card->getManaCost()->getManaUsedToCast()->copy(spellCost);
+        }
         MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->stack);
         if (game->targetChooser)
         {
@@ -544,6 +599,8 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         if (!card->has(Constants::STORM))
         {
             copy->X = spell->computeX(copy);
+            if(card->setX > -1) //Try to Apply the correct X value due to cost reduction/increasement and or a kicker payment.
+                copy->X = card->setX;
             copy->castX = copy->X;
         }
     }
@@ -574,7 +631,7 @@ int MTGKickerRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
     if(OptionKicker::KICKER_ALWAYS == options[Options::KICKERPAYMENT].number)
         return 0;
     Player * player = game->currentlyActing();
-    if (!player->game->hand->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->library->hasCard(card))
+    if (!player->game->hand->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->library->hasCard(card) && !game->currentlyActing()->game->commandzone->hasCard(card))
          return 0;
     if ((player->game->library->hasCard(card) && !card->canPlayFromLibrary()) || (player->game->graveyard->hasCard(card) && !card->has(Constants::CANPLAYFROMGRAVEYARD)) || (player->game->exile->hasCard(card) && !card->has(Constants::CANPLAYFROMEXILE)))
          return 0;
@@ -582,6 +639,11 @@ int MTGKickerRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
         return 0;
     if(!card->getManaCost()->getKicker())
         return 0;
+
+    if(card->model->data->getManaCost()->getKicker() && card->model->data->getManaCost()->getKicker()->alternativeName.size())
+        alternativeName = card->model->data->getManaCost()->getKicker()->alternativeName;
+    else 
+        alternativeName = "";
 
     if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) || card->has(Constants::ASFLASH) || (card->StackIsEmptyandSorcerySpeed()))
     {
@@ -600,7 +662,7 @@ int MTGKickerRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 #ifdef WIN32
         withKickerCost->Dump();
 #endif
-        if (playerMana->canAfford(withKickerCost))
+        if (playerMana->canAfford(withKickerCost,card->has(Constants::ANYTYPEOFMANA)))
             return 1;
     }
     return 0;
@@ -619,6 +681,7 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
     {
         if (!game->targetListIsSet(card))
         {
+            if(!card->basicAbilities[Constants::HASNOKICKER] || card->basicAbilities[Constants::HASREPLICATE] || card->basicAbilities[Constants::HASSTRIVE]) card->kicked = 1; //Some kicker costs are not a real kicker (e.g. Fuse cost, Replicate cost, Strive cost).
             return 0;
         }
     }
@@ -635,23 +698,40 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
     {  
         ManaCost * withKickerCost= NEW ManaCost(card->getManaCost());
         withKickerCost->add(withKickerCost->getKicker());
+        card->kicked = 0;
         if (card->getManaCost()->getKicker()->isMulti)
         {
-            while(previousManaPool->canAfford(withKickerCost))
+            while(previousManaPool->canAfford(withKickerCost,card->has(Constants::ANYTYPEOFMANA)))
             {
                 withKickerCost->add(withKickerCost->getKicker());
-                card->kicked += 1;
+                if(!card->basicAbilities[Constants::HASNOKICKER] || card->basicAbilities[Constants::HASREPLICATE] || card->basicAbilities[Constants::HASSTRIVE]) card->kicked += 1; //Some kicker costs are not a real kicker (e.g. Fuse cost, Replicate cost, Strive cost).
             }
             for(int i = 0;i < card->kicked;i++)
                 player->getManaPool()->pay(card->getManaCost()->getKicker());
             payResult = ManaCost::MANA_PAID_WITH_KICKER;
+            card->alternateCostPaid[ManaCost::MANA_PAID_WITH_KICKER] = 1;
         }
-        else if (previousManaPool->canAfford(withKickerCost))
+        else if (previousManaPool->canAfford(withKickerCost,card->has(Constants::ANYTYPEOFMANA)))
         {
             player->getManaPool()->pay(card->getManaCost()->getKicker());
             payResult = ManaCost::MANA_PAID_WITH_KICKER;
+            if(!card->basicAbilities[Constants::HASNOKICKER] || card->basicAbilities[Constants::HASREPLICATE] || card->basicAbilities[Constants::HASSTRIVE]) card->kicked = 1; //Some kicker costs are not a real kicker (e.g. Fuse cost, Replicate cost, Strive cost).
+            card->alternateCostPaid[ManaCost::MANA_PAID_WITH_KICKER] = 1;
         }
         delete withKickerCost;
+    }
+    // Handles bestow,also has to go in isExtraPaymentSet
+    if (card->getManaCost()->getBestow())
+    {  
+        ManaCost * withBestowCost= NEW ManaCost(card->getManaCost());
+        withBestowCost->add(withBestowCost->getBestow());
+        
+        if (previousManaPool->canAfford(withBestowCost,card->has(Constants::ANYTYPEOFMANA)))
+        {
+            player->getManaPool()->pay(card->getManaCost()->getBestow());
+            payResult = ManaCost::MANA_PAID_WITH_BESTOW;
+        }
+        delete withBestowCost;
     }
     card->getManaCost()->doPayExtra();
     ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());
@@ -668,6 +748,10 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
     else
     {
         Spell * spell = NULL;
+        if (spellCost && !card->getManaCost()->getManaUsedToCast()){
+            card->getManaCost()->setManaUsedToCast(NEW ManaCost());
+            card->getManaCost()->getManaUsedToCast()->copy(spellCost);
+        }
         MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->stack);
         if (game->targetChooser)
         {
@@ -695,7 +779,6 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
             copy->castX = copy->X;
         }
     }
-
     return 1;
 }
 
@@ -739,7 +822,7 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
         {
             alternateCost->extraCosts->costs[i]->setSource(card);
         }
-    if (!game->currentlyActing()->game->hand->hasCard(card) && !game->currentlyActing()->game->graveyard->hasCard(card) && !game->currentlyActing()->game->exile->hasCard(card) && !game->currentlyActing()->game->library->hasCard(card))
+    if (!game->currentlyActing()->game->hand->hasCard(card) && !game->currentlyActing()->game->graveyard->hasCard(card) && !game->currentlyActing()->game->exile->hasCard(card) && !game->currentlyActing()->game->library->hasCard(card) && !game->currentlyActing()->game->commandzone->hasCard(card))
          return 0;
     if ((game->currentlyActing()->game->library->hasCard(card) && !card->canPlayFromLibrary()) || (game->currentlyActing()->game->graveyard->hasCard(card) && !card->has(Constants::CANPLAYFROMGRAVEYARD)) || (game->currentlyActing()->game->exile->hasCard(card) && !card->has(Constants::CANPLAYFROMEXILE)))
          return 0;
@@ -755,12 +838,14 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
     if(!allowedToAltCast(card,player))
         return 0;
 
-    
+    if(card->has(Constants::ADVENTURE) && game->isInExile(card))
+        return 0; // Advetures can't be alternate casted from exile.
+
     alternativeName = "Pay Alternative Cost";
 
     if(card->has(Constants::CANPLAYFROMGRAVEYARD) && game->isInGrave(card))
         alternativeName = "Alternate Cast From Graveyard";
-    else if(card->has(Constants::CANPLAYFROMEXILE) && game->isInExile(card))
+    else if(card->has(Constants::CANPLAYFROMEXILE) && game->isInExile(card) && !card->has(Constants::ADVENTURE))
         alternativeName = "Alternate Cast From Exile";
     else if(card->canPlayFromLibrary() && game->isInLibrary(card))
         alternativeName = "Alternate Cast From Library";
@@ -790,7 +875,7 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
         ManaCost * cost = card->getManaCost();
         cost->Dump();
 #endif
-        if (alternateManaCost->extraCosts && !playerMana->canAfford(card->getManaCost()))
+        if (alternateManaCost->extraCosts && !playerMana->canAfford(card->getManaCost(),card->has(Constants::ANYTYPEOFMANA)))
         {
             //offerings handle thier own casting and cost payments.
             //we add this condiational here because offering can also have a completely different 
@@ -814,7 +899,7 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
             }
         }
 
-        if (playerMana->canAfford(alternateManaCost))
+        if (playerMana->canAfford(alternateManaCost,card->has(Constants::ANYTYPEOFMANA)))
         {
             return 1;
         }
@@ -828,6 +913,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card)
         return 0;
 
     ManaCost * alternateCost = card->getManaCost()->getAlternative();
+    if(!alternateCost) return 0;
     card->paymenttype = MTGAbility::ALTERNATIVE_COST;
     if(alternateCost->extraCosts)
         for(unsigned int i = 0; i < alternateCost->extraCosts->costs.size();i++)
@@ -846,11 +932,24 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
     {
         vector<MTGAbility*>selection;
         int options = alternateCost->hasSpecificX()? 20 : (playerMana->getConvertedCost() - alternateCost->getConvertedCost()) + 1;
+        int discountx = 0; //Try to calculate the correct cost reduction for X.
+        if(card->getReducedManaCost()->getManaSymbols(Constants::MTG_COLOR_ARTIFACT) > 0){ 
+            MTGCard * tmpcard = MTGCollection()->getCardByName(card->name);
+            if(tmpcard){
+                MTGCardInstance * tmpinst = NEW MTGCardInstance(tmpcard, card->controller()->game);
+                if(tmpinst){
+                    ManaCost * origcost = tmpinst->getManaCost()->getAlternative();
+                    discountx = card->getReducedManaCost()->getManaSymbols(Constants::MTG_COLOR_ARTIFACT) - origcost->getManaSymbols(Constants::MTG_COLOR_ARTIFACT);
+                    SAFE_DELETE(tmpinst);
+                    if(discountx < 0) discountx = 0;
+                }
+            }
+        }
+        options += discountx;
         //you can set up to 20 for specific X, if you cant afford it, it cancels. I couldnt think of a equation that would 
         //give me the correct amount sorry.
         for (int i = 0; i < options; ++i)
         {
-
             MTGAbility * setX = NEW AAWhatsX(game, game->mLayers->actionLayer()->getMaxId(), card, card, i, this);
             MTGAbility * setCardX = setX->clone();
             setCardX->oneShot = true;
@@ -882,8 +981,23 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
         ManaCost * Xcost = NEW ManaCost();
         Xcost->copy(alternateCost);
         Xcost->add(Constants::MTG_COLOR_ARTIFACT, card->setX);
-        Xcost->remove(7, 1);//remove the X
-        if (playerMana->canAfford(Xcost))
+        card->X = card->setX; // Fix to don't loose X value on alternative cast
+        Xcost->remove(7, 1); //remove the X
+        int discountx = 0; //Try to calculate the correct cost reduction for X.
+        if(card->getReducedManaCost()->getManaSymbols(Constants::MTG_COLOR_ARTIFACT) > 0){ 
+            MTGCard * tmpcard = MTGCollection()->getCardByName(card->name);
+            if(tmpcard){
+                MTGCardInstance * tmpinst = NEW MTGCardInstance(tmpcard, card->controller()->game);
+                if(tmpinst){
+                    ManaCost * origcost = tmpinst->getManaCost()->getAlternative();
+                    discountx = card->getReducedManaCost()->getManaSymbols(Constants::MTG_COLOR_ARTIFACT) - origcost->getManaSymbols(Constants::MTG_COLOR_ARTIFACT);
+                    SAFE_DELETE(tmpinst);
+                    if(discountx < 0) discountx = 0;
+                }
+            }
+        }
+        Xcost->remove(Constants::MTG_COLOR_ARTIFACT, discountx); //Try to Apply cost reduction to X.
+        if (playerMana->canAfford(Xcost,card->has(Constants::ANYTYPEOFMANA)))
         {
             alternateCost->copy(Xcost);
             SAFE_DELETE(Xcost);
@@ -917,26 +1031,38 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
         return 0;
     }
     //------------------------------------------------------------------------
-    ManaCost * previousManaPool = NEW ManaCost(playerMana); 
-    playerMana->pay(alternateCost);
+    ManaCost * previousManaPool = NEW ManaCost(playerMana);
+    bool hasOffering = card->basicAbilities[Constants::OFFERING]; //Fix a hang when try to pay emerge cost.
+    if(alternateCost->extraCosts){
+        for(unsigned int i = 0; i < alternateCost->extraCosts->costs.size(); i++){
+            if(dynamic_cast<Offering*> (alternateCost->extraCosts->costs[i]))
+                hasOffering = true;
+        }
+    }
+    if(!hasOffering)
+        playerMana->pay(alternateCost);
     alternateCost->doPayExtra();
     ManaCost *spellCost = previousManaPool->Diff(player->getManaPool());
     SAFE_DELETE(previousManaPool);
 
     card->alternateCostPaid[alternateCostType] = 1;
-
+    if(card->has(Constants::HASOTHERKICKER)) //Fix for cards which have kicker cost implemented with other cost.
+        card->kicked = 1;
+   
     if (card->isLand())
     {
         MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->temp);
         Spell * spell = NEW Spell(game, 0,copy,NULL,NULL, alternateCostType);
-        copy->alternateCostPaid[alternateCostType] = 1;
         spell->resolve();
         SAFE_DELETE(spell);
     }
     else
-    {   
+    {
+        if (spellCost && !card->getManaCost()->getManaUsedToCast()){
+            card->getManaCost()->setManaUsedToCast(NEW ManaCost());
+            card->getManaCost()->getManaUsedToCast()->copy(spellCost);
+        }
         MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->stack);
-        copy->alternateCostPaid[alternateCostType] = 1;
         game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, spellCost, alternateCostType, 0);
         game->targetChooser = NULL;
         if(alternateCostType == ManaCost::MANA_PAID_WITH_BESTOW)
@@ -954,9 +1080,8 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
         }//end of storm
         else
         {
-
             ManaCost * c = spellCost->Diff(alternateCost);
-            copy->X = card->setX;
+            copy->X = card->X;
             copy->castX = copy->X;
             delete c;
         }
@@ -1015,6 +1140,7 @@ int MTGBuyBackRule::reactToClick(MTGCardInstance * card)
         return 0;
 
     ManaCost * buybackCost = card->getManaCost()->getBuyback();
+    if(!buybackCost) return 0;
     if(buybackCost->extraCosts)
         for(unsigned int i = 0; i < buybackCost->extraCosts->costs.size();i++)
         {
@@ -1066,6 +1192,7 @@ int MTGFlashBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 int MTGFlashBackRule::reactToClick(MTGCardInstance * card) 
 {
     ManaCost * flashbackCost = card->getManaCost()->getFlashback();
+    if(!flashbackCost) return 0;
     if(flashbackCost->extraCosts)
         for(unsigned int i = 0; i < flashbackCost->extraCosts->costs.size();i++)
         {
@@ -1115,6 +1242,7 @@ int MTGTempFlashBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * m
 int MTGTempFlashBackRule::reactToClick(MTGCardInstance * card) 
 {
     ManaCost * flashbackCost = card->getManaCost();
+    if(!flashbackCost) return 0;
     if(flashbackCost->extraCosts)
         for(unsigned int i = 0; i < flashbackCost->extraCosts->costs.size();i++)
         {
@@ -1165,7 +1293,13 @@ int MTGRetraceRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         for(unsigned int i = 0; i < retraceCost->extraCosts->costs.size();i++)
         {
             retraceCost->extraCosts->costs[i]->setSource(card);
-        }      
+        }
+
+    if(card->model->data->getManaCost()->getRetrace() && card->model->data->getManaCost()->getRetrace()->alternativeName.size())
+        alternativeName = card->model->data->getManaCost()->getRetrace()->alternativeName;
+    else 
+        alternativeName = "";
+
     return MTGAlternativeCostRule::isReactingToClick( card, mana, retraceCost);
 }
 
@@ -1176,6 +1310,7 @@ int MTGRetraceRule::reactToClick(MTGCardInstance * card)
         return 0;
 
     ManaCost * retraceCost = card->getManaCost()->getRetrace();
+    if(!retraceCost) return 0;
     if(retraceCost->extraCosts)
         for(unsigned int i = 0; i < retraceCost->extraCosts->costs.size();i++)
         {
@@ -1256,14 +1391,15 @@ int MTGSuspendRule::reactToClick(MTGCardInstance * card)
     Player *player = game->currentlyActing();
     ManaCost * playerMana = player->getManaPool();
     ManaCost * alternateCost = card->getManaCost()->getSuspend();
+    if(!alternateCost) return 0;
     //this handles extra cost payments at the moment a card is played.
-    if (playerMana->canAfford(alternateCost))
+    if (playerMana->canAfford(alternateCost,card->has(Constants::ANYTYPEOFMANA)))
     {
         if(alternateCost->hasX())
         {
             ManaCost * checkXnotZero = NEW ManaCost(alternateCost);//suspend cards with x cost, x can not be zero.
             checkXnotZero->add(0,1);
-            if (!playerMana->canAfford(checkXnotZero))
+            if (!playerMana->canAfford(checkXnotZero,card->has(Constants::ANYTYPEOFMANA)))
             {
                 SAFE_DELETE(checkXnotZero);
                 return 0;
@@ -1336,7 +1472,7 @@ int MTGMorphCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 
     Player * player = game->currentlyActing();
     //Player * currentPlayer = game->currentPlayer;
-    if (!player->game->library->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->hand->hasCard(card))
+    if (!player->game->library->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->hand->hasCard(card) && !player->game->commandzone->hasCard(card))
         return 0;
     if ((!card->canPlayFromLibrary() && player->game->library->hasCard(card))||(!card->has(Constants::CANPLAYFROMGRAVEYARD) && player->game->graveyard->hasCard(card))||(!card->has(Constants::CANPLAYFROMEXILE) && player->game->exile->hasCard(card)))
         return 0;
@@ -1365,7 +1501,7 @@ int MTGMorphCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 #endif
         
         //cost of card.
-        if (playerMana->canAfford(morph))
+        if (playerMana->canAfford(morph,card->has(Constants::ANYTYPEOFMANA)))
         {
             return 1;
         }
@@ -1382,13 +1518,13 @@ int MTGMorphCostRule::reactToClick(MTGCardInstance * card)
     ManaCost * cost = card->getManaCost();
     ManaCost * playerMana = player->getManaPool();
     ManaCost * morph = card->getManaCost()->getMorph();
-        if(morph->extraCosts)
-            for(unsigned int i = 0; i < morph->extraCosts->costs.size();i++)
-            {
-                morph->extraCosts->costs[i]->setSource(card);
-            }
+    if(!morph) return 0;
+    if(morph->extraCosts){
+        for(unsigned int i = 0; i < morph->extraCosts->costs.size();i++)
+            morph->extraCosts->costs[i]->setSource(card);
+    }
     //this handles extra cost payments at the moment a card is played.
-    if (playerMana->canAfford(morph))
+    if (playerMana->canAfford(morph,card->has(Constants::ANYTYPEOFMANA)))
     {
         if (cost->getMorph()->isExtraPaymentSet())
         {
@@ -1421,13 +1557,25 @@ int MTGMorphCostRule::reactToClick(MTGCardInstance * card)
     delete previousManaPool;
     card->morphed = true;
     card->isMorphed = true;
+    if (spellCost && !card->getManaCost()->getManaUsedToCast()){
+        card->getManaCost()->setManaUsedToCast(NEW ManaCost());
+        card->getManaCost()->getManaUsedToCast()->copy(spellCost);
+    }
+    int iscommander = card->has(Constants::ISCOMMANDER);
+    card->basicAbilities[Constants::ISCOMMANDER] = 0;//Morph is not a commander on stack
     MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->stack);
+    if(iscommander > 0)
+        copy->basicAbilities[Constants::ISCOMMANDER] = 1;
     copy->getManaCost()->resetCosts();//Morph has no ManaCost on stack
     copy->setColor(0,1);
     copy->types.clear();
     string cre = "Creature";
     copy->setType(cre.c_str());
-    copy->basicAbilities.reset();
+    for(size_t i = 0; i < copy->basicAbilities.size(); i++) {
+        if(i != Constants::ISCOMMANDER && i != Constants::GAINEDEXILEDEATH && i != Constants::GAINEDHANDDEATH && i != Constants::GAINEDDOUBLEFACEDEATH && 
+            i != Constants::DUNGEONCOMPLETED && i != Constants::PERPETUALDEATHTOUCH && i != Constants::PERPETUALLIFELINK)
+            copy->basicAbilities[i] = 0; // Try to keep the original special abilities on card morph.
+    }
     Spell * spell = NULL;
     spell = game->mLayers->stackLayer()->addSpell(copy, NULL, spellCost, payResult, 0);
     spell->source->morphed = true;
@@ -1474,9 +1622,8 @@ int MTGPayZeroRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     if (!card->has(Constants::PAYZERO))
         return 0;
     Player * player = game->currentlyActing();
-    if (card->isLand() || (!player->game->library->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->hand->hasCard(card)))
+    if (card->isLand() || (!player->game->library->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->hand->hasCard(card) && !player->game->commandzone->hasCard(card)))
     {
-        //only allowed to pay zero for cards in library??? above is "if you dont have it in hand, grave, or exile"
         return 0;
     }
     if ((!card->canPlayFromLibrary() && player->game->library->hasCard(card))||(!card->has(Constants::CANPLAYFROMGRAVEYARD) && player->game->graveyard->hasCard(card)) || (!card->has(Constants::CANPLAYFROMEXILE) && player->game->exile->hasCard(card)))
@@ -1507,6 +1654,7 @@ int MTGPayZeroRule::reactToClick(MTGCardInstance * card)
 
     ManaCost * cost = NEW ManaCost(ManaCost::parseManaCost("{0}",NULL,NULL));
     ManaCost * newCost = card->computeNewCost(card,cost,cost);
+    if(!newCost) return 0;
     if(newCost->extraCosts)
         for(unsigned int i = 0; i < newCost->extraCosts->costs.size();i++)
         {
@@ -1553,6 +1701,7 @@ int MTGOverloadRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         return 0;
     }
     ManaCost * newCost = card->getManaCost()->getAlternative();
+    if(!newCost) return 0;
     if(newCost->extraCosts)
         for(unsigned int i = 0; i < newCost->extraCosts->costs.size();i++)
         {
@@ -1567,6 +1716,7 @@ int MTGOverloadRule::reactToClick(MTGCardInstance * card)
     if (!isReactingToClick(card))
         return 0;
     ManaCost * newCost = card->getManaCost()->getAlternative();
+    if(!newCost) return 0;
     if(newCost->extraCosts)
         for(unsigned int i = 0; i < newCost->extraCosts->costs.size();i++)
         {
@@ -1628,7 +1778,7 @@ int MTGBestowRule::reactToClick(MTGCardInstance * card)
     //this new method below in all alternative cost type causes a memleak, however, you cant safedelete the cost here as it cause a crash
     //TODO::::we need to get to the source of this leak and fix it.
     ManaCost * newCost = card->getManaCost()->getBestow();
-    
+    if(!newCost) return 0;
     if (newCost->extraCosts)
         for (unsigned int i = 0; i < newCost->extraCosts->costs.size(); i++)
         {
@@ -1684,7 +1834,7 @@ int MTGAttackCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * aiCh
             {
                 attackcost->extraCosts->costs[i]->setSource(card);
             }
-        if ((aiCheck && aiCheck->canAfford(attackcost)) || playerMana->canAfford(attackcost))
+        if ((aiCheck && aiCheck->canAfford(attackcost,card->has(Constants::ANYTYPEOFMANAABILITY))) || playerMana->canAfford(attackcost,card->has(Constants::ANYTYPEOFMANAABILITY)))
         {
             SAFE_DELETE(attackcost);
             return 1;
@@ -1764,7 +1914,7 @@ int MTGBlockCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * aiChe
             {
                 blockcost->extraCosts->costs[i]->setSource(card);
             }
-        if ((aiCheck && aiCheck->canAfford(blockcost)) || playerMana->canAfford(blockcost))
+        if ((aiCheck && aiCheck->canAfford(blockcost,card->has(Constants::ANYTYPEOFMANAABILITY))) || playerMana->canAfford(blockcost,card->has(Constants::ANYTYPEOFMANAABILITY)))
         {
             SAFE_DELETE(blockcost);
             return 1;
@@ -2319,6 +2469,24 @@ int MTGBlockRule::receiveEvent(WEvent *e)
         {
             MTGCardInstance * card = z->cards[i];
             if (card->isAttacker() && card->has(Constants::MENACE) && card->blockers.size() < 2)
+            {
+                while (card->blockers.size())
+                {
+                    MTGCardInstance * blockingCard = card->blockers.front();
+                    if(blockingCard->getNextOpponent() == card)
+                        blockingCard->toggleDefenser(NULL);
+                }
+            }
+         }
+    }
+    if (dynamic_cast<WEventBlockersChosen*>(e))
+    {
+        //if a card with threeblockers is not blocked by 3 or more, remove any known blockers and attacking as normal.
+        MTGGameZone * z = p->game->inPlay;
+        for (int i = 0; i < z->nb_cards; i++)
+        {
+            MTGCardInstance * card = z->cards[i];
+            if (card->isAttacker() && card->has(Constants::THREEBLOCKERS) && card->blockers.size() < 3)
             {
                 while (card->blockers.size())
                 {
@@ -3256,10 +3424,34 @@ int MTGUnearthRule::receiveEvent(WEvent * event)
         {
             e->card->fresh = 1;
         }
+        if (e->from == e->card->controller()->game->stack && e->to == e->card->controller()->game->graveyard) // Apply fresh attribute for new casted spells
+        {
+            e->card->fresh = 1;
+        }
         if (e->to == e->card->controller()->game->battlefield)
         {
             e->card->fresh = 1;
             e->card->entersBattlefield = 1;
+        }
+        if (e->to == e->card->controller()->game->exile) // Apply fresh attribute for new exiled cards
+        {
+            e->card->fresh = 1;
+        }
+        if (e->to == e->card->controller()->game->hand) // Apply fresh attribute for cards just put in hand
+        {
+            e->card->fresh = 1;
+        }
+        if (e->to == e->card->controller()->game->commandzone) // Apply fresh attribute for cards just put in commandzone
+        {
+            e->card->fresh = 1;
+        }
+        if (e->to == e->card->controller()->game->library) // Apply fresh attribute for cards just put in library
+        {
+            e->card->fresh = 1;
+        }
+        if (e->to == e->card->controller()->game->sideboard) // Apply fresh attribute for cards just put in sideboard
+        {
+            e->card->fresh = 1;
         }
 
         if (card && card->basicAbilities[(int)Constants::UNEARTH])
@@ -3379,6 +3571,8 @@ int MTGNewLegend::receiveEvent(WEvent * e)
             MTGCardInstance * card = ev1->card;
              if(card && card->countDuplicateCardNames() > 1 && card->hasType(Subtypes::TYPE_LEGENDARY))
             {
+                if(card->basicAbilities[(int)Constants::MUTATE] && card->alternateCostPaid[(int)ManaCost::MANA_PAID_WITH_ALTERNATIVE])
+                    return 0; // The Leged rule for Mutating card will be checked later just if it's a Mutation Over choice
                 CheckLegend(card);
                 return 1;
             }
@@ -3452,7 +3646,7 @@ void MTGNewLegend::MoveLegend(MTGCardInstance * card)
     vector<MTGAbility*>selection;
     MTGCardInstance * myClone = NEW MTGCardInstance(card, card->controller()->game);
     TargetChooserFactory tfL(game);
-    tcL = tfL.createTargetChooser("*[share!name!]|mybattlefield",myClone);
+    tcL = tfL.createTargetChooser("*[-mutated;legendary;share!name!]|mybattlefield",myClone); // The Mutated down cards cannot be considered as Legendary card anymore
     tcL->targetter = NULL;
     tcL->maxtargets = 1;
     Legendrule = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), myClone, NULL,"ownergraveyard","Put in Graveyard");
@@ -3486,7 +3680,7 @@ PermanentAbility(observer, _id)
 }
 
 int MTGNewPlaneswalker::receiveEvent(WEvent * e)
-{
+{    
     if(game->getCurrentTargetChooser() || game->mLayers->actionLayer()->isWaitingForAnswer())
             return 0;
     if (WEventZoneChange* ev1 = dynamic_cast<WEventZoneChange*>(e))
@@ -3494,7 +3688,7 @@ int MTGNewPlaneswalker::receiveEvent(WEvent * e)
         if (ev1->to == game->players[0]->game->inPlay || ev1->to == game->players[1]->game->inPlay)
         {
             MTGCardInstance * card = ev1->card;
-            if(card && card->hasType(Subtypes::TYPE_PLANESWALKER))
+            if(card && card->countDuplicateCardNames() > 1 && card->hasType(Subtypes::TYPE_LEGENDARY))
             {
                 CheckPW(card);
                 return 1;
@@ -3504,7 +3698,7 @@ int MTGNewPlaneswalker::receiveEvent(WEvent * e)
     else if(WEventCardControllerChange* ev2 = dynamic_cast<WEventCardControllerChange*>(e))
     {
         MTGCardInstance * card = ev2->card;
-        if(card && card->hasType(Subtypes::TYPE_PLANESWALKER))
+        if(card && card->countDuplicateCardNames() > 1 && card->hasType(Subtypes::TYPE_LEGENDARY))
         {
             CheckPW(card);
             return 1;
@@ -3513,7 +3707,7 @@ int MTGNewPlaneswalker::receiveEvent(WEvent * e)
     else if(WEventCardTransforms* ev3 =  dynamic_cast<WEventCardTransforms*>(e))
     {
         MTGCardInstance * card = ev3->card;
-        if(card && card->hasType(Subtypes::TYPE_PLANESWALKER))
+        if(card && card->countDuplicateCardNames() > 1 && card->hasType(Subtypes::TYPE_LEGENDARY))
         {
             CheckPW(card);
             return 1;
@@ -3522,7 +3716,7 @@ int MTGNewPlaneswalker::receiveEvent(WEvent * e)
     else if(WEventCardCopiedACard* ev4 =  dynamic_cast<WEventCardCopiedACard*>(e))
     {
         MTGCardInstance * card = ev4->card;
-        if(card && card->hasType(Subtypes::TYPE_PLANESWALKER))
+        if(card && card->countDuplicateCardNames() > 1 && card->hasType(Subtypes::TYPE_LEGENDARY))
         {
             CheckPW(card);
             return 1;
@@ -3531,7 +3725,7 @@ int MTGNewPlaneswalker::receiveEvent(WEvent * e)
     else if(WEventCardFaceUp* ev5 =  dynamic_cast<WEventCardFaceUp*>(e))
     {
         MTGCardInstance * card = ev5->card;
-        if(card && card->hasType(Subtypes::TYPE_PLANESWALKER))
+        if(card && card->countDuplicateCardNames() > 1 && card->hasType(Subtypes::TYPE_LEGENDARY))
         {
             CheckPW(card);
             return 1;
@@ -3540,7 +3734,7 @@ int MTGNewPlaneswalker::receiveEvent(WEvent * e)
     else if(WEventCardPhasesIn* ev6 =  dynamic_cast<WEventCardPhasesIn*>(e))
     {
         MTGCardInstance * card = ev6->card;
-        if(card && card->hasType(Subtypes::TYPE_PLANESWALKER))
+        if(card && card->countDuplicateCardNames() > 1 && card->hasType(Subtypes::TYPE_LEGENDARY))
         {
             CheckPW(card);
             return 1;
@@ -3550,23 +3744,26 @@ int MTGNewPlaneswalker::receiveEvent(WEvent * e)
 }
 int MTGNewPlaneswalker::CheckPW(MTGCardInstance * card)
 {
-    if(!card)
+   if(!card)
         return 0;
     if(card->isPhased)
         return 0;
-    if(card->countDuplicateCardTypes() < 1)
+    if (card->hasType(Subtypes::TYPE_LEGENDARY) && card->controller()->game->inPlay->hasCard(card))
+        if(card->has(Constants::NOLEGEND)||card->controller()->opponent()->inPlay()->hasAbility(Constants::NOLEGENDRULE)||card->controller()->inPlay()->hasAbility(Constants::NOLEGENDRULE))
+            return 0;
+    if(card->countDuplicateCardNames() <= 2)
         return 0;
 
     MovePW(card);
     return 1;
 }
 void MTGNewPlaneswalker::MovePW(MTGCardInstance * card)
-{
+{        
     game->LPWeffect = true;
     vector<MTGAbility*>selection;
     MTGCardInstance * myClone = NEW MTGCardInstance(card, card->controller()->game);
     TargetChooserFactory tfL(game);
-    tcP = tfL.createTargetChooser("planeswalker[share!types!]|mybattlefield",myClone);
+    tcP = tfL.createTargetChooser("*[-mutated;legendary;share!name!]|mybattlefield",myClone); // The Mutated down cards cannot be considered as Legendary card anymore
     tcP->targetter = NULL;
     tcP->maxtargets = 1;
     PWrule = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), myClone, NULL,"ownergraveyard","Put in Graveyard");
@@ -3681,9 +3878,12 @@ int MTGPlaneWalkerRule::canBeInList(MTGCardInstance * card)
 {
     if(card->isPhased)
         return 0;
-    if (card->hasType(Subtypes::TYPE_PLANESWALKER) && card->controller()->game->inPlay->hasCard(card))
+     if (card->hasType(Subtypes::TYPE_LEGENDARY) && card->controller()->game->inPlay->hasCard(card))
     {
-        return 1;
+        if(card->has(Constants::NOLEGEND)||card->controller()->opponent()->inPlay()->hasAbility(Constants::NOLEGENDRULE)||card->controller()->inPlay()->hasAbility(Constants::NOLEGENDRULE))
+            return 0;
+        else
+            return 1;
     }
     return 0;
 }
@@ -3696,7 +3896,7 @@ int MTGPlaneWalkerRule::added(MTGCardInstance * card)
     for (it = cards.begin(); it != cards.end(); it++)
     {
         MTGCardInstance * comparison = (*it).first;
-        if (comparison != card && comparison->types == card->types && comparison->controller() == card->controller())
+        if (comparison != card && comparison->controller() == card->controller() && !(comparison->getName().compare(card->getName())))
             if (!(game->getCurrentTargetChooser() || game->mLayers->actionLayer()->isWaitingForAnswer()))
             {
                 oldCards.push_back(comparison);
@@ -3704,11 +3904,10 @@ int MTGPlaneWalkerRule::added(MTGCardInstance * card)
                 game->LPWeffect = true;
             }
     }
-    if (destroy)
+    if(destroy)
     {
         vector<MTGAbility*>selection;
-
-        MultiAbility * multi = NEW MultiAbility(game,game->mLayers->actionLayer()->getMaxId(), card, card, NULL);
+        MultiAbility * multi = NEW MultiAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card, NULL);
         for(unsigned int i = 0;i < oldCards.size();i++)
         {
             AAMover *a = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), card, oldCards[i],"ownergraveyard","Keep New");
@@ -3722,7 +3921,7 @@ int MTGPlaneWalkerRule::added(MTGCardInstance * card)
         b->oneShot = true;
         MTGAbility * b1 = b;
         selection.push_back(b1);
-        MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card,true,selection,card->controller(),"Planeswalker Rule");
+        MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card,true,selection,card->controller(),"Legendary Rule");
         menuChoice->addToGame();
     }
     return 1;
@@ -3764,18 +3963,17 @@ int MTGPlaneswalkerDamage::receiveEvent(WEvent * event)
         if (d->damage > 0 && card && card->hasType(Subtypes::TYPE_PLANESWALKER))
         {
             int howMany = d->damage;
-            for(int k = 0;k < howMany;k++)
+            for(int k = 0; k < howMany; k++)
             {
-                card->counters->removeCounter("loyalty",0,0);
+                card->counters->removeCounter("loyalty", 0, 0);
             }
-            d->damage = 0;
             return 1;
         }
     }
     if (WEventCounters * removel = dynamic_cast<WEventCounters*>(event))
     {
         if(removel->removed && removel->targetCard && removel->targetCard->hasType(Subtypes::TYPE_PLANESWALKER))
-            if(!removel->targetCard->counters->hasCounter("loyalty",0,0))
+            if(!removel->targetCard->counters->hasCounter("loyalty", 0, 0))
             {
                 removel->targetCard->toGrave(true);
                 return 1;
@@ -3804,9 +4002,9 @@ int MTGLifelinkRule::receiveEvent(WEvent * event)
         WEventDamage * e = (WEventDamage *) event;
         Damage * d = e->damage;
         MTGCardInstance * card = d->source;
-        if (d->damage > 0 && card && (card->basicAbilities[(int)Constants::LIFELINK]||card->LKIbasicAbilities[(int)Constants::LIFELINK]))
+        if (d->damage > 0 && card && (card->basicAbilities[(int)Constants::LIFELINK]||card->basicAbilities[(int)Constants::PERPETUALLIFELINK]||card->LKIbasicAbilities[(int)Constants::LIFELINK]||card->LKIbasicAbilities[(int)Constants::PERPETUALLIFELINK]))
         {
-            card->controller()->gainLife(d->damage);
+            card->controller()->gainLife(d->damage, card);
             return 1;
         }
     }
@@ -3848,7 +4046,7 @@ int MTGDeathtouchRule::receiveEvent(WEvent * event)
             return 0;
         MTGCardInstance * _target = (MTGCardInstance *) (d->target);
 
-        if (card->basicAbilities[(int)Constants::DEATHTOUCH]||card->LKIbasicAbilities[(int)Constants::DEATHTOUCH])
+        if (card->basicAbilities[(int)Constants::DEATHTOUCH]||card->basicAbilities[(int)Constants::PERPETUALDEATHTOUCH]||card->LKIbasicAbilities[(int)Constants::DEATHTOUCH]||card->LKIbasicAbilities[(int)Constants::PERPETUALDEATHTOUCH])
         {
             _target->destroy();
             return 1;

@@ -34,7 +34,7 @@ hgeParticleSystem* DeckMenu::stars = NULL;
 //  TODO:        
 //    *** Need to make this configurable in a file somewhere to allow for class reuse
 
-DeckMenu::DeckMenu(int id, JGuiListener* listener, int fontId, const string _title, const int&, bool showDetailsOverride) :
+DeckMenu::DeckMenu(int id, JGuiListener* listener, int fontId, const string _title, const int&, bool showDetailsOverride, bool chooseOpponent) :
 JGuiController(JGE::GetInstance(), id, listener), fontId(fontId), mShowDetailsScreen( showDetailsOverride )
 {
 
@@ -85,6 +85,7 @@ JGuiController(JGE::GetInstance(), id, listener), fontId(fontId), mShowDetailsSc
     selectionT = 0;
     timeOpen = 0;
     mClosed = false;
+    isOpponent = chooseOpponent;
 
     if (mFont->GetStringWidth(title.c_str()) > titleWidth)
         titleFontScale = SCALE_SHRINK;
@@ -103,7 +104,11 @@ JGuiController(JGE::GetInstance(), id, listener), fontId(fontId), mShowDetailsSc
     float stringWidth = descriptionFont->GetStringWidth(detailedInfoString.c_str());
     float boxStartX = detailedInfoBoxX - stringWidth / 2 + 20;
     //dismiss button?
+#if defined PSP   
+    dismissButton = NEW InteractiveButton( this, DeckMenuConst::kDetailedInfoButtonId, Fonts::MAIN_FONT, detailedInfoString, boxStartX+25, detailedInfoBoxY-10.0f, JGE_BTN_CANCEL);
+#else
     dismissButton = NEW InteractiveButton( this, DeckMenuConst::kDetailedInfoButtonId, Fonts::MAIN_FONT, detailedInfoString, boxStartX+30, detailedInfoBoxY+4.5f, JGE_BTN_CANCEL);
+#endif
     JGuiController::Add(dismissButton, true);
 
     updateScroller();
@@ -145,16 +150,16 @@ void DeckMenu::RenderDeckManaColors()
 void DeckMenu::RenderBackground()
 {
     ostringstream bgFilename;
-    if(backgroundName == "menubgdeckeditor")
+#if !defined (PSP)
+    if(backgroundName.find("menubgdeckeditor") != string::npos) //Now it's possibile to randomly use up to 10 background images for deck editor selection.
         bgFilename << backgroundName << ".jpg";
     else
         bgFilename << backgroundName << ".png";
-
-#if defined (PSP)
+#else
     if(backgroundName == "menubgdeckeditor")
         bgFilename << "pspmenubgdeckeditor.jpg";
     else
-        bgFilename << "pspdeckmenu.png";
+        bgFilename << "pspmenubgdeckeditor.png";
 #endif
 
     static bool loadBackground = true;
@@ -246,9 +251,20 @@ void DeckMenu::Render()
     JQuadPtr avatarholder;
     JQuadPtr menupanel;
     JQuadPtr menuholder;
+#if defined (PSP)
+    avatarholder = WResourceManager::Instance()->RetrieveTempQuad("pspavatarholder.png");//new graphics avatarholder for PSP
+    menupanel = WResourceManager::Instance()->RetrieveTempQuad("pspmenupanel.jpg");//new graphics menupanel for PSP
+    menuholder = WResourceManager::Instance()->RetrieveTempQuad("pspmenuholder.png");//new graphics menuholder for PSP
+#else
     avatarholder = WResourceManager::Instance()->RetrieveTempQuad("avatarholder.png");//new graphics avatarholder
-    menupanel = WResourceManager::Instance()->RetrieveTempQuad("menupanel.jpg");//new graphics menupanel
+    if(isOpponent){
+        menupanel = WResourceManager::Instance()->RetrieveTempQuad("menupanel2.jpg");//try to load the new graphics menupanel for opponent.
+        if(!menupanel.get())
+            menupanel = WResourceManager::Instance()->RetrieveTempQuad("menupanel.jpg");//fallback to new graphics menupanel for player
+    } else
+        menupanel = WResourceManager::Instance()->RetrieveTempQuad("menupanel.jpg");//new graphics menupanel for player
     menuholder = WResourceManager::Instance()->RetrieveTempQuad("menuholder.png");//new graphics menuholder
+#endif
     bool inDeckMenu = backgroundName.find("DeckMenuBackdrop") != string::npos;
     float modAvatarX = 0.f;
     float modAvatarY = 0.f;
@@ -270,7 +286,7 @@ void DeckMenu::Render()
         timeOpen = 0;
         menuInitialized = true;
     }
-#if !defined (PSP)
+
     if (avatarholder.get() && menupanel.get() && inDeckMenu)//bg panel
          renderer->RenderQuad(menupanel.get(), 225.f, 0, 0 ,SCREEN_WIDTH_F / avatarholder.get()->mWidth, SCREEN_HEIGHT_F / avatarholder.get()->mHeight);
 
@@ -279,7 +295,7 @@ void DeckMenu::Render()
 
     if (menuholder.get() && inDeckMenu)//menuholder
          renderer->RenderQuad(menuholder.get(), 0, 0, 0 ,SCREEN_WIDTH_F / menuholder.get()->mWidth, SCREEN_HEIGHT_F / menuholder.get()->mHeight);
-#endif
+
     if (timeOpen < 1) height *= timeOpen > 0 ? timeOpen : -timeOpen;
     
     for (int i = startId; i < startId + maxItems; i++)
@@ -323,20 +339,20 @@ void DeckMenu::Render()
                         {
                             JQuad * evil = quad.get();
                             evil->SetHFlip(true);
-#if !defined (PSP)
+
                             if (avatarholder.get() && inDeckMenu)
                                 renderer->RenderQuad(avatarholder.get(), 0, 0, 0 ,SCREEN_WIDTH_F / avatarholder.get()->mWidth, SCREEN_HEIGHT_F / avatarholder.get()->mHeight);
-#endif
+
                             renderer->RenderQuad(quad.get(), avatarX+modAvatarX, avatarY+modAvatarY, 0, xscale, yscale);
                             renderer->DrawRect(avatarX+modAvatarX, avatarY+modAvatarY,37.f,50.f,ARGB(200,3,3,3));
                             evil = NULL;
                         }
                         else
                         {
-#if !defined (PSP)
+
                             if (avatarholder.get() && inDeckMenu)
                                 renderer->RenderQuad(avatarholder.get(), 0, 0, 0 ,SCREEN_WIDTH_F / avatarholder.get()->mWidth, SCREEN_HEIGHT_F / avatarholder.get()->mHeight);
-#endif
+
                             renderer->RenderQuad(quad.get(), avatarX+modAvatarX, avatarY+modAvatarY, 0, xscale, yscale);
                             renderer->DrawRect(avatarX+modAvatarX, avatarY+modAvatarY,37.f,50.f,ARGB(200,3,3,3));
                         }
@@ -370,10 +386,6 @@ void DeckMenu::Render()
         }
     }
     //psp
-#if defined (PSP)
-    mScroller->Render();
-    RenderBackground();//background deck menu
-#endif
     RenderDeckManaColors();
 
     if (!title.empty())
@@ -439,7 +451,10 @@ void DeckMenu::Add(int id, const string& text, const string& desc, bool forceFoc
         deckDescription = it->second;
     else
         deckDescription = deckMetaData ? deckMetaData->getDescription() : desc;
-    
+
+    if(deckMetaData && deckMetaData->isCommanderDeck())
+        deckDescription = deckDescription + " (" + _("CMD") + ")"; // It will show a CMD suffix for Commander Decks.
+
     menuItem->setDescription(deckDescription);
 
     JGuiController::Add(menuItem);

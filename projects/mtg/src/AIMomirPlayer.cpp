@@ -59,7 +59,7 @@ int AIMomirPlayer::momir()
         MTGCardInstance * card = game->hand->cards[0];
         if (ability->isReactingToClick(card, cost))
         {
-            payTheManaCost(cost);
+            payTheManaCost(cost, card->has(Constants::ANYTYPEOFMANA));
             AIAction * a = NEW AIAction(this, ability, card);
             clickstream.push(a);
             result = 1;

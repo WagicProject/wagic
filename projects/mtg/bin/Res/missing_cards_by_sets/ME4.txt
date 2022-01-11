@@ -1,0 +1,110 @@
+[card]
+name=Personal Incarnation
+text={0}: The next 1 damage that would be dealt to Personal Incarnation this turn is dealt to its owner instead. Any player may activate this ability, but only if he or she owns Personal Incarnation. -- When Personal Incarnation dies, its owner loses half his or her life, rounded up.
+mana={3}{W}{W}{W}
+type=Creature
+subtype=Avatar Incarnation
+power=6
+toughness=6
+[/card]
+[card]
+name=Ice Cauldron
+text={X}, {T}: Put a charge counter on Ice Cauldron and exile a nonland card from your hand. You may cast that card for as long as it remains exiled. Note the type and amount of mana spent to pay this activation cost. Activate this ability only if there are no charge counters on Ice Cauldron. -- {T}, Remove a charge counter from Ice Cauldron: Add Ice Cauldron's last noted type and amount of mana to your mana pool. Spend this mana only to cast the last card exiled with Ice Cauldron.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Martyrs of Korlis
+text=As long as Martyrs of Korlis is untapped, all damage that would be dealt to you by artifacts is dealt to Martyrs of Korlis instead.
+mana={3}{W}{W}
+type=Creature
+subtype=Human
+power=1
+toughness=6
+[/card]
+[card]
+name=Transmute Artifact
+text=Sacrifice an artifact. If you do, search your library for an artifact card. If that card's converted mana cost is less than or equal to the sacrificed artifact's converted mana cost, put it onto the battlefield. If it's greater, you may pay {X}, where X is the difference. If you do, put it onto the battlefield. If you don't, put it into its owner's graveyard. Then shuffle your library.
+mana={U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Pentagram of the Ages
+text={4}, {T}: The next time a source of your choice would deal damage to you this turn, prevent that damage.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Guardian Beast
+text=As long as Guardian Beast is untapped, noncreature artifacts you control can't be enchanted, they're indestructible, and other players can't gain control of them. This effect doesn't remove Auras already attached to those artifacts.
+mana={3}{B}
+type=Creature
+subtype=Beast
+power=2
+toughness=4
+[/card]
+[card]
+name=Drain Power
+text=Target player activates a mana ability of each land he or she controls. Then put all mana from that player's mana pool into yours.
+mana={U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Naked Singularity
+text=Cumulative upkeep {3} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- If tapped for mana, Plains produce {R}, Islands produce {G}, Swamps produce {W}, Mountains produce {U}, and Forests produce {B} instead of any other type.
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Jade Monolith
+text={1}: The next time a source of your choice would deal damage to target creature this turn, that source deals that damage to you instead.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Power Artifact
+text=Enchant artifact -- Enchanted artifact's activated abilities cost {2} less to activate. This effect can't reduce the amount of mana an ability costs to activate to less than one mana.
+mana={U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Blaze of Glory
+text=Cast Blaze of Glory only during combat before blockers are declared. -- Target creature defending player controls can block any number of creatures this turn. It blocks each attacking creature this turn if able.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Scarwood Bandits
+abilities=forestwalk
+text=Forestwalk -- {2}{G}, {T}: Unless an opponent pays {2}, gain control of target artifact for as long as Scarwood Bandits remains on the battlefield.
+mana={2}{G}{G}
+type=Creature
+subtype=Human Rogue
+power=2
+toughness=2
+[/card]
+[card]
+name=Veteran Bodyguard
+text=As long as Veteran Bodyguard is untapped, all damage that would be dealt to you by unblocked creatures is dealt to Veteran Bodyguard instead.
+mana={3}{W}{W}
+type=Creature
+subtype=Human
+power=2
+toughness=5
+[/card]
+[card]
+name=Shapeshifter
+text=As Shapeshifter enters the battlefield, choose a number between 0 and 7. -- At the beginning of your upkeep, you may choose a number between 0 and 7. -- Shapeshifter's power is equal to the last chosen number and its toughness is equal to 7 minus that number.
+mana={6}
+type=Artifact Creature
+subtype=Shapeshifter
+power=*
+toughness=7-*
+[/card]
+[card]
+name=Word of Command
+text=Look at target opponent's hand and choose a card from it. You control that player until Word of Command finishes resolving. The player plays that card if able. While doing so, the player can activate mana abilities only if they're from lands he or she controls and only if mana they produce is spent to activate other mana abilities of lands he or she controls and/or play that card. If the chosen card is cast as a spell, you control the player while that spell is resolving.
+mana={B}{B}
+type=Instant
+[/card]

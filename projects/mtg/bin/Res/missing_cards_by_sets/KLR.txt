@@ -1,0 +1,52 @@
+[card]
+name=Midnight Oil
+text=Midnight Oil enters the battlefield with seven hour counters on it. -- At the beginning of your draw step, draw an additional card and remove two hour counters from Midnight Oil. -- Your maximum hand size is equal to the number of hour counters on Midnight Oil. -- Whenever you discard a card, you lose 1 life.
+mana={2}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Lost Legacy
+text=Name a nonartifact, nonland card. Search target player's graveyard, hand, and library for any number of cards with that name and exile them. That player shuffles his or her library, then draws a card for each card exiled from hand this way.
+mana={1}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Dark Intimations
+text=Each opponent sacrifices a creature or planeswalker, then discards a card. You return a creature or planeswalker card from your graveyard to your hand, then draw a card. -- When you cast a Bolas planeswalker spell, exile Dark Intimations from your graveyard. That planeswalker enters the battlefield with an additional loyalty counter on it.
+mana={2}{U}{B}{R}
+type=Sorcery
+[/card]
+[card]
+name=Panharmonicon
+text=If an artifact or creature entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Baral, Chief of Compliance
+text=Instant and sorcery spells you cast cost {1} less to cast. -- Whenever a spell or ability you control counters a spell, you may draw a card. If you do, discard a card.
+mana={1}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=1
+toughness=3
+[/card]
+[card]
+name=Winding Constrictor
+text=If one or more counters would be placed on an artifact or creature you control, that many plus one of each of those kinds of counters are placed on that permanent instead. -- If you would get one or more counters, you get that many plus one of each of those kinds of counters instead.
+mana={B}{G}
+type=Creature
+subtype=Snake
+power=2
+toughness=3
+[/card]
+[card]
+name=Combustible Gearhulk
+abilities=first strike
+text=First strike -- When Combustible Gearhulk enters the battlefield, target opponent may have you draw three cards. If the player doesn't, put the top three cards of your library into your graveyard, then Combustible Gearhulk deals damage to that player equal to the total converted mana cost of those cards.
+mana={4}{R}{R}
+type=Artifact Creature
+subtype=Construct
+power=6
+toughness=6
+[/card]

@@ -12,10 +12,12 @@ WCFilterFactory* WCFilterFactory::GetInstance()
     if (!me) me = NEW WCFilterFactory();
     return me;
 }
+
 void WCFilterFactory::Destroy()
 {
     SAFE_DELETE(me);
 }
+
 size_t WCFilterFactory::findNext(string src, size_t start, char open, char close)
 {
     int num = 0;
@@ -30,6 +32,7 @@ size_t WCFilterFactory::findNext(string src, size_t start, char open, char close
     }
     return string::npos;
 }
+
 WCardFilter * WCFilterFactory::Construct(string src)
 {
     size_t x = 0;
@@ -152,6 +155,8 @@ WCardFilter * WCFilterFactory::Terminal(string src, string arg)
         return NEW WCFilterRarity(arg);
     else if (type == "c" || type == "color")
         return NEW WCFilterColor(arg);
+    else if (type == "nc" || type == "ncolor")
+        return NEW WCFilterNotColor(arg);
     else if (type == "xc" || type == "xcolor")
         return NEW WCFilterOnlyColor(arg);
     else if (type == "s" || type == "set")
@@ -172,6 +177,7 @@ WCardFilter * WCFilterFactory::Terminal(string src, string arg)
 
     return NEW WCFilterNULL();
 }
+
 //WCFilterLetter
 WCFilterLetter::WCFilterLetter(string arg)
 {
@@ -180,6 +186,7 @@ WCFilterLetter::WCFilterLetter(string arg)
     else
         alpha = tolower(arg[0]);
 }
+
 bool WCFilterLetter::isMatch(MTGCard * c)
 {
     if (!c || !c->data) return false;
@@ -188,12 +195,14 @@ bool WCFilterLetter::isMatch(MTGCard * c)
     if (s[0] == alpha || (alpha == '#' && (isdigit(s[0]) || ispunct(s[0])))) return true;
     return false;
 }
+
 string WCFilterLetter::getCode()
 {
     char buf[24];
     sprintf(buf, "alpha:%c;", alpha);
     return buf;
 }
+
 //WCFilterSet
 WCFilterSet::WCFilterSet(string arg)
 {
@@ -208,7 +217,6 @@ string WCFilterSet::getCode()
     sprintf(buf, "set:%s;", setName.c_str());
     return buf;
 }
-;
 
 //WCFilterColor
 bool WCFilterColor::isMatch(MTGCard * c)
@@ -216,15 +224,16 @@ bool WCFilterColor::isMatch(MTGCard * c)
     if (!c || !c->data) return false;
     return (c->data->hasColor(color));
 }
+
 string WCFilterColor::getCode()
 {
     char buf[12];
     char c = '?';
-    if (color < 0 || color >= Constants::NB_Colors) c = Constants::MTGColorChars[color];
+    if (color >= 0 && color < Constants::NB_Colors) c = Constants::MTGColorChars[color];
     sprintf(buf, "color:%c;", c);
     return buf;
 }
-;
+
 WCFilterColor::WCFilterColor(string arg)
 {
     color = -1;
@@ -238,25 +247,78 @@ WCFilterColor::WCFilterColor(string arg)
         }
     }
 }
+
+//WCFilterNotColor
+bool WCFilterNotColor::isMatch(MTGCard * c)
+{
+    if (!c || !c->data) return false;
+    if(color == -1){ // Only multicolored cards
+        for (int i = 1; i < 6; i++){
+            if(c->data->hasColor(i)){
+                for (int j = i+1; j < 6; j++){
+                    if(c->data->hasColor(j))
+                        return true;
+                }
+            }
+        }
+        return false;
+    } else if(color == 0){  // Not colorless cards
+        for (int i = 1; i < 6; i++){
+            if(c->data->hasColor(i))
+                return true;
+        }
+        return false;
+    } else
+        return !(c->data->hasColor(color));
+}
+
+string WCFilterNotColor::getCode()
+{
+    char buf[12];
+    char c = '?';
+    if (color >= 0 && color < Constants::NB_Colors) 
+        c = Constants::MTGColorChars[color];
+    else if (color < 0)
+        c = 'm';
+    sprintf(buf, "ncolor:%c;", c);
+    return buf;
+}
+
+WCFilterNotColor::WCFilterNotColor(string arg)
+{
+    color = -1;
+    char c = tolower(arg[0]);
+    for (int i = 0; i < Constants::NB_Colors; i++)
+    {
+        if (Constants::MTGColorChars[i] == c)
+        {
+            color = i;
+            break;
+        }
+    }
+}
+
 //WCFilterOnlyColor
 bool WCFilterOnlyColor::isMatch(MTGCard * c)
 {
     if (!c || !c->data) return false;
-    for (int i = 0; i < Constants::NB_Colors; i++)
+    for (int i = 1; i < Constants::NB_Colors; i++)
     {
         if (i == color) continue;
         if (c->data->hasColor(i)) return false;
     }
     return (c->data->hasColor(color));
 }
+
 string WCFilterOnlyColor::getCode()
 {
     char buf[12];
     char c = '?';
-    if (color < 0 || color >= Constants::NB_Colors) c = Constants::MTGColorChars[color];
+    if (color >= 0 && color < Constants::NB_Colors) c = Constants::MTGColorChars[color];
     sprintf(buf, "xcolor:%c;", c);
     return buf;
 }
+
 //WCFilterProducesColor
 bool WCFilterProducesColor::isMatch(MTGCard * c)
 {
@@ -271,23 +333,27 @@ bool WCFilterProducesColor::isMatch(MTGCard * c)
         return true;
 
     //Retrieve non basic Mana abilities
-    string s = c->data->magicText;
-    size_t t = s.find("add{");
-    while (t != string::npos)
-    {
-        s = s.substr(t + 3);
-        ManaCost * mc = ManaCost::parseManaCost(s);
-        if (mc->hasColor(color) > 0)
+    vector<string> rows = split(c->data->magicText, '\n'); // Now the parser analyze the full card text row by row to avoid fake color matches.
+    for(size_t j = 0; j < rows.size(); j++){
+        string s = rows[j];
+        size_t t = s.find("add{");
+        while (t != string::npos)
         {
-            bMatch = true;
+            s = s.substr(t + 3);
+            ManaCost * mc = ManaCost::parseManaCost(s);
+            if (mc->hasColor(color) > 0)
+            {
+                bMatch = true;
+                SAFE_DELETE(mc);
+                break;
+            }
             SAFE_DELETE(mc);
-            break;
+            t = s.find("add{");
         }
-        SAFE_DELETE(mc);
-        t = s.find("add");
     }
     return bMatch;
 }
+
 string WCFilterProducesColor::getCode()
 {
     char buf[12];
@@ -296,11 +362,13 @@ string WCFilterProducesColor::getCode()
     sprintf(buf, "produces:%c;", c);
     return buf;
 }
+
 //WCFilterNumeric
 WCFilterNumeric::WCFilterNumeric(string arg)
 {
     number = atoi(arg.c_str());
 }
+
 //WCFilterCMC
 bool WCFilterCMC::isMatch(MTGCard * c)
 {
@@ -315,30 +383,35 @@ string WCFilterCMC::getCode()
     sprintf(buf, "cmc:%i;", number);
     return buf;
 }
+
 //WCFilterPower
 bool WCFilterPower::isMatch(MTGCard * c)
 {
     if (!c || !c->data) return false;
     return (c->data->getPower() == number);
 }
+
 string WCFilterPower::getCode()
 {
     char buf[64];
     sprintf(buf, "power:%i;", number);
     return buf;
 }
+
 //WCFilterPower
 bool WCFilterToughness::isMatch(MTGCard * c)
 {
     if (!c || !c->data) return false;
     return (c->data->getToughness() == number);
 }
+
 string WCFilterToughness::getCode()
 {
     char buf[64];
     sprintf(buf, "toughness:%i;", number);
     return buf;
 }
+
 //WCFilterRarity
 float WCFilterRarity::filterFee()
 {
@@ -355,12 +428,14 @@ float WCFilterRarity::filterFee()
     }
     return 0.0f;
 }
+
 bool WCFilterRarity::isMatch(MTGCard * c)
 {
     if (!c || !c->data) return false;
     if (rarity == 'A') return true; //A for "Any" or "All"
     return (c->getRarity() == rarity);
 }
+
 string WCFilterRarity::getCode()
 {
     char buf[64];
@@ -393,7 +468,7 @@ string WCFilterRarity::getCode()
     sprintf(buf, "rarity:%s;", rarities[x]);
     return buf;
 }
-;
+
 WCFilterRarity::WCFilterRarity(string arg)
 {
     rarity = -1;
@@ -412,6 +487,7 @@ WCFilterRarity::WCFilterRarity(string arg)
     }
     rarity = 'A';
 }
+
 //WCFilterAbility
 bool WCFilterAbility::isMatch(MTGCard * c)
 {
@@ -433,6 +509,7 @@ WCFilterAbility::WCFilterAbility(string arg)
     }
     ability = -1;
 }
+
 string WCFilterAbility::getCode()
 {
     char buf[64];
@@ -440,7 +517,6 @@ string WCFilterAbility::getCode()
     sprintf(buf, "ability:%s;", Constants::MTGBasicAbilities[ability]);
     return buf;
 }
-;
 
 float WCFilterAbility::filterFee()
 {
@@ -487,22 +563,26 @@ float WCFilterAbility::filterFee()
     }
     return 0.0f;
 }
+
 //WCFilterType
 bool WCFilterType::isMatch(MTGCard * c)
 {
     return c->data->hasType(type.c_str());
 }
+
 string WCFilterType::getCode()
 {
     char buf[4068];
     sprintf(buf, "type:%s;", type.c_str());
     return buf;
 }
+
 //Misc. filter code
 float WCFilterAND::filterFee()
 {
     return lhs->filterFee() + rhs->filterFee();
 }
+
 float WCFilterOR::filterFee()
 {
   float lFee = lhs->filterFee();
@@ -511,12 +591,14 @@ float WCFilterOR::filterFee()
       return lFee;
     return rFee;
 }
+
 string WCFilterNOT::getCode()
 {
     char buf[4068];
     sprintf(buf, "{%s}", kid->getCode().c_str());
     return buf;
 }
+
 string WCFilterGROUP::getCode()
 {
     char buf[4068];
@@ -530,6 +612,7 @@ string WCFilterAND::getCode()
     sprintf(buf, "%s&%s", lhs->getCode().c_str(), rhs->getCode().c_str());
     return buf;
 }
+
 string WCFilterOR::getCode()
 {
     char buf[4068];
@@ -543,4 +626,3 @@ bool WCFilterOR::isMatch(MTGCard *c)
     if (rhs->isMatch(c)) return true;
     return false;
 }
-;

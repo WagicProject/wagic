@@ -1,11 +1,12 @@
 [meta]
 author=Wagic Team
 name=Modern Masters 2015 Edition
-year=2015
+orderindex=REP-7.MM2
+year=2015-05-22
 total=249
 [/meta]
 [card]
-primitive=AEthersnipe
+primitive=Aethersnipe
 id=397746
 rarity=C
 [/card]

@@ -1,0 +1,3813 @@
+[meta]
+author=Wagic Team
+name=Salvat 2005
+orderindex=PRO-J.PSAL
+year=2005-08-22
+total=761
+[/meta]
+[card]
+primitive=Saproling
+id=-17717
+rarity=T
+[/card]
+[card]
+primitive=Saproling
+id=-17705
+rarity=T
+[/card]
+[card]
+primitive=Saproling
+id=-17669
+rarity=T
+[/card]
+[card]
+primitive=Saproling
+id=-17661
+rarity=T
+[/card]
+[card]
+primitive=Elemental
+id=-17656
+rarity=T
+[/card]
+[card]
+primitive=Saproling
+id=-17645
+rarity=T
+[/card]
+[card]
+primitive=Riptide Token
+id=-17639
+rarity=T
+[/card]
+[card]
+primitive=Saproling
+id=-17573
+rarity=T
+[/card]
+[card]
+primitive=Saproling
+id=-17549
+rarity=T
+[/card]
+[card]
+primitive=Beast
+id=-17538
+rarity=T
+[/card]
+[card]
+primitive=Saproling
+id=-17537
+rarity=T
+[/card]
+[card]
+primitive=Saproling
+id=-17513
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-17501
+rarity=T
+[/card]
+[card]
+primitive=Elemental
+id=-17500
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-17494
+rarity=T
+[/card]
+[card]
+primitive=Bear
+id=-17493
+rarity=T
+[/card]
+[card]
+primitive=Saproling
+id=-17429
+rarity=T
+[/card]
+[card]
+primitive=Saproling
+id=-17417
+rarity=T
+[/card]
+[card]
+primitive=Saproling
+id=-17405
+rarity=T
+[/card]
+[card]
+primitive=Saproling
+id=-17393
+rarity=T
+[/card]
+[card]
+primitive=Beast
+id=-17358
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-17354
+rarity=T
+[/card]
+[card]
+primitive=Saproling
+id=-17285
+rarity=T
+[/card]
+[card]
+primitive=Saproling
+id=-17273
+rarity=T
+[/card]
+[card]
+primitive=Saproling
+id=-17249
+rarity=T
+[/card]
+[card]
+primitive=Sliver
+id=-17207
+rarity=T
+[/card]
+[card]
+primitive=Saproling
+id=-17141
+rarity=T
+[/card]
+[card]
+primitive=Saproling
+id=-17129
+rarity=T
+[/card]
+[card]
+primitive=Saproling
+id=-17117
+rarity=T
+[/card]
+[card]
+primitive=Saproling
+id=-17105
+rarity=T
+[/card]
+[card]
+primitive=Insect
+id=-17097
+rarity=T
+[/card]
+[card]
+primitive=Saproling
+id=-17093
+rarity=T
+[/card]
+[card]
+primitive=Insect
+id=-17085
+rarity=T
+[/card]
+[card]
+primitive=Saproling
+id=-17081
+rarity=T
+[/card]
+[card]
+primitive=Elemental
+id=-17080
+rarity=T
+[/card]
+[card]
+primitive=Warrior
+id=-17071
+rarity=T
+[/card]
+[card]
+primitive=Wolf
+id=-17069
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-17062
+rarity=T
+[/card]
+[card]
+primitive=Elemental
+id=-17061
+rarity=T
+[/card]
+[card]
+primitive=Rat
+id=-17060
+rarity=T
+[/card]
+[card]
+primitive=Marrow-Gnawer
+id=17060
+rarity=R
+[/card]
+[card]
+primitive=Voice of the Woods
+id=17061
+rarity=R
+[/card]
+[card]
+primitive=Oyobi, Who Split the Heavens
+id=17062
+rarity=R
+[/card]
+[card]
+primitive=Magma Sliver
+id=17063
+rarity=R
+[/card]
+[card]
+primitive=Higure, the Still Wind
+id=17064
+rarity=R
+[/card]
+[card]
+primitive=Lord of the Undead
+id=17065
+rarity=R
+[/card]
+[card]
+primitive=Angel of Retribution
+id=17066
+rarity=R
+[/card]
+[card]
+primitive=Azami, Lady of Scrolls
+id=17067
+rarity=R
+[/card]
+[card]
+primitive=Kamahl, Pit Fighter
+id=17068
+rarity=R
+[/card]
+[card]
+primitive=Tolsimir Wolfblood
+id=17069
+rarity=R
+[/card]
+[card]
+primitive=Rhox
+id=17070
+rarity=R
+[/card]
+[card]
+primitive=Jedit Ojanen of Efrava
+id=17071
+rarity=R
+[/card]
+[card]
+primitive=Swarm of Rats
+id=17072
+rarity=U
+[/card]
+[card]
+primitive=Nullmage Shepherd
+id=17073
+rarity=U
+[/card]
+[card]
+primitive=Nikko-Onna
+id=17074
+rarity=U
+[/card]
+[card]
+primitive=Blade Sliver
+id=17075
+rarity=U
+[/card]
+[card]
+primitive=Throat Slitter
+id=17076
+rarity=U
+[/card]
+[card]
+primitive=Gluttonous Zombie
+id=17077
+rarity=U
+[/card]
+[card]
+primitive=Loxodon Stalwart
+id=17078
+rarity=U
+[/card]
+[card]
+primitive=Puppeteer
+id=17079
+rarity=U
+[/card]
+[card]
+primitive=Feral Lightning
+id=17080
+rarity=U
+[/card]
+[card]
+primitive=Fertile Imagination
+id=17081
+rarity=U
+[/card]
+[card]
+primitive=Enormous Baloth
+id=17082
+rarity=U
+[/card]
+[card]
+primitive=Lightning Greaves
+id=17083
+rarity=U
+[/card]
+[card]
+primitive=Nocturnal Raid
+id=17084
+rarity=U
+[/card]
+[card]
+primitive=Wirewood Hivemaster
+id=17085
+rarity=U
+[/card]
+[card]
+primitive=Phantom Flock
+id=17086
+rarity=U
+[/card]
+[card]
+primitive=Blade Sliver
+id=17087
+rarity=U
+[/card]
+[card]
+primitive=Blade Sliver
+id=17088
+rarity=U
+[/card]
+[card]
+primitive=Nantuko Husk
+id=17089
+rarity=U
+[/card]
+[card]
+primitive=Spirit Link
+id=17090
+rarity=U
+[/card]
+[card]
+primitive=Soratami Mindsweeper
+id=17091
+rarity=U
+[/card]
+[card]
+primitive=Tears of Rage
+id=17092
+rarity=U
+[/card]
+[card]
+primitive=Sporesower Thallid
+id=17093
+rarity=U
+[/card]
+[card]
+primitive=Iron-Barb Hellion
+id=17094
+rarity=U
+[/card]
+[card]
+primitive=Skyhunter Skirmisher
+id=17095
+rarity=U
+[/card]
+[card]
+primitive=Skullsnatcher
+id=17096
+rarity=C
+[/card]
+[card]
+primitive=Wirewood Hivemaster
+id=17097
+rarity=U
+[/card]
+[card]
+primitive=Blademane Baku
+id=17098
+rarity=C
+[/card]
+[card]
+primitive=Bloodscent
+id=17099
+rarity=U
+[/card]
+[card]
+primitive=Dimir Infiltrator
+id=17100
+rarity=C
+[/card]
+[card]
+primitive=Blind Creeper
+id=17101
+rarity=C
+[/card]
+[card]
+primitive=Freewind Equenaut
+id=17102
+rarity=C
+[/card]
+[card]
+primitive=Vacuumelt
+id=17103
+rarity=U
+[/card]
+[card]
+primitive=Goblin Chariot
+id=17104
+rarity=C
+[/card]
+[card]
+primitive=Savage Thallid
+id=17105
+rarity=C
+[/card]
+[card]
+primitive=Iron-Barb Hellion
+id=17106
+rarity=U
+[/card]
+[card]
+primitive=Taj-Nar Swordsmith
+id=17107
+rarity=U
+[/card]
+[card]
+primitive=Chittering Rats
+id=17108
+rarity=C
+[/card]
+[card]
+primitive=Treetop Scout
+id=17109
+rarity=C
+[/card]
+[card]
+primitive=Devouring Rage
+id=17110
+rarity=C
+[/card]
+[card]
+primitive=Engulfing Flames
+id=17111
+rarity=U
+[/card]
+[card]
+primitive=Dimir Infiltrator
+id=17112
+rarity=C
+[/card]
+[card]
+primitive=Festering Goblin
+id=17113
+rarity=C
+[/card]
+[card]
+primitive=Guardian's Magemark
+id=17114
+rarity=C
+[/card]
+[card]
+primitive=Martyr of Frost
+id=17115
+rarity=C
+[/card]
+[card]
+primitive=Goblin Fire Fiend
+id=17116
+rarity=C
+[/card]
+[card]
+primitive=Savage Thallid
+id=17117
+rarity=C
+[/card]
+[card]
+primitive=Fertile Ground
+id=17118
+rarity=C
+[/card]
+[card]
+primitive=Bonesplitter
+id=17119
+rarity=C
+[/card]
+[card]
+primitive=Crippling Fatigue
+id=17120
+rarity=C
+[/card]
+[card]
+primitive=Treetop Scout
+id=17121
+rarity=C
+[/card]
+[card]
+primitive=Frostling
+id=17122
+rarity=C
+[/card]
+[card]
+primitive=Crown of Vigor
+id=17123
+rarity=C
+[/card]
+[card]
+primitive=Ninja of the Deep Hours
+id=17124
+rarity=C
+[/card]
+[card]
+primitive=Festering Goblin
+id=17125
+rarity=C
+[/card]
+[card]
+primitive=Skyrider Trainee
+id=17126
+rarity=C
+[/card]
+[card]
+primitive=Minamo Scrollkeeper
+id=17127
+rarity=C
+[/card]
+[card]
+primitive=Raging Goblin
+id=17128
+rarity=C
+[/card]
+[card]
+primitive=Thallid Shell-Dweller
+id=17129
+rarity=C
+[/card]
+[card]
+primitive=Fertile Ground
+id=17130
+rarity=C
+[/card]
+[card]
+primitive=Jedit's Dragoons
+id=17131
+rarity=C
+[/card]
+[card]
+primitive=Dirty Wererat
+id=17132
+rarity=C
+[/card]
+[card]
+primitive=Wellwisher
+id=17133
+rarity=C
+[/card]
+[card]
+primitive=Phantom Nomad
+id=17134
+rarity=C
+[/card]
+[card]
+primitive=Hunter Sliver
+id=17135
+rarity=C
+[/card]
+[card]
+primitive=Sage Owl
+id=17136
+rarity=C
+[/card]
+[card]
+primitive=Gravedigger
+id=17137
+rarity=C
+[/card]
+[card]
+primitive=Infiltrator's Magemark
+id=17138
+rarity=C
+[/card]
+[card]
+primitive=Vedalken Entrancer
+id=17139
+rarity=C
+[/card]
+[card]
+primitive=Raging Goblin
+id=17140
+rarity=C
+[/card]
+[card]
+primitive=Thallid Shell-Dweller
+id=17141
+rarity=C
+[/card]
+[card]
+primitive=Flowstone Shambler
+id=17142
+rarity=C
+[/card]
+[card]
+primitive=Skyhunter Cub
+id=17143
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=17144
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17145
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17146
+rarity=L
+[/card]
+[card]
+primitive=Hunter Sliver
+id=17147
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17148
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17149
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17150
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17151
+rarity=L
+[/card]
+[card]
+primitive=Vulshok Sorcerer
+id=17152
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17153
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17154
+rarity=L
+[/card]
+[card]
+primitive=Terramorphic Expanse
+id=17155
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17156
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17157
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17158
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17159
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17160
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17161
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17162
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17163
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17164
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17165
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17166
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17167
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17168
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17169
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17170
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17171
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17172
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17173
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17174
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17175
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17176
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17177
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17178
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17179
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17180
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17181
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17182
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17183
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17184
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17185
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17186
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17187
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17188
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17189
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17190
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17191
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17192
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17193
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17194
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17195
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17196
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17197
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17198
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17199
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17200
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17201
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17202
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17203
+rarity=L
+[/card]
+[card]
+primitive=Infernal Contract
+id=17204
+rarity=R
+[/card]
+[card]
+primitive=Elvish Vanguard
+id=17205
+rarity=R
+[/card]
+[card]
+primitive=Lavaborn Muse
+id=17206
+rarity=R
+[/card]
+[card]
+primitive=Brood Sliver
+id=17207
+rarity=R
+[/card]
+[card]
+primitive=Doomsday Specter
+id=17208
+rarity=R
+[/card]
+[card]
+primitive=Helldozer
+id=17209
+rarity=R
+[/card]
+[card]
+primitive=Thran Golem
+id=17210
+rarity=R
+[/card]
+[card]
+primitive=Mesmeric Orb
+id=17211
+rarity=R
+[/card]
+[card]
+primitive=Lovisa Coldeyes
+id=17212
+rarity=R
+[/card]
+[card]
+primitive=Leyline of the Meek
+id=17213
+rarity=R
+[/card]
+[card]
+primitive=Fangren Firstborn
+id=17214
+rarity=R
+[/card]
+[card]
+primitive=Seht's Tiger
+id=17215
+rarity=R
+[/card]
+[card]
+primitive=Swarm of Rats
+id=17216
+rarity=U
+[/card]
+[card]
+primitive=Sylvan Messenger
+id=17217
+rarity=U
+[/card]
+[card]
+primitive=Angelic Page
+id=17218
+rarity=C
+[/card]
+[card]
+primitive=Root Sliver
+id=17219
+rarity=U
+[/card]
+[card]
+primitive=Clutch of the Undercity
+id=17220
+rarity=U
+[/card]
+[card]
+primitive=Mind Slash
+id=17221
+rarity=U
+[/card]
+[card]
+primitive=Angel of Mercy
+id=17222
+rarity=U
+[/card]
+[card]
+primitive=Belltower Sphinx
+id=17223
+rarity=U
+[/card]
+[card]
+primitive=Balduvian Rage
+id=17224
+rarity=U
+[/card]
+[card]
+primitive=Soul Warden
+id=17225
+rarity=U
+[/card]
+[card]
+primitive=Fangren Pathcutter
+id=17226
+rarity=U
+[/card]
+[card]
+primitive=Arctic Nishoba
+id=17227
+rarity=U
+[/card]
+[card]
+primitive=Sever Soul
+id=17228
+rarity=U
+[/card]
+[card]
+primitive=Sylvan Messenger
+id=17229
+rarity=U
+[/card]
+[card]
+primitive=Crushing Pain
+id=17230
+rarity=C
+[/card]
+[card]
+primitive=Crushing Pain
+id=17231
+rarity=U
+[/card]
+[card]
+primitive=Keening Banshee
+id=17232
+rarity=U
+[/card]
+[card]
+primitive=Nantuko Husk
+id=17233
+rarity=U
+[/card]
+[card]
+primitive=Ardent Militia
+id=17234
+rarity=U
+[/card]
+[card]
+primitive=Dimir Guildmage
+id=17235
+rarity=U
+[/card]
+[card]
+primitive=Balduvian Rage
+id=17236
+rarity=U
+[/card]
+[card]
+primitive=Juniper Order Ranger
+id=17237
+rarity=U
+[/card]
+[card]
+primitive=Fangren Pathcutter
+id=17238
+rarity=U
+[/card]
+[card]
+primitive=Specter's Shroud
+id=17239
+rarity=U
+[/card]
+[card]
+primitive=Sever Soul
+id=17240
+rarity=U
+[/card]
+[card]
+primitive=Llanowar Elite
+id=17241
+rarity=C
+[/card]
+[card]
+primitive=Frostling
+id=17242
+rarity=C
+[/card]
+[card]
+primitive=Quick Sliver
+id=17243
+rarity=C
+[/card]
+[card]
+primitive=Struggle for Sanity
+id=17244
+rarity=U
+[/card]
+[card]
+primitive=Woebearer
+id=17245
+rarity=U
+[/card]
+[card]
+primitive=Sinstriker's Will
+id=17246
+rarity=U
+[/card]
+[card]
+primitive=Boomerang
+id=17247
+rarity=C
+[/card]
+[card]
+primitive=Frenzied Goblin
+id=17248
+rarity=U
+[/card]
+[card]
+primitive=Supply // Demand
+id=17249
+rarity=U
+[/card]
+[card]
+primitive=Lure
+id=17250
+rarity=U
+[/card]
+[card]
+primitive=Leonin Bola
+id=17251
+rarity=C
+[/card]
+[card]
+primitive=Nezumi Cutthroat
+id=17252
+rarity=C
+[/card]
+[card]
+primitive=Llanowar Elite
+id=17253
+rarity=C
+[/card]
+[card]
+primitive=Phantom Nomad
+id=17254
+rarity=C
+[/card]
+[card]
+primitive=Quick Sliver
+id=17255
+rarity=C
+[/card]
+[card]
+primitive=Skullsnatcher
+id=17256
+rarity=C
+[/card]
+[card]
+primitive=Festering Goblin
+id=17257
+rarity=C
+[/card]
+[card]
+primitive=Freewind Equenaut
+id=17258
+rarity=C
+[/card]
+[card]
+primitive=Martyr of Frost
+id=17259
+rarity=C
+[/card]
+[card]
+primitive=Goblin Chariot
+id=17260
+rarity=C
+[/card]
+[card]
+primitive=Herd Gnarr
+id=17261
+rarity=C
+[/card]
+[card]
+primitive=Volcanic Hammer
+id=17262
+rarity=C
+[/card]
+[card]
+primitive=Leonin Den-Guard
+id=17263
+rarity=C
+[/card]
+[card]
+primitive=Dirge of Dread
+id=17264
+rarity=C
+[/card]
+[card]
+primitive=Timberwatch Elf
+id=17265
+rarity=C
+[/card]
+[card]
+primitive=Soul of Magma
+id=17266
+rarity=C
+[/card]
+[card]
+primitive=Savage Offensive
+id=17267
+rarity=C
+[/card]
+[card]
+primitive=Skullsnatcher
+id=17268
+rarity=C
+[/card]
+[card]
+primitive=Spineless Thug
+id=17269
+rarity=C
+[/card]
+[card]
+primitive=Nightguard Patrol
+id=17270
+rarity=C
+[/card]
+[card]
+primitive=Vedalken Entrancer
+id=17271
+rarity=C
+[/card]
+[card]
+primitive=Goblin Chariot
+id=17272
+rarity=C
+[/card]
+[card]
+primitive=Scatter the Seeds
+id=17273
+rarity=C
+[/card]
+[card]
+primitive=Karplusan Wolverine
+id=17274
+rarity=C
+[/card]
+[card]
+primitive=Skyhunter Cub
+id=17275
+rarity=C
+[/card]
+[card]
+primitive=Chittering Rats
+id=17276
+rarity=C
+[/card]
+[card]
+primitive=Timberwatch Elf
+id=17277
+rarity=C
+[/card]
+[card]
+primitive=Soul of Magma
+id=17278
+rarity=C
+[/card]
+[card]
+primitive=Terrarion
+id=17279
+rarity=C
+[/card]
+[card]
+primitive=Skullsnatcher
+id=17280
+rarity=C
+[/card]
+[card]
+primitive=Spineless Thug
+
+id=17281
+rarity=C
+[/card]
+[card]
+primitive=Infiltrator's Magemark
+id=17282
+rarity=C
+[/card]
+[card]
+primitive=Wizard Replica
+id=17283
+rarity=C
+[/card]
+[card]
+primitive=Goblin Striker
+id=17284
+rarity=C
+[/card]
+[card]
+primitive=Thallid Germinator
+id=17285
+rarity=C
+[/card]
+[card]
+primitive=Rampant Growth
+id=17286
+rarity=C
+[/card]
+[card]
+primitive=Skyhunter Patrol
+id=17287
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=17288
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17289
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17290
+rarity=L
+[/card]
+[card]
+primitive=Terrarion
+id=17291
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17292
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17293
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17294
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17295
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17296
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17297
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17298
+rarity=L
+[/card]
+[card]
+primitive=Terramorphic Expanse
+id=17299
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=17300
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17301
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17302
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17303
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17304
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17305
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17306
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17307
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17308
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17309
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17310
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17311
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17312
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17313
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17314
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17315
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17316
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17317
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17318
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17319
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17320
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17321
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17322
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17323
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17324
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17325
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17326
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17327
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17328
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17329
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17330
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17331
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17332
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17333
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17334
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17335
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17336
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17337
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17338
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17339
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17340
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17341
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17342
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17343
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17344
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17345
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17346
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17347
+rarity=L
+[/card]
+[card]
+primitive=Patron of the Nezumi
+id=17348
+rarity=R
+[/card]
+[card]
+primitive=Ambush Commander
+id=17349
+rarity=R
+[/card]
+[card]
+primitive=Celestial Kirin
+id=17350
+rarity=R
+[/card]
+[card]
+primitive=Toxin Sliver
+id=17351
+rarity=R
+[/card]
+[card]
+primitive=Cephalid Constable
+id=17352
+rarity=R
+[/card]
+[card]
+primitive=Death Pit Offering
+id=17353
+rarity=R
+[/card]
+[card]
+primitive=Luminous Angel
+id=17354
+rarity=R
+[/card]
+[card]
+primitive=Tower of Murmurs
+id=17355
+rarity=R
+[/card]
+[card]
+primitive=Stalking Vengeance
+id=17356
+rarity=R
+[/card]
+[card]
+primitive=Beast of Burden
+id=17357
+rarity=R
+[/card]
+[card]
+primitive=Pulse of the Tangle
+id=17358
+rarity=R
+[/card]
+[card]
+primitive=Mirri, Cat Warrior
+id=17359
+rarity=R
+[/card]
+[card]
+primitive=Suppress
+id=17360
+rarity=U
+[/card]
+[card]
+primitive=Bloodline Shaman
+id=17361
+rarity=U
+[/card]
+[card]
+primitive=Aether Shockwave
+id=17362
+rarity=U
+[/card]
+[card]
+primitive=Darigaaz's Caldera
+id=17363
+rarity=U
+[/card]
+[card]
+primitive=Chill Haunting
+id=17364
+rarity=U
+[/card]
+[card]
+primitive=Horror of Horrors
+id=17365
+rarity=U
+[/card]
+[card]
+primitive=Ardent Militia
+id=17366
+rarity=U
+[/card]
+[card]
+primitive=Belltower Sphinx
+id=17367
+rarity=U
+[/card]
+[card]
+primitive=Threaten
+id=17368
+rarity=U
+[/card]
+[card]
+primitive=Sandsower
+id=17369
+rarity=U
+[/card]
+[card]
+primitive=Hunted Wumpus
+id=17370
+rarity=U
+[/card]
+[card]
+primitive=Arctic Nishoba
+id=17371
+rarity=U
+[/card]
+[card]
+primitive=Swarm of Rats
+id=17372
+rarity=U
+[/card]
+[card]
+primitive=Wirewood Channeler
+id=17373
+rarity=U
+[/card]
+[card]
+primitive=Kami of the Palace Fields
+id=17374
+rarity=U
+[/card]
+[card]
+primitive=Spectral Sliver
+id=17375
+rarity=U
+[/card]
+[card]
+primitive=Marsh Crocodile
+id=17376
+rarity=U
+[/card]
+[card]
+primitive=Nantuko Husk
+id=17377
+rarity=U
+[/card]
+[card]
+primitive=Auratouched Mage
+id=17378
+rarity=U
+[/card]
+[card]
+primitive=Jetting Glasskite
+id=17379
+rarity=U
+[/card]
+[card]
+primitive=Threaten
+id=17380
+rarity=U
+[/card]
+[card]
+primitive=Soul Warden
+id=17381
+rarity=U
+[/card]
+[card]
+primitive=Pyroclasm
+id=17382
+rarity=U
+[/card]
+[card]
+primitive=Grifter's Blade
+id=17383
+rarity=U
+[/card]
+[card]
+primitive=Crypt Rats
+id=17384
+rarity=U
+[/card]
+[card]
+primitive=Wirewood Lodge
+id=17385
+rarity=U
+[/card]
+[card]
+primitive=Pain Kami
+id=17386
+rarity=U
+[/card]
+[card]
+primitive=Spectral Sliver
+id=17387
+rarity=U
+[/card]
+[card]
+primitive=Crown of Ascension
+id=17388
+rarity=C
+[/card]
+[card]
+primitive=Plagued Rusalka
+id=17389
+rarity=U
+[/card]
+[card]
+primitive=Genju of the Fields
+id=17390
+rarity=U
+[/card]
+[card]
+primitive=Soratami Mindsweeper
+id=17391
+rarity=U
+[/card]
+[card]
+primitive=Skarrg, the Rage Pits
+id=17392
+rarity=U
+[/card]
+[card]
+primitive=Supply // Demand
+id=17393
+rarity=U
+[/card]
+[card]
+primitive=Rampant Growth
+id=17394
+rarity=C
+[/card]
+[card]
+primitive=Saltblast
+id=17395
+rarity=U
+[/card]
+[card]
+primitive=Nezumi Cutthroat
+id=17396
+rarity=C
+[/card]
+[card]
+primitive=Seeker of Skybreak
+id=17397
+rarity=C
+[/card]
+[card]
+primitive=Pain Kami
+id=17398
+rarity=U
+[/card]
+[card]
+primitive=Crypt Sliver
+id=17399
+rarity=C
+[/card]
+[card]
+primitive=Mistblade Shinobi
+id=17400
+rarity=C
+[/card]
+[card]
+primitive=Blind Creeper
+id=17401
+rarity=C
+[/card]
+[card]
+primitive=Nightguard Patrol
+id=17402
+rarity=C
+[/card]
+[card]
+primitive=Boomerang
+id=17403
+rarity=C
+[/card]
+[card]
+primitive=Ghor-Clan Savage
+id=17404
+rarity=C
+[/card]
+[card]
+primitive=Bramble Elemental
+id=17405
+rarity=C
+[/card]
+[card]
+primitive=Fangren Hunter
+id=17406
+rarity=C
+[/card]
+[card]
+primitive=Leonin Den-Guard
+id=17407
+rarity=C
+[/card]
+[card]
+primitive=Crippling Fatigue
+id=17408
+rarity=C
+[/card]
+[card]
+primitive=Seeker of Skybreak
+id=17409
+rarity=C
+[/card]
+[card]
+primitive=Blademane Baku
+id=17410
+rarity=C
+[/card]
+[card]
+primitive=Crypt Sliver
+id=17411
+rarity=C
+[/card]
+[card]
+primitive=Ninja of the Deep Hours
+id=17412
+rarity=C
+[/card]
+[card]
+primitive=Dark Banishing
+id=17413
+rarity=C
+[/card]
+[card]
+primitive=Flight of Fancy
+id=17414
+rarity=C
+[/card]
+[card]
+primitive=Soratami Rainshaper
+id=17415
+rarity=C
+[/card]
+[card]
+primitive=Burning-Tree Bloodscale
+id=17416
+rarity=C
+[/card]
+[card]
+primitive=Sprout
+id=17417
+rarity=C
+[/card]
+[card]
+primitive=Groffskithur
+id=17418
+rarity=C
+[/card]
+[card]
+primitive=Leonin Den-Guard
+id=17419
+rarity=C
+[/card]
+[card]
+primitive=Dirty Wererat
+id=17420
+rarity=C
+[/card]
+[card]
+primitive=Viridian Scout
+id=17421
+rarity=C
+[/card]
+[card]
+primitive=Waxmane Baku
+id=17422
+rarity=C
+[/card]
+[card]
+primitive=Dark Banishing
+id=17423
+rarity=C
+[/card]
+[card]
+primitive=Sage Owl
+id=17424
+rarity=C
+[/card]
+[card]
+primitive=Spineless Thug
+id=17425
+rarity=C
+[/card]
+[card]
+primitive=Plumes of Peace
+id=17426
+rarity=C
+[/card]
+[card]
+primitive=Vedalken Entrancer
+id=17427
+rarity=C
+[/card]
+[card]
+primitive=Scab-Clan Mauler
+id=17428
+rarity=C
+[/card]
+[card]
+primitive=Thallid Germinator
+id=17429
+rarity=C
+[/card]
+[card]
+primitive=Volcanic Hammer
+id=17430
+rarity=C
+[/card]
+[card]
+primitive=Vulshok Gauntlets
+id=17431
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=17432
+rarity=L
+[/card]
+[card]
+primitive=Wirewood Pride
+id=17433
+rarity=C
+[/card]
+[card]
+primitive=Waxmane Baku
+id=17434
+rarity=C
+[/card]
+[card]
+primitive=Dark Banishing
+id=17435
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=17436
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17437
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17438
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17439
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17440
+rarity=L
+[/card]
+[card]
+primitive=Detainment Spell
+id=17441
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=17442
+rarity=L
+[/card]
+[card]
+primitive=Whitemane Lion
+id=17443
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=17444
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17445
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17446
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17447
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17448
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17449
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17450
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17451
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17452
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17453
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17454
+rarity=L
+[/card]
+[card]
+primitive=Selesnya Sanctuary
+id=17455
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=17456
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17457
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17458
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17459
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17460
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17461
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17462
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17463
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17464
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17465
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17466
+rarity=L
+[/card]
+[card]
+primitive=Terramorphic Expanse
+id=17467
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=17468
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17469
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17470
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17471
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17472
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17473
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17474
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17475
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17476
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17477
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17478
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17479
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17480
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17481
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17482
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17483
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17484
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17485
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17486
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17487
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17488
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17489
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17490
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17491
+rarity=L
+[/card]
+[card]
+primitive=Gravestorm
+id=17492
+rarity=R
+[/card]
+[card]
+primitive=Caller of the Claw
+id=17493
+rarity=R
+[/card]
+[card]
+primitive=Kirtar's Wrath
+id=17494
+rarity=R
+[/card]
+[card]
+primitive=Cover of Darkness
+id=17495
+rarity=R
+[/card]
+[card]
+primitive=Deflection
+id=17496
+rarity=R
+[/card]
+[card]
+primitive=Fallen Angel
+id=17497
+rarity=R
+[/card]
+[card]
+primitive=Kitsune Mystic
+id=17498
+rarity=R
+[/card]
+[card]
+primitive=Autumn-Tail, Kitsune Sage
+id=1749810
+rarity=T
+[/card]
+[card]
+primitive=Hair-Strung Koto
+id=17499
+rarity=R
+[/card]
+[card]
+primitive=Lightning Coils
+id=17500
+rarity=R
+[/card]
+[card]
+primitive=Twilight Drover
+id=17501
+rarity=R
+[/card]
+[card]
+primitive=Molder Slug
+id=17502
+rarity=R
+[/card]
+[card]
+primitive=Leonin Shikari
+id=17503
+rarity=R
+[/card]
+[card]
+primitive=Nezumi Graverobber
+id=17504
+rarity=U
+[/card]
+[card]
+primitive=Alpha Status
+id=17505
+rarity=U
+[/card]
+[card]
+primitive=Horizon Seed
+id=17506
+rarity=U
+[/card]
+[card]
+primitive=Blade Sliver
+id=17507
+rarity=U
+[/card]
+[card]
+primitive=Clutch of the Undercity
+id=17508
+rarity=U
+[/card]
+[card]
+primitive=Carrion Howler
+id=17509
+rarity=U
+[/card]
+[card]
+primitive=Angel of Mercy
+id=17510
+rarity=U
+[/card]
+[card]
+primitive=Hinder
+id=17511
+rarity=U
+[/card]
+[card]
+primitive=Indrik Stomphowler
+id=17512
+rarity=U
+[/card]
+[card]
+primitive=Fertile Imagination
+id=17513
+rarity=U
+[/card]
+[card]
+primitive=Indrik Stomphowler
+id=17514
+rarity=U
+[/card]
+[card]
+primitive=Nacatl War-Pride
+id=17515
+rarity=U
+[/card]
+[card]
+primitive=Nighteyes the Desecrator
+id=1750411
+rarity=T
+[/card]
+[card]
+primitive=Heedless One
+id=17517
+rarity=U
+[/card]
+[card]
+primitive=Phantom Flock
+id=17518
+rarity=U
+[/card]
+[card]
+primitive=Darigaaz's Charm
+id=17519
+rarity=U
+[/card]
+[card]
+primitive=Nightscape Battlemage
+id=17520
+rarity=U
+[/card]
+[card]
+primitive=Golgari Guildmage
+id=17521
+rarity=U
+[/card]
+[card]
+primitive=Confiscate
+id=17522
+rarity=U
+[/card]
+[card]
+primitive=Puppeteer
+id=17523
+rarity=U
+[/card]
+[card]
+primitive=Primal Forcemage
+id=17524
+rarity=U
+[/card]
+[card]
+primitive=Overwhelm
+id=17525
+rarity=U
+[/card]
+[card]
+primitive=Lure
+id=17526
+rarity=U
+[/card]
+[card]
+primitive=Skyhunter Skirmisher
+id=17527
+rarity=U
+[/card]
+[card]
+primitive=Carrion Rats
+id=17528
+rarity=C
+[/card]
+[card]
+primitive=Nullmage Shepherd
+id=17529
+rarity=U
+[/card]
+[card]
+primitive=Spirit Link
+id=17530
+rarity=U
+[/card]
+[card]
+primitive=Aphetto Dredging
+id=17531
+rarity=C
+[/card]
+[card]
+primitive=Stormscape Battlemage
+id=17532
+rarity=U
+[/card]
+[card]
+primitive=Plagued Rusalka
+id=17533
+rarity=U
+[/card]
+[card]
+primitive=Genju of the Falls
+id=17534
+rarity=U
+[/card]
+[card]
+primitive=Vacuumelt
+id=17535
+rarity=U
+[/card]
+[card]
+primitive=Primal Forcemage
+id=17536
+rarity=U
+[/card]
+[card]
+primitive=Seed Spark
+id=17537
+rarity=U
+[/card]
+[card]
+primitive=One Dozen Eyes
+id=17538
+rarity=U
+[/card]
+[card]
+primitive=Bonesplitter
+id=17539
+rarity=C
+[/card]
+[card]
+primitive=Carrion Rats
+id=17540
+rarity=C
+[/card]
+[card]
+primitive=Elvish Warrior
+id=17541
+rarity=C
+[/card]
+[card]
+primitive=Yuki-Onna
+id=17542
+rarity=U
+[/card]
+[card]
+primitive=Aphetto Dredging
+id=17543
+rarity=C
+[/card]
+[card]
+primitive=Ninja of the Deep Hours
+id=17544
+rarity=C
+[/card]
+[card]
+primitive=Dark Banishing
+id=17545
+rarity=C
+[/card]
+[card]
+primitive=Freewind Equenaut
+id=17546
+rarity=C
+[/card]
+[card]
+primitive=Dehydration
+id=17547
+rarity=C
+[/card]
+[card]
+primitive=Raging Goblin
+id=17548
+rarity=C
+[/card]
+[card]
+primitive=Sprout
+id=17549
+rarity=C
+[/card]
+[card]
+primitive=Groffskithur
+id=17550
+rarity=C
+[/card]
+[card]
+primitive=Selesnya Signet
+id=17551
+rarity=C
+[/card]
+[card]
+primitive=Skullsnatcher
+id=17552
+rarity=C
+[/card]
+[card]
+primitive=Elvish Warrior
+id=17553
+rarity=C
+[/card]
+[card]
+primitive=Shinen of Fury's Fire
+id=17554
+rarity=C
+[/card]
+[card]
+primitive=Quick Sliver
+id=17555
+rarity=C
+[/card]
+[card]
+primitive=Merfolk of the Pearl Trident
+id=17556
+rarity=C
+[/card]
+[card]
+primitive=Death Denied
+id=17557
+rarity=C
+[/card]
+[card]
+primitive=Pacifism
+id=17558
+rarity=C
+[/card]
+[card]
+primitive=Dehydration
+id=17559
+rarity=C
+[/card]
+[card]
+primitive=Gruul Scrapper
+id=17560
+rarity=C
+[/card]
+[card]
+primitive=Strength in Numbers
+id=17561
+rarity=C
+[/card]
+[card]
+primitive=Groffskithur
+id=17562
+rarity=C
+[/card]
+[card]
+primitive=Skyhunter Cub
+id=17563
+rarity=C
+[/card]
+[card]
+primitive=Skullsnatcher
+id=17564
+rarity=C
+[/card]
+[card]
+primitive=Wirewood Herald
+id=17565
+rarity=C
+[/card]
+[card]
+primitive=Volcanic Hammer
+id=17566
+rarity=C
+[/card]
+[card]
+primitive=Wayfarer's Bauble
+id=17567
+rarity=C
+[/card]
+[card]
+primitive=Merfolk of the Pearl Trident
+id=17568
+rarity=C
+[/card]
+[card]
+primitive=Gravedigger
+id=17569
+rarity=C
+[/card]
+[card]
+primitive=Soulsworn Jury
+id=17570
+rarity=C
+[/card]
+[card]
+primitive=Soratami Rainshaper
+id=17571
+rarity=C
+[/card]
+[card]
+primitive=Gruul Scrapper
+id=17572
+rarity=C
+[/card]
+[card]
+primitive=Thallid Germinator
+id=17573
+rarity=C
+[/card]
+[card]
+primitive=Kodama's Reach
+id=17574
+rarity=C
+[/card]
+[card]
+primitive=Slagwurm Armor
+id=17575
+rarity=C
+[/card]
+[card]
+primitive=Rats' Feast
+id=17576
+rarity=C
+[/card]
+[card]
+primitive=Wirewood Pride
+id=17577
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=17578
+rarity=L
+[/card]
+[card]
+primitive=Wayfarer's Bauble
+id=17579
+rarity=L
+[/card]
+[card]
+primitive=Vesper Ghoul
+id=17580
+rarity=C
+[/card]
+[card]
+primitive=Necromantic Thirst
+id=17581
+rarity=C
+[/card]
+[card]
+primitive=Soulsworn Jury
+id=17582
+rarity=C
+[/card]
+[card]
+primitive=Vedalken Entrancer
+id=17583
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=17584
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17585
+rarity=L
+[/card]
+[card]
+primitive=Serpent Skin
+id=17586
+rarity=C
+[/card]
+[card]
+primitive=Selesnya Sanctuary
+id=17587
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=17588
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17589
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17590
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17591
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17592
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17593
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17594
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17595
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17596
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17597
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17598
+rarity=L
+[/card]
+[card]
+primitive=Terramorphic Expanse
+id=17599
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=17600
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17601
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17602
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17603
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17604
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17605
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17606
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17607
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17608
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17609
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17610
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17611
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17612
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17613
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17614
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17615
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17616
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17617
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17618
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17619
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17620
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17621
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17622
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17623
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17624
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17625
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17626
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17627
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17628
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17629
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17630
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17631
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17632
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17633
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17634
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17635
+rarity=L
+[/card]
+[card]
+primitive=Larceny
+id=17636
+rarity=R
+[/card]
+[card]
+primitive=Elvish Champion
+id=17637
+rarity=R
+[/card]
+[card]
+primitive=Blinking Spirit
+id=17638
+rarity=R
+[/card]
+[card]
+primitive=Riptide Replicator
+id=17639
+rarity=R
+[/card]
+[card]
+primitive=Coastal Piracy
+id=17640
+rarity=R
+[/card]
+[card]
+primitive=Sanguine Praetor
+id=17641
+rarity=R
+[/card]
+[card]
+primitive=Three Dreams
+id=17642
+rarity=R
+[/card]
+[card]
+primitive=Booby Trap
+id=17643
+rarity=R
+[/card]
+[card]
+primitive=Thundermare
+id=17644
+rarity=R
+[/card]
+[card]
+primitive=Thelonite Hermit
+id=17645
+rarity=R
+[/card]
+[card]
+primitive=Ursapine
+id=17646
+rarity=R
+[/card]
+[card]
+primitive=Raksha Golden Cub
+id=17647
+rarity=R
+[/card]
+[card]
+primitive=Nezumi Bone-Reader
+id=17648
+rarity=U
+[/card]
+[card]
+primitive=Golgari Guildmage
+id=17649
+rarity=U
+[/card]
+[card]
+primitive=Kami of the Palace Fields
+id=17650
+rarity=U
+[/card]
+[card]
+primitive=Crypt Sliver
+id=17651
+rarity=U
+[/card]
+[card]
+primitive=Urborg Emissary
+id=17652
+rarity=U
+[/card]
+[card]
+primitive=Dance of Shadows
+id=17653
+rarity=U
+[/card]
+[card]
+primitive=Auratouched Mage
+id=17654
+rarity=U
+[/card]
+[card]
+primitive=Soratami Mindsweeper
+id=17655
+rarity=U
+[/card]
+[card]
+primitive=Feral Lightning
+id=17656
+rarity=U
+[/card]
+[card]
+primitive=Wojek Apothecary
+id=17657
+rarity=U
+[/card]
+[card]
+primitive=Enormous Baloth
+id=17658
+rarity=U
+[/card]
+[card]
+primitive=Grifter's Blade
+id=17659
+rarity=U
+[/card]
+[card]
+primitive=Diabolic Tutor
+id=17660
+rarity=U
+[/card]
+[card]
+primitive=Selesnya Guildmage
+id=17661
+rarity=U
+[/card]
+[card]
+primitive=Sandsower
+id=17662
+rarity=U
+[/card]
+[card]
+primitive=Darigaaz's Charm
+id=17663
+rarity=U
+[/card]
+[card]
+primitive=Walker of Secret Ways
+id=17664
+rarity=U
+[/card]
+[card]
+primitive=Woebearer
+id=17665
+rarity=U
+[/card]
+[card]
+primitive=Sanctum Guardian
+id=17666
+rarity=U
+[/card]
+[card]
+primitive=Vedalken Mastermind
+id=17667
+rarity=U
+[/card]
+[card]
+primitive=Undying Rage
+id=17668
+rarity=U
+[/card]
+[card]
+primitive=Selesnya Guildmage
+id=17669
+rarity=U
+[/card]
+[card]
+primitive=Indrik Stomphowler
+id=17670
+rarity=U
+[/card]
+[card]
+primitive=Leonin Elder
+id=17671
+rarity=C
+[/card]
+[card]
+primitive=Betrayal of Flesh
+id=17672
+rarity=U
+[/card]
+[card]
+primitive=Birchlore Rangers
+id=17673
+rarity=C
+[/card]
+[card]
+primitive=Stir the Pride
+id=17674
+rarity=U
+[/card]
+[card]
+primitive=Blade Sliver
+id=17675
+rarity=U
+[/card]
+[card]
+primitive=Walker of Secret Ways
+id=17676
+rarity=U
+[/card]
+[card]
+primitive=Call for Blood
+id=17677
+rarity=C
+[/card]
+[card]
+primitive=Guardian's Magemark
+id=17678
+rarity=C
+[/card]
+[card]
+primitive=Aven Windreader
+id=17679
+rarity=C
+[/card]
+[card]
+primitive=Primal Forcemage
+id=17680
+rarity=U
+[/card]
+[card]
+primitive=Strength in Numbers
+id=17681
+rarity=C
+[/card]
+[card]
+primitive=Predator's Strike
+id=17682
+rarity=C
+[/card]
+[card]
+primitive=Leonin Skyhunter
+id=17683
+rarity=U
+[/card]
+[card]
+primitive=Carrion Rats
+id=17684
+rarity=C
+[/card]
+[card]
+primitive=Birchlore Rangers
+id=17685
+rarity=C
+[/card]
+[card]
+primitive=Blademane Baku
+id=17686
+rarity=C
+[/card]
+[card]
+primitive=Hunter Sliver
+id=17687
+rarity=C
+[/card]
+[card]
+primitive=Okiba-Gang Shinobi
+id=17688
+rarity=C
+[/card]
+[card]
+primitive=Dark Banishing
+id=17689
+rarity=C
+[/card]
+[card]
+primitive=Pacifism
+id=17690
+rarity=C
+[/card]
+[card]
+primitive=Aven Windreader
+id=17691
+rarity=C
+[/card]
+[card]
+primitive=Shock
+id=17692
+rarity=C
+[/card]
+[card]
+primitive=Strength in Numbers
+id=17693
+rarity=C
+[/card]
+[card]
+primitive=Flowstone Shambler
+id=17694
+rarity=C
+[/card]
+[card]
+primitive=Saltblast
+id=17695
+rarity=U
+[/card]
+[card]
+primitive=Chittering Rats
+id=17696
+rarity=C
+[/card]
+[card]
+primitive=Crown of Vigor
+id=17697
+rarity=C
+[/card]
+[card]
+primitive=Shinen of Fury's Fire
+id=17698
+rarity=C
+[/card]
+[card]
+primitive=Keldon Mantle
+id=17699
+rarity=C
+[/card]
+[card]
+primitive=Okiba-Gang Shinobi
+id=17700
+rarity=C
+[/card]
+[card]
+primitive=Death Denied
+id=17701
+rarity=C
+[/card]
+[card]
+primitive=Skyrider Trainee
+id=17702
+rarity=C
+[/card]
+[card]
+primitive=Vedalken Dismisser
+id=17703
+rarity=C
+[/card]
+[card]
+primitive=Shock
+id=17704
+rarity=C
+[/card]
+[card]
+primitive=Selesnya Evangel
+id=17705
+rarity=C
+[/card]
+[card]
+primitive=Gruul Nodorog
+id=17706
+rarity=C
+[/card]
+[card]
+primitive=Skyhunter Patrol
+id=17707
+rarity=C
+[/card]
+[card]
+primitive=Rats' Feast
+id=17708
+rarity=C
+[/card]
+[card]
+primitive=Wirewood Pride
+id=17709
+rarity=C
+[/card]
+[card]
+primitive=Shinen of Fury's Fire
+id=17710
+rarity=C
+[/card]
+[card]
+primitive=Naturalize
+id=17711
+rarity=C
+[/card]
+[card]
+primitive=Phantom Wings
+id=17712
+rarity=C
+[/card]
+[card]
+primitive=Gravedigger
+id=17713
+rarity=C
+[/card]
+[card]
+primitive=Plumes of Peace
+id=17714
+rarity=C
+[/card]
+[card]
+primitive=Vedalken Dismisser
+id=17715
+rarity=C
+[/card]
+[card]
+primitive=Ghor-Clan Savage
+id=17716
+rarity=C
+[/card]
+[card]
+primitive=Selesnya Evangel
+id=17717
+rarity=C
+[/card]
+[card]
+primitive=Groffskithur
+id=17718
+rarity=C
+[/card]
+[card]
+primitive=Selesnya Signet
+id=17719
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=17720
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17721
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17722
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17723
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17724
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17725
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17726
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17727
+rarity=L
+[/card]
+[card]
+primitive=Scab-Clan Mauler
+id=17728
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=17729
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17730
+rarity=L
+[/card]
+[card]
+primitive=Selesnya Signet
+id=17731
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=17732
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17733
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17734
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17735
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17736
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17737
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17738
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17739
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17740
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17741
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17742
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17743
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17744
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17745
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17746
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17747
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17748
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17749
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17750
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17751
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17752
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17753
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17754
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17755
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17756
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17757
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17758
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17759
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17760
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17761
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17762
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17763
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17764
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17765
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17766
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17767
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=17768
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17769
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17770
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17771
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17772
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17773
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17774
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17775
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17776
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17777
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17778
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=17779
+rarity=L
+[/card]

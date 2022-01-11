@@ -1,0 +1,32 @@
+[meta]
+author=Wagic Team
+name=Magic Premiere Shop 2006
+orderindex=PRO-D.PMP06
+year=2006-01-01
+total=5
+[/meta]
+[card]
+primitive=Forest
+id=17924
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17925
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17926
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17927
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17928
+rarity=L
+[/card]

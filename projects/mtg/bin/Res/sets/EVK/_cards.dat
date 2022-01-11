@@ -1,12 +1,12 @@
 [meta]
 author=Wagic Team
 name=Duel Decks: Elspeth vs. Kiora
-block=Duel
-year=2015
+orderindex=DUE-G.DDO
+year=2015-02-27
 total=65
 [/meta]
 [card]
-primitive=AEtherize
+primitive=Aetherize
 id=394352
 rarity=U
 [/card]

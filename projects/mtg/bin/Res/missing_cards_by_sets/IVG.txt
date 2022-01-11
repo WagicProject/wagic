@@ -1,0 +1,9 @@
+[card]
+name=Djinn Illuminatus
+text=({UR} can be paid with either {U} or {R}.) -- Flying -- Each instant and sorcery spell you cast has replicate. The replicate cost is equal to its mana cost. (When you cast it, copy it for each time you paid its replicate cost. You may choose new targets for the copies.)
+mana={5}{UR}{UR}
+type=Creature
+subtype=Djinn
+power=3
+toughness=5
+[/card]

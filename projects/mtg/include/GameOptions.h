@@ -44,8 +44,11 @@ public:
         CHEATMODE,
         OPTIMIZE_HAND,
         CHEATMODEAIDECK,
+        SHOWBORDER,
         BLKBORDER,
+        SORTINGDECKS,
         SHOWTOKENS,
+        SORTINGSETS,
         GDVLARGEIMAGE,
         CARDPREFETCHING,
         OSD,
@@ -88,6 +91,7 @@ public:
         EVILTWIN_MODE_UNLOCKED,
         RANDOMDECK_MODE_UNLOCKED,    
         AWARD_COLLECTOR,
+        COMMANDER_MODE_UNLOCKED,
         LAST_NAMED, //Any option after this does not look up in optionNames.
         SET_UNLOCKS = LAST_NAMED + 1, //For sets.
     };
@@ -270,6 +274,19 @@ public:
 private:
     OptionASkipPhase();
     static OptionASkipPhase mDef;
+};
+
+class OptionASortingSets : public EnumDefinition
+{
+public:
+    static EnumDefinition * getInstance()
+    {
+        return &mDef;
+    }
+
+private:
+    OptionASortingSets();
+    static OptionASortingSets mDef;
 };
 
 class OptionWhosFirst : public EnumDefinition

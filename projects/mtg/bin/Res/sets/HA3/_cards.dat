@@ -1,0 +1,162 @@
+[meta]
+author=Wagic Team
+name=Historic Anthology 3
+orderindex=PRO-Z7.HA3
+year=2020-05-21
+total=31
+[/meta]
+[card]
+primitive=Soldier
+id=-294701
+rarity=T
+[/card]
+[card]
+primitive=Bird
+id=-294700
+rarity=T
+[/card]
+[card]
+primitive=Wurm
+id=-294698
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-294690
+rarity=T
+[/card]
+[card]
+primitive=Akroma's Memorial
+id=294680
+rarity=M
+[/card]
+[card]
+primitive=Ancient Ziggurat
+id=294681
+rarity=U
+[/card]
+[card]
+primitive=Body Double
+id=294682
+rarity=R
+[/card]
+[card]
+primitive=Chainer's Edict
+id=294683
+rarity=U
+[/card]
+[card]
+primitive=Devil's Play
+id=294684
+rarity=R
+[/card]
+[card]
+primitive=Enchantress's Presence
+id=294685
+rarity=R
+[/card]
+[card]
+primitive=Gempalm Incinerator
+id=294686
+rarity=U
+[/card]
+[card]
+primitive=Gempalm Polluter
+id=294687
+rarity=C
+[/card]
+[card]
+primitive=Honden of Cleansing Fire
+id=294688
+rarity=U
+[/card]
+[card]
+primitive=Honden of Infinite Rage
+id=294689
+rarity=U
+[/card]
+[card]
+primitive=Honden of Life's Web
+id=294690
+rarity=U
+[/card]
+[card]
+primitive=Honden of Night's Reach
+id=294691
+rarity=U
+[/card]
+[card]
+primitive=Honden of Seeing Winds
+id=294692
+rarity=U
+[/card]
+[card]
+primitive=Krosan Tusker
+id=294693
+rarity=C
+[/card]
+[card]
+primitive=Momentary Blink
+id=294694
+rarity=C
+[/card]
+[card]
+primitive=Maze's End
+id=294695
+rarity=M
+[/card]
+[card]
+primitive=Mirari's Wake
+id=294696
+rarity=R
+[/card]
+[card]
+primitive=Ratchet Bomb
+id=294697
+rarity=R
+[/card]
+[card]
+primitive=Roar of the Wurm
+id=294698
+rarity=U
+[/card]
+[card]
+primitive=Silent Departure
+id=294699
+rarity=C
+[/card]
+[card]
+primitive=Swan Song
+id=294700
+rarity=R
+[/card]
+[card]
+primitive=Timely Reinforcements
+id=294701
+rarity=U
+[/card]
+[card]
+primitive=Tectonic Reformation
+id=294702
+rarity=R
+[/card]
+[card]
+primitive=Tempered Steel
+id=294703
+rarity=R
+[/card]
+[card]
+primitive=Unburial Rites
+id=294704
+rarity=U
+[/card]
+[card]
+primitive=Ulamog, the Ceaseless Hunger
+id=294705
+rarity=M
+[/card]
+[card]
+primitive=Phyrexian Obliterator
+id=294706
+rarity=M
+[/card]

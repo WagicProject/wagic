@@ -51,6 +51,10 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
     //increasedCost.copy(source->getIncreasedManaCost());
     if(source->getManaCost()->getAlternative())
         manaCost.getAlternative()->alternativeName = source->getManaCost()->getAlternative()->alternativeName;
+    if(source->getManaCost()->getKicker())
+        manaCost.getKicker()->alternativeName = source->getManaCost()->getKicker()->alternativeName;
+    if(source->getManaCost()->getRetrace())
+        manaCost.getRetrace()->alternativeName = source->getManaCost()->getRetrace()->alternativeName;
 
     text = source->text;
     formattedText = source->formattedText;
@@ -85,6 +89,7 @@ int CardPrimitive::init()
 
     types.clear();
 
+    nameOrig = "";
     magicText = "";
     magicTexts.clear();
     spellTargetType = "";
@@ -417,9 +422,10 @@ ManaCost* CardPrimitive::getManaCost()
 
 bool CardPrimitive::hasType(int _type)
 {
+    if (types.size() > 400) {return false;} // Null pointer?
     for (size_t i = 0; i < types.size(); i++)
         if (types[i] == _type)
-            return true;
+            return true;            
     return false;
 }
 

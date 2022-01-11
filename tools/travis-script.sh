@@ -25,12 +25,14 @@ if [ "$TRAVIS_OS_NAME" = "linux" ]; then
 fi
 
 # we create resource package
-cd projects/mtg/bin/Res
-python createResourceZip.py
-# if we let the zip here, Wagic will use it in the testsuite
-# and we'll get 51 failed test cases
-mv core_*.zip ../../../../core.zip
-cd ../../../..
+if [ "$BUILD_RES" = "YES" ] || [ "$BUILD_PSP" = "YES" ]; then
+    cd projects/mtg/bin/Res
+    python createResourceZip.py
+    # if we let the zip here, Wagic will use it in the testsuite
+    # and we'll get 51 failed test cases
+    mv core_*.zip ../../../../core.zip
+    cd ../../../..
+fi
 
 # we're building a PSP binary here
 if [ "$BUILD_TYPE" = "PSP" ]; then
@@ -54,30 +56,21 @@ if [ "$BUILD_TYPE" = "PSP" ]; then
 fi
 
 # we're building an Android binary here
-if [ "$BUILD_TYPE" = "ANDROID" ]; then
-    jdk_switcher use oraclejdk8
-    mkdir build_android
-    cd build_android
-    cmake -DCMAKE_TOOLCHAIN_FILE=../CMakeModules/android.toolchain.cmake -DANDROID_NATIVE_API_LEVEL=android-10 ..
-    make -j4
-    cd ..
+if [ "$BUILD_ANDROID" = "YES" ]; then
+    android-ndk-r22/ndk-build -C projects/mtg/Android -j4
+    $ANDROID list targets
+    $ANDROID update project -t 1 -p projects/mtg/Android
+    ant debug -f projects/mtg/Android/build.xml
 fi
 
-# we're building an Emscripten HTML here
-if [ "$BUILD_TYPE" = "Emscripten" ]; then
-    mkdir build_emscripten
-    cd build_emscripten
-    emcmake cmake -DCMAKE_BUILD_TYPE=Debug ..
-    emmake make
-    cd ..
-fi
-
-# we're building a Qt version with GUI here
-if [ "$BUILD_TYPE" = "Qt" ]; then
-    mkdir build_qt_widget
-    cd build_qt_widget
-    cmake -Dbackend_qt_widget=ON -Dbackend_qt_console=OFF ..
-    make -j4 wagic
+# we're building a linux Qt version with GUI here
+if [ "$BUILD_Qt" = "YES" ] && [ "$TRAVIS_OS_NAME" = "linux" ]; then
+    mkdir qt-gui-build
+    cd qt-gui-build
+    $QMAKE ../projects/mtg/wagic-qt.pro CONFIG+=release CONFIG+=graphics
+    make -j 4
+    chmod -R 775 wagic
+    zip linuxqtrelease.zip ./wagic
     cd ..
 
     # let's try an Intel linux binary in debug text-mode-only
@@ -92,19 +85,10 @@ if [ "$BUILD_TYPE" = "Qt" ]; then
     ./../../build_qt_console/bin/wagic
     cd ../..
 fi
-
-# we're building a SDL version
-if [ "$BUILD_TYPE" = "SDL" ]; then
-    mkdir build_SDL
-    cd build_SDL
-    cmake -Dbackend_sdl=ON ..
-    make -j4 wagic
-    cd ..
-fi
-
-# Let's launch de iOS cross-compilation
-if [ "$BUILD_TYPE" = "iOS" ]; then
-    cmake -DCMAKE_TOOLCHAIN_FILE=CMakeModules/ios-theos.toolchain.cmake -DTHEOS_PATH=theos .
-    cp projects/mtg/iOS/control .
-    make -j4 -f makefile.ios package
+# we're building a mac Qt version with GUI here
+if [ "$BUILD_Qt" = "YES" ] && [ "$TRAVIS_OS_NAME" = "osx" ]; then
+    mkdir qt-gui-build
+    cd qt-gui-build
+    $QMAKE ../projects/mtg/wagic-qt.pro CONFIG+=release CONFIG+=graphics
+    make -j 4 dmg
 fi

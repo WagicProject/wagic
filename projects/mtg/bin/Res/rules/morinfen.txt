@@ -1,0 +1,12 @@
+include mtg.txt
+name=Morifen
+unlock=prx_morinfen
+[INIT]
+mode=mtg
+
+[PLAYERS]
+life:50
+auto=shuffle
+auto=draw:7
+
+auto=@each myupkeep:foreach(*|mybattlefield) life:-1

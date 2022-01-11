@@ -16,12 +16,16 @@ namespace GameStateOptionsConst
     const int kReloadID = 5;
 }
 
+static std::string kBgFile = "";
+
 GameStateOptions::GameStateOptions(GameApp* parent) :
     GameState(parent, "options"), mReload(false), grabber(NULL), optionsMenu(NULL), optionsTabs(NULL)
 {
 }
+
 GameStateOptions::~GameStateOptions()
 {
+    kBgFile = ""; //Reset the chosen backgorund.
 }
 
 void GameStateOptions::Start()
@@ -56,8 +60,11 @@ void GameStateOptions::Start()
 
     optionsList = NEW WGuiList("Misc");
     optionsList->Add(NEW WGuiHeader("Card Display Options"));
+    optionsList->Add(NEW OptionInteger(Options::SHOWBORDER, "Show Borders"));
     //black border
-    optionsList->Add(NEW OptionInteger(Options::BLKBORDER, "All Black Border"));
+    optionsList->Add(NEW OptionInteger(Options::BLKBORDER, "All Black Borders"));
+    //Sort deck by date
+    optionsList->Add(NEW OptionInteger(Options::SORTINGDECKS, "Sort decks by date"));
     //show tokens in editor
     optionsList->Add(NEW OptionInteger(Options::SHOWTOKENS, "Show Tokens in Editor"));
     WDecoStyled * wMisc = NEW WDecoStyled(NEW WGuiHeader("Warning!!!"));
@@ -72,6 +79,8 @@ void GameStateOptions::Start()
 
     optionsList = NEW WGuiList("Game");
     optionsList->Add(NEW WGuiHeader("Interface Options"));
+    optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::SORTINGSETS, "Sort sets by", Constants::BY_DATE, 1,
+                    Constants::BY_NAME, "", Constants::BY_SECTOR))); // Now sets can be sorted by sector(orderindex) or name or release date.
     optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::CLOSEDHAND, "Closed hand", 1, 1, 0)));
     optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::HANDDIRECTION, "Hand direction", 1, 1, 0)));
     optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::MANADISPLAY, "Mana display", 3, 1, 0)));
@@ -139,6 +148,10 @@ void GameStateOptions::Start()
     optionsMenu->Add(kCancelMenuID, "Cancel");
 
     optionsTabs->Entering(JGE_BTN_NONE);
+
+#if !defined (PSP)
+    GameApp::playMusic("Track3.mp3"); // Added music for options.
+#endif
 }
 
 void GameStateOptions::End()
@@ -146,6 +159,7 @@ void GameStateOptions::End()
     JRenderer::GetInstance()->EnableVSync(false);
     SAFE_DELETE(optionsTabs);
     SAFE_DELETE(optionsMenu);
+    kBgFile = ""; //Reset the chosen backgorund.
 }
 
 void GameStateOptions::Update(float dt)
@@ -230,10 +244,36 @@ void GameStateOptions::Render()
     //Erase
     JRenderer::GetInstance()->ClearScreen(ARGB(0,0,0,0));
 #if !defined (PSP)
-    JTexture * wpTex = WResourceManager::Instance()->RetrieveTexture("bgdeckeditor.jpg");
+    //Now it's possibile to randomly use up to 10 background images for game settings (if random index is 0, it will be rendered the default "bgdeckeditor.jpg" image).
+    JTexture * wpTex = NULL;
+    if(kBgFile == ""){
+        char temp[4096];
+        sprintf(temp, "bgdeckeditor%i.jpg", std::rand() % 10);
+        kBgFile.assign(temp);
+        wpTex = WResourceManager::Instance()->RetrieveTexture(kBgFile);
+        if (wpTex) {
+            JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad(kBgFile);
+            if (wpQuad.get())
+                JRenderer::GetInstance()->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
+            else {
+               kBgFile = "bgdeckeditor.jpg"; //Fallback to default background image for game settings.
+               wpTex = NULL;
+            }
+        } else
+            kBgFile = "bgdeckeditor.jpg"; //Fallback to default background image for game settings.
+    }
+    if(!wpTex)
+        wpTex = WResourceManager::Instance()->RetrieveTexture(kBgFile);
     if (wpTex)
     {
-        JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad("bgdeckeditor.jpg");
+        JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad(kBgFile);
+        JRenderer::GetInstance()->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
+    }
+#else
+    JTexture * wpTex = WResourceManager::Instance()->RetrieveTexture("pspbgdeckeditor.jpg");
+    if (wpTex)
+    {
+        JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad("pspbgdeckeditor.jpg");
         JRenderer::GetInstance()->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
     }
 #endif
@@ -249,9 +289,10 @@ void GameStateOptions::Render()
         "Check themeinfo.txt for the full credits of each theme!",
         "",
         "Dev Team:",
-        "Abrasax, Almosthumane, Daddy32, DJardin, Dr.Solomat, J, Jeck,",
-        "kevlahnota, Leungclj, linshier, Mootpoint, Mnguyen, Psyringe,",
-        "Rolzad73, Salmelo, Superhiro, Wololo, Yeshua, Zethfox",
+        "Abrasax, Almosthumane, Daddy32, DJardin, Dr.Solomat,",
+        "J, Jeck, kevlahnota, Leungclj, linshier, Mootpoint,",
+        "Mnguyen, Ph34rbot, Psyringe, Rolzad73, Salmelo, Superhiro,",
+        "Vitty85, Wololo, Yeshua, Zethfox",
         "",
         "Music by Celestial Aeon Project, http://www.jamendo.com",
         "",
@@ -259,10 +300,10 @@ void GameStateOptions::Render()
         "Abrasax, AzureKnight, colarchon, Excessum, Hehotfarv,",
         "Jeremy, Jog1118, JonyAS, Lachaux, Link17, Muddobbers,",
         "Nakano, Niegen, Kaioshin, Psyringe, r1c47, Superhiro,",
-        "Szei, Thanatos02, Whismer, Wololo",
+        "Szei, Thanatos02, Vitty85, Whismer, Wololo",
         "",
-        "Thanks also go to Dr.Watson, KF1, Orine, Raphael, Sakya,",
-        "Tacoghandi, Tyranid for their help.",
+        "Thanks also go to Dr.Watson, KF1, Luruz, Orine, Raphael,",
+        "Sakya, Tacoghandi, Tyranid for their help.",
         "",
         "Thanks to everyone who contributes code/content on the forums!",
         "",

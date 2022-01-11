@@ -129,10 +129,11 @@ JFileSystem::JFileSystem(const string & _userPath, const string & _systemPath)
 	DebugTrace("User path " << userPath);
 	DebugTrace("System path " << systemPath);
 #elif defined (ANDROID)
-    userPath = JGE::GetInstance()->getFileSystemLocation();
-    systemPath = "";
+    userPath = JGE::GetInstance()->getFileUserFolderPath();
+    systemPath = JGE::GetInstance()->getFileSystemLocation();
 
-	DebugTrace("User path " << userPath);
+    DebugTrace("User path " << userPath);
+    DebugTrace("System path " << systemPath);
 #elif defined (QT_CONFIG)
 
     QDir sysDir(RESDIR);
@@ -257,6 +258,7 @@ void JFileSystem::clearZipCache()
 
 bool JFileSystem::AttachZipFile(const string &zipfile, char *password /* = NULL */)
 {
+#ifndef WIN32
     if (mZipAvailable && mZipFile.is_open())
     {
         if (mZipFileName != zipfile)
@@ -264,7 +266,7 @@ bool JFileSystem::AttachZipFile(const string &zipfile, char *password /* = NULL 
         else
             return true;
     }
-
+#endif
     mZipFileName = zipfile;
     mPassword = password;
 

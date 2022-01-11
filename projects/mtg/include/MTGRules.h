@@ -94,10 +94,13 @@ class MTGKickerRule: public MTGPutInPlayRule
 public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
+    string alternativeName;
     virtual ostream& toString(ostream& out) const;
     MTGKickerRule(GameObserver* observer, int _id);
     const string getMenuText()
     {
+        if(alternativeName.size())
+            return alternativeName.c_str();
         return "Pay Kicker";
     }
     virtual MTGKickerRule * clone() const;
@@ -172,10 +175,13 @@ class MTGRetraceRule: public MTGAlternativeCostRule
 public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
+    string alternativeName;
     virtual ostream& toString(ostream& out) const;
     MTGRetraceRule(GameObserver* observer, int _id);
     const string getMenuText()
     {
+        if(alternativeName.size())
+            return alternativeName.c_str();
         return "Retrace";
     }
     virtual MTGRetraceRule * clone() const;

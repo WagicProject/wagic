@@ -133,8 +133,10 @@ class GameObserver{
   int isInPlay(MTGCardInstance *  card);
   int isInGrave(MTGCardInstance *  card);
   int isInExile(MTGCardInstance *  card);
+  int isInCommandZone(MTGCardInstance *  card);
   int isInHand(MTGCardInstance *  card);
   int isInLibrary(MTGCardInstance *  card);
+  int isInStack(MTGCardInstance *  card);
   virtual void Update(float dt);
   void Render();
   void ButtonPressed(PlayGuiObject*);

@@ -1,0 +1,31 @@
+#NAME: Modern Snow
+#DESC: First Snow Deck
+Flooded Strand (*) *2
+Misty Rainforest (*) *3
+Prismatic Vista (*) *4
+Scrying Sheets (*) *1
+Snow-Covered Forest (*) *4
+Snow-Covered Island (*) *2
+Snow-Covered Plains (*) *2
+Windswept Heath (*) *2
+Glacial Revelation (*) *4
+Into the North (*) *4
+Abominable Treefolk (*) *4
+Boreal Druid (*) *2
+Diamond Faerie (*) *2
+Ice-Fang Coatl (*) *4
+Icehide Golem (*) *4
+Ohran Viper (*) *4
+Gelid Shackles (*) *1
+Force of Negation (*) *4
+Search for Azcanta (*) *3
+Arcum's Astrolabe (*) *4
+
+#SB: Diamond Faerie (*) *1
+#SB: On Thin Ice (*) *4
+#SB: Gelid Shackles (*) *3
+#SB: Mouth of Ronom (*) *1
+#SB: Negate (*) *3
+#SB: Scrying Sheets (*) *2
+#SB: Search for Azcanta (*) *1
+#SB: Spell Pierce (*) *2

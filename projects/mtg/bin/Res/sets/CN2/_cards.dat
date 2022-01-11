@@ -1,0 +1,1117 @@
+[meta]
+author=Wagic Team
+name=Conspiracy: Take the Crown
+orderindex=COM-A.CN2
+year=2016-08-26
+total=222
+[/meta]
+[card]
+primitive=The Monarch
+id=-999901
+rarity=T
+[/card]
+[card]
+primitive=Adriana's Valor
+id=416758
+rarity=C
+[/card]
+[card]
+primitive=Assemble the Rank and Vile
+id=416759
+rarity=C
+[/card]
+[card]
+primitive=Echoing Boon
+id=416760
+rarity=U
+[/card]
+[card]
+primitive=Emissary's Ploy
+id=416761
+rarity=R
+[/card]
+[card]
+primitive=Hired Heist
+id=416762
+rarity=C
+[/card]
+[card]
+primitive=Hold the Perimeter
+id=416763
+rarity=R
+[/card]
+[card]
+primitive=Hymn of the Wilds
+id=416764
+rarity=M
+[/card]
+[card]
+primitive=Incendiary Dissent
+id=416765
+rarity=C
+[/card]
+[card]
+primitive=Natural Unity
+id=416766
+rarity=C
+[/card]
+[card]
+primitive=Sovereign's Realm
+id=416767
+rarity=M
+[/card]
+[card]
+primitive=Summoner's Bond
+id=416768
+rarity=U
+[/card]
+[card]
+primitive=Weight Advantage
+id=416769
+rarity=R
+[/card]
+[card]
+primitive=Ballot Broker
+id=416770
+rarity=C
+[/card]
+[card]
+primitive=Custodi Peacekeeper
+id=416771
+rarity=C
+[/card]
+[card]
+primitive=Custodi Soulcaller
+id=416772
+rarity=U
+[/card]
+[card]
+primitive=Lieutenants of the Guard
+id=416773
+rarity=C
+[/card]
+[card]
+primitive=Noble Banneret
+id=416774
+rarity=U
+[/card]
+[card]
+primitive=Palace Jailer
+id=416775
+rarity=U
+[/card]
+[card]
+primitive=Palace Sentinels
+id=416776
+rarity=C
+[/card]
+[card]
+primitive=Paliano Vanguard
+id=416777
+rarity=R
+[/card]
+[card]
+primitive=Protector of the Crown
+id=416778
+rarity=R
+[/card]
+[card]
+primitive=Recruiter of the Guard
+id=416779
+rarity=R
+[/card]
+[card]
+primitive=Sanctum Prelate
+id=416780
+rarity=M
+[/card]
+[card]
+primitive=Spectral Grasp
+id=416781
+rarity=U
+[/card]
+[card]
+primitive=Throne Warden
+id=416782
+rarity=C
+[/card]
+[card]
+primitive=Wings of the Guard
+id=416783
+rarity=C
+[/card]
+[card]
+primitive=Arcane Savant
+id=416784
+rarity=R
+[/card]
+[card]
+primitive=Canal Courier
+id=416785
+rarity=C
+[/card]
+[card]
+primitive=Coveted Peacock
+id=416786
+rarity=U
+[/card]
+[card]
+primitive=Expropriate
+id=416787
+rarity=M
+[/card]
+[card]
+primitive=Illusion of Choice
+id=416788
+rarity=U
+[/card]
+[card]
+primitive=Illusionary Informant
+id=416789
+rarity=C
+[/card]
+[card]
+primitive=Jeering Homunculus
+id=416790
+rarity=C
+[/card]
+[card]
+primitive=Keeper of Keys
+id=416791
+rarity=R
+[/card]
+[card]
+primitive=Messenger Jays
+id=416792
+rarity=C
+[/card]
+[card]
+primitive=Skittering Crustacean
+id=416793
+rarity=C
+[/card]
+[card]
+primitive=Spire Phantasm
+id=416794
+rarity=U
+[/card]
+[card]
+primitive=Stunt Double
+id=416795
+rarity=R
+[/card]
+[card]
+primitive=Archdemon of Paliano
+id=416796
+rarity=R
+[/card]
+[card]
+primitive=Capital Punishment
+id=416797
+rarity=R
+[/card]
+[card]
+primitive=Custodi Lich
+id=416798
+rarity=R
+[/card]
+[card]
+primitive=Deadly Designs
+id=416799
+rarity=U
+[/card]
+[card]
+primitive=Garrulous Sycophant
+id=416800
+rarity=C
+[/card]
+[card]
+primitive=Marchesa's Decree
+id=416801
+rarity=U
+[/card]
+[card]
+primitive=Regicide
+id=416802
+rarity=C
+[/card]
+[card]
+primitive=Sinuous Vermin
+id=416803
+rarity=C
+[/card]
+[card]
+primitive=Smuggler Captain
+id=416804
+rarity=U
+[/card]
+[card]
+primitive=Thorn of the Black Rose
+id=416805
+rarity=C
+[/card]
+[card]
+primitive=Besmirch
+id=416806
+rarity=U
+[/card]
+[card]
+primitive=Crown-Hunter Hireling
+id=416807
+rarity=C
+[/card]
+[card]
+primitive=Deputized Protester
+id=416808
+rarity=C
+[/card]
+[card]
+primitive=Garbage Fire
+id=416809
+rarity=C
+[/card]
+[card]
+primitive=Goblin Racketeer
+id=416810
+rarity=C
+[/card]
+[card]
+primitive=Grenzo, Havoc Raiser
+id=416811
+rarity=R
+[/card]
+[card]
+primitive=Grenzo's Ruffians
+id=416812
+rarity=U
+[/card]
+[card]
+primitive=Pyretic Hunter
+id=416813
+rarity=U
+[/card]
+[card]
+primitive=Skyline Despot
+id=416814
+rarity=R
+[/card]
+[card]
+primitive=Subterranean Tremors
+id=416815
+rarity=M
+[/card]
+[card]
+primitive=Volatile Chimera
+id=416816
+rarity=R
+[/card]
+[card]
+primitive=Animus of Predation
+id=416817
+rarity=U
+[/card]
+[card]
+primitive=Borderland Explorer
+id=416818
+rarity=C
+[/card]
+[card]
+primitive=Caller of the Untamed
+id=416819
+rarity=R
+[/card]
+[card]
+primitive=Domesticated Hydra
+id=416820
+rarity=U
+[/card]
+[card]
+primitive=Entourage of Trest
+id=416821
+rarity=C
+[/card]
+[card]
+primitive=Fang of the Pack
+id=416822
+rarity=U
+[/card]
+[card]
+primitive=Leovold's Operative
+id=416823
+rarity=C
+[/card]
+[card]
+primitive=Menagerie Liberator
+id=416824
+rarity=C
+[/card]
+[card]
+primitive=Orchard Elemental
+id=416825
+rarity=C
+[/card]
+[card]
+primitive=Regal Behemoth
+id=416826
+rarity=R
+[/card]
+[card]
+primitive=Selvala, Heart of the Wilds
+id=416827
+rarity=M
+[/card]
+[card]
+primitive=Selvala's Stampede
+id=416828
+rarity=R
+[/card]
+[card]
+primitive=Splitting Slime
+id=416829
+rarity=R
+[/card]
+[card]
+primitive=Adriana, Captain of the Guard
+id=416830
+rarity=R
+[/card]
+[card]
+primitive=Daretti, Ingenious Iconoclast
+id=416831
+rarity=M
+[/card]
+[card]
+primitive=Kaya, Ghost Assassin
+id=416832
+rarity=M
+[/card]
+[card]
+primitive=Knights of the Black Rose
+id=416833
+rarity=U
+[/card]
+[card]
+primitive=Leovold, Emissary of Trest
+id=416834
+rarity=M
+[/card]
+[card]
+primitive=Queen Marchesa
+id=416835
+rarity=M
+[/card]
+[card]
+primitive=Spy Kit
+id=416836
+rarity=U
+[/card]
+[card]
+primitive=Throne of the High City
+id=416837
+rarity=R
+[/card]
+[card]
+primitive=Affa Guard Hound
+id=416838
+rarity=U
+[/card]
+[card]
+primitive=Disenchant
+id=416839
+rarity=C
+[/card]
+[card]
+primitive=Doomed Traveler
+id=416840
+rarity=C
+[/card]
+[card]
+primitive=Faith's Reward
+id=416841
+rarity=R
+[/card]
+[card]
+primitive=Ghostly Possession
+id=416842
+rarity=C
+[/card]
+[card]
+primitive=Ghostly Prison
+id=416843
+rarity=U
+[/card]
+[card]
+primitive=Gleam of Resistance
+id=416844
+rarity=C
+[/card]
+[card]
+primitive=Gods Willing
+id=416845
+rarity=C
+[/card]
+[card]
+primitive=Guardian of the Gateless
+id=416846
+rarity=U
+[/card]
+[card]
+primitive=Hail of Arrows
+id=416847
+rarity=U
+[/card]
+[card]
+primitive=Hallowed Burial
+id=416848
+rarity=R
+[/card]
+[card]
+primitive=Hollowhenge Spirit
+id=416849
+rarity=U
+[/card]
+[card]
+primitive=Hundred-Handed One
+id=416850
+rarity=R
+[/card]
+[card]
+primitive=Kill Shot
+id=416851
+rarity=C
+[/card]
+[card]
+primitive=Pariah
+id=416852
+rarity=R
+[/card]
+[card]
+primitive=Raise the Alarm
+id=416853
+rarity=C
+[/card]
+[card]
+primitive=Reviving Dose
+id=416854
+rarity=C
+[/card]
+[card]
+primitive=Spirit of the Hearth
+id=416855
+rarity=R
+[/card]
+[card]
+primitive=Wild Griffin
+id=416856
+rarity=C
+[/card]
+[card]
+primitive=Windborne Charge
+id=416857
+rarity=U
+[/card]
+[card]
+primitive=Zealous Strike
+id=416858
+rarity=C
+[/card]
+[card]
+primitive=Bonds of Quicksilver
+id=416859
+rarity=C
+[/card]
+[card]
+primitive=Caller of Gales
+id=416860
+rarity=C
+[/card]
+[card]
+primitive=Cloaked Siren
+id=416861
+rarity=C
+[/card]
+[card]
+primitive=Covenant of Minds
+id=416862
+rarity=R
+[/card]
+[card]
+primitive=Deceiver Exarch
+id=416863
+rarity=U
+[/card]
+[card]
+primitive=Desertion
+id=416864
+rarity=R
+[/card]
+[card]
+primitive=Dismiss
+id=416865
+rarity=U
+[/card]
+[card]
+primitive=Divination
+id=416866
+rarity=C
+[/card]
+[card]
+primitive=Fleeting Distraction
+id=416867
+rarity=C
+[/card]
+[card]
+primitive=Followed Footsteps
+id=416868
+rarity=R
+[/card]
+[card]
+primitive=Into the Void
+id=416869
+rarity=U
+[/card]
+[card]
+primitive=Kami of the Crescent Moon
+id=416870
+rarity=R
+[/card]
+[card]
+primitive=Merfolk Looter
+id=416871
+rarity=U
+[/card]
+[card]
+primitive=Merfolk Skyscout
+id=416872
+rarity=U
+[/card]
+[card]
+primitive=Mnemonic Wall
+id=416873
+rarity=C
+[/card]
+[card]
+primitive=Negate
+id=416874
+rarity=C
+[/card]
+[card]
+primitive=Omenspeaker
+id=416875
+rarity=C
+[/card]
+[card]
+primitive=Repulse
+id=416876
+rarity=C
+[/card]
+[card]
+primitive=Serum Visions
+id=416877
+rarity=U
+[/card]
+[card]
+primitive=Show and Tell
+id=416878
+rarity=M
+[/card]
+[card]
+primitive=Sphinx of Magosi
+id=416879
+rarity=R
+[/card]
+[card]
+primitive=Traumatic Visions
+id=416880
+rarity=C
+[/card]
+[card]
+primitive=Vaporkin
+id=416881
+rarity=C
+[/card]
+[card]
+primitive=Vertigo Spawn
+id=416882
+rarity=U
+[/card]
+[card]
+primitive=Absorb Vis
+id=416883
+rarity=C
+[/card]
+[card]
+primitive=Altar's Reap
+id=416884
+rarity=C
+[/card]
+[card]
+primitive=Avatar of Woe
+id=416885
+rarity=M
+[/card]
+[card]
+primitive=Blood-Toll Harpy
+id=416886
+rarity=C
+[/card]
+[card]
+primitive=Child of Night
+id=416887
+rarity=C
+[/card]
+[card]
+primitive=Death Wind
+id=416888
+rarity=C
+[/card]
+[card]
+primitive=Diabolic Tutor
+id=416889
+rarity=U
+[/card]
+[card]
+primitive=Driver of the Dead
+id=416890
+rarity=C
+[/card]
+[card]
+primitive=Farbog Boneflinger
+id=416891
+rarity=U
+[/card]
+[card]
+primitive=Festergloom
+id=416892
+rarity=C
+[/card]
+[card]
+primitive=Fleshbag Marauder
+id=416893
+rarity=U
+[/card]
+[card]
+primitive=Guul Draz Specter
+id=416894
+rarity=R
+[/card]
+[card]
+primitive=Harvester of Souls
+id=416895
+rarity=R
+[/card]
+[card]
+primitive=Infest
+id=416896
+rarity=U
+[/card]
+[card]
+primitive=Inquisition of Kozilek
+id=416897
+rarity=R
+[/card]
+[card]
+primitive=Keepsake Gorgon
+id=416898
+rarity=U
+[/card]
+[card]
+primitive=Mausoleum Turnkey
+id=416899
+rarity=U
+[/card]
+[card]
+primitive=Murder
+id=416900
+rarity=C
+[/card]
+[card]
+primitive=Phyrexian Arena
+id=416901
+rarity=R
+[/card]
+[card]
+primitive=Public Execution
+id=416902
+rarity=U
+[/card]
+[card]
+primitive=Raise Dead
+id=416903
+rarity=C
+[/card]
+[card]
+primitive=Sangromancer
+id=416904
+rarity=R
+[/card]
+[card]
+primitive=Shambling Goblin
+id=416905
+rarity=C
+[/card]
+[card]
+primitive=Stromkirk Patrol
+id=416906
+rarity=C
+[/card]
+[card]
+primitive=Unnerve
+id=416907
+rarity=C
+[/card]
+[card]
+primitive=Burn Away
+id=416908
+rarity=U
+[/card]
+[card]
+primitive=Burning Wish
+id=416909
+rarity=R
+[/card]
+[card]
+primitive=Charmbreaker Devils
+id=416910
+rarity=R
+[/card]
+[card]
+primitive=Coordinated Assault
+id=416911
+rarity=U
+[/card]
+[card]
+primitive=Ember Beast
+id=416912
+rarity=C
+[/card]
+[card]
+primitive=Fiery Fall
+id=416913
+rarity=C
+[/card]
+[card]
+primitive=Flame Slash
+id=416914
+rarity=C
+[/card]
+[card]
+primitive=Gang of Devils
+id=416915
+rarity=U
+[/card]
+[card]
+primitive=Goblin Balloon Brigade
+id=416916
+rarity=C
+[/card]
+[card]
+primitive=Goblin Tunneler
+id=416917
+rarity=C
+[/card]
+[card]
+primitive=Gratuitous Violence
+id=416918
+rarity=R
+[/card]
+[card]
+primitive=Guttersnipe
+id=416919
+rarity=U
+[/card]
+[card]
+primitive=Hamletback Goliath
+id=416920
+rarity=R
+[/card]
+[card]
+primitive=Havengul Vampire
+id=416921
+rarity=U
+[/card]
+[card]
+primitive=Hurly-Burly
+id=416922
+rarity=C
+[/card]
+[card]
+primitive=Ill-Tempered Cyclops
+id=416923
+rarity=C
+[/card]
+[card]
+primitive=Kiln Fiend
+id=416924
+rarity=C
+[/card]
+[card]
+primitive=Ogre Sentry
+id=416925
+rarity=C
+[/card]
+[card]
+primitive=Stoneshock Giant
+id=416926
+rarity=U
+[/card]
+[card]
+primitive=Sulfurous Blast
+id=416927
+rarity=U
+[/card]
+[card]
+primitive=Tormenting Voice
+id=416928
+rarity=C
+[/card]
+[card]
+primitive=Trumpet Blast
+id=416929
+rarity=C
+[/card]
+[card]
+primitive=Twin Bolt
+id=416930
+rarity=C
+[/card]
+[card]
+primitive=Beast Within
+id=416931
+rarity=U
+[/card]
+[card]
+primitive=Berserk
+id=416932
+rarity=M
+[/card]
+[card]
+primitive=Birds of Paradise
+id=416933
+rarity=R
+[/card]
+[card]
+primitive=Brushstrider
+id=416934
+rarity=U
+[/card]
+[card]
+primitive=Burgeoning
+id=416935
+rarity=R
+[/card]
+[card]
+primitive=Copperhorn Scout
+id=416936
+rarity=C
+[/card]
+[card]
+primitive=Explosive Vegetation
+id=416937
+rarity=U
+[/card]
+[card]
+primitive=Fade into Antiquity
+id=416938
+rarity=C
+[/card]
+[card]
+primitive=Forgotten Ancient
+id=416939
+rarity=R
+[/card]
+[card]
+primitive=Irresistible Prey
+id=416940
+rarity=U
+[/card]
+[card]
+primitive=Lace with Moonglove
+id=416941
+rarity=C
+[/card]
+[card]
+primitive=Lay of the Land
+id=416942
+rarity=C
+[/card]
+[card]
+primitive=Manaplasm
+id=416943
+rarity=U
+[/card]
+[card]
+primitive=Nessian Asp
+id=416944
+rarity=U
+[/card]
+[card]
+primitive=Netcaster Spider
+id=416945
+rarity=C
+[/card]
+[card]
+primitive=Overrun
+id=416946
+rarity=U
+[/card]
+[card]
+primitive=Plummet
+id=416947
+rarity=C
+[/card]
+[card]
+primitive=Prey Upon
+id=416948
+rarity=C
+[/card]
+[card]
+primitive=Ravenous Leucrocota
+id=416949
+rarity=C
+[/card]
+[card]
+primitive=Strength in Numbers
+id=416950
+rarity=C
+[/card]
+[card]
+primitive=Sylvan Bounty
+id=416951
+rarity=C
+[/card]
+[card]
+primitive=Voyaging Satyr
+id=416952
+rarity=C
+[/card]
+[card]
+primitive=Wild Pair
+id=416953
+rarity=R
+[/card]
+[card]
+primitive=Akroan Hoplite
+id=416954
+rarity=U
+[/card]
+[card]
+primitive=Ascended Lawmage
+id=416955
+rarity=U
+[/card]
+[card]
+primitive=Carnage Gladiator
+id=416956
+rarity=U
+[/card]
+[card]
+primitive=Coiling Oracle
+id=416957
+rarity=U
+[/card]
+[card]
+primitive=Dragonlair Spider
+id=416958
+rarity=R
+[/card]
+[card]
+primitive=Duskmantle Seer
+id=416959
+rarity=R
+[/card]
+[card]
+primitive=Gruul War Chant
+id=416960
+rarity=U
+[/card]
+[card]
+primitive=Juniper Order Ranger
+id=416961
+rarity=U
+[/card]
+[card]
+primitive=Pharika's Mender
+id=416962
+rarity=U
+[/card]
+[card]
+primitive=Shipwreck Singer
+id=416963
+rarity=U
+[/card]
+[card]
+primitive=Stormchaser Chimera
+id=416964
+rarity=U
+[/card]
+[card]
+primitive=Bronze Sable
+id=416965
+rarity=C
+[/card]
+[card]
+primitive=Hedron Matrix
+id=416966
+rarity=R
+[/card]
+[card]
+primitive=Hexplate Golem
+id=416967
+rarity=C
+[/card]
+[card]
+primitive=Horn of Greed
+id=416968
+rarity=R
+[/card]
+[card]
+primitive=Kitesail
+id=416969
+rarity=C
+[/card]
+[card]
+primitive=Opaline Unicorn
+id=416970
+rarity=C
+[/card]
+[card]
+primitive=Platinum Angel
+id=416971
+rarity=M
+[/card]
+[card]
+primitive=Psychosis Crawler
+id=416972
+rarity=R
+[/card]
+[card]
+primitive=Runed Servitor
+id=416973
+rarity=U
+[/card]
+[card]
+primitive=Dread Statuary
+id=416974
+rarity=U
+[/card]
+[card]
+primitive=Evolving Wilds
+id=416975
+rarity=C
+[/card]
+[card]
+primitive=Exotic Orchard
+id=416976
+rarity=R
+[/card]
+[card]
+primitive=Rogue's Passage
+id=416977
+rarity=U
+[/card]
+[card]
+primitive=Shimmering Grotto
+id=416978
+rarity=U
+[/card]

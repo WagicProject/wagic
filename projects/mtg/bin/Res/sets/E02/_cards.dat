@@ -1,0 +1,242 @@
+[meta]
+author=Wagic Team
+name=Explorers of Ixalan
+orderindex=COM-G.E02
+year=2017-11-24
+total=47
+[/meta]
+[card]
+primitive=Beacon of Immortality
+id=439343
+rarity=R
+[/card]
+[card]
+primitive=Day of Judgment
+id=439344
+rarity=R
+[/card]
+[card]
+primitive=Path to Exile
+id=439345
+rarity=U
+[/card]
+[card]
+primitive=Shielded by Faith
+id=439346
+rarity=R
+[/card]
+[card]
+primitive=Veteran's Reflexes
+id=439347
+rarity=C
+[/card]
+[card]
+primitive=Vow of Duty
+id=439348
+rarity=U
+[/card]
+[card]
+primitive=Aether Gale
+id=439349
+rarity=R
+[/card]
+[card]
+primitive=Blatant Thievery
+id=439350
+rarity=R
+[/card]
+[card]
+primitive=Concentrate
+id=439351
+rarity=U
+[/card]
+[card]
+primitive=Merfolk Sovereign
+id=439352
+rarity=R
+[/card]
+[card]
+primitive=Threads of Disloyalty
+id=439353
+rarity=R
+[/card]
+[card]
+primitive=Time Warp
+id=439354
+rarity=M
+[/card]
+[card]
+primitive=Unsummon
+id=439355
+rarity=C
+[/card]
+[card]
+primitive=Vow of Flight
+id=439356
+rarity=U
+[/card]
+[card]
+primitive=Bloodbond Vampire
+id=439357
+rarity=U
+[/card]
+[card]
+primitive=Child of Night
+id=439358
+rarity=C
+[/card]
+[card]
+primitive=Coat with Venom
+id=439359
+rarity=C
+[/card]
+[card]
+primitive=Doom Blade
+id=439360
+rarity=U
+[/card]
+[card]
+primitive=Innocent Blood
+id=439361
+rarity=C
+[/card]
+[card]
+primitive=Necropolis Regent
+id=439362
+rarity=M
+[/card]
+[card]
+primitive=Urge to Feed
+id=439363
+rarity=U
+[/card]
+[card]
+primitive=Vampire Interloper
+id=439364
+rarity=C
+[/card]
+[card]
+primitive=Vampire Nighthawk
+id=439365
+rarity=U
+[/card]
+[card]
+primitive=Vampire Noble
+id=439366
+rarity=C
+[/card]
+[card]
+primitive=Aggravated Assault
+id=439367
+rarity=R
+[/card]
+[card]
+primitive=Disaster Radius
+id=439368
+rarity=R
+[/card]
+[card]
+primitive=Mass Mutiny
+id=439369
+rarity=R
+[/card]
+[card]
+primitive=Rush of Adrenaline
+id=439370
+rarity=C
+[/card]
+[card]
+primitive=Shared Animosity
+id=439371
+rarity=R
+[/card]
+[card]
+primitive=Vow of Lightning
+id=439372
+rarity=U
+[/card]
+[card]
+primitive=Borderland Ranger
+id=439373
+rarity=C
+[/card]
+[card]
+primitive=Giant Growth
+id=439374
+rarity=C
+[/card]
+[card]
+primitive=Hunter's Prowess
+id=439375
+rarity=R
+[/card]
+[card]
+primitive=Prey Upon
+id=439376
+rarity=C
+[/card]
+[card]
+primitive=Rancor
+id=439377
+rarity=U
+[/card]
+[card]
+primitive=Soul of the Harvest
+id=439378
+rarity=R
+[/card]
+[card]
+primitive=Vow of Wildness
+id=439379
+rarity=U
+[/card]
+[card]
+primitive=Jungle Barrier
+id=439380
+rarity=U
+[/card]
+[card]
+primitive=Lightning Helix
+id=439381
+rarity=U
+[/card]
+[card]
+primitive=Mortify
+id=439382
+rarity=U
+[/card]
+[card]
+primitive=Zealous Persecution
+id=439383
+rarity=U
+[/card]
+[card]
+primitive=Adaptive Automaton
+id=439384
+rarity=R
+[/card]
+[card]
+primitive=Prismatic Lens
+id=439385
+rarity=U
+[/card]
+[card]
+primitive=Quicksilver Amulet
+id=439386
+rarity=R
+[/card]
+[card]
+primitive=Crumbling Necropolis
+id=439387
+rarity=U
+[/card]
+[card]
+primitive=Jungle Shrine
+id=439388
+rarity=U
+[/card]
+[card]
+primitive=Tainted Field
+id=439389
+rarity=U
+[/card]
