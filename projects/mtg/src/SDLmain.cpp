@@ -155,9 +155,8 @@ public:
             return -1;
         }
 
-#ifdef __EMSCRIPTEN__
-        emscripten_set_main_loop(SdlApp::OneIter, 60, 1);
-#else
+        SDL_Event Event;
+
         while(Running)
         {
             if (g_engine)
@@ -180,7 +179,6 @@ public:
             }
         }
         OnCleanup();
-#endif
 
         return 0;
     }

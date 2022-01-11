@@ -109,6 +109,7 @@ set(MTG_generic_src
         src/WFont.cpp
         src/WGui.cpp
         src/WResourceManager.cpp
+        src/WParsedInt.cpp
         )
 
 set(MTG_network_src src/NetworkPlayer.cpp)
