@@ -38,14 +38,21 @@ void SimplePopup::Render()
 
     JRenderer *r = JRenderer::GetInstance();
     string detailedInformation = getDetailedInformation(mDeckInformation->getFilename());
+
 #if !defined (PSP)
-    
     JQuadPtr statsholder = WResourceManager::Instance()->RetrieveTempQuad("statsholder.png");//new graphics statsholder
     //const float textHeight = mTextFont->GetHeight() * mMaxLines;
     //r->FillRect(0,0,SCREEN_WIDTH_F,SCREEN_HEIGHT_F,ARGB(220,15,15,15));
     if(statsholder.get())
         r->RenderQuad(statsholder.get(),0,0,0,SCREEN_WIDTH_F/statsholder->mWidth,SCREEN_HEIGHT_F/statsholder->mHeight);
+#else
+    JQuadPtr statsholder = WResourceManager::Instance()->RetrieveTempQuad("pspstatsholder.png");//new graphics statsholder for PSP
+    //const float textHeight = mTextFont->GetHeight() * mMaxLines;
+    //r->FillRect(0,0,SCREEN_WIDTH_F,SCREEN_HEIGHT_F,ARGB(220,15,15,15));
+    if(statsholder.get())
+        r->RenderQuad(statsholder.get(),0,0,0,SCREEN_WIDTH_F/statsholder->mWidth,SCREEN_HEIGHT_F/statsholder->mHeight);
 #endif
+
     r->FillRoundRect(mX+modX+3, mY + 7, 190.f, 148.f, 0, ARGB( 240, 15, 15, 15 ) );
 
     // currently causes a crash on the PSP when drawing the corners.

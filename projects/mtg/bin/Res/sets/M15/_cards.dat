@@ -1,11 +1,12 @@
 [meta]
 author=Wagic Team
-name=Magic 2015 Core Set
-year=2014
-total=284
+name=Core Set: Magic 2015
+orderindex=COR-G.M15
+year=2014-07-18
+total=287
 [/meta]
 [card]
-primitive=AEtherspouts
+primitive=Aetherspouts
 id=383178
 rarity=R
 [/card]

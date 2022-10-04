@@ -1,17 +1,17 @@
 [meta]
 author=Wagic Team
 name=Duel Decks: Jace vs. Vraska
-block=Duel
-year=2014
+orderindex=DUE-E.DDM
+year=2014-03-14
 total=88
 [/meta]
 [card]
-primitive=AEther Adept
+primitive=Aether Adept
 id=380241
 rarity=C
 [/card]
 [card]
-primitive=AEther Figment
+primitive=Aether Figment
 id=380263
 rarity=U
 [/card]

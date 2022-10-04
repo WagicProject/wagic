@@ -1,4 +1,4 @@
-#NAME:Infected wounds
+#NAME:Infected Wounds
 Forest	 (UGL) *4
 Forest	 (ALA) *1
 Forest	 (ALA) *1

@@ -1,0 +1,12 @@
+[card]
+name=Heartstone
+text=Activated abilities of creatures cost {1} less to activate. This effect can't reduce the amount of mana an ability costs to activate to less than one mana.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Wild Pair
+text=Whenever a creature enters the battlefield, if you cast it from your hand, you may search your library for a creature card with the same total power and toughness and put it onto the battlefield. If you do, shuffle your library.
+mana={4}{G}{G}
+type=Enchantment
+[/card]

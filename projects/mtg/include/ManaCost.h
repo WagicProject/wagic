@@ -137,7 +137,7 @@ public:
     int pay (ManaCost * _cost);
 
     //return 1 if _cost can be paid with current data, 0 otherwise
-    int canAfford(ManaCost * _cost);
+    int canAfford(ManaCost * _cost, int anytypeofmana);
 
     int isPositive();
     ManaCost * Diff(ManaCost * _cost);

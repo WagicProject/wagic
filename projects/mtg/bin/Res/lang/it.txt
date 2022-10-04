@@ -3,6 +3,7 @@
 #Metti questo file nella cartella WTH/Res e rinominalo come _lang.txt
 #Al prossimo avvio del gioco avrai il tutto tradotto
 #Buon divertimento
+#Revisione Wagic The Homebrew 0.22.3 Italiana di Luruz 11/09/2020
 
 #Note to translators:
 # - Cards' names and types are translated here (see bottom of the file)
@@ -14,30 +15,327 @@
 
 #Game menus/texts
 LOADING SET: %s=CARICAMENTO SET: %s
-Play=Gioca
-Deck Editor=Deck Editor
+LOADING PRIMITIVES=CARICAMENTO PRIMITIVE
+LOADING...=CARICAMENTO IN CORSO...
+
+#Main Menu
+Play=Giocare
+Deck Editor=Editor Mazzi
 Shop=Negozio
 Options=Opzioni
 Exit=Esci
-1 Player=1 Giocatore
-2 Players=2 Giocatori
+Trophy Room=STANZA DEI TROFEI
+achieved: %i%%=Completato: %i%%
+Credits: %s%%=Crediti: %s%%
+
+#Cards number:
+%s: %i cards (%i) (%i unique)=%s: %i carte - Totale: %i (%i uniche)
+%i cards (%i unique)=%i carte (%i uniche)
+%s: %i cards (%i)=%s: %i carte - Totale: %i
+%i cards=%i carte
+
+#Testo Ciclico:
+Interested in playing Momir Basic? You'll have to unlock it first :)=Ti interessa giocare alla modalita' Momir Basic? Devi prima sbloccarla :).
+Love Equipment and want a real challenge? Unlock Stone Hewer Basic:)=Ami gli equipaggiamenti e vuoi una vera sfida? Sblocca Stone Hewer Basic :)
+More cards and mods at http://wololo.net/wagic=Altre carte e modalita' su http://wololo.net/wagic.
+The cards in your collection have an average value of %i credits=Le carte nella tua collezione hanno un valore medio di %i crediti.
+The shopkeeper would buy your entire collection for around %i credits=Il commerciante acquistera' l'intera collezione per circa %i crediti
+These stats will be updated next time you run Wagic=Queste statistiche verranno aggiornate al prossimo riavvio di Wagic.
+Unlock the difficult mode for more challenging duels!=Sblocca i livelli di difficolta' per duelli piu' impegnativi!
+You currently have %i credits=Al momento hai %i crediti.
+You have a %i%% victory ratio with "%s"=Hai vinto il %i%% di partite con il mazzo: "%s".
+You have a total of %i cards in your collection=Hai un totale di %i carte nella tua collezione.
+You have played %i games with "%s"=Hai giocato un totale di %i partite con il mazzo: "%s".
+You have played a total of %i games=Hai giocato un totale di %i partite.
+You have unlocked %i expansions out of %i=Hai sbloccato %i edizioni di %i.
+You haven't unlocked the evil twin mode yet=Non hai ancora sbloccato la modalita Gemello Cattivo...
+You haven't unlocked the random deck mode yet=Non hai ancora sbloccato la modalita con Mazzo Casuale...
+Like to play fast? Unlock Blitzkrieg Mode :)=Ti piace giocare veloce? Sblocca la modalita' Assalto Fulmineo :)
+Utopia! Bring me down to the Paradise City.=Utopia! Portami a Paradise City.
+"I looked into its eyes, and its soul was so empty I saw no reflection, no light there." <97> Crovax="Ho guardato nei suoi occhi, e la sua anima era cosi' vuota da non permettermi di vedere alcun riflesso, non c'era luce." <97> Crovax
+"From shards and splinters I call forth my living horde." -Molimo, maro-sorcerer="Dai detriti e dalla polvere io invoco la mia orda vivente." -Molimo, stregone supremo
+At the beginning of your upkeep, exchange control of a permanent you control chosen at random and a permanent target opponent controls chosen at random.=All'inizio del tuo mantenimento, scambia il controllo di un tuo permanente scelto a caso con un permanente scelto a caso del tuo avversario.
+Voice of the Argoth forest, defender of its creatures, and enforcer of its laws, Titania is literally an aspect of the forest itself.=Voce della foresta di Argoth, difensore delle sue creature, e protettrice della sua legge, Titania e' essa stessa parte della foresta.
+Premade G/R=Mazzo Iniziale V/R
+
+##################
+# USER INTERFACE #
+##################
+
+1 Player=Un giocatore
+2 Players=Due giocatori
+Play Game=Inizia il gioco
+Demo=Demo
+Test Suite=Modalita' di test
+
+#Modalita' di gioco:
+Mode Blitzkrieg=Modalita' Assalto fulmineo
+Momir Basic=Modalita' Momir Basic
+Morifen=Modalita' Morinfen
+Hermit Druid Basic=Modalita' Druido Eremita
+Stone Hewer Basic=Modalita' Stone Hewer Basic
+Paradise=Modalita' Paradiso
+Tribal Wars=Modalita' Orda
+False God=Modalita' Falso Dio
+Titania=Modalita' Titania
+Classic=Modalita' Classica
+Story=Modalita' Storia
+Random 1 Color=Un colore casuale
+Random 2 Colors=Due colori casuali
+Random 3 Colors=Tre colori casuali
+Random 5 Colors=Cinque colori casuali
+Set Limited=Edizione limitata
+Blitzkrieg Mode Unlocked=Modalita Assalto fulmineo sbloccata
+Commander Format=Modalita' Commander
+
+#Games per match:
+How many games per match?=Quante mani per partita?
+Single Game=Gioco singolo
+Best of 3=Al meglio di tre
+Best of 5=Al meglio di cinque
+Best of 7=Al meglio di sette
+Best of 13=Al meglio di tredici
+2 wins difference=Con due vittorie di differenza
+3 wins difference=Con tre vittorie di differenza
+2 in a row=Con due vittorie consecutive
+3 in a row=Con tre vittorie consecutive
+
+#Scelta Mazzo:
+Choose a Deck=Scegli un mazzo
+Create your Deck!=Crea il tuo mazzo!
+Highly recommended to get the full Wagic experience!=Altamente raccomandato per una completa esperienza di Wagic!
+New Deck...=Nuovo mazzo ...
+Main Menu=Menu' principale
+Return to Main Menu=Torna al Menu' principale
+NO DECK AVAILABLE,=NESSUN MAZZO DISPONIBILE,
+PRESS CIRCLE TO GO TO THE DECK EDITOR!=PREMERE CERCHIO PER ANDARE ALL'EDITOR DEI MAZZI!.
+Detailed Info=Dettagli del mazzo
+Deck: =Mazzo: 
+Difficulty: =Difficolta': 
+Victory %: =Vittorie %: 
+Games Played: =Partite giocate: 
+Cards: =Carte: 
+Player Deck: =Mazzo del giocatore: 
+Create a new deck to play with.=Crea un nuovo mazzo con cui giocare.
+Return to Main Menu=Torna al menu' principale.
+
+-----Deck Summary-----=-----Riepilogo del mazzo-----
+Cards: %s=Carte: %s
+Creatures: %s=Creature: %s
+Enchantments: %s=Incantesimi: %s
+Instants:  %s=Istantanei:  %s
+Sorceries:  %s=Stregonerie:  %s
+Lands:=Terre:
+A:%s=Art:%s
+G:%s=Ver:%s
+R:%s=Ros:%s
+U:%s=Blu:%s
+B:%s=Ner:%s
+W:%s=Bia:%s
+---Mana Curve---=---Curva di mana---
+---Average Cost---=---costo medio---
+Creature:%s=Creatura:%s
+Spell:%s=Magia:%s
+
+#Choose an opponent:
+Choose Opponent=Scegli un avversario
+Player Deck: =Mazzo del giocatore: 
+KO Tournament= Torneo ad eliminazione
+Starts a Knockout Tournament against selected AI-Decks! You have to win all matches. 4 Decks->2 Matches, 7 Decks->3 Matches, 16 Decks->4 Matches, 32 Decks->5 Matches, 64 Decks->6 Matches, 128 Decks->7 Matches, 256 Decks->8 Matches.=Inizia un torneo di eliminazione contro i mazzi del computer! Devi vincere tutte le partite. 4 mazzi->2 partite. 7 mazzi->3 partite. 16 mazzi->4 partite. 32 mazzi->5 partite. 64 mazzi->6 partite. 128 mazzi->7 partite. 256 mazzi->8 partite.
+Double KO=Doppia eliminazione
+Round Robin Tournament=Torneo Round Robin
+Starts an all vs all tournament!. Firstly, in a selection process participating AI-Decks can be chosen. The tournament state is saved after each game and can be continued!.=Inizia un torneo tutti contro tutti! Prima di iniziare, nel processo di selezione, puoi scegliere i mazzi del computer. Lo stato del torneo verra' salvato dopo ogni partita e potrai continuarlo in qualsiasi momento!
+Random=Casuale
+Random (Not easy)=Casuale (Non Facile)
+Selects a random AI deck with hard or normal difficulty.=Il mazzo del computer viene scelto casualmente con la difficolta' normale o difficile.
+Evil Twin=Gemello Cattivo
+Can you defeat yourself?=Riesci a battere te stesso?
+
+#Opponent's decks
+Air Sea Battle=Battaglia del mare e dell'aria
+Meet the darker side of fairies and merfolk.=Scopri il lato oscuro delle fate e dei tritoni.
+(easy)=(facile)
+(hard)=(difficile)
+LOADING DECKS=CARICAMENTO MAZZI
+Play with a random deck.=Gioca con un mazzo casuale.
+Choose a different player deck=Scegli un mazzo diverso.
+Detailed Info=Informazioni Dettagliate
+
+#Opzioni:
+Yes=Si
+No=No
+Player=Giocatore
+Cancel=Annulla
+Save & Back to Main Menu=Salva e torna al menu' principale
+Back to Main Menu=Torna al menu'
+Back to main menu=Torna al menu'
+
+#Pulsanti:
+Spacebar=barra spaziatrice
+Del=Cancella
+Caps=Maiusc.
+Confirm=Confermare
+continue=continua
+Help=Aiuto
+
+#########
+# DUEL  #
+#########
+
+#Menu pausa
+Mulligan=Mulligan
+Load=Caricare
+Show current score=Mostra il punteggio attuale
+
+#Giocatori:
+Player 1=Giocatore 1
+Player 2=Giocatore 2
+
+#Turni:
+opponent's turn=Turno dell'avversario
+your turn=Il tuo turno
+you play=Gioca
+opponent plays=L'avversario gioca
+Draw=Pesca
+Draw =Pesca 
+End=Finisce
+End =Finisce 
+Combat damage=Danno da combattimento
+Combat damage =Danno da combattimento 
+Combat ends=Fine del combattimento
+Combat ends =Fine del combattimento 
+
+#Interruzioni:
+Interrupt?=Interrompere?
+: Interrupt=: Interrompere?
+: No=: No
+: No To All=: No a tutto
+untap land=Stappa la terra
+Put in Hand=Metti in mano
+create pest=Crea una peste
+That Many Counters!=Quanti contatori!
+Becomes mutant=Diventa mutante
+
+#Abilita' attivate
+Add =Aggiungi 
+ 1/1 Counter= Segnalino +1/+1
+ 1/1 Counter = Segnalino +1/+1 
+ -1/-1 Counter =Segnalino -1/-1 
+ -1/-1 Counter= Segnalino -1/-1
+put a charge counter= Metti un segnalino carica
+put two charge counters= Metti due segnalini carica
+take an additional turn after this one=Gioca un altro turno dopo questo
+charge Counter=Segnalino carica
+charge Counter: 2=Segnalini carica: 2
+Deal %s Damage=Infligge %s danni
+Becomes =Diventa 
+Combat damage=Danni da combattimento
+Combat ends=Fine del combattimento
+Draw=Pesca
+End=Fine
+Charge: %i=caricare: %1
+move 1/1 counter=sposta un segnalino +1/+1
+
+
+#Abilita' con scelta
+choose opponent=scegli un avversario
+Cast Card Normally=Gioca normalmente la carta
+Pay Kicker=Paga il kicker
+Attack Player=Attacca il giocatore
+Remove Blocker=Rimuovi la creatura bloccante
+Remove Attacker=Rimuovi la creatura attaccante
+Choose a type=Scegli un tipo
+put back=Rimetti a posto
+Zero Cast From Anywhere=Gioca da qualsiasi luogo per zero
+choose card=Scegli una carta
+Put in Graveyard=Metti nel cimitero
+Draw 1=Pesca 1 carta
+Draw 2=Pesca 2 carte
+Draw 3=Pesca 3 carte
+Draw 4=Pesca 4 carte
+Draw 5=Pesca 5 carte
+Draw 6=Pesca 6 carte
+Draw 7=Pesca 7 carte
+Draw 8=Pesca 8 carte
+Draw 9=Pesca 9 carte
+Draw 10=Pesca 10 carte
+Draw 11=Pesca 11 carte
+Draw 12=Pesca 12 carte
+Draw 13=Pesca 13 carte
+Draw 14=Pesca 14 carte
+Draw 15=Pesca 15 carte
+Draw 16=Pesca 16 carte
+Draw 17=Pesca 17 carte
+Draw 18=Pesca 18 carte
+Draw 19=Pesca 19 carte
+Draw 20=Pesca 20 carte
+Legendary Rule=Regola delle leggende
+search card=Cerca una carta
+Tape to Hand=Metti in mano
+Take 1 Extra Turn(s)=Gioca un turno extra
+target player=Giocatore bersaglio
+exploit=Sfruttare
+Deal 0 Damage=Infligge 0 danni
+Deal 1 Damage=Infligge 1 danno
+Deal 2 Damage=Infligge 2 danni
+Deal 3 Damage=Infligge 3 danni
+Deal 4 Damage=Infligge 4 danni
+Deal 5 Damage=Infligge 5 danni
+Deal 6 Damage=Infligge 6 danni
+Deal 7 Damage=Infligge 7 danni
+Deal 8 Damage=Infligge 8 danni
+Deal 9 Damage=Infligge 9 danni
+Deal 10 Damage=Infligge 10 danni
+Deal 11 Damage=Infligge 11 danni
+Deal 12 Damage=Infligge 12 danni
+Deal 13 Damage=Infligge 13 danni
+Deal 14 Damage=Infligge 14 danni
+Deal 15 Damage=Infligge 15 danni
+Deal 16 Damage=Infligge 16 danni
+Deal 17 Damage=Infligge 17 danni
+Deal 18 Damage=Infligge 18 danni
+Deal 19 Damage=Infligge 19 danni
+Deal 20 Damage=Infligge 20 danni
+
+get a card=Prendi una carta
+put on bottom=Metti in fondo al mazzo
+Create zombie=Crea uno zombie
+add mana=Aggiungi mana
+canattack=Possono attaccare
+khans=kans
+dragons=draghi
+1/1 Counter:2=Due segnalini +1/+1
+target creature=Creatura bersaglio
+Skip A Turn(s)=Salta un turno
+Imprint=Imprint
+
+#Fasi
+Untap=Fase di Stappo
+Upkeep=Mantenimento
+Draw=Pesca
+Main phase 1=Fase Principale 1
+Combat begins=Inizio Combatt.
+Attackers=Attaccanti
+Blockers=Bloccanti
+Combat damage=Assegnaz. Danni
+Combat ends=Fine Combattimento
+Main phase 2=Fase Principale 2
+End=Fine
+Cleanup=Fase di Scarto
 Player=Giocatore
 Cancel=Annulla
 Classic=Classico
 Music volume=Volume Musica
 SFX volume=Volume Suoni
-
 Interrupt my spells=Interrompi le mie magie
-
 Interrupt my abilities=Interrompi le mie abilita'
-
 Display InGame extra information=Mostra informazioni extra in gioco
-Seconds to pause for an Interrupt=Secondi di pausa per Istantaneo
+Seconds to pause for an Interrupt=Secondi di pausa per l'interruzione
 Difficulty=Difficolta'
-Image Cache Size=Dimensione Cache Immagini
-Save & Back to Main Menu=Salva e Torna al Menu
-Back to Main Menu=Torna al Menu
-Back to main menu=Torna al Menu
+Image Cache Size=Dimensione della Cache di Immagini
+Save & Back to Main Menu=Salva e Torna al Menu'
+Back to Main Menu=Torna al Menu'
+Back to main menu=Torna al Menu'
 --NEW--=--NUOVO--
 Save=Salva
 Choose a Deck=Scegli un Mazzo
@@ -45,57 +343,41 @@ Choose Opponent=Scegli Avversario
 (easy)=(*)
 (hard)=(***)
 Random=Casuale
-You have a %i%% victory ratio with Deck%i=Hai il %i%% di vittorie col mazzo %i
-You have played %i games with Deck%i=Hai giocato %i partite con il mazzo %i
-You have played a total of %i games=Hai giocato in tutto %i partite
-Unlock the difficult mode for more challenging duels!=Sblocca la modalita' difficile per partite piu' competitive!
-Interested in playing Momir Basic? You'll have to unlock it first :)=Conosci Momir Basic? Sblocca questa modalita' per poterla provare
-You have a total of %i cards in your collection=Hai un totale di %i carte nella tua collezione
-
-The cards in your collection have an average value of %i credits=Le carte nella tua collezione hanno un valore medio di %i crediti
-The shopkeeper would buy your entire collection for around %i credits=Potresti vendere la tua intera collezione per circa %i crediti
-You currently have %i credits=Hai %i crediti
-More cards and mods at http://wololo.net/wagic=Ulteriori carte a http://wololo.net/wagic
-These stats will be updated next time you run Wagic=Le statistiche saranno aggiornate al prossimo avvio di Wagic
 Yes=Si
 No=No
-NO DECK AVAILABLE,=NESSUN DECK DISPONIBILE,
-PRESS CIRCLE TO GO TO THE DECK EDITOR!=PREMI CERCHIO PER TORNARE AL DECK EDITOR!
-You haven't unlocked the random deck mode yet=Non hai ancora sbloccato la modalita' mazzo casuale
-You haven't locked the random deck mode yet=Non hai ancora bloccato la modalita' mazzo casuale
-You haven't unlocked the evil twin mode yet=Non hai ancora sbloccato la modalitEevil twin
-You have unlocked %i expansions out of %i=Hai sbloccato %i espansioni su %i
-Premade G/R=Mazzo Iniziale V/R
+NO DECK AVAILABLE,=NESSUN MAZZO DISPONIBILE,
+PRESS CIRCLE TO GO TO THE DECK EDITOR!=PREMI CERCHIO PER TORNARE ALL'EDITOR DEI MAZZI!
 
-#Match
-Player 1=Giocatore 1
-Player 2=Giocatore 2
-Interrupt?=Gioca istantaneo?
-X Interrupt - 0 No - [] No to All=X Gioca istant. - 0 No - [] No per tutto
-X Interrupt - 0 No=X Gioca istant. - 0 No
 
-#End of Match
-Difficulty Bonus=Bonus Difficolta'
-'Live dangerously and you live right' Bonus=Bonus 'Vivi pericolosamente e vivrai bene' 
-Life Delta Bonus=Bonus per Differenza di Punti Vita
-'Decree of Theophilus' Bonus=Bonus 'Decreto di Theophilos'
-'Fast and Furious' Bonus=Bonus 'Fast and Furious'
-Victory=Vittoria
+#Fine Match
+-> http://wololo.net/wagic=-> http://wololo.net/wagic
 Congratulations! You earn %i credits=Congratulazioni! Hai guadagnato %i crediti
-You have been defeated=Sei stato sconfitto
+Credits per minute: %i=Crediti per minuto: %i
+'Decree of Theophilus' Bonus=Bonus 'Decreto di Theophilos'
+Difficulty Bonus=Bonus Difficolta'
+'Fast and Furious' Bonus=Bonus 'Fast and Furious'
+Game length: %i turns (%i seconds)=Durata della partita: %i Turni (%i secondi)
+Life Delta Bonus=Bonus per Differenza di Punti Vita
+'Live dangerously and you live right' Bonus=Bonus 'Vivi pericolosamente e vivrai bene' 
+Miller Bonus=Bonus per la macina
+Mods, additional cards, updates and more at:=Nuove modalilta', ulteriori carte, aggiornamenti e altro su:
 Player %i wins (%i)=Il giocatore %i vince (%i)
 Please support this project !=Sostieni Wagic !
-Wagic is free, open source, and developed on the little free time I have=Wagic e' gratuito, open source, e sviluppato nel poco tempo libero che ho
-If you enjoy this game, please consider donating a few bucks=Se lo apprezzate, perfavore considerate di donare anche un paio di spiccioli
+Please check your deck (not enough cards?)=Per favore, controlla il tuo mazzo (Non ci sono abbastanza carte?)
+There's more!=C'e' di piu'!
+Wagic is free, open source, and developed on the little free time I have=Wagic e' gratuito, open source, e sviluppato nel poco tempo libero che abbiamo
+If you enjoy this game, please consider donating a few bucks=Se lo apprezzate, per favore considerate di donare anche un paio di spiccioli
 (Seriously, donate or I'll kill this cute little bunny)=(Seriamente, senno' uccidero questo piccolo e tenero coniglietto o_o )
 Thanks in advance for your support.=Grazie in anticipo per il vostro supporto.
+Victory=Vittoria
+You have been defeated=Sei stato sconfitto
 
 #inGame
 Attacking Player=Giocatore Attaccante
 Blocking Player=Giocatore Bloccante
 Current Damager:=Danni inflitti da:
-Damages Assigned, Click Square to Continue=Danni assegnati, premi [] per continuare
-Order blockers, then Click Square to Continue=Ordina i bloccanti, premi [] continuare
+Damages Assigned, Click Square to Continue=Danni assegnati, poi premi quadrato per continuare
+Order blockers, then Click Square to Continue=Ordina i bloccanti, poi premi quadrato per continuare
 sacrifice=sacrifica
 
 #Mana pool (Bird of Paradise)
@@ -115,31 +397,12 @@ Add 3 red mana=Aggiungi 3 mana rossi
 #Other
 Add 1 mana=Aggiungi 1 mana
 
-#Phases
-Untap=Fase di Stappo
-Upkeep=Mantenimento
-Draw=Pesca
-Main phase 1=Fase Principale 1
-Combat begins=Inizio Combatt.
-Attackers=Attaccanti
-Blockers=Bloccanti
-Combat damage=Assegnaz. Danni
-Combat ends=Fine Combattimento
-Main phase 2=Fase Principale 2
-End=Fine
-Cleanup=Fase di Scarto
-
 #Stack
 Deals %i damage to= Fa %i danno/i a
-
 goes to graveyard= va' nel cimitero
 %s goes to graveyard=%s va' nel cimitero
-
-Deplete= Mette nel cimitero
-
-Player %i draws %i card= Il Giocatore %i pesca %i carta
-
-
+Deplete=Mette nel cimitero
+Player %i draws %i card= Il Giocatore %i pesca %i carte
 Damage=Danno
 Ability=Abilita'
 ability=abilita'
@@ -153,88 +416,699 @@ Tap=Tappa
 Untap=Stappa
 Destroy=Distruggi
 
-#Deck Editor
-Prev.=prec.
-card=carta
-cards=carte
-Next=succ.
-Next color=Colore succ.
-Prev. color=Colore prec.
-Add card=Agg. carta
-Display Deck=Mostra Mazzo
-Remove card=Rimuovi carta
-Display Collection=Mostra collezione
-You are currently viewing your=Stai guardando il/la
-collection. Press TRIANGLE=collezione. Premi TRIANGOLO
-to switch to your deck.=per vedere il mazzo.
-deck. Press TRIANGLE to=mazzo. Premi TRIANGOLO
-switch to your collection.=per vedere la collezione.
-Press L/R to cycle through=Premi L/R per scorrere le
-deck statistics.=statistiche del mazzo.
-Deck info=Info Mazzo
-Sell card=Vendi carta
+####################
+# Editor del mazzo #
+####################
 
-
-No Card=Nessuna Carta
-Your Deck: %i cards=Tuo Mazzo: %i carte
-
-
-# 0.9.1 strings - a lot of these are not working
-[]:other cards /\:list=[]:altre carte /\:lista
-Save & Rename=Salva & Rinomina
+#Menu Editor:
+*Complete collection & reset*=* Completa raccolta e resetta *
+Cancel=Annulla
+Choose Deck To Edit=Modifica un mazzo
+Filter by...=Filtra per...
+Filter By...=Filtra Per...
+--NEW--=-NUOVO-
+Quit Editor=Esci dall'editor
+Rename Deck=Rinomina il mazzo
+Save & Quit Editor=Salva ed esci dall'editor
+Save & Rename=Rinomina e salva
+Save As AI Deck=Salva come mazzo AI
+Save=Salva
+Set=Edizione
 Switch decks without saving=Cambia mazzo senza salvare
+Switch Decks=Cambia mazzo
+Toggle View=Cambia vista
+--UNLOCK CARDS--=-SBLOCCA CARTE-
 
-Settings=Impostazioni
+#Vista collezione
+Click on the card image=Clicca sull'immagine
+to add card to deck.=per aggiungere la carta al mazzo.
+Your Deck: =Il tuo mazzo: 
+Sideboard: =Panchina: 
+Commanders: =Comandanti: 
+Dungeons: =Dungeon: 
+Remove Card=Togli dal mazzo
+Add/Remove Cards=Aggiungi / Rimuovi carte
+Add to Deck=Aggiungi al mazzo
+Add to Sideboard=Aggiungi alla panchina
+Add to Dungeons=Aggiungi ai dungeon
+Choose as Commander=Scegli come comandante
+Remove from Sideboard=Togli dalla panchina
+Remove as Commander=Rimuovi come comandante
+Remove from Dungeons=Togli dai dungeon
+View SB=Vedi PA
+View CMD=Vedi CMZ
+View DNG=Vedi DNG
+View Coll.=Vedi Coll.
+
+#Edizioni:
+
+-Beginners-
+Portal Second Age=Portale, la seconda era
+Portal Three Kingdoms=Portale, i tre regni
+Starter 1999=Inizi 1999
+Starter 2000=Inizi 2000
+Welcome Deck 2016=Mazzo di benvenuto 2016
+Welcome Deck 2017=Mazzo di benvenuto 2017
+
+-Commander-
+Planechase=Inseguimento Planare
+Archenemy=Acerrimo nemico
+Magic: The Gathering-Commander=Comandante 2011
+Planechase 2012 Edition=Inseguimento Planare 2012
+Commander's Arsenal=L'arsenale del Comandante 2012
+Commander 2013 Edition=Comandante 2013
+Magic: The Gathering—Conspiracy=Cospirazione
+Commander 2014=Comandante 2014
+Commander 2015=Comandante 2015
+Conspiracy: Take the Crown=Cospirazione: La presa della corona
+Commander 2016=Comandante 2016
+Planechase Anthology=Antologia dell'Inseguimento Planare
+Commander Anthology=Antologia del Comandante
+Archenemy: Nicol Bolas=Acerrimo nemico: Nicol Bolas
+Commander 2017=Comandante 2017
+Explorers of Ixalan=Esploratori di Ixalan
+Battlebond=Collegamento di Battaglia
+Commander Anthology Volume II=Antologia del Comandante: Volume II
+Commander 2018=Comandante 2018
+Commander 2019=Comandante 2019
+Commander 2020=Comandante 2020
+Commander Collection: Green=Collezione del Comandante: Verde
+Commander Legends=Leggenda del Comandante
+
+-Core Sets-
+Limited Edition Alpha=Edizione Limitata: Alfa
+Limited Edition Beta=Edizione Limitata: Beta
+Unlimited Edition=Edizione Illimitato
+Revised Edition=Edizione Rivisitata
+Fourth Edition=Set Base Quarta Edizione
+Fifth Edition=Set Base Quinto Edizione
+Classic Sixth Edition=Set Base Sesta Edizione
+Seventh Edition=Set Base Settima Edizione
+Eighth Edition=Set Base Ottava Edizione
+Ninth Edition=Set Base Nona Edizione
+Tenth Edition=Set Base Decima Edizione
+Magic 2010=Set Base 2010
+Magic 2011=Set Base 2011
+Magic 2012=Set Base 2012
+Magic 2013=Set Base 2013
+Magic 2014 Core Set=Set Base 2014
+Magic 2015 Core Set=Set Base 2015
+Magic Origins=Magic origini
+Core Set 2019=Set Base 2019
+Core Set 2020=Set Base 2020
+Core Set 2021=Set Base 2021
+
+-Duel decks-
+
+Duel Decks: Elves vs. Goblins=Mazzi da duello: Elfi vs. Goblin
+Duel Decks: Jace vs. Chandra=Mazzi da duello: Jace vs. Chandra
+Duel Decks: Divine vs. Demonic=Mazzi da duello: Divino vs. Demoniaco
+Duel Decks: Garruk vs. Liliana=Mazzi da duello: Garruk vs. Liliana
+Duel Decks: Phyrexia vs. the Coalition=Mazzi da duello: Phyrexia vs. la Coalizione
+Duel Decks: Elspeth vs. Tezzeret=Mazzi da duello: Elspeth vs. Tezzeret
+Duel Decks: Knights vs. Dragons=Mazzi da duello: Cavalieri vs. Draghi
+Duel Decks: Mirrodin Pure vs. New Phyrexia=Mazzi da duello: Mirrodin puro vs. Nuova Phyrexia
+Duel Decks: Ajani vs. Nicol Bolas=Mazzi da duello: Ajani vs. Nicol Bolas
+Duel Decks: Venser vs. Koth=Mazzi da duello: Venser vs. Koth
+Duel Decks: Izzet vs. Golgari=Mazzi da duello: Izzet vs. Golgari
+Duel Decks: Sorin vs. Tibalt=Mazzi da duello: Sorin vs. Tibalt
+Duel Decks: Heroes vs. Monsters=Mazzi da duello: Eroi vs. Mostri
+Duel Decks: Jace vs. Vraska=Mazzi da duello: Jace vs. Vraska
+Duel Decks: Speed vs. Cunning=Mazzi da duello: Velocita' vs. Abililta'
+Duel Decks: Elspeth vs. Kiora=Mazzi da duello: Elspeth vs. Kiora
+Duel Decks: Zendikar vs. Eldrazi=Mazzi da duello: Zendikar vs. Eldrazi
+Duel Decks: Blessed vs. Cursed=Mazzi da duello: Beati vs. Maledetti
+Duel Decks: Nissa vs. Ob Nixilis=Mazzi da duello: Nissa vs. Ob Nixilis
+Duel Decks: Mind vs. Might=Mazzi da duello: Mente vs. Forza
+Duel Decks: Merfolk vs. Goblins=Mazzi da duello: Goblin vs. Tritoni
+Duel Decks: Elves vs. Inventors=Mazzi da duello: Elfi vs. Inventori
+
+-Expansions-
+
+Arabian Nights=Mille e una Notte
+Antiquities=Antiquariato
+Legends=Leggende
+The Dark=L'Oscurita
+Fallen Empires=Imperi Caduti
+Homelands=Patrie
+Ice Age=Era Glaciale
+Alliances=Alleanze
+Mirage=Miraggio
+Visions=Visioni
+Weatherlight=Cavalcavento
+Tempest=Tempesta
+Stronghold=Fortezza
+Exodus=Esodo
+Urza's Saga=Saga di Urza
+Urza's Legacy=Eredita' di Urza
+Urza's Destiny=Destino di Urza
+Mercadian Masques=Maschere di Mercadia
+Nemesis=Nemesis
+Prophecy=Profezia
+Invasion=Invasione
+Planeshift=Congiunzione
+Apocalipsis=Apocalisse
+Odyssey=Odissea
+Torment=Tormento
+Judgment=Sentenza
+Onslaught=Assalto
+Legions=Legioni
+Scourge=Flagello
+Darksteel=Acciaio oscuro
+Fifth Dawn=Quinta Alba
+Champions of Kamigawa=Campioni di Kamigawa
+Betrayers of Kamigawa=Traditori di Kamigawa
+Saviors of Kamigawa=Liberatori di Kamigawa
+Ravnica: City of Guilds=Ravnica: Citta delle Gilde
+Guildpact=Patto delle Gilde
+Dissension=Discordia
+Coldsnap=Ondata Glaciale
+Time Spiral=Spirale Temporale
+Time Spiral "Timeshifted"=Spirale Temporale "Tempo alterato"
+Planar Chaos=Caos Planare
+Future Sight=Visione Futura
+Morningtide=Aurora
+Shadowmoor=Landa Tenebrosa
+Eventide=Vrespo
+Shards of Alara=Frammenti di Alara
+Conflux=Confluenza
+Alara Reborn=Rinascita di Alara
+Worldwake=Risveglio del mondo
+Rise of the Eldrazi=Ascesa di Eldrazi
+Scars of Mirrodin=Cicatrici di Mirrodin
+Mirrodin Besieged=Mirrodin Assediato
+New Phyrexia=Nuova Pirexia
+Dark Ascension=Ascesa Oscura
+Avacyn Restored=Ritorno di Avacyn
+Return to Ravnica=Ritorno a Ravnica
+Gatecrash=Irruzione
+Dragon's Maze=Labirinto del Drago
+Born of the Gods=Nati dagli Dei
+Journey into Nyx=Viaggio verso Nyx
+Khans of Tarkir=I Khan di Tarkir
+Fate Reforged=Riforgiare il Destino
+Dragons of Tarkir=Draghi di Tarkir
+Battle for Zendikar=Battaglia per Zendikar
+Oath of the Gatewatch=Giuramento dei Guardiani
+Shadows over Innistrad=Ombre su Innistrad
+Eldritch Moon=Affronta L'Oscurita'
+Aether Revolt=Rivolta dell'Etere
+Hour of Devastation=L'Era della Rovina
+Rivals of Ixalan=Rivali di Ixalan
+Guilds of Ravnica=Gilde di Ravnica
+Ravnica Allegiance=Fedelta' di Ravnica
+War of the Spark=La guerra della scintilla
+Throne of Eldraine=Il Trono di Eldraine
+Theros Beyond Death=Theros Oltre la Morte
+Ikoria: Lair of Behemoths=Ikoria: Mondo di Behemonts
+Zendikar Rising=La Rinascita di Zendikar
+
+-From the vault-
+
+From the Vault: Dragons=Dalla cripta: Draghi
+From the Vault: Exiled=Dalla cripta: Esiliato
+From the Vault: Relics=Dalla cripta: Reliquie
+From the Vault: Legends=Dalla cripta: Leggende
+From the Vault: Realms=Dalla cripta: Regni
+From the Vault: Twenty=Dalla cripta: Venti
+From the Vault: Annihilation=Dalla cripta: Annientamento
+From the Vault: Angels=Dalla cripta: Angeli
+From the Vault: Lore=Dalla cripta: Saggezza
+From the Vault: Transform=Dalla cripta: Trasformazione
+
+-Global Series-
+Global Series: Jiang Yanggu & Mu Yanling=Serie globale: Jiang Yanggu & Mu Yanling
+
+-Online-
+
+Magic Online Promos=Promozionale di Magic online
+Masters Edition=Magic online: Edizione Maestri
+Masters Edition II=Magic online: Edizione Maestri II
+Masters Edition III=Magic online: Edizione Maestri III
+Magic Online Theme Decks=Mazzi tematici di Magic online
+Masters Edition IV=Magic online: Edizione Maestri IV
+Vintage Masters=Maestri classici
+Tempest Remastered=Tempesta rimasterizzata
+Legendary Cube=Cubo leggendario
+Treasure Chest=Cassa del tesoro
+Historic Anthology 1=Antologia storica volume 1
+Historic Anthology 2=Antologia storica volume 2
+Historic Anthology 3=Antologia storica volume 3
+Amonkhet Remastered=Amonkhet Rimasterizzato
+
+-Other-
+
+GRN Guild Kit=Gilde di Ravnica caso di gilda
+Game Night=Serata di gioco
+RNA Guild Kit=Fedelta' di Ravnica caso di gilda
+Game Night 2019=Serata di gioco 2019
+
+-Premium Deck Series-
+
+Premium Deck Series: Slivers=Serie premium di mazzi: Tramutante
+Premium Deck Series: Fire and Lightning=serie premium di mazzi: Fuoco e Fulmini
+Premium Deck Series: Graveborn=serie premium di mazzi: Nato dalla tomba
+Modern Event Deck=Mazzo degli eventi di Modern
+Secret Lair Drop Series=Serie "La Tana segreta"
+
+-Promotional-
+
+Arena League 1996=Campionato di ARENA 1996
+Arena League 1999=Campionato di ARENA 1999
+Arena League 2000=Campionato di ARENA 2000
+Arena League 2001=Campionato di ARENA 2001
+Arena League 2002=Campionato di ARENA 2002
+Arena League 2003=Campionato di ARENA 2003
+Arena League 2004=Campionato di ARENA 2004
+Arena League 2005=Campionato di ARENA 2005
+Arena League 2006=Campionato di ARENA 2006
+Magic Premiere Shop 2005=Negozio di Magic 2005
+Magic Premiere Shop 2006=Negozio di Magic 2006
+Magic Premiere Shop 2007=Negozio di Magic 2007
+Magic Premiere Shop 2008=Negozio di Magic 2008
+Magic Premiere Shop 2009=Negozio di Magic 2009
+Magic Premiere Shop 2010=Negozio di Magic 2010
+Magic Premiere Shop 2011=Negozio di Magic 2011
+Duels of the Planeswalkers=Duello dei Viandanti
+Duels of the Planeswalker Promo 2009-2010=Duello promozionale dei Viandanti 2009-2010
+Duels of the Planeswalkers 2011=Duello promozionale dei Viandanti 2011
+Duels of the Planeswalkers 2012=Duello promozionale dei Viandanti 2012
+Duels of the Planeswalkers 2013=Duello promozionale dei Viandanti 2013
+Duels of the Planeswalkers 2014=Duello promozionale dei Viandanti 2014
+Zendikar Expeditions=Spedizioni di Zendikar
+Kaladesh Inventions=Invenzioni di Kaladesh
+Amonkhet Invocations=Invocazioni di Amonkhet
+Arena New Player Experience=Nuova esperienza del giocatore di ARENA
+Heroes of the Realm 2016=Eroi del regno 2016
+Heroes of the Realm 2017=Eroi del regno 2017
+Mythic Edition=Edizioni mitiche
+Ultimate Box Topper=Ultima scatola definitiva
+Arena Beginner Set=Edizioni per principianti di ARENA
+
+-Reprints-
+
+Chronicles=Cronache
+Anthologies=Antologie
+Battle Royale Box Set=Campo di battaglia
+Beatdown Box Set=Abbattere
+Deckmasters=Maestri dei Mazzo
+Modern Masters=Maestri Moderni
+Modern Masters 2015 Edition=Maestri Moderni 2015
+Eternal Masters=Maestri Eterni
+Modern Masters 2017=Maestri Moderni 2017
+Iconic Masters=Maestri Iconici
+Masters 25=Maestri 25
+Ultimate Masters=Maestri Supremi
+Modern Horizon=Orizzonti Moderni
+Mystery Booster=Pacchetto Misterioso
+Jumpstart=L'Inizio
+Double Masters=Doppi Maestri
+
+-Signature Spellbooks-
+
+Signature Spellbook: Jace=Libro degli incantesimi: Jace
+Signature Spellbok: Gideon=Libro degli incantesimi: Gideon
+Signature Spellbok: Chandra=Libro degli incantesimi: Chandra
+
+#Informacion - Flechas:
+Prev. edition=Edizione prec.
+Next edition=Edizione pros.
+Prev.=Precedente
+Next=Seguente
+card=carta
+Next color=Colore successivo
+Prev. color=Colore precedente
+
+#Informacion - Botones:
+Add card=Aggiungi Carta
+Display collection=Mostra raccolta
+Display Deck=Mostra mazzo
+Filter=Filtro
+Grid=Griglia
+Carousel=Carosello
+Remove card=Rimuovi Carta
+Sell Card=Vendi Carta
+Stats=Stat.
+Toggle Images=Immagini Si/No
+Collection=Vedi Collezione
+View Deck=Vedi Mazzo
+
+#Informacion - Explicaciones:
+Use SQUARE to view your deck,=Usa QUADRATO per vedere il tuo mazzo,
+Use SQUARE to view collection,=Usa QUADRATO per vedere la tua collezione,
+Press L/R to cycle through=Premi S/D per ciclare 
+deck statistics.=Statistiche del mazzo.
+to remove card from deck.=rimuovere la carta dal mazzo.
+All changes are final.=Tutte le modifiche sono definitive.
+Change the name of the deck=Rinomina il mazzo.
+Close menu.=Chiudi menu'
+No changes. Return to the main menu.=Senza modifiche. Torna al menu'.
+No changes. View another deck.=Senza modifiche. Vedi un altro mazzo.
+Do not make any changes to deck. Return to the main menu.=Non apportare modifiche. Torna al menu' principale.
+Do not make any changes. View another deck.=Non apportare modifiche. Vedi un altro mazzo.
+Narrow down the list of cards. =Riduci l'elenco delle carte.
+Save changes. Return to the main menu=Salvare le modifiche. Torna al menu' principale.
+Toggle view grid/carousel.=Cambia la vista griglia/carosello.
+
+##########
+# FILTRO #
+##########
+
+Cards...=Carte...
+Artifact Creature=Creatura Artefatto
+Type=Tipo
+Subtype=Sottotipo
+Rarity=Rarita'
+Mana Cost=Costo di mana
+Basic Ability=Abilita' di base
+Mana Ability=Abilita' di mana
+Power=Forza
+Toughness=Resistenza
+First Letter=Prima lettera
+Remove=Rimuovere
+Filter:=Filtro:
+
+#Filtro Habilidad de Mana:
+White mana abiltity=Abilita' di mana bianca
+Blue mana abiltity=Abilita' di mana blu
+Black mana abiltity=Abilita' di mana nero
+Red mana abiltity=Abilita' di mana rosso
+Green mana abiltity=Abilita' di mana verde
+Colorless mana abiltity=Abilita' di mana incolore
+
+#Filtro Fuerza:
+0 power=Forza 0
+1 power=Forza 1
+2 power=Forza 2
+3 power=Forza 3
+4 power=Forza 4
+5 power=Forza 5
+6 power=Forza 6
+7 power=Forza 7
+8 power=Forza 8
+9 power=Forza 9
+10 power=Forza 10
+11 power=Forza 11
+12 power=Forza 12
+13 power=Forza 13
+
+#Filtro Resistencia:
+0 toughness=Resistenza 0
+1 toughness=Resistenza 1
+2 toughness=Resistenza 2
+3 toughness=Resistenza 3
+4 toughness=Resistenza 4
+5 toughness=Resistenza 5
+6 toughness=Resistenza 6
+7 toughness=Resistenza 7
+8 toughness=Resistenza 8
+9 toughness=Resistenza 9
+10 toughness=Resistenza 10
+11 toughness=Resistenza 11
+12 toughness=Resistenza 12
+13 toughness=Resistenza 13
+14 toughness=Resistenza 14
+15 toughness=Resistenza 15
+16 toughness=Resistenza 16
+17 toughness=Resistenza 17
+
+#Filtro Primera Letra:
+Letter A=Lettera A
+Letter B=Lettera B
+Letter C=Lettera C
+Letter D=Lettera D
+Letter E=Lettera E
+Letter F=Lettera F
+Letter G=Lettera G
+Letter H=Lettera H
+Letter I=Lettera I
+Letter J=Lettera J
+Letter K=Lettera K
+Letter L=Lettera L
+Letter M=Lettera M
+Letter N=Lettera N
+Letter O=Lettera O
+Letter P=Lettera P
+Letter Q=Lettera Q
+Letter R=Lettera R
+Letter S=Lettera S
+Letter T=Lettera T
+Letter U=Lettera U
+Letter V=Lettera V
+Letter W=Lettera W
+Letter X=Lettera X
+Letter Y=Lettera Y
+Letter Z=Lettera Z
+Digit=Numero
+
+###########
+# OPTIONS #
+###########
+
+#Opciones:
+Settings=Opzioni
+General Options=Opzioni generali
+Music volume=Volume della musica
+SFX volume=Volume del suono
+Max=Massimo
+Mute=Muto
+
+#Altri:
+Misc=Altri
+Card Display Options=Opzioni di visualizzazione delle carte
+All Black Borders=Tutti i bordi neri
+Show Borders=Mostra i bordi
+Sort decks by date=Ordina i mazzi per data
+Show Tokens in Editor=Mostra i token nell'editor
+Warning!!!=Avvertimento!!!
+Show Large Images in Grid Deck View=Mostra immagini grandi nella vista a griglia
+Enable Prefetching=Abilita la pre-elaborazione
+
+#Gioco:
 Game=Gioco
-User=Utente
-Credits=Crediti
-
-General Options=Opzioni Generali
-
-Interface Options=Opzioni Interfaccia
-Closed hand=Mano nascosta
-visible=visibile
-invisible=invisibile
-Hand direction=Direzione della mano
-vertical=verticale
-horizontal=orizzontale
-Mana display=Visualizzazione Mana
+Interface Options=Opzioni dell'interfaccia
+Sort sets by=Ordina le espansioni per
+Sector=Settore
+Name=Nome
+Date=Data
+Language=linguaggio
+Closed hand=Carte in mano
+visible=Visible
+invisible=Invisible
+Hand direction=Orientamento della mano
+horizontal=Orizzontale
+vertical=Verticale
+Mana display=Visualizzazione mana
+Eye candy=Sfera con effetto
 Simple=Semplice
-Both=Entrambe
-Reverse left and right triggers=Inverti levetta sinistra e destra
-Disable card image loading=Disabilita caricamento immagini
+Both=Entrambi
+No Glitter=Nessun riflesso
+Reverse left and right triggers=Inverti trigger destro e sinistro
+Disable card images=Disattiva l'immagine delle carte
+Disable screen transitions=Disabilita le transizioni dello schermo
+Display InGame extra information=Informazioni aggiuntive durante il gioco
 
-User Options=Opzioni Utente
-Cards=Carte 
+#Utente:
+User=Utente
+Default=Predefinito
+User Options=Opzioni utente
+Credits: %i=Crediti %i
+Cards: %i=Carte: %i
+Sets: %i (of %i)=Edizioni: %i (de %i)
 Theme: %s=Tema: %s
+Theme Style=Stile del tema
+Dynamic=Dinamico
+Dark=Oscurita
+Earth=Terra
+Fire=Fuoco
+Light=Luce
+Stone=Pietra
+Water=Acqua
+Use this Style=Utilizza questo stile
+Enable Cheat Mode=Abilita la modalita' segreta
+Optimize Starting Hand=Ottimizza la mano con cui inizi
+Unlock All Ai Decks=Sblocca tutti i mazzi computer
+
 Artist: %s=Artista: %s
-New Profile=Nuovo Profilo
+Default=Predefinito
+New Profile=Nuovo profilo
+Use this Profile=Usa questo profilo
+Use this Theme=Usa questo tema
 
-#Nuove Stringhe - 31/11/09
+#Avanzate:
+Advanced=Avanzate
+Advanced Options=Opzioni avanzate
+The following options require a restart.=Le seguenti opzioni richiedono un riavvio.
 
-Statistics Summary=Sommario Statistiche
+Minimum Card Grade=Grado minimo di carte
+1: 100% Supported=1: 100% Supportate
+0: Borderline (99% OK)=0: Al limite (99% Ok)
+-1: Unofficial (unverified cards)=-1: Non ufficiali (carte non verificate)
+-2: Crappy (bugs)=-2: Difettose (difetti)
+-3: Unsupported=-3 Non supportate
+-4: Dangerous (risk of crash)=-4: Pericolose (rischio di crash)
 
-Lands=Terre
+Phase Skip Automation=Salta la fase di automazione
+First Turn Player=Primo turno del giocatore
+Opponent=Avversario
+Full=Completo
+Safe=Prudente
+Off=Disabilitato
+Kicker Cost=Costo del kicker
+Offer Choice=Offri la scelta
+Always Pay=Paga sempre
 
-Creatures=Creature
+#Comandi:
+Key Bindings=Comandi
+Load Defaults...=Caricare impostazioni di default...
+Press a key to associate.=Premere un tasto per associare.
+New binding...=Nuova associazione...
+Return=Ritornare
+Space=Barra spaziatrice
+Sound=Suono
+Fullscreen=A schermo intero
+Keypad Enter=Tasto Invio
+VolumeUp=Volume su
+VolumeDown=Volume giu'
+Left Ctrl=Controllo sinistro
+Right Ctrl=Controllo destro
+Delete this binding=Elimina questa associazione
+Open hand/Next item=Mano aperta / Prossimo oggetto
+Next phase/Previous item=Fase successiva / Oggetto precedente
+Secondary=Secondario
+Primary=Primario
+Right trigger=Trigger destro
+Left trigger=Trigger sinistro
+Cross=Ics
+Square=Quadrato
+Triangle=Triangolo
+Circle=Cerchio
+Down=Giu
+Up=Su
+Left=Sinistra
+Right=Destra
+Select=Select
+Start=Start
+Difficulty=Difficolta'
+Economic Difficuly=Difficolta' economica
+Normal=Normale
+Hard=Difficile
+Harder=Molto difficile
+Evil=Diabolico
+Luck=Casuale
+Easy=Facile
+Seconds to pause for an Interrupt=Secondi di pausa per le interruzioni
+Interrupt my abilities=Interrompi le mie abilita'
+Interrupt my spells=Interrompi i miei incantesimi
+Interrupt opponent's end of turn=Interrompi la fine del turno dell'avversario
 
-Spells=Magie
+Credits=Ringraziamenti
 
-Instants=Istantanei
+###########
+# TROFEOS #
+###########
 
-Enchantments=Incantesimi
+Achievements=Successi
+Difficulty Modes=Modalita' di difficolta'
+Achieved a 66% victory ratio.=Raggiunto il 66% di vittorie in media.
+Blitzkrieg Mode=Modalita Assalto Fulmineo
+Won with more than 18 lands.=Vinci con piu di 18 terre.
+Horde=Modalita Orda
+Won with more than 25 life.=Vinci con piu di 25 punti vita.
+Paradise=Modalita' Paradiso
+Won with Birds of Paradise on the battlefield.=Vinci con gli Uccelli del Paradiso sul campo di battaglia.
+False God=Modalita' Falso Dio
+Devotion to red more than 7.=La tua devozione al rosso deve essere maggiore di 7.
+Titania Mode=Modalita' Titania
+Devotion to green more than 7.=La tua devozione al verde deve essere maggiore di 7.
+Morinfen Mode=Modalita' Morinfen
+Won with less than 5 life.=Vinci con meno di 5 punti vita.
+Momir Mode=Modalita' Momir Base
+Won with exactly 8 lands.=Vinci con esattamente 8 terre in gioco.
+Evil Twin Mode=Modalita' Gemello Cattivo
+Won with same army size.=Vinci con un esercito della stessa dimensione di quello del tuo nemico.
+Random Deck Mode=Modalita' Mazzo Casuale
+Won against a higher difficulty.=Vinci contro un avversario al livello di difficolta' piu' alto.
+Stone Hewer Mode=Modalita' Fabbro
+Won with more than 10 equipments.=Vinci con piu' di 10 equipaggiamenti.
+Hermit Druid Mode=Modalita' Druido Eremita
+Won with less than 10 lands.=Vinci con meno di 10 terre in gioco.
+Valuable Collection=Il valore della collezione
+Collection valued over 10,000c.=La collezione ha un valore di oltre 10.000 crediti.
+Collection Info=Informazioni sulla collezione
+Collection Stats=Statistiche della collezione
+Total Value: %ic=Valore totale: %i crediti.
+Total Cards (including duplicates): %i=Totale carte (inlcusi i doppioni): %i
+Unique Cards: %i=Carte uniche: %i
+Most Duplicates: %i (%s)=Con piu' doppioni: %i (%s)
+Favorite Set: %s=Set preferito: %s
+Highest Mana Cost: %i (%s)=Costo di mana piu' alto: %i (%s)
+Most Powerful: %i (%s)=Con la piu' grande potenza: %i (%s)
+Toughest: %i (%s)=Con la massima resistenza: %i (%s)
+%i locked sets remain.=Ci sono %i ancora da sbloccare.
+Unlocked all %i sets.=Sono state sbloccate %i edizioni.
+Card Spoiler=Vedi carte
+Back to Trophies=Torna a Trofei
+Back to Main Menu=Indietro al menu' principale
+Cancel=Annulla
+Do you think you can dominate over other commanders? Take a big challenge in the commander format.=Pensi di poter dominare gli altri comandanti? Raccogli la sfida con la modalilta' Comandante.
+Commander Format Unlocked=Modalita' Comandante sbloccata
+Win a game with 40 or more life and with less cards in your graveyard than your opponent.=Vinci una partita con 40 o piu' punti vita e con meno carte nel cimitero rispetto al tuo avversario.
 
-Sorceries=Stregonerie
+Wagic Team (%s%%): %i%% : %s%%/%s%% cards=Team Wagic (%s%%): %i%% : %s%%/%s%% carte
+%i cards=%i carte.
+%s (%i): %i cards=%s (%i): %i carte.
+%s: %i cards.=%s: %i carte.
 
-Average converted mana cost=Costo convert. in mana medio
+Booster=Bustina
+Cards=Carte
 
+Details=Dettagli
+
+##################
+# CARTE: RARITA #
+##################
+
+Common=Comune
+Uncommon=Non Comune
+Rare=Rara
+Mythic=Mitica
+Special Rarity=Rarita' Speciale
+Special=Speciale
+Land=Terra
+Token=Token
+
+
+################
+# CARTE:TIPO #
+################
+
+Artifact=Artefatto
+Aura=Aura
+Basic=Base
+Creature=Creatura
+Enchantment=Incantesimo
+Equipment=Equipaggiamento
+Instant=Istantaneo
+Land=Terra
+Legendary=Leggendaria
+Plane=Pianura
+Planeswalker=Viandante
+Scheme=Schema
+Snow=Neve
+Sorcery=Stregoneria
+Tribal=Tribale
+Vanguard=Avanguardia
+World=Mondo
+
+Average converted mana cost=Costo medio di mana convertito
 Probabilities=Probabilita'
 
-No land in 1st hand=No terre nella 1' mano
+No land in 1st hand=Senza terre alla prima mano
 
-No land in 9 cards=No terre in 9 carte
+No land in 9 cards=Senza terre su 9 carte
 
-No creatures in 1st hand=No creature nella 1' mano
+No creatures in 1st hand=Senza creature alla prima mano
 
 
 statsPage#:%i=Pagina Statistiche #:%i
@@ -246,20 +1120,20 @@ Playgame statistics=Statistiche di gioco
 
 Games played=Partite giocate
 
-Victory ratio=Rateo di vittoria
+Victory ratio=Percentuale di vittorie
 
 Total price (credits)=Prezzo totale (crediti)
 
 
 Mana production=Produzione mana
 
-Counts of manasources per type and color:=Conto delle fonti di mana per tipo e colore:
+Counts of manasources per type and color:=Conteggio delle fonti di mana per tipo e colore:
 
 BL - Basic lands=BL - Terre base
 
 NB - Non-basic lands=NB - Terre non-base
 
-O - Other (non-land) manasources=O - Altre (non-terre) fonti di mana
+O - Other (non-land) manasources=O - Altre fonti di mana (non-terre) 
 
 T - Totals=T - Totali
 
@@ -269,7 +1143,7 @@ Mana production - in mana symbols=Produzione di mana - in simboli
 Total colored manasymbols in lands' production:=Totale simboli di mana colorati nella prod. delle terre
 
 
-Mana cost detail=Dettaglio costo mana
+Mana cost detail=Dettaglio del costo di mana
 
 Card counts per mana cost:=Numero carte per costo di mana:
 
@@ -281,66 +1155,37 @@ Creature counts per mana cost:=Numero creature per costo di mana:
 
 Mana cost detail - Spells=Dettaglio costo mana - Magie
 
-Non-creature spell counts per mana cost:=Numero di magie non-creatura per costo di mana:
+Non-creature spell counts per mana cost:=Numero di magie non creatura per costo di mana:
 
 
-Average converted mana cost: %f=Costo convertito in mana medio: %f
+Average converted mana cost: %f=Costo medio di mana convertito: %f
 
-Average converted mana cost: %2.2f=Costo convertito in mana medio: %2.2f
-
-
-C - Converted mana cost. Cards with cost>%i are included in the last row.=C - Costo convertito in mana. Carte con costo >%i sono incluse nell'ultima riga.
+Average converted mana cost: %2.2f=Costo medio di mana convertito: %2.2f
 
 
-# - Total number of cards with given cost=# - Numero totale di carte con un dato costo
+C - Converted mana cost. Cards with cost>%i are included in the last row.=C - Costo di mana convertito. Le carte con costo >%i sono incluse nell'ultima riga.
 
 
-No lands in first n cards:=Niente terre nelle prime n carte:
-
-No creatures in first n cards:=Niente creature nelle prime n carte:
+# - Total number of cards with given cost=# - Numero totale di carte con un determinato costo
 
 
-Mana cost per color=Costo in mana per colore
+No lands in first n cards:=Nessuna terra nelle prime n carte:
+
+No creatures in first n cards:=Nessuna creatura nelle prime n carte:
+
+
+Mana cost per color=Costo di mana per colore
 
 Total colored manasymbols in cards' casting costs:=Totale simboli di mana colorati nel costo delle carte:
 
 
-Victory statistics=Statistiche vittoria
-
-Victories against AI:=Vittorie contro IA:
-
-
-Games played: %i=Partite giocate: %i
-Victory ratio: %i%%=Rateo vittoria: %i%%
-
-Victory ratio: %i=Rateo vittoria: %i
-
-
-Database: %i cards=Database: %i carte
-
-
-%s: %i cards (%i)=%s: %i carte (%i)
-
-
-Random 1 Color=Casuale 1 Colore
-
-Random 2 Colors=Casuale 2 Colori
-
-
-LOADING...=CARICAMENTO...
-
-
-Please check your deck (not enough cards?)=Perfavore controlla il mazzo (troppe poche carte?)
+Victories against AI:=Vittorie contro il computer:
 
 
 
 
-Credits: %i=Crediti: %i
 
-Cards: %i=Carte: %i
-
-
-
+Please check your deck (not enough cards?)=Per favore controlla il mazzo (non ci sono abbastanza carte?)
 
 
 # 0.10.1 strings
@@ -362,31 +1207,11 @@ Credits per minute: %i=Crediti al minuto: %i
 
 %i cards.=%i carte.
 []:other cards=[]:altre carte
-See available tasks=Visualizza task disponibili
-Task Board=Bacheca task
-
-Toggle Images=Immagini Si/No
-View Deck=Guarda Mazzo
-View Collection=Guarda Collez.
-Use SQUARE to view your deck,=Usa QUADRATO per vedere il mazzo,
-Use SQUARE to view collection,=Usa QUADRATO per la collezione,
-
-opponent plays=tocca all'avvers.
-you play=tocca a te
-
-Deck - %i/%i=Mazzo - %i/%i
-in: deck=in: mazzo
-in: collection=in: collezione
-deck=mazzo
-collection=collezione
-
-#new lines - not working
-Spacebar=Spazio
-Confirm=Conferma
-your turn=tuo turno
-(your turn)%s=(tuo turno)%s
-(your turn) %s=(tuo turno) %s
-opponent's turn=turno avversario
+See available tasks=Visualizza obiettivi disponibili
+Task Board=Bacheca obiettivi
+Check Task Board=Controlla Bacheca obiettivi
+Open Task Board=Apri Bacheca obiettivi
+Close Task Board=Chiudi Bacheca obiettivi
 
 # new lines - abilities - why did i forget these before? u.U
 trample=travolgere
@@ -406,18 +1231,12 @@ Add %i=Aggiungi %i
 Add %i mana=Aggiungi %i mana
 
 #Shop
-press [] to refresh=premi [] per cambiare
+press [] to refresh=premi [] per aggiornare
 credits: %i=crediti: %i
 
 # Not Working Lines - maybe not yet implemented for translation
 # Linee non funzionanti - probabilmente non sono ancora state implementate per essere tradotte
-Your Deck:=Mazzo:
-Your Deck=Mazzo
-Database: %i cards=Database: %i carte
-Collection=Collezione
-Collection - %i/%i=Collezione - %i/%i
-DECK: %i=MAZZO: %i
-DECK:%i=MAZZO:%i
+
 
 
 #types

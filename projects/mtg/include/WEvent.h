@@ -63,15 +63,17 @@ struct WEventCounters : public WEvent {
   int toughness;
   bool added;
   bool removed;
-  WEventCounters(Counters *counter,string name,int power, int toughness,bool added = false, bool removed = false);
+  MTGCardInstance * source;
+  WEventCounters(Counters *counter,string name,int power, int toughness,bool added = false, bool removed = false, MTGCardInstance * source = NULL);
   using WEvent::getTarget;
-  virtual Targetable * getTarget();
+  virtual Targetable * getTarget(int target);
 };
 
 struct WEventLife : public WEvent {
     Player * player;
     int amount;
-    WEventLife(Player * player,int amount);
+    MTGCardInstance * source;
+    WEventLife(Player * player, int amount, MTGCardInstance * source);
     virtual Targetable * getTarget(int target);
 };
 
@@ -190,6 +192,13 @@ struct WEventCardBlocked : public WEventCardUpdate {
 struct WEventCardSacrifice : public WEventCardUpdate {
     MTGCardInstance * cardAfter;
     WEventCardSacrifice(MTGCardInstance * card,MTGCardInstance * afterCard);
+    virtual Targetable * getTarget(int target);
+};
+
+//event when card is exploited.
+struct WEventCardExploited : public WEventCardUpdate {
+    MTGCardInstance * cardAfter;
+    WEventCardExploited(MTGCardInstance * card,MTGCardInstance * afterCard);
     virtual Targetable * getTarget(int target);
 };
 
@@ -341,13 +350,117 @@ struct WEventCardCopiedACard : public WEventCardUpdate {
     virtual Targetable * getTarget(int target);
 };
 
-//alterenergy event
-struct WEventplayerEnergized : public WEvent {
-    WEventplayerEnergized(Player * player,int nb_count);
+//alterpoison event
+struct WEventplayerPoisoned : public WEvent {
+    WEventplayerPoisoned(Player * player, int nb_count);
     Player * player;
     int nb_count;
     using WEvent::getTarget;
     virtual Targetable * getTarget(Player * player);
+};
+
+//alterenergy event
+struct WEventplayerEnergized : public WEvent {
+    WEventplayerEnergized(Player * player, int nb_count);
+    Player * player;
+    int nb_count;
+    using WEvent::getTarget;
+    virtual Targetable * getTarget(Player * player);
+};
+
+//alterexperience event
+struct WEventplayerExperienced : public WEvent {
+    WEventplayerExperienced(Player * player, int nb_count);
+    Player * player;
+    int nb_count;
+    using WEvent::getTarget;
+    virtual Targetable * getTarget(Player * player);
+};
+
+//monarch event
+struct WEventplayerMonarch : public WEvent {
+    WEventplayerMonarch(Player * player);
+    Player * player;
+    using WEvent::getTarget;
+    virtual Targetable * getTarget(Player * player);
+};
+
+//shuffle event
+struct WEventplayerShuffled : public WEvent {
+    WEventplayerShuffled(Player * player);
+    Player * player;
+    using WEvent::getTarget;
+    virtual Targetable * getTarget(Player * player);
+};
+
+//boast event
+struct WEventCardBoasted : public WEventCardUpdate {
+    WEventCardBoasted(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
+//surveil event
+struct WEventCardSurveiled : public WEventCardUpdate {
+    WEventCardSurveiled(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
+//foretell event
+struct WEventCardForetold : public WEventCardUpdate {
+    WEventCardForetold(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
+//training event
+struct WEventCardTrained : public WEventCardUpdate {
+    WEventCardTrained(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
+//scry event
+struct WEventCardScryed : public WEventCardUpdate {
+    WEventCardScryed(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
+//explores event
+struct WEventCardExplored : public WEventCardUpdate {
+    WEventCardExplored(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
+//dungeon completed event
+struct WEventCardDungeonCompleted : public WEventCardUpdate {
+    int totaldng;
+    string playerName;
+    WEventCardDungeonCompleted(MTGCardInstance * card, int totaldng, string playerName);
+    virtual Targetable * getTarget(int target);
+};
+
+//roll die event
+struct WEventCardRollDie : public WEventCardUpdate {
+    string playerName;
+    WEventCardRollDie(MTGCardInstance * card, string playerName);
+    virtual Targetable * getTarget(int target);
+};
+
+//flip coin event
+struct WEventCardFlipCoin : public WEventCardUpdate {
+    string playerName;
+    WEventCardFlipCoin(MTGCardInstance * card, string playerName);
+    virtual Targetable * getTarget(int target);
+};
+
+//mutation event
+struct WEventCardMutated : public WEventCardUpdate {
+    WEventCardMutated(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
+//token creation event
+struct WEventTokenCreated : public WEventCardUpdate {
+    WEventTokenCreated(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
 };
 
 std::ostream& operator<<(std::ostream&, const WEvent&);

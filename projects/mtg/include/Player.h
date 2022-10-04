@@ -43,11 +43,20 @@ public:
     int extraTurn;
     int drawCounter;
     int energyCount;
+    int experienceCount;
+    int yidaroCount;
+    int dungeonCompleted;
+    int numOfCommandCast;
+    int monarch;
+    int surveilOffset;
+    int devotionOffset;
+    int lastShuffleTurn;
     int epic;
     int forcefield;
     int dealsdamagebycombat;
     int initLife;
     int raidcount;
+    int cycledCount;
     int handmodifier;
     int snowManaG;
     int snowManaR;
@@ -55,6 +64,7 @@ public:
     int snowManaU;
     int snowManaW;
     int snowManaC;
+    string lastChosenName;
     vector<string> prowledTypes;
     vector<MTGCardInstance*>curses;
     Player(GameObserver *observer, string deckFile, string deckFileSmall, MTGDeck * deck = NULL);
@@ -69,9 +79,10 @@ public:
 
     int afterDamage();
 
-    int gainLife(int value);
-    int loseLife(int value);
-    int gainOrLoseLife(int value);
+    // Added source of life gain/loss in order to check later a possible exception.
+    int gainLife(int value, MTGCardInstance* source);
+    int loseLife(int value, MTGCardInstance* source);
+    int gainOrLoseLife(int value, MTGCardInstance* source);
 
     bool isPoisoned() {return (poisonCount > 0);}
     int poisoned();

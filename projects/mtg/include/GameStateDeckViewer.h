@@ -33,7 +33,9 @@ enum
     SBMENU_CHOICE = 802,
     SBMENU_ADD_NORMAL = 803,
     SBMENU_ADD_SB = 804,
-    SBMENU_ADD_CANCEL = 805
+    SBMENU_ADD_CMD = 805,
+    SBMENU_ADD_DNG = 806,
+    SBMENU_ADD_CANCEL = 807
 };
 
 // enums for menu options
@@ -52,6 +54,7 @@ enum DECK_VIEWER_MENU_ITEMS
     MENU_ITEM_YES = 20,
     MENU_ITEM_NO = 21,
     MENU_ITEM_FILTER_BY = 22,
+    MENU_ITEM_TOGGLE_VIEW = 23,
     MENUITEM_MORE_INFO = kInfoMenuID
 };
 
@@ -75,7 +78,7 @@ private:
     DeckViewerStages mStage;
     JMusic * bgMusic;
     
-    InteractiveButton *toggleDeckButton, *sbButton, *sellCardButton, *statsPrevButton, *filterButton, *toggleViewButton, *toggleUpButton, *toggleDownButton, *toggleLeftButton, *toggleRightButton;
+    InteractiveButton *toggleDeckButton, *sb_cmd_dng_Button, *sellCardButton, *statsPrevButton, *filterButton, *toggleViewButton, *toggleUpButton, *toggleDownButton, *toggleLeftButton, *toggleRightButton;
 
     WGuiFilters * filterMenu;
     WSrcDeckViewer * source;
@@ -89,6 +92,8 @@ private:
     DeckDataWrapper * myDeck;
     DeckDataWrapper * myCollection;
     DeckDataWrapper * mySideboard;
+    DeckDataWrapper * myCommandZone;
+    DeckDataWrapper * myDungeonZone;
     StatsWrapper * mStatsWrapper;
 
     int hudAlpha;
@@ -112,6 +117,8 @@ private:
     void setupView(AvailableView view, DeckDataWrapper *deck);
     void toggleView();
     void insertSideBoard();
+    void insertCommandZone();
+    void insertDungeonZone();
 public:
     GameStateDeckViewer(GameApp* parent);
     virtual ~GameStateDeckViewer();
@@ -119,11 +126,13 @@ public:
     void updateFilters();
     void rebuildFilters();
     void toggleCollection();
-    void toggleSideBoard();
+    void toggleSB_CMD_DNG();
     void Start();
     virtual void End();
     void addRemove(MTGCard * card);
     void SBaddRemove(MTGCard * card);
+    void CMDaddRemove(MTGCard * card);
+    void DNGaddRemove(MTGCard * card);
     void choiceAddRemove(MTGCard * card);
     virtual void Update(float dt);
     void renderOnScreenBasicInfo();

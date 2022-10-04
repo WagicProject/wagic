@@ -1316,6 +1316,22 @@ void WGuiAward::Underlay()
     char buf[1024];
     JQuadPtr trophy;
 
+#if defined (PSP)
+    string n = id ? Options::getName(id) : textId;
+    if (n.size())
+    {
+        sprintf(buf, "psptrophy_%s.png", n.c_str()); //Trophy specific to the award
+        trophy = WResourceManager::Instance()->RetrieveTempQuad(buf); //Themed version...
+    }
+
+    if (!trophy && id >= Options::SET_UNLOCKS)
+    {
+        trophy = WResourceManager::Instance()->RetrieveTempQuad("psptrophy_set.png"); //TODO FIXME: Should look in set dir too.
+    }
+
+    if (!trophy.get()) //Fallback to basic trophy image.
+        trophy = WResourceManager::Instance()->RetrieveTempQuad("psptrophy.png");
+#else
     string n = id ? Options::getName(id) : textId;
     if (n.size())
     {
@@ -1329,7 +1345,8 @@ void WGuiAward::Underlay()
     }
 
     if (!trophy.get()) //Fallback to basic trophy image.
-    trophy = WResourceManager::Instance()->RetrieveTempQuad("trophy.png");
+        trophy = WResourceManager::Instance()->RetrieveTempQuad("trophy.png");
+#endif
 
     if (trophy.get())
     {
@@ -1338,6 +1355,10 @@ void WGuiAward::Underlay()
         {
             trophy->SetHotSpot(0,0);
             JRenderer::GetInstance()->RenderQuad(trophy.get(), 0, SCREEN_HEIGHT-trophy->mHeight);
+        }
+        else if(trophy->mHeight == 1268.f && trophy->mWidth == 1203.f)
+        {
+            JRenderer::GetInstance()->RenderQuad(trophy.get(), -17, SCREEN_HEIGHT-35, 0, 240.f / trophy->mWidth, 210.f / trophy->mHeight);
         }
         else
             JRenderer::GetInstance()->RenderQuad(trophy.get(), 0, SCREEN_HEIGHT, 0, 171.f / trophy->mWidth, 192.f / trophy->mHeight);
@@ -1946,6 +1967,7 @@ bool WGuiFilters::isAvailable(int type)
             if (!wgfi || wgfi->mState != WGuiFilterItem::STATE_FINISHED) continue;
             switch (type)
             {
+            case WGuiFilterItem::FILTER_TYPE:
             case WGuiFilterItem::FILTER_SUBTYPE:
             case WGuiFilterItem::FILTER_BASIC:
                 return true;
@@ -2127,7 +2149,7 @@ void WGuiFilterItem::updateValue()
         }
         else if (filterType == FILTER_CMC)
         {
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 17; i++)
             {
                 sprintf(buf_code, "cmc:%i;", i);
                 sprintf(buf_name, "%i Mana", i);
@@ -2136,7 +2158,7 @@ void WGuiFilterItem::updateValue()
         }
         else if (filterType == FILTER_POWER)
         {
-            for (int i = 0; i < 14; i++)
+            for (int i = 0; i < 17; i++)
             {
                 sprintf(buf_code, "pow:%i;", i);
                 sprintf(buf_name, "%i power", i);
@@ -2145,7 +2167,7 @@ void WGuiFilterItem::updateValue()
         }
         else if (filterType == FILTER_TOUGH)
         {
-            for (int i = 0; i < 14; i++)
+            for (int i = 0; i < 18; i++)
             {
                 sprintf(buf_code, "tgh:%i;", i);
                 sprintf(buf_name, "%i toughness", i);
@@ -2164,6 +2186,13 @@ void WGuiFilterItem::updateValue()
             mParent->addArg("Exclusively Black", "xc:b;");
             mParent->addArg("Exclusively Red", "xc:r;");
             mParent->addArg("Exclusively Green", "xc:g;");
+            mParent->addArg("Not White", "nc:w;");
+            mParent->addArg("Not Blue", "nc:u;");
+            mParent->addArg("Not Black", "nc:b;");
+            mParent->addArg("Not Red", "nc:r;");
+            mParent->addArg("Not Green", "nc:g;");
+            mParent->addArg("Not Colorless", "nc:x;");
+            mParent->addArg("Only Multicolored", "nc:m;");
         }
         else if (filterType == FILTER_PRODUCE)
         {
@@ -2197,12 +2226,19 @@ void WGuiFilterItem::updateValue()
         }
         else if (filterType == FILTER_SET)
         {
-            char buf[512];
-            for (int i = 0; i < setlist.size(); i++)
-            {
+            vector<pair<string, string> > orderedSet;
+            for(int i = 0; i < setlist.size(); i++){
                 if (options[Options::optionSet(i)].number == 0) continue;
-                sprintf(buf, "s:%s;", setlist[i].c_str());
-                mParent->addArg((setlist.getInfo(i))->getName(), buf);
+                if (options[Options::SORTINGSETS].number == Constants::BY_DATE) // Now sets can be sorted by sector(orderindex) or name or release date.
+                    orderedSet.push_back(pair<string, string> (setlist.getInfo(i)->getDate(), setlist[i].c_str())); 
+                else if (options[Options::SORTINGSETS].number == Constants::BY_NAME)
+                    orderedSet.push_back(pair<string, string> (setlist.getInfo(i)->getName(), setlist[i].c_str()));
+                else
+                    orderedSet.push_back(pair<string, string> (setlist.getInfo(i)->getOrderIndex(), setlist[i].c_str()));
+            }
+            sort(orderedSet.begin(),orderedSet.end());
+            for (unsigned int i = 0; i < orderedSet.size(); i++){
+                mParent->addArg(setlist.getInfo(setlist.findSet(orderedSet.at(i).second))->getName(), "s:" + orderedSet.at(i).second + ";");
             }
         }
         else if (filterType == FILTER_ALPHA)

@@ -1,0 +1,16 @@
+[card]
+name=Lazav, Dimir Mastermind
+abilities=opponentshroud
+text=Hexproof -- Whenever a creature card is put into an opponent's graveyard from anywhere, you may have Lazav, Dimir Mastermind become a copy of that card except its name is still Lazav, Dimir Mastermind, it's legendary in addition to its other types, and it gains hexproof and this ability.
+mana={U}{U}{B}{B}
+type=Legendary Creature
+subtype=Shapeshifter
+power=3
+toughness=3
+[/card]
+[card]
+name=Stolen Identity
+text=Put a token onto the battlefield that's a copy of target artifact or creature. -- Cipher (Then you may exile this spell card encoded on a creature you control. Whenever that creature deals combat damage to a player, its controller may cast a copy of the encoded card without paying its mana cost.)
+mana={4}{U}{U}
+type=Sorcery
+[/card]

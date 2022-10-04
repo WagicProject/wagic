@@ -4,8 +4,8 @@
 const float CarouselDeckView::max_scale = 0.82f;
 const float CarouselDeckView::x_center = 180;
 const float CarouselDeckView::right_border = SCREEN_WIDTH + 180;
-const float CarouselDeckView::slide_animation_duration = 0.6f;
-const float CarouselDeckView::scroll_animation_duration = 0.3f;
+const float CarouselDeckView::slide_animation_duration = 0.5f;
+const float CarouselDeckView::scroll_animation_duration = 0.2f;
 
 CarouselDeckView::CarouselDeckView() :
     DeckView(10), mScrollOffset(0), mSlideOffset(0), mScrollEasing(mScrollOffset), mSlideEasing(mSlideOffset)

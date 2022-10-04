@@ -1,0 +1,132 @@
+[card]
+name=Juxtapose
+text=You and target player exchange control of the creature you each control with the highest converted mana cost. Then exchange control of artifacts the same way. If two or more permanents a player controls are tied for highest cost, their controller chooses one of them.
+mana={3}{U}
+type=Sorcery
+[/card]
+[card]
+name=Petra Sphinx
+text={T}: Target player names a card, then reveals the top card of his or her library. If that card is the named card, that player puts it into his or her hand. If it isn't, the player puts it into his or her graveyard.
+mana={2}{W}{W}{W}
+type=Creature
+subtype=Sphinx
+power=3
+toughness=4
+[/card]
+[card]
+name=Ydwen Efreet
+text=Whenever Ydwen Efreet blocks, flip a coin. If you lose the flip, remove Ydwen Efreet from combat and it can't block this turn. Creatures it was blocking that had become blocked by only Ydwen Efreet this combat become unblocked.
+mana={R}{R}{R}
+type=Creature
+subtype=Efreet
+power=3
+toughness=6
+[/card]
+[card]
+name=Seasinger
+text=When you control no Islands, sacrifice Seasinger. -- You may choose not to untap Seasinger during your untap step. -- {T}: Gain control of target creature whose controller controls an Island for as long as you control Seasinger and Seasinger remains tapped.
+mana={1}{U}{U}
+type=Creature
+subtype=Merfolk
+power=0
+toughness=1
+[/card]
+[card]
+name=Forcefield
+text={1}: The next time an unblocked creature of your choice would deal combat damage to you this turn, prevent all but 1 of that damage.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Word of Undoing
+text=Return target creature and all white Auras you own attached to it to their owners' hands.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Mesa Pegasus
+abilities=flying,banding
+text=Flying; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={1}{W}
+type=Creature
+subtype=Pegasus
+power=1
+toughness=1
+[/card]
+[card]
+name=Benalish Hero
+abilities=banding
+text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+[card]
+name=Oubliette
+text=When Oubliette enters the battlefield, exile target creature and all Auras attached to it. Note the number and kind of counters that were on that creature. -- When Oubliette leaves the battlefield, return the exiled card to the battlefield under its owner's control tapped with the noted number and kind of counters on it. If you do, return the exiled Aura cards to the battlefield under their owner's control attached to that permanent.
+mana={1}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Lim-Dul's Vault
+text=Look at the top five cards of your library. As many times as you choose, you may pay 1 life, put those cards on the bottom of your library in any order, then look at the top five cards of your library. Then shuffle your library and put the last cards you looked at this way on top of it in any order.
+mana={U}{B}
+type=Instant
+[/card]
+[card]
+name=Vesuvan Doppelganger
+text=You may have Vesuvan Doppelganger enter the battlefield as a copy of any creature on the battlefield except it doesn't copy that creature's color and it gains "At the beginning of your upkeep, you may have this creature become a copy of target creature except it doesn't copy that creature's color. If you do, this creature gains this ability."
+mana={3}{U}{U}
+type=Creature
+subtype=Shapeshifter
+power=0
+toughness=0
+[/card]
+[card]
+name=Knights of Thorn
+abilities=protection from red,banding
+text=Protection from red; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
+mana={3}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]
+[card]
+name=Greater Realm of Preservation
+text={1}{W}: The next time a black or red source of your choice would deal damage to you this turn, prevent that damage.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Chains of Mephistopheles
+text=If a player would draw a card except the first one he or she draws in his or her draw step each turn, that player discards a card instead. If the player discards a card this way, he or she draws a card. If the player doesn't discard a card this way, he or she puts the top card of his or her library into his or her graveyard.
+mana={1}{B}
+type=Enchantment
+[/card]
+[card]
+name=Stone Giant
+text={T}: Target creature you control with toughness less than Stone Giant's power gains flying until end of turn. Destroy that creature at the beginning of the next end step.
+mana={2}{R}{R}
+type=Creature
+subtype=Giant
+power=3
+toughness=4
+[/card]
+[card]
+name=Tawnos's Coffin
+text=You may choose not to untap Tawnos's Coffin during your untap step. -- {3}, {T}: Exile target creature and all Auras attached to it. Note the number and kind of counters that were on that creature. When Tawnos's Coffin leaves the battlefield or becomes untapped, return the exiled card to the battlefield under its owner's control tapped with the noted number and kind of counters on it, and if you do, return the exiled Aura cards to the battlefield under their owner's control attached to that permanent.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Seraph
+text=Flying -- Whenever a creature dealt damage by Seraph this turn dies, put that card onto the battlefield under your control at the beginning of the next end step. Sacrifice the creature when you lose control of Seraph.
+mana={6}{W}
+type=Creature
+subtype=Angel
+power=4
+toughness=4
+[/card]

@@ -1,4 +1,4 @@
-#NAME:Tree Planter
+#NAME:Vinelasher Armor
 #DESC:If you don't come to the forest,
 #DESC:the forest will come to you.
 #DESC:

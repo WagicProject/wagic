@@ -1,0 +1,64 @@
+[card]
+name=Grothama, All-Devouring
+text=Other creatures have "Whenever this creature attacks, you may have it fight Grothama, All-Devouring." -- When Grothama leaves the battlefield, each player draws cards equal to the amount of damage dealt to Grothama this turn by sources they controlled.
+mana={3}{G}{G}
+type=Legendary Creature
+subtype=Wurm
+power=10
+toughness=8
+[/card]
+[card]
+name=Okaun, Eye of Chaos
+text=Partner with Zndrsplt, Eye of Wisdom (When this creature enters the battlefield, target player may put Zndrsplt into their hand from their library, then shuffle.) -- At the beginning of combat on your turn, flip a coin until you lose a flip. -- Whenever a player wins a coin flip, double Okaun's power and toughness until end of turn.
+mana={4}{R}
+type=Legendary Creature
+subtype=Cyclops Berserker
+power=3
+toughness=3
+[/card]
+[card]
+name=Zndrsplt, Eye of Wisdom
+text=Partner with Okaun, Eye of Chaos (When this creature enters the battlefield, target player may put Okaun into their hand from their library, then shuffle.) -- At the beginning of combat on your turn, flip a coin until you lose a flip. -- Whenever a player wins a coin flip, draw a card.
+mana={4}{U}
+type=Legendary Creature
+subtype=Homunculus
+power=1
+toughness=4
+[/card]
+[card]
+name=Pir, Imaginative Rascal
+auto=may name(Put partner on your hand) name(Put partner on your hand) moveto(myhand) target(Toothy^ Imaginary Friend|mylibrary)
+text=Partner with Toothy, Imaginary Friend (When this creature enters the battlefield, target player may put Toothy into their hand from their library, then shuffle.) -- If one or more counters would be put on a permanent your team controls, that many plus one of each of those kinds of counters are put on that permanent instead.
+mana={2}{G}
+type=Legendary Creature
+subtype=Human
+power=1
+toughness=1
+[/card]
+[card]
+name=Oreskos Explorer
+text=When Oreskos Explorer enters the battlefield, search your library for up to X Plains cards, where X is the number of players who control more lands than you. Reveal those cards, put them into your hand, then shuffle your library.
+mana={1}{W}
+type=Creature
+subtype=Cat Scout
+power=2
+toughness=2
+[/card]
+[card]
+name=Fumble
+text=Return target creature to its owner's hand. Gain control of all Auras and Equipment that were attached to it, then attach them to another creature.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Bonus Round
+text=Until end of turn, whenever a player casts an instant or sorcery spell, that player copies it and may choose new targets for the copy.
+mana={1}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Stunning Reversal
+text=The next time you would lose the game this turn, instead draw seven cards and your life total becomes 1. -- Exile Stunning Reversal.
+mana={3}{B}
+type=Instant
+[/card]

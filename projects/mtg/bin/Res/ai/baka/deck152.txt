@@ -1,0 +1,28 @@
+#NAME:Bant Midrange
+#DESC:The New Innistrad Deck
+Teferi, Who Slows the Sunset (*) *3
+Luminarch Aspirant (*) *4
+Intrepid Adversary (*) *3
+Katilda, Dawnhart Prime (*) *4
+Elite Spellbinder (*) *4
+Augur of Autumn (*) *1
+Briarbridge Tracker (*) *2
+Brutal Cathar (*) *4
+Sigarda, Champion of Light (*) *4
+Tovolar's Huntmaster (*) *2
+Fateful Absence (*) *2
+Ranger Class (*) *2
+Forest (*) *1
+Plains (*) *3
+Branchloft Pathway (*) *4
+Hengegate Pathway (*) *4
+Barkchannel Pathway (*) *4
+Deserted Beach (*) *4
+Lair of the Hydra (*) *1
+Overgrown Farmland (*) *4
+#SB:Skyclave Apparition (*) *4
+#SB:Disdainful Stroke (*) *3
+#SB:Negate (*) *3
+#SB:Sunset Revelry (*) *2
+#SB:Pithing Needle (*) *2
+#SB:Ranger Class (*) *1

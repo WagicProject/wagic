@@ -1,8 +1,9 @@
 [meta]
 author=Wagic Team
 name=Conflux
-block=Shards of Alara
-year=2009
+block=Alara
+orderindex=EXP-ZE.CON
+year=2009-02-06
 total=145
 [/meta]
 [card]
@@ -546,7 +547,7 @@ id=184989
 rarity=R
 [/card]
 [card]
-primitive=Scornful AEther-Lich
+primitive=Scornful Aether-Lich
 id=186328
 rarity=U
 [/card]

@@ -22,8 +22,8 @@ WEventDamage::WEventDamage(Damage *damage) :
 {
 }
 
-WEventLife::WEventLife(Player * player,int amount) :
-    WEvent(), player(player),amount(amount)
+WEventLife::WEventLife(Player * player, int amount, MTGCardInstance* source) :
+    WEvent(), player(player), amount(amount), source(source)
 {
 }
 
@@ -43,8 +43,8 @@ WEventCardUpdate::WEventCardUpdate(MTGCardInstance * card) :
 }
 ;
 
-WEventCounters::WEventCounters(Counters *counter,string name,int power,int toughness,bool added,bool removed) :
-WEvent(),counter(counter),name(name),power(power),toughness(toughness),added(added),removed(removed)
+WEventCounters::WEventCounters(Counters *counter,string name,int power,int toughness,bool added,bool removed, MTGCardInstance* source) :
+WEvent(),counter(counter),name(name),power(power),toughness(toughness),added(added),removed(removed),source(source)
 {
 }
 
@@ -106,6 +106,11 @@ player(player), nb_cards(nb_cards),drawAbility(cardDraw)
 }
 
 WEventCardSacrifice::WEventCardSacrifice(MTGCardInstance * card, MTGCardInstance * after) :
+    WEventCardUpdate(card),cardAfter(after)
+{
+}
+
+WEventCardExploited::WEventCardExploited(MTGCardInstance * card, MTGCardInstance * after) :
     WEventCardUpdate(card),cardAfter(after)
 {
 }
@@ -282,8 +287,83 @@ WEventCombatStepChange::WEventCombatStepChange(CombatStep step) :
 {
 }
 
+WEventplayerPoisoned::WEventplayerPoisoned(Player * player, int nb_count) :
+    player(player), nb_count(nb_count)
+{
+}
+
 WEventplayerEnergized::WEventplayerEnergized(Player * player, int nb_count) :
     player(player), nb_count(nb_count)
+{
+}
+
+WEventplayerExperienced::WEventplayerExperienced(Player * player, int nb_count) :
+    player(player), nb_count(nb_count)
+{
+}
+
+WEventplayerMonarch::WEventplayerMonarch(Player * player) :
+    player(player)
+{
+}
+
+WEventplayerShuffled::WEventplayerShuffled(Player * player) :
+    player(player)
+{
+}
+
+WEventCardBoasted::WEventCardBoasted(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
+WEventCardSurveiled::WEventCardSurveiled(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
+WEventCardForetold::WEventCardForetold(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
+WEventCardTrained::WEventCardTrained(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
+WEventCardScryed::WEventCardScryed(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
+WEventCardExplored::WEventCardExplored(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
+WEventCardDungeonCompleted::WEventCardDungeonCompleted(MTGCardInstance * card, int totaldng, string playerName) :
+    WEventCardUpdate(card), totaldng(totaldng), playerName(playerName)
+{
+}
+
+WEventCardRollDie::WEventCardRollDie(MTGCardInstance * card, string playerName) :
+    WEventCardUpdate(card), playerName(playerName)
+{
+}
+
+WEventCardFlipCoin::WEventCardFlipCoin(MTGCardInstance * card, string playerName) :
+    WEventCardUpdate(card), playerName(playerName)
+{
+}
+
+WEventCardMutated::WEventCardMutated(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
+WEventTokenCreated::WEventTokenCreated(MTGCardInstance * card) :
+    WEventCardUpdate(card)
 {
 }
 ;
@@ -314,7 +394,7 @@ Targetable * WEventLife::getTarget(int target)
     return NULL;
 }
 
-Targetable * WEventCounters::getTarget()
+Targetable * WEventCounters::getTarget(int target)
 {
     return targetCard;
 }
@@ -362,6 +442,15 @@ Targetable * WEventCardAttackedAlone::getTarget(int target)
 }
 
 Targetable * WEventCardSacrifice::getTarget(int target)
+{
+    if (target)
+    {
+            return cardAfter;
+    }
+    return NULL;
+}
+
+Targetable * WEventCardExploited::getTarget(int target)
 {
     if (target)
     {
@@ -484,7 +573,97 @@ Targetable * WEventCardCopiedACard::getTarget(int target)
     return NULL;
 }
 
+Targetable * WEventCardMutated::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardBoasted::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardSurveiled::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardForetold::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardTrained::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardScryed::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardExplored::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardDungeonCompleted::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardRollDie::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardFlipCoin::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventTokenCreated::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventplayerPoisoned::getTarget(Player * player)
+{
+    if (player) return player;
+    return NULL;
+}
+
 Targetable * WEventplayerEnergized::getTarget(Player * player)
+{
+    if (player) return player;
+    return NULL;
+}
+
+Targetable * WEventplayerExperienced::getTarget(Player * player)
+{
+    if (player) return player;
+    return NULL;
+}
+
+Targetable * WEventplayerMonarch::getTarget(Player * player)
+{
+    if (player) return player;
+    return NULL;
+}
+
+Targetable * WEventplayerShuffled::getTarget(Player * player)
 {
     if (player) return player;
     return NULL;

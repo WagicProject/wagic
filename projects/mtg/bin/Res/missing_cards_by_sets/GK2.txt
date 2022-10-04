@@ -1,0 +1,37 @@
+[card]
+name=Isperia the Inscrutable
+abilities=flying
+text=Flying -- Whenever Isperia the Inscrutable deals combat damage to a player, name a card. That player reveals his or her hand. If he or she reveals the named card, search your library for a creature card with flying, reveal it, put it into your hand, then shuffle your library.
+mana={1}{W}{W}{U}{U}
+type=Legendary Creature
+subtype=Sphinx
+power=3
+toughness=6
+[/card]
+[card]
+name=Burning-Tree Shaman
+text=Whenever a player activates an ability that isn't a mana ability, Burning-Tree Shaman deals 1 damage to that player.
+mana={1}{R}{G}
+type=Creature
+subtype=Centaur Shaman
+power=3
+toughness=4
+[/card]
+[card]
+name=Azorius Guildmage
+text={2}{W}: Tap target creature. -- {2}{U}: Counter target activated ability. (Mana abilities can't be targeted.)
+mana={WU}{WU}
+type=Creature
+subtype=Vedalken Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Experiment Kraj
+text=Experiment Kraj has all activated abilities of each other creature with a +1/+1 counter on it. -- {T}: Put a +1/+1 counter on target creature.
+mana={2}{G}{G}{U}{U}
+type=Legendary Creature
+subtype=Ooze Mutant
+power=4
+toughness=6
+[/card]

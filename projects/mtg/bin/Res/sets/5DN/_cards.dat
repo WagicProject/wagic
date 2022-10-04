@@ -2,8 +2,9 @@
 author=Wagic Team
 name=Fifth Dawn
 block=Mirrodin
-year=2004
-total=165
+orderindex=EXP-X.5DN
+year=2004-06-04
+total=166
 [/meta]
 [card]
 primitive=Abuna's Chant
@@ -326,7 +327,7 @@ id=50209
 rarity=C
 [/card]
 [card]
-primitive=Fold into AEther
+primitive=Fold into Aether
 id=51631
 rarity=U
 [/card]

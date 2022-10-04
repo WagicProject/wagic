@@ -1,0 +1,26 @@
+#NAME: Dungeon Delving
+#DESC: New Player D&D Experience 
+Ranger's Hawk (*) *3
+Malakir Blood-Priest (*) *3
+Nullpriest of Oblivion (*) *1
+Thunderous Orator (*) *3
+Triumphant Adventurer (*) *1
+Acererak the Archlich (*) *1
+Gloom Stalker (*) *2
+Nadaar, Selfless Paladin (*) *1
+Yuan-Ti Fang-Blade (*) *3
+Barrowin of Clan Undurr (*) *3
+Veteran Dungeoneer (*) *3
+Demonic Gifts (*) *2
+Vanishing Verse (*) *1
+Silverquill Command (*) *1
+Closing Statement (*) *3
+Cloister Gargoyle (*) *3
+Precipitous Drop (*) *2
+Brightclimb Pathway (*) *1
+Plains (*) *9
+Snowfield Sinkhole (*) *4
+Swamp (*) *10
+#DNG:Dungeon of the Mad Mage (*) *1
+#DNG:Lost Mine of Phandelver (*) *1
+#DNG:Tomb of Annihilation (*) *1

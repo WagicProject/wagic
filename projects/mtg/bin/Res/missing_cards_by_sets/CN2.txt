@@ -1,0 +1,217 @@
+[card]
+name=Messenger Jays
+text=Flying -- Council's dilemma - When Messenger Jays enters the battlefield, starting with you, each player votes for feather or quill. Put a +1/+1 counter on Messenger Jays for each feather vote and draw a card for each quill vote. For each card drawn this way, discard a card.
+mana={4}{U}
+type=Creature
+subtype=Bird
+power=2
+toughness=1
+[/card]
+[card]
+name=Capital Punishment
+text=Council's dilemma - Starting with you, each player votes for death or taxes. Each opponent sacrifices a creature for each death vote and discards a card for each taxes vote.
+mana={4}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Archdemon of Paliano
+text=Draft Archdemon of Paliano face up.  -- As long as Archdemon of Paliano is face up during the draft, you can't look at booster packs and must draft cards at random. After you draft three cards this way, turn Archdemon of Paliano face down. (You may look at cards as you draft them.) -- Flying
+mana={2}{B}{B}
+type=Creature
+subtype=Demon
+power=5
+toughness=4
+[/card]
+[card]
+name=Spire Phantasm
+text=Reveal Spire Phantasm as you draft it. The next time a player drafts a card from this booster pack, guess that card's name. Then that player reveals the drafted card. -- Flying -- When Spire Phantasm enters the battlefield, if you guessed correctly for a card named Spire Phantasm, draw a card.
+mana={2}{U}{U}
+type=Creature
+subtype=Gargoyle Illusion
+power=3
+toughness=2
+[/card]
+[card]
+name=Ballot Broker
+text=While voting, you may vote an additional time. (The votes can be for different choices or for the same choice.)
+mana={2}{W}
+type=Creature
+subtype=Human Advisor
+power=2
+toughness=3
+[/card]
+[card]
+name=Paliano Vanguard
+text=Draft Paliano Vanguard face up. -- As you draft a creature card, you may reveal it, note its creature types, then turn Paliano Vanguard face down. -- Other creatures you control of a type you noted for cards named Paliano Vanguard get +1/+1.
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Noble Banneret
+text=Draft Noble Banneret face up. -- As you draft a creature card, you may reveal it, note its name, then turn Noble Banneret face down. -- As long as you control one or more creatures with a name you noted for cards named Noble Banneret, Noble Banneret and those creatures get +1/+1 and have lifelink.
+mana={2}{W}{W}
+type=Creature
+subtype=Human Knight
+power=3
+toughness=3
+[/card]
+[card]
+name=Lieutenants of the Guard
+text=Council's dilemma - When Lieutenants of the Guard enters the battlefield, starting with you, each player votes for strength or numbers. Put a +1/+1 counter on Lieutenants of the Guard for each strength vote and put a 1/1 white Soldier creature token onto the battlefield for each numbers vote.
+mana={4}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Custodi Peacekeeper
+text=Reveal Custodi Peacekeeper as you draft it and note how many cards you've drafted this draft round, including Custodi Peacekeeper. -- {W}, {T}: Tap target creature with power less than or equal to the highest number you noted for cards named Custodi Peacekeeper.
+mana={2}{W}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=3
+[/card]
+[card]
+name=Illusionary Informant
+text=Draft Illusionary Informant face up. -- During the draft, you may turn Illusionary Informant face down. If you do, look at the next card drafted by a player of your choice. -- Flying
+mana={1}{U}
+type=Creature
+subtype=Bird Illusion
+power=1
+toughness=3
+[/card]
+[card]
+name=Expropriate
+text=Council's dilemma - Starting with you, each player votes for time or money. For each time vote, take an extra turn after this one. For each money vote, choose a permanent owned by the voter and gain control of it. Exile Expropriate.
+mana={7}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Arcane Savant
+text=Before you shuffle your deck to start the game, you may reveal this card from your deck and exile an instant or sorcery card you drafted that isn't in your deck. -- When Arcane Savant enters the battlefield, copy a card you exiled with cards named Arcane Savant. You may cast the copy without paying its mana cost.
+mana={3}{U}{U}
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=3
+[/card]
+[card]
+name=Selvala's Stampede
+text=Council's dilemma - Starting with you, each player votes for wild or free. Reveal cards from the top of your library until you reveal a creature card for each wild vote. Put those creature cards onto the battlefield, then shuffle the rest into your library. You may put a permanent card from your hand onto the battlefield for each free vote.
+mana={4}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Orchard Elemental
+text=Council's dilemma - When Orchard Elemental enters the battlefield, starting with you, each player votes for sprout or harvest. Put two +1/+1 counters on Orchard Elemental for each sprout vote. You gain 3 life for each harvest vote.
+mana={5}{G}
+type=Creature
+subtype=Elemental
+power=2
+toughness=2
+[/card]
+[card]
+name=Leovold's Operative
+text=Draft Leovold's Operative face up.  -- As you draft a card, you may draft an additional card from that booster pack. If you do, turn Leovold's Operative face down, then pass the next booster pack without drafting a card from it. (You may look at that booster pack.)
+mana={2}{G}
+type=Creature
+subtype=Elf Rogue
+power=3
+toughness=2
+[/card]
+[card]
+name=Wild Pair
+text=Whenever a creature enters the battlefield, if you cast it from your hand, you may search your library for a creature card with the same total power and toughness and put it onto the battlefield. If you do, shuffle your library.
+mana={4}{G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Spy Kit
+text=Equipped creature gets +1/+1 and has all names of nonlegendary creature cards in addition to its name. -- Equip {2}
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Desertion
+text=Counter target spell. If an artifact or creature spell is countered this way, put that card onto the battlefield under your control instead of into its owner's graveyard.
+mana={3}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Covenant of Minds
+text=Reveal the top three cards of your library. Target opponent may choose to put those cards into your hand. If he or she doesn't, put those cards into your graveyard and draw five cards.
+mana={4}{U}
+type=Sorcery
+[/card]
+[card]
+name=Smuggler Captain
+text=Draft Smuggler Captain face up. -- As you draft a card, you may reveal it, note its name, then turn Smuggler Captain face down. -- When Smuggler Captain enters the battlefield, you may search your library for a card with a name you noted for cards named Smuggler Captain, reveal it, put it into your hand, then shuffle your library.
+mana={3}{B}
+type=Creature
+subtype=Human Pirate
+power=2
+toughness=2
+[/card]
+[card]
+name=Regicide
+text=Reveal Regicide as you draft it. The player to your right chooses a color, you choose another color, then the player to your left chooses a third color. -- Destroy target creature that's one or more of the colors chosen as you drafted cards named Regicide.
+mana={B}
+type=Instant
+[/card]
+[card]
+name=Garbage Fire
+text=Reveal Garbage Fire as you draft it and note how many cards you've drafted this draft round, including Garbage Fire. -- Garbage Fire deals damage to target creature equal to the highest number you noted for cards named Garbage Fire.
+mana={2}{R}
+type=Instant
+[/card]
+[card]
+name=Caller of the Untamed
+text=Before you shuffle your deck to start the game, you may reveal this card from your deck and exile a creature card you drafted that isn't in your deck. -- {X}, {T}: Put a token onto the battlefield that's a copy of a card you exiled with cards named Caller of the Untamed. X is the converted mana cost of that card.
+mana={3}{G}
+type=Creature
+subtype=Elf Shaman
+power=2
+toughness=4
+[/card]
+[card]
+name=Borderland Explorer
+text=When Borderland Explorer enters the battlefield, each player may discard a card. Each player who discarded a card this way may search his or her library for a basic land card, reveal it, put it into his or her hand, then shuffle his or her library.
+mana={1}{G}
+type=Creature
+subtype=Elf Scout
+power=3
+toughness=1
+[/card]
+[card]
+name=Animus of Predation
+text=Draft Animus of Predation face up. -- As you draft a card, you may remove it from the draft face up. (It isn't in your card pool.) -- If you removed a creature card with flying from the draft with cards named Animus of Predation, Animus of Predation has flying. The same is true for first strike, double strike, deathtouch, haste, hexproof, indestructible, lifelink, menace, reach, and vigilance.
+mana={4}{G}
+type=Creature
+subtype=Avatar
+power=4
+toughness=4
+[/card]
+[card]
+name=Volatile Chimera
+text=Before you shuffle your deck to start the game, you may reveal this card from your deck and exile three or more creature cards you drafted that aren't in your deck. -- {1}{R}: Choose a card at random you exiled with cards named Volatile Chimera. Volatile Chimera becomes a copy of that card and gains this ability.
+mana={2}{R}
+type=Creature
+subtype=Elemental Chimera
+power=3
+toughness=2
+[/card]
+[card]
+name=Pyretic Hunter
+text=Reveal Pyretic Hunter as you draft it and note how many cards you've drafted this draft round, including Pyretic Hunter. -- Menace (This creature can't be blocked except by two or more creatures.) -- Pyretic Hunter enters the battlefield with X +1/+1 counters on it, where X is the highest number you noted for cards named Pyretic Hunter.
+mana={4}{R}
+type=Creature
+subtype=Elemental Cat
+power=0
+toughness=0
+[/card]

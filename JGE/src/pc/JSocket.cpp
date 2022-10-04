@@ -48,7 +48,9 @@ JSocket::JSocket(string ipAddr)
 
 #ifdef WIN32
 	unsigned int addr_dest = inet_addr(ipAddr.c_str());
-	hostentptr=gethostbyaddr((char*) &addr_dest, 4, AF_INET);
+	hostentptr = gethostbyaddr((char*) &addr_dest, 4, AF_INET);
+	if (hostentptr == NULL)
+	    hostentptr = gethostbyname(ipAddr.c_str()); // Fix for Windows if IP Address cannot be resolved.
 #elif LINUX
 	hostentptr = gethostbyname(ipAddr.c_str());
 #endif

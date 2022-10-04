@@ -18,10 +18,13 @@ const string Options::optionNames[] = {
   "sfxVolume",
   "difficulty",
   "cheatmode",
-    "optimizedhand",
-    "cheatmodedecks",
+  "optimizedhand",
+  "cheatmodedecks",
+  "ShowBorder",
   "BlackBorder",
+  "SortDecksByDate",
   "ShowTokens",
+  "SortingSets",
   "GDVLargeImages",
   "CardPrefetching",
   "displayOSD",
@@ -73,6 +76,7 @@ const string Options::optionNames[] = {
   "prx_eviltwin",
   "prx_rnddeck",
   "aw_collector",
+  "prx_commander",
 
 };
 
@@ -367,7 +371,7 @@ int GameOptions::load()
         (*this)[Options::MAX_GRADE].number = Constants::GRADE_BORDERLINE;
 
     if (!(*this)[Options::AIDECKS_UNLOCKED].number)
-        (*this)[Options::AIDECKS_UNLOCKED].number = 10;
+        (*this)[Options::AIDECKS_UNLOCKED].number = 20;
 
     return 1;
 }
@@ -489,6 +493,11 @@ GameOption * GameOptions::get(int optionID)
         case Options::MAX_GRADE:
             goEnum = NEW GameOptionEnum();
             goEnum->def = OptionMaxGrade::getInstance();
+            go = goEnum;
+            break;
+        case Options::SORTINGSETS:
+            goEnum = NEW GameOptionEnum();
+            goEnum->def = OptionASortingSets::getInstance();
             go = goEnum;
             break;
         case Options::ASPHASES:
@@ -956,6 +965,17 @@ OptionMaxGrade::OptionMaxGrade()
 
 }
 ;
+// MARK:  - 
+
+// MARK:  OptionASortingSets
+
+OptionASortingSets OptionASortingSets::mDef = OptionASortingSets();
+OptionASortingSets::OptionASortingSets()
+{
+    mDef.values.push_back(EnumDefinition::assoc(Constants::BY_SECTOR, "Sector"));
+    mDef.values.push_back(EnumDefinition::assoc(Constants::BY_NAME, "Name"));
+    mDef.values.push_back(EnumDefinition::assoc(Constants::BY_DATE, "Date"));
+}
 // MARK:  - 
 
 // MARK:  OptionASkipPhase

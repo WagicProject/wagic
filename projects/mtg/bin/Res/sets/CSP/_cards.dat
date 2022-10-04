@@ -2,7 +2,8 @@
 author=Wagic Team
 name=Coldsnap
 block=Ice Age
-year=2006
+orderindex=EXP-9.CSP
+year=2006-07-21
 total=155
 [/meta]
 [card]
@@ -666,7 +667,7 @@ id=121251
 rarity=R
 [/card]
 [card]
-primitive=Surging AEther
+primitive=Surging Aether
 id=122052
 rarity=C
 [/card]

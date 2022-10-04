@@ -1,0 +1,28 @@
+[card]
+name=Soul Ransom
+text=Enchant creature -- You control enchanted creature. -- Discard two cards: Soul Ransom's controller sacrifices it, then draws two cards. Only any opponent may activate this ability.
+mana={2}{U}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Wort, the Raidmother
+text=When Wort, the Raidmother enters the battlefield, put two 1/1 red and green Goblin Warrior creature tokens onto the battlefield. -- Each red or green instant or sorcery spell you cast has conspire. (As you cast the spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose new targets for the copy.)
+mana={4}{RG}{RG}
+type=Legendary Creature
+subtype=Goblin Shaman
+power=3
+toughness=3
+[/card]
+[card]
+name=Grafdigger's Cage
+text=Creature cards can't enter the battlefield from graveyards or libraries. -- Players can't cast cards in graveyards or libraries.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Gifts Ungiven
+text=Search your library for four cards with different names and reveal them. Target opponent chooses two of those cards. Put the chosen cards into your graveyard and the rest into your hand. Then shuffle your library.
+mana={3}{U}
+type=Instant
+[/card]

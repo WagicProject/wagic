@@ -493,7 +493,7 @@ void StatsWrapper::updateStats(DeckDataWrapper *myDeck)
         for (int v = 0; v < (int) abilitiesVector.size(); v++)
         {
             string s = abilitiesVector[v];
-            size_t t = s.find("add");
+            size_t t = s.find("add{"); //Fix crash when ability contains "counteradded" or similar substring.
             if (t != string::npos)
             {
                 s = s.substr(t + 3);

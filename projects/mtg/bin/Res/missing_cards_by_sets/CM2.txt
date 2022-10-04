@@ -1,0 +1,97 @@
+[card]
+name=Gisela, Blade of Goldnight
+abilities=flying,first strike
+text=Flying, first strike -- If a source would deal damage to an opponent or a permanent an opponent controls, that source deals double that damage to that player or permanent instead. -- If a source would deal damage to you or a permanent you control, prevent half that damage, rounded up.
+mana={4}{R}{W}{W}
+type=Legendary Creature
+subtype=Angel
+power=5
+toughness=5
+[/card]
+[card]
+name=Minds Aglow
+text=Join forces - Starting with you, each player may pay any amount of mana. Each player draws X cards, where X is the total amount of mana paid this way.
+mana={U}
+type=Sorcery
+[/card]
+[card]
+name=Manifold Insights
+text=Reveal the top ten cards of your library. Starting with the next opponent in turn order, each opponent chooses a different nonland card from among them. Put the chosen cards into your hand and the rest on the bottom of your library in a random order.
+mana={2}{U}
+type=Sorcery
+[/card]
+[card]
+name=Mirrorweave
+text=Each other creature becomes a copy of target nonlegendary creature until end of turn.
+mana={2}{WU}{WU}
+type=Instant
+[/card]
+[card]
+name=Oreskos Explorer
+text=When Oreskos Explorer enters the battlefield, search your library for up to X Plains cards, where X is the number of players who control more lands than you. Reveal those cards, put them into your hand, then shuffle your library.
+mana={1}{W}
+type=Creature
+subtype=Cat Scout
+power=2
+toughness=2
+[/card]
+[card]
+name=Hostility
+text=Haste -- If a spell you control would deal damage to an opponent, prevent that damage. Put a 3/1 red Elemental Shaman creature token with haste onto the battlefield for each 1 damage prevented this way. -- When Hostility is put into a graveyard from anywhere, shuffle it into its owner's library.
+mana={3}{R}{R}{R}
+type=Creature
+subtype=Elemental Incarnation
+power=6
+toughness=6
+[/card]
+[card]
+name=Bitter Feud
+text=As Bitter Feud enters the battlefield, choose two players. -- If a source controlled by one of the chosen players would deal damage to the other chosen player or a permanent that player controls, that source deals double that damage to that player or permanent instead.
+mana={4}{R}
+type=Enchantment
+[/card]
+[card]
+name=Volcanic Offering
+text=Destroy target nonbasic land you don't control and target nonbasic land of an opponent's choice you don't control. -- Volcanic Offering deals 7 damage to target creature you don't control and 7 damage to target creature of an opponent's choice you don't control.
+mana={4}{R}
+type=Instant
+[/card]
+[card]
+name=The Mimeoplasm
+text=As The Mimeoplasm enters the battlefield, you may exile two creature cards from graveyards. If you do, it enters the battlefield as a copy of one of those cards with a number of additional +1/+1 counters on it equal to the power of the other card.
+mana={2}{G}{U}{B}
+type=Legendary Creature
+subtype=Ooze
+power=0
+toughness=0
+[/card]
+[card]
+name=Impact Resonance
+text=Impact Resonance deals X damage divided as you choose among any number of target creatures, where X is the greatest amount of damage dealt by a source to a permanent or player this turn.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Skullbriar, the Walking Grave
+text=Haste -- Whenever Skullbriar, the Walking Grave deals combat damage to a player, put a +1/+1 counter on it. -- Counters remain on Skullbriar as it moves to any zone other than a player's hand or library.
+mana={B}{G}
+type=Legendary Creature
+subtype=Zombie Elemental
+power=1
+toughness=1
+[/card]
+[card]
+name=Shared Trauma
+text=Join forces - Starting with you, each player may pay any amount of mana. Each player puts the top X cards of his or her library into his or her graveyard, where X is the total amount of mana paid this way.
+mana={B}
+type=Sorcery
+[/card]
+[card]
+name=Epochrasite
+text=Epochrasite enters the battlefield with three +1/+1 counters on it if you didn't cast it from your hand. -- When Epochrasite dies, exile it with three time counters on it and it gains suspend. (At the beginning of your upkeep, remove a time counter. When the last is removed, cast this card without paying its mana cost. It has haste.)
+mana={2}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=1
+[/card]

@@ -44,6 +44,7 @@ public:
     MTGCardInstance * targetter; //Optional, usually equals source, used for protection from...
     int maxtargets;
     bool done;
+    bool autoChoice; // added to allow choice from game menu.
     bool targetMin;
     bool validTargetsExist(int maxTarget = 1);
     int attemptsToFill;
@@ -153,13 +154,13 @@ class DamageableTargetChooser: public TypeTargetChooser
 {
 public:
     bool withoutProtections;
-    DamageableTargetChooser(GameObserver *observer, int * _zones, int _nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false, bool targetMin = false) :
-        TypeTargetChooser(observer, "creature",_zones, _nbzones, card, _maxtargets, other, targetMin)
+    DamageableTargetChooser(GameObserver *observer, int * _zones, int _nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false, bool targetMin = false, string type = "creature") :
+        TypeTargetChooser(observer, type.c_str(),_zones, _nbzones, card, _maxtargets, other, targetMin)
     {
     }
     ;
-    DamageableTargetChooser(GameObserver *observer, MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false, bool targetMin = false) :
-        TypeTargetChooser(observer, "creature", card, _maxtargets, other, targetMin)
+    DamageableTargetChooser(GameObserver *observer, MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false, bool targetMin = false, string type = "creature") :
+        TypeTargetChooser(observer, type.c_str(), card, _maxtargets, other, targetMin)
     {
     }
     ;
@@ -396,5 +397,25 @@ public:
     virtual TotemChooser * clone() const;
     virtual bool equals(TargetChooser * tc);
     ~TotemChooser();
+};
+
+class EqpChooser: public TypeTargetChooser
+{
+public:
+    bool withoutProtections;
+    EqpChooser(GameObserver *observer, int * _zones, int _nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false, bool targetMin = false) :
+    TypeTargetChooser(observer, "*",_zones, _nbzones, card, _maxtargets, other, targetMin)
+    {
+    }
+    ;
+    EqpChooser(GameObserver *observer, MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false,bool targetMin = false) :
+        TypeTargetChooser(observer, "*", card, _maxtargets, other,targetMin)
+    {
+    }
+    ;
+    virtual bool canTarget(Targetable * target, bool withoutProtections = false);
+    virtual EqpChooser * clone() const;
+    virtual bool equals(TargetChooser * tc);
+    ~EqpChooser();
 };
 #endif

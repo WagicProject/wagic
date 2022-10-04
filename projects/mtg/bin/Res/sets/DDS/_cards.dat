@@ -1,0 +1,332 @@
+[meta]
+author=Wagic Team
+name=Duel Decks: Mind vs. Might
+orderindex=DUE-K.DDS
+year=2017-03-31
+total=65
+[/meta]
+[card]
+primitive=Jhoira of the Ghitu
+id=426573
+rarity=M
+[/card]
+[card]
+primitive=Beacon of Tomorrows
+id=426574
+rarity=R
+[/card]
+[card]
+primitive=Deep-Sea Kraken
+id=426575
+rarity=R
+[/card]
+[card]
+primitive=Mind's Desire
+id=426576
+rarity=R
+[/card]
+[card]
+primitive=Peer Through Depths
+id=426577
+rarity=C
+[/card]
+[card]
+primitive=Quicken
+id=426578
+rarity=R
+[/card]
+[card]
+primitive=Reach Through Mists
+id=426579
+rarity=C
+[/card]
+[card]
+primitive=Sage-Eye Avengers
+id=426580
+rarity=R
+[/card]
+[card]
+primitive=Sift Through Sands
+id=426581
+rarity=C
+[/card]
+[card]
+primitive=Snap
+id=426582
+rarity=C
+[/card]
+[card]
+primitive=Talrand, Sky Summoner
+id=426583
+rarity=R
+[/card]
+[card]
+primitive=Temporal Fissure
+id=426584
+rarity=C
+[/card]
+[card]
+primitive=The Unspeakable
+id=426585
+rarity=R
+[/card]
+[card]
+primitive=Desperate Ritual
+id=426586
+rarity=U
+[/card]
+[card]
+primitive=Empty the Warrens
+id=426587
+rarity=C
+[/card]
+[card]
+primitive=Grapeshot
+id=426588
+rarity=C
+[/card]
+[card]
+primitive=Rift Bolt
+id=426589
+rarity=C
+[/card]
+[card]
+primitive=Shivan Meteor
+id=426590
+rarity=U
+[/card]
+[card]
+primitive=Volcanic Vision
+id=426591
+rarity=R
+[/card]
+[card]
+primitive=Young Pyromancer
+id=426592
+rarity=U
+[/card]
+[card]
+primitive=Firemind's Foresight
+id=426593
+rarity=R
+[/card]
+[card]
+primitive=Goblin Electromancer
+id=426594
+rarity=C
+[/card]
+[card]
+primitive=Jori En, Ruin Diver
+id=426595
+rarity=R
+[/card]
+[card]
+primitive=Nivix Cyclops
+id=426596
+rarity=C
+[/card]
+[card]
+primitive=Spellheart Chimera
+id=426597
+rarity=U
+[/card]
+[card]
+primitive=Nucklavee
+id=426598
+rarity=U
+[/card]
+[card]
+primitive=Swiftwater Cliffs
+id=426599
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=426600
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=426601
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=426602
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=426603
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=426604
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=426605
+rarity=L
+[/card]
+[card]
+primitive=Lovisa Coldeyes
+id=426606
+rarity=M
+[/card]
+[card]
+primitive=Beacon of Destruction
+id=426607
+rarity=R
+[/card]
+[card]
+primitive=Boldwyr Intimidator
+id=426608
+rarity=U
+[/card]
+[card]
+primitive=Firebolt
+id=426609
+rarity=C
+[/card]
+[card]
+primitive=Gorehorn Minotaurs
+id=426610
+rarity=C
+[/card]
+[card]
+primitive=Kamahl, Pit Fighter
+id=426611
+rarity=R
+[/card]
+[card]
+primitive=Kruin Striker
+id=426612
+rarity=C
+[/card]
+[card]
+primitive=Zo-Zu the Punisher
+id=426613
+rarity=R
+[/card]
+[card]
+primitive=Ambassador Oak
+id=426614
+rarity=C
+[/card]
+[card]
+primitive=Beast Attack
+id=426615
+rarity=U
+[/card]
+[card]
+primitive=Call of the Herd
+id=426616
+rarity=R
+[/card]
+[card]
+primitive=Cloudcrown Oak
+id=426617
+rarity=C
+[/card]
+[card]
+primitive=Harmonize
+id=426618
+rarity=U
+[/card]
+[card]
+primitive=Increasing Savagery
+id=426619
+rarity=R
+[/card]
+[card]
+primitive=Rampant Growth
+id=426620
+rarity=C
+[/card]
+[card]
+primitive=Roar of the Wurm
+id=426621
+rarity=U
+[/card]
+[card]
+primitive=Skarrgan Pit-Skulk
+id=426622
+rarity=C
+[/card]
+[card]
+primitive=Sylvan Might
+id=426623
+rarity=C
+[/card]
+[card]
+primitive=Talara's Battalion
+id=426624
+rarity=R
+[/card]
+[card]
+primitive=Radha, Heir to Keld
+id=426625
+rarity=R
+[/card]
+[card]
+primitive=Relentless Hunter
+id=426626
+rarity=U
+[/card]
+[card]
+primitive=Burning-Tree Emissary
+id=426627
+rarity=U
+[/card]
+[card]
+primitive=Guttural Response
+id=426628
+rarity=U
+[/card]
+[card]
+primitive=Rubblebelt Raiders
+id=426629
+rarity=R
+[/card]
+[card]
+primitive=Coat of Arms
+id=426630
+rarity=R
+[/card]
+[card]
+primitive=Rugged Highlands
+id=426631
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=426632
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=426633
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=426634
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=426635
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=426636
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=426637
+rarity=L
+[/card]

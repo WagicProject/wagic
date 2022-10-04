@@ -1,0 +1,537 @@
+[meta]
+author=Wagic Team
+name=Archenemy: Nicol Bolas
+orderindex=COM-E.E01
+year=2017-06-16
+total=106
+[/meta]
+[card]
+primitive=Aegis Angel
+id=430540
+rarity=R
+[/card]
+[card]
+primitive=Aerial Responder
+id=430541
+rarity=U
+[/card]
+[card]
+primitive=Anointer of Champions
+id=430542
+rarity=U
+[/card]
+[card]
+primitive=Doomed Traveler
+id=430543
+rarity=C
+[/card]
+[card]
+primitive=Excoriate
+id=430544
+rarity=C
+[/card]
+[card]
+primitive=Expedition Raptor
+id=430545
+rarity=C
+[/card]
+[card]
+primitive=Fencing Ace
+id=430546
+rarity=U
+[/card]
+[card]
+primitive=Fiendslayer Paladin
+id=430547
+rarity=R
+[/card]
+[card]
+primitive=Flickerwisp
+id=430548
+rarity=U
+[/card]
+[card]
+primitive=Gideon Jura
+id=430549
+rarity=M
+[/card]
+[card]
+primitive=Gideon's Lawkeeper
+id=430550
+rarity=C
+[/card]
+[card]
+primitive=Grand Abolisher
+id=430551
+rarity=R
+[/card]
+[card]
+primitive=Grasp of the Hieromancer
+id=430552
+rarity=C
+[/card]
+[card]
+primitive=Lightwielder Paladin
+id=430553
+rarity=R
+[/card]
+[card]
+primitive=Mentor of the Meek
+id=430554
+rarity=R
+[/card]
+[card]
+primitive=Moment of Heroism
+id=430555
+rarity=C
+[/card]
+[card]
+primitive=Odric, Master Tactician
+id=430556
+rarity=R
+[/card]
+[card]
+primitive=Precinct Captain
+id=430557
+rarity=R
+[/card]
+[card]
+primitive=Relief Captain
+id=430558
+rarity=U
+[/card]
+[card]
+primitive=Shoulder to Shoulder
+id=430559
+rarity=C
+[/card]
+[card]
+primitive=Sun Titan
+id=430560
+rarity=M
+[/card]
+[card]
+primitive=Youthful Knight
+id=430561
+rarity=C
+[/card]
+[card]
+primitive=Compulsive Research
+id=430562
+rarity=C
+[/card]
+[card]
+primitive=Icefall Regent
+id=430563
+rarity=R
+[/card]
+[card]
+primitive=Ior Ruin Expedition
+id=430564
+rarity=C
+[/card]
+[card]
+primitive=Prognostic Sphinx
+id=430565
+rarity=R
+[/card]
+[card]
+primitive=Reckless Scholar
+id=430566
+rarity=U
+[/card]
+[card]
+primitive=Sphinx of Jwar Isle
+id=430567
+rarity=R
+[/card]
+[card]
+primitive=Vision Skeins
+id=430568
+rarity=C
+[/card]
+[card]
+primitive=Windrider Eel
+id=430569
+rarity=C
+[/card]
+[card]
+primitive=Archfiend of Depravity
+id=430570
+rarity=R
+[/card]
+[card]
+primitive=Deathbringer Regent
+id=430571
+rarity=R
+[/card]
+[card]
+primitive=Doom Blade
+id=430572
+rarity=U
+[/card]
+[card]
+primitive=Harvester of Souls
+id=430573
+rarity=R
+[/card]
+[card]
+primitive=Nightscape Familiar
+id=430574
+rarity=C
+[/card]
+[card]
+primitive=Overseer of the Damned
+id=430575
+rarity=R
+[/card]
+[card]
+primitive=Reckless Spite
+id=430576
+rarity=U
+[/card]
+[card]
+primitive=Vampire Nighthawk
+id=430577
+rarity=U
+[/card]
+[card]
+primitive=Avatar of Fury
+id=430578
+rarity=R
+[/card]
+[card]
+primitive=Battle-Rattle Shaman
+id=430579
+rarity=C
+[/card]
+[card]
+primitive=Blood Ogre
+id=430580
+rarity=C
+[/card]
+[card]
+primitive=Chandra, Pyromaster
+id=430581
+rarity=M
+[/card]
+[card]
+primitive=Chandra's Outrage
+id=430582
+rarity=C
+[/card]
+[card]
+primitive=Chandra's Phoenix
+id=430583
+rarity=R
+[/card]
+[card]
+primitive=Coordinated Assault
+id=430584
+rarity=U
+[/card]
+[card]
+primitive=Dualcaster Mage
+id=430585
+rarity=R
+[/card]
+[card]
+primitive=Fiery Fall
+id=430586
+rarity=C
+[/card]
+[card]
+primitive=Flametongue Kavu
+id=430587
+rarity=U
+[/card]
+[card]
+primitive=Gorehorn Minotaurs
+id=430588
+rarity=C
+[/card]
+[card]
+primitive=Grim Lavamancer
+id=430589
+rarity=R
+[/card]
+[card]
+primitive=Guttersnipe
+id=430590
+rarity=U
+[/card]
+[card]
+primitive=Hammerhand
+id=430591
+rarity=C
+[/card]
+[card]
+primitive=Inferno Titan
+id=430592
+rarity=M
+[/card]
+[card]
+primitive=Lightning Bolt
+id=430593
+rarity=U
+[/card]
+[card]
+primitive=Obsidian Fireheart
+id=430594
+rarity=M
+[/card]
+[card]
+primitive=Searing Spear
+id=430595
+rarity=C
+[/card]
+[card]
+primitive=Skarrgan Firebird
+id=430596
+rarity=U
+[/card]
+[card]
+primitive=Stormblood Berserker
+id=430597
+rarity=U
+[/card]
+[card]
+primitive=Sudden Demise
+id=430598
+rarity=R
+[/card]
+[card]
+primitive=Torchling
+id=430599
+rarity=R
+[/card]
+[card]
+primitive=Volcanic Geyser
+id=430600
+rarity=U
+[/card]
+[card]
+primitive=Cultivate
+id=430601
+rarity=C
+[/card]
+[card]
+primitive=Explore
+id=430602
+rarity=C
+[/card]
+[card]
+primitive=Fertilid
+id=430603
+rarity=C
+[/card]
+[card]
+primitive=Forgotten Ancient
+id=430604
+rarity=R
+[/card]
+[card]
+primitive=Hunter's Prowess
+id=430605
+rarity=R
+[/card]
+[card]
+primitive=Khalni Heart Expedition
+id=430606
+rarity=C
+[/card]
+[card]
+primitive=Nissa, Worldwaker
+id=430607
+rarity=M
+[/card]
+[card]
+primitive=Oran-Rief Hydra
+id=430608
+rarity=R
+[/card]
+[card]
+primitive=Press the Advantage
+id=430609
+rarity=U
+[/card]
+[card]
+primitive=Rampaging Baloths
+id=430610
+rarity=M
+[/card]
+[card]
+primitive=Retreat to Kazandu
+id=430611
+rarity=U
+[/card]
+[card]
+primitive=Scute Mob
+id=430612
+rarity=R
+[/card]
+[card]
+primitive=Sylvan Bounty
+id=430613
+rarity=C
+[/card]
+[card]
+primitive=Thragtusk
+id=430614
+rarity=R
+[/card]
+[card]
+primitive=Turntimber Basilisk
+id=430615
+rarity=U
+[/card]
+[card]
+primitive=Vastwood Zendikon
+id=430616
+rarity=C
+[/card]
+[card]
+primitive=Vines of the Recluse
+id=430617
+rarity=C
+[/card]
+[card]
+primitive=Woodborn Behemoth
+id=430618
+rarity=U
+[/card]
+[card]
+primitive=Baleful Strix
+id=430619
+rarity=U
+[/card]
+[card]
+primitive=Blood Tyrant
+id=430620
+rarity=R
+[/card]
+[card]
+primitive=Cruel Ultimatum
+id=430621
+rarity=R
+[/card]
+[card]
+primitive=Dreadbore
+id=430622
+rarity=R
+[/card]
+[card]
+primitive=Extract from Darkness
+id=430623
+rarity=U
+[/card]
+[card]
+primitive=Nicol Bolas, Planeswalker
+id=430624
+rarity=M
+[/card]
+[card]
+primitive=Slave of Bolas
+id=430625
+rarity=U
+[/card]
+[card]
+primitive=Soul Ransom
+id=430626
+rarity=U
+[/card]
+[card]
+primitive=Obelisk of Grixis
+id=430627
+rarity=C
+[/card]
+[card]
+primitive=Sword of the Animist
+id=430628
+rarity=R
+[/card]
+[card]
+primitive=Talisman of Dominance
+id=430629
+rarity=U
+[/card]
+[card]
+primitive=Talisman of Indulgence
+id=430630
+rarity=U
+[/card]
+[card]
+primitive=Crumbling Necropolis
+id=430631
+rarity=U
+[/card]
+[card]
+primitive=Dragonskull Summit
+id=430632
+rarity=R
+[/card]
+[card]
+primitive=Drowned Catacomb
+id=430633
+rarity=R
+[/card]
+[card]
+primitive=Grixis Panorama
+id=430634
+rarity=C
+[/card]
+[card]
+primitive=Smoldering Spires
+id=430635
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=430636
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=430637
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=430638
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=430639
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=430640
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=430641
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=430642
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=430643
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=430644
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=430645
+rarity=L
+[/card]

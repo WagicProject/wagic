@@ -1,12 +1,12 @@
 [meta]
 author=Wagic Team
 name=From the Vault: Relics
-block=Vault
-year=2010
+orderindex=FRO-3.V10
+year=2010-08-27
 total=15
 [/meta]
 [card]
-primitive=AEther Vial
+primitive=Aether Vial
 id=212630
 rarity=M
 [/card]

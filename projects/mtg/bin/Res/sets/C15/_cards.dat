@@ -1,16 +1,17 @@
 [meta]
 author=Wagic Team
 name=Commander 2015
-year=2015
-total=342
+orderindex=COM-9.C15
+year=2015-11-13
+total=344
 [/meta]
 [card]
-primitive=AEtherize
+primitive=Aetherize
 id=405119
 rarity=U
 [/card]
 [card]
-primitive=AEthersnatch
+primitive=Aethersnatch
 id=405120
 rarity=R
 [/card]

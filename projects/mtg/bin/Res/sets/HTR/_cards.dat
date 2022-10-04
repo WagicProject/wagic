@@ -1,0 +1,27 @@
+[meta]
+author=Wagic Team
+name=Heroes of the Realm 2016
+orderindex=PRO-Z.HTR
+year=2017-09-20
+total=4
+[/meta]
+[card]
+primitive=Gremlin
+id=-16740
+rarity=T
+[/card]
+[card]
+primitive=Chandra, Gremlin Wrangler
+id=16740
+rarity=M
+[/card]
+[card]
+primitive=Dungeon Master
+id=16741
+rarity=M
+[/card]
+[card]
+primitive=Nira, Hellkite Duelist
+id=16742
+rarity=M
+[/card]

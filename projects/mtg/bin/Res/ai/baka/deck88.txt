@@ -1,4 +1,4 @@
-#NAME:Vanguard'sChosen
+#NAME:Heedless Perfect
 #DESC:Watch the vanguard!
 #DESC:How its strength rises
 #DESC:and rises

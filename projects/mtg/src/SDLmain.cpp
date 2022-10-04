@@ -20,6 +20,11 @@
 #include <stdexcept>
 #include <iostream>
 #include <math.h>
+#ifndef WIN32
+#include <unistd.h>
+#endif
+#include <stdio.h>
+#include <stdlib.h>
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
@@ -59,6 +64,7 @@ JGameLauncher* g_launcher = NULL;
 #ifdef ANDROID
 JNIEnv * mJNIEnv = NULL;
 jclass * mJNIClass = NULL;
+int SDL_ResumeSyncTime = 0;
 #endif
 
 class SdlApp;
@@ -84,6 +90,7 @@ extern "C" void Java_org_libsdl_app_SDLActivity_nativeResume(
 {    
 	if (!g_engine)
 		return;
+    SDL_ResumeSyncTime = 100000;
     g_engine->Resume();
 }
 
@@ -148,15 +155,30 @@ public:
             return -1;
         }
 
-#ifdef __EMSCRIPTEN__
-        emscripten_set_main_loop(SdlApp::OneIter, 60, 1);
-#else
+        SDL_Event Event;
+
         while(Running)
         {
-            OneIter();
+            if (g_engine)
+            {
+                for (int x = 0; x < 5 && SDL_WaitEventTimeout(&Event, 10); ++x)
+                {
+                    if(!g_engine->IsPaused())
+                        OnEvent(&Event);
+                }
+                if(!g_engine->IsPaused()){
+                    #ifdef ANDROID
+                    // Fix for SDL crash on resuming Android app from background.
+                    if(SDL_ResumeSyncTime){
+                        usleep(SDL_ResumeSyncTime);
+                        SDL_ResumeSyncTime = 0;
+                    }
+                    #endif
+                    OnUpdate();
+                }
+            }
         }
         OnCleanup();
-#endif
 
         return 0;
     }

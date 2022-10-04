@@ -11,6 +11,8 @@
 #define GUI_LIBRARY 4
 #define GUI_OPPONENTHAND 5
 #define GUI_EXILE 6
+#define GUI_COMMANDZONE 7
+#define GUI_SIDEBOARD 8
 
 #include <JGui.h>
 #include "WEvent.h"

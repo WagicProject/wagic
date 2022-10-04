@@ -74,6 +74,8 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     myconvertedcost = getManaCost()->getConvertedCost();
     revealedLast = NULL;
     MadnessPlay = false;
+    backSide = card->data->backSide;
+    partner = card->data->partner;
 }
 
   MTGCardInstance * MTGCardInstance::createSnapShot()
@@ -97,7 +99,7 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
         return snapShot;
     }
 
-void MTGCardInstance::copy(MTGCardInstance * card)
+void MTGCardInstance::copy(MTGCardInstance * card, bool nolegend)
 {
     MTGCard * source = NULL;
     if(card->isACopier && card->copiedID)
@@ -130,7 +132,8 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     types.clear();//reset types.. fix copying man lands... the copier becomes an unanimated land...
     for (size_t i = 0; i < data->types.size(); i++)
     {
-        types.push_back(data->types[i]);
+        if(!(nolegend && data->types[i] == Subtypes::TYPE_LEGENDARY)) // Check if the copy has to be legendary or not. (e.g. Echoing Equation)
+            types.push_back(data->types[i]);
     }
 
     colors = data->colors;
@@ -139,7 +142,8 @@ void MTGCardInstance::copy(MTGCardInstance * card)
 
     setText(data->text); //The text is retrieved from the data anyways
     setName(data->name);
-
+    backSide = data->backSide;
+    partner = data->partner;
     power = data->power;//layer 7a
     toughness = data->toughness;//layer 7a
     power += pbonus;//layer 7b
@@ -228,7 +232,7 @@ void MTGCardInstance::initMTGCI()
     turningOver = false;
     isMorphed = false;
     MeldedFrom = "";
-    isFlipped = false;
+    isFlipped = 0;
     isPhased = false;
     isCascaded = false;
     phasedTurn = -1;
@@ -237,15 +241,18 @@ void MTGCardInstance::initMTGCI()
     notblocked = 0;
     sunburst = 0;
     equipment = 0;
+    mutation = 0;
+    damageInflictedAsCommander = 0;
+    numofcastfromcommandzone = 0;
     auras = 0;
-    combatdamageToOpponent = false;
-    damageToOpponent = false;
-    damageToController = false;
-    damageToCreature = false;
+    combatdamageToOpponent = 0;
+    damageToOpponent = 0;
+    damageToController = 0;
+    damageToCreature = 0;
     isProvoked = false;
     ProvokeTarget = NULL;
     Provoker = NULL;
-    wasDealtDamage = false;
+    wasDealtDamage = 0;
     isDualWielding = false;
     suspended = false;
     isBestowed = false;
@@ -258,7 +265,13 @@ void MTGCardInstance::initMTGCI()
     zpos = 0;
     chooseacolor = -1;
     chooseasubtype = "";
+    chooseaname = "";
     coinSide = -1;
+    lastFlipResult = -1;
+    dieSide = 0;
+    lastRollResult = 0;
+    dieNumFaces = 0;
+    scryedCards = 0;
     isAttacking = NULL;
     storedCard = NULL;
     storedSourceCard = NULL;
@@ -270,6 +283,7 @@ void MTGCardInstance::initMTGCI()
     countTrini = 0;
     anymanareplacement = false;
     imprintedCards.clear();
+    hauntedCard = NULL;
     attackCost = 0;
     attackCostBackup = 0;
     attackPlaneswalkerCost = 0;
@@ -281,6 +295,7 @@ void MTGCardInstance::initMTGCI()
     imprintR = 0;
     imprintB = 0;
     imprintW = 0;
+    foretellTurn = -1;
     bushidoPoints = 0;
     modularPoints = 0;
     entersBattlefield = 0;
@@ -317,6 +332,7 @@ void MTGCardInstance::initMTGCI()
     blocked = false;
     graveEffects = false;
     exileEffects = false;
+    commandZoneEffects = false;
     currentZone = NULL;
     cardsAbilities = vector<MTGAbility *>();
     //cardsAbilitiesFilter = vector<MTGAbility *>();
@@ -497,23 +513,43 @@ int MTGCardInstance::totem(bool noregen)
 }
 int MTGCardInstance::toGrave( bool forced )
 {
+    if(basicAbilities[(int)Constants::INDESTRUCTIBLE] && !forced)
+        return 0; // Fixed bug for indestructible creatures that have to go different zone after death.
+
     Player * p = controller();
-    if (basicAbilities[(int)Constants::EXILEDEATH])
+    if (basicAbilities[(int)Constants::EXILEDEATH] || basicAbilities[(int)Constants::GAINEDEXILEDEATH] || (basicAbilities[(int)Constants::HASDISTURB] && alternateCostPaid[ManaCost::MANA_PAID_WITH_RETRACE] == 1))
     {
         p->game->putInZone(this, p->game->inPlay, owner->game->exile);
+        basicAbilities[(int)Constants::GAINEDEXILEDEATH] = 0;
         return 1;
     }
-    if (!basicAbilities[(int)Constants::INDESTRUCTIBLE])
+    if (basicAbilities[(int)Constants::DOUBLEFACEDEATH] || basicAbilities[(int)Constants::GAINEDDOUBLEFACEDEATH])
     {
-        p->game->putInZone(this, p->game->inPlay, owner->game->graveyard);
+        p->game->putInZone(this, p->game->inPlay, owner->game->temp);
+        basicAbilities[(int)Constants::GAINEDDOUBLEFACEDEATH] = 0;
         return 1;
     }
-    if (forced)
+    if (basicAbilities[(int)Constants::HANDDEATH] || basicAbilities[(int)Constants::GAINEDHANDDEATH])
     {
-        p->game->putInZone(this, p->game->inPlay, owner->game->graveyard);
+        p->game->putInZone(this, p->game->inPlay, owner->game->hand);
+        basicAbilities[(int)Constants::GAINEDHANDDEATH] = 0;
         return 1;
     }
-    return 0;
+    if (basicAbilities[(int)Constants::INPLAYDEATH] || basicAbilities[(int)Constants::INPLAYTAPDEATH])
+    {
+        bool toTap = basicAbilities[(int)Constants::INPLAYTAPDEATH];
+        bool addCounter = basicAbilities[(int)Constants::COUNTERDEATH];
+        MTGCardInstance* ret = p->game->putInZone(this, p->game->inPlay, owner->game->graveyard);
+        ret = p->game->putInZone(ret, owner->game->graveyard, owner->game->battlefield);
+        if(toTap)
+            ret->tap(true);
+        if(addCounter)
+            ret->counters->addCounter(1, 1, false);
+        return 1;
+    }
+    // Let's put the creature in the default zone after death (graveyard).
+    p->game->putInZone(this, p->game->inPlay, owner->game->graveyard);
+    return 1;
 }
 int MTGCardInstance::destroy()
 {
@@ -613,6 +649,11 @@ void MTGCardInstance::untap()
 void MTGCardInstance::setUntapping()
 {
     untapping = 1;
+}
+
+void MTGCardInstance::resetUntapping()
+{
+    untapping = 0; // Fix to avoid the untap on frozen card by clicking on them after the untap phase.
 }
 
 int MTGCardInstance::isUntapping()
@@ -885,6 +926,10 @@ void MTGCardInstance::switchPT(bool apply)
     stripPTbonus();
     swapP = power;
     swapT = toughness;
+    if(!origpower && !origtoughness){ // Fix when a non-creature card is firstly transformed into a creature (e.g. "Wandering Fumarole").
+        origpower = power;
+        origtoughness = toughness;
+    }
     power += origpower;
     power -= swapP;
     addToToughness(origtoughness);
@@ -927,8 +972,9 @@ int MTGCardInstance::countDuplicateCardNames()
         int nb_cards = controller()->game->battlefield->nb_cards;
         for(int x = 0; x < nb_cards; x++)
         {
-            if(controller()->game->battlefield->cards[x]->name == this->name)
-                count+=1;
+            if(controller()->game->battlefield->cards[x]->name == this->name && !(controller()->game->battlefield->cards[x]->mutation && controller()->game->battlefield->cards[x]->parentCards.size() > 0)) // Don't count Mutated down card
+                if(!(this->hasType(Subtypes::TYPE_LEGENDARY) && !(controller()->game->battlefield->cards[x]->hasType(Subtypes::TYPE_LEGENDARY)))) // This fix issue when cloning a card with nolegend option (e.g. Double Major)
+                    count+=1;
         }
     }
     return count;
@@ -990,6 +1036,9 @@ bool MTGCardInstance::canPlayFromLibrary()
         found++;
     if(isSorceryorInstant() && (has(Constants::CANPLAYINSTANTSORCERYTOPLIBRARY)
         || (controller()->game->inPlay->nb_cards && controller()->game->inPlay->hasAbility(Constants::CANPLAYINSTANTSORCERYTOPLIBRARY))))
+        found++;
+    if((hasSubtype(Subtypes::TYPE_EQUIPMENT) || hasSubtype(Subtypes::TYPE_AURA)) && (has(Constants::CANPLAYAURAEQUIPTOPLIBRARY)
+        || (controller()->game->inPlay->nb_cards && controller()->game->inPlay->hasAbility(Constants::CANPLAYAURAEQUIPTOPLIBRARY))))
         found++;
 
     if(found > 0)
@@ -1204,8 +1253,8 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
             for (int w = 0; w < 2; ++w)
             {
                 Player *p = getObserver()->players[w];
-                MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile };
-                for (int k = 0; k < 6; k++)
+                MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile, p->game->commandzone, p->game->sideboard, p->game->reveal };
+                for (int k = 0; k < 9; k++)
                 {
                     MTGGameZone * z = zones[k];
                     if (tcn->targetsZone(z))
@@ -1353,13 +1402,15 @@ int MTGCardInstance::DangerRanking()
             result += 1;
         }
     }
-    if (result > 1)
-        danger += 1;
+    // Even at 60(danger=3) the AI is hasty to play removal on a simple creature
+    // a vanilla 2 mana, 2/2 used to be eff = 60
     if (result > 2)
         danger += 1;
     if (result > 4)
         danger += 1;
     if (result > 6)
+        danger += 1;
+    if (result > 8)
         danger += 1;
     if (result > 10)
         danger += 1;

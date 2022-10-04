@@ -1,0 +1,37 @@
+[meta]
+author=Wagic Team
+name=Love Your LGS 2021
+orderindex=PRO-ZE.PLG21
+year=2021-06-22
+total=6
+[/meta]
+[card]
+primitive=Aven Mindcensor
+id=296421
+rarity=R
+[/card]
+[card]
+primitive=Orb of Dragonkind
+id=296422
+rarity=R
+[/card]
+[card]
+primitive=Dig Through Time
+id=296423
+rarity=R
+[/card]
+[card]
+primitive=Bolas's Citadel
+id=296424
+rarity=R
+[/card]
+[card]
+primitive=Goblin Guide
+id=296425
+rarity=R
+[/card]
+[card]
+primitive=Scavenging Ooze
+id=296426
+rarity=R
+[/card]

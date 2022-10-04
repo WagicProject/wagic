@@ -1,0 +1,6 @@
+[card]
+name=Gideon's Sacrifice
+text=Choose a creature or planeswalker you control. All damage that would be dealt this turn to you and permanents you control is dealt to the chosen permanent instead (if it's still on the battlefield) .
+mana={W}
+type=Instant
+[/card]

@@ -35,10 +35,19 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     extraTurn = 0;
     drawCounter = 0;
     energyCount = 0;
+    experienceCount = 0;
+    yidaroCount = 0;
+    dungeonCompleted = 0;
+    numOfCommandCast = 0;
+    monarch = 0;
+    surveilOffset = 0;
+    devotionOffset = 0;
+    lastShuffleTurn = -1;
     epic = 0;
     forcefield = 0;
     dealsdamagebycombat = 0;
     raidcount = 0;
+    cycledCount = 0;
     handmodifier = 0;
     snowManaG = 0;
     snowManaR = 0;
@@ -46,6 +55,7 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     snowManaU = 0;
     snowManaW = 0;
     snowManaC = 0;
+    lastChosenName = "";
     prowledTypes.clear();
     doesntEmpty = NEW ManaCost();
     poolDoesntEmpty = NEW ManaCost();
@@ -159,7 +169,7 @@ ManaPool * Player::getManaPool()
     return manaPool;
 }
 
-int Player::gainOrLoseLife(int value)
+int Player::gainOrLoseLife(int value, MTGCardInstance* source)
 {
     if (!value)
         return 0; //Don't do anything if there's no actual life change
@@ -179,30 +189,30 @@ int Player::gainOrLoseLife(int value)
     }
 
     //Send life event to listeners
-    WEvent * lifed = NEW WEventLife(this,value);
+    WEvent * lifed = NEW WEventLife(this, value, source);
     observer->receiveEvent(lifed);
 
     return value;
 }
 
-int Player::gainLife(int value)
+int Player::gainLife(int value, MTGCardInstance* source)
 {
     if (value <0)
     {
         DebugTrace("PLAYER.CPP: don't call gainLife on a negative value, use loseLife instead");
         return 0;
     }
-    return gainOrLoseLife(value);
+    return gainOrLoseLife(value, source);
 }
 
-int Player::loseLife(int value)
+int Player::loseLife(int value, MTGCardInstance* source)
 {
     if (value <0)
     {
         DebugTrace("PLAYER.CPP: don't call loseLife on a negative value, use gainLife instead");
         return 0;
     }
-    return gainOrLoseLife(-value);
+    return gainOrLoseLife(-value, source);
 }
 
 int Player::afterDamage()
@@ -435,7 +445,7 @@ bool Player::parseLine(const string& s)
 
 void HumanPlayer::End()
 {
-    if(!premade && opponent() && (observer->gameType() == GAME_TYPE_CLASSIC))
+    if(!premade && opponent() && (observer->gameType() == GAME_TYPE_CLASSIC || observer->gameType() == GAME_TYPE_COMMANDER))
         DeckStats::GetInstance()->saveStats(this, opponent(), observer);
 }
 

@@ -23,7 +23,7 @@ public class StorageOptions
     public static int                count   = 0;
     public static String             defaultMountPoint;
 
-    public static void determineStorageOptions()
+    public static void determineStorageOptions(android.content.Context mContext)
     {
         initializeMountPoints();
         if (findForcemount()){
@@ -36,6 +36,16 @@ public class StorageOptions
         }
         compareMountsWithVold();
         testAndCleanMountsList();
+        File[] externalStorageVolumes = mContext.getExternalFilesDirs("");
+        for(int i = 0; i < externalStorageVolumes.length; i++){
+            mMounts.add(externalStorageVolumes[i].getAbsolutePath());
+        }
+        for(int i = 0; i < mMounts.size(); i++){
+            for(int j = 0; j < mMounts.size(); j++){
+                if(i!=j && mMounts.get(i).startsWith(mMounts.get(j)))
+                    mMounts.remove(i);
+            }
+        }
         setProperties();
     }
 
@@ -264,22 +274,22 @@ public class StorageOptions
             for (String path : mMounts)
             {//with forcemount menu
                 if ("/mnt/sdcard".equalsIgnoreCase(path) || "/storage/sdcard0".equalsIgnoreCase(path))
-                    mLabels.add("Internal SD " + "[" + path + "]");
+                    mLabels.add("Internal SD " + "[" + path + "/]");
                 else if (path.contains("emulated"))
-                    mLabels.add("Emulated SD " + " [" + path + "]");
+                    mLabels.add("Emulated SD " + " [" + path + "/]");
                 else
-                    mLabels.add("External SD " + " [" + path + "]");
+                    mLabels.add("External SD " + " [" + path + "/]");
             }
         }
         else
         {
             for (String path : mMounts)
             {
-                // TODO: /mnt/sdcard is assumed to always mean internal storage. Use this comparison until there is a better way to do this
-                if ("/mnt/sdcard".equalsIgnoreCase(path))
-                    mLabels.add("Built-in Storage");
+                // TODO: /mnt/sdcard and emulated are assumed to always mean internal storage. Use this comparison until there is a better way to do this
+                if ("/mnt/sdcard".equalsIgnoreCase(path) || path.contains("emulated"))
+                    mLabels.add("Built-in Storage " + "[" + path + "/]");
                 else
-                    mLabels.add("External SD Card " + i++);
+                    mLabels.add("External SD Card " + "[" + path + "/]");
             }
         }
         

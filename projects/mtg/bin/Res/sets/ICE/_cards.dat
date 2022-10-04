@@ -2,7 +2,8 @@
 author=Wagic Team
 name=Ice Age
 block=Ice Age
-year=1995
+orderindex=EXP-7.ICE
+year=1995-06-01
 total=383
 [/meta]
 [card]

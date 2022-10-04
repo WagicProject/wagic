@@ -2,11 +2,12 @@
 author=Wagic Team
 name=Exodus
 block=Tempest
-year=1998
+orderindex=EXP-F.EXO
+year=1998-06-15
 total=143
 [/meta]
 [card]
-primitive=AEther Tide
+primitive=Aether Tide
 id=6071
 rarity=C
 [/card]

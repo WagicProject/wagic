@@ -262,20 +262,21 @@ void StackAbility::Render()
                 Targetable * tt = ability->getActionTc()->getTargetsFrom()[i];
                 if(tt)
                 {
-                    if( ((Damageable *)(tt))->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE )
+                    MTGCardInstance* card = dynamic_cast<MTGCardInstance *>(tt);
+                    if(!card && dynamic_cast<Spell *>(tt)) card = dynamic_cast<Spell *>(tt)->source; //Fixed crash on targeting a spell on stack by correctly casting variable tt.
+                    if(((Damageable *)(tt))->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
                     {
-                        //fill vector
-                        myClones.push_back(((MTGCardInstance*)(tt)));
-
-                        if( source->has(Constants::HIDDENFACE) && !observer->isInLibrary(((MTGCardInstance *)(tt))) )
-                            mytargetQuads.push_back( ((Damageable *)(tt))->getIcon() );
-                        else if ( !source->has(Constants::HIDDENFACE) )
-                            mytargetQuads.push_back( ((Damageable *)(tt))->getIcon() );
+                        if(card)
+                            myClones.push_back(card); //fill vector
+                        if(source->has(Constants::HIDDENFACE) && card && !observer->isInLibrary(card))
+                            mytargetQuads.push_back(card->getIcon()); //Fixed crash on targeting a spell on stack by correctly casting variable tt.
+                        else if (!source->has(Constants::HIDDENFACE) && card)
+                            mytargetQuads.push_back(card->getIcon()); //Fixed crash on targeting a spell on stack by correctly casting variable tt.
                         else
                             fmLibrary++;
                     }
-                    else
-                        mytargetQuads.push_back( ((Damageable *)(tt))->getIcon() );
+                    else if(card)
+                        mytargetQuads.push_back(card->getIcon()); //Fixed crash on targeting a spell on stack by correctly casting variable tt.
                 }
             }
         }
@@ -487,7 +488,7 @@ int Spell::resolve()
         if(observer->getResourceManager())
             observer->getResourceManager()->PlaySample(source->getSample());
     }
-    if(this->cost)
+    if(this->cost && !source->getManaCost()->getManaUsedToCast())
     {
         source->getManaCost()->setManaUsedToCast(NEW ManaCost(this->cost));
     }
@@ -584,9 +585,34 @@ Interruptible(observer, id)
 int PutInGraveyard::resolve()
 {
     MTGGameZone * zone = card->getCurrentZone();
-    if (card->basicAbilities[(int)Constants::EXILEDEATH])
+    if (card->basicAbilities[(int)Constants::EXILEDEATH] || card->basicAbilities[(int)Constants::GAINEDEXILEDEATH] || (card->basicAbilities[(int)Constants::HASDISTURB] && card->alternateCostPaid[ManaCost::MANA_PAID_WITH_RETRACE] == 1))
     {
+        card->basicAbilities[(int)Constants::GAINEDEXILEDEATH] = 0;
         card->controller()->game->putInZone(card, zone, card->owner->game->exile);
+        return 1;
+    }
+    if (card->basicAbilities[(int)Constants::DOUBLEFACEDEATH] || card->basicAbilities[(int)Constants::GAINEDDOUBLEFACEDEATH])
+    {
+        card->basicAbilities[(int)Constants::GAINEDDOUBLEFACEDEATH] = 0;
+        card->controller()->game->putInZone(card, zone, card->owner->game->temp);
+        return 1;
+    }
+    if (card->basicAbilities[(int)Constants::HANDDEATH] || card->basicAbilities[(int)Constants::GAINEDHANDDEATH])
+    {
+        card->basicAbilities[(int)Constants::GAINEDHANDDEATH] = 0;
+        card->controller()->game->putInZone(card, zone, card->owner->game->hand);
+        return 1;
+    }
+    if (card->basicAbilities[(int)Constants::INPLAYDEATH] || card->basicAbilities[(int)Constants::INPLAYTAPDEATH])
+    {
+        bool toTap = card->basicAbilities[(int)Constants::INPLAYTAPDEATH];
+        bool addCounter = card->basicAbilities[(int)Constants::COUNTERDEATH];
+        card = card->controller()->game->putInZone(card, zone, card->owner->game->graveyard);
+        card = card->controller()->game->putInZone(card, card->owner->game->graveyard, card->owner->game->battlefield);
+        if(toTap)
+            card->tap(true);
+        if(addCounter)
+            card->counters->addCounter(1, 1, false);
         return 1;
     }
     if (zone == observer->players[0]->game->inPlay || zone == observer->players[1]->game->inPlay)
@@ -863,7 +889,7 @@ int ActionStack::has(MTGAbility * ability)
 {
     for (size_t i = 0; i < mObjects.size(); i++)
     {
-        if (((Interruptible *) mObjects[i])->type == ACTION_ABILITY)
+        if (mObjects[i] && (((Interruptible *) mObjects[i])->type == ACTION_ABILITY)) // Fixed a random crash occurring when mObjects[i] is null...
         {
             StackAbility * action = ((StackAbility *) mObjects[i]);
             if (action->state == NOT_RESOLVED && action->ability == ability)
@@ -1330,7 +1356,7 @@ int ActionStack::garbageCollect()
 }
 
 // Fizzle action and put it in targetZone
-void ActionStack::Fizzle(Interruptible * action, FizzleMode fizzleMode)
+void ActionStack::Fizzle(Interruptible * action, MTGCardInstance * fizzler, FizzleMode fizzleMode)
 {
     if (!action)
     {
@@ -1340,6 +1366,8 @@ void ActionStack::Fizzle(Interruptible * action, FizzleMode fizzleMode)
     if (action->type == ACTION_SPELL)
     {
         Spell * spell = (Spell *) action;
+        MTGCardInstance * _target = NULL;
+        unsigned int position = 0;
         switch (fizzleMode) {
         case PUT_IN_GRAVEARD:
             spell->source->controller()->game->putInGraveyard(spell->source);
@@ -1348,10 +1376,56 @@ void ActionStack::Fizzle(Interruptible * action, FizzleMode fizzleMode)
             spell->source->controller()->game->putInHand(spell->source);
             break;
         case PUT_IN_EXILE:
-            spell->source->controller()->game->putInExile(spell->source);
+        case PUT_IN_EXILE_IMPRINT:
+            _target = spell->source->controller()->game->putInExile(spell->source);
+            if (_target && fizzler && fizzleMode == PUT_IN_EXILE_IMPRINT){
+                fizzler->imprintedCards.push_back(_target);
+                if (fizzler->imprintedCards.size()){
+                    if (fizzler->imprintedCards.back()->getName().size()){
+                        fizzler->currentimprintName = fizzler->imprintedCards.back()->getName();
+                        fizzler->imprintedNames.push_back(fizzler->imprintedCards.back()->getName());
+                    }
+                }
+            }
             break;
         case PUT_IN_LIBRARY_TOP:
-            spell->source->controller()->game->putInLibrary(spell->source);
+        case PUT_IN_LIBRARY_SECOND:
+        case PUT_IN_LIBRARY_BOTTOM:
+            _target = spell->source->controller()->game->putInLibrary(spell->source);
+            if (_target && fizzleMode == PUT_IN_LIBRARY_BOTTOM){
+                MTGLibrary * library = _target->owner->game->library;
+                vector<MTGCardInstance *>oldOrder = library->cards;
+                vector<MTGCardInstance *>newOrder;
+                newOrder.push_back(_target);
+                for(unsigned int k = 0 ;k < oldOrder.size(); ++k)
+                {
+                    MTGCardInstance * rearranged = oldOrder[k];
+                    if(rearranged != _target)
+                        newOrder.push_back(rearranged);
+                }
+                library->cards = newOrder;
+            } else if (_target && fizzleMode == PUT_IN_LIBRARY_SECOND){
+                position = 2;
+                MTGLibrary * library = _target->owner->game->library;
+                vector<MTGCardInstance *>oldOrder = library->cards;
+                vector<MTGCardInstance *>newOrder;
+                if(position > oldOrder.size())
+                    position = oldOrder.size(); //Avoid to exceed the library dimension.
+                for(unsigned int k = 0; k < oldOrder.size() - position; ++k)
+                {
+                    MTGCardInstance * rearranged = oldOrder[k];
+                    if(rearranged != _target)
+                        newOrder.push_back(rearranged);
+                }
+                newOrder.push_back(_target);
+                for(unsigned int k = oldOrder.size() - position ; k < oldOrder.size(); ++k)
+                {
+                    MTGCardInstance * rearranged = oldOrder[k];
+                    if(rearranged != _target)
+                        newOrder.push_back(rearranged);
+                }
+                library->cards = newOrder;
+            }
             break;
         }
     }

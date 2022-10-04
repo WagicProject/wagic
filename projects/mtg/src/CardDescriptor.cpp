@@ -13,6 +13,8 @@ CardDescriptor::CardDescriptor()
     counterToughness = 0;
     counterNB = 0;
     mode = CD_AND;
+    foretoldComparisonMode = COMPARISON_NONE;
+    kickedComparisonMode = COMPARISON_NONE;
     powerComparisonMode = COMPARISON_NONE;
     toughnessComparisonMode = COMPARISON_NONE;
     manacostComparisonMode = COMPARISON_NONE;
@@ -20,6 +22,11 @@ CardDescriptor::CardDescriptor()
     convertedManacost = -1;
     zposComparisonMode = COMPARISON_NONE;
     zposition = -1;
+    hasKickerCost = 0;
+    hasFlashbackCost = 0;
+    hasBackSide = 0;
+    hasPartner = 0;
+    hasXCost = 0;
     compareName ="";
     nameComparisonMode = COMPARISON_NONE;
     colorComparisonMode = COMPARISON_NONE;
@@ -27,6 +34,8 @@ CardDescriptor::CardDescriptor()
     CDcontrollerDamaged = 0;
     CDdamager = 0;
     CDgeared = 0;
+    CDdiscarded = 0;
+    CDattached = 0;
     CDblocked = 0;
     CDcanProduceC = 0;
     CDcanProduceG = 0;
@@ -48,6 +57,31 @@ int CardDescriptor::init()
     SAFE_DELETE(counters);
     SAFE_DELETE(previous);
     return result;
+}
+
+void CardDescriptor::unsecureSetKicked(int k)
+{
+    kicked = k;
+}
+
+void CardDescriptor::unsecureSetHasKickerCost(int k)
+{
+    hasKickerCost = k;
+}
+
+void CardDescriptor::unsecureSetHasFlashbackCost(int k)
+{
+    hasFlashbackCost = k;
+}
+
+void CardDescriptor::unsecureSetHasBackSide(int k)
+{
+    hasBackSide = k;
+}
+
+void CardDescriptor::unsecureSetHasPartner(int k)
+{
+    hasPartner = k;
 }
 
 void CardDescriptor::unsecureSetTapped(int i)
@@ -141,6 +175,10 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card)
     }
 
     // Quantified restrictions are always AND-ed:
+    if (foretoldComparisonMode && !valueInRange(foretoldComparisonMode, card->foretellTurn, foretellTurn))
+        return NULL;
+    if (kickedComparisonMode && (!valueInRange(kickedComparisonMode, card->kicked, kicked) || card->has(Constants::HASREPLICATE) || card->has(Constants::HASSTRIVE))) //Some kicker costs are not a real kicker (e.g. Fuse cost, Replicate cost, Strive cost).
+        return NULL;
     if (powerComparisonMode && !valueInRange(powerComparisonMode, card->getPower(), power))
         return NULL;
     if (toughnessComparisonMode && !valueInRange(toughnessComparisonMode, card->getToughness(), toughness))
@@ -149,8 +187,9 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card)
         return NULL;
     if (zposComparisonMode && !valueInRange(zposComparisonMode, card->zpos, zposition))
         return NULL;
-    if (nameComparisonMode && compareName != card->name)
+    if ((nameComparisonMode == COMPARISON_UNEQUAL && compareName == card->name) || (nameComparisonMode && nameComparisonMode != COMPARISON_UNEQUAL && compareName != card->name))
         return NULL;
+
     return card;
 }
 
@@ -184,6 +223,10 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card)
             match = NULL;
     }
 
+    if (foretoldComparisonMode && !valueInRange(foretoldComparisonMode, card->foretellTurn, foretellTurn))
+        match = NULL;
+    if (kickedComparisonMode && (!valueInRange(kickedComparisonMode, card->kicked, kicked) || card->has(Constants::HASREPLICATE) || card->has(Constants::HASSTRIVE))) //Some kicker costs are not a real kicker (e.g. Fuse cost, Replicate cost, Strive cost).
+        match = NULL;
     if (powerComparisonMode && !valueInRange(powerComparisonMode, card->getPower(), power))
         match = NULL;
     if (toughnessComparisonMode && !valueInRange(toughnessComparisonMode, card->getToughness(), toughness))
@@ -192,7 +235,7 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card)
         match = NULL;
     if (zposComparisonMode && !valueInRange(zposComparisonMode, card->zpos, zposition))
         match = NULL;
-    if(nameComparisonMode && compareName != card->name)
+    if ((nameComparisonMode == COMPARISON_UNEQUAL && compareName == card->name) || (nameComparisonMode && nameComparisonMode != COMPARISON_UNEQUAL && compareName != card->name))
         match = NULL;
 
     return match;
@@ -200,15 +243,30 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card)
 
 MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
 {
-
     MTGCardInstance * match = card;
     if (mode == CD_AND)
     {
         match = match_and(card);
     }
+    else if (mode == CD_NAND)
+    {
+        match = match_and(card);
+        if(!match)
+            match = card;
+        else
+            match = NULL;
+    }
     else if (mode == CD_OR)
     {
         match = match_or(card);
+    }
+    else if (mode == CD_NOR)
+    {
+        match = match_or(card);
+        if(!match)
+            match = card;
+        else
+            match = NULL;
     }
 
     //Abilities
@@ -220,8 +278,42 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     if (excludedSet.any())
         return NULL;
 
+    if ((hasKickerCost == -1 && ((card->getManaCost()->getKicker() && !card->basicAbilities[Constants::HASNOKICKER]) || (!card->getManaCost()->getKicker() && card->basicAbilities[Constants::HASOTHERKICKER]))) || (hasKickerCost == 1 && !((card->getManaCost()->getKicker() && !card->basicAbilities[Constants::HASNOKICKER]) || (!card->getManaCost()->getKicker() && card->basicAbilities[Constants::HASOTHERKICKER]))))
+    {
+        match = NULL; //Some kicker costs are not a real kicker (e.g. Fuse cost).
+    }
+
+    if ((hasFlashbackCost == -1 && (card->getManaCost()->getFlashback() && !card->has(Constants::HASAFTERMATH))) || (hasFlashbackCost == 1 && (!card->getManaCost()->getFlashback() || (card->getManaCost()->getFlashback() && card->has(Constants::HASAFTERMATH)))))
+    {
+        match = NULL;
+    }
+
+    if ((hasBackSide == -1 && card->backSide != "") || (hasBackSide == 1 && card->backSide == ""))
+    {
+        match = NULL;
+    }
+
+    if ((hasPartner == -1 && card->partner != "") || (hasPartner == 1 && card->partner == ""))
+    {
+        match = NULL;
+    }
+
+    if ((hasXCost == -1 && card->getManaCost()->hasX()) || (hasXCost == 1 && !card->getManaCost()->hasX()))
+    {
+        match = NULL;
+    }
+
+    if ((isFlipped == -1 && card->isFlipped > 0) || (isFlipped == 1 && card->isFlipped == 0))
+    {
+        match = NULL;
+    }
 
     if ((tapped == -1 && card->isTapped()) || (tapped == 1 && !card->isTapped()))
+    {
+        match = NULL;
+    }
+
+    if ((CDdiscarded == -1 && card->discarded) || (CDdiscarded == 1 && !card->discarded))
     {
         match = NULL;
     }
@@ -240,7 +332,12 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     {
         match = NULL;
     }
-    
+ 
+    if ((CDattached == -1 && card->parentCards.size() > 0) || (CDattached == 1 && card->parentCards.size() < 1))
+    {
+        match = NULL;
+    }
+
     if (CDblocked == -1)
     {
         if(!card->isAttacker())
@@ -324,31 +421,31 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
         {
             match = NULL;
         }
-        if ((CDdamaged == -1 && card->wasDealtDamage) || (CDdamaged == 1 && !card->wasDealtDamage))
+        if ((CDdamaged == -1 && card->wasDealtDamage > 0) || (CDdamaged == 1 && card->wasDealtDamage == 0))
         {
             match = NULL;
         }
 
-        if ((CDdamager == -1 && (card->damageToOpponent || card->damageToController || card->damageToCreature)) 
-                || (CDdamager == 1 && !(card->damageToOpponent || card->damageToController || card->damageToCreature)))
+        if ((CDdamager == -1 && (card->damageToOpponent > 0 || card->damageToController > 0 || card->damageToCreature > 0)) 
+                || (CDdamager == 1 && !(card->damageToOpponent > 0 || card->damageToController > 0 || card->damageToCreature > 0)))
         {
             match = NULL;
         }
 
-    if(CDopponentDamaged == -1 || CDopponentDamaged == 1)
+    if(CDopponentDamaged == -1 || CDopponentDamaged == 1 || CDcontrollerDamaged == -1 || CDcontrollerDamaged == 1)
     {
-        Player * p = card->controller()->opponent();//controller()->opponent();
-        if ((CDopponentDamaged == -1 && card->damageToOpponent && card->controller() == p)
-            || (CDopponentDamaged == 1 && !card->damageToOpponent && card->controller() == p)
-            || (CDopponentDamaged == -1 && card->damageToController && card->controller() == p->opponent())
-            || (CDopponentDamaged == 1 && !card->damageToController && card->controller() == p->opponent()))
+        Player * p = card->controller();
+        if ((CDopponentDamaged == -1 && card->damageToOpponent > 0 && card->controller() == p)
+            || (CDopponentDamaged == 1 && card->damageToOpponent == 0 && card->controller() == p)
+            || (CDopponentDamaged == -1 && card->damageToController > 0 && card->controller() == p->opponent())
+            || (CDopponentDamaged == 1 && card->damageToController == 0 && card->controller() == p->opponent()))
         {
             match = NULL;
         }
-        if ((CDcontrollerDamaged == -1 && card->damageToController && card->controller() == p)
-            || (CDcontrollerDamaged == 1 && !card->damageToController && card->controller() == p)
-            || (CDcontrollerDamaged == -1 && card->damageToOpponent && card->controller() == p->opponent())
-            || (CDcontrollerDamaged == 1 && !card->damageToOpponent && card->controller() == p->opponent()))
+        if ((CDcontrollerDamaged == -1 && card->damageToController > 0 && card->controller() == p)
+            || (CDcontrollerDamaged == 1 && card->damageToController == 0 && card->controller() == p)
+            || (CDcontrollerDamaged == -1 && card->damageToOpponent > 0 && card->controller() == p->opponent())
+            || (CDcontrollerDamaged == 1 && card->damageToOpponent == 0 && card->controller() == p->opponent()))
         {
             match = NULL;
         }

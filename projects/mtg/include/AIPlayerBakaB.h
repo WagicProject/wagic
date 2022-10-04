@@ -36,7 +36,7 @@ protected:
 
     MTGCardInstance * FindCardToPlay(ManaCost * potentialMana, const char * type);
 
-    bool payTheManaCost(ManaCost * cost, MTGCardInstance * card = NULL,vector<MTGAbility*> gotPayment = vector<MTGAbility*>());
+    bool payTheManaCost(ManaCost * cost, int anytypeofmana, MTGCardInstance * card = NULL,vector<MTGAbility*> gotPayment = vector<MTGAbility*>());
     int getCreaturesInfo(Player * player, int neededInfo = INFO_NBCREATURES , int untapMode = 0, int canAttack = 0);
     ManaCost * getPotentialMana(MTGCardInstance * card = NULL);
     int selectAbility();

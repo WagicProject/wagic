@@ -1,0 +1,452 @@
+[meta]
+author=Wagic Team
+name=Anthologies
+orderindex=REP-2.ATH
+year=1998-11-01
+total=89
+[/meta]
+[card]
+primitive=Goblin
+id=-295861
+rarity=T
+[/card]
+[card]
+primitive=Goblin
+id=-295856
+rarity=T
+[/card]
+[card]
+primitive=Pegasus
+id=-295832
+rarity=T
+[/card]
+[card]
+primitive=Pegasus
+id=-295831
+rarity=T
+[/card]
+[card]
+primitive=Armageddon
+id=295820
+rarity=R
+[/card]
+[card]
+primitive=Armored Pegasus
+id=295821
+rarity=C
+[/card]
+[card]
+primitive=Benalish Knight
+id=295822
+rarity=C
+[/card]
+[card]
+primitive=Combat Medic
+id=295823
+rarity=C
+[/card]
+[card]
+primitive=Disenchant
+id=295824
+rarity=C
+[/card]
+[card]
+primitive=Freewind Falcon
+id=295825
+rarity=C
+[/card]
+[card]
+primitive=Icatian Javelineers
+id=295826
+rarity=C
+[/card]
+[card]
+primitive=Infantry Veteran
+id=295827
+rarity=C
+[/card]
+[card]
+primitive=Order of the White Shield
+id=295828
+rarity=U
+[/card]
+[card]
+primitive=Pacifism
+id=295829
+rarity=C
+[/card]
+[card]
+primitive=Pegasus Charger
+id=295830
+rarity=C
+[/card]
+[card]
+primitive=Pegasus Stampede
+id=295831
+rarity=U
+[/card]
+[card]
+primitive=Sacred Mesa
+id=295832
+rarity=R
+[/card]
+[card]
+primitive=Samite Healer
+id=295833
+rarity=C
+[/card]
+[card]
+primitive=Serra Angel
+id=295834
+rarity=U
+[/card]
+[card]
+primitive=Swords to Plowshares
+id=295835
+rarity=U
+[/card]
+[card]
+primitive=Warrior's Honor
+id=295836
+rarity=C
+[/card]
+[card]
+primitive=White Knight
+id=295837
+rarity=U
+[/card]
+[card]
+primitive=Youthful Knight
+id=295838
+rarity=C
+[/card]
+[card]
+primitive=Black Knight
+id=295839
+rarity=U
+[/card]
+[card]
+primitive=Cuombajj Witches
+id=295840
+rarity=C
+[/card]
+[card]
+primitive=Feast of the Unicorn
+id=295841
+rarity=C
+[/card]
+[card]
+primitive=Hymn to Tourach
+id=295842
+rarity=C
+[/card]
+[card]
+primitive=Hypnotic Specter
+id=295843
+rarity=U
+[/card]
+[card]
+primitive=Ihsan's Shade
+id=295844
+rarity=U
+[/card]
+[card]
+primitive=Knight of Stromgald
+id=295845
+rarity=U
+[/card]
+[card]
+primitive=Terror
+id=295846
+rarity=C
+[/card]
+[card]
+primitive=Unholy Strength
+id=295847
+rarity=C
+[/card]
+[card]
+primitive=Fireball
+id=295848
+rarity=C
+[/card]
+[card]
+primitive=Goblin Balloon Brigade
+id=295849
+rarity=C
+[/card]
+[card]
+primitive=Goblin Digging Team
+id=295850
+rarity=C
+[/card]
+[card]
+primitive=Goblin Grenade
+id=295851
+rarity=C
+[/card]
+[card]
+primitive=Goblin Hero
+id=295852
+rarity=C
+[/card]
+[card]
+primitive=Goblin King
+id=295853
+rarity=R
+[/card]
+[card]
+primitive=Goblin Matron
+id=295854
+rarity=U
+[/card]
+[card]
+primitive=Goblin Mutant
+id=295855
+rarity=U
+[/card]
+[card]
+primitive=Goblin Offensive
+id=295856
+rarity=U
+[/card]
+[card]
+primitive=Goblin Recruiter
+id=295857
+rarity=U
+[/card]
+[card]
+primitive=Goblin Snowman
+id=295858
+rarity=U
+[/card]
+[card]
+primitive=Goblin Tinkerer
+id=295859
+rarity=C
+[/card]
+[card]
+primitive=Goblin Vandal
+id=295860
+rarity=C
+[/card]
+[card]
+primitive=Goblin Warrens
+id=295861
+rarity=R
+[/card]
+[card]
+primitive=Lightning Bolt
+id=295862
+rarity=C
+[/card]
+[card]
+primitive=Mogg Fanatic
+id=295863
+rarity=C
+[/card]
+[card]
+primitive=Mogg Flunkies
+id=295864
+rarity=C
+[/card]
+[card]
+primitive=Mogg Raider
+id=295865
+rarity=C
+[/card]
+[card]
+primitive=Pyrokinesis
+id=295866
+rarity=U
+[/card]
+[card]
+primitive=Pyrotechnics
+id=295867
+rarity=C
+[/card]
+[card]
+primitive=Raging Goblin
+id=295868
+rarity=U
+[/card]
+[card]
+primitive=Uthden Troll
+id=295869
+rarity=U
+[/card]
+[card]
+primitive=Volcanic Dragon
+id=295870
+rarity=R
+[/card]
+[card]
+primitive=Canopy Spider
+id=295871
+rarity=C
+[/card]
+[card]
+primitive=Carnivorous Plant
+id=295872
+rarity=C
+[/card]
+[card]
+primitive=Erhnam Djinn
+id=295873
+rarity=U
+[/card]
+[card]
+primitive=Giant Growth
+id=295874
+rarity=C
+[/card]
+[card]
+primitive=Giant Spider
+id=295875
+rarity=C
+[/card]
+[card]
+primitive=Gorilla Chieftain
+id=295876
+rarity=C
+[/card]
+[card]
+primitive=Hurricane
+id=295877
+rarity=U
+[/card]
+[card]
+primitive=Llanowar Elves
+id=295878
+rarity=C
+[/card]
+[card]
+primitive=Mirri, Cat Warrior
+id=295879
+rarity=R
+[/card]
+[card]
+primitive=Overrun
+id=295880
+rarity=U
+[/card]
+[card]
+primitive=Scavenger Folk
+id=295881
+rarity=C
+[/card]
+[card]
+primitive=Spectral Bears
+id=295882
+rarity=U
+[/card]
+[card]
+primitive=Woolly Spider
+id=295883
+rarity=C
+[/card]
+[card]
+primitive=Lady Orca
+id=295884
+rarity=U
+[/card]
+[card]
+primitive=Ranger en-Vec
+id=295885
+rarity=U
+[/card]
+[card]
+primitive=Aesthir Glider
+id=295886
+rarity=C
+[/card]
+[card]
+primitive=Jalum Tome
+id=295887
+rarity=U
+[/card]
+[card]
+primitive=Nevinyrral's Disk
+id=295888
+rarity=R
+[/card]
+[card]
+primitive=Serrated Arrows
+id=295889
+rarity=C
+[/card]
+[card]
+primitive=Brushland
+id=295890
+rarity=R
+[/card]
+[card]
+primitive=Drifting Meadow
+id=295891
+rarity=C
+[/card]
+[card]
+primitive=Pendelhaven
+id=295892
+rarity=U
+[/card]
+[card]
+primitive=Polluted Mire
+id=295893
+rarity=C
+[/card]
+[card]
+primitive=Slippery Karst
+id=295894
+rarity=C
+[/card]
+[card]
+primitive=Smoldering Crater
+id=295895
+rarity=C
+[/card]
+[card]
+primitive=Strip Mine
+id=295896
+rarity=R
+[/card]
+[card]
+primitive=Plains
+id=295897
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=295898
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=295899
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=295900
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=295901
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=295902
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=295903
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=295904
+rarity=C
+[/card]

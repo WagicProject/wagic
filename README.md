@@ -1,7 +1,7 @@
 #Wagic the Homebrew
 
 
-[![Build Status](https://travis-ci.org/WagicProject/wagic.png?branch=master)](https://travis-ci.org/WagicProject/wagic)
+[![Build Status](https://travis-ci.org/WagicProject/wagic.png?branch=master)](https://travis-ci.com/WagicProject/wagic)
 [![Build status](https://ci.appveyor.com/api/projects/status/7j4fbr6m62aqej59/branch/master)](https://ci.appveyor.com/project/xawotihs/wagic/branch/master)
 [![Coverage Status](https://coveralls.io/repos/WagicProject/wagic/badge.png?branch=master)](https://coveralls.io/r/WagicProject/wagic?branch=master)
 

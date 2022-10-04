@@ -44,6 +44,7 @@ private:
     time_t gameLength;
     int isDifficultyUnlocked(DeckStats * stats);
     int isEvilTwinUnlocked();
+    int isCommanderUnlocked();
     int isRandomDeckUnlocked();
     int IsMoreAIDecksUnlocked(DeckStats * stats);
     string unlockedTextureName;

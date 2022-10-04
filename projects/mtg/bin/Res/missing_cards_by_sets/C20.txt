@@ -1,0 +1,96 @@
+[card]
+name=Slippery Bogbonder
+abilities=flash,opponentshroud
+auto=target(creature) counter(0/0,1,Hexproof)
+text=Flash -- Hexproof -- When Slippery Bogbonder enters the battlefield, put a hexproof counter on target creature. Then move any number of counters from among creatures you control onto that creature.
+mana={3}{G}
+type=Creature
+subtype=Human Druid
+power=3
+toughness=3
+[/card]
+[card]
+name=Selective Adaptation
+text=Reveal the top seven cards of your library. Choose from among them a card with flying, a card with first strike, and so on for double strike, deathtouch, haste, hexproof, indestructible, lifelink, menace, reach, trample, and vigilance. Put one of the chosen cards onto the battlefield, the other chosen cards into your hand, and the rest into your graveyard.
+mana={4}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Manascape Refractor
+text=Manascape Refractor enters the battlefield tapped. -- Manascape Refractor has all activated abilities of all lands on the battlefield. -- You may spend mana as though it were mana of any color to pay the activation costs of Manascape Refractor's abilities.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Nesting Grounds
+auto={T}:add{1}
+text={T}: Add {1}. -- {1}, {T}: Move a counter from target permanent you control onto another target permanent. Activate this ability only any time you could cast a sorcery.
+type=Land
+[/card]
+[card]
+name=Djinn Illuminatus
+text=({UR} can be paid with either {U} or {R}.) -- Flying -- Each instant and sorcery spell you cast has replicate. The replicate cost is equal to its mana cost. (When you cast it, copy it for each time you paid its replicate cost. You may choose new targets for the copies.)
+mana={5}{UR}{UR}
+type=Creature
+subtype=Djinn
+power=3
+toughness=5
+[/card]
+[card]
+name=Tayam, Luminous Enigma
+text=Each other creature you control enters the battlefield with an additional vigilance counter on it. -- {3}, Remove three counters from among creatures you control: Put the top three cards of your library into your graveyard, then return a permanent card with converted mana cost 3 or less from your graveyard to the battlefield.
+mana={1}{W}{B}{G}
+type=Legendary Creature
+subtype=Nightmare Beast
+power=3
+toughness=3
+[/card]
+[card]
+name=Gavi, Nest Warden
+text=You may pay {0} rather than pay the cycling cost of the first card you cycle each turn. -- Whenever you draw your second card each turn, create a 2/2 red and white Dinosaur Cat creature token.
+mana={2}{U}{R}{W}
+type=Legendary Creature
+subtype=Human Shaman
+power=2
+toughness=5
+[/card]
+[card]
+name=Kathril, Aspect Warper
+text=When Kathril, Aspect Warper enters the battlefield, put a flying counter on any creature you control if a creature card in your graveyard has flying. Repeat this process for first strike, double strike, deathtouch, hexproof, indestructible, lifelink, menace, reach, trample, and vigilance. Then put a +1/+1 counter on Kathril for each counter put on a creature this way.
+mana={2}{W}{B}{G}
+type=Legendary Creature
+subtype=Nightmare Insect
+power=3
+toughness=3
+[/card]
+[card]
+name=Soulflayer
+text=Delve (Each card you exile from your graveyard while casting this spell pays for {1}.) -- If a creature card with flying was exiled with Soulflayer's delve ability, Soulflayer has flying. The same is true for first strike, double strike, deathtouch, haste, hexproof, indestructible, lifelink, reach, trample, and vigilance.
+mana={4}{B}{B}
+other={delve} name(Delve)
+type=Creature
+subtype=Demon
+power=4
+toughness=4
+[/card]
+[card]
+name=Portal Mage
+abilities=flash
+auto=phasealter(remove,combatphases,controller)
+auto=nextphasealter(add,combatphases,controller,after<combatends>)
+text=Flash -- When Portal Mage enters the battlefield during the declare attackers step, you may reselect which player or planeswalker target attacking creature is attacking. (It cant attack its controller or its controllers planeswalkers.)
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+Power=2
+toughness=2
+[/card]
+[card]
+name=Wort, the Raidmother
+text=When Wort, the Raidmother enters the battlefield, put two 1/1 red and green Goblin Warrior creature tokens onto the battlefield. -- Each red or green instant or sorcery spell you cast has conspire. (As you cast the spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose new targets for the copy.)
+mana={4}{RG}{RG}
+type=Legendary Creature
+subtype=Goblin Shaman
+power=3
+toughness=3
+[/card]

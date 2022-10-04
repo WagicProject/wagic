@@ -1,0 +1,37 @@
+[meta]
+author=Wagic Team
+name=HarperPrism Book Promo 1994-2009
+orderindex=PRO-1.PHPR
+year=1994-09-01
+total=6
+[/meta]
+[card]
+primitive=Arena
+id=16746
+rarity=R
+[/card]
+[card]
+primitive=Giant Badger
+id=16747
+rarity=R
+[/card]
+[card]
+primitive=Mana Crypt
+id=16748
+rarity=R
+[/card]
+[card]
+primitive=Sewers of Estark
+id=16749
+rarity=R
+[/card]
+[card]
+primitive=Windseeker Centaur
+id=16750
+rarity=R
+[/card]
+[card]
+primitive=Jace Beleren
+id=16751
+rarity=M
+[/card]

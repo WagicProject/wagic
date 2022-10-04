@@ -1,4 +1,4 @@
-#NAME:Red Cats
+#NAME:Wild Cats
 #DESC:Ferocious predators
 #DESC:descend from the mountains,
 #DESC:lured down

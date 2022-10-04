@@ -12,7 +12,7 @@ BOOST_PATH := $(MY_WAGIC_ROOT)/Boost
 JPEG_PATH := $(JGE_PATH)/Dependencies/libjpeg
 PNG_PATH := $(JGE_PATH)/Dependencies/libpng
 
-LOCAL_CFLAGS += -DLINUX -DANDROID -DSDL_CONFIG
+LOCAL_CFLAGS += -DLINUX -DANDROID -DSDL_CONFIG -DNETWORK_SUPPORT
 LOCAL_CFLAGS += -D_STLP_USE_SIMPLE_NODE_ALLOC -DTIXML_USE_STL
 LOCAL_CFLAGS += -D__arm__ -D_REENTRANT -D_GLIBCXX__PTHREADS
 LOCAL_STATIC_LIBRARIES := libpng libjpeg
@@ -133,6 +133,7 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
         $(MTG_PATH)/src/WFilter.cpp \
         $(MTG_PATH)/src/WFont.cpp \
         $(MTG_PATH)/src/WGui.cpp \
+        $(MTG_PATH)/src/WParsedInt.cpp \
         $(MTG_PATH)/src/WResourceManager.cpp \
         $(MTG_PATH)/src/DeckView.cpp \
         $(MTG_PATH)/src/CarouselDeckView.cpp \

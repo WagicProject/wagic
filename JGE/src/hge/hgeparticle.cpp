@@ -96,7 +96,8 @@ hgeParticleSystem::hgeParticleSystem(hgeParticleSystemInfo *psi)
 {
   //hge=hgeCreate(HGE_VERSION);
 
-  memcpy(&info, psi, sizeof(hgeParticleSystemInfo));
+	if (psi)
+		memcpy(&info, psi, sizeof(hgeParticleSystemInfo));
 
   vecLocation.x=vecPrevLocation.x=0.0f;
   vecLocation.y=vecPrevLocation.y=0.0f;

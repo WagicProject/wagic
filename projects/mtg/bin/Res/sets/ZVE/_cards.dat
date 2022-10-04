@@ -1,9 +1,9 @@
 [meta]
 author=Wagic Team
 name=Duel Decks: Zendikar vs. Eldrazi
-block=Duel
-year=2015
-total=80
+orderindex=DUE-H.DDP
+year=2015-08-28
+total=77
 [/meta]
 [card]
 primitive=Affa Guard Hound
@@ -163,7 +163,7 @@ rarity=R
 [card]
 primitive=Hellion
 id=401721
-rarity=C
+rarity=T
 [/card]
 [card]
 primitive=Induce Despair
@@ -268,7 +268,7 @@ rarity=L
 [card]
 primitive=Plant
 id=401722
-rarity=C
+rarity=T
 [/card]
 [card]
 primitive=Primal Command

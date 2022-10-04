@@ -106,11 +106,14 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
             primitive->addMagicText(val,"graveyard");
             primitive->addMagicText(val,"stack");
             primitive->addMagicText(val,"exile");
+            primitive->addMagicText(val,"commandzone");
+            primitive->addMagicText(val,"reveal");
+            primitive->addMagicText(val,"sideboard");
             primitive->addMagicText(val);
         }
         break;
 
-    case 'b': //buyback/Bestow
+    case 'b': //buyback/Bestow/backside
         if (!primitive) primitive = NEW CardPrimitive();
         if (key[1] == 'e' && key[2] == 's')
         { //bestow
@@ -121,6 +124,12 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
                 std::transform(value.begin(), value.end(), value.begin(), ::tolower);
                 cost->setBestow(ManaCost::parseManaCost(value));
             }
+        }
+        else
+        if (key[1] == 'a' && key[2] == 'c')
+        { //backside
+            if (!primitive) primitive = NEW CardPrimitive();
+            primitive->backSide = val;
         }
         else//buyback
         if (ManaCost * cost = primitive->getManaCost())
@@ -188,6 +197,16 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
                     string value = val;
                     std::transform(value.begin(), value.end(), value.begin(), ::tolower);
                     cost->setFlashback(ManaCost::parseManaCost(value));
+                    size_t name = value.find("name(");
+                    string theName = "";
+                    if(name != string::npos)
+                    {
+                        size_t endName = value.find(")",name);
+                        theName = value.substr(name + 5,endName - name - 5);
+                        value.erase(name, endName - name + 1);
+                    }
+                    if(theName.size())
+                        cost->getFlashback()->alternativeName.append(theName);
                 }
             }
             break;
@@ -215,9 +234,19 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
                 size_t endK = value.find("{",multikick);
                 value.erase(multikick, endK - multikick);
                 isMultikicker = true;
-        }
+            }
             cost->setKicker(ManaCost::parseManaCost(value));  
             cost->getKicker()->isMulti = isMultikicker;
+            size_t name = value.find("name(");
+            string theName = "";
+            if(name != string::npos)
+            {
+                size_t endName = value.find(")",name);
+                theName = value.substr(name + 5,endName - name - 5);
+                value.erase(name, endName - name + 1);
+            }
+            if(theName.size())
+                cost->getKicker()->alternativeName.append(theName);
         }
         break;
 
@@ -285,6 +314,11 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
             map<string, CardPrimitive*>::iterator it = primitives.find(val);
             if (it != primitives.end()) card->setPrimitive(it->second);
         }
+        else if (key[1] == 'a' && key[2] == 'r')
+        { //partner
+            if (!primitive) primitive = NEW CardPrimitive();
+            primitive->partner = val;
+        }
         else
         { //power
             if (!primitive) primitive = NEW CardPrimitive();
@@ -307,6 +341,16 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
                 string value = val;
                 std::transform(value.begin(), value.end(), value.begin(), ::tolower);
                 cost->setRetrace(ManaCost::parseManaCost(value));
+                size_t name = value.find("name(");
+                string theName = "";
+                if(name != string::npos)
+                {
+                    size_t endName = value.find(")",name);
+                    theName = value.substr(name + 5,endName - name - 5);
+                    value.erase(name, endName - name + 1);
+                }
+                if(theName.size())
+                    cost->getRetrace()->alternativeName.append(theName);
             }
         }
         else if (s.find("rar") != string::npos)
@@ -391,6 +435,17 @@ void MTGAllCards::init()
     tempPrimitive = NULL;
     total_cards = 0;
     initCounters();
+    izfstream limitedFile;
+    if (JFileSystem::GetInstance()->openForRead(limitedFile, "LimitedCardList.txt"))
+    {
+        string limitedLine;
+        while (getline(limitedFile,limitedLine))
+        {
+            if (limitedLine.size())
+                limitedCardsMap[limitedLine] = true;
+        }
+    }
+    limitedFile.close();
 }
 
 void MTGAllCards::loadFolder(const string& infolder, const string& filename )
@@ -520,6 +575,10 @@ int MTGAllCards::load(const string &config_file, int set_id)
             if (s[0] == '[' && s[1] == '/')
             {
                 conf_read_mode = MTGAllCards::READ_ANYTHING;
+                if (limitedCardsMap.size() && ((tempPrimitive && !limitedCardsMap[tempPrimitive->name]) || (tempCard && !tempCard->data))){
+                    SAFE_DELETE(tempCard);
+                    SAFE_DELETE(tempPrimitive);
+                }
                 if (tempPrimitive) tempPrimitive = addPrimitive(tempPrimitive, tempCard);
                 if (tempCard)
                 {
@@ -558,6 +617,7 @@ MTGAllCards::~MTGAllCards()
     for (map<string, CardPrimitive *>::iterator it = primitives.begin(); it != primitives.end(); it++)
         delete (it->second);
     primitives.clear();
+    limitedCardsMap.clear();
 }
 
 MTGAllCards* MTGAllCards::getInstance()
@@ -825,6 +885,7 @@ MTGDeck::MTGDeck(MTGAllCards * _allcards)
     database = _allcards;
     filename = "";
     meta_name = "";
+    meta_commander = false;
 }
 
 int MTGDeck::totalPrice()
@@ -853,6 +914,7 @@ MTGDeck::MTGDeck(const string& config_file, MTGAllCards * _allcards, int meta_on
     std::string contents;
     if (JFileSystem::GetInstance()->readIntoString(config_file, contents))
     {
+        meta_commander = (contents.find("#CMD:")!=string::npos)?true:false; //Added to read the command tag in metafile.
         std::stringstream stream(contents);
         std::string s;
         while (std::getline(stream, s))
@@ -887,15 +949,134 @@ MTGDeck::MTGDeck(const string& config_file, MTGAllCards * _allcards, int meta_on
                     meta_unlockRequirements = s.substr(found + 7);
                     continue;
                 }
-                found = s.find("SB:");
+                found = s.find("SB:"); // Now it's possible to add cards to Sideboard even using their Name instead of ID such as normal deck cards.
+                if (found != string::npos && database)
+                {
+                    s = s.substr(found + 3);
+                    s.erase(s.find_last_not_of("\t\n\v\f\r ") + 1);
+                    s.erase(0, s.find_first_not_of("\t\n\v\f\r "));
+                    std::string::const_iterator it = s.begin();
+                    while (it != s.end() && std::isdigit(*it)) ++it;
+                    if(!s.empty() && it == s.end()){
+                        MTGCard * card = database->getCardById(atoi(s.c_str()));
+                        if(card && !card->data->hasType("Dungeon")) // To add Dungeons in Sideboard you need to use #DNG tag.
+                            Sideboard.push_back(s);
+                    } else {
+                        int numberOfCopies = 1;
+                        size_t found = s.find(" *");
+                        if (found != string::npos){
+                            numberOfCopies = atoi(s.substr(found + 2).c_str());
+                            s = s.substr(0, found);
+                        }
+                        MTGCard * card = database->getCardByName(s);
+                        if (card){
+                            for (int i = 0; i < numberOfCopies; i++){
+                                std::stringstream str_id;
+                                str_id << card->getId();
+                                if(!card->data->hasType("Dungeon")) // To add Dungeons in Sideboard you need to use #DNG tag.
+                                    Sideboard.push_back(str_id.str());
+                            }
+                        } else {
+                            DebugTrace("could not add to Sideboard any card with name: " << s);
+                        }
+                    }
+                    continue;
+                }
+                found = s.find("CMD:"); // Now it's possible to add a card to Command Zone even using their Name instead of ID such as normal deck cards.
                 if (found != string::npos)
                 {
-                    Sideboard.push_back(s.substr(found + 3));
+                    if(!database) continue;
+                    s = s.substr(found + 4);
+                    s.erase(s.find_last_not_of("\t\n\v\f\r ") + 1);
+                    s.erase(0, s.find_first_not_of("\t\n\v\f\r "));
+                    std::string::const_iterator it = s.begin();
+                    while (it != s.end() && std::isdigit(*it)) ++it;
+                    if(!s.empty() && it == s.end()){
+                        MTGCard * newcard = database->getCardById(atoi(s.c_str()));
+                        if(!CommandZone.size() && newcard->data->hasType("Legendary") && (newcard->data->hasType("Creature") || newcard->data->basicAbilities[Constants::CANBECOMMANDER])) // If no commander has been added you can add one.
+                            CommandZone.push_back(s);
+                        else if(CommandZone.size() == 1 && newcard->data->hasType("Legendary") && (newcard->data->hasType("Creature") || newcard->data->basicAbilities[Constants::CANBECOMMANDER])){ // If a commander has been added you can add a new one just if both have partner ability.
+                            if(newcard && newcard->data->basicAbilities[Constants::PARTNER]){
+                                MTGCard * oldcard = database->getCardById(atoi((CommandZone.at(0)).c_str()));
+                                if(oldcard && oldcard->data->basicAbilities[Constants::PARTNER] && (oldcard->data->name != newcard->data->name) && ((oldcard->data->partner == "" && newcard->data->partner == "") || (oldcard->data->partner == newcard->data->name && newcard->data->partner == oldcard->data->name)))
+                                    CommandZone.push_back(s);
+                            }
+                        }
+                    } else {
+                        size_t found = s.find(" *");
+                        if (found != string::npos)
+                            s = s.substr(0, found);
+                        MTGCard * newcard = database->getCardByName(s);
+                        if (newcard){
+                            std::stringstream str_id;
+                            str_id << newcard->getId();
+                            if(!CommandZone.size() && newcard->data->hasType("Legendary") && (newcard->data->hasType("Creature") || newcard->data->basicAbilities[Constants::CANBECOMMANDER])) // If no commander has been added you can add one.
+                                CommandZone.push_back(str_id.str());
+                            else if(CommandZone.size() == 1 && newcard->data->hasType("Legendary") && (newcard->data->hasType("Creature") || newcard->data->basicAbilities[Constants::CANBECOMMANDER])){ // If a commander has been added you can add a new one just if both have partner ability.
+                                if(newcard->data->basicAbilities[Constants::PARTNER]){
+                                    MTGCard * oldcard = database->getCardById(atoi((CommandZone.at(0)).c_str()));
+                                    if(oldcard && oldcard->data->basicAbilities[Constants::PARTNER] && (oldcard->data->name != newcard->data->name) && ((oldcard->data->partner == "" && newcard->data->partner == "") || (oldcard->data->partner == newcard->data->name && newcard->data->partner == oldcard->data->name)))
+                                        CommandZone.push_back(str_id.str());
+                                }
+                            }
+                        } else {
+                            DebugTrace("could not add to CommandZone any card with name: " << s);
+                        }
+                    }
+                    continue;
+                }
+                found = s.find("DNG:"); // Now it's possible to add Dungeons even using their Name instead of ID such as normal deck cards.
+                if (found != string::npos)
+                {
+                    if(!database) continue;
+                    s = s.substr(found + 4);
+                    s.erase(s.find_last_not_of("\t\n\v\f\r ") + 1);
+                    s.erase(0, s.find_first_not_of("\t\n\v\f\r "));
+                    std::string::const_iterator it = s.begin();
+                    while (it != s.end() && std::isdigit(*it)) ++it;
+                    if(!s.empty() && it == s.end()){
+                        MTGCard * newcard = database->getCardById(atoi(s.c_str()));
+                        if(!DungeonZone.size() && newcard && newcard->data->hasType("Dungeon") && newcard->getRarity() == Constants::RARITY_T) // If no dungeon has been added you can add one.
+                            DungeonZone.push_back(s);
+                        else if(DungeonZone.size() > 0 && newcard && newcard->data->hasType("Dungeon") && newcard->getRarity() == Constants::RARITY_T){ // Try to add the dungeon.
+                            bool found = false;
+                            for(unsigned int i = 0; i < DungeonZone.size(); i++){
+                                MTGCard * oldcard = database->getCardById(atoi((DungeonZone.at(i)).c_str()));
+                                if(oldcard && oldcard->data->name == newcard->data->name)
+                                    found = true;
+                            }
+                            if(!found)
+                                DungeonZone.push_back(s);
+                        }
+                    } else {
+                        size_t found = s.find(" *");
+                        if (found != string::npos)
+                            s = s.substr(0, found);
+                        MTGCard * newcard = database->getCardByName(s);
+                        if (newcard){
+                            std::stringstream str_id;
+                            str_id << newcard->getId();
+                            if(!DungeonZone.size() && newcard && newcard->data->hasType("Dungeon") && newcard->getRarity() == Constants::RARITY_T) // If no dungeon has been added you can add one.
+                                DungeonZone.push_back(str_id.str());
+                            else if(DungeonZone.size() > 0 && newcard && newcard->data->hasType("Dungeon") && newcard->getRarity() == Constants::RARITY_T){ // Try to add the dungeon.
+                                bool found = false;
+                                for(unsigned int i = 0; i < DungeonZone.size() && !found; i++){
+                                    MTGCard * oldcard = database->getCardById(atoi((DungeonZone.at(i)).c_str()));
+                                    if(oldcard && oldcard->data->name == newcard->data->name)
+                                        found = true;
+                                }
+                                if(!found)
+                                    DungeonZone.push_back(str_id.str());
+                            }
+                        } else {
+                            DebugTrace("could not add to Dungeons any card with name: " << s);
+                        }
+                    }
                     continue;
                 }
                 continue;
             }
-            if (meta_only) break;
+            if (meta_only) continue; //Changed from break in order to read the command tag in metafile.
             int numberOfCopies = 1;
             size_t found = s.find(" *");
             if (found != string::npos)
@@ -1124,6 +1305,26 @@ void MTGDeck::replaceSB(vector<string> newSB)
     return;
 }
 
+void MTGDeck::replaceCMD(vector<string> newCMD)
+{
+    if(newCMD.size())
+    {
+        CommandZone.clear();
+        CommandZone = newCMD;
+    }
+    return;
+}
+
+void MTGDeck::replaceDNG(vector<string> newDMG)
+{
+    if(newDMG.size())
+    {
+        DungeonZone.clear();
+        DungeonZone = newDMG;
+    }
+    return;
+}
+
 int MTGDeck::remove(int cardid)
 {
     if (cards.find(cardid) == cards.end() || cards[cardid] == 0) return 0;
@@ -1204,6 +1405,28 @@ int MTGDeck::save(const string& destFileName, bool useExpandedDescriptions, cons
                     file << "#SB:" << checkID << "\n";
             }
         }
+        //save commanders
+        if(CommandZone.size())
+        {
+            sort(CommandZone.begin(), CommandZone.end());
+            for(unsigned int k = 0; k < CommandZone.size(); k++)
+            {
+                int checkID = atoi(CommandZone[k].c_str());
+                if(checkID)
+                    file << "#CMD:" << checkID << "\n";
+            }
+        }
+        //save dungeons
+        if(DungeonZone.size())
+        {
+            sort(DungeonZone.begin(), DungeonZone.end());
+            for(unsigned int k = 0; k < DungeonZone.size(); k++)
+            {
+                int checkID = atoi(DungeonZone[k].c_str());
+                if(checkID)
+                    file << "#DNG:" << checkID << "\n";
+            }
+        }
 
         file.close();
         JFileSystem::GetInstance()->Rename(tmp, destFileName);
@@ -1238,7 +1461,7 @@ void MTGDeck::printDetailedDeckText(std::ofstream& file )
         string setName = setInfo->id;
         string cardName = card->data->getName();
 
-        currentCard << "#" << nbCards << " x " << cardName << " (" << setName << "), ";
+        currentCard << "#" << nbCards << "x " << cardName << " (" << setName << "), ";
 
         if ( !card->data->isLand() )
             currentCard << card->data->getManaCost() << ", ";
@@ -1291,11 +1514,11 @@ void MTGDeck::printDetailedDeckText(std::ofstream& file )
     }
     ss_creatures << numberOfCreatures;
     ss_spells << numberOfSpells;
-    ss_lands <<	numberOfLands;
+    ss_lands <<    numberOfLands;
 
-    file << getCardBlockText( "Creatures x " + ss_creatures.str(), creatures.str() ) << endl;
-    file << getCardBlockText( "Spells x " + ss_spells.str(), spells.str() ) << endl;
-    file << getCardBlockText( "Lands x " + ss_lands.str(), lands.str() ) << endl;
+    file << getCardBlockText( "Creatures x" + ss_creatures.str(), creatures.str() ) ;
+    file << getCardBlockText( "Spells x" + ss_spells.str(), spells.str() ) ;
+    file << getCardBlockText( "Lands x" + ss_lands.str(), lands.str() ) ;
     creatures.str("");
     spells.str("");
     lands.str("");
@@ -1520,6 +1743,18 @@ string MTGSetInfo::getName()
     return id; //Ugly name as well.
 }
 
+string MTGSetInfo::getDate()
+{
+    if (date.size()) return date; //Return the set release date.
+    return "..."; //Fallback if no date has been specified.
+}
+
+string MTGSetInfo::getOrderIndex()
+{
+    if (orderindex.size()) return orderindex; //Order Index for sorting sets.
+    return getName(); // Fallback to name if Order Index is empty.
+}
+
 string MTGSetInfo::getBlock()
 {
     if (block < 0 || block >= (int) setlist.blocks.size()) return "None";
@@ -1542,8 +1777,11 @@ void MTGSetInfo::processConfLine(string line)
         author = value;
     else if (key.compare("block") == 0)
         block = setlist.findBlock(value.c_str());
-    else if (key.compare("year") == 0) 
-        year = atoi(value.c_str());
-    else if (key.compare("total") == 0) 
+    else if (key.compare("year") == 0){ 
+        date = value; // Added to read the full release date of sets.
+        year = atoi(value.substr(0,4).c_str());
+    } else if (key.compare("total") == 0) 
         total = atoi(value.c_str());
+    else if (key.compare("orderindex") == 0) 
+        orderindex = value; // Added new tag for different sorting of sets.
 }

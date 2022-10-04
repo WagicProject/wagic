@@ -95,7 +95,11 @@ bool GuiPhaseBar::Leaving(JButton)
 void GuiPhaseBar::Render()
 {
     JQuadPtr quad = WResourceManager::Instance()->GetQuad("phasebar");
+#if defined (PSP)
+    JQuadPtr phaseinfo = WResourceManager::Instance()->RetrieveTempQuad("pspfakebar.png"); //new fakebar graphics
+#else
     JQuadPtr phaseinfo = WResourceManager::Instance()->RetrieveTempQuad("fakebar.png"); //new fakebar graphics
+#endif
     //uncomment to draw a hideous line across hires screens.
     // JRenderer::GetInstance()->DrawLine(0, CENTER, SCREEN_WIDTH, CENTER, ARGB(255, 255, 255, 255));
 

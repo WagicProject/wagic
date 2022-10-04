@@ -1,4 +1,4 @@
-#NAME:Tsabo
+#NAME:Undead Infiltrator
 #DESC:You may be prepared
 #DESC:for an army of zombies
 #DESC:rising from the graves.

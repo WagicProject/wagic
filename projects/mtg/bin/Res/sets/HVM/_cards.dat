@@ -1,8 +1,8 @@
 [meta]
 author=Wagic Team
 name=Duel Decks: Heroes vs. Monsters
-block=Duel
-year=2013
+orderindex=DUE-D.DDL
+year=2013-09-06
 total=81
 [/meta]
 [card]

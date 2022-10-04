@@ -1,0 +1,32 @@
+[meta]
+author=Wagic Team
+name=Magic Premiere Shop 2010
+orderindex=PRO-H.PMP10
+year=2010-01-01
+total=5
+[/meta]
+[card]
+primitive=Forest
+id=17945
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=17946
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=17947
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=17948
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=17949
+rarity=L
+[/card]

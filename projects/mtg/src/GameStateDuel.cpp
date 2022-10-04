@@ -133,6 +133,7 @@ enum ENUM_OPERATION_LEVELS
 
 int GameStateDuel::selectedPlayerDeckId = 0;
 int GameStateDuel::selectedAIDeckId = 0;
+static std::string kBgFile = "";
 
 GameStateDuel::GameStateDuel(GameApp* parent) :
 GameState(parent, "duel")
@@ -147,6 +148,7 @@ GameState(parent, "duel")
     menu = NULL;
     popupScreen = NULL;
     mGamePhase = DUEL_STATE_UNSET;
+    taskList = NEW TaskList();
 
 #ifdef TESTSUITE
     testSuite = NULL;
@@ -180,6 +182,7 @@ GameStateDuel::~GameStateDuel()
 {
     End();
     SAFE_DELETE(tournament);
+    kBgFile = ""; //Reset the chosen backgorund.
 }
 
 void GameStateDuel::Start()
@@ -189,6 +192,8 @@ void GameStateDuel::Start()
     OpponentsDeckid = 0;
     bool createDeckMenu=true; // create only a deckmenu if not in tournament
 
+    SAFE_DELETE(taskList);
+    taskList = NEW TaskList();
 
 #ifdef NETWORK_SUPPORT
     if(!mParent->mpNetwork) {
@@ -211,7 +216,7 @@ void GameStateDuel::Start()
 
     // match mode is available in classic and demo mode.
     // in both modes player 1 is from type PLAYER_TYPE_CPU
-    if (mParent->players[1] == PLAYER_TYPE_CPU && (mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO))
+    if (mParent->players[1] == PLAYER_TYPE_CPU && (mParent->gameType == GAME_TYPE_COMMANDER || mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO))
     {
         //initialize match
         // only reset "Played Games" and "Victories" info if we didn't come here from within a match
@@ -237,10 +242,10 @@ void GameStateDuel::Start()
             decksneeded = 1;
 
             deckmenu = NEW DeckMenu(DUEL_MENU_CHOOSE_DECK, this, Fonts::OPTION_FONT, "Choose a Deck",
-                GameStateDuel::selectedPlayerDeckId, true);
+                GameStateDuel::selectedPlayerDeckId, true, false);
             deckmenu->enableDisplayDetailsOverride();
             DeckManager *deckManager = DeckManager::GetInstance();
-            vector<DeckMetaData *> playerDeckList = BuildDeckList(options.profileFile());
+            vector<DeckMetaData *> playerDeckList = BuildDeckList(options.profileFile(), "", NULL, 0, mParent->gameType);
             int nbDecks = playerDeckList.size();
 
             if (nbDecks)
@@ -274,7 +279,7 @@ void GameStateDuel::Start()
                 deckmenu->Add(MENUITEM_NEW_DECK, _("Create your Deck!").c_str(), desc);
             }
             premadeDeck = true;
-            fillDeckMenu(deckmenu, _("player/premade").c_str());
+            fillDeckMenu(deckmenu, _("player/premade").c_str(), "", NULL, 0, mParent->gameType);
         }
         else if (gModRules.general.hasDeckEditor())
         {
@@ -285,7 +290,7 @@ void GameStateDuel::Start()
     else if(createDeckMenu && (mParent->players[0] == PLAYER_TYPE_CPU && mParent->players[1] == PLAYER_TYPE_CPU))
     {
         //DeckManager::EndInstance();
-        deckmenu = NEW DeckMenu(DUEL_MENU_CHOOSE_DECK, this, Fonts::OPTION_FONT, "Choose a Deck", GameStateDuel::selectedPlayerDeckId, true);
+        deckmenu = NEW DeckMenu(DUEL_MENU_CHOOSE_DECK, this, Fonts::OPTION_FONT, "Choose a Deck", GameStateDuel::selectedPlayerDeckId, true, true);
         int nmbDecks = options[Options::CHEATMODEAIDECK].number ? 1000 : options[Options::AIDECKS_UNLOCKED].number;
         if (nmbDecks > 1)
         {
@@ -299,9 +304,9 @@ void GameStateDuel::Start()
         DeckManager *deckManager = DeckManager::GetInstance();
         vector<DeckMetaData *> playerDeckList;
 
-        playerDeckList = fillDeckMenu(deckmenu, "ai/baka","ai_baka",NULL,nmbDecks);
+        playerDeckList = fillDeckMenu(deckmenu, "ai/baka", "ai_baka", NULL, nmbDecks, mParent->gameType);
         //printf("nmbDecks %i\n",playerDeckList.size());
-        renderDeckMenu(deckmenu, playerDeckList);
+        //renderDeckMenu(deckmenu, playerDeckList);
         // save the changes to the player deck list maintained in DeckManager
         deckManager->updateMetaDataList(&playerDeckList, true);
         //save the real number of available decks
@@ -357,6 +362,7 @@ void GameStateDuel::End()
     SAFE_DELETE(opponentMenu);
     SAFE_DELETE(deckmenu);
     SAFE_DELETE(popupScreen);
+    SAFE_DELETE(taskList);
 
     //reset player for next match (only if actual match is finished)
     tournament->End();
@@ -364,11 +370,16 @@ void GameStateDuel::End()
 #ifdef TESTSUITE
     SAFE_DELETE(testSuite);
 #endif
+
+    MTGAbility::deletedpointers.clear(); // Clear the list of deallocated pointer.
+    kBgFile = ""; //Reset the chosen backgorund.
 }
 
 //TODO Move This to utils or ResourceManager. Don't we have more generic functions that can do that?
 bool GameStateDuel::MusicExist(string FileName)
 {
+    if (FileName.length() < 1) return false; // Fixed a problem when Music filename is empty.
+
     string musicFilename = WResourceManager::Instance()->musicFile(FileName);
     if (musicFilename.length() < 1) return false;
 
@@ -380,10 +391,10 @@ void GameStateDuel::ConstructOpponentMenu()
     if (opponentMenu == NULL)
     {
         opponentMenu = NEW DeckMenu(DUEL_MENU_CHOOSE_OPPONENT, this, Fonts::OPTION_FONT, "Choose Opponent",
-            GameStateDuel::selectedAIDeckId, true);
+            GameStateDuel::selectedAIDeckId, true, true);
 
         int nbUnlockedDecks = options[Options::CHEATMODEAIDECK].number ? 1000 : options[Options::AIDECKS_UNLOCKED].number;
-        if ((mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO)&&mParent->players[1] == PLAYER_TYPE_CPU)
+        if ((mParent->gameType == GAME_TYPE_COMMANDER || mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO) && mParent->players[1] == PLAYER_TYPE_CPU)
         {
             if (!tournamentSelection)
             {
@@ -417,13 +428,17 @@ void GameStateDuel::ConstructOpponentMenu()
                 }
 
             }
+        } else if (mParent->gameType == GAME_TYPE_STONEHEWER && mParent->players[1] == PLAYER_TYPE_CPU){
+            opponentMenu->Add(MENUITEM_RANDOM_AI, "Random");
+            if (mParent->players[0] ==  PLAYER_TYPE_HUMAN)
+               opponentMenu->Add(MENUITEM_RANDOM_AI_HARD, "Random (Not easy)",_("Selects a random AI deck with hard or normal difficulty.").c_str());
         }
         if (options[Options::EVILTWIN_MODE_UNLOCKED].number && !tournamentSelection)
             opponentMenu->Add(MENUITEM_EVIL_TWIN, "Evil Twin", _("Can you defeat yourself?").c_str());
         DeckManager * deckManager = DeckManager::GetInstance();
         vector<DeckMetaData*> opponentDeckList;
 
-        opponentDeckList = fillDeckMenu(opponentMenu, "ai/baka", "ai_baka", game->getPlayer(0), nbUnlockedDecks);
+        opponentDeckList = fillDeckMenu(opponentMenu, "ai/baka", "ai_baka", game->getPlayer(0), nbUnlockedDecks, mParent->gameType);
         deckManager->updateMetaDataList(&opponentDeckList, true);
         tournament->setAvailableDecks(opponentDeckList.size());
         opponentMenu->Add(MENUITEM_CANCEL, "Cancel", _("Choose a different player deck").c_str());
@@ -616,7 +631,7 @@ void GameStateDuel::Update(float dt)
             }
             else
             {
-                if (mParent->players[1] == PLAYER_TYPE_CPU && (mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO))
+                if (mParent->players[1] == PLAYER_TYPE_CPU && (mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_COMMANDER || mParent->gameType == GAME_TYPE_DEMO))
                 {
                     if (deckmenu && (!popupScreen || popupScreen->isClosed())) deckmenu->Update(dt);
                 }
@@ -673,7 +688,7 @@ void GameStateDuel::Update(float dt)
             }
             else
             {
-                if (mParent->players[1] == PLAYER_TYPE_CPU && (mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO))
+                if (mParent->players[1] == PLAYER_TYPE_CPU && (mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_COMMANDER || mParent->gameType == GAME_TYPE_DEMO))
                 {
                     ConstructOpponentMenu();
                     opponentMenu->Update(dt);
@@ -764,19 +779,36 @@ void GameStateDuel::Update(float dt)
                 sprintf(temp, "ai_baka_music%i.mp3", OpponentsDeckid);
                 musictrack.assign(temp);
             }
-            else if (mParent->gameType == GAME_TYPE_CLASSIC)
-                musictrack = "ai_baka_music.mp3";
-            else if (mParent->gameType == GAME_TYPE_MOMIR)
-                musictrack = "ai_baka_music_momir.mp3";
-            else if (mParent->gameType == GAME_TYPE_RANDOM1 || mParent->gameType == GAME_TYPE_RANDOM2) musictrack
-                = "ai_baka_music_random.mp3";
-
+            // Now it's possibile to randomly use up to 20 new sound tracks for duels (if random index is 20, it will be played the default "ai_baka_music.mp3" file).
+            if (!MusicExist(musictrack)){
+                char temp[4096];
+                sprintf(temp, "Battlefield/TrackDuel%i.mp3", std::rand() % 21);
+                musictrack.assign(temp);
+            }
+            // Try if there is a sound track for specific game type.
+            if (!MusicExist(musictrack)){
+                if (mParent->gameType == GAME_TYPE_CLASSIC)
+                    musictrack = "ai_baka_music.mp3";
+                else if (mParent->gameType == GAME_TYPE_COMMANDER)
+                    musictrack = "ai_baka_music_commander.mp3";
+                else if (mParent->gameType == GAME_TYPE_MOMIR)
+                    musictrack = "ai_baka_music_momir.mp3";
+                else if (mParent->gameType == GAME_TYPE_RANDOM1 || mParent->gameType == GAME_TYPE_RANDOM2 || mParent->gameType == GAME_TYPE_RANDOM3 || mParent->gameType == GAME_TYPE_RANDOM5)
+                    musictrack = "ai_baka_music_random.mp3";
+                else if (mParent->gameType == GAME_TYPE_HORDE) 
+                    musictrack = "ai_baka_music_horde.mp3";
+                else if (mParent->gameType == GAME_TYPE_SET_LIMITED)
+                    musictrack = "ai_baka_music_limited.mp3";
+            }
             if (!MusicExist(musictrack)) 
                 musictrack = "ai_baka_music.mp3";
 
+#if defined (PSP)
+                musictrack = "ai_baka_music.mp3";
+#endif
             GameApp::playMusic(musictrack);
             // init Score table
-            if ( (mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO)&& mParent->players[1] == PLAYER_TYPE_CPU)
+            if ( (mParent->gameType == GAME_TYPE_COMMANDER || mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO) && mParent->players[1] == PLAYER_TYPE_CPU)
             {
                 tournament->updateScoreTable(game->players[0], game->players[1], mParent->gameType);
                 tournament->setScoreDisplayed(false);
@@ -794,7 +826,7 @@ void GameStateDuel::Update(float dt)
         if (game->didWin())
         {
             //the following section will be called only in a classic or demo gamemode and if a tournament or match with more than one game is activ
-            if ( (mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO)&& mParent->players[1] == PLAYER_TYPE_CPU && (tournament->isTournament() || tournament->getGamesToPlay()>1 ))
+            if ( (mParent->gameType == GAME_TYPE_COMMANDER || mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO) && mParent->players[1] == PLAYER_TYPE_CPU && (tournament->isTournament() || tournament->getGamesToPlay()>1 ))
             {
                 setGamePhase(DUEL_STATE_SHOW_SCORE);
                 /* Determine the winner of this game.
@@ -923,38 +955,49 @@ void GameStateDuel::Update(float dt)
             if (!menu)
             {
                 menu = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), DUEL_MENU_GAME_MENU, this, Fonts::MENU_FONT, SCREEN_WIDTH / 2 - 100, 25);
-                int cardsinhand = game->currentPlayer->game->hand->nb_cards;
-
-                //almosthumane - mulligan
-                if ((game->turn < 1) && (cardsinhand != 0) && game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
-                    && game->currentPlayer->game->inPlay->nb_cards == 0 && game->currentPlayer->game->graveyard->nb_cards == 0
-                    && game->currentPlayer->game->exile->nb_cards == 0 && game->currentlyActing() == (Player*)game->currentPlayer) //1st Play Check
-                    //IF there was no play at the moment automatically mulligan
-                {
-                    menu->Add(MENUITEM_MULLIGAN, "Mulligan");
-                }
-                //END almosthumane - mulligan
-                menu->Add(MENUITEM_MAIN_MENU, "Back to main menu");
-#ifdef TESTSUITE
-                menu->Add(MENUITEM_UNDO, "Undo");
-#endif
-#ifdef TESTSUITE
-                menu->Add(MENUITEM_LOAD, "Load");
-#endif
-
-                if (mParent->players[1] == PLAYER_TYPE_CPU && (mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO))
-                {
-                    menu->Add(MENUITEM_SHOW_SCORE, "Show current score");
-                    if (mParent->players[0] == PLAYER_TYPE_CPU)
+                menu->Add(MENUITEM_CANCEL, "Cancel");
+                if(taskList->getState() != TaskList::TASKS_ACTIVE){
+                    //almosthumane - mulligan
+                    if (((game->turn == 0 && game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN) || (game->turn == 1 && game->getCurrentGamePhase() < MTG_PHASE_DRAW))
+                        && game->currentPlayer->game->hand->nb_cards > 0 && game->currentPlayer->game->inPlay->nb_cards == 0 && game->currentPlayer->game->graveyard->nb_cards == 0
+                        && game->currentPlayer->game->exile->nb_cards == 0 && game->currentlyActing() == (Player*)game->currentPlayer) //Now you can mulligan even if you didn't start as first.
                     {
-                        if (tournament->getFastTimerMode())
-                            menu->Add(MENUITEM_SPEED_NORMAL, "set Speed to NORMAL");
-                        else
-                            menu->Add(MENUITEM_SPEED_FAST, "set Speed to FAST");
-
+                        menu->Add(MENUITEM_MULLIGAN, "Mulligan");
+                    }
+                    //END almosthumane - mulligan
+                    if(game->getCurrentGamePhase() == MTG_PHASE_COMBATATTACKERS && game->currentlyActing() == (Player*)game->currentPlayer){ // During attack phase it shows a button to toggle all creatures to attack mode
+                        menu->Add(MENUITEM_TOGGLEATTACK_ALL_CREATURES, "Toggle Attack all Creatures");
+                    }
+                    if(game->getCurrentTargetChooser() && game->getCurrentTargetChooser()->source->controller() == game->currentlyActing()){
+                        if(game->getCurrentTargetChooser()->getNbTargets() < 1)
+                            menu->Add(MENUITEM_TOGGLE_SELECT_ALL, "Select all Targets");
+                        else {
+                            menu->Add(MENUITEM_TOGGLE_SELECT_ALL, "Clear Selection");
+                            menu->Add(MENUITEM_CONFIRM_SELECT_ALL, "Confirm Selection");
+                        }
+                    }
+                    menu->Add(MENUITEM_MAIN_MENU, "Back to main menu");
+#ifdef TESTSUITE
+                    menu->Add(MENUITEM_UNDO, "Undo");
+                    menu->Add(MENUITEM_LOAD, "Load");
+#endif
+                    if (mParent->players[1] == PLAYER_TYPE_CPU && (mParent->gameType == GAME_TYPE_COMMANDER || mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO))
+                    {
+                        menu->Add(MENUITEM_SHOW_SCORE, "Show current score");
+                        if (mParent->players[0] == PLAYER_TYPE_CPU)
+                        {
+                            if (tournament->getFastTimerMode())
+                                menu->Add(MENUITEM_SPEED_NORMAL, "set Speed to NORMAL");
+                            else
+                                menu->Add(MENUITEM_SPEED_FAST, "set Speed to FAST");
+                        }
                     }
                 }
-                menu->Add(MENUITEM_CANCEL, "Cancel");
+            }
+            if(taskList->getState() != TaskList::TASKS_ACTIVE){
+                menu->Add(MENUITEM_TASKBOARD, "Open task board");
+            } else {
+                menu->Add(MENUITEM_TASKBOARD, "Close task board");
             }
             setGamePhase(DUEL_STATE_MENU);
         }
@@ -1030,6 +1073,8 @@ void GameStateDuel::Update(float dt)
     default:
         if (JGE_BTN_OK == mEngine->ReadButton()) mParent->SetNextState(GAME_STATE_MENU);
     }
+    if(taskList && taskList->getState() == TaskList::TASKS_IN)
+        taskList->Update(dt);
 }
 
 void GameStateDuel::Render()
@@ -1037,14 +1082,42 @@ void GameStateDuel::Render()
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     JRenderer * r = JRenderer::GetInstance();
     r->ClearScreen(ARGB(0,0,0,0));
-#if !defined (PSP)
-    JTexture * wpTex = WResourceManager::Instance()->RetrieveTexture("bgdeckeditor.jpg");
+
+#if defined (PSP)
+    JTexture * wpTex = WResourceManager::Instance()->RetrieveTexture("pspbgdeckeditor.jpg");
     if (wpTex)
     {
-        JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad("bgdeckeditor.jpg");
+        JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad("pspbgdeckeditor.jpg");
+        JRenderer::GetInstance()->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
+    }
+#else
+    //Now it's possibile to randomly use up to 10 background images for deck selection (if random index is 0, it will be rendered the default "bgdeckeditor.jpg" image).
+    JTexture * wpTex = NULL;
+    if(kBgFile == ""){
+        char temp[4096];
+        sprintf(temp, "bgdeckeditor%i.jpg", std::rand() % 10);
+        kBgFile.assign(temp);
+        wpTex = WResourceManager::Instance()->RetrieveTexture(kBgFile);
+        if (wpTex) {
+            JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad(kBgFile);
+            if (wpQuad.get())
+                JRenderer::GetInstance()->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
+            else {
+               kBgFile = "bgdeckeditor.jpg"; //Fallback to default background image for deck selection.
+               wpTex = NULL;
+            }
+        } else
+            kBgFile = "bgdeckeditor.jpg"; //Fallback to default background image for deck selection.
+    }
+    if(!wpTex)
+        wpTex = WResourceManager::Instance()->RetrieveTexture(kBgFile);
+    if (wpTex)
+    {
+        JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad(kBgFile);
         JRenderer::GetInstance()->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
     }
 #endif
+
     //render the game until someone did win the game (otherwise it crashes sometimes under linux)
     if (game && !game->didWin())
         game->Render();
@@ -1163,6 +1236,7 @@ void GameStateDuel::Render()
             && mParent->gameType != GAME_TYPE_SLAVE
 #endif //NETWORK_SUPPORT
             && mParent->gameType != GAME_TYPE_STONEHEWER
+            && mParent->gameType != GAME_TYPE_COMMANDER
             && mParent->gameType != GAME_TYPE_HERMIT)
             mFont->DrawString(_("LOADING DECKS").c_str(), 0, SCREEN_HEIGHT / 2);
         else
@@ -1216,6 +1290,11 @@ void GameStateDuel::Render()
                 mFont->DrawString( opponentDeckName, 0, 50);
             }
         }
+    }
+    if(taskList && taskList->getState() == TaskList::TASKS_ACTIVE){
+        taskList->Render();
+        if(menu)
+            menu->Render();
     }
 }
 
@@ -1346,8 +1425,14 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
         switch (controlId)
         {
         case MENUITEM_RANDOM_AI:
-            game->loadPlayer(1, mParent->players[1]);
-            tournament->addDeck(1,game->players.at(1)->deckId,mParent->players[1]);
+            {
+                int deck = tournament->getRandomDeck(false, mParent->gameType);
+                if (deck>0)
+                {
+                    game->loadPlayer(1, mParent->players[1], deck);
+                    tournament->addDeck(1,game->players.at(1)->deckId,mParent->players[1]);
+                }
+            }
             setAISpeed();
             if (opponentMenu) opponentMenu->Close();
             if (tournamentSelection)
@@ -1357,7 +1442,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             break;
         case MENUITEM_RANDOM_AI_HARD:
             {
-                int deck=tournament->getRandomDeck(true);
+                int deck = tournament->getRandomDeck(true, mParent->gameType);
                 if (deck>0)
                 {
                     game->loadPlayer(1, mParent->players[1], deck, premadeDeck);
@@ -1378,7 +1463,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
                 int deck=0;
                 do
                 {
-                    deck=tournament->getRandomDeck(controlId==MENUITEM_FILL_NEXT_STAGE_HARD);
+                    deck = tournament->getRandomDeck(controlId==MENUITEM_FILL_NEXT_STAGE_HARD, mParent->gameType);
                     if (deck>0)
                     {
                         game->loadPlayer(1, mParent->players[1], deck, premadeDeck);
@@ -1649,6 +1734,59 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
 //          menu->Close();
 //          mGamePhase = DUEL_STATE_CONTINUE;
 //          break;
+        case MENUITEM_TASKBOARD:
+            if(taskList->getState() != TaskList::TASKS_ACTIVE){
+                taskList->Start();
+            } else {
+                taskList->End();
+            }
+            menu->Close();
+            setGamePhase(DUEL_STATE_CANCEL);
+            break;
+        case MENUITEM_TOGGLEATTACK_ALL_CREATURES:
+            for(unsigned int i = 0; i < game->players[0]->inPlay()->cards.size(); i++){
+                if(game->players[0]->inPlay()->cards[i]->canAttack()){
+                    game->players[0]->inPlay()->cards[i]->toggleAttacker();
+                }
+            }
+            menu->Close();
+            setGamePhase(DUEL_STATE_CANCEL);
+            break;
+        case MENUITEM_TOGGLE_SELECT_ALL:
+            if(game->getCurrentTargetChooser() && game->getCurrentTargetChooser()->getNbTargets() < 1){
+                for (int j = 0; j < 2; ++j){
+                    if(game->getCurrentTargetChooser()->canTarget(game->players[j]) && game->getCurrentTargetChooser()->getNbTargets() < (unsigned int) game->getCurrentTargetChooser()->maxtargets)
+                        game->getCurrentTargetChooser()->addTarget(game->players[j]);
+                    MTGGameZone * zones[] = { game->players[j]->game->inPlay, game->players[j]->game->graveyard, game->players[j]->game->hand, game->players[j]->game->library, game->players[j]->game->exile, game->players[j]->game->stack, game->players[j]->game->commandzone, game->players[j]->game->sideboard, game->players[j]->game->reveal };
+                    for (int k = 0; k < 9; k++){
+                        for(unsigned int i = 0; i < zones[k]->cards.size(); i++){
+                            if(game->getCurrentTargetChooser()->canTarget(zones[k]->cards[i]) && game->getCurrentTargetChooser()->getNbTargets() < (unsigned int) game->getCurrentTargetChooser()->maxtargets)
+                                game->getCurrentTargetChooser()->addTarget(zones[k]->cards[i]);
+                        }
+                    }
+                }
+                if(game->getCurrentTargetChooser()){
+                    game->getCurrentTargetChooser()->done = false;
+                    game->getCurrentTargetChooser()->autoChoice = true;
+                }
+            } else if(game->getCurrentTargetChooser()){
+                game->getCurrentTargetChooser()->initTargets();
+                game->getCurrentTargetChooser()->done = false;
+                game->getCurrentTargetChooser()->autoChoice = false;
+            }
+            menu->Close();
+            setGamePhase(DUEL_STATE_CANCEL);
+            break;
+        case MENUITEM_CONFIRM_SELECT_ALL:
+            if(game->getCurrentTargetChooser()){
+                game->getCurrentTargetChooser()->done = true;
+                game->getCurrentTargetChooser()->autoChoice = false;
+                if(game->getCurrentTargetChooser()->source)
+                    game->cardClick(game->getCurrentTargetChooser()->source, game->getCurrentTargetChooser()->source);
+            }
+            menu->Close();
+            setGamePhase(DUEL_STATE_CANCEL);
+            break;
         case MENUITEM_SPEED_FAST:
             tournament->setFastTimerMode(true);
             setAISpeed();
@@ -1849,7 +1987,7 @@ void Tournament::initTournamentResults()
 
 
 
-int Tournament::getRandomDeck(bool noEasyDecks)
+int Tournament::getRandomDeck(bool noEasyDecks, GameType type)
 {
     DeckManager *deckManager = DeckManager::GetInstance();
     vector<DeckMetaData *> *deckList =  deckManager->getAIDeckOrderList();
@@ -1859,15 +1997,21 @@ int Tournament::getRandomDeck(bool noEasyDecks)
     int k=0;
     bool isDouble=true;
     vector<unsigned int> decks;
-    for (unsigned int i=0;i<deckList->size();i++)
-        if (noEasyDecks && (deckList->at(i)->getDifficulty()==HARD || deckList->at(i)->getDifficulty()==NORMAL))
-        {
-            decks.push_back(i);
-            //printf("hard deck%i/%i\n",i,deckList->size());
-        } else
-            decks.push_back(i);
-
-
+    for (unsigned int i=0;i<deckList->size();i++){
+        if(type == GAME_TYPE_COMMANDER && deckList->at(i)->isCommanderDeck()){
+            if (noEasyDecks && (deckList->at(i)->getDifficulty()==HARD || deckList->at(i)->getDifficulty()==NORMAL)){
+                decks.push_back(i);
+            } else {
+                decks.push_back(i);
+            }
+        } else if(type != GAME_TYPE_COMMANDER){
+            if (noEasyDecks && (deckList->at(i)->getDifficulty()==HARD || deckList->at(i)->getDifficulty()==NORMAL)){
+                decks.push_back(i);
+            } else {
+                decks.push_back(i);
+            }
+        }
+    }
     while(isDouble && decks.size()>0)
     {
         isDouble=false;
@@ -2667,7 +2811,7 @@ void Tournament::renderScoreTable()
         // For some reason, there's currently no player avatar prepared in-game:
         if (p1IsAI)
         {
-            if (mgameType == GAME_TYPE_CLASSIC || mgameType == GAME_TYPE_DEMO)
+            if (mgameType == GAME_TYPE_COMMANDER || mgameType == GAME_TYPE_CLASSIC || mgameType == GAME_TYPE_DEMO)
                 r->RenderQuad(p1Quad.get(), x_score, 70, 0,1,1);
         }
         else
@@ -2677,7 +2821,7 @@ void Tournament::renderScoreTable()
         }
         if (p0IsAI)
         {
-            if (mgameType == GAME_TYPE_CLASSIC || mgameType == GAME_TYPE_DEMO)
+            if (mgameType == GAME_TYPE_COMMANDER || mgameType == GAME_TYPE_CLASSIC || mgameType == GAME_TYPE_DEMO)
                 r->RenderQuad(p0Quad.get(), x_score+190, 215, 0,1,1);
         }
         else

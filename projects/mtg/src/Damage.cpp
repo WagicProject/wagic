@@ -116,6 +116,14 @@ int Damage::resolve()
             }
             damage = 0;
         }
+        if ((_target)->has(Constants::NONCOMBATVIGOR) && typeOfDamage != DAMAGE_COMBAT)
+        {
+            for (int j = damage; j > 0; j--)
+            {
+                (_target)->counters->addCounter(1, 1);
+            }
+            damage = 0;
+        }
         if ((_target)->has(Constants::HYDRA))
         {
             for (int j = damage; j > 0; j--)
@@ -175,14 +183,20 @@ int Damage::resolve()
             _target->counters->addCounter(-1, -1);
         }
         if(_target->toughness <= 0 && _target->has(Constants::INDESTRUCTIBLE))
-            _target->controller()->game->putInGraveyard(_target);
+            _target->toGrave(true); // The indestructible creatures can have different destination zone after death.
     }
     else if (target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER && (source->has(Constants::INFECT)||source->has(Constants::POISONDAMAGER)))
     {
         // Poison on player
         Player * _target = (Player *) target;
-        if(!_target->inPlay()->hasAbility(Constants::POISONSHROUD))
+        if(!_target->inPlay()->hasAbility(Constants::POISONSHROUD)){
             _target->poisonCount += damage;//this will be changed to poison counters.
+            if(damage > 0)
+            {
+                WEvent * e = NEW WEventplayerPoisoned(_target, damage); // Added an event when player receives any poison counter.
+                _target->getObserver()->receiveEvent(e);
+            }
+        }
         _target->damageCount += damage;
         if(typeOfDamage == 2)
             _target->nonCombatDamage += damage;
@@ -217,51 +231,59 @@ int Damage::resolve()
         }
         if(!_target->inPlay()->hasAbility(Constants::POISONSHROUD))
         {
+            int poison = 0;
             if (source->has(Constants::POISONTOXIC))
             {
-                _target->poisonCount += 1;
+                poison = 1;
             }
             else if (source->has(Constants::POISONTWOTOXIC))
             {
-                _target->poisonCount += 2;
+                poison = 2;
             }
             else
             {
-                _target->poisonCount += 3;
+                poison = 3;
             }
+            _target->poisonCount += poison;
+             WEvent * e = NEW WEventplayerPoisoned(_target, damage); // Added an event when player receives any poison counter.
+            _target->getObserver()->receiveEvent(e);
         }
-
     }
     else
     {
         // "Normal" case,
         //return the left over amount after effects have been applied to them.
-        if (target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER && ((Player *)target)->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
+        if ((target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER && ((Player *)target)->inPlay()->hasAbility(Constants::CANTCHANGELIFE)) ||
+            (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && (((MTGCardInstance*)target)->basicAbilities[Constants::UNDAMAGEABLE] == 1)))
             ;//do nothing
         else
             a = target->dealDamage(damage);
-        target->damageCount += damage;//the amount must be the actual damage so i changed this from 1 to damage, this fixes pdcount and odcount
-        if(typeOfDamage == 2)
-            target->nonCombatDamage += damage;
-        if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE){
-            ((MTGCardInstance*)target)->wasDealtDamage = true;
-            ((MTGCardInstance*)source)->damageToCreature = true;
+        if (!(target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && (((MTGCardInstance*)target)->basicAbilities[Constants::UNDAMAGEABLE] == 1))){
+            target->damageCount += damage;//the amount must be the actual damage so i changed this from 1 to damage, this fixes pdcount and odcount
+            if(typeOfDamage == 2)
+                target->nonCombatDamage += damage;
+        }
+        if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && (((MTGCardInstance*)target)->basicAbilities[Constants::UNDAMAGEABLE] == 0)){
+            ((MTGCardInstance*)target)->wasDealtDamage += damage;
+            ((MTGCardInstance*)source)->damageToCreature += damage;
         }
         if (target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER)
         {
             if(target == source->controller())
             {
-                ((MTGCardInstance*)source)->damageToController = true;
+                ((MTGCardInstance*)source)->damageToController += damage;
             }
             else
             {
-                ((MTGCardInstance*)source)->damageToOpponent = true;
+                ((MTGCardInstance*)source)->damageToOpponent += damage;
+                if(((MTGCardInstance*)source)->basicAbilities[Constants::ISCOMMANDER])
+                    ((MTGCardInstance*)source)->damageInflictedAsCommander += damage;
             }
             target->lifeLostThisTurn += damage;
             if ( typeOfDamage == 1 && target == source->controller()->opponent() )//add vector prowledtypes.
             {
                 source->controller()->dealsdamagebycombat = 1; // for restriction check
-                ((MTGCardInstance*)source)->combatdamageToOpponent = true; //check
+                ((MTGCardInstance*)source)->combatdamageToOpponent += damage; //check
                 vector<string> values = MTGAllCards::getCreatureValuesById();//getting a weird crash here. rarely.
                 for (size_t i = 0; i < values.size(); ++i)
                 {
@@ -269,11 +291,25 @@ int Damage::resolve()
                         source->controller()->prowledTypes.push_back(values[i]);
                 }
             }
-            WEvent * lifed = NEW WEventLife((Player*)target,-damage);
+            WEvent * lifed = NEW WEventLife((Player*)target,-damage, source);
             observer->receiveEvent(lifed);
+            if(((MTGCardInstance*)source)->damageInflictedAsCommander > 20) // if a Commander has dealt 21 or more damages to a player, he loose game.
+                observer->setLoser(((MTGCardInstance*)source)->controller()->opponent());
         }
     }
 
+    if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && ((MTGCardInstance*)target)->hasType(Subtypes::TYPE_PLANESWALKER)){ // Fix life calculation for planeswalker damage.
+        if (((MTGCardInstance*)target)->counters){
+            Counters * counters = ((MTGCardInstance*)target)->counters;
+            for(size_t i = 0; i < counters->counters.size(); ++i){
+                Counter * counter = counters->counters[i];
+                if(counter->name ==  "loyalty"){
+                    target->life = counter->nb - target->damageCount;
+                    break;
+                }
+            }
+        }
+    }
     //Send (Damage/Replaced effect) event to listeners
     observer->receiveEvent(e);
     return a;

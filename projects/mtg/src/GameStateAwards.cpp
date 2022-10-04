@@ -27,6 +27,8 @@ namespace GameStateAwardsConst
     const int kBackToMainMenuID = 1;
 }
 
+static std::string kAwardFile = "";
+
 GameStateAwards::GameStateAwards(GameApp* parent) :
     GameState(parent, "trophies")
 {
@@ -35,7 +37,7 @@ GameStateAwards::GameStateAwards(GameApp* parent) :
 
 GameStateAwards::~GameStateAwards()
 {
-
+    kAwardFile = ""; //Reset the chosen backgorund.
 }
 
 void GameStateAwards::End()
@@ -47,6 +49,8 @@ void GameStateAwards::End()
 
     if (saveMe)
         options.save();
+
+    kAwardFile = ""; //Reset the chosen backgorund.
 }
 void GameStateAwards::Start()
 {
@@ -95,13 +99,24 @@ void GameStateAwards::Start()
     listview->Add(wgh);
 
     int locked = 0;
-    for (int i = 0; i < setlist.size(); i++)
+
+    vector<pair<string, string> > orderedSet;
+    for(int i = 0; i < setlist.size(); i++){
+        sprintf(buf, "%s", setlist[i].c_str());
+        if (options[Options::SORTINGSETS].number == 2) // Now sets can be sorted by sector(orderindex) or name or release date.
+            orderedSet.push_back(pair<string, string> (setlist.getInfo(i)->getDate(), buf));
+        else if (options[Options::SORTINGSETS].number == 1)
+            orderedSet.push_back(pair<string, string> (setlist.getInfo(i)->getName(), buf));
+        else
+            orderedSet.push_back(pair<string, string> (setlist.getInfo(i)->getOrderIndex(), buf));
+    }
+    sort(orderedSet.begin(),orderedSet.end());
+    for (unsigned int i = 0; i < orderedSet.size(); i++)
     {
-        MTGSetInfo * si = setlist.getInfo(i);
+        MTGSetInfo * si = setlist.getInfo(setlist.findSet(orderedSet.at(i).second));
         if (!si)
             continue;
-        if (!options[Options::optionSet(i)].number)
-        {
+        if (!options[Options::optionSet(setlist.findSet(orderedSet.at(i).second))].number){ 
             locked++;
             continue;
         }
@@ -119,9 +134,9 @@ void GameStateAwards::Start()
         else
             sprintf(buf, _("%s: %i cards.").c_str(), si->author.c_str(), si->totalCards());
 
-        aw = NEW WGuiAward(Options::optionSet(i), si->getName(), buf, "Card Spoiler");
+        aw = NEW WGuiAward(Options::optionSet(setlist.findSet(orderedSet.at(i).second)), si->getName(), buf, "Card Spoiler");
         aw->mFlags = WGuiItem::NO_TRANSLATE;
-        btn = NEW WGuiButton(aw, GUI_AWARD_BUTTON, Options::optionSet(i), this);
+        btn = NEW WGuiButton(aw, GUI_AWARD_BUTTON, Options::optionSet(setlist.findSet(orderedSet.at(i).second)), this);
         listview->Add(btn);
     }
     if (locked)
@@ -136,6 +151,10 @@ void GameStateAwards::Start()
     detailview = NULL;
     setSrc = NULL;
     showMenu = false;
+
+#if !defined (PSP)
+    GameApp::playMusic("Track4.mp3"); // Added music for trophies.
+#endif
 }
 
 void GameStateAwards::Create()
@@ -150,7 +169,22 @@ void GameStateAwards::Render()
     JRenderer * r = JRenderer::GetInstance();
     r->ClearScreen(ARGB(0,0,0,0));
 
-    JQuadPtr background = WResourceManager::Instance()->RetrieveTempQuad("awardback.jpg", TEXTURE_SUB_5551);
+#if defined (PSP)
+    JQuadPtr background = WResourceManager::Instance()->RetrieveTempQuad("pspawardback.jpg", TEXTURE_SUB_5551);
+#else
+    //Now it's possibile to randomly use up to 10 background images for trophies room (if random index is 0, it will be rendered the default "awardback.jpg" image).
+    JQuadPtr background;
+    if(kAwardFile == ""){
+        char temp[4096];
+        sprintf(temp, "awardback%i.jpg", std::rand() % 10);
+        kAwardFile.assign(temp);
+        JQuadPtr background = WResourceManager::Instance()->RetrieveTempQuad(kAwardFile, TEXTURE_SUB_5551);
+        if (!background.get())
+            kAwardFile = "awardback.jpg"; //Fallback to default background image for trophies room.
+    }
+    background = WResourceManager::Instance()->RetrieveTempQuad(kAwardFile, TEXTURE_SUB_5551);
+#endif
+
     if (background.get())
         r->RenderQuad(background.get(), 0, 0, 0, SCREEN_WIDTH_F / background->mWidth, SCREEN_HEIGHT_F / background->mHeight);
 

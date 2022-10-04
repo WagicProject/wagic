@@ -27,6 +27,7 @@ public:
     int nonCombatDamage;
     int preventable;
     int thatmuch;
+    int exceededDamage;
     int lifeLostThisTurn;
     int lifeGainedThisTurn;
     DamageableType type_as_damageable;

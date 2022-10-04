@@ -79,8 +79,8 @@ MTGCardInstance * Rules::getCardByMTGId(GameObserver* g, int mtgid)
     for (int i = 0; i < 2; i++)
     {
         Player * p = g->players[i];
-        MTGGameZone * zones[] = { p->game->library, p->game->hand, p->game->inPlay, p->game->graveyard, p->game->exile };
-        for (int j = 0; j < 5; j++)
+        MTGGameZone * zones[] = { p->game->library, p->game->hand, p->game->inPlay, p->game->graveyard, p->game->exile, p->game->commandzone, p->game->sideboard };
+        for (int j = 0; j < 7; j++)
         {
             MTGGameZone * zone = zones[j];
             for (int k = 0; k < zone->nb_cards; k++)
@@ -168,6 +168,10 @@ void Rules::addExtraRules(GameObserver* g)
                 difficultyRating = 0;
             else if(g->mRules->gamemode == GAME_TYPE_RANDOM1 || g->mRules->gamemode == GAME_TYPE_RANDOM2)
                 difficultyRating = 0;
+             else if(g->mRules->gamemode == GAME_TYPE_RANDOM3 || g->mRules->gamemode == GAME_TYPE_RANDOM5)
+                difficultyRating = 0;
+             else if(g->mRules->gamemode == GAME_TYPE_HORDE || g->mRules->gamemode == GAME_TYPE_SET_LIMITED)
+                difficultyRating = 0;
             else if (g->mRules->gamemode == GAME_TYPE_STORY)
                 difficultyRating = 0;
             else if (a->aType == MTGAbility::STANDARD_DRAW)
@@ -196,9 +200,11 @@ void Rules::addExtraRules(GameObserver* g)
                         a->resolve();
                     else if(g->mRules->gamemode == GAME_TYPE_RANDOM1 || g->mRules->gamemode == GAME_TYPE_RANDOM2)
                         a->resolve();
+                     else if(g->mRules->gamemode == GAME_TYPE_RANDOM3 || g->mRules->gamemode == GAME_TYPE_RANDOM5) 
+                        a->resolve();
                     else if (g->mRules->gamemode == GAME_TYPE_STORY)
                         a->resolve();
-                    else//stupid protections to keep this out of mimor and other game modes.
+                    else//stupid protections to keep this out of momir and other game modes.
                     {
                         handsize = ((AADrawer *)a)->getNumCards();
                         if(difficultyRating == EASY)
@@ -305,6 +311,180 @@ Player * Rules::loadPlayerRandom(GameObserver* observer, int isAI, int mode)
     return player;
 }
 
+Player * Rules::loadRandomSetLimited(GameObserver* observer, int isAI)
+{
+    //Random sets
+    int setId[] = { observer->getRandomGenerator()->random() % setlist.size(), observer->getRandomGenerator()->random() % setlist.size() };
+    int nbSet = sizeof(setId)/sizeof(setId[0]);
+
+    int color1 = 1 + observer->getRandomGenerator()->random() % 5;
+    int color2 = 1 + observer->getRandomGenerator()->random() % 5;
+    int colors[] = { color1, color2 };
+    int nbcolors = 2;
+    string lands[] = { "", "forest", "island", "mountain", "swamp", "plains" };
+
+    MTGDeck * tempDeck = NEW MTGDeck(MTGCollection());    
+    // Try to add basic lands from that set
+    tempDeck->addRandomCards(8, setId, nbSet, -1, lands[color1].c_str());
+    tempDeck->addRandomCards(8, setId, nbSet, -1, lands[color2].c_str());
+    tempDeck->addRandomCards(2, setId, nbSet, -1, "land");
+    // If lands < 18 add from any set
+    int missingLands = 18 - tempDeck->totalCards();
+    if (missingLands > 0)
+    {
+        tempDeck->addRandomCards(missingLands/2, 0, 0, -1, lands[color1].c_str());
+        tempDeck->addRandomCards(missingLands/2, 0, 0, -1, lands[color2].c_str());
+    }
+    // Lone artifact and creatures.
+    tempDeck->addRandomCards(1, setId, nbSet, -1, "artifact");
+    tempDeck->addRandomCards(12, setId, nbSet, -1, "creature", colors, nbcolors);
+    // Want the deck to be 40 cards, take any card from the set in the colors
+    int missingCards = 40 - tempDeck->totalCards();
+    if (missingCards > 0)
+        tempDeck->addRandomCards(missingCards, setId, nbSet, -1, "", colors, nbcolors);
+
+    string deckFile = "random";
+    string deckFileSmall = "random";
+
+    Player *player = NULL;
+    if (!isAI) // Human Player
+        player = NEW HumanPlayer(observer, deckFile, deckFileSmall, false, tempDeck);
+    else
+        player = NEW AIPlayerBaka(observer, deckFile, deckFileSmall, "", tempDeck);
+
+    return player;
+}
+
+Player * Rules::loadPlayerRandomThree(GameObserver* observer, int isAI)
+{
+    int color1 = 1 + observer->getRandomGenerator()->random() % 5;
+    int color2 = 1 + observer->getRandomGenerator()->random() % 5;
+    int color3 = 1 + observer->getRandomGenerator()->random() % 5;
+    int color0 = Constants::MTG_COLOR_ARTIFACT;
+    
+    int colors[] = { color1, color2, color3, color0 };
+    int nbcolors = 4;
+
+    string lands[] = { "", "forest", "island", "mountain", "swamp", "plains", "" };
+
+    MTGDeck * tempDeck = NEW MTGDeck(MTGCollection());
+    tempDeck->addRandomCards(5, 0, 0, -1, lands[color1].c_str());
+    tempDeck->addRandomCards(5, 0, 0, -1, lands[color2].c_str());
+    tempDeck->addRandomCards(5, 0, 0, -1, lands[color3].c_str());
+    tempDeck->addRandomCards(3, 0, 0, 'R', lands[color1].c_str());
+    tempDeck->addRandomCards(3, 0, 0, 'R', lands[color2].c_str());
+    tempDeck->addRandomCards(3, 0, 0, 'R', lands[color3].c_str());
+    tempDeck->addRandomCards(1, 0, 0, 'U', "land");
+    tempDeck->addRandomCards(1, 0, 0, 'R', "land");
+    tempDeck->addRandomCards(18, 0, 0, -1, "creature", colors, nbcolors);
+    tempDeck->addRandomCards(1, 0, 0, 'R', "creature", colors, nbcolors);
+    tempDeck->addRandomCards(1, 0, 0, 'M', "creature", colors, nbcolors);
+    tempDeck->addRandomCards(3, 0, 0, -1, "enchantment", colors, nbcolors);
+    tempDeck->addRandomCards(3, 0, 0, -1, "instant", colors, nbcolors);
+    tempDeck->addRandomCards(3, 0, 0, -1, "sorcery", colors, nbcolors);
+    tempDeck->addRandomCards(4, 0, 0, -1, "artifact", colors, nbcolors);
+    tempDeck->addRandomCards(1, 0, 0, -1, "planeswalker", colors, nbcolors);
+
+    string deckFile = "random";
+    string deckFileSmall = "random";
+
+    Player *player = NULL;
+    if (!isAI) // Human Player
+        player = NEW HumanPlayer(observer, deckFile, deckFileSmall, false, tempDeck);
+    else
+        player = NEW AIPlayerBaka(observer, deckFile, deckFileSmall, "", tempDeck);
+
+    return player;
+}
+
+Player * Rules::loadPlayerRandomFive(GameObserver* observer, int isAI)
+{ 
+    MTGDeck * tempDeck = NEW MTGDeck(MTGCollection());
+
+    tempDeck->addRandomCards(24, 0, 0, -1, "land");
+    tempDeck->addRandomCards(10, 0, 0, -1, "legendary");
+    tempDeck->addRandomCards(26, 0, 0, -1, "");
+    
+    string deckFile = "random";
+    string deckFileSmall = "random";
+
+    Player *player = NULL;
+    if (!isAI) // Human Player
+        player = NEW HumanPlayer(observer, deckFile, deckFileSmall, false, tempDeck);
+    else
+        player = NEW AIPlayerBaka(observer, deckFile, deckFileSmall, "", tempDeck);
+
+    return player;
+}
+
+Player * Rules::loadPlayerHorde(GameObserver* observer, int isAI)
+{    
+    int nbColors = 1;
+    string randomTribe = "";
+    int tribeColor[] = { observer->getRandomGenerator()->random() % 6 };
+
+    string lands[] = { "land", "forest", "island", "mountain", "swamp", "plains" };
+
+    const char* const multicolorTribes[] = { "Ally", "Construct", "Drone", "Eldrazi", "Elemental", "Golem", "Human", "Myr",
+          "Sliver", "Spellshaper", "Spirit", "Wizard" };
+    const char* const whiteTribes[] = { "Angel", "Archer", "Bird", "Cat", "Cleric", "Griffin", "Kithkin", "Knight", "Kor", "Monk", "Rebel", "Samurai", "Scout", "Soldier", "Spirit" };
+    const char* const blueTribes[] = { "Artificer", "Bird", "Drake", "Faerie", "Illusion", "Merfolk", "Mutant", "Nightmare", "Pirate", "Shapeshifter", "Sphinx", "Spirit", "Vedalken", "Wizard" };
+    const char* const blackTribes[] = { "Assassin", "Cleric", "Demon", "Faerie", "Horror", "Insect", "Knight", "Nightmare", "Orc", "Pirate", "Rat", "Rogue", "Shade", "Skeleton", "Spirit", "Vampire", "Wizard", "Zombie" };
+    const char* const redTribes[] = { "Artificer", "Beast", "Berserker", "Devil", "Dinosaur", "Dragon", "Dwarf", "Goblin", "Kavu", "Lizard", "Minotaur", "Ogre", "Orc", "Shaman", "Viashino", "Warrior", "Werewolf" };
+    const char* const greenTribes[] = { "Archer", "Beast", "Cat", "Centaur", "Dinosaur", "Druid", "Dryad", "Elf", "Fungus", "Insect", "Kavu", "Lizard", "Mutant", "Plant", "Scout", "Shaman", "Snake", "Spider", "Treefolk", "Warrior", "Werewolf", "Wurm" };
+
+    int multicolorTribesSize = sizeof(multicolorTribes)/sizeof(multicolorTribes[0]);
+    int whiteTribesSize = sizeof(whiteTribes)/sizeof(whiteTribes[0]);
+    int blueTribesSize = sizeof(blueTribes)/sizeof(blueTribes[0]);
+    int blackTribesSize = sizeof(blackTribes)/sizeof(blackTribes[0]);
+    int redTribesSize = sizeof(redTribes)/sizeof(redTribes[0]);
+    int greenTribesSize = sizeof(greenTribes)/sizeof(greenTribes[0]);
+
+    switch (tribeColor[0])
+    {
+        case Constants::MTG_COLOR_ARTIFACT :
+            randomTribe = multicolorTribes[observer->getRandomGenerator()->random() % multicolorTribesSize];
+            nbColors = 0;
+            break;
+        case Constants::MTG_COLOR_WHITE :
+            randomTribe = whiteTribes[observer->getRandomGenerator()->random() % whiteTribesSize];
+            break;
+        case Constants::MTG_COLOR_BLUE :
+            randomTribe = blueTribes[observer->getRandomGenerator()->random() % blueTribesSize];
+            break;
+        case Constants::MTG_COLOR_BLACK :
+            randomTribe = blackTribes[observer->getRandomGenerator()->random() % blackTribesSize];
+            break;
+        case Constants::MTG_COLOR_RED :
+            randomTribe = redTribes[observer->getRandomGenerator()->random() % redTribesSize];
+            break;
+        case Constants::MTG_COLOR_GREEN :
+            randomTribe = greenTribes[observer->getRandomGenerator()->random() % greenTribesSize];
+            break;
+    }
+
+    MTGDeck * tempDeck = NEW MTGDeck(MTGCollection());
+    tempDeck->addRandomCards(14, 0, 0, -1, lands[tribeColor[0]].c_str());
+    tempDeck->addRandomCards(6, 0, 0, 'R', lands[tribeColor[0]].c_str());
+    tempDeck->addRandomCards(4, 0, 0, -1, "land");
+    tempDeck->addRandomCards(20, 0, 0, -1, randomTribe);    
+    tempDeck->addRandomCards(5, 0, 0, -1, "enchantment", tribeColor, nbColors);
+    tempDeck->addRandomCards(5, 0, 0, -1, "instant", tribeColor, nbColors);
+    tempDeck->addRandomCards(5, 0, 0, -1, "sorcery", tribeColor, nbColors);
+    tempDeck->addRandomCards(1, 0, 0, -1, "artifact", tribeColor, nbColors);
+
+    string deckFile = "random";
+    string deckFileSmall = "random";
+
+    Player *player = NULL;
+    if (!isAI) // Human Player
+        player = NEW HumanPlayer(observer, deckFile, deckFileSmall, false, tempDeck);
+    else
+        player = NEW AIPlayerBaka(observer, deckFile, deckFileSmall, "", tempDeck);
+
+    return player;
+}
+
 Player * Rules::initPlayer(GameObserver *g, int playerId)
 {
     Player * p = g->players.size() > 1?g->players[playerId]:NULL;
@@ -318,10 +498,20 @@ Player * Rules::initPlayer(GameObserver *g, int playerId)
             return loadPlayerMomir(g, isAI);
         case GAME_TYPE_CLASSIC:
             return NULL; //Error for the time being
+        case GAME_TYPE_COMMANDER:
+            return NULL; //Error for the time being
         case GAME_TYPE_RANDOM1:
             return loadPlayerRandom(g, isAI, GAME_TYPE_RANDOM1);
         case GAME_TYPE_RANDOM2:
             return loadPlayerRandom(g, isAI, GAME_TYPE_RANDOM2);
+         case GAME_TYPE_RANDOM3:
+            return loadPlayerRandomThree(g, isAI);
+         case GAME_TYPE_RANDOM5:
+            return loadPlayerRandomFive(g, isAI);
+         case GAME_TYPE_HORDE:
+            return loadPlayerHorde(g, isAI);
+         case GAME_TYPE_SET_LIMITED:
+             return loadRandomSetLimited(g, isAI);
         default:
             return NULL;
         }
@@ -341,9 +531,11 @@ MTGDeck * Rules::buildDeck(int playerId)
                                           initState.playerData[playerId].player->game->library,
                                           initState.playerData[playerId].player->game->hand,
                                           initState.playerData[playerId].player->game->inPlay,
-                                          initState.playerData[playerId].player->game->exile };
+                                          initState.playerData[playerId].player->game->exile,
+                                          initState.playerData[playerId].player->game->commandzone,
+                                          initState.playerData[playerId].player->game->sideboard };
 
-    for (int j = 0; j < 5; j++)
+    for (int j = 0; j < 7; j++)
     {
         for (size_t k = 0; k < loadedPlayerZones[j]->cards.size(); k++)
         {
@@ -410,19 +602,27 @@ void Rules::initGame(GameObserver *g, bool currentPlayerSet)
         p->damageCount = initState.playerData[i].player->damageCount;
         p->preventable = initState.playerData[i].player->preventable;
         p->energyCount = initState.playerData[i].player->energyCount;
+        p->experienceCount = initState.playerData[i].player->experienceCount;
+        p->yidaroCount = initState.playerData[i].player->yidaroCount;
+        p->dungeonCompleted = initState.playerData[i].player->dungeonCompleted;
+        p->numOfCommandCast = initState.playerData[i].player->numOfCommandCast;
+        p->monarch = initState.playerData[i].player->monarch;
+        p->surveilOffset = initState.playerData[i].player->surveilOffset;
+        p->devotionOffset = initState.playerData[i].player->devotionOffset;
+        p->lastChosenName = initState.playerData[i].player->lastChosenName;
         if (initState.playerData[i].player->mAvatarName.size())
         {
             p->mAvatarName = initState.playerData[i].player->mAvatarName;
         }
-        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay, p->game->exile , p->game->reveal, p->game->sideboard };
+        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay, p->game->exile , p->game->commandzone, p->game->sideboard };
         MTGGameZone * loadedPlayerZones[] = { initState.playerData[i].player->game->graveyard,
                                               initState.playerData[i].player->game->library,
                                               initState.playerData[i].player->game->hand,
                                               initState.playerData[i].player->game->inPlay,
                                               initState.playerData[i].player->game->exile,
-                                              initState.playerData[i].player->game->reveal,
+                                              initState.playerData[i].player->game->commandzone,
                                               initState.playerData[i].player->game->sideboard };
-        for (int j = 0; j < 5; j++)
+        for (int j = 0; j < 7; j++)
         {
             MTGGameZone * zone = playerZones[j];
             for (size_t k = 0; k < loadedPlayerZones[j]->cards.size(); k++)
@@ -507,7 +707,7 @@ Rules::Rules(string _bg)
 
 bool Rules::canChooseDeck() 
 {
-    return (gamemode == GAME_TYPE_CLASSIC || gamemode == GAME_TYPE_STONEHEWER || gamemode == GAME_TYPE_HERMIT); 
+    return (gamemode == GAME_TYPE_CLASSIC || gamemode == GAME_TYPE_STONEHEWER || gamemode == GAME_TYPE_HERMIT || gamemode == GAME_TYPE_COMMANDER); 
 }
 
 int Rules::load(string _filename)
@@ -627,8 +827,13 @@ GameType Rules::strToGameMode(string s)
     if (s.compare("momir") == 0) return GAME_TYPE_MOMIR;
     if (s.compare("random1") == 0) return GAME_TYPE_RANDOM1;
     if (s.compare("random2") == 0) return GAME_TYPE_RANDOM2;
+    if (s.compare("random3") == 0) return GAME_TYPE_RANDOM3;
+    if (s.compare("random5") == 0) return GAME_TYPE_RANDOM5;
+    if (s.compare("horde") == 0) return GAME_TYPE_HORDE;
+    if (s.compare("set_limited") == 0) return GAME_TYPE_SET_LIMITED;
     if (s.compare("story") == 0) return GAME_TYPE_STORY;
     if (s.compare("stonehewer") == 0) return GAME_TYPE_STONEHEWER;
     if (s.compare("hermit") == 0) return GAME_TYPE_HERMIT;
+    if (s.compare("commander") == 0) return GAME_TYPE_COMMANDER;
     return GAME_TYPE_CLASSIC;
 }

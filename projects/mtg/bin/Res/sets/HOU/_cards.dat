@@ -1,0 +1,1054 @@
+[meta]
+author=Wagic Team
+name=Hour of Devastation
+block=Amonkhet
+orderindex=EXP-ZZ6.HOU
+year=2017-07-14
+total=209
+[/meta]
+[card]
+primitive=Act of Heroism
+id=430690
+rarity=C
+[/card]
+[card]
+primitive=Adorned Pouncer
+id=430691
+rarity=R
+[/card]
+[card]
+primitive=Angel of Condemnation
+id=430692
+rarity=R
+[/card]
+[card]
+primitive=Angel of the God-Pharaoh
+id=430693
+rarity=U
+[/card]
+[card]
+primitive=Aven of Enduring Hope
+id=430694
+rarity=C
+[/card]
+[card]
+primitive=Crested Sunmare
+id=430695
+rarity=M
+[/card]
+[card]
+primitive=Dauntless Aven
+id=430696
+rarity=C
+[/card]
+[card]
+primitive=Desert's Hold
+id=430697
+rarity=U
+[/card]
+[card]
+primitive=Disposal Mummy
+id=430698
+rarity=C
+[/card]
+[card]
+primitive=Djeru, With Eyes Open
+id=430699
+rarity=R
+[/card]
+[card]
+primitive=Djeru's Renunciation
+id=430700
+rarity=C
+[/card]
+[card]
+primitive=Dutiful Servants
+id=430701
+rarity=C
+[/card]
+[card]
+primitive=Gideon's Defeat
+id=430702
+rarity=U
+[/card]
+[card]
+primitive=God-Pharaoh's Faithful
+id=430703
+rarity=C
+[/card]
+[card]
+primitive=Hour of Revelation
+id=430704
+rarity=R
+[/card]
+[card]
+primitive=Mummy Paramount
+id=430705
+rarity=C
+[/card]
+[card]
+primitive=Oketra's Avenger
+id=430706
+rarity=C
+[/card]
+[card]
+primitive=Oketra's Last Mercy
+id=430707
+rarity=R
+[/card]
+[card]
+primitive=Overwhelming Splendor
+id=430708
+rarity=M
+[/card]
+[card]
+primitive=Sandblast
+id=430709
+rarity=C
+[/card]
+[card]
+primitive=Saving Grace
+id=430710
+rarity=U
+[/card]
+[card]
+primitive=Solemnity
+id=430711
+rarity=R
+[/card]
+[card]
+primitive=Solitary Camel
+id=430712
+rarity=C
+[/card]
+[card]
+primitive=Steadfast Sentinel
+id=430713
+rarity=C
+[/card]
+[card]
+primitive=Steward of Solidarity
+id=430714
+rarity=U
+[/card]
+[card]
+primitive=Sunscourge Champion
+id=430715
+rarity=U
+[/card]
+[card]
+primitive=Unconventional Tactics
+id=430716
+rarity=U
+[/card]
+[card]
+primitive=Vizier of the True
+id=430717
+rarity=U
+[/card]
+[card]
+primitive=Aerial Guide
+id=430718
+rarity=C
+[/card]
+[card]
+primitive=Aven Reedstalker
+id=430719
+rarity=C
+[/card]
+[card]
+primitive=Champion of Wits
+id=430720
+rarity=R
+[/card]
+[card]
+primitive=Countervailing Winds
+id=430721
+rarity=C
+[/card]
+[card]
+primitive=Cunning Survivor
+id=430722
+rarity=C
+[/card]
+[card]
+primitive=Eternal of Harsh Truths
+id=430723
+rarity=U
+[/card]
+[card]
+primitive=Fraying Sanity
+id=430724
+rarity=R
+[/card]
+[card]
+primitive=Hour of Eternity
+id=430725
+rarity=R
+[/card]
+[card]
+primitive=Imaginary Threats
+id=430726
+rarity=U
+[/card]
+[card]
+primitive=Jace's Defeat
+id=430727
+rarity=U
+[/card]
+[card]
+primitive=Kefnet's Last Word
+id=430728
+rarity=R
+[/card]
+[card]
+primitive=Nimble Obstructionist
+id=430729
+rarity=R
+[/card]
+[card]
+primitive=Ominous Sphinx
+id=430730
+rarity=U
+[/card]
+[card]
+primitive=Proven Combatant
+id=430731
+rarity=C
+[/card]
+[card]
+primitive=Riddleform
+id=430732
+rarity=U
+[/card]
+[card]
+primitive=Seer of the Last Tomorrow
+id=430733
+rarity=C
+[/card]
+[card]
+primitive=Sinuous Striker
+id=430734
+rarity=U
+[/card]
+[card]
+primitive=Spellweaver Eternal
+id=430735
+rarity=C
+[/card]
+[card]
+primitive=Strategic Planning
+id=430736
+rarity=C
+[/card]
+[card]
+primitive=Striped Riverwinder
+id=430737
+rarity=C
+[/card]
+[card]
+primitive=Supreme Will
+id=430738
+rarity=U
+[/card]
+[card]
+primitive=Swarm Intelligence
+id=430739
+rarity=R
+[/card]
+[card]
+primitive=Tragic Lesson
+id=430740
+rarity=C
+[/card]
+[card]
+primitive=Unesh, Criosphinx Sovereign
+id=430741
+rarity=M
+[/card]
+[card]
+primitive=Unquenchable Thirst
+id=430742
+rarity=C
+[/card]
+[card]
+primitive=Unsummon
+id=430743
+rarity=C
+[/card]
+[card]
+primitive=Vizier of the Anointed
+id=430744
+rarity=U
+[/card]
+[card]
+primitive=Accursed Horde
+id=430745
+rarity=U
+[/card]
+[card]
+primitive=Ammit Eternal
+id=430746
+rarity=R
+[/card]
+[card]
+primitive=Apocalypse Demon
+id=430747
+rarity=R
+[/card]
+[card]
+primitive=Banewhip Punisher
+id=430748
+rarity=U
+[/card]
+[card]
+primitive=Bontu's Last Reckoning
+id=430749
+rarity=R
+[/card]
+[card]
+primitive=Carrion Screecher
+id=430750
+rarity=C
+[/card]
+[card]
+primitive=Doomfall
+id=430751
+rarity=U
+[/card]
+[card]
+primitive=Dreamstealer
+id=430752
+rarity=R
+[/card]
+[card]
+primitive=Grisly Survivor
+id=430753
+rarity=C
+[/card]
+[card]
+primitive=Hour of Glory
+id=430754
+rarity=R
+[/card]
+[card]
+primitive=Khenra Eternal
+id=430755
+rarity=C
+[/card]
+[card]
+primitive=Lethal Sting
+id=430756
+rarity=C
+[/card]
+[card]
+primitive=Liliana's Defeat
+id=430757
+rarity=U
+[/card]
+[card]
+primitive=Lurching Rotbeast
+id=430758
+rarity=C
+[/card]
+[card]
+primitive=Marauding Boneslasher
+id=430759
+rarity=C
+[/card]
+[card]
+primitive=Merciless Eternal
+id=430760
+rarity=U
+[/card]
+[card]
+primitive=Moaning Wall
+id=430761
+rarity=C
+[/card]
+[card]
+primitive=Razaketh, the Foulblooded
+id=430762
+rarity=M
+[/card]
+[card]
+primitive=Razaketh's Rite
+id=430763
+rarity=U
+[/card]
+[card]
+primitive=Ruin Rat
+id=430764
+rarity=C
+[/card]
+[card]
+primitive=Scrounger of Souls
+id=430765
+rarity=C
+[/card]
+[card]
+primitive=Torment of Hailfire
+id=430766
+rarity=R
+[/card]
+[card]
+primitive=Torment of Scarabs
+id=430767
+rarity=U
+[/card]
+[card]
+primitive=Torment of Venom
+id=430768
+rarity=C
+[/card]
+[card]
+primitive=Vile Manifestation
+id=430769
+rarity=U
+[/card]
+[card]
+primitive=Without Weakness
+id=430770
+rarity=C
+[/card]
+[card]
+primitive=Wretched Camel
+id=430771
+rarity=C
+[/card]
+[card]
+primitive=Abrade
+id=430772
+rarity=U
+[/card]
+[card]
+primitive=Blur of Blades
+id=430773
+rarity=C
+[/card]
+[card]
+primitive=Burning-Fist Minotaur
+id=430774
+rarity=U
+[/card]
+[card]
+primitive=Chandra's Defeat
+id=430775
+rarity=U
+[/card]
+[card]
+primitive=Chaos Maw
+id=430776
+rarity=R
+[/card]
+[card]
+primitive=Crash Through
+id=430777
+rarity=C
+[/card]
+[card]
+primitive=Defiant Khenra
+id=430778
+rarity=C
+[/card]
+[card]
+primitive=Earthshaker Khenra
+id=430779
+rarity=R
+[/card]
+[card]
+primitive=Fervent Paincaster
+id=430780
+rarity=U
+[/card]
+[card]
+primitive=Firebrand Archer
+id=430781
+rarity=C
+[/card]
+[card]
+primitive=Frontline Devastator
+id=430782
+rarity=C
+[/card]
+[card]
+primitive=Gilded Cerodon
+id=430783
+rarity=C
+[/card]
+[card]
+primitive=Granitic Titan
+id=430784
+rarity=C
+[/card]
+[card]
+primitive=Hazoret's Undying Fury
+id=430785
+rarity=R
+[/card]
+[card]
+primitive=Hour of Devastation
+id=430786
+rarity=R
+[/card]
+[card]
+primitive=Imminent Doom
+id=430787
+rarity=R
+[/card]
+[card]
+primitive=Inferno Jet
+id=430788
+rarity=U
+[/card]
+[card]
+primitive=Khenra Scrapper
+id=430789
+rarity=C
+[/card]
+[card]
+primitive=Kindled Fury
+id=430790
+rarity=C
+[/card]
+[card]
+primitive=Magmaroth
+id=430791
+rarity=U
+[/card]
+[card]
+primitive=Manticore Eternal
+id=430792
+rarity=U
+[/card]
+[card]
+primitive=Neheb, the Eternal
+id=430793
+rarity=M
+[/card]
+[card]
+primitive=Open Fire
+id=430794
+rarity=C
+[/card]
+[card]
+primitive=Puncturing Blow
+id=430795
+rarity=C
+[/card]
+[card]
+primitive=Sand Strangler
+id=430796
+rarity=U
+[/card]
+[card]
+primitive=Thorned Moloch
+id=430797
+rarity=C
+[/card]
+[card]
+primitive=Wildfire Eternal
+id=430798
+rarity=R
+[/card]
+[card]
+primitive=Ambuscade
+id=430799
+rarity=C
+[/card]
+[card]
+primitive=Beneath the Sands
+id=430800
+rarity=C
+[/card]
+[card]
+primitive=Bitterbow Sharpshooters
+id=430801
+rarity=C
+[/card]
+[card]
+primitive=Devotee of Strength
+id=430802
+rarity=U
+[/card]
+[card]
+primitive=Dune Diviner
+id=430803
+rarity=U
+[/card]
+[card]
+primitive=Feral Prowler
+id=430804
+rarity=C
+[/card]
+[card]
+primitive=Frilled Sandwalla
+id=430805
+rarity=C
+[/card]
+[card]
+primitive=Gift of Strength
+id=430806
+rarity=C
+[/card]
+[card]
+primitive=Harrier Naga
+id=430807
+rarity=C
+[/card]
+[card]
+primitive=Hope Tender
+id=430808
+rarity=U
+[/card]
+[card]
+primitive=Hour of Promise
+id=430809
+rarity=R
+[/card]
+[card]
+primitive=Life Goes On
+id=430810
+rarity=C
+[/card]
+[card]
+primitive=Majestic Myriarch
+id=430811
+rarity=M
+[/card]
+[card]
+primitive=Nissa's Defeat
+id=430812
+rarity=U
+[/card]
+[card]
+primitive=Oasis Ritualist
+id=430813
+rarity=C
+[/card]
+[card]
+primitive=Overcome
+id=430814
+rarity=U
+[/card]
+[card]
+primitive=Pride Sovereign
+id=430815
+rarity=R
+[/card]
+[card]
+primitive=Quarry Beetle
+id=430816
+rarity=U
+[/card]
+[card]
+primitive=Rampaging Hippo
+id=430817
+rarity=C
+[/card]
+[card]
+primitive=Ramunap Excavator
+id=430818
+rarity=R
+[/card]
+[card]
+primitive=Ramunap Hydra
+id=430819
+rarity=R
+[/card]
+[card]
+primitive=Resilient Khenra
+id=430820
+rarity=R
+[/card]
+[card]
+primitive=Rhonas's Last Stand
+id=430821
+rarity=R
+[/card]
+[card]
+primitive=Rhonas's Stalwart
+id=430822
+rarity=C
+[/card]
+[card]
+primitive=Sidewinder Naga
+id=430823
+rarity=C
+[/card]
+[card]
+primitive=Sifter Wurm
+id=430824
+rarity=U
+[/card]
+[card]
+primitive=Tenacious Hunter
+id=430825
+rarity=U
+[/card]
+[card]
+primitive=Uncage the Menagerie
+id=430826
+rarity=M
+[/card]
+[card]
+primitive=Bloodwater Entity
+id=430827
+rarity=U
+[/card]
+[card]
+primitive=The Locust God
+id=430828
+rarity=M
+[/card]
+[card]
+primitive=Nicol Bolas, God-Pharaoh
+id=430829
+rarity=M
+[/card]
+[card]
+primitive=Obelisk Spider
+id=430830
+rarity=U
+[/card]
+[card]
+primitive=Resolute Survivors
+id=430831
+rarity=U
+[/card]
+[card]
+primitive=River Hoopoe
+id=430832
+rarity=U
+[/card]
+[card]
+primitive=Samut, the Tested
+id=430833
+rarity=M
+[/card]
+[card]
+primitive=The Scarab God
+id=430834
+rarity=M
+[/card]
+[card]
+primitive=The Scorpion God
+id=430835
+rarity=M
+[/card]
+[card]
+primitive=Unraveling Mummy
+id=430836
+rarity=U
+[/card]
+[card]
+primitive=Farm // Market
+id=430837
+rarity=U
+[/card]
+[card]
+primitive=Consign // Oblivion
+id=430838
+rarity=U
+[/card]
+[card]
+primitive=Claim // Fame
+id=430839
+rarity=U
+[/card]
+[card]
+primitive=Struggle // Survive
+id=430840
+rarity=U
+[/card]
+[card]
+primitive=Appeal // Authority
+id=430841
+rarity=U
+[/card]
+[card]
+primitive=Leave // Chance
+id=430842
+rarity=R
+[/card]
+[card]
+primitive=Reason // Believe
+id=430843
+rarity=R
+[/card]
+[card]
+primitive=Grind // Dust
+id=430844
+rarity=R
+[/card]
+[card]
+primitive=Refuse // Cooperate
+id=430845
+rarity=R
+[/card]
+[card]
+primitive=Driven // Despair
+id=430846
+rarity=R
+[/card]
+[card]
+primitive=Abandoned Sarcophagus
+id=430847
+rarity=R
+[/card]
+[card]
+primitive=Crook of Condemnation
+id=430848
+rarity=U
+[/card]
+[card]
+primitive=Dagger of the Worthy
+id=430849
+rarity=U
+[/card]
+[card]
+primitive=God-Pharaoh's Gift
+id=430850
+rarity=R
+[/card]
+[card]
+primitive=Graven Abomination
+id=430851
+rarity=C
+[/card]
+[card]
+primitive=Hollow One
+id=430852
+rarity=R
+[/card]
+[card]
+primitive=Manalith
+id=430853
+rarity=C
+[/card]
+[card]
+primitive=Mirage Mirror
+id=430854
+rarity=R
+[/card]
+[card]
+primitive=Sunset Pyramid
+id=430855
+rarity=U
+[/card]
+[card]
+primitive=Traveler's Amulet
+id=430856
+rarity=C
+[/card]
+[card]
+primitive=Wall of Forgotten Pharaohs
+id=430857
+rarity=C
+[/card]
+[card]
+primitive=Crypt of the Eternals
+id=430858
+rarity=U
+[/card]
+[card]
+primitive=Desert of the Fervent
+id=430859
+rarity=C
+[/card]
+[card]
+primitive=Desert of the Glorified
+id=430860
+rarity=C
+[/card]
+[card]
+primitive=Desert of the Indomitable
+id=430861
+rarity=C
+[/card]
+[card]
+primitive=Desert of the Mindful
+id=430862
+rarity=C
+[/card]
+[card]
+primitive=Desert of the True
+id=430863
+rarity=C
+[/card]
+[card]
+primitive=Dunes of the Dead
+id=430864
+rarity=U
+[/card]
+[card]
+primitive=Endless Sands
+id=430865
+rarity=R
+[/card]
+[card]
+primitive=Hashep Oasis
+id=430866
+rarity=U
+[/card]
+[card]
+primitive=Hostile Desert
+id=430867
+rarity=R
+[/card]
+[card]
+primitive=Ifnir Deadlands
+id=430868
+rarity=U
+[/card]
+[card]
+primitive=Ipnu Rivulet
+id=430869
+rarity=U
+[/card]
+[card]
+primitive=Ramunap Ruins
+id=430870
+rarity=U
+[/card]
+[card]
+primitive=Scavenger Grounds
+id=430871
+rarity=R
+[/card]
+[card]
+primitive=Shefet Dunes
+id=430872
+rarity=U
+[/card]
+[card]
+primitive=Survivors' Encampment
+id=430873
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=430874
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=430875
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=430876
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=430877
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=430878
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=430879
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=430880
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=430881
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=430882
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=430883
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=430884
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=430885
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=430886
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=430887
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=430888
+rarity=L
+[/card]
+[card]
+primitive=Nissa, Genesis Mage
+id=432879
+rarity=M
+[/card]
+[card]
+primitive=Avid Reclaimer
+id=432880
+rarity=U
+[/card]
+[card]
+primitive=Brambleweft Behemoth
+id=432881
+rarity=C
+[/card]
+[card]
+primitive=Nissa's Encouragement
+id=432882
+rarity=R
+[/card]
+[card]
+primitive=Woodland Stream
+id=432883
+rarity=C
+[/card]
+[card]
+primitive=Nicol Bolas, the Deceiver
+id=432884
+rarity=M
+[/card]
+[card]
+primitive=Wasp of the Bitter End
+id=432885
+rarity=U
+[/card]
+[card]
+primitive=Zealot of the God-Pharaoh
+id=432886
+rarity=C
+[/card]
+[card]
+primitive=Visage of Bolas
+id=432887
+rarity=R
+[/card]
+[card]
+primitive=Cinder Barrens
+id=432888
+rarity=C
+[/card]
+[/code]

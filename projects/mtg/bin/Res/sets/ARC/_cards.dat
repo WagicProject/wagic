@@ -1,11 +1,12 @@
 [meta]
 author=Wagic Team
 name=Archenemy
-year=2010
+orderindex=COM-2.ARC
+year=2010-06-18
 total=150
 [/meta]
 [card]
-primitive=AEther Spellbomb
+primitive=Aether Spellbomb
 id=220525
 rarity=C
 [/card]

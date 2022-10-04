@@ -158,6 +158,7 @@ SOURCES += \
         src/WFilter.cpp\
         src/WFont.cpp\
         src/WGui.cpp\
+        src/WParsedInt.cpp\
         src/WResourceManager.cpp \
         src/AIPlayerBakaB.cpp \
         src/TestSuiteAI.cpp
@@ -265,6 +266,7 @@ HEADERS  += \
         include/GuiPhaseBar.h\
         include/ReplacementEffects.h\
         include/WGui.h\
+        include/WParsedInt.h\
         include/DeckStats.h\
         include/GuiPlay.h\
         include/Rules.h\

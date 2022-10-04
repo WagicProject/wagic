@@ -1,0 +1,47 @@
+[meta]
+author=Wagic Team
+name=Arena League 2005
+orderindex=PRO-9.PAL05
+year=2005-01-01
+total=8
+[/meta]
+[card]
+primitive=Genju of the Spires
+id=18023
+rarity=R
+[/card]
+[card]
+primitive=Okina Nightwatch
+id=18024
+rarity=R
+[/card]
+[card]
+primitive=Skyknight Legionnaire
+id=18025
+rarity=R
+[/card]
+[card]
+primitive=Forest
+id=18026
+rarity=R
+[/card]
+[card]
+primitive=Island
+id=18027
+rarity=R
+[/card]
+[card]
+primitive=Mountain
+id=18028
+rarity=R
+[/card]
+[card]
+primitive=Plains
+id=18029
+rarity=R
+[/card]
+[card]
+primitive=Swamp
+id=18030
+rarity=R
+[/card]

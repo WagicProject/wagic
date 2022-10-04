@@ -1,0 +1,357 @@
+[meta]
+author=Wagic Team
+name=Game Night 2019
+orderindex=OTH-4.GN2
+year=2019-11-15
+total=70
+[/meta]
+[card]
+primitive=Dinosaur
+id=-476119
+rarity=T
+[/card]
+[card]
+primitive=Dinosaur
+id=-476112
+rarity=T
+[/card]
+[card]
+primitive=Dragon
+id=-476107
+rarity=T
+[/card]
+[card]
+primitive=Dragon
+id=-476105
+rarity=T
+[/card]
+[card]
+primitive=Zombie
+id=-476097
+rarity=T
+[/card]
+[card]
+primitive=Zombie
+id=-476089
+rarity=T
+[/card]
+[card]
+primitive=Highcliff Felidar
+id=476067
+rarity=M
+[/card]
+[card]
+primitive=Sphinx of Enlightenment
+id=476068
+rarity=M
+[/card]
+[card]
+primitive=Calculating Lich
+id=476069
+rarity=M
+[/card]
+[card]
+primitive=Fiendish Duo
+id=476070
+rarity=M
+[/card]
+[card]
+primitive=Earthshaker Giant
+id=476071
+rarity=M
+[/card]
+[card]
+primitive=Consul's Lieutenant
+id=476072
+rarity=U
+[/card]
+[card]
+primitive=Fiend Binder
+id=476073
+rarity=C
+[/card]
+[card]
+primitive=Kytheon's Irregulars
+id=476074
+rarity=R
+[/card]
+[card]
+primitive=Mighty Leap
+id=476075
+rarity=C
+[/card]
+[card]
+primitive=Patron of the Valiant
+id=476076
+rarity=U
+[/card]
+[card]
+primitive=Relief Captain
+id=476077
+rarity=U
+[/card]
+[card]
+primitive=Steppe Glider
+id=476078
+rarity=U
+[/card]
+[card]
+primitive=Take Vengeance
+id=476079
+rarity=C
+[/card]
+[card]
+primitive=Topan Freeblade
+id=476080
+rarity=C
+[/card]
+[card]
+primitive=Zetalpa, Primal Dawn
+id=476081
+rarity=R
+[/card]
+[card]
+primitive=Aven Wind Mage
+id=476082
+rarity=C
+[/card]
+[card]
+primitive=Claustrophobia
+id=476083
+rarity=C
+[/card]
+[card]
+primitive=Cryptic Serpent
+id=476084
+rarity=U
+[/card]
+[card]
+primitive=Decision Paralysis
+id=476085
+rarity=C
+[/card]
+[card]
+primitive=Dramatic Reversal
+id=476086
+rarity=C
+[/card]
+[card]
+primitive=Engulf the Shore
+id=476087
+rarity=R
+[/card]
+[card]
+primitive=Galestrike
+id=476088
+rarity=U
+[/card]
+[card]
+primitive=Rise from the Tides
+id=476089
+rarity=U
+[/card]
+[card]
+primitive=River's Rebuke
+id=476090
+rarity=R
+[/card]
+[card]
+primitive=Salvager of Secrets
+id=476091
+rarity=C
+[/card]
+[card]
+primitive=Accursed Horde
+id=476092
+rarity=U
+[/card]
+[card]
+primitive=Carrion Screecher
+id=476093
+rarity=C
+[/card]
+[card]
+primitive=Crow of Dark Tidings
+id=476094
+rarity=C
+[/card]
+[card]
+primitive=Gavony Unhallowed
+id=476095
+rarity=C
+[/card]
+[card]
+primitive=Grasp of Darkness
+id=476096
+rarity=U
+[/card]
+[card]
+primitive=Liliana's Mastery
+id=476097
+rarity=R
+[/card]
+[card]
+primitive=Lord of the Accursed
+id=476098
+rarity=U
+[/card]
+[card]
+primitive=Rise from the Grave
+id=476099
+rarity=U
+[/card]
+[card]
+primitive=Tattered Mummy
+id=476100
+rarity=C
+[/card]
+[card]
+primitive=Torgaar, Famine Incarnate
+id=476101
+rarity=R
+[/card]
+[card]
+primitive=Akoum Hellkite
+id=476102
+rarity=R
+[/card]
+[card]
+primitive=Brute Strength
+id=476103
+rarity=C
+[/card]
+[card]
+primitive=Destructive Tampering
+id=476104
+rarity=C
+[/card]
+[card]
+primitive=Dragon Egg
+id=476105
+rarity=U
+[/card]
+[card]
+primitive=Kargan Dragonrider
+id=476106
+rarity=C
+[/card]
+[card]
+primitive=Lathliss, Dragon Queen
+id=476107
+rarity=R
+[/card]
+[card]
+primitive=Lightning Strike
+id=476108
+rarity=C
+[/card]
+[card]
+primitive=Sparktongue Dragon
+id=476109
+rarity=C
+[/card]
+[card]
+primitive=Voldaren Duelist
+id=476110
+rarity=C
+[/card]
+[card]
+primitive=Zealot of the God-Pharaoh
+id=476111
+rarity=C
+[/card]
+[card]
+primitive=Crested Herdcaller
+id=476112
+rarity=U
+[/card]
+[card]
+primitive=Ghalta, Primal Hunger
+id=476113
+rarity=R
+[/card]
+[card]
+primitive=Grazing Whiptail
+id=476114
+rarity=C
+[/card]
+[card]
+primitive=Ranging Raptors
+id=476115
+rarity=U
+[/card]
+[card]
+primitive=Ripjaw Raptor
+id=476116
+rarity=R
+[/card]
+[card]
+primitive=Spidery Grasp
+id=476117
+rarity=C
+[/card]
+[card]
+primitive=Thunderherd Migration
+id=476118
+rarity=U
+[/card]
+[card]
+primitive=Thundering Spineback
+id=476119
+rarity=U
+[/card]
+[card]
+primitive=Howling Golem
+id=476120
+rarity=U
+[/card]
+[card]
+primitive=Plains
+id=476121
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=476122
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=476123
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=476124
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=476125
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=476126
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=476127
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=476128
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=476129
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=476130
+rarity=C
+[/card]

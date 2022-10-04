@@ -2,7 +2,8 @@
 author=Wagic Team
 name=New Phyrexia
 block=Scars of Mirrodin
-year=2011
+orderindex=EXP-ZL.NPH
+year=2011-05-13
 total=175
 [/meta]
 [card]
@@ -26,7 +27,7 @@ id=218001
 rarity=U
 [/card]
 [card]
-primitive=Arm with AEther
+primitive=Arm with Aether
 id=202641
 rarity=U
 [/card]

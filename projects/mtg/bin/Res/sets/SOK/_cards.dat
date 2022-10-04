@@ -2,11 +2,12 @@
 author=Wagic Team
 name=Saviors of Kamigawa
 block=Kamigawa
-year=2005
-total=165
+orderindex=EXP-Z1.SOK
+year=2005-06-03
+total=170
 [/meta]
 [card]
-primitive=AEther Shockwave
+primitive=Aether Shockwave
 id=74208
 rarity=U
 [/card]

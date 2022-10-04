@@ -1,8 +1,8 @@
 [meta]
 author=Wagic Team
 name=Duel Decks: Sorin vs. Tibalt
-block=Duel
-year=2013
+orderindex=DUE-C.DDK
+year=2013-03-15
 total=80
 [/meta]
 [card]

@@ -1,0 +1,612 @@
+[meta]
+author=Wagic Team
+name=Arena Beginner Set
+orderindex=PRO-Z9.ANB
+year=2020-08-13
+total=121
+[/meta]
+[card]
+primitive=Goblin
+id=-294806
+rarity=T
+[/card]
+[card]
+primitive=Goblin
+id=-294790
+rarity=T
+[/card]
+[card]
+primitive=Goblin
+id=-294789
+rarity=T
+[/card]
+[card]
+primitive=Cat
+id=-294732
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-294725
+rarity=T
+[/card]
+[card]
+primitive=Angel of Vitality
+id=294720
+rarity=U
+[/card]
+[card]
+primitive=Angelic Guardian
+id=294721
+rarity=R
+[/card]
+[card]
+primitive=Angelic Reward
+id=294722
+rarity=U
+[/card]
+[card]
+primitive=Bond of Discipline
+id=294723
+rarity=U
+[/card]
+[card]
+primitive=Charmed Stray
+id=294724
+rarity=C
+[/card]
+[card]
+primitive=Confront the Assault
+id=294725
+rarity=U
+[/card]
+[card]
+primitive=Fencing Ace
+id=294726
+rarity=C
+[/card]
+[card]
+primitive=Goring Ceratops
+id=294727
+rarity=R
+[/card]
+[card]
+primitive=Hallowed Priest
+id=294728
+rarity=U
+[/card]
+[card]
+primitive=Impassioned Orator
+id=294729
+rarity=C
+[/card]
+[card]
+primitive=Inspiring Commander
+id=294730
+rarity=R
+[/card]
+[card]
+primitive=Knight's Pledge
+id=294731
+rarity=C
+[/card]
+[card]
+primitive=Leonin Warleader
+id=294732
+rarity=R
+[/card]
+[card]
+primitive=Loxodon Line Breaker
+id=294733
+rarity=C
+[/card]
+[card]
+primitive=Moorland Inquisitor
+id=294734
+rarity=C
+[/card]
+[card]
+primitive=Pacifism
+id=294735
+rarity=C
+[/card]
+[card]
+primitive=Sanctuary Cat
+id=294736
+rarity=C
+[/card]
+[card]
+primitive=Serra Angel
+id=294737
+rarity=U
+[/card]
+[card]
+primitive=Shrine Keeper
+id=294738
+rarity=C
+[/card]
+[card]
+primitive=Soulmender
+id=294739
+rarity=C
+[/card]
+[card]
+primitive=Spiritual Guardian
+id=294740
+rarity=C
+[/card]
+[card]
+primitive=Tactical Advantage
+id=294741
+rarity=C
+[/card]
+[card]
+primitive=Air Elemental
+id=294742
+rarity=U
+[/card]
+[card]
+primitive=Armored Whirl Turtle
+id=294743
+rarity=C
+[/card]
+[card]
+primitive=Cloudkin Seer
+id=294744
+rarity=C
+[/card]
+[card]
+primitive=Coral Merfolk
+id=294745
+rarity=C
+[/card]
+[card]
+primitive=Frilled Sea Serpent
+id=294746
+rarity=C
+[/card]
+[card]
+primitive=Glint
+id=294747
+rarity=C
+[/card]
+[card]
+primitive=Octoprophet
+id=294748
+rarity=C
+[/card]
+[card]
+primitive=Overflowing Insight
+id=294749
+rarity=R
+[/card]
+[card]
+primitive=Riddlemaster Sphinx
+id=294750
+rarity=R
+[/card]
+[card]
+primitive=River's Favor
+id=294751
+rarity=C
+[/card]
+[card]
+primitive=Sleep
+id=294752
+rarity=U
+[/card]
+[card]
+primitive=Soulblade Djinn
+id=294753
+rarity=R
+[/card]
+[card]
+primitive=Sworn Guardian
+id=294754
+rarity=C
+[/card]
+[card]
+primitive=Unsummon
+id=294755
+rarity=C
+[/card]
+[card]
+primitive=Wall of Runes
+id=294756
+rarity=C
+[/card]
+[card]
+primitive=Warden of Evos Isle
+id=294757
+rarity=U
+[/card]
+[card]
+primitive=Waterkin Shaman
+id=294758
+rarity=C
+[/card]
+[card]
+primitive=Waterknot
+id=294759
+rarity=C
+[/card]
+[card]
+primitive=Windreader Sphinx
+id=294760
+rarity=R
+[/card]
+[card]
+primitive=Windstorm Drake
+id=294761
+rarity=U
+[/card]
+[card]
+primitive=Winged Words
+id=294762
+rarity=C
+[/card]
+[card]
+primitive=Zephyr Gull
+id=294763
+rarity=C
+[/card]
+[card]
+primitive=Bad Deal
+id=294764
+rarity=U
+[/card]
+[card]
+primitive=Compound Fracture
+id=294765
+rarity=C
+[/card]
+[card]
+primitive=Cruel Cut
+id=294766
+rarity=C
+[/card]
+[card]
+primitive=Demon of Loathing
+id=294767
+rarity=R
+[/card]
+[card]
+primitive=Eternal Thirst
+id=294768
+rarity=U
+[/card]
+[card]
+primitive=Krovikan Scoundrel
+id=294769
+rarity=C
+[/card]
+[card]
+primitive=Malakir Cullblade
+id=294770
+rarity=U
+[/card]
+[card]
+primitive=Mardu Outrider
+id=294771
+rarity=R
+[/card]
+[card]
+primitive=Murder
+id=294772
+rarity=U
+[/card]
+[card]
+primitive=Nightmare
+id=294773
+rarity=R
+[/card]
+[card]
+primitive=Nimble Pilferer
+id=294774
+rarity=C
+[/card]
+[card]
+primitive=Raise Dead
+id=294775
+rarity=C
+[/card]
+[card]
+primitive=Sanitarium Skeleton
+id=294776
+rarity=C
+[/card]
+[card]
+primitive=Savage Gorger
+id=294777
+rarity=C
+[/card]
+[card]
+primitive=Scathe Zombies
+id=294778
+rarity=C
+[/card]
+[card]
+primitive=Sengir Vampire
+id=294779
+rarity=U
+[/card]
+[card]
+primitive=Skeleton Archer
+id=294780
+rarity=C
+[/card]
+[card]
+primitive=Soulhunter Rakshasa
+id=294781
+rarity=R
+[/card]
+[card]
+primitive=Typhoid Rats
+id=294782
+rarity=C
+[/card]
+[card]
+primitive=Unlikely Aid
+id=294783
+rarity=C
+[/card]
+[card]
+primitive=Vampire Opportunist
+id=294784
+rarity=C
+[/card]
+[card]
+primitive=Witch's Familiar
+id=294785
+rarity=C
+[/card]
+[card]
+primitive=Bombard
+id=294786
+rarity=C
+[/card]
+[card]
+primitive=Burn Bright
+id=294787
+rarity=C
+[/card]
+[card]
+primitive=Fearless Halberdier
+id=294788
+rarity=C
+[/card]
+[card]
+primitive=Goblin Gang Leader
+id=294789
+rarity=U
+[/card]
+[card]
+primitive=Goblin Gathering
+id=294790
+rarity=C
+[/card]
+[card]
+primitive=Goblin Trashmaster
+id=294791
+rarity=R
+[/card]
+[card]
+primitive=Goblin Tunneler
+id=294792
+rarity=C
+[/card]
+[card]
+primitive=Hurloon Minotaur
+id=294793
+rarity=C
+[/card]
+[card]
+primitive=Immortal Phoenix
+id=294794
+rarity=R
+[/card]
+[card]
+primitive=Inescapable Blaze
+id=294795
+rarity=U
+[/card]
+[card]
+primitive=Maniacal Rage
+id=294796
+rarity=C
+[/card]
+[card]
+primitive=Molten Ravager
+id=294797
+rarity=C
+[/card]
+[card]
+primitive=Nest Robber
+id=294798
+rarity=C
+[/card]
+[card]
+primitive=Ogre Battledriver
+id=294799
+rarity=R
+[/card]
+[card]
+primitive=Raging Goblin
+id=294800
+rarity=C
+[/card]
+[card]
+primitive=Raid Bombardment
+id=294801
+rarity=U
+[/card]
+[card]
+primitive=Reduce to Ashes
+id=294802
+rarity=C
+[/card]
+[card]
+primitive=Shock
+id=294803
+rarity=C
+[/card]
+[card]
+primitive=Siege Dragon
+id=294804
+rarity=R
+[/card]
+[card]
+primitive=Storm Strike
+id=294805
+rarity=C
+[/card]
+[card]
+primitive=Tin Street Cadet
+id=294806
+rarity=C
+[/card]
+[card]
+primitive=Volcanic Dragon
+id=294807
+rarity=U
+[/card]
+[card]
+primitive=Affectionate Indrik
+id=294808
+rarity=U
+[/card]
+[card]
+primitive=Baloth Packhunter
+id=294809
+rarity=C
+[/card]
+[card]
+primitive=Charging Badger
+id=294810
+rarity=C
+[/card]
+[card]
+primitive=Colossal Majesty
+id=294811
+rarity=U
+[/card]
+[card]
+primitive=Epic Proportions
+id=294812
+rarity=R
+[/card]
+[card]
+primitive=Feral Roar
+id=294813
+rarity=C
+[/card]
+[card]
+primitive=Generous Stray
+id=294814
+rarity=C
+[/card]
+[card]
+primitive=Gigantosaurus
+id=294815
+rarity=R
+[/card]
+[card]
+primitive=Greenwood Sentinel
+id=294816
+rarity=C
+[/card]
+[card]
+primitive=Ilysian Caryatid
+id=294817
+rarity=C
+[/card]
+[card]
+primitive=Jungle Delver
+id=294818
+rarity=C
+[/card]
+[card]
+primitive=Prized Unicorn
+id=294819
+rarity=U
+[/card]
+[card]
+primitive=Rabid Bite
+id=294820
+rarity=C
+[/card]
+[card]
+primitive=Rampaging Brontodon
+id=294821
+rarity=R
+[/card]
+[card]
+primitive=Rumbling Baloth
+id=294822
+rarity=C
+[/card]
+[card]
+primitive=Sentinel Spider
+id=294823
+rarity=U
+[/card]
+[card]
+primitive=Stony Strength
+id=294824
+rarity=C
+[/card]
+[card]
+primitive=Titanic Growth
+id=294825
+rarity=C
+[/card]
+[card]
+primitive=Treetop Warden
+id=294826
+rarity=C
+[/card]
+[card]
+primitive=Wildwood Patrol
+id=294827
+rarity=C
+[/card]
+[card]
+primitive=Woodland Mystic
+id=294828
+rarity=C
+[/card]
+[card]
+primitive=World Shaper
+id=294829
+rarity=R
+[/card]
+[card]
+primitive=Evolving Wilds
+id=294830
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=294831
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=294832
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=294833
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=294834
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=294835
+rarity=C
+[/card]

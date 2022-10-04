@@ -1,0 +1,117 @@
+[card]
+name=Game of Chaos
+text=Flip a coin. If you win the flip, you gain 1 life and target opponent loses 1 life, and you decide whether to flip again. If you lose the flip, you lose 1 life and that opponent gains 1 life, and that player decides whether to flip again. Double the life stakes with each flip.
+mana={R}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Desperate Ritual
+text=Add {R}{R}{R} to your mana pool. -- Splice onto Arcane {1}{R} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
+mana={1}{R}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
+name=Nylea's Colossus
+text=Constellation - Whenever Nylea's Colossus or another enchantment enters the battlefield under your control, double target creature's power and toughness until end of turn.
+mana={6}{G}
+type=Enchantment Creature
+subtype=Giant
+power=6
+toughness=6
+[/card]
+[card]
+name=Tawnos, Urza's Apprentice
+text=Haste -- {U}{R}, {T}: Copy target activated or triggered ability you control from an artifact source. You may choose new targets for the copy. (Mana abilities can't be targeted.)
+mana={U}{R}
+type=Legendary Creature
+subtype=Human Artificer
+power=1
+toughness=3
+[/card]
+[card]
+name=Alms Collector
+text=Flash -- If an opponent would draw two or more cards, instead you and that player each draw a card.
+mana={3}{W}
+type=Creature
+subtype=Cat Cleric
+power=3
+toughness=4
+[/card]
+[card]
+name=Reality Scramble
+text=Put target permanent you own on the bottom of your library. Reveal cards from the top of your library until you reveal a card that shares a card type with that permanent. Put that card onto the battlefield and the rest on the bottom of your library in a random order. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
+mana={2}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Primordial Mist
+text=At the beginning of your end step, you may manifest the top card of your library. (Put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card.) -- Exile a face-down permanent you control face up: You may play that card this turn. (You still pay its costs. Timing rules still apply.)
+mana={4}{U}
+type=Enchantment
+[/card]
+[card]
+name=Aminatou's Augury
+text=Exile the top eight cards of your library. You may put a land card from among them onto the battlefield. Until end of turn, for each nonland card type, you may cast a spell of that type from among the exiled cards without paying its mana cost.
+mana={6}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Yennett, Cryptic Sovereign
+text=Flying, vigilance, menace -- Whenever Yennett, Cryptic Sovereign attacks, reveal the top card of your library. You may cast it without paying its mana cost if its converted mana cost is odd. If you don't cast it, draw a card.
+mana={2}{W}{U}{B}
+type=Legendary Creature
+subtype=Sphinx
+power=3
+toughness=5
+[/card]
+[card]
+name=Emissary of Grudges
+text=Flying, haste -- As Emissary of Grudges enters the battlefield, secretly choose an opponent. -- Reveal the player you chose: Choose new targets for target spell or ability if it's controlled by the chosen player and if it targets you or a permanent you control. Activate this ability only once.
+mana={5}{R}
+type=Creature
+subtype=Efreet
+power=6
+toughness=5
+[/card]
+[card]
+name=Custodi Squire
+abilities=flying
+text=Flying -- Will of the council - When Custodi Squire enters the battlefield, starting with you, each player votes for an artifact, creature, or enchantment card in your graveyard. Return each card with the most votes or tied for most votes to your hand.
+mana={4}{W}
+type=Creature
+subtype=Spirit Cleric
+power=3
+toughness=3
+[/card]
+[card]
+name=Borderland Explorer
+text=When Borderland Explorer enters the battlefield, each player may discard a card. Each player who discarded a card this way may search his or her library for a basic land card, reveal it, put it into his or her hand, then shuffle his or her library.
+mana={1}{G}
+type=Creature
+subtype=Elf Scout
+power=3
+toughness=1
+[/card]
+[card]
+name=Selfless Squire
+abilities=flash
+text=Flash -- When Selfless Squire enters the battlefield, prevent all damage that would be dealt to you this turn. -- Whenever damage that would be dealt to you is prevented, put that many +1/+1 counters on Selfless Squire.
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+[card]
+name=Selvala's Stampede
+text=Council's dilemma - Starting with you, each player votes for wild or free. Reveal cards from the top of your library until you reveal a creature card for each wild vote. Put those creature cards onto the battlefield, then shuffle the rest into your library. You may put a permanent card from your hand onto the battlefield for each free vote.
+mana={4}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Expropriate
+text=Council's dilemma - Starting with you, each player votes for time or money. For each time vote, take an extra turn after this one. For each money vote, choose a permanent owned by the voter and gain control of it. Exile Expropriate.
+mana={7}{U}{U}
+type=Sorcery
+[/card]

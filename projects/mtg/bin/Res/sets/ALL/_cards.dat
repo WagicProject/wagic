@@ -1,9 +1,10 @@
 [meta]
 author=Wagic Team
 name=Alliances
+orderindex=EXP-8.ALL
 block=Ice Age
-year=1996
-total=199
+year=1996-06-10
+total=201
 [/meta]
 [card]
 primitive=Aesthir Glider

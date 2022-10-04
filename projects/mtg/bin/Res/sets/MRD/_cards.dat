@@ -2,11 +2,12 @@
 author=Wagic Team
 name=Mirrodin
 block=Mirrodin
-year=2003
+orderindex=EXP-V.MRD
+year=2003-10-02
 total=306
 [/meta]
 [card]
-primitive=AEther Spellbomb
+primitive=Aether Spellbomb
 id=48113
 rarity=C
 [/card]
@@ -406,7 +407,7 @@ id=48399
 rarity=C
 [/card]
 [card]
-primitive=Gate to the AEther
+primitive=Gate to the Aether
 id=46721
 rarity=R
 [/card]

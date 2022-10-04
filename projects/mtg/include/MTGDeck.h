@@ -23,8 +23,10 @@ public:
     string id; //Short name: 10E, RAV, etc. Automatic from folder.
     string author; //Author of set, for crediting mod makers, etc.
     string name; //Long name: Tenth Edition
-    int block; //For future use by tournament mode, etc.
+    string orderindex; //Order index for sorting sets: BEG-1.POR
+    string date; //The full release date of the set.
     int year; //The year the set was released.
+    int block; //For future use by tournament mode, etc.
     int total;//total cards
     //TODO Way to group cards by name, rather than mtgid.
 
@@ -32,6 +34,8 @@ public:
 
     int totalCards();
     string getName();
+    string getOrderIndex();
+    string getDate();
     string getBlock();
     void processConfLine(string line);
 
@@ -117,6 +121,7 @@ public:
     vector<int> ids;
     map<int, MTGCard *> collection;
     map<string, CardPrimitive *> primitives;
+    map<string, bool> limitedCardsMap; //used by parser in case of limited card list
     MTGCard * _(int id);
     MTGCard * getCardById(int id);
 
@@ -213,8 +218,11 @@ public:
     map<int, int> cards;
     string meta_desc;
     string meta_name;
+    bool meta_commander;
     vector<string> meta_AIHints;
     vector<string> Sideboard;
+    vector<string> CommandZone;
+    vector<string> DungeonZone;
     string meta_unlockRequirements;
 
     int meta_id;
@@ -232,6 +240,8 @@ public:
     int add(MTGCard * card);
     int remove(MTGCard * card);
     void replaceSB(vector<string> newSB = vector<string>());
+    void replaceCMD(vector<string> newCMD = vector<string>());
+    void replaceDNG(vector<string> newDNG = vector<string>());
     string getFilename();
     int save();
     int save(const string& destFileName, bool useExpandedDescriptions, const string& deckTitle, const string& deckDesc);

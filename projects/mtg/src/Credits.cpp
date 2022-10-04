@@ -142,6 +142,8 @@ void CreditBonus::Render(float x, float y, WFont * font)
     font->DrawString(buffer, x, y);
 }
 
+static std::string kBgFile = "";
+
 Credits::Credits()
 {
     unlocked = -1;
@@ -163,6 +165,7 @@ Credits::~Credits()
         if (bonus[i])
             delete bonus[i];
     bonus.clear();
+    kBgFile = ""; //Reset the chosen backgorund.
 }
 
 void Credits::compute(GameObserver* g, GameApp * _app)
@@ -275,6 +278,12 @@ void Credits::compute(GameObserver* g, GameApp * _app)
                 {
                     unlockedTextureName = "eviltwin_unlocked.png";
                     goa = (GameOptionAward*) &options[Options::EVILTWIN_MODE_UNLOCKED];
+                    goa->giveAward();
+                }
+                else if ((unlocked = isCommanderUnlocked()))
+                {
+                    unlockedTextureName = "commander_unlocked.png";
+                    goa = (GameOptionAward*) &options[Options::COMMANDER_MODE_UNLOCKED];
                     goa->giveAward();
                 }
                 else if ((unlocked = isRandomDeckUnlocked()))
@@ -508,10 +517,36 @@ void Credits::Render()
         return;
     JRenderer * r = JRenderer::GetInstance();
 #if !defined (PSP)
-    JTexture * wpTex = WResourceManager::Instance()->RetrieveTexture("bgdeckeditor.jpg");
+    //Now it's possibile to randomly use up to 10 background images for post-match credits (if random index is 0, it will be rendered the default "bgdeckeditor.jpg" image).
+    JTexture * wpTex = NULL;
+    if(kBgFile == ""){
+        char temp[4096];
+        sprintf(temp, "bgdeckeditor%i.jpg", std::rand() % 10);
+        kBgFile.assign(temp);
+        wpTex = WResourceManager::Instance()->RetrieveTexture(kBgFile);
+        if (wpTex) {
+            JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad(kBgFile);
+            if (wpQuad.get())
+                r->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
+            else {
+               kBgFile = "bgdeckeditor.jpg"; //Fallback to default background image for post-match credits.
+               wpTex = NULL;
+            }
+        } else
+            kBgFile = "bgdeckeditor.jpg"; //Fallback to default background image for post-match credits.
+    }
+    if(!wpTex)
+        wpTex = WResourceManager::Instance()->RetrieveTexture(kBgFile);
     if (wpTex)
     {
-        JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad("bgdeckeditor.jpg");
+        JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad(kBgFile);
+        r->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
+    }
+#else
+    JTexture * wpTex = WResourceManager::Instance()->RetrieveTexture("pspbgdeckeditor.jpg");
+    if (wpTex)
+    {
+        JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad("pspbgdeckeditor.jpg");
         r->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
     }
 #endif
@@ -658,6 +693,15 @@ int Credits::isEvilTwinUnlocked()
     if (options[Options::EVILTWIN_MODE_UNLOCKED].number)
         return 0;
     if (p1->game->inPlay->nb_cards && (p1->game->inPlay->nb_cards == p2->game->inPlay->nb_cards))
+        return 1;
+    return 0;
+}
+
+int Credits::isCommanderUnlocked()
+{
+    if (options[Options::COMMANDER_MODE_UNLOCKED].number)
+        return 0;
+    if (p1->life >= 40 && p2->game->graveyard->nb_cards && (p1->game->graveyard->nb_cards < p2->game->graveyard->nb_cards))
         return 1;
     return 0;
 }

@@ -1,8 +1,8 @@
 [meta]
 author=Wagic Team
 name=Portal Three Kingdoms
-block=Portal
-year=1999
+orderindex=BEG-3.PTK
+year=1999-07-06
 total=180
 [/meta]
 [card]

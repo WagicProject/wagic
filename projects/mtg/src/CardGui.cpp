@@ -256,8 +256,9 @@ void CardGui::Render()
         {
             if(game)
             {
-                if((card->has(Constants::CANPLAYFROMEXILE)||card->has(Constants::PAYZERO))||
-                ((card->has(Constants::CANPLAYFROMGRAVEYARD) || card->has(Constants::TEMPFLASHBACK) || card->getManaCost()->getFlashback()) && game->isInGrave(card)))
+                if(card->has(Constants::PAYZERO) ||
+                ((card->has(Constants::CANPLAYFROMGRAVEYARD) || card->has(Constants::TEMPFLASHBACK) || card->getManaCost()->getFlashback() || card->getManaCost()->getRetrace()) && game->isInGrave(card)) ||
+                (((card->has(Constants::FORETELL) && card->foretellTurn > -1 && game->turn > card->foretellTurn) || card->has(Constants::CANPLAYFROMEXILE)) && game->isInExile(card)))
                     fakeborder->SetColor(ARGB((int)(actA),7,235,7));//green border
                 else
                     fakeborder->SetColor(ARGB((int)(actA),15,15,15));
@@ -443,11 +444,11 @@ void CardGui::Render()
         renderer->DrawRect(actX - (13 * actZ), actY + ymody + 4 * actZ, 25.5f * actZ, 14 * actZ,
             ARGB(((static_cast<unsigned char>(actA))),20,20,20));
         //damaged or buffed or powered down        
-        if(card->wasDealtDamage && card->life <= 2)
+        if(card->wasDealtDamage > 0 && card->life <= 2)
             mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,0,0));//red critical and damaged
-        else if(!card->wasDealtDamage && card->pbonus < 0)
+        else if(card->wasDealtDamage == 0 && card->pbonus < 0)
             mFont->SetColor(ARGB(static_cast<unsigned char>(actA),216,191,216));//thistle powered down
-        else if(!card->wasDealtDamage && card->pbonus >= 3)
+        else if(card->wasDealtDamage == 0 && card->pbonus >= 3)
             mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,0));//yellow buff
         else if(card->hasType("legendary") && card->hasType("eldrazi") && !card->has(Constants::CHANGELING))
             mFont->SetColor(ARGB(static_cast<unsigned char>(actA),238,130,238));//violet legendary eldrazi
@@ -463,7 +464,7 @@ void CardGui::Render()
     string buff = "";
     string starMark = "";
     if(card->exerted)
-        starMark += "*";
+        starMark += "exerted";
     if(card->isToken && !card->isACopier)
         buff = "T";
     if(card->isToken && card->isACopier)
@@ -506,6 +507,16 @@ void CardGui::Render()
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
         char buffer[200];
         sprintf(buffer, "%s", card->chooseasubtype.c_str());
+        mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,215,0));//Gold indicator
+        mFont->SetScale(0.8f);
+        mFont->DrawString(buffer, actX - 10 * actZ, actY - (25.3f * actZ));
+        mFont->SetScale(1);
+    }
+    if(card->chooseaname.size() && !alternate && game)
+    {
+        mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+        char buffer[200];
+        sprintf(buffer, "%s", card->chooseaname.c_str());
         mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,215,0));//Gold indicator
         mFont->SetScale(0.8f);
         mFont->DrawString(buffer, actX - 10 * actZ, actY - (25.3f * actZ));
@@ -841,26 +852,28 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
                 if (found != string::npos)
                 {
                     string s = "";
-                    for (int i = card->data->types.size() - 1; i > 0; --i)
+                    if (card->data->basicAbilities[(int)Constants::CHANGELING])
                     {
-                        if (card->data->basicAbilities[(int)Constants::CHANGELING])
-                        {// this avoids drawing the list of subtypes on changeling cards.
-                            s += _("Shapeshifter - ");
-                            break;
+                        // this avoids drawing the list of subtypes on changeling cards.
+                        if (card->data->types.size()){
+                            s = _(MTGAllCards::findType(card->data->types[0])) + _(" - Shapeshifter");
+                        } else {
+                            s = _("Shapeshifter");
                         }
-                        else
+                    } else {
+                        for (unsigned int i = 0; i < card->data->types.size() - 1; i++)
                         {
                             s += _(MTGAllCards::findType(card->data->types[i]));
-                            s += _(" - ");
+                            if(!strcmp(_(MTGAllCards::findType(card->data->types[i])).c_str(),"Creature") || !strcmp(_(MTGAllCards::findType(card->data->types[i])).c_str(),"Land"))
+                                s += _(" - ");
+                            else
+                                s += _(" ");
                         }
+                        s += _(MTGAllCards::findType(card->data->types[card->data->types.size()-1]));
                     }
-                    if (card->data->types.size())
-                        s += _(MTGAllCards::findType(card->data->types[0]));
-                    else
-                    {
+                    if (!card->data->types.size()){
                         DebugTrace("Typeless card: " << setlist[card->setId].c_str() << card->data->getName() << card->getId());
                     }
-
                     formattedfield = FormattedData(formattedfield, "types", s);
                 }
 
@@ -1140,26 +1153,28 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
                 if (found != string::npos)
                 {
                     string s = "";
-                    for (int i = card->data->types.size() - 1; i > 0; --i)
+                    if (card->data->basicAbilities[(int)Constants::CHANGELING])
                     {
-                        if (card->data->basicAbilities[(int)Constants::CHANGELING])
-                        {// this avoids drawing the list of subtypes on changeling cards.
-                            s += _("Shapeshifter - ");
-                            break;
+                        // this avoids drawing the list of subtypes on changeling cards.
+                        if (card->data->types.size()){
+                            s = _(MTGAllCards::findType(card->data->types[0])) + _(" - Shapeshifter");
+                        } else {
+                            s = _("Shapeshifter");
                         }
-                        else
+                    } else {
+                        for (unsigned int i = 0; i < card->data->types.size() - 1; i++)
                         {
                             s += _(MTGAllCards::findType(card->data->types[i]));
-                            s += _(" - ");
+                            if(!strcmp(_(MTGAllCards::findType(card->data->types[i])).c_str(),"Creature") || !strcmp(_(MTGAllCards::findType(card->data->types[i])).c_str(),"Land"))
+                                s += _(" - ");
+                            else
+                                s += _(" ");
                         }
+                        s += _(MTGAllCards::findType(card->data->types[card->data->types.size()-1]));
                     }
-                    if (card->data->types.size())
-                        s += _(MTGAllCards::findType(card->data->types[0]));
-                    else
-                    {
+                    if (!card->data->types.size()){
                         DebugTrace("Typeless card: " << setlist[card->setId].c_str() << card->data->getName() << card->getId());
                     }
-
                     formattedfield = FormattedData(formattedfield, "types", s);
                 }
 
@@ -1272,7 +1287,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
         string cardsetname = setlist[card->setId].c_str();
         /*if(!noborder)
         {
-            if(cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR"||cardsetname == "DM")
+            if(cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "S00"||cardsetname == "S99"||cardsetname == "PTK"||cardsetname == "BTD"||cardsetname == "ATH"||cardsetname == "BRB"||cardsetname == "CHR"||cardsetname == "DM")
             {//Draw white border
                 renderer->FillRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(255,248,248,255));
                 renderer->DrawRoundRect((pos.actX - (pos.actZ * 84.f))-11.5f,(pos.actY - (pos.actZ * 119.7f))-14.f,pos.actZ * 168.f + 6.5f,pos.actZ * 239.4f + 12.f,8.f,ARGB(150,20,20,20));
@@ -1293,27 +1308,30 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
             }
         }*///disabled this for universal border across game, deck editor, etc...
         //universal border
-        if((cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR"||cardsetname == "DM")
-            && !options[Options::BLKBORDER].number)
-        {//white border
-            renderer->FillRoundRect(pos.actX - (scale * quad->mWidth / 2)-6.f,pos.actY - (scale * quad->mHeight / 2)-5.8f, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 5.8f,ARGB(255,248,248,255));
-            renderer->DrawRoundRect(pos.actX - (scale * quad->mWidth / 2)-6.f,pos.actY - (scale * quad->mHeight / 2)-5.8f, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 5.8f,ARGB(150,20,20,20));
-        }
-        else
-        {//black border
-            renderer->FillRoundRect(pos.actX - (scale * quad->mWidth / 2)-6.f,pos.actY - (scale * quad->mHeight / 2)-5.8f, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 5.8f,ARGB(255,5,5,5));
-            renderer->DrawRoundRect(pos.actX - (scale * quad->mWidth / 2)-6.f,pos.actY - (scale * quad->mHeight / 2)-5.8f, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 5.8f,ARGB(50,240,240,240));
-        }
-        //end new border
-        //draw inner border
-        if(cardsetname == "LEA"||cardsetname == "LEB")
+        if(options[Options::SHOWBORDER].number)
         {
-            if(alphabeta.get())
+            if((cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "S00"||cardsetname == "S99"||cardsetname == "PTK"||cardsetname == "BTD"||cardsetname == "ATH"||cardsetname == "BRB"||cardsetname == "CHR"||cardsetname == "DM")
+                && !options[Options::BLKBORDER].number)
+            {//white border
+                renderer->FillRoundRect(pos.actX - (scale * quad->mWidth / 2)-6.f,pos.actY - (scale * quad->mHeight / 2)-5.8f, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 5.8f,ARGB(255,248,248,255));
+                renderer->DrawRoundRect(pos.actX - (scale * quad->mWidth / 2)-6.f,pos.actY - (scale * quad->mHeight / 2)-5.8f, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 5.8f,ARGB(150,20,20,20));
+            }
+            else
+            {//black border
+                renderer->FillRoundRect(pos.actX - (scale * quad->mWidth / 2)-6.f,pos.actY - (scale * quad->mHeight / 2)-5.8f, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 5.8f,ARGB(255,5,5,5));
+                renderer->DrawRoundRect(pos.actX - (scale * quad->mWidth / 2)-6.f,pos.actY - (scale * quad->mHeight / 2)-5.8f, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 5.8f,ARGB(50,240,240,240));
+            }
+            //end new border
+            //draw inner border
+            if(cardsetname == "LEA"||cardsetname == "LEB")
             {
-                alphabeta->SetHotSpot(static_cast<float> (alphabeta->mWidth / 2), static_cast<float> (alphabeta->mHeight / 2));
-                float myscale = pos.actZ * 255 / alphabeta->mHeight;
-                alphabeta->SetColor(ARGB((int)pos.actA,255,255,255));
-                renderer->RenderQuad(alphabeta.get(), x, pos.actY+0.2f, pos.actT, myscale, myscale);
+                if(alphabeta.get())
+                {
+                    alphabeta->SetHotSpot(static_cast<float> (alphabeta->mWidth / 2), static_cast<float> (alphabeta->mHeight / 2));
+                    float myscale = pos.actZ * 255 / alphabeta->mHeight;
+                    alphabeta->SetColor(ARGB((int)pos.actA,255,255,255));
+                    renderer->RenderQuad(alphabeta.get(), x, pos.actY+0.2f, pos.actT, myscale, myscale);
+                }
             }
         }
         float modxscale = (cardsetname =="UNH")?0.015f:0.0f;
@@ -1477,8 +1495,68 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                     {
                         cd.unsecureSetTapped(1);
                     }
-                    //Token
                 }
+                //Has been foretold
+                else if (attribute.find("foretold") != string::npos)
+                {
+                    cd.foretellTurn = comparisonCriterion;
+                    cd.foretoldComparisonMode = comparisonMode;
+                }
+                //Has been kicked
+                else if (attribute.find("kicked") != string::npos)
+                {
+                    cd.kicked = comparisonCriterion;
+                    cd.kickedComparisonMode = comparisonMode;
+                }
+                //Has kicker cost
+                else if (attribute.find("haskicker") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.unsecureSetHasKickerCost(-1);
+                    }
+                    else
+                    {
+                        cd.unsecureSetHasKickerCost(1);
+                    }
+                }
+                //Has kicker cost
+                else if (attribute.find("hasflashback") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.unsecureSetHasFlashbackCost(-1);
+                    }
+                    else
+                    {
+                        cd.unsecureSetHasFlashbackCost(1);
+                    }
+                }
+                //Has backside
+                else if (attribute.find("hasbackside") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.unsecureSetHasBackSide(-1);
+                    }
+                    else
+                    {
+                        cd.unsecureSetHasBackSide(1);
+                    }
+                }
+                //Has partner
+                else if (attribute.find("haspartner") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.unsecureSetHasPartner(-1);
+                    }
+                    else
+                    {
+                        cd.unsecureSetHasPartner(1);
+                    }
+                }
+                //Token
                 else if (attribute.find("token") != string::npos)
                 {
                     if (minus)
@@ -1489,8 +1567,44 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                     {
                         cd.isToken = 1;
                     }
-                    //put in its zone this turn
                 }
+                //Has been flipped
+                else if (attribute.find("isflipped") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.isFlipped = -1;
+                    }
+                    else
+                    {
+                        cd.isFlipped = 1;
+                    }
+                }
+                //Has x in cost
+                else if (attribute.find("hasx") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.hasXCost = -1;
+                    }
+                    else
+                    {
+                        cd.hasXCost = 1;
+                    }
+                }
+                //has been discarded
+                else if (attribute.find("discarded") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.CDdiscarded = -1;
+                    }
+                    else
+                    {
+                        cd.CDdiscarded = 1;
+                    }
+                }
+                //put in its zone this turn
                 else if (attribute.find("fresh") != string::npos)
                 {
                     if (minus)
@@ -1513,7 +1627,7 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                         cd.unsecuresetrecent(1);
                     }
                 }
-                else if (attribute.find("geared") != string::npos)
+                else if (attribute.find("geared") != string::npos || attribute.find("equipped") != string::npos)
                 {
                     if (minus)
                     {
@@ -1522,6 +1636,17 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                     else
                     {
                         cd.CDgeared = 1;
+                    }
+                }
+                else if (attribute.find("attached") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.CDattached = -1;
+                    }
+                    else
+                    {
+                        cd.CDattached = 1;
                     }
                 }
                 //creature is a level up creature
@@ -1617,27 +1742,25 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                     //Power restrictions
                     cd.setPower(comparisonCriterion);
                     cd.powerComparisonMode = comparisonMode;
-                    //Toughness restrictions
                 }
                 else if (attribute.find("toughness") != string::npos)
                 {
+                    //Toughness restrictions
                     cd.setToughness(comparisonCriterion);
                     cd.toughnessComparisonMode = comparisonMode;
-                    //zpos restrictions
                 }
                 else if (attribute.find("zpos") != string::npos)
                 {//using > or < don't have effect unless like this: >= or <= or =
+                    //zpos restrictions
                     cd.zposition = comparisonCriterion;
                     cd.zposComparisonMode = comparisonMode;
-                    //Manacost restrictions
                 }
                 else if (attribute.find("manacost") != string::npos)
                 {
+                    //Manacost restrictions
                     cd.convertedManacost = comparisonCriterion;
                     cd.manacostComparisonMode = comparisonMode;
-                    //Counter Restrictions
                 }
-                
                 else
                 {
                     int attributefound = 0;

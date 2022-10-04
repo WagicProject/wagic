@@ -1,0 +1,17 @@
+include mtg.txt
+name=Titania
+unlock=prx_titania
+[INIT]
+mode=mtg
+
+[PLAYERS]
+life:15
+auto=shuffle
+auto=draw:9
+
+auto=maxPlay(land)+1
+#auto=@each myupkeep:auto=moverandom(*) from(myBattlefield) to     #(opponentBattlefield)
+#auto=@each myupkeep:auto=moverandom(*) from(opponentBattlefield) #to(myBattlefield)
+
+#auto=@each myupkeep:draw:1
+#auto=@each myupkeep:life:-1

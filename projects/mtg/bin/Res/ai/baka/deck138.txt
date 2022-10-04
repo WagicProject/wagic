@@ -1,0 +1,30 @@
+#NAME:Turbo Stasi
+#DESC:Black Summer 1996
+City of Brass (*) *4
+Island (*) *13
+Underground River (*) *4
+Boomerang (*) *4
+Force of Will (*) *4
+Recall (*) *2
+Kismet (*) *2
+Land Tax (*) *1
+Stasis (*) *4
+Despotic Scepter (*) *3
+Feldon's Cane (*) *2
+Howling Mine (*) *4
+Ivory Tower (*) *2
+Zuran Orb (*) *1
+Black Vise (*) *2
+Counterspell (*) *4
+Adarkar Wastes (*) *4
+
+#SB: Kismet (*) *1
+#SB: Wall of Air (*) *2
+#SB: Arcane Denial (*) *4
+#SB: Blue Elemental Blast (*) *2
+#SB: Disenchant (*) *2
+#SB: Hydroblast (*) *2
+#SB: Lodestone Bauble (*) *1
+#SB: Mana Short (*) *3
+#SB: Swords to Plowshares (*) *1
+#SB: Lim-Dul's Vault (*) *4

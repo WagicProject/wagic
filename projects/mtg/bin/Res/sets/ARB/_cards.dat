@@ -1,9 +1,10 @@
 [meta]
 author=Wagic Team
 name=Alara Reborn
-block=Shards of Alara
-year=2009
-total=145
+block=Alara
+orderindex=EXP-ZF.ARB
+year=2009-04-30
+total=146
 [/meta]
 [card]
 primitive=Anathemancer

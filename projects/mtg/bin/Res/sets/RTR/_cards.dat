@@ -2,8 +2,9 @@
 author=Wagic Team
 name=Return to Ravnica
 block=Return to Ravnica
-year=2012
-total=274
+orderindex=EXP-ZP.RTR
+year=2012-10-05
+total=275
 [/meta]
 [card]
 primitive=Abrupt Decay

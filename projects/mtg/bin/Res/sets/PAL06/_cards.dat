@@ -1,0 +1,52 @@
+[meta]
+author=Wagic Team
+name=Arena League 2006
+orderindex=PRO-A.PAL06
+year=2006-01-01
+total=9
+[/meta]
+[card]
+primitive=Castigate
+id=18031
+rarity=R
+[/card]
+[card]
+primitive=Wee Dragonauts
+id=18032
+rarity=R
+[/card]
+[card]
+primitive=Coiling Oracle
+id=18033
+rarity=R
+[/card]
+[card]
+primitive=Surging Flame
+id=18034
+rarity=R
+[/card]
+[card]
+primitive=Forest
+id=18035
+rarity=R
+[/card]
+[card]
+primitive=Island
+id=18036
+rarity=R
+[/card]
+[card]
+primitive=Mountain
+id=18037
+rarity=R
+[/card]
+[card]
+primitive=Plains
+id=18038
+rarity=R
+[/card]
+[card]
+primitive=Swamp
+id=18039
+rarity=R
+[/card]

@@ -1,7 +1,9 @@
 [meta]
 author=Wagic Team
 name=Kaladesh
-year=2016
+block=Kaladesh
+orderindex=EXP-ZZ3.KLD
+year=2016-09-30
 total=274
 [/meta]
 [card]

@@ -1,0 +1,16 @@
+#NAME: Ajani's Chaplain
+#DESC: The First M20 Deck
+Ajani, Inspiring Leader (M20) *1
+Serra's Guardian (M20) *1
+Daybreak Chaplain (M20) *4
+Fencing Ace (M20) *3
+Impassioned Orator (M20) *3
+Loxodon Lifechanter (M20) *1
+Goldmane Griffin (M20) *2
+Angel of Vitality (M20) *3
+Dawning Angel (M20) *3
+Savannah Sage (M20) *4
+Twinblade Paladin (M20) *3
+Moment of Heroism (M20) *4
+Pacifism (M20) *3
+Plains (M20) *25

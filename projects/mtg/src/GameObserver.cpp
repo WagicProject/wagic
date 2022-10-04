@@ -215,8 +215,10 @@ void GameObserver::nextGamePhase()
         currentPlayer->nonCombatDamage = 0;
         currentPlayer->drawCounter = 0;
         currentPlayer->raidcount = 0;
+        currentPlayer->cycledCount = 0;
         currentPlayer->dealsdamagebycombat = 0; //clear check for restriction
         currentPlayer->opponent()->raidcount = 0;
+        currentPlayer->opponent()->cycledCount = 0;
         currentPlayer->prowledTypes.clear();
         currentPlayer->opponent()->damageCount = 0; //added to clear odcount
         currentPlayer->opponent()->nonCombatDamage = 0;
@@ -322,6 +324,7 @@ void GameObserver::userRequestNextGamePhase(bool allowInterrupt, bool log)
     if(getCurrentTargetChooser() && getCurrentTargetChooser()->maxtargets == 1000)
     {
         getCurrentTargetChooser()->done = true;
+        getCurrentTargetChooser()->autoChoice = false;
         if(getCurrentTargetChooser()->source)
             cardClick(getCurrentTargetChooser()->source, 0, false);
     }
@@ -532,21 +535,23 @@ bool GameObserver::operator==(const GameObserver& aGame)
         {
             error++;
         }
-        if (!p->getManaPool()->canAfford(players[i]->getManaPool()))
+        if (!p->getManaPool()->canAfford(players[i]->getManaPool(),0))
         {
             error++;
         }
-        if (!players[i]->getManaPool()->canAfford(p->getManaPool()))
+        if (!players[i]->getManaPool()->canAfford(p->getManaPool(),0))
         {
             error++;
         }
-        MTGGameZone * aZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay, p->game->exile };
+        MTGGameZone * aZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay, p->game->exile, p->game->commandzone, p->game->sideboard };
         MTGGameZone * thisZones[] = { players[i]->game->graveyard,
                                          players[i]->game->library,
                                          players[i]->game->hand,
                                          players[i]->game->inPlay,
-                                         players[i]->game->exile };
-        for (int j = 0; j < 5; j++)
+                                         players[i]->game->exile,
+                                         players[i]->game->commandzone,
+                                         players[i]->game->sideboard };
+        for (int j = 0; j < 7; j++)
         {
             MTGGameZone * zone = aZones[j];
             if (zone->nb_cards != thisZones[j]->nb_cards)
@@ -613,8 +618,10 @@ void GameObserver::Update(float dt)
 //Handles game state based effects
 void GameObserver::gameStateBasedEffects()
 {
-    if(getCurrentTargetChooser() && int(getCurrentTargetChooser()->getNbTargets()) == getCurrentTargetChooser()->maxtargets)
+    if(getCurrentTargetChooser() && int(getCurrentTargetChooser()->getNbTargets()) == getCurrentTargetChooser()->maxtargets){
         getCurrentTargetChooser()->done = true;
+        getCurrentTargetChooser()->autoChoice = false;
+    }
     /////////////////////////////////////
     for (int d = 0; d < 2; d++)
     {
@@ -644,8 +651,8 @@ void GameObserver::gameStateBasedEffects()
         if (players[d]->snowManaW < 0)
             players[d]->snowManaW = 0;
 
-        MTGGameZone * dzones[] = { players[d]->game->inPlay, players[d]->game->graveyard, players[d]->game->hand, players[d]->game->library, players[d]->game->exile, players[d]->game->stack };
-        for (int k = 0; k < 6; k++)
+        MTGGameZone * dzones[] = { players[d]->game->inPlay, players[d]->game->graveyard, players[d]->game->hand, players[d]->game->library, players[d]->game->exile, players[d]->game->stack, players[d]->game->commandzone, players[d]->game->sideboard, players[d]->game->reveal };
+        for (int k = 0; k < 9; k++)
         {
             MTGGameZone * zone = dzones[k];
             if (mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)
@@ -666,6 +673,14 @@ void GameObserver::gameStateBasedEffects()
                     if (card->has(Constants::DEVOID))
                     {
                         card->removeColor(i);
+                    }
+                }
+                //clear prey
+                if(card && isInExile(card) && card->hauntedCard)
+                {
+                    if(!isInPlay(card->hauntedCard)) 
+                    {
+                        card->hauntedCard = 0;
                     }
                 }
                 //reset alternate paid
@@ -788,7 +803,7 @@ void GameObserver::gameStateBasedEffects()
                                 else if((!card->target->isLand() && card->hasType("fortification")))
                                     ((AEquip*)a)->unequip();
                             }
-                            if(card->controller())
+                            if(card->controller() && !card->mutation)
                                 ((AEquip*)a)->getActionTc()->Owner = card->controller();
                             //fix for equip ability when the equipment changed controller... 
                         }
@@ -908,11 +923,14 @@ void GameObserver::gameStateBasedEffects()
             {
                 card->graveEffects = false;
                 card->exileEffects = false;
+                card->commandZoneEffects = false;
 
                 if(card->isCreature())
                 {
                     if(card->life < 1 && !card->has(Constants::INDESTRUCTIBLE))
                         card->destroy();//manor gargoyle... recheck
+                    if(card->toughness <= 0 && card->has(Constants::INDESTRUCTIBLE))
+                        card->toGrave(true);// Fixed a bug when indestructible creatures have toughness = 0 (e.g. March of the Machines with manacost = 0 artifacts).
                 }
             }
 
@@ -1017,23 +1035,54 @@ void GameObserver::gameStateBasedEffects()
                     c->flanked -= 1;
                 }
                 c->fresh = 0;
-                if(c->wasDealtDamage && c->isInPlay(this))
-                    c->wasDealtDamage = false;
-                c->damageToController = false;
-                c->damageToOpponent = false;
-                c->combatdamageToOpponent = false;
-                c->damageToCreature = false;
+                if(c->wasDealtDamage > 0 && c->isInPlay(this) && !c->has(Constants::NODAMAGEREMOVED)) // Added to avoid damage is removed from a card (e.g. "Patient Zero").
+                    c->wasDealtDamage = 0;
+                c->damageToController = 0;
+                c->damageToOpponent = 0;
+                c->combatdamageToOpponent = 0;
+                c->damageToCreature = 0;
                 c->isAttacking = NULL;
                 c->isProvoked = false;
                 c->ProvokeTarget = NULL;
                 c->Provoker = NULL;
             }
 
-            MTGGameZone * f = p->game->graveyard;
-            for (int k = 0; k < f->nb_cards; k++)
+            MTGGameZone * fg = p->game->graveyard;
+            for (int k = 0; k < fg->nb_cards; k++)
             {
-                MTGCardInstance * card = f->cards[k];
-                card->fresh = 0;
+                MTGCardInstance * card = fg->cards[k];
+                card->fresh = 0; // Remove fresh attribute to cards put in graveyard last turn
+                card->discarded = false; // Remove discarded attribute to cards put in graveyard last turn
+            }
+            MTGGameZone * fe = p->game->exile;
+            for (int k = 0; k < fe->nb_cards; k++)
+            {
+                MTGCardInstance * card = fe->cards[k];
+                card->fresh = 0; // Remove fresh attribute to cards put in exile last turn
+            }
+            MTGGameZone * fh = p->game->hand;
+            for (int k = 0; k < fh->nb_cards; k++)
+            {
+                MTGCardInstance * card = fh->cards[k];
+                card->fresh = 0; // Remove fresh attribute to cards put in hand last turn
+            }
+            MTGGameZone * fc = p->game->commandzone;
+            for (int k = 0; k < fc->nb_cards; k++)
+            {
+                MTGCardInstance * card = fc->cards[k];
+                card->fresh = 0; // Remove fresh attribute to cards put in commandzone last turn
+            }
+            MTGGameZone * fl = p->game->commandzone;
+            for (int k = 0; k < fl->nb_cards; k++)
+            {
+                MTGCardInstance * card = fl->cards[k];
+                card->fresh = 0; // Remove fresh attribute to cards put in library last turn
+            }
+            MTGGameZone * fs = p->game->sideboard;
+            for (int k = 0; k < fs->nb_cards; k++)
+            {
+                MTGCardInstance * card = fs->cards[k];
+                card->fresh = 0; // Remove fresh attribute to cards put in sideboard last turn
             }
         }
         if (z->nb_cards == 0)
@@ -1132,14 +1181,14 @@ void GameObserver::Affinity()
 {
     for (int dd = 0; dd < 2; dd++)
     {
-        MTGGameZone * dzones[] = { players[dd]->game->graveyard, players[dd]->game->hand, players[dd]->game->library, players[dd]->game->exile };
-        for (int kk = 0; kk < 4; kk++)
+        MTGGameZone * dzones[] = { players[dd]->game->graveyard, players[dd]->game->hand, players[dd]->game->library, players[dd]->game->commandzone, players[dd]->game->exile };
+        for (int kk = 0; kk < 5; kk++)
         { 
             MTGGameZone * zone = dzones[kk];
             for (int cc = zone->nb_cards - 1; cc >= 0; cc--)
             {//start
                 MTGCardInstance * card = zone->cards[cc];
-                if (!card)
+                if (!card || card->hasType(Subtypes::TYPE_DUNGEON) || card->hasType(Subtypes::TYPE_CONSPIRACY)) // Fix to avoid crash when the card is null or if is a Dungeon/Conspiracy in the commandzone.
                     continue;
 
                 bool checkAuraP = false;
@@ -1171,8 +1220,8 @@ void GameObserver::Affinity()
                         if(card->model->data->getManaCost()->getBestow())
                             checkAuraP = true;
 
-                    //change cost to colorless for anytypeofmana ability
-                    if(card->has(Constants::ANYTYPEOFMANA))
+                    //change cost to colorless for anytypeofmana ability (Obsolete code)
+                    /*if(card->has(Constants::ANYTYPEOFMANA))
                     {
                         card->anymanareplacement = true;
                         int convertedC = card->getManaCost()->getConvertedCost();
@@ -1189,7 +1238,7 @@ void GameObserver::Affinity()
                             card->getManaCost()->changeCostTo( card->model->data->getManaCost() );
                             card->anymanareplacement = false;
                         }
-                    }
+                    }*/
 
                     if (card->has(Constants::TRINISPHERE))
                     {
@@ -1238,6 +1287,9 @@ void GameObserver::Affinity()
                     )
                     DoReduceIncrease = true;
                 if (!DoReduceIncrease)
+                    continue;
+
+                if (mExtraPayment != NULL && card == mExtraPayment->source) // Fix to avoid crash when the card paying extracost has also a cost alteration (e.g. combo with "Pirate's Pillage" and "Ruby Medallion").
                     continue;
 
                 //above we check if there are even any cards that effect cards manacost
@@ -1340,6 +1392,10 @@ void GameObserver::ButtonPressed(PlayGuiObject * target)
         graveyard->toggleDisplay();
     else if (GuiExile* exile = dynamic_cast<GuiExile*>(target))
         exile->toggleDisplay();
+    else if (GuiCommandZone* commandzone = dynamic_cast<GuiCommandZone*>(target))
+        commandzone->toggleDisplay();
+    else if (GuiSideboard* sideboard = dynamic_cast<GuiSideboard*>(target))
+        sideboard->toggleDisplay();
     //opponenthand
     else if (GuiOpponentHand* opponentHand = dynamic_cast<GuiOpponentHand*>(target))
         if (opponentHand->showCards)
@@ -1348,8 +1404,10 @@ void GameObserver::ButtonPressed(PlayGuiObject * target)
         }
         else
         {
+            bool showopponenthand = (opponentHand->zone && opponentHand->zone->owner->opponent()->game->battlefield->nb_cards && opponentHand->zone->owner->opponent()->game->battlefield->hasAbility(Constants::SHOWOPPONENTHAND))?true:false;
+            bool showcontrollerhand = (opponentHand->zone && opponentHand->zone->owner->game->battlefield->nb_cards && opponentHand->zone->owner->game->battlefield->hasAbility(Constants::SHOWCONTROLLERHAND))?true:false;
             TargetChooser * _tc = this->getCurrentTargetChooser();
-            if (_tc && _tc->targetsZone(opponentHand->zone))
+            if ((_tc && _tc->targetsZone(opponentHand->zone)) || showopponenthand || showcontrollerhand)
             {
                 opponentHand->toggleDisplay();
             }
@@ -1406,6 +1464,9 @@ bool GameObserver::WaitForExtraPayment(MTGCardInstance * card)
             mExtraPayment = NULL;
         }
         result = true;
+        // Avoid game stucks on current phase till snow mana cost will be paid
+        if(mExtraPayment && mExtraPayment->costs.size() == 1 && !strcmp(mExtraPayment->costs[0]->mCostRenderString.c_str(), "Snow Mana"))
+            result = false;    
     }
 
     return result;
@@ -1652,7 +1713,6 @@ int GameObserver::isInPlay(MTGCardInstance * card)
 }
 int GameObserver::isInGrave(MTGCardInstance * card)
 {
-
     for (int i = 0; i < 2; i++)
     {
         MTGGameZone * graveyard = players[i]->game->graveyard;
@@ -1663,7 +1723,6 @@ int GameObserver::isInGrave(MTGCardInstance * card)
 }
 int GameObserver::isInExile(MTGCardInstance * card)
 {
-
     for (int i = 0; i < 2; i++)
     {
         MTGGameZone * exile = players[i]->game->exile;
@@ -1672,9 +1731,18 @@ int GameObserver::isInExile(MTGCardInstance * card)
     }
     return 0;
 }
+int GameObserver::isInCommandZone(MTGCardInstance * card)
+{
+    for (int i = 0; i < 2; i++)
+    {
+        MTGGameZone * commandzone = players[i]->game->commandzone;
+        if (players[i]->game->isInZone(card,commandzone)) 
+            return 1;
+    }
+    return 0;
+}
 int GameObserver::isInHand(MTGCardInstance * card)
 {
-
     for (int i = 0; i < 2; i++)
     {
         MTGGameZone * hand = players[i]->game->hand;
@@ -1685,11 +1753,20 @@ int GameObserver::isInHand(MTGCardInstance * card)
 }
 int GameObserver::isInLibrary(MTGCardInstance * card)
 {
-
     for (int i = 0; i < 2; i++)
     {
         MTGGameZone * library = players[i]->game->library;
         if (players[i]->game->isInZone(card, library))
+            return 1;
+    }
+    return 0;
+}
+int GameObserver::isInStack(MTGCardInstance * card)
+{
+    for (int i = 0; i < 2; i++)
+    {
+        MTGGameZone * stack = players[i]->game->stack;
+        if (players[i]->game->isInZone(card, stack))
             return 1;
     }
     return 0;
@@ -2077,8 +2154,9 @@ void GameObserver::logAction(Player* player, const string& s) {
 void GameObserver::logAction(MTGCardInstance* card, MTGGameZone* zone, size_t index, int result) {
     stringstream stream;
     if(zone == NULL) zone = card->currentZone;
+    string zoneName = (zone != NULL)?zone->getName():"UnknownZone"; // Fixed a crash when zone pointer was null.
     stream << "p" << ((card->controller()==players[0])?"1.":"2.")
-           << zone->getName()<< "[" << index << "] "
+           << zoneName << "[" << index << "] "
            << result << card->getLCName();
     logAction(stream.str());
 }

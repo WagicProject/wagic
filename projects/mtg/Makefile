@@ -27,7 +27,7 @@ OBJS	= objs/InteractiveButton.o objs/AbilityParser.o objs/ActionElement.o\
 	objs/ThisDescriptor.o objs/Token.o objs/Translate.o objs/TranslateKeys.o\
 	objs/Trash.o objs/utils.o objs/WEvent.o objs/WResourceManager.o\
 	objs/WCachedResource.o objs/WDataSrc.o objs/WGui.o objs/WFilter.o objs/Tasks.o\
-	objs/WFont.o objs/CarouselDeckView.o objs/GridDeckView.o objs/DeckView.o
+	objs/WFont.o objs/WParsedInt.o objs/CarouselDeckView.o objs/GridDeckView.o objs/DeckView.o
 DEPS = $(patsubst objs/%.o, deps/%.d, $(OBJS))
 
 RESULT = $(shell psp-config --psp-prefix 2> Makefile.cache)
@@ -68,6 +68,7 @@ EXTRA_TARGETS = EBOOT.PBP
 PSP_EBOOT_TITLE = Wagic, the Homebrew?!
 PSP_EBOOT_ICON = icon.png
 #PSP_EBOOT_ICON1 = icon1.pmf
+PSP_LARGE_MEMORY = 1
 PSP_EBOOT_UNKPNG = pic0.png
 PSP_EBOOT_PIC1 = pic1.png
 INCDIR = ../../JGE/include ../../JGE/src/zipFS ../../JGE/include/psp ../../JGE/include/psp/freetype2 ../../JGE/src ../../projects/mtg/include ../../Boost
@@ -82,7 +83,7 @@ OBJS += objs/TestSuiteAI.o
 INCDIR = -I../../JGE/include -I../../JGE/src -I/usr/X11/include -I../../projects/mtg/include -I/usr/include/boost -I../../JGE/src/zipFS
 LIBDIR = -L../../JGE/lib/linux -L../../JGE -L/usr/X11/lib
 LIBS = -ljge -lfreetype -ljpeg -lgif -lpng -lz -lm -lstdc++ -lhgetools -lGL -lGLU -lX11 -lpthread $(FMOD)
-CFLAGS = $(INCDIR) -DLINUX -DUSE_PRECOMPILED_HEADERS=1 -DTIXML_USE_STL -Wno-nonnull-compare 
+CFLAGS = $(INCDIR) -DLINUX -DNETWORK_SUPPORT -DUSE_PRECOMPILED_HEADERS=1 -DTIXML_USE_STL -Wno-nonnull-compare 
 
 ASFLAGS = $(CXXFLAGS)
 
@@ -93,7 +94,7 @@ OBJS += objs/TestSuiteAI.o
 INCDIR = -I../../JGE/include -I../../JGE/src -I/usr/X11/include -I../../projects/mtg/include -I../../Boost -I../../JGE/src/zipFS
 LIBDIR = -L../../JGE/lib/linux -L../../JGE -L/usr/X11/lib -L../../Boost/lib
 LIBS = -ljge -lfreetype -ljpeg -lgif -lpng -lz -lm -lstdc++ -lhgetools -lGL -lGLU -lX11 -lboost_thread $(FMOD)
-CFLAGS = $(INCDIR) -DLINUX -DUSE_PRECOMPILED_HEADERS=1 -Wno-nonnull-compare 
+CFLAGS = $(INCDIR) -DLINUX -DNETWORK_SUPPORT -DUSE_PRECOMPILED_HEADERS=1 -Wno-nonnull-compare 
 
 ASFLAGS = $(CXXFLAGS)
 

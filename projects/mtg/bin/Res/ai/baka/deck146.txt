@@ -1,0 +1,29 @@
+#NAME: Orzhov Dungeons
+#DESC:The Second D&D Deck
+Silverquill Silencer (*) *4
+Triumphant Adventurer (*) *4
+Vanishing Verse (*) *4
+Nadaar, Selfless Paladin (*) *4
+Soul Shatter (*) *4
+Silverquill Command (*) *4
+Brightclimb Pathway (*) *4
+Shineshadow Snarl (*) *4
+Acererak the Archlich (*) *3
+Lolth, Spider Queen (*) *3
+Hive of the Eye Tyrant (*) *3
+Pelakka Predation (*) *2
+Barrowin of Clan Undurr (*) *2
+Kaya the Inexorable (*) *2
+Emeria's Call (*) *2
+Agadeem's Awakening (*) *1
+Plains (*) *6
+Swamp (*) *4
+#SB:Ray of Enfeeblement (*) *4
+#SB:Lithoform Blight (*) *2
+#SB:Paladin Class (*) *2
+#SB:Fracture (*) *2
+#SB:Crippling Fear (*) *2
+#SB:Humiliate (*) *3
+#DNG:Tomb of Annihilation (*) *1
+#DNG:Lost Mine of Phandelver (*) *1
+#DNG:Dungeon of the Mad Mage (*) *1

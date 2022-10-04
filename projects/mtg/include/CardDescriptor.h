@@ -30,20 +30,34 @@ class CardDescriptor: public MTGCardInstance
  public:
   enum Operator{
       CD_OR = 1,
-      CD_AND = 2
+      CD_AND = 2,
+      CD_NOR = 3,
+      CD_NAND = 4
   };
 
   Operator mode;
   int powerComparisonMode;
+  int foretoldComparisonMode;
+  int kickedComparisonMode;
   int toughnessComparisonMode;
   int manacostComparisonMode;
   int counterComparisonMode;
   int convertedManacost; // might fit better into MTGCardInstance?
   int zposComparisonMode;
   int zposition;
+  int hasKickerCost;
+  int hasFlashbackCost;
+  int hasBackSide;
+  int hasPartner;
+  int hasXCost;
   int anyCounter;
   int init();
   CardDescriptor();
+  void unsecureSetKicked(int i);
+  void unsecureSetHasKickerCost(int i);
+  void unsecureSetHasFlashbackCost(int i);
+  void unsecureSetHasBackSide(int i);
+  void unsecureSetHasPartner(int i);
   void unsecureSetTapped(int i);
   void unsecuresetfresh(int k);
   void unsecuresetrecent(int j);
@@ -69,6 +83,8 @@ class CardDescriptor: public MTGCardInstance
   int CDcontrollerDamaged;
   int CDdamager;
   int CDgeared;
+  int CDdiscarded;
+  int CDattached;
   int CDblocked;
   int CDcanProduceC;
   int CDcanProduceG;
