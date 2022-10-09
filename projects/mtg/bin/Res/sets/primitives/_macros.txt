@@ -69,6 +69,9 @@
 # Whenever you draw your second card each turn
 #AUTO_DEFINE _SECOND_DRAW_ @drawof(player) restriction{compare(pdrewcount)~equalto~2}:
 
+# Adapt
+#AUTO_DEFINE _ADAPT_($c) this(counter{1/1}<1) transforms((,newability[counter(1/1.$c)])) forever
+
 # Battalion
 #AUTO_DEFINE _BATTALION_ @combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:
 
@@ -103,10 +106,10 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 #AUTO_DEFINE _PROLIFERATE_ name(Proliferate) notatarget(proliferation) proliferate
 
 # Scavenge
-#AUTO_DEFINE _SCAVENGE_($cost) name(Scavenge) autograveyard={$cost}{E}:counter(1/1,$c) target(creature) asSorcery
+#AUTO_DEFINE _SCAVENGE_($cost) {$cost}:name(scavenge) counter(1/1,storedpower) target(creature) asSorcery
 
 # Monstrosity
-#AUTO_DEFINE _MONSTROSITY_($cost) name(Monstrosity) this(cantargetcard(*[-monstrous]) {$cost}:becomes(monstrous) forever && counter(1/1,$c)
+#AUTO_DEFINE _MONSTROSITY_($cost,$c) name(Monstrosity) this(cantargetcard(*[-monstrous]) {$cost}:becomes(monstrous) forever && counter(1/1.$c)
 
 # Outlast
 #AUTO_DEFINE _OUTLAST_($cost) {$cost}{$cost}:counter(1/1,1) all(this) asSorcery
@@ -144,9 +147,6 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 
 # Undergrowth
 #AUTO_DEFINE _UNDERGROWTH_ foreach(creature|myGraveyard)
-
-# Adapt
-#AUTO_DEFINE _ADAPT_($c) aslongas(this[counter{1/1}<1]|myBattlefield):counter(1/1,$c)
 
 # Afterlife
 #AUTO_DEFINE _AFTERLIFE_($c) @movedTo(this|graveyard) from(battlefield):create(Spirit:Creature Spirit:1/1:white,black:flying)*$c

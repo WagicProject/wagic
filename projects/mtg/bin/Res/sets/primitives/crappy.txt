@@ -10,6 +10,7 @@ auto=ability$!destroy target(artifact)!$ controller
 auto=ability$!destroy target(creature)!$ controller
 auto=ability$!destroy target(enchantment)!$ controller
 auto=ability$!destroy target(land)!$ controller
+restriction=type(artifact)~morethan~0,type(creature)~morethan~0,type(enchantment)~morethan~0,type(land)~morethan~0
 text=Destroy target artifact, target creature, target enchantment, and target land.
 mana={2}{R}{G}
 type=Sorcery
