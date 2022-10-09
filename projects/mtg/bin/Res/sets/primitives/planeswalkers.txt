@@ -558,7 +558,7 @@ subtype=Chandra
 name=Chandra, Dressed to Kill
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Add red mana) add{R} controller
-auto={C(0/0,1,Loyalty)}:name(+1: Add red and deal damage) target(creature,planeswalker) damage:1 && add{R} controller 
+auto={C(0/0,1,Loyalty)}:name(+1: Add red and deal damage) target(player,planeswalker) damage:1 && add{R} controller 
 auto={C(0/0,1,Loyalty)}:name(+1: Exile top card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( if cantargetcard(*[red]|*) then canplayfromexile ueot )!
 auto={C(0/0,-7,Loyalty)}:name(-7: Exile top 5 cards) emblem transforms((,newability[@movedto(*[red]|mystack):all(trigger[to]) transforms((,newability[name(Deals damage) target(player^creature^planeswalker) damage:totmanaspent])) oneshot],newability[all(*[zpos<=5]|mylibrary) moveto(myexile) and!( if cantargetcard(*[red]|*) then canplayfromexile ueot )!])) forever dontremove 
 text=+1: Add {R}. Chandra, Dressed to Kill deals 1 damage to up to one target player or planeswalker. -- +1: Exile the top card of your library. If it's red, you may cast it this turn. -- -7: Exile the top five cards of your library. You may cast red spells from among them this turn. You get an emblem with "Whenever you cast a red spell, this emblem deals X damage to any target, where X is the amount of mana spent to cast that spell."
