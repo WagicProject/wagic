@@ -156,3 +156,9 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 
 # Spectacle
 #AUTO_DEFINE _SPECTACLE_($cost) compare(oplifelost)~morethan~0 {$cost}:
+
+# Foretell
+#AUTO_DEFINE _FORETELL_ {2}:name(Pay 2 and exile face-down) name(Pay 2 and exile face-down) doforetell myturnonly
+
+# Zombie Token
+#AUTO_DEFINE _ZOMBIETOKEN_ create(zombie:creature zombie:2/2:black)
