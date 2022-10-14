@@ -157,8 +157,17 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 # Spectacle
 #AUTO_DEFINE _SPECTACLE_($cost) compare(oplifelost)~morethan~0 {$cost}:
 
+# Extort
+#AUTO_DEFINE _EXTORT_ @movedto(*|mystack):pay({WB}) life:-1 opponent && life:1 controller
+
 # Foretell
 #AUTO_DEFINE _FORETELL_ {2}:name(Pay 2 and exile face-down) name(Pay 2 and exile face-down) doforetell myturnonly
+
+# Angel Token
+#AUTO_DEFINE _ANGELTOKEN_ create(Angel:Creature Angel:4/4:white:flying)
+
+# Saproling Token
+#AUTO_DEFINE _SAPROLINGTOKEN_ create(Saproling:creature Saproling:1/1:green)
 
 # Zombie Token
 #AUTO_DEFINE _ZOMBIETOKEN_ create(zombie:creature zombie:2/2:black)
