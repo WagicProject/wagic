@@ -166,8 +166,29 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 # Angel Token
 #AUTO_DEFINE _ANGELTOKEN_ create(Angel:Creature Angel:4/4:white:flying)
 
+# Beast Token
+#AUTO_DEFINE _BEASTTOKEN_ create(Beast:Creature Beast:3/3:green)
+
+# Elephant Token
+#AUTO_DEFINE _ELEPHANTTOKEN_ create(Elephant:Creature Elephant:3/3:green)
+
+# Goblin Token
+#AUTO_DEFINE _GOBLINTOKEN_ create(Goblin:Creature Goblin:1/1:red)
+
+# Insect Token
+#AUTO_DEFINE _INSECTTOKEN_ create(Insect:Creature Insect:1/1:green)
+
 # Saproling Token
 #AUTO_DEFINE _SAPROLINGTOKEN_ create(Saproling:creature Saproling:1/1:green)
+
+# Soldier Token
+#AUTO_DEFINE _SOLDIERTOKEN_ create(soldier:creature soldier:1/1:white)
+
+# Spirit Token
+#AUTO_DEFINE _SPIRITTOKEN_ create(Spirit:creature Spirit:1/1:white:flying)
+ 
+# Wolf Token
+#AUTO_DEFINE _WOLFTOKEN_ create(Wolf:creature Wolf:2/2:green)
 
 # Zombie Token
 #AUTO_DEFINE _ZOMBIETOKEN_ create(zombie:creature zombie:2/2:black)

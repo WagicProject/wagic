@@ -1,7 +1,3 @@
-grade=crappy
-##the following are not added becuase they are not choosen discard.
-###1. Decimate should only be castable if there are 4 legal targets.###
-###2. Decimate should fizzle if 1 or more of the 4 targets become illegal or cease to exist.###
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
 #I sorted this programatically so the other comments are removed except for AUTO_DEFINE - Vitty85 30-11-2020
 [card]
@@ -17,7 +13,7 @@ type=Sorcery
 [/card]
 [card]
 name=Lurking Evil
-auto=this(cantargetcard(enchantment)) {0}:name(pay halfup life) life:-halfdownlifetotal controller && transforms((removetypes)) forever && transforms((Horror Creature,setpower=4,settoughness=4,flying)) forever
+auto={0}:name(pay halfup life) life:-halfuplifetotal controller && transforms((removetypes)) forever && transforms((Horror Creature,setpower=4,settoughness=4,flying)) forever
 text=Pay half your life, rounded up: Lurking Evil becomes a 4/4 Horror creature with flying.
 mana={B}{B}{B}
 type=Enchantment
