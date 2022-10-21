@@ -40,7 +40,7 @@ auto=counter(0/0,4,loyalty)
 auto={C(0/0,+1,Loyalty)}:name(+1: Put a +1/+1 counter on up to two...) target(<upto:2>other creature|battlefield) counter(1/1) 
 auto={C(0/0,-2,Loyalty)}:name(-2: Return target creature from graveyard) moveTo(mybattlefield) target(creature[manacost<=2]|mygraveyard)
 auto={C(0/0,-7,Loyalty)}:name(-7: Emblem: Create three tokens) emblem transforms((,newability[@each my endofturn:create(Cat:Creature Cat:1/1:lifelink:white)*3] )) forever dontremove
-text=+1: Put a +1/+1 counter on each of up to two target creatures. -- -2: Return target creature card with converted mana cost 2 or less from your graveyard to the battlefield. -- -7: You get an emblem with "At the beginning of your end step, create three 1/1 white Cat creature tokens with lifelink."
+text=+1: Put a +1/+1 counter on each of up to two target creatures. -- -2: Return target creature card with mana value 2 or less from your graveyard to the battlefield. -- -7: You get an emblem with "At the beginning of your end step, create three 1/1 white Cat creature tokens with lifelink."
 mana={2}{W}{W}
 type=Legendary Planeswalker
 subtype=Ajani
@@ -214,7 +214,7 @@ auto={C(0/0,1,Loyalty)}:name(+1: Opponent discards a card and loses 2 life) abil
 auto={C(0/0,-3,Loyalty)}:name(-3: Gain control of creature with manacost 3 or less) target(creature[manacost<=3]) moveto(mybattlefield) and!(transforms((,newability[phaseaction[endofturn sourceinplay] moveTo(previousbattlefield)],newability[untap],haste,treason)) ueot)!
 auto={C(0/0,-3,Loyalty)}:name(-3: Gain control of creature with manacost more than 3) target(creature[manacost>=4]) moveto(mybattlefield) and!(transforms((,newability[phaseaction[endofturn sourceinplay] moveTo(previousbattlefield)],newability[untap],haste)) ueot)!
 auto={C(0/0,-8,Loyalty)}:name(-8: Opponent loses life equal to graveyard) life:-type:*:opponentGraveyard opponent
-text=+1: Each opponent discards a card and loses 2 life. -- −3: Gain control of target creature until end of turn. Untap it. It gains haste until end of turn. Sacrifice it at the beginning of the next end step if it has converted mana cost 3 or less. -- −8: Each opponent loses life equal to the number of cards in their graveyard.
+text=+1: Each opponent discards a card and loses 2 life. -- −3: Gain control of target creature until end of turn. Untap it. It gains haste until end of turn. Sacrifice it at the beginning of the next end step if it has mana value 3 or less. -- −8: Each opponent loses life equal to the number of cards in their graveyard.
 mana={3}{B}{R}
 type=Legendary Planeswalker
 subtype=Angrath
@@ -330,7 +330,7 @@ auto={C(0/0,-18,Loyalty)}:name(-18: Return a creature from exile as Nightmare wi
 auto={C(0/0,-19,Loyalty)}:name(-19: Return a creature from exile as Nightmare with mana cost 19) moveTo(myBattlefield) target(creature[manacost=19]|opponentExile) and!(becomes(Nightmare) forever)!
 auto={C(0/0,-20,Loyalty)}:name(-20: Return a creature from exile as Nightmare with mana cost 20) moveTo(myBattlefield) target(creature[manacost=20]|opponentExile) and!(becomes(Nightmare) forever)!
 auto={C(0/0,-10,Loyalty)}:name(-10: Exile hands and graveyards) moveTo(Exile) all(*|opponentGraveyard,opponentHand)
-text=+2: Exile the top three cards of target opponent’s library. -- −X: Put a creature card with converted mana cost X exiled with Ashiok, Nightmare Weaver onto the battlefield under your control. That creature is a Nightmare in addition to its other types. -- −10: Exile all cards from all opponents’ hands and graveyards.
+text=+2: Exile the top three cards of target opponent’s library. -- −X: Put a creature card with mana value X exiled with Ashiok, Nightmare Weaver onto the battlefield under your control. That creature is a Nightmare in addition to its other types. -- −10: Exile all cards from all opponents’ hands and graveyards.
 mana={1}{U}{B}
 type=Legendary Planeswalker
 subtype=Ashiok
@@ -411,7 +411,7 @@ auto=counter(0/0,4,loyalty)
 auto={C(0/0,0,Loyalty)}:name(+0: Put a loyalty counter on each red planeswalker) counter(0/0,1,loyalty) all(planeswalker[red]|myBattlefield)
 auto={C(0/0,0,Loyalty)}:name(+0: Create two 1/1 Elemental) token(Elemental,Creature Elemental,1/1,red,haste,treason)*2
 auto={C(0/0,-2,Loyalty)}:name(-2: May cast an instant or sorcery with mana cost 3 or less) target(*[instant;sorcery;manacost<=3]|mygraveyard) transforms((,newability[CanPlayFromGraveyard],newability[gainedexiledeath])) ueot
-text=0: Put a loyalty counter on each red planeswalker you control. -- 0: Create two 1/1 red Elemental creature tokens. They gain haste. Sacrifice them at the beginning of the next end step. -- -2: You may cast target instant or sorcery card with converted mana cost 3 or less from your graveyard. If that card would be put into your graveyard this turn, exile it instead.
+text=0: Put a loyalty counter on each red planeswalker you control. -- 0: Create two 1/1 red Elemental creature tokens. They gain haste. Sacrifice them at the beginning of the next end step. -- -2: You may cast target instant or sorcery card with mana value 3 or less from your graveyard. If that card would be put into your graveyard this turn, exile it instead.
 mana={1}{R}{R}
 type=Legendary Planeswalker
 subtype=Chandra
@@ -1341,7 +1341,7 @@ auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && c
 auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-18,loyalty) restriction{type(*[manacost=18;zpos=1]|mylibrary)~morethan~0}
 auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-19,loyalty) restriction{type(*[manacost=19;zpos=1]|mylibrary)~morethan~0}
 auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-20,loyalty) restriction{type(*[manacost=20;zpos=1]|mylibrary)~morethan~0}
-text=Kicker {2} -- When Jace, Mirror Mage enters the battlefield, if Jace was kicked, create a token that's a copy of Jace, Mirror Mage except it's not legendary and its starting loyalty is 1. -- +1: Scry 2. -- 0: Draw a card and reveal it. Remove a number of loyalty counters equal to that card's converted mana cost from Jace, Mirror Mage.
+text=Kicker {2} -- When Jace, Mirror Mage enters the battlefield, if Jace was kicked, create a token that's a copy of Jace, Mirror Mage except it's not legendary and its starting loyalty is 1. -- +1: Scry 2. -- 0: Draw a card and reveal it. Remove a number of loyalty counters equal to that card's mana value from Jace, Mirror Mage.
 mana={1}{U}{U}
 type=Legendary Planeswalker
 subtype=Jace
@@ -1523,7 +1523,7 @@ auto={C(0/0,1,Loyalty)}:name(+1: Becomes a creature) target(artifact[-creature])
 auto={C(0/0,1,Loyalty)}:name(+1: Loyalty counter) donothing restriction{compare(cantargetcre)~lessthan~1}
 auto={C(0/0,-2,Loyalty)}:name(-2: move a card from exile) moveto(ownerhand) target(artifact|myexile)
 auto={C(0/0,-2,Loyalty)}:name(-2: move a card from sideboard) reveal:type:*:mysideboard revealzone(mysideboard) optionone name(choose card) target(<1>*[artifact]|reveal) moveto(myhand) and!(all(other *|reveal) moveto(ownersideboard))! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownersideboard) and!(all(other *|reveal) moveto(ownersideboard))! optiontwoend revealend
-text=Activated abilities of artifacts your opponents control can't be activated. -- +1: Until your next turn, up to one target noncreature artifact becomes an artifact creature with power and toughness each equal to its converted mana cost. -- -2: You may choose an artifact card you own from outside the game or in exile, reveal that card, and put it into your hand.
+text=Activated abilities of artifacts your opponents control can't be activated. -- +1: Until your next turn, up to one target noncreature artifact becomes an artifact creature with power and toughness each equal to its mana value. -- -2: You may choose an artifact card you own from outside the game or in exile, reveal that card, and put it into your hand.
 mana={4}
 type=Legendary Planeswalker
 subtype=Karn
@@ -1630,7 +1630,7 @@ auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Exile two single cards in graveyard) moveTo(exile) target(<upto:2>*|graveyard) && ability$!name(Gain life) if type(creature[fresh]|exile)~morethan~0 then life:2!$ controller
 auto={C(0/0,-1,Loyalty)}:name(-1: Exile nonland permanent wit mana cost 1 or less) moveTo(exile) target(*[-land;manacost<=1|battlefield])
 auto={C(0/0,-5,Loyalty)}:name(-5: Deal damage equal to exile) damage:type:*:opponentExile opponent && life:type:*:opponentExile controller
-text=+1: Exile up to two target cards from a single graveyard. You gain 2 life if at least one creature card was exiled this way. -- −1: Exile target nonland permanent with converted mana cost 1 or less. -- −5: Kaya, Orzhov Usurper deals damage to target player equal to the number of cards that player owns in exile and you gain that much life.
+text=+1: Exile up to two target cards from a single graveyard. You gain 2 life if at least one creature card was exiled this way. -- −1: Exile target nonland permanent with mana value 1 or less. -- −5: Kaya, Orzhov Usurper deals damage to target player equal to the number of cards that player owns in exile and you gain that much life.
 mana={1}{W}{B}
 type=Legendary Planeswalker
 subtype=Kaya
@@ -1774,7 +1774,7 @@ auto={C(0/0,-18,Loyalty)}:name(-18: Reanimate non-legendary creature with manaco
 auto={C(0/0,-19,Loyalty)}:name(-19: Reanimate non-legendary creature with manacost 19) moveto(mybattlefield) target(creature[-legendary;manacost=19]|mygraveyard)
 auto={C(0/0,-20,Loyalty)}:name(-20: Reanimate non-legendary creature with manacost 20) moveto(mybattlefield) target(creature[-legendary;manacost>=20]|mygraveyard)
 auto={C(0/0,-8,Loyalty)}:name(-8: Emblem: "Whenever a creature dies, reanimate it") emblem transforms((,newability[@movedTo(creature|mygraveyard) from(battlefield):all(trigger[to]) phaseaction[endofturn once] moveTo(myBattlefield)],newability[@movedTo(creature|opponentgraveyard) from(battlefield):all(trigger[to]) phaseaction[endofturn once] moveTo(opponentBattlefield)])) forever dontremove
-text=+2: Each player discards a card. -- -X: Return target nonlegendary creature card with converted mana cost X from your graveyard to the battlefield. -- -8: You get an emblem with "Whenever a creature dies, return it to the battlefield under your control at the beginning of the next end step."
+text=+2: Each player discards a card. -- -X: Return target nonlegendary creature card with mana value X from your graveyard to the battlefield. -- -8: You get an emblem with "Whenever a creature dies, return it to the battlefield under your control at the beginning of the next end step."
 type=Legendary Planeswalker
 subtype=Liliana
 color=black
@@ -1892,7 +1892,7 @@ aicode=activate transforms((,newability[target(creature[manacost>=storedmanacost
 auto={C(0/0,1,Loyalty)}:name(+1: Exile top 3 cards) all(*[zpos<=3]|mylibrary) moveto(myexile) and!( if cantargetcard(creature|*) then transforms((,newability[aslongas(planeswalker[lukka]|mybattlefield) canplayfromexile])) forever )!
 auto={C(0/0,-2,Loyalty)}{E(creature|myBattlefield)}:restriction{type(creature|myBattlefield)~morethan~0} name(-2: Exile and reveal) reveal:1 revealzone(mylibrary) revealuntil(creature[manacost>=storedmanacostplus1plusend]|mylibrary) optionone choice name(Get Card) target(creature[manacost>=storedmanacostplus1plusend]|reveal) moveto(myBattlefield) optiononeend optiontwo choice name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
 auto={C(0/0,-7,Loyalty)}:restriction{type(creature|myBattlefield)~morethan~0} name(-7: Each creature deals damage) all(creature|myBattlefield) transforms((,newability[damage:power opponent])) oneshot
-text=+1: Exile the top three cards of your library. Creature cards exiled this way gain "You may cast this card from exile as long as you control a Lukka planeswalker." -- -2: Exile target creature you control, then reveal cards from the top of your library until you reveal a creature card with higher converted mana cost. Put that card onto the battlefield and the rest on the bottom of your library in a random order. -- -7: Each creature you control deals damage equal to its power to each opponent.
+text=+1: Exile the top three cards of your library. Creature cards exiled this way gain "You may cast this card from exile as long as you control a Lukka planeswalker." -- -2: Exile target creature you control, then reveal cards from the top of your library until you reveal a creature card with higher mana value. Put that card onto the battlefield and the rest on the bottom of your library in a random order. -- -7: Each creature you control deals damage equal to its power to each opponent.
 mana={3}{R}{R}
 type=Legendary Planeswalker
 subtype=Lukka
@@ -2018,7 +2018,7 @@ auto={C(0/0,1,Loyalty)}:name(+1: Gain 2 life and produce mana) life:2 controller
 auto={C(0/0,-2,Loyalty)}:name(-2: Draw and may discard land) draw:1 controller && ability$!name(May discard a land) may target(*[land]|myhand) reject!$ controller
 auto={C(0/0,-2,Loyalty)}{D(*[-land]|myhand)}:name(-2: Draw, discard nonland and damage) draw:1 controller && damage:storedmanacost target(creature;planeswalker)
 auto={C(0/0,-6,Loyalty)}:name(-6: Emblem: Cast a noncreature spell and deals 2 damage) emblem transforms((,newability[@movedTo(*[-creature]|mystack):damage:2 target(player,creature,planeswalker)])) forever dontremove
-text=+1: You gain 2 life. Add {U}, {R}, or {W}. Spend this mana only to cast a noncreature spell. -- -2: Draw a card, then you may discard a card. When you discard a nonland card this way, Narset of the Ancient Way deals damage equal to that card's converted mana cost to target creature or planeswalker. -- -6: You get an emblem with "Whenever you cast a noncreature spell, this emblem deals 2 damage to any target."
+text=+1: You gain 2 life. Add {U}, {R}, or {W}. Spend this mana only to cast a noncreature spell. -- -2: Draw a card, then you may discard a card. When you discard a nonland card this way, Narset of the Ancient Way deals damage equal to that card's mana value to target creature or planeswalker. -- -6: You get an emblem with "Whenever you cast a noncreature spell, this emblem deals 2 damage to any target."
 mana={1}{U}{R}{W}
 type=Legendary Planeswalker
 subtype=Narset
@@ -2151,7 +2151,7 @@ auto=_LANDFALL_counter(0/0,1,Loyalty) all(this)
 auto={C(0/0,1,Loyalty)}:name(+1: Untap a land) target(land|myBattlefield) untap
 auto={C(0/0,1,Loyalty)}:name(+1: Untap a land and becomes creature) target(land|myBattlefield) transforms((Creature Elemental,setpower=3,settoughness=3,newability[untap],newability[haste],newability[menace])) ueot
 auto={C(0/0,-5,Loyalty)}:name(-5: May put a creature from hand or graveyard) target(creature[manacost<=type:land:myBattlefield]|myGraveyard,myHand) moveTo(myBattlefield) and!(counter(1/1,2))!
-text=Landfall - Whenever a land enters the battlefield under your control, put a loyalty counter on Nissa of Shadowed Boughs. -- +1: Untap target land you control. You may have it become a 3/3 Elemental creature with haste and menace until end of turn. It's still a land. -- -5: You may put a creature card with converted mana cost less than or equal to the number of lands you control onto the battlefield from your hand or graveyard with two +1/+1 counters on it.
+text=Landfall - Whenever a land enters the battlefield under your control, put a loyalty counter on Nissa of Shadowed Boughs. -- +1: Untap target land you control. You may have it become a 3/3 Elemental creature with haste and menace until end of turn. It's still a land. -- -5: You may put a creature card with mana value less than or equal to the number of lands you control onto the battlefield from your hand or graveyard with two +1/+1 counters on it.
 mana={2}{B}{G}
 type=Legendary Planeswalker
 subtype=Nissa
@@ -2177,7 +2177,7 @@ auto={C(0/0,0,Loyalty)}: restriction{type(land[zpos=1]|mylibrary)~morethan~0} na
 auto={C(0/0,0,Loyalty)}: restriction{type(creature[zpos=1]|mylibrary)~morethan~0} name(+0: Look top card) reveal:1 optionone name(Put on battlefield) target(<upto:1>creature[manacost<=hascntloyalty]|reveal) moveto(mybattlefield) optiononeend optiontwo name(Put back) target(*|reveal) moveto(mylibrary) optiontwoend revealend
 auto={C(0/0,0,Loyalty)}: restriction{type(*[-creature;-land;zpos=1]|mylibrary)~morethan~0} name(+0: Look top card)) reveal:1 optionone name(Put back) target(*|reveal) moveto(mylibrary) optiononeend optiontwo name(Put back) all(*|reveal) moveto(mylibrary) optiontwoend revealend
 auto={C(0/0,-6,Loyalty)}:name(-6: Two lands become creatures 5/5 with flying) target(<upto:2>land|mybattlefield) transforms((Creature Elemental,setpower=5,settoughness=5,newability[haste],newability[flying],newability[untap])) ueot
-text=+2: Scry 2. -- 0: Look at the top card of your library. If it's a land card or a creature card with converted mana cost less than or equal to the number of loyalty counters on Nissa, Steward of Elements, you may put that card onto the battlefield. -- -6: Untap up to two target lands you control. They become 5/5 Elemental creatures with flying and haste until end of turn. They're still lands.
+text=+2: Scry 2. -- 0: Look at the top card of your library. If it's a land card or a creature card with mana value less than or equal to the number of loyalty counters on Nissa, Steward of Elements, you may put that card onto the battlefield. -- -6: Untap up to two target lands you control. They become 5/5 Elemental creatures with flying and haste until end of turn. They're still lands.
 mana={X}{G}{U}
 type=Legendary Planeswalker
 subtype=Nissa
@@ -2504,7 +2504,7 @@ aicode=activate moveto(myhand) and!( dynamicability<!mytgt manacoststrike tosrc!
 auto={C(0/0,0,Loyalty)}:name(+0: Reveal top, put in hand and deals damage) Reveal:1 revealzone(mylibrary) revealuntil(*|mylibrary) optionone name(put in hand) target(*|reveal) moveto(myhand) optiononeend afterrevealed all(this) damage:revealedmana afterrevealedend revealend
 auto={C(0/0,-2,Loyalty)}:name(-2: Target creature controller sacrifice and create a 5/5 Dragon) target(creature) sacrifice and!( token(Dragon,Creature Dragon,5/5,red,flying) targetcontroller )!
 auto={C(0/0,-4,Loyalty)}:name(-4: All dragons deals damage to a player) all(creature[dragon]|mybattlefield) transforms((,newability[target(player) dynamicability<!powerstrike!>])) oneshot
-text=0: Reveal the top card of your library and put it into your hand. Sarkhan the Mad deals damage to himself equal to that card's converted mana cost. -- -2: Target creature's controller sacrifices it, then that player puts a 5/5 red Dragon creature token with flying onto the battlefield. -- -4: Each Dragon creature you control deals damage equal to its power to target player.
+text=0: Reveal the top card of your library and put it into your hand. Sarkhan the Mad deals damage to himself equal to that card's mana value. -- -2: Target creature's controller sacrifices it, then that player puts a 5/5 red Dragon creature token with flying onto the battlefield. -- -4: Each Dragon creature you control deals damage equal to its power to target player.
 mana={3}{B}{R}
 type=Legendary Planeswalker
 subtype=Sarkhan
@@ -2587,7 +2587,7 @@ auto={C(0/0,-13,Loyalty)}:name(-13: Deals 13 damage and gain 13 life) damage:13 
 auto={C(0/0,-14,Loyalty)}:name(-14: Deals 14 damage and gain 14 life) damage:14 target(creature,planeswalker) && life:14 controller
 auto={C(0/0,-15,Loyalty)}:name(-15: Deals 1 damage and gain 15 life) damage:15 target(creature,planeswalker) && life:15 controller
 auto={C(0/0,-9,Loyalty)}:token(Vampire,Creature Vampire Knight,1/1,black,lifelink)*highestlifetotal
-text=+1: Reveal the top card of your library and put that card into your hand. Each opponent loses life equal to its converted mana cost. -- -X: Sorin, Grim Nemesis deals X damage to target creature or planeswalker and you gain X life. -- -9: Put a number of 1/1 black Vampire Knight creature tokens with lifelink onto the battlefield equal to the highest life total among all players.
+text=+1: Reveal the top card of your library and put that card into your hand. Each opponent loses life equal to its mana value. -- -X: Sorin, Grim Nemesis deals X damage to target creature or planeswalker and you gain X life. -- -9: Put a number of 1/1 black Vampire Knight creature tokens with lifelink onto the battlefield equal to the highest life total among all players.
 mana={4}{W}{B}
 type=Legendary Planeswalker
 subtype=Sorin
@@ -2683,7 +2683,7 @@ auto={C(0/0,-17,Loyalty)}:name(-17: Reanimate as a Vampire) target(creature[mana
 auto={C(0/0,-18,Loyalty)}:name(-18: Reanimate as a Vampire) target(creature[manacost=18]|mygraveyard) moveTo(mybattlefield) && becomes(Vampire) forever
 auto={C(0/0,-19,Loyalty)}:name(-19: Reanimate as a Vampire) target(creature[manacost=19]|mygraveyard) moveTo(mybattlefield) && becomes(Vampire) forever
 auto={C(0/0,-20,Loyalty)}:name(-20: Reanimate as a Vampire) target(creature[manacost=20]|mygraveyard) moveTo(mybattlefield) && becomes(Vampire) forever
-text=As long as it's your turn, creatures and planeswalkers you control have lifelink. -- +2: Sorin, Vengeful Bloodlord deals 1 damage to target player or planeswalker. -- -X: Return target creature card with converted mana cost X from your graveyard to the battlefield. That creature is a Vampire in addition to its other types.
+text=As long as it's your turn, creatures and planeswalkers you control have lifelink. -- +2: Sorin, Vengeful Bloodlord deals 1 damage to target player or planeswalker. -- -X: Return target creature card with mana value X from your graveyard to the battlefield. That creature is a Vampire in addition to its other types.
 mana={2}{W}{B}
 type=Legendary Planeswalker
 subtype=Sorin
@@ -2943,7 +2943,7 @@ auto={C(0/0,-18,Loyalty)}:name(-18: Search an artifact with mana cost 18) target
 auto={C(0/0,-19,Loyalty)}:name(-19: Search an artifact with mana cost 19) target(artifact[manacost<=19]|mylibrary) moveTo(mybattlefield)
 auto={C(0/0,-20,Loyalty)}:name(-20: Search an artifact with mana cost 20) target(artifact[manacost<=20]|mylibrary) moveTo(mybattlefield)
 auto={C(0/0,-5,Loyalty)}:name(-5: Artifacts becomes 5/5) all(artifact|mybattlefield) becomes(Artifact Creature,5/5) ueot
-text=+1: Untap up to two target artifacts. -- -X: Search your library for an artifact card with converted mana cost X or less and put it onto the battlefield. Then shuffle your library. -- -5: Artifacts you control become 5/5 artifact creatures until end of turn.
+text=+1: Untap up to two target artifacts. -- -X: Search your library for an artifact card with mana value X or less and put it onto the battlefield. Then shuffle your library. -- -5: Artifacts you control become 5/5 artifact creatures until end of turn.
 mana={3}{U}{U}
 type=Legendary Planeswalker
 subtype=Tezzeret
@@ -3093,7 +3093,7 @@ auto={C(0/0,-14,Loyalty)}:name(-14: Exile each permanent with mana cost 14) move
 auto={C(0/0,-15,Loyalty)}:name(-15: Exile each permanent with mana cost 15) moveto(exile) all(*[white;blue;black;red;green;manacost<=15])
 auto={C(0/0,-16,Loyalty)}:name(-16: Exile each permanent with mana cost 16) moveto(exile) all(*[white;blue;black;red;green;manacost<=16])
 auto={C(0/0,-10,Loyalty)}:name(-10: Gain 7 life, draw seven and put up to seven permanents) life:7 && draw:7 && transforms((,newability[choice moveto(mybattlefield) target(<upto:7>*[-instant;-sorcery]|myhand)])) forever
-text=+2: Ugin, the Spirit Dragon deals 3 damage to target creature or player. -- -X: Exile each permanent with converted mana cost X or less that's one or more colors. -- -10: You gain 7 life, draw seven cards, then put up to seven permanent cards from your hand onto the battlefield.
+text=+2: Ugin, the Spirit Dragon deals 3 damage to target creature or player. -- -X: Exile each permanent with mana value X or less that's one or more colors. -- -10: You gain 7 life, draw seven cards, then put up to seven permanent cards from your hand onto the battlefield.
 mana={8}
 type=Legendary Planeswalker
 subtype=Ugin
@@ -3139,7 +3139,7 @@ aicode=activate moveto(myBattlefield) target(creature[manacost<=storedmanacost]|
 auto=counter(0/0,3,Loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Create a Creature Beast 3/3) token(Beast Viv)
 auto={C(0/0,-2,Loyalty)}:name(-2: Cast a creature to search a lesser creature) emblem transforms((,newability[@movedTo(creature|myStak):moveTo(myBattlefield) target(creature[manacost<=storedmanacost]|myLibrary) && shuffle])) oneshot
-text=You may look at the top card of your library any time. -- You may cast creature spells from the top of your library. -- +1: Create a 3/3 green Beast creature token. Put your choice of a vigilance counter, a reach counter, or a trample counter on it. -- -2: When you cast your next creature spell this turn, search your library for a creature card with lesser converted mana cost, put it onto the battlefield, then shuffle your library.
+text=You may look at the top card of your library any time. -- You may cast creature spells from the top of your library. -- +1: Create a 3/3 green Beast creature token. Put your choice of a vigilance counter, a reach counter, or a trample counter on it. -- -2: When you cast your next creature spell this turn, search your library for a creature card with lesser mana value, put it onto the battlefield, then shuffle your library.
 mana={3}{G}{G}
 type=Legendary Planeswalker
 subtype=Vivien
@@ -3187,7 +3187,7 @@ auto=counter(0/0,4,loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: May sacrifice to gain 1 life and draw a card) ability$!name(May sacrifice) may sacrifice notatarget(other *|myBattlefield) && life:1 controller && draw:1 controller!$ controller
 auto={C(0/0,-3,Loyalty)}:name(-3: Destroy target nonland permanent with mana cost 3 or less) destroy target(*[-land;manacost<=3])
 auto={C(0/0,-9,Loyalty)}:name(-9: Emblem: Whenever combat damage, win the game) emblem transforms((,newability[@combatdamaged(player) from(creature|myBattlefield):winGame])) forever dontremove
-text=+2: You may sacrifice another permanent. If you do, you gain 1 life and draw a card. -- −3: Destroy target nonland permanent with converted mana cost 3 or less. -- −9: You get an emblem with "Whenever a creature you control deals combat damage to a player, that player loses the game."
+text=+2: You may sacrifice another permanent. If you do, you gain 1 life and draw a card. -- −3: Destroy target nonland permanent with mana value 3 or less. -- −9: You get an emblem with "Whenever a creature you control deals combat damage to a player, that player loses the game."
 mana={2}{B}{G}
 type=Legendary Planeswalker
 subtype=Vraska
