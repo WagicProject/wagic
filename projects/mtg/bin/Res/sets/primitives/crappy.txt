@@ -13,8 +13,8 @@ type=Sorcery
 [/card]
 [card]
 name=Lurking Evil
-auto={0}:name(pay halfup life) life:-halfuplifetotal controller && transforms((removetypes)) forever && transforms((Horror Creature,setpower=4,settoughness=4,flying)) forever
-text=Pay half your life, rounded up: Lurking Evil becomes a 4/4 Horror creature with flying.
+auto={0}:name(pay halfup life) life:-halfuplifetotal controller && transforms((removetypes)) forever && transforms((Creature Phyrexian Horror,setpower=4,settoughness=4,flying)) forever
+text=Pay half your life, rounded up: Lurking Evil becomes a 4/4 Phyrexian Horror creature with flying.
 mana={B}{B}{B}
 type=Enchantment
 [/card]
