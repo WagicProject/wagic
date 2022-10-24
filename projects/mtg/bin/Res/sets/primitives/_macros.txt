@@ -166,6 +166,9 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 # Foretell
 #AUTO_DEFINE _FORETELL_ {2}:name(Pay 2 and exile face-down) name(Pay 2 and exile face-down) doforetell myturnonly
 
+# Loot (draw a card, discard a card.)
+#AUTO_DEFINE _LOOT_ draw:1 && transforms((,newability[target(*|myhand) reject])) forever
+
 # Angel Token
 #AUTO_DEFINE _ANGELTOKEN_ create(Angel:Creature Angel:4/4:white:flying)
 
