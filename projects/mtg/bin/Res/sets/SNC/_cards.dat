@@ -1,0 +1,2296 @@
+[meta]
+author=Wagic Team
+name=Streets of New Capenna
+year=2022-04-29
+total=467
+[/meta]
+[card]
+primitive=Angelic Observer
+id=555202
+rarity=U
+[/card]
+[card]
+primitive=Backup Agent
+id=555203
+rarity=C
+[/card]
+[card]
+primitive=Ballroom Brawlers
+id=555204
+rarity=U
+[/card]
+[card]
+primitive=Boon of Safety
+id=555205
+rarity=C
+[/card]
+[card]
+primitive=Brokers Initiate
+id=555206
+rarity=C
+[/card]
+[card]
+primitive=Buy Your Silence
+id=555207
+rarity=C
+[/card]
+[card]
+primitive=Celebrity Fencer
+id=555208
+rarity=C
+[/card]
+[card]
+primitive=Citizen's Crowbar
+id=555209
+rarity=U
+[/card]
+[card]
+primitive=Dapper Shieldmate
+id=555210
+rarity=C
+[/card]
+[card]
+primitive=Depopulate
+id=555211
+rarity=R
+[/card]
+[card]
+primitive=Elspeth Resplendent
+id=555212
+rarity=M
+[/card]
+[card]
+primitive=Extraction Specialist
+id=555213
+rarity=R
+[/card]
+[card]
+primitive=Gathering Throng
+id=555214
+rarity=C
+[/card]
+[card]
+primitive=Giada, Font of Hope
+id=555215
+rarity=R
+[/card]
+[card]
+primitive=Halo Fountain
+id=555216
+rarity=M
+[/card]
+[card]
+primitive=Hold for Ransom
+id=555217
+rarity=C
+[/card]
+[card]
+primitive=Illuminator Virtuoso
+id=555218
+rarity=U
+[/card]
+[card]
+primitive=Inspiring Overseer
+id=555219
+rarity=C
+[/card]
+[card]
+primitive=Kill Shot
+id=555220
+rarity=C
+[/card]
+[card]
+primitive=Knockout Blow
+id=555221
+rarity=U
+[/card]
+[card]
+primitive=Mage's Attendant
+id=555222
+rarity=U
+[/card]
+[card]
+primitive=Mysterious Limousine
+id=555223
+rarity=R
+[/card]
+[card]
+primitive=Patch Up
+id=555224
+rarity=U
+[/card]
+[card]
+primitive=Rabble Rousing
+id=555225
+rarity=R
+[/card]
+[card]
+primitive=Raffine's Guidance
+id=555226
+rarity=C
+[/card]
+[card]
+primitive=Raffine's Informant
+id=555227
+rarity=C
+[/card]
+[card]
+primitive=Refuse to Yield
+id=555228
+rarity=U
+[/card]
+[card]
+primitive=Revelation of Power
+id=555229
+rarity=C
+[/card]
+[card]
+primitive=Rumor Gatherer
+id=555230
+rarity=U
+[/card]
+[card]
+primitive=Sanctuary Warden
+id=555231
+rarity=M
+[/card]
+[card]
+primitive=Sky Crier
+id=555232
+rarity=C
+[/card]
+[card]
+primitive=Speakeasy Server
+id=555233
+rarity=C
+[/card]
+[card]
+primitive=Swooping Protector
+id=555234
+rarity=U
+[/card]
+[card]
+primitive=All-Seeing Arbiter
+id=555235
+rarity=M
+[/card]
+[card]
+primitive=Backstreet Bruiser
+id=555236
+rarity=C
+[/card]
+[card]
+primitive=Brokers Veteran
+id=555237
+rarity=C
+[/card]
+[card]
+primitive=Case the Joint
+id=555238
+rarity=C
+[/card]
+[card]
+primitive=Cut Your Losses
+id=555239
+rarity=R
+[/card]
+[card]
+primitive=Disdainful Stroke
+id=555240
+rarity=C
+[/card]
+[card]
+primitive=Echo Inspector
+id=555241
+rarity=C
+[/card]
+[card]
+primitive=Errant, Street Artist
+id=555242
+rarity=R
+[/card]
+[card]
+primitive=Even the Score
+id=555243
+rarity=M
+[/card]
+[card]
+primitive=Expendable Lackey
+id=555244
+rarity=C
+[/card]
+[card]
+primitive=Faerie Vandal
+id=555245
+rarity=U
+[/card]
+[card]
+primitive=Hypnotic Grifter
+id=555246
+rarity=U
+[/card]
+[card]
+primitive=Ledger Shredder
+id=555247
+rarity=R
+[/card]
+[card]
+primitive=A Little Chat
+id=555248
+rarity=U
+[/card]
+[card]
+primitive=Majestic Metamorphosis
+id=555249
+rarity=C
+[/card]
+[card]
+primitive=Make Disappear
+id=555250
+rarity=C
+[/card]
+[card]
+primitive=Obscura Initiate
+id=555251
+rarity=C
+[/card]
+[card]
+primitive=An Offer You Can't Refuse
+id=555252
+rarity=U
+[/card]
+[card]
+primitive=Out of the Way
+id=555253
+rarity=U
+[/card]
+[card]
+primitive=Psionic Snoop
+id=555254
+rarity=C
+[/card]
+[card]
+primitive=Psychic Pickpocket
+id=555255
+rarity=U
+[/card]
+[card]
+primitive=Public Enemy
+id=555256
+rarity=U
+[/card]
+[card]
+primitive=Reservoir Kraken
+id=555257
+rarity=R
+[/card]
+[card]
+primitive=Rooftop Nuisance
+id=555258
+rarity=C
+[/card]
+[card]
+primitive=Run Out of Town
+id=555259
+rarity=C
+[/card]
+[card]
+primitive=Security Bypass
+id=555260
+rarity=C
+[/card]
+[card]
+primitive=Sewer Crocodile
+id=555261
+rarity=C
+[/card]
+[card]
+primitive=Sleep with the Fishes
+id=555262
+rarity=U
+[/card]
+[card]
+primitive=Slip Out the Back
+id=555263
+rarity=U
+[/card]
+[card]
+primitive=Undercover Operative
+id=555264
+rarity=R
+[/card]
+[card]
+primitive=Wingshield Agent
+id=555265
+rarity=U
+[/card]
+[card]
+primitive=Wiretapping
+id=555266
+rarity=R
+[/card]
+[card]
+primitive=Witness Protection
+id=555267
+rarity=C
+[/card]
+[card]
+primitive=Angel of Suffering
+id=555268
+rarity=M
+[/card]
+[card]
+primitive=Body Launderer
+id=555269
+rarity=M
+[/card]
+[card]
+primitive=Cemetery Tampering
+id=555270
+rarity=R
+[/card]
+[card]
+primitive=Corrupt Court Official
+id=555271
+rarity=C
+[/card]
+[card]
+primitive=Crooked Custodian
+id=555272
+rarity=C
+[/card]
+[card]
+primitive=Cut of the Profits
+id=555273
+rarity=R
+[/card]
+[card]
+primitive=Cutthroat Contender
+id=555274
+rarity=C
+[/card]
+[card]
+primitive=Deal Gone Bad
+id=555275
+rarity=C
+[/card]
+[card]
+primitive=Demon's Due
+id=555276
+rarity=C
+[/card]
+[card]
+primitive=Dig Up the Body
+id=555277
+rarity=C
+[/card]
+[card]
+primitive=Dusk Mangler
+id=555278
+rarity=U
+[/card]
+[card]
+primitive=Extract the Truth
+id=555279
+rarity=C
+[/card]
+[card]
+primitive=Fake Your Own Death
+id=555280
+rarity=C
+[/card]
+[card]
+primitive=Girder Goons
+id=555281
+rarity=C
+[/card]
+[card]
+primitive=Graveyard Shift
+id=555282
+rarity=U
+[/card]
+[card]
+primitive=Grisly Sigil
+id=555283
+rarity=U
+[/card]
+[card]
+primitive=Illicit Shipment
+id=555284
+rarity=U
+[/card]
+[card]
+primitive=Incriminate
+id=555285
+rarity=C
+[/card]
+[card]
+primitive=Join the Maestros
+id=555286
+rarity=C
+[/card]
+[card]
+primitive=Maestros Initiate
+id=555287
+rarity=C
+[/card]
+[card]
+primitive=Midnight Assassin
+id=555288
+rarity=C
+[/card]
+[card]
+primitive=Murder
+id=555289
+rarity=C
+[/card]
+[card]
+primitive=Night Clubber
+id=555290
+rarity=U
+[/card]
+[card]
+primitive=Raffine's Silencer
+id=555291
+rarity=U
+[/card]
+[card]
+primitive=Revel Ruiner
+id=555292
+rarity=C
+[/card]
+[card]
+primitive=Rogues' Gallery
+id=555293
+rarity=U
+[/card]
+[card]
+primitive=Sanguine Spy
+id=555294
+rarity=R
+[/card]
+[card]
+primitive=Shadow of Mortality
+id=555295
+rarity=R
+[/card]
+[card]
+primitive=Shakedown Heavy
+id=555296
+rarity=R
+[/card]
+[card]
+primitive=Tavern Swindler
+id=555297
+rarity=U
+[/card]
+[card]
+primitive=Tenacious Underdog
+id=555298
+rarity=R
+[/card]
+[card]
+primitive=Vampire Scrivener
+id=555299
+rarity=U
+[/card]
+[card]
+primitive=Whack
+id=555300
+rarity=U
+[/card]
+[card]
+primitive=Antagonize
+id=555301
+rarity=C
+[/card]
+[card]
+primitive=Arcane Bombardment
+id=555302
+rarity=M
+[/card]
+[card]
+primitive=Big Score
+id=555303
+rarity=C
+[/card]
+[card]
+primitive=Call In a Professional
+id=555304
+rarity=U
+[/card]
+[card]
+primitive=Daring Escape
+id=555305
+rarity=C
+[/card]
+[card]
+primitive=Devilish Valet
+id=555306
+rarity=R
+[/card]
+[card]
+primitive=Exhibition Magician
+id=555307
+rarity=C
+[/card]
+[card]
+primitive=Glittering Stockpile
+id=555308
+rarity=U
+[/card]
+[card]
+primitive=Goldhound
+id=555309
+rarity=C
+[/card]
+[card]
+primitive=Hoard Hauler
+id=555310
+rarity=R
+[/card]
+[card]
+primitive=Involuntary Employment
+id=555311
+rarity=U
+[/card]
+[card]
+primitive=Jackhammer
+id=555312
+rarity=C
+[/card]
+[card]
+primitive=Jaxis, the Troublemaker
+id=555313
+rarity=R
+[/card]
+[card]
+primitive=Light 'Em Up
+id=555314
+rarity=C
+[/card]
+[card]
+primitive=Mayhem Patrol
+id=555315
+rarity=C
+[/card]
+[card]
+primitive=Plasma Jockey
+id=555316
+rarity=C
+[/card]
+[card]
+primitive=Professional Face-Breaker
+id=555317
+rarity=R
+[/card]
+[card]
+primitive=Pugnacious Pugilist
+id=555318
+rarity=U
+[/card]
+[card]
+primitive=Pyre-Sledge Arsonist
+id=555319
+rarity=U
+[/card]
+[card]
+primitive=Ready to Rumble
+id=555320
+rarity=C
+[/card]
+[card]
+primitive=Riveteers Initiate
+id=555321
+rarity=C
+[/card]
+[card]
+primitive=Riveteers Requisitioner
+id=555322
+rarity=U
+[/card]
+[card]
+primitive=Rob the Archives
+id=555323
+rarity=U
+[/card]
+[card]
+primitive=Sizzling Soloist
+id=555324
+rarity=U
+[/card]
+[card]
+primitive=Sticky Fingers
+id=555325
+rarity=C
+[/card]
+[card]
+primitive=Strangle
+id=555326
+rarity=C
+[/card]
+[card]
+primitive=Structural Assault
+id=555327
+rarity=R
+[/card]
+[card]
+primitive=Torch Breath
+id=555328
+rarity=U
+[/card]
+[card]
+primitive=Unlucky Witness
+id=555329
+rarity=U
+[/card]
+[card]
+primitive=Urabrask, Heretic Praetor
+id=555330
+rarity=M
+[/card]
+[card]
+primitive=Widespread Thieving
+id=555331
+rarity=R
+[/card]
+[card]
+primitive=Witty Roastmaster
+id=555332
+rarity=C
+[/card]
+[card]
+primitive=Wrecking Crew
+id=555333
+rarity=C
+[/card]
+[card]
+primitive=Attended Socialite
+id=555334
+rarity=C
+[/card]
+[card]
+primitive=Bootleggers' Stash
+id=555335
+rarity=M
+[/card]
+[card]
+primitive=Bouncer's Beatdown
+id=555336
+rarity=U
+[/card]
+[card]
+primitive=Broken Wings
+id=555337
+rarity=C
+[/card]
+[card]
+primitive=Cabaretti Initiate
+id=555338
+rarity=C
+[/card]
+[card]
+primitive=Caldaia Strongarm
+id=555339
+rarity=C
+[/card]
+[card]
+primitive=Capenna Express
+id=555340
+rarity=C
+[/card]
+[card]
+primitive=Civic Gardener
+id=555341
+rarity=C
+[/card]
+[card]
+primitive=Cleanup Crew
+id=555342
+rarity=U
+[/card]
+[card]
+primitive=Courier's Briefcase
+id=555343
+rarity=U
+[/card]
+[card]
+primitive=Elegant Entourage
+id=555344
+rarity=U
+[/card]
+[card]
+primitive=Evolving Door
+id=555345
+rarity=R
+[/card]
+[card]
+primitive=Fight Rigging
+id=555346
+rarity=R
+[/card]
+[card]
+primitive=For the Family
+id=555347
+rarity=C
+[/card]
+[card]
+primitive=Freelance Muscle
+id=555348
+rarity=U
+[/card]
+[card]
+primitive=Gala Greeters
+id=555349
+rarity=R
+[/card]
+[card]
+primitive=Glittermonger
+id=555350
+rarity=C
+[/card]
+[card]
+primitive=High-Rise Sawjack
+id=555351
+rarity=C
+[/card]
+[card]
+primitive=Jewel Thief
+id=555352
+rarity=C
+[/card]
+[card]
+primitive=Luxurious Libation
+id=555353
+rarity=U
+[/card]
+[card]
+primitive=Most Wanted
+id=555354
+rarity=C
+[/card]
+[card]
+primitive=Prizefight
+id=555355
+rarity=C
+[/card]
+[card]
+primitive=Rhox Pummeler
+id=555356
+rarity=C
+[/card]
+[card]
+primitive=Riveteers Decoy
+id=555357
+rarity=U
+[/card]
+[card]
+primitive=Social Climber
+id=555358
+rarity=C
+[/card]
+[card]
+primitive=Take to the Streets
+id=555359
+rarity=U
+[/card]
+[card]
+primitive=Titan of Industry
+id=555360
+rarity=M
+[/card]
+[card]
+primitive=Topiary Stomper
+id=555361
+rarity=R
+[/card]
+[card]
+primitive=Venom Connoisseur
+id=555362
+rarity=U
+[/card]
+[card]
+primitive=Vivien on the Hunt
+id=555363
+rarity=M
+[/card]
+[card]
+primitive=Voice of the Vermin
+id=555364
+rarity=U
+[/card]
+[card]
+primitive=Warm Welcome
+id=555365
+rarity=C
+[/card]
+[card]
+primitive=Workshop Warchief
+id=555366
+rarity=R
+[/card]
+[card]
+primitive=Aven Heartstabber
+id=555367
+rarity=R
+[/card]
+[card]
+primitive=Black Market Tycoon
+id=555368
+rarity=R
+[/card]
+[card]
+primitive=Body Dropper
+id=555369
+rarity=C
+[/card]
+[card]
+primitive=Brazen Upstart
+id=555370
+rarity=U
+[/card]
+[card]
+primitive=Brokers Ascendancy
+id=555371
+rarity=R
+[/card]
+[card]
+primitive=Brokers Charm
+id=555372
+rarity=U
+[/card]
+[card]
+primitive=Cabaretti Ascendancy
+id=555373
+rarity=R
+[/card]
+[card]
+primitive=Cabaretti Charm
+id=555374
+rarity=U
+[/card]
+[card]
+primitive=Celestial Regulator
+id=555375
+rarity=C
+[/card]
+[card]
+primitive=Ceremonial Groundbreaker
+id=555376
+rarity=U
+[/card]
+[card]
+primitive=Civil Servant
+id=555377
+rarity=C
+[/card]
+[card]
+primitive=Cormela, Glamour Thief
+id=555378
+rarity=U
+[/card]
+[card]
+primitive=Corpse Appraiser
+id=555379
+rarity=U
+[/card]
+[card]
+primitive=Corpse Explosion
+id=555380
+rarity=R
+[/card]
+[card]
+primitive=Crew Captain
+id=555381
+rarity=U
+[/card]
+[card]
+primitive=Darling of the Masses
+id=555382
+rarity=U
+[/card]
+[card]
+primitive=Disciplined Duelist
+id=555383
+rarity=U
+[/card]
+[card]
+primitive=Endless Detour
+id=555384
+rarity=R
+[/card]
+[card]
+primitive=Evelyn, the Covetous
+id=555385
+rarity=R
+[/card]
+[card]
+primitive=Exotic Pets
+id=555386
+rarity=U
+[/card]
+[card]
+primitive=Falco Spara, Pactweaver
+id=555387
+rarity=M
+[/card]
+[card]
+primitive=Fatal Grudge
+id=555388
+rarity=U
+[/card]
+[card]
+primitive=Fleetfoot Dancer
+id=555389
+rarity=R
+[/card]
+[card]
+primitive=Forge Boss
+id=555390
+rarity=U
+[/card]
+[card]
+primitive=Glamorous Outlaw
+id=555391
+rarity=C
+[/card]
+[card]
+primitive=Hostile Takeover
+id=555392
+rarity=R
+[/card]
+[card]
+primitive=Incandescent Aria
+id=555393
+rarity=R
+[/card]
+[card]
+primitive=Jetmir, Nexus of Revels
+id=555394
+rarity=M
+[/card]
+[card]
+primitive=Jetmir's Fixer
+id=555395
+rarity=C
+[/card]
+[card]
+primitive=Jinnie Fay, Jetmir's Second
+id=555396
+rarity=R
+[/card]
+[card]
+primitive=Lagrella, the Magpie
+id=555397
+rarity=U
+[/card]
+[card]
+primitive=Lord Xander, the Collector
+id=555398
+rarity=M
+[/card]
+[card]
+primitive=Maestros Ascendancy
+id=555399
+rarity=R
+[/card]
+[card]
+primitive=Maestros Charm
+id=555400
+rarity=U
+[/card]
+[card]
+primitive=Maestros Diabolist
+id=555401
+rarity=R
+[/card]
+[card]
+primitive=Masked Bandits
+id=555402
+rarity=C
+[/card]
+[card]
+primitive=Meeting of the Five
+id=555403
+rarity=M
+[/card]
+[card]
+primitive=Metropolis Angel
+id=555404
+rarity=U
+[/card]
+[card]
+primitive=Mr. Orfeo, the Boulder
+id=555405
+rarity=U
+[/card]
+[card]
+primitive=Nimble Larcenist
+id=555406
+rarity=U
+[/card]
+[card]
+primitive=Ob Nixilis, the Adversary
+id=555407
+rarity=M
+[/card]
+[card]
+primitive=Obscura Ascendancy
+id=555408
+rarity=R
+[/card]
+[card]
+primitive=Obscura Charm
+id=555409
+rarity=U
+[/card]
+[card]
+primitive=Obscura Interceptor
+id=555410
+rarity=R
+[/card]
+[card]
+primitive=Ognis, the Dragon's Lash
+id=555411
+rarity=R
+[/card]
+[card]
+primitive=Park Heights Pegasus
+id=555412
+rarity=R
+[/card]
+[card]
+primitive=Queza, Augur of Agonies
+id=555413
+rarity=U
+[/card]
+[card]
+primitive=Raffine, Scheming Seer
+id=555414
+rarity=M
+[/card]
+[card]
+primitive=Rakish Revelers
+id=555415
+rarity=C
+[/card]
+[card]
+primitive=Rigo, Streetwise Mentor
+id=555416
+rarity=R
+[/card]
+[card]
+primitive=Riveteers Ascendancy
+id=555417
+rarity=R
+[/card]
+[card]
+primitive=Riveteers Charm
+id=555418
+rarity=U
+[/card]
+[card]
+primitive=Rocco, Cabaretti Caterer
+id=555419
+rarity=U
+[/card]
+[card]
+primitive=Scheming Fence
+id=555420
+rarity=R
+[/card]
+[card]
+primitive=Security Rhox
+id=555421
+rarity=U
+[/card]
+[card]
+primitive=Shattered Seraph
+id=555422
+rarity=C
+[/card]
+[card]
+primitive=Snooping Newsie
+id=555423
+rarity=C
+[/card]
+[card]
+primitive=Soul of Emancipation
+id=555424
+rarity=R
+[/card]
+[card]
+primitive=Spara's Adjudicators
+id=555425
+rarity=C
+[/card]
+[card]
+primitive=Stimulus Package
+id=555426
+rarity=U
+[/card]
+[card]
+primitive=Syndicate Infiltrator
+id=555427
+rarity=U
+[/card]
+[card]
+primitive=Tainted Indulgence
+id=555428
+rarity=U
+[/card]
+[card]
+primitive=Toluz, Clever Conductor
+id=555429
+rarity=R
+[/card]
+[card]
+primitive=Unleash the Inferno
+id=555430
+rarity=R
+[/card]
+[card]
+primitive=Void Rend
+id=555431
+rarity=R
+[/card]
+[card]
+primitive=Ziatora, the Incinerator
+id=555432
+rarity=M
+[/card]
+[card]
+primitive=Ziatora's Envoy
+id=555433
+rarity=R
+[/card]
+[card]
+primitive=Arc Spitter
+id=555434
+rarity=U
+[/card]
+[card]
+primitive=Brass Knuckles
+id=555435
+rarity=U
+[/card]
+[card]
+primitive=Cement Shoes
+id=555436
+rarity=U
+[/card]
+[card]
+primitive=Chrome Cat
+id=555437
+rarity=C
+[/card]
+[card]
+primitive=Getaway Car
+id=555438
+rarity=R
+[/card]
+[card]
+primitive=Gilded Pinions
+id=555439
+rarity=C
+[/card]
+[card]
+primitive=Halo Scarab
+id=555440
+rarity=C
+[/card]
+[card]
+primitive=Luxior, Giada's Gift
+id=555441
+rarity=M
+[/card]
+[card]
+primitive=Ominous Parcel
+id=555442
+rarity=C
+[/card]
+[card]
+primitive=Paragon of Modernity
+id=555443
+rarity=C
+[/card]
+[card]
+primitive=Quick-Draw Dagger
+id=555444
+rarity=C
+[/card]
+[card]
+primitive=Scuttling Butler
+id=555445
+rarity=U
+[/card]
+[card]
+primitive=Suspicious Bookcase
+id=555446
+rarity=U
+[/card]
+[card]
+primitive=Unlicensed Hearse
+id=555447
+rarity=R
+[/card]
+[card]
+primitive=Botanical Plaza
+id=555448
+rarity=C
+[/card]
+[card]
+primitive=Brokers Hideout
+id=555449
+rarity=C
+[/card]
+[card]
+primitive=Cabaretti Courtyard
+id=555450
+rarity=C
+[/card]
+[card]
+primitive=Jetmir's Garden
+id=555451
+rarity=R
+[/card]
+[card]
+primitive=Maestros Theater
+id=555452
+rarity=C
+[/card]
+[card]
+primitive=Obscura Storefront
+id=555453
+rarity=C
+[/card]
+[card]
+primitive=Racers' Ring
+id=555454
+rarity=C
+[/card]
+[card]
+primitive=Raffine's Tower
+id=555455
+rarity=R
+[/card]
+[card]
+primitive=Riveteers Overlook
+id=555456
+rarity=C
+[/card]
+[card]
+primitive=Skybridge Towers
+id=555457
+rarity=C
+[/card]
+[card]
+primitive=Spara's Headquarters
+id=555458
+rarity=R
+[/card]
+[card]
+primitive=Tramway Station
+id=555459
+rarity=C
+[/card]
+[card]
+primitive=Waterfront District
+id=555460
+rarity=C
+[/card]
+[card]
+primitive=Xander's Lounge
+id=555461
+rarity=R
+[/card]
+[card]
+primitive=Ziatora's Proving Ground
+id=555462
+rarity=R
+[/card]
+[card]
+primitive=Plains
+id=559345
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=559346
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=559347
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=559348
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=559349
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=559350
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=559351
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=559352
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=559353
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=559354
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=559455
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=559456
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=559457
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=559458
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=559459
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=559460
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=559461
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=559462
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=559463
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=559464
+rarity=L
+[/card]
+[card]
+primitive=Elspeth Resplendent
+id=558073
+rarity=M
+[/card]
+[card]
+primitive=Vivien on the Hunt
+id=558074
+rarity=M
+[/card]
+[card]
+primitive=Ob Nixilis, the Adversary
+id=558075
+rarity=M
+[/card]
+[card]
+primitive=Halo Fountain
+id=558419
+rarity=M
+[/card]
+[card]
+primitive=All-Seeing Arbiter
+id=558420
+rarity=M
+[/card]
+[card]
+primitive=Shadow of Mortality
+id=558421
+rarity=R
+[/card]
+[card]
+primitive=Bootleggers' Stash
+id=558422
+rarity=M
+[/card]
+[card]
+primitive=Titan of Industry
+id=558423
+rarity=M
+[/card]
+[card]
+primitive=Topiary Stomper
+id=558424
+rarity=R
+[/card]
+[card]
+primitive=Jetmir's Garden
+id=558425
+rarity=R
+[/card]
+[card]
+primitive=Raffine's Tower
+id=558426
+rarity=R
+[/card]
+[card]
+primitive=Spara's Headquarters
+id=558427
+rarity=R
+[/card]
+[card]
+primitive=Xander's Lounge
+id=558428
+rarity=R
+[/card]
+[card]
+primitive=Ziatora's Proving Ground
+id=558429
+rarity=R
+[/card]
+[card]
+primitive=Brazen Upstart
+id=558694
+rarity=U
+[/card]
+[card]
+primitive=Brokers Ascendancy
+id=558695
+rarity=R
+[/card]
+[card]
+primitive=Brokers Charm
+id=558696
+rarity=U
+[/card]
+[card]
+primitive=Cabaretti Ascendancy
+id=558697
+rarity=R
+[/card]
+[card]
+primitive=Cabaretti Charm
+id=558698
+rarity=U
+[/card]
+[card]
+primitive=Cormela, Glamour Thief
+id=558699
+rarity=U
+[/card]
+[card]
+primitive=Corpse Appraiser
+id=558700
+rarity=U
+[/card]
+[card]
+primitive=Crew Captain
+id=558701
+rarity=U
+[/card]
+[card]
+primitive=Disciplined Duelist
+id=558702
+rarity=U
+[/card]
+[card]
+primitive=Endless Detour
+id=558703
+rarity=R
+[/card]
+[card]
+primitive=Evelyn, the Covetous
+id=558704
+rarity=R
+[/card]
+[card]
+primitive=Falco Spara, Pactweaver
+id=558705
+rarity=M
+[/card]
+[card]
+primitive=Fleetfoot Dancer
+id=558706
+rarity=R
+[/card]
+[card]
+primitive=Glamorous Outlaw
+id=558707
+rarity=C
+[/card]
+[card]
+primitive=Hostile Takeover
+id=558708
+rarity=R
+[/card]
+[card]
+primitive=Incandescent Aria
+id=558709
+rarity=R
+[/card]
+[card]
+primitive=Jetmir, Nexus of Revels
+id=558710
+rarity=M
+[/card]
+[card]
+primitive=Jinnie Fay, Jetmir's Second
+id=558711
+rarity=R
+[/card]
+[card]
+primitive=Lagrella, the Magpie
+id=558712
+rarity=U
+[/card]
+[card]
+primitive=Lord Xander, the Collector
+id=558713
+rarity=M
+[/card]
+[card]
+primitive=Maestros Ascendancy
+id=558714
+rarity=R
+[/card]
+[card]
+primitive=Maestros Charm
+id=558715
+rarity=U
+[/card]
+[card]
+primitive=Maestros Diabolist
+id=558716
+rarity=R
+[/card]
+[card]
+primitive=Masked Bandits
+id=558717
+rarity=C
+[/card]
+[card]
+primitive=Mr. Orfeo, the Boulder
+id=558718
+rarity=U
+[/card]
+[card]
+primitive=Nimble Larcenist
+id=558719
+rarity=U
+[/card]
+[card]
+primitive=Obscura Ascendancy
+id=558720
+rarity=R
+[/card]
+[card]
+primitive=Obscura Charm
+id=558721
+rarity=U
+[/card]
+[card]
+primitive=Obscura Interceptor
+id=558722
+rarity=R
+[/card]
+[card]
+primitive=Ognis, the Dragon's Lash
+id=558723
+rarity=R
+[/card]
+[card]
+primitive=Queza, Augur of Agonies
+id=558724
+rarity=U
+[/card]
+[card]
+primitive=Raffine, Scheming Seer
+id=558725
+rarity=M
+[/card]
+[card]
+primitive=Rakish Revelers
+id=558726
+rarity=C
+[/card]
+[card]
+primitive=Rigo, Streetwise Mentor
+id=558727
+rarity=R
+[/card]
+[card]
+primitive=Riveteers Ascendancy
+id=558728
+rarity=R
+[/card]
+[card]
+primitive=Riveteers Charm
+id=558729
+rarity=U
+[/card]
+[card]
+primitive=Rocco, Cabaretti Caterer
+id=558730
+rarity=U
+[/card]
+[card]
+primitive=Shattered Seraph
+id=558731
+rarity=C
+[/card]
+[card]
+primitive=Soul of Emancipation
+id=558732
+rarity=R
+[/card]
+[card]
+primitive=Spara's Adjudicators
+id=558733
+rarity=C
+[/card]
+[card]
+primitive=Toluz, Clever Conductor
+id=558734
+rarity=R
+[/card]
+[card]
+primitive=Unleash the Inferno
+id=558735
+rarity=R
+[/card]
+[card]
+primitive=Void Rend
+id=558736
+rarity=R
+[/card]
+[card]
+primitive=Ziatora, the Incinerator
+id=558737
+rarity=M
+[/card]
+[card]
+primitive=Ziatora's Envoy
+id=558738
+rarity=R
+[/card]
+[card]
+primitive=Elspeth Resplendent
+id=558540
+rarity=M
+[/card]
+[card]
+primitive=Giada, Font of Hope
+id=558541
+rarity=R
+[/card]
+[card]
+primitive=Sanctuary Warden
+id=558542
+rarity=M
+[/card]
+[card]
+primitive=Errant, Street Artist
+id=558543
+rarity=R
+[/card]
+[card]
+primitive=Tenacious Underdog
+id=558544
+rarity=R
+[/card]
+[card]
+primitive=Urabrask, Heretic Praetor
+id=558545
+rarity=M
+[/card]
+[card]
+primitive=Vivien on the Hunt
+id=558546
+rarity=M
+[/card]
+[card]
+primitive=Ob Nixilis, the Adversary
+id=558547
+rarity=M
+[/card]
+[card]
+primitive=Scheming Fence
+id=558548
+rarity=R
+[/card]
+[card]
+primitive=Botanical Plaza
+id=559235
+rarity=C
+[/card]
+[card]
+primitive=Jetmir's Garden
+id=559236
+rarity=R
+[/card]
+[card]
+primitive=Racers' Ring
+id=559237
+rarity=C
+[/card]
+[card]
+primitive=Raffine's Tower
+id=559238
+rarity=R
+[/card]
+[card]
+primitive=Skybridge Towers
+id=559239
+rarity=C
+[/card]
+[card]
+primitive=Spara's Headquarters
+id=559240
+rarity=R
+[/card]
+[card]
+primitive=Tramway Station
+id=559241
+rarity=C
+[/card]
+[card]
+primitive=Waterfront District
+id=559242
+rarity=C
+[/card]
+[card]
+primitive=Xander's Lounge
+id=559243
+rarity=R
+[/card]
+[card]
+primitive=Ziatora's Proving Ground
+id=559244
+rarity=R
+[/card]
+[card]
+primitive=Urabrask, Heretic Praetor
+id=559234
+rarity=M
+[/card]
+[card]
+primitive=Brazen Upstart
+id=559189
+rarity=U
+[/card]
+[card]
+primitive=Brokers Ascendancy
+id=559190
+rarity=R
+[/card]
+[card]
+primitive=Brokers Charm
+id=559191
+rarity=U
+[/card]
+[card]
+primitive=Cabaretti Ascendancy
+id=559192
+rarity=R
+[/card]
+[card]
+primitive=Cabaretti Charm
+id=559193
+rarity=U
+[/card]
+[card]
+primitive=Cormela, Glamour Thief
+id=559194
+rarity=U
+[/card]
+[card]
+primitive=Corpse Appraiser
+id=559195
+rarity=U
+[/card]
+[card]
+primitive=Crew Captain
+id=559196
+rarity=U
+[/card]
+[card]
+primitive=Disciplined Duelist
+id=559197
+rarity=U
+[/card]
+[card]
+primitive=Endless Detour
+id=559198
+rarity=R
+[/card]
+[card]
+primitive=Evelyn, the Covetous
+id=559199
+rarity=R
+[/card]
+[card]
+primitive=Falco Spara, Pactweaver
+id=559200
+rarity=M
+[/card]
+[card]
+primitive=Fleetfoot Dancer
+id=559201
+rarity=R
+[/card]
+[card]
+primitive=Glamorous Outlaw
+id=559202
+rarity=C
+[/card]
+[card]
+primitive=Hostile Takeover
+id=559203
+rarity=R
+[/card]
+[card]
+primitive=Incandescent Aria
+id=559204
+rarity=R
+[/card]
+[card]
+primitive=Jetmir, Nexus of Revels
+id=559205
+rarity=M
+[/card]
+[card]
+primitive=Jinnie Fay, Jetmir's Second
+id=559206
+rarity=R
+[/card]
+[card]
+primitive=Lagrella, the Magpie
+id=559207
+rarity=U
+[/card]
+[card]
+primitive=Lord Xander, the Collector
+id=559208
+rarity=M
+[/card]
+[card]
+primitive=Maestros Ascendancy
+id=559209
+rarity=R
+[/card]
+[card]
+primitive=Maestros Charm
+id=559210
+rarity=U
+[/card]
+[card]
+primitive=Maestros Diabolist
+id=559211
+rarity=R
+[/card]
+[card]
+primitive=Masked Bandits
+id=559212
+rarity=C
+[/card]
+[card]
+primitive=Mr. Orfeo, the Boulder
+id=559213
+rarity=U
+[/card]
+[card]
+primitive=Nimble Larcenist
+id=559214
+rarity=U
+[/card]
+[card]
+primitive=Obscura Ascendancy
+id=559215
+rarity=R
+[/card]
+[card]
+primitive=Obscura Charm
+id=559216
+rarity=U
+[/card]
+[card]
+primitive=Obscura Interceptor
+id=559217
+rarity=R
+[/card]
+[card]
+primitive=Ognis, the Dragon's Lash
+id=559218
+rarity=R
+[/card]
+[card]
+primitive=Queza, Augur of Agonies
+id=559219
+rarity=U
+[/card]
+[card]
+primitive=Raffine, Scheming Seer
+id=559220
+rarity=M
+[/card]
+[card]
+primitive=Rakish Revelers
+id=559221
+rarity=C
+[/card]
+[card]
+primitive=Rigo, Streetwise Mentor
+id=559222
+rarity=R
+[/card]
+[card]
+primitive=Riveteers Ascendancy
+id=559223
+rarity=R
+[/card]
+[card]
+primitive=Riveteers Charm
+id=559224
+rarity=U
+[/card]
+[card]
+primitive=Rocco, Cabaretti Caterer
+id=559225
+rarity=U
+[/card]
+[card]
+primitive=Shattered Seraph
+id=559226
+rarity=C
+[/card]
+[card]
+primitive=Soul of Emancipation
+id=559227
+rarity=R
+[/card]
+[card]
+primitive=Spara's Adjudicators
+id=559228
+rarity=C
+[/card]
+[card]
+primitive=Toluz, Clever Conductor
+id=559229
+rarity=R
+[/card]
+[card]
+primitive=Unleash the Inferno
+id=559230
+rarity=R
+[/card]
+[card]
+primitive=Void Rend
+id=559231
+rarity=R
+[/card]
+[card]
+primitive=Ziatora, the Incinerator
+id=559232
+rarity=M
+[/card]
+[card]
+primitive=Ziatora's Envoy
+id=559233
+rarity=R
+[/card]
+[card]
+primitive=Depopulate
+id=558244
+rarity=R
+[/card]
+[card]
+primitive=Extraction Specialist
+id=558245
+rarity=R
+[/card]
+[card]
+primitive=Mysterious Limousine
+id=558246
+rarity=R
+[/card]
+[card]
+primitive=Rabble Rousing
+id=558247
+rarity=R
+[/card]
+[card]
+primitive=Cut Your Losses
+id=558248
+rarity=R
+[/card]
+[card]
+primitive=Even the Score
+id=558249
+rarity=M
+[/card]
+[card]
+primitive=Ledger Shredder
+id=558250
+rarity=R
+[/card]
+[card]
+primitive=Reservoir Kraken
+id=558251
+rarity=R
+[/card]
+[card]
+primitive=Undercover Operative
+id=558252
+rarity=R
+[/card]
+[card]
+primitive=Wiretapping
+id=558253
+rarity=R
+[/card]
+[card]
+primitive=Angel of Suffering
+id=558254
+rarity=M
+[/card]
+[card]
+primitive=Body Launderer
+id=558255
+rarity=M
+[/card]
+[card]
+primitive=Cemetery Tampering
+id=558256
+rarity=R
+[/card]
+[card]
+primitive=Cut of the Profits
+id=558257
+rarity=R
+[/card]
+[card]
+primitive=Sanguine Spy
+id=558258
+rarity=R
+[/card]
+[card]
+primitive=Shakedown Heavy
+id=558259
+rarity=R
+[/card]
+[card]
+primitive=Arcane Bombardment
+id=558260
+rarity=M
+[/card]
+[card]
+primitive=Devilish Valet
+id=558261
+rarity=R
+[/card]
+[card]
+primitive=Hoard Hauler
+id=558262
+rarity=R
+[/card]
+[card]
+primitive=Jaxis, the Troublemaker
+id=558263
+rarity=R
+[/card]
+[card]
+primitive=Professional Face-Breaker
+id=558264
+rarity=R
+[/card]
+[card]
+primitive=Structural Assault
+id=558265
+rarity=R
+[/card]
+[card]
+primitive=Widespread Thieving
+id=558266
+rarity=R
+[/card]
+[card]
+primitive=Evolving Door
+id=558267
+rarity=R
+[/card]
+[card]
+primitive=Fight Rigging
+id=558268
+rarity=R
+[/card]
+[card]
+primitive=Gala Greeters
+id=558269
+rarity=R
+[/card]
+[card]
+primitive=Workshop Warchief
+id=558270
+rarity=R
+[/card]
+[card]
+primitive=Aven Heartstabber
+id=558271
+rarity=R
+[/card]
+[card]
+primitive=Black Market Tycoon
+id=558272
+rarity=R
+[/card]
+[card]
+primitive=Corpse Explosion
+id=558273
+rarity=R
+[/card]
+[card]
+primitive=Meeting of the Five
+id=558274
+rarity=M
+[/card]
+[card]
+primitive=Park Heights Pegasus
+id=558275
+rarity=R
+[/card]
+[card]
+primitive=Getaway Car
+id=558276
+rarity=R
+[/card]
+[card]
+primitive=Luxior, Giada's Gift
+id=558277
+rarity=M
+[/card]
+[card]
+primitive=Unlicensed Hearse
+id=558278
+rarity=R
+[/card]
+[card]
+primitive=Gala Greeters
+id=558106
+rarity=R
+[/card]
+[card]
+primitive=Gala Greeters
+id=558107
+rarity=R
+[/card]
+[card]
+primitive=Gala Greeters
+id=558108
+rarity=R
+[/card]
+[card]
+primitive=Gala Greeters
+id=558109
+rarity=R
+[/card]
+[card]
+primitive=Gala Greeters
+id=558110
+rarity=R
+[/card]
+[card]
+primitive=Gala Greeters
+id=558111
+rarity=R
+[/card]
+[card]
+primitive=Gala Greeters
+id=558112
+rarity=R
+[/card]
+[card]
+primitive=Gala Greeters
+id=558113
+rarity=R
+[/card]
+[card]
+primitive=Gala Greeters
+id=558114
+rarity=R
+[/card]
+[card]
+primitive=Gala Greeters
+id=558115
+rarity=R
+[/card]
+[card]
+primitive=Gala Greeters
+id=558116
+rarity=R
+[/card]
+[card]
+primitive=Jaxis, the Troublemaker
+id=558233
+rarity=R
+[/card]
+[card]
+primitive=Mysterious Limousine
+id=558227
+rarity=R
+[/card]
+[card]
+primitive=Rumor Gatherer
+id=558639
+rarity=U
+[/card]
+[card]
+primitive=An Offer You Can't Refuse
+id=558640
+rarity=U
+[/card]
+[card]
+primitive=Incriminate
+id=558641
+rarity=C
+[/card]
+[card]
+primitive=Light 'Em Up
+id=558642
+rarity=C
+[/card]
+[card]
+primitive=Courier's Briefcase
+id=558643
+rarity=U
+[/card]

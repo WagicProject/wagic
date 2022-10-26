@@ -1,0 +1,901 @@
+[meta]
+author=Wagic Team
+name=Neon Dynasty Commander
+year=2022-02-18
+total=179
+[/meta]
+[card]
+primitive=Chishiro, the Shattered Blade
+id=553668
+rarity=M
+[/card]
+[card]
+primitive=Kotori, Pilot Prodigy
+id=553669
+rarity=M
+[/card]
+[card]
+primitive=Kaima, the Fractured Calm
+id=553690
+rarity=M
+[/card]
+[card]
+primitive=Shorikai, Genesis Engine
+id=553691
+rarity=M
+[/card]
+[card]
+primitive=Aerial Surveyor
+id=553902
+rarity=R
+[/card]
+[card]
+primitive=Drumbellower
+id=553903
+rarity=R
+[/card]
+[card]
+primitive=Ironsoul Enforcer
+id=553904
+rarity=R
+[/card]
+[card]
+primitive=Organic Extinction
+id=553905
+rarity=R
+[/card]
+[card]
+primitive=Release to Memory
+id=553906
+rarity=R
+[/card]
+[card]
+primitive=Swift Reconfiguration
+id=553907
+rarity=R
+[/card]
+[card]
+primitive=Access Denied
+id=553908
+rarity=R
+[/card]
+[card]
+primitive=Cyberdrive Awakener
+id=553909
+rarity=R
+[/card]
+[card]
+primitive=Imposter Mech
+id=553910
+rarity=R
+[/card]
+[card]
+primitive=Kappa Cannoneer
+id=553911
+rarity=R
+[/card]
+[card]
+primitive=Katsumasa, the Animator
+id=553912
+rarity=R
+[/card]
+[card]
+primitive=Research Thief
+id=553913
+rarity=R
+[/card]
+[card]
+primitive=Universal Surveillance
+id=553914
+rarity=R
+[/card]
+[card]
+primitive=Akki Battle Squad
+id=553915
+rarity=R
+[/card]
+[card]
+primitive=Collision of Realms
+id=553916
+rarity=R
+[/card]
+[card]
+primitive=Kami of Celebration
+id=553917
+rarity=R
+[/card]
+[card]
+primitive=Komainu Battle Armor
+id=553918
+rarity=R
+[/card]
+[card]
+primitive=Smoke Spirits' Aid
+id=553919
+rarity=R
+[/card]
+[card]
+primitive=Unquenchable Fury
+id=553920
+rarity=R
+[/card]
+[card]
+primitive=Ascendant Acolyte
+id=553921
+rarity=R
+[/card]
+[card]
+primitive=Concord with the Kami
+id=553922
+rarity=R
+[/card]
+[card]
+primitive=Kosei, Penitent Warlord
+id=553923
+rarity=R
+[/card]
+[card]
+primitive=One with the Kami
+id=553924
+rarity=R
+[/card]
+[card]
+primitive=Rampant Rejuvenator
+id=553925
+rarity=R
+[/card]
+[card]
+primitive=Silkguard
+id=553926
+rarity=R
+[/card]
+[card]
+primitive=Tanuki Transplanter
+id=553927
+rarity=R
+[/card]
+[card]
+primitive=Myojin of Blooming Dawn
+id=553580
+rarity=R
+[/card]
+[card]
+primitive=Yoshimaru, Ever Faithful
+id=553581
+rarity=M
+[/card]
+[card]
+primitive=Myojin of Cryptic Dreams
+id=553582
+rarity=R
+[/card]
+[card]
+primitive=Myojin of Grim Betrayal
+id=553583
+rarity=R
+[/card]
+[card]
+primitive=Ruthless Technomancer
+id=553584
+rarity=R
+[/card]
+[card]
+primitive=Myojin of Roaring Blades
+id=553585
+rarity=R
+[/card]
+[card]
+primitive=Go-Shintai of Life's Origin
+id=553586
+rarity=M
+[/card]
+[card]
+primitive=Myojin of Towering Might
+id=553587
+rarity=R
+[/card]
+[card]
+primitive=Aerial Surveyor
+id=553712
+rarity=R
+[/card]
+[card]
+primitive=Drumbellower
+id=553713
+rarity=R
+[/card]
+[card]
+primitive=Ironsoul Enforcer
+id=553714
+rarity=R
+[/card]
+[card]
+primitive=Myojin of Blooming Dawn
+id=553715
+rarity=R
+[/card]
+[card]
+primitive=Organic Extinction
+id=553716
+rarity=R
+[/card]
+[card]
+primitive=Release to Memory
+id=553717
+rarity=R
+[/card]
+[card]
+primitive=Swift Reconfiguration
+id=553718
+rarity=R
+[/card]
+[card]
+primitive=Yoshimaru, Ever Faithful
+id=553719
+rarity=M
+[/card]
+[card]
+primitive=Access Denied
+id=553720
+rarity=R
+[/card]
+[card]
+primitive=Cyberdrive Awakener
+id=553721
+rarity=R
+[/card]
+[card]
+primitive=Imposter Mech
+id=553722
+rarity=R
+[/card]
+[card]
+primitive=Kappa Cannoneer
+id=553723
+rarity=R
+[/card]
+[card]
+primitive=Katsumasa, the Animator
+id=553724
+rarity=R
+[/card]
+[card]
+primitive=Myojin of Cryptic Dreams
+id=553725
+rarity=R
+[/card]
+[card]
+primitive=Research Thief
+id=553726
+rarity=R
+[/card]
+[card]
+primitive=Universal Surveillance
+id=553727
+rarity=R
+[/card]
+[card]
+primitive=Myojin of Grim Betrayal
+id=553728
+rarity=R
+[/card]
+[card]
+primitive=Ruthless Technomancer
+id=553729
+rarity=R
+[/card]
+[card]
+primitive=Akki Battle Squad
+id=553730
+rarity=R
+[/card]
+[card]
+primitive=Collision of Realms
+id=553731
+rarity=R
+[/card]
+[card]
+primitive=Kami of Celebration
+id=553732
+rarity=R
+[/card]
+[card]
+primitive=Komainu Battle Armor
+id=553733
+rarity=R
+[/card]
+[card]
+primitive=Myojin of Roaring Blades
+id=553734
+rarity=R
+[/card]
+[card]
+primitive=Smoke Spirits' Aid
+id=553735
+rarity=R
+[/card]
+[card]
+primitive=Unquenchable Fury
+id=553736
+rarity=R
+[/card]
+[card]
+primitive=Ascendant Acolyte
+id=553737
+rarity=R
+[/card]
+[card]
+primitive=Concord with the Kami
+id=553738
+rarity=R
+[/card]
+[card]
+primitive=Go-Shintai of Life's Origin
+id=553739
+rarity=M
+[/card]
+[card]
+primitive=Kosei, Penitent Warlord
+id=553740
+rarity=R
+[/card]
+[card]
+primitive=Myojin of Towering Might
+id=553741
+rarity=R
+[/card]
+[card]
+primitive=One with the Kami
+id=553742
+rarity=R
+[/card]
+[card]
+primitive=Rampant Rejuvenator
+id=553743
+rarity=R
+[/card]
+[card]
+primitive=Silkguard
+id=553744
+rarity=R
+[/card]
+[card]
+primitive=Tanuki Transplanter
+id=553745
+rarity=R
+[/card]
+[card]
+primitive=Chishiro, the Shattered Blade
+id=553746
+rarity=M
+[/card]
+[card]
+primitive=Kaima, the Fractured Calm
+id=553747
+rarity=M
+[/card]
+[card]
+primitive=Kotori, Pilot Prodigy
+id=553748
+rarity=M
+[/card]
+[card]
+primitive=Shorikai, Genesis Engine
+id=553749
+rarity=M
+[/card]
+[card]
+primitive=Chishiro, the Shattered Blade
+id=null
+rarity=M
+[/card]
+[card]
+primitive=Kotori, Pilot Prodigy
+id=null
+rarity=M
+[/card]
+[card]
+primitive=Aeronaut Admiral
+id=554162
+rarity=U
+[/card]
+[card]
+primitive=Armed and Armored
+id=554163
+rarity=U
+[/card]
+[card]
+primitive=Cataclysmic Gearhulk
+id=554164
+rarity=M
+[/card]
+[card]
+primitive=Crush Contraband
+id=554165
+rarity=U
+[/card]
+[card]
+primitive=Dispatch
+id=554166
+rarity=U
+[/card]
+[card]
+primitive=Generous Gift
+id=554167
+rarity=U
+[/card]
+[card]
+primitive=Indomitable Archangel
+id=554168
+rarity=M
+[/card]
+[card]
+primitive=Myrsmith
+id=554169
+rarity=U
+[/card]
+[card]
+primitive=Parhelion II
+id=554170
+rarity=R
+[/card]
+[card]
+primitive=Sram, Senior Edificer
+id=554171
+rarity=R
+[/card]
+[card]
+primitive=Swords to Plowshares
+id=554172
+rarity=U
+[/card]
+[card]
+primitive=Teshar, Ancestor's Apostle
+id=554173
+rarity=R
+[/card]
+[card]
+primitive=Emry, Lurker of the Loch
+id=554174
+rarity=R
+[/card]
+[card]
+primitive=Etherium Sculptor
+id=554175
+rarity=C
+[/card]
+[card]
+primitive=Jace, Architect of Thought
+id=554176
+rarity=M
+[/card]
+[card]
+primitive=Master of Etherium
+id=554177
+rarity=R
+[/card]
+[card]
+primitive=Reality Shift
+id=554178
+rarity=U
+[/card]
+[card]
+primitive=Riddlesmith
+id=554179
+rarity=U
+[/card]
+[card]
+primitive=Sai, Master Thopterist
+id=554180
+rarity=R
+[/card]
+[card]
+primitive=Thopter Spy Network
+id=554181
+rarity=R
+[/card]
+[card]
+primitive=Thoughtcast
+id=554182
+rarity=C
+[/card]
+[card]
+primitive=Vedalken Engineer
+id=554183
+rarity=C
+[/card]
+[card]
+primitive=Whirler Rogue
+id=554184
+rarity=U
+[/card]
+[card]
+primitive=Agitator Ant
+id=554185
+rarity=R
+[/card]
+[card]
+primitive=Chain Reaction
+id=554186
+rarity=R
+[/card]
+[card]
+primitive=Chaos Warp
+id=554187
+rarity=R
+[/card]
+[card]
+primitive=Elemental Mastery
+id=554188
+rarity=R
+[/card]
+[card]
+primitive=Goblin Razerunners
+id=554189
+rarity=R
+[/card]
+[card]
+primitive=Krenko, Tin Street Kingpin
+id=554190
+rarity=R
+[/card]
+[card]
+primitive=Ox of Agonas
+id=554191
+rarity=M
+[/card]
+[card]
+primitive=Shifting Shadow
+id=554192
+rarity=R
+[/card]
+[card]
+primitive=Starstorm
+id=554193
+rarity=R
+[/card]
+[card]
+primitive=Taurean Mauler
+id=554194
+rarity=R
+[/card]
+[card]
+primitive=Acidic Slime
+id=554195
+rarity=U
+[/card]
+[card]
+primitive=Bear Umbra
+id=554196
+rarity=R
+[/card]
+[card]
+primitive=Beast Within
+id=554197
+rarity=U
+[/card]
+[card]
+primitive=Champion of Lambholt
+id=554198
+rarity=R
+[/card]
+[card]
+primitive=Fertilid
+id=554199
+rarity=C
+[/card]
+[card]
+primitive=Forgotten Ancient
+id=554200
+rarity=R
+[/card]
+[card]
+primitive=Genesis Hydra
+id=554201
+rarity=R
+[/card]
+[card]
+primitive=Hunter's Insight
+id=554202
+rarity=U
+[/card]
+[card]
+primitive=Kodama's Reach
+id=554203
+rarity=C
+[/card]
+[card]
+primitive=Loyal Guardian
+id=554204
+rarity=U
+[/card]
+[card]
+primitive=Ordeal of Nylea
+id=554205
+rarity=U
+[/card]
+[card]
+primitive=Primeval Protector
+id=554206
+rarity=R
+[/card]
+[card]
+primitive=Rampant Growth
+id=554207
+rarity=C
+[/card]
+[card]
+primitive=Rishkar, Peema Renegade
+id=554208
+rarity=R
+[/card]
+[card]
+primitive=Rishkar's Expertise
+id=554209
+rarity=R
+[/card]
+[card]
+primitive=Sakura-Tribe Elder
+id=554210
+rarity=C
+[/card]
+[card]
+primitive=Shamanic Revelation
+id=554211
+rarity=R
+[/card]
+[card]
+primitive=Snake Umbra
+id=554212
+rarity=U
+[/card]
+[card]
+primitive=Soul's Majesty
+id=554213
+rarity=R
+[/card]
+[card]
+primitive=Spearbreaker Behemoth
+id=554214
+rarity=R
+[/card]
+[card]
+primitive=Vastwood Surge
+id=554215
+rarity=U
+[/card]
+[card]
+primitive=Whiptongue Hydra
+id=554216
+rarity=R
+[/card]
+[card]
+primitive=Arcanist's Owl
+id=554217
+rarity=U
+[/card]
+[card]
+primitive=Dance of the Manse
+id=554218
+rarity=R
+[/card]
+[card]
+primitive=Decimate
+id=554219
+rarity=R
+[/card]
+[card]
+primitive=Grumgully, the Generous
+id=554220
+rarity=U
+[/card]
+[card]
+primitive=Hanna, Ship's Navigator
+id=554221
+rarity=R
+[/card]
+[card]
+primitive=Mage Slayer
+id=554222
+rarity=U
+[/card]
+[card]
+primitive=Raff Capashen, Ship's Mage
+id=554223
+rarity=U
+[/card]
+[card]
+primitive=Rhythm of the Wild
+id=554224
+rarity=U
+[/card]
+[card]
+primitive=Ulasht, the Hate Seed
+id=554225
+rarity=R
+[/card]
+[card]
+primitive=Arcane Signet
+id=554226
+rarity=C
+[/card]
+[card]
+primitive=Azorius Signet
+id=554227
+rarity=U
+[/card]
+[card]
+primitive=Blackblade Reforged
+id=554228
+rarity=R
+[/card]
+[card]
+primitive=Bonehoard
+id=554229
+rarity=R
+[/card]
+[card]
+primitive=Colossal Plow
+id=554230
+rarity=U
+[/card]
+[card]
+primitive=Cultivator's Caravan
+id=554231
+rarity=R
+[/card]
+[card]
+primitive=Fellwar Stone
+id=554232
+rarity=U
+[/card]
+[card]
+primitive=Fireshrieker
+id=554233
+rarity=U
+[/card]
+[card]
+primitive=Foundry Inspector
+id=554234
+rarity=C
+[/card]
+[card]
+primitive=Gold Myr
+id=554235
+rarity=C
+[/card]
+[card]
+primitive=Mirage Mirror
+id=554236
+rarity=R
+[/card]
+[card]
+primitive=Peacewalker Colossus
+id=554237
+rarity=R
+[/card]
+[card]
+primitive=Raiders' Karve
+id=554238
+rarity=C
+[/card]
+[card]
+primitive=Shimmer Myr
+id=554239
+rarity=U
+[/card]
+[card]
+primitive=Silver Myr
+id=554240
+rarity=C
+[/card]
+[card]
+primitive=Skysovereign, Consul Flagship
+id=554241
+rarity=M
+[/card]
+[card]
+primitive=Smuggler's Copter
+id=554242
+rarity=R
+[/card]
+[card]
+primitive=Sol Ring
+id=554243
+rarity=U
+[/card]
+[card]
+primitive=Solemn Simulacrum
+id=554244
+rarity=R
+[/card]
+[card]
+primitive=Swiftfoot Boots
+id=554245
+rarity=U
+[/card]
+[card]
+primitive=Sword of Vengeance
+id=554246
+rarity=R
+[/card]
+[card]
+primitive=Weatherlight
+id=554247
+rarity=M
+[/card]
+[card]
+primitive=Cinder Glade
+id=554248
+rarity=R
+[/card]
+[card]
+primitive=Command Tower
+id=554249
+rarity=C
+[/card]
+[card]
+primitive=Exotic Orchard
+id=554250
+rarity=R
+[/card]
+[card]
+primitive=Game Trail
+id=554251
+rarity=R
+[/card]
+[card]
+primitive=Gruul Turf
+id=554252
+rarity=U
+[/card]
+[card]
+primitive=Mossfire Valley
+id=554253
+rarity=R
+[/card]
+[card]
+primitive=Opal Palace
+id=554254
+rarity=C
+[/card]
+[card]
+primitive=Oran-Rief, the Vastwood
+id=554255
+rarity=R
+[/card]
+[card]
+primitive=Port Town
+id=554256
+rarity=R
+[/card]
+[card]
+primitive=Prairie Stream
+id=554257
+rarity=R
+[/card]
+[card]
+primitive=Raging Ravine
+id=554258
+rarity=R
+[/card]
+[card]
+primitive=Skycloud Expanse
+id=554259
+rarity=R
+[/card]
+[card]
+primitive=Spire of Industry
+id=554260
+rarity=R
+[/card]
+[card]
+primitive=Temple of Abandon
+id=554261
+rarity=R
+[/card]
+[card]
+primitive=Temple of Enlightenment
+id=554262
+rarity=R
+[/card]
