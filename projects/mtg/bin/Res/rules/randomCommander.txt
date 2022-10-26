@@ -1,0 +1,19 @@
+include mtg.txt
+name=Random Commander
+unlock=prx_rnddeck
+[INIT]
+mode=random_commander
+
+[PLAYERS]
+
+auto=ability$!all(*[iscommander]|myzones) moveto(mycommandzone)!$ controller
+life:40
+auto=shuffle
+auto=draw:7
+
+#Commander put back rule
+auto=@movedTo(*[iscommander]|mygraveyard):may name(Return to the command zone) ability$!name(Return to the command zone) name(Return to the command zone)  target(*[iscommander;fresh]|mygraveyard) moveto(mycommandzone)!$ controller
+auto=@movedTo(*[iscommander]|myexile):may name(Return to the command zone) ability$!name(Return to the command zone) name(Return to the command zone) target(*[iscommander;fresh]|myexile) moveto(mycommandzone)!$ controller
+auto=@movedTo(*[iscommander]|mylibrary):may name(Return to the command zone) ability$!name(Return to the command zone) name(Return to the command zone) target(*[iscommander;fresh]|mylibrary) moveto(mycommandzone)!$ controller
+auto=@movedTo(*[iscommander]|myhand):may name(Return to the command zone) ability$!name(Return to the command zone) name(Return to the command zone) target(*[iscommander;fresh]|myhand) moveto(mycommandzone)!$ controller
+auto=@movedTo(*[iscommander]|mysideboard):may name(Return to the command zone) ability$!name(Return to the command zone) name(Return to the command zone) target(*[iscommander;fresh]|mysideboard) moveto(mycommandzone)!$ controller
