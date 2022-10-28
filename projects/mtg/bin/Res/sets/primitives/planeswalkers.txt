@@ -592,7 +592,7 @@ name=Chandra, Pyromaster
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Deals 1 damage to opponent and 1 to creature) damage:1 opponent && target(creature|opponentbattlefield) damage:1 && transforms((,newability[cantblock])) ueot
 auto={C(0/0,1,Loyalty)}:name(+1: Deals 1 damage to controller and 1 to creature) damage:1 controller && target(creature|mybattlefield) damage:1 && transforms((,newability[cantblock])) ueot
-auto={C(0/0,0,Loyalty)}:name(+0: Exile the top and may cast it) moveto(exile) and!(transforms((,newability[canplayfromexile])) ueot)! all(*[zpos=1]|mylibrary)
+auto={C(0/0,0,Loyalty)}:name(+0: Exile the top and may play it) moveto(exile) and!(transforms((,newability[canplayfromexile])) ueot)! all(*[zpos=1]|mylibrary)
 auto={C(0/0,-7,Loyalty)}:name(-7: Exile the top ten and may cast it) moveto(exile) all(*[zpos<=10]|mylibrary) && target(*[instant;sorcery]|myexile) clone && clone && clone 
 text=+1: Chandra, Pyromaster deals 1 damage to target player and 1 damage to up to one target creature that player controls. That creature can't block this turn. -- 0: Exile the top card of your library. You may play it this turn. -- -7: Exile the top ten cards of your library. Choose an instant or sorcery card exiled this way and copy it three times. You may cast the copies without paying their mana costs.
 mana={2}{R}{R}
@@ -2480,7 +2480,7 @@ name=Sarkhan, Fireblood
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Discard and draw) ability$!may reject notatarget(*|myhand) and!(draw:1)! !$ controller
 auto={C(0/0,1,Loyalty)}:name(+1: Add two mana in any combination of colors) if type(dragon|mycastingzone)~morethan~0 then thisforeach(variable{2}) ability$!name(add mana) choice add{G} _ choice add{R} _ choice add{U} _ choice add{B} _ choice add{W}!$ controller
-auto={C(0/0,-7,Loyalty)}:name(-7: Create four 5/5 Dragons) token(Dragon,Creature Dragon,5/5,red,flying)*4
+auto={C(0/0,-7,Loyalty)}:name(-7: Create four 5/5 Dragons) _DRAGONTOKEN_*4
 text=+1: You may discard a card. If you do, draw a card. -- +1: Add two mana in any combination of colors. Spend this mana only to cast Dragon spells. -- −7: Create four 5/5 red Dragon creature tokens with flying.
 mana={1}{R}{R}
 type=Legendary Planeswalker
@@ -2502,7 +2502,7 @@ name=Sarkhan the Mad
 auto=counter(0/0,7,loyalty)
 aicode=activate moveto(myhand) and!( dynamicability<!mytgt manacoststrike tosrc!> )! notatarget(<1>*[zpos=1]|mylibrary)
 auto={C(0/0,0,Loyalty)}:name(+0: Reveal top, put in hand and deals damage) Reveal:1 revealzone(mylibrary) revealuntil(*|mylibrary) optionone name(put in hand) target(*|reveal) moveto(myhand) optiononeend afterrevealed all(this) damage:revealedmana afterrevealedend revealend
-auto={C(0/0,-2,Loyalty)}:name(-2: Target creature controller sacrifice and create a 5/5 Dragon) target(creature) sacrifice and!( token(Dragon,Creature Dragon,5/5,red,flying) targetcontroller )!
+auto={C(0/0,-2,Loyalty)}:name(-2: Target creature controller sacrifice and create a 5/5 Dragon) target(creature) sacrifice and!( _DRAGONTOKEN_ targetcontroller )!
 auto={C(0/0,-4,Loyalty)}:name(-4: All dragons deals damage to a player) all(creature[dragon]|mybattlefield) transforms((,newability[target(player) dynamicability<!powerstrike!>])) oneshot
 text=0: Reveal the top card of your library and put it into your hand. Sarkhan the Mad deals damage to himself equal to that card's mana value. -- -2: Target creature's controller sacrifices it, then that player puts a 5/5 red Dragon creature token with flying onto the battlefield. -- -4: Each Dragon creature you control deals damage equal to its power to target player.
 mana={3}{B}{R}

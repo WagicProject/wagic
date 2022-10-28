@@ -75,19 +75,19 @@
 # Battalion
 #AUTO_DEFINE _BATTALION_ @combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:
 
-# Champion
+# Champion, not implemented
 #AUTO_DEFINE _CHAMPION_($Word) aslongas(other $word|myBattlefield) choice notAtarget(other $word|myBattlefield) (blink)forsrc oneshot
 
-# Metalcraft
+# Metalcraft, not implemented
 #AUTO_DEFINE _METALCRAFT_ aslongas(artifact|mybattlefield) >2
 
-# Echo
+# Echo, not implemented
 #AUTO_DEFINE _ECHO_($cost) $cost[{$c};next upkeep] sacrifice
 
-# Threshold
+# Threshold, not implemented
 #AUTO_DEFINE _THRESHOLD_ if type(*|mygraveyard)~morethan~6
 
-# Splice onto Arcane
+# Splice onto Arcane, not implemented
 #AUTO_DEFINE _SPLICEARCANE_ movedTo(*[Arcane]|myStack):may castcard(copied noevent) target(*[Arcane]|myHand)
 
 # Ripple
@@ -96,10 +96,10 @@
 # Recover                              
 #AUTO_DEFINE _RECOVER_($cost) @movedTo(creature|myGraveyard) from(Battlefield):may pay{$cost} name(Return to owner Hand) moveTo(ownerHand) all(this) donothing?moveTo(exile) all(this)
 
-# Clash
+# Clash, not implemented
 $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Erratic Explosion. Meaby it would work with a few fix
 
-# Conspire
+# Conspire, not implemented
 #AUTO_DEFINE _CONSPIRE_ @movedTo(this|myStak):may {T(creature|myBattlefield)}{T(creature|myBattlefield)} castcard(copied noevent) target(*|myStack)
 
 # Proliferate
@@ -108,16 +108,16 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 # Scavenge
 #AUTO_DEFINE _SCAVENGE_($cost) {$cost}:name(scavenge) counter(1/1,storedpower) target(creature) asSorcery
 
-# Monstrosity
+# Monstrosity, not implemented
 #AUTO_DEFINE _MONSTROSITY_($cost,$c) name(Monstrosity) this(cantargetcard(*[-monstrous]) {$cost}:becomes(monstrous) forever && counter(1/1.$c)
 
-# Outlast
-#AUTO_DEFINE _OUTLAST_($cost) {$cost}{$cost}:counter(1/1,1) all(this) asSorcery
+# Outlast, not implemented
+#AUTO_DEFINE _OUTLAST_($cost) {$cost}{$cost}:counter(1/1) all(this) asSorcery
 
 # Investigate token, Shadows over Innistrad SOI
 #AUTO_DEFINE _INVESTIGATE_ token(Clue)
 
-# Soulshift
+# Soulshift, not implemented
 #AUTO_DEFINE _SOULSHIFT_($c) @movedTo(this|myGraveyard) from(battlefield):may moveTo(myHand) target(creature[spirit;manacost<=$c]|myGraveyard)
 
 # Ascend, Set XLN
@@ -145,7 +145,7 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 # Surveil
 #AUTO_DEFINE _SURVEIL_ name(surveil) reveal:1 optionone name(put in graveyard) target(<upto:1>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<1>*|reveal) moveto(ownerlibrary) optiontwoend revealend
 
-# Undergrowth
+# Undergrowth, not implemented
 #AUTO_DEFINE _UNDERGROWTH_ foreach(creature|myGraveyard)
 
 # Afterlife
@@ -157,7 +157,7 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 # Learn
 #AUTO_DEFINE _LEARN_ name(Learn) transforms((,newability[if type(*[lesson]|mysideboard)~morethan~0 then choice name(Put lesson in hand) name(Put lesson in hand) target(*[lesson]|mysideboard) moveto(myhand)],newability[if type(*|myhand)~morethan~0 then choice name(Discard and draw) name(Discard and draw) target(*|myhand) reject and!(draw:1)!],newability[if type(Retriever Phoenix|mygraveyard)~morethan~0 then choice name(Return a Retriever Phoenix) name(Return a Retriever Phoenix) target(Retriever Phoenix|mygraveyard) moveto(myBattlefield)],newability[choice name(Don't learn) donothing])) oneshot
 
-# Spectacle
+# Spectacle, not implemented
 #AUTO_DEFINE _SPECTACLE_($cost) compare(oplifelost)~morethan~0 {$cost}:
 
 # Extort
@@ -175,6 +175,9 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 # Beast Token
 #AUTO_DEFINE _BEASTTOKEN_ create(Beast:Creature Beast:3/3:green)
 
+# Dragon Token
+#AUTO_DEFINE _DRAGONTOKEN_ create(Dragon:Creature Dragon:5/5:red:flying)
+
 # Elephant Token
 #AUTO_DEFINE _ELEPHANTTOKEN_ create(Elephant:Creature Elephant:3/3:green)
 
@@ -184,6 +187,9 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 # Insect Token
 #AUTO_DEFINE _INSECTTOKEN_ create(Insect:Creature Insect:1/1:green)
 
+# Red Elemental Token
+#AUTO_DEFINE _REDELEMENTALTOKEN_ create(Elemental:Creature Elemental:1/1:red)
+
 # Saproling Token
 #AUTO_DEFINE _SAPROLINGTOKEN_ create(Saproling:creature Saproling:1/1:green)
 
@@ -192,6 +198,9 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 
 # Spirit Token
 #AUTO_DEFINE _SPIRITTOKEN_ create(Spirit:creature Spirit:1/1:white:flying)
+
+# Thopter Token
+#AUTO_DEFINE _THOPTERTOKEN_ create(Thopter:Artifact Creature Thopter:1/1:flying)
  
 # Wolf Token
 #AUTO_DEFINE _WOLFTOKEN_ create(Wolf:creature Wolf:2/2:green)
