@@ -99,9 +99,6 @@
 # Clash, not implemented
 $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Erratic Explosion. Meaby it would work with a few fix
 
-# Conspire, not implemented
-#AUTO_DEFINE _CONSPIRE_ @movedTo(this|myStak):may {T(creature|myBattlefield)}{T(creature|myBattlefield)} castcard(copied noevent) target(*|myStack)
-
 # Proliferate
 #AUTO_DEFINE _PROLIFERATE_ name(Proliferate) notatarget(proliferation) proliferate
 
@@ -117,9 +114,6 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 # Investigate token, Shadows over Innistrad SOI
 #AUTO_DEFINE _INVESTIGATE_ token(Clue)
 
-# Soulshift, not implemented
-#AUTO_DEFINE _SOULSHIFT_($c) @movedTo(this|myGraveyard) from(battlefield):may moveTo(myHand) target(creature[spirit;manacost<=$c]|myGraveyard)
-
 # Ascend, Set XLN
 #AUTO_DEFINE _ASCEND_ if type(City's Blessing|mybattlefield)~lessthan~1 then transforms((,newability[if type(*|mybattlefield)~morethan~9 then token(City's Blessing^notrigger)])) oneshot
 
@@ -130,25 +124,25 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 #AUTO_DEFINE _MONARCH_CONTROLLER_ if type(The Monarch|battlefield)~lessthan~1 then token(The Monarch) else all(The Monarch|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 #AUTO_DEFINE _MONARCH_OPPONENT_ if type(The Monarch|battlefield)~lessthan~1 then token(The Monarch) opponent else all(The Monarch|battlefield) moveto(opponentbattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )! 
 
-# Explore
+# Explore, not implemented
 #AUTO_DEFINE _EXPLORE_ reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) optiontwoend revealend limit:1
 
 # Treasure token, Set XLN
 #AUTO_DEFINE _TREASURE_ token(Treasure Sur)
 
-# Historic
-#AUTO_DEFINE _HISTORIC_ notAtarget(*[artifact;saga;legendary]|myZones)
+# Cast a historic spell
+#AUTO_DEFINE _CASTHISTORIC_ @movedTo(*[artifact;legendary;saga]|mystack):
 
 # Mentor, still not working with enhancements, pump effects
 #AUTO_DEFINE _MENTOR_ @combat(attacking) source(this):counter(1/1,1) target(other creature[attacking;power<=pminus1minusend]|myBattlefield)
 
-# Surveil
+# Surveil, not implemented
 #AUTO_DEFINE _SURVEIL_ name(surveil) reveal:1 optionone name(put in graveyard) target(<upto:1>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<1>*|reveal) moveto(ownerlibrary) optiontwoend revealend
 
 # Undergrowth, not implemented
 #AUTO_DEFINE _UNDERGROWTH_ foreach(creature|myGraveyard)
 
-# Afterlife
+# Afterlife, not implemented
 #AUTO_DEFINE _AFTERLIFE_($c) @movedTo(this|graveyard) from(battlefield):create(Spirit:Creature Spirit:1/1:white,black:flying)*$c
 
 # Riot
@@ -158,7 +152,7 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 #AUTO_DEFINE _LEARN_ name(Learn) transforms((,newability[if type(*[lesson]|mysideboard)~morethan~0 then choice name(Put lesson in hand) name(Put lesson in hand) target(*[lesson]|mysideboard) moveto(myhand)],newability[if type(*|myhand)~morethan~0 then choice name(Discard and draw) name(Discard and draw) target(*|myhand) reject and!(draw:1)!],newability[if type(Retriever Phoenix|mygraveyard)~morethan~0 then choice name(Return a Retriever Phoenix) name(Return a Retriever Phoenix) target(Retriever Phoenix|mygraveyard) moveto(myBattlefield)],newability[choice name(Don't learn) donothing])) oneshot
 
 # Spectacle, not implemented
-#AUTO_DEFINE _SPECTACLE_($cost) compare(oplifelost)~morethan~0 {$cost}:
+#AUTO_DEFINE _SPECTACLE_ compare(oplifelost)~morethan~0
 
 # Extort
 #AUTO_DEFINE _EXTORT_ @movedto(*|mystack):pay({WB}) life:-1 opponent && life:1 controller
