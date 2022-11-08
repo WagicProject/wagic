@@ -187,6 +187,9 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 # Saproling Token
 #AUTO_DEFINE _SAPROLINGTOKEN_ create(Saproling:creature Saproling:1/1:green)
 
+# Servo Token
+#AUTO_DEFINE _SERVOTOKEN_ create(Servo:Artifact Creature Servo:1/1)
+
 # Soldier Token
 #AUTO_DEFINE _SOLDIERTOKEN_ create(soldier:creature soldier:1/1:white)
 

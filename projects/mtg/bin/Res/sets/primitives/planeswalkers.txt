@@ -1728,6 +1728,7 @@ subtype=Liliana
 name=Liliana, Death Wielder
 auto=counter(0/0,5,loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Put a -1/-1 counter) counter(-1/-1) target(creature)
+auto={C(0/0,2,Loyalty)}:name(+2: No target) doNothing
 auto={C(0/0,-3,Loyalty)}:name(-3: Destroy target creature with a -1/-1 counter) destroy target(creature[counter{-1/-1}])
 auto={C(0/0,-10,Loyalty)}:name(-10: Return all creature from your graveyard) moveTo(mybattlefield) all(creature|mygraveyard)
 text=+2: Put a -1/-1 counter on up to one target creature. -- -3: Destroy target creature with a -1/-1 counter on it. -- -10: Return all creature cards from your graveyard to the battlefield.
