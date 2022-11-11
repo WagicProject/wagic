@@ -528,7 +528,7 @@ Player * Rules::loadPlayerHorde(GameObserver* observer, int isAI)
     tempDeck->addRandomCards(5, 0, 0, -1, "enchantment", tribeColor, nbColors);
     tempDeck->addRandomCards(5, 0, 0, -1, "instant", tribeColor, nbColors);
     tempDeck->addRandomCards(5, 0, 0, -1, "sorcery", tribeColor, nbColors);
-    tempDeck->addRandomCards(1, 0, 0, -1, "artifact", tribeColor, nbColors);
+    tempDeck->addRandomCards(1, 0, 0, -1, "artifact");
 
     string deckFile = "random";
     string deckFileSmall = "random";
