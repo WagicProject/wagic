@@ -1234,7 +1234,7 @@ subtype=Huatli
 name=Inzerva, Master of Insights
 aicode=activate target(*[zpos<=2]|opponentLibrary) moveto(opponentreveal) and!( bottomoflibrary )!
 auto=counter(0/0,4,loyalty)
-auto={C(0/0,+2,Loyalty)}:name(+2: Draw 2 cards and discard) draw:2 && transforms((,newability[reject target(*|myhand)])) oneshot
+auto={C(0/0,+2,Loyalty)}:name(+2: Draw 2 cards and discard) draw:2 && transforms((,newability[reject notatarget(*|myhand)])) oneshot
 auto={C(0/0,-2,Loyalty)}:name(-2: Look at opponent library and scry 2) reveal:2 revealzone(opponentlibrary) optionone name(Put on top) target(<upto:2>*|reveal) moveto(ownerlibrary) optiononeend optiontwo name(Put on bottom) target(<2>*|reveal) bottomoflibrary optiontwoend afterrevealed name(Scry 2) scry:2 scrycore delayed dontshow donothing scrycoreend scryend afterrevealedend revealend
 auto={C(0/0,-4,Loyalty)}:name(-4: Emblem: Draw to deal damage) emblem transforms((,newability[lord(*|opponentBattlefield) showcontrollerhand],newability[lord(*|myBattlefield) showopponenthand],newability[@drawfoeof(player):name(Damage opponent) damage:1 opponent] )) forever dontremove
 text=+2: Draw two cards, then discard a card. -- −2: Look at the top two cards of each other player's library, then put any number of them on the bottom of that library and the rest on top in any order. Scry 2. -- −4: You get an emblem with "Your opponents play with their hands revealed" and "Whenever an opponent draws a card, this emblem deals 1 damage to them."
@@ -1280,7 +1280,7 @@ subtype=Jace
 [card]
 name=Jace, Cunning Castaway
 auto=counter(0/0,3,loyalty)
-auto=@combatdamaged(player) from(creature|mybattlefield) restriction{compare(hascntjaceeffect)~morethan~0} turnlimited:draw:1 controller && transforms((,newability[name(Discard a card) reject target(*|myhand)])) ueot])) ueot
+auto=@combatdamaged(player) from(creature|mybattlefield) restriction{compare(hascntjaceeffect)~morethan~0} turnlimited:draw:1 controller && transforms((,newability[name(Discard a card) reject notatarget(*|myhand)])) ueot])) ueot
 auto=@each endofturn restriction{compare(hascntjaceeffect)~morethan~0}:name(Effect Ends) removeallcounters(0/0.1.JaceEffect)
 auto={C(0/0,1,Loyalty)}:name(+1: Draw on damage) counter(0/0.1.JaceEffect) notrg
 auto={C(0/0,-2,Loyalty)}:name(-2: Create Illusion) token(Illusion,Creature Illusion,2/2,blue) and!( transforms((,newability[@targeted(this) from(*|stack):name(Sacrifice) sacrifice])) forever )!

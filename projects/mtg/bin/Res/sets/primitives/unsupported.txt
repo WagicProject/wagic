@@ -6427,16 +6427,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Mogis, God of Slaughter
-abilities=indestructible
-text=Indestructible -- As long as your devotion to black and red is less than seven, Mogis isn't a creature. -- At the beginning of each opponent's upkeep, Mogis deals 2 damage to that player unless he or she sacrifices a creature.
-mana={2}{B}{R}
-type=Legendary Enchantment Creature
-subtype=God
-power=7
-toughness=5
-[/card]
-[card]
 name=Molten Psyche
 text=Each player shuffles the cards from his or her hand into his or her library, then draws that many cards. -- Metalcraft - If you control three or more artifacts, Molten Psyche deals damage to each opponent equal to the number of cards that player has drawn this turn.
 mana={1}{R}{R}
@@ -6584,15 +6574,6 @@ type=Creature
 subtype=Hydra
 power=+4
 toughness=+4
-[/card]
-[card]
-name=Mungha Wurm
-text=You can't untap more than one land during your untap step.
-mana={2}{G}{G}
-type=Creature
-subtype=Wurm
-power=6
-toughness=5
 [/card]
 [card]
 name=Muraganda Petroglyphs
