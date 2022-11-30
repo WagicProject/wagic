@@ -1,0 +1,636 @@
+[meta]
+author=Wagic Team
+name=The Brothers' War Retro Artifacts
+year=2022-11-18
+total=126
+[/meta]
+[card]
+primitive=Adaptive Automaton
+id=586551
+rarity=R
+[/card]
+[card]
+primitive=Aetherflux Reservoir
+id=586552
+rarity=M
+[/card]
+[card]
+primitive=Altar of Dementia
+id=586553
+rarity=M
+[/card]
+[card]
+primitive=Ashnod's Altar
+id=586554
+rarity=R
+[/card]
+[card]
+primitive=Astral Cornucopia
+id=586555
+rarity=R
+[/card]
+[card]
+primitive=Blackblade Reforged
+id=586556
+rarity=R
+[/card]
+[card]
+primitive=Bone Saw
+id=586557
+rarity=U
+[/card]
+[card]
+primitive=Burnished Hart
+id=586558
+rarity=U
+[/card]
+[card]
+primitive=Caged Sun
+id=586559
+rarity=M
+[/card]
+[card]
+primitive=Chromatic Lantern
+id=586560
+rarity=R
+[/card]
+[card]
+primitive=Chromatic Star
+id=586561
+rarity=U
+[/card]
+[card]
+primitive=Cloud Key
+id=586562
+rarity=R
+[/card]
+[card]
+primitive=Defense Grid
+id=586563
+rarity=R
+[/card]
+[card]
+primitive=Door to Nothingness
+id=586564
+rarity=R
+[/card]
+[card]
+primitive=Elsewhere Flask
+id=586565
+rarity=U
+[/card]
+[card]
+primitive=Foundry Inspector
+id=586566
+rarity=U
+[/card]
+[card]
+primitive=Gilded Lotus
+id=586567
+rarity=R
+[/card]
+[card]
+primitive=Goblin Charbelcher
+id=586568
+rarity=R
+[/card]
+[card]
+primitive=Helm of the Host
+id=586569
+rarity=M
+[/card]
+[card]
+primitive=Howling Mine
+id=586570
+rarity=R
+[/card]
+[card]
+primitive=Ichor Wellspring
+id=586571
+rarity=U
+[/card]
+[card]
+primitive=Inspiring Statuary
+id=586572
+rarity=R
+[/card]
+[card]
+primitive=Ivory Tower
+id=586573
+rarity=U
+[/card]
+[card]
+primitive=Jalum Tome
+id=586574
+rarity=U
+[/card]
+[card]
+primitive=Journeyer's Kite
+id=586575
+rarity=R
+[/card]
+[card]
+primitive=Keening Stone
+id=586576
+rarity=R
+[/card]
+[card]
+primitive=Key to the City
+id=586577
+rarity=R
+[/card]
+[card]
+primitive=Liquimetal Coating
+id=586578
+rarity=U
+[/card]
+[card]
+primitive=Lodestone Golem
+id=586579
+rarity=R
+[/card]
+[card]
+primitive=Mazemind Tome
+id=586580
+rarity=R
+[/card]
+[card]
+primitive=Mesmeric Orb
+id=586581
+rarity=M
+[/card]
+[card]
+primitive=Millstone
+id=586582
+rarity=U
+[/card]
+[card]
+primitive=Mind's Eye
+id=586583
+rarity=M
+[/card]
+[card]
+primitive=Mishra's Bauble
+id=586584
+rarity=U
+[/card]
+[card]
+primitive=Mox Amber
+id=586585
+rarity=M
+[/card]
+[card]
+primitive=Mystic Forge
+id=586586
+rarity=M
+[/card]
+[card]
+primitive=Ornithopter
+id=586587
+rarity=U
+[/card]
+[card]
+primitive=Perilous Vault
+id=586588
+rarity=M
+[/card]
+[card]
+primitive=Phyrexian Processor
+id=586589
+rarity=M
+[/card]
+[card]
+primitive=Phyrexian Revoker
+id=586590
+rarity=R
+[/card]
+[card]
+primitive=Platinum Angel
+id=586591
+rarity=M
+[/card]
+[card]
+primitive=Precursor Golem
+id=586592
+rarity=R
+[/card]
+[card]
+primitive=Pristine Talisman
+id=586593
+rarity=U
+[/card]
+[card]
+primitive=Psychosis Crawler
+id=586594
+rarity=R
+[/card]
+[card]
+primitive=Quicksilver Amulet
+id=586595
+rarity=R
+[/card]
+[card]
+primitive=Quietus Spike
+id=586596
+rarity=R
+[/card]
+[card]
+primitive=Ramos, Dragon Engine
+id=586597
+rarity=M
+[/card]
+[card]
+primitive=Runechanter's Pike
+id=586598
+rarity=R
+[/card]
+[card]
+primitive=Scrap Trawler
+id=586599
+rarity=R
+[/card]
+[card]
+primitive=Sculpting Steel
+id=586600
+rarity=R
+[/card]
+[card]
+primitive=Self-Assembler
+id=586601
+rarity=U
+[/card]
+[card]
+primitive=Semblance Anvil
+id=586602
+rarity=R
+[/card]
+[card]
+primitive=Sigil of Valor
+id=586603
+rarity=U
+[/card]
+[card]
+primitive=Soul-Guide Lantern
+id=586604
+rarity=U
+[/card]
+[card]
+primitive=Springleaf Drum
+id=586605
+rarity=U
+[/card]
+[card]
+primitive=Staff of Domination
+id=586606
+rarity=M
+[/card]
+[card]
+primitive=Sundering Titan
+id=586607
+rarity=M
+[/card]
+[card]
+primitive=Swiftfoot Boots
+id=586608
+rarity=U
+[/card]
+[card]
+primitive=Sword of the Meek
+id=586609
+rarity=R
+[/card]
+[card]
+primitive=Thorn of Amethyst
+id=586610
+rarity=R
+[/card]
+[card]
+primitive=Unwinding Clock
+id=586611
+rarity=R
+[/card]
+[card]
+primitive=Well of Lost Dreams
+id=586612
+rarity=R
+[/card]
+[card]
+primitive=Wurmcoil Engine
+id=586613
+rarity=M
+[/card]
+[card]
+primitive=Adaptive Automaton
+id=587244
+rarity=R
+[/card]
+[card]
+primitive=Aetherflux Reservoir
+id=587245
+rarity=M
+[/card]
+[card]
+primitive=Altar of Dementia
+id=587246
+rarity=M
+[/card]
+[card]
+primitive=Ashnod's Altar
+id=587247
+rarity=R
+[/card]
+[card]
+primitive=Astral Cornucopia
+id=587248
+rarity=R
+[/card]
+[card]
+primitive=Blackblade Reforged
+id=587249
+rarity=R
+[/card]
+[card]
+primitive=Bone Saw
+id=587250
+rarity=U
+[/card]
+[card]
+primitive=Burnished Hart
+id=587251
+rarity=U
+[/card]
+[card]
+primitive=Caged Sun
+id=587252
+rarity=M
+[/card]
+[card]
+primitive=Chromatic Lantern
+id=587253
+rarity=R
+[/card]
+[card]
+primitive=Chromatic Star
+id=587254
+rarity=U
+[/card]
+[card]
+primitive=Cloud Key
+id=587255
+rarity=R
+[/card]
+[card]
+primitive=Defense Grid
+id=587256
+rarity=R
+[/card]
+[card]
+primitive=Door to Nothingness
+id=587257
+rarity=R
+[/card]
+[card]
+primitive=Elsewhere Flask
+id=587258
+rarity=U
+[/card]
+[card]
+primitive=Foundry Inspector
+id=587259
+rarity=U
+[/card]
+[card]
+primitive=Gilded Lotus
+id=587260
+rarity=R
+[/card]
+[card]
+primitive=Goblin Charbelcher
+id=587261
+rarity=R
+[/card]
+[card]
+primitive=Helm of the Host
+id=587262
+rarity=M
+[/card]
+[card]
+primitive=Howling Mine
+id=587263
+rarity=R
+[/card]
+[card]
+primitive=Ichor Wellspring
+id=587264
+rarity=U
+[/card]
+[card]
+primitive=Inspiring Statuary
+id=587265
+rarity=R
+[/card]
+[card]
+primitive=Ivory Tower
+id=587266
+rarity=U
+[/card]
+[card]
+primitive=Jalum Tome
+id=587267
+rarity=U
+[/card]
+[card]
+primitive=Journeyer's Kite
+id=587268
+rarity=R
+[/card]
+[card]
+primitive=Keening Stone
+id=587269
+rarity=R
+[/card]
+[card]
+primitive=Key to the City
+id=587270
+rarity=R
+[/card]
+[card]
+primitive=Liquimetal Coating
+id=587271
+rarity=U
+[/card]
+[card]
+primitive=Lodestone Golem
+id=587272
+rarity=R
+[/card]
+[card]
+primitive=Mazemind Tome
+id=587273
+rarity=R
+[/card]
+[card]
+primitive=Mesmeric Orb
+id=587274
+rarity=M
+[/card]
+[card]
+primitive=Millstone
+id=587275
+rarity=U
+[/card]
+[card]
+primitive=Mind's Eye
+id=587276
+rarity=M
+[/card]
+[card]
+primitive=Mishra's Bauble
+id=587277
+rarity=U
+[/card]
+[card]
+primitive=Mox Amber
+id=587278
+rarity=M
+[/card]
+[card]
+primitive=Mystic Forge
+id=587279
+rarity=M
+[/card]
+[card]
+primitive=Ornithopter
+id=587280
+rarity=U
+[/card]
+[card]
+primitive=Perilous Vault
+id=587281
+rarity=M
+[/card]
+[card]
+primitive=Phyrexian Processor
+id=587282
+rarity=M
+[/card]
+[card]
+primitive=Phyrexian Revoker
+id=587283
+rarity=R
+[/card]
+[card]
+primitive=Platinum Angel
+id=587284
+rarity=M
+[/card]
+[card]
+primitive=Precursor Golem
+id=587285
+rarity=R
+[/card]
+[card]
+primitive=Pristine Talisman
+id=587286
+rarity=U
+[/card]
+[card]
+primitive=Psychosis Crawler
+id=587287
+rarity=R
+[/card]
+[card]
+primitive=Quicksilver Amulet
+id=587288
+rarity=R
+[/card]
+[card]
+primitive=Quietus Spike
+id=587289
+rarity=R
+[/card]
+[card]
+primitive=Ramos, Dragon Engine
+id=587290
+rarity=M
+[/card]
+[card]
+primitive=Runechanter's Pike
+id=587291
+rarity=R
+[/card]
+[card]
+primitive=Scrap Trawler
+id=587292
+rarity=R
+[/card]
+[card]
+primitive=Sculpting Steel
+id=587293
+rarity=R
+[/card]
+[card]
+primitive=Self-Assembler
+id=587294
+rarity=U
+[/card]
+[card]
+primitive=Semblance Anvil
+id=587295
+rarity=R
+[/card]
+[card]
+primitive=Sigil of Valor
+id=587296
+rarity=U
+[/card]
+[card]
+primitive=Soul-Guide Lantern
+id=587297
+rarity=U
+[/card]
+[card]
+primitive=Springleaf Drum
+id=587298
+rarity=U
+[/card]
+[card]
+primitive=Staff of Domination
+id=587299
+rarity=M
+[/card]
+[card]
+primitive=Sundering Titan
+id=587300
+rarity=M
+[/card]
+[card]
+primitive=Swiftfoot Boots
+id=587301
+rarity=U
+[/card]
+[card]
+primitive=Sword of the Meek
+id=587302
+rarity=R
+[/card]
+[card]
+primitive=Thorn of Amethyst
+id=587303
+rarity=R
+[/card]
+[card]
+primitive=Unwinding Clock
+id=587304
+rarity=R
+[/card]
+[card]
+primitive=Well of Lost Dreams
+id=587305
+rarity=R
+[/card]
+[card]
+primitive=Wurmcoil Engine
+id=587306
+rarity=M
+[/card]
