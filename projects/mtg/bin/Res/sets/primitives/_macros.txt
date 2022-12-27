@@ -137,7 +137,7 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 #AUTO_DEFINE _MENTOR_ @combat(attacking) source(this):counter(1/1,1) target(other creature[attacking;power<=pminus1minusend]|myBattlefield)
 
 # Surveil, not implemented
-#AUTO_DEFINE _SURVEIL_ name(surveil) reveal:1 optionone name(put in graveyard) target(<upto:1>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<1>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+#AUTO_DEFINE _SURVEIL_($c) name(Surveil) reveal:$c optionone name(put in graveyard) target(<upto:$c>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<$c>*|reveal) moveto(ownerlibrary) optiontwoend revealend
 
 # Undergrowth, not implemented
 #AUTO_DEFINE _UNDERGROWTH_ foreach(creature|myGraveyard)
@@ -162,6 +162,9 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 
 # Loot (draw a card, discard a card.)
 #AUTO_DEFINE _LOOT_ draw:1 && transforms((,newability[target(*|myhand) reject])) forever
+
+# Unearth
+#AUTO_DEFINE _UNEARTH_ name(Unearth) moveto(mybattlefield) and!( transforms((,newability[haste],newability[unearth],newability[exiledeath])) forever )! asSorcery
 
 # Angel Token
 #AUTO_DEFINE _ANGELTOKEN_ create(Angel:Creature Angel:4/4:white:flying)
