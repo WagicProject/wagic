@@ -5,8 +5,8 @@ branches:
     - latest-master
 
 before_install:
-  - export BUILD_PSP=YES
-  - export BUILD_ANDROID=YES
+  - export BUILD_PSP=NO
+  - export BUILD_ANDROID=NO
   - export BUILD_Qt=YES
   - export BUILD_MAC=NO
 # Only building on Mac when not handling pull request
@@ -64,6 +64,4 @@ script: "tools/travis-script.sh"
 after_success:
 - coveralls -b . -e JGE/src -e JGE/include -i projects/mtg/include -i projects/mtg/src --gcov-options '\-lp'
 - python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l core.zip -r Wagic-core.zip -b $TRAVIS_BRANCH
-- python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l projects/mtg/Android/bin/Wagic-debug.apk -r Wagic-android.apk -b $TRAVIS_BRANCH
-- python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l projects/mtg/psprelease.zip -r Wagic-psp.zip -b $TRAVIS_BRANCH
 - python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l qt-gui-build/linuxqtrelease.zip -r Wagic-linux-QT.zip -b $TRAVIS_BRANCH
