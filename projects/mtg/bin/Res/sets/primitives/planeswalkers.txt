@@ -144,7 +144,7 @@ auto=counter(0/0,4,loyalty)
 aicode=activate transforms((,newability[all(*[zpos=findfirsttypecreature]|mylibrary) moveto(myhand) and!( all(*[zpos<=findfirsttypecreature]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
 auto={C(0/0,2,Loyalty)}:name(+2: Put a loyalty counter) donothing restriction{compare(cantargetcre)~lessthan~1}
 auto={C(0/0,2,Loyalty)}:name(+2: Put two +1/+1 counters) target(creature|battlefield) counter(1/1,2) restriction{compare(cantargetcre)~morethan~0}
-auto={C(0/0,1,Loyalty)}:name(+1: Reveal until a creature and put it in hand) Reveal:1 revealzone(mylibrary) revealuntil(creature|mylibrary) optionone choice name(Get Card) target(creature|reveal)  moveto(myhand) optiononeend optiontwo choice name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={C(0/0,1,Loyalty)}:name(+1: Reveal until a creature and put it in hand) Reveal:1 revealzone(mylibrary) revealuntil(creature|mylibrary) optionone choice name(Get Card) target(creature|reveal) moveto(myhand) optiononeend optiontwo choice name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
 auto={C(0/0,-11,Loyalty)}:name(-11: Put X +1/+1 counters and trample) target(creature) counter(1/1,lifetotal) && trample ueot
 text=+2: Put two +1/+1 counters on up to one target creature. -- +1: Reveal cards from the top of your library until you reveal a creature card. Put that card into your hand and the rest on the bottom of your library in a random order. -- -11: Put X +1/+1 counters on target creature, where X is your life total. That creature gains trample until end of turn.
 mana={4}{G}{W}
@@ -473,7 +473,7 @@ subtype=Chandra
 name=Chandra, Flamecaller
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Create two 3/1 Elementals) token(Elemental, Creature Elemental,3/1,red,haste,treason)*2
-auto={C(0/0,0,Loyalty)}:name(+0: Discard your hand and draw that many plus one) all(*|myhand) transforms((,newability[draw:1],newability[reject])])) && draw:1
+auto={C(0/0,0,Loyalty)}:name(+0: Discard your hand and draw that many plus one) all(*|myhand) transforms((,newability[draw:1],newability[reject])) && draw:1
 auto={C(0/0,-1,Loyalty)}:name(-1: Deals 1 damage to each creature) damage:1 all(creature)
 auto={C(0/0,-2,Loyalty)}:name(-2: Deals 2 damage to each creature) damage:2 all(creature)
 auto={C(0/0,-3,Loyalty)}:name(-3: Deals 3 damage to each creature) damage:3 all(creature)
@@ -1098,7 +1098,7 @@ auto=counter(0/0,5,loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Untap all creatures and get +1/+1) all(creature|mybattlefield) 1/1 && untap ueot
 auto={C(0/0,0,Loyalty)}:name(+0: Transforms to Human Soldier 5/5) transforms((Creature Human Soldier,setpower=5,settoughness=5,indestructible,newability[preventAllDamage to(this)])) ueot
 auto={C(0/0,-10,Loyalty)}:name(10: Tap all creatures and +2/+2) all(creature|opponentbattlefield) tap && all(creature|mybattlefield) 2/2 ueot
-text=+2: Untap all creatures you control. Those creatures get +1/+1 until end of turn.   -- 0: Until end of turn, Gideon, Martial Paragon becomes a 5/5 Human Soldier creature with indestructible that's still a planeswalker. Prevent all damage that would be dealt to him this turn. -- -10: Creatures you control get +2/+2 until end of turn. Tap all creatures your opponents control.
+text=+2: Untap all creatures you control. Those creatures get +1/+1 until end of turn.  -- 0: Until end of turn, Gideon, Martial Paragon becomes a 5/5 Human Soldier creature with indestructible that's still a planeswalker. Prevent all damage that would be dealt to him this turn. -- -10: Creatures you control get +2/+2 until end of turn. Tap all creatures your opponents control.
 mana={4}{W}
 type=Legendary Planeswalker
 subtype=Gideon
@@ -1280,7 +1280,7 @@ subtype=Jace
 [card]
 name=Jace, Cunning Castaway
 auto=counter(0/0,3,loyalty)
-auto=@combatdamaged(player) from(creature|mybattlefield) restriction{compare(hascntjaceeffect)~morethan~0} turnlimited:draw:1 controller && transforms((,newability[name(Discard a card) reject notatarget(*|myhand)])) ueot])) ueot
+auto=@combatdamaged(player) from(creature|mybattlefield) restriction{compare(hascntjaceeffect)~morethan~0} turnlimited:draw:1 controller && transforms((,newability[name(Discard a card) reject notatarget(*|myhand) ueot])) ueot
 auto=@each endofturn restriction{compare(hascntjaceeffect)~morethan~0}:name(Effect Ends) removeallcounters(0/0.1.JaceEffect)
 auto={C(0/0,1,Loyalty)}:name(+1: Draw on damage) counter(0/0.1.JaceEffect) notrg
 auto={C(0/0,-2,Loyalty)}:name(-2: Create Illusion) token(Illusion,Creature Illusion,2/2,blue) and!( transforms((,newability[@targeted(this) from(*|stack):name(Sacrifice) sacrifice])) forever )!
@@ -2223,7 +2223,7 @@ name=Nissa, Who Shakes the World
 auto=counter(0/0,5,loyalty)
 auto=lord(forest|mybattlefield) transforms((,newability[producecolor:green]))
 auto={C(0/0,1,Loyalty)}:name(+1: Put three +1/+1 counters on a target land) target(*[land;-creature]|mybattlefield) transforms((Elemental Creature,newability[counter(1/1.3)],newability[vigilance],newability[haste],newability[untap])) forever
-auto={C(0/0,-8,Loyalty)}:name(-8: Search forests and get Emblem: "Indescrutible lands") reveal:plibrarycount optionone name(choose card) target(<anyamount>land[forest]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(mybattlefield) and!( emblem transforms((,newability[lord(land|myBattlefield) indestructible])) forever dontremove ) forever )! oneshot)! afterrevealedend revealend
+auto={C(0/0,-8,Loyalty)}:name(-8: Search forests and get Emblem: "Indescrutible lands") reveal:plibrarycount optionone name(choose card) target(<anyamount>land[forest]|reveal) moveto(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!(shuffle)! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(ownerlibrary) and!(moveTo(mybattlefield) and!( emblem transforms((,newability[lord(land|myBattlefield) indestructible])) forever dontremove ) forever oneshot)! afterrevealedend revealend
 text=Whenever you tap a Forest for mana, add an additional {G}. -- +1: Put three +1/+1 counters on up to one target noncreature land you control. Untap it. It becomes a 0/0 Elemental creature with vigilance and haste that's still a land. -- -8: You get an emblem with "Lands you control have indestructible." Search your library for any number of Forest cards, put them onto the battlefield tapped, then shuffle your library.
 mana={3}{G}{G}
 type=Legendary Planeswalker
@@ -2877,7 +2877,7 @@ subtype=Tezzeret
 name=Tezzeret, Cruel Machinist
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Draw a card) draw:1 controller
-auto={C(0/0,0,Loyalty)}:name(+0: Target artifact becomes 5/5) target(artifact) transforms((Artifact Creature,setpower=5,settoughness=5)) uynt                        
+auto={C(0/0,0,Loyalty)}:name(+0: Target artifact becomes 5/5) target(artifact) transforms((Artifact Creature,setpower=5,settoughness=5)) uynt            
 auto={C(0/0,-7,Loyalty)}:name(-7: Manifest any number of cards form your hand) manifest notatarget(<anyamount>*|myHand) and!( transforms((Artifact Creature,setpower=5,settoughness=5) forever )!
 text=+1: Draw a card. -- 0: Until your next turn, target artifact you control becomes a 5/5 creature in addition to its other types. -- −7: Put any number of cards from your hand onto the battlefield face down. They're 5/5 artifact creatures.
 mana={4}{U}{U}
@@ -3128,7 +3128,7 @@ name=Vivien, Champion of the Wilds
 auto=counter(0/0,4,loyalty)
 auto=lord(creature|myHand) asflash
 auto={C(0/0,1,Loyalty)}:name(+1: Creature gains vigilance and reach) target(creature) vigilance uynt && reach uynt
-auto={C(0/0,-2,Loyalty)}:name(-2: Reveal three and may cast it) reveal:3 optionone name(Get a card) target(<1>creature|reveal) moveTo(exile) and!( transforms((,canplayfromexile)) forever )!  optiononeend optiontwo name(put on bottom) target(<3>*|reveal) bottomoflibrary optiontwoend revealend
+auto={C(0/0,-2,Loyalty)}:name(-2: Reveal three and may cast it) reveal:3 optionone name(Get a card) target(<1>creature|reveal) moveTo(exile) and!( transforms((,canplayfromexile)) forever )! optiononeend optiontwo name(put on bottom) target(<3>*|reveal) bottomoflibrary optiontwoend revealend
 text=You may cast creature spells as though they had flash. -- +1: Until your next turn, up to one target creature gains vigilance and reach. -- -2: Look at the top three cards of your library. Exile one face down and put the rest on the bottom of your library in any order. For as long as it remains exiled, you may look at that card and you may cast it if it's a creature card.
 mana={2}{G}
 type=Legendary Planeswalker
@@ -3151,7 +3151,7 @@ name=Vivien, Nature's Avenger
 auto=counter(0/0,3,loyalty)
 aicode=activate transforms((,newability[all(*[zpos=findfirsttypecreature]|mylibrary) moveto(myhand) and!( all(*[zpos<=findfirsttypecreature]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
 auto={C(0/0,1,Loyalty)}:name(+1: Put three +1/+1 counters on target creature) target(creature) counter(1/1,3)
-auto={C(0/0,-1,Loyalty)}:name(-1: Reveal a creature from top and put into your hand) reveal:1 revealzone(mylibrary) revealuntil(creature|mylibrary) optionone choice name(Get Card) target(creature|reveal)  moveto(myhand) optiononeend optiontwo choice name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
+auto={C(0/0,-1,Loyalty)}:name(-1: Reveal a creature from top and put into your hand) reveal:1 revealzone(mylibrary) revealuntil(creature|mylibrary) optionone choice name(Get Card) target(creature|reveal) moveto(myhand) optiononeend optiontwo choice name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
 auto={C(0/0,-6,Loyalty)}:name(-6: Target creature gets +10/+10 and trample) target(creature) 10/10 && trample ueot
 text=+1: Put three +1/+1 counters on up to one target creature. -- -1: Reveal cards from the top of your library until you reveal a creature card. Put that card into your hand and the rest on the bottom of your library in a random order. -- -6: Target creature gets +10/+10 and gains trample until end of turn.
 mana={4}{G}{G}
