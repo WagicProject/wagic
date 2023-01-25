@@ -1,5 +1,5 @@
 language: cpp
-dist: Kinetic
+dist: Jammy
 branches:
   except:
     - latest-master
@@ -9,6 +9,8 @@ before_install:
   - export BUILD_ANDROID=YES
   - export BUILD_Qt=NO
   - export BUILD_MAC=NO
+  - echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
+  - git lfs pull
 # Only building on Mac when not handling pull request
 # - if [ "$TRAVIS_PULL_REQUEST" ==  "false" ]; then
 #     export BUILD_MAC=YES;
@@ -39,10 +41,6 @@ before_install:
         wget http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz -nv;
     fi
     
-before_install:
-- echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
-- git lfs pull
-
 install:
 - if [ "$BUILD_PSP" == "YES" ]; then
     tar -x --xz -f sdk.lzma;
