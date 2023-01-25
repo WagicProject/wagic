@@ -1,5 +1,5 @@
 language: cpp
-dist: xenial
+dist: bionic
 branches:
   except:
     - latest-master
@@ -7,7 +7,7 @@ branches:
 before_install:
   - export BUILD_PSP=YES
   - export BUILD_ANDROID=YES
-  - export BUILD_Qt=NO
+  - export BUILD_Qt=YES
   - export BUILD_MAC=NO
   - echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
   - git lfs pull
