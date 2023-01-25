@@ -1,5 +1,5 @@
 language: cpp
-dist: xenial
+dist: Kinetic Kudu
 branches:
   except:
     - latest-master
@@ -7,7 +7,7 @@ branches:
 before_install:
   - export BUILD_PSP=NO
   - export BUILD_ANDROID=NO
-  - export BUILD_Qt=NO
+  - export BUILD_Qt=YES
   - export BUILD_MAC=NO
 # Only building on Mac when not handling pull request
 # - if [ "$TRAVIS_PULL_REQUEST" ==  "false" ]; then
@@ -58,7 +58,9 @@ install:
 - sudo pip install pyjavaproperties
 - sudo pip install github3.py
 - sudo pip install cpp-coveralls
-  
+
+before_script:
+- export REQUESTS_CA_BUNDLE=/usr/local/lib/python2.7/dist-packages/certifi/cacert.pem
 script: "tools/travis-script.sh"
 
 after_success:
