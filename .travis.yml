@@ -1,8 +1,8 @@
 language: cpp
-dist: bionic
+dist: xenial
 branches:
-  except:
-    - latest-master
+  only:
+    - master
 
 before_install:
   - export BUILD_PSP=YES
