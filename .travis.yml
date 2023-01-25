@@ -1,13 +1,13 @@
 language: cpp
-dist: Kinetic Kudu
+dist: Kinetic
 branches:
   except:
     - latest-master
 
 before_install:
   - export BUILD_PSP=NO
-  - export BUILD_ANDROID=NO
-  - export BUILD_Qt=YES
+  - export BUILD_ANDROID=YES
+  - export BUILD_Qt=NO
   - export BUILD_MAC=NO
 # Only building on Mac when not handling pull request
 # - if [ "$TRAVIS_PULL_REQUEST" ==  "false" ]; then
@@ -39,6 +39,10 @@ before_install:
         wget http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz -nv;
     fi
     
+before_install:
+- echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
+- git lfs pull
+
 install:
 - if [ "$BUILD_PSP" == "YES" ]; then
     tar -x --xz -f sdk.lzma;
@@ -65,5 +69,5 @@ script: "tools/travis-script.sh"
 
 after_success:
 - coveralls -b . -e JGE/src -e JGE/include -i projects/mtg/include -i projects/mtg/src --gcov-options '\-lp'
-- python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l core.zip -r Wagic-core.zip -b $TRAVIS_BRANCH
-- python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l qt-gui-build/linuxqtrelease.zip -r Wagic-linux-QT.zip -b $TRAVIS_BRANCH
+- python tools/upload-binaries.py -t $GITHUB_TOKEN -s $TRAVIS_COMMIT -l core.zip -r Wagic-core.zip -b $TRAVIS_BRANCH
+- python tools/upload-binaries.py -t $GITHUB_TOKEN -s $TRAVIS_COMMIT -l qt-gui-build/linuxqtrelease.zip -r Wagic-linux-QT.zip -b $TRAVIS_BRANCH
