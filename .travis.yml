@@ -7,7 +7,7 @@ branches:
 before_install:
   - export BUILD_PSP=NO
   - export BUILD_ANDROID=NO
-  - export BUILD_Qt=YES
+  - export BUILD_Qt=NO
   - export BUILD_MAC=NO
 # Only building on Mac when not handling pull request
 # - if [ "$TRAVIS_PULL_REQUEST" ==  "false" ]; then
@@ -37,6 +37,7 @@ before_install:
         sudo apt-get install -qq --force-yes libgd2-xpm-dev libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 jq ant; fi &&
         wget https://dl.google.com/android/repository/android-ndk-r22-linux-x86_64.zip -nv &&
         wget http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz -nv;
+      fi
     fi
     
 install:
