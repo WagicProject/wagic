@@ -2379,20 +2379,6 @@ type=Legendary Planeswalker
 subtype=Rowan
 [/card]
 [card]
-name=Rowan Kenrith
-abilities=partner,canbecommander
-partner=Will Kenrith
-auto=counter(0/0,4,loyalty)
-auto={C(0/0,2,Loyalty)}:name(+2: Opponent creatures must attack) token(Rowan Effect,Emblem,0/0,shroud,indestructible,notrigger) and!( transforms((,newability[@each opponent endofturn:name(Sacrifice) sacrifice],newability[lord(creature|opponentbattlefield) mustattack])) forever )!
-auto={C(0/0,2,Loyalty)}:name(+2: Your creatures must attack) token(Rowan Effect,Emblem,0/0,shroud,indestructible,notrigger) and!( transforms((,newability[@each opponent endofturn:counter(0/0.1.Rem)],newability[@each my endofturn restriction{compare(hascntrem)~equalto~1}:name(Sacrifice) sacrifice],newability[this(counter{0/0.1.Rem}>0) lord(creature|mybattlefield) mustattack])) forever )!
-auto={C(0/0,-2,Loyalty)}:name(-2: Deals 3 damage to opponent tapped creatures) damage:3 all(creature[tapped]|opponentBattlefield)
-auto={C(0/0,-2,Loyalty)}:name(-2: Deals 3 damage to your tapped creatures) damage:3 all(creature[tapped]|myBattlefield)
-text=+2: During target player's next turn, each creature that player controls attacks if able. -- −2: Rowan Kenrith deals 3 damage to each tapped creature target player controls. -- −8: Target player gets an emblem with "Whenever you activate an ability that isn't a mana ability, copy it. You may choose new targets for the copy." -- Partner with Will Kenrith -- Rowan Kenrith can be your commander.
-mana={4}{R}{R}
-type=Legendary Planeswalker
-subtype=Rowan
-[/card]
-[card]
 name=Rowan, Scholar of Sparks
 other={4}{U} name(Will, Scholar of Frost)
 otherrestriction=can play planeswalker,compare(isflipped)~equalto~1
