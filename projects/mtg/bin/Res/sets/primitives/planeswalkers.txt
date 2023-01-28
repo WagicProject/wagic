@@ -665,7 +665,7 @@ name=Daretti, Ingenious Iconoclast
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Create a 1/1 colorless Construct) token(Construct,Artifact Creature Construct,1/1,defender)
 auto={C(0/0,-1,Loyalty)}{S(artifact|mybattlefield)}:name(-1: Sacrifice artifact to destroy) target(creature,artifact|battlefield) destroy
-auto={C(0/0,-6,Loyalty)}:name(-6: Create three copies of an artifact...) clone target(artifact|graveyard,battlefield)*3
+auto={C(0/0,-6,Loyalty)}:name(-6: Create three copies of an artifact...) target(artifact|graveyard,battlefield) clone && clone && clone
 text=+1: Create a 1/1 colorless Construct artifact creature token with defender. -- -1: You may sacrifice an artifact. If you do, destroy target artifact or creature. -- -6: Choose target artifact card in a graveyard or artifact on the battlefield. Create three tokens that are copies of it.
 mana={1}{B}{R}
 type=Legendary Planeswalker
@@ -1808,7 +1808,7 @@ name=Liliana, the Last Hope
 auto=counter(0/0,3,Loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Do not target any creature) donothing
 auto={C(0/0,1,Loyalty)}:name(+1: Target creature gets -2/-1) target(creature) -2/-1 uynt
-auto={C(0/0,-2,Loyalty)}:name(-2: Mils two and return a creature) deplete:2 controller && ability$!name(Move to hand) moveto(myhand) target(creature|mygraveyard)!$ controller
+auto={C(0/0,-2,Loyalty)}:name(-2: Mils two and return a creature) deplete:2 controller && ability$!may name(Move to hand) moveto(myhand) target(creature|mygraveyard)!$ controller
 auto={C(0/0,-7,Loyalty)}:name(-7: Emblem: "Each my end of turn create X 2/2 Zombie plus two") emblem transforms((,newability[phaseactionmulti[my endofturn] foreach(zombie|mybattlefield) _ZOMBIETOKEN_ && _ZOMBIETOKEN_*2])) forever dontremove
 text=+1: Up to one target creature gets -2/-1 until your next turn. -- -2: Put the top two cards of your library into your graveyard, then you may return a creature card from your graveyard to your hand. -- -7: You get an emblem with "At the beginning of your end step, put X 2/2 black Zombie creature tokens onto the battlefield, where X is two plus the number of Zombies you control."
 mana={1}{B}{B}
@@ -3265,7 +3265,6 @@ subtype=Will
 [card]
 name=Wrenn and Seven
 auto=counter(0/0,5,loyalty)
-aicode=activate transforms((,newability[all(land[zpos<=4]|mylibrary) moveto(myhand)],newability[all(*[-land;zpos<=4]|mylibrary) moveto(mygraveyard)])) oneshot
 auto={C(0/0,1,Loyalty)}:name(+1: Reveal top 4 cards) reveal:4 optionone name(Put lands in hand) target(<4>land|reveal) moveto(myhand) optiononeend optiontwo name(Put in graveyard) all(*[-land]|reveal) moveto(mygraveyard) optiontwoend revealend
 auto={C(0/0,0,Loyalty)}:name(0: Put lands in play) target(<anyamount>land|myhand) moveto(mybattlefield) and!( tap(noevent) )!
 auto={C(0/0,-3,Loyalty)}:name(-3: Create Treefolk) token(Treefolk Wre)
