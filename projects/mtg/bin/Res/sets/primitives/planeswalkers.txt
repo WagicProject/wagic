@@ -37,7 +37,7 @@ subtype=Abian
 [card]
 name=Ajani, Adversary of Tyrants
 auto=counter(0/0,4,loyalty)
-auto={C(0/0,+1,Loyalty)}:name(+1: Put a +1/+1 counter on up to two...) target(<upto:2>other creature|battlefield) counter(1/1) 
+auto={C(0/0,+1,Loyalty)}:name(+1: Put a +1/+1 counter on up to two...) target(<upto:2>other creature|battlefield) counter(1/1)
 auto={C(0/0,-2,Loyalty)}:name(-2: Return target creature from graveyard) moveTo(mybattlefield) target(creature[manacost<=2]|mygraveyard)
 auto={C(0/0,-7,Loyalty)}:name(-7: Emblem: Create three tokens) emblem transforms((,newability[@each my endofturn:create(Cat:Creature Cat:1/1:lifelink:white)*3] )) forever dontremove
 text=+1: Put a +1/+1 counter on each of up to two target creatures. -- -2: Return target creature card with mana value 2 or less from your graveyard to the battlefield. -- -7: You get an emblem with "At the beginning of your end step, create three 1/1 white Cat creature tokens with lifelink."
@@ -557,9 +557,9 @@ subtype=Chandra
 name=Chandra, Dressed to Kill
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Add red mana) add{R} controller
-auto={C(0/0,1,Loyalty)}:name(+1: Add red and deal damage) target(player,planeswalker) damage:1 && add{R} controller 
+auto={C(0/0,1,Loyalty)}:name(+1: Add red and deal damage) target(player,planeswalker) damage:1 && add{R} controller
 auto={C(0/0,1,Loyalty)}:name(+1: Exile top card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( if cantargetcard(*[red]|*) then canplayfromexile ueot )!
-auto={C(0/0,-7,Loyalty)}:name(-7: Exile top 5 cards) emblem transforms((,newability[@movedto(*[red]|mystack):all(trigger[to]) transforms((,newability[name(Deals damage) target(player^creature^planeswalker) damage:totmanaspent])) oneshot],newability[all(*[zpos<=5]|mylibrary) moveto(myexile) and!( if cantargetcard(*[red]|*) then canplayfromexile ueot )!])) forever dontremove 
+auto={C(0/0,-7,Loyalty)}:name(-7: Exile top 5 cards) emblem transforms((,newability[@movedto(*[red]|mystack):all(trigger[to]) transforms((,newability[name(Deals damage) target(player^creature^planeswalker) damage:totmanaspent])) oneshot],newability[all(*[zpos<=5]|mylibrary) moveto(myexile) and!( if cantargetcard(*[red]|*) then canplayfromexile ueot )!])) forever dontremove
 text=+1: Add {R}. Chandra, Dressed to Kill deals 1 damage to up to one target player or planeswalker. -- +1: Exile the top card of your library. If it's red, you may cast it this turn. -- -7: Exile the top five cards of your library. You may cast red spells from among them this turn. You get an emblem with "Whenever you cast a red spell, this emblem deals X damage to any target, where X is the amount of mana spent to cast that spell."
 mana={1}{R}{R}
 type=Legendary Planeswalker
@@ -593,7 +593,7 @@ auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Deals 1 damage to opponent and 1 to creature) damage:1 opponent && target(creature|opponentbattlefield) damage:1 && transforms((,newability[cantblock])) ueot
 auto={C(0/0,1,Loyalty)}:name(+1: Deals 1 damage to controller and 1 to creature) damage:1 controller && target(creature|mybattlefield) damage:1 && transforms((,newability[cantblock])) ueot
 auto={C(0/0,0,Loyalty)}:name(+0: Exile the top and may play it) moveto(exile) and!(transforms((,newability[canplayfromexile])) ueot)! all(*[zpos=1]|mylibrary)
-auto={C(0/0,-7,Loyalty)}:name(-7: Exile the top ten and may cast it) moveto(exile) all(*[zpos<=10]|mylibrary) && target(*[instant;sorcery]|myexile) clone && clone && clone 
+auto={C(0/0,-7,Loyalty)}:name(-7: Exile the top ten and may cast it) moveto(exile) all(*[zpos<=10]|mylibrary) && target(*[instant;sorcery]|myexile) clone && clone && clone
 text=+1: Chandra, Pyromaster deals 1 damage to target player and 1 damage to up to one target creature that player controls. That creature can't block this turn. -- 0: Exile the top card of your library. You may play it this turn. -- -7: Exile the top ten cards of your library. Choose an instant or sorcery card exiled this way and copy it three times. You may cast the copies without paying their mana costs.
 mana={2}{R}{R}
 type=Legendary Planeswalker
@@ -723,7 +723,7 @@ subtype=Domri
 name=Domri, Chaos Bringer
 auto=counter(0/0,5,loyalty)
 aicode=activate moveto(myHand) target(creature[zpos=2]|myLibrary)
-auto={C(0/0,1,Loyalty)}:name(+1: Add red if its a creature, Riot) add{R} && if type(creature|myStack)~morethan~0 then ability$!name(Choose one) choice name(Put a +1/1 counter) counter(1/1) target(creature[fresh]|myBattlefield) _ choice name(Gain Haste) haste target(creature[fresh]|myBattlefield)!$ controller 
+auto={C(0/0,1,Loyalty)}:name(+1: Add red if its a creature, Riot) add{R} && if type(creature|myStack)~morethan~0 then ability$!name(Choose one) choice name(Put a +1/1 counter) counter(1/1) target(creature[fresh]|myBattlefield) _ choice name(Gain Haste) haste target(creature[fresh]|myBattlefield)!$ controller
 auto={C(0/0,1,Loyalty)}:name(+1: Add green if its a creature, Riot) add{G} && if type(creature|myStack)~morethan~0 then ability$!name(Choose one) choice name(Put a +1/1 counter) counter(1/1) target(creature[fresh]|myBattlefield) _ choice name(Gain Haste) haste target(creature[fresh]|myBattlefield)!$ controller !$ controller
 auto={C(0/0,-3,Loyalty)}:name(-3: Reveal four and put up to two creature) name(Look your Library) reveal:4 optionone name(Get a card) target(<upto:2>*[creature]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend revealend
 auto={C(0/0,-8,Loyalty)}:name(-8: Emblem: "Each end of turn create a 4/4 Beast) emblem transforms((,newability[@each endofturn: token(Beast,Creature Beast,4/4,red,green,trample)])) forever dontrevome
@@ -979,7 +979,7 @@ aicode=activate transforms((,newability[if type(creature[zpos=1]|mylibrary)~more
 auto=counter(0/0,5,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Reveal the top card) reveal:1 optionone target(creature|reveal) moveto(myhand) optiononeend optiontwo name(Put in bottom of library) target(<1>*|reveal) moveto(bottomoflibrary) optiontwoend revealend
 auto={C(0/0,-2,Loyalty)}:name(-2: Deals damage to target creature) target(creature|mybattlefield) transforms((,newability[target(other creature) dynamicability<!powerstrike!>])) oneshot
-auto={C(0/0,-7,Loyalty)}:name(-7: Creatures you control assign damage) all(creature|myBattlefield) transforms((,newability[@combat(blocked,turnlimited) source(this):may name(assign combat damage to defending player) damage:power opponent && fog from(this)])) ueot
+auto={C(0/0,-7,Loyalty)}:name(-7: Creatures you control assign damage) all(creature|myBattlefield) transforms((,newability[@combat(blocked,turnlimited) source(this):may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent && fog from(this)]))
 text=+1: Reveal the top card of your library. If it's a creature card, put it into your hand. Otherwise, put it on the bottom of your library. -- −2: Target creature you control deals damage equal to its power to another target creature. -- −7: Until end of turn, creatures you control gain "You may have this creature assign its combat damage as though it weren't blocked."
 mana={4}{G}{G}
 type=Legendary Planeswalker
@@ -1064,7 +1064,7 @@ auto={C(0/0,1,Loyalty)}:name(+1: Don't target any creature) donothing
 auto={C(0/0,1,Loyalty)}:name(+1: Other creature gains vigilance) target(other creature|myBattlefield) transforms((,newability[vigilance])) ueot
 auto={C(0/0,1,Loyalty)}:name(+1: Other creature gains lifelink) target(other creature|myBattlefield) transforms((,newability[lifelink])) ueot
 auto={C(0/0,1,Loyalty)}:name(+1: Other creature gains indestructible) target(other creature|myBattlefield) transforms((,newability[indestructible])) ueot
-auto={C(0/0,-6,Loyalty)}:name(-6: Exile target nonland permanent) target(*[-land]|battlefield) moveTo(exile) 
+auto={C(0/0,-6,Loyalty)}:name(-6: Exile target nonland permanent) target(*[-land]|battlefield) moveTo(exile)
 text=As long as it's your turn, Gideon Blackblade is a 4/4 Human Soldier creature with indestructible that's still a planeswalker. -- Prevent all damage that would be dealt to Gideon Blackblade during your turn. -- +1: Up to one other target creature you control gains your choice of vigilance, lifelink, or indestructible until end of turn. -- -6: Exile target nonland permanent.
 mana={1}{W}{W}
 type=Legendary Planeswalker
@@ -1260,7 +1260,7 @@ aicode=activate target(*[zpos<=3]|mylibrary) moveto(myhand) and!( transforms((,n
 auto={C(0/0,1,Loyalty)}:name(+1: Attacking creatures get -1/-0) transforms((,newability[counter(0/0.1.JaceEffect)],newability[phaseaction[my untap once sourceinplay] counter(0/0.-1.JaceEffect)])) forever
 auto=this(counter{0/0.1.JaceEffect}>0) lord(creature|opponentbattlefield) transforms((,newability[@combat(attacking) source(this):-1/0 ueot]))
 auto={C(0/0,-2,Loyalty)}:name(-2: Look top 3 cards) reveal:3 optionone name(Put in hand) target(*|reveal) moveto(myhand) optiononeend optiontwo all(*|reveal) bottomoflibrary optiontwoend revealend
-auto={C(0/0,-8,Loyalty)}:name(-8: Exile cards from libraries) target(*[-land]|mylibrary) moveto(exile) and!( transforms((,newability[zerocast],newability[canplayfromexile],newability[name(Search opponent library) target(*[-land]|opponentlibrary) moveto(myexile) and!( transforms((,newability[choice name(Cast opponent exiled card) activate castcard(normal)],newability[choice name(Don't cast opponent exiled card) moveto(ownerExile)])) ueot )!])) ueot )! 
+auto={C(0/0,-8,Loyalty)}:name(-8: Exile cards from libraries) target(*[-land]|mylibrary) moveto(exile) and!( transforms((,newability[zerocast],newability[canplayfromexile],newability[name(Search opponent library) target(*[-land]|opponentlibrary) moveto(myexile) and!( transforms((,newability[choice name(Cast opponent exiled card) activate castcard(normal)],newability[choice name(Don't cast opponent exiled card) moveto(ownerExile)])) ueot )!])) ueot )!
 text=+1: Until your next turn, whenever a creature an opponent controls attacks, it gets -1/-0 until end of turn. -- -2: Reveal the top three cards of your library. An opponent separates those cards into two piles. Put one pile into your hand and the other on the bottom of your library in any order. -- -8: For each player, search that player's library for a nonland card and exile it, then that player shuffles their library. You may cast those cards without paying their mana costs.
 mana={2}{U}{U}
 type=Legendary Planeswalker
@@ -2039,7 +2039,7 @@ subtype=Narset
 name=Narset Transcendent
 auto=counter(0/0,6,loyalty)
 aicode=activate target(*[-creature;-land;zpos=1]|mylibrary) moveto(myhand)
-auto={C(0/0,1,Loyalty)}:name(+1: Look at the top noncreature nonland) reveal:1 optionone target(<upto:1>*[-creature;-land]|reveal) moveTo(myHand) optiononeend optiontwo name(Put Back On Top) target(<1>*|reveal) moveTo(myLibrary) optiontwoend revealend 
+auto={C(0/0,1,Loyalty)}:name(+1: Look at the top noncreature nonland) reveal:1 optionone target(<upto:1>*[-creature;-land]|reveal) moveTo(myHand) optiononeend optiontwo name(Put Back On Top) target(<1>*|reveal) moveTo(myLibrary) optiontwoend revealend
 auto={C(0/0,-2,Loyalty)}:name(-2: Your next instant or sorcery has rebound) counter(0/0.1.ReboundActive) all(this)
 auto={C(0/0,-9,Loyalty)}:name(-9: Emblem: "Your opponents can't cast noncreature spells") emblem transforms((,newability[maxCast(*[-creature])0 opponent])) forever dontremove
 auto=@movedTo(*[instant;sorcery]|myStack):this(counter{0/0.1.ReboundActive}>=1) all(trigger[to]) transforms((,newability[gainedexiledeath],newability[phaseaction[my upkeep once] counter(0/0.1.NarsetExile)])) ueot && counter(0/0.-1.ReboundActive) all(this)
@@ -2582,7 +2582,7 @@ subtype=Sorin
 [card]
 name=Sorin, Imperious Bloodlord
 auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Deathtouch and Lifelink a Vampire) target(creature[vampire]|myBattlefield) deathtouch ueot && lifelink ueotcounter(1/1) restriction{type(creature[vampire]) 
+auto={C(0/0,1,Loyalty)}:name(+1: Deathtouch and Lifelink a Vampire) target(creature[vampire]|myBattlefield) deathtouch ueot && lifelink ueotcounter(1/1) restriction{type(creature[vampire])
 auto={C(0/0,1,Loyalty)}:name(+1: Deathtouch and Lifelink) target(creature[-vampire]|myBattlefield) deathtouch ueot && lifelink ueot
 auto={C(0/0,1,Loyalty)}{S(vampire|myBattlefield)}:name(+1: Sacrifice and deals 3 damage) damage:3 target(player,creature,planeswalker)
 auto={C(0/0,-3,Loyalty)}:name(-3: Put a Vampire from your hand onto the battlefield) moveto(myBattlefield) target(creature[vampire]|myHand)
@@ -2618,7 +2618,7 @@ name=Sorin the Mirthless
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Look top card) all(*[zpos=1]|mylibrary) moveto(myhand) and!( transforms((,newability[choice name(Put in hand) life:-manacost controller],newability[choice name(Put back in library) moveto(mylibrary)])) oneshot )!
 auto={C(0/0,-2,Loyalty)}:name(-2: Create Vampire) token(Vampire,Creature Vampire,2/3,black,flying,lifelink)
-auto={C(0/0,-7,Loyalty)}:name(-7: Deal 13 damage) damage:13 target(player,creature,planeswalker) && life:13 controller 
+auto={C(0/0,-7,Loyalty)}:name(-7: Deal 13 damage) damage:13 target(player,creature,planeswalker) && life:13 controller
 text=+1: Look at the top card of your library. You may reveal that card and put it into your hand. If you do, you lose life equal to its mana value. -- -2: Create a 2/3 black Vampire creature token with flying and lifelink. -- -7: Sorin the Mirthless deals 13 damage to any target. You gain 13 life.
 mana={2}{B}{B}
 type=Legendary Planeswalker
@@ -2863,7 +2863,7 @@ subtype=Tezzeret
 name=Tezzeret, Cruel Machinist
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Draw a card) draw:1 controller
-auto={C(0/0,0,Loyalty)}:name(+0: Target artifact becomes 5/5) target(artifact) transforms((Artifact Creature,setpower=5,settoughness=5)) uynt            
+auto={C(0/0,0,Loyalty)}:name(+0: Target artifact becomes 5/5) target(artifact) transforms((Artifact Creature,setpower=5,settoughness=5)) uynt
 auto={C(0/0,-7,Loyalty)}:name(-7: Manifest any number of cards form your hand) manifest notatarget(<anyamount>*|myHand) and!( transforms((Artifact Creature,setpower=5,settoughness=5) forever )!
 text=+1: Draw a card. -- 0: Until your next turn, target artifact you control becomes a 5/5 creature in addition to its other types. -- −7: Put any number of cards from your hand onto the battlefield face down. They're 5/5 artifact creatures.
 mana={4}{U}{U}
