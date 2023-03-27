@@ -26,15 +26,15 @@ def getFilename(filename):
     return filename
 
 def createStandardResFile():
-    print "Creating Resource File"
+    print("Creating Resource File")
     cmd = 'python createResourceZip.py -n ' + getFilename('core') + '.zip'
     os.chdir("Res")
     os.system(cmd)
     os.chdir("..")
-    print "Creating Windows Package File"
+    print("Creating Windows Package File")
     filename = 'Wagic-windows.zip'
     createWindowsZipFile( filename )
-    print >> sys.stderr, 'Created Windows Package: {0}'.format( filename)
+    #print(sys.stderr, 'Created Windows Package: {0}'.format( filename))
 
 class ZipUtilities:
 
@@ -52,10 +52,10 @@ class ZipUtilities:
             if file != '.svn':
                 full_path = os.path.join(folder, file)
                 if os.path.isfile(full_path):
-                        print 'File added: ' + str(full_path)
+                        #print('File added: ' + str(full_path))
                         zip_file.write(full_path)
                 elif os.path.isdir(full_path):
-                        print 'Entering folder: ' + str(full_path)
+                        #print('Entering folder: ' + str(full_path))
                         self.addFolderToZip(zip_file, full_path)
 
 
