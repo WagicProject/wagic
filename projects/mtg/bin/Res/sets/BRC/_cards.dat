@@ -135,6 +135,11 @@ id=586468
 rarity=R
 [/card]
 [card]
+primitive=Staff of Titania
+id=586469
+rarity=R
+[/card]
+[card]
 primitive=Urza's Workshop
 id=586470
 rarity=R
@@ -193,6 +198,11 @@ rarity=M
 primitive=Urza, Chief Artificer
 id=588504
 rarity=M
+[/card]
+[card]
+primitive=Staff of Titania
+id=588505
+rarity=R
 [/card]
 [card]
 primitive=Urza's Workshop
@@ -500,6 +510,11 @@ id=588722
 rarity=U
 [/card]
 [card]
+primitive=Audacious Reshapers
+id=588723
+rarity=R
+[/card]
+[card]
 primitive=Blasphemous Act
 id=588724
 rarity=R
@@ -602,7 +617,7 @@ rarity=C
 [card]
 primitive=Azorius Signet
 id=588744
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=Chief of the Foundry
@@ -677,7 +692,7 @@ rarity=R
 [card]
 primitive=Mind Stone
 id=588759
-rarity=C
+rarity=U
 [/card]
 [card]
 primitive=Mirrorworks
@@ -717,7 +732,7 @@ rarity=C
 [card]
 primitive=Rakdos Signet
 id=588767
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=Relic of Progenitus
