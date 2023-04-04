@@ -601,6 +601,11 @@ id=540890
 rarity=U
 [/card]
 [card]
+primitive=A-Cobbled Lancer
+id=null
+rarity=U
+[/card]
+[card]
 primitive=Consuming Tide
 id=540891
 rarity=R
@@ -658,6 +663,11 @@ rarity=T
 [card]
 primitive=Hullbreaker Horror
 id=540902
+rarity=R
+[/card]
+[card]
+primitive=A-Hullbreaker Horror
+id=null
 rarity=R
 [/card]
 [card]
@@ -773,6 +783,11 @@ rarity=C
 [card]
 primitive=Stitched Assistant
 id=540925
+rarity=C
+[/card]
+[card]
+primitive=A-Stitched Assistant
+id=null
 rarity=C
 [/card]
 [card]
@@ -1761,8 +1776,18 @@ id=541122
 rarity=U
 [/card]
 [card]
+primitive=A-Sigardian Paladin
+id=null
+rarity=U
+[/card]
+[card]
 primitive=Skull Skaab
 id=541123
+rarity=U
+[/card]
+[card]
+primitive=A-Skull Skaab
+id=null
 rarity=U
 [/card]
 [card]
@@ -1868,75 +1893,855 @@ rarity=R
 [card]
 primitive=Plains
 id=544304
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Plains
 id=544305
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Island
 id=544306
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Island
 id=544307
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Swamp
 id=544308
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Swamp
 id=544309
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Mountain
 id=544310
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Mountain
 id=544311
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Forest
 id=544312
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Forest
 id=544313
+rarity=L
+[/card]
+[card]
+primitive=Sorin the Mirthless
+id=544414
+rarity=M
+[/card]
+[card]
+primitive=Chandra, Dressed to Kill
+id=544415
+rarity=M
+[/card]
+[card]
+primitive=Kaya, Geist Hunter
+id=544416
+rarity=M
+[/card]
+[card]
+primitive=Deathcap Glade
+id=544949
+rarity=R
+[/card]
+[card]
+primitive=Dreamroot Cascade
+id=544950
+rarity=R
+[/card]
+[card]
+primitive=Shattered Sanctum
+id=544951
+rarity=R
+[/card]
+[card]
+primitive=Stormcarved Coast
+id=544952
+rarity=R
+[/card]
+[card]
+primitive=Sundown Pass
+id=544953
+rarity=R
+[/card]
+[card]
+primitive=Unholy Officiant
+id=545213
 rarity=C
+[/card]
+[card]
+primitive=Welcoming Vampire
+id=545214
+rarity=R
+[/card]
+[card]
+primitive=Bloodcrazed Socialite
+id=545215
+rarity=C
+[/card]
+[card]
+primitive=Bloodsworn Squire
+id=545216
+rarity=U
+[/card]
+[card]
+primitive=Bloodsworn Knight
+id=545217
+rarity=T
+[/card]
+[card]
+primitive=Bloodvial Purveyor
+id=545218
+rarity=R
+[/card]
+[card]
+primitive=Falkenrath Forebear
+id=545219
+rarity=R
+[/card]
+[card]
+primitive=Gluttonous Guest
+id=545220
+rarity=C
+[/card]
+[card]
+primitive=Henrika Domnathi
+id=545221
+rarity=M
+[/card]
+[card]
+primitive=Henrika, Infernal Seer
+id=545222
+rarity=T
+[/card]
+[card]
+primitive=Innocent Traveler
+id=545223
+rarity=U
+[/card]
+[card]
+primitive=Malicious Invader
+id=545224
+rarity=T
+[/card]
+[card]
+primitive=Restless Bloodseeker
+id=545225
+rarity=U
+[/card]
+[card]
+primitive=Bloodsoaked Reveler
+id=545226
+rarity=T
+[/card]
+[card]
+primitive=Skulking Killer
+id=545227
+rarity=U
+[/card]
+[card]
+primitive=Sorin the Mirthless
+id=545228
+rarity=M
+[/card]
+[card]
+primitive=Voldaren Bloodcaster
+id=545229
+rarity=R
+[/card]
+[card]
+primitive=Bloodbat Summoner
+id=545230
+rarity=T
+[/card]
+[card]
+primitive=Wedding Security
+id=545231
+rarity=U
+[/card]
+[card]
+primitive=Alluring Suitor
+id=545232
+rarity=U
+[/card]
+[card]
+primitive=Deadly Dancer
+id=545233
+rarity=T
+[/card]
+[card]
+primitive=Belligerent Guest
+id=545234
+rarity=C
+[/card]
+[card]
+primitive=Blood Hypnotist
+id=545235
+rarity=U
+[/card]
+[card]
+primitive=Blood Petal Celebrant
+id=545236
+rarity=C
+[/card]
+[card]
+primitive=Cemetery Gatekeeper
+id=545237
+rarity=M
+[/card]
+[card]
+primitive=Dominating Vampire
+id=545238
+rarity=R
+[/card]
+[card]
+primitive=Falkenrath Celebrants
+id=545239
+rarity=C
+[/card]
+[card]
+primitive=Olivia's Attendants
+id=545240
+rarity=R
+[/card]
+[card]
+primitive=Voldaren Epicure
+id=545241
+rarity=C
+[/card]
+[card]
+primitive=Anje, Maid of Dishonor
+id=545242
+rarity=R
+[/card]
+[card]
+primitive=Bloodtithe Harvester
+id=545243
+rarity=U
+[/card]
+[card]
+primitive=Edgar, Charmed Groom
+id=545244
+rarity=R
+[/card]
+[card]
+primitive=Edgar Markov's Coffin
+id=545245
+rarity=T
+[/card]
+[card]
+primitive=Markov Purifier
+id=545246
+rarity=U
+[/card]
+[card]
+primitive=Markov Waltzer
+id=545247
+rarity=U
+[/card]
+[card]
+primitive=Odric, Blood-Cursed
+id=545248
+rarity=R
+[/card]
+[card]
+primitive=Olivia, Crimson Bride
+id=545249
+rarity=M
+[/card]
+[card]
+primitive=Runo Stromkirk
+id=545250
+rarity=R
+[/card]
+[card]
+primitive=Krothuss, Lord of the Deep
+id=545251
+rarity=T
+[/card]
+[card]
+primitive=Katilda, Dawnhart Martyr
+id=545037
+rarity=R
+[/card]
+[card]
+primitive=Katilda's Rising Dawn
+id=545038
+rarity=T
+[/card]
+[card]
+primitive=Thalia, Guardian of Thraben
+id=545039
+rarity=R
+[/card]
+[card]
+primitive=Geralf, Visionary Stitcher
+id=545040
+rarity=R
+[/card]
+[card]
+primitive=Jacob Hauken, Inspector
+id=545041
+rarity=M
+[/card]
+[card]
+primitive=Hauken's Insight
+id=545042
+rarity=T
+[/card]
+[card]
+primitive=Toxrill, the Corrosive
+id=545043
+rarity=M
+[/card]
+[card]
+primitive=Dorothea, Vengeful Victim
+id=545044
+rarity=R
+[/card]
+[card]
+primitive=Dorothea's Retribution
+id=545045
+rarity=T
+[/card]
+[card]
+primitive=Eruth, Tormented Prophet
+id=545046
+rarity=R
+[/card]
+[card]
+primitive=Grolnok, the Omnivore
+id=545047
+rarity=R
+[/card]
+[card]
+primitive=Halana and Alena, Partners
+id=545048
+rarity=R
+[/card]
+[card]
+primitive=Old Rutstein
+id=545049
+rarity=R
+[/card]
+[card]
+primitive=Runo Stromkirk
+id=545050
+rarity=R
+[/card]
+[card]
+primitive=Krothuss, Lord of the Deep
+id=545051
+rarity=T
+[/card]
+[card]
+primitive=Torens, Fist of the Angels
+id=545052
+rarity=R
+[/card]
+[card]
+primitive=Circle of Confinement
+id=544463
+rarity=U
+[/card]
+[card]
+primitive=Savior of Ollenbock
+id=544464
+rarity=M
+[/card]
+[card]
+primitive=Thalia, Guardian of Thraben
+id=544465
+rarity=R
+[/card]
+[card]
+primitive=Jacob Hauken, Inspector
+id=544466
+rarity=M
+[/card]
+[card]
+primitive=Hauken's Insight
+id=544467
+rarity=T
+[/card]
+[card]
+primitive=Thirst for Discovery
+id=544468
+rarity=U
+[/card]
+[card]
+primitive=Falkenrath Forebear
+id=544469
+rarity=R
+[/card]
+[card]
+primitive=Henrika Domnathi
+id=544470
+rarity=M
+[/card]
+[card]
+primitive=Henrika, Infernal Seer
+id=544471
+rarity=T
+[/card]
+[card]
+primitive=Innocent Traveler
+id=544472
+rarity=U
+[/card]
+[card]
+primitive=Malicious Invader
+id=544473
+rarity=T
+[/card]
+[card]
+primitive=Sorin the Mirthless
+id=544474
+rarity=M
+[/card]
+[card]
+primitive=Voldaren Bloodcaster
+id=544475
+rarity=R
+[/card]
+[card]
+primitive=Bloodbat Summoner
+id=544476
+rarity=T
+[/card]
+[card]
+primitive=Vampires' Vengeance
+id=544477
+rarity=U
+[/card]
+[card]
+primitive=Reclusive Taxidermist
+id=544478
+rarity=U
+[/card]
+[card]
+primitive=Edgar, Charmed Groom
+id=544479
+rarity=R
+[/card]
+[card]
+primitive=Edgar Markov's Coffin
+id=544480
+rarity=T
+[/card]
+[card]
+primitive=Eruth, Tormented Prophet
+id=544481
+rarity=R
+[/card]
+[card]
+primitive=Olivia, Crimson Bride
+id=544482
+rarity=M
+[/card]
+[card]
+primitive=Torens, Fist of the Angels
+id=544483
+rarity=R
+[/card]
+[card]
+primitive=Investigator's Journal
+id=544484
+rarity=R
+[/card]
+[card]
+primitive=By Invitation Only
+id=544705
+rarity=R
+[/card]
+[card]
+primitive=Cemetery Protector
+id=544706
+rarity=M
+[/card]
+[card]
+primitive=Faithbound Judge
+id=544707
+rarity=M
+[/card]
+[card]
+primitive=Sinner's Judgment
+id=544708
+rarity=T
+[/card]
+[card]
+primitive=Hallowed Haunting
+id=544709
+rarity=M
+[/card]
+[card]
+primitive=Hopeful Initiate
+id=544710
+rarity=R
+[/card]
+[card]
+primitive=Lantern Flare
+id=544711
+rarity=R
+[/card]
+[card]
+primitive=Savior of Ollenbock
+id=544712
+rarity=M
+[/card]
+[card]
+primitive=Sigarda's Summons
+id=544713
+rarity=R
+[/card]
+[card]
+primitive=Voice of the Blessed
+id=544714
+rarity=R
+[/card]
+[card]
+primitive=Wedding Announcement
+id=544715
+rarity=R
+[/card]
+[card]
+primitive=Wedding Festivity
+id=544716
+rarity=T
+[/card]
+[card]
+primitive=Cemetery Illuminator
+id=544717
+rarity=M
+[/card]
+[card]
+primitive=Consuming Tide
+id=544718
+rarity=R
+[/card]
+[card]
+primitive=Dreamshackle Geist
+id=544719
+rarity=R
+[/card]
+[card]
+primitive=Hullbreaker Horror
+id=544720
+rarity=R
+[/card]
+[card]
+primitive=Inspired Idea
+id=544721
+rarity=R
+[/card]
+[card]
+primitive=Mirrorhall Mimic
+id=544722
+rarity=R
+[/card]
+[card]
+primitive=Ghastly Mimicry
+id=544723
+rarity=T
+[/card]
+[card]
+primitive=Necroduality
+id=544724
+rarity=M
+[/card]
+[card]
+primitive=Overcharged Amalgam
+id=544725
+rarity=R
+[/card]
+[card]
+primitive=Patchwork Crawler
+id=544726
+rarity=R
+[/card]
+[card]
+primitive=Winged Portent
+id=544727
+rarity=R
+[/card]
+[card]
+primitive=Cemetery Desecrator
+id=544728
+rarity=M
+[/card]
+[card]
+primitive=Concealing Curtains
+id=544729
+rarity=R
+[/card]
+[card]
+primitive=Revealing Eye
+id=544730
+rarity=T
+[/card]
+[card]
+primitive=Demonic Bargain
+id=544731
+rarity=R
+[/card]
+[card]
+primitive=Dreadfeast Demon
+id=544732
+rarity=R
+[/card]
+[card]
+primitive=Dying to Serve
+id=544733
+rarity=R
+[/card]
+[card]
+primitive=Graf Reaver
+id=544734
+rarity=R
+[/card]
+[card]
+primitive=Headless Rider
+id=544735
+rarity=R
+[/card]
+[card]
+primitive=Path of Peril
+id=544736
+rarity=R
+[/card]
+[card]
+primitive=Alchemist's Gambit
+id=544737
+rarity=R
+[/card]
+[card]
+primitive=Change of Fortune
+id=544738
+rarity=R
+[/card]
+[card]
+primitive=Creepy Puppeteer
+id=544739
+rarity=R
+[/card]
+[card]
+primitive=Curse of Hospitality
+id=544740
+rarity=R
+[/card]
+[card]
+primitive=Ill-Tempered Loner
+id=544741
+rarity=R
+[/card]
+[card]
+primitive=Howlpack Avenger
+id=544742
+rarity=T
+[/card]
+[card]
+primitive=Kessig Wolfrider
+id=544743
+rarity=R
+[/card]
+[card]
+primitive=Manaform Hellkite
+id=544744
+rarity=M
+[/card]
+[card]
+primitive=Stensia Uprising
+id=544745
+rarity=R
+[/card]
+[card]
+primitive=Volatile Arsonist
+id=544746
+rarity=M
+[/card]
+[card]
+primitive=Dire-Strain Anarchist
+id=544747
+rarity=T
+[/card]
+[card]
+primitive=Ascendant Packleader
+id=544748
+rarity=R
+[/card]
+[card]
+primitive=Avabruck Caretaker
+id=544749
+rarity=M
+[/card]
+[card]
+primitive=Hollowhenge Huntmaster
+id=544750
+rarity=T
+[/card]
+[card]
+primitive=Cemetery Prowler
+id=544751
+rarity=M
+[/card]
+[card]
+primitive=Cultivator Colossus
+id=544752
+rarity=M
+[/card]
+[card]
+primitive=Dig Up
+id=544753
+rarity=R
+[/card]
+[card]
+primitive=Glorious Sunrise
+id=544754
+rarity=R
+[/card]
+[card]
+primitive=Hamlet Vanguard
+id=544755
+rarity=R
+[/card]
+[card]
+primitive=Hiveheart Shaman
+id=544756
+rarity=R
+[/card]
+[card]
+primitive=Howling Moon
+id=544757
+rarity=R
+[/card]
+[card]
+primitive=Howlpack Piper
+id=544758
+rarity=R
+[/card]
+[card]
+primitive=Wildsong Howler
+id=544759
+rarity=T
+[/card]
+[card]
+primitive=Splendid Reclamation
+id=544760
+rarity=R
+[/card]
+[card]
+primitive=Ulvenwald Oddity
+id=544761
+rarity=R
+[/card]
+[card]
+primitive=Ulvenwald Behemoth
+id=544762
+rarity=T
+[/card]
+[card]
+primitive=Dollhouse of Horrors
+id=544763
+rarity=R
+[/card]
+[card]
+primitive=Investigator's Journal
+id=544764
+rarity=R
+[/card]
+[card]
+primitive=Voldaren Estate
+id=544765
+rarity=R
 [/card]
 [card]
 primitive=Plains
 id=545642
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Island
 id=545643
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Swamp
 id=545644
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Mountain
 id=545645
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Forest
 id=545646
-rarity=C
+rarity=L
+[/card]
+[card]
+primitive=Voldaren Estate
+id=544452
+rarity=R
+[/card]
+[card]
+primitive=Sigarda's Summons
+id=544447
+rarity=R
+[/card]
+[card]
+primitive=Geistlight Snare
+id=545004
+rarity=U
+[/card]
+[card]
+primitive=Fell Stinger
+id=545005
+rarity=U
+[/card]
+[card]
+primitive=Dominating Vampire
+id=545006
+rarity=R
+[/card]
+[card]
+primitive=Plains
+id=547341
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=547342
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=547343
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=547344
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=547345
+rarity=L
 [/card]
