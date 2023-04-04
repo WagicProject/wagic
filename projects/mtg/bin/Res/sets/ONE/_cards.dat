@@ -51,7 +51,7 @@ rarity=C
 [/card]
 [card]
 primitive=Elesh Norn, Mother of Machines
-id=604957
+id=602540
 rarity=M
 [/card]
 [card]
@@ -1311,27 +1311,27 @@ rarity=C
 [/card]
 [card]
 primitive=Plains
-id=604619
+id=604624
 rarity=L
 [/card]
 [card]
 primitive=Island
-id=604620
+id=604625
 rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=604621
+id=604626
 rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=604622
+id=604627
 rarity=L
 [/card]
 [card]
 primitive=Forest
-id=604623
+id=604628
 rarity=L
 [/card]
 [card]
@@ -1361,562 +1361,562 @@ rarity=L
 [/card]
 [card]
 primitive=Plains
-id=604619
+id=604664
 rarity=L
 [/card]
 [card]
 primitive=Island
-id=604620
+id=604665
 rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=604621
+id=604666
 rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=604622
+id=604667
 rarity=L
 [/card]
 [card]
 primitive=Forest
-id=604623
+id=604668
 rarity=L
 [/card]
 [card]
 primitive=Ossification
-id=602556
+id=604958
 rarity=U
 [/card]
 [card]
 primitive=Experimental Augury
-id=602579
+id=604959
 rarity=C
 [/card]
 [card]
 primitive=Sheoldred's Edict
-id=602638
+id=604960
 rarity=U
 [/card]
 [card]
 primitive=Bladehold War-Whip
-id=602727
+id=604961
 rarity=U
 [/card]
 [card]
 primitive=Slaughter Singer
-id=602746
+id=604962
 rarity=U
 [/card]
 [card]
 primitive=Karumonix, the Rat King
-id=602628
+id=604744
 rarity=R
 [/card]
 [card]
 primitive=Phyrexian Arena
-id=602634
+id=604746
 rarity=R
 [/card]
 [card]
 primitive=Green Sun's Twilight
-id=602699
+id=604745
 rarity=R
 [/card]
 [card]
 primitive=Bladed Ambassador
-id=602535
+id=604998
 rarity=U
 [/card]
 [card]
 primitive=Sinew Dancer
-id=602562
+id=604999
 rarity=C
 [/card]
 [card]
 primitive=Quicksilver Fisher
-id=602596
+id=605000
 rarity=C
 [/card]
 [card]
 primitive=Thrummingbird
-id=602602
+id=605001
 rarity=U
 [/card]
 [card]
 primitive=Blightbelly Rat
-id=602615
+id=605002
 rarity=C
 [/card]
 [card]
 primitive=Bonepicker Skirge
-id=602616
+id=605003
 rarity=C
 [/card]
 [card]
 primitive=Furnace Punisher
-id=602662
+id=605004
 rarity=U
 [/card]
 [card]
 primitive=Sawblade Scamp
-id=602677
+id=605005
 rarity=C
 [/card]
 [card]
 primitive=Urabrask's Anointer
-id=602682
+id=605006
 rarity=U
 [/card]
 [card]
 primitive=Cankerbloom
-id=602691
+id=605007
 rarity=U
 [/card]
 [card]
 primitive=Rustvine Cultivator
-id=602711
+id=605008
 rarity=C
 [/card]
 [card]
 primitive=Necrogen Rotpriest
-id=602742
+id=605009
 rarity=U
 [/card]
 [card]
 primitive=Myr Convert
-id=602764
+id=605010
 rarity=U
 [/card]
 [card]
 primitive=Elesh Norn, Mother of Machines
-id=604957
+id=605102
 rarity=M
 [/card]
 [card]
 primitive=Mondrak, Glory Dominus
-id=602553
+id=605103
 rarity=M
 [/card]
 [card]
 primitive=Phyrexian Vindicator
-id=602557
+id=605104
 rarity=M
 [/card]
 [card]
 primitive=Skrelv, Defector Mite
-id=602563
+id=605105
 rarity=R
 [/card]
 [card]
 primitive=Tekuthal, Inquiry Dominus
-id=602601
+id=605106
 rarity=M
 [/card]
 [card]
 primitive=Unctus, Grand Metatect
-id=602605
+id=605107
 rarity=R
 [/card]
 [card]
 primitive=Archfiend of the Dross
-id=602612
+id=605108
 rarity=R
 [/card]
 [card]
 primitive=Drivnod, Carnage Dominus
-id=602620
+id=605109
 rarity=M
 [/card]
 [card]
 primitive=Geth, Thane of Contracts
-id=602625
+id=605110
 rarity=R
 [/card]
 [card]
 primitive=Karumonix, the Rat King
-id=602628
+id=605111
 rarity=R
 [/card]
 [card]
 primitive=Phyrexian Obliterator
-id=602635
+id=605112
 rarity=M
 [/card]
 [card]
 primitive=Vraan, Executioner Thane
-id=602644
+id=605113
 rarity=R
 [/card]
 [card]
 primitive=Capricious Hellraiser
-id=602655
+id=605114
 rarity=M
 [/card]
 [card]
 primitive=Slobad, Iron Goblin
-id=602679
+id=605115
 rarity=R
 [/card]
 [card]
 primitive=Solphim, Mayhem Dominus
-id=602680
+id=605116
 rarity=M
 [/card]
 [card]
 primitive=Evolved Spinoderm
-id=602696
+id=605117
 rarity=R
 [/card]
 [card]
 primitive=Tyrranax Rex
-id=602719
+id=605118
 rarity=M
 [/card]
 [card]
 primitive=Zopandrel, Hunger Dominus
-id=602725
+id=605119
 rarity=M
 [/card]
 [card]
 primitive=Atraxa, Grand Unifier
-id=602726
+id=605120
 rarity=M
 [/card]
 [card]
 primitive=Ezuri, Stalker of Spheres
-id=602731
+id=605121
 rarity=R
 [/card]
 [card]
 primitive=Glissa Sunslayer
-id=602732
+id=605122
 rarity=R
 [/card]
 [card]
 primitive=Kethek, Crucible Goliath
-id=602736
+id=605123
 rarity=R
 [/card]
 [card]
 primitive=Malcator, Purity Overseer
-id=602738
+id=605124
 rarity=R
 [/card]
 [card]
 primitive=Migloz, Maze Crusher
-id=602740
+id=605125
 rarity=R
 [/card]
 [card]
 primitive=Ovika, Enigma Goliath
-id=602743
+id=605126
 rarity=R
 [/card]
 [card]
 primitive=Ria Ivor, Bane of Bladehold
-id=602744
+id=605127
 rarity=R
 [/card]
 [card]
 primitive=Venser, Corpse Puppet
-id=602749
+id=605128
 rarity=R
 [/card]
 [card]
 primitive=Jace, the Perfected Mind
-id=602587
+id=605446
 rarity=M
 [/card]
 [card]
 primitive=Vraska, Betrayal's Sting
-id=602645
+id=605447
 rarity=M
 [/card]
 [card]
 primitive=Nissa, Ascended Animist
-id=602705
+id=605448
 rarity=M
 [/card]
 [card]
 primitive=Lukka, Bound to Ruin
-id=602737
+id=605449
 rarity=M
 [/card]
 [card]
 primitive=Nahiri, the Unforgiving
-id=602741
+id=605450
 rarity=M
 [/card]
 [card]
 primitive=Kemba, Kha Enduring
-id=602549
+id=605406
 rarity=R
 [/card]
 [card]
 primitive=Thrun, Breaker of Silence
-id=602716
+id=605407
 rarity=R
 [/card]
 [card]
 primitive=Jor Kadeen, First Goldwarden
-id=602733
+id=605408
 rarity=R
 [/card]
 [card]
 primitive=Melira, the Living Cure
-id=602739
+id=605409
 rarity=R
 [/card]
 [card]
 primitive=Graaz, Unstoppable Juggernaut
-id=602759
+id=605410
 rarity=R
 [/card]
 [card]
 primitive=The Eternal Wanderer
-id=602541
+id=605326
 rarity=R
 [/card]
 [card]
 primitive=Jace, the Perfected Mind
-id=602587
+id=605327
 rarity=M
 [/card]
 [card]
 primitive=Vraska, Betrayal's Sting
-id=602645
+id=605328
 rarity=M
 [/card]
 [card]
 primitive=Koth, Fire of Resistance
-id=602668
+id=605329
 rarity=R
 [/card]
 [card]
 primitive=Nissa, Ascended Animist
-id=602705
+id=605330
 rarity=M
 [/card]
 [card]
 primitive=Kaito, Dancing Shadow
-id=602734
+id=605331
 rarity=R
 [/card]
 [card]
 primitive=Kaya, Intangible Slayer
-id=602735
+id=605332
 rarity=R
 [/card]
 [card]
 primitive=Lukka, Bound to Ruin
-id=602737
+id=605333
 rarity=M
 [/card]
 [card]
 primitive=Nahiri, the Unforgiving
-id=602741
+id=605334
 rarity=M
 [/card]
 [card]
 primitive=Tyvar, Jubilant Brawler
-id=602748
+id=605335
 rarity=R
 [/card]
 [card]
 primitive=Blackcleave Cliffs
-id=602778
+id=604704
 rarity=R
 [/card]
 [card]
 primitive=Copperline Gorge
-id=602779
+id=604705
 rarity=R
 [/card]
 [card]
 primitive=Darkslick Shores
-id=602780
+id=604706
 rarity=R
 [/card]
 [card]
 primitive=Razorverge Thicket
-id=602787
+id=604707
 rarity=R
 [/card]
 [card]
 primitive=Seachrome Coast
-id=602788
+id=604708
 rarity=R
 [/card]
 [card]
 primitive=Norn's Wellspring
-id=602554
+id=604747
 rarity=R
 [/card]
 [card]
 primitive=Skrelv's Hive
-id=602564
+id=604748
 rarity=R
 [/card]
 [card]
 primitive=White Sun's Twilight
-id=602568
+id=604749
 rarity=R
 [/card]
 [card]
 primitive=Blade of Shared Souls
-id=602572
+id=604750
 rarity=R
 [/card]
 [card]
 primitive=Blue Sun's Twilight
-id=602573
+id=604751
 rarity=R
 [/card]
 [card]
 primitive=Encroaching Mycosynth
-id=602577
+id=604752
 rarity=R
 [/card]
 [card]
 primitive=Mercurial Spelldancer
-id=602591
+id=604753
 rarity=R
 [/card]
 [card]
 primitive=Mindsplice Apparatus
-id=602593
+id=604754
 rarity=R
 [/card]
 [card]
 primitive=Black Sun's Twilight
-id=602614
+id=604755
 rarity=R
 [/card]
 [card]
 primitive=Phyrexian Arena
-id=602634
+id=604756
 rarity=R
 [/card]
 [card]
 primitive=Dragonwing Glider
-id=602658
+id=604757
 rarity=R
 [/card]
 [card]
 primitive=Red Sun's Twilight
-id=602675
+id=604758
 rarity=R
 [/card]
 [card]
 primitive=Urabrask's Forge
-id=602683
+id=604759
 rarity=R
 [/card]
 [card]
 primitive=Vindictive Flamestoker
-id=602684
+id=604760
 rarity=R
 [/card]
 [card]
 primitive=Bloated Contaminator
-id=602689
+id=604761
 rarity=R
 [/card]
 [card]
 primitive=Conduit of Worlds
-id=602693
+id=604762
 rarity=R
 [/card]
 [card]
 primitive=Green Sun's Twilight
-id=602699
+id=604763
 rarity=R
 [/card]
 [card]
 primitive=Venerated Rotpriest
-id=602722
+id=604764
 rarity=R
 [/card]
 [card]
 primitive=Argentum Masticore
-id=602752
+id=604765
 rarity=R
 [/card]
 [card]
 primitive=The Filigree Sylex
-id=602757
+id=604766
 rarity=R
 [/card]
 [card]
 primitive=Mirran Safehouse
-id=602762
+id=604767
 rarity=R
 [/card]
 [card]
 primitive=Monument to Perfection
-id=602763
+id=604768
 rarity=R
 [/card]
 [card]
 primitive=Soulless Jailer
-id=602771
+id=604769
 rarity=R
 [/card]
 [card]
 primitive=Tablet of Compleation
-id=602775
+id=604770
 rarity=R
 [/card]
 [card]
 primitive=Zenith Chronicler
-id=602776
+id=604771
 rarity=R
 [/card]
 [card]
 primitive=Mirrex
-id=602784
+id=604772
 rarity=R
 [/card]
 [card]
 primitive=The Monumental Facade
-id=602785
+id=604773
 rarity=R
 [/card]
 [card]
 primitive=The Mycosynth Gardens
-id=602786
+id=604774
 rarity=R
 [/card]
 [card]
 primitive=The Seedcore
-id=602789
+id=604775
 rarity=R
 [/card]
 [card]
 primitive=Mite Overseer
-id=604892
+id=604917
 rarity=R
 [/card]
 [card]
 primitive=Serum Sovereign
-id=604893
+id=604918
 rarity=R
 [/card]
 [card]
 primitive=Kinzu of the Bleak Coven
-id=604894
+id=604919
 rarity=R
 [/card]
 [card]
 primitive=Rhuk, Hexgold Nabber
-id=604895
+id=604920
 rarity=R
 [/card]
 [card]
 primitive=Goliath Hatchery
-id=604896
+id=604921
 rarity=R
 [/card]
 [card]
@@ -1951,6 +1951,6 @@ rarity=M
 [/card]
 [card]
 primitive=Elesh Norn, Mother of Machines
-id=604957
+id=605318
 rarity=M
 [/card]
