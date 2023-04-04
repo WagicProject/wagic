@@ -3,7 +3,7 @@ author=Wagic Team
 name=Adventures in the Forgotten Realms
 orderindex=EXP-ZZJ.AFR
 year=2021-07-23
-total=313
+total=402
 [/meta]
 [card]
 primitive=Annihilation Rooms
@@ -1554,6 +1554,586 @@ rarity=L
 primitive=Forest
 id=530174
 rarity=L
+[/card]
+[card]
+primitive=Grand Master of Flowers
+id=530375
+rarity=M
+[/card]
+[card]
+primitive=Mordenkainen
+id=530376
+rarity=M
+[/card]
+[card]
+primitive=Lolth, Spider Queen
+id=530377
+rarity=M
+[/card]
+[card]
+primitive=Zariel, Archduke of Avernus
+id=530378
+rarity=M
+[/card]
+[card]
+primitive=Ellywick Tumblestrum
+id=530379
+rarity=M
+[/card]
+[card]
+primitive=Icingdeath, Frost Tyrant
+id=530702
+rarity=M
+[/card]
+[card]
+primitive=White Dragon
+id=530703
+rarity=U
+[/card]
+[card]
+primitive=Blue Dragon
+id=530704
+rarity=U
+[/card]
+[card]
+primitive=Iymrith, Desert Doom
+id=530705
+rarity=M
+[/card]
+[card]
+primitive=Black Dragon
+id=530706
+rarity=U
+[/card]
+[card]
+primitive=Ebondeath, Dracolich
+id=530707
+rarity=M
+[/card]
+[card]
+primitive=Inferno of the Star Mounts
+id=530708
+rarity=M
+[/card]
+[card]
+primitive=Red Dragon
+id=530709
+rarity=U
+[/card]
+[card]
+primitive=Green Dragon
+id=530710
+rarity=U
+[/card]
+[card]
+primitive=Old Gnawbone
+id=530711
+rarity=M
+[/card]
+[card]
+primitive=Adult Gold Dragon
+id=530712
+rarity=R
+[/card]
+[card]
+primitive=Tiamat
+id=530713
+rarity=M
+[/card]
+[card]
+primitive=Arborea Pegasus
+id=530933
+rarity=C
+[/card]
+[card]
+primitive=Blink Dog
+id=530934
+rarity=U
+[/card]
+[card]
+primitive=Celestial Unicorn
+id=530935
+rarity=C
+[/card]
+[card]
+primitive=Cloister Gargoyle
+id=530936
+rarity=U
+[/card]
+[card]
+primitive=Nadaar, Selfless Paladin
+id=530937
+rarity=R
+[/card]
+[card]
+primitive=Oswald Fiddlebender
+id=530938
+rarity=R
+[/card]
+[card]
+primitive=Displacer Beast
+id=530939
+rarity=U
+[/card]
+[card]
+primitive=Djinni Windseer
+id=530940
+rarity=C
+[/card]
+[card]
+primitive=Dragon Turtle
+id=530941
+rarity=R
+[/card]
+[card]
+primitive=Mind Flayer
+id=530942
+rarity=R
+[/card]
+[card]
+primitive=Pixie Guide
+id=530943
+rarity=C
+[/card]
+[card]
+primitive=Rimeshield Frost Giant
+id=530944
+rarity=C
+[/card]
+[card]
+primitive=Baleful Beholder
+id=530945
+rarity=C
+[/card]
+[card]
+primitive=Clattering Skeletons
+id=530946
+rarity=C
+[/card]
+[card]
+primitive=Gelatinous Cube
+id=530947
+rarity=R
+[/card]
+[card]
+primitive=Manticore
+id=530948
+rarity=C
+[/card]
+[card]
+primitive=Westgate Regent
+id=530949
+rarity=R
+[/card]
+[card]
+primitive=Wight
+id=530950
+rarity=R
+[/card]
+[card]
+primitive=Delina, Wild Mage
+id=530951
+rarity=R
+[/card]
+[card]
+primitive=Goblin Javelineer
+id=530952
+rarity=C
+[/card]
+[card]
+primitive=Hulking Bugbear
+id=530953
+rarity=U
+[/card]
+[card]
+primitive=Minion of the Mighty
+id=530954
+rarity=R
+[/card]
+[card]
+primitive=Rust Monster
+id=530955
+rarity=U
+[/card]
+[card]
+primitive=Xorn
+id=530956
+rarity=R
+[/card]
+[card]
+primitive=Zalto, Fire Giant Duke
+id=530957
+rarity=R
+[/card]
+[card]
+primitive=Bulette
+id=530958
+rarity=C
+[/card]
+[card]
+primitive=Dire Wolf Prowler
+id=530959
+rarity=C
+[/card]
+[card]
+primitive=Gnoll Hunter
+id=530960
+rarity=C
+[/card]
+[card]
+primitive=Loathsome Troll
+id=530961
+rarity=U
+[/card]
+[card]
+primitive=Lurking Roper
+id=530962
+rarity=U
+[/card]
+[card]
+primitive=Neverwinter Dryad
+id=530963
+rarity=C
+[/card]
+[card]
+primitive=Ochre Jelly
+id=530964
+rarity=R
+[/card]
+[card]
+primitive=Owlbear
+id=530965
+rarity=C
+[/card]
+[card]
+primitive=Purple Worm
+id=530966
+rarity=U
+[/card]
+[card]
+primitive=The Tarrasque
+id=530967
+rarity=M
+[/card]
+[card]
+primitive=Underdark Basilisk
+id=530968
+rarity=C
+[/card]
+[card]
+primitive=Varis, Silverymoon Ranger
+id=530969
+rarity=R
+[/card]
+[card]
+primitive=Barrowin of Clan Undurr
+id=530970
+rarity=U
+[/card]
+[card]
+primitive=Bruenor Battlehammer
+id=530971
+rarity=U
+[/card]
+[card]
+primitive=Drizzt Do'Urden
+id=530972
+rarity=R
+[/card]
+[card]
+primitive=Farideh, Devil's Chosen
+id=530973
+rarity=U
+[/card]
+[card]
+primitive=Gretchen Titchwillow
+id=530974
+rarity=U
+[/card]
+[card]
+primitive=Hama Pashar, Ruin Seeker
+id=530975
+rarity=U
+[/card]
+[card]
+primitive=Kalain, Reclusive Painter
+id=530976
+rarity=U
+[/card]
+[card]
+primitive=Krydle of Baldur's Gate
+id=530977
+rarity=U
+[/card]
+[card]
+primitive=Minsc, Beloved Ranger
+id=530978
+rarity=M
+[/card]
+[card]
+primitive=Shessra, Death's Whisper
+id=530979
+rarity=U
+[/card]
+[card]
+primitive=Trelasarra, Moon Dancer
+id=530980
+rarity=U
+[/card]
+[card]
+primitive=Volo, Guide to Monsters
+id=530981
+rarity=R
+[/card]
+[card]
+primitive=Iron Golem
+id=530982
+rarity=U
+[/card]
+[card]
+primitive=Mimic
+id=530983
+rarity=C
+[/card]
+[card]
+primitive=Cave of the Frost Dragon
+id=530834
+rarity=R
+[/card]
+[card]
+primitive=Den of the Bugbear
+id=530835
+rarity=R
+[/card]
+[card]
+primitive=Dungeon Descent
+id=530836
+rarity=R
+[/card]
+[card]
+primitive=Evolving Wilds
+id=530837
+rarity=C
+[/card]
+[card]
+primitive=Hall of Storm Giants
+id=530838
+rarity=R
+[/card]
+[card]
+primitive=Hive of the Eye Tyrant
+id=530839
+rarity=R
+[/card]
+[card]
+primitive=Lair of the Hydra
+id=530840
+rarity=R
+[/card]
+[card]
+primitive=Temple of the Dragon Queen
+id=530841
+rarity=U
+[/card]
+[card]
+primitive=Treasure Vault
+id=530842
+rarity=R
+[/card]
+[card]
+primitive=The Book of Exalted Deeds
+id=530480
+rarity=M
+[/card]
+[card]
+primitive=Dancing Sword
+id=530481
+rarity=R
+[/card]
+[card]
+primitive=Flumph
+id=530482
+rarity=R
+[/card]
+[card]
+primitive=Guardian of Faith
+id=530483
+rarity=R
+[/card]
+[card]
+primitive=Loyal Warhound
+id=530484
+rarity=R
+[/card]
+[card]
+primitive=Teleportation Circle
+id=530485
+rarity=R
+[/card]
+[card]
+primitive=The Blackstaff of Waterdeep
+id=530486
+rarity=R
+[/card]
+[card]
+primitive=Demilich
+id=530487
+rarity=M
+[/card]
+[card]
+primitive=Grazilaxx, Illithid Scholar
+id=530488
+rarity=R
+[/card]
+[card]
+primitive=Tasha's Hideous Laughter
+id=530489
+rarity=R
+[/card]
+[card]
+primitive=True Polymorph
+id=530490
+rarity=R
+[/card]
+[card]
+primitive=Wizard's Spellbook
+id=530491
+rarity=R
+[/card]
+[card]
+primitive=Yuan-Ti Malison
+id=530492
+rarity=R
+[/card]
+[card]
+primitive=Acererak the Archlich
+id=530493
+rarity=M
+[/card]
+[card]
+primitive=Asmodeus the Archfiend
+id=530494
+rarity=R
+[/card]
+[card]
+primitive=The Book of Vile Darkness
+id=530495
+rarity=M
+[/card]
+[card]
+primitive=Forsworn Paladin
+id=530496
+rarity=R
+[/card]
+[card]
+primitive=Sphere of Annihilation
+id=530497
+rarity=R
+[/card]
+[card]
+primitive=Vorpal Sword
+id=530498
+rarity=R
+[/card]
+[card]
+primitive=Flameskull
+id=530499
+rarity=M
+[/card]
+[card]
+primitive=Hobgoblin Bandit Lord
+id=530500
+rarity=R
+[/card]
+[card]
+primitive=Meteor Swarm
+id=530501
+rarity=R
+[/card]
+[card]
+primitive=Orb of Dragonkind
+id=530502
+rarity=R
+[/card]
+[card]
+primitive=Wish
+id=530503
+rarity=R
+[/card]
+[card]
+primitive=Circle of Dreams Druid
+id=530504
+rarity=R
+[/card]
+[card]
+primitive=Froghemoth
+id=530505
+rarity=R
+[/card]
+[card]
+primitive=Instrument of the Bards
+id=530506
+rarity=R
+[/card]
+[card]
+primitive=Long Rest
+id=530507
+rarity=R
+[/card]
+[card]
+primitive=Werewolf Pack Leader
+id=530508
+rarity=R
+[/card]
+[card]
+primitive=Orcus, Prince of Undeath
+id=530509
+rarity=R
+[/card]
+[card]
+primitive=Skeletal Swarming
+id=530510
+rarity=R
+[/card]
+[card]
+primitive=Triumphant Adventurer
+id=530511
+rarity=R
+[/card]
+[card]
+primitive=Xanathar, Guild Kingpin
+id=530512
+rarity=M
+[/card]
+[card]
+primitive=The Deck of Many Things
+id=530513
+rarity=M
+[/card]
+[card]
+primitive=Eye of Vecna
+id=530514
+rarity=R
+[/card]
+[card]
+primitive=Hand of Vecna
+id=530515
+rarity=R
+[/card]
+[card]
+primitive=Treasure Chest
+id=530516
+rarity=R
+[/card]
+[card]
+primitive=Vorpal Sword
+id=530436
+rarity=R
+[/card]
+[card]
+primitive=Treasure Chest
+id=530430
+rarity=R
 [/card]
 [card]
 primitive=Dungeon of the Mad Mage
