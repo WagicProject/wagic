@@ -832,12 +832,12 @@ rarity=U
 [/card]
 [card]
 primitive=Valki, God of Lies
-id=503724
+id=503725
 rarity=M
 [/card]
 [card]
 primitive=Tibalt, Cosmic Impostor
-id=503725
+id=503724
 rarity=T
 [/card]
 [card]
@@ -1741,6 +1741,531 @@ id=503905
 rarity=C
 [/card]
 [card]
+primitive=Valki, God of Lies
+id=507136
+rarity=M
+[/card]
+[card]
+primitive=Tibalt, Cosmic Impostor
+id=507137
+rarity=T
+[/card]
+[card]
+primitive=Tyvar Kell
+id=507138
+rarity=M
+[/card]
+[card]
+primitive=Kaya the Inexorable
+id=507139
+rarity=M
+[/card]
+[card]
+primitive=Niko Aris
+id=507140
+rarity=M
+[/card]
+[card]
+primitive=Barkchannel Pathway
+id=507442
+rarity=R
+[/card]
+[card]
+primitive=Tidechannel Pathway
+id=507443
+rarity=T
+[/card]
+[card]
+primitive=Blightstep Pathway
+id=507444
+rarity=R
+[/card]
+[card]
+primitive=Searstep Pathway
+id=507445
+rarity=T
+[/card]
+[card]
+primitive=Darkbore Pathway
+id=507446
+rarity=R
+[/card]
+[card]
+primitive=Slitherbore Pathway
+id=507447
+rarity=T
+[/card]
+[card]
+primitive=Hengegate Pathway
+id=507448
+rarity=R
+[/card]
+[card]
+primitive=Mistgate Pathway
+id=507449
+rarity=T
+[/card]
+[card]
+primitive=Starnheim Unleashed
+id=507530
+rarity=M
+[/card]
+[card]
+primitive=Alrund's Epiphany
+id=507531
+rarity=M
+[/card]
+[card]
+primitive=Haunting Voyage
+id=507532
+rarity=M
+[/card]
+[card]
+primitive=Quakebringer
+id=507533
+rarity=M
+[/card]
+[card]
+primitive=Battle Mammoth
+id=507534
+rarity=M
+[/card]
+[card]
+primitive=Halvar, God of Battle
+id=507642
+rarity=M
+[/card]
+[card]
+primitive=Sword of the Realms
+id=507641
+rarity=T
+[/card]
+[card]
+primitive=Reidane, God of the Worthy
+id=507644
+rarity=R
+[/card]
+[card]
+primitive=Valkmira, Protector's Shield
+id=507643
+rarity=T
+[/card]
+[card]
+primitive=Sigrid, God-Favored
+id=507645
+rarity=R
+[/card]
+[card]
+primitive=Alrund, God of the Cosmos
+id=507647
+rarity=M
+[/card]
+[card]
+primitive=Hakka, Whispering Raven
+id=507646
+rarity=T
+[/card]
+[card]
+primitive=Cosima, God of the Voyage
+id=507649
+rarity=R
+[/card]
+[card]
+primitive=The Omenkeel
+id=507648
+rarity=T
+[/card]
+[card]
+primitive=Inga Rune-Eyes
+id=507650
+rarity=U
+[/card]
+[card]
+primitive=Orvar, the All-Form
+id=507651
+rarity=M
+[/card]
+[card]
+primitive=Egon, God of Death
+id=507653
+rarity=R
+[/card]
+[card]
+primitive=Throne of Death
+id=507652
+rarity=T
+[/card]
+[card]
+primitive=Tergrid, God of Fright
+id=507655
+rarity=R
+[/card]
+[card]
+primitive=Tergrid's Lantern
+id=507654
+rarity=T
+[/card]
+[card]
+primitive=Valki, God of Lies
+id=507656
+rarity=M
+[/card]
+[card]
+primitive=Tibalt, Cosmic Impostor
+id=507657
+rarity=T
+[/card]
+[card]
+primitive=Varragoth, Bloodsky Sire
+id=507658
+rarity=R
+[/card]
+[card]
+primitive=Arni Brokenbrow
+id=507659
+rarity=R
+[/card]
+[card]
+primitive=Birgi, God of Storytelling
+id=507661
+rarity=R
+[/card]
+[card]
+primitive=Harnfel, Horn of Bounty
+id=507660
+rarity=T
+[/card]
+[card]
+primitive=Magda, Brazen Outlaw
+id=507662
+rarity=R
+[/card]
+[card]
+primitive=Toralf, God of Fury
+id=507664
+rarity=M
+[/card]
+[card]
+primitive=Toralf's Hammer
+id=507663
+rarity=T
+[/card]
+[card]
+primitive=Esika, God of the Tree
+id=507666
+rarity=M
+[/card]
+[card]
+primitive=The Prismatic Bridge
+id=507665
+rarity=T
+[/card]
+[card]
+primitive=Esika's Chariot
+id=507667
+rarity=R
+[/card]
+[card]
+primitive=Fynn, the Fangbearer
+id=507668
+rarity=U
+[/card]
+[card]
+primitive=Jorn, God of Winter
+id=507670
+rarity=R
+[/card]
+[card]
+primitive=Kaldring, the Rimestaff
+id=507669
+rarity=T
+[/card]
+[card]
+primitive=Kolvori, God of Kinship
+id=507672
+rarity=R
+[/card]
+[card]
+primitive=The Ringhart Crest
+id=507671
+rarity=T
+[/card]
+[card]
+primitive=Toski, Bearer of Secrets
+id=507673
+rarity=R
+[/card]
+[card]
+primitive=Vorinclex, Monstrous Raider
+id=507674
+rarity=M
+[/card]
+[card]
+primitive=Aegar, the Freezing Flame
+id=507675
+rarity=U
+[/card]
+[card]
+primitive=Firja, Judge of Valor
+id=507676
+rarity=U
+[/card]
+[card]
+primitive=Harald, King of Skemfar
+id=507677
+rarity=U
+[/card]
+[card]
+primitive=Kardur, Doomscourge
+id=507678
+rarity=U
+[/card]
+[card]
+primitive=Koll, the Forgemaster
+id=507679
+rarity=U
+[/card]
+[card]
+primitive=Koma, Cosmos Serpent
+id=507680
+rarity=M
+[/card]
+[card]
+primitive=Maja, Bretagard Protector
+id=507681
+rarity=U
+[/card]
+[card]
+primitive=Moritte of the Frost
+id=507682
+rarity=U
+[/card]
+[card]
+primitive=Narfi, Betrayer King
+id=507683
+rarity=U
+[/card]
+[card]
+primitive=Sarulf, Realm Eater
+id=507684
+rarity=R
+[/card]
+[card]
+primitive=Svella, Ice Shaper
+id=507685
+rarity=U
+[/card]
+[card]
+primitive=Vega, the Watcher
+id=507686
+rarity=U
+[/card]
+[card]
+primitive=Vorinclex, Monstrous Raider
+id=507640
+rarity=M
+[/card]
+[card]
+primitive=Doomskar
+id=507202
+rarity=R
+[/card]
+[card]
+primitive=Glorious Protector
+id=507203
+rarity=R
+[/card]
+[card]
+primitive=Rally the Ranks
+id=507204
+rarity=R
+[/card]
+[card]
+primitive=Resplendent Marshal
+id=507205
+rarity=M
+[/card]
+[card]
+primitive=Righteous Valkyrie
+id=507206
+rarity=R
+[/card]
+[card]
+primitive=Runeforge Champion
+id=507207
+rarity=R
+[/card]
+[card]
+primitive=Search for Glory
+id=507208
+rarity=R
+[/card]
+[card]
+primitive=Ascendant Spirit
+id=507209
+rarity=R
+[/card]
+[card]
+primitive=Cosmos Charger
+id=507210
+rarity=R
+[/card]
+[card]
+primitive=Cyclone Summoner
+id=507211
+rarity=R
+[/card]
+[card]
+primitive=Graven Lore
+id=507212
+rarity=R
+[/card]
+[card]
+primitive=Icebreaker Kraken
+id=507213
+rarity=R
+[/card]
+[card]
+primitive=Mystic Reflection
+id=507214
+rarity=R
+[/card]
+[card]
+primitive=Reflections of Littjara
+id=507215
+rarity=R
+[/card]
+[card]
+primitive=Blood on the Snow
+id=507216
+rarity=R
+[/card]
+[card]
+primitive=Burning-Rune Demon
+id=507217
+rarity=M
+[/card]
+[card]
+primitive=Crippling Fear
+id=507218
+rarity=R
+[/card]
+[card]
+primitive=Draugr Necromancer
+id=507219
+rarity=R
+[/card]
+[card]
+primitive=Dream Devourer
+id=507220
+rarity=R
+[/card]
+[card]
+primitive=Eradicator Valkyrie
+id=507221
+rarity=M
+[/card]
+[card]
+primitive=Rise of the Dread Marn
+id=507222
+rarity=R
+[/card]
+[card]
+primitive=Skemfar Avenger
+id=507223
+rarity=R
+[/card]
+[card]
+primitive=Calamity Bearer
+id=507224
+rarity=R
+[/card]
+[card]
+primitive=Dragonkin Berserker
+id=507225
+rarity=R
+[/card]
+[card]
+primitive=Goldspan Dragon
+id=507226
+rarity=M
+[/card]
+[card]
+primitive=Reckless Crew
+id=507227
+rarity=R
+[/card]
+[card]
+primitive=Tibalt's Trickery
+id=507228
+rarity=R
+[/card]
+[card]
+primitive=Tundra Fumarole
+id=507229
+rarity=R
+[/card]
+[card]
+primitive=Blessing of Frost
+id=507230
+rarity=R
+[/card]
+[card]
+primitive=Elvish Warmaster
+id=507231
+rarity=R
+[/card]
+[card]
+primitive=In Search of Greatness
+id=507232
+rarity=R
+[/card]
+[card]
+primitive=Old-Growth Troll
+id=507233
+rarity=R
+[/card]
+[card]
+primitive=Realmwalker
+id=507234
+rarity=R
+[/card]
+[card]
+primitive=Immersturm Predator
+id=507235
+rarity=R
+[/card]
+[card]
+primitive=Cosmos Elixir
+id=507236
+rarity=R
+[/card]
+[card]
+primitive=Maskwood Nexus
+id=507237
+rarity=R
+[/card]
+[card]
+primitive=Pyre of Heroes
+id=507238
+rarity=R
+[/card]
+[card]
+primitive=Faceless Haven
+id=507239
+rarity=R
+[/card]
+[card]
+primitive=Tyrite Sanctum
+id=507240
+rarity=R
+[/card]
+[card]
+primitive=The World Tree
+id=507241
+rarity=R
+[/card]
+[card]
 primitive=Valkyrie Harbinger
 id=506916
 rarity=R
@@ -1865,3 +2390,9 @@ primitive=Forest
 id=507589
 rarity=L
 [/card]
+[card]
+primitive=Realmwalker
+id=507191
+rarity=R
+[/card]
+
