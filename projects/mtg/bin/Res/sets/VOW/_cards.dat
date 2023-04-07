@@ -3,7 +3,7 @@ author=Wagic Team
 name=Innistrad: Crimson Vow
 orderindex=EXP-ZZL.VOW
 year=2021-11-19
-total=387
+total=487
 [/meta]
 [card]
 primitive=Blood
@@ -601,11 +601,6 @@ id=540890
 rarity=U
 [/card]
 [card]
-primitive=A-Cobbled Lancer
-id=null
-rarity=U
-[/card]
-[card]
 primitive=Consuming Tide
 id=540891
 rarity=R
@@ -663,11 +658,6 @@ rarity=T
 [card]
 primitive=Hullbreaker Horror
 id=540902
-rarity=R
-[/card]
-[card]
-primitive=A-Hullbreaker Horror
-id=null
 rarity=R
 [/card]
 [card]
@@ -783,11 +773,6 @@ rarity=C
 [card]
 primitive=Stitched Assistant
 id=540925
-rarity=C
-[/card]
-[card]
-primitive=A-Stitched Assistant
-id=null
 rarity=C
 [/card]
 [card]
@@ -1776,18 +1761,8 @@ id=541122
 rarity=U
 [/card]
 [card]
-primitive=A-Sigardian Paladin
-id=null
-rarity=U
-[/card]
-[card]
 primitive=Skull Skaab
 id=541123
-rarity=U
-[/card]
-[card]
-primitive=A-Skull Skaab
-id=null
 rarity=U
 [/card]
 [card]
