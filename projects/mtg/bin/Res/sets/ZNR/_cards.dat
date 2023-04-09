@@ -157,7 +157,7 @@ rarity=M
 [/card]
 [card]
 primitive=Emeria, Shattered Skyclave
-id=491633
+id=491634
 rarity=T
 [/card]
 [card]
@@ -197,7 +197,7 @@ rarity=U
 [/card]
 [card]
 primitive=Kabira Plateau
-id=491641
+id=491642
 rarity=T
 [/card]
 [card]
@@ -237,7 +237,7 @@ rarity=U
 [/card]
 [card]
 primitive=Makindi Mesas
-id=491649
+id=491650
 rarity=T
 [/card]
 [card]
@@ -262,7 +262,7 @@ rarity=R
 [/card]
 [card]
 primitive=Ondu Skyruins
-id=491654
+id=491655
 rarity=T
 [/card]
 [card]
@@ -302,7 +302,7 @@ rarity=U
 [/card]
 [card]
 primitive=Sejiri Glacier
-id=491662
+id=491663
 rarity=T
 [/card]
 [card]
@@ -322,7 +322,7 @@ rarity=U
 [/card]
 [card]
 primitive=Skyclave Basilica
-id=491666
+id=491667
 rarity=T
 [/card]
 [card]
@@ -357,7 +357,7 @@ rarity=U
 [/card]
 [card]
 primitive=Beyeen Coast
-id=491673
+id=491674
 rarity=T
 [/card]
 [card]
@@ -432,7 +432,7 @@ rarity=R
 [/card]
 [card]
 primitive=Glasspool Shore
-id=491688
+id=491689
 rarity=T
 [/card]
 [card]
@@ -457,7 +457,7 @@ rarity=U
 [/card]
 [card]
 primitive=Jwari Ruins
-id=491693
+id=491694
 rarity=T
 [/card]
 [card]
@@ -522,7 +522,7 @@ rarity=M
 [/card]
 [card]
 primitive=Sea Gate, Reborn
-id=491706
+id=491707
 rarity=T
 [/card]
 [card]
@@ -547,7 +547,7 @@ rarity=U
 [/card]
 [card]
 primitive=Silundi Isle
-id=491711
+id=491712
 rarity=T
 [/card]
 [card]
@@ -582,7 +582,7 @@ rarity=U
 [/card]
 [card]
 primitive=Umara Skyfalls
-id=491718
+id=491719
 rarity=T
 [/card]
 [card]
@@ -607,7 +607,7 @@ rarity=M
 [/card]
 [card]
 primitive=Agadeem, the Undercrypt
-id=491723
+id=491724
 rarity=T
 [/card]
 [card]
@@ -617,7 +617,7 @@ rarity=U
 [/card]
 [card]
 primitive=Blackbloom Bog
-id=491725
+id=491726
 rarity=T
 [/card]
 [card]
@@ -697,7 +697,7 @@ rarity=R
 [/card]
 [card]
 primitive=Hagra Broodpit
-id=491741
+id=491742
 rarity=T
 [/card]
 [card]
@@ -727,7 +727,7 @@ rarity=U
 [/card]
 [card]
 primitive=Malakir Mire
-id=491747
+id=491748
 rarity=T
 [/card]
 [card]
@@ -777,7 +777,7 @@ rarity=U
 [/card]
 [card]
 primitive=Pelakka Caverns
-id=491757
+id=491758
 rarity=T
 [/card]
 [card]
@@ -842,7 +842,7 @@ rarity=U
 [/card]
 [card]
 primitive=Zof Bloodbog
-id=491770
+id=491771
 rarity=T
 [/card]
 [card]
@@ -857,7 +857,7 @@ rarity=U
 [/card]
 [card]
 primitive=Akoum Teeth
-id=491773
+id=491774
 rarity=T
 [/card]
 [card]
@@ -922,7 +922,7 @@ rarity=U
 [/card]
 [card]
 primitive=Kazuul's Cliffs
-id=491786
+id=491787
 rarity=T
 [/card]
 [card]
@@ -1002,7 +1002,7 @@ rarity=M
 [/card]
 [card]
 primitive=Shatterskull, the Hammer Pass
-id=491802
+id=491803
 rarity=T
 [/card]
 [card]
@@ -1027,7 +1027,7 @@ rarity=U
 [/card]
 [card]
 primitive=Song-Mad Ruins
-id=491807
+id=491808
 rarity=T
 [/card]
 [card]
@@ -1037,7 +1037,7 @@ rarity=U
 [/card]
 [card]
 primitive=Spikefield Cave
-id=491809
+id=491810
 rarity=T
 [/card]
 [card]
@@ -1082,7 +1082,7 @@ rarity=R
 [/card]
 [card]
 primitive=Valakut Stoneforge
-id=491818
+id=491819
 rarity=T
 [/card]
 [card]
@@ -1117,7 +1117,7 @@ rarity=U
 [/card]
 [card]
 primitive=Bala Ged Sanctuary
-id=491825
+id=491826
 rarity=T
 [/card]
 [card]
@@ -1167,7 +1167,7 @@ rarity=R
 [/card]
 [card]
 primitive=Kazandu Valley
-id=491835
+id=491836
 rarity=T
 [/card]
 [card]
@@ -1187,7 +1187,7 @@ rarity=U
 [/card]
 [card]
 primitive=Khalni Territory
-id=491839
+id=491840
 rarity=T
 [/card]
 [card]
@@ -1287,7 +1287,7 @@ rarity=U
 [/card]
 [card]
 primitive=Tangled Vale
-id=491859
+id=491860
 rarity=T
 [/card]
 [card]
@@ -1312,7 +1312,7 @@ rarity=M
 [/card]
 [card]
 primitive=Turntimber, Serpentine Wood
-id=491864
+id=491865
 rarity=T
 [/card]
 [card]
@@ -1322,7 +1322,7 @@ rarity=U
 [/card]
 [card]
 primitive=Vastwood Thicket
-id=491866
+id=491867
 rarity=T
 [/card]
 [card]
@@ -1826,6 +1826,16 @@ id=495200
 rarity=C
 [/card]
 [card]
+primitive=Kazandu Mammoth
+id=495201
+rarity=R
+[/card]
+[card]
+primitive=Kazandu Valley
+id=495202
+rarity=T
+[/card]
+[card]
 primitive=Kazandu Nectarpot
 id=495203
 rarity=C
@@ -1881,6 +1891,16 @@ id=495595
 rarity=R
 [/card]
 [card]
+primitive=Emeria's Call
+id=495596
+rarity=M
+[/card]
+[card]
+primitive=Emeria, Shattered Skyclave
+id=495597
+rarity=T
+[/card]
+[card]
 primitive=Legion Angel
 id=495598
 rarity=R
@@ -1894,6 +1914,16 @@ rarity=R
 primitive=Maul of the Skyclaves
 id=495600
 rarity=R
+[/card]
+[card]
+primitive=Ondu Inversion
+id=495601
+rarity=R
+[/card]
+[card]
+primitive=Ondu Skyruins
+id=495602
+rarity=T
 [/card]
 [card]
 primitive=Skyclave Apparition
@@ -1926,6 +1956,16 @@ id=495608
 rarity=R
 [/card]
 [card]
+primitive=Glasspool Mimic
+id=495609
+rarity=R
+[/card]
+[card]
+primitive=Glasspool Shore
+id=495610
+rarity=T
+[/card]
+[card]
 primitive=Inscription of Insight
 id=495611
 rarity=R
@@ -1946,6 +1986,16 @@ id=495614
 rarity=R
 [/card]
 [card]
+primitive=Sea Gate Restoration
+id=495615
+rarity=M
+[/card]
+[card]
+primitive=Sea Gate, Reborn
+id=495616
+rarity=T
+[/card]
+[card]
 primitive=Sea Gate Stormcaller
 id=495617
 rarity=M
@@ -1956,6 +2006,16 @@ id=495618
 rarity=R
 [/card]
 [card]
+primitive=Agadeem's Awakening
+id=495619
+rarity=M
+[/card]
+[card]
+primitive=Agadeem, the Undercrypt
+id=495620
+rarity=T
+[/card]
+[card]
 primitive=Coveted Prize
 id=495621
 rarity=R
@@ -1964,6 +2024,16 @@ rarity=R
 primitive=Drana, the Last Bloodchief
 id=495622
 rarity=M
+[/card]
+[card]
+primitive=Hagra Mauling
+id=495623
+rarity=R
+[/card]
+[card]
+primitive=Hagra Broodpit
+id=495624
+rarity=T
 [/card]
 [card]
 primitive=Inscription of Ruin
@@ -2036,6 +2106,26 @@ id=495638
 rarity=R
 [/card]
 [card]
+primitive=Shatterskull Smashing
+id=495639
+rarity=M
+[/card]
+[card]
+primitive=Shatterskull, the Hammer Pass
+id=495640
+rarity=T
+[/card]
+[card]
+primitive=Valakut Awakening
+id=495641
+rarity=R
+[/card]
+[card]
+primitive=Valakut Stoneforge
+id=495642
+rarity=T
+[/card]
+[card]
 primitive=Wayward Guide-Beast
 id=495643
 rarity=R
@@ -2074,6 +2164,16 @@ rarity=R
 primitive=Tajuru Paragon
 id=495650
 rarity=R
+[/card]
+[card]
+primitive=Turntimber Symbiosis
+id=495651
+rarity=M
+[/card]
+[card]
+primitive=Turntimber, Serpentine Wood
+id=495652
+rarity=T
 [/card]
 [card]
 primitive=Akiri, Fearless Voyager
