@@ -172,6 +172,9 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 # Ward
 #AUTO_DEFINE _WARD_($cost) @targeted(this) from(*|opponentzones):choice name(This spell costs $cost more) name(This spell costs $cost more) target(*|opponentzones) transforms((,newability[pay[[{$cost}]] name(pay $cost mana) donothing?fizzle])) oneshot
 
+# Renown
+#AUTO_DEFINE _RENOWN_($c) this(cantargetcard(*[-renown]) transforms((,newability[@combatdamaged(player) from(this):counter(1/1.$c) && becomes(renown) forever]))
+
 # Angel Token
 #AUTO_DEFINE _ANGELTOKEN_ create(Angel:Creature Angel:4/4:white:flying)
 
@@ -189,6 +192,9 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 
 # Insect Token
 #AUTO_DEFINE _INSECTTOKEN_ create(Insect:Creature Insect:1/1:green)
+
+# Knight Token
+#AUTO_DEFINE _KNIGHTTOKEN_ create(Knight:Creature Knight:2/2:white:vigilance)
 
 # Phyrexian Mite Token
 #AUTO_DEFINE _PHYREXIANMITETOKEN_ create(phyrexian mite:artifact creature phyrexian mite:1/1:poisontoxic:cantblock)
