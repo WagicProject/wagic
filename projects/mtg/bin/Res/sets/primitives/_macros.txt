@@ -70,7 +70,7 @@
 #AUTO_DEFINE _SECOND_DRAW_ @drawof(player) restriction{compare(pdrewcount)~equalto~2}:
 
 # Adapt
-#AUTO_DEFINE _ADAPT_($c) this(counter{1/1}<1) transforms((,newability[counter(1/1.$c)])) forever
+#AUTO_DEFINE _ADAPT_($c) name(Adapt $c) this(counter{1/1}<1) transforms((,newability[counter(1/1.$c)])) forever
 
 # Battalion
 #AUTO_DEFINE _BATTALION_ @combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:
