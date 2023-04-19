@@ -966,14 +966,9 @@ id=509525
 rarity=U
 [/card]
 [card]
-primitive=Dead
+primitive=Dead // Gone
 id=509526
 rarity=C
-[/card]
-[card]
-primitive=Gone
-id=509526
-rarity=T
 [/card]
 [card]
 primitive=Empty the Warrens
@@ -1096,14 +1091,9 @@ id=509550
 rarity=C
 [/card]
 [card]
-primitive=Rough
+primitive=Rough // Tumble
 id=509551
 rarity=U
-[/card]
-[card]
-primitive=Tumble
-id=509551
-rarity=T
 [/card]
 [card]
 primitive=Sedge Sliver
