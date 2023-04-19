@@ -615,14 +615,9 @@ id=559769
 rarity=R
 [/card]
 [card]
-primitive=Dusk
+primitive=Dusk // Dawn
 id=559770
 rarity=R
-[/card]
-[card]
-primitive=Dawn
-id=559770
-rarity=T
 [/card]
 [card]
 primitive=Felidar Retreat
@@ -710,14 +705,9 @@ id=559787
 rarity=M
 [/card]
 [card]
-primitive=Commit
+primitive=Commit // Memory
 id=559788
 rarity=R
-[/card]
-[card]
-primitive=Memory
-id=559788
-rarity=T
 [/card]
 [card]
 primitive=Daring Saboteur
