@@ -2,7 +2,7 @@
 author=Wagic Team
 name=Commander Legends: Battle for Baldur's Gate
 year=2022-06-10
-total=972
+total=849
 [/meta]
 [card]
 primitive=Faceless One
@@ -55,14 +55,9 @@ id=562893
 rarity=U
 [/card]
 [card]
-primitive=Blessed Hippogriff
+primitive=Blessed Hippogriff // Tyr's Blessing
 id=562894
 rarity=C
-[/card]
-[card]
-primitive=Tyr's Blessing
-id=562894
-rarity=T
 [/card]
 [card]
 primitive=Contraband Livestock
@@ -70,14 +65,9 @@ id=562895
 rarity=U
 [/card]
 [card]
-primitive=Crystal Dragon
+primitive=Crystal Dragon // Rob the Hoard
 id=562896
 rarity=U
-[/card]
-[card]
-primitive=Rob the Hoard
-id=562896
-rarity=T
 [/card]
 [card]
 primitive=Cut a Deal
@@ -125,14 +115,9 @@ id=562905
 rarity=C
 [/card]
 [card]
-primitive=Guardian Naga
+primitive=Guardian Naga // Banishing Coils
 id=562906
 rarity=C
-[/card]
-[card]
-primitive=Banishing Coils
-id=562906
-rarity=T
 [/card]
 [card]
 primitive=Guiding Bolt
@@ -145,14 +130,9 @@ id=562908
 rarity=U
 [/card]
 [card]
-primitive=Horn of Valhalla
+primitive=Horn of Valhalla // Ysgard's Call
 id=562909
 rarity=R
-[/card]
-[card]
-primitive=Ysgard's Call
-id=562909
-rarity=T
 [/card]
 [card]
 primitive=Icewind Stalwart
@@ -200,14 +180,9 @@ id=562918
 rarity=R
 [/card]
 [card]
-primitive=Pegasus Guardian
+primitive=Pegasus Guardian // Rescue the Foal
 id=562919
 rarity=C
-[/card]
-[card]
-primitive=Rescue the Foal
-id=562919
-rarity=T
 [/card]
 [card]
 primitive=Rasaad yn Bashir
@@ -405,14 +380,9 @@ id=562958
 rarity=C
 [/card]
 [card]
-primitive=Illithid Harvester
+primitive=Illithid Harvester // Plant Tadpoles
 id=562959
 rarity=R
-[/card]
-[card]
-primitive=Plant Tadpoles
-id=562959
-rarity=T
 [/card]
 [card]
 primitive=Imoen, Mystic Trickster
@@ -450,14 +420,9 @@ id=562966
 rarity=U
 [/card]
 [card]
-primitive=Moonshae Pixie
+primitive=Moonshae Pixie // Pixie Dust
 id=562967
 rarity=U
-[/card]
-[card]
-primitive=Pixie Dust
-id=562967
-rarity=T
 [/card]
 [card]
 primitive=Mystery Key
@@ -505,24 +470,14 @@ id=562976
 rarity=U
 [/card]
 [card]
-primitive=Sapphire Dragon
+primitive=Sapphire Dragon // Psionic Pulse
 id=562977
 rarity=U
 [/card]
 [card]
-primitive=Psionic Pulse
-id=562977
-rarity=T
-[/card]
-[card]
-primitive=Sea Hag
+primitive=Sea Hag // Aquatic Ingress
 id=562978
 rarity=C
-[/card]
-[card]
-primitive=Aquatic Ingress
-id=562978
-rarity=T
 [/card]
 [card]
 primitive=Shameless Charlatan
@@ -540,14 +495,9 @@ id=562981
 rarity=U
 [/card]
 [card]
-primitive=Sword Coast Serpent
+primitive=Sword Coast Serpent // Capsizing Wave
 id=562982
 rarity=C
-[/card]
-[card]
-primitive=Capsizing Wave
-id=562982
-rarity=T
 [/card]
 [card]
 primitive=Tomb of Horrors Adventurer
@@ -580,14 +530,9 @@ id=562988
 rarity=R
 [/card]
 [card]
-primitive=Young Blue Dragon
+primitive=Young Blue Dragon // Sand Augury
 id=562989
 rarity=C
-[/card]
-[card]
-primitive=Sand Augury
-id=562989
-rarity=T
 [/card]
 [card]
 primitive=Agent of the Iron Throne
@@ -600,14 +545,9 @@ id=562991
 rarity=U
 [/card]
 [card]
-primitive=Altar of Bhaal
+primitive=Altar of Bhaal // Bone Offering
 id=562992
 rarity=R
-[/card]
-[card]
-primitive=Bone Offering
-id=562992
-rarity=T
 [/card]
 [card]
 primitive=Ambition's Cost
@@ -700,24 +640,14 @@ id=563010
 rarity=C
 [/card]
 [card]
-primitive=Ghost Lantern
+primitive=Ghost Lantern // Bind Spirit
 id=563011
 rarity=U
 [/card]
 [card]
-primitive=Bind Spirit
-id=563011
-rarity=T
-[/card]
-[card]
-primitive=Gray Slaad
+primitive=Gray Slaad // Entropic Decay
 id=563012
 rarity=C
-[/card]
-[card]
-primitive=Entropic Decay
-id=563012
-rarity=T
 [/card]
 [card]
 primitive=Guildsworn Prowler
@@ -725,14 +655,9 @@ id=563013
 rarity=C
 [/card]
 [card]
-primitive=Hezrou
+primitive=Hezrou // Demonic Stench
 id=563014
 rarity=C
-[/card]
-[card]
-primitive=Demonic Stench
-id=563014
-rarity=T
 [/card]
 [card]
 primitive=Intellect Devourer
@@ -840,14 +765,9 @@ id=563035
 rarity=C
 [/card]
 [card]
-primitive=Topaz Dragon
+primitive=Topaz Dragon // Entropic Cloud
 id=563036
 rarity=U
-[/card]
-[card]
-primitive=Entropic Cloud
-id=563036
-rarity=T
 [/card]
 [card]
 primitive=Underdark Explorer
@@ -880,14 +800,9 @@ id=563042
 rarity=U
 [/card]
 [card]
-primitive=Amethyst Dragon
+primitive=Amethyst Dragon // Explosive Crystal
 id=563043
 rarity=U
-[/card]
-[card]
-primitive=Explosive Crystal
-id=563043
-rarity=T
 [/card]
 [card]
 primitive=Ancient Copper Dragon
@@ -950,14 +865,9 @@ id=563055
 rarity=R
 [/card]
 [card]
-primitive=Fang Dragon
+primitive=Fang Dragon // Forktail Sweep
 id=563056
 rarity=C
-[/card]
-[card]
-primitive=Forktail Sweep
-id=563056
-rarity=T
 [/card]
 [card]
 primitive=Firbolg Flutist
@@ -1105,14 +1015,9 @@ id=563085
 rarity=C
 [/card]
 [card]
-primitive=Two-Handed Axe
+primitive=Two-Handed Axe // Sweeping Cleave
 id=563086
 rarity=U
-[/card]
-[card]
-primitive=Sweeping Cleave
-id=563086
-rarity=T
 [/card]
 [card]
 primitive=Wand of Wonder
@@ -1145,14 +1050,9 @@ id=563092
 rarity=R
 [/card]
 [card]
-primitive=Young Red Dragon
+primitive=Young Red Dragon // Bathe in Gold
 id=563093
 rarity=C
-[/card]
-[card]
-primitive=Bathe in Gold
-id=563093
-rarity=T
 [/card]
 [card]
 primitive=You've Been Caught Stealing
@@ -1215,14 +1115,9 @@ id=563105
 rarity=C
 [/card]
 [card]
-primitive=Colossal Badger
+primitive=Colossal Badger // Dig Deep
 id=563106
 rarity=C
-[/card]
-[card]
-primitive=Dig Deep
-id=563106
-rarity=T
 [/card]
 [card]
 primitive=Draconic Muralists
@@ -1230,14 +1125,9 @@ id=563107
 rarity=U
 [/card]
 [card]
-primitive=Dread Linnorm
+primitive=Dread Linnorm // Scale Deflection
 id=563108
 rarity=C
-[/card]
-[card]
-primitive=Scale Deflection
-id=563108
-rarity=T
 [/card]
 [card]
 primitive=Druid of the Emerald Grove
@@ -1255,14 +1145,9 @@ id=563111
 rarity=R
 [/card]
 [card]
-primitive=Emerald Dragon
+primitive=Emerald Dragon // Dissonant Wave
 id=563112
 rarity=U
-[/card]
-[card]
-primitive=Dissonant Wave
-id=563112
-rarity=T
 [/card]
 [card]
 primitive=Erinis, Gloom Stalker
@@ -1270,14 +1155,9 @@ id=563113
 rarity=U
 [/card]
 [card]
-primitive=Ettercap
+primitive=Ettercap // Web Shot
 id=563114
 rarity=C
-[/card]
-[card]
-primitive=Web Shot
-id=563114
-rarity=T
 [/card]
 [card]
 primitive=Explore the Underdark
@@ -1330,14 +1210,9 @@ id=563124
 rarity=C
 [/card]
 [card]
-primitive=Monster Manual
+primitive=Monster Manual // Zoological Study
 id=563125
 rarity=R
-[/card]
-[card]
-primitive=Zoological Study
-id=563125
-rarity=T
 [/card]
 [card]
 primitive=Myconid Spore Tender
@@ -2885,14 +2760,9 @@ id=566977
 rarity=R
 [/card]
 [card]
-primitive=Tlincalli Hunter
+primitive=Tlincalli Hunter // Retrieve Prey
 id=566978
 rarity=R
-[/card]
-[card]
-primitive=Retrieve Prey
-id=566978
-rarity=T
 [/card]
 [card]
 primitive=Venture Forth
@@ -3150,14 +3020,9 @@ id=567507
 rarity=C
 [/card]
 [card]
-primitive=Dusk
+primitive=Dusk // Dawn
 id=567508
 rarity=R
-[/card]
-[card]
-primitive=Dawn
-id=567508
-rarity=T
 [/card]
 [card]
 primitive=Eight-and-a-Half-Tails
@@ -3605,14 +3470,9 @@ id=567597
 rarity=R
 [/card]
 [card]
-primitive=Bonecrusher Giant
+primitive=Bonecrusher Giant // Stomp
 id=567598
 rarity=R
-[/card]
-[card]
-primitive=Stomp
-id=567598
-rarity=T
 [/card]
 [card]
 primitive=Brash Taunter
@@ -3665,14 +3525,9 @@ id=567608
 rarity=R
 [/card]
 [card]
-primitive=Embereth Shieldbreaker
+primitive=Embereth Shieldbreaker // Battle Display
 id=567609
 rarity=U
-[/card]
-[card]
-primitive=Battle Display
-id=567609
-rarity=T
 [/card]
 [card]
 primitive=Etali, Primal Storm
@@ -3805,14 +3660,9 @@ id=567635
 rarity=M
 [/card]
 [card]
-primitive=Beanstalk Giant
+primitive=Beanstalk Giant // Fertile Footsteps
 id=567636
 rarity=U
-[/card]
-[card]
-primitive=Fertile Footsteps
-id=567636
-rarity=T
 [/card]
 [card]
 primitive=Beast Within
@@ -3850,14 +3700,9 @@ id=567643
 rarity=C
 [/card]
 [card]
-primitive=Lovestruck Beast
+primitive=Lovestruck Beast // Heart's Desire
 id=567644
 rarity=R
-[/card]
-[card]
-primitive=Heart's Desire
-id=567644
-rarity=T
 [/card]
 [card]
 primitive=Managorger Hydra
