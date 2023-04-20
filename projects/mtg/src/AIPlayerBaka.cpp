@@ -4292,7 +4292,7 @@ AIPlayerBaka::AIPlayerBaka(GameObserver *observer, string file, string fileSmall
     else //load a random avatar.
     {
         avatarFile = "avatar";
-        char buffer[3];
+        char buffer[4];
         sprintf(buffer, "%i", int(observer->getRandomGenerator()->random()%200));
         avatarFile.append(buffer);
         avatarFile.append(".jpg");
