@@ -1,0 +1,331 @@
+[meta]
+author=Wagic Team
+name=Multiverse Legends
+year=2023-04-21
+total=195
+[/meta]
+[card]
+primitive=Anafenza, Kin-Tree Spirit
+id=611306
+rarity=R
+[/card]
+[card]
+primitive=Daxos, Blessed by the Sun
+id=611307
+rarity=U
+[/card]
+[card]
+primitive=Elesh Norn, Grand Cenobite
+id=611308
+rarity=M
+[/card]
+[card]
+primitive=Kenrith, the Returned King
+id=611309
+rarity=M
+[/card]
+[card]
+primitive=Kwende, Pride of Femeref
+id=611310
+rarity=U
+[/card]
+[card]
+primitive=Sram, Senior Edificer
+id=611311
+rarity=R
+[/card]
+[card]
+primitive=Thalia, Guardian of Thraben
+id=611312
+rarity=R
+[/card]
+[card]
+primitive=Baral, Chief of Compliance
+id=611313
+rarity=R
+[/card]
+[card]
+primitive=Emry, Lurker of the Loch
+id=611314
+rarity=R
+[/card]
+[card]
+primitive=Inga Rune-Eyes
+id=611315
+rarity=U
+[/card]
+[card]
+primitive=Jin-Gitaxias, Core Augur
+id=611316
+rarity=M
+[/card]
+[card]
+primitive=Tetsuko Umezawa, Fugitive
+id=611317
+rarity=U
+[/card]
+[card]
+primitive=Ayara, First of Locthwain
+id=611318
+rarity=R
+[/card]
+[card]
+primitive=Horobi, Death's Wail
+id=611319
+rarity=R
+[/card]
+[card]
+primitive=Seizan, Perverter of Truth
+id=611320
+rarity=R
+[/card]
+[card]
+primitive=Sheoldred, Whispering One
+id=611321
+rarity=M
+[/card]
+[card]
+primitive=Skithiryx, the Blight Dragon
+id=611322
+rarity=M
+[/card]
+[card]
+primitive=Tymaret, Chosen from Death
+id=611323
+rarity=U
+[/card]
+[card]
+primitive=Yargle, Glutton of Urborg
+id=611324
+rarity=U
+[/card]
+[card]
+primitive=Captain Lannery Storm
+id=611325
+rarity=R
+[/card]
+[card]
+primitive=Ragavan, Nimble Pilferer
+id=611326
+rarity=M
+[/card]
+[card]
+primitive=Squee, the Immortal
+id=611327
+rarity=R
+[/card]
+[card]
+primitive=Urabrask the Hidden
+id=611328
+rarity=M
+[/card]
+[card]
+primitive=Valduk, Keeper of the Flame
+id=611329
+rarity=U
+[/card]
+[card]
+primitive=Zada, Hedron Grinder
+id=611330
+rarity=U
+[/card]
+[card]
+primitive=Fynn, the Fangbearer
+id=611331
+rarity=U
+[/card]
+[card]
+primitive=Goreclaw, Terror of Qal Sisma
+id=611332
+rarity=R
+[/card]
+[card]
+primitive=Renata, Called to the Hunt
+id=611333
+rarity=U
+[/card]
+[card]
+primitive=Vorinclex, Voice of Hunger
+id=611334
+rarity=M
+[/card]
+[card]
+primitive=Yedora, Grave Gardener
+id=611335
+rarity=R
+[/card]
+[card]
+primitive=Aegar, the Freezing Flame
+id=611336
+rarity=U
+[/card]
+[card]
+primitive=Arixmethes, Slumbering Isle
+id=611337
+rarity=R
+[/card]
+[card]
+primitive=Atraxa, Praetors' Voice
+id=611338
+rarity=M
+[/card]
+[card]
+primitive=Atris, Oracle of Half-Truths
+id=611339
+rarity=R
+[/card]
+[card]
+primitive=Aurelia, the Warleader
+id=611340
+rarity=M
+[/card]
+[card]
+primitive=Brudiclad, Telchor Engineer
+id=611341
+rarity=R
+[/card]
+[card]
+primitive=Dina, Soul Steeper
+id=611342
+rarity=U
+[/card]
+[card]
+primitive=Ezuri, Claw of Progress
+id=611343
+rarity=M
+[/card]
+[card]
+primitive=Firesong and Sunspeaker
+id=611344
+rarity=R
+[/card]
+[card]
+primitive=Firja, Judge of Valor
+id=611345
+rarity=U
+[/card]
+[card]
+primitive=Grimgrin, Corpse-Born
+id=611346
+rarity=M
+[/card]
+[card]
+primitive=Gyruda, Doom of Depths
+id=611347
+rarity=R
+[/card]
+[card]
+primitive=Imoti, Celebrant of Bounty
+id=611348
+rarity=U
+[/card]
+[card]
+primitive=Jegantha, the Wellspring
+id=611349
+rarity=R
+[/card]
+[card]
+primitive=Judith, the Scourge Diva
+id=611350
+rarity=R
+[/card]
+[card]
+primitive=Juri, Master of the Revue
+id=611351
+rarity=U
+[/card]
+[card]
+primitive=Kaheera, the Orphanguard
+id=611352
+rarity=R
+[/card]
+[card]
+primitive=Keruga, the Macrosage
+id=611353
+rarity=R
+[/card]
+[card]
+primitive=Kroxa, Titan of Death's Hunger
+id=611354
+rarity=M
+[/card]
+[card]
+primitive=Lathiel, the Bounteous Dawn
+id=611355
+rarity=R
+[/card]
+[card]
+primitive=Lurrus of the Dream-Den
+id=611356
+rarity=R
+[/card]
+[card]
+primitive=Lutri, the Spellchaser
+id=611357
+rarity=R
+[/card]
+[card]
+primitive=Niv-Mizzet Reborn
+id=611358
+rarity=M
+[/card]
+[card]
+primitive=Obosh, the Preypiercer
+id=611359
+rarity=R
+[/card]
+[card]
+primitive=Radha, Coalition Warlord
+id=611360
+rarity=U
+[/card]
+[card]
+primitive=Raff, Weatherlight Stalwart
+id=611361
+rarity=U
+[/card]
+[card]
+primitive=Reyav, Master Smith
+id=611362
+rarity=U
+[/card]
+[card]
+primitive=Rona, Sheoldred's Faithful
+id=611363
+rarity=U
+[/card]
+[card]
+primitive=Shanna, Sisay's Legacy
+id=611364
+rarity=U
+[/card]
+[card]
+primitive=Taigam, Ojutai Master
+id=611365
+rarity=R
+[/card]
+[card]
+primitive=Teysa Karlov
+id=611366
+rarity=R
+[/card]
+[card]
+primitive=Umori, the Collector
+id=611367
+rarity=R
+[/card]
+[card]
+primitive=Yarok, the Desecrated
+id=611368
+rarity=M
+[/card]
+[card]
+primitive=Yorion, Sky Nomad
+id=611369
+rarity=R
+[/card]
+[card]
+primitive=Zirda, the Dawnwaker
+id=611370
+rarity=R
+[/card]
