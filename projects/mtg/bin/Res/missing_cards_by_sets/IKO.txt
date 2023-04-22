@@ -71,33 +71,6 @@ power=3
 toughness=5
 [/card]
 [card]
-name=Lutri, the Spellchaser
-text=Companion - Each nonland card in your starting deck has a different name. (If this card is your chosen companion, you may cast it once from outside the game.) -- Flash -- When Lutri, the Spellchaser enters the battlefield, if you cast it, copy target instant or sorcery spell you control. You may choose new targets for the copy.
-mana={1}{UR}{UR}
-type=Legendary Creature
-subtype=Elemental Otter
-power=3
-toughness=2
-[/card]
-[card]
-name=Kaheera, the Orphanguard
-text=Companion - Each creature card in your starting deck is a Cat, Elemental, Nightmare, Dinosaur, or Beast card. (If this card is your chosen companion, you may cast it once from outside the game.) -- Vigilance -- Each other creature you control that's a Cat, Elemental, Nightmare, Dinosaur, or Beast gets +1/+1 and has vigilance.
-mana={1}{GW}{GW}
-type=Legendary Creature
-subtype=Cat Beast
-power=3
-toughness=2
-[/card]
-[card]
-name=Keruga, the Macrosage
-text=Companion - Your starting deck contains only cards with converted mana cost 3 or greater and land cards. (If this card is your chosen companion, you may cast it once from outside the game.) -- When Keruga, the Macrosage enters the battlefield, draw a card for each other permanent you control with converted mana cost 3 or greater.
-mana={3}{GU}{GU}
-type=Legendary Creature
-subtype=Dinosaur Hippo
-power=5
-toughness=4
-[/card]
-[card]
 name=Extinction Event
 text=Choose odd or even. Exile each creature with converted mana cost of the chosen value. (Zero is even.)
 mana={3}{B}

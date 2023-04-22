@@ -174,15 +174,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Stone Giant
-text={T}: Target creature you control with toughness less than Stone Giant's power gains flying until end of turn. Destroy that creature at the beginning of the next end step.
-mana={2}{R}{R}
-type=Creature
-subtype=Giant
-power=3
-toughness=4
-[/card]
-[card]
 name=Deflection
 text=Change the target of target spell with a single target.
 mana={3}{U}

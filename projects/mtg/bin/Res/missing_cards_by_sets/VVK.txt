@@ -8,15 +8,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Stone Giant
-text={T}: Target creature you control with toughness less than Stone Giant's power gains flying until end of turn. Destroy that creature at the beginning of the next end step.
-mana={2}{R}{R}
-type=Creature
-subtype=Giant
-power=3
-toughness=4
-[/card]
-[card]
 name=Sphinx of Uthuun
 abilities=flying
 text=Flying -- When Sphinx of Uthuun enters the battlefield, reveal the top five cards of your library. An opponent separates those cards into two piles. Put one pile into your hand and the other into your graveyard.

@@ -11,6 +11,27 @@ mana={W}{W}
 type=Enchantment
 [/card]
 [card]
+name=Discontinuity
+text=As long as it's your turn, this spell costs {2}{U}{U} less to cast. -- End the turn. (Exile all spells and abilities from the stack, including this card. The player whose turn it is discards down to their maximum hand size. Damage wears off, and "this turn" and "until end of turn" effects end.)
+mana={3}{U}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Runed Halo
+text=As Runed Halo enters the battlefield, name a card. -- You have protection from the chosen name. (You can't be targeted, dealt damage, or enchanted by anything with that name.)
+mana={W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Chandra's Incinerator
+text=This spell costs {X} less to cast, where X is the total amount of noncombat damage dealt to your opponents this turn. -- Trample -- Whenever a source you control deals noncombat damage to an opponent, Chandra's Incinerator deals that much damage to target creature or planeswalker that player controls.
+mana={5}{R}
+type=Creature
+subtype=Elemental
+power=6
+toughness=6
+[/card]
+[card]
 name=Chandra's Incinerator
 text=This spell costs {X} less to cast, where X is the total amount of noncombat damage dealt to your opponents this turn. -- Trample -- Whenever a source you control deals noncombat damage to an opponent, Chandra's Incinerator deals that much damage to target creature or planeswalker that player controls.
 mana={5}{R}

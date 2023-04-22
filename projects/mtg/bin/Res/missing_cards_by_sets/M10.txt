@@ -36,15 +36,6 @@ power=5
 toughness=5
 [/card]
 [card]
-name=Stone Giant
-text={T}: Target creature you control with toughness less than Stone Giant's power gains flying until end of turn. Destroy that creature at the beginning of the next end step.
-mana={2}{R}{R}
-type=Creature
-subtype=Giant
-power=3
-toughness=4
-[/card]
-[card]
 name=Master of the Wild Hunt
 text=At the beginning of your upkeep, put a 2/2 green Wolf creature token onto the battlefield. -- {T}: Tap all untapped Wolf creatures you control. Each Wolf tapped this way deals damage equal to its power to target creature. That creature deals damage equal to its power divided as its controller chooses among any number of those Wolves.
 mana={2}{G}{G}

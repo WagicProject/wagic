@@ -5,15 +5,6 @@ mana={R}{R}
 type=Enchantment
 [/card]
 [card]
-name=Stone Giant
-text={T}: Target creature you control with toughness less than Stone Giant's power gains flying until end of turn. Destroy that creature at the beginning of the next end step.
-mana={2}{R}{R}
-type=Creature
-subtype=Giant
-power=3
-toughness=4
-[/card]
-[card]
 name=Drain Power
 text=Target player activates a mana ability of each land he or she controls. Then put all mana from that player's mana pool into yours.
 mana={U}{U}

@@ -128,12 +128,6 @@ power=5
 toughness=9
 [/card]
 [card]
-name=Sapphire Charm
-text=Choose one -- Target player draws a card at the beginning of the next turn's upkeep; or target creature gains flying until end of turn; or target creature an opponent controls phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step.)
-mana={U}
-type=Instant
-[/card]
-[card]
 name=Sakashima the Impostor
 text=You may have Sakashima the Impostor enter the battlefield as a copy of any creature on the battlefield, except its name is still Sakashima the Impostor, it's legendary in addition to its other types, and it gains "{2}{U}{U}: Return Sakashima the Impostor to its owner's hand at the beginning of the next end step."
 mana={2}{U}{U}
