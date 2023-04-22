@@ -1,0 +1,63 @@
+[card]
+name=Identity Thief
+text=Whenever Identity Thief attacks, you may exile another target nontoken creature. If you do, Identity Thief becomes a copy of that creature until end of turn. Return the exiled card to the battlefield under its owner's control at the beginning of the next end step.
+mana={2}{U}{U}
+type=Creature
+subtype=Shapeshifter
+power=0
+toughness=3
+[/card]
+[card]
+name=Strionic Resonator
+text={2}, {T}: Copy target triggered ability you control. You may choose new targets for the copy. (A triggered ability uses the words "when," "whenever," or "at.")
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Reign of the Pit
+text=Each player sacrifices a creature. Put an X/X black Demon creature token with flying onto the battlefield, where X is the total power of the creatures sacrificed this way.
+mana={4}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Bloodthirsty Blade
+auto=teach(creature) 2/0
+auto=teach(creature) mustattack
+text=Equipped creature gets +2/+0 and is goaded. (It attacks each combat if able and attacks a player other than you if able.) -- {1}: Attach Bloodthirsty Blade to target creature an opponent controls. Activate this ability only any time you could cast a sorcery.
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Stolen Identity
+text=Put a token onto the battlefield that's a copy of target artifact or creature. -- Cipher (Then you may exile this spell card encoded on a creature you control. Whenever that creature deals combat damage to a player, its controller may cast a copy of the encoded card without paying its mana cost.)
+mana={4}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Thief of Sanity
+abilities=flying
+text=Flying -- Whenever Thief of Sanity deals combat damage to a player, look at the top three cards of that player's library, exile one of them face down, then put the rest into their graveyard. You may look at and cast that card for as long as it remains exiled, and you may spend mana as though it were mana of any type to cast that spell.
+mana={1}{U}{B}
+type=Creature
+subtype=Specter
+power=2
+toughness=2
+[/card]
+[card]
+name=Slippery Bogbonder
+abilities=flash,opponentshroud
+auto=target(creature) counter(0/0,1,Hexproof)
+text=Flash -- Hexproof -- When Slippery Bogbonder enters the battlefield, put a hexproof counter on target creature. Then move any number of counters from among creatures you control onto that creature.
+mana={3}{G}
+type=Creature
+subtype=Human Druid
+power=3
+toughness=3
+[/card]
+[card]
+name=Nesting Grounds
+auto={T}:add{1}
+text={T}: Add {1}. -- {1}, {T}: Move a counter from target permanent you control onto another target permanent. Activate this ability only any time you could cast a sorcery.
+type=Land
+[/card]

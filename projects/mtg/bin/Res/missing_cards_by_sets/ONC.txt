@@ -1,0 +1,6 @@
+[card]
+name=Norn's Annex
+text=({PW} can be paid with either {W} or 2 life.) -- Creatures can't attack you or a planeswalker you control unless their controller pays {PW} for each of those creatures.
+mana={3}{PW}{PW}
+type=Artifact
+[/card]

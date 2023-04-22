@@ -1,0 +1,56 @@
+[card]
+name=Spark of Creativity
+text=Choose target creature. Exile the top card of your library. You may have Spark of Creativity deal damage to that creature equal to the exiled card's converted mana cost. If you don't, you may play that card until end of turn.
+mana={R}
+type=Sorcery
+[/card]
+[card]
+name=Goblin Psychopath
+text=Whenever Goblin Psychopath attacks or blocks, flip a coin. If you lose the flip, the next time it would deal combat damage this turn, it deals that damage to you instead.
+mana={3}{R}
+type=Creature
+subtype=Goblin Mutant
+power=5
+toughness=5
+[/card]
+[card]
+name=Moonlight Hunt
+text=Choose target creature you don't control. Each creature you control that's a Wolf or a Werewolf deals damage equal to its power to that creature.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Master of the Wild Hunt
+text=At the beginning of your upkeep, put a 2/2 green Wolf creature token onto the battlefield. -- {T}: Tap all untapped Wolf creatures you control. Each Wolf tapped this way deals damage equal to its power to target creature. That creature deals damage equal to its power divided as its controller chooses among any number of those Wolves.
+mana={2}{G}{G}
+type=Creature
+subtype=Human Shaman
+power=3
+toughness=3
+[/card]
+[card]
+name=Sage's Reverie
+text=Enchant creature -- When Sage's Reverie enters the battlefield, draw a card for each Aura you control that's attached to a creature. -- Enchanted creature gets +1/+1 for each Aura you control that's attached to a creature.
+mana={3}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Cellar Door
+text={3}, {T}: Target player puts the bottom card of his or her library into his or her graveyard. If it's a creature card, you put a 2/2 black Zombie creature token onto the battlefield.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Weight of Conscience
+text=Enchant creature -- Enchanted creature can't attack. -- Tap two untapped creatures you control that share a creature type: Exile enchanted creature.
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Panharmonicon
+text=If an artifact or creature entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.
+mana={4}
+type=Artifact
+[/card]

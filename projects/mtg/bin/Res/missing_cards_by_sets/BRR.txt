@@ -1,0 +1,42 @@
+[card]
+name=Inspiring Statuary
+text=Nonartifact spells you cast have improvise. (Your artifacts can help cast those spells. Each artifact you tap after you're done activating mana abilities pays for {1}.)
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Inspiring Statuary
+text=Nonartifact spells you cast have improvise. (Your artifacts can help cast those spells. Each artifact you tap after you're done activating mana abilities pays for {1}.)
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Goblin Charbelcher
+text={3}, {T}: Reveal cards from the top of your library until you reveal a land card. Goblin Charbelcher deals damage equal to the number of nonland cards revealed this way to target creature or player. If the revealed land card was a Mountain, Goblin Charbelcher deals double that damage instead. Put the revealed cards on the bottom of your library in any order.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Goblin Charbelcher
+text={3}, {T}: Reveal cards from the top of your library until you reveal a land card. Goblin Charbelcher deals damage equal to the number of nonland cards revealed this way to target creature or player. If the revealed land card was a Mountain, Goblin Charbelcher deals double that damage instead. Put the revealed cards on the bottom of your library in any order.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Precursor Golem
+text=When Precursor Golem enters the battlefield, put two 3/3 colorless Golem artifact creature tokens onto the battlefield. -- Whenever a player casts an instant or sorcery spell that targets only a single Golem, that player copies that spell for each other Golem that spell could target. Each copy targets a different one of those Golems.
+mana={5}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=3
+[/card]
+[card]
+name=Precursor Golem
+text=When Precursor Golem enters the battlefield, put two 3/3 colorless Golem artifact creature tokens onto the battlefield. -- Whenever a player casts an instant or sorcery spell that targets only a single Golem, that player copies that spell for each other Golem that spell could target. Each copy targets a different one of those Golems.
+mana={5}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=3
+[/card]

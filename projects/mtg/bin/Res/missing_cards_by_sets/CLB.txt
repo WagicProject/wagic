@@ -1,0 +1,28 @@
+[card]
+name=Bloodthirsty Blade
+auto=teach(creature) 2/0
+auto=teach(creature) mustattack
+text=Equipped creature gets +2/+0 and is goaded. (It attacks each combat if able and attacks a player other than you if able.) -- {1}: Attach Bloodthirsty Blade to target creature an opponent controls. Activate this ability only any time you could cast a sorcery.
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Spellskite
+text={PU}: Change a target of target spell or ability to Spellskite. ({PU} can be paid with either {U} or 2 life.)
+mana={2}
+type=Artifact Creature
+subtype=Horror
+power=0
+toughness=4
+[/card]
+[card]
+name=Valiant Changeling
+abilities=changeling,double strike
+text=This spell costs {1} less to cast for each creature type among creatures you control. This effect can't reduce the amount of mana this spell costs by more than {5}. -- Changeling (This card is every creature type.) -- Double strike
+mana={5}{W}{W}
+type=Creature
+subtype=Shapeshifter
+power=3
+toughness=3
+[/card]

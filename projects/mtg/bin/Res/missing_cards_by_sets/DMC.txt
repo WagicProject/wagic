@@ -1,0 +1,9 @@
+[card]
+name=Bell Borca, Spectral Sergeant
+text=Note the converted mana cost of each card as it's put into exile. -- Bell Borca, Spectral Sergeant's power is equal to the greatest number noted for it this turn. -- At the beginning of your upkeep, exile the top card of your library. You may play that card this turn.
+mana={2}{R}{W}
+type=Legendary Creature
+subtype=Spirit Soldier
+power=*
+toughness=5
+[/card]

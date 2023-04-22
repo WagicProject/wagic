@@ -1,0 +1,6 @@
+[card]
+name=Corpse Cobble
+text=As an additional cost to cast this spell, sacrifice any number of creatures. -- Create an X/X blue and black Zombie creature token with menace, where X is the total power of the sacrificed creatures. -- Flashback {3}{U}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={U}{B}
+type=Instant
+[/card]
