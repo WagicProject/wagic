@@ -1,0 +1,81 @@
+[card]
+name=Jegantha, the Wellspring
+text=Companion - No card in your starting deck has more than one of the same mana symbol in its mana cost. (If this card is your chosen companion, you may cast it once from outside the game.) -- {T}: Add {W}{U}{B}{R}{G}. This mana can't be spent to pay generic mana costs.
+mana={4}{RG}
+type=Legendary Creature
+subtype=Elemental Elk
+power=5
+toughness=5
+[/card]
+[card]
+name=Gyruda, Doom of Depths
+text=Companion - Your starting deck contains only cards with even converted mana costs. (If this card is your chosen companion, you may cast it once from outside the game.) -- When Gyruda enters the battlefield, each player puts the top four cards of their library into their graveyard. Put a creature card with an even converted mana cost from among those cards onto the battlefield under your control.
+mana={4}{UB}{UB}
+type=Legendary Creature
+subtype=Demon Kraken
+power=6
+toughness=6
+[/card]
+[card]
+name=Baral, Chief of Compliance
+text=Instant and sorcery spells you cast cost {1} less to cast. -- Whenever a spell or ability you control counters a spell, you may draw a card. If you do, discard a card.
+mana={1}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=1
+toughness=3
+[/card]
+[card]
+name=Atris, Oracle of Half-Truths
+text=Menace -- When Atris, Oracle of Half-Truths enters the battlefield, target opponent looks at the top three cards of your library and separates them into a face-down pile and a face-up pile. Put one pile into your hand and the other into your graveyard.
+mana={2}{U}{B}
+type=Legendary Creature
+subtype=Human Advisor
+power=3
+toughness=2
+[/card]
+[card]
+name=Zada, Hedron Grinder
+text=Whenever you cast an instant or sorcery spell that targets only Zada, Hedron Grinder, copy that spell for each other creature you control that the spell could target. Each copy targets a different one of those creatures.
+mana={3}{R}
+type=Legendary Creature
+subtype=Goblin Ally
+power=3
+toughness=3
+[/card]
+[card]
+name=Zirda, the Dawnwaker
+text=Companion - Each permanent card in your starting deck has an activated ability. (If this card is your chosen companion, you may cast it once from outside the game.) -- Abilities you activate that aren't mana abilities cost {2} less to activate. This effect can't reduce the mana in that cost to less than one mana. -- {1}, {T}: Target creature can't block this turn.
+mana={1}{RW}{RW}
+type=Legendary Creature
+subtype=Elemental Fox
+power=3
+toughness=3
+[/card]
+[card]
+name=Obosh, the Preypiercer
+text=Companion - Your starting deck contains only cards with odd converted mana costs and land cards. (If this card is your chosen companion, you may cast it once from outside the game.) -- If a source you control with an odd converted mana cost would deal damage to a permanent or player, it deals double that damage to that permanent or player instead.
+mana={3}{BR}{BR}
+type=Legendary Creature
+subtype=Hellion Horror
+power=3
+toughness=5
+[/card]
+[card]
+name=Yarok, the Desecrated
+text=Deathtouch, lifelink -- If a permanent entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.
+mana={2}{B}{G}{U}
+type=Legendary Creature
+subtype=Elemental Horror
+power=3
+toughness=5
+[/card]
+[card]
+name=Umori, the Collector
+text=Companion - Each nonland card in your starting deck shares a card type. (If this card is your chosen companion, you may cast it once from outside the game.) -- As Umori, the CollectorUmori, the Collector enters the battlefield, choose a card type. -- Spells you cast of the chosen type cost 1 less to cast.
+mana={2}{BG}{BG}
+type=Legendary Creature
+subtype=Ooze
+power=4
+toughness=5
+[/card]

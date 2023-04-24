@@ -1,0 +1,133 @@
+[card]
+name=Stronghold Furnace
+text=If a source would deal damage to a creature or player, it deals double that damage to that creature or player instead. -- Whenever you roll {C}, Stronghold Furnace deals 1 damage to target creature or player.
+type=Plane
+subtype=Rath
+[/card]
+[card]
+name=Turri Island
+text=Creature spells cost {2} less to cast. -- Whenever you roll {C}, reveal the top three cards of your library. Put all creature cards revealed this way into your hand and the rest into your graveyard.
+type=Plane
+subtype=Ir
+[/card]
+[card]
+name=Truga Jungle
+text=All lands have "{T}: Add one mana of any color to your mana pool." -- Whenever you roll {K}, reveal the top three cards of your library. Put all land cards revealed this way into your hand and the rest on the bottom of your library in any order.
+type=Plane
+subtype=Ergamon
+[/card]
+[card]
+name=Undercity Reaches
+text=Whenever a creature deals combat damage to a player, its controller may draw a card. -- Whenever you roll {C}, you have no maximum hand size for the rest of the game.
+type=Plane
+subtype=Ravnica
+[/card]
+[card]
+name=Kharasha Foothills
+text=Whenever a creature you control attacks a player, for each other opponent, you may put a token that's a copy of that creature onto the battlefield tapped and attacking that opponent. Exile those tokens at the beginning of the next end step. -- Whenever you roll {K}, you may sacrifice any number of creatures. If you do, Kharasha Foothills deals that much damage to target creature.
+type=Plane
+subtype=Mongseng
+[/card]
+[card]
+name=Mutual Epiphany
+text=When you encounter Mutual Epiphany, each player draws four cards. (Then planeswalk away from this phenomenon.)
+type=Phenomenon
+[/card]
+[card]
+name=Panopticon
+text=When you planeswalk to Panopticon, draw a card. -- At the beginning of your draw step, draw an additional card. -- Whenever you roll {C}, draw a card.
+type=Plane
+subtype=Mirrodin
+[/card]
+[card]
+name=Orochi Colony
+text=Whenever a creature you control deals combat damage to a player, you may search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library. -- Whenever you roll {K}, target creature can't be blocked this turn.
+type=Plane
+subtype=Kamigawa
+[/card]
+[card]
+name=Reality Shaping
+text=When you encounter Reality Shaping, starting with you, each player may put a permanent card from his or her hand onto the battlefield. (Then planeswalk away from this phenomenon.)
+type=Phenomenon
+[/card]
+[card]
+name=Planewide Disaster
+text=When you encounter Planewide Disaster, destroy all creatures. (Then planeswalk away from this phenomenon.)
+type=Phenomenon
+[/card]
+[card]
+name=Selesnya Loft Gardens
+text=If an effect would put one or more tokens onto the battlefield, it puts twice that many of those tokens onto the battlefield instead. -- If an effect would place one or more counters on a permanent, it places twice that many of those counters on that permanent instead. -- Whenever you roll {K}, until end of turn, whenever you tap a land for mana, add one mana to your mana pool of any type that land produced.
+type=Plane
+subtype=Ravnica
+[/card]
+[card]
+name=Spatial Merging
+text=When you encounter Spatial Merging, reveal cards from the top of your planar deck until you reveal two plane cards. Simultaneously planeswalk to both of them. Put all other cards revealed this way on the bottom of your planar deck in any order.
+type=Phenomenon
+[/card]
+[card]
+name=Bloodhill Bastion
+text=Whenever a creature enters the battlefield, it gains double strike and haste until end of turn. -- Whenever you roll {K}, exile target nontoken creature you control, then return it to the battlefield under your control.
+type=Plane
+subtype=Equilor
+[/card]
+[card]
+name=The Aether Flues
+text=When you planeswalk to The Aether Flues or at the beginning of your upkeep, you may sacrifice a creature. If you do, reveal cards from the top of your library until you reveal a creature card, put that card onto the battlefield, then shuffle all other cards revealed this way into your library. -- Whenever you roll {C}, you may put a creature card from your hand onto the battlefield.
+type=Plane
+subtype=Iquatana
+[/card]
+[card]
+name=Chaotic Aether
+text=When you encounter Chaotic Aether, each blank roll of the planar die is a CHAOS roll until a player planeswalks away from a plane. (Then planeswalk away from this phenomenon.)
+type=Phenomenon
+[/card]
+[card]
+name=The Great Forest
+text=Each creature assigns combat damage equal to its toughness rather than its power. -- Whenever you roll {C}, creatures you control get +0/+2 and gain trample until end of turn.
+type=Plane
+subtype=Lorwyn
+[/card]
+[card]
+name=Glimmervoid Basin
+text=Whenever a player casts an instant or sorcery spell with a single target, he or she copies that spell for each other spell, permanent, card not on the battlefield, and/or player the spell could target. Each copy targets a different one of them. -- Whenever you roll {C}, choose target creature. Each player except that creature's controller puts a token that's a copy of that creature onto the battlefield.
+type=Plane
+subtype=Mirrodin
+[/card]
+[card]
+name=Hedron Fields of Agadeem
+text=Creatures with power 7 or greater can't attack or block. -- Whenever you roll {K}, put a 7/7 colorless Eldrazi creature token with annihilator 1 onto the battlefield. (Whenever it attacks, defending player sacrifices a permanent.)
+type=Plane
+subtype=Zendikar
+[/card]
+[card]
+name=Grove of the Dreampods
+text=When you planeswalk to Grove of the Dreampods or at the beginning of your upkeep, reveal cards from the top of your library until you reveal a creature card. Put that card onto the battlefield and the rest on the bottom of your library in a random order. -- Whenever you roll {K}, return target creature card from your graveyard to the battlefield.
+type=Plane
+subtype=Fabacin
+[/card]
+[card]
+name=Isle of Vesuva
+text=Whenever a nontoken creature enters the battlefield, its controller puts a token onto the battlefield that's a copy of that creature. -- Whenever you roll {C}, destroy target creature and all other creatures with the same name as that creature.
+type=Plane
+subtype=Dominaria
+[/card]
+[card]
+name=Strionic Resonator
+text={2}, {T}: Copy target triggered ability you control. You may choose new targets for the copy. (A triggered ability uses the words "when," "whenever," or "at.")
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Inspiring Statuary
+text=Nonartifact spells you cast have improvise. (Your artifacts can help cast those spells. Each artifact you tap after you're done activating mana abilities pays for {1}.)
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Dromoka's Command
+text=Choose two -- Prevent all damage target instant or sorcery spell would deal this turn. -- Target player sacrifices an enchantment. -- Put a +1/+1 counter on target creature. -- Target creature you control fights target creature you don't control.
+mana={G}{W}
+type=Instant
+[/card]
