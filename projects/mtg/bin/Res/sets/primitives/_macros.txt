@@ -59,6 +59,11 @@
 
 # Scry, Evergreen
 #AUTO_DEFINE _SCRY_($c) scry:$c scrycore delayed dontshow donothing scrycoreend scryend
+#AUTO_DEFINE _SCRY1_ scry:1 scrycore delayed dontshow donothing scrycoreend scryend
+#AUTO_DEFINE _SCRY2_ scry:2 scrycore delayed dontshow donothing scrycoreend scryend
+#AUTO_DEFINE _SCRY3_ scry:3 scrycore delayed dontshow donothing scrycoreend scryend
+#AUTO_DEFINE _SCRY4_ scry:4 scrycore delayed dontshow donothing scrycoreend scryend
+#AUTO_DEFINE _SCRY5_ scry:5 scrycore delayed dontshow donothing scrycoreend scryend
 
 # Fabricate
 #AUTO_DEFINE _FABRICATE_($c) transforms((,newability[choice counter(1/1.$c)],newability[choice create(Servo:Artifact Creature Servo:1/1)*$c])) ueot
