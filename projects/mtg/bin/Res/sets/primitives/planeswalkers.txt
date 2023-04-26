@@ -625,7 +625,7 @@ subtype=Chandra
 [card]
 name=Chandra, Torch of Defiance
 auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Exile Top Card) all(*[zpos=1|mylibrary) moveto(myexile) and!( transforms((,newability[choice name(Deals 2 damage) name(Deals 2 damage) damage:2 opponent],newability[if cantargetcard(*[-land]|*) then choice name(Cast card from exile) name(Cast card from exile) counter(0/0.1.ChandraEffect) notrg])) ueot )!
+auto={C(0/0,1,Loyalty)}:name(+1: Exile Top Card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( transforms((,newability[choice name(Deals 2 damage) name(Deals 2 damage) damage:2 opponent],newability[if cantargetcard(*[-land]|*) then choice name(Cast card from exile) name(Cast card from exile) counter(0/0.1.ChandraEffect) notrg])) ueot )!
 auto=lord(*[counter{0/0.1.ChandraEffect}]|myexile) canplayfromexile
 auto=@each endofturn:if type(*[counter{0/0.1.ChandraEffect}]|myexile)~morethan~0 then name(Effect ends) name(Effect ends) all(*[counter{0/0.1.ChandraEffect}]|myexile) removeallcounters(0/0.1.ChandraEffect)
 auto=@each endofturn:if type(*[counter{0/0.1.ChandraEffect}]|myexile)~morethan~0 then name(Deals 2 damage) name(Deals 2 damage) damage:2 opponent
@@ -1330,7 +1330,7 @@ auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && c
 auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-7,loyalty) restriction{type(*[manacost=7;zpos=1]|mylibrary)~morethan~0}
 auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-8,loyalty) restriction{type(*[manacost=8;zpos=1]|mylibrary)~morethan~0}
 auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-9,loyalty) restriction{type(*[manacost=9;zpos=1]|mylibrary)~morethan~0}
-auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-10,loyalty) restriction{type(*[manacost=10;zpos=1]|mylibrary)~morethan~0
+auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-10,loyalty) restriction{type(*[manacost=10;zpos=1]|mylibrary)~morethan~0}
 auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-11,loyalty) restriction{type(*[manacost=11;zpos=1]|mylibrary)~morethan~0}
 auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-12,loyalty) restriction{type(*[manacost=12;zpos=1]|mylibrary)~morethan~0}
 auto={C(0/0,0,Loyalty)}:name(+0: Draw 1 and remove Loyalty counters) draw:1 && counter(0/0,-13,loyalty) restriction{type(*[manacost=13;zpos=1]|mylibrary)~morethan~0}
@@ -2582,7 +2582,7 @@ subtype=Sorin
 [card]
 name=Sorin, Imperious Bloodlord
 auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Deathtouch and Lifelink a Vampire) target(creature[vampire]|myBattlefield) deathtouch ueot && lifelink ueotcounter(1/1) restriction{type(creature[vampire])
+auto={C(0/0,1,Loyalty)}:name(+1: Deathtouch and Lifelink a Vampire) target(creature[vampire]|myBattlefield) deathtouch ueot && lifelink ueotcounter(1/1) restriction{type(creature[vampire])}
 auto={C(0/0,1,Loyalty)}:name(+1: Deathtouch and Lifelink) target(creature[-vampire]|myBattlefield) deathtouch ueot && lifelink ueot
 auto={C(0/0,1,Loyalty)}{S(vampire|myBattlefield)}:name(+1: Sacrifice and deals 3 damage) damage:3 target(player,creature,planeswalker)
 auto={C(0/0,-3,Loyalty)}:name(-3: Put a Vampire from your hand onto the battlefield) moveto(myBattlefield) target(creature[vampire]|myHand)
