@@ -244,7 +244,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "expshroud", //Player can't get experience counters (e.g. "Solemnity").
     "countershroud", //Card can't get any kind of counter (e.g. "Solemnity").
     "nonight", //It can't become night (e.g. "Angel of Eternal Dawn").
-    "nodamageremoved" //Damage is not removed from card (e.g. "Patient Zero").
+    "nodamageremoved", //Damage is not removed from card (e.g. "Patient Zero").
+    "backgoundpartner" //Can choose a backgorund partner as commander (e.g. "Faceless One").
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

@@ -44,7 +44,7 @@ protected:
     Player * loadPlayerRandom(GameObserver* observer, int isAI, int mode);
     Player * loadPlayerRandomThree(GameObserver* observer, int isAI);
     Player * loadPlayerRandomFive(GameObserver* observer, int isAI);
-	Player * loadPlayerRandomCommander(GameObserver* observer, int isAI);	
+    Player * loadPlayerRandomCommander(GameObserver* observer, int isAI);
     Player * loadPlayerHorde(GameObserver* observer, int isAI);
     Player * loadRandomSetLimited(GameObserver* observer, int isAI);
     Player * initPlayer(GameObserver *observer, int playerId);

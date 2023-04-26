@@ -168,7 +168,7 @@ void Rules::addExtraRules(GameObserver* g)
                 difficultyRating = 0;
             else if(g->mRules->gamemode == GAME_TYPE_RANDOM1 || g->mRules->gamemode == GAME_TYPE_RANDOM2)
                 difficultyRating = 0;
-			  else if(g->mRules->gamemode == GAME_TYPE_RANDOM3 || g->mRules->gamemode == GAME_TYPE_RANDOM5 || g->mRules->gamemode == GAME_TYPE_RANDOMCOMMANDER)
+              else if(g->mRules->gamemode == GAME_TYPE_RANDOM3 || g->mRules->gamemode == GAME_TYPE_RANDOM5 || g->mRules->gamemode == GAME_TYPE_RANDOMCOMMANDER)
                 difficultyRating = 0;
              else if(g->mRules->gamemode == GAME_TYPE_HORDE || g->mRules->gamemode == GAME_TYPE_SET_LIMITED)
                 difficultyRating = 0;
@@ -420,47 +420,47 @@ Player * Rules::loadPlayerRandomCommander(GameObserver* observer, int isAI)
 { 
     MTGDeck * cmdTempDeck = NEW MTGDeck(MTGCollection()); 
     MTGDeck * tempDeck = NEW MTGDeck(MTGCollection());
-	tempDeck->meta_commander = true;
+    tempDeck->meta_commander = true;
 
-	string lands[] = { "", "forest", "island", "mountain", "swamp", "plains", "basic", "basic" };
+    string lands[] = { "", "forest", "island", "mountain", "swamp", "plains", "basic", "basic" };
 
-	cmdTempDeck->addRandomCards(1, 0, 0, -1, "legendary");
-	DeckDataWrapper * myCommandZone = NEW DeckDataWrapper(cmdTempDeck);
-	MTGCard * commander = myCommandZone->getCard(0, true);	
+    cmdTempDeck->addRandomCards(1, 0, 0, -1, "legendary");
+    DeckDataWrapper * myCommandZone = NEW DeckDataWrapper(cmdTempDeck);
+    MTGCard * commander = myCommandZone->getCard(0, true);    
 
-	while(!commander->data->isCreature())
-	{
-		cmdTempDeck->addRandomCards(1, 0, 0, -1, "legendary");
-		myCommandZone = NEW DeckDataWrapper(cmdTempDeck);
-		commander = myCommandZone->getCard(0, true);	
-	}
+    while(!commander->data->isCreature())
+    {
+        cmdTempDeck->addRandomCards(1, 0, 0, -1, "legendary");
+        myCommandZone = NEW DeckDataWrapper(cmdTempDeck);
+        commander = myCommandZone->getCard(0, true);    
+    }
 
-	stringstream cid;
+    stringstream cid;
     cid << commander->getMTGId();
     vector<string> newCMD;
-	newCMD.push_back(cid.str());    
-	tempDeck->replaceCMD(newCMD);
-	
-	std::vector< int > colors;
+    newCMD.push_back(cid.str());    
+    tempDeck->replaceCMD(newCMD);
+    
+    std::vector< int > colors;
 
-	for (int i = 0; i < Constants::NB_Colors; i++) 
-	{
-		if (commander->data->getManaCost()->hasColor(i))
-			colors.push_back(i);										                       
-	}	
+    for (int i = 0; i < Constants::NB_Colors; i++) 
+    {
+        if (commander->data->getManaCost()->hasColor(i))
+            colors.push_back(i);
+    }    
 
-	if(colors.data()[0] != 0) { colors.insert(colors.begin(),0); }
-	
-	if(colors.size() > 1) 
-	{	
-		for (unsigned int i = 1; i < colors.size(); i++)
-		{
-			tempDeck->addRandomCards(40/(colors.size()-1), 0, 0, 'L', lands[colors.data()[i]].c_str());										                       
-		}		
-	}
-	else { tempDeck->addRandomCards(40, 0, 0, -1, "basic"); }
-	
-	tempDeck->addRandomCards(59, 0, 0, -1, "", colors.data(), colors.size());
+    if(colors.data()[0] != 0) { colors.insert(colors.begin(),0); }
+    
+    if(colors.size() > 1) 
+    {    
+        for (unsigned int i = 1; i < colors.size(); i++)
+        {
+            tempDeck->addRandomCards(40/(colors.size()-1), 0, 0, 'L', lands[colors.data()[i]].c_str());
+        }
+    }
+    else { tempDeck->addRandomCards(40, 0, 0, -1, "basic"); }
+    
+    tempDeck->addRandomCards(59, 0, 0, -1, "", colors.data(), colors.size());
     
     string deckFile = "random";
     string deckFileSmall = "random";
@@ -565,7 +565,7 @@ Player * Rules::initPlayer(GameObserver *g, int playerId)
             return loadPlayerRandomThree(g, isAI);
          case GAME_TYPE_RANDOM5:
             return loadPlayerRandomFive(g, isAI);
-		 case GAME_TYPE_RANDOMCOMMANDER:
+         case GAME_TYPE_RANDOMCOMMANDER:
             return loadPlayerRandomCommander(g, isAI);
          case GAME_TYPE_HORDE:
             return loadPlayerHorde(g, isAI);
@@ -888,7 +888,7 @@ GameType Rules::strToGameMode(string s)
     if (s.compare("random2") == 0) return GAME_TYPE_RANDOM2;
     if (s.compare("random3") == 0) return GAME_TYPE_RANDOM3;
     if (s.compare("random5") == 0) return GAME_TYPE_RANDOM5;
-	if (s.compare("random_commander") == 0) return GAME_TYPE_RANDOMCOMMANDER;
+    if (s.compare("random_commander") == 0) return GAME_TYPE_RANDOMCOMMANDER;
     if (s.compare("horde") == 0) return GAME_TYPE_HORDE;
     if (s.compare("set_limited") == 0) return GAME_TYPE_SET_LIMITED;
     if (s.compare("story") == 0) return GAME_TYPE_STORY;
