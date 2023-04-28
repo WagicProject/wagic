@@ -238,7 +238,7 @@ name=Arlinn, Embraced by the Moon
 backside=Arlinn Kord
 auto={C(0/0,1,Loyalty)}:name(+1: Creatures gets +1/+1 & trample) all(creature|mybattlefield) 1/1 ueot && all(creature|mybattlefield) trample ueot
 auto={C(0/0,-1,Loyalty)}:name(-1: Deals 3 damage and transform) ability$!name(Choose one) choice name(Damage player) damage:3 target(player) _ choice name(Damage creature) damage:3 target(creature) _ choice name(Damage planeswalker) damage:3 target(planeswalker)!$ controller && all(this) flip(Arlinn Kord)
-auto={C(0/0,-6,Loyalty)}:name(-6: Emblem: Creatures get ability powerstrike) emblem transforms((,newability[lord(creature|mybattlefield) {T}:target(creature,player) dynamicability<!powerstrike!>],newability[lord(creature|mybattlefield) haste])) forever dontremove
+auto={C(0/0,-6,Loyalty)}:name(-6: Emblem: Creatures get ability powerstrike) emblem transforms((,newability[lord(creature|mybattlefield) transforms((,newability[{T}:target(creature) dynamicability<!powerstrike!>]))],newability[lord(creature|mybattlefield) haste])) forever dontremove
 text=+1: Creatures you control get +1/+1 and gain trample until end of turn. -- -1: Arlinn, Embraced by the Moon deals 3 damage to target creature or player. Transform Arlinn, Embraced by the Moon. -- -6: You get an emblem with "Creatures you control have haste and '{T}: This creature deals damage equal to its power to target creature or player.'"
 type=Legendary Planeswalker
 subtype=Arlinn
@@ -2370,7 +2370,7 @@ subtype=Ral
 [card]
 name=Rowan, Fearless Sparkmage
 auto=counter(0/0,5,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: +3/+3 and First Strike) target(creature) 3/0 ueot && first strike ueot
+auto={C(0/0,1,Loyalty)}:name(+1: +3/0 and First Strike) target(creature) 3/0 ueot && first strike ueot
 auto={C(0/0,-2,Loyalty)}:name(-2: Deals 1 damage and can't block) target(<upto:2>creature) damage:1 && cantblock ueot
 auto={C(0/0,-9,Loyalty)}:name(-9: Gain control of creatures) all(creature|battlefield) moveTo(mybattlefield) && all(creature|battlefield) transforms((,newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot oneshot
 text=+1: Up to one target creature gets +3/+0 and gains first strike until end of turn. -- -2: Rowan, Fearless Sparkmage deals 1 damage to each of up to two target creatures. Those creatures can't block this turn. -- -9: Gain control of all creatures until end of turn. Untap them. They gain haste until end of turn.
