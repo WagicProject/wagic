@@ -4,7 +4,7 @@
 # it means that if you have a macro named MACRO and a macro named MACRO2, you'll run into trouble because MACRO2 will match MACRO
 # Because of that, you need to use a unique delimiter at the beginning and the end of a macro, I personally use "__"
 #
-# Limitations: parameter inside macro must not contain ")"
+# Limitations: parameter inside macro must not contain "()"
 
 # Standard Cycling
 #AUTO_DEFINE __CYCLING__($cost) $cost{cycle}:name(cycling) draw:1
@@ -98,7 +98,7 @@
 # Ripple
 #AUTO_DEFINE _RIPPLE_($c) autostack=if casted(this) then reveal:$c optionone name(Cast Card) target(<upto:$c>[share!name!]|reveal) moveTo(mylibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put on bottom) target(<$c>*|reveal) bottomoflibrary optiontwoend afterrevealed all(tobecast|mylibrary) moveTo(myLibrary) and!( activate castcard(normal) )! afterrevealedend revealend
 
-# Recover                              
+# Recover
 #AUTO_DEFINE _RECOVER_($cost) @movedTo(creature|myGraveyard) from(Battlefield):may pay{$cost} name(Return to owner Hand) moveTo(ownerHand) all(this) donothing?moveTo(exile) all(this)
 
 # Clash, not implemented
@@ -127,7 +127,7 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 
 # Monarch
 #AUTO_DEFINE _MONARCH_CONTROLLER_ if type(The Monarch|battlefield)~lessthan~1 then token(The Monarch) else all(The Monarch|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
-#AUTO_DEFINE _MONARCH_OPPONENT_ if type(The Monarch|battlefield)~lessthan~1 then token(The Monarch) opponent else all(The Monarch|battlefield) moveto(opponentbattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )! 
+#AUTO_DEFINE _MONARCH_OPPONENT_ if type(The Monarch|battlefield)~lessthan~1 then token(The Monarch) opponent else all(The Monarch|battlefield) moveto(opponentbattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 
 # Explore, not implemented
 #AUTO_DEFINE _EXPLORE_ reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) optiontwoend revealend limit:1
@@ -151,7 +151,7 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 #AUTO_DEFINE _AFTERLIFE_($c) @movedTo(this|graveyard) from(battlefield):create(Spirit:Creature Spirit:1/1:white,black:flying)*$c
 
 # Riot
-#AUTO_DEFINE _RIOT_ movedTo(this|myBattlefield):transforms((,newability[ability$! name(Choose counter or ability) choice name(Put a +1/+1 counter) counter(1/1,1) target(creature) _ choice name(Gains Haste) haste target(creature) forever !$ controller]))
+#AUTO_DEFINE _RIOT_ movedTo(this|myBattlefield):transforms((,newability[ability$! name(Choose counter or ability) choice name(Put a +1/+1 counter) counter(1/1) target(creature) _ choice name(Gains Haste) haste target(creature) forever !$ controller]))
 
 # Learn
 #AUTO_DEFINE _LEARN_ name(Learn) transforms((,newability[if type(*[lesson]|mysideboard)~morethan~0 then choice name(Put lesson in hand) name(Put lesson in hand) target(*[lesson]|mysideboard) moveto(myhand)],newability[if type(*|myhand)~morethan~0 then choice name(Discard and draw) name(Discard and draw) target(*|myhand) reject and!(draw:1)!],newability[if type(Retriever Phoenix|mygraveyard)~morethan~0 then choice name(Return a Retriever Phoenix) name(Return a Retriever Phoenix) target(Retriever Phoenix|mygraveyard) moveto(myBattlefield)],newability[choice name(Don't learn) donothing])) oneshot
@@ -227,7 +227,7 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 
 # Thopter Token
 #AUTO_DEFINE _THOPTERTOKEN_ create(Thopter:Artifact Creature Thopter:1/1:flying)
- 
+
 # Wolf Token
 #AUTO_DEFINE _WOLFTOKEN_ create(Wolf:creature Wolf:2/2:green)
 

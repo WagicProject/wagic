@@ -724,7 +724,7 @@ name=Domri, Chaos Bringer
 auto=counter(0/0,5,loyalty)
 aicode=activate moveto(myHand) target(creature[zpos=2]|myLibrary)
 auto={C(0/0,1,Loyalty)}:name(+1: Add red if its a creature, Riot) add{R} && if type(creature|myStack)~morethan~0 then ability$!name(Choose one) choice name(Put a +1/1 counter) counter(1/1) target(creature[fresh]|myBattlefield) _ choice name(Gain Haste) haste target(creature[fresh]|myBattlefield)!$ controller
-auto={C(0/0,1,Loyalty)}:name(+1: Add green if its a creature, Riot) add{G} && if type(creature|myStack)~morethan~0 then ability$!name(Choose one) choice name(Put a +1/1 counter) counter(1/1) target(creature[fresh]|myBattlefield) _ choice name(Gain Haste) haste target(creature[fresh]|myBattlefield)!$ controller !$ controller
+auto={C(0/0,1,Loyalty)}:name(+1: Add green if its a creature, Riot) add{G} && if type(creature|myStack)~morethan~0 then ability$!name(Choose one) choice name(Put a +1/1 counter) counter(1/1) target(creature[fresh]|myBattlefield) _ choice name(Gain Haste) haste target(creature[fresh]|myBattlefield)!$ controller
 auto={C(0/0,-3,Loyalty)}:name(-3: Reveal four and put up to two creature) name(Look your Library) reveal:4 optionone name(Get a card) target(<upto:2>*[creature]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend revealend
 auto={C(0/0,-8,Loyalty)}:name(-8: Emblem: "Each end of turn create a 4/4 Beast) emblem transforms((,newability[@each endofturn: token(Beast,Creature Beast,4/4,red,green,trample)])) forever dontrevome
 text=+1: Add {R} or {G}. If that mana is spent on a creature spell, it gains riot. (It enters the battlefield with your choice of a +1/+1 counter or haste.) -- −3: Look at the top four cards of your library. You may reveal up to two creature cards from among them and put them into your hand. Put the rest on the bottom of your library in a random order. -- −8: You get an emblem with "At the beginning of each end step, create a 4/4 red and green Beast creature token with trample."
@@ -2087,7 +2087,7 @@ subtype=Bolas
 [card]
 name=Nicol Bolas, the Deceiver
 auto=counter(0/0,5,loyalty)
-auto={C(0/0,3,Loyalty)}:name(+3: Loses 3 life unless discard or sacrifices permanent) ability$!choice life:-3 controller choice sacrifice notatarget(*[-land]|mybattlefield) choice target(*|myhand) reject$! opponent
+auto={C(0/0,3,Loyalty)}:name(+3: Loses 3 life unless discard or sacrifices permanent) ability$!choice life:-3 controller choice sacrifice notatarget(*[-land]|mybattlefield) choice target(*|myhand) reject!$ opponent
 auto={C(0/0,-3,Loyalty)}:name(-3: Destroy target creature and draw a card) destroy target(creature) and!(draw:1 controller)!
 auto={C(0/0,-11,Loyalty)}:name(-11: Deals 7 damage and draw 7) damage:7 opponent and!(draw:7 controller)!
 text=+3: Each opponent loses 3 life unless that player sacrifices a nonland permanent or discards a card. -- -3: Destroy target creature. Draw a card. -- -11: Nicol Bolas, the Deceiver deals 7 damage to each opponent. You draw seven cards.
@@ -2247,7 +2247,7 @@ abilities=canbecommander
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Each opponent loses 1 life...) life:-1 opponent && life:1 controller
 auto={C(0/0,-2,Loyalty)}:name(-2: Create a 5/5 black Demon with flying...) token(Demon,Creature Demon,5/5,black,flying) && life:-2 controller
-auto={C(0/0,-8,Loyalty)}:name(-8: Emblem: "{1}{B}, sacrifice a creature: Draw X and gain X life") emblem transforms((,newability[{1}{B}{S(creature|myBattlefield}:draw:storedpower && life:storedpower])) forever dontremove
+auto={C(0/0,-8,Loyalty)}:name(-8: Emblem: "{1}{B}, sacrifice a creature: Draw X and gain X life") emblem transforms((,newability[{1}{B}{S(creature|myBattlefield)}:draw:storedpower && life:storedpower])) forever dontremove
 text=+2: Each opponent loses 1 life. You gain life equal to the life lost this way. -- -2: Create a 5/5 black Demon creature token with flying. You lose 2 life. -- -8: You get an emblem with "{1}{B}, Sacrifice a creature: You gain X life and draw X cards, where X is the sacrificed creature's power." -- Ob Nixilis of the Black Oath can be your commander.
 mana={3}{B}{B}
 type=Legendary Planeswalker
@@ -2729,7 +2729,7 @@ subtype=Teferi
 [card]
 name=Teferi, Master of Time
 auto=counter(0/0,3,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Draw a card and discard one) draw:1 controller && transforms((,newability[target(*|myhand) reject])) oneshot
+auto={C(0/0,1,Loyalty)}:name(+1: Draw a card and discard one) _LOOT_
 auto={C(0/0,-3,Loyalty)}:name(-3: Target creature you don't control phases out) target(creature|opponentBattlefield) phaseout
 auto={C(0/0,-10,Loyalty)}:name(-10: Take two extra turns) turns:+2 controller
 text=You may activate loyalty abilities of Teferi, Master of Time on any player's turn any time you could cast an instant. -- +1: Draw a card, then discard a card. -- −3: Target creature you don't control phases out. (Treat it and anything attached to it as though they don't exist until its controller's next turn.) -- −10: Take two extra turns after this one.
@@ -2864,7 +2864,7 @@ name=Tezzeret, Cruel Machinist
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Draw a card) draw:1 controller
 auto={C(0/0,0,Loyalty)}:name(+0: Target artifact becomes 5/5) target(artifact) transforms((Artifact Creature,setpower=5,settoughness=5)) uynt
-auto={C(0/0,-7,Loyalty)}:name(-7: Manifest any number of cards form your hand) manifest notatarget(<anyamount>*|myHand) and!( transforms((Artifact Creature,setpower=5,settoughness=5) forever )!
+auto={C(0/0,-7,Loyalty)}:name(-7: Manifest any number of cards form your hand) manifest notatarget(<anyamount>*|myHand) and!( transforms((Artifact Creature,setpower=5,settoughness=5)) forever )!
 text=+1: Draw a card. -- 0: Until your next turn, target artifact you control becomes a 5/5 creature in addition to its other types. -- −7: Put any number of cards from your hand onto the battlefield face down. They're 5/5 artifact creatures.
 mana={4}{U}{U}
 type=Legendary Planeswalker
