@@ -1069,7 +1069,7 @@ bool ShopBooster::unitTest()
         TestSuite::Log(result);
         res = false;
     }
-    sprintf(result, "<span class=\"success\">==Test Succesful !==</span><br />");
+    sprintf(result, "<span class=\"success\">==Test Successful !==</span><br />");
     TestSuite::Log(result);
     SAFE_DELETE(ddw);
     SAFE_DELETE(d);

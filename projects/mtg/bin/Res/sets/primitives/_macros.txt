@@ -102,13 +102,13 @@
 #AUTO_DEFINE _RECOVER_($cost) @movedTo(creature|myGraveyard) from(Battlefield):may pay{$cost} name(Return to owner Hand) moveTo(ownerHand) all(this) donothing?moveTo(exile) all(this)
 
 # Clash, not implemented
-$AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Erratic Explosion. Meaby it would work with a few fix
+#AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Erratic Explosion. Meaby it would work with a few fix
 
 # Proliferate
 #AUTO_DEFINE _PROLIFERATE_ name(Proliferate) notatarget(proliferation) proliferate
 
 # Scavenge
-#AUTO_DEFINE _SCAVENGE_($cost) {$cost}:name(scavenge) counter(1/1,storedpower) target(creature) asSorcery
+#AUTO_DEFINE _SCAVENGE_($power) name(scavenge) counter(1/1,$power) target(creature) asSorcery
 
 # Monstrosity, not implemented
 #AUTO_DEFINE _MONSTROSITY_($cost,$c) name(Monstrosity) this(cantargetcard(*[-monstrous]) {$cost}:becomes(monstrous) forever && counter(1/1.$c)
@@ -185,6 +185,9 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 
 # Connives. (Draw a card, then discard a card. If you discarded a nonland card, put a +1/+1 counter on this creature.)
 #AUTO_DEFINE _CONNIVES_ draw:1 && transforms((,newability[if type(*[-land]|myhand)~morethan~0 then choice name(Discard a nonland) name(Discard a nonland) target(*[-land]|myhand) reject && counter(1/1) all(this)],newability[if type(land|myhand)~morethan~0 then choice name(Discard a land) name(Discard a land) target(land|myhand) reject])) oneshot
+
+# Eternalize 
+#AUTO_DEFINE _ETERNALIZE_ name(Eternalize) clone and!( transforms((Zombie,removemc,setpower=4,settoughness=4,black)) forever )! assorcery
 
 # Angel Token
 #AUTO_DEFINE _ANGELTOKEN_ create(Angel:Creature Angel:4/4:white:flying)
