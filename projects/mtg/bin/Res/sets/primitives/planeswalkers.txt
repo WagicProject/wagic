@@ -288,7 +288,7 @@ name=Ashiok, Dream Render
 auto=counter(0/0,5,loyalty)
 auto=lord(*|opponentlibrary) shroud
 auto={C(0/0,-1,Loyalty)}:name(-1: Target opponent mils four and exile his or her graveyard) target(player) deplete:4 && moveTo(exile) all(*|opponentgraveyard)
-text=Spells and abilities your opponents control can't cause their controller to search their library. -- -1: Target player puts the top four cards of their library into their graveyard. Then exile each opponent's graveyard.
+text=Spells and abilities your opponents control can't cause their controller to search their library. -- -1: Target player mills four cards. Then exile each opponent's graveyard.
 mana={1}{UB}{UB}
 type=Legendary Planeswalker
 subtype=Ashiok
@@ -341,7 +341,7 @@ auto=counter(0/0,5,loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Draw a card and put two cards...) draw:1 controller && deplete:2 opponent deplete:2 controller
 auto={C(0/0,-5,Loyalty)}:name(-5: Return target creature from graveyars) moveTo(myBattlefield) target(creature|Graveyard)
 auto={C(0/0,-11,Loyalty)}:name(-11: Gain control of all creatures..) moveTo(myBattlefield) all(creature|opponentBattlefield)
-text=+2: Draw a card. Each player puts the top two cards of their library into their graveyard. -- -5: Put target creature card from a graveyard onto the battlefield under your control. -- -11: Gain control of all creatures target opponent controls.
+text=+2: Draw a card. Each player mills two cards. -- -5: Put target creature card from a graveyard onto the battlefield under your control. -- -11: Gain control of all creatures target opponent controls.
 mana={4}{U}{B}
 type=Legendary Planeswalker
 subtype=Ashiok
@@ -1402,7 +1402,7 @@ auto=counter(0/0,4,loyalty)
 auto=@drawof(player) restriction{type(*|mylibrary)~equalto~0}:wingame
 auto={C(0/0,1,Loyalty)}:name(+1: Target player milss two and draws a card) target(player) deplete:2 && draw:1
 auto={C(0/0,-8,Loyalty)}:name(-8: Draw seven cards if no cards are in library win the game) if type(*|mylibrary)~lessthan~8 then wingame else draw:7
-text=If you would draw a card while your library has no cards in it, you win the game instead. -- +1: Target player puts the top two cards of their library into their graveyard. Draw a card. -- -8: Draw seven cards. Then if your library has no cards in it, you win the game.
+text=If you would draw a card while your library has no cards in it, you win the game instead. -- +1: Target player mills two cards. Draw a card. -- -8: Draw seven cards. Then if your library has no cards in it, you win the game.
 mana={1}{U}{U}{U}
 type=Legendary Planeswalker
 subtype=Jace
@@ -2465,7 +2465,7 @@ subtype=Sarkhan
 [card]
 name=Sarkhan, Fireblood
 auto=counter(0/0,3,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Discard and draw) ability$!may reject notatarget(*|myhand) and!(draw:1)! !$ controller
+auto={C(0/0,1,Loyalty)}:name(+1: Discard and draw) ability$!may _DISCARD&DRAW_ !$ controller
 auto={C(0/0,1,Loyalty)}:name(+1: Add two mana in any combination of colors) if type(dragon|mycastingzone)~morethan~0 then thisforeach(variable{2}) ability$!name(add mana) choice add{G} _ choice add{R} _ choice add{U} _ choice add{B} _ choice add{W}!$ controller
 auto={C(0/0,-7,Loyalty)}:name(-7: Create four 5/5 Dragons) _DRAGONTOKEN_*4
 text=+1: You may discard a card. If you do, draw a card. -- +1: Add two mana in any combination of colors. Spend this mana only to cast Dragon spells. -- −7: Create four 5/5 red Dragon creature tokens with flying.
@@ -3288,7 +3288,7 @@ subtype=Wrenn
 [/card]
 [card]
 name=Xenagos, the Reveler
-aicode=activate transforms((,newability[all(*[zpos<=7]|mylibrary) moveto(exile) and!( if cantargetcard(*[creature;land]|*) then moveto(ownerbattlefield)])) ueot
+aicode=activate transforms((,newability[all(*[zpos<=7]|mylibrary) moveto(exile) and!( if cantargetcard(*[creature;land]|*) then moveto(ownerbattlefield)])!)) ueot
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Add X combination of red and green mana for each creature) foreach(creature|mybattlefield) ability$!name(Choose one) choice name(Add Red) add{R} _ choice name(Add Green) add{G}!$ controller
 auto={C(0/0,0,Loyalty)}:name(+0: Create a 2/2 Satyr) token(Satyr,Creature Satyr,2/2,green,red,haste)

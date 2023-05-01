@@ -189,6 +189,9 @@
 # Eternalize 
 #AUTO_DEFINE _ETERNALIZE_ name(Eternalize) clone and!( transforms((Zombie,removemc,setpower=4,settoughness=4,black)) forever )! assorcery
 
+# Discard a card. If you do, draw a card
+#AUTO_DEFINE _DISCARD&DRAW_ reject notatarget(*|myhand) and!(draw:1 controller)!
+
 # Angel Token
 #AUTO_DEFINE _ANGELTOKEN_ create(Angel:Creature Angel:4/4:white:flying)
 
