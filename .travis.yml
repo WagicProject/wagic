@@ -50,8 +50,8 @@ install:
     tar -zxf android-sdk_r24.4.1-linux.tgz &&
     $ANDROID list sdk --extended -a &&
     echo yes | $ANDROID update sdk -a -t tools,platform-tools,build-tools-23.0.1,android-23 --no-ui --force --no-https;
-    sudo apt-get install openjdk-11-jdk;
-    export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64;
+    sudo apt-get install openjdk-8-jdk;
+    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64;
     export PATH=$JAVA_HOME/bin:$PATH;
   fi
 - sudo pip install --upgrade pip
