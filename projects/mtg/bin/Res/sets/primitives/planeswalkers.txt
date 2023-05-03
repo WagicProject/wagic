@@ -338,7 +338,7 @@ subtype=Ashiok
 [card]
 name=Ashiok, Sculptor of Fears
 auto=counter(0/0,5,loyalty)
-auto={C(0/0,2,Loyalty)}:name(+2: Draw a card and put two cards...) draw:1 controller && deplete:2 opponent deplete:2 controller
+auto={C(0/0,2,Loyalty)}:name(+2: Draw a card and put two cards...) draw:1 controller && all(player) deplete:2
 auto={C(0/0,-5,Loyalty)}:name(-5: Return target creature from graveyars) moveTo(myBattlefield) target(creature|Graveyard)
 auto={C(0/0,-11,Loyalty)}:name(-11: Gain control of all creatures..) moveTo(myBattlefield) all(creature|opponentBattlefield)
 text=+2: Draw a card. Each player mills two cards. -- -5: Put target creature card from a graveyard onto the battlefield under your control. -- -11: Gain control of all creatures target opponent controls.
@@ -665,7 +665,7 @@ name=Daretti, Ingenious Iconoclast
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Create a 1/1 colorless Construct) token(Construct,Artifact Creature Construct,1/1,defender)
 auto={C(0/0,-1,Loyalty)}{S(artifact|mybattlefield)}:name(-1: Sacrifice artifact to destroy) target(creature,artifact|battlefield) destroy
-auto={C(0/0,-6,Loyalty)}:name(-6: Create three copies of an artifact...) target(artifact|graveyard,battlefield) clone && clone && clone
+auto={C(0/0,-6,Loyalty)}:name(-6: Create three copies of an artifact) name(Create three tokens) target(artifact|graveyard,battlefield) transforms((,newability[clone controller] ,newability[clone controller],newability[clone controller]))
 text=+1: Create a 1/1 colorless Construct artifact creature token with defender. -- -1: You may sacrifice an artifact. If you do, destroy target artifact or creature. -- -6: Choose target artifact card in a graveyard or artifact on the battlefield. Create three tokens that are copies of it.
 mana={1}{B}{R}
 type=Legendary Planeswalker
@@ -1269,7 +1269,7 @@ subtype=Jace
 [card]
 name=Jace Beleren
 auto=counter(0/0,3,loyalty)
-auto={C(0/0,2,Loyalty)}:name(+2: Each player draw) draw:1 controller && draw:1 opponent
+auto={C(0/0,2,Loyalty)}:name(+2: Each player draw) all(player) draw:1
 auto={C(0/0,-1,Loyalty)}:name(-1: Target player draw a card) draw:1 target(player)
 auto={C(0/0,-10,Loyalty)}:name(-10: Target player mils twenty) deplete:20 target(player)
 text=+2: Each player draws a card. -- -1: Target player draws a card. -- -10: Target player puts the top twenty cards of his or her library into his or her graveyard.

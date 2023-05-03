@@ -192,6 +192,12 @@
 # Discard a card. If you do, draw a card
 #AUTO_DEFINE _DISCARD&DRAW_ reject notatarget(*|myhand) and!(draw:1 controller)!
 
+# Target creature deals damage equal to its power to target creature you don't control.
+#AUTO_DEFINE _PUNCH_ transforms((,newability[dynamicability<!powerstrike!> target(creature|opponentbattlefield)])) oneshot
+
+# Must be blocked this turn if able
+#AUTO_DEFINE _MUST_BE_BLOCKD_ newability[@combat(attacking) source(this):ability$! notatarget(creature|myBattlefield) transforms((,newability[mustblock])) ueot!$ opponent]
+
 # Angel Token
 #AUTO_DEFINE _ANGELTOKEN_ create(Angel:Creature Angel:4/4:white:flying)
 
