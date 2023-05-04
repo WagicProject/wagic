@@ -813,6 +813,18 @@ type=Legendary Planeswalker
 subtype=Ellywick
 [/card]
 [card]
+name=Elminster
+abilities=canbecommander
+auto=counter(0/0,5,loyalty)
+auto=@scryed(*|mybattlefield,mystack):name(Next spell cost less) target(*[instant;sorcery]|myhand) transforms((,newability[changecost(colorless:-scryedcards) forcedalive])) ueot
+auto={C(0/0,+2,Loyalty)}:name(Draw and scry) draw:1 && _SCRY2_
+auto={C(0/0,−3,Loyalty)}:name(Exile top card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( transforms((,newability[name(Create faeries) token(Faerie^Creature Faerie Dragon^1/1^blue)*manacost])) oneshot )!
+text=Whenever you scry, the next instant or sorcery spell you cast this turn costs {X} less to cast, where X is the number of cards looked at while scrying this way. -- [+2]: Draw a card, then scry 2. -- [−3]: Exile the top card of your library. Create a number of 1/1 blue Faerie Dragon creature tokens with flying equal to that card's mana value. -- Elminster can be your commander.
+mana={3}{W}{U}
+type=Legendary Planeswalker
+subtype=Elminster
+[/card]
+[card]
 name=Elspeth, Knight-Errant
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Create a 1/1 soldier) _SOLDIERTOKEN_
@@ -1912,6 +1924,21 @@ type=Legendary Planeswalker
 subtype=Lukka
 [/card]
 [card]
+name=Minsc & Boo, Timeless Heroes
+abilities=canbecommander
+auto=counter(0/0,3,loyalty)
+auto=may name(Create Boo) token(Boo,Legendary Creature Hamster,1/1,red,trample,haste)
+auto=@each my upkeep:may name(Create Boo) token(Boo,Legendary Creature Hamster,1/1,red,trample,haste)
+auto={C(0/0,+1,Loyalty)}:name(Don't put counters) donothing
+auto={C(0/0,+1,Loyalty)}:name(Put 1/1 counters) target(creature[trample;haste]) counter(1/1,3)
+auto={C(0/0,−2,Loyalty)}{S(creature[-hamster]|mybattlefield)}:name(Sacrifice a non hamster creature) target(player,creature,planeswalker) damage:storedpower
+auto={C(0/0,−2,Loyalty)}{S(creature[hamster]|mybattlefield)}:name(Sacrifice a hamster) target(player,creature,planeswalker) damage:storedpower && draw:storedpower controller
+text=When Minsc & Boo, Timeless Heroes enters the battlefield and at the beginning of your upkeep, you may create Boo, a legendary 1/1 red Hamster creature token with trample and haste. -- [+1]: Put three +1/+1 counters on up to one target creature with trample or haste. -- [−2]: Sacrifice a creature. When you do, Minsc & Boo, Timeless Heroes deals X damage to any target, where X is that creature's power. If the sacrificed creature was a Hamster, draw X cards. -- Minsc & Boo, Timeless Heroes can be your commander.
+mana={2}{R}{G}
+type=Legendary Planeswalker
+subtype=Minsc
+[/card]
+[card]
 name=Mordenkainen
 auto=counter(0/0,5,Loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Draw 2 cards) draw:2 && transforms((,newability[name(Put on bottom) target(*|myhand) bottomoflibrary])) forever
@@ -2714,6 +2741,18 @@ text=+1: Tap target permanent. It doesn't untap during its controller's next unt
 mana={3}{U}{U}
 type=Legendary Planeswalker
 subtype=Tamiyo
+[/card]
+[card]
+name=Tasha, the Witch Queen
+abilities=canbecommander
+auto=counter(0/0,4,loyalty)
+auto=@movedTo(*|mystack) from(opponentzones):name(Create demon) token(Demon,Creature Demon,3/3,black)
+auto={C(0/0,+1,Loyalty)}:name(Draw a card) all(*[zpos=1]|mylibrary) moveto(myhand) and!( transforms((,newability[may name(Exile spell) target(*[instant;sorcery]|opponentgraveyard) moveto(exile) and!( counter(0/0.1.Page) )!])) oneshot )!
+auto={C(0/0,−3,Loyalty)}:name(Cast an exiled spell) target(*[-land;counter{0/0.1.Page}]|exile) activate castcard(normal)
+text=Whenever you cast a spell you don't own, create a 3/3 black Demon creature token. -- [+1]: Draw a card. For each opponent, exile up to one target instant or sorcery card from that player's graveyard and put a page counter on it. -- [−3]: You may cast a spell from among cards in exile with page counters on them without paying its mana cost. -- Tasha, the Witch Queen can be your commander.
+mana={3}{U}{B}
+type=Legendary Planeswalker
+subtype=Tasha
 [/card]
 [card]
 name=Teferi, Hero of Dominaria
