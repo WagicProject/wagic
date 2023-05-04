@@ -151,8 +151,8 @@
 # Undergrowth, not implemented
 #AUTO_DEFINE _UNDERGROWTH_ foreach(creature|myGraveyard)
 
-# Afterlife, not implemented
-#AUTO_DEFINE _AFTERLIFE_($c) @movedTo(this|graveyard) from(battlefield):create(Spirit:Creature Spirit:1/1:white,black:flying)*$c
+# Afterlife
+#AUTO_DEFINE _AFTERLIFETOKEN_ create(Spirit:Creature Spirit:1/1:white:black:flying)
 
 # Riot
 #AUTO_DEFINE _RIOT_ movedTo(this|myBattlefield):transforms((,newability[ability$! name(Choose counter or ability) choice name(Put a +1/+1 counter) counter(1/1) target(creature) _ choice name(Gains Haste) haste target(creature) forever !$ controller]))
