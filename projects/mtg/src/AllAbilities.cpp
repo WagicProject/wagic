@@ -1385,12 +1385,10 @@ int AAAlterInitiative::resolve()
         Player * pTarget = (Player*)_target;
         if(pTarget)
         {
-            if(!pTarget->initiative){
-                pTarget->initiative = 1;
-                pTarget->opponent()->initiative = 0;
-                WEvent * e = NEW WEventplayerInitiative(pTarget);
-                game->receiveEvent(e);
-            }
+            pTarget->initiative = 1;
+            pTarget->opponent()->initiative = 0;
+            WEvent * e = NEW WEventplayerInitiative(pTarget);
+            game->receiveEvent(e);
         }
     }
     return 0;
