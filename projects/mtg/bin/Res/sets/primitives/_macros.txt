@@ -129,6 +129,10 @@
 #AUTO_DEFINE _MONARCH_CONTROLLER_ if type(The Monarch|battlefield)~lessthan~1 then token(The Monarch) else all(The Monarch|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 #AUTO_DEFINE _MONARCH_OPPONENT_ if type(The Monarch|battlefield)~lessthan~1 then token(The Monarch) opponent else all(The Monarch|battlefield) moveto(opponentbattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 
+# Initiative
+#AUTO_DEFINE _INITIATIVE_CONTROLLER_ if type(The Initiative|battlefield)~lessthan~1 then token(The Initiative) else all(The Initiative|battlefield) moveto(mybattlefield) and!( transforms((,newability[takesinitiative controller])) forever )!
+#AUTO_DEFINE _INITIATIVE_OPPONENT_ if type(The Initiative|battlefield)~lessthan~1 then token(The Initiative) opponent else all(The Initiative|battlefield) moveto(opponentbattlefield) and!( transforms((,newability[takesinitiative controller])) forever )!
+
 # Explore, not implemented
 #AUTO_DEFINE _EXPLORE_ reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) optiontwoend revealend limit:1
 
