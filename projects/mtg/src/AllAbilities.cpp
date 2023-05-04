@@ -1370,6 +1370,46 @@ AAAlterMonarch::~AAAlterMonarch()
 {
 }
 
+//AA Initiative
+AAAlterInitiative::AAAlterInitiative(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost,
+        int who) :
+    ActivatedAbilityTP(observer, _id, _source, _target, _cost, who)
+{
+}
+
+int AAAlterInitiative::resolve()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    if (_target)
+    {
+        Player * pTarget = (Player*)_target;
+        if(pTarget)
+        {
+            if(!pTarget->initiative){
+                pTarget->initiative = 1;
+                pTarget->opponent()->initiative = 0;
+                WEvent * e = NEW WEventplayerInitiative(pTarget);
+                game->receiveEvent(e);
+            }
+        }
+    }
+    return 0;
+}
+
+const string AAAlterInitiative::getMenuText()
+{
+    return _("A player takes the Initiative").c_str();
+}
+
+AAAlterInitiative * AAAlterInitiative::clone() const
+{
+    return NEW AAAlterInitiative(*this);
+}
+
+AAAlterInitiative::~AAAlterInitiative()
+{
+}
+
 //AA Energy Counters
 AAAlterEnergy::AAAlterEnergy(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int energy, ManaCost * _cost,
         int who) :

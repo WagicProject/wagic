@@ -385,6 +385,14 @@ struct WEventplayerMonarch : public WEvent {
     virtual Targetable * getTarget(Player * player);
 };
 
+//initiative event
+struct WEventplayerInitiative : public WEvent {
+    WEventplayerInitiative(Player * player);
+    Player * player;
+    using WEvent::getTarget;
+    virtual Targetable * getTarget(Player * player);
+};
+
 //shuffle event
 struct WEventplayerShuffled : public WEvent {
     WEventplayerShuffled(Player * player);

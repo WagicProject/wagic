@@ -40,6 +40,7 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     dungeonCompleted = 0;
     numOfCommandCast = 0;
     monarch = 0;
+    initiative = 0;
     surveilOffset = 0;
     devotionOffset = 0;
     lastShuffleTurn = -1;
