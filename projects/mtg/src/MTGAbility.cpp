@@ -1321,11 +1321,11 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         return NEW TrplayerMonarch(observer, id, card, tc, once, false, true);
 
     //takes the initiative - controller of card
-    if (TargetChooser * tc = parseSimpleTC(s, "takesinitiativeof", card))
+    if (TargetChooser * tc = parseSimpleTC(s, "takeninitiativeof", card))
         return NEW TrplayerInitiative(observer, id, card, tc, once, true, false);
 
     //takes the initiative - opponent of card controller
-    if (TargetChooser * tc = parseSimpleTC(s, "takesinitiativefoeof", card))
+    if (TargetChooser * tc = parseSimpleTC(s, "takeninitiativeof", card))
         return NEW TrplayerInitiative(observer, id, card, tc, once, false, true);
 
     //shuffled library - controller of card
@@ -3966,7 +3966,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
 
     //takes the initiative
-    vector<string> splitInitiative = parseBetween(s, "takesinitiative", " ", false);
+    vector<string> splitInitiative = parseBetween(s, "taketheinitiative", " ", false);
     if (splitInitiative.size())
     {
         Targetable * t = spell ? spell->getNextTarget() : NULL;
