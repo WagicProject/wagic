@@ -1,4 +1,203 @@
 [card]
+name=Volo, Itinerant Scholar
+abilities=backgroundpartner
+text=When Volo enters the battlefield, create Volo's Journal, a legendary colorless artifact token with hexproof and "Whenever you cast a creature spell, note one of its creature types that hasn't been noted for this artifact." -- {2}, {T}: Draw a card for each creature type noted for target permanent you control named Volo's Journal. -- Choose a Background
+mana={2}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=2
+toughness=3
+[/card]
+[card]
+name=Raggadragga, Goreguts Boss
+text=Each creature you control with a mana ability gets +2/+2. -- Whenever a creature you control with a mana ability attacks, untap it. -- Whenever you cast a spell, if at least seven mana was spent to cast it, untap target creature. It gets +7/+7 and gains trample until end of turn.
+mana={2}{R}{G}
+type=Legendary Creature
+subtype=Human Boar
+power=4
+toughness=4
+[/card]
+[card]
+name=Lae'zel, Vlaakith's Champion
+abilities=backgroundpartner
+text=If you would put one or more counters on a creature or planeswalker you control or on yourself, put that many plus one of each of those kinds of counters on that permanent or player instead. -- Choose a Background (You can have a Background as a second commander.)
+mana={2}{W}
+type=Legendary Creature
+subtype=Gith Warrior
+power=3
+toughness=3
+[/card]
+[card]
+name=Lae'zel's Acrobatics
+text=Exile all nontoken creatures you control, then roll a d20. -- 1-9 | Return those cards to the battlefield under their owner's control at the beginning of the next end step. -- 10-20 | Return those cards to the battlefield under their owner's control, then exile them again. Return those cards to the battlefield under their owner's control at the beginning of the next end step.
+mana={3}{W}
+type=Instant
+[/card]
+[card]
+name=Noble Heritage
+text=Commander creatures you own have "When this creature enters the battlefield and at the beginning of your upkeep, each player may put two +1/+1 counters on a creature they control. For each opponent who does, you gain protection from that player until your next turn." (You can't be targeted, dealt damage, or enchanted by anything controlled by that player.)
+mana={1}{W}
+type=Legendary Enchantment
+subtype=Background
+[/card]
+[card]
+name=Archivist of Oghma
+abilities=flash
+text=Flash -- Whenever an opponent searches their library, you gain 1 life and draw a card.
+mana={1}{W}
+type=Creature
+subtype=Halfling Cleric
+power=2
+toughness=2
+[/card]
+[card]
+name=Fraying Line
+text=When Fraying Line enters the battlefield, put a rope counter on target creature you control. -- At the beginning of each player's upkeep, that player may pay {2}. If they do, they put a rope counter on a creature they control. Otherwise, exile Fraying Line and each creature without a rope counter on it, then remove all rope counters from all creatures.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Lae'zel's Acrobatics
+text=Exile all nontoken creatures you control, then roll a d20. -- 1-9 | Return those cards to the battlefield under their owner's control at the beginning of the next end step. -- 10-20 | Return those cards to the battlefield under their owner's control, then exile them again. Return those cards to the battlefield under their owner's control at the beginning of the next end step.
+mana={3}{W}
+type=Instant
+[/card]
+[card]
+name=Green Slime
+abilities=flash
+text=Flash -- When Green Slime enters the battlefield, counter target activated or triggered ability from an artifact or enchantment source. If a permanent's ability is countered this way, destroy that permanent. -- Foretell {G} (During your turn, you may pay {2} and exile this card from your hand face down. Cast it on a later turn for its foretell cost.)
+mana={2}{G}
+type=Creature
+subtype=Ooze
+power=2
+toughness=2
+[/card]
+[card]
+name=Aboleth Spawn
+abilities=flash
+auto=_WARD_(2)
+text=Flash -- Ward {2} -- Probing Telepathy - Whenever a creature entering the battlefield under an opponent's control causes a triggered ability of that creature to trigger, you may copy that ability. You may choose new targets for the copy.
+mana={2}{U}
+type=Creature
+subtype=Fish Horror
+power=2
+toughness=3
+[/card]
+[card]
+name=Stick Together
+text=Each player chooses a party from among creatures they control, then sacrifices the rest. (To choose a party, choose up to one each of Cleric, Rogue, Warrior, and Wizard.)
+mana={3}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Mighty Servant of Leuk-o
+abilities=trample
+text=Trample -- Ward-Discard a card. -- Whenever Mighty Servant of Leuk-o becomes crewed for the first time each turn, if it was crewed by exactly two creatures, it gains "Whenever this creature deals combat damage to a player, draw two cards" until end of turn. -- Crew 4
+mana={3}
+type=Artifact
+subtype=Vehicle
+power=6
+toughness=6
+[/card]
+[card]
+name=Grell Philosopher
+text=Aberrant Tinkering - When Grell Philosopher enters the battlefield and at the beginning of your upkeep, each Horror you control gains all activated abilities of target artifact an opponent controls until end of turn. You may spend blue mana as though it were mana of any color to activate those abilities.
+mana={2}{U}
+type=Creature
+subtype=Horror Wizard
+power=1
+toughness=4
+[/card]
+[card]
+name=Wyll's Reversal
+target=*|stack
+text=Choose target spell or ability with one or more targets. Roll a d20 and add the greatest power among creatures you control. -- 1-14 | You may choose new targets for that spell or ability. -- 15+ | You may choose new targets for that spell or ability. Then copy it. You may choose new targets for the copy.
+mana={2}{R}
+type=Instant
+[/card]
+[card]
+name=Mighty Servant of Leuk-o
+abilities=trample
+text=Trample -- Ward-Discard a card. -- Whenever Mighty Servant of Leuk-o becomes crewed for the first time each turn, if it was crewed by exactly two creatures, it gains "Whenever this creature deals combat damage to a player, draw two cards" until end of turn. -- Crew 4
+mana={3}
+type=Artifact
+subtype=Vehicle
+power=6
+toughness=6
+[/card]
+[card]
+name=Fraying Line
+text=When Fraying Line enters the battlefield, put a rope counter on target creature you control. -- At the beginning of each player's upkeep, that player may pay {2}. If they do, they put a rope counter on a creature they control. Otherwise, exile Fraying Line and each creature without a rope counter on it, then remove all rope counters from all creatures.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Lae'zel, Vlaakith's Champion
+abilities=backgroundpartner
+text=If you would put one or more counters on a creature or planeswalker you control or on yourself, put that many plus one of each of those kinds of counters on that permanent or player instead. -- Choose a Background (You can have a Background as a second commander.)
+mana={2}{W}
+type=Legendary Creature
+subtype=Gith Warrior
+power=3
+toughness=3
+[/card]
+[card]
+name=Volo, Itinerant Scholar
+abilities=backgroundpartner
+text=When Volo enters the battlefield, create Volo's Journal, a legendary colorless artifact token with hexproof and "Whenever you cast a creature spell, note one of its creature types that hasn't been noted for this artifact." -- {2}, {T}: Draw a card for each creature type noted for target permanent you control named Volo's Journal. -- Choose a Background
+mana={2}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=2
+toughness=3
+[/card]
+[card]
+name=Archivist of Oghma
+abilities=flash
+text=Flash -- Whenever an opponent searches their library, you gain 1 life and draw a card.
+mana={1}{W}
+type=Creature
+subtype=Halfling Cleric
+power=2
+toughness=2
+[/card]
+[card]
+name=Aboleth Spawn
+abilities=flash
+auto=_WARD_(2)
+text=Flash -- Ward {2} -- Probing Telepathy - Whenever a creature entering the battlefield under an opponent's control causes a triggered ability of that creature to trigger, you may copy that ability. You may choose new targets for the copy.
+mana={2}{U}
+type=Creature
+subtype=Fish Horror
+power=2
+toughness=3
+[/card]
+[card]
+name=Stick Together
+text=Each player chooses a party from among creatures they control, then sacrifices the rest. (To choose a party, choose up to one each of Cleric, Rogue, Warrior, and Wizard.)
+mana={3}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Grell Philosopher
+text=Aberrant Tinkering - When Grell Philosopher enters the battlefield and at the beginning of your upkeep, each Horror you control gains all activated abilities of target artifact an opponent controls until end of turn. You may spend blue mana as though it were mana of any color to activate those abilities.
+mana={2}{U}
+type=Creature
+subtype=Horror Wizard
+power=1
+toughness=4
+[/card]
+[card]
+name=Green Slime
+abilities=flash
+text=Flash -- When Green Slime enters the battlefield, counter target activated or triggered ability from an artifact or enchantment source. If a permanent's ability is countered this way, destroy that permanent. -- Foretell {G} (During your turn, you may pay {2} and exile this card from your hand face down. Cast it on a later turn for its foretell cost.)
+mana={2}{G}
+type=Creature
+subtype=Ooze
+power=2
+toughness=2
+[/card]
+[card]
 name=Bloodthirsty Blade
 auto=teach(creature) 2/0
 auto=teach(creature) mustattack
@@ -17,12 +216,66 @@ power=0
 toughness=4
 [/card]
 [card]
+name=Wyll's Reversal
+target=*|stack
+text=Choose target spell or ability with one or more targets. Roll a d20 and add the greatest power among creatures you control. -- 1-14 | You may choose new targets for that spell or ability. -- 15+ | You may choose new targets for that spell or ability. Then copy it. You may choose new targets for the copy.
+mana={2}{R}
+type=Instant
+[/card]
+[card]
+name=Dynaheir, Invoker Adept
+abilities=haste
+text=Haste -- You may activate abilities of other creatures you control as though those creatures had haste. -- {T}: When you next activate an ability that isn't a mana ability this turn by spending four or more mana to activate it, copy that ability. You may choose new targets for the copy.
+mana={1}{U}{R}{W}
+type=Legendary Creature
+subtype=Human Wizard
+power=4
+toughness=4
+[/card]
+[card]
+name=Jon Irenicus, Shattered One
+text=At the beginning of your end step, target opponent gains control of up to one target creature you control. Put two +1/+1 counters on it and tap it. It's goaded for the rest of the game and it gains "This creature can't be sacrificed." (It attacks each combat if able and attacks a player other than you if able.) -- Whenever a creature you own but don't control attacks, you draw a card.
+mana={2}{U}{B}
+type=Legendary Creature
+subtype=Elf Wizard
+power=3
+toughness=3
+[/card]
+[card]
 name=Valiant Changeling
 abilities=changeling,double strike
 text=This spell costs {1} less to cast for each creature type among creatures you control. This effect can't reduce the amount of mana this spell costs by more than {5}. -- Changeling (This card is every creature type.) -- Double strike
 mana={5}{W}{W}
 type=Creature
 subtype=Shapeshifter
+power=3
+toughness=3
+[/card]
+[card]
+name=Raggadragga, Goreguts Boss
+text=Each creature you control with a mana ability gets +2/+2. -- Whenever a creature you control with a mana ability attacks, untap it. -- Whenever you cast a spell, if at least seven mana was spent to cast it, untap target creature. It gets +7/+7 and gains trample until end of turn.
+mana={2}{R}{G}
+type=Legendary Creature
+subtype=Human Boar
+power=4
+toughness=4
+[/card]
+[card]
+name=Dynaheir, Invoker Adept
+abilities=haste
+text=Haste -- You may activate abilities of other creatures you control as though those creatures had haste. -- {T}: When you next activate an ability that isn't a mana ability this turn by spending four or more mana to activate it, copy that ability. You may choose new targets for the copy.
+mana={1}{U}{R}{W}
+type=Legendary Creature
+subtype=Human Wizard
+power=4
+toughness=4
+[/card]
+[card]
+name=Jon Irenicus, Shattered One
+text=At the beginning of your end step, target opponent gains control of up to one target creature you control. Put two +1/+1 counters on it and tap it. It's goaded for the rest of the game and it gains "This creature can't be sacrificed." (It attacks each combat if able and attacks a player other than you if able.) -- Whenever a creature you own but don't control attacks, you draw a card.
+mana={2}{U}{B}
+type=Legendary Creature
+subtype=Elf Wizard
 power=3
 toughness=3
 [/card]
