@@ -418,60 +418,63 @@ Player * Rules::loadPlayerRandomFive(GameObserver* observer, int isAI)
 
 Player * Rules::loadPlayerRandomCommander(GameObserver* observer, int isAI)
 { 
-    MTGDeck * cmdTempDeck = NEW MTGDeck(MTGCollection()); 
-    MTGDeck * tempDeck = NEW MTGDeck(MTGCollection());
+    std::unique_ptr<MTGDeck> cmdTempDeck(new MTGDeck(MTGCollection()));
+    std::unique_ptr<MTGDeck> tempDeck(new MTGDeck(MTGCollection()));
     tempDeck->meta_commander = true;
 
     string lands[] = { "", "forest", "island", "mountain", "swamp", "plains", "basic", "basic" };
 
     cmdTempDeck->addRandomCards(1, 0, 0, -1, "legendary");
-    DeckDataWrapper * myCommandZone = NEW DeckDataWrapper(cmdTempDeck);
-    MTGCard * commander = myCommandZone->getCard(0, true);    
+    std::unique_ptr<DeckDataWrapper> myCommandZone(new DeckDataWrapper(cmdTempDeck.get()));
+    MTGCard * commander = myCommandZone->getCard(0, true);
 
     while(!commander->data->isCreature())
     {
         cmdTempDeck->addRandomCards(1, 0, 0, -1, "legendary");
-        myCommandZone = NEW DeckDataWrapper(cmdTempDeck);
-        commander = myCommandZone->getCard(0, true);    
+        myCommandZone.reset(new DeckDataWrapper(cmdTempDeck.get()));
+        commander = myCommandZone->getCard(0, true);
     }
 
     stringstream cid;
     cid << commander->getMTGId();
     vector<string> newCMD;
-    newCMD.push_back(cid.str());    
+    newCMD.push_back(cid.str());
     tempDeck->replaceCMD(newCMD);
-    
+
     std::vector< int > colors;
 
-    for (int i = 0; i < Constants::NB_Colors; i++) 
+    for (int i = 0; i < Constants::NB_Colors; i++)
     {
         if (commander->data->getManaCost()->hasColor(i))
             colors.push_back(i);
-    }    
+    }
 
     if(colors.data()[0] != 0) { colors.insert(colors.begin(),0); }
-    
-    if(colors.size() > 1) 
-    {    
+
+	// Add basic lands
+    int numLands = 40;
+    if(colors.size() > 1)
+    {
+		numLands /= colors.size() - 1;
         for (unsigned int i = 1; i < colors.size(); i++)
         {
-            tempDeck->addRandomCards(40/(colors.size()-1), 0, 0, 'L', lands[colors.data()[i]].c_str());
+            tempDeck->addRandomCards(numLands, 0, 0, 'L', lands[colors.data()[i]].c_str());
         }
     }
-    else { tempDeck->addRandomCards(40, 0, 0, -1, "basic"); }
-    
+	else { tempDeck->addRandomCards(numLands, 0, 0, 'L'); }
+
     tempDeck->addRandomCards(59, 0, 0, -1, "", colors.data(), colors.size());
-    
+
     string deckFile = "random";
     string deckFileSmall = "random";
 
-    Player *player = NULL;
+    std::unique_ptr<Player> player;
     if (!isAI) // Human Player
-        player = NEW HumanPlayer(observer, deckFile, deckFileSmall, false, tempDeck);
+        player.reset(new HumanPlayer(observer, deckFile, deckFileSmall, false, tempDeck.release()));
     else
-        player = NEW AIPlayerBaka(observer, deckFile, deckFileSmall, "", tempDeck);
+        player.reset(new AIPlayerBaka(observer, deckFile, deckFileSmall, "", tempDeck.release()));
 
-    return player;
+    return player.release();
 }
 
 Player * Rules::loadPlayerHorde(GameObserver* observer, int isAI)
