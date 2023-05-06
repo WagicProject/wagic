@@ -451,17 +451,17 @@ Player * Rules::loadPlayerRandomCommander(GameObserver* observer, int isAI)
 
     if(colors.data()[0] != 0) { colors.insert(colors.begin(),0); }
 
-	// Add basic lands
+    // Add basic lands
     int numLands = 40;
     if(colors.size() > 1)
     {
-		numLands /= colors.size() - 1;
+        numLands /= colors.size() - 1;
         for (unsigned int i = 1; i < colors.size(); i++)
         {
             tempDeck->addRandomCards(numLands, 0, 0, 'L', lands[colors.data()[i]].c_str());
         }
     }
-	else { tempDeck->addRandomCards(numLands, 0, 0, 'L'); }
+    else { tempDeck->addRandomCards(numLands, 0, 0, 'L'); }
 
     tempDeck->addRandomCards(59, 0, 0, -1, "", colors.data(), colors.size());
 
