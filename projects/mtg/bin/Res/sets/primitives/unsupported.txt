@@ -398,13 +398,6 @@ power=6
 toughness=6
 [/card]
 [card]
-name=Armor of Thorns
-text=You may cast Armor of Thorns as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant nonblack creature -- Enchanted creature gets +2/+2.
-mana={1}{G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Arms Depot
 text=Whenever you crank Arms Depot, put two +1/+1 counters on target creature.
 type=Artifact
@@ -3997,13 +3990,6 @@ mana={2}{G}
 type=Instant
 [/card]
 [card]
-name=Grave Servitude
-text=You may cast Grave Servitude as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- Enchanted creature gets +3/-1 and is black.
-mana={1}{B}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Graveyard Busybody
 text=All graveyards are also your graveyards. -- Graveyard Busybody's power and toughness are each equal to the number of cards with flavor text in your graveyards.
 mana={4}{U}{U}
@@ -5738,13 +5724,6 @@ mana={2}{W}{W}
 type=Enchantment
 [/card]
 [card]
-name=Lightning Reflexes
-text=You may cast Lightning Reflexes as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- Enchanted creature gets +1/+0 and has first strike.
-mana={1}{R}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Lightning Storm
 text=Lightning Storm deals X damage to target creature or player, where X is 3 plus the number of charge counters on it. -- Discard a land card: Put two charge counters on Lightning Storm. You may choose a new target for it. Any player may activate this ability but only if Lightning Storm is on the stack.
 mana={1}{R}{R}
@@ -6714,13 +6693,6 @@ mana={4}{W}
 type=Enchantment
 [/card]
 [card]
-name=Mystic Veil
-text=You may cast Mystic Veil as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- Enchanted creature has shroud. (It can't be the target of spells or abilities.)
-mana={1}{U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Mythos of Snapdax
 text=Each player chooses an artifact, a creature, an enchantment, and a planeswalker from among the nonland permanents they control, then sacrifices the rest. If {B}{R} was spent to cast this spell, you choose the permanents for each player instead.
 mana={2}{W}{W}
@@ -7453,12 +7425,6 @@ name=Paranoid Delusions
 text=Target player puts the top three cards of his or her library into his or her graveyard. -- Cipher (Then you may exile this spell card encoded on a creature you control. Whenever that creature deals combat damage to a player, its controller may cast a copy of the encoded card without paying its mana cost.)
 mana={U}{B}
 type=Sorcery
-[/card]
-[card]
-name=Parapet
-text=You may cast Parapet as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Creatures you control get +0/+1.
-mana={1}{W}
-type=Enchantment
 [/card]
 [card]
 name=Pardic Dragon
@@ -8205,13 +8171,6 @@ name=Release the Ants
 text=Release the Ants deals 1 damage to target creature or player. Clash with an opponent. If you win, return Release the Ants to its owner's hand. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={1}{R}
 type=Instant
-[/card]
-[card]
-name=Relic Ward
-text=You may cast Relic Ward as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant artifact -- Enchanted artifact has shroud. (It can't be the target of spells or abilities.)
-mana={1}{W}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Remodel
@@ -9255,13 +9214,6 @@ mana={2}{U}
 type=Enchantment
 [/card]
 [card]
-name=Soar
-text=You may cast Soar as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- Enchanted creature gets +0/+1 and has flying.
-mana={1}{U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Socketed Sprocketer
 text={T}: Uninstall all results from Socketed Sprocketer, then roll a six-sided die. Install the result on Socketed Sprocketer. (Put the die on this card.) -- You may uninstall a result from Socketed Sprocketer to use it for a die you rolled. -- Uninstall a 6 from Socketed Sprocketer: Draw a card.
 mana={U}
@@ -9511,13 +9463,6 @@ type=Creature
 subtype=Sphinx
 power=5
 toughness=6
-[/card]
-[card]
-name=Spider Climb
-text=You may cast Spider Climb as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- Enchanted creature gets +0/+3 and has reach. (It can block creatures with flying.)
-mana={G}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Spire Phantasm
@@ -10906,15 +10851,6 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=2
-[/card]
-[card]
-name=Umori, the Collector
-text=Companion - Each nonland card in your starting deck shares a card type. (If this card is your chosen companion, you may cast it once from outside the game.) -- As Umori, the CollectorUmori, the Collector enters the battlefield, choose a card type. -- Spells you cast of the chosen type cost 1 less to cast.
-mana={2}{BG}{BG}
-type=Legendary Creature
-subtype=Ooze
-power=4
-toughness=5
 [/card]
 [card]
 name=Unbound Flourishing

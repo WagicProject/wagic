@@ -1,7 +1,6 @@
 Primal Command
 Rowan Kenrith
 Kitsune Ace
-Professional Face-Breaker
 Pyre-Sledge Arsonist
 Sokenzan Smelter
 Hotshot Mechanic
@@ -138,7 +137,6 @@ Venser, Corpse Puppet
 Slobad, Iron Goblin
 Solphim, Mayhem Dominus
 Capricious Hellraiser
-Tyrranax Rex
 Phyrexian Vindicator
 Skrelv, Defector Mite
 Drivnod, Carnage Dominus
@@ -155,7 +153,6 @@ Tamiyo's Logbook
 Maze's Mantle
 Lattice-Blade Mantis
 Noxious Assault
-Paladin of Predation
 Plague Nurse
 Porcelain Zealot
 Vanish into Eternity
@@ -202,7 +199,6 @@ Anoint with Affliction
 Hall of the Bandit Lord
 Boseiju, Who Shelters All
 Chief Engineer
-Oracle's Vault
 Conqueror's Flail
 Cryptic Spires
 Thromok the Insatiable
@@ -223,57 +219,40 @@ Unite the Coalition
 Verrak, Warped Sengir
 Gerrard's Hourglass Pendant
 The Mana Rig
-Shalai and Hallar
 Saint Traft and Rem Karolus
 Rashmi and Ragavan
-Moira and Teshar
 Elenda and Azor
-Firemane Commando
 Elspeth's Talent
-Infernal Sovereign
 Teferi's Talent
 Rowan's Talent
 Liliana's Talent
 Begin the Invasion
 Vivien's Talent
-Sidar Jabari of Zhalfir
 Kasla, the Broken Halo
 Gimbal, Gremlin Prodigy
 Brimaz, Blight of Oreskos
 Bright-Palm, Soul Awakener
 Ichor Elixir
-Bitterthorn, Nissa's Animus
 Wildfire Awakener
-Vodalian Wave-Knight
-Mistmeadow Vanisher
 Flockchaser Phantom
 Cutthroat Negotiator
 Sandsteppe War Riders
 Path of the Animist
 Emergent Woodwurm
-Exsanguinator Cavalry
 Conclave Sledge-Captain
 Uncivil Unrest
 Path of the Pyromancer
-Pain Distributor
 Mirror-Style Master
-Hedron Detonator
-Death-Greeter's Champion
 Dance with Calamity
 Path of the Schemer
-Locthwain Lancer
 Guardian Scalelord
-Filigree Vector
 Blight Titan
-Schema Thief
 Path of the Enigma
-Herald of Hoofbeats
 Deluxe Dragster
 Foulmire Knight
 Wand of the Worldsoul
 Vulpine Harvester
 Path of the Ghosthunter
-Nesting Dovehawk
 Stensia
 Krosa
 Sokenzan
@@ -296,13 +275,7 @@ Murderous Rider
 The Caldaia
 Enigma Ridges
 Esper
-Slimefoot and Squee
-Katilda and Lier
-Goro-Goro and Satoru
 Excise the Imperfect
-Darksteel Splicer
-Conjurer's Mantle
-Chivalric Alliance
 Wear
 Struggle
 Heaven
@@ -355,9 +328,6 @@ Invasion of Dominaria
 Borborygmos and Fblthp
 Baral and Kari Zev
 Invasion of Theros
-Surrak and Goreclaw
-Pile On
-Orthion, Hero of Lavabrink
 Zurgo and Ojutai
 Sandstalker Moloch
 Zimone and Dina
@@ -368,21 +338,15 @@ Hoarding Broodlord
 Seed of Hope
 Enduring Bondwarden
 Invasion of Fiora
-Axgard Artisan
-Terror of Towashi
 Invasion of Eldraine
 Tangled Skyline
 Seer of Stolen Sight
 Elesh Norn
 Ichor Shade
 Injector Crocodile
-Zephyr Winder
 Referee Squad
 Invasion of Innistrad
-Interdisciplinary Mascot
-Vengeant Earth
 Seedpod Caretaker
-Phyrexian Pegasus
 Essence of Orthodoxy
 Invasion of Ravnica
 Overgrown Pest
@@ -393,7 +357,6 @@ Kogla and Yidaro
 Ozolith, the Shattered Spire
 Attentive Skywarden
 Gift of Compleation
-Angelic Intervention
 Flitting Guerrilla
 Urabrask
 Invasion of Ikoria
@@ -406,7 +369,6 @@ Invasion of Shandalar
 Rona, Herald of Invasion
 Jin-Gitaxias
 Invasion of Belenon
-Fertilid's Favor
 Wicked Slumber
 Doomskar Warrior
 Deeproot Wayfinder
@@ -421,7 +383,6 @@ Converter Beast
 Realmbreaker, the Invasion Tree
 Searing Barb
 Voldaren Thrillseeker
-Volcanic Spite
 Nahiri's Warcrafting
 Sculpted Perfection
 Scrappy Bruiser
@@ -966,7 +927,6 @@ Arbalest Engineers
 Hulking Metamorph
 The Temporal Anchor
 Urza's Command
-Rootwire Amalgam
 Gix's Caress
 Legions to Ashes
 Mishra, Tamer of Mak Fawa
@@ -994,7 +954,6 @@ Gwenna, Eyes of Gaea
 Overwhelming Remorse
 Urza's Sylex
 Mishra's Research Desk
-Steel Seraph
 Hurkyl, Master Wizard
 Forging the Anchor
 Involuntary Cooldown
@@ -1032,7 +991,6 @@ Tower Worker
 Thran Power Suit
 Thran Spider
 Symmetry Matrix
-Titania, Voice of Gaea
 Mishra, Claimed by Gix
 The Mightstone and Weakstone
 Recommission
