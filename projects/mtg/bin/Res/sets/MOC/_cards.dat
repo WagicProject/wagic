@@ -2,7 +2,7 @@
 author=Wagic Team
 name=March of the Machine Commander
 year=2023-04-21
-total=457
+total=451
 [/meta]
 [card]
 primitive=Bright-Palm, Soul Awakener
@@ -1245,14 +1245,9 @@ id=612496
 rarity=C
 [/card]
 [card]
-primitive=Foulmire Knight
+primitive=Foulmire Knight // Profane Insight
 id=612497
 rarity=U
-[/card]
-[card]
-primitive=Profane Insight
-id=612497
-rarity=T
 [/card]
 [card]
 primitive=Go for the Throat
@@ -1295,14 +1290,9 @@ id=612505
 rarity=R
 [/card]
 [card]
-primitive=Murderous Rider
+primitive=Murderous Rider // Swift End
 id=612506
 rarity=R
-[/card]
-[card]
-primitive=Swift End
-id=612506
-rarity=T
 [/card]
 [card]
 primitive=Night's Whisper
@@ -1355,14 +1345,9 @@ id=612515
 rarity=C
 [/card]
 [card]
-primitive=Smitten Swordmaster
+primitive=Smitten Swordmaster // Curry Favor
 id=612516
 rarity=C
-[/card]
-[card]
-primitive=Curry Favor
-id=612516
-rarity=T
 [/card]
 [card]
 primitive=Syr Konrad, the Grim
@@ -1660,14 +1645,9 @@ id=612575
 rarity=U
 [/card]
 [card]
-primitive=Heaven
+primitive=Heaven // Earth
 id=612576
 rarity=R
-[/card]
-[card]
-primitive=Earth
-id=612576
-rarity=T
 [/card]
 [card]
 primitive=Improbable Alliance
@@ -1720,14 +1700,9 @@ id=612586
 rarity=U
 [/card]
 [card]
-primitive=Struggle
+primitive=Struggle // Survive
 id=612587
 rarity=U
-[/card]
-[card]
-primitive=Survive
-id=612587
-rarity=T
 [/card]
 [card]
 primitive=Time Wipe
@@ -1745,14 +1720,9 @@ id=612590
 rarity=M
 [/card]
 [card]
-primitive=Wear
+primitive=Wear // Tear
 id=612591
 rarity=U
-[/card]
-[card]
-primitive=Tear
-id=612591
-rarity=T
 [/card]
 [card]
 primitive=Whirlwind of Thought
