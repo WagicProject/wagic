@@ -40,6 +40,20 @@ jobs:
           command: |
             echo $PWD
             bash ./tools/circle-script.sh
+      
+      dependencies:
+          pre:
+            - sudo apt-get update
+            - sudo apt-get install -y curl python-pip bzip2
+            - curl -L https://github.com/aktau/github-release/releases/download/v0.7.2/linux-amd64-github-release.tar.bz2 | tar xjvf -
+            - sudo pip install --upgrade pip
+            - sudo pip install setuptools-rust
+            - sudo pip install pyOpenSSL
+            - sudo pip install pyjavaproperties
+            - sudo pip install github3.py
+            - sudo pip install cpp-coveralls
+
+            
       - run:
           name: Upload APK to GitHub Releases
           command: |
