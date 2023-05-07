@@ -44,9 +44,9 @@ jobs:
           command: |
             curl -L https://github.com/aktau/github-release/releases/download/v0.7.2/linux-amd64-github-release.tar.bz2 | tar xjvf -
             ./bin/linux/amd64/github-release upload \
-              --user <github-username> \
-              --repo <github-repo> \
-              --tag <git-tag> \
+              --user EduardoMunozGomez \
+              --repo wagic \
+              --tag androide \
               --name Wagic-debug.apk \
               --file projects/mtg/Android/bin/Wagic-debug.apk \
               --token $GITHUB_TOKEN
