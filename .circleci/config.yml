@@ -13,7 +13,6 @@ jobs:
           name: Install Dependencies
           command: |
             curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-            #!/bin/bash -eo pipefail
             curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
             echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list
             sudo apt-get update
@@ -34,26 +33,26 @@ jobs:
             sudo apt-get install openjdk-11-jdk
             export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
             export PATH=$JAVA_HOME/bin:$PATH
-           
+
       - run:
           name: Build Android
           command: |
             echo $PWD
             bash ./tools/circle-script.sh
-      
-      dependencies:
-          pre:
-            - sudo apt-get update
-            - sudo apt-get install -y curl python-pip bzip2
-            - curl -L https://github.com/aktau/github-release/releases/download/v0.7.2/linux-amd64-github-release.tar.bz2 | tar xjvf -
-            - sudo pip install --upgrade pip
-            - sudo pip install setuptools-rust
-            - sudo pip install pyOpenSSL
-            - sudo pip install pyjavaproperties
-            - sudo pip install github3.py
-            - sudo pip install cpp-coveralls
 
-            
+      - run:
+          name: Install Required Packages
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y curl python-pip bzip2
+            curl -L https://github.com/aktau/github-release/releases/download/v0.7.2/linux-amd64-github-release.tar.bz2 | tar xjvf -
+            sudo pip install --upgrade pip
+            sudo pip install setuptools-rust
+            sudo pip install pyOpenSSL
+            sudo pip install pyjavaproperties
+            sudo pip install github3.py
+            sudo pip install cpp-coveralls
+
       - run:
           name: Upload APK to GitHub Releases
           command: |
@@ -65,5 +64,3 @@ jobs:
               --tag circle \
               --name Wagic-debug.apk \
               --file projects/mtg/Android/bin/Wagic-debug.apk \
-              --security-token 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
-
