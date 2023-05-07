@@ -1373,6 +1373,10 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
     {
         intValue = (s == "pdungeoncompleted")?card->controller()->dungeonCompleted:card->controller()->opponent()->dungeonCompleted;
     }
+    else if (s == "pinitiative" || s == "oinitiative") // Which player has the initiative
+    {
+        intValue = (s == "pinitiative")?card->controller()->initiative:card->controller()->opponent()->initiative;
+    }
     else if (s == "pwrtotatt" || s == "thstotatt")//count Total Power or toughness of attacking creatures (e.g. Battle Cry Goblin)
     {
         intValue = 0;

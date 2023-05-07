@@ -344,6 +344,51 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 if(!count)
                     return 0;
         }
+        check = restriction[i].find("exilecast");
+        if(check != string::npos)
+        {
+                int count = 0;
+                for(unsigned int k = 0; k < player->game->stack->cardsSeenThisTurn.size(); k++)
+                {
+                    MTGCardInstance * stackCard = player->game->stack->cardsSeenThisTurn[k];
+                    if(stackCard->next && stackCard->next == card && (card->previousZone == card->controller()->game->exile||card->previousZone == card->controller()->opponent()->game->exile))
+                        count++;
+                    if(stackCard == card && (card->previousZone == card->controller()->game->exile||card->previousZone == card->controller()->opponent()->game->exile))
+                        count++;
+                }
+                if(!count)
+                    return 0;
+        }
+        check = restriction[i].find("sidecast");
+        if(check != string::npos)
+        {
+                int count = 0;
+                for(unsigned int k = 0; k < player->game->stack->cardsSeenThisTurn.size(); k++)
+                {
+                    MTGCardInstance * stackCard = player->game->stack->cardsSeenThisTurn[k];
+                    if(stackCard->next && stackCard->next == card && (card->previousZone == card->controller()->game->sideboard||card->previousZone == card->controller()->opponent()->game->sideboard))
+                        count++;
+                    if(stackCard == card && (card->previousZone == card->controller()->game->sideboard||card->previousZone == card->controller()->opponent()->game->sideboard))
+                        count++;
+                }
+                if(!count)
+                    return 0;
+        }
+        check = restriction[i].find("commandzonecast");
+        if(check != string::npos)
+        {
+                int count = 0;
+                for(unsigned int k = 0; k < player->game->stack->cardsSeenThisTurn.size(); k++)
+                {
+                    MTGCardInstance * stackCard = player->game->stack->cardsSeenThisTurn[k];
+                    if(stackCard->next && stackCard->next == card && (card->previousZone == card->controller()->game->commandzone||card->previousZone == card->controller()->opponent()->game->commandzone))
+                        count++;
+                    if(stackCard == card && (card->previousZone == card->controller()->game->commandzone||card->previousZone == card->controller()->opponent()->game->commandzone))
+                        count++;
+                }
+                if(!count)
+                    return 0;
+        }
         check = restriction[i].find("rebound");
         if(check != string::npos)
         {
@@ -1274,6 +1319,14 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     //becomes monarch - opponent of card controller
     if (TargetChooser * tc = parseSimpleTC(s, "becomesmonarchfoeof", card))
         return NEW TrplayerMonarch(observer, id, card, tc, once, false, true);
+
+    //takes the initiative - controller of card
+    if (TargetChooser * tc = parseSimpleTC(s, "takeninitiativeof", card))
+        return NEW TrplayerInitiative(observer, id, card, tc, once, true, false);
+
+    //takes the initiative - opponent of card controller
+    if (TargetChooser * tc = parseSimpleTC(s, "takeninitiativeof", card))
+        return NEW TrplayerInitiative(observer, id, card, tc, once, false, true);
 
     //shuffled library - controller of card
     if (TargetChooser * tc = parseSimpleTC(s, "shuffledof", card))
@@ -3908,6 +3961,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         Targetable * t = spell ? spell->getNextTarget() : NULL;
         MTGAbility * a = NEW AAAlterMonarch(observer, id, card, t, NULL, who);
+        a->oneShot = 1;
+        return a;
+    }
+
+    //takes the initiative
+    vector<string> splitInitiative = parseBetween(s, "taketheinitiative", " ", false);
+    if (splitInitiative.size())
+    {
+        Targetable * t = spell ? spell->getNextTarget() : NULL;
+        MTGAbility * a = NEW AAAlterInitiative(observer, id, card, t, NULL, who);
         a->oneShot = 1;
         return a;
     }

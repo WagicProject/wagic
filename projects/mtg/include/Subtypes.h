@@ -33,7 +33,8 @@ public:
         TYPE_DUNGEON = 18,
         TYPE_EMBLEM = 19,
         TYPE_CONSPIRACY = 20,
-        LAST_TYPE = TYPE_CONSPIRACY,
+        TYPE_BACKGROUND = 21,
+        LAST_TYPE = TYPE_BACKGROUND,
     };
 
 protected:

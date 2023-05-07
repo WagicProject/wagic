@@ -5,6 +5,16 @@ year=2022-06-10
 total=849
 [/meta]
 [card]
+primitive=Undercity
+id=57018400
+rarity=T
+[/card]
+[card]
+primitive=The Initiative
+id=57018401
+rarity=T
+[/card]
+[card]
 primitive=Faceless One
 id=570184
 rarity=S

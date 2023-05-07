@@ -110,6 +110,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
     public static final String kSaveDataPathPreference = "StorageDataLocation";
     public static final String kWagicDataStorageOptionsKey = "dataStorageOptions";
     public static final int kStorageDataOptionsMenuId = 2000;
+    public static final int kdownloadResOptionsMenuId = 4000;
     public static final int kOtherOptionsMenuId = 3000;
 
     static {
@@ -170,6 +171,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
     MenuItem downloader;
     MenuItem about;
     MenuItem storage;
+    MenuItem resource;
 
     // Handler for the messages
     Handler commandHandler = new Handler() {
@@ -951,6 +953,9 @@ public class SDLActivity extends Activity implements OnKeyListener {
         about = menu.add(Menu.NONE, 4, 4, "About");
         storage = settingsMenu.add(kStorageDataOptionsMenuId,
                 kStorageDataOptionsMenuId, Menu.NONE, "Storage Data Options");
+        resource = settingsMenu.add(kdownloadResOptionsMenuId,
+                kdownloadResOptionsMenuId, Menu.NONE, "Download Core & Quit");
+
     }
 
     @Override
@@ -966,6 +971,10 @@ public class SDLActivity extends Activity implements OnKeyListener {
 
         if (itemId == kStorageDataOptionsMenuId) {
             displayStorageOptions();
+        } else if (itemId == kdownloadResOptionsMenuId) {
+            File oldRes = new File(getSystemStorageLocation() + RES_FILENAME);
+            oldRes.delete();
+            startDownload();
         } else if (itemId == 2) {
             importDeckOptions();
         } else if (itemId == 3) {
@@ -1000,7 +1009,7 @@ public class SDLActivity extends Activity implements OnKeyListener {
     public void showSettingsSubMenu() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Settings Menu");
-        String[] choices = { "Storage Data Options" };
+        String[] choices = { "Storage Data Options", "Download Core & Quit" };
         builder.setItems(choices,
             new DialogInterface.OnClickListener() {
                 @Override
@@ -1008,6 +1017,9 @@ public class SDLActivity extends Activity implements OnKeyListener {
                     switch (which) {
                         case 0:
                             onOptionsItemSelected(storage);
+                            break;
+                        case 1:
+                            onOptionsItemSelected(resource);
                             break;
                     }
                 }
@@ -1122,13 +1134,41 @@ public class SDLActivity extends Activity implements OnKeyListener {
         prepareOptionMenu(null);
     }
 
+    public void forceResDownload(final File oldRes) {
+        AlertDialog.Builder resChooser = new AlertDialog.Builder(this);
+        final SDLActivity parent = this;
+
+        resChooser.setTitle("Do you want to download latest core file?");
+
+        resChooser.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        FrameLayout _videoLayout = new FrameLayout(parent);
+                        setContentView(_videoLayout,
+                                new LayoutParams(LayoutParams.FILL_PARENT,
+                                        LayoutParams.FILL_PARENT));
+                        oldRes.delete();
+                        startDownload();
+                    }
+                });
+
+        resChooser.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        mainDisplay();
+                    }
+                });
+
+        resChooser.create().show();
+    }
+
     public void initializeGame() {
         String coreFileLocation = getSystemStorageLocation() + RES_FILENAME;
 
         File file = new File(coreFileLocation);
 
         if (file.exists()) {
-            mainDisplay();
+            forceResDownload(file);
         } else {
             FrameLayout _videoLayout = new FrameLayout(this);
             setContentView(_videoLayout,

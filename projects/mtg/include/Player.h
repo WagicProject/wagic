@@ -48,6 +48,7 @@ public:
     int dungeonCompleted;
     int numOfCommandCast;
     int monarch;
+    int initiative;
     int surveilOffset;
     int devotionOffset;
     int lastShuffleTurn;

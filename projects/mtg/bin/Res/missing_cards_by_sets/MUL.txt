@@ -70,12 +70,3 @@ subtype=Elemental Horror
 power=3
 toughness=5
 [/card]
-[card]
-name=Umori, the Collector
-text=Companion - Each nonland card in your starting deck shares a card type. (If this card is your chosen companion, you may cast it once from outside the game.) -- As Umori, the CollectorUmori, the Collector enters the battlefield, choose a card type. -- Spells you cast of the chosen type cost 1 less to cast.
-mana={2}{BG}{BG}
-type=Legendary Creature
-subtype=Ooze
-power=4
-toughness=5
-[/card]

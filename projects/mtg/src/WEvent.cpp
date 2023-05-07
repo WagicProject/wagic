@@ -307,6 +307,11 @@ WEventplayerMonarch::WEventplayerMonarch(Player * player) :
 {
 }
 
+WEventplayerInitiative::WEventplayerInitiative(Player * player) :
+    player(player)
+{
+}
+
 WEventplayerShuffled::WEventplayerShuffled(Player * player) :
     player(player)
 {
@@ -658,6 +663,12 @@ Targetable * WEventplayerExperienced::getTarget(Player * player)
 }
 
 Targetable * WEventplayerMonarch::getTarget(Player * player)
+{
+    if (player) return player;
+    return NULL;
+}
+
+Targetable * WEventplayerInitiative::getTarget(Player * player)
 {
     if (player) return player;
     return NULL;

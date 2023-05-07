@@ -607,6 +607,35 @@ public:
     }
 };
 
+class TrplayerInitiative: public Trigger
+{
+public:
+    bool thiscontroller, thisopponent;
+    TrplayerInitiative(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false) :
+        Trigger(observer, id, source, once, tc), thiscontroller(thiscontroller), thisopponent(thisopponent)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventplayerInitiative * e = dynamic_cast<WEventplayerInitiative *> (event);
+        if (!e) return 0;
+        if (!tc->canTarget(e->player)) return 0;
+        if(thiscontroller)
+            if(e->player != source->controller())
+                return 0;
+        if(thisopponent)
+            if(e->player == source->controller())
+                return 0;
+        return 1;
+    }
+
+    TrplayerInitiative * clone() const
+    {
+        return NEW TrplayerInitiative(*this);
+    }
+};
+
 class TrplayerShuffled: public Trigger
 {
 public:
@@ -4366,6 +4395,18 @@ public:
     const string getMenuText();
     AAAlterMonarch * clone() const;
     ~AAAlterMonarch();
+};
+//Initiative
+class AAAlterInitiative: public ActivatedAbilityTP
+{
+public:
+
+    AAAlterInitiative(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost = NULL,
+            int who = TargetChooser::UNSET);
+    int resolve();
+    const string getMenuText();
+    AAAlterInitiative * clone() const;
+    ~AAAlterInitiative();
 };
 //Surveil Offset
 class AAAlterSurveilOffset: public ActivatedAbilityTP
