@@ -36,7 +36,7 @@ fi
 # we're building an Android binary here
 if [ "$BUILD_ANDROID" = "YES" ]; then
     android-ndk-r22/ndk-build -C projects/mtg/Android -j4
-    $ANDROID list targets
-    $ANDROID update project -t 1 -p projects/mtg/Android
+    android-sdk-linux/tools/android list targets
+    android-sdk-linux/tools/android update project -t 1 -p projects/mtg/Android
     ant debug -f projects/mtg/Android/build.xml
 fi
