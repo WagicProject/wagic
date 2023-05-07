@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/project
     docker:
-      - image: cimg/android:2022.01
+      - image: cimg/android:2020.01
     environment:
       - BUILD_ANDROID=YES
     steps:
