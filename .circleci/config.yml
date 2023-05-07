@@ -44,7 +44,7 @@ jobs:
           name: Install Required Packages
           command: |
             sudo apt-get update
-            sudo apt-get install -y curl python-pip bzip2
+            sudo apt-get install -y curl python3-pip bzip2
             curl -L https://github.com/aktau/github-release/releases/download/v0.7.2/linux-amd64-github-release.tar.bz2 | tar xjvf -
             sudo pip install --upgrade pip
             sudo pip install setuptools-rust
