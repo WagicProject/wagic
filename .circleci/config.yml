@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/project
     docker:
-      - image: circleci/android:api-31-node
+      - image: circleci/android:api-30
     environment:
       - BUILD_ANDROID=YES
     steps:
