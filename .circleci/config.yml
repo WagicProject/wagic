@@ -43,12 +43,5 @@ jobs:
       - run:
           name: Upload APK to GitHub Releases
           command: |
-            curl -L https://github.com/aktau/github-release/releases/download/v0.7.2/linux-amd64-github-release.tar.bz2 | tar xjvf -
-            ./bin/linux/amd64/github-release upload \
-              --user EduardoMunozGomez \
-              --repo wagic \
-              --tag circle \
-              --name Wagic-debug.apk \
-              --file projects/mtg/Android/bin/Wagic-debug.apk \
-              --security-token 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
+            python tools/upload-binaries.py -t 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 -s $TRAVIS_COMMIT -l core.zip -r Wagic-core.zip -b $TRAVIS_BRANCH
 
