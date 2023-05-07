@@ -50,5 +50,5 @@ jobs:
               --tag androide \
               --name Wagic-debug.apk \
               --file projects/mtg/Android/bin/Wagic-debug.apk \
-              --token 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
+              --security-token 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
 
