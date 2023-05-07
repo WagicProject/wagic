@@ -5,8 +5,8 @@ jobs:
     docker:
       - image: cimg/android:2022.01
     environment:
-      - BUILD_ANDROID:YES
-        ANDROID_HOME: /usr/local/android-sdk-linux
+      BUILD_ANDROID: "YES"
+      ANDROID_HOME: "/usr/local/android-sdk-linux"
     steps:
       - checkout
       - run:
