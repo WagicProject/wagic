@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/project
     docker:
-      - image: circleci/android:api-30
+      - image: circleci/openjdk:8-jdk-stretch
     environment:
       - BUILD_ANDROID=YES
     steps:
