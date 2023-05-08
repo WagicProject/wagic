@@ -64,11 +64,10 @@ install:
 - python2 -m pip install pyjavaproperties
 - python2 -m pip install github3.py
 - python2 -m pip install cpp-coveralls
+- python2 -m pip install certifi
 
-- ls /usr/local/lib/python2.7/site-packages/
-- ls /usr/local/lib/python2.7/site-packages/requests/
-- ls /usr/local/lib/python2.7/site-packages/requests/cacert.pem
 - locate cacert.pem
+- ls /usr/local/lib/python2.7/dist-packages/certifi/cacert.pem
 
 before_script:
 - export REQUESTS_CA_BUNDLE=/usr/local/lib/python2.7/dist-packages/certifi/cacert.pem
