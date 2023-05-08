@@ -54,17 +54,9 @@ install:
     export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64;
     export PATH=$JAVA_HOME/bin:$PATH;
   fi
-- sudo python --version
-- sudo which python
-- python --version
-- which python
-- python3 --version
-- which python3
-- python2 --version
-- which python2
-- sudo pip --version
-- pip --version
 
+- curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+- python2 get-pip.py
 - python2 -m pip install --upgrade pip
 - python2 -m pip install setuptools-rust
 - python2 -m pip install pyOpenSSL
