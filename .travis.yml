@@ -5,9 +5,9 @@ branches:
     - master
 
 before_install:
-  - export BUILD_PSP=YES
-  - export BUILD_ANDROID=YES
-  - export BUILD_Qt=YES
+  - export BUILD_PSP=NO
+  - export BUILD_ANDROID=NO
+  - export BUILD_Qt=NO
   - export BUILD_MAC=NO
   - echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
   - git lfs pull
@@ -54,12 +54,19 @@ install:
     export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64;
     export PATH=$JAVA_HOME/bin:$PATH;
   fi
-- sudo pip install --upgrade pip
-- sudo pip install setuptools-rust
-- sudo pip install pyOpenSSL
-- sudo pip install pyjavaproperties
-- sudo pip install github3.py
-- sudo pip install cpp-coveralls
+- sudo python --version
+- sudo which python
+- sudo pip -H --version
+- pip -H --version
+- python --version
+- which python
+- exit
+- sudo pip -H install --upgrade pip
+- sudo pip -H install setuptools-rust
+- sudo pip -H install pyOpenSSL
+- sudo pip -H install pyjavaproperties
+- sudo pip -H install github3.py
+- sudo pip -H install cpp-coveralls
 
 before_script:
 - export REQUESTS_CA_BUNDLE=/usr/local/lib/python2.7/dist-packages/certifi/cacert.pem
