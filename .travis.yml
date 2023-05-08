@@ -64,11 +64,7 @@ install:
 - which python2
 - sudo pip --version
 - pip --version
-- ll /usr/local/lib/python2.7/
-- ll /usr/local/lib/python2.7/dist-packages/
-- ll /usr/local/lib/python2.7/dist-packages/certifi/
-- ll /usr/local/lib/python2.7/dist-packages/certifi/cacert.pem
- 
+
 - python2 -m pip install --upgrade pip
 - python2 -m pip install setuptools-rust
 - python2 -m pip install pyOpenSSL
@@ -76,6 +72,10 @@ install:
 - python2 -m pip install github3.py
 - python2 -m pip install cpp-coveralls
 
+- ls /usr/local/lib/python2.7/
+- ls /usr/local/lib/python2.7/dist-packages/
+- ls /usr/local/lib/python2.7/dist-packages/certifi/
+- ls /usr/local/lib/python2.7/dist-packages/certifi/cacert.pem
 - locate python2.7
 
 before_script:
