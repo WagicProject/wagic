@@ -50,7 +50,7 @@ def createStandardResFile(filename):
         filename = getFilename() + '.zip'
     createResZipFile( filename )
     #print('Created Resource Package for Standard Distribution: {0}'.format(filename), file=sys.stderr)
-	print >> sys.stderr, 'Created Resource Package for Standard Distribution: {0}'.format( filename)
+    print >> sys.stderr, 'Created Resource Package for Standard Distribution: {0}'.format( filename)
 
 def createIosResFile(filename):
     print('Preparing Resource Package for iOS')
@@ -63,7 +63,7 @@ def createIosResFile(filename):
     zip_file.close()
 
     #print('Created Resource Package for Standard Distribution: {0}'.format(filename), file=sys.stderr)
-	print >> sys.stderr, 'Created Resource Package for iOS Distribution: {0}'.format( filename)
+    print >> sys.stderr, 'Created Resource Package for iOS Distribution: {0}'.format( filename)
 
 
 class ZipUtilities:
