@@ -56,17 +56,17 @@ install:
   fi
 - sudo python --version
 - sudo which python
-- sudo pip -H --version
-- pip -H --version
 - python --version
 - which python
-- exit
-- sudo pip -H install --upgrade pip
-- sudo pip -H install setuptools-rust
-- sudo pip -H install pyOpenSSL
-- sudo pip -H install pyjavaproperties
-- sudo pip -H install github3.py
-- sudo pip -H install cpp-coveralls
+- sudo pip --version
+- pip --version
+
+- pip install --upgrade pip
+- pip install setuptools-rust
+- pip install pyOpenSSL
+- pip install pyjavaproperties
+- pip install github3.py
+- pip install cpp-coveralls
 
 before_script:
 - export REQUESTS_CA_BUNDLE=/usr/local/lib/python2.7/dist-packages/certifi/cacert.pem
