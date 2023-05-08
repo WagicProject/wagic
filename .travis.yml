@@ -58,15 +58,21 @@ install:
 - sudo which python
 - python --version
 - which python
+- python3 --version
+- which python3
+- python2 --version
+- which python2
 - sudo pip --version
 - pip --version
+- pip-2.7 --version
+ 
 
-- pip install --upgrade pip
-- pip install setuptools-rust
-- pip install pyOpenSSL
-- pip install pyjavaproperties
-- pip install github3.py
-- pip install cpp-coveralls
+- pip-2.7 install --upgrade pip
+- pip-2.7 install setuptools-rust
+- pip-2.7 install pyOpenSSL
+- pip-2.7 install pyjavaproperties
+- pip-2.7 install github3.py
+- pip-2.7 install cpp-coveralls
 
 before_script:
 - export REQUESTS_CA_BUNDLE=/usr/local/lib/python2.7/dist-packages/certifi/cacert.pem
@@ -74,7 +80,7 @@ script: "tools/travis-script.sh"
 
 after_success:
 - coveralls -b . -e JGE/src -e JGE/include -i projects/mtg/include -i projects/mtg/src --gcov-options '\-lp'
-- python tools/upload-binaries.py -t $GITHUB_TOKEN -s $TRAVIS_COMMIT -l core.zip -r Wagic-core.zip -b $TRAVIS_BRANCH
-- python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l projects/mtg/Android/bin/Wagic-debug.apk -r Wagic-android.apk -b $TRAVIS_BRANCH
-- python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l projects/mtg/psprelease.zip -r Wagic-psp.zip -b $TRAVIS_BRANCH
-- python tools/upload-binaries.py -t $GITHUB_TOKEN -s $TRAVIS_COMMIT -l qt-gui-build/linuxqtrelease.zip -r Wagic-linux-QT.zip -b $TRAVIS_BRANCH
+- python2 tools/upload-binaries.py -t $GITHUB_TOKEN -s $TRAVIS_COMMIT -l core.zip -r Wagic-core.zip -b $TRAVIS_BRANCH
+- python2 tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l projects/mtg/Android/bin/Wagic-debug.apk -r Wagic-android.apk -b $TRAVIS_BRANCH
+- python2 tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l projects/mtg/psprelease.zip -r Wagic-psp.zip -b $TRAVIS_BRANCH
+- python2 tools/upload-binaries.py -t $GITHUB_TOKEN -s $TRAVIS_COMMIT -l qt-gui-build/linuxqtrelease.zip -r Wagic-linux-QT.zip -b $TRAVIS_BRANCH
