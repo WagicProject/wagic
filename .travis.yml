@@ -64,15 +64,19 @@ install:
 - which python2
 - sudo pip --version
 - pip --version
-- pip-2.7 --version
+- ll /usr/local/lib/python2.7/
+- ll /usr/local/lib/python2.7/dist-packages/
+- ll /usr/local/lib/python2.7/dist-packages/certifi/
+- ll /usr/local/lib/python2.7/dist-packages/certifi/cacert.pem
  
+- python2 -m pip install --upgrade pip
+- python2 -m pip install setuptools-rust
+- python2 -m pip install pyOpenSSL
+- python2 -m pip install pyjavaproperties
+- python2 -m pip install github3.py
+- python2 -m pip install cpp-coveralls
 
-- pip-2.7 install --upgrade pip
-- pip-2.7 install setuptools-rust
-- pip-2.7 install pyOpenSSL
-- pip-2.7 install pyjavaproperties
-- pip-2.7 install github3.py
-- pip-2.7 install cpp-coveralls
+- locate python2.7
 
 before_script:
 - export REQUESTS_CA_BUNDLE=/usr/local/lib/python2.7/dist-packages/certifi/cacert.pem
