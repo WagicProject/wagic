@@ -5,11 +5,10 @@ branches:
     - master
 
 before_install:
-  - export BUILD_PSP=NO
-  - export BUILD_ANDROID=NO
-  - export BUILD_Qt=NO
+  - export BUILD_PSP=YES
+  - export BUILD_ANDROID=YES
+  - export BUILD_Qt=YES
   - export BUILD_MAC=NO
-  - export BUILD_RES=YES
   - echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
   - git lfs pull
 # Only building on Mac when not handling pull request
@@ -57,18 +56,17 @@ install:
   fi
 
 - curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py
-- python2 get-pip.py
-- python2 -m pip install --upgrade pip
-- python2 -m pip install setuptools-rust
-- python2 -m pip install pyOpenSSL
-- python2 -m pip install pyjavaproperties
-- python2 -m pip install github3.py
-- python2 -m pip install cpp-coveralls
-- python2 -m pip install certifi
+- sudo python2 get-pip.py
+- sudo python2 -m pip install --upgrade pip
+- sudo python2 -m pip install setuptools-rust
+- sudo python2 -m pip install pyOpenSSL
+- sudo python2 -m pip install pyjavaproperties
+- sudo python2 -m pip install github3.py
+- sudo python2 -m pip install cpp-coveralls
+- sudo python2 -m pip install certifi
 
 before_script:
-#- export REQUESTS_CA_BUNDLE=/usr/local/lib/python2.7/dist-packages/certifi/cacert.pem
-- export REQUESTS_CA_BUNDLE=/home/travis/.local/lib/python2.7/site-packages/certifi/cacert.pem
+- export REQUESTS_CA_BUNDLE=/usr/local/lib/python2.7/dist-packages/certifi/cacert.pem
 script: "tools/travis-script.sh"
 
 after_success:
