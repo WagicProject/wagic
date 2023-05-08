@@ -43,7 +43,7 @@ def main():
         asset_url = t.expand(name = options.remote)
         r = requests.post(asset_url, headers = headers, data = open(options.local, 'rb').read(),verify=False)
         s = 'File ' + options.local + ' has been uploaded as ' + options.remote + '.'
-        print s
+        print(s)
     else:
         parser.print_help()
         return
