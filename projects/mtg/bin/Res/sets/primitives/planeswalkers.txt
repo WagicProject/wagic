@@ -1943,7 +1943,7 @@ name=Mordenkainen
 auto=counter(0/0,5,Loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Draw 2 cards) draw:2 && transforms((,newability[name(Put on bottom) target(*|myhand) bottomoflibrary])) forever
 auto={C(0/0,-2,Loyalty)}:name(-2: Create Dog Illusion) token(Dog Mor)
-auto={C(0/0,-10,Loyalty)}:name(-10: Exchange hand and library) token(Mordenkainen Emblem,Emblem,0/0,shroud,indestructible,notrigger) and!( transforms((,newability[nomaxhand],newability[all(*|myhand) moveto(myreveal) and!( all(*|mylibrary) moveto(myhand) and!( all(*|myreveal) moveto(mylibrary) and!( shuffle )! )! )!])) forever
+auto={C(0/0,-10,Loyalty)}:name(-10: Exchange hand and library) token(Mordenkainen Emblem,Emblem,0/0,shroud,indestructible,notrigger) and!( transforms((,newability[nomaxhand],newability[all(*|myhand) moveto(myreveal) and!( all(*|mylibrary) moveto(myhand) and!( all(*|myreveal) moveto(mylibrary) )! )!])) forever )!
 text=+2: Draw two cards, then put a card from your hand on the bottom of your library. -- -2: Create a blue Dog Illusion creature token with "This creature's power and toughness are each equal to twice the number of cards in your hand." -- -10: Exchange your hand and library, then shuffle. You get an emblem with "You have no maximum hand size."
 mana={4}{U}{U}
 type=Legendary Planeswalker
@@ -2203,7 +2203,7 @@ aicode=activate transforms((,newability[if type(creature[manacost<=hascntloyalty
 auto={C(0/0,2,Loyalty)}:name(+2: Scry 2) _SCRY2_
 auto={C(0/0,0,Loyalty)}: restriction{type(land[zpos=1]|mylibrary)~morethan~0} name(+0: Look top card) reveal:1 optionone name(Put on battlefield) target(<upto:1>land|reveal) moveto(mybattlefield) optiononeend optiontwo name(Put back) target(*|reveal) moveto(mylibrary) optiontwoend revealend
 auto={C(0/0,0,Loyalty)}: restriction{type(creature[zpos=1]|mylibrary)~morethan~0} name(+0: Look top card) reveal:1 optionone name(Put on battlefield) target(<upto:1>creature[manacost<=hascntloyalty]|reveal) moveto(mybattlefield) optiononeend optiontwo name(Put back) target(*|reveal) moveto(mylibrary) optiontwoend revealend
-auto={C(0/0,0,Loyalty)}: restriction{type(*[-creature;-land;zpos=1]|mylibrary)~morethan~0} name(+0: Look top card)) reveal:1 optionone name(Put back) target(*|reveal) moveto(mylibrary) optiononeend optiontwo name(Put back) all(*|reveal) moveto(mylibrary) optiontwoend revealend
+auto={C(0/0,0,Loyalty)}: restriction{type(*[-creature;-land;zpos=1]|mylibrary)~morethan~0} name(+0: Look top card) reveal:1 optionone name(Put back) target(*|reveal) moveto(mylibrary) optiononeend optiontwo name(Put back) all(*|reveal) moveto(mylibrary) optiontwoend revealend
 auto={C(0/0,-6,Loyalty)}:name(-6: Two lands become creatures 5/5 with flying) target(<upto:2>land|mybattlefield) transforms((Creature Elemental,setpower=5,settoughness=5,newability[haste],newability[flying],newability[untap])) ueot
 text=+2: Scry 2. -- 0: Look at the top card of your library. If it's a land card or a creature card with mana value less than or equal to the number of loyalty counters on Nissa, Steward of Elements, you may put that card onto the battlefield. -- -6: Untap up to two target lands you control. They become 5/5 Elemental creatures with flying and haste until end of turn. They're still lands.
 mana={X}{G}{U}
