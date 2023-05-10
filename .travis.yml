@@ -71,8 +71,9 @@ script: "tools/travis-script.sh"
 
 after_success:
 - coveralls -b . -e JGE/src -e JGE/include -i projects/mtg/include -i projects/mtg/src --gcov-options '\-lp'
-- python2 tools/upload-binaries.py -t $GH_TOKEN2 -s $TRAVIS_COMMIT -l core.zip -r Wagic-core.zip -b $TRAVIS_BRANCH
-- python2 tools/upload-binaries.py -t $GH_TOKEN2 -s $TRAVIS_COMMIT -l projects/mtg/Android/bin/Wagic-debug.apk -r Wagic-android.apk -b $TRAVIS_BRANCH
-- python2 tools/upload-binaries.py -t $GH_TOKEN2 -s $TRAVIS_COMMIT -l projects/mtg/psprelease.zip -r Wagic-psp.zip -b $TRAVIS_BRANCH
-- python2 tools/upload-binaries.py -t $GH_TOKEN2 -s $TRAVIS_COMMIT -l qt-gui-build/linuxqtrelease.zip -r Wagic-linux-QT.zip -b $TRAVIS_BRANCH
+- export VERSION=$(grep "=" projects/mtg/build.number.properties | sed 's/.*=//' | tr -d '\n\t\r ')
+- python2 tools/upload-binaries.py -t $GH_TOKEN2 -s $TRAVIS_COMMIT -l core.zip -r Wagic-core-$VERSION.zip -b $TRAVIS_BRANCH
+- python2 tools/upload-binaries.py -t $GH_TOKEN2 -s $TRAVIS_COMMIT -l projects/mtg/Android/bin/Wagic-debug.apk -r Wagic-$VERSION.apk -b $TRAVIS_BRANCH
+- python2 tools/upload-binaries.py -t $GH_TOKEN2 -s $TRAVIS_COMMIT -l projects/mtg/psprelease.zip -r WagicPSP-$VERSION.zip -b $TRAVIS_BRANCH
+- python2 tools/upload-binaries.py -t $GH_TOKEN2 -s $TRAVIS_COMMIT -l qt-gui-build/linuxqtrelease.zip -r WagicLinux-$VERSION.zip -b $TRAVIS_BRANCH
 - python2 tools/upload-binaries.py -t $GH_TOKEN2 -s $TRAVIS_COMMIT -l projects/mtg/CardImageLinks.csv -r CardImageLinks.csv -b $TRAVIS_BRANCH
