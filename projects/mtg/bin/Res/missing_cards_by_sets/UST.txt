@@ -619,7 +619,7 @@ toughness=6
 [/card]
 [card]
 name=Shellephant
-text={0}: Choose one. You may activate this ability while Shellephant is in any zone. --  Shellephant has base power and toughness 1/4. --  Shellephant has base power and toughness 3/3.
+text={0}: Choose one. You may activate this ability while Shellephant is in any zone. -- ? Shellephant has base power and toughness 1/4. -- ? Shellephant has base power and toughness 3/3.
 mana={1}{G}{G}
 type=Creature
 subtype=Turtle and/or Elephant

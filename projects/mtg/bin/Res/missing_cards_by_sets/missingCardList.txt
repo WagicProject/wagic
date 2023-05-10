@@ -84,8 +84,6 @@ Glimmer Lens
 Elesh Norn, Mother of Machines
 Melira, the Living Cure
 Thrun, Breaker of Silence
-Jor Kadeen, First Goldwarden
-Kemba, Kha Enduring
 Soulless Jailer
 Mercurial Spelldancer
 Tablet of Compleation
@@ -101,10 +99,8 @@ Kinzu of the Bleak Coven
 Serum Snare
 Red Sun's Twilight
 Urabrask's Forge
-Vindictive Flamestoker
 Font of Progress
 Green Sun's Twilight
-Venerated Rotpriest
 Ichormoon Gauntlet
 Conduit of Worlds
 Mirran Safehouse
@@ -128,10 +124,8 @@ Kethek, Crucible Goliath
 Atraxa, Grand Unifier
 Ezuri, Stalker of Spheres
 Ovika, Enigma Goliath
-Urabrask's Anointer
 Ria Ivor, Bane of Bladehold
 Malcator, Purity Overseer
-Furnace Punisher
 Necrogen Rotpriest
 Venser, Corpse Puppet
 Slobad, Iron Goblin
@@ -149,39 +143,30 @@ Tyvar, Jubilant Brawler
 Lukka, Bound to Ruin
 Vraska, Betrayal's Sting
 The Eternal Wanderer
-Tamiyo's Logbook
 Maze's Mantle
 Lattice-Blade Mantis
 Noxious Assault
 Plague Nurse
 Porcelain Zealot
 Vanish into Eternity
-Armored Scrapgorger
-Kuldotha Cackler
 Magmatic Sprinter
 Nahiri's Sacrifice
 Molten Rebuke
 Rebel Salvo
-Shrapnel Slinger
 Compleat Devotion
 Churning Reservoir
 Bladehold War-Whip
 Forgehammer Centurion
 Slaughter Singer
 Flensing Raptor
-Indoctrination Attendant
 Hexgold Slash
-Incisor Glider
-Phyrexian Atlas
 Awaken the Sleeper
 All Will Be One
 Against All Odds
 Bladegraft Aspirant
 Cacophony Scamp
-Ravenous Necrotitan
 Scheming Aspirant
 Ichorplate Golem
-Fleshless Gladiator
 Serum-Core Chimera
 Tainted Observer
 Necrosquito
@@ -192,7 +177,6 @@ Cruel Grimnarch
 Viral Spawning
 Venomous Brutalizer
 Trawler Drake
-Ambulatory Edifice
 Watchful Blisterzoa
 Cinderslash Ravager
 Anoint with Affliction
@@ -218,78 +202,30 @@ Tiller Engine
 Unite the Coalition
 Verrak, Warped Sengir
 Gerrard's Hourglass Pendant
+Stangg, Echo Warrior
+Sivitri, Dragon Master
+Ramirez DePietro, Pillager
+Orca, Siege Demon
+Rasputin, the Oneiromancer
+Jedit Ojanen, Mercenary
+Ohabi Caleria
+The Lady of Otaria
+General Marhault Elsdragon
+The Ever-Changing 'Dane
+Jasmine Boreal of the Seven
+Ayesha Tanaka, Armorer
 The Mana Rig
-Saint Traft and Rem Karolus
-Rashmi and Ragavan
-Elenda and Azor
-Elspeth's Talent
-Teferi's Talent
-Rowan's Talent
-Liliana's Talent
-Begin the Invasion
-Vivien's Talent
-Kasla, the Broken Halo
-Gimbal, Gremlin Prodigy
-Brimaz, Blight of Oreskos
-Bright-Palm, Soul Awakener
-Ichor Elixir
-Wildfire Awakener
-Flockchaser Phantom
-Cutthroat Negotiator
-Sandsteppe War Riders
-Path of the Animist
-Emergent Woodwurm
-Conclave Sledge-Captain
-Uncivil Unrest
-Path of the Pyromancer
-Mirror-Style Master
-Dance with Calamity
-Path of the Schemer
-Guardian Scalelord
-Blight Titan
-Path of the Enigma
-Deluxe Dragster
-Foulmire Knight
-Wand of the Worldsoul
-Vulpine Harvester
-Path of the Ghosthunter
+Xira, the Golden Sting
+Tobias, Doomed Conqueror
+Tetsuo, Imperial Champion
+Torsten, Founder of Benalia
+Tor Wauki the Younger
 Stensia
 Krosa
 Sokenzan
 Gavony
 Jund
-Megaflora Jungle
-Smitten Swordmaster
-Naktamun
-New Argive
-Norn's Seedcore
-The Fertile Lands of Saulvinia
-Ghirapur
-The Golden City of Orazca
-The Great Aerie
-Inys Haen
-Ketria
-Littjara
 Order of Midnight
-Murderous Rider
-The Caldaia
-Enigma Ridges
-Esper
-Excise the Imperfect
-Wear
-Struggle
-Heaven
-Towashi
-Unyaro
-Valor's Reach
-The Western Cloud
-The Wilds
-Nyx
-Paliano
-The Pit
-Riptide Island
-Strixhaven
-Ten Wizards Mountain
 Chandra, Hope's Beacon
 Invasion of Azgol
 Invasion of Amonkhet
@@ -786,7 +722,6 @@ Greasefang, Okiba Boss
 Tales of Master Seshiro
 Storyweave
 Spinning Wheel Kick
-Shigeki, Jukai Visionary
 Leech Gauntlet
 Webspinner Cuff
 Kami of Terrible Secrets
@@ -840,7 +775,6 @@ The Shattered States Era
 Seismic Wave
 Behold the Unspeakable
 Roadside Reliquary
-Dokuchi Silencer
 Awakened Awareness
 Otawara, Soaring City
 Heiko Yamazaki, the General
@@ -863,7 +797,6 @@ Reckoner Bankbuster
 Norika Yamazaki, the Poet
 The Reality Chip
 Flame Discharge
-Tameshi, Reality Architect
 Michiko's Reign of Truth
 Mirror Box
 Blade of the Oni
@@ -882,7 +815,6 @@ Assassin's Ink
 Chainflail Centipede
 Go-Shintai of Boundless Vigor
 Reality Heist
-Planar Incision
 Harmonious Emergence
 The Modern Age
 Mobilizer Mech
@@ -906,7 +838,6 @@ Farid, Enterprising Salvager
 Hexavus
 Kayla's Music Box
 Machine God's Effigy
-Scavenged Brawler
 Smelting Vat
 Scholar of New Horizons
 The Brothers' War
@@ -934,12 +865,8 @@ Phyrexian Fleshgorger
 Hostile Negotiations
 Dreams of Steel and Oil
 Junkyard Genius
-Carrion Locust
 Gix's Command
-Battlefield Butcher
-Kill-Zone Acrobat
 Visions of Phyrexia
-Skitterbeam Battalion
 Gurgling Anointer
 Over the Top
 Mechanized Warfare
@@ -975,25 +902,19 @@ Weakstone's Subjugation
 Zephyr Sentinel
 Wasteful Harvest
 Urza, Powerstone Prodigy
-Shoot Down
 Soul Partition
-Tawnos's Tinkering
 Sarinth Steelseeker
 Stone Retrieval Unit
 Steel Exemplar
 The Stone Brain
 The Stasis Coffin
 Slagstone Refinery
-Power Plant Worker
-Demolition Field
 Excavation Explosion
-Tower Worker
 Thran Power Suit
 Thran Spider
 Symmetry Matrix
 Mishra, Claimed by Gix
 The Mightstone and Weakstone
-Recommission
 Repair and Recharge
 Powerstone Engineer
 Horned Stoneseeker
@@ -1003,7 +924,6 @@ Meticulous Excavation
 Sardian Cliffstomper
 Tomakul Scrapsmith
 Sibling Rivalry
-Raze to the Ground
 Static Net
 Great Desert Prospector
 Liberator, Urza's Battlethopter
@@ -1016,4 +936,3 @@ Bladecoil Serpent
 Sarinth Greatwurm
 Skyfisher Spider
 Saheeli, Filigree Master
-Mine Worker

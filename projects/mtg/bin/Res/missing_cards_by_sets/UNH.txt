@@ -473,7 +473,7 @@ type=Enchantment
 [/card]
 [card]
 name=Red-Hot Hottie
-text=Whenever Red-Hot Hottie deals damage to a creature, put a third-degree-burn counter on that creature. It has "At the end of each turn, sacrifice this creature unless you scream Aaah' at the top of your lungs."
+text=Whenever Red-Hot Hottie deals damage to a creature, put a third-degree-burn counter on that creature. It has "At the end of each turn, sacrifice this creature unless you scream ?Aaah' at the top of your lungs."
 mana={2}{R}{R}
 type=Creature
 subtype=Elemental

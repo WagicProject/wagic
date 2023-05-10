@@ -169,7 +169,7 @@ toughness=5
 [/card]
 [card]
 name=Horizon Boughs
-text=All permanents untap during each players untap step. -- Whenever you roll {K}, you may search your library for up to three basic land cards, put them onto the battlefield tapped, then shuffle.
+text=All permanents untap during each player?s untap step. -- Whenever you roll {K}, you may search your library for up to three basic land cards, put them onto the battlefield tapped, then shuffle.
 type=Plane
 subtype=Pyrulea
 [/card]
@@ -208,7 +208,7 @@ type=Land
 [/card]
 [card]
 name=Mirrored Depths
-text=Whenever a player casts a spell, that player flips a coin. If the player loses the flip, counter that spell. -- Whenever you roll {K}, target player reveals the top card of their library. If its a nonland card, you may cast it without paying its mana cost.
+text=Whenever a player casts a spell, that player flips a coin. If the player loses the flip, counter that spell. -- Whenever you roll {K}, target player reveals the top card of their library. If it?s a nonland card, you may cast it without paying its mana cost.
 type=Plane
 subtype=Karsus
 [/card]
