@@ -1591,7 +1591,7 @@ AADamager::AADamager(GameObserver* observer, int _id, MTGCardInstance * _source,
     const string AADamager::getMenuText()
     {
         MTGCardInstance * _target = dynamic_cast<MTGCardInstance*>(target);
-        if(_target && _target->hasType(Subtypes::TYPE_PLANESWALKER) || _target && _target->hasType(Subtypes::TYPE_BATTLE))
+        if(_target && (_target->hasType(Subtypes::TYPE_PLANESWALKER) || _target->hasType(Subtypes::TYPE_BATTLE)))
             return _target->name.c_str();
         if(redirected)
         {
