@@ -1765,16 +1765,6 @@ id=610390
 rarity=L
 [/card]
 [card]
-primitive=Elesh Norn
-id=610511
-rarity=M
-[/card]
-[card]
-primitive=The Argent Etchings
-id=610512
-rarity=T
-[/card]
-[card]
 primitive=Heliod, the Radiant Dawn
 id=610513
 rarity=R
