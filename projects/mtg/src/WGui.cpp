@@ -2112,6 +2112,9 @@ void WGuiFilterItem::updateValue()
             mParent->addArg("Sorcery", "t:Sorcery;");
             mParent->addArg("Tribal", "t:Tribal;");
             mParent->addArg("Planeswalker", "t:Planeswalker;");
+            mParent->addArg("Battle", "t:Battle;");
+            mParent->addArg("Dungeon", "t:Dungeon;");
+            mParent->addArg("Conspiracy", "t:Conspiracy;");
 
         }
         else if (filterType == FILTER_SUBTYPE)

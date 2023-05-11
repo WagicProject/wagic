@@ -196,7 +196,7 @@ GuiPlay::~GuiPlay()
 
 bool isSpell(CardView* c)
 {
-    return c->card->isSpell() && !c->card->isCreature() && !c->card->hasType(Subtypes::TYPE_PLANESWALKER);
+    return c->card->isSpell() && !c->card->isCreature() && !c->card->hasType(Subtypes::TYPE_PLANESWALKER) && !c->card->hasType(Subtypes::TYPE_BATTLE);
 }
 void GuiPlay::Replace()
 {
@@ -208,7 +208,7 @@ void GuiPlay::Replace()
     for (iterator it = cards.begin(); it != end_spells; ++it)
         if (!(*it)->card->target)
         {
-            if((!(*it)->card->hasSubtype(Subtypes::TYPE_AURA)|| ((*it)->card->hasSubtype(Subtypes::TYPE_AURA) && (*it)->card->playerTarget)) && !(*it)->card->hasType(Subtypes::TYPE_PLANESWALKER))
+            if((!(*it)->card->hasSubtype(Subtypes::TYPE_AURA)|| ((*it)->card->hasSubtype(Subtypes::TYPE_AURA) && (*it)->card->playerTarget)) && !(*it)->card->hasType(Subtypes::TYPE_PLANESWALKER) && !(*it)->card->hasType(Subtypes::TYPE_BATTLE))
             {
                 if (mpDuelLayers->getRenderedPlayer() == (*it)->card->controller())
                     ++selfSpellsN;
@@ -229,7 +229,7 @@ void GuiPlay::Replace()
             else
                 ++opponentCreaturesN;
         }
-        else if ((*it)->card->isLand() || (*it)->card->hasType(Subtypes::TYPE_PLANESWALKER))
+        else if ((*it)->card->isLand() || (*it)->card->hasType(Subtypes::TYPE_PLANESWALKER) || (*it)->card->hasType(Subtypes::TYPE_BATTLE))
         {
             if (mpDuelLayers->getRenderedPlayer() == (*it)->card->controller())
                 ++selfLandsN;
@@ -244,7 +244,7 @@ void GuiPlay::Replace()
     for (iterator it = cards.begin(); it != end_spells; ++it)
         if (!(*it)->card->target)
         {
-            if((!(*it)->card->hasSubtype(Subtypes::TYPE_AURA)|| ((*it)->card->hasSubtype(Subtypes::TYPE_AURA) && (*it)->card->playerTarget)) && !(*it)->card->hasType(Subtypes::TYPE_PLANESWALKER))
+            if((!(*it)->card->hasSubtype(Subtypes::TYPE_AURA)|| ((*it)->card->hasSubtype(Subtypes::TYPE_AURA) && (*it)->card->playerTarget)) && !(*it)->card->hasType(Subtypes::TYPE_PLANESWALKER) && !(*it)->card->hasType(Subtypes::TYPE_BATTLE))
             {
                 if (mpDuelLayers->getRenderedPlayer() == (*it)->card->controller())
                     selfSpells.Enstack(*it);
@@ -287,7 +287,7 @@ void GuiPlay::Replace()
     //rerun the iter reattaching planes walkers to the back of the lands.
     for (iterator it = end_spells; it != cards.end(); ++it)
     {
-        if ((*it)->card->hasType(Subtypes::TYPE_PLANESWALKER) && !(*it)->card->isCreature())
+        if (((*it)->card->hasType(Subtypes::TYPE_PLANESWALKER) || (*it)->card->hasType(Subtypes::TYPE_BATTLE)) && !(*it)->card->isCreature())
         {
             if (mpDuelLayers->getRenderedPlayer() == (*it)->card->controller())
                 selfLands.Enstack(*it);
@@ -310,7 +310,7 @@ void GuiPlay::Render()
             if(dtarget && dtarget->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
             {
                 MTGCardInstance * ctarget = ((MTGCardInstance *)(*it)->card->isAttacking);
-                if(ctarget->hasType(Subtypes::TYPE_PLANESWALKER) && observer->isInPlay(ctarget) && observer->getCurrentGamePhase() < MTG_PHASE_COMBATEND)
+                if((ctarget->hasType(Subtypes::TYPE_PLANESWALKER) || ctarget->hasType(Subtypes::TYPE_BATTLE)) && observer->isInPlay(ctarget) && observer->getCurrentGamePhase() < MTG_PHASE_COMBATEND)
                 {
                     JRenderer::GetInstance()->DrawLine((*it)->actX,(*it)->actY,ctarget->view->actX,ctarget->view->actY,0.5f,ARGB(128 - wave, 255, 40, 40));
                 }
@@ -331,7 +331,7 @@ void GuiPlay::Render()
             else
                 opponentCreatures.Render(*it, cards.begin(), end_spells);
         }
-        else if(!(*it)->card->hasType(Subtypes::TYPE_PLANESWALKER))
+        else if(!(*it)->card->hasType(Subtypes::TYPE_PLANESWALKER) && !(*it)->card->hasType(Subtypes::TYPE_BATTLE))
         {
             if (!(*it)->card->target)
             {

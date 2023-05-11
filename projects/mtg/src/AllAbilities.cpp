@@ -1545,7 +1545,7 @@ AADamager::AADamager(GameObserver* observer, int _id, MTGCardInstance * _source,
         if (_target)
         {
             WParsedInt damage(d, NULL, (MTGCardInstance *)source);
-            if(_target == game->opponent() && game->opponent()->inPlay()->hasType("planeswalker") && !redirected)
+            if(_target == game->opponent() && (game->opponent()->inPlay()->hasType("planeswalker") || game->opponent()->inPlay()->hasType("battle")) && !redirected)
             {
                 vector<MTGAbility*>selection;
                 MTGCardInstance * check = NULL;
@@ -1557,7 +1557,7 @@ AADamager::AADamager(GameObserver* observer, int _id, MTGCardInstance * _source,
                 for(int i = 0; i < checkWalkers;++i)
                 {
                     check = ((Player*)_target)->game->battlefield->cards[i];
-                    if(check->hasType(Subtypes::TYPE_PLANESWALKER))
+                    if(check->hasType(Subtypes::TYPE_PLANESWALKER) || check->hasType(Subtypes::TYPE_BATTLE))
                     {
                         this->redirected = true;
                         MTGAbility * setWalker = this->clone();
@@ -1591,7 +1591,7 @@ AADamager::AADamager(GameObserver* observer, int _id, MTGCardInstance * _source,
     const string AADamager::getMenuText()
     {
         MTGCardInstance * _target = dynamic_cast<MTGCardInstance*>(target);
-        if(_target && _target->hasType(Subtypes::TYPE_PLANESWALKER))
+        if(_target && _target->hasType(Subtypes::TYPE_PLANESWALKER) || _target && _target->hasType(Subtypes::TYPE_BATTLE))
             return _target->name.c_str();
         if(redirected)
         {
@@ -10015,7 +10015,7 @@ int AACastCard::resolveSpell()
                 }
             }
 
-            if (putinplay && (copy->hasType(Subtypes::TYPE_ARTIFACT) || copy->hasType(Subtypes::TYPE_CREATURE) || copy->hasType(Subtypes::TYPE_ENCHANTMENT) || copy->hasType(Subtypes::TYPE_PLANESWALKER)))
+            if (putinplay && (copy->hasType(Subtypes::TYPE_ARTIFACT) || copy->hasType(Subtypes::TYPE_CREATURE) || copy->hasType(Subtypes::TYPE_ENCHANTMENT) || copy->hasType(Subtypes::TYPE_PLANESWALKER) || copy->hasType(Subtypes::TYPE_BATTLE)))
                 spell->resolve(); // Fixed a crash when using and!()! with namedcard permanents.
 
             if(andAbility)
@@ -10041,7 +10041,7 @@ int AACastCard::resolveSpell()
         MTGCardInstance * copy = NULL;
         if ((normal || asNormalMadness)||(!_target->hasType(Subtypes::TYPE_INSTANT) && !_target->hasType(Subtypes::TYPE_SORCERY)))
         {
-            if (putinplay && (_target->hasType(Subtypes::TYPE_ARTIFACT)||_target->hasType(Subtypes::TYPE_CREATURE)||_target->hasType(Subtypes::TYPE_ENCHANTMENT)||_target->hasType(Subtypes::TYPE_PLANESWALKER)))
+            if (putinplay && (_target->hasType(Subtypes::TYPE_ARTIFACT)||_target->hasType(Subtypes::TYPE_CREATURE)||_target->hasType(Subtypes::TYPE_ENCHANTMENT)||_target->hasType(Subtypes::TYPE_PLANESWALKER)||_target->hasType(Subtypes::TYPE_BATTLE)))
                 copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->reveal, noEvent); // Fixed a problem with previous zone of card, it cannot be directly battlefield.
             else
                copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack, noEvent); 
@@ -10051,7 +10051,7 @@ int AACastCard::resolveSpell()
         }
         else
         {
-            if (putinplay && (_target->hasType(Subtypes::TYPE_ARTIFACT)||_target->hasType(Subtypes::TYPE_CREATURE)||_target->hasType(Subtypes::TYPE_ENCHANTMENT)||_target->hasType(Subtypes::TYPE_PLANESWALKER)))
+            if (putinplay && (_target->hasType(Subtypes::TYPE_ARTIFACT)||_target->hasType(Subtypes::TYPE_CREATURE)||_target->hasType(Subtypes::TYPE_ENCHANTMENT)||_target->hasType(Subtypes::TYPE_PLANESWALKER)||_target->hasType(Subtypes::TYPE_BATTLE)))
                 copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->reveal, noEvent); // Fixed a problem with previous zone of card, it cannot be directly battlefield.
             else
                 copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack, noEvent);

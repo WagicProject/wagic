@@ -75,7 +75,7 @@ int Damage::resolve()
 
     //-------------------------------------------------
     //Ajani Steadfast ---
-    if(target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && ((MTGCardInstance*)target)->hasType("planeswalker") && ((MTGCardInstance*)target)->controller()->forcefield)
+    if(target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && (((MTGCardInstance*)target)->hasType("planeswalker") || ((MTGCardInstance*)target)->hasType("battle")) && ((MTGCardInstance*)target)->controller()->forcefield)
         damage = 1;
     if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
     {
@@ -304,6 +304,19 @@ int Damage::resolve()
             for(size_t i = 0; i < counters->counters.size(); ++i){
                 Counter * counter = counters->counters[i];
                 if(counter->name ==  "loyalty"){
+                    target->life = counter->nb - target->damageCount;
+                    break;
+                }
+            }
+        }
+    }
+
+    if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && ((MTGCardInstance*)target)->hasType(Subtypes::TYPE_BATTLE)){ // Fix life calculation for battle damage.
+        if (((MTGCardInstance*)target)->counters){
+            Counters * counters = ((MTGCardInstance*)target)->counters;
+            for(size_t i = 0; i < counters->counters.size(); ++i){
+                Counter * counter = counters->counters[i];
+                if(counter->name ==  "defense"){
                     target->life = counter->nb - target->damageCount;
                     break;
                 }

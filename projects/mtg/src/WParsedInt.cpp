@@ -1184,6 +1184,8 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
                 intValue++;
             if(card->hasType(Subtypes::TYPE_ARTIFACT))
                 intValue++;
+            if(card->hasType(Subtypes::TYPE_BATTLE))
+                intValue++;
         }
     }
     else if (s == "pcycledcount" || s == "ocycledcount") //return how may cards have been cycled this turn from a specific player.
@@ -1258,6 +1260,8 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
                     cc = 1;
                 if(cardHasTypeinZone("artifact",checkZone))
                     ac = 1;
+                if(cardHasTypeinZone("battle",checkZone))
+                    ac = 1;
             }
         } else {
             MTGGameZone * checkZone = (s.find("oppbattlefieldcardtypes")!=string::npos)?card->getObserver()->opponent()->game->inPlay:card->controller()->game->inPlay;
@@ -1276,6 +1280,8 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
             if(cardHasTypeinZone("creature",checkZone))
                 cc = 1;
             if(cardHasTypeinZone("artifact",checkZone))
+                ac = 1;
+            if(cardHasTypeinZone("battle",checkZone))
                 ac = 1;
         }
         intValue = pc+tc+sc+lc+ic+ec+cc+ac;
@@ -1303,6 +1309,8 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
                     cc = 1;
                 if(cardHasTypeinZone("artifact",checkZone))
                     ac = 1;
+                if(cardHasTypeinZone("battle",checkZone))
+                    ac = 1;
             }
         } else {
             MTGGameZone * checkZone = (s.find("oppgravecardtypes")!=string::npos)?card->getObserver()->opponent()->game->graveyard:card->controller()->game->graveyard;
@@ -1322,6 +1330,8 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
                 cc = 1;
             if(cardHasTypeinZone("artifact",checkZone))
                 ac = 1;
+            if(cardHasTypeinZone("battle",checkZone))
+                ac = 1;
         }
         intValue = pc+tc+sc+lc+ic+ec+cc+ac;
     }
@@ -1334,6 +1344,7 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
                 (s.find("totcntart") != string::npos && card->controller()->game->inPlay->cards[j]->hasType(Subtypes::TYPE_ARTIFACT)) ||
                 (s.find("totcntenc") != string::npos && card->controller()->game->inPlay->cards[j]->hasType(Subtypes::TYPE_ENCHANTMENT)) ||
                 (s.find("totcntlan") != string::npos && card->controller()->game->inPlay->cards[j]->hasType(Subtypes::TYPE_LAND)) || 
+                (s.find("totcntbat") != string::npos && card->controller()->game->inPlay->cards[j]->hasType(Subtypes::TYPE_BATTLE)) || 
                 s.find("totcntall") != string::npos){
                 if (card->controller()->game->inPlay->cards[j]->counters){
                     Counters * counters = card->controller()->game->inPlay->cards[j]->counters;

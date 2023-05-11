@@ -3101,7 +3101,7 @@ subtype=Ugin
 [card]
 name=Ugin, the Spirit Dragon
 auto=counter(0/0,7,loyalty)
-auto={C(0/0,2,Loyalty)}:name(+2: Deals 3 damage to target creature or player) damage:3 target(player,creature)
+auto={C(0/0,2,Loyalty)}:name(+2: Deals 3 damage to target creature or player) damage:3 target(player,creature,planeswalker)
 auto={C(0/0,-0,Loyalty)}:name(-0: Exile each permanent with mana cost 0) moveto(exile) all(*[white;blue;black;red;green;manacost<=0])
 auto={C(0/0,-1,Loyalty)}:name(-1: Exile each permanent with mana cost 1) moveto(exile) all(*[white;blue;black;red;green;manacost<=1])
 auto={C(0/0,-2,Loyalty)}:name(-2: Exile each permanent with mana cost 2) moveto(exile) all(*[white;blue;black;red;green;manacost<=2])

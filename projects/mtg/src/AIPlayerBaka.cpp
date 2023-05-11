@@ -723,7 +723,7 @@ int OrderedAIAction::getEfficiency()
     
     if (ability->source)
     {
-        if(ability->source->hasType(Subtypes::TYPE_PLANESWALKER))
+        if(ability->source->hasType(Subtypes::TYPE_PLANESWALKER) || ability->source->hasType(Subtypes::TYPE_BATTLE))
             efficiency += 40;
         else if(ability->source->hasType(Subtypes::TYPE_LAND))
             { // probably a shockland, don't pay life if hand is empty
@@ -2813,6 +2813,9 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
 
             if (card->hasType(Subtypes::TYPE_PLANESWALKER) && card->types.size() > 0 && game->inPlay->hasTypeSpecificInt(Subtypes::TYPE_PLANESWALKER,card->types[1]))
                 continue;
+
+            if (card->hasType(Subtypes::TYPE_BATTLE) && card->types.size() > 0 && game->inPlay->hasTypeSpecificInt(Subtypes::TYPE_BATTLE,card->types[1]))
+                continue;
         
             if(hints && hints->HintSaysItsForCombo(observer,card))
             {
@@ -2980,6 +2983,9 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
             continue;
 
         if (card->hasType(Subtypes::TYPE_PLANESWALKER) && card->types.size() > 0 && game->inPlay->hasTypeSpecificInt(Subtypes::TYPE_PLANESWALKER,card->types[1]))
+            continue;
+
+        if (card->hasType(Subtypes::TYPE_BATTLE) && card->types.size() > 0 && game->inPlay->hasTypeSpecificInt(Subtypes::TYPE_BATTLE,card->types[1]))
             continue;
         
         if(hints && hints->HintSaysItsForCombo(observer,card))
@@ -3748,7 +3754,7 @@ int AIPlayerBaka::computeActions()
                 else
                 {
                     //look for the most expensive creature we can afford. If not found, try enchantment, then artifact, etc...
-                    const char* types[] = {"planeswalker","creature", "enchantment", "artifact", "sorcery", "instant"};
+                    const char* types[] = {"planeswalker","creature", "enchantment", "artifact", "sorcery", "instant", "battle"};
                     int count = 0;
                     while (!nextCardToPlay && count < 6)
                     {
