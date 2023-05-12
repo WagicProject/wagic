@@ -2118,8 +2118,14 @@ int MTGPlaneswalkerAttackRule::isReactingToClick(MTGCardInstance * card, ManaCos
             return 0;
         if ((card->isAttacker()) || (card->canAttack(true) && card->attackPlaneswalkerCost < 1))
         {
-            if(!card->isAttacker())
-                attackpwmenu = "Attack Planeswalker or Battle";
+            if(!card->isAttacker()){
+                if(card->controller()->opponent()->game->inPlay->hasType("planeswalker") && !card->controller()->opponent()->game->inPlay->hasType("battle"))
+                    attackpwmenu = "Attack a Planeswalker";
+                else if(!card->controller()->opponent()->game->inPlay->hasType("planeswalker") && card->controller()->opponent()->game->inPlay->hasType("battle"))
+                    attackpwmenu = "Attack a Battle";
+                else
+                    attackpwmenu = "Attack Planeswalker or Battle";
+            }
             else
                 attackpwmenu = "Remove Attacker";
 
