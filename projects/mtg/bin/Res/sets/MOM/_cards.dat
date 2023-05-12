@@ -2,8 +2,18 @@
 author=Wagic Team
 name=March of the Machine
 year=2023-04-21
-total=451
+total=453
 [/meta]
+[card]
+primitive=Incubator
+id=999903
+rarity=T
+[/card]
+[card]
+primitive=Phyrexian
+id=999904
+rarity=T
+[/card]
 [card]
 primitive=Invasion of Ravnica
 id=607011
