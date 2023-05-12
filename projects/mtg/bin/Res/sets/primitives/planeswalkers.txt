@@ -783,7 +783,7 @@ name=Dovin, Grand Arbiter
 auto=counter(0/0,3,loyalty)
 aicode=activate target(*[zpos<=10]|mylibrary) moveto(myhand)
 auto={C(0/0,1,Loyalty)}:name(+1: Whenever a creature combat damage, put loyalty counter) all(creature|myBattlefield) transforms((,newability[@combatdamaged(player) from(this):counter(0/0,1,Loyalty) notAtarget(Dovin^ Grand Arbiter|myBattlefield)])) ueot oneshot
-auto={C(0/0,-1,Loyalty)}:name(-1: Create a 1/1 Thopter and gain 1 life) token(Thopter,Artifact Creature Thopter,1/1,flying) && life:1 controller
+auto={C(0/0,-1,Loyalty)}:name(-1: Create a 1/1 Thopter and gain 1 life) _THOPTERTOKEN_ && life:1 controller
 auto={C(0/0,-7,Loyalty)}:name(-7: Look at the top ten and put three in your hand) name(Look ten cards from top of your Library) reveal:10 optionone name(Get three cards) target(<3>*|reveal) moveto(hand) optiononeend optiontwo all(*|reveal) bottomoflibrary optiontwoend revealend
 text=+1: Until end of turn, whenever a creature you control deals combat damage to a player, put a loyalty counter on Dovin, Grand Arbiter. -- −1: Create a 1/1 colorless Thopter artifact creature token with flying. You gain 1 life. -- −7: Look at the top ten cards of your library. Put three of them into your hand and the rest on the bottom of your library in a random order.
 mana={1}{W}{U}
@@ -2890,7 +2890,7 @@ subtype=Tezzeret
 [card]
 name=Tezzeret, Artifice Master
 auto=counter(0/0,5,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Create a 1/1 Thopter) token(Thopter,Artifact Creature Thopter,1/1,flying)
+auto={C(0/0,1,Loyalty)}:name(+1: Create a 1/1 Thopter) _THOPTERTOKEN_
 auto={C(0/0,0,Loyalty)}:name(+0: Draw a card or two) if type(artifact|myBattlefield)~morethan~2 then draw:2 controller else draw:1 controller
 auto={C(0/0,-9,Loyalty)}:name(-9: Emblem: Each end of turn search a permanent) emblem transforms((,newability[@each my endofturn:moveTo(myBattlefield) target(*[-instant;-sorcery]|myLibrary) && shuffle controller])) forever dontremove
 text=+1: Create a 1/1 colorless Thopter artifact creature token with flying. -- 0: Draw a card. If you control three or more artifacts, draw two cards instead. -- −9: You get an emblem with "At the beginning of your end step, search your library for a permanent card, put it onto the battlefield, then shuffle your library."

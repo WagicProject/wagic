@@ -160,7 +160,7 @@
 # Learn
 #AUTO_DEFINE _LEARN_ name(Learn) transforms((,newability[if type(*[lesson]|mysideboard)~morethan~0 then choice name(Put lesson in hand) name(Put lesson in hand) target(*[lesson]|mysideboard) moveto(myhand)],newability[if type(*|myhand)~morethan~0 then choice name(Discard and draw) name(Discard and draw) target(*|myhand) reject and!(draw:1)!],newability[if type(Retriever Phoenix|mygraveyard)~morethan~0 then choice name(Return a Retriever Phoenix) name(Return a Retriever Phoenix) target(Retriever Phoenix|mygraveyard) moveto(myBattlefield)],newability[choice name(Don't learn) donothing])) oneshot
 
-# Spectacle, not implemented
+# Spectacle, if an opponent lost life this turn 
 #AUTO_DEFINE _SPECTACLE_ compare(oplifelost)~morethan~0
 
 # Extort
