@@ -3,7 +3,7 @@ author=Wagic Team
 name=Modern Horizons 2
 orderindex=REP-H.MH2
 year=2021-06-18
-total=346
+total=524
 [/meta]
 [card]
 primitive=Elemental
@@ -2041,14 +2041,9 @@ id=526743
 rarity=U
 [/card]
 [card]
-primitive=Road
+primitive=Road // Ruin
 id=526744
 rarity=U
-[/card]
-[card]
-primitive=Ruin
-id=526744
-rarity=T
 [/card]
 [card]
 primitive=Sythis, Harvest's Hand
