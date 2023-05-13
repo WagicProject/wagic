@@ -3043,7 +3043,7 @@ public class ImgDownloader {
         else if(id.equals("52398t")) //Illusion 2/2
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/a/1/a10729a5-061a-4daf-91d6-0f6ce813a992.jpg?1562539791";
         else if (id.equals("435411t") || id.equals("435410t") || id.equals("611089t") || id.equals("612146t") || id.equals("614935t") ||
-                id.equals("614772t")) //Treasure
+                id.equals("614772t") || id.equals("569995t") || id.equals("563217t")) //Treasure
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/7/2/720f3e68-84c0-462e-a0d1-90236ccc494a.jpg?1562539782";
         else if (id.equals("611086t") || id.equals("610929t") || id.equals("607138t")|| id.equals("607125t")) //Incubator
             tokenurl = "https://cards.scryfall.io/large/front/2/c/2c5ed737-657b-43bf-b222-941da7579a4a.jpg";
@@ -3429,9 +3429,10 @@ public class ImgDownloader {
                 id.equals("503860") || id.equals("522280") || id.equals("522111") || id.equals("527288") || id.equals("531927") || id.equals("527295") ||
                 id.equals("111220") || id.equals("416829") || id.equals("296545") || id.equals("296694") || id.equals("540473") || id.equals("540464") ||
                 id.equals("540708") || id.equals("539395") || id.equals("539417") || id.equals("540991") || id.equals("545724") || id.equals("297319") ||
-                id.equals("296925") || id.equals("611094")  || id.equals("611234")  || id.equals("615336")  || id.equals("615147")  || id.equals("614778")  ||
-                id.equals("614771") || id.equals("614756")  || id.equals("614666")  || id.equals("612620")  || id.equals("612152")  || id.equals("612130")  ||
-                id.equals("612145"))
+                id.equals("296925") || id.equals("611094") || id.equals("611234") || id.equals("615336") || id.equals("615147") || id.equals("614778") ||
+                id.equals("614771") || id.equals("614756") || id.equals("614666") || id.equals("612620") || id.equals("612152") || id.equals("612130") ||
+                id.equals("612145") || id.equals("571160") || id.equals("571159") || id.equals("571105") || id.equals("570289")  || id.equals("570288") ||
+                id.equals("570250") || id.equals("567228") || id.equals("563151") || id.equals("563150") || id.equals("563105") || id.equals("562899"))
             return false;
         return true;
     }
