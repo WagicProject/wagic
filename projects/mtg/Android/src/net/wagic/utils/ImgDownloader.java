@@ -2774,7 +2774,7 @@ public class ImgDownloader {
         if(id.equals("296754t") || id.equals("296741t") || id.equals("296730t") || id.equals("296728t") || id.equals("296723t") ||
                 id.equals("296696t") ||  id.equals("296697t") || id.equals("296606t")) //Squirrel 1/1
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/9/7/977ddd05-1aae-46fc-95ce-866710d1c5c6.jpg?1626092815";
-        else if(id.equals("546983t") || id.equals("547250t")) // Blood
+        else if(id.equals("546983t") || id.equals("547250t") || id.equals("612139t") || id.equals("614765t")) // Blood
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/a/6/a6f374bc-cd29-469f-808a-6a6c004ee8aa.jpg?1636041263";
         else if(id.equals("545775t")) // Angel 4/4
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/f/f/ff0335da-631f-46b8-bfa1-b2f210c91f5f.jpg?1598311447";
@@ -2799,13 +2799,13 @@ public class ImgDownloader {
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/b/7/b7667345-e11b-4cad-ac4c-84eb1c5656c5.jpg?1632410326";
         else if(id.equals("534963t")) // Ooze green X/X
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/f/a/faa10292-f358-48c1-a516-9a1eecf62b1d.jpg?1632410909";
-        else if (id.equals("534938t")) // Elemental red X/X
+        else if(id.equals("534938t")) // Elemental red X/X
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/c/4/c4052aed-981b-41d0-85f0-20c2599811ba.jpg?1632410707";
-        else if (id.equals("534999t")) // Treefolk green X/X
+        else if(id.equals("534999t")) // Treefolk green X/X
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/9/4/94e4345b-61b1-4026-a01c-c9f2036c5c8a.jpg?1632410986";
-        else if (id.equals("296713t")) //Bear 2/2
+        else if(id.equals("296713t")) //Bear 2/2
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/c/8/c879d4a6-cef5-48f1-8c08-f5b59ec850de.jpg?1562857282";
-        else if (id.equals("296771t") || id.equals("296738t") || id.equals("540468t")) //Spider 1/2
+        else if(id.equals("296771t") || id.equals("296738t") || id.equals("540468t")) //Spider 1/2
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/0/1/01591603-d903-419d-9957-cf0ae7f79240.jpg?1563073166";
         else if(id.equals("296753t") || id.equals("296707t") || id.equals("296708t")) //Beast 4/4
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/0/6/06b5e4d2-7eac-4ee9-82aa-80a668705679.jpg?1625974919";
@@ -2989,7 +2989,7 @@ public class ImgDownloader {
         else if (id.equals("376404t")) //Elemental */*
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/d/b/db67bc06-b6c9-49a0-beef-4d35842497cb.jpg?1561929912";
         else if (id.equals("409810t") || id.equals("409805t") || id.equals("409953t") || id.equals("409997t") ||
-                id.equals("410032t")  || id.equals("293377t") || id.equals("294345t") || id.equals("295471t")) //Clue
+                id.equals("410032t")  || id.equals("293377t") || id.equals("294345t") || id.equals("295471t") || id.equals("612562t")) //Clue
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/f/2/f2c859e1-181e-44d1-afbd-bbd6e52cf42a.jpg?1562086885";
         else if (id.equals("3242t")) //Wall 0/2
             tokenurl = "https://www.mtg.onl/static/18f8f17bbe1f81822efa4bed878b6437/4d406/PROXY_Wall_0_2.jpg";
@@ -3031,7 +3031,7 @@ public class ImgDownloader {
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/9/9/99a6ebce-f391-4642-857a-4dc1466895f3.jpg?1562926018";
         else if(id.equals("53264t")) //Lizard 8/8
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/7/0/70345006-5cde-44f8-ab66-9d8163d4c4f6.jpg?1561897499";
-        else if(id.equals("53289t")) //Saproling 1/1
+        else if(id.equals("53289t") || id.equals("611982t") || id.equals("611958t")) //Saproling 1/1
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/0/3/0302fa7d-2e34-4f4a-a84e-7a78febc77f5.jpg?1562895593";
         else if(id.equals("53300t")) //Construct 1/1
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/7/c/7c82af53-2de8-4cd6-84bf-fb39d2693de2.jpg?1561897501";
@@ -3042,8 +3042,11 @@ public class ImgDownloader {
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/c/0/c06d2c07-7d3e-46e3-86f0-7ceba3b0aee0.jpg?1592672602";
         else if(id.equals("52398t")) //Illusion 2/2
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/a/1/a10729a5-061a-4daf-91d6-0f6ce813a992.jpg?1562539791";
-        else if (id.equals("435411t") || id.equals("435410t")) //Treasure
+        else if (id.equals("435411t") || id.equals("435410t") || id.equals("611089t") || id.equals("612146t") || id.equals("614935t") ||
+                id.equals("614772t") || id.equals("569995t") || id.equals("563217t")) //Treasure
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/7/2/720f3e68-84c0-462e-a0d1-90236ccc494a.jpg?1562539782";
+        else if (id.equals("611086t") || id.equals("610929t") || id.equals("607138t")|| id.equals("607125t")) //Incubator
+            tokenurl = "https://cards.scryfall.io/large/front/2/c/2c5ed737-657b-43bf-b222-941da7579a4a.jpg";
         else if (id.equals("1686t") || id.equals("2881t") || id.equals("201231t")) //Stangg Twin 3/4
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/e/b/eba90d37-d7ac-4097-a04d-1f27e4c9e5de.jpg?1562702416";
         else if (id.equals("439843t")) //Golem 4/4
@@ -3069,7 +3072,7 @@ public class ImgDownloader {
         else if(id.equals("17841t") || id.equals("17850t") || id.equals("17852t") || id.equals("19444t") || id.equals("294101t") ||
                 id.equals("294226t")) //Elf Warrior 1/1
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/1/1/118d0655-5719-4512-8bc1-fe759669811b.jpg?1615686731";
-        else if(id.equals("383392t")) //Beast 3/3
+        else if(id.equals("383392t") || id.equals("539394t")) //Beast 3/3
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/3/f/3fc3a29a-280d-4f2c-9a01-8cfead75f583.jpg?1561756988";
         else if (id.equals("5610t") || id.equals("416754t")) //Minion */*
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/a/9/a9930d11-4772-4fc2-abbd-9af0a9b23a3e.jpg?1561757789";
@@ -3398,6 +3401,10 @@ public class ImgDownloader {
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/9/4/94e4345b-61b1-4026-a01c-c9f2036c5c8a.jpg?1637115661";
         else if(id.equals("296943t"))
             tokenurl = "https://c1.scryfall.com/file/scryfall-cards/large/front/e/5/e5c0f400-41be-488b-be84-b07289b1ef62.jpg?1637115451";
+        else if(id.equals("612523t")) // Feather
+            tokenurl = "https://cards.scryfall.io/large/front/e/4/e401e2a8-d0a3-4517-ba20-449a1fff7f85.jpg";
+        else if(id.equals("611980t") || id.equals("611956t")) // Dragon Spirit 5/5
+            tokenurl = "https://cards.scryfall.io/large/front/a/4/a4c06e08-2026-471d-a6d0-bbb0f040420a.jpg";
 
         return tokenurl;
     }
@@ -3422,7 +3429,10 @@ public class ImgDownloader {
                 id.equals("503860") || id.equals("522280") || id.equals("522111") || id.equals("527288") || id.equals("531927") || id.equals("527295") ||
                 id.equals("111220") || id.equals("416829") || id.equals("296545") || id.equals("296694") || id.equals("540473") || id.equals("540464") ||
                 id.equals("540708") || id.equals("539395") || id.equals("539417") || id.equals("540991") || id.equals("545724") || id.equals("297319") ||
-                id.equals("296925"))
+                id.equals("296925") || id.equals("611094") || id.equals("611234") || id.equals("615336") || id.equals("615147") || id.equals("614778") ||
+                id.equals("614771") || id.equals("614756") || id.equals("614666") || id.equals("612620") || id.equals("612152") || id.equals("612130") ||
+                id.equals("612145") || id.equals("571160") || id.equals("571159") || id.equals("571105") || id.equals("570289")  || id.equals("570288") ||
+                id.equals("570250") || id.equals("567228") || id.equals("563151") || id.equals("563150") || id.equals("563105") || id.equals("562899"))
             return false;
         return true;
     }
@@ -3683,7 +3693,7 @@ public class ImgDownloader {
                     set.equals("UNH") || set.equals("XLN") || set.equals("SOI") || set.equals("SOK") ||
                     set.equals("BOK") || set.equals("CHK") || set.equals("ZNR") || set.equals("KHM") ||
                     set.equals("STX") || set.equals("MID") || set.equals("CC2") || set.equals("VOW") ||
-                    set.equals("DBL") || set.equals("Y22"))
+                    set.equals("DBL") || set.equals("Y22") || set.equals("MOM"))
                 rarity = "";
             if(id != null && !rarity.equals("t") && (negativeId || id.equals("209162") || id.equals("209163") || id.equals("401721") ||
                     id.equals("401722") || id.equals("999902")))
@@ -3691,7 +3701,8 @@ public class ImgDownloader {
             if(id != null && (id.equals("1750411") || id.equals("5176911") || id.equals("44680711") || id.equals("29530711") ||
                     id.equals("45108910") || id.equals("530447") || id.equals("530448") || id.equals("530449") || id.equals("296817") ||
                     id.equals("296818") || id.equals("29339510") || id.equals("1749810") || id.equals("5197410") || id.equals("5249510") ||
-                    id.equals("5247310") || id.equals("5213710") || id.equals("5253010") || id.equals("5270410")))
+                    id.equals("5247310") || id.equals("5213710") || id.equals("5253010") || id.equals("5270410") || id.equals("57018400") ||
+                    id.equals("57018401")))
                 rarity = "";
             int c = lines.indexOf("[/card]", lastIndex);
             if (c > 0)
@@ -3944,7 +3955,8 @@ public class ImgDownloader {
                     || scryset.equals("ATH") || scryset.equals("HA4") || scryset.equals("TSR") || scryset.equals("HA5") || scryset.equals("H1R")
                     || scryset.equals("HTR18") || scryset.equals("HTR19") || scryset.equals("DKM") || scryset.equals("S00") || scryset.equals("XLN")
                     || scryset.equals("SOI") || scryset.equals("UST") || scryset.equals("PLG21") || scryset.equals("J21") || scryset.equals("CC2")
-                    || scryset.equals("Q06") || scryset.equals("DBL") || scryset.equals("Y22")){
+                    || scryset.equals("Q06") || scryset.equals("DBL") || scryset.equals("Y22") | scryset.equals("CLB") || scryset.equals("MOM")
+                    || scryset.equals("MOC")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -4111,7 +4123,8 @@ public class ImgDownloader {
                     && !scryset.equals("ATH") && !scryset.equals("HA4") && !scryset.equals("TSR") && !scryset.equals("HA5") && !scryset.equals("H1R")
                     && !scryset.equals("HTR18") && !scryset.equals("HTR19") && !scryset.equals("DKM") && !scryset.equals("S00") && !scryset.equals("XLN")
                     && !scryset.equals("SOI") && !scryset.equals("UST") && !scryset.equals("PLG21") && !scryset.equals("J21") && !scryset.equals("CC2")
-                    && !scryset.equals("Q06") && !scryset.equals("DBL") && !scryset.equals("Y22")){
+                    && !scryset.equals("Q06") && !scryset.equals("DBL") && !scryset.equals("Y22") && !scryset.equals("CLB") && !scryset.equals("MOM")
+                    && !scryset.equals("MOC")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -4229,7 +4242,8 @@ public class ImgDownloader {
                     && !scryset.equals("ATH") && !scryset.equals("HA4") && !scryset.equals("TSR") && !scryset.equals("HA5") && !scryset.equals("H1R")
                     && !scryset.equals("HTR18") && !scryset.equals("HTR19") && !scryset.equals("DKM") && !scryset.equals("S00") && !scryset.equals("XLN")
                     && !scryset.equals("SOI") && !scryset.equals("UST") && !scryset.equals("PLG21") && !scryset.equals("J21") && !scryset.equals("CC2")
-                    && !scryset.equals("Q06") && !scryset.equals("DBL") && !scryset.equals("Y22")){
+                    && !scryset.equals("Q06") && !scryset.equals("DBL") && !scryset.equals("Y22") && !scryset.equals("CLB") && !scryset.equals("MOM")
+                    && !scryset.equals("MOC")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                 } catch (Exception e) {
@@ -4399,7 +4413,7 @@ public class ImgDownloader {
                             || scryset.equals("HA4") || scryset.equals("TSR") || scryset.equals("HA5") || scryset.equals("H1R") || scryset.equals("HTR18")
                             || scryset.equals("HTR19") || scryset.equals("DKM") || scryset.equals("S00") || scryset.equals("XLN") || scryset.equals("SOI")
                             || scryset.equals("UST") || scryset.equals("PLG21") || scryset.equals("J21") || scryset.equals("CC2") || scryset.equals("Q06")
-                            || scryset.equals("DBL") || scryset.equals("Y22")){
+                            || scryset.equals("DBL") || scryset.equals("Y22") || scryset.equals("CLB") || scryset.equals("MOM") || scryset.equals("MOC")){
                         Elements metadata = doc.select("head meta");
                         if(metadata != null) {
                             for (int j = 0; j < metadata.size(); j++){

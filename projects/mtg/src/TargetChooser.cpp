@@ -141,19 +141,21 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         several = s.find("<anyamount>");
         if (several != string::npos) maxtargets = TargetChooser::UNLITMITED_TARGETS;
         found = s.find("creature,planeswalker");
-        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //Any Damageable target (player, creature, planeswalker)
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //Any Damageable target (player, creature, planeswalker, battle)
         found = s.find("planeswalker,creature");
-        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //Any Damageable target (player, creature, planeswalker)
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //Any Damageable target (player, creature, planeswalker, battle)
         found = s.find("creature^planeswalker");
-        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //Any Damageable target (player, creature, planeswalker)
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //Any Damageable target (player, creature, planeswalker, battle)
         found = s.find("planeswalker^creature");
-        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //Any Damageable target (player, creature, planeswalker)
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //Any Damageable target (player, creature, planeswalker, battle)
         found = s.find("permanent");
-        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "permanent"); //Any player or permanet (player, creature, planeswalker, artifact, land, enchantment)
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "permanent"); //Any player or permanent (player, creature, planeswalker, artifact, land, enchantment, battle)
         found = s.find("creature");
         if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other); //2 Damageable target (player, creature)
         found = s.find("planeswalker");
         if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "planeswalker"); //2 Damageable target (player, planeswalker)
+        found = s.find("battle");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "battle"); //2 Damageable target (player, battle)
         return NEW PlayerTargetChooser(observer, card, maxtargets); //Any player
     }
 
@@ -967,6 +969,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->removeType("legendary");
                         cd->removeType("creature");
                         cd->removeType("planeswalker");
+                        cd->removeType("battle");
                         cd->removeType("tribal");
                         if (!cd->types.size()){
                             int i = rand() % 10000 + 1;
@@ -1527,6 +1530,8 @@ TypeTargetChooser::TypeTargetChooser(GameObserver *observer, const char * _type,
         addType(id);
         id = MTGAllCards::findType("planeswalker");
         addType(id);
+        id = MTGAllCards::findType("battle");
+        addType(id);
     } else if(!strcmp(_type,"permanent")){
         int id = MTGAllCards::findType("creature");
         addType(id);
@@ -1537,6 +1542,8 @@ TypeTargetChooser::TypeTargetChooser(GameObserver *observer, const char * _type,
         id = MTGAllCards::findType("artifact");
         addType(id);
         id = MTGAllCards::findType("enchantment");
+        addType(id);
+        id = MTGAllCards::findType("battle");
         addType(id);
     } else {
         int id = MTGAllCards::findType(_type);

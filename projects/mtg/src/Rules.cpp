@@ -418,33 +418,20 @@ Player * Rules::loadPlayerRandomFive(GameObserver* observer, int isAI)
 
 Player * Rules::loadPlayerRandomCommander(GameObserver* observer, int isAI)
 {
-#if !defined (PSP)
-    std::unique_ptr<MTGDeck> cmdTempDeck(new MTGDeck(MTGCollection()));
-    std::unique_ptr<MTGDeck> tempDeck(new MTGDeck(MTGCollection()));
-#else
     MTGDeck * cmdTempDeck = NEW MTGDeck(MTGCollection()); 
     MTGDeck * tempDeck = NEW MTGDeck(MTGCollection());
-#endif
     tempDeck->meta_commander = true;
 
     string lands[] = { "", "forest", "island", "mountain", "swamp", "plains", "basic", "basic" };
 
     cmdTempDeck->addRandomCards(1, 0, 0, -1, "legendary");
-#if !defined (PSP)
-    std::unique_ptr<DeckDataWrapper> myCommandZone(new DeckDataWrapper(cmdTempDeck.get()));
-#else
     DeckDataWrapper * myCommandZone = NEW DeckDataWrapper(cmdTempDeck);
-#endif
     MTGCard * commander = myCommandZone->getCard(0, true);
 
     while(!commander->data->isCreature())
     {
         cmdTempDeck->addRandomCards(1, 0, 0, -1, "legendary");
-#if !defined (PSP)
-        myCommandZone.reset(new DeckDataWrapper(cmdTempDeck.get()));
-#else
         myCommandZone = NEW DeckDataWrapper(cmdTempDeck);
-#endif
         commander = myCommandZone->getCard(0, true);
     }
 
@@ -481,15 +468,6 @@ Player * Rules::loadPlayerRandomCommander(GameObserver* observer, int isAI)
     string deckFile = "random";
     string deckFileSmall = "random";
 
-#if !defined (PSP)
-    std::unique_ptr<Player> player;
-    if (!isAI) // Human Player
-        player.reset(new HumanPlayer(observer, deckFile, deckFileSmall, false, tempDeck.release()));
-    else
-        player.reset(new AIPlayerBaka(observer, deckFile, deckFileSmall, "", tempDeck.release()));
-
-    return player.release();
-#else
     Player *player = NULL;
     if (!isAI) // Human Player
         player = NEW HumanPlayer(observer, deckFile, deckFileSmall, false, tempDeck);
@@ -497,7 +475,6 @@ Player * Rules::loadPlayerRandomCommander(GameObserver* observer, int isAI)
         player = NEW AIPlayerBaka(observer, deckFile, deckFileSmall, "", tempDeck);
 
     return player;
-#endif
 }
 
 Player * Rules::loadPlayerHorde(GameObserver* observer, int isAI)

@@ -34,7 +34,8 @@ public:
         TYPE_EMBLEM = 19,
         TYPE_CONSPIRACY = 20,
         TYPE_BACKGROUND = 21,
-        LAST_TYPE = TYPE_BACKGROUND,
+        TYPE_BATTLE = 22,
+        LAST_TYPE = TYPE_BATTLE,
     };
 
 protected:

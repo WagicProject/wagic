@@ -857,6 +857,8 @@ void GameObserver::gameStateBasedEffects()
                         found++;
                     if(stypes.find("planeswalker") != string::npos && card->target->hasType("planeswalker"))
                         found++;
+                    if(stypes.find("battle") != string::npos && card->target->hasType("battle"))
+                        found++;
                 }
 
                 if((!found || protectionfromQ) && !card->isBestowed)

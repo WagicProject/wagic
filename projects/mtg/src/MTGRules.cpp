@@ -2055,7 +2055,7 @@ int MTGAttackRule::receiveEvent(WEvent *e)
                         if(dtarget->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
                         {
                             MTGCardInstance * ctarget = ((MTGCardInstance *)card->isAttacking);
-                            if(ctarget->hasType(Subtypes::TYPE_PLANESWALKER))
+                            if(ctarget->hasType(Subtypes::TYPE_PLANESWALKER) || ctarget->hasType(Subtypes::TYPE_BATTLE))
                                 card->toggleAttacker();//if a card has cantpwattack, then you cant
                         }
                     }
@@ -2112,14 +2112,20 @@ int MTGPlaneswalkerAttackRule::isReactingToClick(MTGCardInstance * card, ManaCos
 {
     if (currentPhase == MTG_PHASE_COMBATATTACKERS && card->controller() == game->currentPlayer && card->controller() == game->currentlyActing())//on my turn and when I am the acting player.
     {
-        if(!card->controller()->opponent()->game->inPlay->hasType("planeswalker"))
+        if(!card->controller()->opponent()->game->inPlay->hasType("planeswalker") && !card->controller()->opponent()->game->inPlay->hasType("battle"))
             return 0;
         if(card->isPhased)
             return 0;
         if ((card->isAttacker()) || (card->canAttack(true) && card->attackPlaneswalkerCost < 1))
         {
-            if(!card->isAttacker())
-                attackpwmenu = "Attack Planeswalker";
+            if(!card->isAttacker()){
+                if(card->controller()->opponent()->game->inPlay->hasType("planeswalker") && !card->controller()->opponent()->game->inPlay->hasType("battle"))
+                    attackpwmenu = "Attack a Planeswalker";
+                else if(!card->controller()->opponent()->game->inPlay->hasType("planeswalker") && card->controller()->opponent()->game->inPlay->hasType("battle"))
+                    attackpwmenu = "Attack a Battle";
+                else
+                    attackpwmenu = "Attack Planeswalker or Battle";
+            }
             else
                 attackpwmenu = "Remove Attacker";
 
@@ -2158,7 +2164,7 @@ int MTGPlaneswalkerAttackRule::reactToClick(MTGCardInstance * card)
     for(int i = 0; i < checkWalkers;++i)
     {
         check = card->controller()->opponent()->game->battlefield->cards[i];
-        if(check->hasType(Subtypes::TYPE_PLANESWALKER))
+        if(check->hasType(Subtypes::TYPE_PLANESWALKER) || check->hasType(Subtypes::TYPE_BATTLE))
         {
             MTGAbility * setPw = NEW AAPlaneswalkerAttacked(game, game->mLayers->actionLayer()->getMaxId(), card,check);
             MTGAbility * setWalker = setPw->clone();
@@ -2167,7 +2173,6 @@ int MTGPlaneswalkerAttackRule::reactToClick(MTGCardInstance * card)
             SAFE_DELETE(setPw);
         }
     }
-
 
     if(selection.size())
     {
@@ -3969,6 +3974,15 @@ int MTGPlaneswalkerDamage::receiveEvent(WEvent * event)
             }
             return 1;
         }
+        if (d->damage > 0 && card && card->hasType(Subtypes::TYPE_BATTLE))
+        {
+            int howMany = d->damage;
+            for(int k = 0; k < howMany; k++)
+            {
+                card->counters->removeCounter("defense", 0, 0);
+            }
+            return 1;
+        }
     }
     if (WEventCounters * removel = dynamic_cast<WEventCounters*>(event))
     {
@@ -3978,7 +3992,6 @@ int MTGPlaneswalkerDamage::receiveEvent(WEvent * event)
                 removel->targetCard->toGrave(true);
                 return 1;
             }
-
     }
     return 0;
 }

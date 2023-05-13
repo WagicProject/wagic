@@ -521,6 +521,7 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 if (grave->hasType("land")) checkTypesAmount++;
                 if (grave->hasType("artifact")) checkTypesAmount++;
                 if (grave->hasType("planeswalker")) checkTypesAmount++;
+                if (grave->hasType("battle")) checkTypesAmount++;
                 if (grave->hasType("tribal")) checkTypesAmount++;
                 if (checkTypesAmount < 4)
                 return 0;
@@ -540,6 +541,7 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 if (grave->hasType("land")) checkTypesAmount++;
                 if (grave->hasType("artifact")) checkTypesAmount++;
                 if (grave->hasType("planeswalker")) checkTypesAmount++;
+                if (grave->hasType("battle")) checkTypesAmount++;
                 if (grave->hasType("tribal")) checkTypesAmount++;
                 if (checkTypesAmount > 3)
                 return 0;
