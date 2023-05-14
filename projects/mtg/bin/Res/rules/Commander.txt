@@ -88,6 +88,10 @@ auto=@movedto(other *|battlefield) restriction{type(*[isflipped]|nonbattlezone)~
 #reset Creature damage at the cleanup phase
 auto=@each cleanup:all(*|myBattlefield) resetDamage
 
+#Stun counter
+auto=@each my untap:ability$!all(*[counter{0/0.1.Stun}]|mybattlefield) tap(noevent)!$ controller
+auto=@each my untap:ability$!all(*[counter{0/0.1.Stun}]|mybattlefield) counter(0/0.-1.Stun)!$ controller
+
 #Commander put back rule
 auto=@movedTo(*[iscommander]|mygraveyard):may name(Put back to command zone) ability$!name(Put back to command zone) name(Put back to command zone) target(*[iscommander;fresh]|mygraveyard) moveto(mycommandzone)!$ controller
 auto=@movedTo(*[iscommander]|myexile):may name(Put back to command zone) ability$!name(Put back to command zone) name(Put back to command zone) target(*[iscommander;fresh]|myexile) moveto(mycommandzone)!$ controller

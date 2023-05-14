@@ -86,3 +86,7 @@ auto=@movedto(other *|battlefield) restriction{type(*[isflipped]|nonbattlezone)~
 
 #reset Creature damage at the cleanup phase
 auto=@each cleanup:all(*|myBattlefield) resetDamage
+
+#Stun counter
+auto=@each my untap:ability$!all(*[counter{0/0.1.Stun}]|mybattlefield) tap(noevent)!$ controller
+auto=@each my untap:ability$!all(*[counter{0/0.1.Stun}]|mybattlefield) counter(0/0.-1.Stun)!$ controller
