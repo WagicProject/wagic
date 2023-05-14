@@ -88,5 +88,4 @@ auto=@movedto(other *|battlefield) restriction{type(*[isflipped]|nonbattlezone)~
 auto=@each cleanup:all(*|myBattlefield) resetDamage
 
 #Stun counter
-auto=@each my untap:ability$!all(*[counter{0/0.1.Stun}]|mybattlefield) tap(noevent)!$ controller
-auto=@each my untap:ability$!all(*[counter{0/0.1.Stun}]|mybattlefield) counter(0/0.-1.Stun)!$ controller
+auto=@untapped(*[counter{0/0.1.Stun}]|mybattlefield):name(Stunned creature can't untap) name(Stunned creature can't untap) all(trigger[to]) transforms((,newability[tap(noevent)],newability[counter(0/0.-1.Stun)])) oneshot
