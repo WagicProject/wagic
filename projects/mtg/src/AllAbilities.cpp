@@ -1545,7 +1545,7 @@ AADamager::AADamager(GameObserver* observer, int _id, MTGCardInstance * _source,
         if (_target)
         {
             WParsedInt damage(d, NULL, (MTGCardInstance *)source);
-            if(_target == game->opponent() && (game->opponent()->inPlay()->hasType("planeswalker") || game->opponent()->inPlay()->hasType("battle")) && !redirected)
+            if(_target == game->opponent() && game->opponent()->inPlay()->hasType("planeswalker") && !redirected)
             {
                 vector<MTGAbility*>selection;
                 MTGCardInstance * check = NULL;
