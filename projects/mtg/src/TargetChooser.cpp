@@ -283,6 +283,26 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::MY_HAND;
                 zones[nbzones++] = MTGGameZone::MY_LIBRARY;
             }
+            else if (zoneName.compare("mygravelibrary") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_GRAVEYARD;
+                zones[nbzones++] = MTGGameZone::MY_LIBRARY;
+            }
+            else if (zoneName.compare("opponentgravelibrary") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::OPPONENT_GRAVEYARD;
+                zones[nbzones++] = MTGGameZone::OPPONENT_LIBRARY;
+            }
+            else if (zoneName.compare("mygraveexile") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_EXILE;
+                zones[nbzones++] = MTGGameZone::MY_GRAVEYARD;
+            }
+            else if (zoneName.compare("opponentgraveexile") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::OPPONENT_EXILE;
+                zones[nbzones++] = MTGGameZone::OPPONENT_GRAVEYARD;
+            }
             else if (zoneName.compare("opponentcastingzone") == 0)
             {
                 zones[nbzones++] = MTGGameZone::OPPONENT_GRAVEYARD;
