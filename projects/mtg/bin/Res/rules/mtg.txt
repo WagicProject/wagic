@@ -86,3 +86,6 @@ auto=@movedto(other *|battlefield) restriction{type(*[isflipped]|nonbattlezone)~
 
 #reset Creature damage at the cleanup phase
 auto=@each cleanup:all(*|myBattlefield) resetDamage
+
+#Stun counter
+auto=@untapped(*[counter{0/0.1.Stun}]|mybattlefield):name(Stunned creature can't untap) name(Stunned creature can't untap) all(trigger[to]) transforms((,newability[tap(noevent)],newability[counter(0/0.-1.Stun)])) oneshot

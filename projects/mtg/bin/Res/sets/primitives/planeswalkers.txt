@@ -534,6 +534,57 @@ type=Legendary Planeswalker
 subtype=Chandra
 [/card]
 [card]
+name=Chandra, Hope's Beacon
+auto=counter(0/0,5,loyalty)
+auto=@movedTo(*[instant;sorcery]|mystack) turnlimited:name(Copy spell) name(Copy spell) all(trigger[to]) transforms((,newability[name(Copy spell) activate castcard(copied noevent)])) oneshot
+auto={C(0/0,+2,Loyalty)}:name(+2: Add 2 mana) thisforeach(variable{2}) ability$!name(Choose one) choice name(Add white) add{W} _ choice name(Add blue) add{U} _ choice name(Add red) add{R} _ choice name(Add green) add{G} _ choice name(Add black) add{B}!$ controller
+auto={C(0/0,+1,Loyalty)}:name(+1: Exile top 5 cards) all(*[zpos<=5]|mylibrary) moveto(myexile) and!( if cantargetcard(*[instant;sorcery]|*) then transforms((,newability[canplayfromexile])) ueot )!
+auto={C(0/0,-1,Loyalty)}:name(-1: Damage one target) ability$!name(Damage target) name(Damage target(player,creature,planeswalker) damage:1!$ controller
+auto={C(0/0,-1,Loyalty)}:name(-1: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:1!$ controller
+auto={C(0/0,-2,Loyalty)}:name(-2: Damage one target) ability$!name(Damage target) name(Damage target) target(player,creature,planeswalker) damage:2!$ controller
+auto={C(0/0,-2,Loyalty)}:name(-2: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:2!$ controller
+auto={C(0/0,-3,Loyalty)}:name(-3: Damage one target) ability$!name(Damage target) name(Damage target) target(player,creature,planeswalker) damage:3!$ controller
+auto={C(0/0,-3,Loyalty)}:name(-3: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:3!$ controller
+auto={C(0/0,-4,Loyalty)}:name(-4: Damage one target) ability$!name(Damage target) name(Damage target) target(player,creature,planeswalker) damage:4!$ controller
+auto={C(0/0,-4,Loyalty)}:name(-4: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:4!$ controller
+auto={C(0/0,-5,Loyalty)}:name(-5: Damage one target) ability$!name(Damage target) name(Damage target) target(player,creature,planeswalker) damage:5!$ controller
+auto={C(0/0,-5,Loyalty)}:name(-5: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:5!$ controller
+auto={C(0/0,-6,Loyalty)}:name(-6: Damage one target) ability$!name(Damage target) name(Damage target) target(player,creature,planeswalker) damage:6!$ controller
+auto={C(0/0,-6,Loyalty)}:name(-6: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:6!$ controller
+auto={C(0/0,-7,Loyalty)}:name(-7: Damage one target) ability$!name(Damage target) name(Damage target) target(player,creature,planeswalker) damage:7!$ controller
+auto={C(0/0,-7,Loyalty)}:name(-7: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:7!$ controller
+auto={C(0/0,-8,Loyalty)}:name(-8: Damage one target) ability$!name(Damage target) name(Damage target) target(player,creature,planeswalker) damage:8!$ controller
+auto={C(0/0,-8,Loyalty)}:name(-8: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:8!$ controller
+auto={C(0/0,-9,Loyalty)}:name(-9: Damage one target) ability$!name(Damage target) name(Damage target) target(player,creature,planeswalker) damage:9!$ controller
+auto={C(0/0,-9,Loyalty)}:name(-9: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:9!$ controller
+auto={C(0/0,-10,Loyalty)}:name(-10: Damage one target) ability$!name(Damage target) name(Damage target) target(player,creature,planeswalker) damage:10!$ controller
+auto={C(0/0,-10,Loyalty)}:name(-10: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:10!$ controller
+auto={C(0/0,-11,Loyalty)}:name(-11: Damage one target) ability$!name(Damage target) name(Damage target) target(player,creature,planeswalker) damage:11!$ controller
+auto={C(0/0,-11,Loyalty)}:name(-11: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:11!$ controller
+auto={C(0/0,-12,Loyalty)}:name(-12: Damage one target) ability$!name(Damage target) name(Damage target) target(player,creature,planeswalker) damage:12!$ controller
+auto={C(0/0,-12,Loyalty)}:name(-12: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:12!$ controller
+auto={C(0/0,-13,Loyalty)}:name(-13: Damage one target) ability$!name(Damage target) name(Damage target) target(player,creature,planeswalker) damage:13!$ controller
+auto={C(0/0,-13,Loyalty)}:name(-13: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:13!$ controller
+auto={C(0/0,-14,Loyalty)}:name(-14: Damage one target) ability$!name(Damage target) name(Damage target) target(player,creature,planeswalker) damage:14!$ controller
+auto={C(0/0,-14,Loyalty)}:name(-14: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:14!$ controller
+auto={C(0/0,-15,Loyalty)}:name(-15: Damage one target) ability$!name(Damage target) name(Damage target) target(player,creature,planeswalker) damage:15!$ controller
+auto={C(0/0,-15,Loyalty)}:name(-15: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:15!$ controller
+auto={C(0/0,-16,Loyalty)}:name(-16: Damage one target) ability$!name(Damage target) name(Damage target) target(player,creature,planeswalker) damage:16!$ controller
+auto={C(0/0,-16,Loyalty)}:name(-16: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:16!$ controller
+auto={C(0/0,-17,Loyalty)}:name(-17: Damage one target) ability$!name(Damage target) name(Damage target) target(player,creature,planeswalker) damage:17!$ controller
+auto={C(0/0,-17,Loyalty)}:name(-17: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:17!$ controller
+auto={C(0/0,-18,Loyalty)}:name(-18: Damage one target) ability$!name(Damage target) name(Damage target) target(player,creature,planeswalker) damage:18!$ controller
+auto={C(0/0,-18,Loyalty)}:name(-18: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:18!$ controller
+auto={C(0/0,-19,Loyalty)}:name(-19: Damage one target) ability$!name(Damage target) name(Damage target) target(player,creature,planeswalker) damage:19!$ controller
+auto={C(0/0,-19,Loyalty)}:name(-29: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:19!$ controller
+auto={C(0/0,-20,Loyalty)}:name(-20: Damage one target) ability$!name(Damage target) name(Damage target) target(player,creature,planeswalker) damage:20!$ controller
+auto={C(0/0,-20,Loyalty)}:name(-20: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:20!$ controller
+text=Whenever you cast an instant or sorcery spell, copy it. You may choose new targets for the copy. This ability triggers only once each turn. -- [+2]: Add two mana in any combination of colors. -- [+1]: Exile the top five cards of your library. Until the end of your next turn, you may cast an instant or sorcery spell from among those exiled cards. -- [−X]: Chandra, Hope's Beacon deals X damage to each of up to two targets.
+mana={4}{R}{R}
+type=Legendary Planeswalker
+subtype=Chandra
+[/card]
+[card]
 name=Chandra Nalaar
 auto=counter(0/0,6,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Deals 1 damage to player or planeswalker) damage:1 target(player,planeswalker)

@@ -1545,7 +1545,7 @@ AADamager::AADamager(GameObserver* observer, int _id, MTGCardInstance * _source,
         if (_target)
         {
             WParsedInt damage(d, NULL, (MTGCardInstance *)source);
-            if(_target == game->opponent() && (game->opponent()->inPlay()->hasType("planeswalker") || game->opponent()->inPlay()->hasType("battle")) && !redirected)
+            if(_target == game->opponent() && game->opponent()->inPlay()->hasType("planeswalker") && !redirected)
             {
                 vector<MTGAbility*>selection;
                 MTGCardInstance * check = NULL;
@@ -1557,7 +1557,7 @@ AADamager::AADamager(GameObserver* observer, int _id, MTGCardInstance * _source,
                 for(int i = 0; i < checkWalkers;++i)
                 {
                     check = ((Player*)_target)->game->battlefield->cards[i];
-                    if(check->hasType(Subtypes::TYPE_PLANESWALKER) || check->hasType(Subtypes::TYPE_BATTLE))
+                    if(check->hasType(Subtypes::TYPE_PLANESWALKER))
                     {
                         this->redirected = true;
                         MTGAbility * setWalker = this->clone();
