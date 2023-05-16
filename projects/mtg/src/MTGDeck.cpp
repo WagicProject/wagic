@@ -993,12 +993,12 @@ MTGDeck::MTGDeck(const string& config_file, MTGAllCards * _allcards, int meta_on
                     while (it != s.end() && std::isdigit(*it)) ++it;
                     if(!s.empty() && it == s.end()){
                         MTGCard * newcard = database->getCardById(atoi(s.c_str()));
-                        if(!CommandZone.size() && newcard->data->hasType("Legendary") && (newcard->data->hasType("Creature") || newcard->data->basicAbilities[Constants::CANBECOMMANDER])) // If no commander has been added you can add one.
+                        if(!CommandZone.size() && newcard->data->hasType("Legendary") && (newcard->data->hasType("Creature") || newcard->data->basicAbilities[Constants::CANBECOMMANDER] || newcard->data->hasType("Background"))) // If no commander has been added you can add one.
                             CommandZone.push_back(s);
                         else if(CommandZone.size() == 1 && newcard->data->hasType("Legendary") && (newcard->data->hasType("Creature") || newcard->data->basicAbilities[Constants::CANBECOMMANDER])){ // If a commander has been added you can add a new one just if both have partner ability of if one can choose a Background.
                             if(newcard && (newcard->data->basicAbilities[Constants::PARTNER] || newcard->data->basicAbilities[Constants::BACKGROUNDPARTNER])){
                                 MTGCard * oldcard = database->getCardById(atoi((CommandZone.at(0)).c_str()));
-                                if((oldcard && oldcard->data->hasType(Subtypes::TYPE_BACKGROUND) && (oldcard->data->name != newcard->data->name)) || (oldcard && oldcard->data->basicAbilities[Constants::PARTNER] && (oldcard->data->name != newcard->data->name) && ((oldcard->data->partner == "" && newcard->data->partner == "") || (oldcard->data->partner == newcard->data->name && newcard->data->partner == oldcard->data->name))))
+                                if((oldcard && oldcard->data->hasType("Background") && (oldcard->data->name != newcard->data->name)) || (oldcard && oldcard->data->basicAbilities[Constants::PARTNER] && (oldcard->data->name != newcard->data->name) && ((oldcard->data->partner == "" && newcard->data->partner == "") || (oldcard->data->partner == newcard->data->name && newcard->data->partner == oldcard->data->name))))
                                     CommandZone.push_back(s);
                             }
                         }
@@ -1010,12 +1010,12 @@ MTGDeck::MTGDeck(const string& config_file, MTGAllCards * _allcards, int meta_on
                         if (newcard){
                             std::stringstream str_id;
                             str_id << newcard->getId();
-                            if(!CommandZone.size() && newcard->data->hasType("Legendary") && (newcard->data->hasType("Creature") || newcard->data->basicAbilities[Constants::CANBECOMMANDER])) // If no commander has been added you can add one.
+                            if(!CommandZone.size() && newcard->data->hasType("Legendary") && (newcard->data->hasType("Creature") || newcard->data->basicAbilities[Constants::CANBECOMMANDER] || newcard->data->hasType("Background"))) // If no commander has been added you can add one.
                                 CommandZone.push_back(str_id.str());
-                            else if(CommandZone.size() == 1 && newcard->data->hasType("Legendary") && (newcard->data->hasType("Creature") || newcard->data->basicAbilities[Constants::CANBECOMMANDER])){ // If a commander has been added you can add a new one just if both have partner ability of if one can choose a Background.
+                            else if(CommandZone.size() == 1 && newcard->data->hasType("Legendary") && (newcard->data->hasType("Creature") || newcard->data->basicAbilities[Constants::CANBECOMMANDER] || newcard->data->hasType("Background"))){ // If a commander has been added you can add a new one just if both have partner ability of if one can choose a Background.
                                 if(newcard && (newcard->data->basicAbilities[Constants::PARTNER] || newcard->data->basicAbilities[Constants::BACKGROUNDPARTNER])){
                                     MTGCard * oldcard = database->getCardById(atoi((CommandZone.at(0)).c_str()));
-                                    if((oldcard && oldcard->data->hasType(Subtypes::TYPE_BACKGROUND) && (oldcard->data->name != newcard->data->name)) || (oldcard && oldcard->data->basicAbilities[Constants::PARTNER] && (oldcard->data->name != newcard->data->name) && ((oldcard->data->partner == "" && newcard->data->partner == "") || (oldcard->data->partner == newcard->data->name && newcard->data->partner == oldcard->data->name))))
+                                    if((oldcard && oldcard->data->hasType("Background") && (oldcard->data->name != newcard->data->name)) || (oldcard && oldcard->data->basicAbilities[Constants::PARTNER] && (oldcard->data->name != newcard->data->name) && ((oldcard->data->partner == "" && newcard->data->partner == "") || (oldcard->data->partner == newcard->data->name && newcard->data->partner == oldcard->data->name))))
                                         CommandZone.push_back(str_id.str());
                                 }
                             }

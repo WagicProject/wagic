@@ -413,7 +413,7 @@ void GameStateDeckViewer::choiceAddRemove(MTGCard * card)
             if(!card->data->hasType("Dungeon")){
                 sbMenu->Add(SBMENU_ADD_NORMAL, "Add to Deck");
                 sbMenu->Add(SBMENU_ADD_SB, "Add to Sideboard");
-                if(card->data->hasType("Legendary") && (card->data->hasType("Creature") || card->data->basicAbilities[Constants::CANBECOMMANDER]))
+                if(card->data->hasType("Legendary") && (card->data->hasType("Creature") || card->data->basicAbilities[Constants::CANBECOMMANDER] || card->data->hasType("Background")))
                     sbMenu->Add(SBMENU_ADD_CMD, "Choose as Commander");
             } else
                 sbMenu->Add(SBMENU_ADD_DNG, "Add to Dungeons");
