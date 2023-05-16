@@ -539,7 +539,7 @@ auto=counter(0/0,5,loyalty)
 auto=@movedTo(*[instant;sorcery]|mystack) turnlimited:name(Copy spell) name(Copy spell) all(trigger[to]) transforms((,newability[name(Copy spell) activate castcard(copied noevent)])) oneshot
 auto={C(0/0,+2,Loyalty)}:name(+2: Add 2 mana) thisforeach(variable{2}) ability$!name(Choose one) choice name(Add white) add{W} _ choice name(Add blue) add{U} _ choice name(Add red) add{R} _ choice name(Add green) add{G} _ choice name(Add black) add{B}!$ controller
 auto={C(0/0,+1,Loyalty)}:name(+1: Exile top 5 cards) all(*[zpos<=5]|mylibrary) moveto(myexile) and!( if cantargetcard(*[instant;sorcery]|*) then transforms((,newability[canplayfromexile])) ueot )!
-auto={C(0/0,-1,Loyalty)}:name(-1: Damage one target) ability$!name(Damage target) name(Damage target(player,creature,planeswalker) damage:1!$ controller
+auto={C(0/0,-1,Loyalty)}:name(-1: Damage one target) ability$!name(Damage target) name(Damage  target) target(player,creature,planeswalker) damage:1!$ controller
 auto={C(0/0,-1,Loyalty)}:name(-1: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:1!$ controller
 auto={C(0/0,-2,Loyalty)}:name(-2: Damage one target) ability$!name(Damage target) name(Damage target) target(player,creature,planeswalker) damage:2!$ controller
 auto={C(0/0,-2,Loyalty)}:name(-2: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:2!$ controller
@@ -576,7 +576,7 @@ auto={C(0/0,-17,Loyalty)}:name(-17: Damage two target) ability$!name(Damage targ
 auto={C(0/0,-18,Loyalty)}:name(-18: Damage one target) ability$!name(Damage target) name(Damage target) target(player,creature,planeswalker) damage:18!$ controller
 auto={C(0/0,-18,Loyalty)}:name(-18: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:18!$ controller
 auto={C(0/0,-19,Loyalty)}:name(-19: Damage one target) ability$!name(Damage target) name(Damage target) target(player,creature,planeswalker) damage:19!$ controller
-auto={C(0/0,-19,Loyalty)}:name(-29: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:19!$ controller
+auto={C(0/0,-19,Loyalty)}:name(-19: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:19!$ controller
 auto={C(0/0,-20,Loyalty)}:name(-20: Damage one target) ability$!name(Damage target) name(Damage target) target(player,creature,planeswalker) damage:20!$ controller
 auto={C(0/0,-20,Loyalty)}:name(-20: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>player,creature,planeswalker) damage:20!$ controller
 text=Whenever you cast an instant or sorcery spell, copy it. You may choose new targets for the copy. This ability triggers only once each turn. -- [+2]: Add two mana in any combination of colors. -- [+1]: Exile the top five cards of your library. Until the end of your next turn, you may cast an instant or sorcery spell from among those exiled cards. -- [−X]: Chandra, Hope's Beacon deals X damage to each of up to two targets.
