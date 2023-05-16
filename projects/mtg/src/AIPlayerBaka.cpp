@@ -701,7 +701,7 @@ int OrderedAIAction::getEfficiency()
                 if(tapper)
                     continue;                
                 else if(sacrifice)
-                    efficiency = efficiency / 3;
+                    efficiency = efficiency / 9;
                 else
                     efficiency = efficiency / 2;
             }
@@ -724,7 +724,7 @@ int OrderedAIAction::getEfficiency()
     if (ability->source)
     {
         if(ability->source->hasType(Subtypes::TYPE_PLANESWALKER) || ability->source->hasType(Subtypes::TYPE_BATTLE))
-            efficiency += 40;
+            efficiency += 50;
         else if(ability->source->hasType(Subtypes::TYPE_LAND))
             { // probably a shockland, don't pay life if hand is empty
                 if (p->life<=2)
