@@ -3353,6 +3353,20 @@ type=Legendary Planeswalker
 subtype=Will
 [/card]
 [card]
+name=Wrenn and Realmbreaker
+auto=counter(0/0,4,loyalty)
+auto=lord(land|mybattlefield) transforms((,newability[{T}:add{W}],newability[{T}:add{U}],newability[{T}:add{B}],newability[{T}:add{R}],newability[{T}:add{G}]))
+auto=@counteradded(0/0,1,WrennDepleted) from(*|mygraveyard) turnlimited:name(Return permanent) transforms((,newability[if type(*[-instant;-sorcery;counter{0/0.1.WrennDepleted}]|mygraveyard)~morethan~0 then choice name(Return permanent) name(Return permanent) target(*[-instant;-sorcery;counter{0/0.1.WrennDepleted}]|mygraveyard) moveto(myhand) and!( all(*[counter{0/0.1.WrennDepleted}]|mygraveyard) removeallcounters(0/0.1.WrennDepleted) )!],newability[if type(*[-instant;-sorcery;counter{0/0.1.WrennDepleted}]|mygraveyard)~morethan~0 then choice name(Don't Return any permanent) name(Don't Return any permanent) all(*[counter{0/0.1.WrennDepleted}]|mygraveyard) removeallcounters(0/0.1.WrennDepleted)])) oneshot
+auto={C(0/0,1,Loyalty)}:name(+1: Transform land) target(land|mybattlefield) transforms((Elemental Creature,setpower=3,settoughness=3,newability[haste],newability[vigilance],newability[opponentshroud])) uynt
+auto={C(0/0,1,Loyalty)}:name(+1: Don't transform any land) donothing
+auto={C(0/0,-2,Loyalty)}:name(-2: Mill and return) all(*[zpos<=2]|mylibrary) moveto(mygraveyard) and!( transforms((,newability[counter(0/0.1.WrennDepleted) notrg])) ueot )! && all(*[zpos=3]|mylibrary) moveto(mygraveyard) and!( transforms((,newability[counter(0/0.1.WrennDepleted)])) ueot )!
+auto={C(0/0,-1,Loyalty)}:name(-7: Emblem play from graveyard) emblem transforms((,newability[lord(*[-instant;-sorcery]|mygraveyard) canplayfromgraveyard])) forever dontremove
+text=Lands you control have "{T}: Add one mana of any color." -- [+1]: Up to one target land you control becomes a 3/3 Elemental creature with vigilance, hexproof, and haste until your next turn. It's still a land. -- [−2]: Mill three cards. You may put a permanent card from among the milled cards into your hand. -- [−7]: You get an emblem with "You may play lands and cast permanent spells from your graveyard."
+mana={1}{G}{G}
+type=Legendary Planeswalker
+subtype=Wrenn
+[/card]
+[card]
 name=Wrenn and Seven
 auto=counter(0/0,5,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Reveal top 4 cards) reveal:4 optionone name(Put lands in hand) target(<4>land|reveal) moveto(myhand) optiononeend optiontwo name(Put in graveyard) all(*[-land]|reveal) moveto(mygraveyard) optiontwoend revealend
