@@ -784,6 +784,34 @@ public:
     }
 };
 
+class TrCardDefeated: public Trigger
+{
+public:
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardDefeated(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn)
+    {
+        triggeredTurn = -1;
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardDefeated * e = dynamic_cast<WEventCardDefeated *> (event);
+        if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
+        return 1;
+    }
+
+    TrCardDefeated * clone() const
+    {
+        return NEW TrCardDefeated(*this);
+    }
+};
+
 class TrCardSurveiled: public Trigger
 {
 public:
@@ -6906,7 +6934,7 @@ public:
     string abilityWin;
     string abilityLose;
     MTGAbility * abilityAltered;
-    AASetCoin(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, int side = -1,string toAdd = "");
+    AASetCoin(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, int side = -1, string toAdd = "");
     int resolve();
     const string getMenuText();
     AASetCoin * clone() const;
@@ -6917,7 +6945,8 @@ class GenericFlipACoin: public ActivatedAbility
 public:
     string baseAbility;
     AASetCoin * setCoin;
-    GenericFlipACoin(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, string toAdd = "", ManaCost * cost = NULL);
+    int userchoice;
+    GenericFlipACoin(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, string toAdd = "", ManaCost * cost = NULL, int userchoice = 0);
     int resolve();
     const string getMenuText();
     GenericFlipACoin * clone() const;

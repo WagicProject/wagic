@@ -3992,6 +3992,16 @@ int MTGPlaneswalkerDamage::receiveEvent(WEvent * event)
                 removel->targetCard->toGrave(true);
                 return 1;
             }
+        if(removel->removed && removel->targetCard && removel->targetCard->hasType(Subtypes::TYPE_BATTLE))
+            if(!removel->targetCard->counters->hasCounter("defense", 0, 0))
+            {
+                if(!removel->targetCard->isDefeated){
+                    removel->targetCard->isDefeated = true;
+                    WEvent * e = NEW WEventCardDefeated(removel->targetCard);
+                    game->receiveEvent(e);
+                }
+                return 1;
+            }
     }
     return 0;
 }

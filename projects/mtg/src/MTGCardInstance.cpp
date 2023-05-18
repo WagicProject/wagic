@@ -233,6 +233,7 @@ void MTGCardInstance::initMTGCI()
     isMorphed = false;
     MeldedFrom = "";
     isFlipped = 0;
+    isDefeated = false;
     isPhased = false;
     isCascaded = false;
     phasedTurn = -1;

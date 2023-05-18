@@ -407,6 +407,12 @@ struct WEventCardBoasted : public WEventCardUpdate {
     virtual Targetable * getTarget(int target);
 };
 
+//defeated event
+struct WEventCardDefeated : public WEventCardUpdate {
+    WEventCardDefeated(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
 //surveil event
 struct WEventCardSurveiled : public WEventCardUpdate {
     WEventCardSurveiled(MTGCardInstance * card);

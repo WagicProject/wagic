@@ -557,8 +557,22 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
         copy->getManaCost()->getManaUsedToCast()->copy(card->getManaCost()->getManaUsedToCast());
     }
 
-    if(!card->hasType(Subtypes::TYPE_LEGENDARY) && copy->hasType(Subtypes::TYPE_LEGENDARY)) // This fix issue when cloning a card with nolegend option (e.g. Double Major)
+    if(card->name == copy->name && !card->hasType(Subtypes::TYPE_LEGENDARY) && copy->hasType(Subtypes::TYPE_LEGENDARY)) // This fix issue when cloning a card with nolegend option (e.g. Double Major)
         copy->removeType(Subtypes::TYPE_LEGENDARY);
+
+    std::vector<int> realTypes;
+    if(card->name == copy->backSide){ // This fix issue types problem when card dies as its backside (e.g. "Incubator" and "Phyrexian").
+        for (int i = ((int)copy->types.size())-1; i >= 0; --i){
+            realTypes.push_back(copy->types[i]);
+            copy->removeType(copy->types[i]);
+        }
+        for (int i = 0; i < ((int)card->types.size()); i++)
+            copy->addType(card->types[i]);
+        if(copy->types[0] == 1 && copy->types[1] == 7){ // Fix order for Legendary Creatures
+            copy->types[0] = 7;
+            copy->types[1] = 1;
+        }
+    }
 
     // Copy all the counters of the original card... (solving the bug on comparison cards with counter before zone changing events)
     if(card->counters && doCopy && !asCopy && !inplaytoinplay){
@@ -756,6 +770,16 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
         // Reset the haunted status... (if the creature is moving from battlefield is no longer a prey)
         if(doCopy && !inplaytoinplay && copy->has(Constants::ISPREY))
             copy->basicAbilities[Constants::ISPREY] = 0;
+
+        if(realTypes.size() && card->name == copy->backSide){ // Reset original types when card dies as its backside (e.g. "Incubator" and "Phyrexian").
+            copy->types.clear();
+            for (int i = 0; i < ((int)realTypes.size()); i++)
+                copy->addType(realTypes[i]);
+            if(copy->types[0] == 1 && copy->types[1] == 7){ // Fix order for Legendary Creatures
+                copy->types[0] = 7;
+                copy->types[1] = 1;
+            }
+        }
 
         // Erasing counters from copy after the event has been triggered (no counter can survive to a zone changing except the perpetual ones)
         if(doCopy && !inplaytoinplay && copy->counters && copy->counters->mCount > 0){

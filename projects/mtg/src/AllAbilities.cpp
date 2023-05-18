@@ -2613,7 +2613,7 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
                     if(_target->getCurrentZone() != _target->controller()->game->battlefield ||
                         _target->getCurrentZone() != _target->controller()->opponent()->game->battlefield)
                     {
-                        if(power||toughness)
+                        if(!_target->isFlipped && (power||toughness)) // Skipped control for flipped card to solve a bug on double faces cards (e.g. "Ashen Reaper").
                         {
                             if(_target->previousZone == _target->controller()->game->battlefield ||
                                 _target->previousZone == _target->controller()->opponent()->game->battlefield)
@@ -3416,8 +3416,8 @@ AASetNameChosen::~AASetNameChosen()
 
 //
 //choosing flip coin
-GenericFlipACoin::GenericFlipACoin(GameObserver* observer, int id, MTGCardInstance * source, Targetable *,string _toAdd, ManaCost * cost) :
-ActivatedAbility(observer, id, source, cost, 0), baseAbility(_toAdd)
+GenericFlipACoin::GenericFlipACoin(GameObserver* observer, int id, MTGCardInstance * source, Targetable *,string _toAdd, ManaCost * cost, int userchoice) :
+ActivatedAbility(observer, id, source, cost, 0), baseAbility(_toAdd), userchoice(userchoice)
 {
     this->GetId();
     setCoin = NULL;
@@ -3428,15 +3428,23 @@ int GenericFlipACoin::resolve()
     if (!target)
         return 0;
     vector<MTGAbility*>selection;
-    for (int i = 0; i <2; ++i)
-    {
-        setCoin = NEW AASetCoin(game, game->mLayers->actionLayer()->getMaxId(), source,(MTGCardInstance*)target, i, baseAbility);
+    if(userchoice > 0 && userchoice <= 2){
+        setCoin = NEW AASetCoin(game, game->mLayers->actionLayer()->getMaxId(), source,(MTGCardInstance*)target, userchoice, baseAbility);
         MTGAbility * set = setCoin->clone();
         set->oneShot = true;
-        selection.push_back(set);
+        game->mLayers->actionLayer()->currentActionCard = (MTGCardInstance *)target;
+        set->resolve();
         SAFE_DELETE(setCoin);
+    } else{
+        for (int i = 1; i <=2; ++i)
+        {
+            setCoin = NEW AASetCoin(game, game->mLayers->actionLayer()->getMaxId(), source,(MTGCardInstance*)target, i, baseAbility);
+            MTGAbility * set = setCoin->clone();
+            set->oneShot = true;
+            selection.push_back(set);
+            SAFE_DELETE(setCoin);
+        }
     }
-
     if(selection.size())
     {
         MTGAbility * a1 = NEW MenuAbility(game, this->GetId(), target, source,false,selection);
@@ -3463,7 +3471,7 @@ GenericFlipACoin::~GenericFlipACoin()
 }
 
 //set coin result
- AASetCoin::AASetCoin(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target,int _side , string toAlter):
+ AASetCoin::AASetCoin(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target, int _side, string toAlter):
     InstantAbility(observer, id, source),side(_side), abilityToAlter(toAlter)
 {
     this->target = _target;
@@ -3475,7 +3483,7 @@ int AASetCoin::resolve()
     MTGCardInstance * _target =  (MTGCardInstance *)target; 
     _target->coinSide = side;
 
-    int flip = game->getRandomGenerator()->random() % 2;
+    int flip = 1 + game->getRandomGenerator()->random() % 2;
     _target->lastFlipResult = flip;
     WEvent * e = NEW WEventCardFlipCoin(_target, source->controller()->getDisplayName());
     game->receiveEvent(e);

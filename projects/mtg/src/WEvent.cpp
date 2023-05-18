@@ -322,6 +322,11 @@ WEventCardBoasted::WEventCardBoasted(MTGCardInstance * card) :
 {
 }
 
+WEventCardDefeated::WEventCardDefeated(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
 WEventCardSurveiled::WEventCardSurveiled(MTGCardInstance * card) :
     WEventCardUpdate(card)
 {
@@ -585,6 +590,12 @@ Targetable * WEventCardMutated::getTarget(int target)
 }
 
 Targetable * WEventCardBoasted::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardDefeated::getTarget(int target)
 {
     if (target) return card;
     return NULL;

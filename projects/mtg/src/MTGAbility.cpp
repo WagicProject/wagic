@@ -461,6 +461,58 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
             if(!isMorbid)
                 return 0;
         }
+        check = restriction[i].find("deadpermanent");
+        if(check != string::npos)
+        {
+            bool isMorbid = false;
+            for(int cp = 0;cp < 2;cp++)
+            {
+                Player * checkCurrent = observer->players[cp];
+                MTGGameZone * grave = checkCurrent->game->graveyard;
+                for(unsigned int gy = 0;gy < grave->cardsSeenThisTurn.size();gy++)
+                {
+                    MTGCardInstance * checkCard = grave->cardsSeenThisTurn[gy];
+                    if(checkCard->isPermanent() &&
+                        ((checkCard->previousZone == checkCurrent->game->battlefield)||
+                        (checkCard->previousZone == checkCurrent->opponent()->game->battlefield))//died from battlefield
+                        )
+                    {
+                        isMorbid = true;
+                        break;
+                    }
+                }
+                if(isMorbid)
+                    break;
+            }
+            if(!isMorbid)
+                return 0;
+        }
+        check = restriction[i].find("deadcreart");
+        if(check != string::npos)
+        {
+            bool isMorbid = false;
+            for(int cp = 0;cp < 2;cp++)
+            {
+                Player * checkCurrent = observer->players[cp];
+                MTGGameZone * grave = checkCurrent->game->graveyard;
+                for(unsigned int gy = 0;gy < grave->cardsSeenThisTurn.size();gy++)
+                {
+                    MTGCardInstance * checkCard = grave->cardsSeenThisTurn[gy];
+                    if((checkCard->isCreature() || checkCard->hasType(Subtypes::TYPE_ARTIFACT)) &&
+                        ((checkCard->previousZone == checkCurrent->game->battlefield)||
+                        (checkCard->previousZone == checkCurrent->opponent()->game->battlefield))//died from battlefield
+                        )
+                    {
+                        isMorbid = true;
+                        break;
+                    }
+                }
+                if(isMorbid)
+                    break;
+            }
+            if(!isMorbid)
+                return 0;
+        }
         check = restriction[i].find("zerodead");
         if(check != string::npos)//returns true if zero
         {
@@ -1357,6 +1409,10 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     //boast has been performed from a card
     if (TargetChooser * tc = parseSimpleTC(s, "boasted", card))
         return NEW TrCardBoasted(observer, id, card, tc, once, limitOnceATurn);
+
+    //a battle card has been defeated
+    if (TargetChooser * tc = parseSimpleTC(s, "defeated", card))
+        return NEW TrCardDefeated(observer, id, card, tc, once, limitOnceATurn);
 
     //Surveil has been performed from a card
     if (TargetChooser * tc = parseSimpleTC(s, "surveiled", card))
@@ -2871,7 +2927,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (splitFlipCoin.size())
     {
         string a1 = splitFlipCoin[1];
-        MTGAbility * a = NEW GenericFlipACoin(observer, id, card, target, a1);
+        int userchoice = 0;
+        if(a1[0] >= 48 && a1[0] <= 57){
+            userchoice = (a1[0] - 48);
+            a1 = a1.substr(2);
+        }
+        MTGAbility * a = NEW GenericFlipACoin(observer, id, card, target, a1, NULL, userchoice);
         a->oneShot = 1;
         a->canBeInterrupted = false;
         return a;
