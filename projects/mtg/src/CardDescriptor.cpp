@@ -3,6 +3,7 @@
 #include "CardDescriptor.h"
 #include "Subtypes.h"
 #include "Counters.h"
+#include "ExtraCost.h"
 
 CardDescriptor::CardDescriptor()
     :  MTGCardInstance(), mColorExclusions(0)
@@ -23,6 +24,7 @@ CardDescriptor::CardDescriptor()
     zposComparisonMode = COMPARISON_NONE;
     zposition = -1;
     hasKickerCost = 0;
+    hasConvokeCost = 0;
     hasFlashbackCost = 0;
     hasBackSide = 0;
     hasPartner = 0;
@@ -67,6 +69,11 @@ void CardDescriptor::unsecureSetKicked(int k)
 void CardDescriptor::unsecureSetHasKickerCost(int k)
 {
     hasKickerCost = k;
+}
+
+void CardDescriptor::unsecureSetHasConvokeCost(int k)
+{
+    hasConvokeCost = k;
 }
 
 void CardDescriptor::unsecureSetHasFlashbackCost(int k)
@@ -295,6 +302,21 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     BasicAbilitiesSet excludedSet = mAbilityExclusions & card->basicAbilities;
     if (excludedSet.any())
         return NULL;
+
+    if (hasConvokeCost != 0){
+        bool hasConvoke = false;
+        ManaCost * extra = card->getManaCost()->getAlternative(); 
+        if(extra && extra->extraCosts){
+            for(unsigned int i = 0; i < extra->extraCosts->costs.size() && !hasConvoke; i++){
+                if(dynamic_cast<Convoke*> (extra->extraCosts->costs[i]))
+                    hasConvoke = true;
+            }
+        }
+        if ((hasConvokeCost == -1 && hasConvoke) || (hasConvokeCost == 1 && !hasConvoke))
+        {
+            match = NULL;
+        }
+    }
 
     if ((hasKickerCost == -1 && ((card->getManaCost()->getKicker() && !card->basicAbilities[Constants::HASNOKICKER]) || (!card->getManaCost()->getKicker() && card->basicAbilities[Constants::HASOTHERKICKER]))) || (hasKickerCost == 1 && !((card->getManaCost()->getKicker() && !card->basicAbilities[Constants::HASNOKICKER]) || (!card->getManaCost()->getKicker() && card->basicAbilities[Constants::HASOTHERKICKER]))))
     {

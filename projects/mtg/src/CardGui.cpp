@@ -1520,7 +1520,19 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                         cd.unsecureSetHasKickerCost(1);
                     }
                 }
-                //Has kicker cost
+                //Has convoke cost
+                else if (attribute.find("hasconvoke") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.unsecureSetHasConvokeCost(-1);
+                    }
+                    else
+                    {
+                        cd.unsecureSetHasConvokeCost(1);
+                    }
+                }
+                //Has flashback cost
                 else if (attribute.find("hasflashback") != string::npos)
                 {
                     if (minus)

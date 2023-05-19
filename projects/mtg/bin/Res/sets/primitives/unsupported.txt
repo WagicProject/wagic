@@ -6530,6 +6530,16 @@ mana={7}
 type=Artifact
 [/card]
 [card]
+name=Mirror-Shield Hoplite
+abilities=vigilance
+text=Vigilance -- Whenever a creature you control becomes the target of a backup ability, copy that ability. You may choose new targets for the copy. This ability triggers only once each turn.
+mana={R}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
 name=Mirror Strike
 text=All combat damage that would be dealt to you this turn by target unblocked creature is dealt to its controller instead.
 mana={3}{W}

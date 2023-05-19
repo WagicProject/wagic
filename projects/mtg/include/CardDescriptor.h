@@ -46,6 +46,7 @@ class CardDescriptor: public MTGCardInstance
   int zposComparisonMode;
   int zposition;
   int hasKickerCost;
+  int hasConvokeCost;
   int hasFlashbackCost;
   int hasBackSide;
   int hasPartner;
@@ -55,6 +56,7 @@ class CardDescriptor: public MTGCardInstance
   CardDescriptor();
   void unsecureSetKicked(int i);
   void unsecureSetHasKickerCost(int i);
+  void unsecureSetHasConvokeCost(int i);
   void unsecureSetHasFlashbackCost(int i);
   void unsecureSetHasBackSide(int i);
   void unsecureSetHasPartner(int i);
