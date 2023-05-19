@@ -245,7 +245,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "countershroud", //Card can't get any kind of counter (e.g. "Solemnity").
     "nonight", //It can't become night (e.g. "Angel of Eternal Dawn").
     "nodamageremoved", //Damage is not removed from card (e.g. "Patient Zero").
-    "backgroundpartner" //Can choose a backgorund partner as commander (e.g. "Faceless One").
+    "backgroundpartner", //Can choose a backgorund partner as commander (e.g. "Faceless One").
+    "bottomlibrarydeath" //It goes to bottom of library after death (e.g. "Quintorius, Loremaster").
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

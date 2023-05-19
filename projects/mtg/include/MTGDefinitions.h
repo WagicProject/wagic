@@ -340,7 +340,8 @@ class Constants
       NONIGHT = 212,
       NODAMAGEREMOVED = 213,
       BACKGROUNDPARTNER = 214,
-      NB_BASIC_ABILITIES = 215,
+      BOTTOMLIBRARYDEATH = 215,
+      NB_BASIC_ABILITIES = 216,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

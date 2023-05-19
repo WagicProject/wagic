@@ -1,6 +1,6 @@
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 21-12-2021
+#We sorted this in alphabetical order - Luruz & Vitty85 20-05-2023
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)

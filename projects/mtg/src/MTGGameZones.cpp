@@ -475,7 +475,8 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
         return card; //Error check
 
     int doCopy = 1;
-    bool shufflelibrary = card->basicAbilities[(int)Constants::SHUFFLELIBRARYDEATH];
+    bool shufflelibrary = false;
+    bool bottomoflibrary = false;
     bool inplaytoinplay = false;
     bool ripToken = false;
     if (card->discarderOwner)
@@ -496,10 +497,13 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     {
         if ((to == g->players[i]->game->graveyard) && (
         card->basicAbilities[(int)Constants::LIBRARYDEATH]||
+        card->basicAbilities[(int)Constants::BOTTOMLIBRARYDEATH]||
         card->basicAbilities[(int)Constants::SHUFFLELIBRARYDEATH]))
         {
             to = g->players[i]->game->library;
-        }
+            shufflelibrary = card->basicAbilities[(int)Constants::SHUFFLELIBRARYDEATH];
+            bottomoflibrary = card->basicAbilities[(int)Constants::BOTTOMLIBRARYDEATH];
+        } 
     }
     //Leyline of the Void, Yawgmoth's Agenda... effect...
     for(int i = 0; i < 2; ++i)
@@ -550,6 +554,19 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
 
     if (!(copy = from->removeCard(card, doCopy)))
         return NULL; //ERROR
+
+    for(int i = 0; i < 2; ++i)
+    {
+        if ((to == g->players[i]->game->battlefield || to == g->players[i]->game->stack) && (
+        card->basicAbilities[(int)Constants::LIBRARYDEATH]||
+        card->basicAbilities[(int)Constants::BOTTOMLIBRARYDEATH]||
+        card->basicAbilities[(int)Constants::SHUFFLELIBRARYDEATH]))
+        {
+            copy->basicAbilities[Constants::LIBRARYDEATH] = card->basicAbilities[Constants::LIBRARYDEATH];
+            copy->basicAbilities[Constants::BOTTOMLIBRARYDEATH] = card->basicAbilities[Constants::BOTTOMLIBRARYDEATH];
+            copy->basicAbilities[Constants::SHUFFLELIBRARYDEATH] = card->basicAbilities[Constants::SHUFFLELIBRARYDEATH];
+        }
+    }
 
     // Set the mana value used to cast this spell
     if((to == g->players[0]->game->stack || to == g->players[1]->game->stack) && card->getManaCost() && card->getManaCost()->getManaUsedToCast()){
@@ -742,7 +759,21 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     if(!asCopy)
     {
         if(shufflelibrary)
-            copy->owner->game->library->shuffle();//shouldnt we only ever do this if you clicked close on your library gui??????
+            copy->owner->game->library->shuffle();
+
+        if(bottomoflibrary){
+            MTGLibrary * library = copy->owner->game->library;
+            vector<MTGCardInstance *>oldOrder = library->cards;
+            vector<MTGCardInstance *>newOrder;
+            newOrder.push_back(copy);
+            for(unsigned int k = 0;k < oldOrder.size();++k)
+            {
+                MTGCardInstance * rearranged = oldOrder[k];
+                if(rearranged != copy)
+                    newOrder.push_back(rearranged);
+            }
+            library->cards = newOrder;
+        }
 
         if(copy->has(Constants::ADVENTURE) && copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_ALTERNATIVE] == 1 && //Added to correctly set the adventure cards type on stack.
             (to == g->players[0]->game->stack || to == g->players[1]->game->stack)){
