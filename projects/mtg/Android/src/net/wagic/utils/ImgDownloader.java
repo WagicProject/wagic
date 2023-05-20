@@ -2768,8 +2768,7 @@ public class ImgDownloader {
             cardurl = "https://cards.scryfall.io/large/front/b/f/bf36408d-ed85-497f-8e68-d3a922c388a0.jpg";
         else if(id.equals("615846t"))
             cardurl = "https://cards.scryfall.io/large/front/5/a/5a4649cc-07fb-4ff0-9ac6-846763b799df.jpg";
-        else if (id.equals("583789t") || id.equals("583823t") || id.equals("583834t") || id.equals("585771t") || 
-                id.equals("586065t") || id.equals("586144t")) // Powerstone
+        else if (id.equals("583789t")) // Powerstone
             cardurl = "https://cards.scryfall.io/large/front/d/4/d45fe4b6-aeaf-4f84-b660-c7b482ed8512.jpg";
 
         return cardurl;
@@ -3412,7 +3411,9 @@ public class ImgDownloader {
             tokenurl = "https://cards.scryfall.io/large/front/e/4/e401e2a8-d0a3-4517-ba20-449a1fff7f85.jpg";
         else if(id.equals("611980t") || id.equals("611956t")) // Dragon Spirit 5/5
             tokenurl = "https://cards.scryfall.io/large/front/a/4/a4c06e08-2026-471d-a6d0-bbb0f040420a.jpg";
-
+        else if (id.equals("583823t") || id.equals("583834t") || id.equals("585771t") || id.equals("586065t") || id.equals("586144t")) // Powerstone
+            tokenurl = "https://cards.scryfall.io/large/front/d/4/d45fe4b6-aeaf-4f84-b660-c7b482ed8512.jpg";
+			
         return tokenurl;
     }
 
