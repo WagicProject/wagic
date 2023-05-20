@@ -1,0 +1,266 @@
+[meta]
+author=Wagic Team
+name=March of the Machine: The Aftermath
+year=2023-05-12
+total=52
+[/meta]
+[card]
+primitive=Food
+id=-615848
+rarity=T
+[/card]
+[card]
+primitive=Thopter
+id=-615846
+rarity=T
+[/card]
+[card]
+primitive=Coppercoat Vanguard
+id=615811
+rarity=U
+[/card]
+[card]
+primitive=Deification
+id=615812
+rarity=R
+[/card]
+[card]
+primitive=Harnessed Snubhorn
+id=615813
+rarity=U
+[/card]
+[card]
+primitive=Metropolis Reformer
+id=615814
+rarity=R
+[/card]
+[card]
+primitive=Spark Rupture
+id=615794
+rarity=R
+[/card]
+[card]
+primitive=Tazri, Stalwart Survivor
+id=615815
+rarity=R
+[/card]
+[card]
+primitive=Filter Out
+id=615816
+rarity=U
+[/card]
+[card]
+primitive=Tolarian Contempt
+id=615817
+rarity=U
+[/card]
+[card]
+primitive=Training Grounds
+id=615818
+rarity=R
+[/card]
+[card]
+primitive=Vesuvan Drifter
+id=615819
+rarity=R
+[/card]
+[card]
+primitive=Ayara's Oathsworn
+id=615820
+rarity=R
+[/card]
+[card]
+primitive=Blot Out
+id=615821
+rarity=U
+[/card]
+[card]
+primitive=Death-Rattle Oni
+id=615822
+rarity=U
+[/card]
+[card]
+primitive=Markov Baron
+id=615823
+rarity=U
+[/card]
+[card]
+primitive=Urborg Scavengers
+id=615824
+rarity=R
+[/card]
+[card]
+primitive=Arni Metalbrow
+id=615825
+rarity=R
+[/card]
+[card]
+primitive=Kolaghan Warmonger
+id=615826
+rarity=U
+[/card]
+[card]
+primitive=Plargg and Nassari
+id=615827
+rarity=R
+[/card]
+[card]
+primitive=Reckless Handling
+id=615828
+rarity=U
+[/card]
+[card]
+primitive=Animist's Might
+id=615413
+rarity=U
+[/card]
+[card]
+primitive=Leyline Immersion
+id=615950
+rarity=R
+[/card]
+[card]
+primitive=Nissa, Resurgent Animist
+id=615951
+rarity=M
+[/card]
+[card]
+primitive=Open the Way
+id=615952
+rarity=R
+[/card]
+[card]
+primitive=Tranquil Frillback
+id=615829
+rarity=R
+[/card]
+[card]
+primitive=Undercity Upheaval
+id=615830
+rarity=U
+[/card]
+[card]
+primitive=Calix, Guided by Fate
+id=615831
+rarity=M
+[/card]
+[card]
+primitive=Campus Renovation
+id=615832
+rarity=U
+[/card]
+[card]
+primitive=Cosmic Rebirth
+id=615833
+rarity=U
+[/card]
+[card]
+primitive=Danitha, New Benalia's Light
+id=615834
+rarity=R
+[/card]
+[card]
+primitive=Feast of the Victorious Dead
+id=615835
+rarity=U
+[/card]
+[card]
+primitive=Gold-Forged Thopteryx
+id=615836
+rarity=U
+[/card]
+[card]
+primitive=Jirina, Dauntless General
+id=615837
+rarity=R
+[/card]
+[card]
+primitive=Jolrael, Voice of Zhalfir
+id=615803
+rarity=R
+[/card]
+[card]
+primitive=The Kenriths' Royal Funeral
+id=615838
+rarity=R
+[/card]
+[card]
+primitive=Kiora, Sovereign of the Deep
+id=615839
+rarity=M
+[/card]
+[card]
+primitive=Nahiri, Forged in Fury
+id=615840
+rarity=M
+[/card]
+[card]
+primitive=Nahiri's Resolve
+id=615841
+rarity=R
+[/card]
+[card]
+primitive=Narset, Enlightened Exile
+id=615842
+rarity=M
+[/card]
+[card]
+primitive=Nashi, Moon's Legacy
+id=615843
+rarity=R
+[/card]
+[card]
+primitive=Niv-Mizzet, Supreme
+id=615844
+rarity=R
+[/card]
+[card]
+primitive=Ob Nixilis, Captive Kingpin
+id=615845
+rarity=M
+[/card]
+[card]
+primitive=Pia Nalaar, Consul of Revival
+id=615846
+rarity=R
+[/card]
+[card]
+primitive=Rebuild the City
+id=615847
+rarity=R
+[/card]
+[card]
+primitive=Rocco, Street Chef
+id=615848
+rarity=R
+[/card]
+[card]
+primitive=Samut, Vizier of Naktamun
+id=615849
+rarity=M
+[/card]
+[card]
+primitive=Sarkhan, Soul Aflame
+id=615850
+rarity=M
+[/card]
+[card]
+primitive=Sigarda, Font of Blessings
+id=615851
+rarity=R
+[/card]
+[card]
+primitive=Tyvar the Bellicose
+id=615852
+rarity=M
+[/card]
+[card]
+primitive=Karn, Legacy Reforged
+id=615973
+rarity=M
+[/card]
+[card]
+primitive=Drannith Ruins
+id=615853
+rarity=R
+[/card]

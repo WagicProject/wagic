@@ -226,134 +226,6 @@ Sokenzan
 Gavony
 Jund
 Order of Midnight
-Chandra, Hope's Beacon
-Invasion of Azgol
-Invasion of Amonkhet
-Ghalta and Mavren
-Etali, Primal Conqueror
-Invasion of Kaladesh
-Invasion of Ergamon
-Sunfall
-Sunder the Gateway
-Furnace Gremlin
-Invasion of Kylem
-Scorn-Blade Berserker
-Render Inert
-Elvish Vatkeeper
-Drana and Linvala
-Traumatic Revelation
-Hidetsugu and Kairi
-Knight-Errant of Eos
-Halo Forager
-Glissa, Herald of Predation
-Sheoldred
-Phyrexian Awakening
-Norn's Inquisitor
-Invasion of Alara
-Inga and Esika
-Progenitor Exarch
-Vorinclex
-Wrenn and Realmbreaker
-Merciless Repurposing
-Infected Defector
-Invasion of Ulgrotha
-Invasion of Gobakhan
-Djeru and Hazoret
-Botanical Brawler
-Invasion of Dominaria
-Borborygmos and Fblthp
-Baral and Kari Zev
-Invasion of Theros
-Zurgo and Ojutai
-Sandstalker Moloch
-Zimone and Dina
-Rankle and Torbran
-Ichor Drinker
-Cut Short
-Hoarding Broodlord
-Seed of Hope
-Enduring Bondwarden
-Invasion of Fiora
-Invasion of Eldraine
-Tangled Skyline
-Seer of Stolen Sight
-Elesh Norn
-Ichor Shade
-Injector Crocodile
-Referee Squad
-Invasion of Innistrad
-Seedpod Caretaker
-Essence of Orthodoxy
-Invasion of Ravnica
-Overgrown Pest
-Omnath, Locus of All
-Kami of Whispered Hopes
-Quintorius, Loremaster
-Kogla and Yidaro
-Ozolith, the Shattered Spire
-Attentive Skywarden
-Gift of Compleation
-Flitting Guerrilla
-Urabrask
-Invasion of Ikoria
-Bloated Processor
-Invasion of Muraganda
-Invasion of Ixalan
-Compleated Huntmaster
-Invasion of Zendikar
-Invasion of Shandalar
-Rona, Herald of Invasion
-Jin-Gitaxias
-Invasion of Belenon
-Wicked Slumber
-Doomskar Warrior
-Deeproot Wayfinder
-Zephyr Singer
-Glistening Dawn
-Protocol Knight
-Ancient Imperiosaur
-See Double
-Blighted Burgeoning
-Temporal Cleansing
-Converter Beast
-Realmbreaker, the Invasion Tree
-Searing Barb
-Voldaren Thrillseeker
-Nahiri's Warcrafting
-Sculpted Perfection
-Scrappy Bruiser
-Invasion of Xerex
-Invasion of Tolvada
-Joyful Stormsculptor
-Mutagen Connoisseur
-Mirror-Shield Hoplite
-Invasion of Lorwyn
-Invasion of New Capenna
-Invasion of Moag
-Invasion of Pyrulea
-Invasion of New Phyrexia
-Into the Fire
-Oculus Whelp
-Oracle of Tragedy
-Omen Hawker
-Chrome Host Seedshark
-Complete the Circuit
-Invasion of Kamigawa
-Invasion of Arcavios
-Invasion of Vryn
-Invasion of Segovia
-Invasion of Tarkir
-Invasion of Regatha
-Ephara's Dispersal
-Corruption of Towashi
-Eyes of Gitaxias
-Marauding Dreadship
-Swordsworn Cavalier
-Invasion of Karsus
-Tiller of Flesh
-Invasion of Kaldheim
-Invasion of Mercadia
-Assimilate Essence
 Golden Argosy
 Inscribed Tablet
 Jodah's Codex
@@ -535,6 +407,55 @@ Protection Racket
 Misfortune Teller
 Devastating Dreams
 Darksteel Garrison
+Spark Rupture
+Nissa, Resurgent Animist
+Undercity Upheaval
+Leyline Immersion
+Campus Renovation
+Open the Way
+Calix, Guided by Fate
+Danitha, New Benalia's Light
+Cosmic Rebirth
+Arni Metalbrow
+Urborg Scavengers
+Plargg and Nassari
+Kolaghan Warmonger
+Tranquil Frillback
+Reckless Handling
+Blot Out
+Ayara's Oathsworn
+Markov Baron
+Death-Rattle Oni
+Metropolis Reformer
+Harnessed Snubhorn
+Filter Out
+Tazri, Stalwart Survivor
+Tolarian Contempt
+Vesuvan Drifter
+Sarkhan, Soul Aflame
+Tyvar the Bellicose
+Karn, Legacy Reforged
+Sigarda, Font of Blessings
+Animist's Might
+Drannith Ruins
+Deification
+Coppercoat Vanguard
+Jolrael, Voice of Zhalfir
+Rebuild the City
+Pia Nalaar, Consul of Revival
+Samut, Vizier of Naktamun
+Rocco, Street Chef
+Nahiri's Resolve
+Nahiri, Forged in Fury
+Nashi, Moon's Legacy
+Narset, Enlightened Exile
+Ob Nixilis, Captive Kingpin
+Niv-Mizzet, Supreme
+Gold-Forged Thopteryx
+Feast of the Victorious Dead
+The Kenriths' Royal Funeral
+Jirina, Dauntless General
+Kiora, Sovereign of the Deep
 Gala Greeters
 Jinnie Fay, Jetmir's Second
 Hostile Takeover

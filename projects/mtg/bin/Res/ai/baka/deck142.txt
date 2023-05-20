@@ -1,103 +1,104 @@
-#NAME:Scion Of The Ur-Dragon
-#DESC:The Scion Commander Deck
+#NAME:Ur-Dragon Commander 2023
+#DESC:The Ur-Dragon Commander Deck
+#DESC:Refined for Wagic by Bob
 #HINT:castpriority(commander,*)
 Aggravated Assault (*) * 1
 Ancient Tomb (*) * 1
 Arcane Signet (*) * 1
-Arid Mesa (*) * 1
 Atarka, World Render (*) * 1
 Balefire Dragon (*) * 1
+Bayou
 Bladewing the Risen (*) * 1
-Blood Crypt (*) * 1
 Bloom Tender (*) * 1
-Breeding Pool (*) * 1
 Cascading Cataracts (*) * 1
-Cavern of Souls (*) * 1
 Chromatic Lantern (*) * 1
 Chromatic Orrery (*) * 1
-Chrome Mox (*) * 1
 Coalition Relic (*) * 1
 Command Beacon (*) * 1
 Command Tower (*) * 1
-Crux of Fate (*) * 1
+Crucible of Fire (M15)
 Crystal Quarry (*) * 1
+Cultivate
 Curiosity (*) * 1
 Cyclonic Rift (*) * 1
+Darksteel Ingot
+Deathcap Glade
 Debtors' Knell (*) * 1
 Defense of the Heart (*) * 1
-Demonic Tutor (*) * 1
+Deserted Beach
 Dragonlord Silumgar (*) * 1
-Drakuseth, Maw of Flames (*) * 1
+Dragonmaster Outcast
+Dragon Tempest
+Dreamroot Cascade
+Elemental Bond
+Exotic Orchard
 Faeburrow Elder (*) * 1
 Farseek (*) * 1
 Fearsome Awakening (*) * 1
-Flooded Strand (*) * 1
+Fellwar Stone
 Force of Will (*) * 1
-Godless Shrine (*) * 1
-Greater Good (*) * 1
-Grim Tutor (*) * 1
-Hallowed Fountain (*) * 1
+Growth Spiral
+Haunted Ridge
 Haven of the Spirit Dragon (*) * 1
-Hellkite Charger (*) * 1
+Hellkite Charger (ZEN) (*) * 1
 Hellkite Tyrant (*) * 1
 Indatha Triome (*) * 1
 Karrthus, Tyrant of Jund (*) * 1
 Keiga, the Tide Star (*) * 1
 Ketria Triome (*) * 1
 Kokusho, the Evening Star (*) * 1
-Lightning Greaves (*) * 1
-Living Death (*) * 1
+Lightning Greaves (C17) (*) * 1
 Lotus Petal (*) * 1
 Malfegor (*) * 1
 Mana Confluence (*) * 1
-Mana Crypt (*) * 1
 Mana Drain (*) * 1
-Marsh Flats (*) * 1
-Misty Rainforest (*) * 1
-Moltensteel Dragon (*) * 1
+Mirari's Wake
 Mox Amber (*) * 1
-Mox Diamond (*) * 1
 Mox Opal (*) * 1
 Mox Tantalite (*) * 1
-Nicol Bolas (*) * 1
 Niv-Mizzet, the Firemind (*) * 1
-Overgrown Tomb (*) * 1
+Overgrown Farmland
 Path of Ancestry (*) * 1
-Polluted Delta (*) * 1
+Plateau
 Prismatic Geoscope (*) * 1
+Ramos, Dragon Engine
 Raugrin Triome (*) * 1
-Sacred Foundry (*) * 1
+Rhystic Study
+Rockfall Vale
+Sarkhan the Masterless
+Sarkhan's Unsealing
+Savannah
 Savage Ventmaw (*) * 1
 Savai Triome (*) * 1
-Scalding Tarn (*) * 1
-Sensei's Divining Top (*) * 1
+Scrubland
+Shattered Sanctum
+Shipwreck Marsh
 Silumgar, the Drifting Death (*) * 1
 Skithiryx, the Blight Dragon (*) * 1
 Skyclave Relic (*) * 1
 Skyshroud Claim (*) * 1
-Sneak Attack (*) * 1
 Sol Ring (*) * 1
 Spoils of Victory (*) * 1
-Steam Vents (*) * 1
-Stomping Ground (*) * 1
+Stormcarved Coast
+Sundown Pass
 Swiftfoot Boots (*) * 1
 Sword of Feast and Famine (*) * 1
-Sylvan Library (*) * 1
-Temple Garden (*) * 1
+Taiga
 Temur Ascendancy (*) * 1
 Teneb, the Harvester (*) * 1
 Terror of the Peaks (*) * 1
-The Ur-Dragon (*) * 1
+Thrakkus the Butcher
 Three Visits (*) * 1
+Timeless Lotus
+Tropical Island
+Tundra
 Unburial Rites (*) * 1
+Underground Sea
 Utvara Hellkite (*) * 1
 Vaevictis Asmadi, the Dire (*) * 1
-Vampiric Tutor (*) * 1
-Verdant Catacombs (*) * 1
-Watery Grave (*) * 1
-Wheel of Sun and Moon (*) * 1
-Windswept Heath (*) * 1
-Wooded Foothills (*) * 1
+Volcanic Island
+Warstorm Surge
+Wrathful Red Dragon
 Yosei, the Morning Star (*) * 1
 Zagoth Triome (*) * 1
-#CMD:Scion of the Ur-Dragon (*) * 1
+#CMD:The Ur-Dragon (*) * 1
