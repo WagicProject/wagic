@@ -382,7 +382,8 @@ Player * Rules::loadPlayerRandomThree(GameObserver* observer, int isAI)
     tempDeck->addRandomCards(3, 0, 0, -1, "enchantment", colors, nbcolors);
     tempDeck->addRandomCards(3, 0, 0, -1, "instant", colors, nbcolors);
     tempDeck->addRandomCards(3, 0, 0, -1, "sorcery", colors, nbcolors);
-    tempDeck->addRandomCards(4, 0, 0, -1, "artifact", colors, nbcolors);
+    tempDeck->addRandomCards(3, 0, 0, -1, "artifact", colors, nbcolors);
+    tempDeck->addRandomCards(1, 0, 0, -1, "battle", colors, nbcolors);
     tempDeck->addRandomCards(1, 0, 0, -1, "planeswalker", colors, nbcolors);
 
     string deckFile = "random";
@@ -458,10 +459,10 @@ Player * Rules::loadPlayerRandomCommander(GameObserver* observer, int isAI)
         numLands /= colors.size() - 1;
         for (unsigned int i = 1; i < colors.size(); i++)
         {
-            tempDeck->addRandomCards(numLands, 0, 0, 'L', lands[colors.data()[i]].c_str());
+            tempDeck->addRandomCards(numLands, 0, 0, Constants::RARITY_L, lands[colors.data()[i]].c_str());
         }
     }
-    else { tempDeck->addRandomCards(numLands, 0, 0, 'L'); }
+    else { tempDeck->addRandomCards(numLands, 0, 0, Constants::RARITY_L); }
 
     tempDeck->addRandomCards(59, 0, 0, -1, "", colors.data(), colors.size());
 
@@ -531,7 +532,7 @@ Player * Rules::loadPlayerHorde(GameObserver* observer, int isAI)
     tempDeck->addRandomCards(5, 0, 0, -1, "enchantment", tribeColor, nbColors);
     tempDeck->addRandomCards(5, 0, 0, -1, "instant", tribeColor, nbColors);
     tempDeck->addRandomCards(5, 0, 0, -1, "sorcery", tribeColor, nbColors);
-    tempDeck->addRandomCards(1, 0, 0, -1, "artifact");
+    tempDeck->addRandomCards(1, 0, 0, -1, "battle", tribeColor, nbColors);
 
     string deckFile = "random";
     string deckFileSmall = "random";

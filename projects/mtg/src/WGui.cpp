@@ -2110,6 +2110,7 @@ void WGuiFilterItem::updateValue()
             mParent->addArg("Land", "t:Land;");
             mParent->addArg("Legendary", "t:Legendary;");
             mParent->addArg("Sorcery", "t:Sorcery;");
+            mParent->addArg("Snow", "t:Snow;");
             mParent->addArg("Tribal", "t:Tribal;");
             mParent->addArg("Planeswalker", "t:Planeswalker;");
             mParent->addArg("Battle", "t:Battle;");
