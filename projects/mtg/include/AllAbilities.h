@@ -495,8 +495,9 @@ class TrplayerPoisoned: public Trigger
 {
 public:
     bool thiscontroller, thisopponent;
-    TrplayerPoisoned(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false) :
-        Trigger(observer, id, source, once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent)
+    int plus;
+    TrplayerPoisoned(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false, int plus = 0) :
+        Trigger(observer, id, source, once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent),plus(plus)
     {
     }
 
@@ -511,6 +512,8 @@ public:
         if(thisopponent)
             if(e->player == source->controller())
                 return 0;
+        if(plus > 0)
+            e->player->poisonCount++;
         return 1;
     }
 
@@ -524,8 +527,9 @@ class TrplayerEnergized: public Trigger
 {
 public:
     bool thiscontroller, thisopponent;
-    TrplayerEnergized(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false) :
-        Trigger(observer, id, source, once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent)
+    int plus;
+    TrplayerEnergized(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false, int plus = 0) :
+        Trigger(observer, id, source, once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent),plus(plus)
     {
     }
 
@@ -540,6 +544,8 @@ public:
         if(thisopponent)
             if(e->player == source->controller())
                 return 0;
+        if(plus > 0)
+            e->player->energyCount++;
         return 1;
     }
 
@@ -553,8 +559,9 @@ class TrplayerExperienced: public Trigger
 {
 public:
     bool thiscontroller, thisopponent;
-    TrplayerExperienced(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false) :
-        Trigger(observer, id, source, once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent)
+    int plus;
+    TrplayerExperienced(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false, int plus = 0) :
+        Trigger(observer, id, source, once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent),plus(plus)
     {
     }
 
@@ -569,6 +576,8 @@ public:
         if(thisopponent)
             if(e->player == source->controller())
                 return 0;
+        if(plus > 0)
+            e->player->experienceCount++;
         return 1;
     }
 
@@ -1425,6 +1434,70 @@ public:
     TrCounter * clone() const
     {
         TrCounter * mClone = NEW TrCounter(*this);
+        mClone->counter = NEW Counter(*this->counter);
+        return mClone;
+    }
+};
+
+//counter trigger
+class TrTotalCounter: public Trigger
+{
+public:
+    Counter * counter;
+    int type;
+    bool duplicate;
+    int plus;
+    bool limitOnceATurn;
+    int triggeredTurn;
+    MTGCardInstance * counterException; //added exception to avid a counter loop (eg. Doubling Season)
+    TrTotalCounter(GameObserver* observer, int id, MTGCardInstance * source, Counter * counter, TargetChooser * tc, int type = 0, bool once = false, bool duplicate = false, int plus = 0, bool limitOnceATurn = false, MTGCardInstance * counterException = NULL) :
+    Trigger(observer, id, source, once, tc), counter(counter), type(type), duplicate(duplicate), plus(plus), limitOnceATurn(limitOnceATurn), counterException(counterException)
+    {
+        triggeredTurn = -1;
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventTotalCounters * e = dynamic_cast<WEventTotalCounters *> (event);
+        if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
+        if (type == 0 && !e->removed) return 0;
+        if (type == 1 && !e->added) return 0;
+        if (counterException && e->source && !strcmp(counterException->data->name.c_str(), e->source->data->name.c_str())) return 0; //If the source of counter gain/loss it's the exception card it doesn't have effect (loop avoidance);        
+        if (counter && !(e->power == counter->power && e->toughness == counter->toughness && e->name == counter->name)) return 0;
+        if (tc && !tc->canTarget(e->targetCard)) return 0;
+        if (plus > 0){
+            if(type == 1){
+                for(int i = 0; i < plus; i++)
+                    e->targetCard->counters->addCounter(e->name.c_str(),e->power,e->toughness,true,true,e->source);
+            }
+            else {
+                for(int i = 0; i < plus; i++)
+                    e->targetCard->counters->removeCounter(e->name.c_str(),e->power,e->toughness,true,true,e->source);
+            }
+        }
+        else if (duplicate){
+            if(type == 1) {
+                for(int i = 0; i < e->totalamount; i++)
+                    e->targetCard->counters->addCounter(e->name.c_str(),e->power,e->toughness,true,true,e->source);
+            } else {
+                for(int i = 0; i < e->totalamount; i++)
+                    e->targetCard->counters->removeCounter(e->name.c_str(),e->power,e->toughness,true,true,e->source);
+            }
+        }
+        triggeredTurn = game->turn;
+        return 1;
+    }
+
+    ~TrTotalCounter()
+    {
+        SAFE_DELETE(counter);
+    }
+
+    TrTotalCounter * clone() const
+    {
+        TrTotalCounter * mClone = NEW TrTotalCounter(*this);
         mClone->counter = NEW Counter(*this->counter);
         return mClone;
     }

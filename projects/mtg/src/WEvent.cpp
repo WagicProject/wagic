@@ -43,8 +43,13 @@ WEventCardUpdate::WEventCardUpdate(MTGCardInstance * card) :
 }
 ;
 
-WEventCounters::WEventCounters(Counters *counter,string name,int power,int toughness,bool added,bool removed, MTGCardInstance* source) :
+WEventCounters::WEventCounters(Counters *counter, string name, int power, int toughness, bool added, bool removed, MTGCardInstance* source) :
 WEvent(),counter(counter),name(name),power(power),toughness(toughness),added(added),removed(removed),source(source)
+{
+}
+
+WEventTotalCounters::WEventTotalCounters(Counters *counter, string name, int power, int toughness, bool added, bool removed, int totalamount, MTGCardInstance* source) :
+WEvent(),counter(counter),name(name),power(power),toughness(toughness),added(added),removed(removed),totalamount(totalamount),source(source)
 {
 }
 
@@ -405,6 +410,11 @@ Targetable * WEventLife::getTarget(int target)
 }
 
 Targetable * WEventCounters::getTarget(int target)
+{
+    return targetCard;
+}
+
+Targetable * WEventTotalCounters::getTarget(int target)
 {
     return targetCard;
 }

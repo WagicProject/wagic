@@ -735,8 +735,12 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
     }
     else if (s.find("genrand") != string::npos) //Return a random value between 0 and a specific number (minus 1);
     {
+        intValue = 0;
         WParsedInt * value = NEW WParsedInt(s.substr(7).c_str(), NULL, card);
-        intValue = std::rand() % value->getValue();
+        if(value){
+            intValue = std::rand() % value->getValue();
+            SAFE_DELETE(value);
+        }
     }
     else if (s == "manacost") //Return the converted manacost
     {

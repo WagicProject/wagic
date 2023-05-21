@@ -2599,6 +2599,7 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
                 nb = checkcounter->nb;
                 delete checkcounter;
             }
+            int totalcounters = 0;
             if (nb > 0)
             {
                if(_target->has(Constants::COUNTERSHROUD)) // Added to avoid the counter increasement (e.g. "Solemnity").
@@ -2631,7 +2632,14 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
                     if(!maxNb || (maxNb && currentAmount < maxNb))
                     {
                         _target->counters->addCounter(name.c_str(), power, toughness, noevent, false, source);
+                        totalcounters++;
                     }
+                }
+                if (!noevent)
+                {
+                    WEvent * w = NEW WEventTotalCounters(_target->counters, name.c_str(), power, toughness, true, false, totalcounters, source);
+                    dynamic_cast<WEventTotalCounters*>(w)->targetCard = _target->counters->target;
+                    _target->getObserver()->receiveEvent(w);
                 }
             }
             else
@@ -2641,6 +2649,13 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
                     while (_target->next)
                         _target = _target->next;
                     _target->counters->removeCounter(name.c_str(), power, toughness, noevent, false, source);
+                    totalcounters++;
+                }
+                if (!noevent)
+                {
+                    WEvent * e = NEW WEventTotalCounters(_target->counters, name.c_str(), power, toughness, false, true, totalcounters, source);
+                    dynamic_cast<WEventTotalCounters*>(e)->targetCard = _target->counters->target;
+                    _target->getObserver()->receiveEvent(e);
                 }
             }
 
@@ -4535,6 +4550,7 @@ int AANewTarget::resolve()
                         source->types[0] = 7;
                         source->types[1] = 1;
                     }
+                    source->mPropertiesChangedSinceLastUpdate = false;
                     if(source->hasType(Subtypes::TYPE_LEGENDARY)){ // Check if the mutated card is a duplicated legendary card
                         MTGNewLegend *testlegend = NEW MTGNewLegend(source->getObserver(),source->getObserver()->mLayers->actionLayer()->getMaxId());
                         testlegend->CheckLegend(source);
@@ -4825,7 +4841,6 @@ int AATurnSide::resolve()
         _target->magicText = sideCard->magicText;
         _target->colors = sideCard->colors;
         _target->isFlipped = (_target->isFlipped > 0)?0:1;
-        _target->mPropertiesChangedSinceLastUpdate = true;
         SAFE_DELETE(sideCard);
         return 1;
     }
