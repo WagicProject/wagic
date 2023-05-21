@@ -246,7 +246,9 @@ const char* Constants::MTGBasicAbilities[] = {
     "nonight", //It can't become night (e.g. "Angel of Eternal Dawn").
     "nodamageremoved", //Damage is not removed from card (e.g. "Patient Zero").
     "backgroundpartner", //Can choose a backgorund partner as commander (e.g. "Faceless One").
-    "bottomlibrarydeath" //It goes to bottom of library after death (e.g. "Quintorius, Loremaster").
+    "bottomlibrarydeath", //It goes to bottom of library after death (e.g. "Quintorius, Loremaster").
+    "noloyaltydamage", //Damage does not cause loyalty counter to be removed from a Planeswalker (e.g. "Spark Rupture").
+    "nodefensedamage" //Damage does not cause defense counter to be removed from a Battle.
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

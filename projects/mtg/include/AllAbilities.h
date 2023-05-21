@@ -1240,6 +1240,10 @@ public:
             e->damage->target->exceededDamage = e->damage->target->life;
             e->damage->source->exceededDamage = e->damage->target->life;
             this->source->exceededDamage = e->damage->target->life;
+        } else {
+            e->damage->target->exceededDamage = 0;
+            e->damage->source->exceededDamage = 0;
+            this->source->exceededDamage = 0;
         }
         triggeredTurn = game->turn;
 

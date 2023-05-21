@@ -297,32 +297,6 @@ int Damage::resolve()
                 observer->setLoser(((MTGCardInstance*)source)->controller()->opponent());
         }
     }
-
-    if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && ((MTGCardInstance*)target)->hasType(Subtypes::TYPE_PLANESWALKER)){ // Fix life calculation for planeswalker damage.
-        if (((MTGCardInstance*)target)->counters){
-            Counters * counters = ((MTGCardInstance*)target)->counters;
-            for(size_t i = 0; i < counters->counters.size(); ++i){
-                Counter * counter = counters->counters[i];
-                if(counter->name ==  "loyalty"){
-                    target->life = counter->nb - target->damageCount;
-                    break;
-                }
-            }
-        }
-    }
-
-    if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && ((MTGCardInstance*)target)->hasType(Subtypes::TYPE_BATTLE)){ // Fix life calculation for battle damage.
-        if (((MTGCardInstance*)target)->counters){
-            Counters * counters = ((MTGCardInstance*)target)->counters;
-            for(size_t i = 0; i < counters->counters.size(); ++i){
-                Counter * counter = counters->counters[i];
-                if(counter->name ==  "defense"){
-                    target->life = counter->nb - target->damageCount;
-                    break;
-                }
-            }
-        }
-    }
     //Send (Damage/Replaced effect) event to listeners
     observer->receiveEvent(e);
     return a;

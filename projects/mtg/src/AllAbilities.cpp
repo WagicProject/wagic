@@ -3962,8 +3962,18 @@ ADrawReplacer::~ADrawReplacer()
 int AAResetDamage::resolve()
 {
     MTGCardInstance * _target =  (MTGCardInstance *)target; 
-    if(!_target->has(Constants::NODAMAGEREMOVED)) // Added to avoid damage is removed from a card (e.g. "Patient Zero").
-        _target->life = _target->toughness;
+    if(!_target->has(Constants::NODAMAGEREMOVED)){ // Added to avoid damage is removed from a card (e.g. "Patient Zero").
+        if (!_target->isCreature() && _target->hasType(Subtypes::TYPE_PLANESWALKER)){ // Fix life calculation for planeswalker damage.
+            if (_target->counters && _target->counters->hasCounter("loyalty", 0, 0)) {
+                _target->life = _target->counters->hasCounter("loyalty", 0, 0)->nb;
+            }
+        } else if (!_target->isCreature() && _target->hasType(Subtypes::TYPE_BATTLE)){ // Fix life calculation for battle damage.
+            if (_target->counters && _target->counters->hasCounter("defense", 0, 0)) {
+                _target->life = _target->counters->hasCounter("defense", 0, 0)->nb;
+            }
+        } else
+            _target->life = _target->toughness;
+    }
     return 1;
 }
 
@@ -7824,6 +7834,9 @@ int ATransformer::addToGame()
         else
             _target->addbaseT(val->getValue());
         delete val;
+
+        if(_target->isCreature() && (_target->hasType(Subtypes::TYPE_BATTLE) || _target->hasType(Subtypes::TYPE_PLANESWALKER)) && _target->life > _target->toughness)
+            _target->life = _target->toughness; // Fix for a Planeswalker or a Battle that becomes a creature (e.g. "Spark Rupture").
     }
     //remove manacost
     if(removemc)

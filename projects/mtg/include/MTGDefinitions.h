@@ -341,7 +341,9 @@ class Constants
       NODAMAGEREMOVED = 213,
       BACKGROUNDPARTNER = 214,
       BOTTOMLIBRARYDEATH = 215,
-      NB_BASIC_ABILITIES = 216,
+      NOLOYALTYDAMAGE = 216,
+      NODEFENSEDAMAGE = 217,
+      NB_BASIC_ABILITIES = 218,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

@@ -3970,8 +3970,11 @@ int MTGPlaneswalkerDamage::receiveEvent(WEvent * event)
             int howMany = d->damage;
             for(int k = 0; k < howMany; k++)
             {
-                card->counters->removeCounter("loyalty", 0, 0);
+                if(!card->basicAbilities[Constants::NOLOYALTYDAMAGE])
+                     card->counters->removeCounter("loyalty", 0, 0);
             }
+            if(!card->isCreature() && card->counters->hasCounter("loyalty", 0, 0))
+                card->life = card->counters->hasCounter("loyalty", 0, 0)->nb;
             return 1;
         }
         if (d->damage > 0 && card && card->hasType(Subtypes::TYPE_BATTLE))
@@ -3979,8 +3982,11 @@ int MTGPlaneswalkerDamage::receiveEvent(WEvent * event)
             int howMany = d->damage;
             for(int k = 0; k < howMany; k++)
             {
-                card->counters->removeCounter("defense", 0, 0);
+                if(!card->basicAbilities[Constants::NODEFENSEDAMAGE])
+                    card->counters->removeCounter("defense", 0, 0);
             }
+            if(!card->isCreature() && card->counters->hasCounter("defense", 0, 0))
+                card->life = card->counters->hasCounter("defense", 0, 0)->nb;
             return 1;
         }
     }

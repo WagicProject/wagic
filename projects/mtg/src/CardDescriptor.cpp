@@ -189,7 +189,7 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card)
     if (powerComparisonMode && !valueInRange(powerComparisonMode, card->getPower(), power))
         return NULL;
     if (toughnessComparisonMode){ // Toughness comparison has a different meaning for planeswalkers and battles.
-        if(card->counters && (card->hasType(Subtypes::TYPE_PLANESWALKER) || card->hasType(Subtypes::TYPE_BATTLE))){
+        if(!card->isCreature() && card->counters && (card->hasType(Subtypes::TYPE_PLANESWALKER) || card->hasType(Subtypes::TYPE_BATTLE))){
             for(size_t i = 0; i < card->counters->counters.size(); ++i){
                 if((card->counters->counters[i]->name == "loyalty" && card->hasType(Subtypes::TYPE_PLANESWALKER)) || (card->counters->counters[i]->name == "defense" && card->hasType(Subtypes::TYPE_BATTLE))){
                     if(!valueInRange(toughnessComparisonMode, card->counters->counters[i]->nb, toughness))
@@ -246,7 +246,7 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card)
     if (powerComparisonMode && !valueInRange(powerComparisonMode, card->getPower(), power))
         match = NULL;
     if (toughnessComparisonMode){ // Toughness comparison has a different meaning for planeswalkers and battles.
-       if(card->counters && (card->hasType(Subtypes::TYPE_PLANESWALKER) || card->hasType(Subtypes::TYPE_BATTLE))){
+       if(!card->isCreature() && card->counters && (card->hasType(Subtypes::TYPE_PLANESWALKER) || card->hasType(Subtypes::TYPE_BATTLE))){
             for(size_t i = 0; i < card->counters->counters.size(); ++i){
                 if((card->counters->counters[i]->name == "loyalty" && card->hasType(Subtypes::TYPE_PLANESWALKER)) || (card->counters->counters[i]->name == "defense" && card->hasType(Subtypes::TYPE_BATTLE))){
                     if(!valueInRange(toughnessComparisonMode, card->counters->counters[i]->nb, toughness))

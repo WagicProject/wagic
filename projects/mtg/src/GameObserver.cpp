@@ -738,6 +738,17 @@ void GameObserver::gameStateBasedEffects()
             card->mPropertiesChangedSinceLastUpdate = false;
             if(card->hasType(Subtypes::TYPE_PLANESWALKER) && (!card->counters||!card->counters->hasCounter("loyalty",0,0)))
                 players[i]->game->putInGraveyard(card);
+            if(card->hasType(Subtypes::TYPE_BATTLE) && (!card->counters||!card->counters->hasCounter("defense",0,0))){
+                if(!card->isDefeated){
+                    card->isDefeated = true;
+                    WEvent * e = NEW WEventCardDefeated(card);
+                    receiveEvent(e);
+                }
+            }
+            if(!card->isCreature() && card->hasType(Subtypes::TYPE_PLANESWALKER) && card->counters->hasCounter("loyalty", 0, 0))
+                card->life = card->counters->hasCounter("loyalty", 0, 0)->nb;
+            if(!card->isCreature() && card->hasType(Subtypes::TYPE_BATTLE) && card->counters->hasCounter("defense", 0, 0))
+                card->life = card->counters->hasCounter("defense", 0, 0)->nb;
             if(card->myPair && !isInPlay(card->myPair))
             {
                 card->myPair->myPair = NULL;
