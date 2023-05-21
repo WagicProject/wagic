@@ -145,8 +145,12 @@
 # Mentor, still not working with enhancements, pump effects
 #AUTO_DEFINE _MENTOR_ @combat(attacking) source(this):counter(1/1,1) target(other creature[attacking;power<=pminus1minusend]|myBattlefield)
 
-# Surveil, not implemented
-#AUTO_DEFINE _SURVEIL_($c) name(Surveil) reveal:$c optionone name(put in graveyard) target(<upto:$c>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<$c>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+# Surveil, like scry, using parameters causes bugs so each value has to be indicated
+#AUTO_DEFINE _SURVEIL1_ name(Surveil 1) reveal:psurveiloffsetplus1plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus1plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus1plusend>*|reveal) moveto(ownerlibrary) optiontwoend afterrevealed surveil afterrevealedend revealend
+
+#AUTO_DEFINE _SURVEIL2_ name(Surveil 2) reveal:psurveiloffsetplus2plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus2plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus2plusend>*|reveal) moveto(ownerlibrary) optiontwoend afterrevealed surveil afterrevealedend revealend
+
+#AUTO_DEFINE _SURVEIL3_ name(Surveil 3) reveal:psurveiloffsetplus3plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus3plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus3plusend>*|reveal) moveto(ownerlibrary) optiontwoend afterrevealed surveil afterrevealedend revealend
 
 # Undergrowth, not implemented
 #AUTO_DEFINE _UNDERGROWTH_ foreach(creature|myGraveyard)
