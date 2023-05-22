@@ -468,7 +468,7 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
         check = restriction[i].find("deadpermanent");
         if(check != string::npos)
         {
-            bool isMorbid = false;
+            bool deadpermanent = false;
             for(int cp = 0;cp < 2;cp++)
             {
                 Player * checkCurrent = observer->players[cp];
@@ -481,20 +481,20 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                         (checkCard->previousZone == checkCurrent->opponent()->game->battlefield))//died from battlefield
                         )
                     {
-                        isMorbid = true;
+                        deadpermanent = true;
                         break;
                     }
                 }
-                if(isMorbid)
+                if(deadpermanent)
                     break;
             }
-            if(!isMorbid)
+            if(!deadpermanent)
                 return 0;
         }
         check = restriction[i].find("deadcreart");
         if(check != string::npos)
         {
-            bool isMorbid = false;
+            bool deadcreart = false;
             for(int cp = 0;cp < 2;cp++)
             {
                 Player * checkCurrent = observer->players[cp];
@@ -507,14 +507,41 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                         (checkCard->previousZone == checkCurrent->opponent()->game->battlefield))//died from battlefield
                         )
                     {
-                        isMorbid = true;
+                        deadcreart = true;
                         break;
                     }
                 }
-                if(isMorbid)
+                if(deadcreart)
                     break;
             }
-            if(!isMorbid)
+            if(!deadcreart)
+                return 0;
+        }
+        check = restriction[i].find("hasdead");
+        if(check != string::npos)
+        {
+            bool hasdeadtype = false;
+            string checktype = restriction[i].substr(7);
+            for(int cp = 0;cp < 2;cp++)
+            {
+                Player * checkCurrent = observer->players[cp];
+                MTGGameZone * grave = checkCurrent->game->graveyard;
+                for(unsigned int gy = 0;gy < grave->cardsSeenThisTurn.size();gy++)
+                {
+                    MTGCardInstance * checkCard = grave->cardsSeenThisTurn[gy];
+                    if(checkCard->hasType(checktype) &&
+                        ((checkCard->previousZone == checkCurrent->game->battlefield)||
+                        (checkCard->previousZone == checkCurrent->opponent()->game->battlefield))//died from battlefield
+                        )
+                    {
+                        hasdeadtype = true;
+                        break;
+                    }
+                }
+                if(hasdeadtype)
+                    break;
+            }
+            if(!hasdeadtype)
                 return 0;
         }
         check = restriction[i].find("zerodead");

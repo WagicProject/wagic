@@ -577,21 +577,14 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     if(card->name == copy->name && !card->hasType(Subtypes::TYPE_LEGENDARY) && copy->hasType(Subtypes::TYPE_LEGENDARY)) // This fix issue when cloning a card with nolegend option (e.g. Double Major)
         copy->removeType(Subtypes::TYPE_LEGENDARY);
 
-    // This fix issue types problem when card change zone with different card types than its original version (e.g. double face cards).
+    // This fix issue types problem when card change zone with different card types than its original version (e.g. double face cards or cards that gained new types before to change zone).
     std::vector<int> realTypes;
     string originame = copy->name;
-    if(doCopy && !asCopy && !inplaytoinplay){
-        for (int i = ((int)copy->types.size())-1; i >= 0; --i){
-            realTypes.push_back(copy->types[i]);
-            copy->removeType(copy->types[i]);
-        }
-        copy->name = originame;
-        for (int i = 0; i < ((int)card->types.size()); i++)
-            copy->addType(card->types[i]);
-        if(copy->types[0] == 1 && copy->types[1] == 7){ // Fix order for Legendary Creatures
-            copy->types[0] = 7;
-            copy->types[1] = 1;
-        }
+    if(doCopy && !asCopy && !inplaytoinplay && !equal(copy->types.begin(), copy->types.end(), card->types.begin()) ){
+        realTypes = copy->types;
+        copy->types = card->types;
+        if(copy->name == "")
+            copy->name = originame;
         copy->mPropertiesChangedSinceLastUpdate = false;
     }
 
@@ -808,16 +801,11 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
 
         // Reset original types when card change zone with different card types than its original version (e.g. double face cards).
         if(doCopy && !inplaytoinplay && realTypes.size()){
-            copy->types.clear();
-            for (int i = ((int)realTypes.size())-1; i >= 0; i--)
-                copy->addType(realTypes[i]);
-            if(copy->types[0] == 1 && copy->types[1] == 7){ // Fix order for Legendary Creatures
-                copy->types[0] = 7;
-                copy->types[1] = 1;
-            }
-            copy->name = originame;
-            copy->mPropertiesChangedSinceLastUpdate = false;
+            copy->types = realTypes;
             realTypes.clear();
+            if(copy->name == "")
+                copy->name = originame;
+            copy->mPropertiesChangedSinceLastUpdate = false;
         }
 
         // Erasing counters from copy after the event has been triggered (no counter can survive to a zone changing except the perpetual ones)

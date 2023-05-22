@@ -2,7 +2,7 @@ grade=unsupported
 #The cards in this file are not implemented/incomplete yet.
 #Updated Card lists not in primitives (Borderline, Crappy, Unsupported and Missing Cards)
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#I sorted this programatically - Vitty85 20-05-2023
+#I sorted this programatically - Vitty85 22-05-2023
 [card]
 name="Ach! Hans, Run!"
 text=At the beginning of your upkeep, you may say "Ach Hans, run It's the . . ." and name a creature card. If you do, search your library for the named card, put it into play, then shuffle your library. That creature has haste. Remove it from the game at end of turn.
@@ -2316,6 +2316,12 @@ name=Deflection
 text=Change the target of target spell with a single target.
 mana={3}{U}
 type=Instant
+[/card]
+[card]
+name=Deification
+text=As Deification enters the battlefield, choose a planeswalker type. -- Planeswalkers you control of the chosen type have hexproof. -- As long as you control a creature, if damage dealt to a planeswalker you control of the chosen type would result in all loyalty counters on it being removed, instead all but one of those counters are removed.
+mana={1}{W}
+type=Enchantment
 [/card]
 [card]
 name=Delay
