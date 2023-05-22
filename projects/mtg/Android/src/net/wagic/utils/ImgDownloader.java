@@ -4633,9 +4633,9 @@ public class ImgDownloader {
                             }
                         }
                         Elements imgstoken;
-                        String specialtokenurl = getSpecialTokenUrl(id + "t", currentSet);
+                        String specialtokenurl = getSpecialTokenUrl(id + "t", set);
                         if(specialtokenurl.isEmpty())
-                            specialtokenurl = getSpecialCardUrl(id + "t", currentSet);
+                            specialtokenurl = getSpecialCardUrl(id + "t", set);
                         if (!specialtokenurl.isEmpty()) {
                             try {
                                 doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
