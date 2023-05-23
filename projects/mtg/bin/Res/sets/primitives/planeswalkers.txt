@@ -1,6 +1,6 @@
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 20-05-2023
+#We sorted this in alphabetical order - Luruz & Vitty85 23-05-2023
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -2499,7 +2499,7 @@ name=Saheeli, the Gifted
 abilities=canbecommander
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Create a 1/1 colorless Servo) _SERVOTOKEN_
-auto={C(0/0,-1,Loyalty)}:name(-1: The next spell has affinity for artifacts) lord(*|mycastingzone):affinityartifacts oneshot
+auto={C(0/0,1,Loyalty)}:name(-1: The next spell has affinity for artifacts) target(*|mycastingzone) transforms((,newability[affinityartifacts])) ueot
 auto={C(0/0,-7,Loyalty)}:name(-7: Create a token for each artifact) clone all(artifact|mybattlefield) with (unreath)
 text=+1: Create a 1/1 colorless Servo artifact creature token. -- +1: The next spell you cast this turn costs {1} less to cast for each artifact you control as you cast it. -- -7: For each artifact you control, create a token that's a copy of it. Those tokens gain haste. Exile those tokens at the beginning of the next end step. -- Saheeli, the Gifted can be your commander.
 mana={2}{U}{R}

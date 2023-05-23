@@ -1285,6 +1285,7 @@ void GameObserver::Affinity()
                 bool DoReduceIncrease = false;
                 if (
                     (card->has(Constants::AFFINITYARTIFACTS) ||
+                    card->has(Constants::AFFINITYENCHANTMENTS) ||
                     card->has(Constants::AFFINITYFOREST) ||
                     card->has(Constants::AFFINITYGREENCREATURES) ||
                     card->has(Constants::AFFINITYISLAND) ||
@@ -1292,6 +1293,16 @@ void GameObserver::Affinity()
                     card->has(Constants::AFFINITYPLAINS) ||
                     card->has(Constants::AFFINITYSWAMP) ||
                     card->has(Constants::CONDUITED) ||
+                    card->has(Constants::AFFINITYALLCREATURES) ||
+                    card->has(Constants::AFFINITYCONTROLLERCREATURES) ||
+                    card->has(Constants::AFFINITYOPPONENTCREATURES) ||
+                    card->has(Constants::AFFINITYALLDEADCREATURES) ||
+                    card->has(Constants::AFFINITYPARTY) ||
+                    card->has(Constants::AFFINITYBASICLANDTYPES) ||
+                    card->has(Constants::AFFINITYTWOBASICLANDTYPES) ||
+                    card->has(Constants::AFFINITYGRAVECREATURES) ||
+                    card->has(Constants::AFFINITYATTACKINGCREATURES) ||
+                    card->has(Constants::AFFINITYGRAVEINSTSORC) ||
                     card->getIncreasedManaCost()->getConvertedCost() ||
                     card->getReducedManaCost()->getConvertedCost() ||
                     NewAffinityFound || checkAuraP)

@@ -248,7 +248,18 @@ const char* Constants::MTGBasicAbilities[] = {
     "backgroundpartner", //Can choose a backgorund partner as commander (e.g. "Faceless One").
     "bottomlibrarydeath", //It goes to bottom of library after death (e.g. "Quintorius, Loremaster").
     "noloyaltydamage", //Damage does not cause loyalty counter to be removed from a Planeswalker (e.g. "Spark Rupture").
-    "nodefensedamage" //Damage does not cause defense counter to be removed from a Battle.
+    "nodefensedamage", //Damage does not cause defense counter to be removed from a Battle.
+    "affinityallcreatures", //Cost 1 less for each creature in all battlefields.
+    "affinitycontrollercreatures", //Cost 1 less for each creature in controller battlefield.
+    "affinityopponentcreatures", //Cost 1 less for each creature in opponent battlefield.
+    "affinityalldeadcreatures", //Cost 1 less for each died creature in this turn.
+    "affinityparty", //Cost 1 less for each creature in your party.
+    "affinityenchantments", //Cost 1 less for each enchantment in your battlefield.
+    "affinitybasiclandtypes", //Cost 1 less for each basic land type in your battlefield.
+    "affinitytwobasiclandtypes", //Cost 2 less for each basic land type in your battlefield.
+    "affinitygravecreatures", //Cost 1 less for each creature in your graveyard.
+    "affinityattackingcreatures", //Cost 1 less for each attacking creature in your battlefield.
+    "affinitygraveinstsorc" //Cost 1 less for each instant or sorcery in your graveyard.
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

@@ -4890,7 +4890,7 @@ int AAFlip::resolve()
     if (_target)
     {
         if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be flipped, they will follow the fate of top-card
-        if(((_target->isACopier||_target->isToken) && !isflipcard && !backfromcopy) || _target->has(Constants::CANTTRANSFORM))
+        if(((_target->isACopier||(_target->isToken && _target->backSide == "")) && !isflipcard && !backfromcopy) || _target->has(Constants::CANTTRANSFORM))
         {
             game->removeObserver(this);
             return 0;

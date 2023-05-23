@@ -1272,17 +1272,32 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
         }
     }//end2
     if (card->has(Constants::AFFINITYARTIFACTS) ||
+        card->has(Constants::AFFINITYENCHANTMENTS) ||
         card->has(Constants::AFFINITYFOREST) ||
         card->has(Constants::AFFINITYGREENCREATURES) ||
         card->has(Constants::AFFINITYISLAND) ||
         card->has(Constants::AFFINITYMOUNTAIN) ||
         card->has(Constants::AFFINITYPLAINS) ||
         card->has(Constants::AFFINITYSWAMP) ||
+        card->has(Constants::AFFINITYALLCREATURES) ||
+        card->has(Constants::AFFINITYCONTROLLERCREATURES) ||
+        card->has(Constants::AFFINITYOPPONENTCREATURES) ||
+        card->has(Constants::AFFINITYALLDEADCREATURES) ||
+        card->has(Constants::AFFINITYPARTY) ||
+        card->has(Constants::AFFINITYBASICLANDTYPES) ||
+        card->has(Constants::AFFINITYTWOBASICLANDTYPES) ||
+        card->has(Constants::AFFINITYGRAVECREATURES) ||
+        card->has(Constants::AFFINITYATTACKINGCREATURES) ||
+        card->has(Constants::AFFINITYGRAVEINSTSORC) ||
         card->has(Constants::CONDUITED))
     {//start3
         if (card->has(Constants::AFFINITYARTIFACTS))
         {
             type = "artifact";
+        }
+        if (card->has(Constants::AFFINITYENCHANTMENTS))
+        {
+            type = "enchantment";
         }
         else if (card->has(Constants::AFFINITYSWAMP))
         {
@@ -1309,6 +1324,22 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
             color = 1;
             type = "creature";
         }
+        else if (card->has(Constants::AFFINITYALLCREATURES) || card->has(Constants::AFFINITYCONTROLLERCREATURES) || card->has(Constants::AFFINITYOPPONENTCREATURES) || card->has(Constants::AFFINITYALLDEADCREATURES))
+        {
+            type = "creature";
+        }
+        else if (card->has(Constants::AFFINITYPARTY) || card->has(Constants::AFFINITYGRAVECREATURES) || card->has(Constants::AFFINITYATTACKINGCREATURES))
+        {
+            type = "creature";
+        }
+        else if (card->has(Constants::AFFINITYBASICLANDTYPES) || card->has(Constants::AFFINITYTWOBASICLANDTYPES))
+        {
+            type = "land";
+        }
+        else if (card->has(Constants::AFFINITYGRAVEINSTSORC))
+        {
+            type = "instant,sorcery";
+        }
 
         Cost->copy(original);
         if (Cost->extraCosts)
@@ -1326,7 +1357,77 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
             }
         }
         int reduce = 0;
-        if (card->has(Constants::AFFINITYGREENCREATURES))
+        if (card->has(Constants::AFFINITYALLCREATURES))
+        {
+            TargetChooserFactory tf(getObserver());
+            TargetChooser * tc = tf.createTargetChooser("creature", NULL);
+            reduce = card->controller()->game->battlefield->countByCanTarget(tc) + card->controller()->opponent()->game->battlefield->countByCanTarget(tc);
+            SAFE_DELETE(tc);
+        }
+        else if (card->has(Constants::AFFINITYCONTROLLERCREATURES))
+        {
+            TargetChooserFactory tf(getObserver());
+            TargetChooser * tc = tf.createTargetChooser("creature", NULL);
+            reduce = card->controller()->game->battlefield->countByCanTarget(tc);
+            SAFE_DELETE(tc);
+        }
+        else if (card->has(Constants::AFFINITYATTACKINGCREATURES))
+        {
+            TargetChooserFactory tf(getObserver());
+            TargetChooser * tc = tf.createTargetChooser("creature[attacking]", NULL);
+            reduce = card->controller()->game->battlefield->countByCanTarget(tc);
+            SAFE_DELETE(tc);
+        }
+        else if (card->has(Constants::AFFINITYOPPONENTCREATURES))
+        {
+            TargetChooserFactory tf(getObserver());
+            TargetChooser * tc = tf.createTargetChooser("creature", NULL);
+            reduce = card->controller()->opponent()->game->battlefield->countByCanTarget(tc);
+            SAFE_DELETE(tc);
+        }
+        else if (card->has(Constants::AFFINITYGRAVECREATURES))
+        {
+            WParsedInt* value = NEW WParsedInt("type:creature:mygraveyard",NULL, card);
+            if(value)
+                reduce = value->getValue();
+            SAFE_DELETE(value);
+        }
+        else if (card->has(Constants::AFFINITYALLDEADCREATURES))
+        {
+            WParsedInt* value = NEW WParsedInt("bothalldeadcreature",NULL, card);
+            if(value)
+                reduce = value->getValue();
+            SAFE_DELETE(value);
+        }
+        else if (card->has(Constants::AFFINITYPARTY))
+        {
+            WParsedInt* value = NEW WParsedInt("calculateparty",NULL, card);
+            if(value)
+                reduce = value->getValue();
+            SAFE_DELETE(value);
+        }
+        else if (card->has(Constants::AFFINITYBASICLANDTYPES))
+        {
+            WParsedInt* value = NEW WParsedInt("pbasiclandtypes",NULL, card);
+            if(value)
+                reduce = value->getValue();
+            SAFE_DELETE(value);
+        }
+        else if (card->has(Constants::AFFINITYTWOBASICLANDTYPES))
+        {
+            WParsedInt* value = NEW WParsedInt("pbasiclandtypes",NULL, card);
+            if(value)
+                reduce = value->getValue() * 2;
+            SAFE_DELETE(value);
+        }
+        else if (card->has(Constants::AFFINITYGRAVEINSTSORC))
+        {
+            WParsedInt* value = NEW WParsedInt("pginstantsorcery",NULL, card);
+            if(value)
+                reduce = value->getValue();
+            SAFE_DELETE(value);
+        }
+        else if (card->has(Constants::AFFINITYGREENCREATURES))
         {
             TargetChooserFactory tf(getObserver());
             TargetChooser * tc = tf.createTargetChooser("creature[green]", NULL);

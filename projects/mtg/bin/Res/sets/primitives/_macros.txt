@@ -55,7 +55,7 @@
 #AUTO_DEFINE _CONSTELLATION_ @movedTo(enchantment|myBattlefield):
 
 # Amass, Set WAR
-#AUTO_DEFINE _AMASS_($c) if type(army|mybattlefield)~morethan~0 then counter(1/1,$c) notATarget(army|myBattlefield) else create(Zombie Army:creature Zombie Army:0/0:black) and!(counter(1/1,$c) notATarget(army|myBattlefield))!
+#AUTO_DEFINE _AMASS_($c) if type(army|mybattlefield)~morethan~0 then counter(1/1.$c) notATarget(army|myBattlefield) else create(Zombie Army:creature Zombie Army:0/0:black) and!(counter(1/1.$c) notATarget(army|myBattlefield))!
 
 # Scry, Evergreen
 #AUTO_DEFINE _SCRY_($c) scry:$c scrycore delayed dontshow donothing scrycoreend scryend
@@ -108,7 +108,7 @@
 #AUTO_DEFINE _PROLIFERATE_ name(Proliferate) notatarget(proliferation) proliferate
 
 # Scavenge
-#AUTO_DEFINE _SCAVENGE_($power) name(scavenge) counter(1/1,$power) target(creature) asSorcery
+#AUTO_DEFINE _SCAVENGE_($power) name(scavenge) counter(1/1.$power) target(creature) asSorcery
 
 # Monstrosity, not implemented
 #AUTO_DEFINE _MONSTROSITY_($cost,$c) name(Monstrosity) this(cantargetcard(*[-monstrous]) {$cost}:becomes(monstrous) forever && counter(1/1.$c)
@@ -143,7 +143,7 @@
 #AUTO_DEFINE _CASTHISTORIC_ @movedTo(*[artifact;legendary;saga]|mystack):
 
 # Mentor, still not working with enhancements, pump effects
-#AUTO_DEFINE _MENTOR_ @combat(attacking) source(this):counter(1/1,1) target(other creature[attacking;power<=pminus1minusend]|myBattlefield)
+#AUTO_DEFINE _MENTOR_ @combat(attacking) source(this):counter(1/1) target(other creature[attacking;power<=pminus1minusend]|myBattlefield)
 
 # Surveil, like scry, using parameters causes bugs so each value has to be indicated
 #AUTO_DEFINE _SURVEIL1_ name(Surveil 1) reveal:psurveiloffsetplus1plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus1plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus1plusend>*|reveal) moveto(ownerlibrary) optiontwoend afterrevealed surveil afterrevealedend revealend

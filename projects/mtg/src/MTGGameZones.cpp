@@ -579,14 +579,16 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
 
     // This fix issue types problem when card change zone with different card types than its original version (e.g. double face cards or cards that gained new types before to change zone).
     std::vector<int> realTypes;
-    string originame = copy->name;
+    string realName = copy->name;
     if(doCopy && !asCopy && !inplaytoinplay && !equal(copy->types.begin(), copy->types.end(), card->types.begin()) ){
         realTypes = copy->types;
         copy->types = card->types;
-        if(copy->name == "")
-            copy->name = originame;
         copy->mPropertiesChangedSinceLastUpdate = false;
     }
+
+    // This fix issue when card changes zone with different name than its original version (e.g. double face cards).
+    if(doCopy && !asCopy && !inplaytoinplay && copy->name != card->name)
+        copy->name = card->name;
 
     // Copy all the counters of the original card... (solving the bug on comparison cards with counter before zone changing events)
     if(card->counters && doCopy && !asCopy && !inplaytoinplay){
@@ -799,14 +801,16 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
         if(doCopy && !inplaytoinplay && copy->has(Constants::ISPREY))
             copy->basicAbilities[Constants::ISPREY] = 0;
 
-        // Reset original types when card change zone with different card types than its original version (e.g. double face cards).
+        // Reset original types when card changes zone with different card types than its original version (e.g. double face cards).
         if(doCopy && !inplaytoinplay && realTypes.size()){
             copy->types = realTypes;
             realTypes.clear();
-            if(copy->name == "")
-                copy->name = originame;
             copy->mPropertiesChangedSinceLastUpdate = false;
         }
+
+        // Reset the original name when card changes zone with different name than its original version (e.g. double face cards).
+        if(doCopy && !inplaytoinplay && copy->name != realName)
+            copy->name = realName;
 
         // Erasing counters from copy after the event has been triggered (no counter can survive to a zone changing except the perpetual ones)
         if(doCopy && !inplaytoinplay && copy->counters && copy->counters->mCount > 0){

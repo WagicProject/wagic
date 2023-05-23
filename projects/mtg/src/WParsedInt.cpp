@@ -1520,6 +1520,51 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
         if(card->controller()->getObserver()->currentlyActing() != card->controller())
             intValue = 1 - intValue;
     }
+    else if (s == "pinstsorcount" || s == "oinstsorcount") // Return the number of instant or sorceries that were casted this turn by controller or opponent.
+    {
+        intValue = (s == "pinstsorcount")?card->controller()->game->stack->seenThisTurn("*[instant;sorcery]", Constants::CAST_ALL):card->controller()->opponent()->game->stack->seenThisTurn("*[instant;sorcery]", Constants::CAST_ALL);
+    }
+    else if ((s.find("palldead") != string::npos) || (s.find("oalldead") != string::npos)) // Return the number of cards of a specific type that died this turn for controller or opponent.
+    {
+        int hasdeadtype = 0;
+        MTGGameZone * grave = (s.find("oalldead") != string::npos)?card->controller()->opponent()->game->graveyard:card->controller()->game->graveyard;
+        Player * checkCurrent = (s.find("oalldead") != string::npos)?card->controller()->opponent():card->controller();
+        string checktype = s.substr(8);
+        for(unsigned int gy = 0; gy < grave->cardsSeenThisTurn.size(); gy++)
+        {
+            MTGCardInstance * checkCard = grave->cardsSeenThisTurn[gy];
+            if(checkCard->hasType(checktype) &&
+                ((checkCard->previousZone == checkCurrent->game->battlefield)||
+                (checkCard->previousZone == checkCurrent->opponent()->game->battlefield))//died from battlefield
+                )
+            {
+                hasdeadtype++;
+            }
+        }
+        intValue = hasdeadtype;
+    }
+    else if (s.find("bothalldead") != string::npos) // Return the number of cards of a specific type that died this turn.
+    {
+        int hasdeadtype = 0;
+        string checktype = s.substr(11);
+        for(int cp = 0; cp < 2; cp++)
+        {
+            Player * checkCurrent = card->getObserver()->players[cp];
+            MTGGameZone * grave = checkCurrent->game->graveyard;
+            for(unsigned int gy = 0; gy < grave->cardsSeenThisTurn.size(); gy++)
+            {
+                MTGCardInstance * checkCard = grave->cardsSeenThisTurn[gy];
+                if(checkCard->hasType(checktype) &&
+                    ((checkCard->previousZone == checkCurrent->game->battlefield)||
+                    (checkCard->previousZone == checkCurrent->opponent()->game->battlefield))//died from battlefield
+                    )
+                {
+                    hasdeadtype++;
+                }
+            }
+        }
+        intValue = hasdeadtype;
+    }
     else if(!intValue)//found nothing, try parsing a atoi
     {
         intValue = atoi(s.c_str());
