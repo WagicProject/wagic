@@ -4,6 +4,7 @@
 #include "Subtypes.h"
 #include "Counters.h"
 #include "ExtraCost.h"
+#include "WParsedInt.h"
 
 CardDescriptor::CardDescriptor()
     :  MTGCardInstance(), mColorExclusions(0)
@@ -21,6 +22,8 @@ CardDescriptor::CardDescriptor()
     manacostComparisonMode = COMPARISON_NONE;
     counterComparisonMode = COMPARISON_NONE;
     convertedManacost = -1;
+    numofColorsComparisonMode = COMPARISON_NONE;
+    numofColors = -1;
     zposComparisonMode = COMPARISON_NONE;
     zposition = -1;
     hasKickerCost = 0;
@@ -199,6 +202,16 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card)
         } else if(!valueInRange(toughnessComparisonMode, card->getToughness(), toughness))
             return NULL;
     }
+    if (numofColorsComparisonMode){
+        int totalcolor = 0;
+        WParsedInt* value = NEW WParsedInt("mycolnum", NULL, card);
+        if(value){
+            totalcolor = value->getValue();
+            SAFE_DELETE(value);
+        }
+        if(!valueInRange(numofColorsComparisonMode, totalcolor, numofColors))
+            return NULL;
+    }
     if (manacostComparisonMode && !valueInRange(manacostComparisonMode, card->myconvertedcost, convertedManacost))
         return NULL;
     if (zposComparisonMode && !valueInRange(zposComparisonMode, card->zpos, zposition))
@@ -254,6 +267,16 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card)
                 }
             }
         } else if(!valueInRange(toughnessComparisonMode, card->getToughness(), toughness))
+            return NULL;
+    }
+    if (numofColorsComparisonMode){
+        int totalcolor = 0;
+        WParsedInt* value = NEW WParsedInt("mycolnum", NULL, card);
+        if(value){
+            totalcolor = value->getValue();
+            SAFE_DELETE(value);
+        }
+        if(!valueInRange(numofColorsComparisonMode, totalcolor, numofColors))
             return NULL;
     }
     if (manacostComparisonMode && !valueInRange(manacostComparisonMode, card->myconvertedcost, convertedManacost))

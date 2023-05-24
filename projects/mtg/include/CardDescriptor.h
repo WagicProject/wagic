@@ -45,6 +45,8 @@ class CardDescriptor: public MTGCardInstance
   int convertedManacost; // might fit better into MTGCardInstance?
   int zposComparisonMode;
   int zposition;
+  int numofColorsComparisonMode;
+  int numofColors;
   int hasKickerCost;
   int hasConvokeCost;
   int hasFlashbackCost;

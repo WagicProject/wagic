@@ -1749,6 +1749,12 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                     }
 
                 }
+                else if (attribute.find("numofcols") != string::npos)
+                {
+                    //Number of color restrictions
+                    cd.numofColors = comparisonCriterion;
+                    cd.numofColorsComparisonMode = comparisonMode;
+                }
                 else if (attribute.find("power") != string::npos)
                 {
                     //Power restrictions
