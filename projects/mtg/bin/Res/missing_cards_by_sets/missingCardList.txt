@@ -8,51 +8,30 @@ Imperial Recovery Unit
 Ossuary Rats
 Rodolf Duskbringer
 Skullslither Worm
-Suspicious Shambler
 Termination Facilitator
-Ardoz, Cobbler of War
 Auntie Blyte, Bad Influence
 Brazen Cannonade
-Coalborn Entity
-Daring Piracy
 Goblin Researcher
 Kenessos, Priest of Thassa
-Launch Mishap
-Merfolk Pupil
 Pirated Copy
-Soul Read
 Synchronized Eviction
 Ashcoat of the Shadow Swarm
-Conductor of Cacophony
-Creeping Bloodsucker
-Deadly Plot
 Disciple of Perdition
 Mizzix, Replica Rider
 Ogre Battlecaster
-Plundering Predator
 Benevolent Hydra
-Giant Ladybug
 Kibo, Uktabi Prince
-Mild-Mannered Librarian
-Primeval Herald
 Rampaging Growth
 Runadi, Behemoth Caller
-Spectral Hunt-Caller
-Towering Gibbon
 Zask, Skittering Swarmlord
 Dutiful Replicator
-Infernal Idol
 Instruments of War
 Planar Atlas
-Angelic Cub
-Chains of Custody
-Distinguished Conjurer
 Ingenious Leonin
 Lita, Mechanical Engineer
 Magnanimous Magistrate
 Preston, the Vanisher
 Alandra, Sky Dreamer
-Biblioplex Kraken
 Hold for Questioning
 Isu the Abominable
 Agrus Kos, Eternal Soldier
@@ -407,55 +386,7 @@ Protection Racket
 Misfortune Teller
 Devastating Dreams
 Darksteel Garrison
-Spark Rupture
-Nissa, Resurgent Animist
-Undercity Upheaval
-Leyline Immersion
-Campus Renovation
-Open the Way
-Calix, Guided by Fate
-Danitha, New Benalia's Light
-Cosmic Rebirth
-Arni Metalbrow
-Urborg Scavengers
-Plargg and Nassari
-Kolaghan Warmonger
-Tranquil Frillback
-Reckless Handling
-Blot Out
-Ayara's Oathsworn
-Markov Baron
-Death-Rattle Oni
 Metropolis Reformer
-Harnessed Snubhorn
-Filter Out
-Tazri, Stalwart Survivor
-Tolarian Contempt
-Vesuvan Drifter
-Sarkhan, Soul Aflame
-Tyvar the Bellicose
-Karn, Legacy Reforged
-Sigarda, Font of Blessings
-Animist's Might
-Drannith Ruins
-Deification
-Coppercoat Vanguard
-Jolrael, Voice of Zhalfir
-Rebuild the City
-Pia Nalaar, Consul of Revival
-Samut, Vizier of Naktamun
-Rocco, Street Chef
-Nahiri's Resolve
-Nahiri, Forged in Fury
-Nashi, Moon's Legacy
-Narset, Enlightened Exile
-Ob Nixilis, Captive Kingpin
-Niv-Mizzet, Supreme
-Gold-Forged Thopteryx
-Feast of the Victorious Dead
-The Kenriths' Royal Funeral
-Jirina, Dauntless General
-Kiora, Sovereign of the Deep
 Gala Greeters
 Jinnie Fay, Jetmir's Second
 Hostile Takeover
@@ -718,7 +649,6 @@ Reckoner Bankbuster
 Norika Yamazaki, the Poet
 The Reality Chip
 Flame Discharge
-Michiko's Reign of Truth
 Mirror Box
 Blade of the Oni
 Mechtitan Core

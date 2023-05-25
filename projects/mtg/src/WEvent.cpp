@@ -75,6 +75,11 @@ WEventCardTappedForMana::WEventCardTappedForMana(MTGCardInstance * card, bool be
 {
 }
 
+WEventCardManaProduced::WEventCardManaProduced(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
 WEventCardAttacked::WEventCardAttacked(MTGCardInstance * card) :
     WEventCardUpdate(card)
 {
@@ -534,6 +539,12 @@ Targetable * WEventCardTap::getTarget(int target)
 }
 
 Targetable * WEventCardTappedForMana::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardManaProduced::getTarget(int target)
 {
     if (target) return card;
     return NULL;

@@ -1318,7 +1318,11 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     //Card Tapped for mana
     if (TargetChooser *tc = parseSimpleTC(s,"tappedformana", card))
         return NEW TrCardTappedformana(observer, id, card, tc, true, once);
-    
+
+    //Card Produced some mana
+    if (TargetChooser *tc = parseSimpleTC(s,"producedmana", card))
+        return NEW TrCardManaproduced(observer, id, card, tc, once, limitOnceATurn);
+
     //Card Transforms
     if (TargetChooser *tc = parseSimpleTC(s,"transformed", card))
         return NEW TrCardTransformed(observer, id, card, tc, once);
@@ -8051,6 +8055,10 @@ int AManaProducer::resolve()
     player->getManaPool()->add(output, source);
     if(DoesntEmpty)
         player->doesntEmpty->add(output);
+    source->getProducedMana()->copy(output);
+    WEventCardManaProduced * ev = NEW WEventCardManaProduced(source);
+    if(ev)
+        source->getObserver()->receiveEvent(ev);
     if(andAbility)
     {
         MTGAbility * andAbilityClone = andAbility->clone();

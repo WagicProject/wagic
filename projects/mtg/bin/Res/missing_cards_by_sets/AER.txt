@@ -11,15 +11,6 @@ mana={2}{U}{B}{R}
 type=Sorcery
 [/card]
 [card]
-name=Winding Constrictor
-text=If one or more counters would be placed on an artifact or creature you control, that many plus one of each of those kinds of counters are placed on that permanent instead. -- If you would get one or more counters, you get that many plus one of each of those kinds of counters instead.
-mana={B}{G}
-type=Creature
-subtype=Snake
-power=2
-toughness=3
-[/card]
-[card]
 name=Crackdown Construct
 text=Whenever you activate an ability of an artifact or creature that isn't a mana ability, Crackdown Construct gets +1/+1 until end of turn.
 mana={4}

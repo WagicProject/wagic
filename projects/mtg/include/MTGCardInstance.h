@@ -150,8 +150,10 @@ public:
     int summoningSickness;
     ManaCost reducedCost;
     ManaCost increasedCost;
+    ManaCost producedMana;
     ManaCost * getReducedManaCost();
     ManaCost * getIncreasedManaCost();
+    ManaCost * getProducedMana();
     bool matchesCastFilter(int castMethod);
     bool hasTotemArmor();
 

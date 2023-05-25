@@ -586,6 +586,10 @@ ManaCost* MTGCardInstance::getIncreasedManaCost()
 {
     return &increasedCost;
 }
+ManaCost* MTGCardInstance::getProducedMana()
+{
+    return &producedMana;
+}
 
 //sets card as attacked and sends events
 void MTGCardInstance::eventattacked()

@@ -278,6 +278,34 @@ public:
     }
 };
 
+class TrCardManaproduced: public Trigger
+{
+public:
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardManaproduced(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn)
+    {
+        triggeredTurn = -1;
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardManaProduced * e = dynamic_cast<WEventCardManaProduced *> (event);
+        if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
+        return 1;
+    }
+
+    TrCardManaproduced * clone() const
+    {
+        return NEW TrCardManaproduced(*this);
+    }
+};
+
 class TrCardPhasesIn: public Trigger
 {
 public:

@@ -161,6 +161,10 @@ struct WEventCardTappedForMana : public WEventCardUpdate {
   virtual Targetable * getTarget(int target);
 };
 
+struct WEventCardManaProduced : public WEventCardUpdate {
+  WEventCardManaProduced(MTGCardInstance * card);
+  virtual Targetable * getTarget(int target);
+};
 
 //Event when a card's "attacker" status changes
 //before:Player/Planeswalker that card was attacking previously
