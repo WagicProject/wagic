@@ -4563,7 +4563,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
             WParsedInt * value = NEW WParsedInt(valueStr, spell, card);
             Targetable * t = spell? spell->getNextTarget() : NULL;
-            if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY) || forceUEOT)
+            if (((card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY)) && !forceForever && !untilYourNextEndTurn && !untilYourNextTurn) || forceUEOT)
             {
                 return NEW AInstantCastRestrictionUEOT(observer, id, card, t, castTargets, value, modifyExisting, kMaxCastZones[i], who);
             }
@@ -4933,8 +4933,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (s.find("altercost(") != string::npos)
         return getManaReduxAbility(s.substr(s.find("altercost(") + 10), id, spell, card, target);
 
-    //transform....(hivestone,living enchantment)
-    //TODO: cleanup this block, it's a rats nest
+    //transforms (e.g. hivestone,living enchantment)
     found = s.find("transforms((");
     if (found != string::npos)
     {
@@ -5175,7 +5174,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         fromTc->setAllZones();
         if (!activated)
         {
-            if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY) || forceUEOT)
+            if (((card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY)) && !forceForever && !untilYourNextEndTurn && !untilYourNextTurn) || forceUEOT)
             {
                 MTGAbility * aPF = NEW AProtectionFrom(observer, id, card, target, fromTc, splitProtection[1]);
                 return NEW GenericInstantAbility(observer, 1, card, (Damageable *) target, aPF);
@@ -5196,7 +5195,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         fromTc->setAllZones();
         if (!activated)
         {
-            if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY) || forceUEOT)
+            if (((card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY)) && !forceForever && !untilYourNextEndTurn && !untilYourNextTurn) || forceUEOT)
             {
                 return NULL; //TODO
             }
@@ -5216,7 +5215,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         //default target zone to opponentbattlefield here?
         if (!activated)
         {
-            if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY) || forceUEOT)
+            if (((card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY)) && !forceForever && !untilYourNextEndTurn && !untilYourNextTurn) || forceUEOT)
             {
                 return NULL; //TODO
             }
@@ -5253,7 +5252,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             nonstatic = true;
         if (!activated)
         {
-            if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY) || forceUEOT)
+            if (((card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY)) && !forceForever && !untilYourNextEndTurn && !untilYourNextTurn) || forceUEOT)
             {
                 return NEW PTInstant(observer, id, card, target, wppt,s,nonstatic);
             }
@@ -5447,7 +5446,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
             if (!activated)
             {
-                if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY) || forceUEOT)
+                if (((card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY)) && !forceForever && !untilYourNextEndTurn && !untilYourNextTurn) || forceUEOT)
                 {
                     return NEW AInstantBasicAbilityModifierUntilEOT(observer, id, card, target, j, modifier);
                 }
