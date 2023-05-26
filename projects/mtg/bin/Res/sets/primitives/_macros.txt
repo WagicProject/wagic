@@ -167,6 +167,9 @@
 # Spectacle, if an opponent lost life this turn 
 #AUTO_DEFINE _SPECTACLE_ compare(oplifelost)~morethan~0
 
+# Adventure
+#AUTO_DEFINE _ADVENTURE_ name(Adventure) transforms((,newability[moveto(exile) and!( transforms((,newability[canplayfromexile forever])) forever )!])) forever
+
 # Extort
 #AUTO_DEFINE _EXTORT_ @movedto(*|mystack):pay({WB}) life:-1 opponent && life:1 controller
 
