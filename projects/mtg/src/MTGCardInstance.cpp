@@ -1271,7 +1271,7 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
             SAFE_DELETE(tcn);
             ManaCost * removingCost = ManaCost::parseManaCost(newAff->manaString);
             for (int j = 0; j < reducem; j++)
-                original->remove(removingCost);
+                Cost->remove(removingCost);
             SAFE_DELETE(removingCost);
         }
     }//end2
