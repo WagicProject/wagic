@@ -1252,23 +1252,39 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
                     }
                 }
             }
-            TargetChooserFactory tf(getObserver());
-            TargetChooser * tcn = tf.createTargetChooser(newAff->tcString, card, NULL);
-
-            for (int w = 0; w < 2; ++w)
+            if(newAff->tcString.find("variable{") != string::npos)
             {
-                Player *p = getObserver()->players[w];
-                MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile, p->game->commandzone, p->game->sideboard, p->game->reveal };
-                for (int k = 0; k < 9; k++)
+                vector<string> eval = parseBetween(newAff->tcString, "variable{", "}");
+                if(eval.size())
                 {
-                    MTGGameZone * z = zones[k];
-                    if (tcn->targetsZone(z))
+                    WParsedInt* value = NEW WParsedInt(eval[1], NULL, card);
+                    if(value)
                     {
-                        reducem += z->countByCanTarget(tcn);
+                        reducem += value->getValue();
+                        SAFE_DELETE(value);
                     }
                 }
             }
-            SAFE_DELETE(tcn);
+            else 
+            {
+                TargetChooserFactory tf(getObserver());
+                TargetChooser * tcn = tf.createTargetChooser(newAff->tcString, card, NULL);
+
+                for (int w = 0; w < 2; ++w)
+                {
+                    Player *p = getObserver()->players[w];
+                    MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile, p->game->commandzone, p->game->sideboard, p->game->reveal };
+                    for (int k = 0; k < 9; k++)
+                    {
+                        MTGGameZone * z = zones[k];
+                        if (tcn->targetsZone(z))
+                        {
+                            reducem += z->countByCanTarget(tcn);
+                        }
+                    }
+                }
+                SAFE_DELETE(tcn);
+            }
             ManaCost * removingCost = ManaCost::parseManaCost(newAff->manaString);
             for (int j = 0; j < reducem; j++)
                 Cost->remove(removingCost);
@@ -1391,42 +1407,42 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
         }
         else if (card->has(Constants::AFFINITYGRAVECREATURES))
         {
-            WParsedInt* value = NEW WParsedInt("type:creature:mygraveyard",NULL, card);
+            WParsedInt* value = NEW WParsedInt("type:creature:mygraveyard", NULL, card);
             if(value)
                 reduce = value->getValue();
             SAFE_DELETE(value);
         }
         else if (card->has(Constants::AFFINITYALLDEADCREATURES))
         {
-            WParsedInt* value = NEW WParsedInt("bothalldeadcreature",NULL, card);
+            WParsedInt* value = NEW WParsedInt("bothalldeadcreature", NULL, card);
             if(value)
                 reduce = value->getValue();
             SAFE_DELETE(value);
         }
         else if (card->has(Constants::AFFINITYPARTY))
         {
-            WParsedInt* value = NEW WParsedInt("calculateparty",NULL, card);
+            WParsedInt* value = NEW WParsedInt("calculateparty", NULL, card);
             if(value)
                 reduce = value->getValue();
             SAFE_DELETE(value);
         }
         else if (card->has(Constants::AFFINITYBASICLANDTYPES))
         {
-            WParsedInt* value = NEW WParsedInt("pbasiclandtypes",NULL, card);
+            WParsedInt* value = NEW WParsedInt("pbasiclandtypes", NULL, card);
             if(value)
                 reduce = value->getValue();
             SAFE_DELETE(value);
         }
         else if (card->has(Constants::AFFINITYTWOBASICLANDTYPES))
         {
-            WParsedInt* value = NEW WParsedInt("pbasiclandtypes",NULL, card);
+            WParsedInt* value = NEW WParsedInt("pbasiclandtypes", NULL, card);
             if(value)
                 reduce = value->getValue() * 2;
             SAFE_DELETE(value);
         }
         else if (card->has(Constants::AFFINITYGRAVEINSTSORC))
         {
-            WParsedInt* value = NEW WParsedInt("pginstantsorcery",NULL, card);
+            WParsedInt* value = NEW WParsedInt("pginstantsorcery", NULL, card);
             if(value)
                 reduce = value->getValue();
             SAFE_DELETE(value);
