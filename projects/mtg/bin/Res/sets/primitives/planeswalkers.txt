@@ -1,6 +1,6 @@
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 23-05-2023
+#We sorted this in alphabetical order - Luruz & Vitty85 28-05-2023
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -3206,6 +3206,19 @@ text=+2: Ugin, the Spirit Dragon deals 3 damage to target creature or player. --
 mana={8}
 type=Legendary Planeswalker
 subtype=Ugin
+[/card]
+[card]
+name=Urza, Planeswalker
+abilities=canloyaltytwice
+auto={C(0/0,2,Loyalty)}:name(+2: Artifacts and spells cost 2 less) token(Urza Emblem,Emblem,0/0,indestructible,shroud,notrigger,tnum.2) and!( transforms((,newability[life:2 controller],newability[lord(artifact|mycastingzone) changecost(colorless:-2) forcedalive],newability[lord(instant|mycastingzone) changecost(colorless:-2) forcedalive],newability[lord(sorcery|mycastingzone) changecost(colorless:-2) forcedalive],newability[treason])) forever )!
+auto={C(0/0,1,Loyalty)}:name(+1: Draw and discard) draw:2 controller && transforms((,newability[target(*|myhand) reject])) forever
+auto={C(0/0,0,Loyalty)}:name(+0: Create 2 soldiers) token(Soldier,Artifact Creature Soldier,1/1)*2
+auto={C(0/0,-3,Loyalty)}:name(-3: Exile nonland permanent) target(*[-land]|battlefield) moveto(ownerexile)
+auto={C(0/0,-10,Loyalty)}:name(-10: destroy all nonland permanents) all(*[artifact;planeswalker]|mybattlefield) transforms((,newability[indestructible],newability[all(*[-land]|opponentbattlefield) destroy],newability[all(*[-land&-artifact&-planeswalker]|mybattlefield) destroy])) ueot
+text=You may activate the loyalty abilities of Urza, Planeswalker twice each turn rather than only once. -- [+2]: Artifact, instant, and sorcery spells you cast this turn cost {2} less to cast. You gain 2 life. -- [+1]: Draw two cards, then discard a card. -- [0]: Create two 1/1 colorless Soldier artifact creature tokens. -- [−3]: Exile target nonland permanent. -- [−10]: Artifacts and planeswalkers you control gain indestructible until end of turn. Destroy all nonland permanents.
+color=blue,white
+type=Legendary Planeswalker
+subtype=Urza
 [/card]
 [card]
 name=Venser, the Sojourner

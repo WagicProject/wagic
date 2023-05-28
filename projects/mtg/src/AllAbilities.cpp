@@ -4735,6 +4735,7 @@ AAMeld::AAMeld(GameObserver* observer, int id, MTGCardInstance * card, MTGCardIn
     ActivatedAbility(observer, id, card, 0), _MeldedName(MeldedName)
 {
     target = _target;
+    andAbility = NULL;
    // aType = MTGAbility::Melder;
 }
 
@@ -4751,6 +4752,8 @@ int AAMeld::resolve()
         MTGAbility *a = NEW AACastCard(game, game->mLayers->actionLayer()->getMaxId(), source, source, false, false, false, _MeldedName, _MeldedName, false, true);
         a->oneShot = false;
         a->canBeInterrupted = false;
+        if(andAbility)
+            ((AACastCard*)a)->andAbility = andAbility->clone();
         a->addToGame();
 
         return 1;
@@ -4765,7 +4768,15 @@ const string AAMeld::getMenuText()
 
 AAMeld * AAMeld::clone() const
 {
-    return NEW AAMeld(*this);
+    AAMeld * a = NEW AAMeld(*this);
+    if(andAbility)
+        a->andAbility = andAbility->clone();
+    return a;
+}
+
+AAMeld::~AAMeld()
+{
+    SAFE_DELETE(andAbility);
 }
 
 //Turn side of double faced cards

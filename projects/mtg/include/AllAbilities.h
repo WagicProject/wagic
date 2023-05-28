@@ -2782,7 +2782,7 @@ public:
     int addToGame()
     {
         if(!ability)
-            return 1; //Fix a possible crash on mutate cards 
+            return 1; //Fix a possible crash on mutate cards.
         ability->forceDestroy = -1;
         ability->target = target; //Might have changed since initialization
         ability->addToGame();
@@ -4713,12 +4713,14 @@ public:
 class AAMeld : public ActivatedAbility
 {
 public:
+    MTGAbility * andAbility;
     string _MeldedName;
     AAMeld(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string MeldedName = "");
     int resolve();
 
     const string getMenuText();
     AAMeld * clone() const;
+    ~AAMeld();
 };
 
 /* doubleside */

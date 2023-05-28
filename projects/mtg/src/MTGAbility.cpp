@@ -5057,6 +5057,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         }
         MTGAbility * a = NEW AAMeld(observer, id, card, target, splitMeldName);
         a->oneShot = true;
+        if(storedAndAbility.size())
+        {
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((AAMeld*)a)->andAbility = parseMagicLine(stored, id, spell, card);
+        }
         return a;
     }
 
@@ -7050,8 +7056,12 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
             {
                 ActivatedAbility * check = dynamic_cast<ActivatedAbility*>(card->getObserver()->mLayers->actionLayer()->mObjects[k]);
                 turnSide = card->isFlipped > 0 && !card->isInPlay(card->getObserver());
-                if(!turnSide && check && check->source == card && check->counters)
-                    return 0;
+                if(!turnSide && check && check->source == card){
+                    if(check->counters && !card->has(Constants::CANLOYALTYTWICE))
+                        return 0;
+                    else if(check->counters > 1 && card->has(Constants::CANLOYALTYTWICE))
+                        return 0;
+                }
             }
             if (player != game->currentPlayer)
                 return 0;

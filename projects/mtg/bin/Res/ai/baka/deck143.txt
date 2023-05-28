@@ -1,5 +1,9 @@
-#NAME:Phantom Premonition
+#NAME:Ranar Commander 2023
+#DESC:Kaldheim Commander Deck
+#DESC:Phantom Premonition
 #HINT:castpriority(commander,*)
+#HINT:dontattackwith(Ranar the Ever-Watchful)
+#HINT:dontblockwith(Ranar the Ever-Watchful)
 Angel of Finality (*) * 1
 Angel of Serenity (*) * 1
 Arcane Artisan (*) * 1

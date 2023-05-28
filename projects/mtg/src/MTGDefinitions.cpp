@@ -259,7 +259,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "affinitytwobasiclandtypes", //Cost 2 less for each basic land type in your battlefield.
     "affinitygravecreatures", //Cost 1 less for each creature in your graveyard.
     "affinityattackingcreatures", //Cost 1 less for each attacking creature in your battlefield.
-    "affinitygraveinstsorc" //Cost 1 less for each instant or sorcery in your graveyard.
+    "affinitygraveinstsorc", //Cost 1 less for each instant or sorcery in your graveyard.
+    "canloyaltytwice" //Planeswalker can activate its loyalty abilities twice in a turn (e.g. "Urza, Planeswalker").
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;
