@@ -1,6 +1,6 @@
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 28-05-2023
+#We sorted this in alphabetical order - Luruz & Vitty85 29-05-2023
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -2471,6 +2471,17 @@ text=Instant and sorcery spells you cast cost {1} less to cast. -- +1: Rowan, Sc
 mana={2}{R}
 type=Legendary Planeswalker
 subtype=Rowan
+[/card]
+[card]
+name=Saheeli, Filigree Master
+auto=counter(0/0,3,loyalty)
+auto={C(0/0,1,Loyalty)}:name(+1: Scry 1) scry:1 scrycore delayed transforms((,newability[if type(artifact|mybattlefield)~morethan~0 then choice name(Don't tap artifact) name(Don't tap artifact) donothing],newability[if type(artifact|mybattlefield)~morethan~0 then choice name(Tap artifact) name(Tap artifact) target(artifact|mybattlefield) tap && draw:1 controller])) oneshot scrycoreend scryend
+auto={C(0/0,-2,Loyalty)}:name(-2: Create thopters) token(Thopter,Artifact Creature Thopter,1/1,flying)*2 and!( transforms((,newability[haste])) ueot )!
+auto={C(0/0,-4,Loyalty)}:name(-4: Emblem for artifact creatures) emblem transforms((,newability[lord(creature[artifact]|mybattlefield) 1/1],newability[lord(artifact|mycastingzone) changecost(colorless:-1) forcedalive])) forever dontremove
+text=[+1]: Scry 1. You may tap an untapped artifact you control. If you do, draw a card. -- [−2]: Create two 1/1 colorless Thopter artifact creature tokens with flying. They gain haste until end of turn. -- [−4]: You get an emblem with "Artifact creatures you control get +1/+1" and "Artifact spells you cast cost {1} less to cast."
+mana={2}{U}{R}
+type=Legendary Planeswalker
+subtype=Saheeli
 [/card]
 [card]
 name=Saheeli Rai

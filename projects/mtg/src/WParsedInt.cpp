@@ -1601,6 +1601,24 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
                 intValue = card->getProducedMana()->getConvertedCost();
         }
     }
+    else if(s.find("usedmana") != string::npos){
+        intValue = 0;
+        string manatocheck = s.substr(8);
+        if(card->getManaCost() && card->getManaCost()->getManaUsedToCast()){
+            if(manatocheck == "g")
+                intValue = card->getManaCost()->getManaUsedToCast()->getManaSymbols(Constants::MTG_COLOR_GREEN);
+            else if(manatocheck == "u")
+                intValue = card->getManaCost()->getManaUsedToCast()->getManaSymbols(Constants::MTG_COLOR_BLUE);
+            else if(manatocheck == "r")
+                intValue = card->getManaCost()->getManaUsedToCast()->getManaSymbols(Constants::MTG_COLOR_RED);
+            else if(manatocheck == "b")
+                intValue = card->getManaCost()->getManaUsedToCast()->getManaSymbols(Constants::MTG_COLOR_BLACK);
+            else if(manatocheck == "w")
+                intValue = card->getManaCost()->getManaUsedToCast()->getManaSymbols(Constants::MTG_COLOR_WHITE);
+            else if(manatocheck == "tot")
+                intValue = card->getManaCost()->getManaUsedToCast()->getConvertedCost();
+        }
+    }
     else if(!intValue)//found nothing, try parsing a atoi
     {
         intValue = atoi(s.c_str());
