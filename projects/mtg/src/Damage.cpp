@@ -24,7 +24,10 @@ void Damage::init(MTGCardInstance * _source, Damageable * _target, int _damage, 
 {
     typeOfDamage = _typeOfDamage;
     target = _target;
-    source = _source;
+    if(_source  && _source->name.empty() && _source->storedSourceCard) // Fix for damage dealt inside ability$!!$ keyword.
+        source = _source->storedSourceCard;
+    else
+        source = _source;
 
     if (_damage < 0)
         _damage = 0; //Negative damages cannot happen

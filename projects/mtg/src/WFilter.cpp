@@ -340,8 +340,13 @@ bool WCFilterProducesColor::isMatch(MTGCard * c)
         while (t != string::npos)
         {
             s = s.substr(t + 3);
+            size_t start_pos = 0;
+            while((start_pos = s.find("{c}", start_pos)) != std::string::npos) {
+                s.replace(start_pos, 3, "{1}"); // Fix while filtering cards for colorless mana {c} instead of {1} (http://code.google.com/p/wagic/issues/detail?id=1090).
+                start_pos += 3; 
+            }
             ManaCost * mc = ManaCost::parseManaCost(s);
-            if (mc->hasColor(color) > 0)
+            if (mc && mc->hasColor(color) > 0)
             {
                 bMatch = true;
                 SAFE_DELETE(mc);

@@ -1,6 +1,8 @@
-#NAME:Draconic Rage
-#DESC:The First D&D Deck
+#NAME:Vrondiss Commander 2023
+#DESC:Forgotten Realms Commander Deck
+#DESC:Draconic Rage
 #HINT:castpriority(commander,*)
+#HINT:alwaysattackwith(creature[Dragon Spirit])
 Bogardan Hellkite (*) *1
 Demanding Dragon (*) *1
 Dragonmaster Outcast (*) *1

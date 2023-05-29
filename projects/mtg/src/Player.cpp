@@ -190,7 +190,11 @@ int Player::gainOrLoseLife(int value, MTGCardInstance* source)
     }
 
     //Send life event to listeners
-    WEvent * lifed = NEW WEventLife(this, value, source);
+    WEvent * lifed = NULL;
+    if(source  && source->name.empty() && source->storedSourceCard) // Fix for life gained inside ability$!!$ keyword.
+        lifed = NEW WEventLife(this, value, source->storedSourceCard);
+    else
+        lifed = NEW WEventLife(this, value, source);
     observer->receiveEvent(lifed);
 
     return value;

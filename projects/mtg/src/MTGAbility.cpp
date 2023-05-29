@@ -8064,10 +8064,19 @@ int AManaProducer::resolve()
     player->getManaPool()->add(output, source);
     if(DoesntEmpty)
         player->doesntEmpty->add(output);
-    source->getProducedMana()->copy(output);
-    WEventCardManaProduced * ev = NEW WEventCardManaProduced(source);
-    if(ev)
-        source->getObserver()->receiveEvent(ev);
+
+    if(source->name.empty() && source->storedSourceCard){ // Fix for mana produced inside ability$!!$ keyword.
+        source->storedSourceCard->getProducedMana()->copy(output);
+        WEventCardManaProduced * ev = NEW WEventCardManaProduced(source->storedSourceCard);
+        if(ev)
+            source->storedSourceCard->getObserver()->receiveEvent(ev);
+    } else {
+        source->getProducedMana()->copy(output);
+        WEventCardManaProduced * ev = NEW WEventCardManaProduced(source);
+        if(ev)
+            source->getObserver()->receiveEvent(ev);
+    }
+
     if(andAbility)
     {
         MTGAbility * andAbilityClone = andAbility->clone();
