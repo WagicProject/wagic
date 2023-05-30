@@ -9813,145 +9813,196 @@ AACastCard::AACastCard(GameObserver* observer, int _id, MTGCardInstance * _sourc
 
 void AACastCard::Update(float dt)
 {
-   MTGAbility::Update(dt);
-   if (processed)
-       return;
-   if(cardNamed.size() && !theNamedCard)
-   {
-       if(cardNamed.find("randomcard") != string::npos){ //cast a random card from collection.
-           MTGCard *rndCard = NULL;
-           while(!rndCard || rndCard->data->isLand())
-               rndCard = MTGCollection()->getCardById(MTGCollection()->ids.at(std::rand() % (MTGCollection()->ids).size()));
-           cardNamed = rndCard->data->name;
-       }
-       if (cardNamed.find("imprintedcard") != string::npos)
-       {
-           if (source && source->currentimprintName.size())
-           {
-               cardNamed = source->currentimprintName;
-           }
-       }
-       theNamedCard = makeCard();
-       //if somehow the imprinted card leaves its zone destroy this...
-       if(cardNamed.find("imprintedcard") != string::npos && !theNamedCard)
-       {
-           this->forceDestroy = 1;
-           return;
-       }
-   }
-   if(putinplay)
-   {
-       MTGCardInstance * toCheck = (MTGCardInstance*)target;
-       toCheck->target = NULL;
-       toCheck->playerTarget = NULL;
-       toCheck->bypassTC = true;
-       TargetChooserFactory tcf(game);
-       TargetChooser * atc = tcf.createTargetChooser(toCheck->spellTargetType,toCheck);
-       if ((toCheck->hasType(Subtypes::TYPE_AURA) && !atc->validTargetsExist())||toCheck->isToken)
-       {
-           processed = true;
-           this->forceDestroy = 1;
-           return ;
-       }
-       SAFE_DELETE(atc);
-   }
-   if (restricted)
-   {
-       MTGCardInstance * toCheck = (MTGCardInstance*)target;
-       if(theNamedCard)
-           toCheck = theNamedCard;
-       if (game->currentActionPlayer->game->playRestrictions->canPutIntoZone(toCheck, source->controller()->game->stack) == PlayRestriction::CANT_PLAY)
-       {
-           processed = true;
-           this->forceDestroy = 1;
-           return ;
-       }
-       if(!allowedToCast(toCheck,source->controller()))
-       {
-           processed = true;
-           this->forceDestroy = 1;
-           return;
-       }
-       /*if(!toCheck->hasType(Subtypes::TYPE_INSTANT) && !(game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN))
-       {
-           processed = true;
-           this->forceDestroy = 1;
-           return;
-       }*/
-   }
-   MTGCardInstance * toCheck = (MTGCardInstance*)target;
-   if(theNamedCard)
-       toCheck = theNamedCard;
-   if(toCheck && toCheck->spellTargetType.size())
-   {
-       string backupST = toCheck->spellTargetType;
-       if((toCheck->spellTargetType == "opponent") && (toCheck->owner != source->controller()))
-           toCheck->spellTargetType = "controller";
-       else if((toCheck->spellTargetType.find("|opponent") != string::npos) && (toCheck->owner != source->controller()))
-       {
-           string replaceMe = backupST;
-           toCheck->spellTargetType = cReplaceString(replaceMe, "|opponent", "|my");
-       }
-       //Since we control the card to cast, if the card should target an opponent,
-       //direct it to source ability controller->opponent
-       //example card is Bribery, if we cast it targeting from opponent's library,
-       //we should target the source ability controller->opponent
+    MTGAbility::Update(dt);
+    if (processed)
+        return;
+    if(cardNamed.size() && !theNamedCard)
+    {
+        if(cardNamed.find("randomcard") != string::npos){ //cast a random card from collection.
+            MTGCard *rndCard = NULL;
+            while(!rndCard || rndCard->data->isLand())
+                rndCard = MTGCollection()->getCardById(MTGCollection()->ids.at(std::rand() % (MTGCollection()->ids).size()));
+            cardNamed = rndCard->data->name;
+        }
+        if (cardNamed.find("imprintedcard") != string::npos)
+        {
+            if (source && source->currentimprintName.size())
+            {
+                cardNamed = source->currentimprintName;
+            }
+        }
+        theNamedCard = makeCard();
+        //if somehow the imprinted card leaves its zone destroy this...
+        if(cardNamed.find("imprintedcard") != string::npos && !theNamedCard)
+        {
+            this->forceDestroy = 1;
+            return;
+        }
+    }
+    if(putinplay)
+    {
+        MTGCardInstance * toCheck = (MTGCardInstance*)target;
+        toCheck->target = NULL;
+        toCheck->playerTarget = NULL;
+        toCheck->bypassTC = true;
+        TargetChooserFactory tcf(game);
+        TargetChooser * atc = tcf.createTargetChooser(toCheck->spellTargetType,toCheck);
+        if ((toCheck->hasType(Subtypes::TYPE_AURA) && !atc->validTargetsExist())||toCheck->isToken)
+        {
+            processed = true;
+            this->forceDestroy = 1;
+            return;
+        }
+        SAFE_DELETE(atc);
+    }
+    if (restricted)
+    {
+        MTGCardInstance * toCheck = (MTGCardInstance*)target;
+        if(theNamedCard)
+            toCheck = theNamedCard;
+        if (game->currentActionPlayer->game->playRestrictions->canPutIntoZone(toCheck, source->controller()->game->stack) == PlayRestriction::CANT_PLAY)
+        {
+            processed = true;
+            if(andAbility) // Allow to use and!()! even when restriction occurred (e.g. "Gix, Yawgmoth Praetor").
+            {
+                MTGAbility * andAbilityClone = andAbility->clone();
+                andAbilityClone->target = toCheck;
+                if(andAbility->oneShot)
+                {
+                    andAbilityClone->resolve();
+                    SAFE_DELETE(andAbilityClone);
+                }
+                else
+                {
+                    andAbilityClone->addToGame();
+                }
+            }
+            this->forceDestroy = 1;
+            return ;
+        }
+        if(!allowedToCast(toCheck,source->controller()))
+        {
+            processed = true;
+            if(andAbility) // Allow to use and!()! even when restriction occurred (e.g. "Gix, Yawgmoth Praetor").
+            {
+                MTGAbility * andAbilityClone = andAbility->clone();
+                andAbilityClone->target = toCheck;
+                if(andAbility->oneShot)
+                {
+                    andAbilityClone->resolve();
+                    SAFE_DELETE(andAbilityClone);
+                }
+                else
+                {
+                    andAbilityClone->addToGame();
+                }
+            }
+            this->forceDestroy = 1;
+            return;
+        }
+        if(toCheck->isLand())
+        {
+            TargetChooser* tc = NEW TypeTargetChooser(game, "land");
+            if(game->currentActionPlayer->game->battlefield->seenThisTurn(tc, Constants::CAST_DONT_CARE, false) >= game->currentActionPlayer->game->playRestrictions->getMaxPerTurnRestrictionByTargetChooser(tc)->maxPerTurn){
+                processed = true;
+                if(andAbility) // Allow to use and!()! even when restriction occurred (e.g. "Gix, Yawgmoth Praetor").
+                {
+                    MTGAbility * andAbilityClone = andAbility->clone();
+                    andAbilityClone->target = toCheck;
+                    if(andAbility->oneShot)
+                    {
+                        andAbilityClone->resolve();
+                        SAFE_DELETE(andAbilityClone);
+                    }
+                    else
+                    {
+                        andAbilityClone->addToGame();
+                    }
+                }
+                this->forceDestroy = 1;
+                return;
+            }
+        } 
+        /*if(!toCheck->hasType(Subtypes::TYPE_INSTANT) && !(game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN))
+        {
+            processed = true;
+            this->forceDestroy = 1;
+            return;
+        }*/
+    }
+    MTGCardInstance * toCheck = (MTGCardInstance*)target;
+    if(theNamedCard)
+        toCheck = theNamedCard;
+    if(toCheck && toCheck->spellTargetType.size())
+    {
+        string backupST = toCheck->spellTargetType;
+        if((toCheck->spellTargetType == "opponent") && (toCheck->owner != source->controller()))
+            toCheck->spellTargetType = "controller";
+        else if((toCheck->spellTargetType.find("|opponent") != string::npos) && (toCheck->owner != source->controller()))
+        {
+            string replaceMe = backupST;
+            toCheck->spellTargetType = cReplaceString(replaceMe, "|opponent", "|my");
+        }
+        //Since we control the card to cast, if the card should target an opponent,
+        //direct it to source ability controller->opponent
+        //example card is Bribery, if we cast it targeting from opponent's library,
+        //we should target the source ability controller->opponent
 
-       TargetChooserFactory tcf(game);
-       TargetChooser * stc = tcf.createTargetChooser(toCheck->spellTargetType,toCheck);
-       if (!stc->validTargetsExist()||toCheck->isToken)
-       {
-           toCheck->spellTargetType = backupST;
+        TargetChooserFactory tcf(game);
+        TargetChooser * stc = tcf.createTargetChooser(toCheck->spellTargetType,toCheck);
+        if (!stc->validTargetsExist()||toCheck->isToken)
+        {
+            toCheck->spellTargetType = backupST;
 
-           processed = true;
-           this->forceDestroy = 1;
-           return;
-       }
-       SAFE_DELETE(stc);
-   }
-   if (Spell * checkSpell = dynamic_cast<Spell*>(target))
-   {
-       toCheck = checkSpell->source;
-   }
-   if (!game->targetListIsSet(toCheck))
-   {
-       if(game->targetChooser)
-           game->targetChooser->Owner = source->controller();//sources controller is the caster
-       return;
-   }
-   resolveSpell();
-   this->forceDestroy = 1;
-   return;
+            processed = true;
+            this->forceDestroy = 1;
+            return;
+        }
+        SAFE_DELETE(stc);
+    }
+    if (Spell * checkSpell = dynamic_cast<Spell*>(target))
+    {
+        toCheck = checkSpell->source;
+    }
+    if (!game->targetListIsSet(toCheck))
+    {
+        if(game->targetChooser)
+            game->targetChooser->Owner = source->controller();//sources controller is the caster
+        return;
+    }
+    resolveSpell();
+    this->forceDestroy = 1;
+    return;
 }
 int AACastCard::isReactingToTargetClick(Targetable * card){return 0;}
 int AACastCard::reactToTargetClick(Targetable * object)
 {
-   if (MTGCardInstance * cObject = dynamic_cast<MTGCardInstance *>(object))
-       return reactToClick(cObject);
+    if (MTGCardInstance * cObject = dynamic_cast<MTGCardInstance *>(object))
+        return reactToClick(cObject);
 
-   if (waitingForAnswer)
-   {
-       if (tc->toggleTarget(object) == TARGET_OK_FULL)
-       {
-           waitingForAnswer = 0;
-           game->mLayers->actionLayer()->setCurrentWaitingAction(NULL);
-           return MTGAbility::reactToClick(source);
-       }
-       return 1;
-   }
-   return 0;
+    if (waitingForAnswer)
+    {
+        if (tc->toggleTarget(object) == TARGET_OK_FULL)
+        {
+            waitingForAnswer = 0;
+            game->mLayers->actionLayer()->setCurrentWaitingAction(NULL);
+            return MTGAbility::reactToClick(source);
+        }
+        return 1;
+    }
+    return 0;
 }
 
 MTGCardInstance * AACastCard::makeCard()
 {
-   MTGCardInstance * card = NULL;
-   MTGCard * cardData = MTGCollection()->getCardByName(cardNamed);
-   if(!cardData) return NULL;
-   card = NEW MTGCardInstance(cardData, source->controller()->game);
-   card->owner = source->controller();
-   card->lastController = source->controller();
-   source->controller()->game->sideboard->addCard(card);
-   return card;
+    MTGCardInstance * card = NULL;
+    MTGCard * cardData = MTGCollection()->getCardByName(cardNamed);
+    if(!cardData) return NULL;
+    card = NEW MTGCardInstance(cardData, source->controller()->game);
+    card->owner = source->controller();
+    card->lastController = source->controller();
+    source->controller()->game->sideboard->addCard(card);
+    return card;
 }
 
 int AACastCard::resolveSpell()

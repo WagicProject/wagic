@@ -1022,7 +1022,7 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 canplay = false;
             if (!cardDummy->isLand() && observer->currentActionPlayer->game->playRestrictions->canPutIntoZone(cardDummy, observer->currentActionPlayer->game->stack) == PlayRestriction::CANT_PLAY)
                 canplay = false;
-            if (!cardDummy->hasType(Subtypes::TYPE_INSTANT) && !cardDummy->StackIsEmptyandSorcerySpeed())
+            if ((cardDummy->owner == observer->currentActionPlayer) && !cardDummy->hasType(Subtypes::TYPE_INSTANT) && !cardDummy->StackIsEmptyandSorcerySpeed())
                 canplay = false;
             SAFE_DELETE(cardDummy);
             if(!canplay)

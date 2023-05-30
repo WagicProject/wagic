@@ -1085,7 +1085,7 @@ void GameObserver::gameStateBasedEffects()
                 MTGCardInstance * card = fc->cards[k];
                 card->fresh = 0; // Remove fresh attribute to cards put in commandzone last turn
             }
-            MTGGameZone * fl = p->game->commandzone;
+            MTGGameZone * fl = p->game->library;
             for (int k = 0; k < fl->nb_cards; k++)
             {
                 MTGCardInstance * card = fl->cards[k];
