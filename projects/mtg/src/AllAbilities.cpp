@@ -10068,8 +10068,29 @@ int AACastCard::resolveSpell()
         if(theNamedCard)
         {
             Spell * spell = NULL;
-            MTGCardInstance * copy = source->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, source->controller()->game->stack, noEvent); // Fixed a bug when using noevent option with namedcard option.
-            
+            MTGCardInstance * copy = NULL;
+            if ((normal || asNormalMadness) || !theNamedCard->isSorceryorInstant())
+            {
+                if (putinplay && theNamedCard->isPermanent())
+                    copy = theNamedCard->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, source->controller()->game->battlefield, noEvent); // Fixed a problem with double activation of card abilities.
+                else
+                    copy = theNamedCard->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, source->controller()->game->stack, noEvent); // Fixed a bug when using noevent option with namedcard option.
+            }
+            else
+            {
+                if (putinplay && theNamedCard->isPermanent())
+                    copy = theNamedCard->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, source->controller()->game->battlefield, noEvent); // Fixed a problem with double activation of card abilities.
+                else
+                    copy = theNamedCard->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, source->controller()->game->stack, noEvent); // Fixed a bug when using noevent option with namedcard option.
+            }
+            if(!copy){
+                this->forceDestroy = true;
+                processed = false;
+                return 0;
+            }
+            copy->changeController(source->controller(),true);
+            if(asNormalMadness)
+                copy->MadnessPlay = true;
             if(asCopy) 
                 copy->isToken = 1; // Fixed a bug when using copied option with namedcard option.
             if(alternative)
@@ -10083,7 +10104,6 @@ int AACastCard::resolveSpell()
                 copy->setX = costx;
                 copy->X = costx;
             }
-
             if (game->targetChooser)
             {
                 game->targetChooser->Owner = source->controller();
@@ -10094,7 +10114,6 @@ int AACastCard::resolveSpell()
             {
                 spell = game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, 1, 0);
             }
-
             if (copy->has(Constants::STORM))
             {
                 int storm = source->controller()->game->stack->seenThisTurn("*", Constants::CAST_ALL) + source->controller()->opponent()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
@@ -10112,10 +10131,6 @@ int AACastCard::resolveSpell()
                     copy->castX = copy->X;
                 }
             }
-
-            if (putinplay && (copy->hasType(Subtypes::TYPE_ARTIFACT) || copy->hasType(Subtypes::TYPE_CREATURE) || copy->hasType(Subtypes::TYPE_ENCHANTMENT) || copy->hasType(Subtypes::TYPE_PLANESWALKER) || copy->hasType(Subtypes::TYPE_BATTLE)))
-                spell->resolve(); // Fixed a crash when using and!()! with namedcard permanents.
-
             if(andAbility)
             {
                 MTGAbility * andAbilityClone = andAbility->clone();
@@ -10139,22 +10154,26 @@ int AACastCard::resolveSpell()
         MTGCardInstance * copy = NULL;
         if ((normal || asNormalMadness)||(!_target->hasType(Subtypes::TYPE_INSTANT) && !_target->hasType(Subtypes::TYPE_SORCERY)))
         {
-            if (putinplay && (_target->hasType(Subtypes::TYPE_ARTIFACT)||_target->hasType(Subtypes::TYPE_CREATURE)||_target->hasType(Subtypes::TYPE_ENCHANTMENT)||_target->hasType(Subtypes::TYPE_PLANESWALKER)||_target->hasType(Subtypes::TYPE_BATTLE)))
-                copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->reveal, noEvent); // Fixed a problem with previous zone of card, it cannot be directly battlefield.
+            if (putinplay && _target->isPermanent())
+                copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->battlefield, noEvent); // Fixed a problem with double activation of card abilities.
             else
-               copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack, noEvent); 
-            copy->changeController(source->controller(),true);
-            if(asNormalMadness)
-                copy->MadnessPlay = true;
+               copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack, noEvent); // Fixed a bug when using noevent option with namedcard option.
         }
         else
         {
-            if (putinplay && (_target->hasType(Subtypes::TYPE_ARTIFACT)||_target->hasType(Subtypes::TYPE_CREATURE)||_target->hasType(Subtypes::TYPE_ENCHANTMENT)||_target->hasType(Subtypes::TYPE_PLANESWALKER)||_target->hasType(Subtypes::TYPE_BATTLE)))
-                copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->reveal, noEvent); // Fixed a problem with previous zone of card, it cannot be directly battlefield.
+            if (putinplay && _target->isPermanent())
+                copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->battlefield, noEvent); // Fixed a problem with double activation of card abilities.
             else
-                copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack, noEvent);
-            copy->changeController(source->controller(),true);
+                copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack, noEvent); // Fixed a bug when using noevent option with namedcard option.
         }
+        if(!copy){
+            this->forceDestroy = true;
+            processed = false;
+            return 0;
+        }
+        copy->changeController(source->controller(), true);
+        if(asNormalMadness)
+            copy->MadnessPlay = true;
         if(alternative)
             copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_ALTERNATIVE] = 1;
         if(kicked > 0){
@@ -10188,7 +10207,6 @@ int AACastCard::resolveSpell()
             else if(!flipped)
                 spell = game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, 1, 0);
         }
-
         if (copy->has(Constants::STORM))
         {
             int storm = _target->controller()->game->stack->seenThisTurn("*", Constants::CAST_ALL) + source->controller()->opponent()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
@@ -10220,7 +10238,6 @@ int AACastCard::resolveSpell()
                 andAbilityClone->addToGame();
             }
         }
-
         this->forceDestroy = true;
         processed = true;
         return 1;

@@ -2,8 +2,38 @@
 author=Wagic Team
 name=The Brothers' War Retro Artifacts
 year=2022-11-18
-total=126
+total=132
 [/meta]
+[card]
+primitive=Minion
+id=-586589
+rarity=T
+[/card]
+[card]
+primitive=Golem
+id=-586592
+rarity=T
+[/card]
+[card]
+primitive=Wurm
+id=-586613
+rarity=T
+[/card]
+[card]
+primitive=Minion
+id=-587282
+rarity=T
+[/card]
+[card]
+primitive=Golem
+id=-587285
+rarity=T
+[/card]
+[card]
+primitive=Wurm
+id=-587306
+rarity=T
+[/card]
 [card]
 primitive=Adaptive Automaton
 id=586551

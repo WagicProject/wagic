@@ -7044,14 +7044,9 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
             return 1;
         if(card->hasType(Subtypes::TYPE_PLANESWALKER))
         {
-            /*for(unsigned int k = 0;k < card->cardsAbilities.size();++k)
-            {
-                ActivatedAbility * check = dynamic_cast<ActivatedAbility*>(card->cardsAbilities[k]);
-                if(check && check->counters)
-                    return 0;
-            }*/
             // Improved the check to avoid the multiple triggers in case of abilities gained from other cards (e.g. Kasmina, Enigma Sage)
             bool turnSide = false;
+            int howMany = 0;
             for(unsigned int k = 0; k < card->getObserver()->mLayers->actionLayer()->mObjects.size(); ++k)
             {
                 ActivatedAbility * check = dynamic_cast<ActivatedAbility*>(card->getObserver()->mLayers->actionLayer()->mObjects[k]);
@@ -7059,10 +7054,11 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
                 if(!turnSide && check && check->source == card){
                     if(check->counters && !card->has(Constants::CANLOYALTYTWICE))
                         return 0;
-                    else if(check->counters > 1 && card->has(Constants::CANLOYALTYTWICE))
-                        return 0;
+                    howMany += check->counters;
                 }
             }
+            if(howMany > 1 && card->has(Constants::CANLOYALTYTWICE))
+                return 0;
             if (player != game->currentPlayer)
                 return 0;
             if (!turnSide && (cPhase != MTG_PHASE_FIRSTMAIN && cPhase != MTG_PHASE_SECONDMAIN))
@@ -7090,9 +7086,7 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
                     return 0;
                 }
             }
-
         }
-
         if (!mana)
             mana = player->getManaPool();
         if (!mana->canAfford(cost,card->has(Constants::ANYTYPEOFMANAABILITY)))

@@ -1,6 +1,6 @@
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 29-05-2023
+#We sorted this in alphabetical order - Luruz & Vitty85 31-05-2023
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -3221,6 +3221,7 @@ subtype=Ugin
 [card]
 name=Urza, Planeswalker
 abilities=canloyaltytwice
+auto=counter(0/0,7,Loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Artifacts and spells cost 2 less) token(Urza Emblem,Emblem,0/0,indestructible,shroud,notrigger,tnum.2) and!( transforms((,newability[life:2 controller],newability[lord(artifact|mycastingzone) changecost(colorless:-2) forcedalive],newability[lord(instant|mycastingzone) changecost(colorless:-2) forcedalive],newability[lord(sorcery|mycastingzone) changecost(colorless:-2) forcedalive],newability[treason])) forever )!
 auto={C(0/0,1,Loyalty)}:name(+1: Draw and discard) draw:2 controller && transforms((,newability[target(*|myhand) reject])) forever
 auto={C(0/0,0,Loyalty)}:name(+0: Create 2 soldiers) token(Soldier,Artifact Creature Soldier,1/1)*2
