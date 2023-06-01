@@ -524,8 +524,10 @@ class TrplayerPoisoned: public Trigger
 public:
     bool thiscontroller, thisopponent;
     int plus;
-    TrplayerPoisoned(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false, int plus = 0) :
-        Trigger(observer, id, source, once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent),plus(plus)
+    bool duplicate;
+    bool half;
+    TrplayerPoisoned(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false, int plus = 0, bool duplicate = false, bool half = false) :
+        Trigger(observer, id, source, once, tc), thiscontroller(thiscontroller), thisopponent(thisopponent), plus(plus), duplicate(duplicate), half(half)
     {
     }
 
@@ -542,6 +544,15 @@ public:
                 return 0;
         if(plus > 0)
             e->player->poisonCount++;
+        if(duplicate)
+            e->player->poisonCount = e->player->poisonCount + e->nb_count;
+        if(half){
+            int amount = e->nb_count;
+            if (amount % 2 == 1)
+                amount++;
+            amount = amount / 2;
+            e->player->poisonCount = e->player->poisonCount - amount;
+        }
         return 1;
     }
 
@@ -556,8 +567,10 @@ class TrplayerEnergized: public Trigger
 public:
     bool thiscontroller, thisopponent;
     int plus;
-    TrplayerEnergized(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false, int plus = 0) :
-        Trigger(observer, id, source, once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent),plus(plus)
+    bool duplicate;
+    bool half;
+    TrplayerEnergized(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false, int plus = 0, bool duplicate = false, bool half = false) :
+        Trigger(observer, id, source, once, tc),thiscontroller(thiscontroller), thisopponent(thisopponent), plus(plus), duplicate(duplicate), half(half)
     {
     }
 
@@ -574,6 +587,15 @@ public:
                 return 0;
         if(plus > 0)
             e->player->energyCount++;
+        if(duplicate)
+            e->player->energyCount = e->player->energyCount + e->nb_count;
+        if(half){
+            int amount = e->nb_count;
+            if (amount % 2 == 1)
+                amount++;
+            amount = amount / 2;
+            e->player->energyCount = e->player->energyCount - amount;
+        }
         return 1;
     }
 
@@ -588,8 +610,10 @@ class TrplayerExperienced: public Trigger
 public:
     bool thiscontroller, thisopponent;
     int plus;
-    TrplayerExperienced(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false, int plus = 0) :
-        Trigger(observer, id, source, once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent),plus(plus)
+    bool duplicate;
+    bool half;
+    TrplayerExperienced(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false, int plus = 0, bool duplicate = false, bool half = false) :
+        Trigger(observer, id, source, once, tc),thiscontroller(thiscontroller), thisopponent(thisopponent), plus(plus), duplicate(duplicate), half(half)
     {
     }
 
@@ -606,6 +630,15 @@ public:
                 return 0;
         if(plus > 0)
             e->player->experienceCount++;
+        if(duplicate)
+            e->player->experienceCount = e->player->experienceCount + e->nb_count;
+        if(half){
+            int amount = e->nb_count;
+            if (amount % 2 == 1)
+                amount++;
+            amount = amount / 2;
+            e->player->experienceCount = e->player->experienceCount - amount;
+        }
         return 1;
     }
 
@@ -1478,11 +1511,12 @@ public:
     Counter * counter;
     int type;
     bool duplicate;
+    bool half;
     int plus;
     bool limitOnceATurn;
     int triggeredTurn;
     MTGCardInstance * counterException; //added exception to avid a counter loop (eg. Doubling Season)
-    TrTotalCounter(GameObserver* observer, int id, MTGCardInstance * source, Counter * counter, TargetChooser * tc, int type = 0, bool once = false, bool duplicate = false, int plus = 0, bool limitOnceATurn = false, MTGCardInstance * counterException = NULL) :
+    TrTotalCounter(GameObserver* observer, int id, MTGCardInstance * source, Counter * counter, TargetChooser * tc, int type = 0, bool once = false, bool duplicate = false, bool half = false, int plus = 0, bool limitOnceATurn = false, MTGCardInstance * counterException = NULL) :
     Trigger(observer, id, source, once, tc), counter(counter), type(type), duplicate(duplicate), plus(plus), limitOnceATurn(limitOnceATurn), counterException(counterException)
     {
         triggeredTurn = -1;
@@ -1508,6 +1542,7 @@ public:
                 for(int i = 0; i < plus; i++)
                     e->targetCard->counters->removeCounter(e->name.c_str(),e->power,e->toughness,true,true,e->source);
             }
+            e->source->thatmuch = e->totalamount + plus;
         }
         else if (duplicate){
             if(type == 1) {
@@ -1517,6 +1552,21 @@ public:
                 for(int i = 0; i < e->totalamount; i++)
                     e->targetCard->counters->removeCounter(e->name.c_str(),e->power,e->toughness,true,true,e->source);
             }
+            e->source->thatmuch = e->totalamount * 2;
+        }
+        else if (half){
+            int amount = e->totalamount;
+            if (amount % 2 == 1)
+                amount++;
+            amount = amount / 2;
+            if(type == 1) {
+                for(int i = 0; i < amount; i++)
+                    e->targetCard->counters->removeCounter(e->name.c_str(),e->power,e->toughness,true,true,e->source);
+            } else {
+                for(int i = 0; i < amount; i++)
+                    e->targetCard->counters->addCounter(e->name.c_str(),e->power,e->toughness,true,true,e->source);
+            }
+            e->source->thatmuch = e->totalamount - amount;
         }
         triggeredTurn = game->turn;
         return 1;

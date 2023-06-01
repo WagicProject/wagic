@@ -1380,6 +1380,8 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     //poisoned player - controller of card
     if (TargetChooser * tc = parseSimpleTC(s, "poisonedof", card)){
         int plus = 0;
+        bool duplicate = false;
+        bool half = false;
         if(s.find("plus(1)") != string::npos)
             plus = 1;
         else if(s.find("plus(2)") != string::npos)
@@ -1390,12 +1392,18 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
             plus = 4;
         else if(s.find("plus(5)") != string::npos)
             plus = 5;
-        return NEW TrplayerPoisoned(observer, id, card, tc, once, true, false, plus);
+        else if(s.find("duplicate(all)") != string::npos)
+            duplicate = true;
+        else if(s.find("half(all)") != string::npos)
+            half = true;
+        return NEW TrplayerPoisoned(observer, id, card, tc, once, true, false, plus, duplicate, half);
     }
 
     //poisoned player - opponent of card controller
     if (TargetChooser * tc = parseSimpleTC(s, "poisonedfoeof", card)){
         int plus = 0;
+        bool duplicate = false;
+        bool half = false;
         if(s.find("plus(1)") != string::npos)
             plus = 1;
         else if(s.find("plus(2)") != string::npos)
@@ -1406,12 +1414,18 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
             plus = 4;
         else if(s.find("plus(5)") != string::npos)
             plus = 5;
-        return NEW TrplayerPoisoned(observer, id, card, tc, once, false, true, plus);
+        else if(s.find("duplicate(all)") != string::npos)
+            duplicate = true;
+        else if(s.find("half(all)") != string::npos)
+            half = true;
+        return NEW TrplayerPoisoned(observer, id, card, tc, once, false, true, plus, duplicate, half);
     }
 
     //energized player - controller of card
     if (TargetChooser * tc = parseSimpleTC(s, "energizedof", card)){
         int plus = 0;
+        bool duplicate = false;
+        bool half = false;
         if(s.find("plus(1)") != string::npos)
             plus = 1;
         else if(s.find("plus(2)") != string::npos)
@@ -1422,12 +1436,18 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
             plus = 4;
         else if(s.find("plus(5)") != string::npos)
             plus = 5;
-        return NEW TrplayerEnergized(observer, id, card, tc, once, true, false, plus);
+        else if(s.find("duplicate(all)") != string::npos)
+            duplicate = true;
+        else if(s.find("half(all)") != string::npos)
+            half = true;
+        return NEW TrplayerEnergized(observer, id, card, tc, once, true, false, plus, duplicate, half);
     }
 
     //energized player - opponent of card controller
     if (TargetChooser * tc = parseSimpleTC(s, "energizedfoeof", card)){
         int plus = 0;
+        bool duplicate = false;
+        bool half = false;
         if(s.find("plus(1)") != string::npos)
             plus = 1;
         else if(s.find("plus(2)") != string::npos)
@@ -1438,12 +1458,18 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
             plus = 4;
         else if(s.find("plus(5)") != string::npos)
             plus = 5;
-        return NEW TrplayerEnergized(observer, id, card, tc, once, false, true, plus);
+        else if(s.find("duplicate(all)") != string::npos)
+            duplicate = true;
+        else if(s.find("half(all)") != string::npos)
+            half = true;
+        return NEW TrplayerEnergized(observer, id, card, tc, once, false, true, plus, duplicate, half);
     }
 
     //experienced player - controller of card
     if (TargetChooser * tc = parseSimpleTC(s, "experiencedof", card)){
         int plus = 0;
+        bool duplicate = false;
+        bool half = false;
         if(s.find("plus(1)") != string::npos)
             plus = 1;
         else if(s.find("plus(2)") != string::npos)
@@ -1454,12 +1480,18 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
             plus = 4;
         else if(s.find("plus(5)") != string::npos)
             plus = 5;
-        return NEW TrplayerExperienced(observer, id, card, tc, once, true, false, plus);
+        else if(s.find("duplicate(all)") != string::npos)
+            duplicate = true;
+        else if(s.find("half(all)") != string::npos)
+            half = true;
+        return NEW TrplayerExperienced(observer, id, card, tc, once, true, false, plus, duplicate, half);
     }
 
     //experienced player - opponent of card controller
     if (TargetChooser * tc = parseSimpleTC(s, "experiencedfoeof", card)){
         int plus = 0;
+        bool duplicate = false;
+        bool half = false;
         if(s.find("plus(1)") != string::npos)
             plus = 1;
         else if(s.find("plus(2)") != string::npos)
@@ -1470,7 +1502,11 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
             plus = 4;
         else if(s.find("plus(5)") != string::npos)
             plus = 5;
-        return NEW TrplayerExperienced(observer, id, card, tc, once, false, true, plus);
+        else if(s.find("duplicate(all)") != string::npos)
+            duplicate = true;
+        else if(s.find("half(all)") != string::npos)
+            half = true;
+        return NEW TrplayerExperienced(observer, id, card, tc, once, false, true, plus, duplicate, half);
     }
 
     //becomes monarch - controller of card
@@ -1770,6 +1806,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         vector<string>splitCounter = parseBetween(s,"totalcounteradded(",")");
         Counter * counter = NULL;
         bool duplicate = false;
+        bool half = false;
         int plus = 0;
         if(s.find("plus(1)") != string::npos)
             plus = 1;
@@ -1783,14 +1820,16 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
             plus = 5;
         else if(s.find("(duplicateall)") != string::npos)
             duplicate = true;
+        else if(s.find("(halfall)") != string::npos)
+            half = true;
         else if(s.find("(any)") == string::npos)
             counter = parseCounter(splitCounter[1],card,NULL);
         TargetChooser * tc = parseSimpleTC(s, "from", card);
         TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a counter add/remove exception in order to avoid counter loop (eg. Doubling Season)
         if(exception)
-            return NEW TrTotalCounter(observer, id, card, counter, tc, 1, once, duplicate, plus, limitOnceATurn, exception->source);
+            return NEW TrTotalCounter(observer, id, card, counter, tc, 1, once, duplicate, half, plus, limitOnceATurn, exception->source);
         else
-            return NEW TrTotalCounter(observer, id, card, counter, tc, 1, once, duplicate, plus, limitOnceATurn);
+            return NEW TrTotalCounter(observer, id, card, counter, tc, 1, once, duplicate, half, plus, limitOnceATurn);
     }
 
     if (s.find("totalcounterremoved(") != string::npos)
@@ -1798,6 +1837,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         vector<string>splitCounter = parseBetween(s,"totalcounterremoved(",")");
         Counter * counter = NULL;
         bool duplicate = false;
+        bool half = false;
         int plus = 0;
         if(s.find("plus(1)") != string::npos)
             plus = 1;
@@ -1811,14 +1851,16 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
             plus = 5;
         else if(s.find("(duplicateall)") != string::npos)
             duplicate = true;
+        else if(s.find("(halfall)") != string::npos)
+            half = true;
         else if(s.find("(any)") == string::npos)
             counter = parseCounter(splitCounter[1],card,NULL);
         TargetChooser * tc = parseSimpleTC(s, "from", card);
         TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a counter add/remove exception in order to avoid counter loop (eg. Doubling Season)
         if(exception)
-            return NEW TrTotalCounter(observer, id, card, counter, tc, 0, once, duplicate, plus, limitOnceATurn, exception->source);
+            return NEW TrTotalCounter(observer, id, card, counter, tc, 0, once, duplicate, half, plus, limitOnceATurn, exception->source);
         else
-            return NEW TrTotalCounter(observer, id, card, counter, tc, 0, once, duplicate, plus, limitOnceATurn);
+            return NEW TrTotalCounter(observer, id, card, counter, tc, 0, once, duplicate, half, plus, limitOnceATurn);
     }
 
     if (s.find("counteradded(") != string::npos)

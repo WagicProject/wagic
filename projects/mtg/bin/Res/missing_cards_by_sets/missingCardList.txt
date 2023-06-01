@@ -546,14 +546,12 @@ Inventive Iteration
 Tamiyo, Compleated Sage
 Okiba Salvage
 The Kami War
-Okiba Reckoner Raid
 Kaito Shizuki
 Satoru Umezawa
 The Fall of Lord Konda
 Tribute to Horobi
 Risona, Asari Commander
 Tatsunari, Toad Rider
-Era of Enlightenment
 Soul Transfer
 Prodigy's Prototype
 Cloudsteel Kirin
@@ -571,7 +569,6 @@ Hinata, Dawn-Crowned
 March of Wretched Sorrow
 Hidetsugu Consumes All
 Greasefang, Okiba Boss
-Tales of Master Seshiro
 Storyweave
 Spinning Wheel Kick
 Leech Gauntlet
@@ -604,7 +601,6 @@ Mech Hangar
 Explosive Singularity
 Anchor to Reality
 Rabbit Battery
-Fable of the Mirror-Breaker
 Peerless Samurai
 Eiganjo, Seat of the Empire
 Moon-Circuit Hacker
@@ -623,7 +619,6 @@ Prosperous Thief
 March of Reckless Joy
 Discover the Impossible
 Ogre-Head Helm
-The Shattered States Era
 Seismic Wave
 Behold the Unspeakable
 Roadside Reliquary
@@ -667,123 +662,14 @@ Chainflail Centipede
 Go-Shintai of Boundless Vigor
 Reality Heist
 Harmonious Emergence
-The Modern Age
 Mobilizer Mech
 Boseiju Reaches Skyward
 Blossom Prancer
 Moonsnare Prototype
 Careful Cultivation
 Born to Drive
-Befriending the Moths
 Banishing Slash
 Ancestral Katana
 Lithoform Engine
 Reality Spasm
 Suffer the Past
-Wondrous Crucible
-Terisiare's Devastation
-Wire Surgeons
-Wreck Hunter
-Blast-Furnace Hellkite
-Farid, Enterprising Salvager
-Hexavus
-Kayla's Music Box
-Machine God's Effigy
-Smelting Vat
-Scholar of New Horizons
-The Brothers' War
-Glint Raker
-Disciple of Caelus Nin
-Urza's Workshop
-The Archimandrite
-Rootpath Purifier
-Sanwell, Avenger Ace
-Ashnod the Uncaring
-Tawnos, Solemn Survivor
-Battery Bearer
-Geology Enthusiast
-Ashnod's Intervention
-Gix, Yawgmoth Praetor
-Ashnod, Flesh Mechanist
-Arbalest Engineers
-Hulking Metamorph
-The Temporal Anchor
-Urza's Command
-Gix's Caress
-Legions to Ashes
-Mishra, Tamer of Mak Fawa
-Phyrexian Fleshgorger
-Hostile Negotiations
-Dreams of Steel and Oil
-Junkyard Genius
-Gix's Command
-Visions of Phyrexia
-Gurgling Anointer
-Over the Top
-Mechanized Warfare
-Mishra's Command
-Feldon, Ronom Excavator
-Queen Kayla bin-Kroog
-Ravenous Gigamole
-Thran Vigil
-No One Left Behind
-Titania's Command
-Gwenna, Eyes of Gaea
-Overwhelming Remorse
-Urza's Sylex
-Mishra's Research Desk
-Hurkyl, Master Wizard
-Forging the Anchor
-Involuntary Cooldown
-Blanchwood Prowler
-Hurkyl's Final Meditation
-Desynchronize
-Fallaji Archaeologist
-Argothian Opportunist
-Defabricate
-Myrel, Shield of Argive
-Kayla's Command
-Kayla's Reconstruction
-Stern Lesson
-Splitting the Powerstone
-In the Trenches
-Fallaji Excavation
-Koilos Roc
-Weakstone's Subjugation
-Zephyr Sentinel
-Wasteful Harvest
-Urza, Powerstone Prodigy
-Soul Partition
-Sarinth Steelseeker
-Stone Retrieval Unit
-Steel Exemplar
-The Stone Brain
-The Stasis Coffin
-Slagstone Refinery
-Excavation Explosion
-Thran Power Suit
-Thran Spider
-Symmetry Matrix
-Mishra, Claimed by Gix
-The Mightstone and Weakstone
-Repair and Recharge
-Powerstone Engineer
-Horned Stoneseeker
-Hall of Tagsin
-Goblin Blast-Runner
-Meticulous Excavation
-Sardian Cliffstomper
-Tomakul Scrapsmith
-Sibling Rivalry
-Static Net
-Great Desert Prospector
-Liberator, Urza's Battlethopter
-Airlift Chaplain
-Clay Champion
-Calamity's Wake
-Cityscape Leveler
-Tocasia, Dig Site Mentor
-Bladecoil Serpent
-Sarinth Greatwurm
-Skyfisher Spider
-Saheeli, Filigree Master

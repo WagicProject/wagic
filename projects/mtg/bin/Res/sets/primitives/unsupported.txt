@@ -2,7 +2,7 @@ grade=unsupported
 #The cards in this file are not implemented/incomplete yet.
 #Updated Card lists not in primitives (Borderline, Crappy, Unsupported and Missing Cards)
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#I sorted this programatically - Vitty85 22-05-2023
+#I sorted this programatically - Vitty85 01-06-2023
 [card]
 name="Ach! Hans, Run!"
 text=At the beginning of your upkeep, you may say "Ach Hans, run It's the . . ." and name a creature card. If you do, search your library for the named card, put it into play, then shuffle your library. That creature has haste. Remove it from the game at end of turn.
@@ -453,6 +453,16 @@ name=Ashnod's Coupon
 text=ocT, Sacrifice Ashnod's Coupon: Target player gets you target drink. -- Errata: You pay any costs for the drink.
 mana={0}
 type=Artifact
+[/card]
+[card]
+name=Ashnod the Uncaring
+abilities=deathtouch
+text=Deathtouch -- Whenever you activate an ability of an artifact or creature that isn't a mana ability, if one or more permanents were sacrificed to activate it, you may copy that ability. You may choose new targets for the copy. (Sacrificing an artifact for mana to activate an ability doesn't count.)
+mana={2}{U}{B}{R}
+type=Legendary Creature
+subtype=Human Artificer
+power=1
+toughness=4
 [/card]
 [card]
 name=Ass Whuppin'
@@ -2453,6 +2463,15 @@ name=Disarm
 text=Unattach all Equipment from target creature.
 mana={U}
 type=Instant
+[/card]
+[card]
+name=Disciple of Caelus Nin
+text=When Disciple of Caelus Nin enters the battlefield, starting with you, each player chooses up to five permanents they control. All permanents other than Disciple of Caelus Nin that weren't chosen this way phase out. -- Permanents can't phase in.
+mana={4}{W}
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=4
 [/card]
 [card]
 name=Discontinuity
@@ -12016,6 +12035,16 @@ name=Winter's Chill
 text=Cast Winter's Chill only during combat before blockers are declared. -- X can't be greater than the number of snow lands you control. -- Choose X target attacking creatures. For each of those creatures, its controller may pay {1} or {2}. If that player doesn't, destroy that creature at end of combat. If that player pays only {1}, prevent all combat damage that would be dealt to and dealt by that creature this combat.
 mana={X}{U}
 type=Instant
+[/card]
+[card]
+name=Wire Surgeons
+abilities=fear
+text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- Each artifact creature card in your graveyard has encore. Its encore cost is equal to its mana cost. (Exile it and pay its mana cost: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
+mana={4}{B}{B}
+type=Creature
+subtype=Human Artificer
+power=6
+toughness=5
 [/card]
 [card]
 name=Wishmonger

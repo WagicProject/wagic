@@ -2956,7 +2956,7 @@ int AARemoveSingleCounter::resolve()
     }
     if(pcounters.size())
     {
-        MTGAbility * a = NEW MenuAbility(game, this->GetId(), target, source,false,pcounters);
+        MTGAbility * a = NEW MenuAbility(game, this->GetId(), target, source, true, pcounters);
         a->resolve();
     }
     return 1;
