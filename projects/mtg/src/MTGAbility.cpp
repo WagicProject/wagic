@@ -3641,7 +3641,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("equip");
     if (found != string::npos)
     {
-        return NEW AEquip(observer, id, card);
+        if ((s.find("equipment") == string::npos) && (s.find("equipped") == string::npos)) // Fix a bug on parser when reading the substring "equip" with a different meaning.
+            return NEW AEquip(observer, id, card);
     }
     
     // TODO: deprecate this ability in favor of retarget

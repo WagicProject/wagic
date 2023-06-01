@@ -37,29 +37,6 @@ Isu the Abominable
 Agrus Kos, Eternal Soldier
 Star Pupil
 Sun Droplet
-Otharri, Suns' Glory
-Glistening Sphere
-Wurmquake
-Glissa's Retriever
-Ixhel, Scion of Atraxa
-Neyali, Suns' Vanguard
-Chiss-Goria, Forge Tyrant
-Synthesis Pod
-Lux Artillery
-Skyhunter Strike Force
-Mirage Mockery
-Staff of the Storyteller
-Geth's Summons
-Hexplate Wallbreaker
-Roar of Resistance
-Phyresis Outbreak
-Goldwardens' Gambit
-Vulshok Factory
-Contaminant Grafter
-Norn's Decree
-Kemba's Banner
-Clever Concealment
-Glimmer Lens
 Elesh Norn, Mother of Machines
 Melira, the Living Cure
 Thrun, Breaker of Silence
@@ -110,7 +87,6 @@ Venser, Corpse Puppet
 Slobad, Iron Goblin
 Solphim, Mayhem Dominus
 Capricious Hellraiser
-Phyrexian Vindicator
 Skrelv, Defector Mite
 Drivnod, Carnage Dominus
 Tekuthal, Inquiry Dominus
@@ -126,18 +102,15 @@ Maze's Mantle
 Lattice-Blade Mantis
 Noxious Assault
 Plague Nurse
-Porcelain Zealot
 Vanish into Eternity
 Magmatic Sprinter
 Nahiri's Sacrifice
 Molten Rebuke
 Rebel Salvo
-Compleat Devotion
 Churning Reservoir
 Bladehold War-Whip
 Forgehammer Centurion
 Slaughter Singer
-Flensing Raptor
 Hexgold Slash
 Awaken the Sleeper
 All Will Be One

@@ -3964,7 +3964,8 @@ public class ImgDownloader {
                     || scryset.equals("HTR18") || scryset.equals("HTR19") || scryset.equals("DKM") || scryset.equals("S00") || scryset.equals("XLN")
                     || scryset.equals("SOI") || scryset.equals("UST") || scryset.equals("PLG21") || scryset.equals("J21") || scryset.equals("CC2")
                     || scryset.equals("Q06") || scryset.equals("DBL") || scryset.equals("Y22") | scryset.equals("CLB") || scryset.equals("MOM")
-                    || scryset.equals("MOC") || scryset.equals("BRO") || scryset.equals("MAT") || scryset.equals("BRC") || scryset.equals("BRR")){
+                    || scryset.equals("MOC") || scryset.equals("BRO") || scryset.equals("MAT") || scryset.equals("BRC") || scryset.equals("BRR")
+                    || scryset.equals("NEO") || scryset.equals("ONE") || scryset.equals("ONC") || scryset.equals("DMR")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -4132,7 +4133,8 @@ public class ImgDownloader {
                     && !scryset.equals("HTR18") && !scryset.equals("HTR19") && !scryset.equals("DKM") && !scryset.equals("S00") && !scryset.equals("XLN")
                     && !scryset.equals("SOI") && !scryset.equals("UST") && !scryset.equals("PLG21") && !scryset.equals("J21") && !scryset.equals("CC2")
                     && !scryset.equals("Q06") && !scryset.equals("DBL") && !scryset.equals("Y22") && !scryset.equals("CLB") && !scryset.equals("MOM")
-                    && !scryset.equals("MOC") && !scryset.equals("BRO") && !scryset.equals("MAT") && !scryset.equals("BRC") && !scryset.equals("BRR")){
+                    && !scryset.equals("MOC") && !scryset.equals("BRO") && !scryset.equals("MAT") && !scryset.equals("BRC") && !scryset.equals("BRR")
+                    && !scryset.equals("NEO") && !scryset.equals("ONE") && !scryset.equals("ONC") && !scryset.equals("DMR")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -4251,7 +4253,8 @@ public class ImgDownloader {
                     && !scryset.equals("HTR18") && !scryset.equals("HTR19") && !scryset.equals("DKM") && !scryset.equals("S00") && !scryset.equals("XLN")
                     && !scryset.equals("SOI") && !scryset.equals("UST") && !scryset.equals("PLG21") && !scryset.equals("J21") && !scryset.equals("CC2")
                     && !scryset.equals("Q06") && !scryset.equals("DBL") && !scryset.equals("Y22") && !scryset.equals("CLB") && !scryset.equals("MOM")
-                    && !scryset.equals("MOC") && !scryset.equals("BRO") && !scryset.equals("MAT") && !scryset.equals("BRC") && !scryset.equals("BRR")){
+                    && !scryset.equals("MOC") && !scryset.equals("BRO") && !scryset.equals("MAT") && !scryset.equals("BRC") && !scryset.equals("BRR")
+                    && !scryset.equals("NEO") && !scryset.equals("ONE") && !scryset.equals("ONC") && !scryset.equals("DMR")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                 } catch (Exception e) {
@@ -4422,7 +4425,8 @@ public class ImgDownloader {
                             || scryset.equals("HTR19") || scryset.equals("DKM") || scryset.equals("S00") || scryset.equals("XLN") || scryset.equals("SOI")
                             || scryset.equals("UST") || scryset.equals("PLG21") || scryset.equals("J21") || scryset.equals("CC2") || scryset.equals("Q06")
                             || scryset.equals("DBL") || scryset.equals("Y22") || scryset.equals("CLB") || scryset.equals("MOM") || scryset.equals("MOC")
-                            || scryset.equals("BRO") || scryset.equals("MAT") || scryset.equals("BRC") || scryset.equals("BRR")){
+                            || scryset.equals("BRO") || scryset.equals("MAT") || scryset.equals("BRC") || scryset.equals("BRR") || scryset.equals("NEO")
+                            || scryset.equals("ONE") || scryset.equals("ONC") || scryset.equals("DMR")){
                         Elements metadata = doc.select("head meta");
                         if(metadata != null) {
                             for (int j = 0; j < metadata.size(); j++){
