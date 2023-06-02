@@ -2,7 +2,7 @@ grade=unsupported
 #The cards in this file are not implemented/incomplete yet.
 #Updated Card lists not in primitives (Borderline, Crappy, Unsupported and Missing Cards)
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#I sorted this programatically - Vitty85 01-06-2023
+#I sorted this programatically - Vitty85 02-06-2023
 [card]
 name="Ach! Hans, Run!"
 text=At the beginning of your upkeep, you may say "Ach Hans, run It's the . . ." and name a creature card. If you do, search your library for the named card, put it into play, then shuffle your library. That creature has haste. Remove it from the game at end of turn.
@@ -10358,6 +10358,15 @@ type=Creature
 subtype=Zombie
 power=*
 toughness=*
+[/card]
+[card]
+name=Swift Reconfiguration
+target=creature,vehicle
+abilities=flash
+text=Flash -- Enchant creature or Vehicle -- Enchanted permanent is a Vehicle artifact with crew 5 and it loses all other card types. (It's not a creature unless it's crewed.)
+mana={W}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Swirl the Mists
