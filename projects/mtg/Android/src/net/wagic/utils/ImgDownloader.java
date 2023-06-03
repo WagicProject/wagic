@@ -6,6 +6,10 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.jsoup.nodes.Node;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.Enumeration;
@@ -140,6 +144,125 @@ public class ImgDownloader {
             return false;
         }
         return true;
+    }
+
+    public static JSONObject findCardJsonById(String multiverseId) {
+        try{
+            String apiUrl = "https://api.scryfall.com/cards/multiverse/" + multiverseId;
+
+            URL url = new URL(apiUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            StringBuilder response = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+            reader.close();
+
+            JSONParser jsonParser = new JSONParser();
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(response.toString());
+            return jsonObject;
+        } catch(Exception e){
+            return null;
+        }
+    }
+
+    public static String findCardImageUrl(JSONObject jsonObject, String primitiveCardName, String format){
+        Map<String, String> imageUris = new HashMap<String, String>();
+        if (jsonObject.get("image_uris") != null) {
+            JSONObject imageUrisObject = (JSONObject) jsonObject.get("image_uris");
+            if(imageUrisObject != null && jsonObject.get("name").equals(primitiveCardName))
+                imageUris = (HashMap) imageUrisObject;
+        } else if (jsonObject.get("card_faces") != null) {
+            JSONArray faces = (JSONArray) jsonObject.get("card_faces");
+            if(faces != null){
+                for (Object o : faces) {
+                    JSONObject imageUrisObject = (JSONObject) o;
+                    if(imageUrisObject != null && imageUrisObject.get("name").equals(primitiveCardName)){
+                        if (imageUrisObject.get("image_uris") != null) {
+                            imageUrisObject = (JSONObject) imageUrisObject.get("image_uris");
+                            if(imageUrisObject != null)
+                                imageUris = (HashMap) imageUrisObject;
+                        }
+                    }
+                }
+            }
+        } else {
+            System.err.println("Cannot retrieve image url for card: " + primitiveCardName);
+            return "";
+        }
+        String imageUrl = imageUris.get(format);
+        if(imageUrl.indexOf(".jpg") < imageUrl.length())
+            imageUrl = imageUrl.substring(0, imageUrl.indexOf(".jpg")+4);
+        return imageUrl;
+    }
+
+    public static String findTokenImageUrl(JSONObject jsonObject, String format){
+        String imageUrl = "";
+        try {
+            Document document = Jsoup.connect((String )jsonObject.get("scryfall_uri")).get();
+            if (document != null) {
+                Element printsTable = document.selectFirst("table.prints-table");
+                if (printsTable != null) {
+                    Element tokenRow = null;
+                    Elements rows = printsTable.select("tr");
+                    for (Element row : rows) {
+                        if (row.text().contains(" Token,") && !row.text().contains("Faces,")) {
+                            tokenRow = row;
+                        }
+                    }
+                    if (tokenRow != null) {
+                        Element aElement = tokenRow.selectFirst("td > a");
+                        if (aElement != null) {
+                            String tokenName = aElement.text();
+                            tokenName = tokenName.substring(0, tokenName.indexOf(" Token,"));
+                            System.out.println("Token found: " + tokenName);
+                            imageUrl = aElement.attr("data-card-image-front");
+                            if(imageUrl.indexOf(".jpg") < imageUrl.length())
+                                imageUrl = imageUrl.substring(0, imageUrl.indexOf(".jpg")+4);
+                        }
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("There was an error while retrieving token image...");
+            return null;
+        }
+        return imageUrl.replace("large", format);
+    }
+
+    public static String findTokenName(JSONObject jsonObject){
+        String tokenName = "";
+        try {
+            Document document = Jsoup.connect((String) jsonObject.get("scryfall_uri")).get();
+            if (document != null) {
+                Element printsTable = document.selectFirst("table.prints-table");
+                if (printsTable != null) {
+                    Element tokenRow = null;
+                    Elements rows = printsTable.select("tr");
+                    for (Element row : rows) {
+                        if (row.text().contains(" Token,") && !row.text().contains("Faces,")) {
+                            tokenRow = row;
+                        }
+                    }
+                    if (tokenRow != null) {
+                        Element aElement = tokenRow.selectFirst("td > a");
+                        if (aElement != null) {
+                            tokenName = aElement.text();
+                            tokenName = tokenName.substring(0, tokenName.indexOf(" Token,"));
+                            System.out.println("Token found: " + tokenName);
+                        }
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("There was an error while retrieving the token image...");
+            return null;
+        }
+        return tokenName;
     }
 
     public static boolean fastDownloadCard(String set, String id, String name, String imgPath, String thumbPath, int ImgX, int ImgY, int ThumbX, int ThumbY, int Border, int BorderThumb) {
@@ -3701,7 +3824,7 @@ public class ImgDownloader {
                     set.equals("UNH") || set.equals("XLN") || set.equals("SOI") || set.equals("SOK") ||
                     set.equals("BOK") || set.equals("CHK") || set.equals("ZNR") || set.equals("KHM") ||
                     set.equals("STX") || set.equals("MID") || set.equals("CC2") || set.equals("VOW") ||
-                    set.equals("DBL") || set.equals("Y22") || set.equals("MOM"))
+                    set.equals("DBL") || set.equals("Y22") || set.equals("MOM") || set.equals("NEO"))
                 rarity = "";
             if(id != null && !rarity.equals("t") && (negativeId || id.equals("209162") || id.equals("209163") || id.equals("401721") ||
                     id.equals("401722") || id.equals("999902")))
@@ -3838,6 +3961,9 @@ public class ImgDownloader {
             if (fastDownloadCard(set, id, mappa.get(id), imgPath.getAbsolutePath(), thumbPath.getAbsolutePath(), ImgX, ImgY, ThumbX, ThumbY, Border, BorderThumb))
                 continue;
             String specialcardurl = getSpecialCardUrl(id, set);
+            JSONObject card = findCardJsonById(id);
+            if(specialcardurl.isEmpty() && card != null)
+                specialcardurl = findCardImageUrl(card, mappa.get(id), "large");
             if (!specialcardurl.isEmpty()) {
                 URL url = new URL(specialcardurl);
                 HttpURLConnection httpcon = (HttpURLConnection) url.openConnection();
@@ -3942,10 +4068,126 @@ public class ImgDownloader {
                     res = mappa.get(id) + " - " + set + File.separator + "thumbnails" + File.separator + id + ".jpg\n" + res;
                     break;
                 }
+                if(card != null && hasToken(id)) {
+                    String text = (String) card.get("oracle_text");
+                    if (text != null && !text.isEmpty() && !text.trim().toLowerCase().contains("nontoken") && ((text.trim().toLowerCase().contains("create") && text.trim().toLowerCase().contains("creature token")) ||
+                            (text.trim().toLowerCase().contains("put") && text.trim().toLowerCase().contains("token")))) {
+                        System.out.println("The card: " + mappa.get(id) + " (" + id + ".jpg) can create a token, i will try to download that image too as " + id + "t.jpg");
+
+                        String specialtokenurl = findTokenImageUrl(card, "large");
+                        String nametoken = findTokenName(card);
+                        URL urltoken = null;
+                        if (!specialtokenurl.isEmpty())
+                            urltoken = new URL(specialtokenurl);
+
+                        HttpURLConnection httpcontoken = (HttpURLConnection) urltoken.openConnection();
+                        if (httpcontoken == null) {
+                            System.err.println("Error: Problem downloading token: " + nametoken + " (" + id + "t.jpg), i will not download it...");
+                            res = nametoken + " - " + set + File.separator + id + "t.jpg\n" + res;
+                            break;
+                        }
+                        httpcontoken.addRequestProperty("User-Agent", "Mozilla/4.76");
+                        httpcontoken.setConnectTimeout(5000);
+                        httpcontoken.setReadTimeout(5000);
+                        httpcontoken.setAllowUserInteraction(false);
+                        httpcontoken.setDoInput(true);
+                        httpcontoken.setDoOutput(false);
+                        InputStream intoken = null;
+                        try {
+                            intoken = new BufferedInputStream(httpcontoken.getInputStream());
+                        } catch (IOException ex) {
+                            System.out.println("Warning: Problem downloading token: " + nametoken + " (" + id + "t.jpg), i will retry 2 times more...");
+                            try {
+                                intoken = new BufferedInputStream(httpcontoken.getInputStream());
+                            } catch (IOException ex2) {
+                                System.out.println("Warning: Problem downloading token: " + nametoken + " (" + id + "t.jpg), i will retry 1 time more...");
+                                try {
+                                    intoken = new BufferedInputStream(httpcontoken.getInputStream());
+                                } catch (IOException ex3) {
+                                    System.err.println("Error: Problem downloading token: " + nametoken + " (" + id + "t.jpg), i will not retry anymore...");
+                                    res = nametoken + " - " + set + File.separator + id + "t.jpg\n" + res;
+                                    break;
+                                }
+                            }
+                        }
+                        ByteArrayOutputStream outtoken = new ByteArrayOutputStream();
+                        byte[] buftoken = new byte[1024];
+                        int ntoken = 0;
+                        millis = System.currentTimeMillis();
+                        timeout = false;
+                        while (-1 != (ntoken = intoken.read(buftoken)) && !timeout) {
+                            outtoken.write(buftoken, 0, ntoken);
+                            if (System.currentTimeMillis() - millis > 10000)
+                                timeout = true;
+                        }
+                        if (timeout) {
+                            System.out.println("Warning: Problem downloading token: " + id + "t.jpg from, i will retry 2 times more...");
+                            buftoken = new byte[1024];
+                            ntoken = 0;
+                            millis = System.currentTimeMillis();
+                            timeout = false;
+                            while (-1 != (ntoken = intoken.read(buftoken)) && !timeout) {
+                                outtoken.write(buftoken, 0, ntoken);
+                                if (System.currentTimeMillis() - millis > 10000)
+                                    timeout = true;
+                            }
+                            if (timeout) {
+                                System.out.println("Warning: Problem downloading token: " + id + "t.jpg from, i will retry 1 time more...");
+                                buftoken = new byte[1024];
+                                ntoken = 0;
+                                millis = System.currentTimeMillis();
+                                timeout = false;
+                                while (-1 != (ntoken = intoken.read(buftoken)) && !timeout) {
+                                    outtoken.write(buftoken, 0, ntoken);
+                                    if (System.currentTimeMillis() - millis > 10000)
+                                        timeout = true;
+                                }
+                            }
+                        }
+                        outtoken.close();
+                        intoken.close();
+                        if (timeout) {
+                            System.err.println("Error: Problem downloading token: " + id + "t.jpg from, i will not retry anymore...");
+                            break;
+                        }
+                        byte[] responsetoken = outtoken.toByteArray();
+                        String tokenimage = imgPath + File.separator + id + "t.jpg";
+                        String tokenthumbimage = thumbPath + File.separator + id + "t.jpg";
+                        FileOutputStream fos2 = new FileOutputStream(tokenimage);
+                        fos2.write(responsetoken);
+                        fos2.close();
+                        try {
+                            Bitmap yourBitmapToken = BitmapFactory.decodeFile(tokenimage);
+                            Bitmap resizedToken = Bitmap.createScaledBitmap(yourBitmapToken, ImgX, ImgY, true);
+                            if (Border > 0)
+                                resizedToken = Bitmap.createBitmap(resizedToken, Border, Border, ImgX - 2 * Border, ImgY - 2 * Border);
+                            FileOutputStream fout = new FileOutputStream(tokenimage);
+                            resizedToken.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+                            fout.close();
+                        } catch (Exception e) {
+                            System.err.println("Error: Problem resizing token: " + id + "t.jpg, image may be corrupted...");
+                            res = nametoken + " - " + set + File.separator + "thumbnails" + File.separator + id + "t.jpg\n" + res;
+                            break;
+                        }
+                        try {
+                            Bitmap yourBitmapTokenthumb = BitmapFactory.decodeFile(tokenimage);
+                            Bitmap resizedThumbToken = Bitmap.createScaledBitmap(yourBitmapTokenthumb, ThumbX, ThumbY, true);
+                            if (BorderThumb > 0)
+                                resizedThumbToken = Bitmap.createBitmap(resizedThumbToken, BorderThumb, BorderThumb, ThumbX - 2 * BorderThumb, ThumbY - 2 * BorderThumb);
+                            FileOutputStream fout = new FileOutputStream(tokenthumbimage);
+                            resizedThumbToken.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+                            fout.close();
+                        } catch (Exception e) {
+                            System.err.println("Error: Problem resizing token thumbnail: " + id + "t.jpg, image may be corrupted...");
+                            res = nametoken + " - " + set + File.separator + "thumbnails" + File.separator + id + "t.jpg\n" + res;
+                        }
+                    }
+                }
                 continue;
             }
             if (id.endsWith("t"))
                 continue;
+
             Document doc = null;
             String cardname = mappa.get(id);
             Elements divs = new Elements();
@@ -3965,7 +4207,8 @@ public class ImgDownloader {
                     || scryset.equals("SOI") || scryset.equals("UST") || scryset.equals("PLG21") || scryset.equals("J21") || scryset.equals("CC2")
                     || scryset.equals("Q06") || scryset.equals("DBL") || scryset.equals("Y22") | scryset.equals("CLB") || scryset.equals("MOM")
                     || scryset.equals("MOC") || scryset.equals("BRO") || scryset.equals("MAT") || scryset.equals("BRC") || scryset.equals("BRR")
-                    || scryset.equals("NEO") || scryset.equals("ONE") || scryset.equals("ONC") || scryset.equals("DMR") || scryset.equals("NEC")){
+                    || scryset.equals("NEO") || scryset.equals("ONE") || scryset.equals("ONC") || scryset.equals("DMR") || scryset.equals("NEC")
+                    || scryset.equals("J22")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -4134,7 +4377,8 @@ public class ImgDownloader {
                     && !scryset.equals("SOI") && !scryset.equals("UST") && !scryset.equals("PLG21") && !scryset.equals("J21") && !scryset.equals("CC2")
                     && !scryset.equals("Q06") && !scryset.equals("DBL") && !scryset.equals("Y22") && !scryset.equals("CLB") && !scryset.equals("MOM")
                     && !scryset.equals("MOC") && !scryset.equals("BRO") && !scryset.equals("MAT") && !scryset.equals("BRC") && !scryset.equals("BRR")
-                    && !scryset.equals("NEO") && !scryset.equals("ONE") && !scryset.equals("ONC") && !scryset.equals("DMR") && !scryset.equals("NEC")){
+                    && !scryset.equals("NEO") && !scryset.equals("ONE") && !scryset.equals("ONC") && !scryset.equals("DMR") && !scryset.equals("NEC")
+                    && !scryset.equals("J22")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                     Elements outlinks = doc.select("body a");
@@ -4254,7 +4498,8 @@ public class ImgDownloader {
                     && !scryset.equals("SOI") && !scryset.equals("UST") && !scryset.equals("PLG21") && !scryset.equals("J21") && !scryset.equals("CC2")
                     && !scryset.equals("Q06") && !scryset.equals("DBL") && !scryset.equals("Y22") && !scryset.equals("CLB") && !scryset.equals("MOM")
                     && !scryset.equals("MOC") && !scryset.equals("BRO") && !scryset.equals("MAT") && !scryset.equals("BRC") && !scryset.equals("BRR")
-                    && !scryset.equals("NEO") && !scryset.equals("ONE") && !scryset.equals("ONC") && !scryset.equals("DMR") && !scryset.equals("NEC")){
+                    && !scryset.equals("NEO") && !scryset.equals("ONE") && !scryset.equals("ONC") && !scryset.equals("DMR") && !scryset.equals("NEC")
+                    && !scryset.equals("J22")){
                 try {
                     doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
                 } catch (Exception e) {
@@ -4426,7 +4671,7 @@ public class ImgDownloader {
                             || scryset.equals("UST") || scryset.equals("PLG21") || scryset.equals("J21") || scryset.equals("CC2") || scryset.equals("Q06")
                             || scryset.equals("DBL") || scryset.equals("Y22") || scryset.equals("CLB") || scryset.equals("MOM") || scryset.equals("MOC")
                             || scryset.equals("BRO") || scryset.equals("MAT") || scryset.equals("BRC") || scryset.equals("BRR") || scryset.equals("NEO")
-                            || scryset.equals("ONE") || scryset.equals("ONC") || scryset.equals("DMR") || scryset.equals("NEC")){
+                            || scryset.equals("ONE") || scryset.equals("ONC") || scryset.equals("DMR") || scryset.equals("NEC") || scryset.equals("J22")){
                         Elements metadata = doc.select("head meta");
                         if(metadata != null) {
                             for (int j = 0; j < metadata.size(); j++){
@@ -4640,6 +4885,10 @@ public class ImgDownloader {
                         String specialtokenurl = getSpecialTokenUrl(id + "t", set);
                         if(specialtokenurl.isEmpty())
                             specialtokenurl = getSpecialCardUrl(id + "t", set);
+                        if(specialtokenurl.isEmpty() && card != null)
+                            specialtokenurl = findTokenImageUrl(card, "large");
+                        if(nametoken.isEmpty() && card != null)
+                            nametoken = findTokenName(card);
                         if (!specialtokenurl.isEmpty()) {
                             try {
                                 doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
