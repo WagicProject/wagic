@@ -3545,6 +3545,7 @@ private:
     vector<MTGAbility *> currentAbilities;
 
 public:
+    bool isReconfiguration;
     AEquip(GameObserver* observer, int _id, MTGCardInstance * _source, ManaCost * _cost = NULL,
         int restrictions = ActivatedAbility::AS_SORCERY);
     

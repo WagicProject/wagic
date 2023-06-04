@@ -1,10 +1,7 @@
 Primal Command
 Rowan Kenrith
-Kitsune Ace
 Pyre-Sledge Arsonist
 Sokenzan Smelter
-Hotshot Mechanic
-Imperial Recovery Unit
 Ossuary Rats
 Rodolf Duskbringer
 Skullslither Worm
@@ -27,7 +24,6 @@ Zask, Skittering Swarmlord
 Dutiful Replicator
 Instruments of War
 Planar Atlas
-Ingenious Leonin
 Lita, Mechanical Engineer
 Magnanimous Magistrate
 Preston, the Vanisher
@@ -476,27 +472,14 @@ Call In a Professional
 Whack
 Security Rhox
 Ormos, Archive Keeper
-Ruthless Technomancer
 Myojin of Cryptic Dreams
 Kami of Celebration
 Collision of Realms
 Akki Battle Squad
 Smoke Spirits' Aid
-Komainu Battle Armor
-Shorikai, Genesis Engine
 Kaima, the Fractured Calm
-Access Denied
 Katsumasa, the Animator
-Imposter Mech
-Universal Surveillance
-Aerial Surveyor
-Swift Reconfiguration
-Release to Memory
-Kotori, Pilot Prodigy
-Kosei, Penitent Warlord
-Tanuki Transplanter
 One with the Kami
-Myojin of Towering Might
 Unforgiving One
 Silver-Fur Master
 Satsuki, the Living Lore
@@ -510,7 +493,6 @@ Atsushi, the Blazing Sky
 Dramatist's Puppet
 Ambitious Assault
 Containment Construct
-Lion Sash
 March of Otherworldly Light
 Akki Ember-Keeper
 Bronze Cudgels
@@ -527,7 +509,6 @@ Risona, Asari Commander
 Tatsunari, Toad Rider
 Soul Transfer
 Prodigy's Prototype
-Cloudsteel Kirin
 Naomi, Pillar of Order
 Reckoner Shakedown
 Kotose, the Silent Spider
@@ -549,7 +530,6 @@ Webspinner Cuff
 Kami of Terrible Secrets
 Weaver of Harmony
 Teachings of the Kirin
-Guardians of Oboro
 Go-Shintai of Lost Wisdom
 Invoke the Ancients
 Thundering Raiju
@@ -568,8 +548,6 @@ Coiling Stalker
 March of Burgeoning Life
 Azusa's Many Journeys
 Upriser Renegade
-Acquisition Octopus
-Armguard Familiar
 Mech Hangar
 Explosive Singularity
 Anchor to Reality
@@ -585,7 +563,6 @@ Goro-Goro, Disciple of Ryusei
 Biting-Palm Ninja
 Scrap Welder
 Thousand-Faced Shadow
-Disruption Protocol
 Simian Sling
 Sokenzan, Crucible of Defiance
 Prosperous Thief
@@ -599,7 +576,6 @@ Awakened Awareness
 Otawara, Soaring City
 Heiko Yamazaki, the General
 Invoke Despair
-When We Were Young
 Boseiju, Who Endures
 Touch the Spirit Realm
 Kumano Faces Kakkazan
@@ -611,14 +587,10 @@ Dragonspark Reactor
 Crackling Emergence
 Experimental Synthesizer
 Iron Apprentice
-Regent's Authority
 Go-Shintai of Ancient Wars
 Reckoner Bankbuster
-Norika Yamazaki, the Poet
-The Reality Chip
 Flame Discharge
 Mirror Box
-Blade of the Oni
 Mechtitan Core
 Hidetsugu, Devouring Chaos
 Season of Renewal
@@ -631,7 +603,6 @@ Go-Shintai of Hidden Cruelty
 Enormous Energy Blade
 Debt to the Kami
 Assassin's Ink
-Chainflail Centipede
 Go-Shintai of Boundless Vigor
 Reality Heist
 Harmonious Emergence
@@ -640,7 +611,6 @@ Boseiju Reaches Skyward
 Blossom Prancer
 Moonsnare Prototype
 Careful Cultivation
-Born to Drive
 Banishing Slash
 Ancestral Katana
 Lithoform Engine

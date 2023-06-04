@@ -9650,6 +9650,7 @@ AEquip::AEquip(GameObserver* observer, int _id, MTGCardInstance * _source, ManaC
 {
     aType = MTGAbility::STANDARD_EQUIP;
     isAttach = restrictions != ActivatedAbility::AS_SORCERY;
+    isReconfiguration = false;
 }
 
 int AEquip::unequip()
@@ -9678,6 +9679,8 @@ int AEquip::unequip()
         }
         game->removeObserver(currentAbilities[i]);
     }
+    if(isReconfiguration && !source->hasType(Subtypes::TYPE_CREATURE))
+        source->addType(Subtypes::TYPE_CREATURE);
     currentAbilities.clear();
     WEvent * e = NEW WEventCardUnattached(source);
     game->receiveEvent(e);
@@ -9686,6 +9689,8 @@ int AEquip::unequip()
 
 int AEquip::equip(MTGCardInstance * equipped)
 {
+    if(isReconfiguration && source->hasType(Subtypes::TYPE_CREATURE))
+        source->removeType(Subtypes::TYPE_CREATURE);
     source->target = equipped;
     source->target->equipment += 1;
     source->parentCards.push_back(equipped);
@@ -9768,6 +9773,8 @@ const string AEquip::getMenuText()
 {
     if (isAttach)
         return "Attach";
+    else if (isReconfiguration)
+        return "Reconfigure Attach";
     else
         return "Equip";
 }
