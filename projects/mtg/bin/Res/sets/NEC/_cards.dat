@@ -2,8 +2,13 @@
 author=Wagic Team
 name=Neon Dynasty Commander
 year=2022-02-18
-total=204
+total=205
 [/meta]
+[card]
+primitive=Smoke Blessing
+id=-553919
+rarity=T
+[/card]
 [card]
 primitive=Spirit
 id=-553668
@@ -70,7 +75,7 @@ id=-553739
 rarity=T
 [/card]
 [card]
-primitive=Spirit
+primitive=Spirit Art
 id=-553742
 rarity=T
 [/card]

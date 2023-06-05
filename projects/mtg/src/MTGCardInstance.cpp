@@ -112,8 +112,13 @@ void MTGCardInstance::copy(MTGCardInstance * card, bool nolegend)
             source = MTGCollection()->getCardById(card->getMTGId());
         else
         {
-            source = card->tokCard;
-            source->data = card->tokCard;//?wtf
+            if(card->tokCard){  // Fix a possible crash when tokCard is null...
+                source = card->tokCard;
+                source->data = card->tokCard; //?wtf
+            } else {
+                source = card;
+                source->data = card;
+            }
         }
     }
     else

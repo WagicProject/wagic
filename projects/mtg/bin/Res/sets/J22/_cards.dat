@@ -2,8 +2,13 @@
 author=Wagic Team
 name=Jumpstart 2022
 year=2022-12-02
-total=960
+total=961
 [/meta]
+[card]
+primitive=Zeppelin
+id=-589560
+rarity=T
+[/card]
 [card]
 primitive=Drake
 id=-589563
