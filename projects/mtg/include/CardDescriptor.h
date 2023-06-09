@@ -51,6 +51,7 @@ class CardDescriptor: public MTGCardInstance
   int hasConvokeCost;
   int hasFlashbackCost;
   int hasBackSide;
+  int modified;
   int hasPartner;
   int hasXCost;
   int anyCounter;
@@ -61,6 +62,7 @@ class CardDescriptor: public MTGCardInstance
   void unsecureSetHasConvokeCost(int i);
   void unsecureSetHasFlashbackCost(int i);
   void unsecureSetHasBackSide(int i);
+  void unsecureSetModified(int i);
   void unsecureSetHasPartner(int i);
   void unsecureSetTapped(int i);
   void unsecuresetfresh(int k);

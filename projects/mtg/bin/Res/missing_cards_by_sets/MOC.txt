@@ -188,17 +188,6 @@ mana={4}{R}
 type=Enchantment
 [/card]
 [card]
-name=Mirror-Style Master
-auto=@this creature attackscreature
-auto=foreach(|myBattlefield)
-text=Backup 1 (When this creature enters the battlefield, put a +1/+1 counter on target creature. If that's another creature, it gains the following ability until end of turn.) -- Whenever this creature attacks, for each attacking modified creature you control, create a tapped and attacking token that's a copy of that creature. Exile those tokens at end of combat. (Equipment, Auras you control, and counters are modifications.)
-mana={4}{R}{R}
-type=Creature
-subtype=Human Warrior
-power=3
-toughness=3
-[/card]
-[card]
 name=Dance with Calamity
 shuffle your library as many times as you choose, may exile the top card of your library if the total mana value of the cards exiled this way is 13,less, may cast any number of spells from among those cards without paying their mana costs
 auto=moveto(exile)
@@ -668,17 +657,6 @@ power=4
 toughness=3
 [/card]
 [card]
-name=Mirror-Style Master
-auto=@this creature attackscreature
-auto=foreach(|myBattlefield)
-text=Backup 1 (When this creature enters the battlefield, put a +1/+1 counter on target creature. If that's another creature, it gains the following ability until end of turn.) -- Whenever this creature attacks, for each attacking modified creature you control, create a tapped and attacking token that's a copy of that creature. Exile those tokens at end of combat. (Equipment, Auras you control, and counters are modifications.)
-mana={4}{R}{R}
-type=Creature
-subtype=Human Warrior
-power=3
-toughness=3
-[/card]
-[card]
 name=Uncivil Unrest
 auto=lord(other creature|myBattlefield) riot
 text=Nontoken creatures you control have riot. (They enter the battlefield with your choice of a +1/+1 counter or haste.) -- If a creature you control with a +1/+1 counter on it would deal damage to a permanent or player, it deals double that damage instead.
@@ -768,12 +746,7 @@ type=Instant
 [/card]
 [card]
 name=Towashi
-auto=lord(other creature|myBattlefield) trample and "whenever this creature deals combat damage to a player or planeswalker, draw a card
-auto=Modified creatures you control have trample and "@this creature deals combat damage to a player or planeswalkerdraw:1"
-auto=lord(other creature|myBattlefield) creatures you control
-auto=@chaos ensuesdistribute three counter(1/1)s among one, two,,three target(creature|myBattlefield)
 text=Modified creatures you control have trample and "Whenever this creature deals combat damage to a player or planeswalker, draw a card." (Equipment, Auras you control, and counters are modifications.) -- Whenever chaos ensues, distribute three +1/+1 counters among one, two, or three target creatures you control.
-mana=null
 type=Plane
 subtype=Kamigawa
 [/card]

@@ -2,7 +2,7 @@ grade=unsupported
 #The cards in this file are not implemented/incomplete yet.
 #Updated Card lists not in primitives (Borderline, Crappy, Unsupported and Missing Cards)
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#I sorted this programatically - Vitty85 02-06-2023
+#I sorted this programatically - Vitty85 09-06-2023
 [card]
 name="Ach! Hans, Run!"
 text=At the beginning of your upkeep, you may say "Ach Hans, run It's the . . ." and name a creature card. If you do, search your library for the named card, put it into play, then shuffle your library. That creature has haste. Remove it from the game at end of turn.
@@ -5346,6 +5346,15 @@ mana={1}{B}{R}
 type=Enchantment
 [/card]
 [card]
+name=Kenessos, Priest of Thassa
+text=If you would scry a number of cards, scry that many cards plus one instead. -- {3}{G/U}: Look at the top card of your library. If it's a Kraken, Leviathan, Octopus, or Serpent creature card, you may put it onto the battlefield. If you don't put the card onto the battlefield, you may put it on the bottom of your library.
+mana={1}{U}
+type=Legendary Creature
+subtype=Merfolk Cleric
+power=1
+toughness=3
+[/card]
+[card]
 name=Ketria
 auto=@chaos ensuesexile cards from the top of your library until you exile a nonland permanent card put that card onto the battlefield,inmoveto(ownerhand)
 text=When you planeswalk to Ketria and at the beginning of your upkeep, put your choice of a vigilance, menace, or trample counter on target creature you control. -- Whenever chaos ensues, exile cards from the top of your library until you exile a nonland permanent card. Put that card onto the battlefield or into your hand.
@@ -6581,17 +6590,6 @@ name=Mirror of Fate
 text={T}, Sacrifice Mirror of Fate: Choose up to seven face-up exiled cards you own. Exile all the cards from your library, then put the chosen cards on top of your library.
 mana={5}
 type=Artifact
-[/card]
-[card]
-name=Mirror-Style Master
-auto=@this creature attackscreature
-auto=foreach(|myBattlefield)
-text=Backup 1 (When this creature enters the battlefield, put a +1/+1 counter on target creature. If that's another creature, it gains the following ability until end of turn.) -- Whenever this creature attacks, for each attacking modified creature you control, create a tapped and attacking token that's a copy of that creature. Exile those tokens at end of combat. (Equipment, Auras you control, and counters are modifications.)
-mana={4}{R}{R}
-type=Creature
-subtype=Human Warrior
-power=3
-toughness=3
 [/card]
 [card]
 name=Mirrored Depths
@@ -11112,12 +11110,7 @@ type=Sorcery
 [/card]
 [card]
 name=Towashi
-auto=lord(other creature|myBattlefield) trample and "whenever this creature deals combat damage to a player or planeswalker, draw a card
-auto=Modified creatures you control have trample and "@this creature deals combat damage to a player or planeswalkerdraw:1"
-auto=lord(other creature|myBattlefield) creatures you control
-auto=@chaos ensuesdistribute three counter(1/1)s among one, two,,three target(creature|myBattlefield)
 text=Modified creatures you control have trample and "Whenever this creature deals combat damage to a player or planeswalker, draw a card." (Equipment, Auras you control, and counters are modifications.) -- Whenever chaos ensues, distribute three +1/+1 counters among one, two, or three target creatures you control.
-mana=null
 type=Plane
 subtype=Kamigawa
 [/card]

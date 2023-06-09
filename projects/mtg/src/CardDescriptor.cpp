@@ -89,6 +89,11 @@ void CardDescriptor::unsecureSetHasBackSide(int k)
     hasBackSide = k;
 }
 
+void CardDescriptor::unsecureSetModified(int k)
+{
+    modified = k;
+}
+
 void CardDescriptor::unsecureSetHasPartner(int k)
 {
     hasPartner = k;
@@ -339,6 +344,11 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
         {
             match = NULL;
         }
+    }
+
+    if ((modified == -1 && ((card->enchanted) || (card->equipment > 0) || (card->counters->mCount))) || (modified == 1 && !((card->enchanted) || (card->equipment > 0) || (card->counters->mCount))))
+    {
+        match = NULL;
     }
 
     if ((hasKickerCost == -1 && ((card->getManaCost()->getKicker() && !card->basicAbilities[Constants::HASNOKICKER]) || (!card->getManaCost()->getKicker() && card->basicAbilities[Constants::HASOTHERKICKER]))) || (hasKickerCost == 1 && !((card->getManaCost()->getKicker() && !card->basicAbilities[Constants::HASNOKICKER]) || (!card->getManaCost()->getKicker() && card->basicAbilities[Constants::HASOTHERKICKER]))))

@@ -2,34 +2,12 @@ Primal Command
 Rowan Kenrith
 Pyre-Sledge Arsonist
 Sokenzan Smelter
-Ossuary Rats
-Rodolf Duskbringer
-Skullslither Worm
-Termination Facilitator
-Auntie Blyte, Bad Influence
-Brazen Cannonade
-Goblin Researcher
-Kenessos, Priest of Thassa
-Pirated Copy
-Synchronized Eviction
-Ashcoat of the Shadow Swarm
-Disciple of Perdition
 Mizzix, Replica Rider
 Ogre Battlecaster
 Benevolent Hydra
 Kibo, Uktabi Prince
-Rampaging Growth
 Runadi, Behemoth Caller
-Zask, Skittering Swarmlord
-Dutiful Replicator
-Instruments of War
-Planar Atlas
-Lita, Mechanical Engineer
-Magnanimous Magistrate
-Preston, the Vanisher
 Alandra, Sky Dreamer
-Hold for Questioning
-Isu the Abominable
 Agrus Kos, Eternal Soldier
 Star Pupil
 Sun Droplet
@@ -40,18 +18,15 @@ Soulless Jailer
 Mercurial Spelldancer
 Tablet of Compleation
 Meldweb Strider
-Mindsplice Apparatus
 The Mycosynth Gardens
 Rhuk, Hexgold Nabber
 The Seedcore
 Goliath Hatchery
-Reject Imperfection
 Mirrex
 Kinzu of the Bleak Coven
 Serum Snare
 Red Sun's Twilight
 Urabrask's Forge
-Font of Progress
 Green Sun's Twilight
 Ichormoon Gauntlet
 Conduit of Worlds
@@ -62,12 +37,9 @@ Argentum Masticore
 The Filigree Sylex
 Carnivorous Canopy
 Contagious Vorrac
-Encroaching Mycosynth
-Blade of Shared Souls
 Evolved Spinoderm
 Bring the Ending
 Expand the Sphere
-Distorted Curiosity
 Evolving Adaptive
 Experimental Augury
 Black Sun's Twilight
@@ -96,9 +68,7 @@ Vraska, Betrayal's Sting
 The Eternal Wanderer
 Maze's Mantle
 Lattice-Blade Mantis
-Noxious Assault
 Plague Nurse
-Vanish into Eternity
 Magmatic Sprinter
 Nahiri's Sacrifice
 Molten Rebuke
@@ -107,7 +77,6 @@ Churning Reservoir
 Bladehold War-Whip
 Forgehammer Centurion
 Slaughter Singer
-Hexgold Slash
 Awaken the Sleeper
 All Will Be One
 Against All Odds
@@ -121,11 +90,8 @@ Necrosquito
 Voidwing Hybrid
 Vivisection Evangelist
 Atraxa's Skitterfang
-Cruel Grimnarch
 Viral Spawning
 Venomous Brutalizer
-Trawler Drake
-Watchful Blisterzoa
 Cinderslash Ravager
 Anoint with Affliction
 Hall of the Bandit Lord
@@ -473,20 +439,12 @@ Whack
 Security Rhox
 Ormos, Archive Keeper
 Myojin of Cryptic Dreams
-Kami of Celebration
-Collision of Realms
-Akki Battle Squad
-Smoke Spirits' Aid
-Kaima, the Fractured Calm
-Katsumasa, the Animator
-One with the Kami
 Unforgiving One
 Silver-Fur Master
 Satsuki, the Living Lore
 Spirit-Sister's Call
 Light-Paws, Emperor's Voice
 Invoke Justice
-Bronzeplate Boar
 Eater of Virtue
 The Restoration of Eiganjo
 Atsushi, the Blazing Sky
@@ -494,6 +452,7 @@ Dramatist's Puppet
 Ambitious Assault
 Containment Construct
 March of Otherworldly Light
+Akki Ronin
 Akki Ember-Keeper
 Bronze Cudgels
 Automated Artificer
@@ -519,14 +478,11 @@ Lethal Exploit
 Isshin, Two Heavens as One
 Nashi, Moon Sage's Scion
 Invigorating Hot Spring
-Hinata, Dawn-Crowned
 March of Wretched Sorrow
 Hidetsugu Consumes All
 Greasefang, Okiba Boss
 Storyweave
 Spinning Wheel Kick
-Leech Gauntlet
-Webspinner Cuff
 Kami of Terrible Secrets
 Weaver of Harmony
 Teachings of the Kirin
@@ -551,24 +507,18 @@ Upriser Renegade
 Mech Hangar
 Explosive Singularity
 Anchor to Reality
-Rabbit Battery
 Peerless Samurai
 Eiganjo, Seat of the Empire
 Moon-Circuit Hacker
 Invoke Calamity
 Futurist Operative
-Lizard Blades
 Covert Technician
 Goro-Goro, Disciple of Ryusei
 Biting-Palm Ninja
 Scrap Welder
-Thousand-Faced Shadow
-Simian Sling
 Sokenzan, Crucible of Defiance
-Prosperous Thief
 March of Reckless Joy
 Discover the Impossible
-Ogre-Head Helm
 Seismic Wave
 Behold the Unspeakable
 Roadside Reliquary
@@ -609,7 +559,6 @@ Harmonious Emergence
 Mobilizer Mech
 Boseiju Reaches Skyward
 Blossom Prancer
-Moonsnare Prototype
 Careful Cultivation
 Banishing Slash
 Ancestral Katana

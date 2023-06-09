@@ -20,6 +20,15 @@ mana={1}{G}
 type=Instant
 [/card]
 [card]
+name=Kenessos, Priest of Thassa
+text=If you would scry a number of cards, scry that many cards plus one instead. -- {3}{G/U}: Look at the top card of your library. If it's a Kraken, Leviathan, Octopus, or Serpent creature card, you may put it onto the battlefield. If you don't put the card onto the battlefield, you may put it on the bottom of your library.
+mana={1}{U}
+type=Legendary Creature
+subtype=Merfolk Cleric
+power=1
+toughness=3
+[/card]
+[card]
 name=Master of the Wild Hunt
 text=At the beginning of your upkeep, put a 2/2 green Wolf creature token onto the battlefield. -- {T}: Tap all untapped Wolf creatures you control. Each Wolf tapped this way deals damage equal to its power to target creature. That creature deals damage equal to its power divided as its controller chooses among any number of those Wolves.
 mana={2}{G}{G}
