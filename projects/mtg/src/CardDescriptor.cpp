@@ -31,6 +31,7 @@ CardDescriptor::CardDescriptor()
     hasFlashbackCost = 0;
     hasBackSide = 0;
     hasPartner = 0;
+    modified = 0;
     hasXCost = 0;
     compareName ="";
     nameComparisonMode = COMPARISON_NONE;
