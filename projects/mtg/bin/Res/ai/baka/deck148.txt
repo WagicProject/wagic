@@ -1,48 +1,32 @@
-#NAME:Tergrid Commander
+#NAME:Tergrid Commander 2023
 #DESC:The Tergrid Commander Deck
+#DESC:Refined for Wagic by Bob
 #HINT:castpriority(commander,*)
-Mana Crypt (VMA) *1
 Necrogen Mists (MRD) *1
 Animate Dead (VMA) *1
-Recurring Nightmare (VMA) *1
 Mind Stone (AFC) *1
-Coldsteel Heart (CSP) *1
 Steel Hellkite (C17) *1
 Hedron Archive (C19) *1
-Prismatic Vista (H1R) *1
 Blackblade Reforged (SS2) *1
-Tevesh Szat, Doom of Fools (CMR) *1
-Thespian's Stage (C19) *1
-Priest of Forgotten Gods (RNA) *1
-Duplicant (PZ1) *1
-Swamp (2XM) *19
+Swamp (2XM) *26
 Strip Mine (EXP) *1
-Toxic Deluge (PZ1) *1
 Archon of Cruelty (MH2) *1
 No Mercy (MP2) *1
 Whip of Erebos (THS) *1
 Plaguecrafter (C19) *1
-Cabal Coffers (MH2) *1
 Smallpox (M12) *1
 Geier Reach Sanitarium (C19) *1
 Pox (ME1) *1
 Braids, Cabal Minion (EMA) *1
-Vampiric Tutor (EMA) *1
-Meteor Golem (C19) *1
-Phyrexian Reclamation (JMP) *1
 Damnation (MM3) *1
-Mana Vault (PUMA) *1
 Commander's Sphere (C19) *1
 Liliana's Triumph (WAR) *1
 Dream Devourer (KHM) *1
-Homeward Path (PZ1) *1
 Night's Whisper (EMA) *1
 Grave Pact (CMD) *1
 Bojuka Bog (C19) *1
 Chain of Smog (ONS) *1
-Village Rites (KHM) *1
 Memory Jar (FVR) *1
-Gonti, Lord of Luxury (MB1) *1
 Tinybones, Trinket Thief (JMP) *1
 Sol Ring (C19) *1
 Dreadhorde Invasion (WAR) *1
@@ -54,10 +38,7 @@ Oppression (7ED) *1
 Shadowspear (THB) *1
 Worn Powerstone (PZ1) *1
 Arcane Signet (AFC) *1
-Grim Monolith (ULG) *1
 Lightning Greaves (AFC) *1
-Dark Ritual (ME4) *1
-Sanctum of Eternity (C19) *1
 Tourach, Dread Cantor (MH2) *1
 Ravenous Chupacabra (MB1) *1
 Ancient Tomb (EXP) *1
@@ -68,18 +49,31 @@ Urborg, Tomb of Yawgmoth (TSR) *1
 Thoughtseize (2XM) *1
 Tyrite Sanctum (KHM) *1
 Soul Shatter (ZNR) *1
-Mox Diamond (FVR) *1
 Thran Dynamo (C19) *1
-Bloodstained Mire (ONS) *1
 Sangromancer (MBS) *1
 Phyrexian Arena (TD0) *1
-Blast Zone (WAR) *1
-Rune-Scarred Demon (MB1) *1
-Demonic Tutor (MB1) *1
-Polluted Delta (ONS) *1
 Liliana, Dreadhorde General (WAR) *1
-Cunning Rhetoric (C21) *1
 Crypt Ghast (GTC) *1
 Palladium Myr (MB1) *1
-Myriad Landscape (C19) *1
+Cabal Coffers (MH2) *1
+Reliquary Tower (M13) *1
+Cabal Stronghold (DOM) *1
+Temple of the False God *1
+Charcoal Diamond *1
+Gilded Lotus *1
+Liliana of the Dark Realms *1
+Sheoldred, Whispering One *1
+Gray Merchant of Asphodel *1
+Fell Specter *1 
+Phyrexian Obliterator *1
+Hypnotic Specter *1
+Butcher of Malakir *1
+The Eldest Reborn *1
+Leaden Myr *1
+Painful Quandary *1
+Corrupt *1
+Korlash, Heir to Blackblade *1
+Syr Konrad, the Grim *1
+Megrim *1
+Mox Jet *1
 #CMD:Tergrid, God of Fright (KHM) *1
