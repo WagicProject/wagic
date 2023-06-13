@@ -101,9 +101,6 @@
 # Recover
 #AUTO_DEFINE _RECOVER_($cost) @movedTo(creature|myGraveyard) from(Battlefield):may pay{$cost} name(Return to owner Hand) moveTo(ownerHand) all(this) donothing?moveTo(exile) all(this)
 
-# Clash, not implemented
-#AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Erratic Explosion. Meaby it would work with a few fix
-
 # Proliferate
 #AUTO_DEFINE _PROLIFERATE_ name(Proliferate) notatarget(proliferation) proliferate
 

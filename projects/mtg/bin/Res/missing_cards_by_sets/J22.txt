@@ -58,6 +58,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Agrus Kos, Eternal Soldier
+abilities=vigilance
+text=Vigilance -- Whenever Agrus Kos, Eternal Soldier becomes the target of an ability that targets only it, you may pay {1}{R/W}. If you do, copy that ability for each other creature you control that ability could target. Each copy targets a different one of those creatures. ({R/W} can be paid with either {R} or {W}.)
+mana={3}{W}
+type=Legendary Creature
+subtype=Spirit Soldier
+power=3
+toughness=4
+[/card]
+[card]
 name=Panharmonicon
 text=If an artifact or creature entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.
 mana={4}

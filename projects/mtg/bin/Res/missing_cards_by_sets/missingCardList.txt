@@ -2,13 +2,6 @@ Primal Command
 Rowan Kenrith
 Pyre-Sledge Arsonist
 Sokenzan Smelter
-Mizzix, Replica Rider
-Ogre Battlecaster
-Benevolent Hydra
-Kibo, Uktabi Prince
-Runadi, Behemoth Caller
-Alandra, Sky Dreamer
-Agrus Kos, Eternal Soldier
 Star Pupil
 Sun Droplet
 Elesh Norn, Mother of Machines
@@ -24,7 +17,6 @@ The Seedcore
 Goliath Hatchery
 Mirrex
 Kinzu of the Bleak Coven
-Serum Snare
 Red Sun's Twilight
 Urabrask's Forge
 Green Sun's Twilight
@@ -93,7 +85,6 @@ Atraxa's Skitterfang
 Viral Spawning
 Venomous Brutalizer
 Cinderslash Ravager
-Anoint with Affliction
 Hall of the Bandit Lord
 Boseiju, Who Shelters All
 Chief Engineer
@@ -488,7 +479,6 @@ Teachings of the Kirin
 Go-Shintai of Lost Wisdom
 Invoke the Ancients
 Thundering Raiju
-Takenuma, Abandoned Mire
 The Dragon-Kami Reborn
 Kami of Transience
 Kodama of the West Tree
@@ -507,7 +497,6 @@ Mech Hangar
 Explosive Singularity
 Anchor to Reality
 Peerless Samurai
-Eiganjo, Seat of the Empire
 Moon-Circuit Hacker
 Invoke Calamity
 Futurist Operative
@@ -515,17 +504,14 @@ Covert Technician
 Goro-Goro, Disciple of Ryusei
 Biting-Palm Ninja
 Scrap Welder
-Sokenzan, Crucible of Defiance
 March of Reckless Joy
 Discover the Impossible
 Seismic Wave
 Behold the Unspeakable
 Roadside Reliquary
 Awakened Awareness
-Otawara, Soaring City
 Heiko Yamazaki, the General
 Invoke Despair
-Boseiju, Who Endures
 Touch the Spirit Realm
 Kumano Faces Kakkazan
 Walking Skyscraper

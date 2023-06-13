@@ -2,7 +2,7 @@ grade=unsupported
 #The cards in this file are not implemented/incomplete yet.
 #Updated Card lists not in primitives (Borderline, Crappy, Unsupported and Missing Cards)
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#I sorted this programatically - Vitty85 09-06-2023
+#I sorted this programatically - Vitty85 13-06-2023
 [card]
 name="Ach! Hans, Run!"
 text=At the beginning of your upkeep, you may say "Ach Hans, run It's the . . ." and name a creature card. If you do, search your library for the named card, put it into play, then shuffle your library. That creature has haste. Remove it from the game at end of turn.
@@ -168,6 +168,16 @@ type=Artifact Creature
 subtype=Construct
 power=2
 toughness=1
+[/card]
+[card]
+name=Agrus Kos, Eternal Soldier
+abilities=vigilance
+text=Vigilance -- Whenever Agrus Kos, Eternal Soldier becomes the target of an ability that targets only it, you may pay {1}{R/W}. If you do, copy that ability for each other creature you control that ability could target. Each copy targets a different one of those creatures. ({R/W} can be paid with either {R} or {W}.)
+mana={3}{W}
+type=Legendary Creature
+subtype=Spirit Soldier
+power=3
+toughness=4
 [/card]
 [card]
 name=Agyrem
