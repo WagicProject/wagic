@@ -404,6 +404,15 @@ struct WEventplayerMonarch : public WEvent {
     virtual Targetable * getTarget(Player * player);
 };
 
+//proliferate event
+struct WEventplayerProliferated : public WEvent {
+    WEventplayerProliferated(Player * player);
+    Player * player;
+    MTGCardInstance * source;
+    using WEvent::getTarget;
+    virtual Targetable * getTarget(Player * player);
+};
+
 //initiative event
 struct WEventplayerInitiative : public WEvent {
     WEventplayerInitiative(Player * player);

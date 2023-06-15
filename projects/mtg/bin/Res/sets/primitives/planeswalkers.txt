@@ -1,6 +1,6 @@
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 10-06-2023
+#We sorted this in alphabetical order - Luruz & Vitty85 15-06-2023
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -1429,6 +1429,60 @@ auto={C(0/0,0,Loyalty)}:name(+0: Draw three and return two cards) draw:3 control
 auto={C(0/0,-1,Loyalty)}:name(-1: Return target creature) moveto(ownerhand) target(creature)
 auto={C(0/0,-12,Loyalty)}:name(-12: Exile target library and shuffle hand) target(player) ability$!all(*|mylibrary) moveto(exile) _ all(*|myhand) moveto(library) !$ targetedplayer
 text=+2: Look at the top card of target player's library. You may put that card on the bottom of that player's library. -- 0: Draw three cards, then put two cards from your hand on top of your library in any order. -- -1: Return target creature to its owner's hand. -- -12: Exile all cards from target player's library, then that player shuffles his or her hand into his or her library.
+mana={2}{U}{U}
+type=Legendary Planeswalker
+subtype=Jace
+[/card]
+[card]
+name=Jace, the Perfected Mind
+auto=if paid(alternative) then counter(0/0,3,loyalty)
+auto=ifnot paid(alternative) then counter(0/0,5,loyalty)
+auto={C(0/0,+1,Loyalty)}:name(+1: Target creature gains -3/-0) target(creature|battlefield) transforms((,newability[-3/-0])) uynt
+auto={C(0/0,+1,Loyalty)}:name(+1: Don't target any creature) donothing
+auto={C(0/0,-2,Loyalty)}:name(-2: You mill 3 cards) deplete:3 controller && if type(*|mygraveyard)~morethan~19 then draw:3 controller else if type(*|opponentgraveyard)~morethan~19 then draw:3 controller else draw:1 controller 
+auto={C(0/0,-2,Loyalty)}:name(-2: Opponent mills 3 cards) deplete:3 opponent && if type(*|mygraveyard)~morethan~19 then draw:3 controller else if type(*|opponentgraveyard)~morethan~19 then draw:3 controller else draw:1 controller 
+auto={C(0/0,-1,Loyalty)}:name(-1: You mill 1 card three times) thisforeach(variable{3}) ability$!name(Mill 1 card) name(Mill 1 card) deplete:1!$ controller
+auto={C(0/0,-1,Loyalty)}:name(-1: Opponent mills 1 card three times) thisforeach(variable{3}) ability$!name(Mill 1 card) name(Mill 1 card) deplete:1!$ opponent
+auto={C(0/0,-2,Loyalty)}:name(-2: You mill 2 cards three times) thisforeach(variable{3}) ability$!name(Mill 2 cards) name(Mill 2 cards) deplete:2!$ controller
+auto={C(0/0,-2,Loyalty)}:name(-2: Opponent mills 2 cards three times) thisforeach(variable{3}) ability$!name(Mill 2 cards) name(Mill 2 cards) deplete:2!$ opponent
+auto={C(0/0,-3,Loyalty)}:name(-3: You mill 3 cards three times) thisforeach(variable{3}) ability$!name(Mill 3 cards) name(Mill 3 cards) deplete:3!$ controller
+auto={C(0/0,-3,Loyalty)}:name(-3: Opponent mills 3 cards three times) thisforeach(variable{3}) ability$!name(Mill 3 cards) name(Mill 3 cards) deplete:3!$ opponent
+auto={C(0/0,-4,Loyalty)}:name(-4: You mill 4 cards three times) thisforeach(variable{3}) ability$!name(Mill 4 cards) name(Mill 4 cards) deplete:4!$ controller
+auto={C(0/0,-4,Loyalty)}:name(-4: Opponent mills 4 cards three times) thisforeach(variable{3}) ability$!name(Mill 4 cards) name(Mill 4 cards) deplete:4!$ opponent
+auto={C(0/0,-5,Loyalty)}:name(-5: You mill 5 cards three times) thisforeach(variable{3}) ability$!name(Mill 5 cards) name(Mill 5 cards) deplete:5!$ controller
+auto={C(0/0,-5,Loyalty)}:name(-5: Opponent mills 5 cards three times) thisforeach(variable{3}) ability$!name(Mill 5 cards) name(Mill 5 cards) deplete:5!$ opponent
+auto={C(0/0,-6,Loyalty)}:name(-6: You mill 6 cards three times) thisforeach(variable{3}) ability$!name(Mill 6 cards) name(Mill 6 cards) deplete:6!$ controller
+auto={C(0/0,-6,Loyalty)}:name(-6: Opponent mills 6 cards three times) thisforeach(variable{3}) ability$!name(Mill 6 cards) name(Mill 6 cards) deplete:6!$ opponent
+auto={C(0/0,-7,Loyalty)}:name(-7: You mill 7 cards three times) thisforeach(variable{3}) ability$!name(Mill 7 cards) name(Mill 7 cards) deplete:7!$ controller
+auto={C(0/0,-7,Loyalty)}:name(-7: Opponent mills 7 cards three times) thisforeach(variable{3}) ability$!name(Mill 7 cards) name(Mill 7 cards) deplete:7!$ opponent
+auto={C(0/0,-8,Loyalty)}:name(-8: You mill 8 cards three times) thisforeach(variable{3}) ability$!name(Mill 8 cards) name(Mill 8 cards) deplete:8!$ controller
+auto={C(0/0,-8,Loyalty)}:name(-8: Opponent mills 8 cards three times) thisforeach(variable{3}) ability$!name(Mill 8 cards) name(Mill 8 cards) deplete:8!$ opponent
+auto={C(0/0,-9,Loyalty)}:name(-9: You mill 9 cards three times) thisforeach(variable{3}) ability$!name(Mill 9 cards) name(Mill 9 cards) deplete:9!$ controller
+auto={C(0/0,-9,Loyalty)}:name(-9: Opponent mills 9 cards three times) thisforeach(variable{3}) ability$!name(Mill 9 cards) name(Mill 9 cards) deplete:9!$ opponent
+auto={C(0/0,-10,Loyalty)}:name(-10: You mill 10 cards three times) thisforeach(variable{3}) ability$!name(Mill 10 cards) name(Mill 10 cards) deplete:10!$ controller
+auto={C(0/0,-10,Loyalty)}:name(-10: Opponent mills 10 cards three times) thisforeach(variable{3}) ability$!name(Mill 10 cards) name(Mill 10 cards) deplete:10!$ opponent
+auto={C(0/0,-11,Loyalty)}:name(-11: You mill 11 cards three times) thisforeach(variable{3}) ability$!name(Mill 11 cards) name(Mill 11 cards) deplete:11!$ controller
+auto={C(0/0,-11,Loyalty)}:name(-11: Opponent mills 11 cards three times) thisforeach(variable{3}) ability$!name(Mill 11 cards) name(Mill 11 cards) deplete:11!$ opponent
+auto={C(0/0,-12,Loyalty)}:name(-12: You mill 12 cards three times) thisforeach(variable{3}) ability$!name(Mill 12 cards) name(Mill 12 cards) deplete:12!$ controller
+auto={C(0/0,-12,Loyalty)}:name(-12: Opponent mills 12 cards three times) thisforeach(variable{3}) ability$!name(Mill 12 cards) name(Mill 12 cards) deplete:12!$ opponent
+auto={C(0/0,-13,Loyalty)}:name(-13: You mill 13 cards three times) thisforeach(variable{3}) ability$!name(Mill 13 cards) name(Mill 13 cards) deplete:13!$ controller
+auto={C(0/0,-13,Loyalty)}:name(-13: Opponent mills 13 cards three times) thisforeach(variable{3}) ability$!name(Mill 13 cards) name(Mill 13 cards) deplete:13!$ opponent
+auto={C(0/0,-14,Loyalty)}:name(-14: You mill 14 cards three times) thisforeach(variable{3}) ability$!name(Mill 14 cards) name(Mill 14 cards) deplete:14!$ controller
+auto={C(0/0,-14,Loyalty)}:name(-14: Opponent mills 14 cards three times) thisforeach(variable{3}) ability$!name(Mill 14 cards) name(Mill 14 cards) deplete:14!$ opponent
+auto={C(0/0,-15,Loyalty)}:name(-15: You mill 15 cards three times) thisforeach(variable{3}) ability$!name(Mill 15 cards) name(Mill 15 cards) deplete:15!$ controller
+auto={C(0/0,-15,Loyalty)}:name(-15: Opponent mills 15 cards three times) thisforeach(variable{3}) ability$!name(Mill 15 cards) name(Mill 15 cards) deplete:15!$ opponent
+auto={C(0/0,-16,Loyalty)}:name(-16: You mill 16 cards three times) thisforeach(variable{3}) ability$!name(Mill 16 cards) name(Mill 16 cards) deplete:16!$ controller
+auto={C(0/0,-16,Loyalty)}:name(-16: Opponent mills 16 cards three times) thisforeach(variable{3}) ability$!name(Mill 16 cards) name(Mill 16 cards) deplete:16!$ opponent
+auto={C(0/0,-17,Loyalty)}:name(-17: You mill 17 cards three times) thisforeach(variable{3}) ability$!name(Mill 17 cards) name(Mill 17 cards) deplete:17!$ controller
+auto={C(0/0,-17,Loyalty)}:name(-17: Opponent mills 17 cards three times) thisforeach(variable{3}) ability$!name(Mill 17 cards) name(Mill 17 cards) deplete:17!$ opponent
+auto={C(0/0,-18,Loyalty)}:name(-18: You mill 18 cards three times) thisforeach(variable{3}) ability$!name(Mill 18 cards) name(Mill 18 cards) deplete:18!$ controller
+auto={C(0/0,-18,Loyalty)}:name(-18: Opponent mills 18 cards three times) thisforeach(variable{3}) ability$!name(Mill 18 cards) name(Mill 18 cards) deplete:18!$ opponent
+auto={C(0/0,-19,Loyalty)}:name(-19: You mill 19 cards three times) thisforeach(variable{3}) ability$!name(Mill 19 cards) name(Mill 19 cards) deplete:19!$ controller
+auto={C(0/0,-19,Loyalty)}:name(-19: Opponent mills 19 cards three times) thisforeach(variable{3}) ability$!name(Mill 19 cards) name(Mill 19 cards) deplete:19!$ opponent
+auto={C(0/0,-20,Loyalty)}:name(-20: You mill 20 cards three times) thisforeach(variable{3}) ability$!name(Mill 20 cards) name(Mill 20 cards) deplete:20!$ controller
+auto={C(0/0,-20,Loyalty)}:name(-20: Opponent mills 20 cards three times) thisforeach(variable{3}) ability$!name(Mill 20 cards) name(Mill 20 cards) deplete:20!$ opponent
+text=Compleated ({U/P} can be paid with {U} or 2 life. If life was paid, this planeswalker enters with two fewer loyalty counters.) -- [+1]: Until your next turn, up to one target creature gets -3/-0. -- [-2]: Target player mills three cards. Then if a graveyard has twenty or more cards in it, you draw three cards. Otherwise, you draw a card. -- [-X]: Target player mills three times X cards.
+other={2}{U}{L:2} name(Pay 2 life)
 mana={2}{U}{U}
 type=Legendary Planeswalker
 subtype=Jace
@@ -3068,6 +3122,19 @@ type=Legendary Planeswalker
 subtype=Tezzeret
 [/card]
 [card]
+name=The Eternal Wanderer
+#MISSING: No more than one creature can attack The Eternal Wanderer each combat
+auto=counter(0/0,5,loyalty)
+auto={C(0/0,+1,Loyalty)}:name(+1: Exile creature or artifact) target(*[artifact;creature]|battlefield) moveto(ownerexile) and!( transforms((,newability[phaseaction[my endofturn once sourceinplay] moveto(ownerbattlefield)])) forever )!
+auto={C(0/0,+1,Loyalty)}:name(+1: Don't exile creature or artifact) donothing
+auto={C(0/0,0,Loyalty)}:name(+0: Create a samurai) token(Samurai,Creature Samurai,2/2,white,double strike)
+auto=this(variable{type:creature:mybattlefield}>0) {C(0/0,-4,Loyalty)}:name(-4: Sacrifice creatures) name(-4: Sacrifice creatures) target(creature|mybattlefield) transforms((,newability[all(other creature|mybattlefield) sacrifice],newability[name(Choose opponent creature) name(Choose opponent creature) target(creature|opponentbattlefield) transforms((,newability[all(other creature|mybattlefield) sacrifice])) ueot])) ueot
+auto=this(variable{type:creature:mybattlefield}=0) {C(0/0,-4,Loyalty)}:name(-4: Sacrifice creatures) name(-4: Sacrifice creatures) target(<type:creature:opponentbattlefieldminus1minusend>creature|opponentbattlefield) transforms((,newability[sacrifice])) forever
+text=No more than one creature can attack The Eternal Wanderer each combat. -- [+1]: Exile up to one target artifact or creature. Return that card to the battlefield under its owner's control at the beginning of that player's next end step. -- [0]: Create a 2/2 white Samurai creature token with double strike. -- [-4]: For each player, choose a creature that player controls. Each player sacrifices all creatures they control not chosen this way.
+mana={4}{W}{W}
+type=Legendary Planeswalker
+[/card]
+[card]
 name=The Royal Scions
 auto=counter(0/0,5,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Draw and Discard) draw:1 controller && ability$!name(discard a card) notatarget(*|myhand) reject!$ controller
@@ -3313,6 +3380,20 @@ text=+1: Look at the top four cards of your library. You may reveal a creature o
 mana={3}{G}{G}
 type=Legendary Planeswalker
 subtype=Vivien
+[/card]
+[card]
+name=Vraska, Betrayal's Sting
+auto=if paid(alternative) then counter(0/0,4,loyalty)
+auto=ifnot paid(alternative) then counter(0/0,6,loyalty)
+auto={C(0/0,0,Loyalty)}:name(0: Draw card and lose life) draw:1 controller && life:-1 controller && _PROLIFERATE_
+auto={C(0/0,-2,Loyalty)}:name(-2: Creature becomes treasure) target(creature|battlefield) flip(Treasure Sur)
+auto={C(0/0,-9,Loyalty)}:name(-9: You get poison counter) alterpoison:9minusmypoisoncountminusend controller
+auto={C(0/0,-9,Loyalty)}:name(-9: Opponent gets poison counter) alterpoison:9minusopponentpoisoncountminusend opponent
+text=Compleated ({B/P} can be paid with {B} or 2 life. If life was paid, this planeswalker enters with two fewer loyalty counters.) -- [0]: You draw a card and you lose 1 life. Proliferate. -- [-2]: Target creature becomes a Treasure artifact with "{T}, Sacrifice this artifact: Add one mana of any color" and loses all other card types and abilities. -- [-9]: If target player has fewer than nine poison counters, they get a number of poison counters equal to the difference.
+other={2}{B}{L:2} name(Pay 2 life)
+mana={4}{B}{B}
+type=Legendary Planeswalker
+subtype=Vraska
 [/card]
 [card]
 name=Vraska, Golgari Queen

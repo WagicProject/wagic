@@ -4,13 +4,10 @@ Pyre-Sledge Arsonist
 Sokenzan Smelter
 Star Pupil
 Sun Droplet
-Elesh Norn, Mother of Machines
 Melira, the Living Cure
 Thrun, Breaker of Silence
 Soulless Jailer
-Mercurial Spelldancer
 Tablet of Compleation
-Meldweb Strider
 The Mycosynth Gardens
 Rhuk, Hexgold Nabber
 The Seedcore
@@ -20,25 +17,19 @@ Kinzu of the Bleak Coven
 Red Sun's Twilight
 Urabrask's Forge
 Green Sun's Twilight
-Ichormoon Gauntlet
 Conduit of Worlds
 Mirran Safehouse
-Jace, the Perfected Mind
 Monument to Perfection
 Argentum Masticore
 The Filigree Sylex
 Carnivorous Canopy
 Contagious Vorrac
 Evolved Spinoderm
-Bring the Ending
 Expand the Sphere
 Evolving Adaptive
-Experimental Augury
-Black Sun's Twilight
 Glissa Sunslayer
 Kethek, Crucible Goliath
 Atraxa, Grand Unifier
-Ezuri, Stalker of Spheres
 Ovika, Enigma Goliath
 Ria Ivor, Bane of Bladehold
 Malcator, Purity Overseer
@@ -47,17 +38,12 @@ Venser, Corpse Puppet
 Slobad, Iron Goblin
 Solphim, Mayhem Dominus
 Capricious Hellraiser
-Skrelv, Defector Mite
-Drivnod, Carnage Dominus
-Tekuthal, Inquiry Dominus
 Kaito, Dancing Shadow
 Kaya, Intangible Slayer
 Nahiri, the Unforgiving
 Nissa, Ascended Animist
 Tyvar, Jubilant Brawler
 Lukka, Bound to Ruin
-Vraska, Betrayal's Sting
-The Eternal Wanderer
 Maze's Mantle
 Lattice-Blade Mantis
 Plague Nurse
@@ -67,18 +53,10 @@ Molten Rebuke
 Rebel Salvo
 Churning Reservoir
 Bladehold War-Whip
-Forgehammer Centurion
 Slaughter Singer
-Awaken the Sleeper
-All Will Be One
-Against All Odds
-Bladegraft Aspirant
-Cacophony Scamp
-Scheming Aspirant
 Ichorplate Golem
 Serum-Core Chimera
 Tainted Observer
-Necrosquito
 Voidwing Hybrid
 Vivisection Evangelist
 Atraxa's Skitterfang

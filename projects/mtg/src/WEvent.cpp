@@ -317,6 +317,11 @@ WEventplayerMonarch::WEventplayerMonarch(Player * player) :
 {
 }
 
+WEventplayerProliferated::WEventplayerProliferated(Player * player) :
+    player(player)
+{
+}
+
 WEventplayerInitiative::WEventplayerInitiative(Player * player) :
     player(player)
 {
@@ -695,6 +700,12 @@ Targetable * WEventplayerExperienced::getTarget(Player * player)
 }
 
 Targetable * WEventplayerMonarch::getTarget(Player * player)
+{
+    if (player) return player;
+    return NULL;
+}
+
+Targetable * WEventplayerProliferated::getTarget(Player * player)
 {
     if (player) return player;
     return NULL;

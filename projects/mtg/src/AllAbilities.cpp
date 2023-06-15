@@ -3052,7 +3052,7 @@ int AADuplicateCounters::resolve()
         }
         else
         {
-            MTGAbility * a = NEW MenuAbility(game, this->GetId(), target, source,false,pcounters);
+            MTGAbility * a = NEW MenuAbility(game, this->GetId(), target, source, true, pcounters);
             a->resolve();
         }
     }
@@ -3082,6 +3082,7 @@ ActivatedAbility(observer, id, source, cost, 0)
 {
     this->GetId();
     allcounters = false;
+    notrigger = false;
 }
  
 int AAProliferate::resolve()
@@ -3137,6 +3138,11 @@ int AAProliferate::resolve()
             MTGAbility * a = NEW MenuAbility(game, this->GetId(), target, source,false,pcounters);
             a->resolve();
         }
+    }
+    if(!notrigger){
+        WEventplayerProliferated * e = NEW WEventplayerProliferated(source->controller());
+        e->source = source;
+        game->receiveEvent(e);
     }
     return 1;
 

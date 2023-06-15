@@ -1,0 +1,58 @@
+[card]
+name=Elesh Norn, Mother of Machines
+abilities=vigilance
+text=Vigilance -- If a permanent entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time. -- Permanents entering the battlefield don't cause abilities of permanents your opponents control to trigger.
+mana={4}{W}
+type=Legendary Creature
+subtype=Phyrexian Praetor
+power=4
+toughness=7
+[/card]
+[card]
+name=Elesh Norn, Mother of Machines
+abilities=vigilance
+text=Vigilance -- If a permanent entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time. -- Permanents entering the battlefield don't cause abilities of permanents your opponents control to trigger.
+mana={4}{W}
+type=Legendary Creature
+subtype=Phyrexian Praetor
+power=4
+toughness=7
+[/card]
+[card]
+name=Drivnod, Carnage Dominus
+text=If a creature dying causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time. -- {B/P}{B/P}, Exile three creature cards from your graveyard: Put an indestructible counter on Drivnod, Carnage Dominus. ({B/P} can be paid with either {B} or 2 life.)
+mana={3}{B}{B}
+type=Legendary Creature
+subtype=Phyrexian Horror
+power=8
+toughness=3
+[/card]
+[card]
+name=Elesh Norn, Mother of Machines
+abilities=vigilance
+text=Vigilance -- If a permanent entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time. -- Permanents entering the battlefield don't cause abilities of permanents your opponents control to trigger.
+mana={4}{W}
+type=Legendary Creature
+subtype=Phyrexian Praetor
+power=4
+toughness=7
+[/card]
+[card]
+name=Elesh Norn, Mother of Machines
+abilities=vigilance
+text=Vigilance -- If a permanent entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time. -- Permanents entering the battlefield don't cause abilities of permanents your opponents control to trigger.
+mana={4}{W}
+type=Legendary Creature
+subtype=Phyrexian Praetor
+power=4
+toughness=7
+[/card]
+[card]
+name=Drivnod, Carnage Dominus
+text=If a creature dying causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time. -- {B/P}{B/P}, Exile three creature cards from your graveyard: Put an indestructible counter on Drivnod, Carnage Dominus. ({B/P} can be paid with either {B} or 2 life.)
+mana={3}{B}{B}
+type=Legendary Creature
+subtype=Phyrexian Horror
+power=8
+toughness=3
+[/card]

@@ -1509,6 +1509,24 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         return NEW TrplayerExperienced(observer, id, card, tc, once, false, true, plus, duplicate, half);
     }
 
+    //proliferated - controller of card
+    if (TargetChooser * tc = parseSimpleTC(s, "proliferateof", card)){
+        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify an exception in order to avoid proliferation loop (eg. Tekuthal, Inquiry Dominus)
+        if(exception)
+            return NEW TrplayerProliferated(observer, id, card, tc, once, true, false, exception->source);
+        else
+            return NEW TrplayerProliferated(observer, id, card, tc, once, true, false);
+    }
+
+    //proliferated - opponent of card controller
+    if (TargetChooser * tc = parseSimpleTC(s, "proliferatefoeof", card)){
+        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify an exception in order to avoid proliferation loop (eg. Tekuthal, Inquiry Dominus)
+        if(exception)
+            return NEW TrplayerProliferated(observer, id, card, tc, once, false, true, exception->source);
+        else
+            return NEW TrplayerProliferated(observer, id, card, tc, once, false, true);
+    }
+
     //becomes monarch - controller of card
     if (TargetChooser * tc = parseSimpleTC(s, "becomesmonarchof", card))
         return NEW TrplayerMonarch(observer, id, card, tc, once, true, false);
@@ -5353,9 +5371,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         MTGAbility * a = NEW AAProliferate(observer, id, card, target);
         a->oneShot = 1;
         a->canBeInterrupted = false;
+        bool noevent = (s.find("noproftrg") != string::npos)?true:false; // Added a way to don't trigger @proliferate effect.
         ((AAProliferate*)a)->allcounters = true;
+        ((AAProliferate*)a)->notrigger = noevent;
         return a;
     }
+
     //proliferate all counters
     found = s.find("propagate");
     if (found != string::npos)
@@ -5363,7 +5384,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         MTGAbility * a = NEW AAProliferate(observer, id, card, target);
         a->oneShot = 1;
         a->canBeInterrupted = false;
+        bool noevent = (s.find("noproftrg") != string::npos)?true:false; // Added a way to don't trigger @proliferated effect.
         ((AAProliferate*)a)->allcounters = true;
+        ((AAProliferate*)a)->notrigger = noevent;
         return a;
     }
 

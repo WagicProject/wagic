@@ -22,9 +22,6 @@ toughness=4
 [card]
 name=Elenda and Azor
 abilities=flying
-auto=Flying_WARD_(2)
-auto=_ATTACKING_may pay( {x}{w}{u}{b} draw x cards
-auto=@each endofturn:create(1/1 black vampire knight:creature 1/1 black vampire knight:number:of:lifelink equal to the number of cards you've drawn this turn)
 text=Flying, ward {2} -- Whenever Elenda and Azor attacks, you may pay {X}{W}{U}{B}. If you do, draw X cards. -- At the beginning of each end step, you may pay 4 life. If you do, create a number of 1/1 black Vampire Knight creature tokens with lifelink equal to the number of cards you've drawn this turn.
 mana={3}{W}{U}{B}
 type=Legendary Creature
@@ -199,9 +196,6 @@ type=Sorcery
 [card]
 name=Elenda and Azor
 abilities=flying
-auto=Flying_WARD_(2)
-auto=_ATTACKING_may pay( {x}{w}{u}{b} draw x cards
-auto=@each endofturn:create(1/1 black vampire knight:creature 1/1 black vampire knight:number:of:lifelink equal to the number of cards you've drawn this turn)
 text=Flying, ward {2} -- Whenever Elenda and Azor attacks, you may pay {X}{W}{U}{B}. If you do, draw X cards. -- At the beginning of each end step, you may pay 4 life. If you do, create a number of 1/1 black Vampire Knight creature tokens with lifelink equal to the number of cards you've drawn this turn.
 mana={3}{W}{U}{B}
 type=Legendary Creature

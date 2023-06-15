@@ -2671,6 +2671,15 @@ mana={2}
 type=Artifact
 [/card]
 [card]
+name=Drivnod, Carnage Dominus
+text=If a creature dying causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time. -- {B/P}{B/P}, Exile three creature cards from your graveyard: Put an indestructible counter on Drivnod, Carnage Dominus. ({B/P} can be paid with either {B} or 2 life.)
+mana={3}{B}{B}
+type=Legendary Creature
+subtype=Phyrexian Horror
+power=8
+toughness=3
+[/card]
+[card]
 name=Dromoka's Command
 text=Choose two -- Prevent all damage target instant or sorcery spell would deal this turn. -- Target player sacrifices an enchantment. -- Put a +1/+1 counter on target creature. -- Target creature you control fights target creature you don't control.
 mana={G}{W}
@@ -2798,15 +2807,22 @@ subtype=Aura
 [card]
 name=Elenda and Azor
 abilities=flying
-auto=Flying_WARD_(2)
-auto=_ATTACKING_may pay( {x}{w}{u}{b} draw x cards
-auto=@each endofturn:create(1/1 black vampire knight:creature 1/1 black vampire knight:number:of:lifelink equal to the number of cards you've drawn this turn)
 text=Flying, ward {2} -- Whenever Elenda and Azor attacks, you may pay {X}{W}{U}{B}. If you do, draw X cards. -- At the beginning of each end step, you may pay 4 life. If you do, create a number of 1/1 black Vampire Knight creature tokens with lifelink equal to the number of cards you've drawn this turn.
 mana={3}{W}{U}{B}
 type=Legendary Creature
 subtype=Vampire Knight Sphinx
 power=6
 toughness=6
+[/card]
+[card]
+name=Elesh Norn, Mother of Machines
+abilities=vigilance
+text=Vigilance -- If a permanent entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time. -- Permanents entering the battlefield don't cause abilities of permanents your opponents control to trigger.
+mana={4}{W}
+type=Legendary Creature
+subtype=Phyrexian Praetor
+power=4
+toughness=7
 [/card]
 [card]
 name=Elkin Lair

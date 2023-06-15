@@ -553,6 +553,8 @@ public:
             amount = amount / 2;
             e->player->poisonCount = e->player->poisonCount - amount;
         }
+        e->player->thatmuch = e->nb_count;
+        this->source->thatmuch = e->nb_count;
         return 1;
     }
 
@@ -596,6 +598,8 @@ public:
             amount = amount / 2;
             e->player->energyCount = e->player->energyCount - amount;
         }
+        e->player->thatmuch = e->nb_count;
+        this->source->thatmuch = e->nb_count;
         return 1;
     }
 
@@ -639,6 +643,8 @@ public:
             amount = amount / 2;
             e->player->experienceCount = e->player->experienceCount - amount;
         }
+        e->player->thatmuch = e->nb_count;
+        this->source->thatmuch = e->nb_count;
         return 1;
     }
 
@@ -674,6 +680,37 @@ public:
     TrplayerMonarch * clone() const
     {
         return NEW TrplayerMonarch(*this);
+    }
+};
+
+class TrplayerProliferated: public Trigger
+{
+public:
+    bool thiscontroller, thisopponent;
+    MTGCardInstance * proliferateException; //added exception to avid a proliferation loop (eg. Tekuthal, Inquiry Dominus)
+    TrplayerProliferated(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false, MTGCardInstance * proliferateException = NULL) :
+        Trigger(observer, id, source, once, tc), thiscontroller(thiscontroller), thisopponent(thisopponent), proliferateException(proliferateException)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventplayerProliferated * e = dynamic_cast<WEventplayerProliferated *> (event);
+        if (!e) return 0;
+        if (proliferateException && e->source && !strcmp(proliferateException->data->name.c_str(), e->source->data->name.c_str())) return 0; //If the source of proliferation it's the exception card it doesn't have effect (loop avoidance);        
+        if (!tc->canTarget(e->player)) return 0;
+        if(thiscontroller)
+            if(e->player != source->controller())
+                return 0;
+        if(thisopponent)
+            if(e->player == source->controller())
+                return 0;
+        return 1;
+    }
+
+    TrplayerProliferated * clone() const
+    {
+        return NEW TrplayerProliferated(*this);
     }
 };
 
@@ -1517,7 +1554,7 @@ public:
     int triggeredTurn;
     MTGCardInstance * counterException; //added exception to avid a counter loop (eg. Doubling Season)
     TrTotalCounter(GameObserver* observer, int id, MTGCardInstance * source, Counter * counter, TargetChooser * tc, int type = 0, bool once = false, bool duplicate = false, bool half = false, int plus = 0, bool limitOnceATurn = false, MTGCardInstance * counterException = NULL) :
-    Trigger(observer, id, source, once, tc), counter(counter), type(type), duplicate(duplicate), plus(plus), limitOnceATurn(limitOnceATurn), counterException(counterException)
+    Trigger(observer, id, source, once, tc), counter(counter), type(type), duplicate(duplicate), half(half), plus(plus), limitOnceATurn(limitOnceATurn), counterException(counterException)
     {
         triggeredTurn = -1;
     }
@@ -1543,6 +1580,7 @@ public:
                     e->targetCard->counters->removeCounter(e->name.c_str(),e->power,e->toughness,true,true,e->source);
             }
             e->source->thatmuch = e->totalamount + plus;
+            this->source->thatmuch = e->totalamount + plus;
         }
         else if (duplicate){
             if(type == 1) {
@@ -1553,6 +1591,7 @@ public:
                     e->targetCard->counters->removeCounter(e->name.c_str(),e->power,e->toughness,true,true,e->source);
             }
             e->source->thatmuch = e->totalamount * 2;
+            this->source->thatmuch = e->totalamount * 2;
         }
         else if (half){
             int amount = e->totalamount;
@@ -1567,6 +1606,10 @@ public:
                     e->targetCard->counters->addCounter(e->name.c_str(),e->power,e->toughness,true,true,e->source);
             }
             e->source->thatmuch = e->totalamount - amount;
+            this->source->thatmuch = e->totalamount - amount;
+        } else {
+            e->source->thatmuch = e->totalamount;
+            this->source->thatmuch = e->totalamount;
         }
         triggeredTurn = game->turn;
         return 1;
@@ -1784,6 +1827,7 @@ class AAProliferate: public ActivatedAbility
 {
 public:
     bool allcounters;
+    bool notrigger;
     AAProliferate(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, ManaCost * cost = NULL);
     int resolve();
     const string getMenuText();
