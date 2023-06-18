@@ -9,6 +9,12 @@ power=4
 toughness=7
 [/card]
 [card]
+name=Mirran Safehouse
+text=As long as Mirran Safehouse is on the battlefield, it has all activated abilities of all land cards in all graveyards.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Elesh Norn, Mother of Machines
 abilities=vigilance
 text=Vigilance -- If a permanent entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time. -- Permanents entering the battlefield don't cause abilities of permanents your opponents control to trigger.
@@ -46,6 +52,12 @@ type=Legendary Creature
 subtype=Phyrexian Praetor
 power=4
 toughness=7
+[/card]
+[card]
+name=Mirran Safehouse
+text=As long as Mirran Safehouse is on the battlefield, it has all activated abilities of all land cards in all graveyards.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Drivnod, Carnage Dominus

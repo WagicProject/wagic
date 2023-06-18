@@ -1,6 +1,6 @@
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 15-06-2023
+#We sorted this in alphabetical order - Luruz & Vitty85 18-06-2023
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -1610,6 +1610,19 @@ type=Legendary Planeswalker
 subtype=Yanggu
 [/card]
 [card]
+name=Kaito, Dancing Shadow
+auto=counter(0/0,3,loyalty)
+auto=@combatdamaged(player) from(creature|myBattlefield) turnlimited:may name(Return to hand) target(creature[attacking]|myBattlefield) moveto(ownerhand) && all(this) transforms((,newability[canloyaltytwice])) ueot
+auto={C(0/0,+1,Loyalty)}:name(+1: Creature cannot attack or block) target(creature|battlefield) transforms((,newability[cantpwattack],newability[canattack],newability[cantblock])) uynt
+auto={C(0/0,+1,Loyalty)}:name(+1: Don't target any creature) donothing
+auto={C(0/0,0,Loyalty)}:name(+0: Draw a card) draw:1 controller
+auto={C(0/0,-2,Loyalty)}:name(-2: Create drone) token(Drone)
+text=Whenever one or more creatures you control deal combat damage to a player, you may return one of them to its owner's hand. If you do, you may activate loyalty abilities of Kaito twice this turn rather than only once. -- [+1]: Up to one target creature can't attack or block until your next turn. -- [0]: Draw a card. -- [-2]: Create a 2/2 colorless Drone artifact creature token with deathtouch and "When this creature leaves the battlefield, each opponent loses 2 life and you gain 2 life."
+mana={2}{U}{B}
+type=Legendary Planeswalker
+subtype=Kaito
+[/card]
+[card]
 name=Karn Liberated
 auto=counter(0/0,6,loyalty)
 auto={C(0/0,4,Loyalty)}:name(+4: Exile a card from hand) target(player) ability$!moveto(exile) notatarget(*|myhand)!$ targetedplayer
@@ -1738,6 +1751,18 @@ auto={C(0/0,-1,Loyalty)}:name(-1: Each opponent loses life and you gain) life:-2
 auto={C(0/0,-2,Loyalty)}:name(-2: Each opponent discard and draw) ability$!name(discard a card) notatarget(*|myHand) reject!$ opponent && draw:1 controller
 text=0: Exile Kaya, Ghost Assassin or up to one target creature. Return that card to the battlefield under its owner's control at the beginning of your next upkeep. You lose 2 life. -- -1: Each opponent loses 2 life and you gain 2 life. -- -2: Each opponent discards a card and you draw a card.
 mana={2}{W}{B}
+type=Legendary Planeswalker
+subtype=Kaya
+[/card]
+[card]
+name=Kaya, Intangible Slayer
+auto=counter(0/0,6,loyalty)
+abilities=opponentshroud
+auto={C(0/0,+2,Loyalty)}:name(+2: Gain life) lifeleech:-3 opponent
+auto={C(0/0,0,Loyalty)}:name(+0: Draw 2 cards) draw:2 controller && ability$!may name(Scry 1) _SCRY_(1)!$ opponent
+auto={C(0/0,-3,Loyalty)}:name(-3: Exile enchantment or creature) target(*[creature;enchantment]|battlefield) moveto(exile) and!( if cantargetcard(*[-aura]|*) then clone and!( transforms((Spirit Creature,setpower=1,settoughness=1,newability[becomes(^^white) forever],newability[flying])) forever )! )! 
+text=Hexproof -- [+2]: Each opponent loses 3 life and you gain 3 life. -- [0]: You draw two cards. Then each opponent may scry 1. -- [-3]: Exile target creature or enchantment. If it wasn't an Aura, create a token that's a copy of it, except it's a 1/1 white Spirit creature with flying in addition to its other types.
+mana={3}{W}{W}{B}{B}
 type=Legendary Planeswalker
 subtype=Kaya
 [/card]
@@ -2004,6 +2029,38 @@ type=Legendary Planeswalker
 subtype=Windgrace
 [/card]
 [card]
+name=Lukka, Bound to Ruin
+auto=ifnot paid(alternative) then counter(0/0,5,loyalty)
+auto=if paid(alternative) then counter(0/0,3,loyalty)
+auto=aslongas(creature|mybattlefield,myrestrictedcastingzone) {C(0/0,+1,Loyalty)}:name(+1: Add mana) name(+1: Add mana) add{R}{G}
+auto={C(0/0,-1,Loyalty)}:name(-1: Create beast) token(Phyrexian Beast,Creature Phyrexian Beast,3/3,green,poisontoxic)
+auto=aslongas(creature[power=1]|mybattlefield) {C(0/0,-4,Loyalty)}:name(-4: Deal 1 damage) name(-4: Deal 1 damage) thisforeach(variable{1}) ability$!name(Deal 1 damage) damage:1 target(*[creature;planeswalker]|battlefield)!$ controller
+auto=aslongas(creature[power=2]|mybattlefield) {C(0/0,-4,Loyalty)}:name(-4: Deal 2 damage) name(-4: Deal 2 damage) thisforeach(variable{2}) ability$!name(Deal 1 damage) damage:1 target(*[creature;planeswalker]|battlefield)!$ controller
+auto=aslongas(creature[power=3]|mybattlefield) {C(0/0,-4,Loyalty)}:name(-4: Deal 3 damage) name(-4: Deal 3 damage) thisforeach(variable{3}) ability$!name(Deal 1 damage) damage:1 target(*[creature;planeswalker]|battlefield)!$ controller
+auto=aslongas(creature[power=4]|mybattlefield) {C(0/0,-4,Loyalty)}:name(-4: Deal 4 damage) name(-4: Deal 4 damage) thisforeach(variable{4}) ability$!name(Deal 1 damage) damage:1 target(*[creature;planeswalker]|battlefield)!$ controller
+auto=aslongas(creature[power=5]|mybattlefield) {C(0/0,-4,Loyalty)}:name(-4: Deal 5 damage) name(-4: Deal 5 damage) thisforeach(variable{5}) ability$!name(Deal 1 damage) damage:1 target(*[creature;planeswalker]|battlefield)!$ controller
+auto=aslongas(creature[power=6]|mybattlefield) {C(0/0,-4,Loyalty)}:name(-4: Deal 6 damage) name(-4: Deal 6 damage) thisforeach(variable{6}) ability$!name(Deal 1 damage) damage:1 target(*[creature;planeswalker]|battlefield)!$ controller
+auto=aslongas(creature[power=7]|mybattlefield) {C(0/0,-4,Loyalty)}:name(-4: Deal 7 damage) name(-4: Deal 7 damage) thisforeach(variable{7}) ability$!name(Deal 1 damage) damage:1 target(*[creature;planeswalker]|battlefield)!$ controller
+auto=aslongas(creature[power=8]|mybattlefield) {C(0/0,-4,Loyalty)}:name(-4: Deal 8 damage) name(-4: Deal 8 damage) thisforeach(variable{8}) ability$!name(Deal 1 damage) damage:1 target(*[creature;planeswalker]|battlefield)!$ controller
+auto=aslongas(creature[power=9]|mybattlefield) {C(0/0,-4,Loyalty)}:name(-4: Deal 9 damage) name(-4: Deal 9 damage) thisforeach(variable{9}) ability$!name(Deal 1 damage) damage:1 target(*[creature;planeswalker]|battlefield)!$ controller
+auto=aslongas(creature[power=10]|mybattlefield) {C(0/0,-4,Loyalty)}:name(-4: Deal 10 damage) name(-4: Deal 10 damage) thisforeach(variable{10}) ability$!name(Deal 1 damage) damage:1 target(*[creature;planeswalker]|battlefield)!$ controller
+auto=aslongas(creature[power=11]|mybattlefield) {C(0/0,-4,Loyalty)}:name(-4: Deal 11 damage) name(-4: Deal 11 damage) thisforeach(variable{11}) ability$!name(Deal 1 damage) damage:1 target(*[creature;planeswalker]|battlefield)!$ controller
+auto=aslongas(creature[power=12]|mybattlefield) {C(0/0,-4,Loyalty)}:name(-4: Deal 12 damage) name(-4: Deal 12 damage) thisforeach(variable{12}) ability$!name(Deal 1 damage) damage:1 target(*[creature;planeswalker]|battlefield)!$ controller
+auto=aslongas(creature[power=13]|mybattlefield) {C(0/0,-4,Loyalty)}:name(-4: Deal 13 damage) name(-4: Deal 13 damage) thisforeach(variable{13}) ability$!name(Deal 1 damage) damage:1 target(*[creature;planeswalker]|battlefield)!$ controller
+auto=aslongas(creature[power=14]|mybattlefield) {C(0/0,-4,Loyalty)}:name(-4: Deal 14 damage) name(-4: Deal 14 damage) thisforeach(variable{14}) ability$!name(Deal 1 damage) damage:1 target(*[creature;planeswalker]|battlefield)!$ controller
+auto=aslongas(creature[power=15]|mybattlefield) {C(0/0,-4,Loyalty)}:name(-4: Deal 15 damage) name(-4: Deal 15 damage) thisforeach(variable{15}) ability$!name(Deal 1 damage) damage:1 target(*[creature;planeswalker]|battlefield)!$ controller
+auto=aslongas(creature[power=16]|mybattlefield) {C(0/0,-4,Loyalty)}:name(-4: Deal 16 damage) name(-4: Deal 16 damage) thisforeach(variable{16}) ability$!name(Deal 1 damage) damage:1 target(*[creature;planeswalker]|battlefield)!$ controller
+auto=aslongas(creature[power=17]|mybattlefield) {C(0/0,-4,Loyalty)}:name(-4: Deal 17 damage) name(-4: Deal 17 damage) thisforeach(variable{17}) ability$!name(Deal 1 damage) damage:1 target(*[creature;planeswalker]|battlefield)!$ controller
+auto=aslongas(creature[power=18]|mybattlefield) {C(0/0,-4,Loyalty)}:name(-4: Deal 18 damage) name(-4: Deal 18 damage) thisforeach(variable{18}) ability$!name(Deal 1 damage) damage:1 target(*[creature;planeswalker]|battlefield)!$ controller
+auto=aslongas(creature[power=19]|mybattlefield) {C(0/0,-4,Loyalty)}:name(-4: Deal 19 damage) name(-4: Deal 19 damage) thisforeach(variable{19}) ability$!name(Deal 1 damage) damage:1 target(*[creature;planeswalker]|battlefield)!$ controller
+auto=aslongas(creature[power>=20]|mybattlefield) {C(0/0,-4,Loyalty)}:name(-4: Deal 20 damage) name(-4: Deal 20 damage) thisforeach(variable{20}) ability$!name(Deal 1 damage) damage:1 target(*[creature;planeswalker]|battlefield)!$ controller
+text=Compleated ({R/G/P} can be paid with {R}, {G}, or 2 life. If life was paid, this planeswalker enters with two fewer loyalty counters.) -- [+1]: Add {R}{G}. Spend this mana only to cast creature spells or activate abilities of creatures. -- [-1]: Create a 3/3 green Phyrexian Beast creature token with toxic 1. -- [-4]: Lukka deals X damage divided as you choose among any number of target creatures and/or planeswalkers, where X is the greatest power among creatures you controlled as you activated this ability.
+mana={2}{R}{RG}{G}
+other={1}{R}{G}{L:2} name(Pay 2 life)
+type=Legendary Planeswalker
+subtype=Lukka
+[/card]
+[card]
 name=Lukka, Coppercoat Outcast
 auto=counter(0/0,5,Loyalty)
 aicode=activate transforms((,newability[target(creature[manacost>=storedmanacostplus1plusend]|mylibrary) moveto(myBattlefield) and!( all(*[zpos<=findfirsttypecreature]|mylibrary) moveto(myreveal) and!( bottomoflibrary )! )!])) oneshot
@@ -2145,6 +2202,61 @@ type=Legendary Planeswalker
 subtype=Nahiri
 [/card]
 [card]
+name=Nahiri, the Unforgiving
+auto=ifnot paid(alternative) then counter(0/0,5,loyalty)
+auto=if paid(alternative) then counter(0/0,3,loyalty)
+auto={C(0/0,+1,Loyalty)}:name(+1: Creature must attack) target(creature|battlefield) transforms((,newability[mustattack])) uynt
+auto={C(0/0,+1,Loyalty)}:name(+1: Don't target any creature) donothing
+auto={C(0/0,+1,Loyalty)}:name(+1: Discard and draw) _DISCARD&DRAW_
+auto=this(variable{hascntloyalty}=1) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost=0]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=1) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost=0]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=2) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost<=1]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=2) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost<=1]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=3) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost<=2]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=3) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost<=2]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=4) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost<=3]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=4) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost<=3]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=5) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost<=4]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=5) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost<=4]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=6) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost<=5]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=6) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost<=5]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=7) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost<=6]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=7) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost<=6]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=8) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost<=7]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=8) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost<=7]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=9) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost<=8]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=9) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost<=8]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=10) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost<=9]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=10) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost<=9]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=11) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost=10]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=11) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost=10]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=12) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost<=11]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=12) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost<=11]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=13) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost<=12]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=13) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost<=12]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=14) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost<=13]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=14) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost<=13]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=15) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost<=14]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=15) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost<=14]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=16) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost<=15]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=16) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost<=15]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=17) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost<=16]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=17) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost<=16]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=18) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost<=17]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=18) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost<=17]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=19) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost<=18]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=19) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost<=18]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=20) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost<=19]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=20) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost<=19]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}>20) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost<=20]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}>20) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost<=20]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+text=Compleated ({R/W/P} can be paid with {R}, {W}, or 2 life. If life was paid, this planeswalker enters with two fewer loyalty counters.) -- [+1]: Until your next turn, up to one target creature attacks a player each combat if able. -- [+1]: Discard a card, then draw a card. -- [0]: Exile target creature or Equipment card with mana value less than Nahiri's loyalty from your graveyard. Create a token that's a copy of it. That token gains haste. Exile it at the beginning of the next end step.
+mana={1}{R}{RW}{W}
+other={1}{R}{W}{L:2} name(Pay 2 life)
+type=Legendary Planeswalker
+subtype=Nahiri
+[/card]
+[card]
 name=Narset of the Ancient Way
 auto=counter(0/0,4,Loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Gain 2 life and produce mana) life:2 controller && if type(*[-creature]|myhand)~morethan~0 then ability$!choice add{U} _ choice add{R} _ choice add{W}!$ controller
@@ -2253,6 +2365,21 @@ text=When Niko Aris enters the battlefield, create X Shard tokens. (They're ench
 mana={X}{W}{U}{U}
 type=Legendary Planeswalker
 subtype=Niko
+[/card]
+[card]
+name=Nissa, Ascended Animist
+auto=ifnot paid(kicker) then ifnot paid(alternative) then counter(0/0,7,loyalty)
+auto=if paid(alternative) then counter(0/0,5,loyalty)
+auto=if paid(kicker) then counter(0/0,3,loyalty)
+auto={C(0/0,+1,Loyalty)}:name(+1: Create horror) token(Phyrexian Horror,Creature Phyrexian Horror,hascntloyalty/hascntloyalty,green)
+auto={C(0/0,-1,Loyalty)}:name(-1: Destroy artifact or enchantment) destroy target(*[artifact;enchantment]|battlefield)
+auto={C(0/0,-7,Loyalty)}:name(-7: Creature gain X/X and trample) emblem transforms((,newability[lord(creature|myBattlefield) trample],newability[foreach(forest|myBattlefield) lord(creature|myBattlefield) 1/1])) ueot
+text=Compleated ({G/P} can be paid with {G} or 2 life. For each {G/P} paid with life, this planeswalker enters with two fewer loyalty counters.) -- [+1]: Create an X/X green Phyrexian Horror creature token, where X is Nissa, Ascended Animist's loyalty. -- [-1]: Destroy target artifact or enchantment. -- [-7]: Until end of turn, creatures you control get +1/+1 for each Forest you control and gain trample.
+mana={3}{G}{G}{G}{G}
+other={3}{G}{G}{G}{L:2} name(Pay 2 life)
+autohand={3}{G}{G}{L:4}:name(Pay 4 life) activate castcard(kicked!:1:!)
+type=Legendary Planeswalker
+subtype=Nissa
 [/card]
 [card]
 name=Nissa, Genesis Mage
@@ -3233,6 +3360,18 @@ text=+1: Add {R}{R}. Draft a card from Tibalt, Wicked Tormenter's spellbook, the
 mana={3}{R}{R}
 type=Legendary Planeswalker
 subtype=Tibalt
+[/card]
+[card]
+name=Tyvar, Jubilant Brawler
+auto=counter(0/0,3,loyalty)
+auto=lord(creature|myBattlefield) haste
+auto={C(0/0,+1,Loyalty)}:name(+1: Untap creature) untap target(creature|battlefield)
+auto={C(0/0,+1,Loyalty)}:name(+1: Don't untap creature) donothing
+auto={C(0/0,-2,Loyalty)}:name(-2: Mill 3 cards and return creature) deplete:3 controller && ability$!may name(Return creature) target(creature[manacost<=2]|mygraveyard) moveto(myBattlefield)!$ controller
+text=You may activate abilities of creatures you control as though those creatures had haste. -- [+1]: Untap up to one target creature. -- [-2]: Mill three cards, then you may return a creature card with mana value 2 or less from your graveyard to the battlefield.
+mana={1}{B}{G}
+type=Legendary Planeswalker
+subtype=Tyvar
 [/card]
 [card]
 name=Tyvar Kell
