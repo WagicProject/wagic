@@ -7,6 +7,7 @@
 #include "Translate.h"
 #include "WResourceManager.h"
 #include "GameObserver.h"
+#include "WParsedInt.h"
 
 Damage::Damage(GameObserver* observer, MTGCardInstance * source, Damageable * target)
     : Interruptible(observer)
@@ -213,10 +214,9 @@ int Damage::resolve()
             }
         }
     }
-    else if (target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER && (source->has(Constants::POISONTOXIC) ||
-                    source->has(Constants::POISONTWOTOXIC) || source->has(Constants::POISONTHREETOXIC)))
+    else if ((target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER) && (source->getToxicity() > 0))
     {
-        //Damage + 1, 2, or 3 poison counters on player
+        //Damage + poison counters on player
         Player * _target = (Player *) target;
         if(!_target->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
             a = target->dealDamage(damage);
@@ -234,20 +234,7 @@ int Damage::resolve()
         }
         if(!_target->inPlay()->hasAbility(Constants::POISONSHROUD))
         {
-            int poison = 0;
-            if (source->has(Constants::POISONTOXIC))
-            {
-                poison = 1;
-            }
-            else if (source->has(Constants::POISONTWOTOXIC))
-            {
-                poison = 2;
-            }
-            else
-            {
-                poison = 3;
-            }
-            _target->poisonCount += poison;
+            _target->poisonCount += source->getToxicity();
              WEvent * e = NEW WEventplayerPoisoned(_target, damage); // Added an event when player receives any poison counter.
             _target->getObserver()->receiveEvent(e);
         }

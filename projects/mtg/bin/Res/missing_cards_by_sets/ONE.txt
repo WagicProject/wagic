@@ -9,6 +9,15 @@ power=4
 toughness=7
 [/card]
 [card]
+name=Melira, the Living Cure
+text=If you would get one or more poison counters, instead you get one poison counter and you can't get additional poison counters this turn. -- Exile Melira, the Living Cure: Choose another target creature or artifact. When it's put into a graveyard this turn, return that card to the battlefield under its owner's control.
+mana={G}{W}
+type=Legendary Creature
+subtype=Human Scout
+power=3
+toughness=3
+[/card]
+[card]
 name=Mirran Safehouse
 text=As long as Mirran Safehouse is on the battlefield, it has all activated abilities of all land cards in all graveyards.
 mana={3}
@@ -58,6 +67,15 @@ name=Mirran Safehouse
 text=As long as Mirran Safehouse is on the battlefield, it has all activated abilities of all land cards in all graveyards.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Melira, the Living Cure
+text=If you would get one or more poison counters, instead you get one poison counter and you can't get additional poison counters this turn. -- Exile Melira, the Living Cure: Choose another target creature or artifact. When it's put into a graveyard this turn, return that card to the battlefield under its owner's control.
+mana={G}{W}
+type=Legendary Creature
+subtype=Human Scout
+power=3
+toughness=3
 [/card]
 [card]
 name=Drivnod, Carnage Dominus

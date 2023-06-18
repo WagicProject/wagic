@@ -80,9 +80,9 @@ const char* Constants::MTGBasicAbilities[] = {
     "cantregen",
     "oneblocker",
     "infect",
-    "poisontoxic",
-    "poisontwotoxic",
-    "poisonthreetoxic",
+    "poisontoxic", // Card has toxic 1
+    "poisontwotoxic", // Card has toxic 2
+    "poisonthreetoxic", // Card has toxic 3
     "phantom",//prevents damage and remove 1 +1/+1 counter
     "wilting",//source takes damage in the form of -1/-1 counters.
     "vigor",//instead of taking damage the source gains +1/+1 counters
@@ -260,7 +260,14 @@ const char* Constants::MTGBasicAbilities[] = {
     "affinitygravecreatures", //Cost 1 less for each creature in your graveyard.
     "affinityattackingcreatures", //Cost 1 less for each attacking creature in your battlefield.
     "affinitygraveinstsorc", //Cost 1 less for each instant or sorcery in your graveyard.
-    "canloyaltytwice" //Planeswalker can activate its loyalty abilities twice in a turn (e.g. "Urza, Planeswalker").
+    "canloyaltytwice", //Planeswalker can activate its loyalty abilities twice in a turn (e.g. "Urza, Planeswalker").
+    "poisonfourtoxic", // Card has toxic 4
+    "poisonfivetoxic", // Card has toxic 5
+    "poisonsixtoxic", // Card has toxic 6
+    "poisonseventoxic", // Card has toxic 7
+    "poisoneighttoxic", // Card has toxic 8
+    "poisonninetoxic", // Card has toxic 9
+    "poisontentoxic" // Card has toxic 10
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

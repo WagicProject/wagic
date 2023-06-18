@@ -1619,6 +1619,29 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
                 intValue = card->getManaCost()->getManaUsedToCast()->getConvertedCost();
         }
     }
+    else if(s.find("toxicity") != string::npos){ //Return the toxicity of card.
+        intValue = card->getToxicity();
+    }
+    else if (s.find("ninelands") != string::npos) //Count the number of lands with different names among the Basic, Sphere, and Locus lands you control.
+    {
+        intValue = 0;
+        vector<string> list;
+        for (int j = card->controller()->game->inPlay->nb_cards - 1; j >= 0; --j)
+        {
+            if (card->controller()->game->inPlay->cards[j]->isLand() && 
+                (card->controller()->game->inPlay->cards[j]->hasType("basic") || card->controller()->game->inPlay->cards[j]->hasType("sphere") || card->controller()->game->inPlay->cards[j]->hasType("locus"))){
+                bool name_found = false;
+                for(unsigned int i = 0; i < list.size() && !name_found; i++){
+                    if(list[i] == card->controller()->game->inPlay->cards[j]->name)
+                        name_found = true;
+                }
+                if(!name_found){
+                    list.push_back(card->controller()->game->inPlay->cards[j]->name);
+                    intValue += 1;
+                }
+            }
+        }
+    }
     else if(!intValue)//found nothing, try parsing a atoi
     {
         intValue = atoi(s.c_str());

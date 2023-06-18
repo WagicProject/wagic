@@ -822,7 +822,7 @@ void MTGAllCards::prefetchCardNameCache()
 }
 #endif
 
-MTGCard * MTGAllCards::getCardByName(string nameDescriptor)
+MTGCard * MTGAllCards::getCardByName(string nameDescriptor, int forcedSetId)
 {
     boost::mutex::scoped_lock lock(instance->mMutex);
     if (!nameDescriptor.size()) return NULL;
@@ -832,7 +832,7 @@ MTGCard * MTGAllCards::getCardByName(string nameDescriptor)
 
     map<string, MTGCard * >::iterator cached = mtgCardByNameCache.find(nameDescriptor);
     
-    if (cached!= mtgCardByNameCache.end())
+    if ((forcedSetId < 0) && (cached!= mtgCardByNameCache.end()))
     {
         return cached->second;
     }
@@ -843,6 +843,21 @@ MTGCard * MTGAllCards::getCardByName(string nameDescriptor)
         MTGCard * result = getCardById(cardnb);
         mtgCardByNameCache[nameDescriptor] = result;
         return result;
+    }
+
+    map<int, MTGCard *>::iterator it;
+    if(forcedSetId != -1){
+        for (it = collection.begin(); it != collection.end(); it++)
+        {
+            MTGCard * c = it->second;
+            if (forcedSetId != c->setId) continue;
+            string cardName = c->data->name;
+            std::transform(cardName.begin(), cardName.end(), cardName.begin(), ::tolower);
+            if (cardName.compare(nameDescriptor) == 0) {
+                mtgCardByNameCache[nameDescriptor] = c;
+                return c;
+            }
+        }
     }
 
     int setId = -1;
@@ -859,9 +874,8 @@ MTGCard * MTGAllCards::getCardByName(string nameDescriptor)
 
         //Reconstruct a clean string "name (set)" for cache consistency
         nameDescriptor = name + " (" + setName + ")";
-        
     }
-    map<int, MTGCard *>::iterator it;
+
     for (it = collection.begin(); it != collection.end(); it++)
     {
         MTGCard * c = it->second;
@@ -872,8 +886,8 @@ MTGCard * MTGAllCards::getCardByName(string nameDescriptor)
             mtgCardByNameCache[nameDescriptor] = c;
             return c;
         }
-
     }
+
     mtgCardByNameCache[nameDescriptor] = NULL;
     return NULL;
 }

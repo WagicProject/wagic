@@ -225,7 +225,7 @@ class Constants
       NOMANA = 97,
       ONLYMANA = 98,
       POISONDAMAGER = 99,
-      soulbond = 100,
+      SOULBOND = 100,
       LURE = 101,
       NOLEGEND = 102,
       CANPLAYFROMGRAVEYARD = 103,
@@ -355,7 +355,14 @@ class Constants
       AFFINITYATTACKINGCREATURES = 227,
       AFFINITYGRAVEINSTSORC = 228,
       CANLOYALTYTWICE = 229,
-      NB_BASIC_ABILITIES = 230,
+      POISONFOURTOXIC = 230,
+      POISONFIVETOXIC = 231,
+      POISONSIXTOXIC = 232,
+      POISONSEVENTOXIC = 233,
+      POISONEIGHTTOXIC = 234,
+      POISONNINETOXIC = 235,
+      POISONTENTOXIC = 236,
+      NB_BASIC_ABILITIES = 237,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

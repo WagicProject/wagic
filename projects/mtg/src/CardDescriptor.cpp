@@ -32,8 +32,9 @@ CardDescriptor::CardDescriptor()
     hasBackSide = 0;
     hasPartner = 0;
     modified = 0;
+    toxicity = 0;
     hasXCost = 0;
-    compareName ="";
+    compareName = "";
     nameComparisonMode = COMPARISON_NONE;
     colorComparisonMode = COMPARISON_NONE;
     CDopponentDamaged = 0;
@@ -93,6 +94,11 @@ void CardDescriptor::unsecureSetHasBackSide(int k)
 void CardDescriptor::unsecureSetModified(int k)
 {
     modified = k;
+}
+
+void CardDescriptor::unsecureSetHasToxic(int k)
+{
+    toxicity = k;
 }
 
 void CardDescriptor::unsecureSetHasPartner(int k)
@@ -363,6 +369,11 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     }
 
     if ((hasBackSide == -1 && card->backSide != "") || (hasBackSide == 1 && card->backSide == ""))
+    {
+        match = NULL;
+    }
+
+    if ((toxicity == -1 && card->getToxicity() > 0) || (toxicity == 1 && card->getToxicity() == 0))
     {
         match = NULL;
     }

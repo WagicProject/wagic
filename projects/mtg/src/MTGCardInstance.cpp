@@ -583,6 +583,33 @@ int MTGCardInstance::has(int basicAbility)
     return basicAbilities[basicAbility];
 }
 
+//Return the toxicity of card
+int MTGCardInstance::getToxicity()
+{
+    int toxicity = 0;
+    if(has(Constants::POISONTOXIC))
+        toxicity = 1;
+    else if(has(Constants::POISONTWOTOXIC))
+        toxicity = 2;
+    else if(has(Constants::POISONTHREETOXIC))
+        toxicity = 3;
+    else if(has(Constants::POISONFOURTOXIC))
+        toxicity = 4;
+    else if(has(Constants::POISONFIVETOXIC))
+        toxicity = 5;
+    else if(has(Constants::POISONSIXTOXIC))
+        toxicity = 6;
+    else if(has(Constants::POISONSEVENTOXIC))
+        toxicity = 7;
+    else if(has(Constants::POISONEIGHTTOXIC))
+        toxicity = 8;
+    else if(has(Constants::POISONNINETOXIC))
+        toxicity = 9;
+    else if(has(Constants::POISONTENTOXIC))
+        toxicity = 10;
+    return toxicity;
+}
+
 ManaCost* MTGCardInstance::getReducedManaCost()
 {
     return &reducedCost;

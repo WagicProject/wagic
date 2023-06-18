@@ -133,8 +133,8 @@
 # Explore, not implemented
 #AUTO_DEFINE _EXPLORE_ reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) optiontwoend revealend limit:1
 
-# Treasure token, Set XLN
-#AUTO_DEFINE _TREASURE_ token(Treasure Sur)
+# Treasure token
+#AUTO_DEFINE _TREASURE_ token(Treasure)
 
 # Cast a historic spell
 #AUTO_DEFINE _CASTHISTORIC_ @movedTo(*[artifact;legendary;saga]|mystack):

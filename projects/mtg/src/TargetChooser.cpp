@@ -663,6 +663,18 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->unsecureSetModified(1);
                     }
                 }
+                //Has toxic
+                else if (attribute.find("hastoxic") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->unsecureSetHasToxic(-1);
+                    }
+                    else
+                    {
+                        cd->unsecureSetHasToxic(1);
+                    }
+                }
                 //Has partner
                 else if (attribute.find("haspartner") != string::npos)
                 {
@@ -2237,7 +2249,7 @@ bool pairableChooser::canTarget(Targetable * target,bool)
             return false;
         if(card->controller() != source->controller())
             return false;
-        if(!card->has(Constants::soulbond) && !source->has(Constants::soulbond))
+        if(!card->has(Constants::SOULBOND) && !source->has(Constants::SOULBOND))
             return false;
         return true;
     }

@@ -3063,7 +3063,7 @@ int MTGSoulbondRule::receiveEvent(WEvent * event)
         MTGCardInstance * card = e->card;
         if (!card || !card->isCreature()) return 0;
         int ok = 0;
-        if(card->has(Constants::soulbond) || soulbonders.size())
+        if(card->has(Constants::SOULBOND) || soulbonders.size())
         {
             for (int i = 0; i < 2; i++)
             {
@@ -3071,7 +3071,7 @@ int MTGSoulbondRule::receiveEvent(WEvent * event)
                 if (e->to == p->game->inPlay)
                 {
                     ok = 1;
-                    if(card->basicAbilities[(int)Constants::soulbond])
+                    if(card->basicAbilities[(int)Constants::SOULBOND])
                         soulbonders.push_back(e->card);
                 }
             }

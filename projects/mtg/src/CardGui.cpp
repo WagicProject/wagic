@@ -1568,6 +1568,18 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                         cd.unsecureSetModified(1);
                     }
                 }
+                //Has toxic
+                else if (attribute.find("hastoxic") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.unsecureSetHasToxic(-1);
+                    }
+                    else
+                    {
+                        cd.unsecureSetHasToxic(1);
+                    }
+                }
                 //Has partner
                 else if (attribute.find("haspartner") != string::npos)
                 {

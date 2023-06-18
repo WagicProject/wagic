@@ -1747,7 +1747,7 @@ class ANewAffinity: public MTGAbility
 public:
     string tcString;
     string manaString;
-    ANewAffinity(GameObserver* observer, int _id, MTGCardInstance * _source,string Tc = "", string mana ="");
+    ANewAffinity(GameObserver* observer, int _id, MTGCardInstance * _source, string Tc = "", string mana ="");
     void Update(float dt);
     int testDestroy();
     ANewAffinity * clone() const;
@@ -3646,9 +3646,11 @@ public:
         ActivatedAbility(observer, _id, _source, _cost, 0), _cardName(cardName), starfound(starfound), multiplier(multiplier), who(who), aLivingWeapon(aLivingWeapon)
     {
         if (!multiplier) this->multiplier = NEW WParsedInt(1);
-        MTGCard * card = MTGCollection()->getCardByName(_cardName);
-        tokenId = card->getId();
-        if (card) name = card->data->getName();
+        MTGCard * card = MTGCollection()->getCardByName(_cardName, _source->setId); // Try to retrieve token id from the same set of source card (e.g. Urza's Saga).
+        if (card) {
+            tokenId = card->getId();
+            name = card->data->getName();
+        }
         battleReady = false;
         andAbility = NULL;
         cID = "";
@@ -3742,7 +3744,6 @@ public:
         }
         for (int i = 0; i < Tokenizer(); ++i)
         {
-            //MTGCardInstance * myToken;
             if (tokenId)
             {
                 MTGCard * card = MTGCollection()->getCardById(tokenId);

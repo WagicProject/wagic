@@ -210,6 +210,7 @@ public:
     int stepPower(CombatStep step);
     int afterDamage();
     int has(int ability);
+    int getToxicity();
     int cleanup();
 
     MTGCard * model;

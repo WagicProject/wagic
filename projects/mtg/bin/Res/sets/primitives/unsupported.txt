@@ -2,7 +2,7 @@ grade=unsupported
 #The cards in this file are not implemented/incomplete yet.
 #Updated Card lists not in primitives (Borderline, Crappy, Unsupported and Missing Cards)
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#I sorted this programatically - Vitty85 13-06-2023
+#I sorted this programatically - Vitty85 18-06-2023
 [card]
 name="Ach! Hans, Run!"
 text=At the beginning of your upkeep, you may say "Ach Hans, run It's the . . ." and name a creature card. If you do, search your library for the named card, put it into play, then shuffle your library. That creature has haste. Remove it from the game at end of turn.
@@ -6401,6 +6401,15 @@ name=Melee
 text=Cast Melee only during your turn and only during combat before blockers are declared. -- You choose which creatures block this combat and how those creatures block. -- Whenever a creature attacks and isn't blocked this combat, untap it and remove it from combat.
 mana={4}{R}
 type=Instant
+[/card]
+[card]
+name=Melira, the Living Cure
+text=If you would get one or more poison counters, instead you get one poison counter and you can't get additional poison counters this turn. -- Exile Melira, the Living Cure: Choose another target creature or artifact. When it's put into a graveyard this turn, return that card to the battlefield under its owner's control.
+mana={G}{W}
+type=Legendary Creature
+subtype=Human Scout
+power=3
+toughness=3
 [/card]
 [card]
 name=Memory Crystal
