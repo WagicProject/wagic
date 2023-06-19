@@ -2,7 +2,7 @@ grade=unsupported
 #The cards in this file are not implemented/incomplete yet.
 #Updated Card lists not in primitives (Borderline, Crappy, Unsupported and Missing Cards)
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#I sorted this programatically - Vitty85 18-06-2023
+#I sorted this programatically - Vitty85 19-06-2023
 [card]
 name="Ach! Hans, Run!"
 text=At the beginning of your upkeep, you may say "Ach Hans, run It's the . . ." and name a creature card. If you do, search your library for the named card, put it into play, then shuffle your library. That creature has haste. Remove it from the game at end of turn.
@@ -5128,6 +5128,15 @@ type=Legendary Creature
 subtype=Sphinx
 power=3
 toughness=6
+[/card]
+[card]
+name=Isshin, Two Heavens as One
+text=If a creature attacking causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.
+mana={R}{W}{B}
+type=Legendary Creature
+subtype=Human Samurai
+power=3
+toughness=4
 [/card]
 [card]
 name=It That Gets Left Hanging

@@ -1,0 +1,27 @@
+[card]
+name=Isshin, Two Heavens as One
+text=If a creature attacking causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.
+mana={R}{W}{B}
+type=Legendary Creature
+subtype=Human Samurai
+power=3
+toughness=4
+[/card]
+[card]
+name=Isshin, Two Heavens as One
+text=If a creature attacking causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.
+mana={R}{W}{B}
+type=Legendary Creature
+subtype=Human Samurai
+power=3
+toughness=4
+[/card]
+[card]
+name=Isshin, Two Heavens as One
+text=If a creature attacking causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.
+mana={R}{W}{B}
+type=Legendary Creature
+subtype=Human Samurai
+power=3
+toughness=4
+[/card]
