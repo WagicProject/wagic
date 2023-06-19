@@ -2,8 +2,18 @@
 author=Wagic Team
 name=Kamigawa: Neon Dynasty
 year=2022-02-18
-total=600
+total=615
 [/meta]
+[card]
+primitive=Goblin Shaman
+id=-551741
+rarity=T
+[/card]
+[card]
+primitive=Goblin Shaman
+id=-548443
+rarity=T
+[/card]
 [card]
 primitive=Samurai
 id=-548293
@@ -22,6 +32,11 @@ rarity=T
 [card]
 primitive=Samurai
 id=-548310
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-548328
 rarity=T
 [/card]
 [card]
@@ -45,8 +60,18 @@ id=-548424
 rarity=T
 [/card]
 [card]
-primitive=Rogue
+primitive=Rat Rogue
 id=-548425
+rarity=T
+[/card]
+[card]
+primitive=Rat Rogue
+id=-548426
+rarity=T
+[/card]
+[card]
+primitive=Treasure
+id=-548428
 rarity=T
 [/card]
 [card]
@@ -55,13 +80,13 @@ id=-548432
 rarity=T
 [/card]
 [card]
-primitive=Samurai
-id=-548440
+primitive=Treasure
+id=-548436
 rarity=T
 [/card]
 [card]
-primitive=Treasure
-id=-548443
+primitive=Samurai
+id=-548440
 rarity=T
 [/card]
 [card]
@@ -70,7 +95,7 @@ id=-548446
 rarity=T
 [/card]
 [card]
-primitive=Spirit
+primitive=Dragon Spirit
 id=-548448
 rarity=T
 [/card]
@@ -80,7 +105,7 @@ id=-548469
 rarity=T
 [/card]
 [card]
-primitive=Monk
+primitive=Human Monk
 id=-548485
 rarity=T
 [/card]
@@ -90,8 +115,13 @@ id=-548501
 rarity=T
 [/card]
 [card]
-primitive=Monk
+primitive=Human Monk
 id=-548502
+rarity=T
+[/card]
+[card]
+primitive=Human Monk
+id=-548503
 rarity=T
 [/card]
 [card]
@@ -135,7 +165,12 @@ id=-548544
 rarity=T
 [/card]
 [card]
-primitive=Construct
+primitive=Tamiyo's Notebook
+id=-548551
+rarity=T
+[/card]
+[card]
+primitive=Mechtitan
 id=-548562
 rarity=T
 [/card]
@@ -165,12 +200,17 @@ id=-551648
 rarity=T
 [/card]
 [card]
+primitive=Tamiyo's Notebook
+id=-551649
+rarity=T
+[/card]
+[card]
 primitive=Samurai
 id=-553225
 rarity=T
 [/card]
 [card]
-primitive=Spirit
+primitive=Dragon Spirit
 id=-553229
 rarity=T
 [/card]
@@ -191,22 +231,37 @@ rarity=T
 [/card]
 [card]
 primitive=Spirit
+id=-553020
+rarity=T
+[/card]
+[card]
+primitive=Spirit
 id=-553021
 rarity=T
 [/card]
 [card]
-primitive=Rogue
+primitive=Rat Rogue
 id=-553024
 rarity=T
 [/card]
 [card]
-primitive=Treasure
+primitive=Rat Rogue
+id=-553025
+rarity=T
+[/card]
+[card]
+primitive=Goblin Shaman
 id=-553026
 rarity=T
 [/card]
 [card]
-primitive=Monk
+primitive=Human Monk
 id=-553030
+rarity=T
+[/card]
+[card]
+primitive=Human Monk
+id=-553031
 rarity=T
 [/card]
 [card]
@@ -230,13 +285,18 @@ id=-552270
 rarity=T
 [/card]
 [card]
-primitive=Construct
+primitive=Mechtitan
 id=-552276
 rarity=T
 [/card]
 [card]
 primitive=Pilot
 id=-552278
+rarity=T
+[/card]
+[card]
+primitive=Treasure
+id=-552120
 rarity=T
 [/card]
 [card]
@@ -251,6 +311,11 @@ rarity=T
 [/card]
 [card]
 primitive=Spirit
+id=-551715
+rarity=T
+[/card]
+[card]
+primitive=Spirit
 id=-551716
 rarity=T
 [/card]
@@ -260,17 +325,22 @@ id=-551736
 rarity=T
 [/card]
 [card]
-primitive=Rogue
+primitive=Rat Rogue
 id=-551737
 rarity=T
 [/card]
 [card]
-primitive=Treasure
-id=-551741
+primitive=Rat Rogue
+id=-551738
 rarity=T
 [/card]
 [card]
-primitive=Spirit
+primitive=Treasure
+id=-551739
+rarity=T
+[/card]
+[card]
+primitive=Dragon Spirit
 id=-551743
 rarity=T
 [/card]
@@ -280,8 +350,13 @@ id=-551752
 rarity=T
 [/card]
 [card]
-primitive=Monk
+primitive=Human Monk
 id=-551753
+rarity=T
+[/card]
+[card]
+primitive=Human Monk
+id=-551754
 rarity=T
 [/card]
 [card]
@@ -305,7 +380,7 @@ id=-551764
 rarity=T
 [/card]
 [card]
-primitive=Construct
+primitive=Mechtitan
 id=-551779
 rarity=T
 [/card]
