@@ -170,7 +170,7 @@ public class ImgDownloader {
         }
     }
 
-    public static String findCardImageUrl(JSONObject jsonObject, String primitiveCardName, String format){
+    public static String findCardImageUrl(JSONObject jsonObject, String primitiveCardName, String multiverseId, String format){
         Map<String, String> imageUris = new HashMap<String, String>();
         if (jsonObject.get("image_uris") != null) {
             JSONObject imageUrisObject = (JSONObject) jsonObject.get("image_uris");
@@ -191,12 +191,12 @@ public class ImgDownloader {
                 }
             }
         } else {
-            System.err.println("Cannot retrieve image url for card: " + primitiveCardName);
+            System.err.println("Cannot retrieve image url for card: " + primitiveCardName + "(" + multiverseId + ")");
             return "";
         }
         String imageUrl = imageUris.get(format);
         if(imageUrl == null){
-            System.err.println("Cannot retrieve image url for card: " + primitiveCardName);
+            System.err.println("Cannot retrieve image url for card: " + primitiveCardName + "(" + multiverseId + ")");
             return "";
         }
         if(imageUrl.indexOf(".jpg") < imageUrl.length())
@@ -204,7 +204,7 @@ public class ImgDownloader {
         return imageUrl;
     }
 
-    public static String findTokenImageUrl(JSONObject jsonObject, String format){
+    public static String findTokenImageUrl(JSONObject jsonObject, String multiverseId, String format, String filterName){
         String imageUrl = "";
         try {
             Document document = Jsoup.connect((String )jsonObject.get("scryfall_uri")).get();
@@ -219,13 +219,11 @@ public class ImgDownloader {
                             Element aElement = row.selectFirst("td > a");
                             String tokenName = aElement.text();
                             tokenName = tokenName.substring(0, tokenName.indexOf(" Token,"));
-                            if(tokenName.equals("Copy")){
-                                System.out.println("The token " + tokenName + " has been filtered for card: " + (String)jsonObject.get("name"));
+                            if(tokenName.equals(filterName)){
+                                System.out.println("The token " + tokenName + " has been filtered for card: " + (String)jsonObject.get("name") + " (" + multiverseId + ")");
                             } else {
                                 imageUrl = aElement.attr("data-card-image-front");
-                                if(imageUrl == null){
-                                    System.err.println("Cannot retrieve image url for token: " + tokenName + " created by: " + (String)jsonObject.get("name"));
-                                } else {
+                                if(imageUrl != null){
                                     howmany++;
                                     if(imageUrl.indexOf(".jpg") < imageUrl.length())
                                         imageUrl = imageUrl.substring(0, imageUrl.indexOf(".jpg")+4);
@@ -234,18 +232,22 @@ public class ImgDownloader {
                         }
                     }
                     if (howmany > 1) {
-                        System.out.println("Found " + howmany  + " valid image urls for token created by: " + (String)jsonObject.get("name"));
+                        System.out.println("Found " + howmany  + " valid image urls for token created by: " + (String)jsonObject.get("name") + " (" + multiverseId + ")");
                     }
                 }
             }
         } catch (IOException e) {
-            System.err.println("There was an error while retrieving token image...");
-            return null;
+            System.err.println("There was an error while retrieving the token image for card: " + (String)jsonObject.get("name") + " (" + multiverseId + ")");
+            return "";
+        }
+        if(imageUrl == null) {
+            System.err.println("There was an error while retrieving the token image for card: " + (String)jsonObject.get("name") + " (" + multiverseId + ")");
+            return "";
         }
         return imageUrl.replace("large", format);
     }
 
-    public static String findTokenName(JSONObject jsonObject){
+    public static String findTokenName(JSONObject jsonObject, String multiverseId, String filterName){
         String tokenName = "";
         try {
             Document document = Jsoup.connect((String) jsonObject.get("scryfall_uri")).get();
@@ -258,19 +260,26 @@ public class ImgDownloader {
                     for (Element row : rows) {
                         if (row.text().contains(" Token,") && !row.text().contains("Faces,")) {
                             Element aElement = row.selectFirst("td > a");
-                            tokenName = aElement.text();
-                            tokenName = tokenName.substring(0, tokenName.indexOf(" Token,"));
-                            howmany++;
+                            String tok = aElement.text();
+                            if(tok != null) {
+                                tok = tok.substring(0, tok.indexOf(" Token,"));
+                                if (tok.equals(filterName)) {
+                                    System.out.println("The token " + tok + " has been filtered for card: " + (String) jsonObject.get("name") + " (" + multiverseId + ")");
+                                } else {
+                                    howmany++;
+                                    tokenName = tok;
+                                }
+                            }
                         }
                     }
                     if (howmany > 1) {
-                        System.out.println("Found " + howmany  + " valid token name created by: " + (String)jsonObject.get("name"));
+                        System.out.println("Found " + howmany  + " valid token name created by: " + (String)jsonObject.get("name") + " (" + multiverseId + ")");
                     }
                 }
             }
         } catch (IOException e) {
-            System.err.println("There was an error while retrieving the token image...");
-            return null;
+            System.err.println("There was an error while retrieving the token name for card: " + (String)jsonObject.get("name") + " (" + multiverseId + ")");
+            return "";
         }
         return tokenName;
     }
@@ -3975,7 +3984,7 @@ public class ImgDownloader {
             String specialcardurl = getSpecialCardUrl(id, set);
             JSONObject card = findCardJsonById(id);
             if(specialcardurl.isEmpty() && card != null)
-                specialcardurl = findCardImageUrl(card, mappa.get(id), "large");
+                specialcardurl = findCardImageUrl(card, mappa.get(id), id, "large");
             if (!specialcardurl.isEmpty()) {
                 URL url = new URL(specialcardurl);
                 HttpURLConnection httpcon = (HttpURLConnection) url.openConnection();
@@ -4082,11 +4091,11 @@ public class ImgDownloader {
                 }
                 if(card != null && hasToken(id)) {
                     String text = (String) card.get("oracle_text");
-                    String nametoken = findTokenName(card);
+                    String nametoken = findTokenName(card, id, "Copy");
                     if (!nametoken.isEmpty() || (text != null && !text.isEmpty() && !text.trim().toLowerCase().contains("nontoken") && ((text.trim().toLowerCase().contains("create") && text.trim().toLowerCase().contains("creature token")) ||
                             (text.trim().toLowerCase().contains("put") && text.trim().toLowerCase().contains("token"))))) {
                         System.out.println("The card: " + mappa.get(id) + " (" + id + ".jpg) can create a token, i will try to download that image too as " + id + "t.jpg");
-                        String specialtokenurl = findTokenImageUrl(card, "large");
+                        String specialtokenurl = findTokenImageUrl(card, id, "large", "Copy");
                         if (!specialtokenurl.isEmpty()) {
                             URL urltoken = null;
                             urltoken = new URL(specialtokenurl);
@@ -4897,9 +4906,9 @@ public class ImgDownloader {
                         if(specialtokenurl.isEmpty())
                             specialtokenurl = getSpecialCardUrl(id + "t", set);
                         if(specialtokenurl.isEmpty() && card != null)
-                            specialtokenurl = findTokenImageUrl(card, "large");
+                            specialtokenurl = findTokenImageUrl(card, id, "large", "Copy");
                         if(nametoken.isEmpty() && card != null)
-                            nametoken = findTokenName(card);
+                            nametoken = findTokenName(card, id, "Copy");
                         if (!specialtokenurl.isEmpty()) {
                             try {
                                 doc = Jsoup.connect(imageurl + scryset.toLowerCase()).get();
