@@ -1609,9 +1609,9 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target, ManaCost 
         AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
         if(amp && (amp->getCost() && amp->getCost()->extraCosts && !amp->getCost()->extraCosts->canPay()))
             continue;
-        if(fullColor == needColorConverted && result->getConvertedCost() < cost->getConvertedCost())
+        if((fullColor == needColorConverted || cost->hasColor(0) || cost->hasColor(7)) && result->getConvertedCost() < cost->getConvertedCost()) // Fixed a bug on colorless mana calculation for AI.
         {
-            if(cost->hasColor(0) && amp)//find colorless after color mana.
+            if((cost->hasColor(0) || cost->hasColor(7)) && amp)//find colorless after color mana.
             {
                 if(result->canAfford(cost,0))
                     continue;

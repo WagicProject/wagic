@@ -213,24 +213,28 @@ public class ImgDownloader {
                 if (printsTable != null) {
                     Element tokenRow = null;
                     Elements rows = printsTable.select("tr");
+                    int howmany = 0;
                     for (Element row : rows) {
                         if (row.text().contains(" Token,") && !row.text().contains("Faces,")) {
-                            tokenRow = row;
-                        }
-                    }
-                    if (tokenRow != null) {
-                        Element aElement = tokenRow.selectFirst("td > a");
-                        if (aElement != null) {
+                            Element aElement = row.selectFirst("td > a");
                             String tokenName = aElement.text();
                             tokenName = tokenName.substring(0, tokenName.indexOf(" Token,"));
-                            imageUrl = aElement.attr("data-card-image-front");
-                            if(imageUrl == null){
-                                System.err.println("Cannot retrieve image url for token: " + tokenName);
-                                return null;
+                            if(tokenName.equals("Copy")){
+                                System.out.println("The token " + tokenName + " has been filtered for card: " + (String)jsonObject.get("name"));
+                            } else {
+                                imageUrl = aElement.attr("data-card-image-front");
+                                if(imageUrl == null){
+                                    System.err.println("Cannot retrieve image url for token: " + tokenName + " created by: " + (String)jsonObject.get("name"));
+                                } else {
+                                    howmany++;
+                                    if(imageUrl.indexOf(".jpg") < imageUrl.length())
+                                        imageUrl = imageUrl.substring(0, imageUrl.indexOf(".jpg")+4);
+                                }
                             }
-                            if(imageUrl.indexOf(".jpg") < imageUrl.length())
-                                imageUrl = imageUrl.substring(0, imageUrl.indexOf(".jpg")+4);
                         }
+                    }
+                    if (howmany > 1) {
+                        System.out.println("Found " + howmany  + " valid image urls for token created by: " + (String)jsonObject.get("name"));
                     }
                 }
             }
@@ -250,17 +254,17 @@ public class ImgDownloader {
                 if (printsTable != null) {
                     Element tokenRow = null;
                     Elements rows = printsTable.select("tr");
+                    int howmany = 0;
                     for (Element row : rows) {
                         if (row.text().contains(" Token,") && !row.text().contains("Faces,")) {
-                            tokenRow = row;
-                        }
-                    }
-                    if (tokenRow != null) {
-                        Element aElement = tokenRow.selectFirst("td > a");
-                        if (aElement != null) {
+                            Element aElement = row.selectFirst("td > a");
                             tokenName = aElement.text();
                             tokenName = tokenName.substring(0, tokenName.indexOf(" Token,"));
+                            howmany++;
                         }
+                    }
+                    if (howmany > 1) {
+                        System.out.println("Found " + howmany  + " valid token name created by: " + (String)jsonObject.get("name"));
                     }
                 }
             }
@@ -3978,7 +3982,7 @@ public class ImgDownloader {
                 if (httpcon == null) {
                     System.err.println("Error: Problem fetching card: " + mappa.get(id) + "-" + id + ", i will not download it...");
                     res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
-                    break;
+                    continue;
                 }
                 httpcon.addRequestProperty("User-Agent", "Mozilla/4.76");
                 httpcon.setConnectTimeout(5000);
@@ -4000,7 +4004,7 @@ public class ImgDownloader {
                         } catch (Exception ex3) {
                             System.err.println("Error: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg), i will not retry anymore...");
                             res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
-                            break;
+                            continue;
                         }
                     }
                 }
@@ -4042,7 +4046,7 @@ public class ImgDownloader {
                 in.close();
                 if (timeout) {
                     System.err.println("Warning: Problem downloading card: " + mappa.get(id) + " (" + id + ".jpg) from, i will not retry anymore...");
-                    break;
+                    continue;
                 }
                 byte[] response = out.toByteArray();
                 String cardimage = imgPath + File.separator + id + ".jpg";
@@ -4061,7 +4065,7 @@ public class ImgDownloader {
                 } catch (Exception e) {
                     System.err.println("Error: Problem resizing card: " + mappa.get(id) + " (" + id + ".jpg), image may be corrupted...");
                     res = mappa.get(id) + " - " + set + File.separator + id + ".jpg\n" + res;
-                    break;
+                    continue;
                 }
                 try {
                     Bitmap yourBitmapthumb = BitmapFactory.decodeFile(cardimage);
@@ -4074,64 +4078,51 @@ public class ImgDownloader {
                 } catch (Exception e) {
                     System.err.println("Error: Problem resizing card thumbnail: " + mappa.get(id) + " (" + id + ".jpg, image may be corrupted...");
                     res = mappa.get(id) + " - " + set + File.separator + "thumbnails" + File.separator + id + ".jpg\n" + res;
-                    break;
+                    continue;
                 }
                 if(card != null && hasToken(id)) {
                     String text = (String) card.get("oracle_text");
-                    if (text != null && !text.isEmpty() && !text.trim().toLowerCase().contains("nontoken") && ((text.trim().toLowerCase().contains("create") && text.trim().toLowerCase().contains("creature token")) ||
-                            (text.trim().toLowerCase().contains("put") && text.trim().toLowerCase().contains("token")))) {
+                    String nametoken = findTokenName(card);
+                    if (!nametoken.isEmpty() || (text != null && !text.isEmpty() && !text.trim().toLowerCase().contains("nontoken") && ((text.trim().toLowerCase().contains("create") && text.trim().toLowerCase().contains("creature token")) ||
+                            (text.trim().toLowerCase().contains("put") && text.trim().toLowerCase().contains("token"))))) {
                         System.out.println("The card: " + mappa.get(id) + " (" + id + ".jpg) can create a token, i will try to download that image too as " + id + "t.jpg");
-
                         String specialtokenurl = findTokenImageUrl(card, "large");
-                        String nametoken = findTokenName(card);
-                        URL urltoken = null;
-                        if (!specialtokenurl.isEmpty())
+                        if (!specialtokenurl.isEmpty()) {
+                            URL urltoken = null;
                             urltoken = new URL(specialtokenurl);
-
-                        HttpURLConnection httpcontoken = (HttpURLConnection) urltoken.openConnection();
-                        if (httpcontoken == null) {
-                            System.err.println("Error: Problem downloading token: " + nametoken + " (" + id + "t.jpg), i will not download it...");
-                            res = nametoken + " - " + set + File.separator + id + "t.jpg\n" + res;
-                            break;
-                        }
-                        httpcontoken.addRequestProperty("User-Agent", "Mozilla/4.76");
-                        httpcontoken.setConnectTimeout(5000);
-                        httpcontoken.setReadTimeout(5000);
-                        httpcontoken.setAllowUserInteraction(false);
-                        httpcontoken.setDoInput(true);
-                        httpcontoken.setDoOutput(false);
-                        InputStream intoken = null;
-                        try {
-                            intoken = new BufferedInputStream(httpcontoken.getInputStream());
-                        } catch (IOException ex) {
-                            System.out.println("Warning: Problem downloading token: " + nametoken + " (" + id + "t.jpg), i will retry 2 times more...");
+                            HttpURLConnection httpcontoken = (HttpURLConnection) urltoken.openConnection();
+                            if (httpcontoken == null) {
+                                System.err.println("Error: Problem downloading token: " + nametoken + " (" + id + "t.jpg), i will not download it...");
+                                res = nametoken + " - " + set + File.separator + id + "t.jpg\n" + res;
+                                continue;
+                            }
+                            httpcontoken.addRequestProperty("User-Agent", "Mozilla/4.76");
+                            httpcontoken.setConnectTimeout(5000);
+                            httpcontoken.setReadTimeout(5000);
+                            httpcontoken.setAllowUserInteraction(false);
+                            httpcontoken.setDoInput(true);
+                            httpcontoken.setDoOutput(false);
+                            InputStream intoken = null;
                             try {
                                 intoken = new BufferedInputStream(httpcontoken.getInputStream());
-                            } catch (IOException ex2) {
-                                System.out.println("Warning: Problem downloading token: " + nametoken + " (" + id + "t.jpg), i will retry 1 time more...");
+                            } catch (IOException ex) {
+                                System.out.println("Warning: Problem downloading token: " + nametoken + " (" + id + "t.jpg), i will retry 2 times more...");
                                 try {
                                     intoken = new BufferedInputStream(httpcontoken.getInputStream());
-                                } catch (IOException ex3) {
-                                    System.err.println("Error: Problem downloading token: " + nametoken + " (" + id + "t.jpg), i will not retry anymore...");
-                                    res = nametoken + " - " + set + File.separator + id + "t.jpg\n" + res;
-                                    break;
+                                } catch (IOException ex2) {
+                                    System.out.println("Warning: Problem downloading token: " + nametoken + " (" + id + "t.jpg), i will retry 1 time more...");
+                                    try {
+                                        intoken = new BufferedInputStream(httpcontoken.getInputStream());
+                                    } catch (IOException ex3) {
+                                        System.err.println("Error: Problem downloading token: " + nametoken + " (" + id + "t.jpg), i will not retry anymore...");
+                                        res = nametoken + " - " + set + File.separator + id + "t.jpg\n" + res;
+                                        continue;
+                                    }
                                 }
                             }
-                        }
-                        ByteArrayOutputStream outtoken = new ByteArrayOutputStream();
-                        byte[] buftoken = new byte[1024];
-                        int ntoken = 0;
-                        millis = System.currentTimeMillis();
-                        timeout = false;
-                        while (-1 != (ntoken = intoken.read(buftoken)) && !timeout) {
-                            outtoken.write(buftoken, 0, ntoken);
-                            if (System.currentTimeMillis() - millis > 10000)
-                                timeout = true;
-                        }
-                        if (timeout) {
-                            System.out.println("Warning: Problem downloading token: " + id + "t.jpg from, i will retry 2 times more...");
-                            buftoken = new byte[1024];
-                            ntoken = 0;
+                            ByteArrayOutputStream outtoken = new ByteArrayOutputStream();
+                            byte[] buftoken = new byte[1024];
+                            int ntoken = 0;
                             millis = System.currentTimeMillis();
                             timeout = false;
                             while (-1 != (ntoken = intoken.read(buftoken)) && !timeout) {
@@ -4140,7 +4131,7 @@ public class ImgDownloader {
                                     timeout = true;
                             }
                             if (timeout) {
-                                System.out.println("Warning: Problem downloading token: " + id + "t.jpg from, i will retry 1 time more...");
+                                System.out.println("Warning: Problem downloading token: " + id + "t.jpg from, i will retry 2 times more...");
                                 buftoken = new byte[1024];
                                 ntoken = 0;
                                 millis = System.currentTimeMillis();
@@ -4150,44 +4141,56 @@ public class ImgDownloader {
                                     if (System.currentTimeMillis() - millis > 10000)
                                         timeout = true;
                                 }
+                                if (timeout) {
+                                    System.out.println("Warning: Problem downloading token: " + id + "t.jpg from, i will retry 1 time more...");
+                                    buftoken = new byte[1024];
+                                    ntoken = 0;
+                                    millis = System.currentTimeMillis();
+                                    timeout = false;
+                                    while (-1 != (ntoken = intoken.read(buftoken)) && !timeout) {
+                                        outtoken.write(buftoken, 0, ntoken);
+                                        if (System.currentTimeMillis() - millis > 10000)
+                                            timeout = true;
+                                    }
+                                }
                             }
-                        }
-                        outtoken.close();
-                        intoken.close();
-                        if (timeout) {
-                            System.err.println("Error: Problem downloading token: " + id + "t.jpg from, i will not retry anymore...");
-                            break;
-                        }
-                        byte[] responsetoken = outtoken.toByteArray();
-                        String tokenimage = imgPath + File.separator + id + "t.jpg";
-                        String tokenthumbimage = thumbPath + File.separator + id + "t.jpg";
-                        FileOutputStream fos2 = new FileOutputStream(tokenimage);
-                        fos2.write(responsetoken);
-                        fos2.close();
-                        try {
-                            Bitmap yourBitmapToken = BitmapFactory.decodeFile(tokenimage);
-                            Bitmap resizedToken = Bitmap.createScaledBitmap(yourBitmapToken, ImgX, ImgY, true);
-                            if (Border > 0)
-                                resizedToken = Bitmap.createBitmap(resizedToken, Border, Border, ImgX - 2 * Border, ImgY - 2 * Border);
-                            FileOutputStream fout = new FileOutputStream(tokenimage);
-                            resizedToken.compress(Bitmap.CompressFormat.JPEG, 100, fout);
-                            fout.close();
-                        } catch (Exception e) {
-                            System.err.println("Error: Problem resizing token: " + id + "t.jpg, image may be corrupted...");
-                            res = nametoken + " - " + set + File.separator + "thumbnails" + File.separator + id + "t.jpg\n" + res;
-                            break;
-                        }
-                        try {
-                            Bitmap yourBitmapTokenthumb = BitmapFactory.decodeFile(tokenimage);
-                            Bitmap resizedThumbToken = Bitmap.createScaledBitmap(yourBitmapTokenthumb, ThumbX, ThumbY, true);
-                            if (BorderThumb > 0)
-                                resizedThumbToken = Bitmap.createBitmap(resizedThumbToken, BorderThumb, BorderThumb, ThumbX - 2 * BorderThumb, ThumbY - 2 * BorderThumb);
-                            FileOutputStream fout = new FileOutputStream(tokenthumbimage);
-                            resizedThumbToken.compress(Bitmap.CompressFormat.JPEG, 100, fout);
-                            fout.close();
-                        } catch (Exception e) {
-                            System.err.println("Error: Problem resizing token thumbnail: " + id + "t.jpg, image may be corrupted...");
-                            res = nametoken + " - " + set + File.separator + "thumbnails" + File.separator + id + "t.jpg\n" + res;
+                            outtoken.close();
+                            intoken.close();
+                            if (timeout) {
+                                System.err.println("Error: Problem downloading token: " + id + "t.jpg from, i will not retry anymore...");
+                                continue;
+                            }
+                            byte[] responsetoken = outtoken.toByteArray();
+                            String tokenimage = imgPath + File.separator + id + "t.jpg";
+                            String tokenthumbimage = thumbPath + File.separator + id + "t.jpg";
+                            FileOutputStream fos2 = new FileOutputStream(tokenimage);
+                            fos2.write(responsetoken);
+                            fos2.close();
+                            try {
+                                Bitmap yourBitmapToken = BitmapFactory.decodeFile(tokenimage);
+                                Bitmap resizedToken = Bitmap.createScaledBitmap(yourBitmapToken, ImgX, ImgY, true);
+                                if (Border > 0)
+                                    resizedToken = Bitmap.createBitmap(resizedToken, Border, Border, ImgX - 2 * Border, ImgY - 2 * Border);
+                                FileOutputStream fout = new FileOutputStream(tokenimage);
+                                resizedToken.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+                                fout.close();
+                            } catch (Exception e) {
+                                System.err.println("Error: Problem resizing token: " + id + "t.jpg, image may be corrupted...");
+                                res = nametoken + " - " + set + File.separator + "thumbnails" + File.separator + id + "t.jpg\n" + res;
+                                continue;
+                            }
+                            try {
+                                Bitmap yourBitmapTokenthumb = BitmapFactory.decodeFile(tokenimage);
+                                Bitmap resizedThumbToken = Bitmap.createScaledBitmap(yourBitmapTokenthumb, ThumbX, ThumbY, true);
+                                if (BorderThumb > 0)
+                                    resizedThumbToken = Bitmap.createBitmap(resizedThumbToken, BorderThumb, BorderThumb, ThumbX - 2 * BorderThumb, ThumbY - 2 * BorderThumb);
+                                FileOutputStream fout = new FileOutputStream(tokenthumbimage);
+                                resizedThumbToken.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+                                fout.close();
+                            } catch (Exception e) {
+                                System.err.println("Error: Problem resizing token thumbnail: " + id + "t.jpg, image may be corrupted...");
+                                res = nametoken + " - " + set + File.separator + "thumbnails" + File.separator + id + "t.jpg\n" + res;
+                            }
                         }
                     }
                 }

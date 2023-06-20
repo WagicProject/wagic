@@ -10086,6 +10086,12 @@ int AACastCard::resolveSpell()
             {
                 if (putinplay && theNamedCard->isPermanent())
                     copy = theNamedCard->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, source->controller()->game->battlefield, noEvent); // Fixed a problem with double activation of card abilities.
+                else if (asCopy && theNamedCard->isPermanent()){
+                    theNamedCard->isToken = 0; // Fixed a bug when using copied option with namedcard option.
+                    copy = _target->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, source->controller()->game->stack, noEvent);
+                    copy->isToken = 1; // Fixed a bug when using copied option with namedcard option.
+                    copy = _target->controller()->game->putInZone(copy, copy->currentZone, source->controller()->game->battlefield, noEvent); // Fixed a problem with copied option for permanent.
+                }
                 else
                     copy = theNamedCard->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, source->controller()->game->stack, noEvent); // Fixed a bug when using noevent option with namedcard option.
             }
@@ -10093,6 +10099,12 @@ int AACastCard::resolveSpell()
             {
                 if (putinplay && theNamedCard->isPermanent())
                     copy = theNamedCard->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, source->controller()->game->battlefield, noEvent); // Fixed a problem with double activation of card abilities.
+                else if (asCopy && theNamedCard->isPermanent()){
+                    theNamedCard->isToken = 0; // Fixed a bug when using copied option with namedcard option.
+                    copy = _target->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, source->controller()->game->stack, noEvent);
+                    copy->isToken = 1; // Fixed a bug when using copied option with namedcard option.
+                    copy = _target->controller()->game->putInZone(copy, copy->currentZone, source->controller()->game->battlefield, noEvent); // Fixed a problem with copied option for permanent.
+                }
                 else
                     copy = theNamedCard->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, source->controller()->game->stack, noEvent); // Fixed a bug when using noevent option with namedcard option.
             }
@@ -10165,17 +10177,29 @@ int AACastCard::resolveSpell()
 
         Spell * spell = NULL;
         MTGCardInstance * copy = NULL;
-        if ((normal || asNormalMadness)||(!_target->hasType(Subtypes::TYPE_INSTANT) && !_target->hasType(Subtypes::TYPE_SORCERY)))
+        if ((normal || asNormalMadness) || !_target->isSorceryorInstant())
         {
-            if (putinplay && _target->isPermanent())
+            if (putinplay  && _target->isPermanent())
                 copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->battlefield, noEvent); // Fixed a problem with double activation of card abilities.
+            else if (asCopy && _target->isPermanent()){
+                _target->isToken = 0; // Fixed a bug when using copied option for permanent.
+                copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack, noEvent);
+                copy->isToken = 1; // Fixed a bug when using copied option for permanent.
+                copy = _target->controller()->game->putInZone(copy, copy->currentZone, source->controller()->game->battlefield, noEvent); // Fixed a problem with copied option for permanent.
+            }
             else
-               copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack, noEvent); // Fixed a bug when using noevent option with namedcard option.
+                copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack, noEvent); // Fixed a bug when using noevent option with namedcard option.
         }
         else
         {
             if (putinplay && _target->isPermanent())
                 copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->battlefield, noEvent); // Fixed a problem with double activation of card abilities.
+            else if (asCopy && _target->isPermanent()){
+                _target->isToken = 0; // Fixed a bug when using copied option for permanent.
+                copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack, noEvent);
+                copy->isToken = 1; // Fixed a bug when using copied option for permanent.
+                copy = _target->controller()->game->putInZone(copy, copy->currentZone, source->controller()->game->battlefield, noEvent); // Fixed a problem with copied option for permanent.
+            }
             else
                 copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack, noEvent); // Fixed a bug when using noevent option with namedcard option.
         }
@@ -10187,6 +10211,8 @@ int AACastCard::resolveSpell()
         copy->changeController(source->controller(), true);
         if(asNormalMadness)
             copy->MadnessPlay = true;
+        if(asCopy) 
+            copy->isToken = 1; // Fixed a bug when using copied option for permanent.
         if(alternative)
             copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_ALTERNATIVE] = 1;
         if(kicked > 0){
@@ -10203,7 +10229,7 @@ int AACastCard::resolveSpell()
             game->targetChooser->Owner = source->controller();
             if(putinplay)
             {
-                spell =  NEW Spell(game, 0,copy,game->targetChooser,NULL, 1);
+                spell =  NEW Spell(game, 0, copy, game->targetChooser, NULL, 1);
                 spell->resolve();
             }
             else
@@ -10214,7 +10240,7 @@ int AACastCard::resolveSpell()
         {
             if(putinplay)
             {
-                spell =  NEW Spell(game, 0,copy,NULL,NULL, 1);
+                spell =  NEW Spell(game, 0, copy, NULL, NULL, 1);
                 spell->resolve();
             }
             else if(!flipped)
