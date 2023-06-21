@@ -4851,12 +4851,24 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (splitRemoveSpecificCounters.size())
     {
         int nb = 0;
-        WParsedInt* parser = NEW WParsedInt(splitRemoveSpecificCounters[1], card);
+        bool allcounters = false;
+        string counterString = splitRemoveSpecificCounters[1];
+        if(counterString.find("all") != string::npos){
+            allcounters = true;
+            size_t pos = counterString.find(",all");
+            if(pos != string::npos)
+                counterString.replace(pos, 4, "");
+            pos = counterString.find("all,");
+            if(pos != string::npos)
+                counterString.replace(pos, 4, "");
+        }
+        WParsedInt* parser = NEW WParsedInt(counterString, card);
         if(parser){
             nb = parser->intValue;
             SAFE_DELETE(parser);
         }
         MTGAbility * a = NEW AARemoveSingleCounter(observer, id, card, target, NULL, nb);
+        ((AARemoveSingleCounter*)a)->allcounters = allcounters;
         a->oneShot = 1;
         a->canBeInterrupted = false;
         return a;

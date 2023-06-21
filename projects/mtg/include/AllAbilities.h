@@ -1850,6 +1850,7 @@ class AARemoveSingleCounter: public ActivatedAbility
 {
 public:
     int nb;
+    bool allcounters;
     AARemoveSingleCounter(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, ManaCost * cost = NULL, int nb = 1);
     int resolve();
     const string getMenuText();

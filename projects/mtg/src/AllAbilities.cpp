@@ -2913,6 +2913,7 @@ AARemoveSingleCounter::AARemoveSingleCounter(GameObserver* observer, int id, MTG
 ActivatedAbility(observer, id, source, cost, 0), nb(nb)
 {
     this->GetId();
+    allcounters = false;
 }
  
 int AARemoveSingleCounter::resolve()
@@ -2949,15 +2950,25 @@ int AARemoveSingleCounter::resolve()
         for(size_t i = 0; i < counters->counters.size(); ++i)
         {
             Counter * counter = counters->counters[i];
-            MTGAbility * a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, cTarget,"", counter->name.c_str(), counter->power, counter->toughness, -nb, 0);
+            MTGAbility * a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, cTarget, "", counter->name.c_str(), counter->power, counter->toughness, -nb, 0);
             a->oneShot = true;
             pcounters.push_back(a);
         }
     }
     if(pcounters.size())
     {
-        MTGAbility * a = NEW MenuAbility(game, this->GetId(), target, source, true, pcounters);
-        a->resolve();
+        if(allcounters)
+        {
+            for(size_t j = 0; j < pcounters.size(); j++)
+            {
+                pcounters[j]->resolve();
+            }
+        }
+        else
+        {
+            MTGAbility * a = NEW MenuAbility(game, this->GetId(), target, source, true, pcounters);
+            a->resolve();
+        }
     }
     return 1;
 
@@ -3034,9 +3045,9 @@ int AADuplicateCounters::resolve()
             Counter * counter = counters->counters[i];
             MTGAbility * a = NULL;
             if(single)
-                a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, cTarget,"", counter->name.c_str(), counter->power, counter->toughness, 1, 0);
+                a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, cTarget, "", counter->name.c_str(), counter->power, counter->toughness, 1, 0);
             else
-                a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, cTarget,"", counter->name.c_str(), counter->power, counter->toughness, counter->nb, 0);
+                a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, cTarget, "", counter->name.c_str(), counter->power, counter->toughness, counter->nb, 0);
             a->oneShot = true;
             pcounters.push_back(a);
         }
@@ -3045,10 +3056,10 @@ int AADuplicateCounters::resolve()
     {
         if(allcounters)
         {
-             for(size_t j = 0; j < pcounters.size(); j++)
-             {
-                 pcounters[j]->resolve();
-             }
+            for(size_t j = 0; j < pcounters.size(); j++)
+            {
+                pcounters[j]->resolve();
+            }
         }
         else
         {
@@ -3119,7 +3130,7 @@ int AAProliferate::resolve()
         for(size_t i = 0; i < counters->counters.size(); ++i)
         {
             Counter * counter = counters->counters[i];
-            MTGAbility * a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, cTarget,"", counter->name.c_str(), counter->power, counter->toughness, 1, 0);
+            MTGAbility * a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, cTarget, "", counter->name.c_str(), counter->power, counter->toughness, 1, 0);
             a->oneShot = true;
             pcounters.push_back(a);
         }

@@ -1,7 +1,6 @@
 Primal Command
 Rowan Kenrith
 Pyre-Sledge Arsonist
-Sokenzan Smelter
 Star Pupil
 Sun Droplet
 Hall of the Bandit Lord
@@ -349,120 +348,6 @@ Whack
 Security Rhox
 Ormos, Archive Keeper
 Myojin of Cryptic Dreams
-Unforgiving One
-Silver-Fur Master
-Satsuki, the Living Lore
-Spirit-Sister's Call
-Light-Paws, Emperor's Voice
-Invoke Justice
-Eater of Virtue
-The Restoration of Eiganjo
-Atsushi, the Blazing Sky
-Dramatist's Puppet
-Ambitious Assault
-Containment Construct
-March of Otherworldly Light
-Akki Ember-Keeper
-Bronze Cudgels
-Automated Artificer
-Inventive Iteration
-Tamiyo, Compleated Sage
-Okiba Salvage
-The Kami War
-Kaito Shizuki
-Satoru Umezawa
-The Fall of Lord Konda
-Tribute to Horobi
-Risona, Asari Commander
-Tatsunari, Toad Rider
-Soul Transfer
-Prodigy's Prototype
-Naomi, Pillar of Order
-Reckoner Shakedown
-Kotose, the Silent Spider
-Ao, the Dawn Sky
-The Long Reach of Night
-Lethal Exploit
-Nashi, Moon Sage's Scion
-Invigorating Hot Spring
-March of Wretched Sorrow
-Hidetsugu Consumes All
-Greasefang, Okiba Boss
-Storyweave
-Spinning Wheel Kick
-Kami of Terrible Secrets
-Weaver of Harmony
-Teachings of the Kirin
-Go-Shintai of Lost Wisdom
-Invoke the Ancients
-Thundering Raiju
-The Dragon-Kami Reborn
-Kami of Transience
-Kodama of the West Tree
-Jugan Defends the Temple
-Mindlink Mech
-Kappa Tech-Wrecker
-Secluded Courtyard
-March of Swirling Mist
-Kura, the Boundless Sky
-Kairi, the Swirling Sky
-Coiling Stalker
-March of Burgeoning Life
-Azusa's Many Journeys
-Upriser Renegade
-Mech Hangar
-Explosive Singularity
-Anchor to Reality
-Peerless Samurai
-Moon-Circuit Hacker
-Invoke Calamity
-Futurist Operative
-Covert Technician
-Goro-Goro, Disciple of Ryusei
-Biting-Palm Ninja
-Scrap Welder
-March of Reckless Joy
-Discover the Impossible
-Seismic Wave
-Behold the Unspeakable
-Roadside Reliquary
-Awakened Awareness
-Heiko Yamazaki, the General
-Invoke Despair
-Touch the Spirit Realm
-Kumano Faces Kakkazan
-Walking Skyscraper
-Towashi Guide-Bot
-Kami's Flare
-Kami of Industry
-Dragonspark Reactor
-Crackling Emergence
-Experimental Synthesizer
-Iron Apprentice
-Go-Shintai of Ancient Wars
-Reckoner Bankbuster
-Flame Discharge
-Mirror Box
-Mechtitan Core
-Hidetsugu, Devouring Chaos
-Season of Renewal
-Roaring Earth
-Orochi Merge-Keeper
-Historian's Wisdom
-Tezzeret, Betrayer of Flesh
-Heir of the Ancient Fang
-Go-Shintai of Hidden Cruelty
-Enormous Energy Blade
-Debt to the Kami
-Assassin's Ink
-Go-Shintai of Boundless Vigor
-Reality Heist
-Harmonious Emergence
-Mobilizer Mech
-Boseiju Reaches Skyward
-Blossom Prancer
-Careful Cultivation
-Banishing Slash
 Lithoform Engine
 Reality Spasm
 Suffer the Past

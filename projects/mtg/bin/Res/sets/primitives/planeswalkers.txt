@@ -1,6 +1,6 @@
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 18-06-2023
+#We sorted this in alphabetical order - Luruz & Vitty85 21-06-2023
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -2959,6 +2959,40 @@ auto={C(0/0,1,Loyalty)}:name(+1: Look four and move tribal to hand) reveal:4 opt
 auto={C(0/0,-3,Loyalty)}:name(-3: Return target card from graveyard) moveTo(myHand) target(*|myGraveyard)
 text=Spells and abilities your opponents control can't cause you to discard cards or sacrifice permanents. -- +1: Choose a nonland card name, then reveal the top four cards of your library. Put all cards with the chosen name from among them into your hand and the rest into your graveyard. -- −3: Return target card from your graveyard to your hand.
 mana={2}{G}{U}
+type=Legendary Planeswalker
+subtype=Tamiyo
+[/card]
+[card]
+name=Tamiyo, Compleated Sage
+auto=ifnot paid(alternative) then counter(0/0,5,loyalty)
+auto=if paid(alternative) then counter(0/0,3,loyalty)
+auto={C(0/0,+1,Loyalty)}:name(+1: Tap artifact or creature) target(*[artifact;creature]|battlefield) freeze
+auto={C(0/0,+1,Loyalty)}:name(+1: Don't tap anything) donothing
+auto={C(0/0,0,Loyalty)}:name(0: Exile and copy with cost 0) target(*[-land&manacost=0]|mygraveyard) moveto(myexile) and!( clone )!
+auto={C(0/0,-1,Loyalty)}:name(-1: Exile and copy with cost 1) target(*[-land&manacost=1]|mygraveyard) moveto(myexile) and!( clone )!
+auto={C(0/0,-2,Loyalty)}:name(-2: Exile and copy with cost 2) target(*[-land&manacost=2]|mygraveyard) moveto(myexile) and!( clone )!
+auto={C(0/0,-3,Loyalty)}:name(-3: Exile and copy with cost 3) target(*[-land&manacost=3]|mygraveyard) moveto(myexile) and!( clone )!
+auto={C(0/0,-4,Loyalty)}:name(-4: Exile and copy with cost 4) target(*[-land&manacost=4]|mygraveyard) moveto(myexile) and!( clone )!
+auto={C(0/0,-5,Loyalty)}:name(-5: Exile and copy with cost 5) target(*[-land&manacost=5]|mygraveyard) moveto(myexile) and!( clone )!
+auto={C(0/0,-6,Loyalty)}:name(-6: Exile and copy with cost 6) target(*[-land&manacost=6]|mygraveyard) moveto(myexile) and!( clone )!
+auto={C(0/0,-7,Loyalty)}:name(-7: Exile and copy with cost 7) target(*[-land&manacost=7]|mygraveyard) moveto(myexile) and!( clone )!
+auto={C(0/0,-8,Loyalty)}:name(-8: Exile and copy with cost 8) target(*[-land&manacost=8]|mygraveyard) moveto(myexile) and!( clone )!
+auto={C(0/0,-9,Loyalty)}:name(-9: Exile and copy with cost 9) target(*[-land&manacost=9]|mygraveyard) moveto(myexile) and!( clone )!
+auto={C(0/0,-10,Loyalty)}:name(-10: Exile and copy with cost 10) target(*[-land&manacost=10]|mygraveyard) moveto(myexile) and!( clone )!
+auto={C(0/0,-11,Loyalty)}:name(-11: Exile and copy with cost 11) target(*[-land&manacost=11]|mygraveyard) moveto(myexile) and!( clone )!
+auto={C(0/0,-12,Loyalty)}:name(-12: Exile and copy with cost 12) target(*[-land&manacost=12]|mygraveyard) moveto(myexile) and!( clone )!
+auto={C(0/0,-13,Loyalty)}:name(-13: Exile and copy with cost 13) target(*[-land&manacost=13]|mygraveyard) moveto(myexile) and!( clone )!
+auto={C(0/0,-14,Loyalty)}:name(-14: Exile and copy with cost 14) target(*[-land&manacost=14]|mygraveyard) moveto(myexile) and!( clone )!
+auto={C(0/0,-15,Loyalty)}:name(-15: Exile and copy with cost 15) target(*[-land&manacost=15]|mygraveyard) moveto(myexile) and!( clone )!
+auto={C(0/0,-16,Loyalty)}:name(-16: Exile and copy with cost 16) target(*[-land&manacost=16]|mygraveyard) moveto(myexile) and!( clone )!
+auto={C(0/0,-17,Loyalty)}:name(-17: Exile and copy with cost 17) target(*[-land&manacost=17]|mygraveyard) moveto(myexile) and!( clone )!
+auto={C(0/0,-18,Loyalty)}:name(-18: Exile and copy with cost 18) target(*[-land&manacost=18]|mygraveyard) moveto(myexile) and!( clone )!
+auto={C(0/0,-19,Loyalty)}:name(-19: Exile and copy with cost 19) target(*[-land&manacost=19]|mygraveyard) moveto(myexile) and!( clone )!
+auto={C(0/0,-20,Loyalty)}:name(-20: Exile and copy with cost 20) target(*[-land&manacost=20]|mygraveyard) moveto(myexile) and!( clone )!
+auto={C(0/0,-7,Loyalty)}:name(-7: Create tamiyo's notebook) token(Tamiyo's Notebook)
+text=Compleated ({G/U/P} can be paid with {G}, {U}, or 2 life. If life was paid, this planeswalker enters with two fewer loyalty counters.) -- [+1]: Tap up to one target artifact or creature. It doesn't untap during its controller's next untap step. -- [-X]: Exile target nonland permanent card with mana value X from your graveyard. Create a token that's a copy of that card. -- [-7]: Create Tamiyo's Notebook, a legendary colorless artifact token with "Spells you cast cost {2} less to cast" and "{T}: Draw a card."
+mana={2}{G}{GU}{U}
+other={2}{G}{U}{L:2} name(Pay 2 life)
 type=Legendary Planeswalker
 subtype=Tamiyo
 [/card]
