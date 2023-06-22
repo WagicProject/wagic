@@ -65,7 +65,9 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
     if (found == 0)
     {
         MTGCardInstance * target = card->target;
-        if (ability) target = (MTGCardInstance *) (ability->target);
+        bool forced = (s.find("forced") != string::npos);
+        if (ability && !forced) 
+            target = (MTGCardInstance *) (ability->target);
         return NEW CardTargetChooser(observer, target, card);
     };
 

@@ -2731,11 +2731,13 @@ public:
     string PT;
     bool nonstatic;
     bool cda;
+    int triggers;
     APowerToughnessModifier(GameObserver* observer, int id, MTGCardInstance * _source, MTGCardInstance * _target, WParsedPT * wppt,string PT, bool nonstatic) :
         MTGAbility(observer, id, _source, _target), wppt(wppt),PT(PT),nonstatic(nonstatic)
     {
         aType = MTGAbility::STANDARD_PUMP;
         cda = PT.find("cdaactive") != string::npos;
+        triggers = 0;
     }
     
     void Update(float)
@@ -2752,6 +2754,10 @@ public:
             this->forceDestroy = 1;
             return;
         }
+        if (newPhase == MTG_PHASE_AFTER_EOT)
+        {
+            triggers = 0;
+        }
         if(!cda || (cda && (((MTGCardInstance *) target)->isSettingBase < 1)))
         {
             if(((MTGCardInstance *) target)->isSwitchedPT)
@@ -2762,6 +2768,20 @@ public:
             if(PT.size())
                 {
                     SAFE_DELETE(wppt);
+                    char buffer[4];
+                    sprintf(buffer, "%i", triggers);
+                    string trg;
+                    trg.append(buffer);
+                    if(PT.find("numofactivation") != string::npos){
+                        size_t pos = PT.find("numofactivation");
+                        if(pos != string::npos)
+                            PT.replace(pos, 15, trg);
+                    }
+                    if(PT.find("numofactivation") != string::npos){
+                        size_t pos = PT.find("numofactivation");
+                        if(pos != string::npos)
+                            PT.replace(pos, 15, trg);
+                    }
                     if(cda)
                         wppt = NEW WParsedPT(cReplaceString(PT, " cdaactive", ""),NULL,(MTGCardInstance *) source);
                     else
@@ -2779,6 +2799,20 @@ public:
             if(PT.size())
                 {
                     SAFE_DELETE(wppt);
+                    char buffer[4];
+                    sprintf(buffer, "%i", triggers);
+                    string trg;
+                    trg.append(buffer);
+                    if(PT.find("numofactivation") != string::npos){
+                        size_t pos = PT.find("numofactivation");
+                        if(pos != string::npos)
+                            PT.replace(pos, 15, trg);
+                    }
+                    if(PT.find("numofactivation") != string::npos){
+                        size_t pos = PT.find("numofactivation");
+                        if(pos != string::npos)
+                            PT.replace(pos, 15, trg);
+                    }
                     if(cda)
                         wppt = NEW WParsedPT(cReplaceString(PT, " cdaactive", ""),NULL,(MTGCardInstance *) source);
                     else
@@ -2794,6 +2828,20 @@ public:
         if(PT.size())
         {
             SAFE_DELETE(wppt);
+            char buffer[4];
+            sprintf(buffer, "%i", triggers);
+            string trg;
+            trg.append(buffer);
+            if(PT.find("numofactivation") != string::npos){
+                size_t pos = PT.find("numofactivation");
+                if(pos != string::npos)
+                    PT.replace(pos, 15, trg);
+            }
+            if(PT.find("numofactivation") != string::npos){
+                size_t pos = PT.find("numofactivation");
+                if(pos != string::npos)
+                    PT.replace(pos, 15, trg);
+            }
             if(cda)
                 wppt = NEW WParsedPT(cReplaceString(PT, " cdaactive", ""),NULL,(MTGCardInstance *) source);
             else
@@ -2845,6 +2893,20 @@ public:
         if(PT.size())
         {
             SAFE_DELETE(wppt);
+            char buffer[4];
+            sprintf(buffer, "%i", triggers);
+            string trg;
+            trg.append(buffer);
+            if(PT.find("numofactivation") != string::npos){
+                size_t pos = PT.find("numofactivation");
+                if(pos != string::npos)
+                    PT.replace(pos, 15, trg);
+            }
+            if(PT.find("numofactivation") != string::npos){
+                size_t pos = PT.find("numofactivation");
+                if(pos != string::npos)
+                    PT.replace(pos, 15, trg);
+            }
             if(cda)
                 wppt = NEW WParsedPT(cReplaceString(PT, " cdaactive", ""),NULL,(MTGCardInstance *) source);
             else
@@ -5257,6 +5319,7 @@ public:
     WParsedPT * wppt;
     string s;
     bool nonstatic;
+    int lastTriggeredTurn;
     WParsedPT * newWppt;
     PTInstant(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, WParsedPT * wppt, string s = "", bool nonstatic = false);
     int resolve();

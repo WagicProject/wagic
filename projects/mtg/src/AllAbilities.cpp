@@ -8056,21 +8056,29 @@ ATransformerInstant::~ATransformerInstant()
 }
 
 //P/t ueot
-PTInstant::PTInstant(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, WParsedPT * wppt,string s,bool nonstatic) :
-InstantAbility(observer, id, source, target), wppt(wppt),s(s),nonstatic(nonstatic)
+PTInstant::PTInstant(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, WParsedPT * wppt, string s, bool nonstatic) :
+InstantAbility(observer, id, source, target), wppt(wppt), s(s), nonstatic(nonstatic)
 {
-    ability = NEW APowerToughnessModifier(game, id, source, target, wppt,s,nonstatic);
+    ability = NEW APowerToughnessModifier(game, id, source, target, wppt, s, nonstatic);
     aType = MTGAbility::STANDARD_PUMP;
+    lastTriggeredTurn = source->getObserver()->turn;
 }
 
 int PTInstant::resolve()
 {
+    if(lastTriggeredTurn == source->getObserver()->turn)
+        ability->triggers++;
+    else
+        ability->triggers = 1;
+    lastTriggeredTurn = source->getObserver()->turn;
     APowerToughnessModifier * a = ability->clone();
+    a->triggers = ability->triggers;
     GenericInstantAbility * wrapper = NEW GenericInstantAbility(game, 1, source, (Damageable *) (this->target), a);
     wrapper->addToGame();
     ((Damageable *) (this->target))->afterDamage();//additional check the negative pt after resolving..
     return 1;
 }
+
 const string PTInstant::getMenuText()
 {
     return ability->getMenuText();
@@ -8087,6 +8095,7 @@ PTInstant::~PTInstant()
 {
     SAFE_DELETE(ability);
 }
+
 // ASwapPTUEOT
 ASwapPTUEOT::ASwapPTUEOT(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target) :
     InstantAbility(observer, id, source, target)

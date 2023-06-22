@@ -1,6 +1,6 @@
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 21-06-2023
+#We sorted this in alphabetical order - Luruz & Vitty85 22-06-2023
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -3202,6 +3202,18 @@ auto={C(0/0,0,Loyalty)}:name(+0: Draw a card or two) if type(artifact|myBattlefi
 auto={C(0/0,-9,Loyalty)}:name(-9: Emblem: Each end of turn search a permanent) emblem transforms((,newability[@each my endofturn:moveTo(myBattlefield) target(*[-instant;-sorcery]|myLibrary) && shuffle controller])) forever dontremove
 text=+1: Create a 1/1 colorless Thopter artifact creature token with flying. -- 0: Draw a card. If you control three or more artifacts, draw two cards instead. -- −9: You get an emblem with "At the beginning of your end step, search your library for a permanent card, put it onto the battlefield, then shuffle your library."
 mana={3}{U}{U}
+type=Legendary Planeswalker
+subtype=Tezzeret
+[/card]
+[card]
+name=Tezzeret, Betrayer of Flesh
+#MISSING: The first activated ability of an artifact you activate each turn costs {2} less to activate.
+auto=counter(0/0,4,loyalty)
+auto={C(0/0,+1,Loyalty)}:name(+1: Draw and discard) draw:2 controller && transforms((,newability[if type(artifact|myhand)~morethan~0 then choice name(Discard artifact) name(Discard artifact) notatarget(artifact|myhand) reject],newability[if type(*[-artifact]|myhand)~morethan~1 then choice name(Don't discard artifact) name(Don't discard artifact) notatarget(<2>*[-artifact]|myhand) reject])) ueot
+auto={C(0/0,-2,Loyalty)}:name(-2: Artifact becomes creature) target(artifact|battlefield) transforms((,newability[if cantargetcard(*[vehicle]|*) then becomes(Artifact Creature) ueot else becomes(Artifact Creature^4/4) ueot])) ueot
+auto={C(0/0,-6,Loyalty)}:name(-6: Emblem on tapped artifact) emblem transforms((,newability[@tapped(artifact|battlefield):name(Draw a card) draw:1 controller])) forever dontremove
+text=The first activated ability of an artifact you activate each turn costs {2} less to activate. -- [+1]: Draw two cards. Then discard two cards unless you discard an artifact card. -- [-2]: Target artifact becomes an artifact creature. If it isn't a Vehicle, it has base power and toughness 4/4. -- [-6]: You get an emblem with "Whenever an artifact you control becomes tapped, draw a card."
+mana={2}{U}{U}
 type=Legendary Planeswalker
 subtype=Tezzeret
 [/card]
