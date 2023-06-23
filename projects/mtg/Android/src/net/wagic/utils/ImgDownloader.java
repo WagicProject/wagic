@@ -3845,7 +3845,8 @@ public class ImgDownloader {
                     set.equals("UNH") || set.equals("XLN") || set.equals("SOI") || set.equals("SOK") ||
                     set.equals("BOK") || set.equals("CHK") || set.equals("ZNR") || set.equals("KHM") ||
                     set.equals("STX") || set.equals("MID") || set.equals("CC2") || set.equals("VOW") ||
-                    set.equals("DBL") || set.equals("Y22") || set.equals("MOM") || set.equals("NEO"))
+                    set.equals("DBL") || set.equals("Y22") || set.equals("MOM") || set.equals("NEO") ||
+                    set.equals("SIR"))
                 rarity = "";
             if(id != null && !rarity.equals("t") && (negativeId || id.equals("209162") || id.equals("209163") || id.equals("401721") ||
                     id.equals("401722") || id.equals("999902")))

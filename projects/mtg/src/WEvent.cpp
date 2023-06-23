@@ -362,6 +362,11 @@ WEventCardScryed::WEventCardScryed(MTGCardInstance * card) :
 {
 }
 
+WEventCardNinja::WEventCardNinja(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
 WEventCardExplored::WEventCardExplored(MTGCardInstance * card) :
     WEventCardUpdate(card)
 {
@@ -646,6 +651,12 @@ Targetable * WEventCardTrained::getTarget(int target)
 }
 
 Targetable * WEventCardScryed::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardNinja::getTarget(int target)
 {
     if (target) return card;
     return NULL;

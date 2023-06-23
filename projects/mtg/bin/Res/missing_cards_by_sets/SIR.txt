@@ -1,0 +1,61 @@
+[card]
+name=Emrakul, the Promised End
+text=Emrakul, the Promised End costs {1} less to cast for each card type among cards in your graveyard. -- When you cast Emrakul, you gain control of target opponent during that player's next turn. After that turn, that player takes an extra turn. -- Flying, trample, protection from instants
+mana={13}
+type=Legendary Creature
+subtype=Eldrazi
+power=13
+toughness=13
+[/card]
+[card]
+name=Moonlight Hunt
+text=Choose target creature you don't control. Each creature you control that's a Wolf or a Werewolf deals damage equal to its power to that creature.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Accursed Witch
+text=Spells your opponents cast that target Accursed Witch cost {1} less to cast. -- When Accursed Witch dies, return it to the battlefield transformed under your control attached to target opponent.
+mana={3}{B}
+type=Creature
+subtype=Human Shaman
+power=4
+toughness=2
+[/card]
+[card]
+name=Mirrorwing Dragon
+abilities=flying
+text=Flying -- Whenever a player casts an instant or sorcery spell that targets only Mirrorwing Dragon, that player copies that spell for each other creature he or she controls that the spell could target. Each copy targets a different one of those creatures.
+mana={3}{R}{R}
+type=Creature
+subtype=Dragon
+power=4
+toughness=5
+[/card]
+[card]
+name=Nahiri's Wrath
+text=As an additional cost to cast Nahiri's Wrath, discard X cards. -- Nahiri's Wrath deals damage equal to the total converted mana cost of the discarded cards to each of up to X target creatures and/or planeswalkers.
+mana={2}{R}
+type=Sorcery
+[/card]
+[card]
+name=Epiphany at the Drownyard
+text=Reveal the top X plus one cards of your library and separate them into two piles. An opponent chooses one of those piles. Put that pile into your hand and the other into your graveyard.
+mana={X}{U}
+type=Instant
+[/card]
+[card]
+name=Soul Separator
+text={5}, {T}, Sacrifice Soul Separator: Exile target creature card from your graveyard. Put a token onto the battlefield that's a copy of that card except it's 1/1, it's a Spirit in addition to its other types, and it has flying. Put a black Zombie creature token onto the battlefield with power equal to that card's power and toughness equal to that card's toughness.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Falkenrath Gorger
+text=Each Vampire creature card you own that isn't on the battlefield has madness. The madness cost is equal to its mana cost. (If you discard a card with madness, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)
+mana={R}
+type=Creature
+subtype=Vampire Berserker
+power=2
+toughness=1
+[/card]

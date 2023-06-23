@@ -1033,6 +1033,34 @@ public:
     }
 };
 
+class TrCardNinja: public Trigger
+{
+public:
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardNinja(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn)
+    {
+        triggeredTurn = -1;
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardNinja * e = dynamic_cast<WEventCardNinja *> (event);
+        if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
+        return 1;
+    }
+
+    TrCardNinja * clone() const
+    {
+        return NEW TrCardNinja(*this);
+    }
+};
+
 class TrCardDungeonCompleted: public Trigger
 {
 public:
@@ -2139,8 +2167,9 @@ public:
 class ANinja: public ActivatedAbility
 {
 public:
-    ANinja(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target) :
-        ActivatedAbility(observer, _id, card)
+    bool ninjutsu;
+    ANinja(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, bool ninjutsu = true) :
+        ActivatedAbility(observer, _id, card), ninjutsu(ninjutsu)
     {
         target = _target;
     }
@@ -2153,7 +2182,7 @@ public:
         MTGCardInstance * newcard = _target;
         Spell * spell = NULL;
         if(_target->currentZone != _target->controller()->game->battlefield){ // If the card is already in play no need to recast a spell (e.g. "Olivia, Crimson Bride").
-            MTGCardInstance * copy = _target->controller()->game->putInZone(_target,_target->currentZone, source->controller()->game->temp);
+            MTGCardInstance * copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->temp);
             spell = NEW Spell(game, copy);
             spell->resolve();
             newcard = spell->source;
@@ -2161,13 +2190,19 @@ public:
         newcard->summoningSickness = 0;
         newcard->tap();
         newcard->setAttacker(1);
+        if(ninjutsu){
+            WEvent * e = NEW WEventCardNinja(newcard);
+            game->receiveEvent(e);
+        }
         SAFE_DELETE(spell);
         return 1;
     }
 
     const string getMenuText()
     {
-        return "Ninjutsu";
+        if(ninjutsu)
+            return "Ninjutsu";
+        return "Ready to Fight";
     }
 
     ANinja * clone() const
@@ -5276,6 +5311,7 @@ public:
     bool UYNT;
     bool UENT;
     int myCurrentTurn;
+    int controllerId;
     string menutext; //this overrides the previous.
     ATransformer(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower, bool newpowerfound,string newtoughness, bool newtoughnessfound,vector<string> newAbilitiesList, bool newAbilityFound = false, bool aForever = false, bool UYNT = false, bool UENT = false, string menutext = "");
     int addToGame();

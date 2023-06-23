@@ -2,8 +2,28 @@
 author=Wagic Team
 name=Multiverse Legends
 year=2023-04-21
-total=195
+total=69
 [/meta]
+[card]
+primitive=Treasure
+id=-611325
+rarity=T
+[/card]
+[card]
+primitive=Treasure
+id=-611326
+rarity=T
+[/card]
+[card]
+primitive=Elemental
+id=-611329
+rarity=T
+[/card]
+[card]
+primitive=Phyrexian Myr
+id=-611341
+rarity=T
+[/card]
 [card]
 primitive=Anafenza, Kin-Tree Spirit
 id=611306

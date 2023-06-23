@@ -7693,8 +7693,10 @@ ATransformer::ATransformer(GameObserver* observer, int id, MTGCardInstance * sou
 
 int ATransformer::addToGame()
 {
-    if(UYNT || UENT)
+    if(UYNT || UENT){
         myCurrentTurn = game->turn;
+        controllerId = source->controller()->getId();
+    }
     MTGCardInstance * _target = NULL;
         Interruptible * action = (Interruptible *) target;
     if (action && action->type == ACTION_SPELL && action->state == NOT_RESOLVED)
@@ -7901,13 +7903,13 @@ int ATransformer::addToGame()
     {
         if(UYNT)
         {
-            if(myCurrentTurn != 1000 && game->turn > myCurrentTurn && source->controller()->getId() == game->currentPlayer->getId())
+            if(myCurrentTurn != 1000 && game->turn > myCurrentTurn && controllerId == game->currentPlayer->getId())
                 return 1;
             return 0; // Fixed an issue when the transformation with uynt is triggered by instant/sorcery or by card that left the battlefield before the ability ending turn.
         } 
         else if(UENT)
         {
-            if(myCurrentTurn != 1000 && game->turn > (myCurrentTurn + 1) && source->controller()->getId() != game->currentPlayer->getId())
+            if(myCurrentTurn != 1000 && game->turn > (myCurrentTurn + 1) && controllerId != game->currentPlayer->getId())
                 return 1;
             return 0; // Fixed an issue when the transformation with uent is triggered by instant/sorcery or by card that left the battlefield before the ability ending turn.
         }
@@ -7973,7 +7975,7 @@ int ATransformer::destroy()
             for (unsigned int i = 0;i < newAbilities[_target].size(); i++)
             {
                 // The mutated cards probably cause a double free error and a crash in Wagic, so for now they have been exluded...
-                if(newAbilities[_target].at(i) && !_target->mutation && _target->currentZone != _target->owner->game->library)
+                if(newAbilities[_target].at(i) && !_target->mutation && _target->currentZone != _target->owner->game->library && source->currentZone != NULL && source->name != "")
                 {
                     newAbilities[_target].at(i)->forceDestroy = 1;
                     newAbilities[_target].at(i)->removeFromGame();

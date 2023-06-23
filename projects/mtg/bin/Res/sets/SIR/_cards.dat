@@ -1,0 +1,1846 @@
+[meta]
+author=Wagic Team
+name=Shadows over Innistrad Remastered
+year=2023-03-21
+total=368
+[/meta]
+[card]
+primitive=Clue
+id=-606628
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-606631
+rarity=T
+[/card]
+[card]
+primitive=Clue
+id=-606633
+rarity=T
+[/card]
+[card]
+primitive=Angel
+id=-606634
+rarity=T
+[/card]
+[card]
+primitive=Clue
+id=-606643
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-606648
+rarity=T
+[/card]
+[card]
+primitive=Human Soldier
+id=-606657
+rarity=T
+[/card]
+[card]
+primitive=Clue
+id=-606661
+rarity=T
+[/card]
+[card]
+primitive=Clue
+id=-606667
+rarity=T
+[/card]
+[card]
+primitive=Clue
+id=-606672
+rarity=T
+[/card]
+[card]
+primitive=Human Wizard
+id=-606674
+rarity=T
+[/card]
+[card]
+primitive=Human Wizard
+id=-606675
+rarity=T
+[/card]
+[card]
+primitive=Clue
+id=-606677
+rarity=T
+[/card]
+[card]
+primitive=Zombie
+id=-606678
+rarity=T
+[/card]
+[card]
+primitive=Clue
+id=-606680
+rarity=T
+[/card]
+[card]
+primitive=Clue
+id=-606683
+rarity=T
+[/card]
+[card]
+primitive=Clue
+id=-606692
+rarity=T
+[/card]
+[card]
+primitive=Clue
+id=-606698
+rarity=T
+[/card]
+[card]
+primitive=Zombie
+id=-606702
+rarity=T
+[/card]
+[card]
+primitive=Eldrazi Horror
+id=-606712
+rarity=T
+[/card]
+[card]
+primitive=Vampire Knight
+id=-606718
+rarity=T
+[/card]
+[card]
+primitive=Zombie
+id=-606722
+rarity=T
+[/card]
+[card]
+primitive=Zombie
+id=-606726
+rarity=T
+[/card]
+[card]
+primitive=Zombie
+id=-606730
+rarity=T
+[/card]
+[card]
+primitive=Zombie
+id=-606731
+rarity=T
+[/card]
+[card]
+primitive=Zombie
+id=-606732
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-606734
+rarity=T
+[/card]
+[card]
+primitive=Zombie
+id=-606736
+rarity=T
+[/card]
+[card]
+primitive=Zombie
+id=-606742
+rarity=T
+[/card]
+[card]
+primitive=Devil
+id=-606769
+rarity=T
+[/card]
+[card]
+primitive=Human
+id=-606781
+rarity=T
+[/card]
+[card]
+primitive=Eldrazi Horror
+id=-606782
+rarity=T
+[/card]
+[card]
+primitive=Devil
+id=-606790
+rarity=T
+[/card]
+[card]
+primitive=Clue
+id=-606809
+rarity=T
+[/card]
+[card]
+primitive=Clue
+id=-606810
+rarity=T
+[/card]
+[card]
+primitive=Clue
+id=-606812
+rarity=T
+[/card]
+[card]
+primitive=Insect
+id=-606813
+rarity=T
+[/card]
+[card]
+primitive=Spider
+id=-606828
+rarity=T
+[/card]
+[card]
+primitive=Wolf
+id=-606832
+rarity=T
+[/card]
+[card]
+primitive=Eldrazi Horror
+id=-606840
+rarity=T
+[/card]
+[card]
+primitive=Clue
+id=-606845
+rarity=T
+[/card]
+[card]
+primitive=Human Soldier
+id=-606850
+rarity=T
+[/card]
+[card]
+primitive=Clue
+id=-606853
+rarity=T
+[/card]
+[card]
+primitive=Wolf
+id=-606854
+rarity=T
+[/card]
+[card]
+primitive=Wolf
+id=-606857
+rarity=T
+[/card]
+[card]
+primitive=Human Soldier
+id=-606870
+rarity=T
+[/card]
+[card]
+primitive=Vampire Knight
+id=-606871
+rarity=T
+[/card]
+[card]
+primitive=Clue
+id=-606885
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-606889
+rarity=T
+[/card]
+[card]
+primitive=Zombie
+id=-606890
+rarity=T
+[/card]
+[card]
+primitive=Clue
+id=-606892
+rarity=T
+[/card]
+[card]
+primitive=Human Cleric
+id=-606907
+rarity=T
+[/card]
+[card]
+primitive=Abundant Maw
+id=606611
+rarity=U
+[/card]
+[card]
+primitive=Decimator of the Provinces
+id=606612
+rarity=M
+[/card]
+[card]
+primitive=Distended Mindbender
+id=606613
+rarity=R
+[/card]
+[card]
+primitive=Drownyard Behemoth
+id=606614
+rarity=U
+[/card]
+[card]
+primitive=Elder Deep-Fiend
+id=606615
+rarity=R
+[/card]
+[card]
+primitive=Emrakul, the Promised End
+id=606616
+rarity=M
+[/card]
+[card]
+primitive=Eternal Scourge
+id=606617
+rarity=R
+[/card]
+[card]
+primitive=Mockery of Nature
+id=606618
+rarity=U
+[/card]
+[card]
+primitive=Wretched Gryff
+id=606619
+rarity=C
+[/card]
+[card]
+primitive=Always Watching
+id=606620
+rarity=R
+[/card]
+[card]
+primitive=Angelic Purge
+id=606621
+rarity=C
+[/card]
+[card]
+primitive=Apothecary Geist
+id=606622
+rarity=C
+[/card]
+[card]
+primitive=Archangel Avacyn
+id=606623
+rarity=M
+[/card]
+[card]
+primitive=Avacyn, the Purifier
+id=606624
+rarity=T
+[/card]
+[card]
+primitive=Blessed Alliance
+id=606625
+rarity=U
+[/card]
+[card]
+primitive=Borrowed Grace
+id=606626
+rarity=C
+[/card]
+[card]
+primitive=Bound by Moonsilver
+id=606627
+rarity=C
+[/card]
+[card]
+primitive=Bygone Bishop
+id=606628
+rarity=R
+[/card]
+[card]
+primitive=Collective Effort
+id=606629
+rarity=R
+[/card]
+[card]
+primitive=Courageous Outrider
+id=606630
+rarity=U
+[/card]
+[card]
+primitive=Dauntless Cathar
+id=606631
+rarity=C
+[/card]
+[card]
+primitive=Dawn Gryff
+id=606632
+rarity=C
+[/card]
+[card]
+primitive=Declaration in Stone
+id=606633
+rarity=R
+[/card]
+[card]
+primitive=Descend upon the Sinful
+id=606634
+rarity=M
+[/card]
+[card]
+primitive=Devilthorn Fox
+id=606635
+rarity=C
+[/card]
+[card]
+primitive=Drogskol Shieldmate
+id=606636
+rarity=C
+[/card]
+[card]
+primitive=Faith Unbroken
+id=606637
+rarity=U
+[/card]
+[card]
+primitive=Faithbearer Paladin
+id=606638
+rarity=C
+[/card]
+[card]
+primitive=Fiend Binder
+id=606639
+rarity=C
+[/card]
+[card]
+primitive=Gryff's Boon
+id=606640
+rarity=U
+[/card]
+[card]
+primitive=Guardian of Pilgrims
+id=606641
+rarity=C
+[/card]
+[card]
+primitive=Hope Against Hope
+id=606642
+rarity=U
+[/card]
+[card]
+primitive=Humble the Brute
+id=606643
+rarity=U
+[/card]
+[card]
+primitive=Ironclad Slayer
+id=606644
+rarity=U
+[/card]
+[card]
+primitive=Lone Rider
+id=606645
+rarity=U
+[/card]
+[card]
+primitive=It That Rides as One
+id=606646
+rarity=T
+[/card]
+[card]
+primitive=Lunarch Mantle
+id=606647
+rarity=C
+[/card]
+[card]
+primitive=Nearheath Chaplain
+id=606648
+rarity=U
+[/card]
+[card]
+primitive=Odric, Lunarch Marshal
+id=606649
+rarity=R
+[/card]
+[card]
+primitive=Puncturing Light
+id=606650
+rarity=C
+[/card]
+[card]
+primitive=Reaper of Flight Moonsilver
+id=606651
+rarity=U
+[/card]
+[card]
+primitive=Selfless Spirit
+id=606652
+rarity=R
+[/card]
+[card]
+primitive=Sigarda's Aid
+id=606653
+rarity=R
+[/card]
+[card]
+primitive=Sigardian Priest
+id=606654
+rarity=C
+[/card]
+[card]
+primitive=Spectral Shepherd
+id=606655
+rarity=U
+[/card]
+[card]
+primitive=Steadfast Cathar
+id=606656
+rarity=C
+[/card]
+[card]
+primitive=Strength of Arms
+id=606657
+rarity=C
+[/card]
+[card]
+primitive=Subjugator Angel
+id=606658
+rarity=U
+[/card]
+[card]
+primitive=Thalia, Heretic Cathar
+id=606659
+rarity=R
+[/card]
+[card]
+primitive=Thalia's Lancers
+id=606660
+rarity=R
+[/card]
+[card]
+primitive=Thraben Inspector
+id=606661
+rarity=C
+[/card]
+[card]
+primitive=Topplegeist
+id=606662
+rarity=U
+[/card]
+[card]
+primitive=Town Gossipmonger
+id=606663
+rarity=U
+[/card]
+[card]
+primitive=Incited Rabble
+id=606664
+rarity=T
+[/card]
+[card]
+primitive=Advanced Stitchwing
+id=606665
+rarity=U
+[/card]
+[card]
+primitive=Compelling Deterrence
+id=606666
+rarity=U
+[/card]
+[card]
+primitive=Confirm Suspicions
+id=606667
+rarity=R
+[/card]
+[card]
+primitive=Convolute
+id=606668
+rarity=C
+[/card]
+[card]
+primitive=Curious Homunculus
+id=606669
+rarity=U
+[/card]
+[card]
+primitive=Voracious Reader
+id=606670
+rarity=T
+[/card]
+[card]
+primitive=Daring Sleuth
+id=606671
+rarity=U
+[/card]
+[card]
+primitive=Bearer of Overwhelming Truths
+id=606672
+rarity=T
+[/card]
+[card]
+primitive=Deny Existence
+id=606673
+rarity=C
+[/card]
+[card]
+primitive=Docent of Perfection
+id=606674
+rarity=R
+[/card]
+[card]
+primitive=Final Iteration
+id=606675
+rarity=T
+[/card]
+[card]
+primitive=Drag Under
+id=606676
+rarity=C
+[/card]
+[card]
+primitive=Drownyard Explorers
+id=606677
+rarity=C
+[/card]
+[card]
+primitive=Drunau Corpse Trawler
+id=606678
+rarity=U
+[/card]
+[card]
+primitive=Epiphany at the Drownyard
+id=606679
+rarity=R
+[/card]
+[card]
+primitive=Erdwal Illuminator
+id=606680
+rarity=U
+[/card]
+[card]
+primitive=Essence Flux
+id=606681
+rarity=C
+[/card]
+[card]
+primitive=Exultant Cultist
+id=606682
+rarity=C
+[/card]
+[card]
+primitive=Fleeting Memories
+id=606683
+rarity=U
+[/card]
+[card]
+primitive=Fogwalker
+id=606684
+rarity=C
+[/card]
+[card]
+primitive=Forgotten Creation
+id=606685
+rarity=R
+[/card]
+[card]
+primitive=Geist of the Archives
+id=606686
+rarity=C
+[/card]
+[card]
+primitive=Geralf's Masterpiece
+id=606687
+rarity=R
+[/card]
+[card]
+primitive=Imprisoned in the Moon
+id=606688
+rarity=C
+[/card]
+[card]
+primitive=Ingenious Skaab
+id=606689
+rarity=C
+[/card]
+[card]
+primitive=Invasive Surgery
+id=606690
+rarity=U
+[/card]
+[card]
+primitive=Jace, Unraveler of Secrets
+id=606691
+rarity=M
+[/card]
+[card]
+primitive=Jace's Scrutiny
+id=606692
+rarity=C
+[/card]
+[card]
+primitive=Laboratory Brute
+id=606693
+rarity=C
+[/card]
+[card]
+primitive=Manic Scribe
+id=606694
+rarity=U
+[/card]
+[card]
+primitive=Mausoleum Wanderer
+id=606695
+rarity=R
+[/card]
+[card]
+primitive=Mind's Dilation
+id=606696
+rarity=M
+[/card]
+[card]
+primitive=Nebelgast Herald
+id=606697
+rarity=U
+[/card]
+[card]
+primitive=Ongoing Investigation
+id=606698
+rarity=U
+[/card]
+[card]
+primitive=Pieces of the Puzzle
+id=606699
+rarity=U
+[/card]
+[card]
+primitive=Pore Over the Pages
+id=606700
+rarity=U
+[/card]
+[card]
+primitive=Rattlechains
+id=606701
+rarity=R
+[/card]
+[card]
+primitive=Rise from the Tides
+id=606702
+rarity=U
+[/card]
+[card]
+primitive=Spontaneous Mutation
+id=606703
+rarity=C
+[/card]
+[card]
+primitive=Startled Awake
+id=606704
+rarity=M
+[/card]
+[card]
+primitive=Persistent Nightmare
+id=606705
+rarity=T
+[/card]
+[card]
+primitive=Stormrider Spirit
+id=606706
+rarity=C
+[/card]
+[card]
+primitive=Summary Dismissal
+id=606707
+rarity=R
+[/card]
+[card]
+primitive=Take Inventory
+id=606708
+rarity=C
+[/card]
+[card]
+primitive=Tattered Haunter
+id=606709
+rarity=C
+[/card]
+[card]
+primitive=Thing in the Ice
+id=606719
+rarity=R
+[/card]
+[card]
+primitive=Awoken Horror
+id=606711
+rarity=T
+[/card]
+[card]
+primitive=Wharf Infiltrator
+id=606712
+rarity=R
+[/card]
+[card]
+primitive=Accursed Witch
+id=606713
+rarity=U
+[/card]
+[card]
+primitive=Infectious Curse
+id=606714
+rarity=T
+[/card]
+[card]
+primitive=Alms of the Vein
+id=606715
+rarity=C
+[/card]
+[card]
+primitive=Biting Rain
+id=606716
+rarity=U
+[/card]
+[card]
+primitive=Borrowed Malevolence
+id=606717
+rarity=C
+[/card]
+[card]
+primitive=Call the Bloodline
+id=606718
+rarity=U
+[/card]
+[card]
+primitive=Certain Death
+id=606719
+rarity=C
+[/card]
+[card]
+primitive=Collective Brutality
+id=606720
+rarity=R
+[/card]
+[card]
+primitive=Crow of Dark Tidings
+id=606721
+rarity=C
+[/card]
+[card]
+primitive=Dark Salvation
+id=606722
+rarity=R
+[/card]
+[card]
+primitive=Dead Weight
+id=606723
+rarity=C
+[/card]
+[card]
+primitive=Kindly Stranger
+id=606724
+rarity=U
+[/card]
+[card]
+primitive=Demon-Possessed Witch
+id=606725
+rarity=T
+[/card]
+[card]
+primitive=Diregraf Colossus
+id=606726
+rarity=R
+[/card]
+[card]
+primitive=Dusk Feaster
+id=606727
+rarity=U
+[/card]
+[card]
+primitive=Ever After
+id=606728
+rarity=R
+[/card]
+[card]
+primitive=Gavony Unhallowed
+id=606729
+rarity=C
+[/card]
+[card]
+primitive=Ghoulcaller's Accomplice
+id=606730
+rarity=C
+[/card]
+[card]
+primitive=Gisa's Bidding
+id=606731
+rarity=C
+[/card]
+[card]
+primitive=Graf Harvest
+id=606732
+rarity=U
+[/card]
+[card]
+primitive=Graf Rats
+id=606926
+rarity=C
+[/card]
+[card]
+primitive=Chittering Host
+id=606925
+rarity=T
+[/card]
+[card]
+primitive=Grotesque Mutation
+id=606733
+rarity=C
+[/card]
+[card]
+primitive=Haunted Dead
+id=606734
+rarity=U
+[/card]
+[card]
+primitive=Indulgent Aristocrat
+id=606735
+rarity=U
+[/card]
+[card]
+primitive=Liliana, the Last Hope
+id=606736
+rarity=M
+[/card]
+[card]
+primitive=Liliana's Elite
+id=606737
+rarity=C
+[/card]
+[card]
+primitive=Macabre Waltz
+id=606738
+rarity=C
+[/card]
+[card]
+primitive=Merciless Resolve
+id=606739
+rarity=C
+[/card]
+[card]
+primitive=Midnight Scavengers
+id=606927
+rarity=U
+[/card]
+[card]
+primitive=Mindwrack Demon
+id=606740
+rarity=M
+[/card]
+[card]
+primitive=Morkrut Necropod
+id=606741
+rarity=C
+[/card]
+[card]
+primitive=Noosegraf Mob
+id=606742
+rarity=R
+[/card]
+[card]
+primitive=Olivia's Bloodsworn
+id=606743
+rarity=U
+[/card]
+[card]
+primitive=Olivia's Dragoon
+id=606744
+rarity=C
+[/card]
+[card]
+primitive=Pick the Brain
+id=606745
+rarity=U
+[/card]
+[card]
+primitive=Relentless Dead
+id=606746
+rarity=M
+[/card]
+[card]
+primitive=Rise from the Grave
+id=606747
+rarity=U
+[/card]
+[card]
+primitive=Ruthless Disposal
+id=606748
+rarity=U
+[/card]
+[card]
+primitive=Sanitarium Skeleton
+id=606749
+rarity=C
+[/card]
+[card]
+primitive=Stromkirk Condemned
+id=606750
+rarity=R
+[/card]
+[card]
+primitive=Thraben Foulbloods
+id=606751
+rarity=C
+[/card]
+[card]
+primitive=Tree of Perdition
+id=606752
+rarity=R
+[/card]
+[card]
+primitive=Triskaidekaphobia
+id=606753
+rarity=R
+[/card]
+[card]
+primitive=Voldaren Pariah
+id=606754
+rarity=R
+[/card]
+[card]
+primitive=Abolisher of Bloodlines
+id=606755
+rarity=T
+[/card]
+[card]
+primitive=Weirded Vampire
+id=606756
+rarity=C
+[/card]
+[card]
+primitive=Alchemist's Greeting
+id=606757
+rarity=C
+[/card]
+[card]
+primitive=Assembled Alphas
+id=606758
+rarity=R
+[/card]
+[card]
+primitive=Avacyn's Judgment
+id=606759
+rarity=R
+[/card]
+[card]
+primitive=Bedlam Reveler
+id=606760
+rarity=R
+[/card]
+[card]
+primitive=Blood Mist
+id=606761
+rarity=U
+[/card]
+[card]
+primitive=Bloodmad Vampire
+id=606762
+rarity=C
+[/card]
+[card]
+primitive=Borrowed Hostility
+id=606763
+rarity=C
+[/card]
+[card]
+primitive=Burn from Within
+id=606764
+rarity=R
+[/card]
+[card]
+primitive=Collective Defiance
+id=606765
+rarity=R
+[/card]
+[card]
+primitive=Conduit of Storms
+id=606767
+rarity=C
+[/card]
+[card]
+primitive=Deranged Whelp
+id=606768
+rarity=C
+[/card]
+[card]
+primitive=Devils' Playground
+id=606769
+rarity=R
+[/card]
+[card]
+primitive=Ember-Eye Wolf
+id=606770
+rarity=C
+[/card]
+[card]
+primitive=Falkenrath Gorger
+id=606771
+rarity=R
+[/card]
+[card]
+primitive=Fiery Temper
+id=606772
+rarity=U
+[/card]
+[card]
+primitive=Flameblade Angel
+id=606773
+rarity=R
+[/card]
+[card]
+primitive=Furyblade Vampire
+id=606774
+rarity=U
+[/card]
+[card]
+primitive=Galvanic Bombardment
+id=606775
+rarity=C
+[/card]
+[card]
+primitive=Gatstaf Arsonists
+id=606776
+rarity=C
+[/card]
+[card]
+primitive=Gatstaf Ravagers
+id=606777
+rarity=T
+[/card]
+[card]
+primitive=Geier Reach Bandit
+id=606778
+rarity=U
+[/card]
+[card]
+primitive=Vildin-Pack Alpha
+id=606779
+rarity=T
+[/card]
+[card]
+primitive=Goldnight Castigator
+id=606780
+rarity=M
+[/card]
+[card]
+primitive=Hanweir Garrison
+id=606781
+rarity=R
+[/card]
+[card]
+primitive=Hanweir, the Writhing Township
+id=606782
+rarity=T
+[/card]
+[card]
+primitive=Howlpack Wolf
+id=606783
+rarity=C
+[/card]
+[card]
+primitive=Incendiary Flow
+id=606784
+rarity=C
+[/card]
+[card]
+primitive=Insatiable Gorgers
+id=606785
+rarity=C
+[/card]
+[card]
+primitive=Insolent Neonate
+id=606786
+rarity=C
+[/card]
+[card]
+primitive=Lightning Axe
+id=606787
+rarity=U
+[/card]
+[card]
+primitive=Mad Prophet
+id=606788
+rarity=U
+[/card]
+[card]
+primitive=Magmatic Chasm
+id=606789
+rarity=C
+[/card]
+[card]
+primitive=Make Mischief
+id=606790
+rarity=C
+[/card]
+[card]
+primitive=Mirrorwing Dragon
+id=606791
+rarity=M
+[/card]
+[card]
+primitive=Nahiri's Wrath
+id=606792
+rarity=M
+[/card]
+[card]
+primitive=Pyre Hound
+id=606793
+rarity=C
+[/card]
+[card]
+primitive=Ravenous Bloodseeker
+id=606794
+rarity=C
+[/card]
+[card]
+primitive=Rush of Adrenaline
+id=606795
+rarity=C
+[/card]
+[card]
+primitive=Scourge Wolf
+id=606796
+rarity=U
+[/card]
+[card]
+primitive=Shreds of Sanity
+id=606797
+rarity=U
+[/card]
+[card]
+primitive=Sin Prodder
+id=606798
+rarity=R
+[/card]
+[card]
+primitive=Stensia Masquerade
+id=606799
+rarity=U
+[/card]
+[card]
+primitive=Stromkirk Occultist
+id=606800
+rarity=U
+[/card]
+[card]
+primitive=Thermo-Alchemist
+id=606801
+rarity=U
+[/card]
+[card]
+primitive=Tormenting Voice
+id=606802
+rarity=C
+[/card]
+[card]
+primitive=Ulrich's Kindred
+id=606803
+rarity=U
+[/card]
+[card]
+primitive=Uncaged Fury
+id=606804
+rarity=U
+[/card]
+[card]
+primitive=Village Messenger
+id=606805
+rarity=U
+[/card]
+[card]
+primitive=Moonrise Intruder
+id=606806
+rarity=T
+[/card]
+[card]
+primitive=Aim High
+id=606807
+rarity=C
+[/card]
+[card]
+primitive=Bloodbriar
+id=606808
+rarity=C
+[/card]
+[card]
+primitive=Briarbridge Patrol
+id=606809
+rarity=C
+[/card]
+[card]
+primitive=Byway Courier
+id=606810
+rarity=C
+[/card]
+[card]
+primitive=Clear Shot
+id=606811
+rarity=U
+[/card]
+[card]
+primitive=Confront the Unknown
+id=606812
+rarity=C
+[/card]
+[card]
+primitive=Crawling Sensation
+id=606813
+rarity=U
+[/card]
+[card]
+primitive=Cryptolith Rite
+id=606814
+rarity=R
+[/card]
+[card]
+primitive=Deathcap Cultivator
+id=606815
+rarity=U
+[/card]
+[card]
+primitive=Duskwatch Recruiter
+id=606816
+rarity=U
+[/card]
+[card]
+primitive=Krallenhorde Howler
+id=606817
+rarity=T
+[/card]
+[card]
+primitive=Eldritch Evolution
+id=606818
+rarity=R
+[/card]
+[card]
+primitive=Gnarlwood Dryad
+id=606819
+rarity=C
+[/card]
+[card]
+primitive=Graf Mole
+id=606820
+rarity=U
+[/card]
+[card]
+primitive=Grapple with the Past
+id=606821
+rarity=C
+[/card]
+[card]
+primitive=Groundskeeper
+id=606822
+rarity=U
+[/card]
+[card]
+primitive=Hamlet Captain
+id=606823
+rarity=U
+[/card]
+[card]
+primitive=Hinterland Logger
+id=606824
+rarity=C
+[/card]
+[card]
+primitive=Timber Shredder
+id=606825
+rarity=T
+[/card]
+[card]
+primitive=Howlpack Resurgence
+id=606826
+rarity=U
+[/card]
+[card]
+primitive=Intrepid Provisioner
+id=606827
+rarity=C
+[/card]
+[card]
+primitive=Ishkanah, Grafwidow
+id=606828
+rarity=M
+[/card]
+[card]
+primitive=Moonlight Hunt
+id=606829
+rarity=C
+[/card]
+[card]
+primitive=Noose Constrictor
+id=606830
+rarity=U
+[/card]
+[card]
+primitive=Obsessive Skinner
+id=606831
+rarity=C
+[/card]
+[card]
+primitive=Pack Guardian
+id=606832
+rarity=U
+[/card]
+[card]
+primitive=Permeating Mass
+id=606833
+rarity=R
+[/card]
+[card]
+primitive=Rabid Bite
+id=606834
+rarity=C
+[/card]
+[card]
+primitive=Sage of Ancient Lore
+id=606835
+rarity=R
+[/card]
+[card]
+primitive=Werewolf of Ancient Hunger
+id=606836
+rarity=T
+[/card]
+[card]
+primitive=Seasons Past
+id=606837
+rarity=M
+[/card]
+[card]
+primitive=Second Harvest
+id=606838
+rarity=R
+[/card]
+[card]
+primitive=Shrill Howler
+id=606839
+rarity=U
+[/card]
+[card]
+primitive=Howling Chorus
+id=606840
+rarity=T
+[/card]
+[card]
+primitive=Spirit of the Hunt
+id=606841
+rarity=R
+[/card]
+[card]
+primitive=Splendid Reclamation
+id=606842
+rarity=R
+[/card]
+[card]
+primitive=Swift Spinner
+id=606843
+rarity=C
+[/card]
+[card]
+primitive=Thornhide Wolves
+id=606844
+rarity=C
+[/card]
+[card]
+primitive=Tireless Tracker
+id=606845
+rarity=R
+[/card]
+[card]
+primitive=Traverse the Ulvenwald
+id=606846
+rarity=R
+[/card]
+[card]
+primitive=Ulvenwald Captive
+id=606847
+rarity=C
+[/card]
+[card]
+primitive=Ulvenwald Abomination
+id=606848
+rarity=T
+[/card]
+[card]
+primitive=Ulvenwald Hydra
+id=606849
+rarity=R
+[/card]
+[card]
+primitive=Ulvenwald Mysteries
+id=606850
+rarity=U
+[/card]
+[card]
+primitive=Vessel of Nascency
+id=606851
+rarity=U
+[/card]
+[card]
+primitive=Veteran Cathar
+id=606852
+rarity=U
+[/card]
+[card]
+primitive=Weirding Wood
+id=606853
+rarity=C
+[/card]
+[card]
+primitive=Wolfkin Bond
+id=606854
+rarity=C
+[/card]
+[card]
+primitive=Altered Ego
+id=606855
+rarity=R
+[/card]
+[card]
+primitive=Anguished Unmaking
+id=606856
+rarity=U
+[/card]
+[card]
+primitive=Arlinn Kord
+id=606857
+rarity=M
+[/card]
+[card]
+primitive=Arlinn, Embraced by the Moon
+id=606858
+rarity=T
+[/card]
+[card]
+primitive=Bloodhall Priest
+id=606859
+rarity=R
+[/card]
+[card]
+primitive=Fevered Visions
+id=606860
+rarity=R
+[/card]
+[card]
+primitive=Gisa and Geralf
+id=606861
+rarity=M
+[/card]
+[card]
+primitive=Grim Flayer
+id=606862
+rarity=R
+[/card]
+[card]
+primitive=Heron's Grace Champion
+id=606863
+rarity=R
+[/card]
+[card]
+primitive=Mercurial Geists
+id=606864
+rarity=U
+[/card]
+[card]
+primitive=Mournwillow
+id=606865
+rarity=U
+[/card]
+[card]
+primitive=Nahiri, the Harbinger
+id=606866
+rarity=M
+[/card]
+[card]
+primitive=Olivia, Mobilized for War
+id=606867
+rarity=M
+[/card]
+[card]
+primitive=Prized Amalgam
+id=606868
+rarity=R
+[/card]
+[card]
+primitive=Ride Down
+id=606869
+rarity=U
+[/card]
+[card]
+primitive=Sigarda, Heron's Grace
+id=606870
+rarity=M
+[/card]
+[card]
+primitive=Sorin, Grim Nemesis
+id=606871
+rarity=M
+[/card]
+[card]
+primitive=Spell Queller
+id=606872
+rarity=R
+[/card]
+[card]
+primitive=Tamiyo, Field Researcher
+id=606873
+rarity=M
+[/card]
+[card]
+primitive=Ulrich of the Krallenhorde
+id=606874
+rarity=R
+[/card]
+[card]
+primitive=Ulrich, Uncontested Alpha
+id=606875
+rarity=T
+[/card]
+[card]
+primitive=Brain in a Jar
+id=606876
+rarity=U
+[/card]
+[card]
+primitive=Cryptolith Fragment
+id=606877
+rarity=U
+[/card]
+[card]
+primitive=Aurora of Emrakul
+id=606878
+rarity=T
+[/card]
+[card]
+primitive=Epitaph Golem
+id=606879
+rarity=C
+[/card]
+[card]
+primitive=Explosive Apparatus
+id=606880
+rarity=C
+[/card]
+[card]
+primitive=Field Creeper
+id=606881
+rarity=C
+[/card]
+[card]
+primitive=Harvest Hand
+id=606882
+rarity=U
+[/card]
+[card]
+primitive=Scrounged Scythe
+id=606883
+rarity=T
+[/card]
+[card]
+primitive=Lupine Prototype
+id=606884
+rarity=U
+[/card]
+[card]
+primitive=Magnifying Glass
+id=606885
+rarity=C
+[/card]
+[card]
+primitive=Murderer's Axe
+id=606886
+rarity=U
+[/card]
+[card]
+primitive=Neglected Heirloom
+id=606887
+rarity=U
+[/card]
+[card]
+primitive=Ashmouth Blade
+id=606888
+rarity=T
+[/card]
+[card]
+primitive=Slayer's Plate
+id=606889
+rarity=R
+[/card]
+[card]
+primitive=Soul Separator
+id=606890
+rarity=U
+[/card]
+[card]
+primitive=Stitcher's Graft
+id=606891
+rarity=R
+[/card]
+[card]
+primitive=Tamiyo's Journal
+id=606892
+rarity=R
+[/card]
+[card]
+primitive=Terrarion
+id=606893
+rarity=C
+[/card]
+[card]
+primitive=True-Faith Censer
+id=606894
+rarity=C
+[/card]
+[card]
+primitive=Wild-Field Scarecrow
+id=606895
+rarity=C
+[/card]
+[card]
+primitive=Choked Estuary
+id=606896
+rarity=U
+[/card]
+[card]
+primitive=Foreboding Ruins
+id=606897
+rarity=U
+[/card]
+[card]
+primitive=Forsaken Sanctuary
+id=606898
+rarity=U
+[/card]
+[card]
+primitive=Fortified Village
+id=606899
+rarity=U
+[/card]
+[card]
+primitive=Foul Orchard
+id=606900
+rarity=U
+[/card]
+[card]
+primitive=Game Trail
+id=606901
+rarity=U
+[/card]
+[card]
+primitive=Geier Reach Sanitarium
+id=606902
+rarity=R
+[/card]
+[card]
+primitive=Hanweir Battlements
+id=606903
+rarity=R
+[/card]
+[card]
+primitive=Highland Lake
+id=606904
+rarity=U
+[/card]
+[card]
+primitive=Port Town
+id=606905
+rarity=U
+[/card]
+[card]
+primitive=Stone Quarry
+id=606906
+rarity=U
+[/card]
+[card]
+primitive=Westvale Abbey
+id=606907
+rarity=R
+[/card]
+[card]
+primitive=Ormendahl, Profane Prince
+id=606908
+rarity=T
+[/card]
+[card]
+primitive=Woodland Stream
+id=606909
+rarity=U
+[/card]
+[card]
+primitive=Plains
+id=606910
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=606911
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=606912
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=606913
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=606914
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=606915
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=606916
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=606917
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=606918
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=606919
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=606920
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=606921
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=606922
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=606923
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=606924
+rarity=L
+[/card]

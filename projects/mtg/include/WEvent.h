@@ -465,6 +465,12 @@ struct WEventCardScryed : public WEventCardUpdate {
     virtual Targetable * getTarget(int target);
 };
 
+//ninjutsu event
+struct WEventCardNinja : public WEventCardUpdate {
+    WEventCardNinja(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
 //explores event
 struct WEventCardExplored : public WEventCardUpdate {
     WEventCardExplored(MTGCardInstance * card);

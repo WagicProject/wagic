@@ -1591,6 +1591,10 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser * tc = parseSimpleTC(s, "scryed", card))
         return NEW TrCardScryed(observer, id, card, tc, once, limitOnceATurn);
 
+    //Ninjutsu has been performed from a card
+    if (TargetChooser * tc = parseSimpleTC(s, "ninjutsued", card))
+        return NEW TrCardNinja(observer, id, card, tc, once, limitOnceATurn);
+
     //Esplores has been performed from a cardr
     if (TargetChooser * tc = parseSimpleTC(s, "explored", card))
         return NEW TrCardExplored(observer, id, card, tc, once, limitOnceATurn);
@@ -3300,7 +3304,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("ninjutsu");
     if (found != string::npos)
     {
-        MTGAbility * a = NEW ANinja(observer, id, card, target);
+        MTGAbility * a = NEW ANinja(observer, id, card, target, true);
+        a->oneShot = 1;
+        return a;
+    }
+
+    //readytofight
+    found = s.find("readytofight");
+    if (found != string::npos)
+    {
+        MTGAbility * a = NEW ANinja(observer, id, card, target, false);
         a->oneShot = 1;
         return a;
     }

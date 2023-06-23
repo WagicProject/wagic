@@ -1,6 +1,6 @@
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 22-06-2023
+#We sorted this in alphabetical order - Luruz & Vitty85 23-06-2023
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -1619,6 +1619,18 @@ auto={C(0/0,0,Loyalty)}:name(+0: Draw a card) draw:1 controller
 auto={C(0/0,-2,Loyalty)}:name(-2: Create drone) token(Drone)
 text=Whenever one or more creatures you control deal combat damage to a player, you may return one of them to its owner's hand. If you do, you may activate loyalty abilities of Kaito twice this turn rather than only once. -- [+1]: Up to one target creature can't attack or block until your next turn. -- [0]: Draw a card. -- [-2]: Create a 2/2 colorless Drone artifact creature token with deathtouch and "When this creature leaves the battlefield, each opponent loses 2 life and you gain 2 life."
 mana={2}{U}{B}
+type=Legendary Planeswalker
+subtype=Kaito
+[/card]
+[card]
+name=Kaito Shizuki
+auto=counter(0/0,3,loyalty)
+auto=transforms((,newability[@each my endofturn:name(Phaseout) phaseout])) ueot
+auto={C(0/0,+1,Loyalty)}:name(+1: Draw and discard) draw:1 && ifnot raid then name(Discard a card) name(Discard a card) ability$!name(Discard a card) name(Discard a card) notatarget(*|myhand) reject !$ controller
+auto={C(0/0,-2,Loyalty)}:name(-2: Create ninja) token(Ninja,Creature Ninja,1/1,blue,unblockable)
+auto={C(0/0,-7,Loyalty)}:name(-7: Emblem search creature) emblem transforms((,newability[@combatdamaged(player) from(creature|myBattlefield):name(Search creature) target(creature[black;blue]|mylibrary) moveto(mybattlefield) and!( shuffle )!])) forever dontremove
+text=At the beginning of your end step, if Kaito Shizuki entered the battlefield this turn, he phases out. -- [+1]: Draw a card. Then discard a card unless you attacked this turn. -- [-2]: Create a 1/1 blue Ninja creature token with "This creature can't be blocked." -- [-7]: You get an emblem with "Whenever a creature you control deals combat damage to a player, search your library for a blue or black creature card, put it onto the battlefield, then shuffle."
+mana={1}{U}{B}
 type=Legendary Planeswalker
 subtype=Kaito
 [/card]
