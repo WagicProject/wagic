@@ -832,9 +832,11 @@ MTGCard * MTGAllCards::getCardByName(string nameDescriptor, int forcedSetId)
 
     map<string, MTGCard * >::iterator cached = mtgCardByNameCache.find(nameDescriptor);
     
-    if ((forcedSetId < 0) && (cached!= mtgCardByNameCache.end()))
+    if (cached!= mtgCardByNameCache.end())
     {
-        return cached->second;
+        MTGCard* card = cached->second;
+        if(forcedSetId < 0 || (card && forcedSetId == card->setId))
+            return card;
     }
 
     int cardnb = atoi(nameDescriptor.c_str());

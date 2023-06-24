@@ -684,12 +684,12 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
         if (copy->previous && copy->previous->MeldedFrom.size() && !copy->isACopier && !copy->isToken)//!copier & !token fix kiki-jiki clones crash
         {
             vector<string> names = split(copy->previous->MeldedFrom, '|');
-            MTGCard * cardone = MTGCollection()->getCardByName(names[0]);
+            MTGCard * cardone = MTGCollection()->getCardByName(names[0], copy->setId);
             MTGCardInstance * cardOne = NEW MTGCardInstance(cardone, copy->owner->game);
             to->addCard(cardOne);
             WEvent * e = NEW WEventZoneChange(cardOne, from, to);
             g->receiveEvent(e);
-            MTGCard * cardtwo = MTGCollection()->getCardByName(names[1]);
+            MTGCard * cardtwo = MTGCollection()->getCardByName(names[1], copy->setId);
             MTGCardInstance * cardTwo = NEW MTGCardInstance(cardtwo, copy->owner->game);
             to->addCard(cardTwo);
             WEvent * e2 = NEW WEventZoneChange(cardTwo, from, to);

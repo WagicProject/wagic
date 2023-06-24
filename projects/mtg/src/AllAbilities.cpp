@@ -2472,7 +2472,7 @@ MTGCardInstance * AAConjure::makeCard()
         newName = names.at(std::rand() % names.size());
     }
     MTGCardInstance * card = NULL;
-    MTGCard * cardData = MTGCollection()->getCardByName(newName);
+    MTGCard * cardData = MTGCollection()->getCardByName(newName, source->setId);
     if(!cardData) return NULL;
     card = NEW MTGCardInstance(cardData, source->controller()->game);
     card->owner = source->controller();
@@ -2489,7 +2489,26 @@ int AAConjure::resolve()
         if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be conjured, they will follow the fate of top-card
         theNamedCard = makeCard();
         if(theNamedCard){
-           MTGCardInstance * copy =  source->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, MTGGameZone::stringToZone(game, cardZone, theNamedCard, NULL));
+            Spell * spell = NULL;
+            MTGGameZone * targetZone = MTGGameZone::stringToZone(game, cardZone, theNamedCard, NULL);
+            MTGCardInstance * copy =  source->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, targetZone);
+            if(!copy){
+                this->forceDestroy = true;
+                return 0;
+            }
+            if(targetZone == copy->controller()->game->battlefield){
+                copy->changeController(source->controller(), true);
+                if (game->targetChooser)
+                {
+                    game->targetChooser->Owner = source->controller();
+                    spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, NULL, 1, 0);
+                    game->targetChooser = NULL;
+                }
+                else
+                {
+                    spell = game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, 1, 0);
+                }
+            }
             if(andAbility)
             {
                 MTGAbility * andAbilityClone = andAbility->clone();
@@ -2504,9 +2523,9 @@ int AAConjure::resolve()
                     andAbilityClone->addToGame();
                 }
             }
+            this->forceDestroy = true;
+            return 1;
         }
-        this->forceDestroy = true;
-        return 1;
     }
     return 0;
 }
@@ -4816,7 +4835,7 @@ int AATurnSide::resolve()
         if(_target->isFlipped == 0){
             if(_SideName == "backside" && _target->backSide != "") 
                 _SideName = _target->backSide; // Added to allow to turn a card on its backside.
-            fcard = MTGCollection()->getCardByName(_SideName);
+            fcard = MTGCollection()->getCardByName(_SideName, _target->setId);
             if(!fcard) return 0;
             sideCard = NEW MTGCardInstance(fcard, _target->controller()->game);
             _target->nameOrig = _target->name; 
@@ -4843,7 +4862,7 @@ int AATurnSide::resolve()
                 }
             }
         } else {
-            fcard = MTGCollection()->getCardByName(_target->nameOrig);
+            fcard = MTGCollection()->getCardByName(_target->nameOrig, _target->setId);
             if(!fcard) return 0;
             _target->name = _target->nameOrig;
             _target->setName(_target->nameOrig);
@@ -4952,7 +4971,7 @@ int AAFlip::resolve()
                 flipStats = _target->chooseaname; // Added to allow the transformation of a card in a choosen name.
             else if(flipStats == "backside" && _target->backSide != "") 
                 flipStats = _target->backSide; // Added to allow the transformation of a card in its backside (e.g. Werewolves transformations).
-            MTGCard * fcard = MTGCollection()->getCardByName(flipStats);
+            MTGCard * fcard = MTGCollection()->getCardByName(flipStats, _target->setId);
             if(!fcard) return 0;
             MTGCardInstance * myFlip = NEW MTGCardInstance(fcard, _target->controller()->game);
             MTGCardInstance * myParent = NULL;
@@ -4976,7 +4995,7 @@ int AAFlip::resolve()
             _target->text = myFlip->text;
             _target->formattedText = myFlip->formattedText;
             if(_target->enchanted || _target->equipment > 0){ // Try to keep auras and equipment effects on basicAbilities (issue #1065).
-                MTGCardInstance * myOrig = NEW MTGCardInstance(MTGCollection()->getCardByName(nameOrig), _target->controller()->game);
+                MTGCardInstance * myOrig = NEW MTGCardInstance(MTGCollection()->getCardByName(nameOrig, _target->setId), _target->controller()->game);
                 for(unsigned int i = 0; i < _target->basicAbilities.size(); i++) {
                     if(myOrig->basicAbilities[i] == 1)
                         _target->basicAbilities[i] = 0;
@@ -9344,9 +9363,9 @@ void ABlink::resolveBlink()
             //it is later moved to garbage by garbage collection.
             //then we build 2 seperate blinks with the 2 parts as the targets.
             vector<string> names = split(_target->MeldedFrom, '|');
-            MTGCard * cardone = MTGCollection()->getCardByName(names[0]);
+            MTGCard * cardone = MTGCollection()->getCardByName(names[0], _target->setId);
             MTGCardInstance * cardOne = NEW MTGCardInstance(cardone, _target->owner->game);
-            MTGCard * cardtwo = MTGCollection()->getCardByName(names[1]);
+            MTGCard * cardtwo = MTGCollection()->getCardByName(names[1], _target->setId);
             MTGCardInstance * cardTwo = NEW MTGCardInstance(cardtwo, _target->owner->game);
             _target->controller()->game->putInZone(_target, _target->currentZone,
                 _target->owner->game->temp);
@@ -10031,7 +10050,7 @@ int AACastCard::reactToTargetClick(Targetable * object)
 MTGCardInstance * AACastCard::makeCard()
 {
     MTGCardInstance * card = NULL;
-    MTGCard * cardData = MTGCollection()->getCardByName(cardNamed);
+    MTGCard * cardData = MTGCollection()->getCardByName(cardNamed, source->setId);
     if(!cardData) return NULL;
     card = NEW MTGCardInstance(cardData, source->controller()->game);
     card->owner = source->controller();

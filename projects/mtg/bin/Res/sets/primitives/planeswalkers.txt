@@ -1,6 +1,6 @@
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 23-06-2023
+#We sorted this in alphabetical order - Luruz & Vitty85 24-06-2023
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -961,7 +961,7 @@ auto=counter(0/0,4,Loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Don't untap any elf) moverandom(elf) from(myhand) to(myHand) and!( counter(1/1.1.PerpetualPT) )!
 auto={C(0/0,1,Loyalty)}:name(+1: Untap target elf) target(elf|mybattlefield) transforms((,newability[untap],newability[counter(1/1.1.PerpetualPT)],newability[name(Random elf perpetually gets 1/1) moverandom(elf) from(myhand) to(myHand) and!( counter(1/1.1.PerpetualPT) )!])) forever
 auto={C(0/0,-1,Loyalty)}:name(-1: Seek an Elf) moverandom(*[elf]) from(mylibrary) to(myhand)
-auto={C(0/0,-6,Loyalty)}:name(-6: Conjure a Regal Force) conjure cards(Regal Force) zone(myreveal) and!( moveto(mybattlefield) )!
+auto={C(0/0,-6,Loyalty)}:name(-6: Conjure a Regal Force) conjure cards(Regal Force) zone(mybattlefield)
 text=+1: Choose up to one target Elf. Untap it. It and a random Elf creature card in your hand each perpetually gets +1/+1. -- −1: Seek an Elf card. -- −6: Conjure a Regal Force card onto the battlefield.
 mana={1}{G}{G}
 type=Legendary Planeswalker
@@ -1063,21 +1063,21 @@ subtype=Garruk
 name=Garruk, Wrath of the Wilds
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Creature perpetually gets 1/1) target(creature|myhand) transforms((,newability[counter(1/1.1.PerpetualPT) notrg],newability[changecost(colorless:-1) forcedalive])) forever
-auto={C(0/0,-1,Loyalty)}:name(-1: Draft Mosscoat Goriak) conjure cards(Mosscoat Goriak) zone(myreveal) and!( moveto(myBattlefield) )!
-auto={C(0/0,-1,Loyalty)}:name(-1: Draft Sylvan Brushstrider) conjure cards(Sylvan Brushstrider) zone(myreveal) and!( moveto(myBattlefield) )!
-auto={C(0/0,-1,Loyalty)}:name(-1: Draft Murasa Rootgrazer) conjure cards(Murasa Rootgrazer) zone(myreveal) and!( moveto(myBattlefield) )!
-auto={C(0/0,-1,Loyalty)}:name(-1: Draft Dire Wolf Prowler) conjure cards(Dire Wolf Prowler) zone(myreveal) and!( moveto(myBattlefield) )!
-auto={C(0/0,-1,Loyalty)}:name(-1: Draft Ferocious Pup) conjure cards(Ferocious Pup) zone(myreveal) and!( moveto(myBattlefield) )!
-auto={C(0/0,-1,Loyalty)}:name(-1: Draft Pestilent Wolf) conjure cards(Pestilent Wolf) zone(myreveal) and!( moveto(myBattlefield) )!
-auto={C(0/0,-1,Loyalty)}:name(-1: Draft Garruk's Uprising) conjure cards(Garruk's Uprising) zone(myreveal) and!( moveto(myBattlefield) )!
-auto={C(0/0,-1,Loyalty)}:name(-1: Draft Dawntreader Elk) conjure cards(Dawntreader Elk) zone(myreveal) and!( moveto(myBattlefield) )!
-auto={C(0/0,-1,Loyalty)}:name(-1: Draft Nessian Hornbeetle) conjure cards(Nessian Hornbeetle) zone(myreveal) and!( moveto(myBattlefield) )!
-auto={C(0/0,-1,Loyalty)}:name(-1: Draft Territorial Scythecat) conjure cards(Territorial Scythecat) zone(myreveal) and!( moveto(myBattlefield) )!
-auto={C(0/0,-1,Loyalty)}:name(-1: Draft Trufflesnout) conjure cards(Trufflesnout) zone(myreveal) and!( moveto(myBattlefield) )!
-auto={C(0/0,-1,Loyalty)}:name(-1: Draft Wary Okapi) conjure cards(Wary Okapi) zone(myreveal) and!( moveto(myBattlefield) )!
-auto={C(0/0,-1,Loyalty)}:name(-1: Draft Scurrid Colony) conjure cards(Scurrid Colony) zone(myreveal) and!( moveto(myBattlefield) )!
-auto={C(0/0,-1,Loyalty)}:name(-1: Draft Barkhide Troll) conjure cards(Barkhide Troll) zone(myreveal) and!( moveto(myBattlefield) )!
-auto={C(0/0,-1,Loyalty)}:name(-1: Draft Underdark Basilisk) conjure cards(Underdark Basilisk) zone(myreveal) and!( moveto(myBattlefield) )!
+auto={C(0/0,-1,Loyalty)}:name(-1: Draft Mosscoat Goriak) conjure cards(Mosscoat Goriak) zone(mybattlefield)
+auto={C(0/0,-1,Loyalty)}:name(-1: Draft Sylvan Brushstrider) conjure cards(Sylvan Brushstrider) zone(mybattlefield)
+auto={C(0/0,-1,Loyalty)}:name(-1: Draft Murasa Rootgrazer) conjure cards(Murasa Rootgrazer) zone(mybattlefield)
+auto={C(0/0,-1,Loyalty)}:name(-1: Draft Dire Wolf Prowler) conjure cards(Dire Wolf Prowler) zone(mybattlefield)
+auto={C(0/0,-1,Loyalty)}:name(-1: Draft Ferocious Pup) conjure cards(Ferocious Pup) zone(mybattlefield)
+auto={C(0/0,-1,Loyalty)}:name(-1: Draft Pestilent Wolf) conjure cards(Pestilent Wolf) zone(mybattlefield)
+auto={C(0/0,-1,Loyalty)}:name(-1: Draft Garruk's Uprising) conjure cards(Garruk's Uprising) zone(mybattlefield)
+auto={C(0/0,-1,Loyalty)}:name(-1: Draft Dawntreader Elk) conjure cards(Dawntreader Elk) zone(mybattlefield)
+auto={C(0/0,-1,Loyalty)}:name(-1: Draft Nessian Hornbeetle) conjure cards(Nessian Hornbeetle) zone(mybattlefield)
+auto={C(0/0,-1,Loyalty)}:name(-1: Draft Territorial Scythecat) conjure cards(Territorial Scythecat) zone(mybattlefield)
+auto={C(0/0,-1,Loyalty)}:name(-1: Draft Trufflesnout) conjure cards(Trufflesnout) zone(mybattlefield)
+auto={C(0/0,-1,Loyalty)}:name(-1: Draft Wary Okapi) conjure cards(Wary Okapi) zone(mybattlefield)
+auto={C(0/0,-1,Loyalty)}:name(-1: Draft Scurrid Colony) conjure cards(Scurrid Colony) zone(mybattlefield)
+auto={C(0/0,-1,Loyalty)}:name(-1: Draft Barkhide Troll) conjure cards(Barkhide Troll) zone(mybattlefield)
+auto={C(0/0,-1,Loyalty)}:name(-1: Draft Underdark Basilisk) conjure cards(Underdark Basilisk) zone(mybattlefield)
 auto={C(0/0,-5,Loyalty)}:name(-3: Your creatures get 3/3) all(creature|myBattlefield) transforms((,newability[3/3],newability[trample])) ueot
 text=+1: Choose a creature card in your hand. it perpetually gets +1/+1 and perpetually gains "This spell costs {1} less to cast." -- −1: Draft a card from Garruk, Wrath of the Wild's spellbook and put it onto the battlefield. -- −5: Until end of turn, creatures you control get +3/+3 and gain trample.
 mana={2}{G}{G}
@@ -3176,7 +3176,7 @@ name=Teyo, Aegis Adept
 auto=counter(0/0,4,Loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Don't target any creature) donothing
 auto={C(0/0,1,Loyalty)}:name(+1: Creature can attack) target(creature) counter(0/0.1.PerpetualTeyoEffect)
-auto={C(0/0,-2,Loyalty)}:name(-2: Conjure a Lumbering Lightshield) conjure cards(Lumbering Lightshield) zone(myreveal) and!( moveto(mybattlefield) )!
+auto={C(0/0,-2,Loyalty)}:name(-2: Conjure a Lumbering Lightshield) conjure cards(Lumbering Lightshield) zone(mybattlefield)
 auto={C(0/0,-6,Loyalty)}:name(-6: Emblem Return creature) ability$!emblem transforms((,newability[@each my endofturn:name(Return white creature) name(Return white creature) target(creature[white]|mygraveyard) moveto(mybattlefield) and!( transforms((,newability[life:toughness controller])) oneshot )!])) forever dontremove!$ controller
 auto=emblem transforms((,newability[lord(*[counter{0/0.1.PerpetualTeyoEffect}]|myzones) transforms((,setpower=t,newability[canattack]))])) forever dontremove
 text=+1: Up to one target creature's base power perpetually becomes equal to its toughness. It perpetually gains "This creature can attack as though it didn't have defender." -- −2: Conjure a Lumbering Lightshield card onto the battlefield. −6: You get an emblem with "At the beginning of your end step, return target white creature card from your graveyard to the battlefield. You gain life equal to its toughness."
