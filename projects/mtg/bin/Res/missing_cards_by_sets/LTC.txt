@@ -1,0 +1,37 @@
+[card]
+name=Harsh Mentor
+text=Whenever an opponent activates an ability of an artifact, creature, or land on the battlefield, if it isn't a mana ability, Harsh Mentor deals 2 damage to that player.
+mana={1}{R}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=2
+[/card]
+[card]
+name=Rings of Brighthearth
+text=Whenever you activate an ability, if it isn't a mana ability, you may pay {2}. If you do, copy that ability. You may choose new targets for the copy.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=The Ozolith
+text=Whenever a creature you control leaves the battlefield, if it had counters on it, put those counters on The Ozolith. -- At the beginning of combat on your turn, if The Ozolith has counters on it, you may move all counters from The Ozolith onto target creature.
+mana={1}
+type=Legendary Artifact
+[/card]
+[card]
+name=Selfless Squire
+abilities=flash
+text=Flash -- When Selfless Squire enters the battlefield, prevent all damage that would be dealt to you this turn. -- Whenever damage that would be dealt to you is prevented, put that many +1/+1 counters on Selfless Squire.
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+[card]
+name=Plea for Power
+text=Will of the council - Starting with you, each player votes for time or knowledge. If time gets more votes, take an extra turn after this one. If knowledge gets more votes or the vote is tied, draw three cards.
+mana={3}{U}
+type=Sorcery
+[/card]
