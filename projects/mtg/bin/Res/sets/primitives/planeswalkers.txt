@@ -1826,7 +1826,7 @@ subtype=Kiora
 [card]
 name=Kiora, the Crashing Wave
 auto=counter(0/0,2,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Prevention all damamge dealt by and to) target(*|opponentbattlefield) transforms((,newability[preventalldamage from(this)],newability[preventalldamage to(this)])) uynt
+auto={C(0/0,1,Loyalty)}:name(+1: Prevention all damage dealt by and to) target(*|opponentbattlefield) transforms((,newability[preventalldamage from(this)],newability[preventalldamage to(this)])) uynt
 auto={C(0/0,-1,Loyalty)}:name(-1: Draw a card and may play additional land) draw:1 controller && maxPlay(land)+1 ueot
 auto={C(0/0,-5,Loyalty)}:name(-5: Emblem: "Each my end of turn create a 9/9 Kraken") emblem transforms((,newability[@each my endofturn:token(Kraken^Creature Kraken^9/9^blue) controller])) forever dontremove
 text=+1: Until your next turn, prevent all damage that would be dealt to and dealt by target permanent an opponent controls. -- -1: Draw a card. You may play an additional land this turn. -- -5: You get an emblem with "At the beginning of your end step, put a 9/9 blue Kraken creature token onto the battlefield."
@@ -2623,7 +2623,7 @@ auto=@movedTo(*[instant;sorcery]|myStack):ability$!name(Choose one) choice name(
 auto={C(0/0,2,Loyalty)}:name(+2: Scry: 1) _SCRY1_
 auto={C(0/0,-2,Loyalty)}:name(-2: Whenever cast instant or sorcery copy spell) emblem transforms((,newability[@movedto(*[instant;sorcery]|myStack) turnlimited:all(trigger[to]) activate castcard(copied noevent)])) ueot
 text=Whenever you cast or copy an instant or sorcery spell, Ral, Storm Conduit deals 1 damage to target opponent or planeswalker. -- +2: Scry 1. -- −2: When you cast your next instant or sorcery spell this turn, copy that spell. You may choose new targets for the copy.
-mana={3}{U}{R}
+mana={2}{U}{R}
 type=Legendary Planeswalker
 subtype=Ral
 [/card]
