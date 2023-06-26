@@ -667,6 +667,7 @@ void Rules::initGame(GameObserver *g, bool currentPlayerSet)
         p->energyCount = initState.playerData[i].player->energyCount;
         p->experienceCount = initState.playerData[i].player->experienceCount;
         p->yidaroCount = initState.playerData[i].player->yidaroCount;
+        p->ringTemptations = initState.playerData[i].player->ringTemptations;
         p->dungeonCompleted = initState.playerData[i].player->dungeonCompleted;
         p->numOfCommandCast = initState.playerData[i].player->numOfCommandCast;
         p->monarch = initState.playerData[i].player->monarch;

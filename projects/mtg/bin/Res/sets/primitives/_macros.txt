@@ -57,6 +57,13 @@
 # Amass, Set WAR
 #AUTO_DEFINE _AMASS_($c) if type(army|mybattlefield)~morethan~0 then counter(1/1.$c) notATarget(army|myBattlefield) else create(Zombie Army:creature Zombie Army:0/0:black) and!(counter(1/1.$c) notATarget(army|myBattlefield))!
 
+# Amass Orc, Set LTR
+#AUTO_DEFINE _AMASSORC1_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counter) name(Put 1/1 counter) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1)])) forever else name(Create Orc Army) token(Orc Army^Creature Orc Army^0/0^black) and!( name(Put 1/1 counter) counter(1/1) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSORC2_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1.2)])) forever else name(Create Orc Army) token(Orc Army^Creature Orc Army^0/0^black) and!( name(Put 1/1 counters) counter(1/1.2) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSORC3_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1.3)])) forever else name(Create Orc Army) token(Orc Army^Creature Orc Army^0/0^black) and!( name(Put 1/1 counters) counter(1/1.3) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSORC4_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1.4)])) forever else name(Create Orc Army) token(Orc Army^Creature Orc Army^0/0^black) and!( name(Put 1/1 counters) counter(1/1.4) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSORC5_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1.5)])) forever else name(Create Orc Army) token(Orc Army^Creature Orc Army^0/0^black) and!( name(Put 1/1 counters) counter(1/1.5) notatarget(army|myBattlefield) )!
+
 # Scry, Evergreen
 #AUTO_DEFINE _SCRY_($c) scry:$c scrycore delayed dontshow donothing scrycoreend scryend
 #AUTO_DEFINE _SCRY1_ scry:1 scrycore delayed dontshow donothing scrycoreend scryend
@@ -129,6 +136,9 @@
 # Initiative
 #AUTO_DEFINE _INITIATIVE_CONTROLLER_ if type(The Initiative|battlefield)~lessthan~1 then token(The Initiative) else all(The Initiative|battlefield) moveto(mybattlefield) and!( transforms((,newability[takesinitiative controller])) forever )!
 #AUTO_DEFINE _INITIATIVE_OPPONENT_ if type(The Initiative|battlefield)~lessthan~1 then token(The Initiative) opponent else all(The Initiative|battlefield) moveto(opponentbattlefield) and!( transforms((,newability[takesinitiative controller])) forever )!
+
+# The Ring Tempts
+#AUTO_DEFINE _RINGTEMPTS_ if type(The Ring|mybattlefield)~morethan~0 then all(The Ring|mybattlefield) transforms((,newability[theringtempts:1 controller],newability[name(Chose a ring bearer) target(creature|mybattlefield) becomesringbearer])) oneshot else token(The Ring) and!( theringtempts:1 controller and!( name(Choose a ring bearer) target(creature|myBattlefield) becomesringbearer )! )!
 
 # Explore, not implemented
 #AUTO_DEFINE _EXPLORE_ reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) optiontwoend revealend limit:1

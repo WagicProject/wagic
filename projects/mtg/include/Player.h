@@ -45,6 +45,7 @@ public:
     int energyCount;
     int experienceCount;
     int yidaroCount;
+    int ringTemptations;
     int dungeonCompleted;
     int numOfCommandCast;
     int monarch;

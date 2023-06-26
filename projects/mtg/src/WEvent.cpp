@@ -317,6 +317,11 @@ WEventplayerMonarch::WEventplayerMonarch(Player * player) :
 {
 }
 
+WEventplayerTempted::WEventplayerTempted(Player * player) :
+    player(player)
+{
+}
+
 WEventplayerProliferated::WEventplayerProliferated(Player * player) :
     player(player)
 {
@@ -368,6 +373,11 @@ WEventCardNinja::WEventCardNinja(MTGCardInstance * card) :
 }
 
 WEventCardExplored::WEventCardExplored(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
+WEventCardBearerChosen::WEventCardBearerChosen(MTGCardInstance * card) :
     WEventCardUpdate(card)
 {
 }
@@ -668,6 +678,12 @@ Targetable * WEventCardExplored::getTarget(int target)
     return NULL;
 }
 
+Targetable * WEventCardBearerChosen::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
 Targetable * WEventCardDungeonCompleted::getTarget(int target)
 {
     if (target) return card;
@@ -711,6 +727,12 @@ Targetable * WEventplayerExperienced::getTarget(Player * player)
 }
 
 Targetable * WEventplayerMonarch::getTarget(Player * player)
+{
+    if (player) return player;
+    return NULL;
+}
+
+Targetable * WEventplayerTempted::getTarget(Player * player)
 {
     if (player) return player;
     return NULL;

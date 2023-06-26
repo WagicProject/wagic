@@ -37,6 +37,7 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     energyCount = 0;
     experienceCount = 0;
     yidaroCount = 0;
+    ringTemptations = 0;
     dungeonCompleted = 0;
     numOfCommandCast = 0;
     monarch = 0;

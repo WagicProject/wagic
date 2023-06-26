@@ -404,6 +404,14 @@ struct WEventplayerMonarch : public WEvent {
     virtual Targetable * getTarget(Player * player);
 };
 
+//ring tempts event
+struct WEventplayerTempted : public WEvent {
+    WEventplayerTempted(Player * player);
+    Player * player;
+    using WEvent::getTarget;
+    virtual Targetable * getTarget(Player * player);
+};
+
 //proliferate event
 struct WEventplayerProliferated : public WEvent {
     WEventplayerProliferated(Player * player);
@@ -474,6 +482,13 @@ struct WEventCardNinja : public WEventCardUpdate {
 //explores event
 struct WEventCardExplored : public WEventCardUpdate {
     WEventCardExplored(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
+//ring bearer event
+struct WEventCardBearerChosen : public WEventCardUpdate {
+    bool bearerChanged;
+    WEventCardBearerChosen(MTGCardInstance * card);
     virtual Targetable * getTarget(int target);
 };
 

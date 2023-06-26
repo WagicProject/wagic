@@ -1642,6 +1642,10 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
             }
         }
     }
+    else if (s == "pringtemptations" || s == "oringtemptations") // How many times the player has been tempted by the Ring.
+    {
+        intValue = (s == "pringtemptations")?card->controller()->ringTemptations:card->controller()->opponent()->ringTemptations;
+    }
     else if(!intValue)//found nothing, try parsing a atoi
     {
         intValue = atoi(s.c_str());

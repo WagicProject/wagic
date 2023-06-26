@@ -1066,6 +1066,88 @@ AAAlterPoison::~AAAlterPoison()
 {
 }
 
+//AA Bearer Chosen
+AARingBearerChosen::AARingBearerChosen(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost) :
+    ActivatedAbility(observer, _id, _source, _cost, 0)
+{
+    target = _target;
+    andAbility = NULL;
+}
+
+int AARingBearerChosen::resolve()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if(_target)
+    {
+        MTGCardInstance * currentBearer = NULL;
+        for (int j = _target->controller()->game->inPlay->nb_cards - 1; j >= 0; --j){
+            if(_target->controller()->game->inPlay->cards[j]->basicAbilities[Constants::RINGBEARER] == 1){
+                currentBearer = _target->controller()->game->inPlay->cards[j];
+                _target->controller()->game->inPlay->cards[j]->basicAbilities[Constants::RINGBEARER] = 0;
+                break;
+            }
+        }
+        _target->basicAbilities[Constants::RINGBEARER] = 1;
+        bool bearerChanged = false;
+        if(currentBearer == NULL || currentBearer != _target){
+            for (int j = _target->controller()->game->inPlay->nb_cards - 1; j >= 0; --j){
+                if(_target->controller()->game->inPlay->cards[j]->name == "The Ring"){
+                    for (size_t i = 1; i < game->mLayers->actionLayer()->mObjects.size(); i++)
+                    {
+                        MTGAbility * a = ((MTGAbility *) game->mLayers->actionLayer()->mObjects[i]);
+                        AEquip * eq = dynamic_cast<AEquip*> (a);
+                        if (eq && eq->source == _target->controller()->game->inPlay->cards[j])
+                        {
+                            ((AEquip*)a)->unequip();
+                            ((AEquip*)a)->equip(_target);
+                            bearerChanged = true;
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        WEventCardBearerChosen * e = NEW WEventCardBearerChosen(_target);
+        e->bearerChanged = bearerChanged;
+        game->receiveEvent(e);
+        if(andAbility)
+        {
+            MTGAbility * andAbilityClone = andAbility->clone();
+            andAbilityClone->target = _target;
+            if(andAbility->oneShot)
+            {
+                andAbilityClone->resolve();
+                SAFE_DELETE(andAbilityClone);
+            }
+            else
+            {
+                andAbilityClone->addToGame();
+            }
+        }
+        return 1;
+    }
+    return 0;
+}
+
+const string AARingBearerChosen::getMenuText()
+{
+    return "The Ring bearer has been chosen";
+}
+
+AARingBearerChosen * AARingBearerChosen::clone() const
+{
+    AARingBearerChosen * a = NEW AARingBearerChosen(*this);
+    if(andAbility)
+        a->andAbility = andAbility->clone();
+    return a;
+}
+
+AARingBearerChosen::~AARingBearerChosen()
+{
+    SAFE_DELETE(andAbility);
+}
+
 //AA Explores Event
 AAExploresEvent::AAExploresEvent(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost,
         int who) :
@@ -1328,6 +1410,64 @@ AAAlterYidaroCount * AAAlterYidaroCount::clone() const
 
 AAAlterYidaroCount::~AAAlterYidaroCount()
 {
+}
+
+//AA Ring Temptations
+AAAlterRingTemptations::AAAlterRingTemptations(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int temptations, ManaCost * _cost,
+        int who) :
+    ActivatedAbilityTP(observer, _id, _source, _target, _cost, who), temptations(temptations)
+{
+    andAbility = NULL;
+}
+
+int AAAlterRingTemptations::resolve()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    if (_target)
+    {
+        Player * pTarget = (Player*)_target;
+        if(pTarget)
+        {
+            pTarget->ringTemptations += temptations;
+            if(pTarget->ringTemptations < 0)
+                pTarget->ringTemptations = 0;
+            WEvent * e = NEW WEventplayerTempted(pTarget);
+            game->receiveEvent(e);
+            if(andAbility)
+            {
+                MTGAbility * andAbilityClone = andAbility->clone();
+                andAbilityClone->target = _target;
+                if(andAbility->oneShot)
+                {
+                    andAbilityClone->resolve();
+                    SAFE_DELETE(andAbilityClone);
+                }
+                else
+                {
+                    andAbilityClone->addToGame();
+                }
+            }
+        }
+    }
+    return 0;
+}
+
+const string AAAlterRingTemptations::getMenuText()
+{
+    return "The Ring tempts you";
+}
+
+AAAlterRingTemptations * AAAlterRingTemptations::clone() const
+{
+    AAAlterRingTemptations * a = NEW AAAlterRingTemptations(*this);
+    if(andAbility)
+        a->andAbility = andAbility->clone();
+    return a;
+}
+
+AAAlterRingTemptations::~AAAlterRingTemptations()
+{
+    SAFE_DELETE(andAbility);
 }
 
 //AA Monarch

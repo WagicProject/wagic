@@ -1527,6 +1527,14 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
             return NEW TrplayerProliferated(observer, id, card, tc, once, false, true);
     }
 
+    //ring temptations - controller of card
+    if (TargetChooser * tc = parseSimpleTC(s, "ringtemptedof", card))
+        return NEW TrplayerTempted(observer, id, card, tc, once, true, false);
+
+    //ring temptations - opponent of card controller
+    if (TargetChooser * tc = parseSimpleTC(s, "ringtemptedfoeof", card))
+        return NEW TrplayerTempted(observer, id, card, tc, once, false, true);
+
     //becomes monarch - controller of card
     if (TargetChooser * tc = parseSimpleTC(s, "becomesmonarchof", card))
         return NEW TrplayerMonarch(observer, id, card, tc, once, true, false);
@@ -1540,7 +1548,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         return NEW TrplayerInitiative(observer, id, card, tc, once, true, false);
 
     //takes the initiative - opponent of card controller
-    if (TargetChooser * tc = parseSimpleTC(s, "takeninitiativeof", card))
+    if (TargetChooser * tc = parseSimpleTC(s, "takeninitiativefoeof", card))
         return NEW TrplayerInitiative(observer, id, card, tc, once, false, true);
 
     //shuffled library - controller of card
@@ -1595,9 +1603,17 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser * tc = parseSimpleTC(s, "ninjutsued", card))
         return NEW TrCardNinja(observer, id, card, tc, once, limitOnceATurn);
 
-    //Esplores has been performed from a cardr
+    //Explores has been performed from a card
     if (TargetChooser * tc = parseSimpleTC(s, "explored", card))
         return NEW TrCardExplored(observer, id, card, tc, once, limitOnceATurn);
+
+    //A Ring bearer has been chosen
+    if (TargetChooser * tc = parseSimpleTC(s, "bearerchosen", card))
+        return NEW TrCardBearerChosen(observer, id, card, tc, once, limitOnceATurn, false);
+
+    //A different Ring bearer has been chosen
+    if (TargetChooser * tc = parseSimpleTC(s, "bearernewchosen", card))
+        return NEW TrCardBearerChosen(observer, id, card, tc, once, limitOnceATurn, true);
 
     //Dungeon has been completer from a card
     if (TargetChooser * tc = parseSimpleTC(s, "dungeoncompleted", card)){
@@ -4293,6 +4309,28 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
+    //Ring temptations
+    vector<string> splitRingTemptations = parseBetween(s, "theringtempts:", " ", false);
+    if (splitRingTemptations.size())
+    {
+        int temptations = 1;
+        WParsedInt* parser = NEW WParsedInt(splitRingTemptations[1], card);
+        if(parser){
+            temptations = parser->intValue;
+            SAFE_DELETE(parser);
+        }
+        Targetable * t = spell ? spell->getNextTarget() : NULL;
+        MTGAbility * a = NEW AAAlterRingTemptations(observer, id, card, t, temptations, NULL, who);
+        a->oneShot = 1;
+        if(storedAndAbility.size())
+        {
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((AAAlterRingTemptations*)a)->andAbility = parseMagicLine(stored, id, spell, card);
+        }
+        return a;
+    }
+
     //becomes monarch
     vector<string> splitMonarch = parseBetween(s, "becomesmonarch", " ", false);
     if (splitMonarch.size())
@@ -4373,6 +4411,21 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         Targetable * t = spell ? spell->getNextTarget() : NULL;
         MTGAbility * a = NEW AAExploresEvent(observer, id, card, t, NULL, who);
         a->oneShot = 1;
+        return a;
+    }
+
+    //becomes the Ring bearer
+    found = s.find("becomesringbearer");
+    if (found != string::npos)
+    {
+        MTGAbility * a = NEW AARingBearerChosen(observer, id, card, target, NULL);
+        a->oneShot = 1;
+        if(storedAndAbility.size())
+        {
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((AARingBearerChosen*)a)->andAbility = parseMagicLine(stored, id, spell, card);
+        }
         return a;
     }
 

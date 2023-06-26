@@ -683,6 +683,35 @@ public:
     }
 };
 
+class TrplayerTempted: public Trigger
+{
+public:
+    bool thiscontroller, thisopponent;
+    TrplayerTempted(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false) :
+        Trigger(observer, id, source, once, tc), thiscontroller(thiscontroller), thisopponent(thisopponent)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventplayerTempted * e = dynamic_cast<WEventplayerTempted *> (event);
+        if (!e) return 0;
+        if (!tc->canTarget(e->player)) return 0;
+        if(thiscontroller)
+            if(e->player != source->controller())
+                return 0;
+        if(thisopponent)
+            if(e->player == source->controller())
+                return 0;
+        return 1;
+    }
+
+    TrplayerTempted * clone() const
+    {
+        return NEW TrplayerTempted(*this);
+    }
+};
+
 class TrplayerProliferated: public Trigger
 {
 public:
@@ -860,6 +889,37 @@ public:
     TrCardExplored * clone() const
     {
         return NEW TrCardExplored(*this);
+    }
+};
+
+class TrCardBearerChosen: public Trigger
+{
+public:
+    bool limitOnceATurn;
+    int triggeredTurn;
+    bool checkBearerChanged;
+    TrCardBearerChosen(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false, bool checkBearerChanged = false) :
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn), checkBearerChanged(checkBearerChanged)
+    {
+        triggeredTurn = -1;
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardBearerChosen * e = dynamic_cast<WEventCardBearerChosen *> (event);
+        if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
+        if (checkBearerChanged && !e->bearerChanged)
+            return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
+        return 1;
+    }
+
+    TrCardBearerChosen * clone() const
+    {
+        return NEW TrCardBearerChosen(*this);
     }
 };
 
@@ -4685,6 +4745,18 @@ public:
     AAExploresEvent * clone() const;
     ~AAExploresEvent();
 };
+//Ring bearer has been chosen
+class AARingBearerChosen : public ActivatedAbility
+{
+public:
+    MTGAbility * andAbility;
+    AARingBearerChosen(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL);
+    int resolve();
+
+    const string getMenuText();
+    AARingBearerChosen * clone() const;
+    ~AARingBearerChosen();
+};
 //Dungeon Completed
 class AAAlterDungeonCompleted: public ActivatedAbilityTP
 {
@@ -4710,6 +4782,19 @@ public:
     const string getMenuText();
     AAAlterYidaroCount * clone() const;
     ~AAAlterYidaroCount();
+};
+//Ring Temptations
+class AAAlterRingTemptations: public ActivatedAbilityTP
+{
+public:
+    int temptations;
+    MTGAbility * andAbility;
+    AAAlterRingTemptations(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int temptations = 1, ManaCost * _cost = NULL,
+            int who = TargetChooser::UNSET);
+    int resolve();
+    const string getMenuText();
+    AAAlterRingTemptations * clone() const;
+    ~AAAlterRingTemptations();
 };
 //Monarch
 class AAAlterMonarch: public ActivatedAbilityTP
