@@ -1887,9 +1887,11 @@ void CardGui::RenderCountersBig(MTGCard * mtgcard, const Pos& pos, int drawMode)
     if (!card)
         return;
 
-    if (!card->counters)
+    int ringTemptations = card->controller()->ringTemptations;
+
+    if (!card->counters && !ringTemptations)
         return;
-    if (!card->counters->mCount)
+    if (!card->counters->mCount && !ringTemptations)
         return;
 
     // Write Named Counters
@@ -1904,6 +1906,73 @@ void CardGui::RenderCountersBig(MTGCard * mtgcard, const Pos& pos, int drawMode)
         i = txt.size() + 1;
     }
     
+    if (ringTemptations > 0 && card->name == "The Ring") // Added a label on Ring to show the number of temptations.
+    {
+        char buf[512];
+        bool renderText = true;
+        string gfx = "";
+        if (counterGraphics.find("temptations") == counterGraphics.end())
+        {
+            string gfxRelativeName = "counters/";
+            gfxRelativeName.append("temptations");
+            gfxRelativeName.append(".png");
+            string _gfx = WResourceManager::Instance()->graphicsFile(gfxRelativeName);
+            if (!fileExists(_gfx.c_str()))
+                _gfx = "";
+            counterGraphics["temptations"] = _gfx;
+        }
+        gfx = counterGraphics["temptations"];
+        if (gfx.size())
+            renderText = false;
+           
+        if (renderText)
+        {
+            std::string s = "temptations";
+            s[0] = toupper(s[0]);
+            sprintf(buf, _("%s: %i").c_str(), s.c_str(), ringTemptations);
+        }
+        
+        if (!gfx.size())
+        {
+            gfx = "counters/default.png";
+        }
+        
+        float x = pos.actX + (22 - BigWidth / 2) * pos.actZ;
+        float y =  pos.actY + (-BigHeight / 2 + 80 + 11 * i + 21 * 0) * pos.actZ;
+        if (y > pos.actY + 105) 
+        {
+           y =  (-BigHeight / 2 + 80 + 11 * i) * pos.actZ + (y - 105 - 21);
+           x +=  (BigWidth / 2) * pos.actZ;
+        }
+
+        if (gfx.size())
+        {
+            JQuadPtr q = WResourceManager::Instance()->RetrieveTempQuad(gfx);
+
+            if (q.get() && q->mTex)
+            {
+                float scale = 20.f / q->mHeight;
+                if (renderText)
+                {
+                    float scaleX = (font->GetStringWidth(buf) + 20) / q->mWidth;
+                    JRenderer::GetInstance()->RenderQuad(q.get(), x, y, 0, scaleX, scale);
+                }
+                else
+                {
+                    JRenderer::GetInstance()->RenderQuad(q.get(), x + (scale * q->mWidth * 0), y, 0, scale, scale);
+                }
+            }
+        }
+
+        if (renderText)
+        {
+            font->SetColor(ARGB(255,0,0,0));
+            font->DrawString(buf, x + 5, y + 5);
+        }
+
+        return; // No need to check counters on The Ring.
+    }
+
     for (size_t t = 0; t < card->counters->counters.size(); t++)
     {
         Counter * c = card->counters->counters[t];

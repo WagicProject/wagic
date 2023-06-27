@@ -521,25 +521,25 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
         if(check != string::npos)
         {
             bool hasdeadtype = false;
-            string checktype = restriction[i].substr(7);
-            for(int cp = 0;cp < 2;cp++)
+            string checktype = "";
+            Player * checkCurrent = NULL;
+            if(restriction[i].find("oppo") != string::npos){
+                checktype = restriction[i].substr(11);
+                checkCurrent = card->controller()->opponent();
+            } else {
+                checktype = restriction[i].substr(9);
+                checkCurrent = card->controller();
+            }
+            MTGGameZone * grave = checkCurrent->game->graveyard;
+            for(unsigned int gy = 0; gy < grave->cardsSeenThisTurn.size(); gy++)
             {
-                Player * checkCurrent = observer->players[cp];
-                MTGGameZone * grave = checkCurrent->game->graveyard;
-                for(unsigned int gy = 0;gy < grave->cardsSeenThisTurn.size();gy++)
+                MTGCardInstance * checkCard = grave->cardsSeenThisTurn[gy];
+                if(checkCard->hasType(checktype) &&
+                    ((checkCard->previousZone == checkCurrent->game->battlefield))) //died from battlefield
                 {
-                    MTGCardInstance * checkCard = grave->cardsSeenThisTurn[gy];
-                    if(checkCard->hasType(checktype) &&
-                        ((checkCard->previousZone == checkCurrent->game->battlefield)||
-                        (checkCard->previousZone == checkCurrent->opponent()->game->battlefield))//died from battlefield
-                        )
-                    {
-                        hasdeadtype = true;
-                        break;
-                    }
-                }
-                if(hasdeadtype)
+                    hasdeadtype = true;
                     break;
+                }
             }
             if(!hasdeadtype)
                 return 0;
@@ -5665,6 +5665,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         MTGAbility * a = NEW ASeizeWrapper(observer, id, card, target);
         a->oneShot = 1;
+        if(storedAndAbility.size())
+        {
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((ASeizeWrapper*)a)->andAbility = parseMagicLine(stored, id, spell, card);
+        }
         return a;
     }
 

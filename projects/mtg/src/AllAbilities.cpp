@@ -9200,6 +9200,7 @@ ASeizeWrapper::ASeizeWrapper(GameObserver* observer, int _id, MTGCardInstance * 
     InstantAbility(observer, _id, source, _target)
 {
     ability = NEW ASeize(observer, _id,card,_target);
+    andAbility = NULL;
 }
 
 int ASeizeWrapper::resolve()
@@ -9207,6 +9208,20 @@ int ASeizeWrapper::resolve()
     ASeize * a = ability->clone();
     a->target = target;
     a->addToGame();
+    if(andAbility)
+    {
+        MTGAbility * andAbilityClone = andAbility->clone();
+        andAbilityClone->target = target;
+        if(andAbility->oneShot)
+        {
+            andAbilityClone->resolve();
+            SAFE_DELETE(andAbilityClone);
+        }
+        else
+        {
+            andAbilityClone->addToGame();
+        }
+    }
     return 1;
 }
 
@@ -9220,12 +9235,15 @@ ASeizeWrapper * ASeizeWrapper::clone() const
     ASeizeWrapper * a = NEW ASeizeWrapper(*this);
     a->ability = this->ability->clone();
     a->oneShot = 1;
+    if(andAbility)
+        a->andAbility = andAbility->clone();
     return a;
 }
 
 ASeizeWrapper::~ASeizeWrapper()
 {
     SAFE_DELETE(ability);
+    SAFE_DELETE(andAbility);
 }
 
 //AShackle

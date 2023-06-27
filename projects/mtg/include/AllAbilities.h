@@ -5779,6 +5779,7 @@ class ASeizeWrapper: public InstantAbility
 {
 public:
     ASeize * ability;
+    MTGAbility * andAbility;
     ASeizeWrapper(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target);
     int resolve();
     const string getMenuText();
