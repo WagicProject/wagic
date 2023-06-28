@@ -775,6 +775,12 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 return 0;
         }
         
+        check = restriction[i].find("oppoattacked");
+        if(check != string::npos)
+        {
+            if(card->controller()->opponent()->raidcount < 1)
+                return 0;
+        }
 
         check = restriction[i].find("opponentdamagedbycombat");
         if(check != string::npos)
@@ -5491,6 +5497,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         MTGAbility * a = NEW AANewTarget(observer, id, card, target, NULL, (s.find("retarget") != string::npos), false, false, 0, (s.find("fromplay") != string::npos));
         a->oneShot = 1;
+        if(s.find("untp") != string::npos)
+            ((AANewTarget*)a)->untap = true;
         return a;
     }
 
@@ -5499,6 +5507,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         MTGAbility * a = NEW AANewTarget(observer, id, card,target, NULL, false, true, (s.find("newhook") != string::npos));
         a->oneShot = 1;
+        if(s.find("untp") != string::npos)
+            ((AANewTarget*)a)->untap = true;
         return a;
     }
 

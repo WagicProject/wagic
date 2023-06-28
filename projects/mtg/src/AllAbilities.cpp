@@ -4612,8 +4612,8 @@ AAFrozen * AAFrozen::clone() const
 }
 
 // chose a new target for an aura or enchantment and equip it note: VERY basic right now.
-AANewTarget::AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost, bool retarget, bool reequip, bool newhook, int mutation, bool fromplay) :
-ActivatedAbility(observer, id, card, _cost, 0),retarget(retarget),reequip(reequip),newhook(newhook),mutation(mutation),fromplay(fromplay)
+AANewTarget::AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost, bool retarget, bool reequip, bool newhook, int mutation, bool fromplay, bool untap) :
+ActivatedAbility(observer, id, card, _cost, 0), retarget(retarget), reequip(reequip), newhook(newhook), mutation(mutation), fromplay(fromplay), untap(untap)
 {
     target = _target;
 }
@@ -4653,6 +4653,8 @@ int AANewTarget::resolve()
                 {
                     ((AEquip*)a)->unequip();
                     ((AEquip*)a)->equip(source);
+                    if(untap)
+                        source->untap();
                 }
             }
         }
@@ -4662,7 +4664,6 @@ int AANewTarget::resolve()
             target = source;
             source = _target;
         }
-
     }
     if (_target && _target->currentZone == _target->controller()->game->battlefield && reequip && !mutation)
     {
@@ -4690,6 +4691,8 @@ int AANewTarget::resolve()
                 {
                     ((AEquip*)a)->unequip();
                     ((AEquip*)a)->equip(source);
+                    if(untap)
+                        source->untap();
                 }
             }
         }

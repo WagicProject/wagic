@@ -4960,7 +4960,8 @@ public:
     bool newhook;
     int mutation;
     bool fromplay;
-    AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL, bool retarget = false, bool reequip = false, bool newhook = false, int mutation = 0, bool fromplay = false);
+    bool untap;
+    AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL, bool retarget = false, bool reequip = false, bool newhook = false, int mutation = 0, bool fromplay = false, bool untap = false);
     int resolve();
     const string getMenuText();
     AANewTarget * clone() const;
