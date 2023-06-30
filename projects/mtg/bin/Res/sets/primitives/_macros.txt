@@ -54,10 +54,14 @@
 # Constellation
 #AUTO_DEFINE _CONSTELLATION_ @movedTo(enchantment|myBattlefield):
 
-# Amass, Set WAR
-#AUTO_DEFINE _AMASS_($c) if type(army|mybattlefield)~morethan~0 then counter(1/1.$c) notATarget(army|myBattlefield) else create(Zombie Army:creature Zombie Army:0/0:black) and!(counter(1/1.$c) notATarget(army|myBattlefield))!
+# Amass Zombies, Set WAR
+#AUTO_DEFINE _AMASSZOMBIE1_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counter) name(Put 1/1 counter) notatarget(army|myBattlefield) transforms((Zombie,newability[counter(1/1)])) forever else name(Create Zombie Army) token(Zombie Army^Creature Zombie Army^0/0^black) and!( name(Put 1/1 counter) counter(1/1) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSZOMBIE2_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Zombie,newability[counter(1/1.2)])) forever else name(Create Zombie Army) token(Zombie Army^Creature Zombie Army^0/0^black) and!( name(Put 1/1 counters) counter(1/1.2) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSZOMBIE3_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Zombie,newability[counter(1/1.3)])) forever else name(Create Zombie Army) token(Zombie Army^Creature Zombie Army^0/0^black) and!( name(Put 1/1 counters) counter(1/1.3) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSZOMBIE4_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Zombie,newability[counter(1/1.4)])) forever else name(Create Zombie Army) token(Zombie Army^Creature Zombie Army^0/0^black) and!( name(Put 1/1 counters) counter(1/1.4) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSZOMBIE5_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Zombie,newability[counter(1/1.5)])) forever else name(Create Zombie Army) token(Zombie Army^Creature Zombie Army^0/0^black) and!( name(Put 1/1 counters) counter(1/1.5) notatarget(army|myBattlefield) )!
 
-# Amass Orc, Set LTR
+# Amass Orcs, Set LTR
 #AUTO_DEFINE _AMASSORC1_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counter) name(Put 1/1 counter) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1)])) forever else name(Create Orc Army) token(Orc Army) and!( name(Put 1/1 counter) counter(1/1) notatarget(army|myBattlefield) )!
 #AUTO_DEFINE _AMASSORC2_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1.2)])) forever else name(Create Orc Army) token(Orc Army) and!( name(Put 1/1 counters) counter(1/1.2) notatarget(army|myBattlefield) )!
 #AUTO_DEFINE _AMASSORC3_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1.3)])) forever else name(Create Orc Army) token(Orc Army) and!( name(Put 1/1 counters) counter(1/1.3) notatarget(army|myBattlefield) )!

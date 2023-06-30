@@ -1,6 +1,6 @@
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 24-06-2023
+#We sorted this in alphabetical order - Luruz & Vitty85 30-06-2023
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -189,7 +189,7 @@ subtype=Aminatou
 name=Angrath, Captain of Chaos
 auto=counter(0/0,5,loyalty)
 auto=lord(creature|myBattlefield) menace
-auto={C(0/0,-2,Loyalty)}:name(-2: Amass 2) _AMASS_(2)
+auto={C(0/0,-2,Loyalty)}:name(-2: Amass 2) _AMASSZOMBIE2_
 text=Creatures you control have menace. -- -2: Amass 2. (Put two +1/+1 counters on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.)
 mana={2}{BR}{BR}
 type=Legendary Planeswalker
