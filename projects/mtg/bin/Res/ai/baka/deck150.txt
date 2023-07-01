@@ -1,5 +1,6 @@
-#NAME:Ragavan Commander 
+#NAME:Ragavan Commander 2023 
 #DESC:The Ragavan Commander Deck
+#DESC:Refined for Wagic by Bob
 #HINT:castpriority(commander,*)
 Treasure Nabber (PZ2) *1
 Dire Fleet Daredevil (AFC) *1
@@ -11,7 +12,7 @@ World at War (ROE) *1
 Commander's Plate (CMR) *1
 Neheb, the Eternal (AKR) *1
 Strike It Rich (MH2) *1
-Audacious Reshapers (C21) *1
+Stolen Strategy *1
 Shinka, the Bloodsoaked Keep (CHK) *1
 Inventors' Fair (KLD) *1
 Strip Mine (EXP) *1
@@ -27,7 +28,7 @@ Hellkite Tyrant (GTC) *1
 Goblin Engineer (MH1) *1
 Aggravated Assault (ONS) *1
 Xorn (AFR) *1
-Mana Vault (PUMA) *1
+Chromatic Lantern *1
 Magda, Brazen Outlaw (KHM) *1
 Sensei's Divining Top (EMA) *1
 Combat Celebrant (AKR) *1
@@ -46,27 +47,28 @@ Fury of the Horde (CSP) *1
 Valakut Awakening (ZNR) *1
 Mountain (UNH) *20
 Godo, Bandit Warlord (CHK) *1
-Mox Amber (DOM) *2
+Mox Amber (DOM) *1
+Breeches, Brazen Plunderer *1
 Cursed Mirror (C21) *1
 Price of Glory (ODY) *1
 Spire of Industry (AER) *1
 Vandalblast (AFC) *1
 Ancient Tomb (ZNE) *1
-Chaos Warp (AFC) *1
+Passionate Archaeologist *1
 Mana Confluence (CMR) *1
 Shatterskull Smashing (ZNR) *1
-Grim Monolith (ULG) *1
+Thran Dynamo *1
 Lightning Greaves (MB1) *1
 Pirate's Pillage (RIX) *1
-Shattering Spree (MB1) *1
+Shatter *1
 Sword of Feast and Famine (MPS) *1
-Goblin Welder (ULG) *1
+Goblin Tunneler *1
 War's Toll (BBD) *1
 Wayfarer's Bauble (C17) *1
 Cathedral of War (M13) *1
 Sword of Light and Shadow (2XM) *1
 Underworld Breach (THB) *1
-Subira, Tulzidi Caravanner (M21) *1
+Reckless Fireweaver *1
 Dockside Extortionist (C19) *1
 Mox Diamond (FVR) *1
 Bloodstained Mire (ONS) *1
@@ -75,7 +77,8 @@ City of Brass (ME4) *1
 Goldspan Dragon (KHM) *1
 Ruby Medallion (C14) *1
 Sword of the Animist (AFC) *1
-Grenzo, Havoc Raiser (PZ2) *2
+Grenzo, Havoc Raiser (PZ2) *1
+Ancient Copper Dragon *1
 Moraug, Fury of Akoum (ZNR) *1
 Wheel of Fortune (VMA) *1
 Port Razer (CMR) *1
