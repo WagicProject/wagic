@@ -25,18 +25,19 @@ It is highly customizable and allows the player to tweak the rules, create their
 
 Info, downloads, discussions and more at http://wololo.net/forum/index.php
 
-Developer information from [the Wagic Wiki](https://github.com/WagicProject/wagic/wiki) is also included in the [wagic/docs/](docs) folder.
+Developer information from the [Wagic Wiki](https://github.com/WagicProject/wagic/wiki) is also included in the [wagic/docs/](docs) folder.
 
 
 ### Sample round play-through video
 
 [![Wagic, The Homebrew sample playthrough](docs/img/Wagic%2C%20The%20Homebrew%20sample%20playthrough.jpg)](http://www.youtube.com/watch?v=WUFSAPZuDIk)
+
 *Wagic, The Homebrew sample playthrough on YouTube by Rolz73, 6 Feb 2014*
 
 
 ## Sister projects
 
 - [WagicSyntaxPlugin
-](https://github.com/Vitty85/WagicSyntaxPlugin) by Vitty85 for [Notepad++](https://notepad-plus-plus.org/downloads/)
-- [Forge](https://www.slightlymagic.net/forum/viewforum.php?f=26), a Java-based game engine similar to Wagic ([Source](https://git.cardforge.org/core-developers/forge))
-- [XMage](https://github.com/magefree/mage), a Java-based online multiplayer digital CCG
+](https://github.com/Vitty85/WagicSyntaxPlugin), a Wagic developer tool by Vitty85 for [Notepad++](https://notepad-plus-plus.org/downloads/)
+- [Forge](https://www.slightlymagic.net/forum/viewforum.php?f=26), a Java-based game engine similar to Wagic ([Source](https://github.com/Card-Forge/forge/))
+- [XMage](http://xmage.today/), a Java-based online multiplayer digital CCG ([Source](https://github.com/magefree/mage))
