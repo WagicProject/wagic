@@ -1561,18 +1561,18 @@ int MTGMorphCostRule::reactToClick(MTGCardInstance * card)
         card->getManaCost()->setManaUsedToCast(NEW ManaCost());
         card->getManaCost()->getManaUsedToCast()->copy(spellCost);
     }
-    int iscommander = card->has(Constants::ISCOMMANDER);
-    card->basicAbilities[Constants::ISCOMMANDER] = 0;//Morph is not a commander on stack
+    int iscommander = card->isCommander;
+    card->isCommander = 0;//Morph is not a commander on stack
     MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->stack);
     if(iscommander > 0)
-        copy->basicAbilities[Constants::ISCOMMANDER] = 1;
+        copy->isCommander = 1;
     copy->getManaCost()->resetCosts();//Morph has no ManaCost on stack
     copy->setColor(0,1);
     copy->types.clear();
     string cre = "Creature";
     copy->setType(cre.c_str());
     for(size_t i = 0; i < copy->basicAbilities.size(); i++) {
-        if(i != Constants::ISCOMMANDER && i != Constants::GAINEDEXILEDEATH && i != Constants::GAINEDHANDDEATH && i != Constants::GAINEDDOUBLEFACEDEATH && 
+        if(i != Constants::GAINEDEXILEDEATH && i != Constants::GAINEDHANDDEATH && i != Constants::GAINEDDOUBLEFACEDEATH && 
             i != Constants::DUNGEONCOMPLETED && i != Constants::PERPETUALDEATHTOUCH && i != Constants::PERPETUALLIFELINK)
             copy->basicAbilities[i] = 0; // Try to keep the original special abilities on card morph.
     }

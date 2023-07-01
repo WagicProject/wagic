@@ -197,7 +197,7 @@ const char* Constants::MTGBasicAbilities[] = {
     "hasotherkicker", //Kicker cost is expressed with "other" keyword (eg. not mana kicker such as life and/or tap a creature)
     "partner", //Has partner ability
     "canbecommander", //Can be a commander (eg. some planeswalkers can)
-    "iscommander", //It's the current commander
+    "poisonfourtoxic", // Card has toxic 4
     "threeblockers", //It can be blocked just by 3 creatures or more.
     "handdeath", //It goes in hand after death.
     "inplaydeath", //It goes back in play untapped after death.
@@ -225,7 +225,7 @@ const char* Constants::MTGBasicAbilities[] = {
     "perpetualdeathtouch", //It gains deathtouch perpetually
     "noncombatvigor", //instead of taking non-combat damage the source gains +1/+1 counters (e.g. Stormwild Capridor)
     "nomovetrigger", //no trigger when playing these cards (e.g. fake ability cards such as Davriel Conditions, Davriel Offers, Annihilation Rooms)
-    "wascommander", //It was the current commander (e.g. after it flipped or morphed)
+    "canloyaltytwice", //Planeswalker can activate its loyalty abilities twice in a turn (e.g. "Urza, Planeswalker").
     "showopponenthand", //opponent plays with his hand revealed.
     "showcontrollerhand", //controller plays with his hand revealed.
     "hasreplicate", //Kicker cost is a replicate cost (e.g. "Vacuumelt")
@@ -260,15 +260,12 @@ const char* Constants::MTGBasicAbilities[] = {
     "affinitygravecreatures", //Cost 1 less for each creature in your graveyard.
     "affinityattackingcreatures", //Cost 1 less for each attacking creature in your battlefield.
     "affinitygraveinstsorc", //Cost 1 less for each instant or sorcery in your graveyard.
-    "canloyaltytwice", //Planeswalker can activate its loyalty abilities twice in a turn (e.g. "Urza, Planeswalker").
-    "poisonfourtoxic", // Card has toxic 4
     "poisonfivetoxic", // Card has toxic 5
     "poisonsixtoxic", // Card has toxic 6
     "poisonseventoxic", // Card has toxic 7
     "poisoneighttoxic", // Card has toxic 8
     "poisonninetoxic", // Card has toxic 9
-    "poisontentoxic", // Card has toxic 10
-    "ringbearer" // The creature is The Ring bearer.
+    "poisontentoxic" // Card has toxic 10
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

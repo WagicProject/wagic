@@ -514,23 +514,23 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
             MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->commandzone, p->game->sideboard };
             for(int i = 0; i < 7; i++){
                 for(int j = 0; j < zones[i]->nb_cards; j++){
-                    if(zones[i]->cards[j]->has(Constants::ISCOMMANDER) && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_RED) && !redFound){
+                    if(zones[i]->cards[j]->isCommander && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_RED) && !redFound){
                         intValue++;
                         redFound = true;
                     }
-                    if(zones[i]->cards[j]->has(Constants::ISCOMMANDER) && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_BLACK) && !blackFound){
+                    if(zones[i]->cards[j]->isCommander && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_BLACK) && !blackFound){
                         intValue++;
                         blackFound = true;
                     }
-                    if(zones[i]->cards[j]->has(Constants::ISCOMMANDER) && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_BLUE) && !blueFound){
+                    if(zones[i]->cards[j]->isCommander && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_BLUE) && !blueFound){
                         intValue++;
                         blueFound = true;
                     }
-                    if(zones[i]->cards[j]->has(Constants::ISCOMMANDER) && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_GREEN) && !greenFound){
+                    if(zones[i]->cards[j]->isCommander && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_GREEN) && !greenFound){
                         intValue++;
                         greenFound = true;
                     }
-                    if(zones[i]->cards[j]->has(Constants::ISCOMMANDER) && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_WHITE) && !whiteFound){
+                    if(zones[i]->cards[j]->isCommander && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_WHITE) && !whiteFound){
                         intValue++;
                         whiteFound = true;
                     }
@@ -1645,6 +1645,10 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
     else if (s == "pringtemptations" || s == "oringtemptations") // How many times the player has been tempted by the Ring.
     {
         intValue = (s == "pringtemptations")?card->controller()->ringTemptations:card->controller()->opponent()->ringTemptations;
+    }
+    else if (s == "iscommander" || s == "ringbearer") // Return 1 if card is the commander -- Return 1 if card is the Ring bearer
+    {
+        intValue = (s == "iscommander")?card->isCommander:card->isRingBearer;
     }
     else if(!intValue)//found nothing, try parsing a atoi
     {

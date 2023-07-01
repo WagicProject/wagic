@@ -2750,7 +2750,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     CardDescriptor cd;
     cd.init();
     if(!strcmp(type,"commander")) //Added to allow the casting priority for commanders
-        cd.basicAbilities[Constants::ISCOMMANDER] = 1;
+        cd.isCommander = 1;
     else if(strcmp(type,"*")) //Added to allow the wildcard in casting priority
         cd.setType(type);
     card = NULL;

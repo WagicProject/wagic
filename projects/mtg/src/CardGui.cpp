@@ -257,9 +257,11 @@ void CardGui::Render()
             if(game)
             {
                 if(card->has(Constants::PAYZERO) ||
-                ((card->has(Constants::CANPLAYFROMGRAVEYARD) || card->has(Constants::TEMPFLASHBACK) || card->getManaCost()->getFlashback() || card->getManaCost()->getRetrace()) && game->isInGrave(card)) ||
-                (((card->has(Constants::FORETELL) && card->foretellTurn > -1 && game->turn > card->foretellTurn) || card->has(Constants::CANPLAYFROMEXILE)) && game->isInExile(card)))
-                    fakeborder->SetColor(ARGB((int)(actA),7,235,7));//green border
+                    ((card->has(Constants::CANPLAYFROMGRAVEYARD) || card->has(Constants::TEMPFLASHBACK) || card->getManaCost()->getFlashback() || card->getManaCost()->getRetrace()) && game->isInGrave(card)) ||
+                    (((card->has(Constants::FORETELL) && card->foretellTurn > -1 && game->turn > card->foretellTurn) || card->has(Constants::CANPLAYFROMEXILE)) && game->isInExile(card)))
+                    fakeborder->SetColor(ARGB((int)(actA),7,235,7)); //green border
+                else if(card->isCommander)
+                    fakeborder->SetColor(ARGB((int)(actA),255,255,255)); //white border for commanders
                 else
                     fakeborder->SetColor(ARGB((int)(actA),15,15,15));
             }
@@ -1614,6 +1616,30 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                     else
                     {
                         cd.isFlipped = 1;
+                    }
+                }
+                //Card is commander
+                else if (attribute.find("iscommander") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.isCommander = -1;
+                    }
+                    else
+                    {
+                        cd.isCommander = 1;
+                    }
+                }
+                //Card is Ring bearer
+                else if (attribute.find("ringbearer") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.isRingBearer = -1;
+                    }
+                    else
+                    {
+                        cd.isRingBearer = 1;
                     }
                 }
                 //Has x in cost

@@ -713,6 +713,30 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->isFlipped = 1;
                     }
                 }
+                //Card is commander
+                else if (attribute.find("iscommander") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->isCommander = -1;
+                    }
+                    else
+                    {
+                        cd->isCommander = 1;
+                    }
+                }
+                //Card is Ring bearer
+                else if (attribute.find("ringbearer") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->isRingBearer = -1;
+                    }
+                    else
+                    {
+                        cd->isRingBearer = 1;
+                    }
+                }
                 //Has x in cost
                 else if (attribute.find("hasx") != string::npos)
                 {

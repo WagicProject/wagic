@@ -1081,13 +1081,13 @@ int AARingBearerChosen::resolve()
     {
         MTGCardInstance * currentBearer = NULL;
         for (int j = _target->controller()->game->inPlay->nb_cards - 1; j >= 0; --j){
-            if(_target->controller()->game->inPlay->cards[j]->basicAbilities[Constants::RINGBEARER] == 1){
+            if(_target->controller()->game->inPlay->cards[j]->isRingBearer == 1){
                 currentBearer = _target->controller()->game->inPlay->cards[j];
-                _target->controller()->game->inPlay->cards[j]->basicAbilities[Constants::RINGBEARER] = 0;
+                _target->controller()->game->inPlay->cards[j]->isRingBearer = 0;
                 break;
             }
         }
-        _target->basicAbilities[Constants::RINGBEARER] = 1;
+        _target->isRingBearer = 1;
         bool bearerChanged = false;
         if(currentBearer == NULL || currentBearer != _target){
             for (int j = _target->controller()->game->inPlay->nb_cards - 1; j >= 0; --j){
@@ -5147,12 +5147,8 @@ int AAFlip::resolve()
                 }
                 SAFE_DELETE(myOrig);
             } else{
-                if(_target->has(Constants::ISCOMMANDER)){
-                    _target->basicAbilities[Constants::WASCOMMANDER] = 1;
-                    _target->basicAbilities[Constants::ISCOMMANDER] = 0;
-                }
                 for(size_t i = 0; i < _target->basicAbilities.size(); i++) {
-                    if(i != Constants::WASCOMMANDER && i != Constants::GAINEDEXILEDEATH && i != Constants::GAINEDHANDDEATH && i != Constants::GAINEDDOUBLEFACEDEATH && 
+                    if(i != Constants::GAINEDEXILEDEATH && i != Constants::GAINEDHANDDEATH && i != Constants::GAINEDDOUBLEFACEDEATH && 
                         i != Constants::DUNGEONCOMPLETED && i != Constants::PERPETUALDEATHTOUCH && i != Constants::PERPETUALLIFELINK)
                         _target->basicAbilities[i] = myFlip->model->data->basicAbilities[i]; // Try to keep the original special abilities on card flip.
                 }

@@ -266,7 +266,7 @@ int Damage::resolve()
             else
             {
                 ((MTGCardInstance*)source)->damageToOpponent += damage;
-                if(((MTGCardInstance*)source)->basicAbilities[Constants::ISCOMMANDER])
+                if(((MTGCardInstance*)source)->isCommander > 0)
                     ((MTGCardInstance*)source)->damageInflictedAsCommander += damage;
             }
             target->lifeLostThisTurn += damage;

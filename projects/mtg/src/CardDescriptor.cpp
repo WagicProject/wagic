@@ -393,6 +393,16 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
         match = NULL;
     }
 
+    if ((isCommander == -1 && card->isCommander > 0) || (isCommander == 1 && card->isCommander == 0))
+    {
+        match = NULL;
+    }
+
+    if ((isRingBearer == -1 && card->isRingBearer > 0) || (isRingBearer == 1 && card->isRingBearer == 0))
+    {
+        match = NULL;
+    }
+
     if ((tapped == -1 && card->isTapped()) || (tapped == 1 && !card->isTapped()))
     {
         match = NULL;

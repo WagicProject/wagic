@@ -238,6 +238,8 @@ void MTGCardInstance::initMTGCI()
     isMorphed = false;
     MeldedFrom = "";
     isFlipped = 0;
+    isCommander = 0;
+    isRingBearer = 0;
     isDefeated = false;
     isPhased = false;
     isCascaded = false;

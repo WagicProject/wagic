@@ -61,7 +61,7 @@ void MTGPlayerCards::initDeck(MTGDeck * deck)
             {
                 MTGCardInstance * newCard = NEW MTGCardInstance(card, this);
                 //the card is marked as commander ad added to library.
-                newCard->basicAbilities[Constants::ISCOMMANDER] = 1;
+                newCard->isCommander = 1;
                 library->addCard(newCard);
             }
         }
@@ -946,7 +946,7 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy
                 copy->storedSourceCard = card->storedSourceCard;
                 copy->lastController = card->controller();
                 copy->previousController = card->controller();
-                copy->basicAbilities[Constants::ISCOMMANDER] = (card->basicAbilities[Constants::ISCOMMANDER] | card->basicAbilities[Constants::WASCOMMANDER]);
+                copy->isCommander = card->isCommander;
                 copy->basicAbilities[Constants::GAINEDEXILEDEATH] = card->basicAbilities[Constants::GAINEDEXILEDEATH];
                 copy->basicAbilities[Constants::GAINEDHANDDEATH] = card->basicAbilities[Constants::GAINEDHANDDEATH];
                 copy->basicAbilities[Constants::GAINEDDOUBLEFACEDEATH] = card->basicAbilities[Constants::GAINEDDOUBLEFACEDEATH];

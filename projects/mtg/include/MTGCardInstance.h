@@ -97,6 +97,8 @@ public:
     bool turningOver;
     bool isMorphed;
     int isFlipped;
+    int isCommander;
+    int isRingBearer;
     bool isDefeated;
     string MeldedFrom;
     bool isPhased;
