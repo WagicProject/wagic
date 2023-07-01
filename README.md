@@ -23,7 +23,9 @@ It is highly customizable and allows the player to tweak the rules, create their
 
 ### Documentation
 
-Info, downloads, discussions and more at http://wololo.net/forum/index.php
+Info, downloads, discussions and more at http://wololo.net/forum/index.php (archived as of 16 Nov 2022).
+
+Chat with the community on the [**Wagic - MTG Game** Discord](https://discord.com/invite/JHK5pVaK5p) (Feb 2023).
 
 Developer information from the [Wagic Wiki](https://github.com/WagicProject/wagic/wiki) is also included in the [wagic/docs/](docs) folder.
 
