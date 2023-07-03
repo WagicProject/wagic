@@ -3491,13 +3491,18 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         }
         replace(splitToken[1].begin(), splitToken[1].end(), '^', ','); // To allow the usage of ^ instead of , char (e.g. using token keyword inside transforms)
         int tokenId = atoi(splitToken[1].c_str());
+        MTGCardInstance * creator = NULL;
+        if(card  && card->name.empty() && card->storedSourceCard) // Fix for token creation inside ability$!!$ keyword.
+            creator = card->storedSourceCard;
+        else
+            creator = card;
         if (tokenId)
         {
             MTGCard * safetycard = MTGCollection()->getCardById(tokenId);
             if (!safetycard) //Error, card not foudn in DB
-                return NEW ATokenCreator(observer, id, card, target, NULL, "ID NOT FOUND", "ERROR ID",0, 0, "","", NULL,0);
+                return NEW ATokenCreator(observer, id, creator, target, NULL, "ID NOT FOUND", "ERROR ID", 0, 0, "", "", NULL, 0);
 
-            ATokenCreator * tok = NEW ATokenCreator(observer, id, card,target, NULL, tokenId, starfound, multiplier, who);
+            ATokenCreator * tok = NEW ATokenCreator(observer, id, creator, target, NULL, tokenId, starfound, multiplier, who);
             tok->oneShot = 1;
             //andability
             if(storedAndAbility.size())
@@ -3523,7 +3528,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             MTGCard * safetycard = MTGCollection()->getCardByName(cardName);
             if (safetycard) //lets try constructing it then,we didnt find it by name
             {
-                ATokenCreator * tok = NEW ATokenCreator(observer, id, card, target, NULL, cardName, starfound, multiplier, who);
+                ATokenCreator * tok = NEW ATokenCreator(observer, id, creator, target, NULL, cardName, starfound, multiplier, who);
                 tok->oneShot = 1;
                 if(!sabilities.empty())
                     tok->sabilities = sabilities;
@@ -3571,7 +3576,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         parsePowerToughness(spt, &power, &toughness);
         
         ATokenCreator * tok = NEW ATokenCreator(
-            observer, id, card,target, NULL, sname, stypes, power + value, toughness + value,
+            observer, id, creator, target, NULL, sname, stypes, power + value, toughness + value,
             sabilities, starfound, multiplier, who, aLivingWeapon, spt, cID);
         tok->oneShot = 1;
         if(aLivingWeapon)
@@ -3600,15 +3605,21 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             myMultiplierfound = myMultiplierfound.substr(0,myMultiplierEnd);
             multiplier = NEW WParsedInt(myMultiplierfound, spell, card);
         }
-        
+
+        MTGCardInstance * creator = NULL;
+        if(card  && card->name.empty() && card->storedSourceCard) // Fix for token creation inside ability$!!$ keyword.
+            creator = card->storedSourceCard;
+        else
+            creator = card;
+
         int mytokenId = atoi(makeToken[1].c_str());
         if (mytokenId)
         {
             MTGCard * mysafetycard = MTGCollection()->getCardById(mytokenId);
             if (!mysafetycard) //Error, card not foudn in DB
-                return NEW ATokenCreator(observer, id, card, target, NULL, "ID NOT FOUND", "ERROR ID",0, 0, "","", NULL,0);
+                return NEW ATokenCreator(observer, id, creator, target, NULL, "ID NOT FOUND", "ERROR ID", 0, 0, "", "", NULL, 0);
 
-            ATokenCreator * mtok = NEW ATokenCreator(observer, id, card,target, NULL, mytokenId, myMultiplierfound, multiplier, who);
+            ATokenCreator * mtok = NEW ATokenCreator(observer, id, creator, target, NULL, mytokenId, myMultiplierfound, multiplier, who);
             mtok->oneShot = 1;
             //andability
             if(storedAndAbility.size())
@@ -3629,7 +3640,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             MTGCard * mysafetycard = MTGCollection()->getCardByName(cardName);
             if (mysafetycard) //lets try constructing it then,we didnt find it by name
             {
-                ATokenCreator * mtok = NEW ATokenCreator(observer, id, card, target, NULL, cardName, myMultiplierfound, multiplier, who);
+                ATokenCreator * mtok = NEW ATokenCreator(observer, id, creator, target, NULL, cardName, myMultiplierfound, multiplier, who);
                 mtok->oneShot = 1;
                 //andability
                 if(storedAndAbility.size())
@@ -3675,7 +3686,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         parsePowerToughness(spt, &power, &toughness);
         
         ATokenCreator * mtok = NEW ATokenCreator(
-            observer, id, card,target, NULL, sname, stypes, power + value, toughness + value,
+            observer, id, creator, target, NULL, sname, stypes, power + value, toughness + value,
             sabilities, myMultiplierfound, multiplier, who, aLivingWeapon, spt, cID);
         mtok->oneShot = 1;
         if(aLivingWeapon)
