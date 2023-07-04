@@ -2,11 +2,16 @@
 author=Wagic Team
 name=The Lord of the Rings: Tales of Middle-earth
 year=2023-06-23
-total=554
+total=555
 [/meta]
 [card]
 primitive=The Ring
 id=-999906
+rarity=T
+[/card]
+[card]
+primitive=Halfling
+id=-111708
 rarity=T
 [/card]
 [card]

@@ -1,6 +1,6 @@
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 30-06-2023
+#We sorted this in alphabetical order - Luruz & Vitty85 04-07-2023
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -3693,7 +3693,7 @@ auto=@counteradded(0/0,1,WrennDepleted) from(*|mygraveyard) turnlimited:name(Ret
 auto={C(0/0,1,Loyalty)}:name(+1: Transform land) target(land|mybattlefield) transforms((Elemental Creature,setpower=3,settoughness=3,newability[haste],newability[vigilance],newability[opponentshroud])) uynt
 auto={C(0/0,1,Loyalty)}:name(+1: Don't transform any land) donothing
 auto={C(0/0,-2,Loyalty)}:name(-2: Mill and return) all(*[zpos<=2]|mylibrary) moveto(mygraveyard) and!( transforms((,newability[counter(0/0.1.WrennDepleted) notrg])) ueot )! && all(*[zpos=3]|mylibrary) moveto(mygraveyard) and!( transforms((,newability[counter(0/0.1.WrennDepleted)])) ueot )!
-auto={C(0/0,-1,Loyalty)}:name(-7: Emblem play from graveyard) emblem transforms((,newability[lord(*[-instant;-sorcery]|mygraveyard) canplayfromgraveyard])) forever dontremove
+auto={C(0/0,-7,Loyalty)}:name(-7: Emblem play from graveyard) emblem transforms((,newability[lord(*[-instant;-sorcery]|mygraveyard) canplayfromgraveyard])) forever dontremove
 text=Lands you control have "{T}: Add one mana of any color." -- [+1]: Up to one target land you control becomes a 3/3 Elemental creature with vigilance, hexproof, and haste until your next turn. It's still a land. -- [−2]: Mill three cards. You may put a permanent card from among the milled cards into your hand. -- [−7]: You get an emblem with "You may play lands and cast permanent spells from your graveyard."
 mana={1}{G}{G}
 type=Legendary Planeswalker

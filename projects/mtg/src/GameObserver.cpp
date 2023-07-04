@@ -814,7 +814,7 @@ void GameObserver::gameStateBasedEffects()
                                 else if((!card->target->isLand() && card->hasType("fortification")))
                                     ((AEquip*)a)->unequip();
                             }
-                            if(card->controller() && !card->mutation)
+                            if(card->controller() && !card->mutation && ((AEquip*)a)->getActionTc())
                                 ((AEquip*)a)->getActionTc()->Owner = card->controller();
                             //fix for equip ability when the equipment changed controller... 
                         }

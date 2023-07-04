@@ -57,15 +57,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Leonin Shikari
-text=You may activate equip abilities any time you could cast an instant.
-mana={1}{W}
-type=Creature
-subtype=Cat Soldier
-power=2
-toughness=2
-[/card]
-[card]
 name=Nacatl War-Pride
 text=Nacatl War-Pride must be blocked by exactly one creature if able. -- Whenever Nacatl War-Pride attacks, put X tokens that are copies of Nacatl War-Pride onto the battlefield tapped and attacking, where X is the number of creatures defending player controls. Exile the tokens at the beginning of the next end step.
 mana={3}{G}{G}{G}

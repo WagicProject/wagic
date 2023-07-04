@@ -7162,7 +7162,9 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     case AS_SORCERY:
         if (player != game->currentPlayer)
             return 0;
-        if (cPhase != MTG_PHASE_FIRSTMAIN && cPhase != MTG_PHASE_SECONDMAIN)
+        if (!card->hasType(Subtypes::TYPE_EQUIPMENT) && cPhase != MTG_PHASE_FIRSTMAIN && cPhase != MTG_PHASE_SECONDMAIN)
+            return 0;
+        if (card->hasType(Subtypes::TYPE_EQUIPMENT) && !card->has(Constants::EQPASINST) && cPhase != MTG_PHASE_FIRSTMAIN && cPhase != MTG_PHASE_SECONDMAIN)
             return 0;
         if (player->opponent()->getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0||game->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0||player->getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
             return 0;

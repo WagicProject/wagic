@@ -2,7 +2,7 @@ grade=unsupported
 #The cards in this file are not implemented/incomplete yet.
 #Updated Card lists not in primitives (Borderline, Crappy, Unsupported and Missing Cards)
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#I sorted this programatically - Vitty85 21-06-2023
+#I sorted this programatically - Vitty85 04-07-2023
 [card]
 name="Ach! Hans, Run!"
 text=At the beginning of your upkeep, you may say "Ach Hans, run It's the . . ." and name a creature card. If you do, search your library for the named card, put it into play, then shuffle your library. That creature has haste. Remove it from the game at end of turn.
@@ -4152,6 +4152,15 @@ type=Legendary Artifact
 subtype=Equipment
 [/card]
 [card]
+name=Goldberry, River-Daughter
+text={T}: Move a counter of each kind not on Goldberry, River-Daughter from another target permanent you control onto Goldberry. -- {U}, {T}: Move one or more counters from Goldberry onto another target permanent you control. If you do, draw a card.
+mana={1}{U}
+type=Legendary Creature
+subtype=Nymph
+power=1
+toughness=3
+[/card]
+[card]
 name=Golgothian Sylex
 text={1}, {T}: Each nontoken permanent from the Antiquities expansion is sacrificed by its controller.
 mana={4}
@@ -5869,15 +5878,6 @@ text=Players can't search libraries. Any player may pay {2} for that player to i
 mana={1}{W}
 type=Creature
 subtype=Cat Cleric
-power=2
-toughness=2
-[/card]
-[card]
-name=Leonin Shikari
-text=You may activate equip abilities any time you could cast an instant.
-mana={1}{W}
-type=Creature
-subtype=Cat Soldier
 power=2
 toughness=2
 [/card]
@@ -7695,11 +7695,14 @@ mana={2}{B}
 type=Sorcery
 [/card]
 [card]
+name=Palantir of Orthanc
+text=At the beginning of your end step, put an influence counter on Palantir of Orthanc and scry 2. Then target opponent may have you draw a card. If that player doesn't, you mill X cards, where X is the number of influence counters on Palantir of Orthanc, and that player loses life equal to the total mana value of those cards.
+mana={3}
+type=Legendary Artifact
+[/card]
+[card]
 name=Paliano
-auto=lord(other creature|myBattlefield)
-auto=@chaos ensuescreate(assassin:creature assassin:1/1:black:deathtouch,haste)
 text=When one or more creatures you control deal combat damage to a player, if there is no monarch, you become the monarch. -- Whenever chaos ensues, create a 1/1 black Assassin creature token with deathtouch and haste.
-mana=null
 type=Plane
 subtype=Fiora
 [/card]
@@ -9217,6 +9220,15 @@ name=Shared Trauma
 text=Join forces - Starting with you, each player may pay any amount of mana. Each player puts the top X cards of his or her library into his or her graveyard, where X is the total amount of mana paid this way.
 mana={B}
 type=Sorcery
+[/card]
+[card]
+name=Sharkey, Tyrant of the Shire
+text=Activated abilities of lands your opponents control can't be activated unless they're mana abilities. -- Sharkey, Tyrant of the Shire has all activated abilities of lands your opponents control except mana abilities. -- Mana of any type can be spent to activate Sharkey's abilities.
+mana={2}{U}{B}
+type=Legendary Creature
+subtype=Avatar Rogue
+power=2
+toughness=4
 [/card]
 [card]
 name=Shelkin Brownie

@@ -790,10 +790,7 @@ subtype=Theros
 [/card]
 [card]
 name=Paliano
-auto=lord(other creature|myBattlefield)
-auto=@chaos ensuescreate(assassin:creature assassin:1/1:black:deathtouch,haste)
 text=When one or more creatures you control deal combat damage to a player, if there is no monarch, you become the monarch. -- Whenever chaos ensues, create a 1/1 black Assassin creature token with deathtouch and haste.
-mana=null
 type=Plane
 subtype=Fiora
 [/card]

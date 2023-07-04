@@ -5,15 +5,6 @@ mana={3}{W}{W}
 type=Instant
 [/card]
 [card]
-name=Leonin Shikari
-text=You may activate equip abilities any time you could cast an instant.
-mana={1}{W}
-type=Creature
-subtype=Cat Soldier
-power=2
-toughness=2
-[/card]
-[card]
 name=Surestrike Trident
 text=Equipped creature has first strike and "{T}, Unattach Surestrike Trident: This creature deals damage equal to its power to target player." -- Equip {4} ({4}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 mana={2}
