@@ -1,6 +1,6 @@
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 04-07-2023
+#We sorted this in alphabetical order - Luruz & Vitty85 05-07-2023
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -867,7 +867,7 @@ subtype=Ellywick
 name=Elminster
 abilities=canbecommander
 auto=counter(0/0,5,loyalty)
-auto=@scryed(*|mybattlefield,mystack):name(Next spell cost less) target(*[instant;sorcery]|myhand) transforms((,newability[changecost(colorless:-scryedcards) forcedalive])) ueot
+auto=@scryed(*|myzones):name(Next spell cost less) target(*[instant;sorcery]|myhand) transforms((,newability[changecost(colorless:-scryedcards) forcedalive])) ueot
 auto={C(0/0,+2,Loyalty)}:name(Draw and scry) draw:1 && _SCRY2_
 auto={C(0/0,-3,Loyalty)}:name(Exile top card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( transforms((,newability[name(Create faeries) token(Faerie^Creature Faerie Dragon^1/1^blue)*manacost])) oneshot )!
 text=Whenever you scry, the next instant or sorcery spell you cast this turn costs {X} less to cast, where X is the number of cards looked at while scrying this way. -- [+2]: Draw a card, then scry 2. -- [−3]: Exile the top card of your library. Create a number of 1/1 blue Faerie Dragon creature tokens with flying equal to that card's mana value. -- Elminster can be your commander.
