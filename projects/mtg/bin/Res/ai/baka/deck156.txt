@@ -1,0 +1,57 @@
+#NAME:Lord of The Rings Commander 2023
+#DESC:Original Deck Concept by ElderKuradio (tappedout.net)
+#DESC:Designed for Wagic by Vitty85
+#HINT:castpriority(commander,creature,*)
+Aragorn and Arwen, Wed (*) * 1
+Aragorn, the Uniter (*) * 1
+Arwen, Mortal Queen (*) * 1
+Elvish Mariner (*) * 1
+Frodo, Determined Hero (*) * 1
+Galadriel, Gift-Giver (*) * 1
+Gandalf the White (*) * 1
+Gandalf, White Rider (*) * 1
+Gloin, Dwarf Emissary (*) * 1
+Gollum, Scheming Guide (*) * 1
+Gorbag of Minas Morgul (*) * 1
+Gothmog, Morgul Lieutenant (*) * 1
+Gwaihir the Windlord (*) * 1
+Ioreth of the Healing House (*) * 1
+Rangers of Ithilien (*) * 1
+Saruman of Many Colors (*) * 1
+Saruman the White (*) * 1
+Sauron, the Dark Lord (*) * 1
+Sauron, the Lidless Eye (*) * 1
+Strider, Ranger of the North (*) * 1
+Witch-king of Angmar (*) * 1
+Witch-king, Bringer of Ruin (*) * 1
+Barad-dur (*) * 1
+Mount Doom (*) * 1
+Mountain (LTR) * 13
+Island (LTR) * 10
+Swamp (LTR) * 10
+Forest (LTR) * 10
+Plains (LTR) * 10
+Elven Chorus (*) * 1
+Fires of Mount Doom (*) * 1
+Gift of Strands (*) * 1
+Long List of the Ents (*) * 1
+Oath of the Grey Host (*) * 1
+Scroll of Isildur (*) * 1
+War of the Last Alliance (*) * 1
+Borne Upon a Wind (*) * 1
+Friendly Rivalry (*) * 1
+Press the Enemy (*) * 1
+Sauron's Ransom (*) * 1
+Stern Scolding (*) * 1
+You Cannot Pass! (*) * 1
+Assault on Osgiliath (*) * 1
+Hew the Entwood (*) * 1
+Horses of the Bruinen (*) * 1
+Last March of the Ents (*) * 1
+Shadow Summoning (*) * 1
+Shadow of the Enemy (*) * 1
+Bilbo's Ring (*) * 1
+Glamdring (*) * 1
+Palantir of Orthanc (*) * 1
+
+#CMD:Tom Bombadil (*) * 1
