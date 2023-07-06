@@ -2,7 +2,7 @@ grade=unsupported
 #The cards in this file are not implemented/incomplete yet.
 #Updated Card lists not in primitives (Borderline, Crappy, Unsupported and Missing Cards)
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#I sorted this programatically - Vitty85 04-07-2023
+#I sorted this programatically - Vitty85 06-07-2023
 [card]
 name="Ach! Hans, Run!"
 text=At the beginning of your upkeep, you may say "Ach Hans, run It's the . . ." and name a creature card. If you do, search your library for the named card, put it into play, then shuffle your library. That creature has haste. Remove it from the game at end of turn.
@@ -7693,12 +7693,6 @@ name=Pain's Reward
 text=Each player may bid life. You start the bidding with a bid of any number. In turn order, each player may top the high bid. The bidding ends if the high bid stands. The high bidder loses life equal to the high bid and draws four cards.
 mana={2}{B}
 type=Sorcery
-[/card]
-[card]
-name=Palantir of Orthanc
-text=At the beginning of your end step, put an influence counter on Palantir of Orthanc and scry 2. Then target opponent may have you draw a card. If that player doesn't, you mill X cards, where X is the number of influence counters on Palantir of Orthanc, and that player loses life equal to the total mana value of those cards.
-mana={3}
-type=Legendary Artifact
 [/card]
 [card]
 name=Paliano

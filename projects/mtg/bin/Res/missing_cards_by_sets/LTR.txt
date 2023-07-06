@@ -26,18 +26,6 @@ power=1
 toughness=3
 [/card]
 [card]
-name=Palantir of Orthanc
-text=At the beginning of your end step, put an influence counter on Palantir of Orthanc and scry 2. Then target opponent may have you draw a card. If that player doesn't, you mill X cards, where X is the number of influence counters on Palantir of Orthanc, and that player loses life equal to the total mana value of those cards.
-mana={3}
-type=Legendary Artifact
-[/card]
-[card]
-name=Palantir of Orthanc
-text=At the beginning of your end step, put an influence counter on Palantir of Orthanc and scry 2. Then target opponent may have you draw a card. If that player doesn't, you mill X cards, where X is the number of influence counters on Palantir of Orthanc, and that player loses life equal to the total mana value of those cards.
-mana={3}
-type=Legendary Artifact
-[/card]
-[card]
 name=Sharkey, Tyrant of the Shire
 text=Activated abilities of lands your opponents control can't be activated unless they're mana abilities. -- Sharkey, Tyrant of the Shire has all activated abilities of lands your opponents control except mana abilities. -- Mana of any type can be spent to activate Sharkey's abilities.
 mana={2}{U}{B}
