@@ -2,7 +2,7 @@ grade=unsupported
 #The cards in this file are not implemented/incomplete yet.
 #Updated Card lists not in primitives (Borderline, Crappy, Unsupported and Missing Cards)
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#I sorted this programatically - Vitty85 06-07-2023
+#I sorted this programatically - Vitty85 07-07-2023
 [card]
 name="Ach! Hans, Run!"
 text=At the beginning of your upkeep, you may say "Ach Hans, run It's the . . ." and name a creature card. If you do, search your library for the named card, put it into play, then shuffle your library. That creature has haste. Remove it from the game at end of turn.
@@ -1663,6 +1663,16 @@ mana={1}{W}
 type=Enchantment
 [/card]
 [card]
+name=Cirdan the Shipwright
+abilities=vigilance
+text=Vigilance -- Secret council - Whenever Cirdan the Shipwright enters the battlefield or attacks, each player secretly votes for a player, then those votes are revealed. Each player draws a card for each vote they received. Each player who received no votes may put a permanent card from their hand onto the battlefield.
+mana={3}{G}{U}
+type=Legendary Creature
+subtype=Elf Noble
+power=3
+toughness=4
+[/card]
+[card]
 name=City in a Bottle
 text=Whenever a nontoken permanent from the Arabian Nights expansion other than City in a Bottle is on the battlefield, its controller sacrifices it.  -- Players can't play cards from the Arabian Nights expansion.
 mana={2}
@@ -2837,6 +2847,15 @@ type=Plane
 subtype=Shandalar
 [/card]
 [card]
+name=Elrond of the White Council
+text=Secret council - When Elrond of the White Council enters the battlefield, each player secretly votes for fellowship or aid, then those votes are revealed. For each fellowship vote, the voter chooses a creature they control. You gain control of each creature chosen this way, and they gain "This creature can't attack its owner." Then for each aid vote, put a +1/+1 counter on each creature you control.
+mana={3}{G}{U}
+type=Legendary Creature
+subtype=Elf Noble
+power=3
+toughness=3
+[/card]
+[card]
 name=Elspeth's Talent
 target=planeswalker
 auto=teach(creature) Enchant planeswalker
@@ -3022,6 +3041,15 @@ name=Erase (Not the Urza's Legacy One)
 text=If you control two or more white permanents that share an artist, you may play Erase (Not the Urza's Legacy One) without paying its mana cost. -- Remove target enchantment from the game.
 mana={2}{W}
 type=Instant
+[/card]
+[card]
+name=Erestor of the Council
+text=Whenever players finish voting, each opponent who voted for a choice you voted for creates a Treasure token. You scry X, where X is the number of opponents who voted for a choice you didn't vote for. Draw a card.
+mana={1}{G}{U}
+type=Legendary Creature
+subtype=Elf Noble
+power=2
+toughness=4
 [/card]
 [card]
 name=Errand of Duty
@@ -3679,6 +3707,15 @@ type=Creature
 subtype=Avatar
 power=*
 toughness=*
+[/card]
+[card]
+name=Galadriel, Elven-Queen
+text=Will of the council - At the beginning of combat on your turn, if another Elf entered the battlefield under your control this turn, starting with you, each player votes for dominion or guidance. If dominion gets more votes, the Ring tempts you, then you put a +1/+1 counter on your Ring-bearer. If guidance gets more votes or the vote is tied, draw a card.
+mana={2}{G}{U}
+type=Legendary Creature
+subtype=Elf Noble
+power=4
+toughness=5
 [/card]
 [card]
 name=Game Preserve
@@ -8841,6 +8878,12 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Sail into the West
+text=Will of the council - Starting with you, each player votes for return or embark. If return gets more votes, each player returns up to two cards from their graveyard to their hand, then you exile Sail into the West. If embark gets more votes or the vote is tied, each player may discard their hand and draw seven cards.
+mana={2}{G}{U}
+type=Instant
+[/card]
+[card]
 name=Saint Traft and Rem Karolus
 auto=@tapped(this):create(human:creature human:1/1:red)
 auto=@movedTo(|mystack):untap saint traft && rem karolus
@@ -11222,6 +11265,18 @@ toughness=2
 name=Transmute Artifact
 text=Sacrifice an artifact. If you do, search your library for an artifact card. If that card's converted mana cost is less than or equal to the sacrificed artifact's converted mana cost, put it onto the battlefield. If it's greater, you may pay {X}, where X is the difference. If you do, put it onto the battlefield. If you don't, put it into its owner's graveyard. Then shuffle your library.
 mana={U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Trap the Trespassers
+text=Secret council - Each player secretly votes for a creature you don't control, then those votes are revealed. For each creature with one or more votes, put that many stun counters on it, then tap it. (If a permanent with a stun counter would become untapped, remove one from it instead.)
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Travel Through Caradhras
+text=Council's dilemma - Starting with you, each player votes for Redhorn Pass or Mines of Moria. For each Redhorn Pass vote, search your library for a basic land card and put it onto the battlefield tapped. If you search your library this way, shuffle. For each Mines of Moria vote, return a card from your graveyard to your hand. -- Exile Travel Through Caradhras.
+mana={5}{G}
 type=Sorcery
 [/card]
 [card]

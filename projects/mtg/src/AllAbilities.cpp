@@ -4404,6 +4404,7 @@ int AASacrificeCard::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
+        if(_target->has(Constants::UNSACRIFICABLE)) return 0; // The card cannot be sacrified (e.g. "Hithlain Rope")
         if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be sacrificed or exploited, they will follow the fate of top-card
         Player * p = _target->controller();
         MTGCardInstance * beforeCard = _target;
@@ -9628,7 +9629,7 @@ void ABlink::returnCardIntoPlay(MTGCardInstance* _target) {
             }
         }*/
         //replaced with castcard(putinplay)
-        MTGAbility *a = NEW AACastCard(game, game->mLayers->actionLayer()->getMaxId(), Blinker, Blinker,false,false,false,"","Return to Play",false,true);
+        MTGAbility *a = NEW AACastCard(game, game->mLayers->actionLayer()->getMaxId(), Blinker, Blinker, false, false, false, "", "Return to Play", false, true);
         a->oneShot = false;
         a->canBeInterrupted = false;
         a->addToGame();
@@ -10012,8 +10013,8 @@ AEquip * AEquip::clone() const
 }
 
 // casting a card for free, or casting a copy of a card.
-AACastCard::AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool _restricted,bool _copied,bool asNormal,string _namedCard,string _name,bool _noEvent,bool putinplay,bool madness, bool alternative, int kicked, int costx, bool flipped) :
-   MTGAbility(observer, _id, _source),restricted(_restricted),asCopy(_copied),normal(asNormal),cardNamed(_namedCard),nameThis(_name),noEvent(_noEvent),putinplay(putinplay), asNormalMadness(madness), alternative(alternative), kicked(kicked), costx(costx), flipped(flipped)
+AACastCard::AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, bool _restricted, bool _copied, bool asNormal, string _namedCard, string _name, bool _noEvent, bool putinplay, bool madness, bool alternative, int kicked, int costx, bool flipped, bool flashback) :
+   MTGAbility(observer, _id, _source), restricted(_restricted), asCopy(_copied), normal(asNormal), cardNamed(_namedCard), nameThis(_name), noEvent(_noEvent), putinplay(putinplay), asNormalMadness(madness), alternative(alternative), kicked(kicked), costx(costx), flipped(flipped), flashback(flashback)
 {
     target = _target;
     andAbility = NULL;
@@ -10134,12 +10135,6 @@ void AACastCard::Update(float dt)
                 return;
             }
         } 
-        /*if(!toCheck->hasType(Subtypes::TYPE_INSTANT) && !(game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN))
-        {
-            processed = true;
-            this->forceDestroy = 1;
-            return;
-        }*/
     }
     MTGCardInstance * toCheck = (MTGCardInstance*)target;
     if(theNamedCard)
@@ -10275,7 +10270,6 @@ int AACastCard::resolveSpell()
             processed = true;
             return 1;
         }
-
         if(theNamedCard)
         {
             Spell * spell = NULL;
@@ -10318,6 +10312,8 @@ int AACastCard::resolveSpell()
                 copy->isToken = 1; // Fixed a bug when using copied option with namedcard option.
             if(alternative)
                 copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_ALTERNATIVE] = 1;
+            if(flashback)
+                copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_FLASHBACK] = 1;
             if(kicked > 0){
                 copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_KICKER] = 1;
                 copy->kicked = kicked;
@@ -10372,7 +10368,6 @@ int AACastCard::resolveSpell()
             processed = true;
             return 1;
         }
-
         Spell * spell = NULL;
         MTGCardInstance * copy = NULL;
         if ((normal || asNormalMadness) || !_target->isSorceryorInstant())
@@ -10413,6 +10408,8 @@ int AACastCard::resolveSpell()
             copy->isToken = 1; // Fixed a bug when using copied option for permanent.
         if(alternative)
             copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_ALTERNATIVE] = 1;
+        if(flashback)
+            copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_FLASHBACK] = 1;
         if(kicked > 0){
             copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_KICKER] = 1;
             copy->kicked = kicked;

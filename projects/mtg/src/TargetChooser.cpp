@@ -689,6 +689,18 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->unsecureSetHasPartner(1);
                     }
                 }
+                //Is a permanent
+                else if (attribute.find("permanent") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->unsecureSetIsPermanent(-1);
+                    }
+                    else
+                    {
+                        cd->unsecureSetIsPermanent(1);
+                    }
+                }
                 //Token
                 else if (attribute.find("token") != string::npos)
                 {

@@ -31,6 +31,7 @@ CardDescriptor::CardDescriptor()
     hasFlashbackCost = 0;
     hasBackSide = 0;
     hasPartner = 0;
+    isPermanent = 0;
     modified = 0;
     toxicity = 0;
     hasXCost = 0;
@@ -104,6 +105,11 @@ void CardDescriptor::unsecureSetHasToxic(int k)
 void CardDescriptor::unsecureSetHasPartner(int k)
 {
     hasPartner = k;
+}
+
+void CardDescriptor::unsecureSetIsPermanent(int k)
+{
+    isPermanent = k;
 }
 
 void CardDescriptor::unsecureSetTapped(int i)
@@ -379,6 +385,11 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     }
 
     if ((hasPartner == -1 && card->partner != "") || (hasPartner == 1 && card->partner == ""))
+    {
+        match = NULL;
+    }
+
+    if ((isPermanent == -1 && card->isPermanent()) || (isPermanent == 1 && !card->isPermanent()))
     {
         match = NULL;
     }

@@ -4093,6 +4093,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         bool sendNoEvent = splitCastCard[1].find("noevent") != string::npos;
         bool putinplay = splitCastCard[1].find("putinplay") != string::npos;
         bool alternative = splitCastCard[1].find("alternative") != string::npos;
+        bool flashback = splitCastCard[1].find("flashback") != string::npos;
         bool flipped = splitCastCard[1].find("flipped") != string::npos;
         string nameCard = "";
         if(splitCastCard[1].find("named!:") != string::npos)
@@ -4123,7 +4124,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 costx = val->getValue();
             }
         }
-        MTGAbility *a = NEW AACastCard(observer, id, card, target,withRestrictions,asCopy,asNormal,nameCard,newName,sendNoEvent,putinplay, asNormalMadness, alternative, kicked, costx, flipped);
+        MTGAbility *a = NEW AACastCard(observer, id, card, target, withRestrictions, asCopy, asNormal, nameCard, newName, sendNoEvent, putinplay, asNormalMadness, alternative, kicked, costx, flipped, flashback);
         a->oneShot = false;
         if(splitCastCard[1].find("trigger[to]") != string::npos)
         {
@@ -4135,12 +4136,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             storedAndAbility.clear();
             ((AACastCard*)a)->andAbility = parseMagicLine(stored, id, spell, card);
         }
-                MTGCardInstance * _target = NULL;
-                if (spell)
-                    _target = spell->getNextCardTarget();
-                if(!_target)
-                    _target = target;
-                a->target = _target;
+        MTGCardInstance * _target = NULL;
+        if (spell)
+            _target = spell->getNextCardTarget();
+        if(!_target)
+            _target = target;
+        a->target = _target;
         return a;
     }
 

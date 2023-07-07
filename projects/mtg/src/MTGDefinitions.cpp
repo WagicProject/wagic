@@ -266,7 +266,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "poisoneighttoxic", // Card has toxic 8
     "poisonninetoxic", // Card has toxic 9
     "poisontentoxic", // Card has toxic 10
-    "eqpasinst" // Can equip as instant
+    "eqpasinst", // Can equip as instant
+    "unsacrificable" // The card cannot be sacrified (e.g. "Hithlain Rope").
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

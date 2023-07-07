@@ -22,7 +22,7 @@
 #AUTO_DEFINE _PARTNER_  may name(Put partner in hand) moveto(myhand) target(*[partname]|mylibrary)
 
 # Goad
-#AUTO_DEFINE _GOAD_ transforms((,newability[counter(0/0.1.Goaded)],newability[this(counter{0/0.1.Goaded}>0) mustattack],newability[phaseaction[endofturn next once sourceinplay] removeallcounters(0/0.-1.Goaded)])) forever
+#AUTO_DEFINE _GOAD_ transforms((,newability[counter(0/0.1.Goaded) notrg],newability[this(counter{0/0.1.Goaded}>0) mustattack],newability[phaseaction[endofturn next once sourceinplay] counter(0/0.-hascntgoaded.Goaded) notrg])) forever
 
 # Rebound
 #AUTO_DEFINE _REBOUND_ if rebound then all(this|mystack) moveto(exile) and!( transforms((,newability[@rebounded:may name(Cast rebounded card) activate castcard(normal)])) forever )!

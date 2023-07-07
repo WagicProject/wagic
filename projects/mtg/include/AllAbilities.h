@@ -7143,7 +7143,8 @@ public:
     int kicked;
     int costx;
     bool flipped;
-    AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, bool restricted, bool copied, bool _asNormal, string nameCard, string abilityName, bool _noEvent, bool putinplay, bool asNormalMadness = false, bool alternative = false, int kicked = 0, int costx = 0, bool flipped = false);
+    bool flashback;
+    AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, bool restricted, bool copied, bool _asNormal, string nameCard, string abilityName, bool _noEvent, bool putinplay, bool asNormalMadness = false, bool alternative = false, int kicked = 0, int costx = 0, bool flipped = false, bool flashback = false);
 
     int testDestroy(){return 0;};
     void Update(float dt);

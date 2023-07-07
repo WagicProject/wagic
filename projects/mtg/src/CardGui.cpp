@@ -1594,6 +1594,18 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                         cd.unsecureSetHasPartner(1);
                     }
                 }
+                //Is a permanent
+                else if (attribute.find("permanent") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.unsecureSetIsPermanent(-1);
+                    }
+                    else
+                    {
+                        cd.unsecureSetIsPermanent(1);
+                    }
+                }
                 //Token
                 else if (attribute.find("token") != string::npos)
                 {

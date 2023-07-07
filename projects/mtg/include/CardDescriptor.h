@@ -54,6 +54,7 @@ class CardDescriptor: public MTGCardInstance
   int modified;
   int toxicity;
   int hasPartner;
+  int isPermanent;
   int hasXCost;
   int anyCounter;
   int init();
@@ -66,6 +67,7 @@ class CardDescriptor: public MTGCardInstance
   void unsecureSetModified(int k);
   void unsecureSetHasToxic(int k);
   void unsecureSetHasPartner(int k);
+  void unsecureSetIsPermanent(int k);
   void unsecureSetTapped(int i);
   void unsecuresetfresh(int k);
   void unsecuresetrecent(int j);
