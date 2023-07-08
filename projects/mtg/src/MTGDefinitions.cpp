@@ -158,7 +158,7 @@ const char* Constants::MTGBasicAbilities[] = {
     "cantchangelife",
     "combattoughness",
     "cantpaylife",
-    "cantbesacrified",
+    "cantbesacrified", // The card cannot be sacrified (e.g. "Hithlain Rope").
     "skulk",
     "menace",
     "nosolo",
@@ -266,8 +266,7 @@ const char* Constants::MTGBasicAbilities[] = {
     "poisoneighttoxic", // Card has toxic 8
     "poisonninetoxic", // Card has toxic 9
     "poisontentoxic", // Card has toxic 10
-    "eqpasinst", // Can equip as instant
-    "unsacrificable" // The card cannot be sacrified (e.g. "Hithlain Rope").
+    "eqpasinst" // Can equip as instant
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

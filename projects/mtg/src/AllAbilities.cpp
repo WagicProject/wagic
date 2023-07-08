@@ -4404,7 +4404,7 @@ int AASacrificeCard::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
-        if(_target->has(Constants::UNSACRIFICABLE)) return 0; // The card cannot be sacrified (e.g. "Hithlain Rope")
+        if(_target->has(Constants::CANTBESACRIFIED)) return 0; // The card cannot be sacrified (e.g. "Hithlain Rope")
         if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be sacrificed or exploited, they will follow the fate of top-card
         Player * p = _target->controller();
         MTGCardInstance * beforeCard = _target;

@@ -361,8 +361,7 @@ class Constants
       POISONNINETOXIC = 233,
       POISONTENTOXIC = 234,
       EQPASINST = 235,
-      UNSACRIFICABLE = 236,
-      NB_BASIC_ABILITIES = 237,
+      NB_BASIC_ABILITIES = 236,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics
