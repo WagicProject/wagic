@@ -1,6 +1,6 @@
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 08-07-2023
+#We sorted this in alphabetical order - Luruz & Vitty85 11-07-2023
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -177,9 +177,12 @@ subtype=Ajani
 name=Aminatou, the Fateshifter
 abilities=canbecommander
 auto=counter(0/0,3,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Draw a card and return a card on top) ability$!draw:1 controller _ choice target(*|myhand) moveTo(mylibrary)!$ controller
-auto={C(0/0,-3,Loyalty)}:name(-1: Exile other permanent and return it) moveTo(exile) target(other *|myBattlefield) and! moveTo(myBattlefield)!
-auto={C(0/0,-9,Loyalty)}:name(-6: Exchange nonland permanents with opponent) moveTo(myBattlefield) all(*[-land]|opponentBattlefield) && moveTo(opponentBattlefield) all(*[-Aminatou, the Fateshifter;-land]|myBattlefield)
+auto={C(0/0,1,Loyalty)}:name(+1: Draw a card and return a card on top) draw:1 controller && ability$!name(Put on top) notatarget(*|myhand) moveTo(mylibrary)!$ controller
+auto={C(0/0,-1,Loyalty)}:name(-1: Exile other permanent and return it) target(other *|myBattlefield) moveto(myexile) and!( moveTo(myBattlefield) )!
+auto={C(0/0,-6,Loyalty)}:name(-6: Exchange nonland permanents with opponent) transforms((,newability[all(*[-land]|opponentBattlefield) becomes(oppo) ueot],newability[all(other *[-land]|myBattlefield) becomes(cont) ueot],newability[counter(0/0.1.ExchangeEffect)])) oneshot
+auto=@counteradded(0/0.1.ExchangeEffect) from(this):name(Exchange nonland permanents) name(Exchange nonland permanents) all(oppo|opponentbattlefield) moveTo(myBattlefield) and!( losesatype(oppo) forever )!
+auto=@counteradded(0/0.1.ExchangeEffect) from(this):name(Exchange nonland permanents) name(Exchange nonland permanents) all(cont|myBattlefield) moveTo(opponentBattlefield) and!( losesatype(cont) forever )!
+auto=@counteradded(0/0.1.ExchangeEffect) from(this):name(Effect ends) name(Effect ends) counter(0/0.-hascntexchangeeffect.ExchangeEffect) notrg
 text=+1: Draw a card, then put a card from your hand on top of your library. -- −1: Exile another target permanent you own, then return it to the battlefield under your control. -- −6: Choose left or right. Each player gains control of all nonland permanents other than Aminatou, the Fateshifter controlled by the next player in the chosen direction. -- Aminatou, the Fateshifter can be your commander.
 mana={W}{U}{B}
 type=Legendary Planeswalker
