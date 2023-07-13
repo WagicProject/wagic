@@ -68,7 +68,6 @@ public:
     int snowManaC;
     string lastChosenName;
     vector<string> prowledTypes;
-    vector<MTGCardInstance*>curses;
     Player(GameObserver *observer, string deckFile, string deckFileSmall, MTGDeck * deck = NULL);
     virtual ~Player();
     virtual void setObserver(GameObserver*g);

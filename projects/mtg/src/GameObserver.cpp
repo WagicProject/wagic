@@ -726,7 +726,6 @@ void GameObserver::gameStateBasedEffects()
     for (int i = 0; i < 2; i++)
     {
         MTGGameZone * zone = players[i]->game->inPlay;
-        players[i]->curses.clear();
         for (int j = zone->nb_cards - 1; j >= 0; j--)
         {
             MTGCardInstance * card = zone->cards[j];
@@ -842,10 +841,6 @@ void GameObserver::gameStateBasedEffects()
             if (card->target && isInPlay(card->target) && !card->hasType(Subtypes::TYPE_EQUIPMENT) && card->hasSubtype(Subtypes::TYPE_AURA))
             {
                 card->target->enchanted = true;
-            }
-            if (card->playerTarget && card->hasType("curse"))
-            {
-                card->playerTarget->curses.push_back(card);
             }
 
             //704.5n If an Aura is attached to an illegal object or player,

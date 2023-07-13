@@ -2289,12 +2289,18 @@ bool TriggerTargetChooser::equals(TargetChooser * tc)
 }
 
 /*my curses */
-bool myCursesChooser::canTarget(Targetable * target,bool)
+bool myCursesChooser::canTarget(Targetable * target, bool)
 {
-    for(unsigned int i = 0;i < source->controller()->curses.size();++i)
+    for (int j = source->controller()->game->battlefield->nb_cards - 1; j >= 0; --j)
     {
-        MTGCardInstance * compare = source->controller()->curses[i];
-        if(compare == dynamic_cast<MTGCardInstance*>(target))
+        MTGCardInstance * compare = source->controller()->game->battlefield->cards[j];
+        if(compare->hasType("Curse") && compare->playerTarget == source->controller() && compare == dynamic_cast<MTGCardInstance*>(target))
+            return true;
+    }
+    for (int j = source->controller()->opponent()->game->battlefield->nb_cards - 1; j >= 0; --j)
+    {
+        MTGCardInstance * compare = source->controller()->opponent()->game->battlefield->cards[j];
+        if(compare->hasType("Curse") && compare->playerTarget == source->controller() && compare == dynamic_cast<MTGCardInstance*>(target))
             return true;
     }
     return false;

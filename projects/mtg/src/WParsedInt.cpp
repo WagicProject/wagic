@@ -572,7 +572,19 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
     }
     else if (s == "targetedcurses")
     {
-        intValue = (card->playerTarget)?card->playerTarget->curses.size():0;
+        intValue = 0;
+        for (int j = card->controller()->game->battlefield->nb_cards - 1; j >= 0; --j)
+        {
+            MTGCardInstance * curse = card->controller()->game->battlefield->cards[j];
+            if (curse->hasType("Curse") && curse->playerTarget == card->playerTarget)
+                intValue++;
+        }
+        for (int j = card->controller()->opponent()->game->battlefield->nb_cards - 1; j >= 0; --j)
+        {
+            MTGCardInstance * curse = card->controller()->opponent()->game->battlefield->cards[j];
+            if (curse->hasType("Curse") && curse->playerTarget == card->playerTarget)
+                intValue++;
+        }
     }
     else if (s == "lifetotal" || s == "opponentlifetotal")
     {
@@ -820,9 +832,9 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
     {
         intValue = (s == "countedamount")?target->CountedObjects:target->CountedObjectsB;
     }
-    else if (s == "kicked" || s == "handsize")
+    else if (s == "handsize" || s == "ohandsize")
     {
-        intValue = (s == "kicked")?card->kicked:target->controller()->handsize;
+        intValue = (s == "ohandsize")?card->controller()->opponent()->handsize:target->controller()->handsize;
     }
     else if (s == "olandg" || s == "olandu")
     {
@@ -1649,6 +1661,17 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
     else if (s == "iscommander" || s == "ringbearer") // Return 1 if card is the commander -- Return 1 if card is the Ring bearer
     {
         intValue = (s == "iscommander")?card->isCommander:card->isRingBearer;
+    }
+    else if (s == "oppotgt" || s == "ctrltgt") // Return 1 if card targeted the opponent -- Return 1 if card targeted its controller
+    {
+        intValue = 0;
+        Player* p = (s == "oppotgt")?card->controller()->opponent():card->controller();
+        if(card->playerTarget == p)
+            intValue = 1;
+    }
+    else if (s == "kicked")
+    {
+        intValue = card->kicked;
     }
     else if(!intValue)//found nothing, try parsing a atoi
     {

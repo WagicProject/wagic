@@ -2259,12 +2259,34 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return NULL;
     }
 
-    
     if (StartsWith(s, "chooseacolor ") || StartsWith(s, "chooseatype ") || StartsWith(s, "chooseaname"))
     {
-        MTGAbility * choose = parseChooseActionAbility(s,card,spell,target,0,id);
-        choose = NEW GenericActivatedAbility(observer, "","",id, card,choose,NULL);
-        MayAbility * mainAbility = NEW MayAbility(observer, id, choose, card,true);
+        if (storedAbilityString.size() && StartsWith(s, "chooseaname"))
+        {
+            bool chooseoppo = false;
+            vector<string> splitChoose = parseBetween(s, "chooseaname ", " chooseend", false);
+            if(!splitChoose.size()){
+                splitChoose = parseBetween(s, "chooseanameopp ", " chooseend", false);
+                chooseoppo = true;
+            }
+            if (splitChoose.size())
+            {
+                if(!chooseoppo)
+                    s = "chooseaname ";
+                else
+                    s = "chooseanameopp ";
+
+                s.append(storedAbilityString);
+                s.append(" ");
+                if(splitChoose[2].empty())
+                    s.append(splitChoose[1]);
+                else
+                    s.append(splitChoose[2]);
+            }
+        }
+        MTGAbility * choose = parseChooseActionAbility(s, card, spell, target, 0, id);
+        choose = NEW GenericActivatedAbility(observer, "", "", id, card, choose, NULL);
+        MayAbility * mainAbility = NEW MayAbility(observer, id, choose, card, true);
         return mainAbility;
     }
 
@@ -2303,6 +2325,34 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             } 
         } else 
               storedPayString.clear();
+    }
+
+    bool chooseoppo = false;
+    vector<string> splitChoose = parseBetween(s, "chooseaname ", " chooseend", false);
+    if(!splitChoose.size()){
+        splitChoose = parseBetween(s, "chooseanameopp ", " chooseend", false);
+        chooseoppo = true;
+    }
+    if (splitChoose.size() && storedAbilityString.empty())
+    {
+        storedAbilityString = splitChoose[1];
+        size_t pos1 = s.find("transforms(("); // Try to handle chooseaname ability inside ability$! or transforms keywords.
+        size_t pos2 = s.find("ability$!");
+        if(pos2 == string::npos)
+            pos2 = s.find("winability"); // Try to handle chooseaname ability inside winability or loseability keywords.
+        if(pos2 == string::npos)
+            pos2 = s.find("loseability");
+        size_t pos3 = s.find(splitChoose[1]);
+        if((pos1 == string::npos && pos2 == string::npos) || (pos2 != string::npos && pos1 != string::npos && pos3 <= pos1 && pos3 <= pos2) || 
+            (pos2 == string::npos && pos1 != string::npos && pos3 <= pos1) || (pos1 == string::npos && pos2 != string::npos && pos3 <= pos2)){
+            s = splitChoose[0];
+            if(!chooseoppo)
+                s.append("chooseaname ");
+            else
+                s.append("chooseanameopp ");
+            s.append(splitChoose[2]);
+        } else 
+            storedAbilityString.clear();
     }
 
     vector<string> splitGrant = parseBetween(s, "grant ", " grantend", false);
@@ -4540,7 +4590,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             SAFE_DELETE(parser);
         }
         Damageable * t = spell ? spell->getNextDamageableTarget() : NULL;
-                MTGAbility * a = NEW AASetHand(observer, id, card, t, hand, NULL, who);
+        MTGAbility * a = NEW AASetHand(observer, id, card, t, hand, NULL, who);
         a->oneShot = 1;
         return a;
     }
@@ -5751,37 +5801,38 @@ MTGAbility * AbilityFactory::parseUpkeepAbility(string s,MTGCardInstance * card,
 
 MTGAbility * AbilityFactory::parsePhaseActionAbility(string s,MTGCardInstance * card,Spell * spell,MTGCardInstance * target, int restrictions,int id)
 {
-        vector<string> splitActions = parseBetween(s, "[", "]");
-        if (!splitActions.size())
+    vector<string> splitActions = parseBetween(s, "[", "]");
+    if (!splitActions.size())
+    {
+        DebugTrace("MTGABILITY:Parsing Error " << s);
+        return NULL;
+    }
+    string s1 = splitActions[1];
+    int phase = MTG_PHASE_UPKEEP;
+    for (int i = 0; i < NB_MTG_PHASES; i++)
+    {
+        string phaseStr = Constants::MTGPhaseCodeNames[i];
+        if (s1.find(phaseStr) != string::npos)
         {
-            DebugTrace("MTGABILITY:Parsing Error " << s);
-            return NULL;
+            phase = PhaseRing::phaseStrToInt(phaseStr);
+            break;
         }
-        string s1 = splitActions[1];
-        int phase = MTG_PHASE_UPKEEP;
-        for (int i = 0; i < NB_MTG_PHASES; i++)
-        {
-            string phaseStr = Constants::MTGPhaseCodeNames[i];
-            if (s1.find(phaseStr) != string::npos)
-            {
-                phase = PhaseRing::phaseStrToInt(phaseStr);
-                break;
-            }
-        }
+    }
 
-        bool opponentturn = (s1.find("my") == string::npos);
-        bool myturn = (s1.find("opponent") == string::npos);
-        bool sourceinPlay = (s1.find("sourceinplay") != string::npos);
-        bool checkexile = (s1.find("checkex") != string::npos);
-        bool next = (s1.find("next") == string::npos); //Why is this one the opposite of the two others? That's completely inconsistent
-        bool once = (s1.find("once") != string::npos);
+    bool opponentturn = (s1.find("my") == string::npos);
+    bool myturn = (s1.find("opponent") == string::npos);
+    bool sourceinPlay = (s1.find("sourceinplay") != string::npos);
+    bool checkexile = (s1.find("checkex") != string::npos);
+    bool next = (s1.find("next") == string::npos); //Why is this one the opposite of the two others? That's completely inconsistent
+    bool once = (s1.find("once") != string::npos);
 
-        MTGCardInstance * _target = NULL;
-        if (spell)
-            _target = spell->getNextCardTarget();
-        if(!_target)
-            _target = target;
-          return NEW APhaseActionGeneric(observer, id, card,_target, trim(splitActions[2]), restrictions, phase,sourceinPlay,next,myturn,opponentturn,once,checkexile);
+    MTGCardInstance * _target = NULL;
+    if (spell)
+        _target = spell->getNextCardTarget();
+    if(!_target)
+        _target = target;
+
+    return NEW APhaseActionGeneric(observer, id, card, _target, trim(splitActions[2]), restrictions, phase, sourceinPlay, next, myturn, opponentturn, once, checkexile);
 }
 
 MTGAbility * AbilityFactory::parseChooseActionAbility(string s,MTGCardInstance * card,Spell *,MTGCardInstance * target, int, int id)

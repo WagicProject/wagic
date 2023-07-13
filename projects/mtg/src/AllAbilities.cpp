@@ -3817,7 +3817,7 @@ GenericRollDie::~GenericRollDie()
 
 //set die result
  AASetDie::AASetDie(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target, int _side, int _diefaces, string toAlter):
-    InstantAbility(observer, id, source),side(_side), diefaces(_diefaces), abilityToAlter(toAlter)
+    InstantAbility(observer, id, source), side(_side), diefaces(_diefaces), abilityToAlter(toAlter)
 {
     this->target = _target;
     abilityAltered = NULL;
@@ -3833,12 +3833,12 @@ int AASetDie::resolve()
     _target->dieNumFaces = diefaces;
     WEvent * e = NEW WEventCardRollDie(_target, source->controller()->getDisplayName());
     game->receiveEvent(e);
-    vector<string>Win = parseBetween(abilityToAlter,"winability "," winabilityend");
+    vector<string>Win = parseBetween(abilityToAlter, "winability ", " winabilityend");
     if(Win.size())
     {
         abilityWin = Win[1];
     }
-    vector<string>Lose = parseBetween(abilityToAlter,"loseability "," loseabilityend");
+    vector<string>Lose = parseBetween(abilityToAlter, "loseability ", " loseabilityend");
     if(Lose.size())
     {
         abilityLose = Lose[1];
@@ -3860,14 +3860,14 @@ int AASetDie::resolve()
             abilityAltered->addToGame();
         }
         msg << "Result is: " << roll << ". You Won The Die Roll";
-        MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, msg.str());
+        MTGAbility * message = NEW MTGEventText(game, this->GetId(), source, msg.str());
         message->oneShot = true;
         message->addToGame();
     }
     else if(abilityWin.size() && !abilityLose.size())
     {
         msg << "Result is: " << roll << ". You Lost The Die Roll";
-        MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, msg.str());
+        MTGAbility * message = NEW MTGEventText(game, this->GetId(), source, msg.str());
         message->oneShot = true;
         message->addToGame();
     }
@@ -3886,14 +3886,14 @@ int AASetDie::resolve()
             abilityAltered->addToGame();
         }
         msg << "Result is: " << roll << ". You Lost The Die Roll";
-        MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, msg.str());
+        MTGAbility * message = NEW MTGEventText(game, this->GetId(), source, msg.str());
         message->oneShot = true;
         message->addToGame();
     }
     else if(abilityLose.size())
     {
         msg << "Result is: " << roll << ". You Won The Die Roll";
-        MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, msg.str());
+        MTGAbility * message = NEW MTGEventText(game, this->GetId(), source, msg.str());
         message->oneShot = true;
         message->addToGame();
     }

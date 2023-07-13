@@ -1,6 +1,6 @@
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 11-07-2023
+#We sorted this in alphabetical order - Luruz & Vitty85 12-07-2023
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -526,11 +526,10 @@ subtype=Chandra
 [/card]
 [card]
 name=Chandra, Heart of Fire
-aicode=activate moveto(exile) target(<anyamount>*[instant;sorcery;red]|myLibrary,myGraveyard) and!( canplayfromexile )!
 auto=counter(0/0,5,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Discard hand, exile three from top and cast from exile) ability$!name(Discard hand) reject all(*|myHand)!$ controller && moveTo(exile) all(*[zpos<=3]|mylibrary) && transforms((,newability[canplayfromexile])) ueot
+auto={C(0/0,1,Loyalty)}:name(+1: Discard hand, exile three from top and cast from exile) discard:type:*:myhand && all(*[zpos<=3]|mylibrary) moveTo(exile) and!( transforms((,newability[canplayfromexile ueot])) ueot )!
 auto={C(0/0,1,Loyalty)}:name(+1: Deals 2 damage to any target) damage:2 target(anytarget)
-auto={C(0/0,-9,Loyalty)}:name(-9: Search instants or sorceries, exile them and add six red mana) target(<anyamount>*[instant;sorcery;red]|myLibrary,myGraveyard) moveto(exile) and!( transforms((,newability[canplayfromexile])) ueot )! && shuffle controller && add{R}{R}{R}{R}{R}{R}
+auto={C(0/0,-9,Loyalty)}:name(-9: Search red instants or sorceries, exile them and add six red mana) transforms((,newability[target(<anyamount>*[-permanent&red]|myLibrary^myGraveyard) moveto(myexile) and!( transforms((,newability[canplayfromexile ueot],newability[shuffle])) ueot )!],newability[add{R}{R}{R}{R}{R}{R}])) oneshot
 text=+1: Discard your hand, then exile the top three cards of your library. Until end of turn, you may play cards exiled this way. -- +1: Chandra, Heart of Fire deals 2 damage to any target. -- −9: Search your graveyard and library for any number of red instant and/or sorcery cards, exile them, then shuffle your library. You may cast them this turn. Add six {R}.
 mana={3}{R}{R}
 type=Legendary Planeswalker
@@ -644,10 +643,12 @@ subtype=Chandra
 [card]
 name=Chandra, Pyromaster
 auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Deals 1 damage to opponent and 1 to creature) damage:1 opponent && target(creature|opponentbattlefield) damage:1 && transforms((,newability[cantblock])) ueot
-auto={C(0/0,1,Loyalty)}:name(+1: Deals 1 damage to controller and 1 to creature) damage:1 controller && target(creature|mybattlefield) damage:1 && transforms((,newability[cantblock])) ueot
-auto={C(0/0,0,Loyalty)}:name(+0: Exile the top and may play it) moveto(exile) and!(transforms((,newability[canplayfromexile])) ueot)! all(*[zpos=1]|mylibrary)
-auto={C(0/0,-7,Loyalty)}:name(-7: Exile the top ten and may cast it) moveto(exile) all(*[zpos<=10]|mylibrary) && target(*[instant;sorcery]|myexile) clone && clone && clone
+auto={C(0/0,1,Loyalty)}:name(+1: Deals 1 damage only to opponent) damage:1 opponent 
+auto={C(0/0,1,Loyalty)}:name(+1: Deals 1 damage only to controller) damage:1 controller
+auto={C(0/0,1,Loyalty)}:name(+1: Deals 1 damage to opponent and creature) damage:1 opponent && target(creature|opponentbattlefield) damage:1 && transforms((,newability[cantblock])) ueot
+auto={C(0/0,1,Loyalty)}:name(+1: Deals 1 damage to controller and creature) damage:1 controller && target(creature|mybattlefield) damage:1 && transforms((,newability[cantblock])) ueot
+auto={C(0/0,0,Loyalty)}:name(+0: Exile the top and may play it) all(*[zpos=1]|mylibrary) moveto(myexile) and!(transforms((,newability[canplayfromexile ueot])) ueot )! 
+auto={C(0/0,-7,Loyalty)}:name(-7: Exile the top ten and may cast it) all(*[zpos=1]|mylibrary) moveto(myexile) and!( transforms((tobecha,newability[all(*[zpos<=10]|mylibrary) moveto(myexile) and!( becomes(tobecha) ueot )!],newability[name(Choose instant or sorcery) target(*[-permanent&tobecha]|myexile) transforms((,newability[choice name(Cast 3 copies) activate castcard(copied) && activate castcard(copied) && activate castcard(copied)],newability[choice name(Don't cast copies) donothing],newability[all(tobecha|myexile) losesatype(tobecha)])) ueot])) ueot )!
 text=+1: Chandra, Pyromaster deals 1 damage to target player and 1 damage to up to one target creature that player controls. That creature can't block this turn. -- 0: Exile the top card of your library. You may play it this turn. -- -7: Exile the top ten cards of your library. Choose an instant or sorcery card exiled this way and copy it three times. You may cast the copies without paying their mana costs.
 mana={2}{R}{R}
 type=Legendary Planeswalker
