@@ -1,5 +1,5 @@
-#NAME:Plane of the Apes
-#DESC:A plane where apes
+#NAME:Planet of the Apes
+#DESC:A planet where apes
 #DESC:evolved from men?
 #DESC:There's got to be an answer!
 Tree Monkey (P02) *4

@@ -1,4 +1,4 @@
-#NAME:Turbo Stasi
+#NAME:Turbo Stasis
 #DESC:Black Summer 1996
 City of Brass (*) *4
 Island (*) *13
