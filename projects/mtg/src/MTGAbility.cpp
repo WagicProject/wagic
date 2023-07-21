@@ -1315,15 +1315,15 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
 
     //Card unTapped
     if (TargetChooser *tc = parseSimpleTC(s,"untapped", card))
-        return NEW TrCardTapped(observer, id, card, tc, false, once);
+        return NEW TrCardTapped(observer, id, card, tc, false, once, limitOnceATurn);
 
     //Card Tapped
     if (TargetChooser *tc = parseSimpleTC(s,"tapped", card))
-        return NEW TrCardTapped(observer, id, card, tc, true, once);
+        return NEW TrCardTapped(observer, id, card, tc, true, once, limitOnceATurn);
 
     //Card Tapped for mana
     if (TargetChooser *tc = parseSimpleTC(s,"tappedformana", card))
-        return NEW TrCardTappedformana(observer, id, card, tc, true, once);
+        return NEW TrCardTappedformana(observer, id, card, tc, true, once, limitOnceATurn);
 
     //Card Produced some mana
     if (TargetChooser *tc = parseSimpleTC(s,"producedmana", card))
@@ -1331,15 +1331,15 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
 
     //Card Transforms
     if (TargetChooser *tc = parseSimpleTC(s,"transformed", card))
-        return NEW TrCardTransformed(observer, id, card, tc, once);
+        return NEW TrCardTransformed(observer, id, card, tc, once, limitOnceATurn);
 
     //Card Faces Up
     if (TargetChooser *tc = parseSimpleTC(s,"facedup", card))
-        return NEW TrCardFaceUp(observer, id, card, tc, once);
+        return NEW TrCardFaceUp(observer, id, card, tc, once, limitOnceATurn);
 
     //Card Phases In
     if (TargetChooser *tc = parseSimpleTC(s,"phasedin", card))
-        return NEW TrCardPhasesIn(observer, id, card, tc, once);
+        return NEW TrCardPhasesIn(observer, id, card, tc, once, limitOnceATurn);
 
     //Card Exerted
     if (TargetChooser *tc = parseSimpleTC(s,"exerted", card))

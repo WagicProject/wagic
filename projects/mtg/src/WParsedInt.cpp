@@ -1527,16 +1527,16 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
             }
         }
     }
-    else if(s.find("startingplayer") != string::npos){ //Return who was the starting player (0 is controller, 1 is opponent).
+    else if(s.find("startingplayer") != string::npos){ // Return who was the starting player (0 is controller, 1 is opponent).
         intValue = card->controller()->getObserver()->turn%2;
         if(card->controller()->getObserver()->currentlyActing() != card->controller())
             intValue = 1 - intValue;
     }
-    else if (s == "pinstsorcount" || s == "oinstsorcount") // Return the number of instant or sorceries that were casted this turn by controller or opponent.
+    else if (s == "pinstsorcount" || s == "oinstsorcount") //Return the number of instant or sorceries that were casted this turn by controller or opponent.
     {
         intValue = (s == "pinstsorcount")?card->controller()->game->stack->seenThisTurn("*[instant;sorcery]", Constants::CAST_ALL):card->controller()->opponent()->game->stack->seenThisTurn("*[instant;sorcery]", Constants::CAST_ALL);
     }
-    else if ((s.find("palldead") != string::npos) || (s.find("oalldead") != string::npos)) // Return the number of cards of a specific type that died this turn for controller or opponent.
+    else if ((s.find("palldead") != string::npos) || (s.find("oalldead") != string::npos)) //Return the number of cards of a specific type that died this turn for controller or opponent.
     {
         int hasdeadtype = 0;
         MTGGameZone * grave = (s.find("oalldead") != string::npos)?card->controller()->opponent()->game->graveyard:card->controller()->game->graveyard;
@@ -1547,7 +1547,7 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
             MTGCardInstance * checkCard = grave->cardsSeenThisTurn[gy];
             if(checkCard->hasType(checktype) &&
                 ((checkCard->previousZone == checkCurrent->game->battlefield)||
-                (checkCard->previousZone == checkCurrent->opponent()->game->battlefield))//died from battlefield
+                (checkCard->previousZone == checkCurrent->opponent()->game->battlefield)) //died from battlefield
                 )
             {
                 hasdeadtype++;
@@ -1555,7 +1555,7 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
         }
         intValue = hasdeadtype;
     }
-    else if (s.find("bothalldead") != string::npos) // Return the number of cards of a specific type that died this turn.
+    else if (s.find("bothalldead") != string::npos) //Return the number of cards of a specific type that died this turn.
     {
         int hasdeadtype = 0;
         string checktype = s.substr(11);
@@ -1654,26 +1654,30 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
             }
         }
     }
-    else if (s == "pringtemptations" || s == "oringtemptations") // How many times the player has been tempted by the Ring.
+    else if (s == "pringtemptations" || s == "oringtemptations") //How many times the player has been tempted by the Ring.
     {
         intValue = (s == "pringtemptations")?card->controller()->ringTemptations:card->controller()->opponent()->ringTemptations;
     }
-    else if (s == "iscommander" || s == "ringbearer") // Return 1 if card is the commander -- Return 1 if card is the Ring bearer
+    else if (s == "iscommander" || s == "ringbearer") //Return 1 if card is the commander -- Return 1 if card is the Ring bearer
     {
         intValue = (s == "iscommander")?card->isCommander:card->isRingBearer;
     }
-    else if (s == "oppotgt" || s == "ctrltgt") // Return 1 if card targeted the opponent -- Return 1 if card targeted its controller
+    else if (s == "oppotgt" || s == "ctrltgt") //Return 1 if card targeted the opponent -- Return 1 if card targeted its controller
     {
         intValue = 0;
         Player* p = (s == "oppotgt")?card->controller()->opponent():card->controller();
         if(card->playerTarget == p)
             intValue = 1;
     }
-    else if (s == "kicked")
+    else if (s == "isattacker" || s == "couldattack") //Return 1 if creature is attacking. -- Return 1 if creature can attack.
+    {
+        intValue = (s == "isattacker")?card->isAttacker():card->canAttack();
+    }
+    else if (s == "kicked") //Return the number of times kicker has been paid
     {
         intValue = card->kicked;
     }
-    else if(!intValue)//found nothing, try parsing a atoi
+    else if(!intValue) //Found nothing, try parsing a atoi
     {
         intValue = atoi(s.c_str());
     }

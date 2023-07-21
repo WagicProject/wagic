@@ -1,6 +1,6 @@
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 12-07-2023
+#We sorted this in alphabetical order - Luruz & Vitty85 21-07-2023
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -1042,11 +1042,11 @@ color=black,green
 [/card]
 [card]
 name=Garruk, Savage Herald
-aicode=activate transforms((,newability[if type(creature[zpos=1]|mylibrary)~morethan~0 then target(creature[zpos=1]|mylibrary) moveto(ownerHand) else target(*[zpos=1]|mylibrary) moveto(bottomoflibrary)])) ueot
+aicode=activate transforms((,newability[if type(creature[zpos=1]|mylibrary)~morethan~0 then target(creature[zpos=1]|mylibrary) moveto(myhand) else target(*[zpos=1]|mylibrary) moveto(myreveal) and!( bottomoflibrary )!])) ueot
 auto=counter(0/0,5,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Reveal the top card) reveal:1 optionone target(creature|reveal) moveto(myhand) optiononeend optiontwo name(Put in bottom of library) target(<1>*|reveal) moveto(bottomoflibrary) optiontwoend revealend
-auto={C(0/0,-2,Loyalty)}:name(-2: Deals damage to target creature) target(creature|mybattlefield) transforms((,newability[target(other creature) dynamicability<!powerstrike!>])) oneshot
-auto={C(0/0,-7,Loyalty)}:name(-7: Creatures you control assign damage) all(creature|myBattlefield) transforms((,newability[@combat(blocked,turnlimited) source(this):may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent && fog from(this)]))
+auto={C(0/0,1,Loyalty)}:name(+1: Reveal the top card) reveal:1 optionone name(Put in hand) target(creature|reveal) moveto(myhand) optiononeend optiontwo name(Put on bottom) target(<1>*|reveal) bottomoflibrary optiontwoend revealend
+auto={C(0/0,-2,Loyalty)}:name(-2: Deals damage to target creature) target(creature|mybattlefield) transforms((,newability[name(Damage other creature) target(other creature|battlefield) dynamicability<!powerstrike!>])) oneshot
+auto={C(0/0,-7,Loyalty)}:name(-7: Creatures you control assign damage) all(creature|myBattlefield) transforms((,newability[@combat(blocked) source(this) turnlimited:may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent && fog from(this)])) ueot
 text=+1: Reveal the top card of your library. If it's a creature card, put it into your hand. Otherwise, put it on the bottom of your library. -- −2: Target creature you control deals damage equal to its power to another target creature. -- −7: Until end of turn, creatures you control gain "You may have this creature assign its combat damage as though it weren't blocked."
 mana={4}{G}{G}
 type=Legendary Planeswalker

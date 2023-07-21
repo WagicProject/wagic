@@ -230,9 +230,12 @@ class TrCardTapped: public Trigger
 {
 public:
     bool tap;
-    TrCardTapped(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool tap = true, bool once = false) :
-        Trigger(observer, id, source, once, tc), tap(tap)
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardTapped(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool tap = true, bool once = false, bool limitOnceATurn = false) :
+        Trigger(observer, id, source, once, tc), tap(tap), limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
@@ -241,9 +244,12 @@ public:
         if (!e) return 0;
         if (e->noTrigger)
             return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
         if (e->before == e->after) return 0;
         if (e->after != tap) return 0;
         if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
         return 1;
     }
 
@@ -257,18 +263,24 @@ class TrCardTappedformana: public Trigger
 {
 public:
     bool tap;
-    TrCardTappedformana(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool tap = true, bool once = false) :
-        Trigger(observer, id, source, once, tc), tap(tap)
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardTappedformana(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool tap = true, bool once = false, bool limitOnceATurn = false) :
+        Trigger(observer, id, source, once, tc), tap(tap), limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
     {
         WEventCardTappedForMana * e = dynamic_cast<WEventCardTappedForMana *> (event);
         if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
         if (e->before == e->after) return 0;
         if (e->after != tap) return 0;
         if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
         return 1;
     }
 
@@ -309,16 +321,22 @@ public:
 class TrCardPhasesIn: public Trigger
 {
 public:
-    TrCardPhasesIn(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false) :
-        Trigger(observer, id, source, once, tc)
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardPhasesIn(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
     {
         WEventCardPhasesIn * e = dynamic_cast<WEventCardPhasesIn *> (event);
         if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
         if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
         return 1;
     }
 
@@ -331,16 +349,22 @@ public:
 class TrCardFaceUp: public Trigger
 {
 public:
-    TrCardFaceUp(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false) :
-        Trigger(observer, id, source, once, tc)
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardFaceUp(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
     {
         WEventCardFaceUp * e = dynamic_cast<WEventCardFaceUp *> (event);
         if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
         if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
         return 1;
     }
 
@@ -353,16 +377,22 @@ public:
 class TrCardTransformed: public Trigger
 {
 public:
-    TrCardTransformed(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false) :
-        Trigger(observer, id, source, once, tc)
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardTransformed(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
     {
         WEventCardTransforms * e = dynamic_cast<WEventCardTransforms *> (event);
         if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
         if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
         return 1;
     }
 
