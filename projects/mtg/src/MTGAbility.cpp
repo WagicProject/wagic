@@ -7285,11 +7285,11 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
                     howMany += check->counters;
                 }
             }
-            if(howMany > 1 && card->has(Constants::CANLOYALTYTWICE))
+            if(howMany > 1)
                 return 0;
-            if (player != game->currentPlayer)
+            if (player != game->currentPlayer && !card->has(Constants::CANLOYALTYASINST))
                 return 0;
-            if (!turnSide && (cPhase != MTG_PHASE_FIRSTMAIN && cPhase != MTG_PHASE_SECONDMAIN))
+            if (!turnSide && !card->has(Constants::CANLOYALTYASINST) && (cPhase != MTG_PHASE_FIRSTMAIN && cPhase != MTG_PHASE_SECONDMAIN))
                 return 0;
         }
         if (source->has(Constants::NOACTIVATED) || (source->mutation && source->parentCards.size() > 0)) // Mutated Over/Under card doesn't have to react to click anymore

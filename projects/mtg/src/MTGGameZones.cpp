@@ -580,7 +580,7 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     // This fix issue types problem when card change zone with different card types than its original version (e.g. double face cards or cards that gained new types before to change zone).
     std::vector<int> realTypes;
     string realName = copy->name;
-    if(doCopy && !asCopy && !inplaytoinplay && !equal(copy->types.begin(), copy->types.end(), card->types.begin()) ){
+    if(doCopy && !asCopy && !inplaytoinplay && !card->isMorphed && ((copy->types.size() != card->types.size()) || ((copy->types.size() == card->types.size()) && (!equal(copy->types.begin(), copy->types.end(), card->types.begin())))) ){
         realTypes = copy->types;
         copy->types = card->types;
         copy->mPropertiesChangedSinceLastUpdate = false;

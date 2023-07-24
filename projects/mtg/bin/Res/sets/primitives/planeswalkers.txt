@@ -1,6 +1,6 @@
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 21-07-2023
+#We sorted this in alphabetical order - Luruz & Vitty85 24-07-2023
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -3342,6 +3342,19 @@ auto=preventallnoncombatdamage to(controller)
 auto={C(0/0,-2,Loyalty)}:name(-2: Exile a creature with power 4 or more) moveto(exile) target(creature[power>=4])
 text=Prevent all noncombat damage that would be dealt to you and other permanents you control. -- -2: Exile target creature with power 4 or greater.
 mana={3}{W}
+type=Legendary Planeswalker
+[/card]
+[card]
+name=The Wandering Emperor
+abilities=flash
+auto=transforms((,newability[canloyaltyasinst])) ueot
+auto=counter(0/0,3,loyalty)
+auto={C(0/0,+1,Loyalty)}:name(+1: Don't put any counter) donothing
+auto={C(0/0,+1,Loyalty)}:name(+1: Put +1/+1 counter) target(creature|battlefield) transforms((,newability[counter(1/1)],newability[first strike])) ueot
+auto={C(0/0,-1,Loyalty)}:name(-1: Create Samurai) token(Samurai,Creature Samurai,2/2,white,vigilance)
+auto={C(0/0,-2,Loyalty)}:name(-2: Exile creature) target(creature[tapped]|battlefield) moveto(exile) and!( life:2 controller )!
+text=Flash -- As long as The Wandering Emperor entered the battlefield this turn, you may activate her loyalty abilities any time you could cast an instant. -- [+1]: Put a +1/+1 counter on up to one target creature. It gains first strike until end of turn. -- [-1]: Create a 2/2 white Samurai creature token with vigilance. -- [-2]: Exile target tapped creature. You gain 2 life.
+mana={2}{W}{W}
 type=Legendary Planeswalker
 [/card]
 [card]

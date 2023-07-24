@@ -1,1 +1,97 @@
-#NAME:Edgar Markov Commander 2023#DESC:Original Deck Concept by DespairFaction (tappedout.net)#DESC:Designed for Wagic by Bob#HINT:castpriority(commander,creature,*)#HINT:alwaysattackwith(Edgar Markov)Ancient Tomb (*) * 1Asylum Visitor (*) * 1Badlands (*) * 1Basri's Solidarity (*) * 1Bishop's Soldier (*) * 1Blackcleave Cliffs (*) * 1Blade of the Bloodchief (*) * 1Blood Artist (*) * 1Blood Burglar (*) * 1Blood Crypt (*) * 1Bloodfell Caves (*) * 1Bloodline Keeper (*) * 1Bloodmad Vampire (*) * 1Bold Impaler (*) * 1Captivating Vampire (*) * 1Cathars' Crusade (*) * 1Child of Night (*) * 1Clifftop Retreat (*) * 1Coat of Arms (*) * 1Command Tower (*) * 1Concealed Courtyard (*) * 1Cordial Vampire (*) * 1Crescendo of War (*) * 1Dark Ritual (*) * 1Dragonskull Summit (*) * 1Drana, Liberator of Malakir (*) * 1Duskborne Skymarcher (*) * 1Elenda, the Dusk Rose (*) * 1 Exquisite Blood (*) * 1Falkenrath Exterminator (*) * 1Falkenrath Noble (*) * 1Falkenrath Perforator (*) * 1Gift of Estates (*) * 1Gifted Aetherborn (*) * 1Godless Shrine (*) * 1Guul Draz Vampire (*) * 1Impact Tremors (*) * 1Inspiring Vantage (*) * 1Iroas, God of Victory (*) * 1Isolated Chapel (*) * 1Knight of the Ebon Legion (*) * 1Land Tax (*) * 1Legion Lieutenant (*) * 1Legion's Landing (*) * 1Malakir Cullblade (*) * 1Markov Baron (*) * 1Martyr of Dusk (*) * 1Mountain (*) * 1Necropolis Regent (*) * 1Nomad Outpost (*) * 1Nullpriest of Oblivion (*) * 1Orcish Oriflamme (EMA) (*) * 1Path of Ancestry (*) * 1Path of Bravery (*) * 1Plains (*) * 3Plateau (*) * 1Pulse Tracker (*) * 1Purphoros, God of the Forge (*) * 1Quag Vampires (*) * 1 Rising of the Day (*) * 1Ruthless Cullblade (*) * 1Sacred Foundry (*) * 1Sanctum Seeker (*) * 1Scoured Barrens (*) * 1Scrubland (*) * 1Shadow Alley Denizen (*) * 1Skyblade of the Legion (*) * 1Skymarcher Aspirant (*) * 1Smoldering Marsh (*) * 1Sol Ring (*) * 1Stensia Masquerade (*) * 1Stromkirk Captain (*) * 1Stromkirk Noble (*) * 1Swamp (ICE) (*) * 4Swamp (MIR)  (*) * 4Swamp (M20)  (*) * 2Throne of the God-Pharaoh (*) * 1Tithe (*) * 1Unholy Officiant (*) * 1Urborg, Tomb of Yawgmoth (*) * 1Vampire Cutthroat (*) * 1Vampire Interloper (*) * 1Vampire Lacerator (*) * 1Vampire Neonate (*) * 1Vampire of the Dire Moon (*) * 1Vampire Socialite  (*) * 1Vicious Conquistador (*) * 1Vito, Thorn of the Dusk Rose (*) * 1Voldaren Stinger (*) * 1Whispersilk Cloak (*) * 1Wing-Scarred Crag (*) * 1 #CMD:Edgar Markov (*) * 1
+#NAME:Edgar Markov Commander 2023
+#DESC:Original Deck Concept by DespairFaction (tappedout.net)
+#DESC:Designed for Wagic by Bob
+#HINT:castpriority(commander,creature,*)
+#HINT:alwaysattackwith(Edgar Markov)
+Ancient Tomb (*) * 1
+Asylum Visitor (*) * 1
+Badlands (*) * 1
+Basri's Solidarity (*) * 1
+Bishop's Soldier (*) * 1
+Blackcleave Cliffs (*) * 1
+Blade of the Bloodchief (*) * 1
+Blood Artist (*) * 1
+Blood Burglar (*) * 1
+Blood Crypt (*) * 1
+Bloodfell Caves (*) * 1
+Bloodline Keeper (*) * 1
+Bloodmad Vampire (*) * 1
+Bold Impaler (*) * 1
+Captivating Vampire (*) * 1
+Cathars' Crusade (*) * 1
+Child of Night (*) * 1
+Clifftop Retreat (*) * 1
+Coat of Arms (*) * 1
+Command Tower (*) * 1
+Concealed Courtyard (*) * 1
+Cordial Vampire (*) * 1
+Crescendo of War (*) * 1
+Dark Ritual (*) * 1
+Dragonskull Summit (*) * 1
+Drana, Liberator of Malakir (*) * 1
+Duskborne Skymarcher (*) * 1
+Elenda, the Dusk Rose (*) * 1 
+Exquisite Blood (*) * 1
+Falkenrath Exterminator (*) * 1
+Falkenrath Noble (*) * 1
+Falkenrath Perforator (*) * 1
+Gift of Estates (*) * 1
+Gifted Aetherborn (*) * 1
+Godless Shrine (*) * 1
+Guul Draz Vampire (*) * 1
+Impact Tremors (*) * 1
+Inspiring Vantage (*) * 1
+Iroas, God of Victory (*) * 1
+Isolated Chapel (*) * 1
+Knight of the Ebon Legion (*) * 1
+Land Tax (*) * 1
+Legion Lieutenant (*) * 1
+Legion's Landing (*) * 1
+Malakir Cullblade (*) * 1
+Markov Baron (*) * 1
+Martyr of Dusk (*) * 1
+Mountain (*) * 1
+Necropolis Regent (*) * 1
+Nomad Outpost (*) * 1
+Nullpriest of Oblivion (*) * 1
+Orcish Oriflamme (EMA) (*) * 1
+Path of Ancestry (*) * 1
+Path of Bravery (*) * 1
+Plains (*) * 3
+Plateau (*) * 1
+Pulse Tracker (*) * 1
+Purphoros, God of the Forge (*) * 1
+Quag Vampires (*) * 1 
+Rising of the Day (*) * 1
+Ruthless Cullblade (*) * 1
+Sacred Foundry (*) * 1
+Sanctum Seeker (*) * 1
+Scoured Barrens (*) * 1
+Scrubland (*) * 1
+Shadow Alley Denizen (*) * 1
+Skyblade of the Legion (*) * 1
+Skymarcher Aspirant (*) * 1
+Smoldering Marsh (*) * 1
+Sol Ring (*) * 1
+Stensia Masquerade (*) * 1
+Stromkirk Captain (*) * 1
+Stromkirk Noble (*) * 1
+Swamp (ICE) (*) * 4
+Swamp (MIR)  (*) * 4
+Swamp (M20)  (*) * 2
+Throne of the God-Pharaoh (*) * 1
+Tithe (*) * 1
+Unholy Officiant (*) * 1
+Urborg, Tomb of Yawgmoth (*) * 1
+Vampire Cutthroat (*) * 1
+Vampire Interloper (*) * 1
+Vampire Lacerator (*) * 1
+Vampire Neonate (*) * 1
+Vampire of the Dire Moon (*) * 1
+Vampire Socialite  (*) * 1
+Vicious Conquistador (*) * 1
+Vito, Thorn of the Dusk Rose (*) * 1
+Voldaren Stinger (*) * 1
+Whispersilk Cloak (*) * 1
+Wing-Scarred Crag (*) * 1 
+#CMD:Edgar Markov (*) * 1
