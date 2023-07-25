@@ -2796,7 +2796,7 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
                 }
                 if (!noevent)
                 {
-                    WEvent * w = NEW WEventTotalCounters(_target->counters, name.c_str(), power, toughness, true, false, totalcounters, source);
+                    WEvent * w = NEW WEventTotalCounters(_target->counters, name.c_str(), power, toughness, true, false, totalcounters, false, source);
                     dynamic_cast<WEventTotalCounters*>(w)->targetCard = _target->counters->target;
                     _target->getObserver()->receiveEvent(w);
                 }
@@ -2812,7 +2812,7 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
                 }
                 if (!noevent)
                 {
-                    WEvent * e = NEW WEventTotalCounters(_target->counters, name.c_str(), power, toughness, false, true, totalcounters, source);
+                    WEvent * e = NEW WEventTotalCounters(_target->counters, name.c_str(), power, toughness, false, true, totalcounters, false, source);
                     dynamic_cast<WEventTotalCounters*>(e)->targetCard = _target->counters->target;
                     _target->getObserver()->receiveEvent(e);
                 }
@@ -7826,10 +7826,12 @@ ATransformer::ATransformer(GameObserver* observer, int id, MTGCardInstance * sou
     myCurrentTurn = 1000;
     //this subkeyword adds a color without removing the existing colors.
     removemc = (sabilities.find("removemc") != string::npos);
+    removeAllColors = (sabilities.find("removeallcolors") != string::npos);
     addNewColors = (sabilities.find("newcolors") != string::npos);
     remove = (stypes.find("removealltypes") != string::npos);
     removeCreatureSubtypes = (stypes.find("removecreaturesubtypes") != string::npos);
     removeTypes = (stypes.find("removetypes") != string::npos);
+    removeAllSubtypes = (stypes.find("removeallsubtypes") != string::npos);
 
     if (stypes.find("allsubtypes") != string::npos || stypes.find("removecreaturesubtypes") != string::npos)
     {  
@@ -7894,12 +7896,27 @@ int ATransformer::addToGame()
         if(!addNewColors)
             _target->setColor(0, 1);
     }
-
+    if (removeAllColors)
+    {
+        for (it = oldcolors.begin(); it != oldcolors.end(); it++)
+        {
+            _target->removeColor(*it);
+        }
+    }
     if (removeTypes)
     {
         //remove the main types from a card, ie: hidden enchantment cycle.
         for (int i = 0; i < Subtypes::LAST_TYPE; ++ i)
             _target->removeType(i,1);
+    }
+    else if (removeAllSubtypes)
+    {
+        //remove all the types from a card without removing official supertypes (e.g. Imprisoned in the Moon)
+        for (it = oldtypes.begin(); it != oldtypes.end(); it++)
+        {
+           if(*it != Subtypes::TYPE_LEGENDARY && *it != Subtypes::TYPE_BASIC && *it != Subtypes::TYPE_SNOW && *it != Subtypes::TYPE_WORLD)
+                _target->removeType(*it);
+        }
     }
     else if (remove)
     {
@@ -8133,7 +8150,7 @@ int ATransformer::destroy()
         {
             for (unsigned int i = 0;i < newAbilities[_target].size(); i++)
             {
-                // The mutated cards probably cause a double free error and a crash in Wagic, so for now they have been exluded...
+                // The mutated cards probably cause a double free error and a crash, so for now they have been exluded...
                 if(newAbilities[_target].at(i) && !_target->mutation && _target->currentZone != _target->owner->game->library && !(_target->name == "" && (UYNT || UENT)))
                 {
                     newAbilities[_target].at(i)->forceDestroy = 1;
@@ -8145,7 +8162,7 @@ int ATransformer::destroy()
                 newAbilities.erase(_target);
             }
         }
-        if (remove || removeCreatureSubtypes)
+        if (remove || removeCreatureSubtypes || removeAllSubtypes)
         {
             for (it = oldtypes.begin(); it != oldtypes.end(); it++)
             {
@@ -8691,7 +8708,7 @@ int AProduceMana::produce()
 {
     if(ManaDescription == "selectmana")
     {
-        //I tried menu ability and vector<MTGAbility*abi> to have a shorter code but it crashes wagic at end of turn...
+        //I tried menu ability and vector<MTGAbility*abi> to have a shorter code but it crashes at end of turn...
         //The may ability on otherhand works but the ability is cumulative...
         //This must be wrapped on menuability so we can use it on successions...
         AManaProducer *ap0 = NEW AManaProducer(game, game->mLayers->actionLayer()->getMaxId(), source, source->controller(), ManaCost::parseManaCost(mana[0],NULL,source), NULL, 0,"",false);

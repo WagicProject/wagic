@@ -472,6 +472,7 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
         if (count)
             match = NULL;
     }
+
     if (CDcanProduceC == 1)
     {
         int count = card->canproduceMana(Constants::MTG_COLOR_ARTIFACT) + card->canproduceMana(Constants::MTG_COLOR_WASTE);
@@ -519,24 +520,27 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     {
         match = NULL;
     }
-        if ((isLeveler == -1 && card->isLeveler) || (isLeveler == 1 && !card->isLeveler))
-        {
-            match = NULL;
-        }
-        if ((CDenchanted == -1 && card->enchanted) || (CDenchanted == 1 && !card->enchanted))
-        {
-            match = NULL;
-        }
-        if ((CDdamaged == -1 && card->wasDealtDamage > 0) || (CDdamaged == 1 && card->wasDealtDamage == 0))
-        {
-            match = NULL;
-        }
 
-        if ((CDdamager == -1 && (card->damageToOpponent > 0 || card->damageToController > 0 || card->damageToCreature > 0)) 
-                || (CDdamager == 1 && !(card->damageToOpponent > 0 || card->damageToController > 0 || card->damageToCreature > 0)))
-        {
-            match = NULL;
-        }
+    if ((isLeveler == -1 && card->isLeveler) || (isLeveler == 1 && !card->isLeveler))
+    {
+        match = NULL;
+    }
+
+    if ((CDenchanted == -1 && card->enchanted) || (CDenchanted == 1 && !card->enchanted))
+    {
+        match = NULL;
+    }
+
+    if ((CDdamaged == -1 && card->wasDealtDamage > 0) || (CDdamaged == 1 && card->wasDealtDamage == 0))
+    {
+        match = NULL;
+    }
+
+    if ((CDdamager == -1 && (card->damageToOpponent > 0 || card->damageToController > 0 || card->damageToCreature > 0)) 
+            || (CDdamager == 1 && !(card->damageToOpponent > 0 || card->damageToController > 0 || card->damageToCreature > 0)))
+    {
+        match = NULL;
+    }
 
     if(CDopponentDamaged == -1 || CDopponentDamaged == 1 || CDcontrollerDamaged == -1 || CDcontrollerDamaged == 1)
     {
@@ -556,10 +560,12 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
             match = NULL;
         }
     }
-        if ((isToken == -1 && card->isToken) || (isToken == 1 && !card->isToken))
-        {
-            match = NULL;
-        }
+
+    if ((isToken == -1 && card->isToken) || (isToken == 1 && !card->isToken))
+    {
+        match = NULL;
+    }
+
     if (attacker == 1)
     {
         if (defenser == &AnyCard)

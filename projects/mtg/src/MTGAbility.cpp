@@ -1519,7 +1519,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser * tc = parseSimpleTC(s, "proliferateof", card)){
         TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify an exception in order to avoid proliferation loop (eg. Tekuthal, Inquiry Dominus)
         if(exception)
-            return NEW TrplayerProliferated(observer, id, card, tc, once, true, false, exception->source);
+            return NEW TrplayerProliferated(observer, id, card, tc, once, true, false, exception);
         else
             return NEW TrplayerProliferated(observer, id, card, tc, once, true, false);
     }
@@ -1528,7 +1528,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser * tc = parseSimpleTC(s, "proliferatefoeof", card)){
         TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify an exception in order to avoid proliferation loop (eg. Tekuthal, Inquiry Dominus)
         if(exception)
-            return NEW TrplayerProliferated(observer, id, card, tc, once, false, true, exception->source);
+            return NEW TrplayerProliferated(observer, id, card, tc, once, false, true, exception);
         else
             return NEW TrplayerProliferated(observer, id, card, tc, once, false, true);
     }
@@ -1769,9 +1769,9 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser * tc = parseSimpleTC(s, "lifeof", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop (eg. Angels of Vitality)
+        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop.
         if(exception)
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0, sourceUntapped, once, true, false, limitOnceATurn, exception->source);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0, sourceUntapped, once, true, false, limitOnceATurn, exception);
         else
             return NEW TrLifeGained(observer, id, card, tc, fromTc, 0, sourceUntapped, once, true, false, limitOnceATurn);
     }
@@ -1780,9 +1780,9 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser * tc = parseSimpleTC(s, "lifefoeof", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop (eg. Angels of Vitality)
+        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop.
         if(exception)
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0, sourceUntapped,once, false, true, limitOnceATurn, exception->source); 
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0, sourceUntapped,once, false, true, limitOnceATurn, exception); 
         else
             return NEW TrLifeGained(observer, id, card, tc, fromTc, 0, sourceUntapped,once, false, true, limitOnceATurn);
     }
@@ -1791,9 +1791,9 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser * tc = parseSimpleTC(s, "lifed", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop (eg. Angels of Vitality)
+        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop.
         if(exception)
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0, sourceUntapped, once, false, false, limitOnceATurn, exception->source);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 0, sourceUntapped, once, false, false, limitOnceATurn, exception);
         else
             return NEW TrLifeGained(observer, id, card, tc, fromTc, 0, sourceUntapped, once, false, false, limitOnceATurn);
     }
@@ -1802,9 +1802,9 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser * tc = parseSimpleTC(s, "lifelostof", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop (eg. Angels of Vitality)
+        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop.
         if(exception)
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1, sourceUntapped, once, true, false, limitOnceATurn, exception->source);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1, sourceUntapped, once, true, false, limitOnceATurn, exception);
         else
             return NEW TrLifeGained(observer, id, card, tc, fromTc, 1, sourceUntapped, once, true, false, limitOnceATurn);
     }
@@ -1813,9 +1813,9 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser * tc = parseSimpleTC(s, "lifelostfoeof", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop (eg. Angels of Vitality)
+        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop.
         if(exception)
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1, sourceUntapped, once, false, true, limitOnceATurn,exception->source);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1, sourceUntapped, once, false, true, limitOnceATurn,exception);
         else
             return NEW TrLifeGained(observer, id, card, tc, fromTc, 1, sourceUntapped, once, false, true, limitOnceATurn);
     }
@@ -1824,9 +1824,9 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser * tc = parseSimpleTC(s, "lifeloss", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop (eg. Angels of Vitality)
+        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a life gain/loss card exception in order to avoid life gain loop.
         if(exception)
-            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1, sourceUntapped, once, false, false, limitOnceATurn, exception->source);
+            return NEW TrLifeGained(observer, id, card, tc, fromTc, 1, sourceUntapped, once, false, false, limitOnceATurn, exception);
         else
             return NEW TrLifeGained(observer, id, card, tc, fromTc, 1, sourceUntapped, once, false, false, limitOnceATurn);
     }
@@ -1849,6 +1849,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     {
         vector<string>splitCounter = parseBetween(s,"totalcounteradded(",")");
         Counter * counter = NULL;
+        bool nocost = false;
         bool duplicate = false;
         bool half = false;
         int plus = 0;
@@ -1862,24 +1863,27 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
             plus = 4;
         else if(s.find("plus(5)") != string::npos)
             plus = 5;
-        else if(s.find("(duplicateall)") != string::npos)
+        else if(s.find("duplicate(all)") != string::npos)
             duplicate = true;
-        else if(s.find("(halfall)") != string::npos)
+        else if(s.find("half(all)") != string::npos)
             half = true;
-        else if(s.find("(any)") == string::npos)
+        if(s.find("(any)") == string::npos)
             counter = parseCounter(splitCounter[1],card,NULL);
+        if(s.find("nocost") != string::npos)
+            nocost = true;
         TargetChooser * tc = parseSimpleTC(s, "from", card);
-        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a counter add/remove exception in order to avoid counter loop (eg. Doubling Season)
+        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a counter add/remove exception in order to avoid counter loop.
         if(exception)
-            return NEW TrTotalCounter(observer, id, card, counter, tc, 1, once, duplicate, half, plus, limitOnceATurn, exception->source);
+            return NEW TrTotalCounter(observer, id, card, counter, tc, 1, once, duplicate, half, plus, nocost, limitOnceATurn, exception);
         else
-            return NEW TrTotalCounter(observer, id, card, counter, tc, 1, once, duplicate, half, plus, limitOnceATurn);
+            return NEW TrTotalCounter(observer, id, card, counter, tc, 1, once, duplicate, half, plus, nocost, limitOnceATurn);
     }
 
     if (s.find("totalcounterremoved(") != string::npos)
     {
         vector<string>splitCounter = parseBetween(s,"totalcounterremoved(",")");
         Counter * counter = NULL;
+        bool nocost = false;
         bool duplicate = false;
         bool half = false;
         int plus = 0;
@@ -1893,18 +1897,20 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
             plus = 4;
         else if(s.find("plus(5)") != string::npos)
             plus = 5;
-        else if(s.find("(duplicateall)") != string::npos)
+        else if(s.find("duplicate(all)") != string::npos)
             duplicate = true;
-        else if(s.find("(halfall)") != string::npos)
+        else if(s.find("half(all)") != string::npos)
             half = true;
-        else if(s.find("(any)") == string::npos)
+        if(s.find("(any)") == string::npos)
             counter = parseCounter(splitCounter[1],card,NULL);
+        if(s.find("nocost") != string::npos)
+            nocost = true;
         TargetChooser * tc = parseSimpleTC(s, "from", card);
-        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a counter add/remove exception in order to avoid counter loop (eg. Doubling Season)
+        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a counter add/remove exception in order to avoid counter loop.
         if(exception)
-            return NEW TrTotalCounter(observer, id, card, counter, tc, 0, once, duplicate, half, plus, limitOnceATurn, exception->source);
+            return NEW TrTotalCounter(observer, id, card, counter, tc, 0, once, duplicate, half, plus, nocost, limitOnceATurn, exception);
         else
-            return NEW TrTotalCounter(observer, id, card, counter, tc, 0, once, duplicate, half, plus, limitOnceATurn);
+            return NEW TrTotalCounter(observer, id, card, counter, tc, 0, once, duplicate, half, plus, nocost, limitOnceATurn);
     }
 
     if (s.find("counteradded(") != string::npos)
@@ -1912,14 +1918,14 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         vector<string>splitCounter = parseBetween(s,"counteradded(",")");
         Counter * counter = NULL;
         bool duplicate = false;
-        if(s.find("(duplicateall)") != string::npos)
+        if(s.find("duplicate(all)") != string::npos)
             duplicate = true;
-        else if(s.find("(any)") == string::npos)
+        if(s.find("(any)") == string::npos)
             counter = parseCounter(splitCounter[1],card,NULL);
         TargetChooser * tc = parseSimpleTC(s, "from", card);
-        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a counter add/remove exception in order to avoid counter loop (eg. Doubling Season)
+        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a counter add/remove exception in order to avoid counter loop.
         if(exception)
-            return NEW TrCounter(observer, id, card, counter, tc, 1, once, duplicate, limitOnceATurn, exception->source);
+            return NEW TrCounter(observer, id, card, counter, tc, 1, once, duplicate, limitOnceATurn, exception);
         else
             return NEW TrCounter(observer, id, card, counter, tc, 1, once, duplicate, limitOnceATurn);
     }
@@ -1929,14 +1935,14 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         vector<string>splitCounter = parseBetween(s,"counterremoved(",")");
         Counter * counter = NULL;
         bool duplicate = false;
-        if(s.find("(duplicateall)") != string::npos)
+        if(s.find("duplicate(all)") != string::npos)
             duplicate = true;
-        else if(s.find("(any)") == string::npos)
+        if(s.find("(any)") == string::npos)
             counter = parseCounter(splitCounter[1],card,NULL);
         TargetChooser * tc = parseSimpleTC(s, "from", card);
-        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a counter add/remove exception in order to avoid counter loop (eg. Doubling Season)
+        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a counter add/remove exception in order to avoid counter loop.
         if(exception)
-            return NEW TrCounter(observer, id, card, counter, tc, 0, once, duplicate, limitOnceATurn, exception->source);
+            return NEW TrCounter(observer, id, card, counter, tc, 0, once, duplicate, limitOnceATurn, exception);
         else
             return NEW TrCounter(observer, id, card, counter, tc, 0, once, duplicate, limitOnceATurn);
     }
@@ -1948,9 +1954,9 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         if(s.find("(any)") == string::npos)
             counter = parseCounter(splitCounter[1],card,NULL);
         TargetChooser * tc = parseSimpleTC(s, "from", card);
-        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a counter add/remove exception in order to avoid counter loop (eg. Doubling Season)
+        TargetChooser *exception = parseSimpleTC(s, "except", card); // Added a new keyword except to specify a counter add/remove exception in order to avoid counter loop.
         if(exception)
-            return NEW TrCounter(observer, id, card, counter, tc, 2, once, false, limitOnceATurn, exception->source);
+            return NEW TrCounter(observer, id, card, counter, tc, 2, once, false, limitOnceATurn, exception);
         else
             return NEW TrCounter(observer, id, card, counter, tc, 2, once, false, limitOnceATurn);
     }

@@ -746,8 +746,8 @@ class TrplayerProliferated: public Trigger
 {
 public:
     bool thiscontroller, thisopponent;
-    MTGCardInstance * proliferateException; //added exception to avid a proliferation loop (eg. Tekuthal, Inquiry Dominus)
-    TrplayerProliferated(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false, MTGCardInstance * proliferateException = NULL) :
+    TargetChooser * proliferateException; //added exception to avid a proliferation loop (eg. Tekuthal, Inquiry Dominus)
+    TrplayerProliferated(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false, TargetChooser * proliferateException = NULL) :
         Trigger(observer, id, source, once, tc), thiscontroller(thiscontroller), thisopponent(thisopponent), proliferateException(proliferateException)
     {
     }
@@ -756,7 +756,7 @@ public:
     {
         WEventplayerProliferated * e = dynamic_cast<WEventplayerProliferated *> (event);
         if (!e) return 0;
-        if (proliferateException && e->source && !strcmp(proliferateException->data->name.c_str(), e->source->data->name.c_str())) return 0; //If the source of proliferation it's the exception card it doesn't have effect (loop avoidance);        
+        if (proliferateException && proliferateException->canTarget(e->source)) return 0; //If the source of proliferation belongs to exception it doesn't have effect (loop avoidance);   
         if (!tc->canTarget(e->player)) return 0;
         if(thiscontroller)
             if(e->player != source->controller())
@@ -1485,8 +1485,8 @@ public:
     bool sourceUntapped, thiscontroller, thisopponent;
     bool limitOnceATurn;
     int triggeredTurn;
-    MTGCardInstance * gainException; //added exception to avid a gainlife loop (eg. Angels of Vitality)
-    TrLifeGained(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0, bool sourceUntapped = false, bool once = false, bool thiscontroller = false, bool thisopponent = false, bool limitOnceATurn = false, MTGCardInstance * gainException = NULL) :
+    TargetChooser * gainException; //added exception to avid a gainlife loop
+    TrLifeGained(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0, bool sourceUntapped = false, bool once = false, bool thiscontroller = false, bool thisopponent = false, bool limitOnceATurn = false, TargetChooser * gainException = NULL) :
         Trigger(observer, id, source, once , tc),  fromTc(fromTc), type(type), sourceUntapped(sourceUntapped), thiscontroller(thiscontroller), thisopponent(thisopponent), limitOnceATurn(limitOnceATurn), gainException(gainException)
     {
         triggeredTurn = -1;
@@ -1503,7 +1503,7 @@ public:
         if (!tc->canTarget(e->player)) return 0;
         //if (fromTc && !fromTc->canTarget(e->player)) return 0;
         if (fromTc && !fromTc->canTarget(e->source)) return 0; //Now it's possible to specify if a source can trigger or not the event of life gain
-        if (gainException && e->source && !strcmp(gainException->data->name.c_str(), e->source->data->name.c_str())) return 0; //If the source of life gain it's the exception card don't gain life (loop avoidance);
+        if (gainException && gainException->canTarget(e->source)) return 0; //If the source of life gain belongs to exception it doesn't have effect (loop avoidance);   
         if (type == 1 && (e->amount > 0)) return 0;
         if (type == 0 && (e->amount < 0)) return 0;
         if(thiscontroller)
@@ -1618,8 +1618,8 @@ public:
     bool duplicate;
     bool limitOnceATurn;
     int triggeredTurn;
-    MTGCardInstance * counterException; //added exception to avid a counter loop (eg. Doubling Season)
-    TrCounter(GameObserver* observer, int id, MTGCardInstance * source, Counter * counter, TargetChooser * tc, int type = 0, bool once = false, bool duplicate = false, bool limitOnceATurn = false, MTGCardInstance * counterException = NULL) :
+    TargetChooser * counterException; //added exception to avid a counter loop (eg. Doubling Season)
+    TrCounter(GameObserver* observer, int id, MTGCardInstance * source, Counter * counter, TargetChooser * tc, int type = 0, bool once = false, bool duplicate = false, bool limitOnceATurn = false, TargetChooser * counterException = NULL) :
     Trigger(observer, id, source, once, tc), counter(counter), type(type), duplicate(duplicate), limitOnceATurn(limitOnceATurn), counterException(counterException)
     {
         triggeredTurn = -1;
@@ -1633,7 +1633,7 @@ public:
             return 0;
         if (type == 0 && !e->removed) return 0;
         if (type == 1 && !e->added) return 0;
-        if (counterException && e->source && !strcmp(counterException->data->name.c_str(), e->source->data->name.c_str())) return 0; //If the source of counter gain/loss it's the exception card it doesn't have effect (loop avoidance);        
+        if (counterException && counterException->canTarget(e->source)) return 0; //If the source of counter gain/loss belongs to exception it doesn't have effect (loop avoidance);   
         if (counter && !(e->power == counter->power && e->toughness == counter->toughness && e->name == counter->name)) return 0;
         if (tc && !tc->canTarget(e->targetCard)) return 0;
         if (duplicate){
@@ -1668,11 +1668,12 @@ public:
     bool duplicate;
     bool half;
     int plus;
+    bool nocost; //added to avoid trigger on counter cost payment (eg. Doubling Season)
     bool limitOnceATurn;
     int triggeredTurn;
-    MTGCardInstance * counterException; //added exception to avid a counter loop (eg. Doubling Season)
-    TrTotalCounter(GameObserver* observer, int id, MTGCardInstance * source, Counter * counter, TargetChooser * tc, int type = 0, bool once = false, bool duplicate = false, bool half = false, int plus = 0, bool limitOnceATurn = false, MTGCardInstance * counterException = NULL) :
-    Trigger(observer, id, source, once, tc), counter(counter), type(type), duplicate(duplicate), half(half), plus(plus), limitOnceATurn(limitOnceATurn), counterException(counterException)
+    TargetChooser * counterException; //added exception to avid a counter loop.
+    TrTotalCounter(GameObserver* observer, int id, MTGCardInstance * source, Counter * counter, TargetChooser * tc, int type = 0, bool once = false, bool duplicate = false, bool half = false, int plus = 0, bool nocost = false, bool limitOnceATurn = false, TargetChooser * counterException = NULL) :
+    Trigger(observer, id, source, once, tc), counter(counter), type(type), duplicate(duplicate), half(half), plus(plus), nocost(nocost), limitOnceATurn(limitOnceATurn), counterException(counterException)
     {
         triggeredTurn = -1;
     }
@@ -1685,7 +1686,8 @@ public:
             return 0;
         if (type == 0 && !e->removed) return 0;
         if (type == 1 && !e->added) return 0;
-        if (counterException && e->source && !strcmp(counterException->data->name.c_str(), e->source->data->name.c_str())) return 0; //If the source of counter gain/loss it's the exception card it doesn't have effect (loop avoidance);        
+        if (nocost && e->iscost) return 0;
+        if (counterException && counterException->canTarget(e->source)) return 0; //If the source of counter gain/loss belongs to exception it doesn't have effect (loop avoidance);        
         if (counter && !(e->power == counter->power && e->toughness == counter->toughness && e->name == counter->name)) return 0;
         if (tc && !tc->canTarget(e->targetCard)) return 0;
         if (plus > 0){
@@ -5409,10 +5411,12 @@ public:
     list<int> oldtypes;
     vector<int> dontremove;
     bool removemc;
+    bool removeAllColors;
     bool addNewColors;
     bool remove;
     bool removeCreatureSubtypes;
     bool removeTypes;
+    bool removeAllSubtypes;
     string menu;
     
     string newpower;

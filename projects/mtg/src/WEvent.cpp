@@ -48,8 +48,8 @@ WEvent(),counter(counter),name(name),power(power),toughness(toughness),added(add
 {
 }
 
-WEventTotalCounters::WEventTotalCounters(Counters *counter, string name, int power, int toughness, bool added, bool removed, int totalamount, MTGCardInstance* source) :
-WEvent(),counter(counter),name(name),power(power),toughness(toughness),added(added),removed(removed),totalamount(totalamount),source(source)
+WEventTotalCounters::WEventTotalCounters(Counters *counter, string name, int power, int toughness, bool added, bool removed, int totalamount, bool iscost, MTGCardInstance* source) :
+WEvent(),counter(counter),name(name),power(power),toughness(toughness),added(added),removed(removed),totalamount(totalamount),iscost(iscost),source(source)
 {
 }
 
