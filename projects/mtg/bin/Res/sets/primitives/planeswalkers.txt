@@ -1,6 +1,6 @@
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 24-07-2023
+#We sorted this in alphabetical order - Luruz & Vitty85 26-07-2023
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -1416,9 +1416,10 @@ subtype=Jace
 [card]
 name=Jace, the Living Guildpact
 auto=counter(0/0,5,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Look the top two and put one in graveyard) reveal:2 optionone name(put in graveyard) target(<1>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<1>*|reveal) moveto(ownerlibrary) optiontwoend revealend
-auto={C(0/0,-3,Loyalty)}:name(-3: Return another nonland permanent) target(other *[-land]) moveTo(ownerhand)
-auto={C(0/0,-8,Loyalty)}:name(-8: Timetwister) moveto(opponentlibrary) all(*|opponenthand) && moveto(opponentlibrary) all(*|opponentgraveyard) && shuffle && moveto(mylibrary) all(*|myhand) && moveto(mylibrary) all(*|mygraveyard) && shuffle && draw:7
+aicode=activate transforms((,newability[target(*[zpos<=2]|mylibrary) moveto(ownergraveyard)])) oneshot
+auto={C(0/0,1,Loyalty)}:name(+1: Look the top two and put one in graveyard) reveal:2 optionone name(Put in graveyard) target(*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(Put in library) target(*|reveal) moveto(ownerlibrary) optiontwoend revealend
+auto={C(0/0,-3,Loyalty)}:name(-3: Return another nonland permanent) target(other *[-land]|battlefield) moveTo(ownerhand)
+auto={C(0/0,-8,Loyalty)}:name(-8: Timetwister) moveto(opponentlibrary) all(*|opponenthand) && moveto(opponentlibrary) all(*|opponentgraveyard) && shuffle opponent && moveto(mylibrary) all(*|myhand) && moveto(mylibrary) all(*|mygraveyard) && shuffle controller && draw:7 controller
 text=+1: Look at the top two cards of your library. Put one of them into your graveyard. -- -3: Return another target nonland permanent to its owner's hand. -- -8: Each player shuffles their hand and graveyard into their library. You draw seven cards.
 mana={2}{U}{U}
 type=Legendary Planeswalker
@@ -1508,9 +1509,9 @@ name=Jace, Telepath Unbound
 backside=Jace, Vryn's Prodigy
 auto=counter(0/0,5,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: don't target any creature) donothing
-auto={C(0/0,1,Loyalty)}:name(+1: target creature gets -2/0) target(creature) -2/0 uynt
+auto={C(0/0,1,Loyalty)}:name(+1: target creature gets -2/0) target(creature|battlefield) transforms((,newability[-2/0])) uynt
 auto={C(0/0,-3,Loyalty)}:name(-3: choose an instant or sorcery you may from graveyard) target(*[instant;sorcery]|mygraveyard) transforms((,newability[canplayfromgraveyard],newability[gainedexiledeath])) ueot
-auto={C(0/0,-9,Loyalty)}:name(-9: emblem mills opponent cards) emblem transforms((,newability[@movedTo(*|mystack):deplete:5 opponent])) forever dontremove
+auto={C(0/0,-9,Loyalty)}:name(-9: emblem mills opponent cards) emblem transforms((,newability[@movedTo(*|mystack):name(Mill 5 cards) deplete:5 opponent])) forever dontremove
 text=+1: Up to one target creature gets -2/-0 until your next turn. -- -3: You may cast target instant or sorcery card from your graveyard this turn. If that card would be put into your graveyard this turn, exile it instead. -- -9: You get an emblem with "Whenever you cast a spell, target opponent puts the top five cards of his or her library into his or her graveyard." // Jace, Vryn's Prodigy
 type=Legendary Planeswalker
 subtype=Jace
