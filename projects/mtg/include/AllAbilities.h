@@ -2340,7 +2340,7 @@ public:
 class AADrawer: public ActivatedAbilityTP
 {
 public:
-
+    MTGAbility * andAbility;
     string nbcardsStr;
     bool noReplace;
     AADrawer(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost,string nbcardsStr, int who =
@@ -2348,6 +2348,7 @@ public:
     int resolve();
     const string getMenuText();
     AADrawer * clone() const;
+    ~AADrawer();
     int getNumCards();
 };
 
@@ -2369,7 +2370,6 @@ public:
     const string getMenuText();
     ACastRestriction * clone() const;
     ~ACastRestriction();
-
 };
 
 
@@ -2390,6 +2390,7 @@ public:
 class AALifer: public ActivatedAbilityTP
 {
 public:
+    MTGAbility * andAbility;
     string life_s;
     bool siphon;
     AALifer(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string life_s, bool siphon = false, ManaCost * _cost = NULL,
@@ -2397,8 +2398,8 @@ public:
     int resolve();
     const string getMenuText();
     AALifer * clone() const;
+    ~AALifer();
     int getLife();
-
 };
 
 /*Player Wins Game*/
@@ -4623,7 +4624,6 @@ public:
     const string getMenuText();
     AAuraIncreaseReduce * clone() const;
     //~AAuraIncreaseReduce();
-
 };
 
 //Modify Hand
@@ -4669,11 +4669,10 @@ public:
 
 };
 
-//lifesetend
-
 class AADamager: public ActivatedAbilityTP
 {
 public:
+    MTGAbility * andAbility;
     string d;
     bool redirected;
 
@@ -4683,7 +4682,7 @@ public:
     const string getMenuText();
     int getDamage();
     AADamager * clone() const;
-
+    ~AADamager();
 };
 
 //prevent next damage
@@ -4712,6 +4711,7 @@ public:
     AAAlterPoison * clone() const;
     ~AAAlterPoison();
 };
+
 //Energy Counter
 class AAAlterEnergy: public ActivatedAbilityTP
 {
@@ -4725,6 +4725,7 @@ public:
     AAAlterEnergy * clone() const;
     ~AAAlterEnergy();
 };
+
 //Experience Counter
 class AAAlterExperience: public ActivatedAbilityTP
 {
@@ -4738,6 +4739,7 @@ public:
     AAAlterExperience * clone() const;
     ~AAAlterExperience();
 };
+
 //Boast Event
 class AABoastEvent: public ActivatedAbilityTP
 {
@@ -4751,6 +4753,7 @@ public:
     AABoastEvent * clone() const;
     ~AABoastEvent();
 };
+
 //Surveil Event
 class AASurveilEvent: public ActivatedAbilityTP
 {
@@ -4764,6 +4767,7 @@ public:
     AASurveilEvent * clone() const;
     ~AASurveilEvent();
 };
+
 //Explores Event
 class AAExploresEvent: public ActivatedAbilityTP
 {
@@ -4777,6 +4781,7 @@ public:
     AAExploresEvent * clone() const;
     ~AAExploresEvent();
 };
+
 //Ring bearer has been chosen
 class AARingBearerChosen : public ActivatedAbility
 {
@@ -4789,6 +4794,7 @@ public:
     AARingBearerChosen * clone() const;
     ~AARingBearerChosen();
 };
+
 //Dungeon Completed
 class AAAlterDungeonCompleted: public ActivatedAbilityTP
 {
@@ -4802,6 +4808,7 @@ public:
     AAAlterDungeonCompleted * clone() const;
     ~AAAlterDungeonCompleted();
 };
+
 //Yidaro Counter
 class AAAlterYidaroCount: public ActivatedAbilityTP
 {
@@ -4815,6 +4822,7 @@ public:
     AAAlterYidaroCount * clone() const;
     ~AAAlterYidaroCount();
 };
+
 //Ring Temptations
 class AAAlterRingTemptations: public ActivatedAbilityTP
 {
@@ -4828,6 +4836,7 @@ public:
     AAAlterRingTemptations * clone() const;
     ~AAAlterRingTemptations();
 };
+
 //Monarch
 class AAAlterMonarch: public ActivatedAbilityTP
 {
@@ -4840,6 +4849,7 @@ public:
     AAAlterMonarch * clone() const;
     ~AAAlterMonarch();
 };
+
 //Initiative
 class AAAlterInitiative: public ActivatedAbilityTP
 {
@@ -4852,6 +4862,7 @@ public:
     AAAlterInitiative * clone() const;
     ~AAAlterInitiative();
 };
+
 //Surveil Offset
 class AAAlterSurveilOffset: public ActivatedAbilityTP
 {
@@ -4865,6 +4876,7 @@ public:
     AAAlterSurveilOffset * clone() const;
     ~AAAlterSurveilOffset();
 };
+
 //Devotion Offset
 class AAAlterDevotionOffset: public ActivatedAbilityTP
 {
@@ -4878,6 +4890,7 @@ public:
     AAAlterDevotionOffset * clone() const;
     ~AAAlterDevotionOffset();
 };
+
 /* Standard Damager, can choose a NEW target each time the price is paid */
 class TADamager: public TargetAbility
 {
@@ -4895,6 +4908,7 @@ public:
         return NEW TADamager(*this);
     }
 };
+
 //bestow
 class ABestow : public ActivatedAbility
 {
@@ -4910,21 +4924,25 @@ public:
 class AATapper: public ActivatedAbility
 {
 public:
+    MTGAbility * andAbility;
     bool _sendNoEvent;
     AATapper(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL, bool _sendNoEvent = true);
     int resolve();
     const string getMenuText();
     AATapper * clone() const;
+    ~AATapper();
 };
 
 /* Can untap a target for a cost */
 class AAUntapper: public ActivatedAbility
 {
 public:
+    MTGAbility * andAbility;
     AAUntapper(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL);
     int resolve();
     const string getMenuText();
     AAUntapper * clone() const;
+    ~AAUntapper();
 };
 
 /*announce card X*/
@@ -4977,11 +4995,13 @@ public:
 class AAFrozen: public ActivatedAbility
 {
 public:
+    MTGAbility * andAbility;
     bool freeze;
     AAFrozen(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, bool tap, ManaCost * _cost = NULL);
     int resolve();
     const string getMenuText();
     AAFrozen * clone() const;
+    ~AAFrozen();
 };
 /* ghetto new target*/
 class AANewTarget: public ActivatedAbility
@@ -6850,6 +6870,7 @@ public:
 class AADepleter: public ActivatedAbilityTP
 {
 public:
+    MTGAbility * andAbility;
     string nbcardsStr;
     bool toexile;
     bool colorrepeat;
@@ -6859,6 +6880,7 @@ public:
     int resolve();
     const string getMenuText();
     AADepleter * clone() const;
+    ~AADepleter();
 };
 
 
@@ -6895,11 +6917,13 @@ public:
 class AAShuffle: public ActivatedAbilityTP
 {
 public:
+    MTGAbility * andAbility;
     AAShuffle(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost = NULL, int who =
             TargetChooser::UNSET);
     int resolve();
     const string getMenuText();
     AAShuffle * clone() const;
+    ~AAShuffle();
 };
 
 //Mulligan
@@ -6925,7 +6949,6 @@ public:
     const string getMenuText();
     AARemoveMana * clone() const;
     ~AARemoveMana();
-
 };
 
 //Random Discard

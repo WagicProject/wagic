@@ -1,6 +1,6 @@
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 26-07-2023
+#We sorted this in alphabetical order - Luruz & Vitty85 27-07-2023
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -1666,10 +1666,9 @@ subtype=Karn
 name=Karn, the Great Creator
 auto=counter(0/0,5,loyalty)
 auto=lord(artifact|opponentBattlefield) noactivatedability
-auto={C(0/0,1,Loyalty)}:name(+1: Becomes a creature) target(artifact[-creature]) transforms((creature,newability[manacost/manacost])) uynt
-auto={C(0/0,1,Loyalty)}:name(+1: Loyalty counter) donothing
-auto={C(0/0,-2,Loyalty)}:name(-2: move a card from exile) moveto(ownerhand) target(artifact|myexile)
-auto={C(0/0,-2,Loyalty)}:name(-2: move a card from sideboard) reveal:type:*:mysideboard revealzone(mysideboard) optionone name(choose card) target(<1>*[artifact]|reveal) moveto(myhand) and!(all(other *|reveal) moveto(ownersideboard))! optiononeend optiontwo name(put back) target(<1>*|reveal) moveto(ownersideboard) and!(all(other *|reveal) moveto(ownersideboard))! optiontwoend revealend
+auto={C(0/0,1,Loyalty)}:name(+1: Transform an artifact) target(artifact[-creature]) transforms((creature,newability[manacost/manacost])) uynt
+auto={C(0/0,1,Loyalty)}:name(+1: Don't transform any artifact) donothing
+auto={C(0/0,-2,Loyalty)}:name(-2: Move a card from outside game) target(artifact|myexile,mysideboard) moveto(myhand)
 text=Activated abilities of artifacts your opponents control can't be activated. -- +1: Until your next turn, up to one target noncreature artifact becomes an artifact creature with power and toughness each equal to its mana value. -- -2: You may choose an artifact card you own from outside the game or in exile, reveal that card, and put it into your hand.
 mana={4}
 type=Legendary Planeswalker
@@ -1763,9 +1762,11 @@ subtype=Kaya
 [card]
 name=Kaya, Ghost Assassin
 auto=counter(0/0,5,loyalty)
-auto={C(0/0,0,Loyalty)}:name(+0: Exile Kaya or creature) ability$!name(Choose creature or this) choice name(Kaya, Ghost Assassin) all(this) (blink)ueot && life:-2 controller _choice name(Creature) target(creature) (blink)ueot controller!$ controller && life:-2
-auto={C(0/0,-1,Loyalty)}:name(-1: Each opponent loses life and you gain) life:-2 opponent && life:2 controller
-auto={C(0/0,-2,Loyalty)}:name(-2: Each opponent discard and draw) ability$!name(discard a card) notatarget(*|myHand) reject!$ opponent && draw:1 controller
+auto={C(0/0,0,Loyalty)}:name(+0: Exile creature) target(creature|battlefield) moveto(exile) and!( life:-2 controller && transforms((,newability[phaseaction[endofturn once checkex] moveto(ownerbattlefield)])) forever )!
+auto={C(0/0,0,Loyalty)}:name(+0: Exile kaya) moveto(exile) and!( life:-2 controller && counter(0/0,hascntloyalty,Loyalty) && transforms((,newability[@next endofturn:name(Return to battlefield) moveto(ownerbattlefield) and!( counter(0/0.hascntloyalty.Loyalty) notrg && counter(0/0.-5.Loyalty) notrg)! ])) forever )!
+auto={C(0/0,0,Loyalty)}:name(+0: Don't exile anything) life:-2 controller
+auto={C(0/0,-1,Loyalty)}:name(-1: Opponent loses life) lifeleech:-2 opponent
+auto={C(0/0,-2,Loyalty)}:name(-2: Each opponent discard and draw) ability$!name(Discard a card) notatarget(*|myHand) reject!$ opponent && draw:1 controller
 text=0: Exile Kaya, Ghost Assassin or up to one target creature. Return that card to the battlefield under its owner's control at the beginning of your next upkeep. You lose 2 life. -- -1: Each opponent loses 2 life and you gain 2 life. -- -2: Each opponent discards a card and you draw a card.
 mana={2}{W}{B}
 type=Legendary Planeswalker

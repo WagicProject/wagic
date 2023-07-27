@@ -203,7 +203,7 @@
 #AUTO_DEFINE _RENOWN_($c) this(cantargetcard(*[-renown]) transforms((,newability[@combatdamaged(player) from(this):counter(1/1.$c) && becomes(renown) forever]))
 
 # Exile card. Return it to the battlefield under its owner's control at the beginning of the next end step.
-#AUTO_DEFINE _BLINK_UEOT_ name(Blink ueot) all(this) transforms((,newability[moveto(exile)],newability[if cantargetcard(*[-token]|*) then phaseactionmulti[endofturn once] moveto(ownerbattlefield)]))
+#AUTO_DEFINE _BLINK_UEOT_  moveto(exile) and!( transforms((,newability[phaseaction[endofturn once checkex] moveto(ownerbattlefield)])) forever )!
 
 # Connives. (Draw a card, then discard a card. If you discarded a nonland card, put a +1/+1 counter on this creature.)
 #AUTO_DEFINE _CONNIVES_ draw:1 && transforms((,newability[if type(*[-land]|myhand)~morethan~0 then choice name(Discard a nonland) name(Discard a nonland) target(*[-land]|myhand) reject && counter(1/1) all(this)],newability[if type(land|myhand)~morethan~0 then choice name(Discard a land) name(Discard a land) target(land|myhand) reject])) oneshot
