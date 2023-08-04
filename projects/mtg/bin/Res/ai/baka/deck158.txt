@@ -1,0 +1,27 @@
+#NAME:Orcs of Mordor
+#DESC:Designed for Wagic by Bob
+Assault on Osgiliath (*) * 2
+Dunland Crebain (*) * 2
+Easterling Vanguard (*) * 2
+Feed the Swarm (*) * 2
+Foray of Orcs (*) * 4
+Gothmog, Morgul Lieutenant  (*) * 1
+Grishnakh, Brash Instigator (*) * 1
+March from the Black Gate  (*) * 2
+Mauhur, Uruk-hai Captain (*) * 2
+Mordor Muster (*) * 2
+Mountain (LTR) (*) * 4
+Mountain (SNC) (*) * 4
+Mountain (ONE) (*) * 4
+Orcish Bowmasters (*) * 4
+Olog-hai Crusher (*) * 2
+Sauron, the Lidless Eye (*) * 1
+Snarling Warg (*) * 2
+Swamp (LTR) (*) * 4
+Swamp (SNC) (*) * 4
+Swamp (ONE) (*) * 4
+Swamp (NEO) (*) * 2
+Swarming of Moria (*) * 3
+Ugluk of the White Hand (*) * 1
+Witch-king, Bringer of Ruin (*) * 1
+
