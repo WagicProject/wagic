@@ -2,7 +2,7 @@ grade=unsupported
 #The cards in this file are not implemented/incomplete yet.
 #Updated Card lists not in primitives (Borderline, Crappy, Unsupported and Missing Cards)
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#I sorted this programatically - Vitty85 07-07-2023
+#I sorted this programatically - Vitty85 05-08-2023
 [card]
 name="Ach! Hans, Run!"
 text=At the beginning of your upkeep, you may say "Ach Hans, run It's the . . ." and name a creature card. If you do, search your library for the named card, put it into play, then shuffle your library. That creature has haste. Remove it from the game at end of turn.
@@ -4522,6 +4522,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Hatchery Sliver
+text=Replicate {1}{G} (When you cast this spell, copy it for each time you paid its replicate cost.) -- Each Sliver spell you cast has replicate. The replicate cost is equal to its mana cost. (A copy of a permanent spell becomes a token.)
+mana={1}{G}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+[/card]
+[card]
 name=Haunting Wind
 text=Whenever an artifact becomes tapped or a player activates an artifact's ability without {T} in its activation cost, Haunting Wind deals 1 damage to that artifact's controller.
 mana={3}{B}
@@ -5222,6 +5231,16 @@ name=Jade Monolith
 text={1}: The next time a source of your choice would deal damage to target creature this turn, that source deals that damage to you instead.
 mana={4}
 type=Artifact
+[/card]
+[card]
+name=Jaya's Phoenix
+abilities=flying,haste
+text=Flying, haste -- Whenever Jaya's Phoenix deals combat damage to a player or planeswalker, copy the next loyalty ability you activate this turn when you activate it. You may choose new targets for the copy. -- Whenever you cast a planeswalker spell, you may return Jaya's Phoenix from your graveyard to the battlefield.
+mana={4}{R}
+type=Creature
+subtype=Phoenix
+power=3
+toughness=3
 [/card]
 [card]
 name=Jalum Grifter

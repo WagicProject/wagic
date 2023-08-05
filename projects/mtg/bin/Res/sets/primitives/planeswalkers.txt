@@ -1,6 +1,6 @@
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#We sorted this in alphabetical order - Luruz & Vitty85 27-07-2023
+#We sorted this in alphabetical order - Luruz & Vitty85 05-08-2023
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -462,6 +462,18 @@ type=Legendary Planeswalker
 subtype=Chandra
 [/card]
 [card]
+name=Chandra, Dressed to Kill
+auto=counter(0/0,3,loyalty)
+auto={C(0/0,1,Loyalty)}:name(+1: Add red mana) add{R} controller
+auto={C(0/0,1,Loyalty)}:name(+1: Add red and deal damage) target(player,planeswalker) damage:1 && add{R} controller
+auto={C(0/0,1,Loyalty)}:name(+1: Exile top card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( if cantargetcard(*[red]|*) then canplayfromexile ueot )!
+auto={C(0/0,-7,Loyalty)}:name(-7: Exile top 5 cards) emblem transforms((,newability[@movedto(*[red]|mystack):all(trigger[to]) transforms((,newability[name(Deals damage) target(anytarget) damage:totmanaspent])) oneshot],newability[all(*[zpos<=5]|mylibrary) moveto(myexile) and!( if cantargetcard(*[red]|*) then canplayfromexile ueot )!])) forever dontremove
+text=+1: Add {R}. Chandra, Dressed to Kill deals 1 damage to up to one target player or planeswalker. -- +1: Exile the top card of your library. If it's red, you may cast it this turn. -- -7: Exile the top five cards of your library. You may cast red spells from among them this turn. You get an emblem with "Whenever you cast a red spell, this emblem deals X damage to any target, where X is the amount of mana spent to cast that spell."
+mana={1}{R}{R}
+type=Legendary Planeswalker
+subtype=Chandra
+[/card]
+[card]
 name=Chandra, Fire Artisan
 auto=counter(0/0,4,loyalty)
 auto=@counterremoved(0/0,1,Loyalty) from(this):damage:1 target(opponent)
@@ -587,6 +599,26 @@ type=Legendary Planeswalker
 subtype=Chandra
 [/card]
 [card]
+name=Chandra, Legacy of Fire
+auto=counter(0/0,3,loyalty)
+auto={C(0/0,+1,Loyalty)}:name(+1: Add mana) foreach(planeswalker|mybattlefield) add{R}
+auto={C(0/0,0,Loyalty)}:name(+0: Remove 1 loyalty) name(+0: Remove 1 loyalty) target(*[counter{0/0.1.Loyalty}]|mybattlefield) counter(0/0.-1.Loyalty) && all(*[zpos=1]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile ueot])) ueot )!
+auto={C(0/0,0,Loyalty)}:name(+0: Remove 2 loyalty) name(+0: Remove 2 loyalty) target(<2>*[counter{0/0.1.Loyalty}]|mybattlefield) counter(0/0.-1.Loyalty) && all(*[zpos<=2]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile ueot])) ueot )!
+auto={C(0/0,0,Loyalty)}:name(+0: Remove 3 loyalty) name(+0: Remove 3 loyalty) target(<3>*[counter{0/0.1.Loyalty}]|mybattlefield) counter(0/0.-1.Loyalty) && all(*[zpos<=3]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile ueot])) ueot )!
+auto={C(0/0,0,Loyalty)}:name(+0: Remove 4 loyalty) name(+0: Remove 4 loyalty) target(<4>*[counter{0/0.1.Loyalty}]|mybattlefield) counter(0/0.-1.Loyalty) && all(*[zpos<=4]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile ueot])) ueot )!
+auto={C(0/0,0,Loyalty)}:name(+0: Remove 5 loyalty) name(+0: Remove 5 loyalty) target(<5>*[counter{0/0.1.Loyalty}]|mybattlefield) counter(0/0.-1.Loyalty) && all(*[zpos<=5]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile ueot])) ueot )!
+auto={C(0/0,0,Loyalty)}:name(+0: Remove 6 loyalty) name(+0: Remove 6 loyalty) target(<6>*[counter{0/0.1.Loyalty}]|mybattlefield) counter(0/0.-1.Loyalty) && all(*[zpos<=6]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile ueot])) ueot )!
+auto={C(0/0,0,Loyalty)}:name(+0: Remove 7 loyalty) name(+0: Remove 7 loyalty) target(<7>*[counter{0/0.1.Loyalty}]|mybattlefield) counter(0/0.-1.Loyalty) && all(*[zpos<=7]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile ueot])) ueot )!
+auto={C(0/0,0,Loyalty)}:name(+0: Remove 8 loyalty) name(+0: Remove 8 loyalty) target(<8>*[counter{0/0.1.Loyalty}]|mybattlefield) counter(0/0.-1.Loyalty) && all(*[zpos<=8]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile ueot])) ueot )!
+auto={C(0/0,0,Loyalty)}:name(+0: Remove 9 loyalty) name(+0: Remove 9 loyalty) target(<9>*[counter{0/0.1.Loyalty}]|mybattlefield) counter(0/0.-1.Loyalty) && all(*[zpos<=9]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile ueot])) ueot )!
+auto={C(0/0,0,Loyalty)}:name(+0: Remove 10 loyalty) name(+0: Remove 10 loyalty) target(<10>*[counter{0/0.1.Loyalty}]|mybattlefield) counter(0/0.-1.Loyalty) && all(*[zpos<=10]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile ueot])) ueot )!
+auto=@each my endofturn:name(Deal damage) foreach(planeswalker|mybattlefield) damage:1 opponent
+text=At the beginning of your end step, Chandra, Legacy of Fire deals X damage to each opponent, where X is the number of planeswalkers you control. -- [+1]: Add {R} for each planeswalker you control. -- [0]: Remove a loyalty counter from each of any number of permanents you control. Exile that many cards from the top of your library. You may play them this turn.
+mana={4}{R}
+type=Legendary Planeswalker
+subtype=Chandra
+[/card]
+[card]
 name=Chandra Nalaar
 auto=counter(0/0,6,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Deals 1 damage to player or planeswalker) damage:1 target(player,planeswalker)
@@ -603,18 +635,6 @@ auto={C(0/0,-10,Loyalty)}:name(-10: Deals 10 damage to a creature) damage:10 tar
 auto={C(0/0,-8,Loyalty)}:name(-8: 10 Deals damage to player and all of his creatures) target(player) damage:10 && damage:10 all(creature|targetedpersonsbattlefield)
 text=+1: Chandra Nalaar deals 1 damage to target player. -- -X: Chandra Nalaar deals X damage to target creature. -- -8: Chandra Nalaar deals 10 damage to target player and each creature he or she controls.
 mana={3}{R}{R}
-type=Legendary Planeswalker
-subtype=Chandra
-[/card]
-[card]
-name=Chandra, Dressed to Kill
-auto=counter(0/0,3,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Add red mana) add{R} controller
-auto={C(0/0,1,Loyalty)}:name(+1: Add red and deal damage) target(player,planeswalker) damage:1 && add{R} controller
-auto={C(0/0,1,Loyalty)}:name(+1: Exile top card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( if cantargetcard(*[red]|*) then canplayfromexile ueot )!
-auto={C(0/0,-7,Loyalty)}:name(-7: Exile top 5 cards) emblem transforms((,newability[@movedto(*[red]|mystack):all(trigger[to]) transforms((,newability[name(Deals damage) target(anytarget) damage:totmanaspent])) oneshot],newability[all(*[zpos<=5]|mylibrary) moveto(myexile) and!( if cantargetcard(*[red]|*) then canplayfromexile ueot )!])) forever dontremove
-text=+1: Add {R}. Chandra, Dressed to Kill deals 1 damage to up to one target player or planeswalker. -- +1: Exile the top card of your library. If it's red, you may cast it this turn. -- -7: Exile the top five cards of your library. You may cast red spells from among them this turn. You get an emblem with "Whenever you cast a red spell, this emblem deals X damage to any target, where X is the amount of mana spent to cast that spell."
-mana={1}{R}{R}
 type=Legendary Planeswalker
 subtype=Chandra
 [/card]
@@ -3191,6 +3211,18 @@ type=Legendary Planeswalker
 subtype=Teyo
 [/card]
 [card]
+name=Teyo, Geometric Tactician
+auto=counter(0/0,3,loyalty)
+auto=token(Wall,Creature Wall,0/4,defender,flying,white)
+auto={C(0/0,+1,Loyalty)}:name(+1: Draw card) draw:1 controller && draw:1 opponent
+auto={C(0/0,-2,Loyalty)}:name(-2: Choose left) donothing
+auto={C(0/0,-2,Loyalty)}:name(-2: Choose right) donothing
+text=When Teyo, Geometric Tactician enters the battlefield, create a 0/4 white Wall creature token with defender and flying. -- [+1]: You and target opponent each draw a card. -- [-2]: Choose left or right. Until your next turn, each player may attack only the nearest opponent in the last chosen direction and planeswalkers controlled by that opponent.
+mana={2}{W}
+type=Legendary Planeswalker
+subtype=Teyo
+[/card]
+[card]
 name=Teyo, the Shieldmage
 abilities=controllershroud
 auto=counter(0/0,5,loyalty)
@@ -3675,6 +3707,18 @@ text=+1: Until your next turn, whenever a creature deals combat damage to Vraska
 mana={3}{B}{G}
 type=Legendary Planeswalker
 subtype=Vraska
+[/card]
+[card]
+name=Vronos, Masked Inquisitor
+auto=counter(0/0,5,loyalty)
+auto={C(0/0,+1,Loyalty)}:name(+1: Phase out) target(<upto:2>other planeswalker|myBattlefield) transforms((,newability[phaseaction[endofturn once sourceinplay] phaseout])) forever
+auto={C(0/0,+1,Loyalty)}:name(+1: Don't phase out) donothing
+auto={C(0/0,-2,Loyalty)}:name(-2: Return nonland permanent) target(*[-land]|opponentbattlefield) moveto(ownerhand)
+auto={C(0/0,-7,Loyalty)}:name(-7: Artifact becomes construct) target(artifact|myBattlefield) transforms((Creature Artifact Construct,setpower=9,settoughness=9,newability[vigilance],newability[indestructible],newability[unblockable])) forever
+text=[+1]: Up to two other target planeswalkers you control phase out at the beginning of the next end step. (Treat them and anything attached to them as though they don't exist until your next turn.) -- [-2]: For each opponent, return up to one target nonland permanent that player controls to its owner's hand. -- [-7]: Target artifact you control becomes a 9/9 Construct artifact creature and gains vigilance, indestructible, and "This creature can't be blocked."
+mana={3}{U}{U}
+type=Legendary Planeswalker
+subtype=Vronos
 [/card]
 [card]
 name=Will Kenrith

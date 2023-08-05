@@ -68,6 +68,13 @@
 #AUTO_DEFINE _AMASSORC4_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1.4)])) forever else name(Create Orc Army) token(Orc Army) and!( name(Put 1/1 counters) counter(1/1.4) notatarget(army|myBattlefield) )!
 #AUTO_DEFINE _AMASSORC5_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1.5)])) forever else name(Create Orc Army) token(Orc Army) and!( name(Put 1/1 counters) counter(1/1.5) notatarget(army|myBattlefield) )!
 
+# Amass Slivers, Set CMM
+#AUTO_DEFINE _AMASSSLIVER1_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counter) name(Put 1/1 counter) notatarget(army|myBattlefield) transforms((Sliver,newability[counter(1/1)])) forever else name(Create Sliver Army) token(Sliver Army) and!( name(Put 1/1 counter) counter(1/1) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSSLIVER2_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Sliver,newability[counter(1/1.2)])) forever else name(Create Sliver Army) token(Sliver Army) and!( name(Put 1/1 counters) counter(1/1.2) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSSLIVER3_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Sliver,newability[counter(1/1.3)])) forever else name(Create Sliver Army) token(Sliver Army) and!( name(Put 1/1 counters) counter(1/1.3) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSSLIVER4_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Sliver,newability[counter(1/1.4)])) forever else name(Create Sliver Army) token(Sliver Army) and!( name(Put 1/1 counters) counter(1/1.4) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSSLIVER5_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Sliver,newability[counter(1/1.5)])) forever else name(Create Sliver Army) token(Sliver Army) and!( name(Put 1/1 counters) counter(1/1.5) notatarget(army|myBattlefield) )!
+
 # Scry, Evergreen
 #AUTO_DEFINE _SCRY_($c) scry:$c scrycore delayed dontshow donothing scrycoreend scryend
 #AUTO_DEFINE _SCRY1_ scry:1 scrycore delayed dontshow donothing scrycoreend scryend

@@ -150,6 +150,8 @@ Dusk Mangler
 Mage's Attendant
 Rumor Gatherer
 Induced Amnesia
+Zilortha, Strength Incarnate
+Brass Knuckles
 Naban, Dean of Iteration
 Goblin Bangchuckers
 Mari, the Killing Quill
@@ -339,7 +341,6 @@ Out of the Way
 A Little Chat
 Rob the Archives
 Arc Spitter
-Brass Knuckles
 Syndicate Infiltrator
 Tainted Indulgence
 Glittering Stockpile
