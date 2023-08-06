@@ -2,7 +2,7 @@ grade=unsupported
 #The cards in this file are not implemented/incomplete yet.
 #Updated Card lists not in primitives (Borderline, Crappy, Unsupported and Missing Cards)
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#I sorted this programatically - Vitty85 05-08-2023
+#I sorted this programatically - Vitty85 06-08-2023
 [card]
 name="Ach! Hans, Run!"
 text=At the beginning of your upkeep, you may say "Ach Hans, run It's the . . ." and name a creature card. If you do, search your library for the named card, put it into play, then shuffle your library. That creature has haste. Remove it from the game at end of turn.
@@ -52,6 +52,16 @@ type=Creature
 subtype=Art Lizard
 power=1
 toughness=1
+[/card]
+[card]
+name=Abstruse Archaic
+abilities=vigilance
+text=Vigilance -- {1}, {T}: Copy target activated or triggered ability you control from a colorless source. You may choose new targets for the copy. (Mana abilities can't be targeted.)
+mana={4}
+type=Creature
+subtype=Avatar
+power=3
+toughness=4
 [/card]
 [card]
 name=Academy at Tolaria West
@@ -5936,6 +5946,16 @@ type=Creature
 subtype=Cat Cleric
 power=2
 toughness=2
+[/card]
+[card]
+name=Leori, Sparktouched Hunter
+abilities=flying,vigilance
+text=Flying, vigilance -- Whenever Leori, Sparktouched Hunter deals combat damage to a player, choose a planeswalker type. Until end of turn, whenever you activate an ability of a planeswalker of that type, copy that ability. You may choose new targets for the copies.
+mana={U}{R}{W}
+type=Legendary Creature
+subtype=Elemental Cat
+power=3
+toughness=3
 [/card]
 [card]
 name=Leovold's Operative

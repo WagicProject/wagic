@@ -172,6 +172,16 @@ mana={2}{U}
 type=Sorcery
 [/card]
 [card]
+name=Abstruse Archaic
+abilities=vigilance
+text=Vigilance -- {1}, {T}: Copy target activated or triggered ability you control from a colorless source. You may choose new targets for the copy. (Mana abilities can't be targeted.)
+mana={4}
+type=Creature
+subtype=Avatar
+power=3
+toughness=4
+[/card]
+[card]
 name=Commandeer
 text=You may exile two blue cards from your hand rather than pay Commandeer's mana cost. -- Gain control of target noncreature spell. You may choose new targets for it. (If that spell is an artifact, enchantment, or planeswalker, the permanent enters the battlefield under your control.)
 mana={5}{U}{U}
@@ -254,6 +264,26 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+name=Abstruse Archaic
+abilities=vigilance
+text=Vigilance -- {1}, {T}: Copy target activated or triggered ability you control from a colorless source. You may choose new targets for the copy. (Mana abilities can't be targeted.)
+mana={4}
+type=Creature
+subtype=Avatar
+power=3
+toughness=4
+[/card]
+[card]
+name=Leori, Sparktouched Hunter
+abilities=flying,vigilance
+text=Flying, vigilance -- Whenever Leori, Sparktouched Hunter deals combat damage to a player, choose a planeswalker type. Until end of turn, whenever you activate an ability of a planeswalker of that type, copy that ability. You may choose new targets for the copies.
+mana={U}{R}{W}
+type=Legendary Creature
+subtype=Elemental Cat
+power=3
+toughness=3
+[/card]
+[card]
 name=Divergent Transformations
 text=Undaunted (This spell costs {1} less to cast for each opponent.) -- Exile two target creatures. For each of those creatures, its controller reveals cards from the top of his or her library until he or she reveals a creature card, puts that card onto the battlefield, then shuffles the rest into his or her library.
 mana={6}{R}
@@ -332,4 +362,14 @@ type=Legendary Creature
 subtype=Human Wizard
 power=3
 toughness=4
+[/card]
+[card]
+name=Leori, Sparktouched Hunter
+abilities=flying,vigilance
+text=Flying, vigilance -- Whenever Leori, Sparktouched Hunter deals combat damage to a player, choose a planeswalker type. Until end of turn, whenever you activate an ability of a planeswalker of that type, copy that ability. You may choose new targets for the copies.
+mana={U}{R}{W}
+type=Legendary Creature
+subtype=Elemental Cat
+power=3
+toughness=3
 [/card]
