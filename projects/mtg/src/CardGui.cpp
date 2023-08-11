@@ -1925,7 +1925,9 @@ void CardGui::RenderCountersBig(MTGCard * mtgcard, const Pos& pos, int drawMode)
     if (!card)
         return;
 
-    int ringTemptations = card->controller()->ringTemptations;
+    int ringTemptations = 0;
+    if(card->controller())
+        ringTemptations = card->controller()->ringTemptations;
 
     if (!card->counters && !ringTemptations)
         return;
