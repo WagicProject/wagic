@@ -1,0 +1,796 @@
+[meta]
+author=Wagic Team
+name=Wilds of Eldraine Commander
+year=2023-09-08
+total=176
+[/meta]
+[card]
+primitive=Tegwyll, Duke of Splendor
+id=633141
+rarity=M
+[/card]
+[card]
+primitive=Ellivere of the Wild Court
+id=633142
+rarity=M
+[/card]
+[card]
+primitive=Alela, Cunning Conqueror
+id=633157
+rarity=M
+[/card]
+[card]
+primitive=Gylwain, Casting Director
+id=633158
+rarity=M
+[/card]
+[card]
+primitive=Liberated Livestock
+id=633173
+rarity=R
+[/card]
+[card]
+primitive=Ox Drover
+id=633174
+rarity=R
+[/card]
+[card]
+primitive=Songbirds' Blessing
+id=633175
+rarity=R
+[/card]
+[card]
+primitive=Unfinished Business
+id=633176
+rarity=R
+[/card]
+[card]
+primitive=Archmage of Echoes
+id=633177
+rarity=R
+[/card]
+[card]
+primitive=Malleable Impostor
+id=633178
+rarity=R
+[/card]
+[card]
+primitive=Misleading Signpost
+id=633179
+rarity=R
+[/card]
+[card]
+primitive=Shadow Puppeteers
+id=633180
+rarity=R
+[/card]
+[card]
+primitive=Blightwing Bandit
+id=633181
+rarity=R
+[/card]
+[card]
+primitive=Faerie Bladecrafter
+id=633182
+rarity=R
+[/card]
+[card]
+primitive=Nettling Nuisance
+id=633183
+rarity=R
+[/card]
+[card]
+primitive=Tegwyll's Scouring
+id=633184
+rarity=R
+[/card]
+[card]
+primitive=Giant Inheritance
+id=633185
+rarity=R
+[/card]
+[card]
+primitive=Knickknack Ouphe
+id=633186
+rarity=R
+[/card]
+[card]
+primitive=Loamcrafter Faun
+id=633187
+rarity=R
+[/card]
+[card]
+primitive=Timber Paladin
+id=633188
+rarity=R
+[/card]
+[card]
+primitive=Court of Ardenvale
+id=633077
+rarity=R
+[/card]
+[card]
+primitive=Court of Vantress
+id=633078
+rarity=R
+[/card]
+[card]
+primitive=Court of Locthwain
+id=633079
+rarity=R
+[/card]
+[card]
+primitive=Court of Embereth
+id=633080
+rarity=R
+[/card]
+[card]
+primitive=Court of Garenbrig
+id=633081
+rarity=R
+[/card]
+[card]
+primitive=Korvold, Gleeful Glutton
+id=633082
+rarity=M
+[/card]
+[card]
+primitive=Brenard, Ginger Sculptor
+id=633083
+rarity=M
+[/card]
+[card]
+primitive=Throne of Eldraine
+id=633084
+rarity=R
+[/card]
+[card]
+primitive=Liberated Livestock
+id=632997
+rarity=R
+[/card]
+[card]
+primitive=Ox Drover
+id=632998
+rarity=R
+[/card]
+[card]
+primitive=Songbirds' Blessing
+id=632999
+rarity=R
+[/card]
+[card]
+primitive=Unfinished Business
+id=633000
+rarity=R
+[/card]
+[card]
+primitive=Archmage of Echoes
+id=633001
+rarity=R
+[/card]
+[card]
+primitive=Malleable Impostor
+id=633002
+rarity=R
+[/card]
+[card]
+primitive=Misleading Signpost
+id=633003
+rarity=R
+[/card]
+[card]
+primitive=Shadow Puppeteers
+id=633004
+rarity=R
+[/card]
+[card]
+primitive=Blightwing Bandit
+id=633005
+rarity=R
+[/card]
+[card]
+primitive=Faerie Bladecrafter
+id=633006
+rarity=R
+[/card]
+[card]
+primitive=Nettling Nuisance
+id=633007
+rarity=R
+[/card]
+[card]
+primitive=Tegwyll's Scouring
+id=633008
+rarity=R
+[/card]
+[card]
+primitive=Giant Inheritance
+id=633009
+rarity=R
+[/card]
+[card]
+primitive=Knickknack Ouphe
+id=633010
+rarity=R
+[/card]
+[card]
+primitive=Loamcrafter Faun
+id=633011
+rarity=R
+[/card]
+[card]
+primitive=Timber Paladin
+id=633012
+rarity=R
+[/card]
+[card]
+primitive=Ellivere of the Wild Court
+id=634090
+rarity=M
+[/card]
+[card]
+primitive=Tegwyll, Duke of Splendor
+id=634091
+rarity=M
+[/card]
+[card]
+primitive=Ajani's Chosen
+id=633285
+rarity=R
+[/card]
+[card]
+primitive=Angelic Destiny
+id=633286
+rarity=M
+[/card]
+[card]
+primitive=Archon of Sun's Grace
+id=633287
+rarity=R
+[/card]
+[card]
+primitive=Austere Command
+id=633288
+rarity=R
+[/card]
+[card]
+primitive=Celestial Archon
+id=633289
+rarity=R
+[/card]
+[card]
+primitive=Danitha Capashen, Paragon
+id=633290
+rarity=U
+[/card]
+[card]
+primitive=Daybreak Coronet
+id=633291
+rarity=R
+[/card]
+[card]
+primitive=Eidolon of Countless Battles
+id=633292
+rarity=R
+[/card]
+[card]
+primitive=Ethereal Armor
+id=633293
+rarity=C
+[/card]
+[card]
+primitive=Generous Gift
+id=633294
+rarity=U
+[/card]
+[card]
+primitive=Kor Spiritdancer
+id=633295
+rarity=R
+[/card]
+[card]
+primitive=Mantle of the Ancients
+id=633296
+rarity=R
+[/card]
+[card]
+primitive=Retether
+id=633298
+rarity=R
+[/card]
+[card]
+primitive=Sage's Reverie
+id=633299
+rarity=U
+[/card]
+[card]
+primitive=Shalai, Voice of Plenty
+id=633300
+rarity=R
+[/card]
+[card]
+primitive=Spectral Steel
+id=633301
+rarity=U
+[/card]
+[card]
+primitive=Starfield Mystic
+id=633302
+rarity=R
+[/card]
+[card]
+primitive=Sun Titan
+id=633303
+rarity=M
+[/card]
+[card]
+primitive=Swords to Plowshares
+id=633304
+rarity=U
+[/card]
+[card]
+primitive=Timely Ward
+id=633305
+rarity=R
+[/card]
+[card]
+primitive=Tithe Taker
+id=633306
+rarity=R
+[/card]
+[card]
+primitive=Transcendent Envoy
+id=633307
+rarity=C
+[/card]
+[card]
+primitive=Umbra Mystic
+id=633308
+rarity=R
+[/card]
+[card]
+primitive=Winds of Rath
+id=633309
+rarity=R
+[/card]
+[card]
+primitive=Arcane Denial
+id=633310
+rarity=C
+[/card]
+[card]
+primitive=Cloud of Faeries
+id=633312
+rarity=C
+[/card]
+[card]
+primitive=Consider
+id=633313
+rarity=C
+[/card]
+[card]
+primitive=Dig Through Time
+id=633314
+rarity=R
+[/card]
+[card]
+primitive=Distant Melody
+id=633315
+rarity=C
+[/card]
+[card]
+primitive=Fact or Fiction
+id=633316
+rarity=U
+[/card]
+[card]
+primitive=Faerie Formation
+id=633317
+rarity=R
+[/card]
+[card]
+primitive=Faerie Seer
+id=633318
+rarity=C
+[/card]
+[card]
+primitive=Frantic Search
+id=633319
+rarity=C
+[/card]
+[card]
+primitive=Glen Elendra Archmage
+id=633320
+rarity=R
+[/card]
+[card]
+primitive=Hullbreaker Horror
+id=633321
+rarity=R
+[/card]
+[card]
+primitive=Illusionist's Gambit
+id=633323
+rarity=R
+[/card]
+[card]
+primitive=Keep Watch
+id=633324
+rarity=C
+[/card]
+[card]
+primitive=Midnight Clock
+id=633325
+rarity=R
+[/card]
+[card]
+primitive=Nightveil Sprite
+id=633326
+rarity=U
+[/card]
+[card]
+primitive=Opt
+id=633327
+rarity=C
+[/card]
+[card]
+primitive=Perplexing Test
+id=633328
+rarity=R
+[/card]
+[card]
+primitive=Quickling
+id=633329
+rarity=U
+[/card]
+[card]
+primitive=Reality Shift
+id=633330
+rarity=U
+[/card]
+[card]
+primitive=Reconnaissance Mission
+id=633331
+rarity=U
+[/card]
+[card]
+primitive=Reflections of Littjara
+id=633332
+rarity=R
+[/card]
+[card]
+primitive=Repulse
+id=633333
+rarity=C
+[/card]
+[card]
+primitive=Run Away Together
+id=633334
+rarity=C
+[/card]
+[card]
+primitive=Scion of Oona
+id=633335
+rarity=R
+[/card]
+[card]
+primitive=Snap
+id=633336
+rarity=C
+[/card]
+[card]
+primitive=Sower of Temptation
+id=633337
+rarity=R
+[/card]
+[card]
+primitive=Theoretical Duplication
+id=633338
+rarity=R
+[/card]
+[card]
+primitive=Kindred Dominance
+id=633339
+rarity=R
+[/card]
+[card]
+primitive=Nightmare Unmaking
+id=633340
+rarity=R
+[/card]
+[card]
+primitive=Puppeteer Clique
+id=633341
+rarity=R
+[/card]
+[card]
+primitive=Rankle, Master of Pranks
+id=633342
+rarity=R
+[/card]
+[card]
+primitive=Reckless Spite
+id=633343
+rarity=U
+[/card]
+[card]
+primitive=Thrilling Encore
+id=633344
+rarity=R
+[/card]
+[card]
+primitive=Ancestral Mask
+id=633345
+rarity=C
+[/card]
+[card]
+primitive=Aura Gnarlid
+id=633346
+rarity=C
+[/card]
+[card]
+primitive=Bear Umbra
+id=633347
+rarity=R
+[/card]
+[card]
+primitive=Careful Cultivation
+id=633348
+rarity=C
+[/card]
+[card]
+primitive=Destiny Spinner
+id=633349
+rarity=U
+[/card]
+[card]
+primitive=Eidolon of Blossoms
+id=633350
+rarity=R
+[/card]
+[card]
+primitive=Enchantress's Presence
+id=633351
+rarity=R
+[/card]
+[card]
+primitive=Fertile Ground
+id=633352
+rarity=C
+[/card]
+[card]
+primitive=Indomitable Might
+id=633353
+rarity=R
+[/card]
+[card]
+primitive=Kenrith's Transformation
+id=633354
+rarity=U
+[/card]
+[card]
+primitive=Paradise Druid
+id=633355
+rarity=U
+[/card]
+[card]
+primitive=Rishkar's Expertise
+id=633356
+rarity=R
+[/card]
+[card]
+primitive=Sanctum Weaver
+id=633357
+rarity=R
+[/card]
+[card]
+primitive=Setessan Champion
+id=633358
+rarity=R
+[/card]
+[card]
+primitive=Snake Umbra
+id=633359
+rarity=U
+[/card]
+[card]
+primitive=Sylvan Ranger
+id=633360
+rarity=C
+[/card]
+[card]
+primitive=Utopia Sprawl
+id=633361
+rarity=C
+[/card]
+[card]
+primitive=Verdant Embrace
+id=633362
+rarity=R
+[/card]
+[card]
+primitive=Warbriar Blessing
+id=633363
+rarity=C
+[/card]
+[card]
+primitive=Glen Elendra Liege
+id=633364
+rarity=R
+[/card]
+[card]
+primitive=Halo Forager
+id=633365
+rarity=U
+[/card]
+[card]
+primitive=Jukai Naturalist
+id=633366
+rarity=U
+[/card]
+[card]
+primitive=Nymris, Oona's Trickster
+id=633367
+rarity=R
+[/card]
+[card]
+primitive=Oona, Queen of the Fae
+id=633368
+rarity=R
+[/card]
+[card]
+primitive=Pollenbright Wings
+id=633369
+rarity=U
+[/card]
+[card]
+primitive=Siona, Captain of the Pyleas
+id=633370
+rarity=U
+[/card]
+[card]
+primitive=Arcane Signet
+id=633371
+rarity=C
+[/card]
+[card]
+primitive=Dimir Signet
+id=633372
+rarity=U
+[/card]
+[card]
+primitive=Fellwar Stone
+id=633373
+rarity=U
+[/card]
+[card]
+primitive=Mind Stone
+id=633374
+rarity=C
+[/card]
+[card]
+primitive=Sol Ring
+id=633375
+rarity=U
+[/card]
+[card]
+primitive=Talisman of Dominance
+id=633376
+rarity=U
+[/card]
+[card]
+primitive=Wayfarer's Bauble
+id=633377
+rarity=C
+[/card]
+[card]
+primitive=Bojuka Bog
+id=633378
+rarity=C
+[/card]
+[card]
+primitive=Canopy Vista
+id=633379
+rarity=R
+[/card]
+[card]
+primitive=Castle Ardenvale
+id=633380
+rarity=R
+[/card]
+[card]
+primitive=Choked Estuary
+id=633381
+rarity=R
+[/card]
+[card]
+primitive=Command Tower
+id=633382
+rarity=C
+[/card]
+[card]
+primitive=Darkwater Catacombs
+id=633383
+rarity=R
+[/card]
+[card]
+primitive=Dimir Aqueduct
+id=633384
+rarity=U
+[/card]
+[card]
+primitive=Exotic Orchard
+id=633385
+rarity=R
+[/card]
+[card]
+primitive=Faerie Conclave
+id=633386
+rarity=U
+[/card]
+[card]
+primitive=Fortified Village
+id=633387
+rarity=R
+[/card]
+[card]
+primitive=Hall of Heliod's Generosity
+id=633388
+rarity=R
+[/card]
+[card]
+primitive=Krosan Verge
+id=633389
+rarity=U
+[/card]
+[card]
+primitive=Myriad Landscape
+id=633390
+rarity=U
+[/card]
+[card]
+primitive=Path of Ancestry
+id=633391
+rarity=C
+[/card]
+[card]
+primitive=Secluded Glen
+id=633392
+rarity=R
+[/card]
+[card]
+primitive=Sungrass Prairie
+id=633393
+rarity=R
+[/card]
+[card]
+primitive=Sunken Hollow
+id=633394
+rarity=R
+[/card]
+[card]
+primitive=Tainted Isle
+id=633395
+rarity=U
+[/card]
+[card]
+primitive=Temple of Deceit
+id=633396
+rarity=R
+[/card]
+[card]
+primitive=Temple of Plenty
+id=633397
+rarity=R
+[/card]
+[card]
+primitive=Temple of the False God
+id=633398
+rarity=U
+[/card]
+[card]
+primitive=Vitu-Ghazi, the City-Tree
+id=633399
+rarity=U
+[/card]
