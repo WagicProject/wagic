@@ -1,0 +1,171 @@
+[meta]
+author=Wagic Team
+name=Jurassic World Collection
+year=2023-11-17
+total=52
+[/meta]
+[card]
+primitive=Don't Move
+id=642672
+rarity=R
+[/card]
+[card]
+primitive=Cresting Mosasaurus
+id=642673
+rarity=R
+[/card]
+[card]
+primitive=Spitting Dilophosaurus
+id=642674
+rarity=R
+[/card]
+[card]
+primitive=Hunting Velociraptor
+id=642675
+rarity=R
+[/card]
+[card]
+primitive=Life Finds a Way
+id=642676
+rarity=R
+[/card]
+[card]
+primitive=Savage Order
+id=642677
+rarity=R
+[/card]
+[card]
+primitive=Welcome to . . .
+id=642678
+rarity=R
+[/card]
+[card]
+primitive=Jurassic Park
+id=642679
+rarity=T
+[/card]
+[card]
+primitive=Blue, Loyal Raptor
+id=642680
+rarity=R
+[/card]
+[card]
+primitive=Compy Swarm
+id=642681
+rarity=R
+[/card]
+[card]
+primitive=Ellie and Alan, Paleontologists
+id=642682
+rarity=R
+[/card]
+[card]
+primitive=Grim Giganotosaurus
+id=642683
+rarity=R
+[/card]
+[card]
+primitive=Henry Wu, InGen Geneticist
+id=642684
+rarity=R
+[/card]
+[card]
+primitive=Ian Malcolm, Chaotician
+id=642685
+rarity=R
+[/card]
+[card]
+primitive=Indominus Rex, Alpha
+id=642686
+rarity=R
+[/card]
+[card]
+primitive=Indoraptor, the Perfect Hybrid
+id=642687
+rarity=R
+[/card]
+[card]
+primitive=Owen Grady, Raptor Trainer
+id=642688
+rarity=R
+[/card]
+[card]
+primitive=Permission Denied
+id=642689
+rarity=R
+[/card]
+[card]
+primitive=Ravenous Tyrannosaurus
+id=642690
+rarity=R
+[/card]
+[card]
+primitive=Swooping Pteranodon
+id=642691
+rarity=R
+[/card]
+[card]
+primitive=Dino DNA
+id=642692
+rarity=R
+[/card]
+[card]
+primitive=Plains
+id=642577
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=642576
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=642579
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=642578
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=642581
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=642580
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=642583
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=642582
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=642584
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=642585
+rarity=L
+[/card]
+[card]
+primitive=Command Tower
+id=642587
+rarity=C
+[/card]
+[card]
+primitive=Command Tower
+id=642586
+rarity=T
+[/card]
