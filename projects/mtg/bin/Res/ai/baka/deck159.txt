@@ -1,0 +1,95 @@
+#NAME:Graaz Commander 2023
+#DESC:Deck concept thanks to punkeduard 
+#DESC:Original deck by vasarto77 (tappedout.net)
+#DESC:Refined for Wagic by Bob
+#HINT:castpriority(commander,creature,*)
+#HINT:combo hold(All is Dust|myhand)^cast(All is Dust|myhand)^restriction{type(creature|opponentbattlefield)~morethan~2}^totalmananeeded({7})
+Akroma's Memorial (*) * 1
+All is Dust (*) * 1
+Alloy Myr (*) * 1
+Ancient Tomb (*) * 1
+Arcbound Crusher (*) * 1
+Ash Barrens (*) * 1
+Bitterthorn, Nissa's Animus (*) * 1
+Blinkmoth Urn (*) * 1
+Bonded Construct (*) * 1
+Captain's Claws (*) * 1
+Chief of the Foundry (*) * 1
+Coat of Arms (*) * 1
+Commander's Plate (*) * 1
+Copper Myr (*) * 1
+Darksteel Citadel (*) * 1
+Darksteel Forge (*) * 1
+Darksteel Juggernaut (*) * 1
+Dolmen Gate (*) * 1
+Eldrazi Monument (*) * 1
+Environmental Sciences (*) * 1
+Etched Champion (*) * 1
+Fellwar Stone (*) * 1
+Field of the Dead (*) * 1
+Flayer Husk (*) * 1
+Forsaken Monument (*) * 1
+Foundry of the Consuls (*) * 1
+Gemini Engine (*) * 1
+Gold Myr (*) * 1
+Golem Foundry (*) * 1
+Guildless Commons (*) * 1
+Ichorclaw Myr (*) * 1
+Iron Apprentice (*) * 1
+Iron Myr (*) * 1
+It That Betrays (*) * 1
+Kozilek, Butcher of Truth (*) * 1
+Leaden Myr (*) * 1
+Mascot Exhibition (*) * 1
+Memnite (*) * 1
+Mishra's Self-Replicator (*) * 1
+Monkey Cage (*) * 1
+Mox Opal (*) * 1
+Myr Battlesphere (*) * 1
+Myr Retriever (*) * 1
+Myr Turbine (*) * 1
+Nettlecyst (*) * 1
+Oketra's Monument (*) * 1
+Ornithopter (*) * 1
+Ornithopter of Paradise (*) * 1
+Palladium Myr (*) * 1
+Patchwork Automaton (*) * 1
+Phyrexian Walker (*) * 1
+Plague Myr (*) * 1
+Pristine Talisman (*) * 1
+Scavenger Grounds (*) * 1
+Sea Gate Wreckage (*) * 1
+Searchlight Companion (*) * 1
+Shimmer Myr (*) * 1
+Shrine of the Forsaken Gods (*) * 1
+Signal Pest (*) * 1
+Silver Myr (*) * 1
+Skittering Cicada (*) * 1
+Skittering Invasion (*) * 1
+Sol Ring (*) * 1
+Sparring Construct (*) * 1
+Spawning Bed (*) * 1
+Spawnsire of Ulamog (*) * 1
+Steel Overseer (*) * 1
+Stonecoil Serpent (*) * 1
+Swiftfoot Boots (*) * 1
+Temple of the False God (*) * 1
+Thopter Assembly (*) * 1
+Thought Vessel (*) * 1
+Thran Dynamo (*) * 1
+Universal Automaton (*) * 1
+Unwinding Clock (*) * 1
+Urza's Mine (*) * 1
+Urza's Power Plant (*) * 1
+Urza's Saga
+Urza's Tower (*) * 1
+Urza's Workshop (*) * 1
+Void Winnower (*) * 1
+Wastes (CMM) (*) * 4
+Wastes (J22) (*) * 4
+Wastes (OGW) (*) * 4
+Wastes (TSR) (*) * 4
+Worn Powerstone (*) * 1
+Zhalfirin Void (*) * 1
+#CMD:Graaz, Unstoppable Juggernaut (*) * 1
+
