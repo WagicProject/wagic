@@ -236,6 +236,12 @@
 # Dragon Token
 #AUTO_DEFINE _DRAGONTOKEN_ create(Dragon:Creature Dragon:5/5:red:flying)
 
+# Eldrazi Scion Token
+#AUTO_DEFINE _ELDRAZISCION_ create(Eldrazi Scion:Creature Eldrazi Scion:1/1) and!( transforms((,newability[{S}:Add{C}])) forever )!
+
+# Eldrazi Spawn Token
+#AUTO_DEFINE _ELDRAZISPAWN_ create(Eldrazi Spawn:Creature Eldrazi Spawn:0/1) and!( transforms((,newability[{S}:Add{C}])) forever )!
+
 # Elephant Token
 #AUTO_DEFINE _ELEPHANTTOKEN_ create(Elephant:Creature Elephant:3/3:green)
 

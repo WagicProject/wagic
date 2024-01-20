@@ -94,6 +94,7 @@ public:
         COMMANDER_MODE_UNLOCKED,
         LAST_NAMED, //Any option after this does not look up in optionNames.
         SET_UNLOCKS = LAST_NAMED + 1, //For sets.
+        EXIT,
     };
 
     static int optionSet(int setID);

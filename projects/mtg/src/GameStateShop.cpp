@@ -79,9 +79,10 @@ GameStateShop::GameStateShop(GameApp* parent) :
     kOtherCardsString = _(kOtherCardsString);
     kCreditsString = _(kCreditsString);
     
-    cycleCardsButton = NEW InteractiveButton(NULL, kCycleCardsButtonId, Fonts::MAIN_FONT, "New Cards", SCREEN_WIDTH_F - 80, SCREEN_HEIGHT_F - 20, JGE_BTN_PRI);
+    cycleCardsButton = NEW InteractiveButton(NULL, kCycleCardsButtonId, Fonts::MAIN_FONT, "New Cards", SCREEN_WIDTH_F - 110, SCREEN_HEIGHT_F - 20, JGE_BTN_PRI);
     
-    showCardListButton = NEW InteractiveButton(NULL, kShowCardListButtonId, Fonts::MAIN_FONT, "Show List", SCREEN_WIDTH_F - 150, SCREEN_HEIGHT_F - 20, JGE_BTN_SEC);
+    showCardListButton = NEW InteractiveButton(NULL, kShowCardListButtonId, Fonts::MAIN_FONT, "Show List", SCREEN_WIDTH_F - 170, SCREEN_HEIGHT_F - 20, JGE_BTN_SEC);
+    shopMenuButton = NEW InteractiveButton(NULL, kMenuButtonId, Fonts::MAIN_FONT, "Menu", SCREEN_WIDTH_F - 45, SCREEN_HEIGHT_F - 20, JGE_BTN_MENU);
     disablePurchase = false;
     clearInput = false;
 }
@@ -90,6 +91,7 @@ GameStateShop::~GameStateShop()
 {
     SAFE_DELETE( cycleCardsButton );
     SAFE_DELETE( showCardListButton );
+    SAFE_DELETE( shopMenuButton );
     End();
 }
 
@@ -642,9 +644,9 @@ void GameStateShop::Update(float dt)
         else if (shopMenu)
         {
 #if defined (IOS) || defined (ANDROID)
-            if ((cycleCardsButton->ButtonPressed() || showCardListButton->ButtonPressed()))
+            if ((cycleCardsButton->ButtonPressed() || showCardListButton->ButtonPressed() || shopMenuButton->ButtonPressed()))
 #else 
-            if ( (btn == JGE_BTN_OK) && (cycleCardsButton->ButtonPressed() || showCardListButton->ButtonPressed()))
+            if ( (btn == JGE_BTN_OK) && (cycleCardsButton->ButtonPressed() || showCardListButton->ButtonPressed() || shopMenuButton->ButtonPressed()))
 #endif
             {
                 disablePurchase = true;
@@ -691,12 +693,14 @@ void GameStateShop::enableButtons()
 {
     cycleCardsButton->setIsSelectionValid(true);
     showCardListButton->setIsSelectionValid(true);
+    shopMenuButton->setIsSelectionValid(true);
 }
 
 void GameStateShop::renderButtons()
 {
     cycleCardsButton->Render();
     showCardListButton->Render();
+    shopMenuButton->Render();
 }
 
 void GameStateShop::Render()
