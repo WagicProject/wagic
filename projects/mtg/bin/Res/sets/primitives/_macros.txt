@@ -278,5 +278,8 @@
 # Wolf Token
 #AUTO_DEFINE _WOLFTOKEN_ create(Wolf:creature Wolf:2/2:green)
 
+# White Vampire with lifelink Token
+#AUTO_DEFINE _WHITEVAMPIRE_ create(vampire:creature vampire:1/1:white:lifelink)
+
 # Zombie Token
 #AUTO_DEFINE _ZOMBIETOKEN_ create(zombie:creature zombie:2/2:black)

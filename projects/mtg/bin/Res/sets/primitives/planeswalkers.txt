@@ -310,9 +310,9 @@ subtype=Ashiok
 [card]
 name=Ashiok, Nightmare Muse
 auto=counter(0/0,5,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Create a Blue black nightmare) token(Nightmare Nig)
-auto={C(0/0,-3,Loyalty)}:name(-3: Return target nonland and exiles) moveTo(ownerhand) target(*[-land]) && moveTo(exile) NotATarget(*|opponenthand)
-auto={C(0/0,-7,Loyalty)}:name(-7: Cast up to three cards from exile) castcard(normal) target(*|opponentExile) && castcard(normal) target(*|opponentExile) && castcard(normal) target(*|opponentExile)
+auto={C(0/0,1,Loyalty)}:name(+1: Create a Blue black nightmare) create(Nightmare:Nightmare creature:2/3:blue:black) and!( transforms((,newability[@combat(attacking) source(this):ingest:2 opponent],newability[@combat(blocking) source(this):ingest:2 opponent])) forever )!
+auto={C(0/0,-3,Loyalty)}:name(-3: Return target nonland and exiles) moveTo(ownerhand) target(*[-land]) && ability$! moveto(exile) notATarget(*|myhand)!$ targetcontroller
+auto={C(0/0,-7,Loyalty)}:name(-7: Cast up to three cards from exile) castcard(normal) target(<upto:3>*|opponentExile)
 text=+1: Create a 2/3 blue and black Nightmare creature token with "Whenever this creature attacks or blocks, each opponent exiles the top two cards of their library." -- -3: Return target nonland permanent to its owner's hand, then that player exiles a card from their hand. -- -7: You may cast up to three face-up cards your opponents own from exile without paying their mana costs.
 mana={3}{U}{B}
 type=Legendary Planeswalker
@@ -2071,7 +2071,7 @@ name=Liliana, Untouched by Death
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Put the top three cards of your library...) ability$!name(Damage opponent) if type(zombie[zpos<=3]|myLibrary)~morethan~0 then life:-2 opponent!$ controller && ability$!name(Gain life) if type(zombie[zpos<=3]|myLibrary)~morethan~0 then life:2 controller!$ controller && ability$!name(Put in graveyard) deplete:3 controller!$ controller
 auto={C(0/0,-2,Loyalty)}:name(-2: Target creature gets -X/-X until end...) target(creature) foreach(zombie) -1/-1
-auto={C(0/0,-3,Loyalty)}:name(-3: Yoy may cast Zombie cards...) all(creature[zombie]|myGraveyard) CanPlayFromGraveyard
+auto={C(0/0,-3,Loyalty)}:name(-3: You may cast Zombie cards...) all(creature[zombie]|myGraveyard) CanPlayFromGraveyard
 text=+1: Put the top three cards of your library into your graveyard. If at least one of them is a Zombie card, each opponent loses 2 life and you gain 2 life. -- -2: Target creature gets -X/-X until end of turn, where X is the number of Zombies you control. -- -3: You may cast Zombie cards from your graveyard this turn.
 mana={2}{B}{B}
 type=Legendary Planeswalker
