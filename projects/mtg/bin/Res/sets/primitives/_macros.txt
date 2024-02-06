@@ -233,6 +233,9 @@
 # Beast Token
 #AUTO_DEFINE _BEASTTOKEN_ create(Beast:Creature Beast:3/3:green)
 
+# Detective Token
+#AUTO_DEFINE _DETECTIVETOKEN_ create(detective:creature detective:2/2:white:blue)
+
 # Dragon Token
 #AUTO_DEFINE _DRAGONTOKEN_ create(Dragon:Creature Dragon:5/5:red:flying)
 

@@ -1846,7 +1846,7 @@ name=Kaya, Intangible Slayer
 auto=counter(0/0,6,loyalty)
 abilities=opponentshroud
 auto={C(0/0,+2,Loyalty)}:name(+2: Gain life) lifeleech:-3 opponent
-auto={C(0/0,0,Loyalty)}:name(+0: Draw 2 cards) draw:2 controller && ability$!may name(Scry 1) _SCRY_(1)!$ opponent
+auto={C(0/0,0,Loyalty)}:name(+0: Draw 2 cards) draw:2 controller && ability$!may name(Scry 1) _SCRY1_!$ opponent
 auto={C(0/0,-3,Loyalty)}:name(-3: Exile enchantment or creature) target(*[creature;enchantment]|battlefield) moveto(exile) and!( if cantargetcard(*[-aura]|*) then clone and!( transforms((Spirit Creature,setpower=1,settoughness=1,newability[becomes(^^white) forever],newability[flying])) forever )! )! 
 text=Hexproof -- [+2]: Each opponent loses 3 life and you gain 3 life. -- [0]: You draw two cards. Then each opponent may scry 1. -- [-3]: Exile target creature or enchantment. If it wasn't an Aura, create a token that's a copy of it, except it's a 1/1 white Spirit creature with flying in addition to its other types.
 mana={3}{W}{W}{B}{B}
