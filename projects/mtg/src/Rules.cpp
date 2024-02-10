@@ -459,7 +459,7 @@ Player * Rules::loadPlayerRandomCommander(GameObserver* observer, int isAI)
         numLands /= colors.size() - 1;
         for (unsigned int i = 1; i < colors.size(); i++)
         {
-            tempDeck->addRandomCards(numLands, 0, 0, Constants::RARITY_L, lands[colors.data()[i]].c_str());
+            tempDeck->addRandomCards(numLands, 0, 0, -1, lands[colors.data()[i]].c_str());
         }
     }
     else { tempDeck->addRandomCards(numLands, 0, 0, Constants::RARITY_L); }

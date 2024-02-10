@@ -2104,7 +2104,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         observer->addObserver(NEW MTGTempFlashBackRule(observer, -1));
         return NULL;
     }
-    //alternative cost type flashback
+    //alternative cost type bestow
     found = s.find("bestowrule");
     if (found != string::npos)
     {
