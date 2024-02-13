@@ -1,0 +1,2201 @@
+[meta]
+author=Wagic Team
+name=Murders at Karlov Manor
+year=2024-02-09
+total=451
+[/meta]
+[card]
+primitive=Case of the Shattered Pact
+id=646565
+rarity=U
+[/card]
+[card]
+primitive=Absolving Lammasu
+id=646566
+rarity=U
+[/card]
+[card]
+primitive=Assemble the Players
+id=646567
+rarity=R
+[/card]
+[card]
+primitive=Aurelia's Vindicator
+id=646568
+rarity=M
+[/card]
+[card]
+primitive=Auspicious Arrival
+id=646569
+rarity=C
+[/card]
+[card]
+primitive=Call a Surprise Witness
+id=646570
+rarity=U
+[/card]
+[card]
+primitive=Case File Auditor
+id=646826
+rarity=U
+[/card]
+[card]
+primitive=Case of the Gateway Express
+id=646571
+rarity=U
+[/card]
+[card]
+primitive=Case of the Pilfered Proof
+id=646572
+rarity=U
+[/card]
+[card]
+primitive=Case of the Uneaten Feast
+id=646573
+rarity=R
+[/card]
+[card]
+primitive=Defenestrated Phantom
+id=646574
+rarity=C
+[/card]
+[card]
+primitive=Delney, Streetwise Lookout
+id=646575
+rarity=M
+[/card]
+[card]
+primitive=Doorkeeper Thrull
+id=646576
+rarity=R
+[/card]
+[card]
+primitive=Due Diligence
+id=646577
+rarity=C
+[/card]
+[card]
+primitive=Essence of Antiquity
+id=646578
+rarity=U
+[/card]
+[card]
+primitive=Forum Familiar
+id=646579
+rarity=U
+[/card]
+[card]
+primitive=Griffnaut Tracker
+id=646580
+rarity=C
+[/card]
+[card]
+primitive=Haazda Vigilante
+id=646581
+rarity=C
+[/card]
+[card]
+primitive=Inside Source
+id=646582
+rarity=C
+[/card]
+[card]
+primitive=Karlov Watchdog
+id=646583
+rarity=U
+[/card]
+[card]
+primitive=Krovod Haunch
+id=646584
+rarity=U
+[/card]
+[card]
+primitive=Make Your Move
+id=646585
+rarity=C
+[/card]
+[card]
+primitive=Makeshift Binding
+id=646586
+rarity=C
+[/card]
+[card]
+primitive=Marketwatch Phantom
+id=646587
+rarity=C
+[/card]
+[card]
+primitive=Museum Nightwatch
+id=646588
+rarity=C
+[/card]
+[card]
+primitive=Neighborhood Guardian
+id=646589
+rarity=U
+[/card]
+[card]
+primitive=No Witnesses
+id=646590
+rarity=R
+[/card]
+[card]
+primitive=Not on My Watch
+id=646591
+rarity=U
+[/card]
+[card]
+primitive=Novice Inspector
+id=646592
+rarity=C
+[/card]
+[card]
+primitive=On the Job
+id=646593
+rarity=C
+[/card]
+[card]
+primitive=Perimeter Enforcer
+id=646594
+rarity=U
+[/card]
+[card]
+primitive=Sanctuary Wall
+id=646595
+rarity=U
+[/card]
+[card]
+primitive=Seasoned Consultant
+id=646596
+rarity=C
+[/card]
+[card]
+primitive=Tenth District Hero
+id=646597
+rarity=R
+[/card]
+[card]
+primitive=Unyielding Gatekeeper
+id=646598
+rarity=R
+[/card]
+[card]
+primitive=Wojek Investigator
+id=646827
+rarity=R
+[/card]
+[card]
+primitive=Wrench
+id=646599
+rarity=U
+[/card]
+[card]
+primitive=Agency Outfitter
+id=646600
+rarity=U
+[/card]
+[card]
+primitive=Behind the Mask
+id=646601
+rarity=C
+[/card]
+[card]
+primitive=Benthic Criminologists
+id=646602
+rarity=C
+[/card]
+[card]
+primitive=Bubble Smuggler
+id=646603
+rarity=C
+[/card]
+[card]
+primitive=Burden of Proof
+id=646604
+rarity=U
+[/card]
+[card]
+primitive=Candlestick
+id=646605
+rarity=U
+[/card]
+[card]
+primitive=Case of the Filched Falcon
+id=646606
+rarity=U
+[/card]
+[card]
+primitive=Case of the Ransacked Lab
+id=646607
+rarity=R
+[/card]
+[card]
+primitive=Cold Case Cracker
+id=646608
+rarity=C
+[/card]
+[card]
+primitive=Conspiracy Unraveler
+id=646609
+rarity=M
+[/card]
+[card]
+primitive=Coveted Falcon
+id=646610
+rarity=R
+[/card]
+[card]
+primitive=Crimestopper Sprite
+id=646611
+rarity=C
+[/card]
+[card]
+primitive=Cryptic Coat
+id=646612
+rarity=R
+[/card]
+[card]
+primitive=Curious Inquiry
+id=646613
+rarity=U
+[/card]
+[card]
+primitive=Deduce
+id=646614
+rarity=C
+[/card]
+[card]
+primitive=Dramatic Accusation
+id=646615
+rarity=C
+[/card]
+[card]
+primitive=Eliminate the Impossible
+id=646616
+rarity=U
+[/card]
+[card]
+primitive=Exit Specialist
+id=646617
+rarity=U
+[/card]
+[card]
+primitive=Fae Flight
+id=646618
+rarity=U
+[/card]
+[card]
+primitive=Forensic Gadgeteer
+id=646619
+rarity=R
+[/card]
+[card]
+primitive=Forensic Researcher
+id=646620
+rarity=U
+[/card]
+[card]
+primitive=Furtive Courier
+id=646621
+rarity=U
+[/card]
+[card]
+primitive=Hotshot Investigators
+id=646622
+rarity=C
+[/card]
+[card]
+primitive=Intrude on the Mind
+id=646623
+rarity=M
+[/card]
+[card]
+primitive=Jaded Analyst
+id=646624
+rarity=C
+[/card]
+[card]
+primitive=Living Conundrum
+id=646625
+rarity=U
+[/card]
+[card]
+primitive=Lost in the Maze
+id=646626
+rarity=R
+[/card]
+[card]
+primitive=Mistway Spy
+id=646627
+rarity=U
+[/card]
+[card]
+primitive=Out Cold
+id=646628
+rarity=C
+[/card]
+[card]
+primitive=Proft's Eidetic Memory
+id=646629
+rarity=R
+[/card]
+[card]
+primitive=Projektor Inspector
+id=646630
+rarity=C
+[/card]
+[card]
+primitive=Reasonable Doubt
+id=646631
+rarity=C
+[/card]
+[card]
+primitive=Reenact the Crime
+id=646632
+rarity=R
+[/card]
+[card]
+primitive=Steamcore Scholar
+id=646633
+rarity=R
+[/card]
+[card]
+primitive=Sudden Setback
+id=646828
+rarity=U
+[/card]
+[card]
+primitive=Surveillance Monitor
+id=646829
+rarity=U
+[/card]
+[card]
+primitive=Unauthorized Exit
+id=646634
+rarity=C
+[/card]
+[card]
+primitive=Agency Coroner
+id=646635
+rarity=C
+[/card]
+[card]
+primitive=Alley Assailant
+id=646636
+rarity=C
+[/card]
+[card]
+primitive=Barbed Servitor
+id=646637
+rarity=R
+[/card]
+[card]
+primitive=Basilica Stalker
+id=646638
+rarity=C
+[/card]
+[card]
+primitive=Case of the Gorgon's Kiss
+id=646830
+rarity=U
+[/card]
+[card]
+primitive=Case of the Stashed Skeleton
+id=646639
+rarity=R
+[/card]
+[card]
+primitive=Cerebral Confiscation
+id=646640
+rarity=C
+[/card]
+[card]
+primitive=Clandestine Meddler
+id=646831
+rarity=U
+[/card]
+[card]
+primitive=Deadly Cover-Up
+id=646641
+rarity=R
+[/card]
+[card]
+primitive=Extract a Confession
+id=646642
+rarity=C
+[/card]
+[card]
+primitive=Festerleech
+id=646643
+rarity=U
+[/card]
+[card]
+primitive=Homicide Investigator
+id=646644
+rarity=R
+[/card]
+[card]
+primitive=Hunted Bonebrute
+id=646645
+rarity=R
+[/card]
+[card]
+primitive=Illicit Masquerade
+id=646646
+rarity=R
+[/card]
+[card]
+primitive=It Doesn't Add Up
+id=646647
+rarity=U
+[/card]
+[card]
+primitive=Lead Pipe
+id=646648
+rarity=U
+[/card]
+[card]
+primitive=Leering Onlooker
+id=646649
+rarity=U
+[/card]
+[card]
+primitive=Long Goodbye
+id=646650
+rarity=U
+[/card]
+[card]
+primitive=Macabre Reconstruction
+id=646651
+rarity=C
+[/card]
+[card]
+primitive=Massacre Girl, Known Killer
+id=646652
+rarity=M
+[/card]
+[card]
+primitive=Murder
+id=646653
+rarity=C
+[/card]
+[card]
+primitive=Nightdrinker Moroii
+id=646654
+rarity=U
+[/card]
+[card]
+primitive=Outrageous Robbery
+id=646655
+rarity=R
+[/card]
+[card]
+primitive=Persuasive Interrogators
+id=646656
+rarity=U
+[/card]
+[card]
+primitive=Polygraph Orb
+id=646657
+rarity=U
+[/card]
+[card]
+primitive=Presumed Dead
+id=646658
+rarity=U
+[/card]
+[card]
+primitive=Repeat Offender
+id=646659
+rarity=C
+[/card]
+[card]
+primitive=Rot Farm Mortipede
+id=646660
+rarity=C
+[/card]
+[card]
+primitive=Slice from the Shadows
+id=646661
+rarity=C
+[/card]
+[card]
+primitive=Slimy Dualleech
+id=646662
+rarity=U
+[/card]
+[card]
+primitive=Snarling Gorehound
+id=646663
+rarity=C
+[/card]
+[card]
+primitive=Soul Enervation
+id=646664
+rarity=U
+[/card]
+[card]
+primitive=Toxin Analysis
+id=646665
+rarity=C
+[/card]
+[card]
+primitive=Undercity Eliminator
+id=646666
+rarity=U
+[/card]
+[card]
+primitive=Unscrupulous Agent
+id=646667
+rarity=C
+[/card]
+[card]
+primitive=Vein Ripper
+id=646668
+rarity=M
+[/card]
+[card]
+primitive=Anzrag's Rampage
+id=646669
+rarity=R
+[/card]
+[card]
+primitive=Bolrac-Clan Basher
+id=646670
+rarity=U
+[/card]
+[card]
+primitive=Case of the Burning Masks
+id=646671
+rarity=U
+[/card]
+[card]
+primitive=Case of the Crimson Pulse
+id=646672
+rarity=R
+[/card]
+[card]
+primitive=Caught Red-Handed
+id=646673
+rarity=U
+[/card]
+[card]
+primitive=The Chase Is On
+id=646674
+rarity=C
+[/card]
+[card]
+primitive=Concealed Weapon
+id=646675
+rarity=U
+[/card]
+[card]
+primitive=Connecting the Dots
+id=646676
+rarity=R
+[/card]
+[card]
+primitive=Convenient Target
+id=646677
+rarity=U
+[/card]
+[card]
+primitive=Cornered Crook
+id=646678
+rarity=U
+[/card]
+[card]
+primitive=Crime Novelist
+id=646679
+rarity=U
+[/card]
+[card]
+primitive=Demand Answers
+id=646680
+rarity=C
+[/card]
+[card]
+primitive=Expedited Inheritance
+id=646681
+rarity=M
+[/card]
+[card]
+primitive=Expose the Culprit
+id=646682
+rarity=U
+[/card]
+[card]
+primitive=Felonious Rage
+id=646683
+rarity=C
+[/card]
+[card]
+primitive=Frantic Scapegoat
+id=646684
+rarity=U
+[/card]
+[card]
+primitive=Fugitive Codebreaker
+id=646685
+rarity=R
+[/card]
+[card]
+primitive=Galvanize
+id=646686
+rarity=C
+[/card]
+[card]
+primitive=Gearbane Orangutan
+id=646687
+rarity=C
+[/card]
+[card]
+primitive=Goblin Maskmaker
+id=646688
+rarity=C
+[/card]
+[card]
+primitive=Harried Dronesmith
+id=646689
+rarity=U
+[/card]
+[card]
+primitive=Incinerator of the Guilty
+id=646690
+rarity=M
+[/card]
+[card]
+primitive=Innocent Bystander
+id=646691
+rarity=C
+[/card]
+[card]
+primitive=Knife
+id=646692
+rarity=U
+[/card]
+[card]
+primitive=Krenko, Baron of Tin Street
+id=646693
+rarity=R
+[/card]
+[card]
+primitive=Krenko's Buzzcrusher
+id=646694
+rarity=R
+[/card]
+[card]
+primitive=Lamplight Phoenix
+id=646695
+rarity=R
+[/card]
+[card]
+primitive=Offender at Large
+id=646696
+rarity=C
+[/card]
+[card]
+primitive=Person of Interest
+id=646697
+rarity=C
+[/card]
+[card]
+primitive=Pyrotechnic Performer
+id=646698
+rarity=R
+[/card]
+[card]
+primitive=Reckless Detective
+id=646699
+rarity=U
+[/card]
+[card]
+primitive=Red Herring
+id=646700
+rarity=C
+[/card]
+[card]
+primitive=Rubblebelt Braggart
+id=646701
+rarity=C
+[/card]
+[card]
+primitive=Shock
+id=646702
+rarity=C
+[/card]
+[card]
+primitive=Suspicious Detonation
+id=646703
+rarity=C
+[/card]
+[card]
+primitive=Torch the Witness
+id=646832
+rarity=U
+[/card]
+[card]
+primitive=Vengeful Tracker
+id=646704
+rarity=U
+[/card]
+[card]
+primitive=Aftermath Analyst
+id=646705
+rarity=U
+[/card]
+[card]
+primitive=Airtight Alibi
+id=646706
+rarity=C
+[/card]
+[card]
+primitive=Analyze the Pollen
+id=646707
+rarity=R
+[/card]
+[card]
+primitive=Archdruid's Charm
+id=646708
+rarity=R
+[/card]
+[card]
+primitive=Audience with Trostani
+id=646709
+rarity=R
+[/card]
+[card]
+primitive=Axebane Ferox
+id=646710
+rarity=R
+[/card]
+[card]
+primitive=Bite Down on Crime
+id=646711
+rarity=C
+[/card]
+[card]
+primitive=Case of the Locked Hothouse
+id=646712
+rarity=R
+[/card]
+[card]
+primitive=Case of the Trampled Garden
+id=646713
+rarity=U
+[/card]
+[card]
+primitive=Chalk Outline
+id=646714
+rarity=U
+[/card]
+[card]
+primitive=Culvert Ambusher
+id=646715
+rarity=U
+[/card]
+[card]
+primitive=Fanatical Strength
+id=646716
+rarity=C
+[/card]
+[card]
+primitive=Flourishing Bloom-Kin
+id=646717
+rarity=U
+[/card]
+[card]
+primitive=Get a Leg Up
+id=646718
+rarity=U
+[/card]
+[card]
+primitive=Glint Weaver
+id=646719
+rarity=U
+[/card]
+[card]
+primitive=Greenbelt Radical
+id=646720
+rarity=U
+[/card]
+[card]
+primitive=Hard-Hitting Question
+id=646721
+rarity=U
+[/card]
+[card]
+primitive=Hedge Whisperer
+id=646722
+rarity=U
+[/card]
+[card]
+primitive=Hide in Plain Sight
+id=646723
+rarity=R
+[/card]
+[card]
+primitive=A Killer Among Us
+id=646724
+rarity=U
+[/card]
+[card]
+primitive=Loxodon Eavesdropper
+id=646725
+rarity=C
+[/card]
+[card]
+primitive=Nervous Gardener
+id=646726
+rarity=C
+[/card]
+[card]
+primitive=Pick Your Poison
+id=646727
+rarity=C
+[/card]
+[card]
+primitive=Pompous Gadabout
+id=646728
+rarity=U
+[/card]
+[card]
+primitive=The Pride of Hull Clade
+id=646729
+rarity=M
+[/card]
+[card]
+primitive=Rope
+id=646730
+rarity=U
+[/card]
+[card]
+primitive=Rubblebelt Maverick
+id=646731
+rarity=C
+[/card]
+[card]
+primitive=Sample Collector
+id=646732
+rarity=U
+[/card]
+[card]
+primitive=Sharp-Eyed Rookie
+id=646733
+rarity=R
+[/card]
+[card]
+primitive=Slime Against Humanity
+id=646734
+rarity=C
+[/card]
+[card]
+primitive=They Went This Way
+id=646735
+rarity=C
+[/card]
+[card]
+primitive=Topiary Panther
+id=646736
+rarity=C
+[/card]
+[card]
+primitive=Tunnel Tipster
+id=646737
+rarity=C
+[/card]
+[card]
+primitive=Undergrowth Recon
+id=646738
+rarity=M
+[/card]
+[card]
+primitive=Vengeful Creeper
+id=646739
+rarity=C
+[/card]
+[card]
+primitive=Vitu-Ghazi Inspector
+id=646740
+rarity=C
+[/card]
+[card]
+primitive=Agrus Kos, Spirit of Justice
+id=646741
+rarity=M
+[/card]
+[card]
+primitive=Alquist Proft, Master Sleuth
+id=646742
+rarity=M
+[/card]
+[card]
+primitive=Anzrag, the Quake-Mole
+id=646743
+rarity=M
+[/card]
+[card]
+primitive=Assassin's Trophy
+id=646744
+rarity=R
+[/card]
+[card]
+primitive=Aurelia, the Law Above
+id=646745
+rarity=R
+[/card]
+[card]
+primitive=Blood Spatter Analysis
+id=646746
+rarity=R
+[/card]
+[card]
+primitive=Break Out
+id=646833
+rarity=U
+[/card]
+[card]
+primitive=Buried in the Garden
+id=646747
+rarity=U
+[/card]
+[card]
+primitive=Coerced to Kill
+id=646748
+rarity=U
+[/card]
+[card]
+primitive=Crowd-Control Warden
+id=646749
+rarity=C
+[/card]
+[card]
+primitive=Curious Cadaver
+id=646750
+rarity=U
+[/card]
+[card]
+primitive=Deadly Complication
+id=646751
+rarity=U
+[/card]
+[card]
+primitive=Detective's Satchel
+id=646752
+rarity=U
+[/card]
+[card]
+primitive=Dog Walker
+id=646753
+rarity=C
+[/card]
+[card]
+primitive=Doppelgang
+id=646754
+rarity=R
+[/card]
+[card]
+primitive=Drag the Canal
+id=646755
+rarity=R
+[/card]
+[card]
+primitive=Etrata, Deadly Fugitive
+id=646756
+rarity=M
+[/card]
+[card]
+primitive=Evidence Examiner
+id=646757
+rarity=U
+[/card]
+[card]
+primitive=Ezrim, Agency Chief
+id=646758
+rarity=R
+[/card]
+[card]
+primitive=Faerie Snoop
+id=646759
+rarity=C
+[/card]
+[card]
+primitive=Gadget Technician
+id=646760
+rarity=C
+[/card]
+[card]
+primitive=Gleaming Geardrake
+id=646761
+rarity=U
+[/card]
+[card]
+primitive=Granite Witness
+id=646762
+rarity=C
+[/card]
+[card]
+primitive=Ill-Timed Explosion
+id=646763
+rarity=R
+[/card]
+[card]
+primitive=Insidious Roots
+id=646764
+rarity=U
+[/card]
+[card]
+primitive=Izoni, Center of the Web
+id=646765
+rarity=R
+[/card]
+[card]
+primitive=Judith, Carnage Connoisseur
+id=646766
+rarity=R
+[/card]
+[card]
+primitive=Kaya, Spirits' Justice
+id=646767
+rarity=M
+[/card]
+[card]
+primitive=Kellan, Inquisitive Prodigy
+id=646768
+rarity=R
+[/card]
+[card]
+primitive=Tail the Suspect
+id=646768
+rarity=T
+[/card]
+[card]
+primitive=Kraul Whipcracker
+id=646834
+rarity=U
+[/card]
+[card]
+primitive=Kylox, Visionary Inventor
+id=646769
+rarity=R
+[/card]
+[card]
+primitive=Kylox's Voltstrider
+id=646770
+rarity=M
+[/card]
+[card]
+primitive=Lazav, Wearer of Faces
+id=646771
+rarity=R
+[/card]
+[card]
+primitive=Leyline of the Guildpact
+id=646772
+rarity=R
+[/card]
+[card]
+primitive=Lightning Helix
+id=646773
+rarity=U
+[/card]
+[card]
+primitive=Meddling Youths
+id=646774
+rarity=U
+[/card]
+[card]
+primitive=Niv-Mizzet, Guildpact
+id=646775
+rarity=R
+[/card]
+[card]
+primitive=No More Lies
+id=646776
+rarity=U
+[/card]
+[card]
+primitive=Officious Interrogation
+id=646777
+rarity=R
+[/card]
+[card]
+primitive=Private Eye
+id=646778
+rarity=U
+[/card]
+[card]
+primitive=Rakdos, Patron of Chaos
+id=646779
+rarity=M
+[/card]
+[card]
+primitive=Rakish Scoundrel
+id=646780
+rarity=C
+[/card]
+[card]
+primitive=Relive the Past
+id=646781
+rarity=R
+[/card]
+[card]
+primitive=Repulsive Mutation
+id=646782
+rarity=U
+[/card]
+[card]
+primitive=Riftburst Hellion
+id=646783
+rarity=C
+[/card]
+[card]
+primitive=Rune-Brand Juggler
+id=646784
+rarity=U
+[/card]
+[card]
+primitive=Sanguine Savior
+id=646785
+rarity=C
+[/card]
+[card]
+primitive=Shady Informant
+id=646786
+rarity=C
+[/card]
+[card]
+primitive=Soul Search
+id=646787
+rarity=U
+[/card]
+[card]
+primitive=Sumala Sentry
+id=646788
+rarity=U
+[/card]
+[card]
+primitive=Teysa, Opulent Oligarch
+id=646789
+rarity=R
+[/card]
+[card]
+primitive=Tin Street Gossip
+id=646790
+rarity=U
+[/card]
+[card]
+primitive=Tolsimir, Midnight's Light
+id=646791
+rarity=R
+[/card]
+[card]
+primitive=Treacherous Greed
+id=646792
+rarity=R
+[/card]
+[card]
+primitive=Trostani, Three Whispers
+id=646793
+rarity=M
+[/card]
+[card]
+primitive=Undercover Crocodelf
+id=646835
+rarity=C
+[/card]
+[card]
+primitive=Urgent Necropsy
+id=646794
+rarity=M
+[/card]
+[card]
+primitive=Vannifar, Evolved Enigma
+id=646795
+rarity=M
+[/card]
+[card]
+primitive=Warleader's Call
+id=646796
+rarity=R
+[/card]
+[card]
+primitive=Wispdrinker Vampire
+id=646797
+rarity=U
+[/card]
+[card]
+primitive=Worldsoul's Rage
+id=646798
+rarity=R
+[/card]
+[card]
+primitive=Yarus, Roar of the Old Gods
+id=646799
+rarity=R
+[/card]
+[card]
+primitive=Cease
+id=646800
+rarity=U
+[/card]
+[card]
+primitive=Desist
+id=646800
+rarity=T
+[/card]
+[card]
+primitive=Flotsam
+id=646801
+rarity=U
+[/card]
+[card]
+primitive=Jetsam
+id=646801
+rarity=T
+[/card]
+[card]
+primitive=Fuss
+id=646802
+rarity=U
+[/card]
+[card]
+primitive=Bother
+id=646802
+rarity=T
+[/card]
+[card]
+primitive=Hustle
+id=646803
+rarity=U
+[/card]
+[card]
+primitive=Bustle
+id=646803
+rarity=T
+[/card]
+[card]
+primitive=Push
+id=646804
+rarity=U
+[/card]
+[card]
+primitive=Pull
+id=646804
+rarity=T
+[/card]
+[card]
+primitive=Cryptex
+id=646805
+rarity=R
+[/card]
+[card]
+primitive=Gravestone Strider
+id=646806
+rarity=C
+[/card]
+[card]
+primitive=Lumbering Laundry
+id=646807
+rarity=U
+[/card]
+[card]
+primitive=Magnetic Snuffler
+id=646808
+rarity=U
+[/card]
+[card]
+primitive=Magnifying Glass
+id=646809
+rarity=C
+[/card]
+[card]
+primitive=Sanitation Automaton
+id=646810
+rarity=C
+[/card]
+[card]
+primitive=Thinking Cap
+id=646811
+rarity=C
+[/card]
+[card]
+primitive=Branch of Vitu-Ghazi
+id=646812
+rarity=U
+[/card]
+[card]
+primitive=Commercial District
+id=646813
+rarity=R
+[/card]
+[card]
+primitive=Elegant Parlor
+id=646814
+rarity=R
+[/card]
+[card]
+primitive=Escape Tunnel
+id=646815
+rarity=C
+[/card]
+[card]
+primitive=Hedge Maze
+id=646816
+rarity=R
+[/card]
+[card]
+primitive=Lush Portico
+id=646817
+rarity=R
+[/card]
+[card]
+primitive=Meticulous Archive
+id=646818
+rarity=R
+[/card]
+[card]
+primitive=Public Thoroughfare
+id=646819
+rarity=C
+[/card]
+[card]
+primitive=Raucous Theater
+id=646820
+rarity=R
+[/card]
+[card]
+primitive=Scene of the Crime
+id=646821
+rarity=U
+[/card]
+[card]
+primitive=Shadowy Backstreet
+id=646822
+rarity=R
+[/card]
+[card]
+primitive=Thundering Falls
+id=646823
+rarity=R
+[/card]
+[card]
+primitive=Undercity Sewers
+id=646824
+rarity=R
+[/card]
+[card]
+primitive=Underground Mortuary
+id=646825
+rarity=R
+[/card]
+[card]
+primitive=Plains
+id=648813
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=648814
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=648815
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=648816
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=648817
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=648853
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=648854
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=648855
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=648856
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=648857
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=648858
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=648859
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=648860
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=648861
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=648862
+rarity=L
+[/card]
+[card]
+primitive=Assemble the Players
+id=649008
+rarity=R
+[/card]
+[card]
+primitive=Auspicious Arrival
+id=649009
+rarity=C
+[/card]
+[card]
+primitive=Call a Surprise Witness
+id=649010
+rarity=U
+[/card]
+[card]
+primitive=Makeshift Binding
+id=649011
+rarity=C
+[/card]
+[card]
+primitive=Not on My Watch
+id=649012
+rarity=U
+[/card]
+[card]
+primitive=On the Job
+id=649013
+rarity=C
+[/card]
+[card]
+primitive=Deduce
+id=649014
+rarity=C
+[/card]
+[card]
+primitive=Dramatic Accusation
+id=649015
+rarity=C
+[/card]
+[card]
+primitive=Fae Flight
+id=649016
+rarity=U
+[/card]
+[card]
+primitive=Intrude on the Mind
+id=649017
+rarity=M
+[/card]
+[card]
+primitive=Reenact the Crime
+id=649018
+rarity=R
+[/card]
+[card]
+primitive=Unauthorized Exit
+id=649019
+rarity=C
+[/card]
+[card]
+primitive=It Doesn't Add Up
+id=649020
+rarity=U
+[/card]
+[card]
+primitive=Murder
+id=649021
+rarity=C
+[/card]
+[card]
+primitive=Slice from the Shadows
+id=649022
+rarity=C
+[/card]
+[card]
+primitive=Soul Enervation
+id=649023
+rarity=U
+[/card]
+[card]
+primitive=Anzrag's Rampage
+id=649024
+rarity=R
+[/card]
+[card]
+primitive=The Chase Is On
+id=649025
+rarity=C
+[/card]
+[card]
+primitive=Convenient Target
+id=649026
+rarity=U
+[/card]
+[card]
+primitive=Demand Answers
+id=649027
+rarity=C
+[/card]
+[card]
+primitive=Expose the Culprit
+id=649028
+rarity=U
+[/card]
+[card]
+primitive=Analyze the Pollen
+id=649029
+rarity=R
+[/card]
+[card]
+primitive=Audience with Trostani
+id=649030
+rarity=R
+[/card]
+[card]
+primitive=Fanatical Strength
+id=649031
+rarity=C
+[/card]
+[card]
+primitive=Coerced to Kill
+id=649032
+rarity=U
+[/card]
+[card]
+primitive=Deadly Complication
+id=649033
+rarity=U
+[/card]
+[card]
+primitive=Insidious Roots
+id=649034
+rarity=U
+[/card]
+[card]
+primitive=Officious Interrogation
+id=649035
+rarity=R
+[/card]
+[card]
+primitive=Warleader's Call
+id=649036
+rarity=R
+[/card]
+[card]
+primitive=Worldsoul's Rage
+id=649037
+rarity=R
+[/card]
+[card]
+primitive=Aurelia, the Law Above
+id=649248
+rarity=R
+[/card]
+[card]
+primitive=Lazav, Wearer of Faces
+id=649249
+rarity=R
+[/card]
+[card]
+primitive=Niv-Mizzet, Guildpact
+id=649250
+rarity=R
+[/card]
+[card]
+primitive=Rakdos, Patron of Chaos
+id=649251
+rarity=M
+[/card]
+[card]
+primitive=Teysa, Opulent Oligarch
+id=649252
+rarity=R
+[/card]
+[card]
+primitive=Trostani, Three Whispers
+id=649253
+rarity=M
+[/card]
+[card]
+primitive=Vannifar, Evolved Enigma
+id=649254
+rarity=M
+[/card]
+[card]
+primitive=Commercial District
+id=649304
+rarity=R
+[/card]
+[card]
+primitive=Elegant Parlor
+id=649305
+rarity=R
+[/card]
+[card]
+primitive=Hedge Maze
+id=649306
+rarity=R
+[/card]
+[card]
+primitive=Lush Portico
+id=649307
+rarity=R
+[/card]
+[card]
+primitive=Meticulous Archive
+id=649308
+rarity=R
+[/card]
+[card]
+primitive=Raucous Theater
+id=649309
+rarity=R
+[/card]
+[card]
+primitive=Shadowy Backstreet
+id=649310
+rarity=R
+[/card]
+[card]
+primitive=Thundering Falls
+id=649311
+rarity=R
+[/card]
+[card]
+primitive=Undercity Sewers
+id=649312
+rarity=R
+[/card]
+[card]
+primitive=Underground Mortuary
+id=649313
+rarity=R
+[/card]
+[card]
+primitive=Kellan, Inquisitive Prodigy
+id=649885
+rarity=R
+[/card]
+[card]
+primitive=Tail the Suspect
+id=649885
+rarity=T
+[/card]
+[card]
+primitive=Kaya, Spirits' Justice
+id=649712
+rarity=M
+[/card]
+[card]
+primitive=Aurelia's Vindicator
+id=649384
+rarity=M
+[/card]
+[card]
+primitive=Delney, Streetwise Lookout
+id=649385
+rarity=M
+[/card]
+[card]
+primitive=Doorkeeper Thrull
+id=649386
+rarity=R
+[/card]
+[card]
+primitive=Neighborhood Guardian
+id=649387
+rarity=U
+[/card]
+[card]
+primitive=Wojek Investigator
+id=649388
+rarity=R
+[/card]
+[card]
+primitive=Conspiracy Unraveler
+id=649389
+rarity=M
+[/card]
+[card]
+primitive=Forensic Gadgeteer
+id=649390
+rarity=R
+[/card]
+[card]
+primitive=Homicide Investigator
+id=649391
+rarity=R
+[/card]
+[card]
+primitive=Massacre Girl, Known Killer
+id=649392
+rarity=M
+[/card]
+[card]
+primitive=Persuasive Interrogators
+id=649393
+rarity=U
+[/card]
+[card]
+primitive=Vein Ripper
+id=649394
+rarity=M
+[/card]
+[card]
+primitive=Frantic Scapegoat
+id=649395
+rarity=U
+[/card]
+[card]
+primitive=Fugitive Codebreaker
+id=649396
+rarity=R
+[/card]
+[card]
+primitive=Incinerator of the Guilty
+id=649397
+rarity=M
+[/card]
+[card]
+primitive=Krenko, Baron of Tin Street
+id=649398
+rarity=R
+[/card]
+[card]
+primitive=Culvert Ambusher
+id=649399
+rarity=U
+[/card]
+[card]
+primitive=The Pride of Hull Clade
+id=649400
+rarity=M
+[/card]
+[card]
+primitive=Sharp-Eyed Rookie
+id=649401
+rarity=R
+[/card]
+[card]
+primitive=Agrus Kos, Spirit of Justice
+id=649402
+rarity=M
+[/card]
+[card]
+primitive=Alquist Proft, Master Sleuth
+id=649403
+rarity=M
+[/card]
+[card]
+primitive=Anzrag, the Quake-Mole
+id=649404
+rarity=M
+[/card]
+[card]
+primitive=Aurelia, the Law Above
+id=649405
+rarity=R
+[/card]
+[card]
+primitive=Curious Cadaver
+id=649406
+rarity=U
+[/card]
+[card]
+primitive=Etrata, Deadly Fugitive
+id=649407
+rarity=M
+[/card]
+[card]
+primitive=Ezrim, Agency Chief
+id=649408
+rarity=R
+[/card]
+[card]
+primitive=Gleaming Geardrake
+id=649409
+rarity=U
+[/card]
+[card]
+primitive=Izoni, Center of the Web
+id=649410
+rarity=R
+[/card]
+[card]
+primitive=Judith, Carnage Connoisseur
+id=649411
+rarity=R
+[/card]
+[card]
+primitive=Kraul Whipcracker
+id=649412
+rarity=U
+[/card]
+[card]
+primitive=Kylox, Visionary Inventor
+id=649413
+rarity=R
+[/card]
+[card]
+primitive=Lazav, Wearer of Faces
+id=649414
+rarity=R
+[/card]
+[card]
+primitive=Meddling Youths
+id=649415
+rarity=U
+[/card]
+[card]
+primitive=Niv-Mizzet, Guildpact
+id=649416
+rarity=R
+[/card]
+[card]
+primitive=Rakdos, Patron of Chaos
+id=649417
+rarity=M
+[/card]
+[card]
+primitive=Teysa, Opulent Oligarch
+id=649418
+rarity=R
+[/card]
+[card]
+primitive=Tolsimir, Midnight's Light
+id=649419
+rarity=R
+[/card]
+[card]
+primitive=Trostani, Three Whispers
+id=649420
+rarity=M
+[/card]
+[card]
+primitive=Vannifar, Evolved Enigma
+id=649421
+rarity=M
+[/card]
+[card]
+primitive=Wispdrinker Vampire
+id=649422
+rarity=U
+[/card]
+[card]
+primitive=Yarus, Roar of the Old Gods
+id=649423
+rarity=R
+[/card]
+[card]
+primitive=Magnetic Snuffler
+id=649424
+rarity=U
+[/card]
+[card]
+primitive=Aurelia's Vindicator
+id=649893
+rarity=M
+[/card]
+[card]
+primitive=Delney, Streetwise Lookout
+id=649894
+rarity=M
+[/card]
+[card]
+primitive=Conspiracy Unraveler
+id=649895
+rarity=M
+[/card]
+[card]
+primitive=Incinerator of the Guilty
+id=649897
+rarity=M
+[/card]
+[card]
+primitive=The Pride of Hull Clade
+id=649898
+rarity=M
+[/card]
+[card]
+primitive=Agrus Kos, Spirit of Justice
+id=649899
+rarity=M
+[/card]
+[card]
+primitive=Alquist Proft, Master Sleuth
+id=649900
+rarity=M
+[/card]
+[card]
+primitive=Anzrag, the Quake-Mole
+id=649901
+rarity=M
+[/card]
+[card]
+primitive=Etrata, Deadly Fugitive
+id=649902
+rarity=M
+[/card]
+[card]
+primitive=Rakdos, Patron of Chaos
+id=649903
+rarity=M
+[/card]
+[card]
+primitive=Trostani, Three Whispers
+id=649904
+rarity=M
+[/card]
+[card]
+primitive=Vannifar, Evolved Enigma
+id=649905
+rarity=M
+[/card]
+[card]
+primitive=No Witnesses
+id=649720
+rarity=R
+[/card]
+[card]
+primitive=Tenth District Hero
+id=649721
+rarity=R
+[/card]
+[card]
+primitive=Unyielding Gatekeeper
+id=649722
+rarity=R
+[/card]
+[card]
+primitive=Coveted Falcon
+id=649723
+rarity=R
+[/card]
+[card]
+primitive=Cryptic Coat
+id=649724
+rarity=R
+[/card]
+[card]
+primitive=Lost in the Maze
+id=649725
+rarity=R
+[/card]
+[card]
+primitive=Proft's Eidetic Memory
+id=649726
+rarity=R
+[/card]
+[card]
+primitive=Steamcore Scholar
+id=649727
+rarity=R
+[/card]
+[card]
+primitive=Barbed Servitor
+id=649728
+rarity=R
+[/card]
+[card]
+primitive=Deadly Cover-Up
+id=649729
+rarity=R
+[/card]
+[card]
+primitive=Hunted Bonebrute
+id=649730
+rarity=R
+[/card]
+[card]
+primitive=Illicit Masquerade
+id=649731
+rarity=R
+[/card]
+[card]
+primitive=Outrageous Robbery
+id=649732
+rarity=R
+[/card]
+[card]
+primitive=Connecting the Dots
+id=649733
+rarity=R
+[/card]
+[card]
+primitive=Expedited Inheritance
+id=649734
+rarity=M
+[/card]
+[card]
+primitive=Krenko's Buzzcrusher
+id=649735
+rarity=R
+[/card]
+[card]
+primitive=Lamplight Phoenix
+id=649736
+rarity=R
+[/card]
+[card]
+primitive=Pyrotechnic Performer
+id=649737
+rarity=R
+[/card]
+[card]
+primitive=Archdruid's Charm
+id=649738
+rarity=R
+[/card]
+[card]
+primitive=Axebane Ferox
+id=649739
+rarity=R
+[/card]
+[card]
+primitive=Hide in Plain Sight
+id=649740
+rarity=R
+[/card]
+[card]
+primitive=Undergrowth Recon
+id=649741
+rarity=M
+[/card]
+[card]
+primitive=Assassin's Trophy
+id=649742
+rarity=R
+[/card]
+[card]
+primitive=Blood Spatter Analysis
+id=649743
+rarity=R
+[/card]
+[card]
+primitive=Doppelgang
+id=649744
+rarity=R
+[/card]
+[card]
+primitive=Drag the Canal
+id=649745
+rarity=R
+[/card]
+[card]
+primitive=Ill-Timed Explosion
+id=649746
+rarity=R
+[/card]
+[card]
+primitive=Kylox's Voltstrider
+id=649747
+rarity=M
+[/card]
+[card]
+primitive=Leyline of the Guildpact
+id=649748
+rarity=R
+[/card]
+[card]
+primitive=Relive the Past
+id=649749
+rarity=R
+[/card]
+[card]
+primitive=Treacherous Greed
+id=649750
+rarity=R
+[/card]
+[card]
+primitive=Urgent Necropsy
+id=649751
+rarity=M
+[/card]
+[card]
+primitive=Cryptex
+id=649752
+rarity=R
+[/card]
+[card]
+primitive=Long Goodbye
+id=648933
+rarity=U
+[/card]
+[card]
+primitive=Gleaming Geardrake
+id=648934
+rarity=U
+[/card]
+[card]
+primitive=Kraul Whipcracker
+id=648935
+rarity=U
+[/card]
+[card]
+primitive=Lightning Helix
+id=648936
+rarity=U
+[/card]
+[card]
+primitive=No More Lies
+id=648937
+rarity=U
+[/card]
+[card]
+primitive=Axebane Ferox
+id=648973
+rarity=R
+[/card]
+[card]
+primitive=Wojek Investigator
+id=648976
+rarity=R
+[/card]
+[card]
+primitive=Melek, Reforged Researcher
+id=648984
+rarity=M
+[/card]
+[card]
+primitive=Tomik, Wielder of Law
+id=648985
+rarity=M
+[/card]
+[card]
+primitive=Voja, Jaws of the Conclave
+id=648986
+rarity=M
+[/card]
+[card]
+primitive=Vein Ripper
+id=649906
+rarity=M
+[/card]
