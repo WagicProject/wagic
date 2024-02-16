@@ -1,0 +1,146 @@
+[meta]
+author=Wagic Team
+name=Special Guests
+year=2023-11-17
+total=34
+[/meta]
+[card]
+primitive=Lord of Atlantis
+id=642840
+rarity=R
+[/card]
+[card]
+primitive=Malcolm, Keen-Eyed Navigator
+id=642841
+rarity=U
+[/card]
+[card]
+primitive=Bridge from Below
+id=642842
+rarity=R
+[/card]
+[card]
+primitive=Mephidross Vampire
+id=642843
+rarity=R
+[/card]
+[card]
+primitive=Pitiless Plunderer
+id=642844
+rarity=U
+[/card]
+[card]
+primitive=Breeches, Brazen Plunderer
+id=642845
+rarity=U
+[/card]
+[card]
+primitive=Dargo, the Shipwrecker
+id=642846
+rarity=U
+[/card]
+[card]
+primitive=Rampaging Ferocidon
+id=642847
+rarity=R
+[/card]
+[card]
+primitive=Underworld Breach
+id=642848
+rarity=R
+[/card]
+[card]
+primitive=Carnage Tyrant
+id=642849
+rarity=M
+[/card]
+[card]
+primitive=Ghalta, Primal Hunger
+id=642850
+rarity=R
+[/card]
+[card]
+primitive=Polyraptor
+id=642851
+rarity=M
+[/card]
+[card]
+primitive=Kalamax, the Stormsire
+id=642852
+rarity=M
+[/card]
+[card]
+primitive=Lord Windgrace
+id=642853
+rarity=M
+[/card]
+[card]
+primitive=Mirri, Weatherlight Duelist
+id=642854
+rarity=M
+[/card]
+[card]
+primitive=Thrasios, Triton Hero
+id=642855
+rarity=R
+[/card]
+[card]
+primitive=Mana Crypt
+id=642856
+rarity=M
+[/card]
+[card]
+primitive=Star Compass
+id=642857
+rarity=U
+[/card]
+[card]
+primitive=Ghostly Prison
+id=651677
+rarity=M
+[/card]
+[card]
+primitive=Fabricate
+id=651678
+rarity=M
+[/card]
+[card]
+primitive=Show and Tell
+id=651679
+rarity=M
+[/card]
+[card]
+primitive=Tragic Slip
+id=651680
+rarity=M
+[/card]
+[card]
+primitive=Victimize
+id=651681
+rarity=M
+[/card]
+[card]
+primitive=Gamble
+id=651682
+rarity=M
+[/card]
+[card]
+primitive=Crashing Footfalls
+id=651683
+rarity=M
+[/card]
+[card]
+primitive=Tireless Tracker
+id=651684
+rarity=M
+[/card]
+[card]
+primitive=Drown in the Loch
+id=651685
+rarity=M
+[/card]
+[card]
+primitive=Field of the Dead
+id=651686
+rarity=M
+[/card]
