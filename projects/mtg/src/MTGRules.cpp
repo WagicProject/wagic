@@ -4077,8 +4077,11 @@ int MTGDeathtouchRule::receiveEvent(WEvent * event)
 
         if (card->basicAbilities[(int)Constants::DEATHTOUCH]||card->basicAbilities[(int)Constants::PERPETUALDEATHTOUCH]||card->LKIbasicAbilities[(int)Constants::DEATHTOUCH]||card->LKIbasicAbilities[(int)Constants::PERPETUALDEATHTOUCH])
         {
-            _target->destroy();
-            return 1;
+            if(_target->isCreature())
+            {
+				_target->destroy();
+				return 1;
+            }
         }
     }
     return 0;

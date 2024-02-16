@@ -2,7 +2,7 @@
 author=Wagic Team
 name=March of the Machine: The Aftermath
 year=2023-05-12
-total=52
+total=230
 [/meta]
 [card]
 primitive=Food
@@ -13,6 +13,931 @@ rarity=T
 primitive=Thopter
 id=-615846
 rarity=T
+[/card]
+[card]
+primitive=Coppercoat Vanguard
+id=615394
+rarity=U
+[/card]
+[card]
+primitive=Deification
+id=615395
+rarity=R
+[/card]
+[card]
+primitive=Harnessed Snubhorn
+id=615396
+rarity=U
+[/card]
+[card]
+primitive=Metropolis Reformer
+id=615397
+rarity=R
+[/card]
+[card]
+primitive=Spark Rupture
+id=615398
+rarity=R
+[/card]
+[card]
+primitive=Tazri, Stalwart Survivor
+id=615399
+rarity=R
+[/card]
+[card]
+primitive=Filter Out
+id=615400
+rarity=U
+[/card]
+[card]
+primitive=Tolarian Contempt
+id=615401
+rarity=U
+[/card]
+[card]
+primitive=Training Grounds
+id=615402
+rarity=R
+[/card]
+[card]
+primitive=Vesuvan Drifter
+id=615403
+rarity=R
+[/card]
+[card]
+primitive=Ayara's Oathsworn
+id=615404
+rarity=R
+[/card]
+[card]
+primitive=Blot Out
+id=615405
+rarity=U
+[/card]
+[card]
+primitive=Death-Rattle Oni
+id=615406
+rarity=U
+[/card]
+[card]
+primitive=Markov Baron
+id=615407
+rarity=U
+[/card]
+[card]
+primitive=Urborg Scavengers
+id=615408
+rarity=R
+[/card]
+[card]
+primitive=Arni Metalbrow
+id=615409
+rarity=R
+[/card]
+[card]
+primitive=Kolaghan Warmonger
+id=615410
+rarity=U
+[/card]
+[card]
+primitive=Plargg and Nassari
+id=615411
+rarity=R
+[/card]
+[card]
+primitive=Reckless Handling
+id=615412
+rarity=U
+[/card]
+[card]
+primitive=Animist's Might
+id=615413
+rarity=U
+[/card]
+[card]
+primitive=Leyline Immersion
+id=615414
+rarity=R
+[/card]
+[card]
+primitive=Nissa, Resurgent Animist
+id=615415
+rarity=M
+[/card]
+[card]
+primitive=Open the Way
+id=615416
+rarity=R
+[/card]
+[card]
+primitive=Tranquil Frillback
+id=615417
+rarity=R
+[/card]
+[card]
+primitive=Undercity Upheaval
+id=615418
+rarity=U
+[/card]
+[card]
+primitive=Calix, Guided by Fate
+id=615419
+rarity=M
+[/card]
+[card]
+primitive=Campus Renovation
+id=615420
+rarity=U
+[/card]
+[card]
+primitive=Cosmic Rebirth
+id=615421
+rarity=U
+[/card]
+[card]
+primitive=Danitha, New Benalia's Light
+id=615422
+rarity=R
+[/card]
+[card]
+primitive=Feast of the Victorious Dead
+id=615423
+rarity=U
+[/card]
+[card]
+primitive=Gold-Forged Thopteryx
+id=615424
+rarity=U
+[/card]
+[card]
+primitive=Jirina, Dauntless General
+id=615425
+rarity=R
+[/card]
+[card]
+primitive=Jolrael, Voice of Zhalfir
+id=615426
+rarity=R
+[/card]
+[card]
+primitive=The Kenriths' Royal Funeral
+id=615427
+rarity=R
+[/card]
+[card]
+primitive=Kiora, Sovereign of the Deep
+id=615428
+rarity=M
+[/card]
+[card]
+primitive=Nahiri, Forged in Fury
+id=615429
+rarity=M
+[/card]
+[card]
+primitive=Nahiri's Resolve
+id=615430
+rarity=R
+[/card]
+[card]
+primitive=Narset, Enlightened Exile
+id=615431
+rarity=M
+[/card]
+[card]
+primitive=Nashi, Moon's Legacy
+id=615432
+rarity=R
+[/card]
+[card]
+primitive=Niv-Mizzet, Supreme
+id=615433
+rarity=R
+[/card]
+[card]
+primitive=Ob Nixilis, Captive Kingpin
+id=615434
+rarity=M
+[/card]
+[card]
+primitive=Pia Nalaar, Consul of Revival
+id=615435
+rarity=R
+[/card]
+[card]
+primitive=Rebuild the City
+id=615436
+rarity=R
+[/card]
+[card]
+primitive=Rocco, Street Chef
+id=615437
+rarity=R
+[/card]
+[card]
+primitive=Samut, Vizier of Naktamun
+id=615438
+rarity=M
+[/card]
+[card]
+primitive=Sarkhan, Soul Aflame
+id=615439
+rarity=M
+[/card]
+[card]
+primitive=Sigarda, Font of Blessings
+id=615440
+rarity=R
+[/card]
+[card]
+primitive=Tyvar the Bellicose
+id=615441
+rarity=M
+[/card]
+[card]
+primitive=Karn, Legacy Reforged
+id=615442
+rarity=M
+[/card]
+[card]
+primitive=Drannith Ruins
+id=615443
+rarity=R
+[/card]
+[card]
+primitive=Coppercoat Vanguard
+id=616487
+rarity=U
+[/card]
+[card]
+primitive=Deification
+id=616488
+rarity=R
+[/card]
+[card]
+primitive=Harnessed Snubhorn
+id=616489
+rarity=U
+[/card]
+[card]
+primitive=Metropolis Reformer
+id=616490
+rarity=R
+[/card]
+[card]
+primitive=Spark Rupture
+id=615794
+rarity=R
+[/card]
+[card]
+primitive=Tazri, Stalwart Survivor
+id=616491
+rarity=R
+[/card]
+[card]
+primitive=Filter Out
+id=616492
+rarity=U
+[/card]
+[card]
+primitive=Tolarian Contempt
+id=616493
+rarity=U
+[/card]
+[card]
+primitive=Training Grounds
+id=616494
+rarity=R
+[/card]
+[card]
+primitive=Vesuvan Drifter
+id=616495
+rarity=R
+[/card]
+[card]
+primitive=Ayara's Oathsworn
+id=616496
+rarity=R
+[/card]
+[card]
+primitive=Blot Out
+id=616497
+rarity=U
+[/card]
+[card]
+primitive=Death-Rattle Oni
+id=616498
+rarity=U
+[/card]
+[card]
+primitive=Markov Baron
+id=616499
+rarity=U
+[/card]
+[card]
+primitive=Urborg Scavengers
+id=616500
+rarity=R
+[/card]
+[card]
+primitive=Arni Metalbrow
+id=616501
+rarity=R
+[/card]
+[card]
+primitive=Kolaghan Warmonger
+id=616502
+rarity=U
+[/card]
+[card]
+primitive=Plargg and Nassari
+id=616503
+rarity=R
+[/card]
+[card]
+primitive=Reckless Handling
+id=616504
+rarity=U
+[/card]
+[card]
+primitive=Animist's Might
+id=616445
+rarity=U
+[/card]
+[card]
+primitive=Leyline Immersion
+id=616446
+rarity=R
+[/card]
+[card]
+primitive=Nissa, Resurgent Animist
+id=616447
+rarity=M
+[/card]
+[card]
+primitive=Open the Way
+id=616448
+rarity=R
+[/card]
+[card]
+primitive=Tranquil Frillback
+id=616505
+rarity=R
+[/card]
+[card]
+primitive=Undercity Upheaval
+id=616506
+rarity=U
+[/card]
+[card]
+primitive=Calix, Guided by Fate
+id=616507
+rarity=M
+[/card]
+[card]
+primitive=Campus Renovation
+id=616508
+rarity=U
+[/card]
+[card]
+primitive=Cosmic Rebirth
+id=616509
+rarity=U
+[/card]
+[card]
+primitive=Danitha, New Benalia's Light
+id=616510
+rarity=R
+[/card]
+[card]
+primitive=Feast of the Victorious Dead
+id=616511
+rarity=U
+[/card]
+[card]
+primitive=Gold-Forged Thopteryx
+id=616512
+rarity=U
+[/card]
+[card]
+primitive=Jirina, Dauntless General
+id=616513
+rarity=R
+[/card]
+[card]
+primitive=Jolrael, Voice of Zhalfir
+id=616449
+rarity=R
+[/card]
+[card]
+primitive=The Kenriths' Royal Funeral
+id=616514
+rarity=R
+[/card]
+[card]
+primitive=Kiora, Sovereign of the Deep
+id=616515
+rarity=M
+[/card]
+[card]
+primitive=Nahiri, Forged in Fury
+id=616516
+rarity=M
+[/card]
+[card]
+primitive=Nahiri's Resolve
+id=616517
+rarity=R
+[/card]
+[card]
+primitive=Narset, Enlightened Exile
+id=616518
+rarity=M
+[/card]
+[card]
+primitive=Nashi, Moon's Legacy
+id=616519
+rarity=R
+[/card]
+[card]
+primitive=Niv-Mizzet, Supreme
+id=616520
+rarity=R
+[/card]
+[card]
+primitive=Ob Nixilis, Captive Kingpin
+id=616521
+rarity=M
+[/card]
+[card]
+primitive=Pia Nalaar, Consul of Revival
+id=616522
+rarity=R
+[/card]
+[card]
+primitive=Rebuild the City
+id=616523
+rarity=R
+[/card]
+[card]
+primitive=Rocco, Street Chef
+id=616524
+rarity=R
+[/card]
+[card]
+primitive=Samut, Vizier of Naktamun
+id=616525
+rarity=M
+[/card]
+[card]
+primitive=Sarkhan, Soul Aflame
+id=616526
+rarity=M
+[/card]
+[card]
+primitive=Sigarda, Font of Blessings
+id=616527
+rarity=R
+[/card]
+[card]
+primitive=Tyvar the Bellicose
+id=616528
+rarity=M
+[/card]
+[card]
+primitive=Karn, Legacy Reforged
+id=616450
+rarity=M
+[/card]
+[card]
+primitive=Drannith Ruins
+id=616529
+rarity=R
+[/card]
+[card]
+primitive=Coppercoat Vanguard
+id=616045
+rarity=U
+[/card]
+[card]
+primitive=Deification
+id=616046
+rarity=R
+[/card]
+[card]
+primitive=Harnessed Snubhorn
+id=616047
+rarity=U
+[/card]
+[card]
+primitive=Metropolis Reformer
+id=616048
+rarity=R
+[/card]
+[card]
+primitive=Spark Rupture
+id=616049
+rarity=R
+[/card]
+[card]
+primitive=Tazri, Stalwart Survivor
+id=616050
+rarity=R
+[/card]
+[card]
+primitive=Filter Out
+id=616051
+rarity=U
+[/card]
+[card]
+primitive=Tolarian Contempt
+id=616052
+rarity=U
+[/card]
+[card]
+primitive=Training Grounds
+id=616053
+rarity=R
+[/card]
+[card]
+primitive=Vesuvan Drifter
+id=616054
+rarity=R
+[/card]
+[card]
+primitive=Ayara's Oathsworn
+id=616055
+rarity=R
+[/card]
+[card]
+primitive=Blot Out
+id=616056
+rarity=U
+[/card]
+[card]
+primitive=Death-Rattle Oni
+id=616057
+rarity=U
+[/card]
+[card]
+primitive=Markov Baron
+id=616058
+rarity=U
+[/card]
+[card]
+primitive=Urborg Scavengers
+id=616059
+rarity=R
+[/card]
+[card]
+primitive=Arni Metalbrow
+id=616060
+rarity=R
+[/card]
+[card]
+primitive=Kolaghan Warmonger
+id=616061
+rarity=U
+[/card]
+[card]
+primitive=Plargg and Nassari
+id=616062
+rarity=R
+[/card]
+[card]
+primitive=Reckless Handling
+id=616063
+rarity=U
+[/card]
+[card]
+primitive=Animist's Might
+id=616064
+rarity=U
+[/card]
+[card]
+primitive=Leyline Immersion
+id=616065
+rarity=R
+[/card]
+[card]
+primitive=Nissa, Resurgent Animist
+id=616066
+rarity=M
+[/card]
+[card]
+primitive=Open the Way
+id=616067
+rarity=R
+[/card]
+[card]
+primitive=Tranquil Frillback
+id=616068
+rarity=R
+[/card]
+[card]
+primitive=Undercity Upheaval
+id=616069
+rarity=U
+[/card]
+[card]
+primitive=Calix, Guided by Fate
+id=616070
+rarity=M
+[/card]
+[card]
+primitive=Campus Renovation
+id=616071
+rarity=U
+[/card]
+[card]
+primitive=Cosmic Rebirth
+id=616072
+rarity=U
+[/card]
+[card]
+primitive=Danitha, New Benalia's Light
+id=616073
+rarity=R
+[/card]
+[card]
+primitive=Feast of the Victorious Dead
+id=616074
+rarity=U
+[/card]
+[card]
+primitive=Gold-Forged Thopteryx
+id=616075
+rarity=U
+[/card]
+[card]
+primitive=Jirina, Dauntless General
+id=616076
+rarity=R
+[/card]
+[card]
+primitive=Jolrael, Voice of Zhalfir
+id=616077
+rarity=R
+[/card]
+[card]
+primitive=The Kenriths' Royal Funeral
+id=616078
+rarity=R
+[/card]
+[card]
+primitive=Kiora, Sovereign of the Deep
+id=616079
+rarity=M
+[/card]
+[card]
+primitive=Nahiri, Forged in Fury
+id=616080
+rarity=M
+[/card]
+[card]
+primitive=Nahiri's Resolve
+id=616081
+rarity=R
+[/card]
+[card]
+primitive=Narset, Enlightened Exile
+id=616082
+rarity=M
+[/card]
+[card]
+primitive=Nashi, Moon's Legacy
+id=616083
+rarity=R
+[/card]
+[card]
+primitive=Niv-Mizzet, Supreme
+id=616084
+rarity=R
+[/card]
+[card]
+primitive=Ob Nixilis, Captive Kingpin
+id=616085
+rarity=M
+[/card]
+[card]
+primitive=Pia Nalaar, Consul of Revival
+id=616086
+rarity=R
+[/card]
+[card]
+primitive=Rebuild the City
+id=616087
+rarity=R
+[/card]
+[card]
+primitive=Rocco, Street Chef
+id=616088
+rarity=R
+[/card]
+[card]
+primitive=Samut, Vizier of Naktamun
+id=616089
+rarity=M
+[/card]
+[card]
+primitive=Sarkhan, Soul Aflame
+id=616090
+rarity=M
+[/card]
+[card]
+primitive=Sigarda, Font of Blessings
+id=616091
+rarity=R
+[/card]
+[card]
+primitive=Tyvar the Bellicose
+id=616092
+rarity=M
+[/card]
+[card]
+primitive=Karn, Legacy Reforged
+id=616093
+rarity=M
+[/card]
+[card]
+primitive=Drannith Ruins
+id=616094
+rarity=R
+[/card]
+[card]
+primitive=Deification
+id=615940
+rarity=R
+[/card]
+[card]
+primitive=Metropolis Reformer
+id=615941
+rarity=R
+[/card]
+[card]
+primitive=Spark Rupture
+id=615942
+rarity=R
+[/card]
+[card]
+primitive=Tazri, Stalwart Survivor
+id=615943
+rarity=R
+[/card]
+[card]
+primitive=Training Grounds
+id=615944
+rarity=R
+[/card]
+[card]
+primitive=Vesuvan Drifter
+id=615945
+rarity=R
+[/card]
+[card]
+primitive=Ayara's Oathsworn
+id=615946
+rarity=R
+[/card]
+[card]
+primitive=Urborg Scavengers
+id=615947
+rarity=R
+[/card]
+[card]
+primitive=Arni Metalbrow
+id=615948
+rarity=R
+[/card]
+[card]
+primitive=Plargg and Nassari
+id=615949
+rarity=R
+[/card]
+[card]
+primitive=Leyline Immersion
+id=615950
+rarity=R
+[/card]
+[card]
+primitive=Nissa, Resurgent Animist
+id=615951
+rarity=M
+[/card]
+[card]
+primitive=Open the Way
+id=615952
+rarity=R
+[/card]
+[card]
+primitive=Tranquil Frillback
+id=615953
+rarity=R
+[/card]
+[card]
+primitive=Calix, Guided by Fate
+id=615954
+rarity=M
+[/card]
+[card]
+primitive=Danitha, New Benalia's Light
+id=615955
+rarity=R
+[/card]
+[card]
+primitive=Jirina, Dauntless General
+id=615956
+rarity=R
+[/card]
+[card]
+primitive=Jolrael, Voice of Zhalfir
+id=615957
+rarity=R
+[/card]
+[card]
+primitive=The Kenriths' Royal Funeral
+id=615958
+rarity=R
+[/card]
+[card]
+primitive=Kiora, Sovereign of the Deep
+id=615959
+rarity=M
+[/card]
+[card]
+primitive=Nahiri, Forged in Fury
+id=615960
+rarity=M
+[/card]
+[card]
+primitive=Nahiri's Resolve
+id=615961
+rarity=R
+[/card]
+[card]
+primitive=Narset, Enlightened Exile
+id=615962
+rarity=M
+[/card]
+[card]
+primitive=Nashi, Moon's Legacy
+id=615963
+rarity=R
+[/card]
+[card]
+primitive=Niv-Mizzet, Supreme
+id=615964
+rarity=R
+[/card]
+[card]
+primitive=Ob Nixilis, Captive Kingpin
+id=615965
+rarity=M
+[/card]
+[card]
+primitive=Pia Nalaar, Consul of Revival
+id=615966
+rarity=R
+[/card]
+[card]
+primitive=Rebuild the City
+id=615967
+rarity=R
+[/card]
+[card]
+primitive=Rocco, Street Chef
+id=615968
+rarity=R
+[/card]
+[card]
+primitive=Samut, Vizier of Naktamun
+id=615969
+rarity=M
+[/card]
+[card]
+primitive=Sarkhan, Soul Aflame
+id=615970
+rarity=M
+[/card]
+[card]
+primitive=Sigarda, Font of Blessings
+id=615971
+rarity=R
+[/card]
+[card]
+primitive=Tyvar the Bellicose
+id=615972
+rarity=M
+[/card]
+[card]
+primitive=Karn, Legacy Reforged
+id=615973
+rarity=M
+[/card]
+[card]
+primitive=Drannith Ruins
+id=615974
+rarity=R
 [/card]
 [card]
 primitive=Coppercoat Vanguard
@@ -32,11 +957,6 @@ rarity=U
 [card]
 primitive=Metropolis Reformer
 id=615814
-rarity=R
-[/card]
-[card]
-primitive=Spark Rupture
-id=615794
 rarity=R
 [/card]
 [card]
@@ -110,26 +1030,6 @@ id=615828
 rarity=U
 [/card]
 [card]
-primitive=Animist's Might
-id=615413
-rarity=U
-[/card]
-[card]
-primitive=Leyline Immersion
-id=615950
-rarity=R
-[/card]
-[card]
-primitive=Nissa, Resurgent Animist
-id=615951
-rarity=M
-[/card]
-[card]
-primitive=Open the Way
-id=615952
-rarity=R
-[/card]
-[card]
 primitive=Tranquil Frillback
 id=615829
 rarity=R
@@ -172,11 +1072,6 @@ rarity=U
 [card]
 primitive=Jirina, Dauntless General
 id=615837
-rarity=R
-[/card]
-[card]
-primitive=Jolrael, Voice of Zhalfir
-id=615803
 rarity=R
 [/card]
 [card]
@@ -255,12 +1150,17 @@ id=615852
 rarity=M
 [/card]
 [card]
-primitive=Karn, Legacy Reforged
-id=615973
-rarity=M
-[/card]
-[card]
 primitive=Drannith Ruins
 id=615853
+rarity=R
+[/card]
+[card]
+primitive=Spark Rupture
+id=615802
+rarity=R
+[/card]
+[card]
+primitive=Jolrael, Voice of Zhalfir
+id=615803
 rarity=R
 [/card]
