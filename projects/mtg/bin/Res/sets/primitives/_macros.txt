@@ -151,9 +151,6 @@
 # The Ring Tempts
 #AUTO_DEFINE _RINGTEMPTS_ if type(The Ring|mybattlefield)~morethan~0 then all(The Ring|mybattlefield) transforms((,newability[theringtempts:1 controller],newability[name(Chose a ring bearer) target(creature|mybattlefield) becomesringbearer])) oneshot else token(The Ring^notrigger) and!( theringtempts:1 controller and!( name(Choose a ring bearer) target(creature|myBattlefield) becomesringbearer )! )!
 
-# Explore, not implemented
-#AUTO_DEFINE _EXPLORE_ reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) optiontwoend revealend limit:1
-
 # Treasure token
 #AUTO_DEFINE _TREASURE_ token(Treasure)
 
