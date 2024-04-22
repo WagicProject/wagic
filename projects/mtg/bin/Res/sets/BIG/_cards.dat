@@ -1,0 +1,456 @@
+[meta]
+author=Wagic Team
+name=The Big Score
+year=2024-04-19
+total=95
+[/meta]
+[card]
+primitive=Collector's Cage
+id=660297
+rarity=M
+[/card]
+[card]
+primitive=Grand Abolisher
+id=660298
+rarity=M
+[/card]
+[card]
+primitive=Oltec Matterweaver
+id=660299
+rarity=M
+[/card]
+[card]
+primitive=Rest in Peace
+id=660300
+rarity=M
+[/card]
+[card]
+primitive=Esoteric Duplicator
+id=660301
+rarity=M
+[/card]
+[card]
+primitive=Simulacrum Synthesizer
+id=660302
+rarity=M
+[/card]
+[card]
+primitive=Worldwalker Helm
+id=660303
+rarity=M
+[/card]
+[card]
+primitive=Greed's Gambit
+id=660304
+rarity=M
+[/card]
+[card]
+primitive=Harvester of Misery
+id=660305
+rarity=M
+[/card]
+[card]
+primitive=Hostile Investigator
+id=660306
+rarity=M
+[/card]
+[card]
+primitive=Generous Plunderer
+id=660307
+rarity=M
+[/card]
+[card]
+primitive=Legion Extruder
+id=660308
+rarity=M
+[/card]
+[card]
+primitive=Memory Vessel
+id=660309
+rarity=M
+[/card]
+[card]
+primitive=Molten Duplication
+id=660310
+rarity=M
+[/card]
+[card]
+primitive=Territory Forge
+id=660311
+rarity=M
+[/card]
+[card]
+primitive=Ancient Cornucopia
+id=660312
+rarity=M
+[/card]
+[card]
+primitive=Bristlebud Farmer
+id=660313
+rarity=M
+[/card]
+[card]
+primitive=Omenpath Journey
+id=660314
+rarity=M
+[/card]
+[card]
+primitive=Sandstorm Salvager
+id=660315
+rarity=M
+[/card]
+[card]
+primitive=Vaultborn Tyrant
+id=660316
+rarity=M
+[/card]
+[card]
+primitive=Loot, the Key to Everything
+id=660317
+rarity=M
+[/card]
+[card]
+primitive=Pest Control
+id=660318
+rarity=M
+[/card]
+[card]
+primitive=Lost Jitte
+id=660319
+rarity=M
+[/card]
+[card]
+primitive=Lotus Ring
+id=660320
+rarity=M
+[/card]
+[card]
+primitive=Nexus of Becoming
+id=660321
+rarity=M
+[/card]
+[card]
+primitive=Sword of Wealth and Power
+id=660322
+rarity=M
+[/card]
+[card]
+primitive=Torpor Orb
+id=660323
+rarity=M
+[/card]
+[card]
+primitive=Transmutation Font
+id=660324
+rarity=M
+[/card]
+[card]
+primitive=Fomori Vault
+id=660325
+rarity=M
+[/card]
+[card]
+primitive=Tarnation Vista
+id=660326
+rarity=M
+[/card]
+[card]
+primitive=Collector's Cage
+id=660537
+rarity=M
+[/card]
+[card]
+primitive=Grand Abolisher
+id=660538
+rarity=M
+[/card]
+[card]
+primitive=Oltec Matterweaver
+id=660539
+rarity=M
+[/card]
+[card]
+primitive=Rest in Peace
+id=660540
+rarity=M
+[/card]
+[card]
+primitive=Esoteric Duplicator
+id=660541
+rarity=M
+[/card]
+[card]
+primitive=Simulacrum Synthesizer
+id=660542
+rarity=M
+[/card]
+[card]
+primitive=Worldwalker Helm
+id=660543
+rarity=M
+[/card]
+[card]
+primitive=Greed's Gambit
+id=660544
+rarity=M
+[/card]
+[card]
+primitive=Harvester of Misery
+id=660545
+rarity=M
+[/card]
+[card]
+primitive=Hostile Investigator
+id=660546
+rarity=M
+[/card]
+[card]
+primitive=Generous Plunderer
+id=660547
+rarity=M
+[/card]
+[card]
+primitive=Legion Extruder
+id=660548
+rarity=M
+[/card]
+[card]
+primitive=Memory Vessel
+id=660549
+rarity=M
+[/card]
+[card]
+primitive=Molten Duplication
+id=660550
+rarity=M
+[/card]
+[card]
+primitive=Territory Forge
+id=660551
+rarity=M
+[/card]
+[card]
+primitive=Ancient Cornucopia
+id=660552
+rarity=M
+[/card]
+[card]
+primitive=Bristlebud Farmer
+id=660553
+rarity=M
+[/card]
+[card]
+primitive=Omenpath Journey
+id=660554
+rarity=M
+[/card]
+[card]
+primitive=Sandstorm Salvager
+id=660555
+rarity=M
+[/card]
+[card]
+primitive=Vaultborn Tyrant
+id=660556
+rarity=M
+[/card]
+[card]
+primitive=Loot, the Key to Everything
+id=660557
+rarity=M
+[/card]
+[card]
+primitive=Pest Control
+id=660558
+rarity=M
+[/card]
+[card]
+primitive=Lost Jitte
+id=660559
+rarity=M
+[/card]
+[card]
+primitive=Lotus Ring
+id=660560
+rarity=M
+[/card]
+[card]
+primitive=Nexus of Becoming
+id=660561
+rarity=M
+[/card]
+[card]
+primitive=Sword of Wealth and Power
+id=660562
+rarity=M
+[/card]
+[card]
+primitive=Torpor Orb
+id=660563
+rarity=M
+[/card]
+[card]
+primitive=Transmutation Font
+id=660564
+rarity=M
+[/card]
+[card]
+primitive=Fomori Vault
+id=660565
+rarity=M
+[/card]
+[card]
+primitive=Tarnation Vista
+id=660566
+rarity=M
+[/card]
+[card]
+primitive=Collector's Cage
+id=660687
+rarity=M
+[/card]
+[card]
+primitive=Grand Abolisher
+id=660688
+rarity=M
+[/card]
+[card]
+primitive=Oltec Matterweaver
+id=660689
+rarity=M
+[/card]
+[card]
+primitive=Rest in Peace
+id=660690
+rarity=M
+[/card]
+[card]
+primitive=Esoteric Duplicator
+id=660691
+rarity=M
+[/card]
+[card]
+primitive=Simulacrum Synthesizer
+id=660692
+rarity=M
+[/card]
+[card]
+primitive=Worldwalker Helm
+id=660693
+rarity=M
+[/card]
+[card]
+primitive=Greed's Gambit
+id=660694
+rarity=M
+[/card]
+[card]
+primitive=Harvester of Misery
+id=660695
+rarity=M
+[/card]
+[card]
+primitive=Hostile Investigator
+id=660696
+rarity=M
+[/card]
+[card]
+primitive=Generous Plunderer
+id=660697
+rarity=M
+[/card]
+[card]
+primitive=Legion Extruder
+id=660698
+rarity=M
+[/card]
+[card]
+primitive=Memory Vessel
+id=660699
+rarity=M
+[/card]
+[card]
+primitive=Molten Duplication
+id=660700
+rarity=M
+[/card]
+[card]
+primitive=Territory Forge
+id=660701
+rarity=M
+[/card]
+[card]
+primitive=Ancient Cornucopia
+id=660702
+rarity=M
+[/card]
+[card]
+primitive=Bristlebud Farmer
+id=660703
+rarity=M
+[/card]
+[card]
+primitive=Omenpath Journey
+id=660704
+rarity=M
+[/card]
+[card]
+primitive=Sandstorm Salvager
+id=660705
+rarity=M
+[/card]
+[card]
+primitive=Vaultborn Tyrant
+id=660706
+rarity=M
+[/card]
+[card]
+primitive=Loot, the Key to Everything
+id=660707
+rarity=M
+[/card]
+[card]
+primitive=Pest Control
+id=660708
+rarity=M
+[/card]
+[card]
+primitive=Lost Jitte
+id=660709
+rarity=M
+[/card]
+[card]
+primitive=Lotus Ring
+id=660710
+rarity=M
+[/card]
+[card]
+primitive=Nexus of Becoming
+id=660711
+rarity=M
+[/card]
+[card]
+primitive=Sword of Wealth and Power
+id=660712
+rarity=M
+[/card]
+[card]
+primitive=Torpor Orb
+id=660713
+rarity=M
+[/card]
+[card]
+primitive=Transmutation Font
+id=660714
+rarity=M
+[/card]
+[card]
+primitive=Fomori Vault
+id=660715
+rarity=M
+[/card]
+[card]
+primitive=Tarnation Vista
+id=660716
+rarity=M
+[/card]

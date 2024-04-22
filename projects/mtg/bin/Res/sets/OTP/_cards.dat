@@ -1,0 +1,406 @@
+[meta]
+author=Wagic Team
+name=Breaking News
+year=2024-04-19
+total=82
+[/meta]
+[card]
+primitive=Fell the Mighty
+id=657746
+rarity=R
+[/card]
+[card]
+primitive=Fierce Retribution
+id=657747
+rarity=U
+[/card]
+[card]
+primitive=Journey to Nowhere
+id=657748
+rarity=U
+[/card]
+[card]
+primitive=Leyline Binding
+id=657749
+rarity=M
+[/card]
+[card]
+primitive=Pariah
+id=657750
+rarity=R
+[/card]
+[card]
+primitive=Path to Exile
+id=657751
+rarity=R
+[/card]
+[card]
+primitive=Archive Trap
+id=657752
+rarity=R
+[/card]
+[card]
+primitive=Archmage's Charm
+id=657753
+rarity=R
+[/card]
+[card]
+primitive=Commandeer
+id=657754
+rarity=R
+[/card]
+[card]
+primitive=Essence Capture
+id=657755
+rarity=U
+[/card]
+[card]
+primitive=Mana Drain
+id=657756
+rarity=M
+[/card]
+[card]
+primitive=Mindbreak Trap
+id=657757
+rarity=M
+[/card]
+[card]
+primitive=Repulse
+id=657758
+rarity=U
+[/card]
+[card]
+primitive=Heartless Pillage
+id=657759
+rarity=U
+[/card]
+[card]
+primitive=Imp's Mischief
+id=657760
+rarity=R
+[/card]
+[card]
+primitive=Murder
+id=657761
+rarity=U
+[/card]
+[card]
+primitive=Overwhelming Forces
+id=657762
+rarity=M
+[/card]
+[card]
+primitive=Reanimate
+id=657763
+rarity=R
+[/card]
+[card]
+primitive=Surgical Extraction
+id=657764
+rarity=R
+[/card]
+[card]
+primitive=Thoughtseize
+id=657765
+rarity=M
+[/card]
+[card]
+primitive=Collective Defiance
+id=657766
+rarity=R
+[/card]
+[card]
+primitive=Crackle with Power
+id=657767
+rarity=M
+[/card]
+[card]
+primitive=Electrodominance
+id=657768
+rarity=R
+[/card]
+[card]
+primitive=Fling
+id=657769
+rarity=U
+[/card]
+[card]
+primitive=Indomitable Creativity
+id=657770
+rarity=M
+[/card]
+[card]
+primitive=Skewer the Critics
+id=657771
+rarity=U
+[/card]
+[card]
+primitive=Skullcrack
+id=657772
+rarity=R
+[/card]
+[card]
+primitive=Clear Shot
+id=657773
+rarity=U
+[/card]
+[card]
+primitive=Force of Vigor
+id=657774
+rarity=M
+[/card]
+[card]
+primitive=Pest Infestation
+id=657775
+rarity=R
+[/card]
+[card]
+primitive=Primal Command
+id=657776
+rarity=R
+[/card]
+[card]
+primitive=Primal Might
+id=657777
+rarity=R
+[/card]
+[card]
+primitive=Thornado
+id=657778
+rarity=U
+[/card]
+[card]
+primitive=Abrupt Decay
+id=657779
+rarity=R
+[/card]
+[card]
+primitive=Anguished Unmaking
+id=657780
+rarity=M
+[/card]
+[card]
+primitive=Back for More
+id=657781
+rarity=U
+[/card]
+[card]
+primitive=Bedevil
+id=657782
+rarity=R
+[/card]
+[card]
+primitive=Buried in the Garden
+id=657783
+rarity=U
+[/card]
+[card]
+primitive=Crime
+id=658275
+rarity=M
+[/card]
+[card]
+primitive=Punishment
+id=658275
+rarity=T
+[/card]
+[card]
+primitive=Cruel Ultimatum
+id=657785
+rarity=R
+[/card]
+[card]
+primitive=Decimate
+id=657786
+rarity=R
+[/card]
+[card]
+primitive=Decisive Denial
+id=657787
+rarity=U
+[/card]
+[card]
+primitive=Detention Sphere
+id=657788
+rarity=R
+[/card]
+[card]
+primitive=Endless Detour
+id=657789
+rarity=R
+[/card]
+[card]
+primitive=Fractured Identity
+id=657790
+rarity=M
+[/card]
+[card]
+primitive=Hindering Light
+id=657791
+rarity=U
+[/card]
+[card]
+primitive=Humiliate
+id=657792
+rarity=U
+[/card]
+[card]
+primitive=Hypothesizzle
+id=657793
+rarity=U
+[/card]
+[card]
+primitive=Ionize
+id=657794
+rarity=R
+[/card]
+[card]
+primitive=Oko, Thief of Crowns
+id=657795
+rarity=M
+[/card]
+[card]
+primitive=Outlaws' Merriment
+id=657796
+rarity=R
+[/card]
+[card]
+primitive=Ride Down
+id=657797
+rarity=U
+[/card]
+[card]
+primitive=Savage Smash
+id=657798
+rarity=U
+[/card]
+[card]
+primitive=Siphon Insight
+id=657799
+rarity=R
+[/card]
+[card]
+primitive=Terminal Agony
+id=657800
+rarity=U
+[/card]
+[card]
+primitive=Tyrant's Scorn
+id=657801
+rarity=U
+[/card]
+[card]
+primitive=Vanishing Verse
+id=657802
+rarity=R
+[/card]
+[card]
+primitive=Villainous Wealth
+id=657803
+rarity=R
+[/card]
+[card]
+primitive=Void Rend
+id=657804
+rarity=R
+[/card]
+[card]
+primitive=Voidslime
+id=657805
+rarity=R
+[/card]
+[card]
+primitive=Contagion Engine
+id=657806
+rarity=M
+[/card]
+[card]
+primitive=Grindstone
+id=657807
+rarity=M
+[/card]
+[card]
+primitive=Mindslaver
+id=657808
+rarity=M
+[/card]
+[card]
+primitive=Unlicensed Hearse
+id=657809
+rarity=R
+[/card]
+[card]
+primitive=Dust Bowl
+id=657810
+rarity=R
+[/card]
+[card]
+primitive=Leyline Binding
+id=658266
+rarity=M
+[/card]
+[card]
+primitive=Mana Drain
+id=658267
+rarity=M
+[/card]
+[card]
+primitive=Mindbreak Trap
+id=658268
+rarity=M
+[/card]
+[card]
+primitive=Overwhelming Forces
+id=658269
+rarity=M
+[/card]
+[card]
+primitive=Thoughtseize
+id=658270
+rarity=M
+[/card]
+[card]
+primitive=Crackle with Power
+id=658271
+rarity=M
+[/card]
+[card]
+primitive=Indomitable Creativity
+id=658272
+rarity=M
+[/card]
+[card]
+primitive=Force of Vigor
+id=658273
+rarity=M
+[/card]
+[card]
+primitive=Anguished Unmaking
+id=658274
+rarity=M
+[/card]
+[card]
+primitive=Fractured Identity
+id=658276
+rarity=M
+[/card]
+[card]
+primitive=Oko, Thief of Crowns
+id=658277
+rarity=M
+[/card]
+[card]
+primitive=Contagion Engine
+id=658278
+rarity=M
+[/card]
+[card]
+primitive=Grindstone
+id=658279
+rarity=M
+[/card]
+[card]
+primitive=Mindslaver
+id=658280
+rarity=M
+[/card]
