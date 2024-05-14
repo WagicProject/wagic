@@ -251,6 +251,9 @@
 # Goblin Token
 #AUTO_DEFINE _GOBLINTOKEN_ create(Goblin:Creature Goblin:1/1:red)
 
+# Gnome Token 
+#AUTO_DEFINE _GNOMETOKEN_ create(gnome artifact:creature gnome artifact:1/1)
+
 # Insect Token
 #AUTO_DEFINE _INSECTTOKEN_ create(Insect:Creature Insect:1/1:green)
 
