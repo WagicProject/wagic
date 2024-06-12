@@ -195,7 +195,8 @@ public:
         {
             return 0;
         }
-        //Creatures entering the battlefield don't cause abilities to trigger (e.g. "Hushbringer").
+        //Creatures entering the battlefield don't cause abilities to trigger (e.g. "Hushbringer"). 
+		//NOT WORKING
         if (e->card->isCreature() && (game->players[0]->game->battlefield->hasAbility(Constants::NOENTERTRG) || game->players[1]->game->battlefield->hasAbility(Constants::NOENTERTRG)) 
             && (e->to == game->players[0]->game->battlefield || e->to == game->players[1]->game->battlefield))
         {
