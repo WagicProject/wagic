@@ -1190,6 +1190,16 @@ id=662388
 rarity=R
 [/card]
 [card]
+primitive=Ajani, Nacatl Pariah
+id=661753
+rarity=M
+[/card]
+[card]
+primitive=Ajani, Nacatl Avenger
+id=661754
+rarity=T
+[/card]
+[card]
 primitive=Razorgrass Ambush
 id=661755
 rarity=U
@@ -1230,6 +1240,16 @@ id=661761
 rarity=T
 [/card]
 [card]
+primitive=Tamiyo, Inquisitive Student
+id=661763
+rarity=M
+[/card]
+[card]
+primitive=Tamiyo, Seasoned Scholar
+id=661764
+rarity=T
+[/card]
+[card]
 primitive=Boggart Trawler
 id=661765
 rarity=U
@@ -1250,6 +1270,16 @@ id=661767
 rarity=T
 [/card]
 [card]
+primitive=Sorin of House Markov
+id=661769
+rarity=M
+[/card]
+[card]
+primitive=Sorin, Ravenous Neonate
+id=661770
+rarity=T
+[/card]
+[card]
 primitive=Pinnacle Monk
 id=661771
 rarity=U
@@ -1257,6 +1287,16 @@ rarity=U
 [card]
 primitive=Mystic Peak
 id=661771
+rarity=T
+[/card]
+[card]
+primitive=Ral, Monsoon Mage
+id=661773
+rarity=M
+[/card]
+[card]
+primitive=Ral, Leyline Prodigy
+id=661774
 rarity=T
 [/card]
 [card]
@@ -1287,6 +1327,16 @@ rarity=U
 [card]
 primitive=Garden of Freyalise
 id=661779
+rarity=T
+[/card]
+[card]
+primitive=Grist, Voracious Larva
+id=661781
+rarity=M
+[/card]
+[card]
+primitive=Grist, the Plague Swarm
+id=661782
 rarity=T
 [/card]
 [card]
@@ -1578,6 +1628,16 @@ rarity=U
 primitive=Barbarian Ring
 id=664078
 rarity=U
+[/card]
+[card]
+primitive=Cephalid Coliseum
+id=664079
+rarity=U
+[/card]
+[card]
+primitive=Deserted Temple
+id=664080
+rarity=R
 [/card]
 [card]
 primitive=Nesting Grounds
