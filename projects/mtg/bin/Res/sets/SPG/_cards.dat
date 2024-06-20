@@ -2,7 +2,7 @@
 author=Wagic Team
 name=Special Guests
 year=2023-11-17
-total=34
+total=60
 [/meta]
 [card]
 primitive=Lord of Atlantis
@@ -142,5 +142,110 @@ rarity=M
 [card]
 primitive=Field of the Dead
 id=651686
+rarity=M
+[/card]
+[card]
+primitive=Stoneforge Mystic
+id=660837
+rarity=M
+[/card]
+[card]
+primitive=Brazen Borrower
+id=660838
+rarity=M
+[/card]
+[card]
+primitive=Petty Theft
+id=660838
+rarity=T
+[/card]
+[card]
+primitive=Desertion
+id=660839
+rarity=M
+[/card]
+[card]
+primitive=Morbid Opportunist
+id=660840
+rarity=M
+[/card]
+[card]
+primitive=Port Razer
+id=660841
+rarity=M
+[/card]
+[card]
+primitive=Scapeshift
+id=660842
+rarity=M
+[/card]
+[card]
+primitive=Mystic Snake
+id=660843
+rarity=M
+[/card]
+[card]
+primitive=Notion Thief
+id=660844
+rarity=M
+[/card]
+[card]
+primitive=Desert
+id=660845
+rarity=M
+[/card]
+[card]
+primitive=Prismatic Vista
+id=660846
+rarity=M
+[/card]
+[card]
+primitive=Thought-Knot Seer
+id=666681
+rarity=M
+[/card]
+[card]
+primitive=Prismatic Ending
+id=666682
+rarity=M
+[/card]
+[card]
+primitive=Dismember
+id=666683
+rarity=M
+[/card]
+[card]
+primitive=Persist
+id=666684
+rarity=M
+[/card]
+[card]
+primitive=Expressive Iteration
+id=666685
+rarity=M
+[/card]
+[card]
+primitive=Solitude
+id=666641
+rarity=M
+[/card]
+[card]
+primitive=Subtlety
+id=666642
+rarity=M
+[/card]
+[card]
+primitive=Grief
+id=666643
+rarity=M
+[/card]
+[card]
+primitive=Fury
+id=666644
+rarity=M
+[/card]
+[card]
+primitive=Endurance
+id=666645
 rarity=M
 [/card]
