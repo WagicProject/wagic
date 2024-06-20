@@ -179,7 +179,7 @@
 # Learn
 #AUTO_DEFINE _LEARN_ name(Learn) transforms((,newability[if type(*[lesson]|mysideboard)~morethan~0 then choice name(Put lesson in hand) name(Put lesson in hand) target(*[lesson]|mysideboard) moveto(myhand)],newability[if type(*|myhand)~morethan~0 then choice name(Discard and draw) name(Discard and draw) target(*|myhand) reject and!(draw:1)!],newability[if type(Retriever Phoenix|mygraveyard)~morethan~0 then choice name(Return a Retriever Phoenix) name(Return a Retriever Phoenix) target(Retriever Phoenix|mygraveyard) moveto(myBattlefield)],newability[choice name(Don't learn) donothing])) oneshot controller
 
-# Spectacle, if an opponent lost life this turn 
+# Spectacle, if an opponent lost life this turn
 #AUTO_DEFINE _SPECTACLE_ compare(oplifelost)~morethan~0
 
 # Adventure
@@ -212,7 +212,7 @@
 # Connives. (Draw a card, then discard a card. If you discarded a nonland card, put a +1/+1 counter on this creature.)
 #AUTO_DEFINE _CONNIVES_ draw:1 && transforms((,newability[if type(*[-land]|myhand)~morethan~0 then choice name(Discard a nonland) name(Discard a nonland) target(*[-land]|myhand) reject && counter(1/1) all(this)],newability[if type(land|myhand)~morethan~0 then choice name(Discard a land) name(Discard a land) target(land|myhand) reject])) oneshot
 
-# Eternalize 
+# Eternalize
 #AUTO_DEFINE _ETERNALIZE_ name(Eternalize) clone and!( transforms((Zombie,removemc,setpower=4,settoughness=4,black)) forever )! assorcery
 
 # Explores
@@ -251,7 +251,7 @@
 # Goblin Token
 #AUTO_DEFINE _GOBLINTOKEN_ create(Goblin:Creature Goblin:1/1:red)
 
-# Gnome Token 
+# Gnome Token
 #AUTO_DEFINE _GNOMETOKEN_ create(gnome artifact:creature gnome artifact:1/1)
 
 # Insect Token

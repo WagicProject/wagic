@@ -674,11 +674,11 @@ subtype=Chandra
 [card]
 name=Chandra, Pyromaster
 auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Deals 1 damage only to opponent) damage:1 opponent 
+auto={C(0/0,1,Loyalty)}:name(+1: Deals 1 damage only to opponent) damage:1 opponent
 auto={C(0/0,1,Loyalty)}:name(+1: Deals 1 damage only to controller) damage:1 controller
 auto={C(0/0,1,Loyalty)}:name(+1: Deals 1 damage to opponent and creature) damage:1 opponent && target(creature|opponentbattlefield) damage:1 && transforms((,newability[cantblock])) ueot
 auto={C(0/0,1,Loyalty)}:name(+1: Deals 1 damage to controller and creature) damage:1 controller && target(creature|mybattlefield) damage:1 && transforms((,newability[cantblock])) ueot
-auto={C(0/0,0,Loyalty)}:name(+0: Exile the top and may play it) all(*[zpos=1]|mylibrary) moveto(myexile) and!(transforms((,newability[canplayfromexile ueot])) ueot )! 
+auto={C(0/0,0,Loyalty)}:name(+0: Exile the top and may play it) all(*[zpos=1]|mylibrary) moveto(myexile) and!(transforms((,newability[canplayfromexile ueot])) ueot )!
 auto={C(0/0,-7,Loyalty)}:name(-7: Exile the top ten and may cast it) all(*[zpos=1]|mylibrary) moveto(myexile) and!( transforms((tobecha,newability[all(*[zpos<=10]|mylibrary) moveto(myexile) and!( becomes(tobecha) ueot )!],newability[name(Choose instant or sorcery) target(*[-permanent&tobecha]|myexile) transforms((,newability[choice name(Cast 3 copies) activate castcard(copied) && activate castcard(copied) && activate castcard(copied)],newability[choice name(Don't cast copies) donothing],newability[all(tobecha|myexile) losesatype(tobecha)])) ueot])) ueot )!
 text=+1: Chandra, Pyromaster deals 1 damage to target player and 1 damage to up to one target creature that player controls. That creature can't block this turn. -- 0: Exile the top card of your library. You may play it this turn. -- -7: Exile the top ten cards of your library. Choose an instant or sorcery card exiled this way and copy it three times. You may cast the copies without paying their mana costs.
 mana={2}{R}{R}
@@ -1500,8 +1500,8 @@ auto=if paid(alternative) then counter(0/0,3,loyalty)
 auto=ifnot paid(alternative) then counter(0/0,5,loyalty)
 auto={C(0/0,+1,Loyalty)}:name(+1: Target creature gains -3/-0) target(creature|battlefield) transforms((,newability[-3/-0])) uynt
 auto={C(0/0,+1,Loyalty)}:name(+1: Don't target any creature) donothing
-auto={C(0/0,-2,Loyalty)}:name(-2: You mill 3 cards) deplete:3 controller && if type(*|mygraveyard)~morethan~19 then draw:3 controller else if type(*|opponentgraveyard)~morethan~19 then draw:3 controller else draw:1 controller 
-auto={C(0/0,-2,Loyalty)}:name(-2: Opponent mills 3 cards) deplete:3 opponent && if type(*|mygraveyard)~morethan~19 then draw:3 controller else if type(*|opponentgraveyard)~morethan~19 then draw:3 controller else draw:1 controller 
+auto={C(0/0,-2,Loyalty)}:name(-2: You mill 3 cards) deplete:3 controller && if type(*|mygraveyard)~morethan~19 then draw:3 controller else if type(*|opponentgraveyard)~morethan~19 then draw:3 controller else draw:1 controller
+auto={C(0/0,-2,Loyalty)}:name(-2: Opponent mills 3 cards) deplete:3 opponent && if type(*|mygraveyard)~morethan~19 then draw:3 controller else if type(*|opponentgraveyard)~morethan~19 then draw:3 controller else draw:1 controller
 auto={C(0/0,-1,Loyalty)}:name(-1: You mill 1 card three times) thisforeach(variable{3}) ability$!name(Mill 1 card) name(Mill 1 card) deplete:1!$ controller
 auto={C(0/0,-1,Loyalty)}:name(-1: Opponent mills 1 card three times) thisforeach(variable{3}) ability$!name(Mill 1 card) name(Mill 1 card) deplete:1!$ opponent
 auto={C(0/0,-2,Loyalty)}:name(-2: You mill 2 cards three times) thisforeach(variable{3}) ability$!name(Mill 2 cards) name(Mill 2 cards) deplete:2!$ controller
@@ -1847,7 +1847,7 @@ auto=counter(0/0,6,loyalty)
 abilities=opponentshroud
 auto={C(0/0,+2,Loyalty)}:name(+2: Gain life) lifeleech:-3 opponent
 auto={C(0/0,0,Loyalty)}:name(+0: Draw 2 cards) draw:2 controller && ability$!may name(Scry 1) _SCRY1_!$ opponent
-auto={C(0/0,-3,Loyalty)}:name(-3: Exile enchantment or creature) target(*[creature;enchantment]|battlefield) moveto(exile) and!( if cantargetcard(*[-aura]|*) then clone and!( transforms((Spirit Creature,setpower=1,settoughness=1,newability[becomes(^^white) forever],newability[flying])) forever )! )! 
+auto={C(0/0,-3,Loyalty)}:name(-3: Exile enchantment or creature) target(*[creature;enchantment]|battlefield) moveto(exile) and!( if cantargetcard(*[-aura]|*) then clone and!( transforms((Spirit Creature,setpower=1,settoughness=1,newability[becomes(^^white) forever],newability[flying])) forever )! )!
 text=Hexproof -- [+2]: Each opponent loses 3 life and you gain 3 life. -- [0]: You draw two cards. Then each opponent may scry 1. -- [-3]: Exile target creature or enchantment. If it wasn't an Aura, create a token that's a copy of it, except it's a 1/1 white Spirit creature with flying in addition to its other types.
 mana={3}{W}{W}{B}{B}
 type=Legendary Planeswalker
