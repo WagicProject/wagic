@@ -1253,7 +1253,7 @@ name=Gideon, Battle-Forged
 backside=Kytheon, Hero of Akros
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Target creature attacks Gideon) target(creature|opponentbattlefield) mustattack uynt
-auto={C(0/0,-1,Loyalty)}:name(+1: Target creature is indestructible and untap it) target(creature) transforms((,newability[untap],newability[indestructible])) uynt
+auto={C(0/0,1,Loyalty)}:name(+1: Target creature is indestructible and untap it) target(creature) transforms((,newability[untap],newability[indestructible])) uynt
 auto={C(0/0,0,Loyalty)}:name(+0: Transforms Gideon into a 4/4 Human Indestructible) transforms((Human Soldier Creature,setpower=4,settoughness=4,newability[indestructible],newability[preventAllDamage to(this)])) ueot
 text=+2: Up to one target creature an opponent controls attacks Gideon, Battle-Forged during its controller's next turn if able. -- +1: Until your next turn, target creature gains indestructible. Untap that creature. -- 0: Until end of turn, Gideon, Battle-Forged becomes a 4/4 Human Soldier creature with indestructible that's still a planeswalker. Prevent all damage that would be dealt to him this turn. // Kytheon, Hero of Akros
 type=Legendary Planeswalker
