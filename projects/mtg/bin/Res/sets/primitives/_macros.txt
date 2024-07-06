@@ -76,12 +76,12 @@
 #AUTO_DEFINE _AMASSSLIVER5_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Sliver,newability[counter(1/1.5)])) forever else name(Create Sliver Army) token(Sliver Army) and!( name(Put 1/1 counters) counter(1/1.5) notatarget(army|myBattlefield) )!
 
 # Scry, Evergreen
-#AUTO_DEFINE _SCRY_($c) scry:$c scrycore delayed dontshow donothing scrycoreend scryend
-#AUTO_DEFINE _SCRY1_ scry:1 scrycore delayed dontshow donothing scrycoreend scryend
-#AUTO_DEFINE _SCRY2_ scry:2 scrycore delayed dontshow donothing scrycoreend scryend
-#AUTO_DEFINE _SCRY3_ scry:3 scrycore delayed dontshow donothing scrycoreend scryend
-#AUTO_DEFINE _SCRY4_ scry:4 scrycore delayed dontshow donothing scrycoreend scryend
-#AUTO_DEFINE _SCRY5_ scry:5 scrycore delayed dontshow donothing scrycoreend scryend
+#AUTO_DEFINE _SCRY_($c) scry:$c scrycore delayed dontshow donothing scrycoreend scryend controller
+#AUTO_DEFINE _SCRY1_ scry:1 scrycore delayed dontshow donothing scrycoreend scryend controller
+#AUTO_DEFINE _SCRY2_ scry:2 scrycore delayed dontshow donothing scrycoreend scryend controller
+#AUTO_DEFINE _SCRY3_ scry:3 scrycore delayed dontshow donothing scrycoreend scryend controller
+#AUTO_DEFINE _SCRY4_ scry:4 scrycore delayed dontshow donothing scrycoreend scryend controller
+#AUTO_DEFINE _SCRY5_ scry:5 scrycore delayed dontshow donothing scrycoreend scryend controller
 
 # Fabricate
 #AUTO_DEFINE _FABRICATE_($c) transforms((,newability[choice counter(1/1.$c)],newability[choice create(Servo:Artifact Creature Servo:1/1)*$c])) ueot
@@ -102,13 +102,13 @@
 #AUTO_DEFINE _CHAMPION_($Word) aslongas(other $word|myBattlefield) choice notAtarget(other $word|myBattlefield) (blink)forsrc oneshot
 
 # Metalcraft, not implemented
-#AUTO_DEFINE _METALCRAFT_ aslongas(artifact|mybattlefield) >2
+#AUTO_DEFINE _METALCRAFT_ if type(artifact|mybattlefield)~morethan~2 then
 
 # Echo, not implemented
 #AUTO_DEFINE _ECHO_($cost) $cost[{$c};next upkeep] sacrifice
 
 # Threshold, not implemented
-#AUTO_DEFINE _THRESHOLD_ if type(*|mygraveyard)~morethan~6
+#AUTO_DEFINE _THRESHOLD_ if type(*|mygraveyard)~morethan~6 then
 
 # Splice onto Arcane, not implemented
 #AUTO_DEFINE _SPLICEARCANE_ movedTo(*[Arcane]|myStack):may castcard(copied noevent) target(*[Arcane]|myHand)
@@ -127,9 +127,6 @@
 
 # Monstrosity, not implemented
 #AUTO_DEFINE _MONSTROSITY_($cost,$c) name(Monstrosity) this(cantargetcard(*[-monstrous]) {$cost}:becomes(monstrous) forever && counter(1/1.$c)
-
-# Outlast, not implemented
-#AUTO_DEFINE _OUTLAST_($cost) {$cost}{$cost}:counter(1/1) all(this) asSorcery
 
 # Investigate token, Shadows over Innistrad SOI
 #AUTO_DEFINE _INVESTIGATE_ token(Clue)
@@ -166,9 +163,6 @@
 #AUTO_DEFINE _SURVEIL2_ name(Surveil 2) reveal:psurveiloffsetplus2plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus2plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus2plusend>*|reveal) moveto(ownerlibrary) optiontwoend afterrevealed surveil afterrevealedend revealend
 
 #AUTO_DEFINE _SURVEIL3_ name(Surveil 3) reveal:psurveiloffsetplus3plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus3plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus3plusend>*|reveal) moveto(ownerlibrary) optiontwoend afterrevealed surveil afterrevealedend revealend
-
-# Undergrowth, not implemented
-#AUTO_DEFINE _UNDERGROWTH_ foreach(creature|myGraveyard)
 
 # Afterlife
 #AUTO_DEFINE _AFTERLIFETOKEN_ create(Spirit:Creature Spirit:1/1:white:black:flying)

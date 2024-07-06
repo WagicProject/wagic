@@ -434,6 +434,7 @@ Player * Rules::loadPlayerRandomCommander(GameObserver* observer, int isAI)
         cmdTempDeck->addRandomCards(1, 0, 0, -1, "legendary");
         myCommandZone = NEW DeckDataWrapper(cmdTempDeck);
         commander = myCommandZone->getCard(0, true);
+        delete myCommandZone; // Clean up to avoid memory leaks
     }
 
     stringstream cid;
@@ -452,11 +453,10 @@ Player * Rules::loadPlayerRandomCommander(GameObserver* observer, int isAI)
 
     if(colors.data()[0] != 0) { colors.insert(colors.begin(),0); }
 
-    // Add basic lands
-    int numLands = 40;
+    // Add lands
+    int numLands = colors.size() > 1 ? 40 / (colors.size() - 1) : 40;
     if(colors.size() > 1)
     {
-        numLands /= colors.size() - 1;
         for (unsigned int i = 1; i < colors.size(); i++)
         {
             tempDeck->addRandomCards(numLands, 0, 0, -1, lands[colors.data()[i]].c_str());
