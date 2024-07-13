@@ -401,7 +401,7 @@ abilities=hiddenface
 aicode=activate target(*[zpos<=4]|mylibrary) moveto(ownerhand)
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Reveal four from top and reveal an enchantment) reveal:4 optionone name(Look at the top four cards) target(*[enchantment]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend revealend
-auto={C(0/0,-3,Loyalty)}:name(-3: Exile enchantment until...) aslongas(enchantment|mybattlefield) choice notatarget(creature,enchantment|opponentbattlefield) (blink)forsrc oneshot
+auto={C(0/0,-3,Loyalty)}:name(-3: Exile creature or enchantment) target(creature,enchantment|opponentbattlefield) (blink)forsrc restriction{type(enchantment|mybattlefield)~morethan~0}
 auto={C(0/0,-7,Loyalty)}:name(-7: Return all enchantments) moveTo(myBattlefield) all(enchantment|myGraveyard)
 text=+1: Look at the top four cards of your library. You may reveal an enchantment card from among them and put that card into your hand. Put the rest on the bottom of your library in a random order. -- -3: Exile target creature or enchantment you don't control until target enchantment you control leaves the battlefield. -- -7: Return all enchantment cards from your graveyard to the battlefield.
 mana={2}{G}{W}
@@ -2142,7 +2142,7 @@ auto=aslongas(creature[power=19]|mybattlefield) {C(0/0,-4,Loyalty)}:name(-4: Dea
 auto=aslongas(creature[power>=20]|mybattlefield) {C(0/0,-4,Loyalty)}:name(-4: Deal 20 damage) name(-4: Deal 20 damage) thisforeach(variable{20}) ability$!name(Deal 1 damage) damage:1 target(*[creature;planeswalker]|battlefield)!$ controller
 text=Compleated ({R/G/P} can be paid with {R}, {G}, or 2 life. If life was paid, this planeswalker enters with two fewer loyalty counters.) -- [+1]: Add {R}{G}. Spend this mana only to cast creature spells or activate abilities of creatures. -- [-1]: Create a 3/3 green Phyrexian Beast creature token with toxic 1. -- [-4]: Lukka deals X damage divided as you choose among any number of target creatures and/or planeswalkers, where X is the greatest power among creatures you controlled as you activated this ability.
 mana={2}{R}{RG}{G}
-other={1}{R}{G}{L:2} name(Pay 2 life)
+other={2}{R}{G}{L:2} name(Pay 2 life)
 type=Legendary Planeswalker
 subtype=Lukka
 [/card]
@@ -3698,7 +3698,7 @@ auto={C(0/0,-2,Loyalty)}:name(-2: Creature becomes treasure) target(creature|bat
 auto={C(0/0,-9,Loyalty)}:name(-9: You get poison counter) alterpoison:9minusmypoisoncountminusend controller
 auto={C(0/0,-9,Loyalty)}:name(-9: Opponent gets poison counter) alterpoison:9minusopponentpoisoncountminusend opponent
 text=Compleated ({B/P} can be paid with {B} or 2 life. If life was paid, this planeswalker enters with two fewer loyalty counters.) -- [0]: You draw a card and you lose 1 life. Proliferate. -- [-2]: Target creature becomes a Treasure artifact with "{T}, Sacrifice this artifact: Add one mana of any color" and loses all other card types and abilities. -- [-9]: If target player has fewer than nine poison counters, they get a number of poison counters equal to the difference.
-other={2}{B}{L:2} name(Pay 2 life)
+other={4}{B}{L:2} name(Pay 2 life)
 mana={4}{B}{B}
 type=Legendary Planeswalker
 subtype=Vraska
