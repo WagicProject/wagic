@@ -171,11 +171,6 @@ id=472967
 rarity=C
 [/card]
 [card]
-primitive=Dizzying Swoop
-id=472967
-rarity=T
-[/card]
-[card]
 primitive=Bartered Cow
 id=472968
 rarity=C
@@ -206,11 +201,6 @@ id=472973
 rarity=C
 [/card]
 [card]
-primitive=Gift of the Fae
-id=472973
-rarity=T
-[/card]
-[card]
 primitive=Flutterfox
 id=472974
 rarity=C
@@ -224,11 +214,6 @@ rarity=C
 primitive=Giant Killer // Chop Down
 id=472976
 rarity=R
-[/card]
-[card]
-primitive=Chop Down
-id=472976
-rarity=T
 [/card]
 [card]
 primitive=Glass Casket
@@ -266,11 +251,6 @@ id=472983
 rarity=C
 [/card]
 [card]
-primitive=Rider in Need
-id=472983
-rarity=T
-[/card]
-[card]
 primitive=Mysterious Pathlighter
 id=472984
 rarity=U
@@ -296,11 +276,6 @@ id=472988
 rarity=M
 [/card]
 [card]
-primitive=Cast Off
-id=472988
-rarity=T
-[/card]
-[card]
 primitive=Righteousness
 id=472989
 rarity=U
@@ -309,11 +284,6 @@ rarity=U
 primitive=Shepherd of the Flock // Usher to Safety
 id=472990
 rarity=U
-[/card]
-[card]
-primitive=Usher to Safety
-id=472990
-rarity=T
 [/card]
 [card]
 primitive=Shining Armor
@@ -329,11 +299,6 @@ rarity=C
 primitive=Silverflame Squire // On Alert
 id=472993
 rarity=C
-[/card]
-[card]
-primitive=On Alert
-id=472993
-rarity=T
 [/card]
 [card]
 primitive=Syr Alin, the Lion's Claw
@@ -371,19 +336,9 @@ id=473000
 rarity=U
 [/card]
 [card]
-primitive=Bring to Life
-id=473000
-rarity=T
-[/card]
-[card]
 primitive=Brazen Borrower // Petty Theft
 id=473001
 rarity=M
-[/card]
-[card]
-primitive=Petty Theft
-id=473001
-rarity=T
 [/card]
 [card]
 primitive=Charmed Sleep
@@ -411,11 +366,6 @@ id=473006
 rarity=R
 [/card]
 [card]
-primitive=Granted
-id=473006
-rarity=T
-[/card]
-[card]
 primitive=Faerie Vandal
 id=473007
 rarity=U
@@ -441,11 +391,6 @@ id=473011
 rarity=U
 [/card]
 [card]
-primitive=Mesmeric Glare
-id=473011
-rarity=T
-[/card]
-[card]
 primitive=Into the Story
 id=473012
 rarity=U
@@ -464,11 +409,6 @@ rarity=C
 primitive=Merfolk Secretkeeper // Venture Deeper
 id=473015
 rarity=C
-[/card]
-[card]
-primitive=Venture Deeper
-id=473015
-rarity=T
 [/card]
 [card]
 primitive=Midnight Clock
@@ -509,11 +449,6 @@ rarity=U
 primitive=Queen of Ice // Rage of Winter
 id=473023
 rarity=C
-[/card]
-[card]
-primitive=Rage of Winter
-id=473023
-rarity=T
 [/card]
 [card]
 primitive=Run Away Together
@@ -661,11 +596,6 @@ id=473052
 rarity=U
 [/card]
 [card]
-primitive=Profane Insight
-id=473052
-rarity=T
-[/card]
-[card]
 primitive=Giant's Skewer
 id=473053
 rarity=C
@@ -701,11 +631,6 @@ id=473059
 rarity=R
 [/card]
 [card]
-primitive=Swift End
-id=473059
-rarity=T
-[/card]
-[card]
 primitive=Oathsworn Knight
 id=473060
 rarity=R
@@ -714,11 +639,6 @@ rarity=R
 primitive=Order of Midnight // Alter Fate
 id=473061
 rarity=U
-[/card]
-[card]
-primitive=Alter Fate
-id=473061
-rarity=T
 [/card]
 [card]
 primitive=Piper of the Swarm
@@ -736,11 +656,6 @@ id=473064
 rarity=C
 [/card]
 [card]
-primitive=Harvest Fear
-id=473064
-rarity=T
-[/card]
-[card]
 primitive=Reave Soul
 id=473065
 rarity=C
@@ -754,11 +669,6 @@ rarity=U
 primitive=Smitten Swordmaster // Curry Favor
 id=473067
 rarity=C
-[/card]
-[card]
-primitive=Curry Favor
-id=473067
-rarity=T
 [/card]
 [card]
 primitive=Specter's Shriek
@@ -811,11 +721,6 @@ id=473077
 rarity=R
 [/card]
 [card]
-primitive=Stomp
-id=473077
-rarity=T
-[/card]
-[card]
 primitive=Brimstone Trebuchet
 id=473078
 rarity=C
@@ -849,11 +754,6 @@ rarity=C
 primitive=Embereth Shieldbreaker // Battle Display
 id=473084
 rarity=U
-[/card]
-[card]
-primitive=Battle Display
-id=473084
-rarity=T
 [/card]
 [card]
 primitive=Ferocity of the Wilds
@@ -901,11 +801,6 @@ id=473093
 rarity=C
 [/card]
 [card]
-primitive=Haggle
-id=473093
-rarity=T
-[/card]
-[card]
 primitive=Ogre Errant
 id=473094
 rarity=C
@@ -934,11 +829,6 @@ rarity=C
 primitive=Rimrock Knight // Boulder Rush
 id=473099
 rarity=C
-[/card]
-[card]
-primitive=Boulder Rush
-id=473099
-rarity=T
 [/card]
 [card]
 primitive=Robber of the Rich
@@ -1001,19 +891,9 @@ id=473111
 rarity=U
 [/card]
 [card]
-primitive=Fertile Footsteps
-id=473111
-rarity=T
-[/card]
-[card]
-primitive=Curious Pair // Treats to Share 
+primitive=Curious Pair // Treats to Share
 id=473112
 rarity=C
-[/card]
-[card]
-primitive=Treats to Share
-id=473112
-rarity=T
 [/card]
 [card]
 primitive=Edgewall Innkeeper
@@ -1041,19 +921,9 @@ id=473117
 rarity=U
 [/card]
 [card]
-primitive=Welcome Home
-id=473117
-rarity=T
-[/card]
-[card]
 primitive=Garenbrig Carver // Shield's Might
 id=473118
 rarity=C
-[/card]
-[card]
-primitive=Shield's Might
-id=473118
-rarity=T
 [/card]
 [card]
 primitive=Garenbrig Paladin
@@ -1101,11 +971,6 @@ id=473127
 rarity=R
 [/card]
 [card]
-primitive=Heart's Desire
-id=473127
-rarity=T
-[/card]
-[card]
 primitive=Maraleaf Rider
 id=473128
 rarity=C
@@ -1151,11 +1016,6 @@ id=473136
 rarity=C
 [/card]
 [card]
-primitive=Seasonal Ritual
-id=473136
-rarity=T
-[/card]
-[card]
 primitive=Rosethorn Halberd
 id=473137
 rarity=C
@@ -1184,11 +1044,6 @@ rarity=U
 primitive=Tuinvale Treefolk // Oaken Boon
 id=473142
 rarity=C
-[/card]
-[card]
-primitive=Oaken Boon
-id=473142
-rarity=T
 [/card]
 [card]
 primitive=Wicked Wolf
@@ -1349,11 +1204,6 @@ rarity=U
 primitive=Oakhame Ranger // Bring Back
 id=473174
 rarity=U
-[/card]
-[card]
-primitive=Bring Back
-id=473174
-rarity=T
 [/card]
 [card]
 primitive=Rampart Smasher
