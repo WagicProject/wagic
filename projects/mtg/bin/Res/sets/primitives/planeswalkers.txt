@@ -2034,8 +2034,7 @@ subtype=Liliana
 [card]
 name=Liliana, the Last Hope
 auto=counter(0/0,3,Loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Do not target any creature) donothing
-auto={C(0/0,1,Loyalty)}:name(+1: Target creature gets -2/-1) target(creature) transforms((,newability[-2/-1])) uynt
+auto={C(0/0,1,Loyalty)}:name(+1: Target creature gets -2/-1) ability$! may target(creature) transforms((,newability[-2/-1])) uynt $! controller
 auto={C(0/0,-2,Loyalty)}:name(-2: Mils two and return a creature) deplete:2 controller && ability$!may name(Move to hand) moveto(myhand) target(creature|mygraveyard)!$ controller
 auto={C(0/0,-7,Loyalty)}:name(-7: Emblem: "Each my end of turn create X 2/2 Zombie plus two") emblem transforms((,newability[phaseactionmulti[my endofturn] foreach(zombie|mybattlefield) _ZOMBIETOKEN_ && _ZOMBIETOKEN_*2])) forever dontremove
 text=+1: Up to one target creature gets -2/-1 until your next turn. -- -2: Put the top two cards of your library into your graveyard, then you may return a creature card from your graveyard to your hand. -- -7: You get an emblem with "At the beginning of your end step, put X 2/2 black Zombie creature tokens onto the battlefield, where X is two plus the number of Zombies you control."
@@ -2211,8 +2210,8 @@ subtype=Yanling
 [card]
 name=Mu Yanling, Celestial Wind
 auto=counter(0/0,5,loyalty)
-auto={C(0/0,2,Loyalty)}:name(+2: Target creature gets -5/-0) target(creature) -5/0 uynt
-auto={C(0/0,-3,Loyalty)}:name(-3: Return up to two creatures) target(<2>creature) moveTo(ownerhand)
+auto={C(0/0,1,Loyalty)}:name(+1: Target creature gets -5/-0) target(creature) transforms((,newability[-5/0])) uynt
+auto={C(0/0,-3,Loyalty)}:name(-3: Return up to two creatures) ability$! may target(<2>creature) moveTo(ownerhand) !$ controller
 auto={C(0/0,-7,Loyalty)}:name(-7: Creatures with flying gets +5/+5) all(creature[flying]|myBattlefield) 5/5 ueot
 text=+1: Until your next turn, up to one target creature gets -5/-0. -- -3: Return up to two target creatures to their owners' hands. -- -7: Creatures you control with flying get +5/+5 until end of turn.
 mana={4}{U}{U}
@@ -2222,8 +2221,7 @@ subtype=Yanling
 [card]
 name=Mu Yanling, Sky Dancer
 auto=counter(0/0,2,loyalty)
-auto={C(0/0,2,Loyalty)}:name(+2: No Target) donothing
-auto={C(0/0,2,Loyalty)}:name(+2: Target creature gets -2/-0 and lose Flying) target(creature) -2/0 && -flying uynt
+auto={C(0/0,2,Loyalty)}:name(+2: Target creature gets -2/-0 and lose Flying) ability$! may target(creature) transforms((,newability[-2/0],newability[-flying])) uynt !$ controller
 auto={C(0/0,-3,Loyalty)}:name(-3: Create an Creature Elemental Bird 4/4 blue with flying) create(Elemental Bird:Creature Elemental Bird:4/4:blue:flying)
 auto={C(0/0,-8,Loyalty)}:name(-8: Emblem: All islands have: Draw a card) all(island|mybattlefield) transforms((,newability[{T}:draw:1 controller])) forever dontremove
 text=+2: Until your next turn, up to one target creature gets -2/-0 and loses flying. -- -3: Create a 4/4 blue Elemental Bird creature token with flying. -- -8: You get an emblem with "Islands you control have '{T}: Draw a card.'"
