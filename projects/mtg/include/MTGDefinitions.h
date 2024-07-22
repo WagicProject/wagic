@@ -166,7 +166,7 @@ class Constants
       MUSTATTACK = 38,
       CANTBLOCK = 39,
       DOESNOTUNTAP = 40,
-      OPPONENTSHROUD = 41,
+      HEXPROOF = 41,
       INDESTRUCTIBLE = 42,
       INTIMIDATE = 43,
       DEATHTOUCH = 44,
@@ -362,7 +362,8 @@ class Constants
       POISONTENTOXIC = 234,
       EQPASINST = 235,
       CANLOYALTYASINST = 236,
-      NB_BASIC_ABILITIES = 237,
+      CANPLAYENCHANTMENTTOPLIBRARY = 237,//enchantment
+      NB_BASIC_ABILITIES = 238,
 
     RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics

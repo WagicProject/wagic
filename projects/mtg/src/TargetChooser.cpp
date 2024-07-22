@@ -1521,7 +1521,7 @@ bool TargetChooser::canTarget(Targetable * target, bool withoutProtections)
             if (card->has(Constants::SHROUD)) return targetter->bypassTC;
             if (card->protectedAgainst(targetter)) return targetter->bypassTC;
             if (card->CantBeTargetby(targetter)) return targetter->bypassTC;
-            if ((targetter->controller() != card->controller()) && card->has(Constants::OPPONENTSHROUD)) return targetter->bypassTC;
+            if ((targetter->controller() != card->controller()) && card->has(Constants::HEXPROOF)) return targetter->bypassTC;
             if (card->has(Constants::PROTECTIONFROMCOLOREDSPELLS))
             {//a spell that has no target=criteria means it's not targetted unless its a workaround card...
                 if((targetter->spellTargetType.size()) && (targetter->hasColor(1)||targetter->hasColor(2)||targetter->hasColor(3)||targetter->hasColor(4)||targetter->hasColor(5)))
@@ -2090,7 +2090,7 @@ bool DamageableTargetChooser::canTarget(Targetable * target, bool withoutProtect
             if (card->has(Constants::SHROUD)) return source->bypassTC;
             if (card->protectedAgainst(targetter)) return source->bypassTC;
             if (card->CantBeTargetby(targetter)) return source->bypassTC;
-            if ((source->controller() != card->controller()) && card->has(Constants::OPPONENTSHROUD)) return source->bypassTC;
+            if ((source->controller() != card->controller()) && card->has(Constants::HEXPROOF)) return source->bypassTC;
             if (card->has(Constants::PROTECTIONFROMCOLOREDSPELLS)){
                 if((source->spellTargetType.size()) && (source->hasColor(1)||source->hasColor(2)||source->hasColor(3)||source->hasColor(4)||source->hasColor(5)))
                     return source->bypassTC;
@@ -2461,7 +2461,7 @@ bool ProliferateChooser::canTarget(Targetable * target, bool withoutProtections)
             if (card->has(Constants::SHROUD)) return source->bypassTC;
             if (card->protectedAgainst(source)) return source->bypassTC;
             if (card->CantBeTargetby(source)) return source->bypassTC;
-            if ((source->controller() != card->controller()) && card->has(Constants::OPPONENTSHROUD)) return source->bypassTC;
+            if ((source->controller() != card->controller()) && card->has(Constants::HEXPROOF)) return source->bypassTC;
             if (card->has(Constants::PROTECTIONFROMCOLOREDSPELLS)){
                 if((source->spellTargetType.size()) && (source->hasColor(1)||source->hasColor(2)||source->hasColor(3)||source->hasColor(4)||source->hasColor(5)))
                     return source->bypassTC;

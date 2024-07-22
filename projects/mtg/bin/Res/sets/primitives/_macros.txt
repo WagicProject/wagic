@@ -225,6 +225,8 @@
 # Suspect it (It has menace and can't block.)
 #AUTO_DEFINE _SUSPECT_IT_ name(Suspect it) transforms((,menace,cantblock,newability[becomes(suspect) forever])) forever
 
+#AUTO_DEFINE _HARNESSED_LIGHTNING_($c) this(variable{penergy}>=$c) choice damage:$c && alterenergy:-$c controller
+
 # Angel Token
 #AUTO_DEFINE _ANGELTOKEN_ create(Angel:Creature Angel:4/4:white:flying)
 

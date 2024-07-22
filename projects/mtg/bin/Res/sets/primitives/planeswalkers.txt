@@ -861,7 +861,7 @@ auto=counter(0/0,3,loyalty)
 aicode=activate moveto(myhand) target(creature[zpos=1]|mylibrary)
 auto={C(0/0,1,Loyalty)}:name(+1: Reveal creature) reveal:1 optionone target(creature|reveal) moveto(myhand) optiononeend optiontwo name(Put Back On Top) target(<1>*|reveal) moveto(mylibrary) optiontwoend revealend
 auto={C(0/0,-2,Loyalty)}:name(-2: Fight other creature) target(creature|mybattlefield) transforms((,newability[target(creature) dynamicability<!powerstrike eachother!>])) ueot
-auto={C(0/0,-7,Loyalty)}:name(-7: Emblem: "Creatures gets abilities") emblem transforms((,newability[lord(creature|mybattlefield)double strike],newability[lord(creature|mybattlefield)trample],newability[lord(creature|mybattlefield) opponentshroud],newability[lord(creature|mybattlefield)haste])) forever dontremove
+auto={C(0/0,-7,Loyalty)}:name(-7: Emblem: "Creatures gets abilities") emblem transforms((,newability[lord(creature|mybattlefield)double strike],newability[lord(creature|mybattlefield)trample],newability[lord(creature|mybattlefield) hexproof],newability[lord(creature|mybattlefield)haste])) forever dontremove
 text=+1: Look at the top card of your library. If it's a creature card, you may reveal it and put it into your hand. -- -2: Target creature you control fights another target creature. -- -7: You get an emblem with "Creatures you control have double strike, trample, hexproof, and haste."
 mana={1}{R}{G}
 type=Legendary Planeswalker
@@ -1809,7 +1809,7 @@ subtype=Kasmina
 [card]
 name=Kaya, Bane of the Dead
 auto=counter(0/0,7,loyalty)
-auto=lord(*|opponentBattlefield) transforms((,newability[-opponentshroud],newability[-controllershroud]))
+auto=lord(*|opponentBattlefield) transforms((,newability[-hexproof],newability[-controllershroud]))
 auto={C(0/0,-3,Loyalty)}:name(-3: Exile target creature) moveTo(exile) target(creature)
 text=Your opponents and permanents your opponents control with hexproof can be the target of spells and abilities you control as though they didn't have hexproof. -- -3: Exile target creature.
 mana={3}{WB}{WB}{WB}
@@ -1844,7 +1844,7 @@ subtype=Kaya
 [card]
 name=Kaya, Intangible Slayer
 auto=counter(0/0,6,loyalty)
-abilities=opponentshroud
+abilities=hexproof
 auto={C(0/0,+2,Loyalty)}:name(+2: Gain life) lifeleech:-3 opponent
 auto={C(0/0,0,Loyalty)}:name(+0: Draw 2 cards) draw:2 controller && ability$!may name(Scry 1) _SCRY1_!$ opponent
 auto={C(0/0,-3,Loyalty)}:name(-3: Exile enchantment or creature) target(*[creature;enchantment]|battlefield) moveto(exile) and!( if cantargetcard(*[-aura]|*) then clone and!( transforms((Spirit Creature,setpower=1,settoughness=1,newability[becomes(^^white) forever],flying)) forever )! )!
@@ -3811,7 +3811,7 @@ name=Wrenn and Realmbreaker
 auto=counter(0/0,4,loyalty)
 auto=lord(land|mybattlefield) transforms((,newability[{T}:add{W}],newability[{T}:add{U}],newability[{T}:add{B}],newability[{T}:add{R}],newability[{T}:add{G}]))
 auto=@counteradded(0/0,1,WrennDepleted) from(*|mygraveyard) turnlimited:name(Return permanent) transforms((,newability[if type(*[-instant;-sorcery;counter{0/0.1.WrennDepleted}]|mygraveyard)~morethan~0 then choice name(Return permanent) name(Return permanent) target(*[-instant;-sorcery;counter{0/0.1.WrennDepleted}]|mygraveyard) moveto(myhand) and!( all(*[counter{0/0.1.WrennDepleted}]|mygraveyard) removeallcounters(0/0.1.WrennDepleted) )!],newability[if type(*[-instant;-sorcery;counter{0/0.1.WrennDepleted}]|mygraveyard)~morethan~0 then choice name(Don't Return any permanent) name(Don't Return any permanent) all(*[counter{0/0.1.WrennDepleted}]|mygraveyard) removeallcounters(0/0.1.WrennDepleted)])) oneshot
-auto={C(0/0,1,Loyalty)}:name(+1: Transform land) target(land|mybattlefield) transforms((Elemental Creature,setpower=3,settoughness=3,haste,vigilance,opponentshroud)) uynt
+auto={C(0/0,1,Loyalty)}:name(+1: Transform land) target(land|mybattlefield) transforms((Elemental Creature,setpower=3,settoughness=3,haste,vigilance,hexproof)) uynt
 auto={C(0/0,1,Loyalty)}:name(+1: Don't transform any land) donothing
 auto={C(0/0,-2,Loyalty)}:name(-2: Mill and return) all(*[zpos<=2]|mylibrary) moveto(mygraveyard) and!( transforms((,newability[counter(0/0.1.WrennDepleted) notrg])) ueot )! && all(*[zpos=3]|mylibrary) moveto(mygraveyard) and!( transforms((,newability[counter(0/0.1.WrennDepleted)])) ueot )!
 auto={C(0/0,-7,Loyalty)}:name(-7: Emblem play from graveyard) emblem transforms((,newability[lord(*[-instant;-sorcery]|mygraveyard) canplayfromgraveyard])) forever dontremove

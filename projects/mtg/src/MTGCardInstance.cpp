@@ -1070,6 +1070,9 @@ bool MTGCardInstance::canPlayFromLibrary()
     if(hasSubtype(Subtypes::TYPE_ARTIFACT) && (has(Constants::CANPLAYARTIFACTTOPLIBRARY)
         || (controller()->game->inPlay->nb_cards && controller()->game->inPlay->hasAbility(Constants::CANPLAYARTIFACTTOPLIBRARY))))
         found++;
+    if(hasSubtype(Subtypes::TYPE_ENCHANTMENT) && (has(Constants::CANPLAYENCHANTMENTTOPLIBRARY)
+        || (controller()->game->inPlay->nb_cards && controller()->game->inPlay->hasAbility(Constants::CANPLAYENCHANTMENTTOPLIBRARY))))
+        found++;
     if(isCreature() && (has(Constants::CANPLAYCREATURETOPLIBRARY)
         || (controller()->game->inPlay->nb_cards && controller()->game->inPlay->hasAbility(Constants::CANPLAYCREATURETOPLIBRARY))))
         found++;

@@ -72,7 +72,7 @@ const char* Constants::MTGBasicAbilities[] = {
     "mustattack",
     "cantblock",
     "doesnotuntap",
-    "opponentshroud",
+    "hexproof",
     "indestructible",
     "intimidate",
     "deathtouch",
@@ -267,7 +267,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "poisonninetoxic", // Card has toxic 9
     "poisontentoxic", // Card has toxic 10
     "eqpasinst", // Can equip as instant
-    "canloyaltyasinst" // Can activate loyalty abilities as instant (e.g. "The Wandering Emperor").
+    "canloyaltyasinst", // Can activate loyalty abilities as instant (e.g. "The Wandering Emperor").
+    "canplayenchantmentlibrarytop" // May play enchantments from top
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

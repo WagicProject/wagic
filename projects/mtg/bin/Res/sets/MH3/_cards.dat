@@ -980,14 +980,9 @@ id=662347
 rarity=C
 [/card]
 [card]
-primitive=Ondu Knotmaster
+primitive=Ondu Knotmaster // Throw a Line
 id=662348
 rarity=U
-[/card]
-[card]
-primitive=Throw a Line
-id=662348
-rarity=T
 [/card]
 [card]
 primitive=Phlage, Titan of Fire's Fury

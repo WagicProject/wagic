@@ -9,6 +9,9 @@ life:20
 auto=shuffle
 auto=draw:7
 
+auto=@each my upkeep:if type(creature[manacost<=5]|mylibrary)~lessthan~1 then moverandom(creature[manacost<=6]) from(library) to(battlefield)
+auto=@each my upkeep:if type(creature[manacost<=4]|mylibrary)~lessthan~1 then moverandom(creature[manacost<=5]) from(library) to(battlefield)
 auto=@each my upkeep:if type(creature[manacost<=3]|mylibrary)~lessthan~1 then moverandom(creature[manacost<=4]) from(library) to(battlefield)
 auto=@each my upkeep:if type(creature[manacost<=2]|mylibrary)~lessthan~1 then moverandom(creature[manacost<=3]) from(library) to(battlefield)
-auto=@each my upkeep:moverandom(creature[manacost<=2]) from(library) to(battlefield)
+auto=@each my upkeep:if type(creature[manacost<=1]|mylibrary)~lessthan~1 then moverandom(creature[manacost<=2]) from(library) to(battlefield)
+auto=@each my upkeep:moverandom(creature[manacost<=1]) from(library) to(battlefield)
