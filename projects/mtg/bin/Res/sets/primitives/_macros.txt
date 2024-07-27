@@ -42,6 +42,9 @@
 # Heroic
 #AUTO_DEFINE _HEROIC_ @targeted(this) from(*[instant;sorcery;aura]|myCastingzone):
 
+# Valiant
+#AUTO_DEFINE _VALIANT_ @targeted(this) from(*|myCastingzone,myBattlefield) turnlimited:
+
 # Rally
 #AUTO_DEFINE _RALLY_ @movedTo(other ally|myBattlefield):
 
@@ -107,7 +110,7 @@
 # Echo, not implemented
 #AUTO_DEFINE _ECHO_($cost) $cost[{$c};next upkeep] sacrifice
 
-# Threshold, not implemented
+# Threshold
 #AUTO_DEFINE _THRESHOLD_ if type(*|mygraveyard)~morethan~6 then
 
 # Splice onto Arcane, not implemented
@@ -189,7 +192,10 @@
 #AUTO_DEFINE _UNEARTH_ name(Unearth) moveto(mybattlefield) and!( transforms((,haste,newability[unearth],newability[exiledeath])) forever )! asSorcery
 
 # Exile the top card of your library. you may play it this turn.
-#AUTO_DEFINE __PLAY_TOP_FROM_EXILE__ moveto(exile) and!( transforms((,canplayfromexile)) ueot )! all(*[zpos=1]|mylibrary)
+#AUTO_DEFINE _EXILETOP_ moveto(exile) and!( transforms((,canplayfromexile)) ueot )! all(*[zpos=1]|mylibrary)
+
+# Exile the top card of your library. Until the end of your next turn, you may play that card.
+#AUTO_DEFINE _EXILEUENT_ moveto(exile) and!( transforms((,canplayfromexile)) uent )! all(*[zpos=1]|mylibrary)
 
 # Ward
 #AUTO_DEFINE _WARD1_ @targeted(this) from(*|opponentzones):choice name(This spell costs 1 more) name(This spell costs 1 more) target(*|opponentzones) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) oneshot
@@ -225,6 +231,9 @@
 # Suspect it (It has menace and can't block.)
 #AUTO_DEFINE _SUSPECT_IT_ name(Suspect it) transforms((,menace,cantblock,newability[becomes(suspect) forever])) forever
 
+# Finality counter, if it would die, it's exiled instead
+#AUTO_DEFINE _FINALITY_COUNTER_ and!( transforms((,newability[counter(0/0.1.finality)],newability[this(counter{0/0.1.finality}>=1) exiledeath])) forever )!
+
 #AUTO_DEFINE _HARNESSED_LIGHTNING_($c) this(variable{penergy}>=$c) choice damage:$c && alterenergy:-$c controller
 
 # Angel Token
@@ -232,6 +241,9 @@
 
 # Beast Token
 #AUTO_DEFINE _BEASTTOKEN_ create(Beast:Creature Beast:3/3:green)
+
+# Citizen Token
+#AUTO_DEFINE _CITIZENTOKEN_ create(citizen:creature citizen:1/1:green:white)
 
 # Detective Token
 #AUTO_DEFINE _DETECTIVETOKEN_ create(detective:creature detective:2/2:white:blue)
@@ -247,6 +259,9 @@
 
 # Elephant Token
 #AUTO_DEFINE _ELEPHANTTOKEN_ create(Elephant:Creature Elephant:3/3:green)
+
+# Fish Token
+#AUTO_DEFINE _FISHTOKEN_ create(fish:creature fish:1/1:blue)
 
 # Goblin Token
 #AUTO_DEFINE _GOBLINTOKEN_ create(Goblin:Creature Goblin:1/1:red)
@@ -277,6 +292,9 @@
 
 # Spirit Token
 #AUTO_DEFINE _SPIRITTOKEN_ create(Spirit:creature Spirit:1/1:white:flying)
+
+# Squirrel Token
+#AUTO_DEFINE _SQUIRRELTOKEN_ create(Squirrel:Creature Squirrel:1/1:green)
 
 # Thopter Token
 #AUTO_DEFINE _THOPTERTOKEN_ create(Thopter:Artifact Creature Thopter:1/1:flying)
