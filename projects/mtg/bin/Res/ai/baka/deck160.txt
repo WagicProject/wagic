@@ -11,6 +11,7 @@ Abzan Falconer (*) * 1
 Ajani's Pridemate (M11) (*) * 1
 All Will Be One (*) * 1
 Arcane Signet (*) * 1
+Arwen, Weaver of Hope (*) * 1
 Basri's Solidarity (*) * 1
 Birds of Paradise (*) * 1
 Botanical Brawler (*) * 1
@@ -33,7 +34,6 @@ Farseek (*) * 1
 Felidar Retreat (*) * 1
 Forest (LTR) (*) * 4
 Forest (CMM) (*) * 4
-Forgotten Ancient (*) * 1
 Fortified Village (*) * 1
 Game Trail (*) * 1
 Goblin Anarchomancer (*) * 1
