@@ -96,7 +96,7 @@ subtype=Ajani
 name=Ajani Steadfast
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Put a loyalty counter) donothing restriction{compare(cantargetcre)~lessthan~1}
-auto={C(0/0,1,Loyalty)}:name(+1: Target creature gets +1/1 and abilities) target(creature) transforms((,newability[1/1],vigilance,first strike,newability[lifelink])) ueot restriction{compare(cantargetcre)~morethan~0}
+auto={C(0/0,1,Loyalty)}:name(+1: Target creature gets +1/1 and abilities) target(creature) transforms((,newability[1/1],vigilance,first strike,lifelink)) ueot restriction{compare(cantargetcre)~morethan~0}
 auto={C(0/0,-2,Loyalty)}:name(-2: Put a +1/1 counter and loyalty counters) all(creature|mybattlefield) counter(1/1) && all(other planeswalker|myBattlefield) counter(0/0,1,Loyalty)
 auto={C(0/0,-7,Loyalty)}:name(-7: Emblem: Forcefield) emblem transforms((,newability[forcefield controller])) forever dontremove
 text=+1: Until end of turn, up to one target creature gets +1/+1 and gains first strike, vigilance, and lifelink. -- -2: Put a +1/+1 counter on each creature you control and a loyalty counter on each other planeswalker you control. -- -7: You get an emblem with "If a source would deal damage to you or a planeswalker you control, prevent all but 1 of that damage."
@@ -676,8 +676,8 @@ name=Chandra, Pyromaster
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Deals 1 damage only to opponent) damage:1 opponent
 auto={C(0/0,1,Loyalty)}:name(+1: Deals 1 damage only to controller) damage:1 controller
-auto={C(0/0,1,Loyalty)}:name(+1: Deals 1 damage to opponent and creature) damage:1 opponent && target(creature|opponentbattlefield) damage:1 && transforms((,newability[cantblock])) ueot
-auto={C(0/0,1,Loyalty)}:name(+1: Deals 1 damage to controller and creature) damage:1 controller && target(creature|mybattlefield) damage:1 && transforms((,newability[cantblock])) ueot
+auto={C(0/0,1,Loyalty)}:name(+1: Deals 1 damage to opponent and creature) damage:1 opponent && target(creature|opponentbattlefield) damage:1 && transforms((,cantblock)) ueot
+auto={C(0/0,1,Loyalty)}:name(+1: Deals 1 damage to controller and creature) damage:1 controller && target(creature|mybattlefield) damage:1 && transforms((,cantblock)) ueot
 auto={C(0/0,0,Loyalty)}:name(+0: Exile the top and may play it) all(*[zpos=1]|mylibrary) moveto(myexile) and!(transforms((,newability[canplayfromexile ueot])) ueot )!
 auto={C(0/0,-7,Loyalty)}:name(-7: Exile the top ten and may cast it) all(*[zpos=1]|mylibrary) moveto(myexile) and!( transforms((tobecha,newability[all(*[zpos<=10]|mylibrary) moveto(myexile) and!( becomes(tobecha) ueot )!],newability[name(Choose instant or sorcery) target(*[-permanent&tobecha]|myexile) transforms((,newability[choice name(Cast 3 copies) activate castcard(copied) && activate castcard(copied) && activate castcard(copied)],newability[choice name(Don't cast copies) donothing],newability[all(tobecha|myexile) losesatype(tobecha)])) ueot])) ueot )!
 text=+1: Chandra, Pyromaster deals 1 damage to target player and 1 damage to up to one target creature that player controls. That creature can't block this turn. -- 0: Exile the top card of your library. You may play it this turn. -- -7: Exile the top ten cards of your library. Choose an instant or sorcery card exiled this way and copy it three times. You may cast the copies without paying their mana costs.
@@ -809,7 +809,7 @@ subtype=Davriel
 name=Dihada, Binder of Wills
 abilities=canbecommander
 auto=counter(0/0,5,loyalty)
-auto={C(0/0,+2,Loyalty)}:target(legendary[creature]) transforms((,vigilance,newability[lifelink],indestructible)) uynt
+auto={C(0/0,+2,Loyalty)}:target(legendary[creature]) transforms((,vigilance,lifelink,indestructible)) uynt
 auto={C(0/0,+2,Loyalty)}:name(No target) donothing
 auto={C(0/0,-3,Loyalty)}:name(Reveal the top four) reveal:4 optionone name(Select any number of legendary) target(<anyamount>*[legendary]|reveal) moveto(myhand) optiononeend optiontwo name(Put into your graveyard) all(<4>*|reveal) moveto(mygraveyard) and!(token(Treasure))! optiontwoend revealend
 auto={C(0/0,-11,Loyalty)}:moveto(myBattlefield) all(*[-land]) && all(*[-land]) transforms((,newability[untap],haste)) ueot
@@ -1185,7 +1185,7 @@ auto=counter(0/0,4,loyalty)
 auto=this(variable{controllerturn}>0) transforms((Human Soldier Creature,setpower=4,settoughness=4,indestructible,newability[preventAllDamage to(this)]))
 auto={C(0/0,1,Loyalty)}:name(+1: Don't target any creature) donothing
 auto={C(0/0,1,Loyalty)}:name(+1: Other creature gains vigilance) target(other creature|myBattlefield) transforms((,vigilance)) ueot
-auto={C(0/0,1,Loyalty)}:name(+1: Other creature gains lifelink) target(other creature|myBattlefield) transforms((,newability[lifelink])) ueot
+auto={C(0/0,1,Loyalty)}:name(+1: Other creature gains lifelink) target(other creature|myBattlefield) transforms((,lifelink)) ueot
 auto={C(0/0,1,Loyalty)}:name(+1: Other creature gains indestructible) target(other creature|myBattlefield) transforms((,indestructible)) ueot
 auto={C(0/0,-6,Loyalty)}:name(-6: Exile target nonland permanent) target(*[-land]|battlefield) moveTo(exile)
 text=As long as it's your turn, Gideon Blackblade is a 4/4 Human Soldier creature with indestructible that's still a planeswalker. -- Prevent all damage that would be dealt to Gideon Blackblade during your turn. -- +1: Up to one other target creature you control gains your choice of vigilance, lifelink, or indestructible until end of turn. -- -6: Exile target nonland permanent.
@@ -1264,7 +1264,7 @@ color=white
 name=Grand Master of Flowers
 auto=counter(0/0,3,Loyalty)
 auto=this(counter{0/0.1.Loyalty}>=7) becomes(Creature Dragon God,7/7,flying,indestructible)
-auto={C(0/0,1,Loyalty)}:name(+1: Creature can't attack) target(creature[-first strike;-double strike;-vigilance]|battlefield) transforms((,newability[cantblock],newability[cantattack],newability[cantpwattack])) uynt
+auto={C(0/0,1,Loyalty)}:name(+1: Creature can't attack) target(creature[-first strike;-double strike;-vigilance]|battlefield) transforms((,cantblock,cantattack,cantpwattack)) uynt
 auto={C(0/0,1,Loyalty)}:name(+1: Search Monk in library) target(Monk of the Open Hand|mylibrary) moveto(myhand) and!( shuffle )!
 auto={C(0/0,1,Loyalty)}:name(+1: Search Monk in graveyard) target(Monk of the Open Hand|mygraveyard) moveto(myhand)
 text=As long as Grand Master of Flowers has seven or more loyalty counters on him, he's a 7/7 Dragon God creature with flying and indestructible. -- +1: Target creature without first strike, double strike, or vigilance can't attack or block until your next turn. -- +1: Search your library and/or graveyard for a card named Monk of the Open Hand, reveal it, and put it into your hand. If you search your library this way, shuffle it.
@@ -1324,8 +1324,8 @@ subtype=Huatli
 [card]
 name=Huatli, Warrior Poet
 auto=counter(0/0,3,loyalty)
-auto=@counterremoved(0/0,1,Loyalty) from(this) restriction{myturnonly}:name(Deals 1 damage and can't block) target(creature|opponentBattlefield) transforms((,newability[damage:1],newability[cantblock])) ueot
-auto=@movedTo(this|myGraveyard) from(myBattlefield) restriction{myturnonly}:name(Deals 1 damage and can't block) target(creature|opponentBattlefield) transforms((,newability[damage:1],newability[cantblock])) ueot
+auto=@counterremoved(0/0,1,Loyalty) from(this) restriction{myturnonly}:name(Deals 1 damage and can't block) target(creature|opponentBattlefield) transforms((,newability[damage:1],cantblock)) ueot
+auto=@movedTo(this|myGraveyard) from(myBattlefield) restriction{myturnonly}:name(Deals 1 damage and can't block) target(creature|opponentBattlefield) transforms((,newability[damage:1],cantblock)) ueot
 auto={C(0/0,2,Loyalty)}:name(+2: Gain life equal to highest power) life:power:highest:*:mybattlefield controller
 auto={C(0/0,0,Loyalty)}:name(+0: Create a 3/3 Dinosaur) token(Dinosaur,Creature Dinosaur,3/3,green,trample)
 auto={C(0/0,-1,Loyalty)}:name(-1: Deals 1 damage divided and can't block) donothing
@@ -1687,7 +1687,7 @@ subtype=Yanggu
 name=Kaito, Dancing Shadow
 auto=counter(0/0,3,loyalty)
 auto=@combatdamaged(player) from(creature|myBattlefield) turnlimited:may name(Return to hand) target(creature[attacking]|myBattlefield) moveto(ownerhand) && all(this) transforms((,newability[canloyaltytwice])) ueot
-auto={C(0/0,+1,Loyalty)}:name(+1: Creature cannot attack or block) target(creature|battlefield) transforms((,newability[cantpwattack],newability[canattack],newability[cantblock])) uynt
+auto={C(0/0,+1,Loyalty)}:name(+1: Creature cannot attack or block) target(creature|battlefield) transforms((,cantpwattack,cantattack,cantblock)) uynt
 auto={C(0/0,+1,Loyalty)}:name(+1: Don't target any creature) donothing
 auto={C(0/0,0,Loyalty)}:name(+0: Draw a card) draw:1 controller
 auto={C(0/0,-2,Loyalty)}:name(-2: Create drone) token(Drone)
@@ -2936,7 +2936,7 @@ subtype=Sorin
 [card]
 name=Sorin, Imperious Bloodlord
 auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Deathtouch and Lifelink) target(creature|myBattlefield) transforms((,deathtouch,newability[lifelink],newability[if cantargetcard(*[vampire]|*) then counter(1/1)])) ueot
+auto={C(0/0,1,Loyalty)}:name(+1: Deathtouch and Lifelink) target(creature|myBattlefield) transforms((,deathtouch,lifelink,newability[if cantargetcard(*[vampire]|*) then counter(1/1)])) ueot
 auto={C(0/0,1,Loyalty)}{S(vampire|myBattlefield)}:name(+1: Sacrifice and deals 3 damage) damage:3 target(anytarget)
 auto={C(0/0,-3,Loyalty)}:name(-3: Put a Vampire from your hand onto the battlefield) moveto(myBattlefield) target(creature[vampire]|myHand)
 text=+1: Target creature you control gains deathtouch and lifelink until end of turn. If it's a Vampire, put a +1/+1 counter on it. -- +1: You may sacrifice a Vampire. When you do, Sorin, Imperious Bloodlord deals 3 damage to any target and you gain 3 life. -- -3: You may put a Vampire creature card from your hand onto the battlefield.
@@ -3158,6 +3158,7 @@ subtype=Teferi
 [/card]
 [card]
 name=Teferi, Master of Time
+abilities=canloyaltyasinst
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Draw a card and discard one) _LOOT_
 auto={C(0/0,-3,Loyalty)}:name(-3: Target creature you don't control phases out) target(creature|opponentBattlefield) phaseout
@@ -3439,7 +3440,7 @@ type=Legendary Planeswalker
 [card]
 name=The Wandering Emperor
 abilities=flash
-auto=transforms((,newability[canloyaltyasinst])) ueot
+auto=transforms((,canloyaltyasinst)) ueot
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,+1,Loyalty)}:name(+1: Don't put any counter) donothing
 auto={C(0/0,+1,Loyalty)}:name(+1: Put +1/+1 counter) target(creature|battlefield) transforms((,newability[counter(1/1)],first strike)) ueot
