@@ -1,0 +1,1991 @@
+[meta]
+author=Wagic Team
+name=Bloomburrow
+year=2024-08-02
+total=397
+[/meta]
+[card]
+primitive=Banishing Light
+id=668915
+rarity=C
+[/card]
+[card]
+primitive=Beza, the Bounding Spring
+id=668916
+rarity=M
+[/card]
+[card]
+primitive=Brave-Kin Duo
+id=668917
+rarity=C
+[/card]
+[card]
+primitive=Brightblade Stoat
+id=668918
+rarity=U
+[/card]
+[card]
+primitive=Builder's Talent
+id=668919
+rarity=U
+[/card]
+[card]
+primitive=Caretaker's Talent
+id=668920
+rarity=R
+[/card]
+[card]
+primitive=Carrot Cake
+id=668921
+rarity=C
+[/card]
+[card]
+primitive=Crumb and Get It
+id=668922
+rarity=C
+[/card]
+[card]
+primitive=Dawn's Truce
+id=668923
+rarity=R
+[/card]
+[card]
+primitive=Dewdrop Cure
+id=668924
+rarity=U
+[/card]
+[card]
+primitive=Driftgloom Coyote
+id=668925
+rarity=U
+[/card]
+[card]
+primitive=Essence Channeler
+id=668926
+rarity=R
+[/card]
+[card]
+primitive=Feather of Flight
+id=668927
+rarity=U
+[/card]
+[card]
+primitive=Flowerfoot Swordmaster
+id=668928
+rarity=U
+[/card]
+[card]
+primitive=Harvestrite Host
+id=668929
+rarity=U
+[/card]
+[card]
+primitive=Hop to It
+id=668930
+rarity=U
+[/card]
+[card]
+primitive=Intrepid Rabbit
+id=668931
+rarity=C
+[/card]
+[card]
+primitive=Jackdaw Savior
+id=668932
+rarity=R
+[/card]
+[card]
+primitive=Jolly Gerbils
+id=668933
+rarity=U
+[/card]
+[card]
+primitive=Lifecreed Duo
+id=668934
+rarity=C
+[/card]
+[card]
+primitive=Mabel's Mettle
+id=668935
+rarity=U
+[/card]
+[card]
+primitive=Mouse Trapper
+id=668936
+rarity=U
+[/card]
+[card]
+primitive=Nettle Guard
+id=668937
+rarity=C
+[/card]
+[card]
+primitive=Parting Gust
+id=668938
+rarity=U
+[/card]
+[card]
+primitive=Pileated Provisioner
+id=668939
+rarity=C
+[/card]
+[card]
+primitive=Rabbit Response
+id=668940
+rarity=C
+[/card]
+[card]
+primitive=Repel Calamity
+id=668941
+rarity=U
+[/card]
+[card]
+primitive=Salvation Swan
+id=668942
+rarity=R
+[/card]
+[card]
+primitive=Season of the Burrow
+id=668943
+rarity=M
+[/card]
+[card]
+primitive=Seasoned Warrenguard
+id=668944
+rarity=U
+[/card]
+[card]
+primitive=Shrike Force
+id=668945
+rarity=U
+[/card]
+[card]
+primitive=Sonar Strike
+id=668946
+rarity=C
+[/card]
+[card]
+primitive=Star Charter
+id=668947
+rarity=U
+[/card]
+[card]
+primitive=Starfall Invocation
+id=668948
+rarity=R
+[/card]
+[card]
+primitive=Thistledown Players
+id=668949
+rarity=C
+[/card]
+[card]
+primitive=Valley Questcaller
+id=668950
+rarity=R
+[/card]
+[card]
+primitive=Warren Elder
+id=668951
+rarity=C
+[/card]
+[card]
+primitive=Warren Warleader
+id=668952
+rarity=M
+[/card]
+[card]
+primitive=Wax-Wane Witness
+id=668953
+rarity=C
+[/card]
+[card]
+primitive=Whiskervale Forerunner
+id=668954
+rarity=R
+[/card]
+[card]
+primitive=Azure Beastbinder
+id=668955
+rarity=R
+[/card]
+[card]
+primitive=Bellowing Crier
+id=668956
+rarity=C
+[/card]
+[card]
+primitive=Calamitous Tide
+id=668957
+rarity=U
+[/card]
+[card]
+primitive=Daring Waverider
+id=668958
+rarity=U
+[/card]
+[card]
+primitive=Dazzling Denial
+id=668959
+rarity=C
+[/card]
+[card]
+primitive=Dire Downdraft
+id=668960
+rarity=C
+[/card]
+[card]
+primitive=Dour Port-Mage
+id=668961
+rarity=R
+[/card]
+[card]
+primitive=Eddymurk Crab
+id=668962
+rarity=U
+[/card]
+[card]
+primitive=Eluge, the Shoreless Sea
+id=668963
+rarity=M
+[/card]
+[card]
+primitive=Finch Formation
+id=668964
+rarity=C
+[/card]
+[card]
+primitive=Gossip's Talent
+id=668965
+rarity=U
+[/card]
+[card]
+primitive=Into the Flood Maw
+id=668966
+rarity=U
+[/card]
+[card]
+primitive=Kitnap
+id=668967
+rarity=R
+[/card]
+[card]
+primitive=Kitsa, Otterball Elite
+id=668968
+rarity=M
+[/card]
+[card]
+primitive=Knightfisher
+id=668969
+rarity=U
+[/card]
+[card]
+primitive=Lightshell Duo
+id=668970
+rarity=C
+[/card]
+[card]
+primitive=Long River Lurker
+id=668971
+rarity=U
+[/card]
+[card]
+primitive=Long River's Pull
+id=668972
+rarity=U
+[/card]
+[card]
+primitive=Mind Spiral
+id=668973
+rarity=C
+[/card]
+[card]
+primitive=Mindwhisker
+id=668974
+rarity=U
+[/card]
+[card]
+primitive=Mockingbird
+id=668975
+rarity=R
+[/card]
+[card]
+primitive=Nightwhorl Hermit
+id=668976
+rarity=C
+[/card]
+[card]
+primitive=Otterball Antics
+id=668977
+rarity=U
+[/card]
+[card]
+primitive=Pearl of Wisdom
+id=668978
+rarity=C
+[/card]
+[card]
+primitive=Plumecreed Escort
+id=668979
+rarity=U
+[/card]
+[card]
+primitive=Portent of Calamity
+id=668980
+rarity=R
+[/card]
+[card]
+primitive=Run Away Together
+id=668981
+rarity=C
+[/card]
+[card]
+primitive=Season of Weaving
+id=668982
+rarity=M
+[/card]
+[card]
+primitive=Shore Up
+id=668983
+rarity=C
+[/card]
+[card]
+primitive=Shoreline Looter
+id=668984
+rarity=U
+[/card]
+[card]
+primitive=Skyskipper Duo
+id=668985
+rarity=C
+[/card]
+[card]
+primitive=Spellgyre
+id=668986
+rarity=U
+[/card]
+[card]
+primitive=Splash Lasher
+id=668987
+rarity=U
+[/card]
+[card]
+primitive=Splash Portal
+id=668988
+rarity=U
+[/card]
+[card]
+primitive=Stormchaser's Talent
+id=668989
+rarity=R
+[/card]
+[card]
+primitive=Sugar Coat
+id=668990
+rarity=U
+[/card]
+[card]
+primitive=Thought Shucker
+id=668991
+rarity=C
+[/card]
+[card]
+primitive=Thundertrap Trainer
+id=668992
+rarity=R
+[/card]
+[card]
+primitive=Valley Floodcaller
+id=668993
+rarity=R
+[/card]
+[card]
+primitive=Waterspout Warden
+id=668994
+rarity=C
+[/card]
+[card]
+primitive=Wishing Well
+id=668995
+rarity=R
+[/card]
+[card]
+primitive=Agate-Blade Assassin
+id=668996
+rarity=C
+[/card]
+[card]
+primitive=Bandit's Talent
+id=668997
+rarity=U
+[/card]
+[card]
+primitive=Bonebind Orator
+id=668998
+rarity=C
+[/card]
+[card]
+primitive=Bonecache Overseer
+id=668999
+rarity=U
+[/card]
+[card]
+primitive=Coiling Rebirth
+id=669000
+rarity=R
+[/card]
+[card]
+primitive=Consumed by Greed
+id=669001
+rarity=U
+[/card]
+[card]
+primitive=Cruelclaw's Heist
+id=669002
+rarity=R
+[/card]
+[card]
+primitive=Daggerfang Duo
+id=669003
+rarity=C
+[/card]
+[card]
+primitive=Darkstar Augur
+id=669004
+rarity=R
+[/card]
+[card]
+primitive=Diresight
+id=669005
+rarity=C
+[/card]
+[card]
+primitive=Downwind Ambusher
+id=669006
+rarity=U
+[/card]
+[card]
+primitive=Early Winter
+id=669007
+rarity=C
+[/card]
+[card]
+primitive=Feed the Cycle
+id=669008
+rarity=U
+[/card]
+[card]
+primitive=Fell
+id=669009
+rarity=U
+[/card]
+[card]
+primitive=Glidedive Duo
+id=669010
+rarity=C
+[/card]
+[card]
+primitive=Hazel's Nocturne
+id=669011
+rarity=U
+[/card]
+[card]
+primitive=Huskburster Swarm
+id=669012
+rarity=U
+[/card]
+[card]
+primitive=Iridescent Vinelasher
+id=669013
+rarity=R
+[/card]
+[card]
+primitive=Maha, Its Feathers Night
+id=669014
+rarity=M
+[/card]
+[card]
+primitive=Moonstone Harbinger
+id=669015
+rarity=U
+[/card]
+[card]
+primitive=Nocturnal Hunger
+id=669016
+rarity=C
+[/card]
+[card]
+primitive=Osteomancer Adept
+id=669017
+rarity=R
+[/card]
+[card]
+primitive=Persistent Marshstalker
+id=669018
+rarity=U
+[/card]
+[card]
+primitive=Psychic Whorl
+id=669019
+rarity=C
+[/card]
+[card]
+primitive=Ravine Raider
+id=669020
+rarity=C
+[/card]
+[card]
+primitive=Rottenmouth Viper
+id=669021
+rarity=M
+[/card]
+[card]
+primitive=Ruthless Negotiation
+id=669022
+rarity=U
+[/card]
+[card]
+primitive=Savor
+id=669023
+rarity=C
+[/card]
+[card]
+primitive=Scales of Shale
+id=669024
+rarity=C
+[/card]
+[card]
+primitive=Scavenger's Talent
+id=669025
+rarity=R
+[/card]
+[card]
+primitive=Season of Loss
+id=669026
+rarity=M
+[/card]
+[card]
+primitive=Sinister Monolith
+id=669027
+rarity=U
+[/card]
+[card]
+primitive=Stargaze
+id=669028
+rarity=U
+[/card]
+[card]
+primitive=Starlit Soothsayer
+id=669029
+rarity=C
+[/card]
+[card]
+primitive=Starscape Cleric
+id=669030
+rarity=U
+[/card]
+[card]
+primitive=Thornplate Intimidator
+id=669031
+rarity=C
+[/card]
+[card]
+primitive=Thought-Stalker Warlock
+id=669032
+rarity=U
+[/card]
+[card]
+primitive=Valley Rotcaller
+id=669033
+rarity=R
+[/card]
+[card]
+primitive=Wick, the Whorled Mind
+id=669034
+rarity=R
+[/card]
+[card]
+primitive=Wick's Patrol
+id=669035
+rarity=U
+[/card]
+[card]
+primitive=Agate Assault
+id=669036
+rarity=C
+[/card]
+[card]
+primitive=Alania's Pathmaker
+id=669037
+rarity=C
+[/card]
+[card]
+primitive=Artist's Talent
+id=669038
+rarity=R
+[/card]
+[card]
+primitive=Blacksmith's Talent
+id=669039
+rarity=U
+[/card]
+[card]
+primitive=Blooming Blast
+id=669040
+rarity=U
+[/card]
+[card]
+primitive=Brambleguard Captain
+id=669041
+rarity=U
+[/card]
+[card]
+primitive=Brazen Collector
+id=669042
+rarity=U
+[/card]
+[card]
+primitive=Byway Barterer
+id=669043
+rarity=R
+[/card]
+[card]
+primitive=Conduct Electricity
+id=669044
+rarity=C
+[/card]
+[card]
+primitive=Coruscation Mage
+id=669045
+rarity=U
+[/card]
+[card]
+primitive=Dragonhawk, Fate's Tempest
+id=669046
+rarity=M
+[/card]
+[card]
+primitive=Emberheart Challenger
+id=669047
+rarity=R
+[/card]
+[card]
+primitive=Festival of Embers
+id=669048
+rarity=R
+[/card]
+[card]
+primitive=Flamecache Gecko
+id=669049
+rarity=U
+[/card]
+[card]
+primitive=Frilled Sparkshooter
+id=669050
+rarity=C
+[/card]
+[card]
+primitive=Harnesser of Storms
+id=669051
+rarity=U
+[/card]
+[card]
+primitive=Heartfire Hero
+id=669052
+rarity=U
+[/card]
+[card]
+primitive=Hearthborn Battler
+id=669053
+rarity=R
+[/card]
+[card]
+primitive=Hired Claw
+id=669054
+rarity=R
+[/card]
+[card]
+primitive=Hoarder's Overflow
+id=669055
+rarity=U
+[/card]
+[card]
+primitive=Kindlespark Duo
+id=669056
+rarity=C
+[/card]
+[card]
+primitive=Manifold Mouse
+id=669057
+rarity=R
+[/card]
+[card]
+primitive=Might of the Meek
+id=669058
+rarity=C
+[/card]
+[card]
+primitive=Playful Shove
+id=669059
+rarity=U
+[/card]
+[card]
+primitive=Quaketusk Boar
+id=669060
+rarity=U
+[/card]
+[card]
+primitive=Rabid Gnaw
+id=669061
+rarity=U
+[/card]
+[card]
+primitive=Raccoon Rallier
+id=669062
+rarity=C
+[/card]
+[card]
+primitive=Reptilian Recruiter
+id=669063
+rarity=U
+[/card]
+[card]
+primitive=Roughshod Duo
+id=669064
+rarity=C
+[/card]
+[card]
+primitive=Sazacap's Brew
+id=669065
+rarity=C
+[/card]
+[card]
+primitive=Season of the Bold
+id=669066
+rarity=M
+[/card]
+[card]
+primitive=Steampath Charger
+id=669067
+rarity=C
+[/card]
+[card]
+primitive=Stormsplitter
+id=669068
+rarity=M
+[/card]
+[card]
+primitive=Sunspine Lynx
+id=669069
+rarity=R
+[/card]
+[card]
+primitive=Take Out the Trash
+id=669070
+rarity=C
+[/card]
+[card]
+primitive=Teapot Slinger
+id=669071
+rarity=U
+[/card]
+[card]
+primitive=Valley Flamecaller
+id=669072
+rarity=R
+[/card]
+[card]
+primitive=Valley Rally
+id=669073
+rarity=U
+[/card]
+[card]
+primitive=War Squeak
+id=669074
+rarity=C
+[/card]
+[card]
+primitive=Whiskerquill Scribe
+id=669075
+rarity=C
+[/card]
+[card]
+primitive=Wildfire Howl
+id=669076
+rarity=U
+[/card]
+[card]
+primitive=Bakersbane Duo
+id=669077
+rarity=C
+[/card]
+[card]
+primitive=Bark-Knuckle Boxer
+id=669078
+rarity=U
+[/card]
+[card]
+primitive=Brambleguard Veteran
+id=669079
+rarity=U
+[/card]
+[card]
+primitive=Bushy Bodyguard
+id=669080
+rarity=U
+[/card]
+[card]
+primitive=Cache Grab
+id=669081
+rarity=C
+[/card]
+[card]
+primitive=Clifftop Lookout
+id=669082
+rarity=U
+[/card]
+[card]
+primitive=Curious Forager
+id=669083
+rarity=U
+[/card]
+[card]
+primitive=Druid of the Spade
+id=669084
+rarity=C
+[/card]
+[card]
+primitive=Fecund Greenshell
+id=669085
+rarity=R
+[/card]
+[card]
+primitive=For the Common Good
+id=669086
+rarity=R
+[/card]
+[card]
+primitive=Galewind Moose
+id=669087
+rarity=U
+[/card]
+[card]
+primitive=Hazardroot Herbalist
+id=669088
+rarity=U
+[/card]
+[card]
+primitive=Heaped Harvest
+id=669089
+rarity=C
+[/card]
+[card]
+primitive=High Stride
+id=669090
+rarity=C
+[/card]
+[card]
+primitive=Hivespine Wolverine
+id=669091
+rarity=U
+[/card]
+[card]
+primitive=Honored Dreyleader
+id=669092
+rarity=U
+[/card]
+[card]
+primitive=Hunter's Talent
+id=669093
+rarity=U
+[/card]
+[card]
+primitive=Innkeeper's Talent
+id=669094
+rarity=R
+[/card]
+[card]
+primitive=Keen-Eyed Curator
+id=669095
+rarity=R
+[/card]
+[card]
+primitive=Longstalk Brawl
+id=669096
+rarity=C
+[/card]
+[card]
+primitive=Lumra, Bellow of the Woods
+id=669097
+rarity=M
+[/card]
+[card]
+primitive=Mistbreath Elder
+id=669098
+rarity=R
+[/card]
+[card]
+primitive=Overprotect
+id=669099
+rarity=U
+[/card]
+[card]
+primitive=Pawpatch Formation
+id=669100
+rarity=U
+[/card]
+[card]
+primitive=Pawpatch Recruit
+id=669101
+rarity=R
+[/card]
+[card]
+primitive=Peerless Recycling
+id=669102
+rarity=U
+[/card]
+[card]
+primitive=Polliwallop
+id=669103
+rarity=C
+[/card]
+[card]
+primitive=Rust-Shield Rampager
+id=669104
+rarity=C
+[/card]
+[card]
+primitive=Scrapshooter
+id=669105
+rarity=R
+[/card]
+[card]
+primitive=Season of Gathering
+id=669106
+rarity=M
+[/card]
+[card]
+primitive=Stickytongue Sentinel
+id=669107
+rarity=C
+[/card]
+[card]
+primitive=Stocking the Pantry
+id=669108
+rarity=U
+[/card]
+[card]
+primitive=Sunshower Druid
+id=669109
+rarity=C
+[/card]
+[card]
+primitive=Tender Wildguide
+id=669110
+rarity=R
+[/card]
+[card]
+primitive=Thornvault Forager
+id=669111
+rarity=R
+[/card]
+[card]
+primitive=Three Tree Rootweaver
+id=669112
+rarity=C
+[/card]
+[card]
+primitive=Three Tree Scribe
+id=669113
+rarity=U
+[/card]
+[card]
+primitive=Treeguard Duo
+id=669114
+rarity=C
+[/card]
+[card]
+primitive=Treetop Sentries
+id=669115
+rarity=C
+[/card]
+[card]
+primitive=Valley Mightcaller
+id=669116
+rarity=R
+[/card]
+[card]
+primitive=Wear Down
+id=669117
+rarity=U
+[/card]
+[card]
+primitive=Alania, Divergent Storm
+id=669118
+rarity=R
+[/card]
+[card]
+primitive=Baylen, the Haymaker
+id=669119
+rarity=R
+[/card]
+[card]
+primitive=Burrowguard Mentor
+id=669120
+rarity=U
+[/card]
+[card]
+primitive=Camellia, the Seedmiser
+id=669121
+rarity=R
+[/card]
+[card]
+primitive=Cindering Cutthroat
+id=669122
+rarity=C
+[/card]
+[card]
+primitive=Clement, the Worrywort
+id=669123
+rarity=R
+[/card]
+[card]
+primitive=Corpseberry Cultivator
+id=669124
+rarity=C
+[/card]
+[card]
+primitive=Dreamdew Entrancer
+id=669125
+rarity=R
+[/card]
+[card]
+primitive=Finneas, Ace Archer
+id=669126
+rarity=R
+[/card]
+[card]
+primitive=Fireglass Mentor
+id=669127
+rarity=U
+[/card]
+[card]
+primitive=Gev, Scaled Scorch
+id=669128
+rarity=R
+[/card]
+[card]
+primitive=Glarb, Calamity's Augur
+id=669129
+rarity=M
+[/card]
+[card]
+primitive=Head of the Homestead
+id=669130
+rarity=C
+[/card]
+[card]
+primitive=Helga, Skittish Seer
+id=669131
+rarity=M
+[/card]
+[card]
+primitive=Hugs, Grisly Guardian
+id=669132
+rarity=M
+[/card]
+[card]
+primitive=The Infamous Cruelclaw
+id=669133
+rarity=M
+[/card]
+[card]
+primitive=Junkblade Bruiser
+id=669134
+rarity=C
+[/card]
+[card]
+primitive=Kastral, the Windcrested
+id=669135
+rarity=R
+[/card]
+[card]
+primitive=Lilysplash Mentor
+id=669136
+rarity=U
+[/card]
+[card]
+primitive=Lunar Convocation
+id=669137
+rarity=R
+[/card]
+[card]
+primitive=Mabel, Heir to Cragflame
+id=669138
+rarity=R
+[/card]
+[card]
+primitive=Mind Drill Assailant
+id=669139
+rarity=C
+[/card]
+[card]
+primitive=Moonrise Cleric
+id=669140
+rarity=C
+[/card]
+[card]
+primitive=Muerra, Trash Tactician
+id=669141
+rarity=R
+[/card]
+[card]
+primitive=Plumecreed Mentor
+id=669142
+rarity=U
+[/card]
+[card]
+primitive=Pond Prophet
+id=669143
+rarity=C
+[/card]
+[card]
+primitive=Ral, Crackling Wit
+id=669144
+rarity=M
+[/card]
+[card]
+primitive=Seedglaive Mentor
+id=669145
+rarity=U
+[/card]
+[card]
+primitive=Seedpod Squire
+id=669146
+rarity=C
+[/card]
+[card]
+primitive=Starseer Mentor
+id=669147
+rarity=U
+[/card]
+[card]
+primitive=Stormcatch Mentor
+id=669148
+rarity=U
+[/card]
+[card]
+primitive=Tempest Angler
+id=669149
+rarity=C
+[/card]
+[card]
+primitive=Tidecaller Mentor
+id=669150
+rarity=U
+[/card]
+[card]
+primitive=Veteran Guardmouse
+id=669151
+rarity=C
+[/card]
+[card]
+primitive=Vinereap Mentor
+id=669152
+rarity=U
+[/card]
+[card]
+primitive=Vren, the Relentless
+id=669153
+rarity=R
+[/card]
+[card]
+primitive=Wandertale Mentor
+id=669154
+rarity=U
+[/card]
+[card]
+primitive=Ygra, Eater of All
+id=669155
+rarity=M
+[/card]
+[card]
+primitive=Zoraline, Cosmos Caller
+id=669156
+rarity=R
+[/card]
+[card]
+primitive=Barkform Harvester
+id=669157
+rarity=C
+[/card]
+[card]
+primitive=Bumbleflower's Sharepot
+id=669158
+rarity=C
+[/card]
+[card]
+primitive=Fountainport Bell
+id=669159
+rarity=C
+[/card]
+[card]
+primitive=Heirloom Epic
+id=669160
+rarity=U
+[/card]
+[card]
+primitive=Patchwork Banner
+id=669161
+rarity=U
+[/card]
+[card]
+primitive=Short Bow
+id=669162
+rarity=U
+[/card]
+[card]
+primitive=Starforged Sword
+id=669163
+rarity=U
+[/card]
+[card]
+primitive=Tangle Tumbler
+id=669164
+rarity=U
+[/card]
+[card]
+primitive=Three Tree Mascot
+id=669165
+rarity=C
+[/card]
+[card]
+primitive=Fabled Passage
+id=669166
+rarity=R
+[/card]
+[card]
+primitive=Fountainport
+id=669167
+rarity=R
+[/card]
+[card]
+primitive=Hidden Grotto
+id=669168
+rarity=C
+[/card]
+[card]
+primitive=Lilypad Village
+id=669169
+rarity=U
+[/card]
+[card]
+primitive=Lupinflower Village
+id=669170
+rarity=U
+[/card]
+[card]
+primitive=Mudflat Village
+id=669171
+rarity=U
+[/card]
+[card]
+primitive=Oakhollow Village
+id=669172
+rarity=U
+[/card]
+[card]
+primitive=Rockface Village
+id=669173
+rarity=U
+[/card]
+[card]
+primitive=Three Tree City
+id=669174
+rarity=R
+[/card]
+[card]
+primitive=Uncharted Haven
+id=669175
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=668546
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=668547
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=668548
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=668549
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=668550
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=668551
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=668552
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=668553
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=668554
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=668555
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=668556
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=668557
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=668558
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=668559
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=668560
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=668561
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=668562
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=668563
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=668564
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=668565
+rarity=L
+[/card]
+[card]
+primitive=Season of the Burrow
+id=668726
+rarity=M
+[/card]
+[card]
+primitive=Season of Weaving
+id=668727
+rarity=M
+[/card]
+[card]
+primitive=Season of Loss
+id=668728
+rarity=M
+[/card]
+[card]
+primitive=Season of the Bold
+id=668729
+rarity=M
+[/card]
+[card]
+primitive=Season of Gathering
+id=668730
+rarity=M
+[/card]
+[card]
+primitive=Beza, the Bounding Spring
+id=668756
+rarity=M
+[/card]
+[card]
+primitive=Eluge, the Shoreless Sea
+id=668757
+rarity=M
+[/card]
+[card]
+primitive=Maha, Its Feathers Night
+id=668758
+rarity=M
+[/card]
+[card]
+primitive=Rottenmouth Viper
+id=668759
+rarity=M
+[/card]
+[card]
+primitive=Dragonhawk, Fate's Tempest
+id=668760
+rarity=M
+[/card]
+[card]
+primitive=Sunspine Lynx
+id=668761
+rarity=R
+[/card]
+[card]
+primitive=Lumra, Bellow of the Woods
+id=668762
+rarity=M
+[/card]
+[card]
+primitive=Ygra, Eater of All
+id=668763
+rarity=M
+[/card]
+[card]
+primitive=Dawn's Truce
+id=670498
+rarity=R
+[/card]
+[card]
+primitive=Jackdaw Savior
+id=670499
+rarity=R
+[/card]
+[card]
+primitive=Salvation Swan
+id=670500
+rarity=R
+[/card]
+[card]
+primitive=Starfall Invocation
+id=670501
+rarity=R
+[/card]
+[card]
+primitive=Valley Questcaller
+id=670502
+rarity=R
+[/card]
+[card]
+primitive=Warren Warleader
+id=670503
+rarity=M
+[/card]
+[card]
+primitive=Whiskervale Forerunner
+id=670504
+rarity=R
+[/card]
+[card]
+primitive=Azure Beastbinder
+id=670505
+rarity=R
+[/card]
+[card]
+primitive=Dour Port-Mage
+id=670506
+rarity=R
+[/card]
+[card]
+primitive=Kitsa, Otterball Elite
+id=670507
+rarity=M
+[/card]
+[card]
+primitive=Mockingbird
+id=670508
+rarity=R
+[/card]
+[card]
+primitive=Portent of Calamity
+id=670509
+rarity=R
+[/card]
+[card]
+primitive=Thundertrap Trainer
+id=670510
+rarity=R
+[/card]
+[card]
+primitive=Valley Floodcaller
+id=670511
+rarity=R
+[/card]
+[card]
+primitive=Coiling Rebirth
+id=670512
+rarity=R
+[/card]
+[card]
+primitive=Cruelclaw's Heist
+id=670513
+rarity=R
+[/card]
+[card]
+primitive=Darkstar Augur
+id=670514
+rarity=R
+[/card]
+[card]
+primitive=Osteomancer Adept
+id=670515
+rarity=R
+[/card]
+[card]
+primitive=Valley Rotcaller
+id=670516
+rarity=R
+[/card]
+[card]
+primitive=Wick, the Whorled Mind
+id=670517
+rarity=R
+[/card]
+[card]
+primitive=Emberheart Challenger
+id=670518
+rarity=R
+[/card]
+[card]
+primitive=Festival of Embers
+id=670519
+rarity=R
+[/card]
+[card]
+primitive=Hired Claw
+id=670520
+rarity=R
+[/card]
+[card]
+primitive=Manifold Mouse
+id=670521
+rarity=R
+[/card]
+[card]
+primitive=Stormsplitter
+id=670522
+rarity=M
+[/card]
+[card]
+primitive=Valley Flamecaller
+id=670523
+rarity=R
+[/card]
+[card]
+primitive=For the Common Good
+id=670524
+rarity=R
+[/card]
+[card]
+primitive=Keen-Eyed Curator
+id=670525
+rarity=R
+[/card]
+[card]
+primitive=Mistbreath Elder
+id=670526
+rarity=R
+[/card]
+[card]
+primitive=Scrapshooter
+id=670527
+rarity=R
+[/card]
+[card]
+primitive=Tender Wildguide
+id=670528
+rarity=R
+[/card]
+[card]
+primitive=Valley Mightcaller
+id=670529
+rarity=R
+[/card]
+[card]
+primitive=Alania, Divergent Storm
+id=670530
+rarity=R
+[/card]
+[card]
+primitive=Camellia, the Seedmiser
+id=670531
+rarity=R
+[/card]
+[card]
+primitive=Clement, the Worrywort
+id=670532
+rarity=R
+[/card]
+[card]
+primitive=Finneas, Ace Archer
+id=670533
+rarity=R
+[/card]
+[card]
+primitive=Glarb, Calamity's Augur
+id=670534
+rarity=M
+[/card]
+[card]
+primitive=Helga, Skittish Seer
+id=670535
+rarity=M
+[/card]
+[card]
+primitive=Hugs, Grisly Guardian
+id=670536
+rarity=M
+[/card]
+[card]
+primitive=The Infamous Cruelclaw
+id=670537
+rarity=M
+[/card]
+[card]
+primitive=Kastral, the Windcrested
+id=670538
+rarity=R
+[/card]
+[card]
+primitive=Mabel, Heir to Cragflame
+id=670539
+rarity=R
+[/card]
+[card]
+primitive=Three Tree City
+id=668834
+rarity=R
+[/card]
+[card]
+primitive=Three Tree City
+id=668835
+rarity=R
+[/card]
+[card]
+primitive=Three Tree City
+id=668836
+rarity=R
+[/card]
+[card]
+primitive=Three Tree City
+id=668837
+rarity=R
+[/card]
+[card]
+primitive=Ral, Crackling Wit
+id=668828
+rarity=M
+[/card]
+[card]
+primitive=Lumra, Bellow of the Woods
+id=670491
+rarity=M
+[/card]
+[card]
+primitive=Lumra, Bellow of the Woods
+id=668861
+rarity=M
+[/card]
+[card]
+primitive=Alania, Divergent Storm
+id=668804
+rarity=R
+[/card]
+[card]
+primitive=Baylen, the Haymaker
+id=668805
+rarity=R
+[/card]
+[card]
+primitive=Camellia, the Seedmiser
+id=668806
+rarity=R
+[/card]
+[card]
+primitive=Clement, the Worrywort
+id=668807
+rarity=R
+[/card]
+[card]
+primitive=Finneas, Ace Archer
+id=668808
+rarity=R
+[/card]
+[card]
+primitive=Gev, Scaled Scorch
+id=668809
+rarity=R
+[/card]
+[card]
+primitive=Kastral, the Windcrested
+id=668810
+rarity=R
+[/card]
+[card]
+primitive=Mabel, Heir to Cragflame
+id=668811
+rarity=R
+[/card]
+[card]
+primitive=Muerra, Trash Tactician
+id=668812
+rarity=R
+[/card]
+[card]
+primitive=Ral, Crackling Wit
+id=668813
+rarity=M
+[/card]
+[card]
+primitive=Vren, the Relentless
+id=668814
+rarity=R
+[/card]
+[card]
+primitive=Zoraline, Cosmos Caller
+id=668815
+rarity=R
+[/card]
+[card]
+primitive=Essence Channeler
+id=668863
+rarity=R
+[/card]
+[card]
+primitive=Kitnap
+id=668864
+rarity=R
+[/card]
+[card]
+primitive=Wishing Well
+id=668865
+rarity=R
+[/card]
+[card]
+primitive=Iridescent Vinelasher
+id=668866
+rarity=R
+[/card]
+[card]
+primitive=Byway Barterer
+id=668867
+rarity=R
+[/card]
+[card]
+primitive=Hearthborn Battler
+id=668868
+rarity=R
+[/card]
+[card]
+primitive=Fecund Greenshell
+id=668869
+rarity=R
+[/card]
+[card]
+primitive=Pawpatch Recruit
+id=668870
+rarity=R
+[/card]
+[card]
+primitive=Thornvault Forager
+id=668871
+rarity=R
+[/card]
+[card]
+primitive=Dreamdew Entrancer
+id=668872
+rarity=R
+[/card]
+[card]
+primitive=Lunar Convocation
+id=668873
+rarity=R
+[/card]
+[card]
+primitive=Fabled Passage
+id=668874
+rarity=R
+[/card]
+[card]
+primitive=Fountainport
+id=668875
+rarity=R
+[/card]
+[card]
+primitive=Plains
+id=668666
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=668667
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=668668
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=668669
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=668670
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=668671
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=668672
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=668673
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=668674
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=668675
+rarity=L
+[/card]
+[card]
+primitive=Bria, Riptide Rogue
+id=670750
+rarity=M
+[/card]
+[card]
+primitive=Byrke, Long Ear of the Law
+id=670751
+rarity=M
+[/card]
+[card]
+primitive=Hop to It
+id=670481
+rarity=U
+[/card]
+[card]
+primitive=Shoreline Looter
+id=670482
+rarity=U
+[/card]
+[card]
+primitive=Fell
+id=670483
+rarity=U
+[/card]
+[card]
+primitive=Wear Down
+id=670484
+rarity=U
+[/card]
+[card]
+primitive=Stormcatch Mentor
+id=670485
+rarity=U
+[/card]
+[card]
+primitive=Thundertrap Trainer
+id=668858
+rarity=R
+[/card]
+[card]
+primitive=Serra Redeemer
+id=670762
+rarity=R
+[/card]
+[card]
+primitive=Charmed Sleep
+id=670763
+rarity=C
+[/card]
+[card]
+primitive=Mind Spring
+id=670764
+rarity=R
+[/card]
+[card]
+primitive=Thieving Otter
+id=670765
+rarity=C
+[/card]
+[card]
+primitive=Flame Lash
+id=670766
+rarity=C
+[/card]
+[card]
+primitive=Colossification
+id=670767
+rarity=R
+[/card]
+[card]
+primitive=Giant Growth
+id=670768
+rarity=C
+[/card]
+[card]
+primitive=Rabid Bite
+id=670769
+rarity=C
+[/card]
+[card]
+primitive=Sword of Vengeance
+id=670770
+rarity=R
+[/card]
+[card]
+primitive=Blossoming Sands
+id=670771
+rarity=C
+[/card]
+[card]
+primitive=Swiftwater Cliffs
+id=670772
+rarity=C
+[/card]
