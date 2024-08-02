@@ -701,7 +701,7 @@ int OrderedAIAction::getEfficiency()
                 if(tapper)
                     continue;                
                 else if(sacrifice)
-                    efficiency = efficiency / 9;
+                    efficiency = efficiency / 10;
                 else
                     efficiency = efficiency / 2;
             }

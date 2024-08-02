@@ -65,11 +65,11 @@
 #AUTO_DEFINE _AMASSZOMBIE5_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Zombie,newability[counter(1/1.5)])) forever else name(Create Zombie Army) token(Zombie Army^Creature Zombie Army^0/0^black) and!( name(Put 1/1 counters) counter(1/1.5) notatarget(army|myBattlefield) )!
 
 # Amass Orcs, Set LTR
-#AUTO_DEFINE _AMASSORC1_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counter) name(Put 1/1 counter) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1)])) forever else name(Create Orc Army) token(Orc Army) and!( name(Put 1/1 counter) counter(1/1) notatarget(army|myBattlefield) )!
-#AUTO_DEFINE _AMASSORC2_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1.2)])) forever else name(Create Orc Army) token(Orc Army) and!( name(Put 1/1 counters) counter(1/1.2) notatarget(army|myBattlefield) )!
-#AUTO_DEFINE _AMASSORC3_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1.3)])) forever else name(Create Orc Army) token(Orc Army) and!( name(Put 1/1 counters) counter(1/1.3) notatarget(army|myBattlefield) )!
-#AUTO_DEFINE _AMASSORC4_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1.4)])) forever else name(Create Orc Army) token(Orc Army) and!( name(Put 1/1 counters) counter(1/1.4) notatarget(army|myBattlefield) )!
-#AUTO_DEFINE _AMASSORC5_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1.5)])) forever else name(Create Orc Army) token(Orc Army) and!( name(Put 1/1 counters) counter(1/1.5) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSORC1_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counter) name(Put 1/1 counter) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1)])) forever else name(Create Orc Army) token(Orc Army^Creature Orc Army^0/0^black) and!( name(Put 1/1 counter) counter(1/1) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSORC2_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1.2)])) forever else name(Create Orc Army) token(Orc Army^Creature Orc Army^0/0^black) and!( name(Put 1/1 counters) counter(1/1.2) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSORC3_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1.3)])) forever else name(Create Orc Army) token(Orc Army^Creature Orc Army^0/0^black) and!( name(Put 1/1 counters) counter(1/1.3) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSORC4_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1.4)])) forever else name(Create Orc Army) token(Orc Army^Creature Orc Army^0/0^black) and!( name(Put 1/1 counters) counter(1/1.4) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSORC5_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1.5)])) forever else name(Create Orc Army) token(Orc Army^Creature Orc Army^0/0^black) and!( name(Put 1/1 counters) counter(1/1.5) notatarget(army|myBattlefield) )!
 
 # Amass Slivers, Set CMM
 #AUTO_DEFINE _AMASSSLIVER1_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counter) name(Put 1/1 counter) notatarget(army|myBattlefield) transforms((Sliver,newability[counter(1/1)])) forever else name(Create Sliver Army) token(Sliver Army) and!( name(Put 1/1 counter) counter(1/1) notatarget(army|myBattlefield) )!
@@ -79,7 +79,6 @@
 #AUTO_DEFINE _AMASSSLIVER5_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Sliver,newability[counter(1/1.5)])) forever else name(Create Sliver Army) token(Sliver Army) and!( name(Put 1/1 counters) counter(1/1.5) notatarget(army|myBattlefield) )!
 
 # Scry, Evergreen
-#AUTO_DEFINE _SCRY_($c) scry:$c scrycore delayed dontshow donothing scrycoreend scryend controller
 #AUTO_DEFINE _SCRY1_ scry:1 scrycore delayed dontshow donothing scrycoreend scryend controller
 #AUTO_DEFINE _SCRY2_ scry:2 scrycore delayed dontshow donothing scrycoreend scryend controller
 #AUTO_DEFINE _SCRY3_ scry:3 scrycore delayed dontshow donothing scrycoreend scryend controller
@@ -96,7 +95,10 @@
 #AUTO_DEFINE _SECOND_DRAW_ @drawof(player) restriction{compare(pdrewcount)~equalto~2}:
 
 # Adapt
-#AUTO_DEFINE _ADAPT_($c) name(Adapt $c) this(counter{1/1}<1) transforms((,newability[counter(1/1.$c)])) forever
+#AUTO_DEFINE _ADAPT1_ name(Adapt 1) this(counter{1/1}<1) counter(1/1)
+#AUTO_DEFINE _ADAPT2_ name(Adapt 2) this(counter{1/1}<1) counter(1/1.2)
+#AUTO_DEFINE _ADAPT3_ name(Adapt 3) this(counter{1/1}<1) counter(1/1.3)
+#AUTO_DEFINE _ADAPT4_ name(Adapt 4) this(counter{1/1}<1) counter(1/1.4)
 
 # Battalion
 #AUTO_DEFINE _BATTALION_ @combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:
@@ -123,7 +125,7 @@
 #AUTO_DEFINE _RECOVER_($cost) @movedTo(creature|myGraveyard) from(Battlefield):may pay{$cost} name(Return to owner Hand) moveTo(ownerHand) all(this) donothing?moveTo(exile) all(this)
 
 # Proliferate
-#AUTO_DEFINE _PROLIFERATE_ name(Proliferate) notatarget(proliferation) proliferate
+#AUTO_DEFINE _PROLIFERATE_ may name(Proliferate) notatarget(proliferation) proliferate
 
 # Scavenge
 #AUTO_DEFINE _SCAVENGE_($power) name(scavenge) counter(1/1.$power) target(creature) asSorcery
@@ -154,8 +156,8 @@
 # Cast a historic spell
 #AUTO_DEFINE _CASTHISTORIC_ @movedTo(*[artifact;legendary;saga]|mystack):
 
-# Mentor, still not working with enhancements, pump effects
-#AUTO_DEFINE _MENTOR_ @combat(attacking) source(this):counter(1/1) target(other creature[attacking;power<=pminus1minusend]|myBattlefield)
+# Mentor
+#AUTO_DEFINE _MENTOR_ @combat(attacking) source(this):name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
 
 # Surveil, like scry, using parameters causes bugs so each value has to be indicated
 #AUTO_DEFINE _SURVEIL1_ name(Surveil 1) reveal:psurveiloffsetplus1plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus1plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus1plusend>*|reveal) moveto(ownerlibrary) optiontwoend afterrevealed surveil afterrevealedend revealend
@@ -184,6 +186,12 @@
 
 # Foretell
 #AUTO_DEFINE _FORETELL_ {2}:name(Pay 2 and exile face-down) name(Pay 2 and exile face-down) doforetell myturnonly
+
+# Plot
+#AUTO_DEFINE _PLOT_ name(Plot and exile) name(Plot and exile) doforetell asSorcery
+
+# Plot Cast
+#AUTO_DEFINE _PLOTCAST_ {0}restriction{compare(canforetellcast)~morethan~0}:name(Cast with plot) name(Cast with plot) activate castcard(alternative) asSorcery
 
 # Loot (draw a card, discard a card.)
 #AUTO_DEFINE _LOOT_ draw:1 && transforms((,newability[target(*|myhand) reject])) forever
@@ -236,6 +244,9 @@
 
 #AUTO_DEFINE _HARNESSED_LIGHTNING_($c) this(variable{penergy}>=$c) choice damage:$c && alterenergy:-$c controller
 
+# Enlist. As this creature attacks, you may tap a nonattacking creature you control without summoning sickness. When you do, add its power to this creature’s until end of turn
+#AUTO_DEFINE _ENLIST_ @combat(attacking) source(this) restriction{type(creature[-fresh]|mybattlefield)~morethan~0}:transforms((,newability[{T(creature[-attacking;-fresh]|mybattlefield)}:storedpower/0 ueot limit:1])) ueot
+
 # Angel Token
 #AUTO_DEFINE _ANGELTOKEN_ create(Angel:Creature Angel:4/4:white:flying)
 
@@ -274,6 +285,9 @@
 
 # Knight Token
 #AUTO_DEFINE _KNIGHTTOKEN_ create(Knight:Creature Knight:2/2:white:vigilance)
+
+# Outlaws, 1/1 red Mercenary creature token with "{T}: Target creature you control gets +1/+0 until end of turn. Activate only as a sorcery." Token
+#AUTO_DEFINE _MERCENARYTOKEN_ create(mercenary:creature mercenary:1/1:red) and!( transforms((,newability[{T}:target(creature|myBattlefield) 1/0 asSorcery])) forever )!
 
 # Phyrexian Mite Token
 #AUTO_DEFINE _PHYREXIANMITETOKEN_ create(phyrexian mite:artifact creature phyrexian mite:1/1:poisontoxic:cantblock)
