@@ -113,7 +113,7 @@
 #AUTO_DEFINE _ECHO_($cost) $cost[{$c};next upkeep] sacrifice
 
 # Threshold
-#AUTO_DEFINE _THRESHOLD_ if type(*|mygraveyard)~morethan~6 then
+#AUTO_DEFINE _THRESHOLD_ if type(*|mygraveyard)~morethan~6 then 
 
 # Splice onto Arcane, not implemented
 #AUTO_DEFINE _SPLICEARCANE_ movedTo(*[Arcane]|myStack):may castcard(copied noevent) target(*[Arcane]|myHand)
@@ -129,9 +129,6 @@
 
 # Scavenge
 #AUTO_DEFINE _SCAVENGE_($power) name(scavenge) counter(1/1.$power) target(creature) asSorcery
-
-# Investigate token, Shadows over Innistrad SOI
-#AUTO_DEFINE _INVESTIGATE_ token(Clue)
 
 # Ascend, Set XLN
 #AUTO_DEFINE _ASCEND_ if type(City's Blessing|mybattlefield)~lessthan~1 then transforms((,newability[if type(*|mybattlefield)~morethan~9 then token(City's Blessing^notrigger)])) oneshot
@@ -149,9 +146,6 @@
 
 # The Ring Tempts
 #AUTO_DEFINE _RINGTEMPTS_ if type(The Ring|mybattlefield)~morethan~0 then all(The Ring|mybattlefield) transforms((,newability[theringtempts:1 controller],newability[name(Chose a ring bearer) target(creature|mybattlefield) becomesringbearer])) oneshot else token(The Ring^notrigger) and!( theringtempts:1 controller and!( name(Choose a ring bearer) target(creature|myBattlefield) becomesringbearer )! )!
-
-# Treasure token
-#AUTO_DEFINE _TREASURE_ token(Treasure)
 
 # Cast a historic spell
 #AUTO_DEFINE _CASTHISTORIC_ @movedTo(*[artifact;legendary;saga]|mystack):
@@ -253,6 +247,9 @@
 # Beast Token
 #AUTO_DEFINE _BEASTTOKEN_ create(Beast:Creature Beast:3/3:green)
 
+# 1/1 blue and red Otter creature token with prowess
+#AUTO_DEFINE _OTTERTOKEN_ create(otter:creature otter:1/1:blue:red) and!( transforms((,newability[@movedTo(*[-creature]|mystack):1/1 ueot])) forever )!
+
 # Citizen Token
 #AUTO_DEFINE _CITIZENTOKEN_ create(citizen:creature citizen:1/1:green:white)
 
@@ -321,3 +318,12 @@
 
 # Zombie Token
 #AUTO_DEFINE _ZOMBIETOKEN_ create(zombie:creature zombie:2/2:black)
+
+# Clue Token
+#AUTO_DEFINE _CLUE_ token(Clue,Clue Artifact,0/0) and!( transforms((,newability[{2}{S}:draw:1])) forever )!
+
+# Food Token
+#AUTO_DEFINE _FOOD_ token(Food,Food Artifact,0/0) and!( transforms((,newability[{2}{T}{S}:life:3])) forever )!
+
+# Treasure Token
+#AUTO_DEFINE _TREASURE_ token(Treasure,Treasure Artifact,0/0) and!( transforms((,newability[{T}{S}:Add{W}],newability[{T}{S}:Add{U}],newability[{T}{S}:Add{B}],newability[{T}{S}:Add{R}],newability[{T}{S}:Add{G}])) forever )!
