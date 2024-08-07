@@ -210,6 +210,7 @@
 #AUTO_DEFINE _RENOWN_($c) this(cantargetcard(*[-renown]) transforms((,newability[@combatdamaged(player) from(this):counter(1/1.$c) && becomes(renown) forever]))
 
 # Exile card. Return it to the battlefield under its owner's control at the beginning of the next end step.
+# (blink)ueot doesn't work if a creature uses it on itself
 #AUTO_DEFINE _BLINK_UEOT_  moveto(exile) and!( transforms((,newability[phaseaction[endofturn once checkex] moveto(ownerbattlefield)])) forever )!
 
 # Connives. (Draw a card, then discard a card. If you discarded a nonland card, put a +1/+1 counter on this creature.)
