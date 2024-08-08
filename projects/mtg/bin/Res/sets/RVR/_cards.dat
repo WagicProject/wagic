@@ -2,7 +2,7 @@
 author=Wagic Team
 name=Ravnica Remastered
 year=2024-01-12
-total=477
+total=541
 [/meta]
 [card]
 primitive=Karn, the Great Creator
@@ -1200,104 +1200,54 @@ id=643246
 rarity=C
 [/card]
 [card]
-primitive=Warrant
+primitive=Warrant // Warden
 id=643247
 rarity=R
 [/card]
 [card]
-primitive=Warden
-id=643247
-rarity=T
-[/card]
-[card]
-primitive=Revival
+primitive=Revival // Revenge
 id=643248
 rarity=R
 [/card]
 [card]
-primitive=Revenge
-id=643248
-rarity=T
-[/card]
-[card]
-primitive=Connive
+primitive=Connive // Concoct
 id=643249
 rarity=R
 [/card]
 [card]
-primitive=Concoct
-id=643249
-rarity=T
-[/card]
-[card]
-primitive=Expansion
+primitive=Expansion // Explosion
 id=643250
 rarity=R
 [/card]
 [card]
-primitive=Explosion
-id=643250
-rarity=T
-[/card]
-[card]
-primitive=Bedeck
+primitive=Bedeck // Bedazzle
 id=643251
 rarity=R
 [/card]
 [card]
-primitive=Bedazzle
-id=643251
-rarity=T
-[/card]
-[card]
-primitive=Find
+primitive=Find // Finality
 id=643252
 rarity=R
 [/card]
 [card]
-primitive=Finality
-id=643252
-rarity=T
-[/card]
-[card]
-primitive=Thrash
+primitive=Thrash // Threat
 id=643253
 rarity=R
 [/card]
 [card]
-primitive=Threat
-id=643253
-rarity=T
-[/card]
-[card]
-primitive=Response
+primitive=Response // Resurgence
 id=643254
 rarity=R
 [/card]
 [card]
-primitive=Resurgence
-id=643254
-rarity=T
-[/card]
-[card]
-primitive=Assure
+primitive=Assure // Assemble
 id=643255
 rarity=R
 [/card]
 [card]
-primitive=Assemble
-id=643255
-rarity=T
-[/card]
-[card]
-primitive=Repudiate
+primitive=Repudiate // Replicate
 id=643256
 rarity=R
-[/card]
-[card]
-primitive=Replicate
-id=643256
-rarity=T
 [/card]
 [card]
 primitive=Azorius Signet

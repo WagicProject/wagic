@@ -2,7 +2,7 @@
 author=Wagic Team
 name=Modern Horizons 3 Commander
 year=2024-06-14
-total=392
+total=399
 [/meta]
 [card]
 primitive=Disa the Restless
@@ -472,11 +472,6 @@ rarity=R
 [card]
 primitive=Filigree Racer
 id=665382
-rarity=R
-[/card]
-[card]
-primitive=Hideous Taskmaster
-id=665383
 rarity=R
 [/card]
 [card]
@@ -1150,14 +1145,9 @@ id=665674
 rarity=C
 [/card]
 [card]
-primitive=Find
+primitive=Find // Finality
 id=665675
 rarity=R
-[/card]
-[card]
-primitive=Finality
-id=665675
-rarity=T
 [/card]
 [card]
 primitive=Garruk, Apex Predator

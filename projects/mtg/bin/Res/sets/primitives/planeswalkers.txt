@@ -1724,7 +1724,7 @@ name=Karn, Scion of Urza
 aicode=activate target(*[zpos<=1]|myLibrary) moveto(ownerHand) && target(*[zpos<=1]|myLibrary) moveto(ownerExile)
 auto=counter(0/0,5,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Reveal two exile one and put in hand) reveal:2 optionone name(Look at the top two cards) target(*|reveal) moveto(myHand) optiononeend optiontwo name(Exile) target(*|reveal) moveTo(myExile) optiontwoend revealend
-auto={C(0/0,-3,Loyalty)}:name(-3: Return a exile card to your hand) moveTo(myHand) target(*|myExile)
+auto={C(0/0,-1,Loyalty)}:name(-1: Return a exiled card to your hand) moveTo(myHand) target(*|myExile)
 auto={C(0/0,-2,Loyalty)}:name(-2: Create a 0/0 Construct) token(Construct,Artifact Creature Construct,0/0) and!( transforms((,newability[foreach(artifact|mybattlefield) 1/1])) forever )!
 text=+1: Reveal the top two cards of your library. An opponent chooses one of them. Put that card into your hand and exile the other with a silver counter on it. -- −1: Put a card you own with a silver counter on it from exile into your hand. -- −2: Create a 0/0 colorless Construct artifact creature token with "This creature gets +1/+1 for each artifact you control."
 mana={4}

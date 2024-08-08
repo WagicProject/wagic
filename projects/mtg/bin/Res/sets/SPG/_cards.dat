@@ -2,7 +2,7 @@
 author=Wagic Team
 name=Special Guests
 year=2023-11-17
-total=60
+total=71
 [/meta]
 [card]
 primitive=Lord of Atlantis
@@ -150,14 +150,9 @@ id=660837
 rarity=M
 [/card]
 [card]
-primitive=Brazen Borrower
+primitive=Brazen Borrower // Petty Theft
 id=660838
 rarity=M
-[/card]
-[card]
-primitive=Petty Theft
-id=660838
-rarity=T
 [/card]
 [card]
 primitive=Desertion
@@ -247,5 +242,55 @@ rarity=M
 [card]
 primitive=Endurance
 id=666645
+rarity=M
+[/card]
+[card]
+primitive=Swords to Plowshares
+id=672824
+rarity=M
+[/card]
+[card]
+primitive=Ledger Shredder
+id=672825
+rarity=M
+[/card]
+[card]
+primitive=Rat Colony
+id=672826
+rarity=M
+[/card]
+[card]
+primitive=Relentless Rats
+id=672827
+rarity=M
+[/card]
+[card]
+primitive=Kindred Charge
+id=672828
+rarity=M
+[/card]
+[card]
+primitive=Sylvan Tutor
+id=672829
+rarity=M
+[/card]
+[card]
+primitive=Toski, Bearer of Secrets
+id=672830
+rarity=M
+[/card]
+[card]
+primitive=Frogmite
+id=672831
+rarity=M
+[/card]
+[card]
+primitive=Sword of Fire and Ice
+id=672832
+rarity=M
+[/card]
+[card]
+primitive=Secluded Courtyard
+id=672833
 rarity=M
 [/card]

@@ -37,7 +37,7 @@ rarity=U
 [card]
 primitive=Cosmium Kiln
 id=636697
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Cosmium Blast
@@ -142,7 +142,7 @@ rarity=M
 [card]
 primitive=Temple of Civilization
 id=636718
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Oltec Archaeologists
@@ -162,7 +162,7 @@ rarity=C
 [card]
 primitive=Oteclan Levitator
 id=636722
-rarity=T
+rarity=C
 [/card]
 [card]
 primitive=Petrify
@@ -202,7 +202,7 @@ rarity=U
 [card]
 primitive=Bladewheel Chariot
 id=636730
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Thousand Moons Crackshot
@@ -222,7 +222,7 @@ rarity=R
 [card]
 primitive=Barracks of the Thousand
 id=636734
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Tinker's Tote
@@ -237,7 +237,7 @@ rarity=R
 [card]
 primitive=Sandswirl Wanderglyph
 id=636737
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Vanguard of the Rose
@@ -272,7 +272,7 @@ rarity=R
 [card]
 primitive=Braided Quipu
 id=636744
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Chart a Course
@@ -317,7 +317,7 @@ rarity=M
 [card]
 primitive=Locus of Enlightenment
 id=636753
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=The Everflowing Well
@@ -327,7 +327,7 @@ rarity=R
 [card]
 primitive=The Myriad Pools
 id=636755
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Frilled Cave-Wurm
@@ -352,7 +352,7 @@ rarity=C
 [card]
 primitive=Iceberg Titan
 id=636760
-rarity=T
+rarity=C
 [/card]
 [card]
 primitive=Kitesail Larcenist
@@ -367,7 +367,7 @@ rarity=U
 [card]
 primitive=Guidestone Compass
 id=636763
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Malcolm, Alluring Scoundrel
@@ -397,7 +397,7 @@ rarity=M
 [card]
 primitive=Temple of Cyclical Time
 id=636769
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Orazca Puzzle-Door
@@ -482,7 +482,7 @@ rarity=U
 [card]
 primitive=Watertight Gondola
 id=636786
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Waterwind Scout
@@ -512,7 +512,7 @@ rarity=M
 [card]
 primitive=Temple of the Dead
 id=636792
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Acolyte of Aclazotz
@@ -617,7 +617,7 @@ rarity=U
 [card]
 primitive=Shadows' Lair
 id=636813
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Greedy Freebooter
@@ -712,7 +712,7 @@ rarity=R
 [card]
 primitive=The Tomb of Aclazotz
 id=636832
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Terror Tide
@@ -727,7 +727,7 @@ rarity=C
 [card]
 primitive=Consuming Sepulcher
 id=636835
-rarity=T
+rarity=C
 [/card]
 [card]
 primitive=Visage of Dread
@@ -737,7 +737,7 @@ rarity=U
 [card]
 primitive=Dread Osseosaur
 id=636837
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Vito's Inquisitor
@@ -772,7 +772,7 @@ rarity=R
 [card]
 primitive=Tecutlan, the Searing Rift
 id=636844
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Brazen Blademaster
@@ -827,7 +827,7 @@ rarity=R
 [card]
 primitive=Dire Blunderbuss
 id=636855
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Dowsing Device
@@ -837,7 +837,7 @@ rarity=U
 [card]
 primitive=Geode Grotto
 id=636857
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Dreadmaw's Ire
@@ -887,7 +887,7 @@ rarity=C
 [card]
 primitive=Sovereign's Macuahuitl
 id=636867
-rarity=T
+rarity=C
 [/card]
 [card]
 primitive=Inti, Seneschal of the Sun
@@ -907,7 +907,7 @@ rarity=M
 [card]
 primitive=Temple of Power
 id=636871
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Panicked Altisaur
@@ -942,7 +942,7 @@ rarity=U
 [card]
 primitive=Mastercraft Raptor
 id=636878
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Scytheclaw Raptor
@@ -1067,7 +1067,7 @@ rarity=R
 [card]
 primitive=Itlimoc, Cradle of the Sun
 id=636903
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Huatli, Poet of Unity
@@ -1077,7 +1077,7 @@ rarity=M
 [card]
 primitive=Roar of the Fifth People
 id=636905
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Huatli's Final Strike
@@ -1112,7 +1112,7 @@ rarity=U
 [card]
 primitive=Jadeheart Attendant
 id=636912
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Jadelight Spelunker
@@ -1127,7 +1127,7 @@ rarity=C
 [card]
 primitive=Kaslem's Strider
 id=636915
-rarity=T
+rarity=C
 [/card]
 [card]
 primitive=Malamet Battle Glyph
@@ -1167,7 +1167,7 @@ rarity=M
 [card]
 primitive=Temple of Cultivation
 id=636923
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Over the Edge
@@ -1237,7 +1237,7 @@ rarity=U
 [card]
 primitive=Mycoid Maze
 id=636937
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Walk with the Ancestors
@@ -1305,14 +1305,9 @@ id=636950
 rarity=U
 [/card]
 [card]
-primitive=Kellan, Daring Traveler
+primitive=Kellan, Daring Traveler // Journey On
 id=636951
 rarity=R
-[/card]
-[card]
-primitive=Journey On
-id=636951
-rarity=T
 [/card]
 [card]
 primitive=Kutzil, Malamet Exemplar
@@ -1327,7 +1322,7 @@ rarity=U
 [card]
 primitive=Master's Manufactory
 id=636954
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Molten Collapse
@@ -1447,7 +1442,7 @@ rarity=R
 [card]
 primitive=The Core
 id=636978
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=The Millennium Calendar
@@ -1482,7 +1477,7 @@ rarity=U
 [card]
 primitive=Sunbird Effigy
 id=636985
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Swashbuckler's Whip
@@ -1507,7 +1502,7 @@ rarity=R
 [card]
 primitive=The Grim Captain
 id=636990
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Treasure Map
@@ -1517,7 +1512,7 @@ rarity=R
 [card]
 primitive=Treasure Cove
 id=636992
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Captivating Cave
@@ -1667,7 +1662,7 @@ rarity=M
 [card]
 primitive=Roar of the Fifth People
 id=636504
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Abuelo, Ancestral Echo
@@ -1757,7 +1752,7 @@ rarity=R
 [card]
 primitive=The Grim Captain
 id=636522
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Ojer Taq, Deepest Foundation
@@ -1767,7 +1762,7 @@ rarity=M
 [card]
 primitive=Temple of Civilization
 id=639431
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Ojer Pakpatiq, Deepest Epoch
@@ -1777,7 +1772,7 @@ rarity=M
 [card]
 primitive=Temple of Cyclical Time
 id=639433
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Aclazotz, Deepest Betrayal
@@ -1787,7 +1782,7 @@ rarity=M
 [card]
 primitive=Temple of the Dead
 id=639435
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Ojer Axonil, Deepest Might
@@ -1797,7 +1792,7 @@ rarity=M
 [card]
 primitive=Temple of Power
 id=639437
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Ojer Kaslem, Deepest Growth
@@ -1807,7 +1802,7 @@ rarity=M
 [card]
 primitive=Temple of Cultivation
 id=639439
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=The Ancient One
@@ -1917,7 +1912,7 @@ rarity=M
 [card]
 primitive=Roar of the Fifth People
 id=639266
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=The Skullspore Nexus
@@ -1925,14 +1920,9 @@ id=639267
 rarity=M
 [/card]
 [card]
-primitive=Kellan, Daring Traveler
+primitive=Kellan, Daring Traveler // Journey On
 id=639268
 rarity=R
-[/card]
-[card]
-primitive=Journey On
-id=639268
-rarity=T
 [/card]
 [card]
 primitive=Molten Collapse
@@ -2017,7 +2007,7 @@ rarity=R
 [card]
 primitive=Barracks of the Thousand
 id=639755
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Unstable Glyphbridge
@@ -2027,7 +2017,7 @@ rarity=R
 [card]
 primitive=Sandswirl Wanderglyph
 id=639757
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Warden of the Inner Sky
@@ -2042,7 +2032,7 @@ rarity=R
 [card]
 primitive=Braided Quipu
 id=639760
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Deeproot Pilgrimage
@@ -2057,7 +2047,7 @@ rarity=M
 [card]
 primitive=Locus of Enlightenment
 id=639763
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=The Everflowing Well
@@ -2067,7 +2057,7 @@ rarity=R
 [card]
 primitive=The Myriad Pools
 id=639765
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Kitesail Larcenist
@@ -2112,7 +2102,7 @@ rarity=R
 [card]
 primitive=The Tomb of Aclazotz
 id=639774
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Terror Tide
@@ -2127,7 +2117,7 @@ rarity=R
 [card]
 primitive=Tecutlan, the Searing Rift
 id=639777
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Dire Flail
@@ -2137,7 +2127,7 @@ rarity=R
 [card]
 primitive=Dire Blunderbuss
 id=639779
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Hit the Mother Lode
@@ -2172,7 +2162,7 @@ rarity=R
 [card]
 primitive=Itlimoc, Cradle of the Sun
 id=639786
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Intrepid Paleontologist
@@ -2212,7 +2202,7 @@ rarity=R
 [card]
 primitive=The Core
 id=639794
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=The Millennium Calendar
@@ -2237,7 +2227,7 @@ rarity=R
 [card]
 primitive=Treasure Cove
 id=639799
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Sunken Citadel

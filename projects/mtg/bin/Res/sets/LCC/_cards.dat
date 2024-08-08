@@ -50,6 +50,16 @@ id=642472
 rarity=R
 [/card]
 [card]
+primitive=Altar of the Wretched
+id=642473
+rarity=R
+[/card]
+[card]
+primitive=Wretched Bonemass
+id=642473
+rarity=R
+[/card]
+[card]
 primitive=Ore-Rich Stalactite
 id=642475
 rarity=R
@@ -57,7 +67,7 @@ rarity=R
 [card]
 primitive=Cosmium Catalyst
 id=642476
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Contest of Claws
@@ -72,7 +82,7 @@ rarity=R
 [card]
 primitive=The Golden-Gear Colossus
 id=642479
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Xavier Sal, Infested Captain
@@ -87,7 +97,7 @@ rarity=M
 [card]
 primitive=Apex Observatory
 id=642482
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Paleontologist's Pick-Axe
@@ -97,7 +107,7 @@ rarity=M
 [card]
 primitive=Dinosaur Headdress
 id=642484
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Admiral Brass, Unsinkable
@@ -132,7 +142,7 @@ rarity=R
 [card]
 primitive=Wretched Bonemass
 id=642337
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Ore-Rich Stalactite
@@ -142,7 +152,7 @@ rarity=R
 [card]
 primitive=Cosmium Catalyst
 id=642339
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Contest of Claws
@@ -187,7 +197,7 @@ rarity=R
 [card]
 primitive=The Golden-Gear Colossus
 id=642348
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Wayta, Trainer Prodigy
@@ -212,7 +222,7 @@ rarity=M
 [card]
 primitive=Apex Observatory
 id=642353
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Paleontologist's Pick-Axe
@@ -222,7 +232,7 @@ rarity=M
 [card]
 primitive=Dinosaur Headdress
 id=642355
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Bronzebeak Foragers
@@ -300,14 +310,9 @@ id=640275
 rarity=R
 [/card]
 [card]
-primitive=Promise of Aclazotz
+primitive=Promise of Aclazotz // Foul Rebirth
 id=640276
 rarity=R
-[/card]
-[card]
-primitive=Foul Rebirth
-id=640276
-rarity=T
 [/card]
 [card]
 primitive=Skeleton Crew
@@ -465,14 +470,9 @@ id=640043
 rarity=R
 [/card]
 [card]
-primitive=Promise of Aclazotz
+primitive=Promise of Aclazotz // Foul Rebirth
 id=640044
 rarity=R
-[/card]
-[card]
-primitive=Foul Rebirth
-id=640044
-rarity=T
 [/card]
 [card]
 primitive=Skeleton Crew
@@ -765,14 +765,9 @@ id=640442
 rarity=R
 [/card]
 [card]
-primitive=Commit
+primitive=Commit // Memory
 id=640443
 rarity=R
-[/card]
-[card]
-primitive=Memory
-id=640443
-rarity=T
 [/card]
 [card]
 primitive=Coralhelm Commander

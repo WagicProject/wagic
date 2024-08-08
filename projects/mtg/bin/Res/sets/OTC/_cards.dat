@@ -1150,14 +1150,9 @@ id=658673
 rarity=R
 [/card]
 [card]
-primitive=Heaven
+primitive=Heaven // Earth
 id=658674
 rarity=R
-[/card]
-[card]
-primitive=Earth
-id=658674
-rarity=T
 [/card]
 [card]
 primitive=Hostage Taker
@@ -1447,7 +1442,7 @@ rarity=R
 [card]
 primitive=Dimir Aqueduct
 id=658732
-rarity=C
+rarity=U
 [/card]
 [card]
 primitive=Dragonskull Summit

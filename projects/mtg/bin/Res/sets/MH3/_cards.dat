@@ -980,7 +980,12 @@ id=662347
 rarity=C
 [/card]
 [card]
-primitive=Ondu Knotmaster // Throw a Line
+primitive=Ondu Knotmaster
+id=662348
+rarity=U
+[/card]
+[card]
+primitive=Throw a Line
 id=662348
 rarity=U
 [/card]
@@ -1192,7 +1197,7 @@ rarity=M
 [card]
 primitive=Ajani, Nacatl Avenger
 id=661754
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Razorgrass Ambush
@@ -1202,7 +1207,7 @@ rarity=U
 [card]
 primitive=Razorgrass Field
 id=661755
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Witch Enchanter
@@ -1212,7 +1217,7 @@ rarity=U
 [card]
 primitive=Witch-Blessed Meadow
 id=661757
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Hydroelectric Specimen
@@ -1222,7 +1227,7 @@ rarity=U
 [card]
 primitive=Hydroelectric Laboratory
 id=661759
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Sink into Stupor
@@ -1232,7 +1237,7 @@ rarity=U
 [card]
 primitive=Soporific Springs
 id=661761
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Tamiyo, Inquisitive Student
@@ -1242,7 +1247,7 @@ rarity=M
 [card]
 primitive=Tamiyo, Seasoned Scholar
 id=661764
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Boggart Trawler
@@ -1252,7 +1257,7 @@ rarity=U
 [card]
 primitive=Boggart Bog
 id=661765
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Fell the Profane
@@ -1262,7 +1267,7 @@ rarity=U
 [card]
 primitive=Fell Mire
 id=661767
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Sorin of House Markov
@@ -1272,7 +1277,7 @@ rarity=M
 [card]
 primitive=Sorin, Ravenous Neonate
 id=661770
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Pinnacle Monk
@@ -1282,7 +1287,7 @@ rarity=U
 [card]
 primitive=Mystic Peak
 id=661771
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Ral, Monsoon Mage
@@ -1292,7 +1297,7 @@ rarity=M
 [card]
 primitive=Ral, Leyline Prodigy
 id=661774
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Sundering Eruption
@@ -1302,7 +1307,7 @@ rarity=U
 [card]
 primitive=Volcanic Fissure
 id=661775
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Bridgeworks Battle
@@ -1312,7 +1317,7 @@ rarity=U
 [card]
 primitive=Tanglespan Bridgeworks
 id=661777
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Disciple of Freyalise
@@ -1322,7 +1327,7 @@ rarity=U
 [card]
 primitive=Garden of Freyalise
 id=661779
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Grist, Voracious Larva
@@ -1332,7 +1337,7 @@ rarity=M
 [card]
 primitive=Grist, the Plague Swarm
 id=661782
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Bloodsoaked Insight
@@ -1342,7 +1347,7 @@ rarity=U
 [card]
 primitive=Sanguine Morass
 id=661783
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Drowner of Truth
@@ -1352,7 +1357,7 @@ rarity=U
 [card]
 primitive=Drowned Jungle
 id=661785
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Glasswing Grace
@@ -1362,7 +1367,7 @@ rarity=U
 [card]
 primitive=Age-Graced Chapel
 id=661787
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Legion Leadership
@@ -1372,7 +1377,7 @@ rarity=U
 [card]
 primitive=Legion Stronghold
 id=661789
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Revitalizing Repast
@@ -1382,7 +1387,7 @@ rarity=U
 [card]
 primitive=Old-Growth Grove
 id=661791
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Rush of Inspiration
@@ -1392,7 +1397,7 @@ rarity=U
 [card]
 primitive=Crackling Falls
 id=661793
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Strength of the Harvest
@@ -1402,7 +1407,7 @@ rarity=U
 [card]
 primitive=Haven of the Harvest
 id=661795
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Stump Stomp
@@ -1412,7 +1417,7 @@ rarity=U
 [card]
 primitive=Burnwillow Clearing
 id=661797
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Suppression Ray
@@ -1422,7 +1427,7 @@ rarity=U
 [card]
 primitive=Orderly Plaza
 id=661799
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Waterlogged Teachings
@@ -1432,7 +1437,7 @@ rarity=U
 [card]
 primitive=Inundated Archive
 id=661801
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Angel of the Ruins
@@ -2342,7 +2347,7 @@ rarity=M
 [card]
 primitive=Ajani, Nacatl Avenger
 id=661309
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Tamiyo, Inquisitive Student
@@ -2352,7 +2357,7 @@ rarity=M
 [card]
 primitive=Tamiyo, Seasoned Scholar
 id=661311
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Sorin of House Markov
@@ -2362,7 +2367,7 @@ rarity=M
 [card]
 primitive=Sorin, Ravenous Neonate
 id=661313
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Ral, Monsoon Mage
@@ -2372,7 +2377,7 @@ rarity=M
 [card]
 primitive=Ral, Leyline Prodigy
 id=661315
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Grist, Voracious Larva
@@ -2382,7 +2387,7 @@ rarity=M
 [card]
 primitive=Grist, the Plague Swarm
 id=661317
-rarity=T
+rarity=M
 [/card]
 [card]
 primitive=Argent Dais

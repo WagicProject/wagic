@@ -285,14 +285,9 @@ id=650154
 rarity=R
 [/card]
 [card]
-primitive=Dusk
+primitive=Dusk // Dawn
 id=650155
 rarity=R
-[/card]
-[card]
-primitive=Dawn
-id=650155
-rarity=T
 [/card]
 [card]
 primitive=Elspeth, Sun's Champion
@@ -387,7 +382,7 @@ rarity=R
 [card]
 primitive=Seal of Cleansing
 id=650174
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=Search the Premises
@@ -1000,14 +995,9 @@ id=650296
 rarity=M
 [/card]
 [card]
-primitive=Connive
+primitive=Connive // Concoct
 id=650297
 rarity=R
-[/card]
-[card]
-primitive=Concoct
-id=650297
-rarity=T
 [/card]
 [card]
 primitive=Decimate
@@ -1025,14 +1015,9 @@ id=650300
 rarity=U
 [/card]
 [card]
-primitive=Discovery
+primitive=Discovery // Dispersal
 id=650301
 rarity=U
-[/card]
-[card]
-primitive=Dispersal
-id=650301
-rarity=T
 [/card]
 [card]
 primitive=Disinformation Campaign
@@ -1057,7 +1042,7 @@ rarity=M
 [card]
 primitive=Hydroid Krasis
 id=650306
-rarity=M
+rarity=R
 [/card]
 [card]
 primitive=Koma, Cosmos Serpent
@@ -1067,7 +1052,7 @@ rarity=M
 [card]
 primitive=Lazav, the Multifarious
 id=650308
-rarity=R
+rarity=M
 [/card]
 [card]
 primitive=Lonis, Cryptozoologist
@@ -1242,7 +1227,7 @@ rarity=U
 [card]
 primitive=Azorius Chancery
 id=650343
-rarity=C
+rarity=U
 [/card]
 [card]
 primitive=Bojuka Bog
@@ -1362,7 +1347,7 @@ rarity=R
 [card]
 primitive=Lonely Sandbar
 id=650367
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=Mossfire Valley

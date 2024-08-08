@@ -2,7 +2,7 @@
 author=Wagic Team
 name=Murders at Karlov Manor
 year=2024-02-09
-total=451
+total=457
 [/meta]
 [card]
 primitive=Case of the Shattered Pact
@@ -1060,14 +1060,9 @@ id=646767
 rarity=M
 [/card]
 [card]
-primitive=Kellan, Inquisitive Prodigy
+primitive=Kellan, Inquisitive Prodigy // Tail the Suspect
 id=646768
 rarity=R
-[/card]
-[card]
-primitive=Tail the Suspect
-id=646768
-rarity=T
 [/card]
 [card]
 primitive=Kraul Whipcracker
@@ -1235,54 +1230,29 @@ id=646799
 rarity=R
 [/card]
 [card]
-primitive=Cease
+primitive=Cease // Desist
 id=646800
 rarity=U
 [/card]
 [card]
-primitive=Desist
-id=646800
-rarity=T
-[/card]
-[card]
-primitive=Flotsam
+primitive=Flotsam // Jetsam
 id=646801
 rarity=U
 [/card]
 [card]
-primitive=Jetsam
-id=646801
-rarity=T
-[/card]
-[card]
-primitive=Fuss
+primitive=Fuss // Bother
 id=646802
 rarity=U
 [/card]
 [card]
-primitive=Bother
-id=646802
-rarity=T
-[/card]
-[card]
-primitive=Hustle
+primitive=Hustle // Bustle
 id=646803
 rarity=U
 [/card]
 [card]
-primitive=Bustle
-id=646803
-rarity=T
-[/card]
-[card]
-primitive=Push
+primitive=Push // Pull
 id=646804
 rarity=U
-[/card]
-[card]
-primitive=Pull
-id=646804
-rarity=T
 [/card]
 [card]
 primitive=Cryptex
@@ -1700,14 +1670,9 @@ id=649313
 rarity=R
 [/card]
 [card]
-primitive=Kellan, Inquisitive Prodigy
+primitive=Kellan, Inquisitive Prodigy // Tail the Suspect
 id=649885
 rarity=R
-[/card]
-[card]
-primitive=Tail the Suspect
-id=649885
-rarity=T
 [/card]
 [card]
 primitive=Kaya, Spirits' Justice

@@ -195,14 +195,9 @@ id=657783
 rarity=U
 [/card]
 [card]
-primitive=Crime
-id=658275
+primitive=Crime // Punishment
+id=657784
 rarity=M
-[/card]
-[card]
-primitive=Punishment
-id=658275
-rarity=T
 [/card]
 [card]
 primitive=Cruel Ultimatum
@@ -377,6 +372,11 @@ rarity=M
 [card]
 primitive=Anguished Unmaking
 id=658274
+rarity=M
+[/card]
+[card]
+primitive=Crime // Punishment
+id=658275
 rarity=M
 [/card]
 [card]

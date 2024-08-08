@@ -20,14 +20,9 @@ id=629504
 rarity=C
 [/card]
 [card]
-primitive=Besotted Knight
+primitive=Besotted Knight // Betroth the Beast
 id=629505
 rarity=C
-[/card]
-[card]
-primitive=Betroth the Beast
-id=629505
-rarity=T
 [/card]
 [card]
 primitive=Break the Spell
@@ -40,14 +35,9 @@ id=629507
 rarity=C
 [/card]
 [card]
-primitive=Cheeky House-Mouse
+primitive=Cheeky House-Mouse // Squeak By
 id=629508
 rarity=U
-[/card]
-[card]
-primitive=Squeak By
-id=629508
-rarity=T
 [/card]
 [card]
 primitive=Cooped Up
@@ -200,14 +190,9 @@ id=629538
 rarity=C
 [/card]
 [card]
-primitive=Virtue of Loyalty
+primitive=Virtue of Loyalty // Ardenvale Fealty
 id=629539
 rarity=M
-[/card]
-[card]
-primitive=Ardenvale Fealty
-id=629539
-rarity=T
 [/card]
 [card]
 primitive=Werefox Bodyguard
@@ -215,14 +200,9 @@ id=629540
 rarity=R
 [/card]
 [card]
-primitive=Aquatic Alchemist
+primitive=Aquatic Alchemist // Bubble Up
 id=629541
 rarity=C
-[/card]
-[card]
-primitive=Bubble Up
-id=629541
-rarity=T
 [/card]
 [card]
 primitive=Archive Dragon
@@ -235,14 +215,9 @@ id=629543
 rarity=M
 [/card]
 [card]
-primitive=Beluna's Gatekeeper
+primitive=Beluna's Gatekeeper // Entry Denied
 id=629544
 rarity=C
-[/card]
-[card]
-primitive=Entry Denied
-id=629544
-rarity=T
 [/card]
 [card]
 primitive=Bitter Chill
@@ -285,24 +260,14 @@ id=629552
 rarity=U
 [/card]
 [card]
-primitive=Galvanic Giant
+primitive=Galvanic Giant // Storm Reading
 id=629553
 rarity=U
 [/card]
 [card]
-primitive=Storm Reading
-id=629553
-rarity=T
-[/card]
-[card]
-primitive=Horned Loch-Whale
+primitive=Horned Loch-Whale // Lagoon Breach
 id=629554
 rarity=R
-[/card]
-[card]
-primitive=Lagoon Breach
-id=629554
-rarity=T
 [/card]
 [card]
 primitive=Ice Out
@@ -350,24 +315,14 @@ id=629563
 rarity=C
 [/card]
 [card]
-primitive=Obyra's Attendants
+primitive=Obyra's Attendants // Desperate Parry
 id=629564
 rarity=C
 [/card]
 [card]
-primitive=Desperate Parry
-id=629564
-rarity=T
-[/card]
-[card]
-primitive=Picklock Prankster
+primitive=Picklock Prankster // Free the Fae
 id=629565
 rarity=U
-[/card]
-[card]
-primitive=Free the Fae
-id=629565
-rarity=T
 [/card]
 [card]
 primitive=Quick Study
@@ -420,24 +375,14 @@ id=629575
 rarity=U
 [/card]
 [card]
-primitive=Vantress Transmuter
+primitive=Vantress Transmuter // Croaking Curse
 id=629576
 rarity=C
 [/card]
 [card]
-primitive=Croaking Curse
-id=629576
-rarity=T
-[/card]
-[card]
-primitive=Virtue of Knowledge
+primitive=Virtue of Knowledge // Vantress Visions
 id=629577
 rarity=M
-[/card]
-[card]
-primitive=Vantress Visions
-id=629577
-rarity=T
 [/card]
 [card]
 primitive=Water Wings
@@ -475,14 +420,9 @@ id=629584
 rarity=C
 [/card]
 [card]
-primitive=Conceited Witch
+primitive=Conceited Witch // Price of Beauty
 id=629585
 rarity=C
-[/card]
-[card]
-primitive=Price of Beauty
-id=629585
-rarity=T
 [/card]
 [card]
 primitive=Dream Spoilers
@@ -520,24 +460,14 @@ id=629592
 rarity=C
 [/card]
 [card]
-primitive=Fell Horseman
+primitive=Fell Horseman // Deathly Ride
 id=629593
 rarity=C
 [/card]
 [card]
-primitive=Deathly Ride
-id=629593
-rarity=T
-[/card]
-[card]
-primitive=Gumdrop Poisoner
+primitive=Gumdrop Poisoner // Tempt with Treats
 id=629594
 rarity=R
-[/card]
-[card]
-primitive=Tempt with Treats
-id=629594
-rarity=T
 [/card]
 [card]
 primitive=High Fae Negotiator
@@ -645,14 +575,9 @@ id=629615
 rarity=U
 [/card]
 [card]
-primitive=Virtue of Persistence
+primitive=Virtue of Persistence // Locthwain Scorn
 id=629616
 rarity=M
-[/card]
-[card]
-primitive=Locthwain Scorn
-id=629616
-rarity=T
 [/card]
 [card]
 primitive=Voracious Vermin
@@ -680,14 +605,9 @@ id=629621
 rarity=U
 [/card]
 [card]
-primitive=Bellowing Bruiser
+primitive=Bellowing Bruiser // Beat a Path
 id=629622
 rarity=C
-[/card]
-[card]
-primitive=Beat a Path
-id=629622
-rarity=T
 [/card]
 [card]
 primitive=Bespoke Battlegarb
@@ -745,14 +665,9 @@ id=629633
 rarity=R
 [/card]
 [card]
-primitive=Grabby Giant
+primitive=Grabby Giant // That's Mine
 id=629634
 rarity=C
-[/card]
-[card]
-primitive=That's Mine
-id=629634
-rarity=T
 [/card]
 [card]
 primitive=Grand Ball Guest
@@ -765,14 +680,9 @@ id=629636
 rarity=C
 [/card]
 [card]
-primitive=Hearth Elemental
+primitive=Hearth Elemental // Stoke Genius
 id=629637
 rarity=U
-[/card]
-[card]
-primitive=Stoke Genius
-id=629637
-rarity=T
 [/card]
 [card]
 primitive=Imodane, the Pyrohammer
@@ -795,14 +705,9 @@ id=629641
 rarity=C
 [/card]
 [card]
-primitive=Minecart Daredevil
+primitive=Minecart Daredevil // Ride the Rails
 id=629642
 rarity=C
-[/card]
-[card]
-primitive=Ride the Rails
-id=629642
-rarity=T
 [/card]
 [card]
 primitive=Monstrous Rage
@@ -815,14 +720,9 @@ id=629644
 rarity=R
 [/card]
 [card]
-primitive=Ratcatcher Trainee
+primitive=Ratcatcher Trainee // Pest Problem
 id=629645
 rarity=C
-[/card]
-[card]
-primitive=Pest Problem
-id=629645
-rarity=T
 [/card]
 [card]
 primitive=Realm-Scorcher Hellkite
@@ -875,14 +775,9 @@ id=629655
 rarity=U
 [/card]
 [card]
-primitive=Two-Headed Hunter
+primitive=Two-Headed Hunter // Twice the Rage
 id=629656
 rarity=U
-[/card]
-[card]
-primitive=Twice the Rage
-id=629656
-rarity=T
 [/card]
 [card]
 primitive=Unruly Catapult
@@ -890,14 +785,9 @@ id=629657
 rarity=C
 [/card]
 [card]
-primitive=Virtue of Courage
+primitive=Virtue of Courage // Embereth Blaze
 id=629658
 rarity=M
-[/card]
-[card]
-primitive=Embereth Blaze
-id=629658
-rarity=T
 [/card]
 [card]
 primitive=Witch's Mark
@@ -915,14 +805,9 @@ id=629661
 rarity=U
 [/card]
 [card]
-primitive=Beanstalk Wurm
+primitive=Beanstalk Wurm // Plant Beans
 id=629662
 rarity=C
-[/card]
-[card]
-primitive=Plant Beans
-id=629662
-rarity=T
 [/card]
 [card]
 primitive=Bestial Bloodline
@@ -935,14 +820,9 @@ id=629664
 rarity=M
 [/card]
 [card]
-primitive=Bramble Familiar
+primitive=Bramble Familiar // Fetch Quest
 id=629665
 rarity=R
-[/card]
-[card]
-primitive=Fetch Quest
-id=629665
-rarity=T
 [/card]
 [card]
 primitive=Brave the Wilds
@@ -970,14 +850,9 @@ id=629670
 rarity=R
 [/card]
 [card]
-primitive=Ferocious Werefox
+primitive=Ferocious Werefox // Guard Change
 id=629671
 rarity=C
-[/card]
-[card]
-primitive=Guard Change
-id=629671
-rarity=T
 [/card]
 [card]
 primitive=Graceful Takedown
@@ -995,14 +870,9 @@ id=629674
 rarity=C
 [/card]
 [card]
-primitive=Hollow Scavenger
+primitive=Hollow Scavenger // Bakery Raid
 id=629675
 rarity=C
-[/card]
-[card]
-primitive=Bakery Raid
-id=629675
-rarity=T
 [/card]
 [card]
 primitive=Howling Galefang
@@ -1065,14 +935,9 @@ id=629687
 rarity=C
 [/card]
 [card]
-primitive=Stormkeld Vanguard
+primitive=Stormkeld Vanguard // Bear Down
 id=629688
 rarity=U
-[/card]
-[card]
-primitive=Bear Down
-id=629688
-rarity=T
 [/card]
 [card]
 primitive=Tanglespan Lookout
@@ -1120,14 +985,9 @@ id=629697
 rarity=C
 [/card]
 [card]
-primitive=Virtue of Strength
+primitive=Virtue of Strength // Garenbrig Growth
 id=629698
 rarity=M
-[/card]
-[card]
-primitive=Garenbrig Growth
-id=629698
-rarity=T
 [/card]
 [card]
 primitive=Welcome to Sweettooth
@@ -1240,224 +1100,114 @@ id=629720
 rarity=R
 [/card]
 [card]
-primitive=Beluna Grandsquall
+primitive=Beluna Grandsquall // Seek Thrills
 id=629721
 rarity=M
 [/card]
 [card]
-primitive=Seek Thrills
-id=629721
-rarity=T
-[/card]
-[card]
-primitive=Callous Sell-Sword
+primitive=Callous Sell-Sword // Burn Together
 id=629722
 rarity=U
 [/card]
 [card]
-primitive=Burn Together
-id=629722
-rarity=T
-[/card]
-[card]
-primitive=Cruel Somnophage
+primitive=Cruel Somnophage // Can't Wake Up
 id=629723
 rarity=R
 [/card]
 [card]
-primitive=Can't Wake Up
-id=629723
-rarity=T
-[/card]
-[card]
-primitive=Decadent Dragon
+primitive=Decadent Dragon // Expensive Taste
 id=629724
 rarity=R
 [/card]
 [card]
-primitive=Expensive Taste
-id=629724
-rarity=T
-[/card]
-[card]
-primitive=Devouring Sugarmaw
+primitive=Devouring Sugarmaw // Have for Dinner
 id=629725
 rarity=R
 [/card]
 [card]
-primitive=Have for Dinner
-id=629725
-rarity=T
-[/card]
-[card]
-primitive=Elusive Otter
+primitive=Elusive Otter // Grove's Bounty
 id=629726
 rarity=R
 [/card]
 [card]
-primitive=Grove's Bounty
-id=629726
-rarity=T
-[/card]
-[card]
-primitive=Frolicking Familiar
+primitive=Frolicking Familiar // Blow Off Steam
 id=629727
 rarity=U
 [/card]
 [card]
-primitive=Blow Off Steam
-id=629727
-rarity=T
-[/card]
-[card]
-primitive=Gingerbread Hunter
+primitive=Gingerbread Hunter // Puny Snack
 id=629728
 rarity=U
 [/card]
 [card]
-primitive=Puny Snack
-id=629728
-rarity=T
-[/card]
-[card]
-primitive=Heartflame Duelist
+primitive=Heartflame Duelist // Heartflame Slash
 id=629729
 rarity=R
 [/card]
 [card]
-primitive=Heartflame Slash
-id=629729
-rarity=T
-[/card]
-[card]
-primitive=Imodane's Recruiter
+primitive=Imodane's Recruiter // Train Troops
 id=629730
 rarity=U
 [/card]
 [card]
-primitive=Train Troops
-id=629730
-rarity=T
-[/card]
-[card]
-primitive=Kellan, the Fae-Blooded
+primitive=Kellan, the Fae-Blooded // Birthright Boon
 id=629731
 rarity=M
 [/card]
 [card]
-primitive=Birthright Boon
-id=629731
-rarity=T
-[/card]
-[card]
-primitive=Mosswood Dreadknight
+primitive=Mosswood Dreadknight // Dread Whispers
 id=629732
 rarity=R
 [/card]
 [card]
-primitive=Dread Whispers
-id=629732
-rarity=T
-[/card]
-[card]
-primitive=Picnic Ruiner
+primitive=Picnic Ruiner // Stolen Goodies
 id=629733
 rarity=U
 [/card]
 [card]
-primitive=Stolen Goodies
-id=629733
-rarity=T
-[/card]
-[card]
-primitive=Pollen-Shield Hare
+primitive=Pollen-Shield Hare // Hare Raising
 id=629734
 rarity=R
 [/card]
 [card]
-primitive=Hare Raising
-id=629734
-rarity=T
-[/card]
-[card]
-primitive=Questing Druid
+primitive=Questing Druid // Seek the Beast
 id=629735
 rarity=R
 [/card]
 [card]
-primitive=Seek the Beast
-id=629735
-rarity=T
-[/card]
-[card]
-primitive=Scalding Viper
+primitive=Scalding Viper // Steam Clean
 id=629736
 rarity=R
 [/card]
 [card]
-primitive=Steam Clean
-id=629736
-rarity=T
-[/card]
-[card]
-primitive=Shrouded Shepherd
+primitive=Shrouded Shepherd // Cleave Shadows
 id=629737
 rarity=U
 [/card]
 [card]
-primitive=Cleave Shadows
-id=629737
-rarity=T
-[/card]
-[card]
-primitive=Spellscorn Coven
+primitive=Spellscorn Coven // Take It Back
 id=629738
 rarity=U
 [/card]
 [card]
-primitive=Take It Back
-id=629738
-rarity=T
-[/card]
-[card]
-primitive=Tempest Hart
+primitive=Tempest Hart // Scan the Clouds
 id=629739
 rarity=U
 [/card]
 [card]
-primitive=Scan the Clouds
-id=629739
-rarity=T
-[/card]
-[card]
-primitive=Threadbind Clique
+primitive=Threadbind Clique // Rip the Seams
 id=629740
 rarity=U
 [/card]
 [card]
-primitive=Rip the Seams
-id=629740
-rarity=T
-[/card]
-[card]
-primitive=Twining Twins
+primitive=Twining Twins // Swift Spiral
 id=629741
 rarity=R
 [/card]
 [card]
-primitive=Swift Spiral
-id=629741
-rarity=T
-[/card]
-[card]
-primitive=Woodland Acolyte
+primitive=Woodland Acolyte // Mend the Wilds
 id=629742
 rarity=U
-[/card]
-[card]
-primitive=Mend the Wilds
-id=629742
-rarity=T
 [/card]
 [card]
 primitive=Agatha's Soul Cauldron
@@ -1635,204 +1385,104 @@ id=631639
 rarity=L
 [/card]
 [card]
-primitive=Virtue of Loyalty
+primitive=Virtue of Loyalty // Ardenvale Fealty
 id=632229
 rarity=M
 [/card]
 [card]
-primitive=Ardenvale Fealty
-id=632229
-rarity=T
-[/card]
-[card]
-primitive=Horned Loch-Whale
+primitive=Horned Loch-Whale // Lagoon Breach
 id=632230
 rarity=R
 [/card]
 [card]
-primitive=Lagoon Breach
-id=632230
-rarity=T
-[/card]
-[card]
-primitive=Virtue of Knowledge
+primitive=Virtue of Knowledge // Vantress Visions
 id=632231
 rarity=M
 [/card]
 [card]
-primitive=Vantress Visions
-id=632231
-rarity=T
-[/card]
-[card]
-primitive=Gumdrop Poisoner
+primitive=Gumdrop Poisoner // Tempt with Treats
 id=632232
 rarity=R
 [/card]
 [card]
-primitive=Tempt with Treats
-id=632232
-rarity=T
-[/card]
-[card]
-primitive=Virtue of Persistence
+primitive=Virtue of Persistence // Locthwain Scorn
 id=632233
 rarity=M
 [/card]
 [card]
-primitive=Locthwain Scorn
-id=632233
-rarity=T
-[/card]
-[card]
-primitive=Virtue of Courage
+primitive=Virtue of Courage // Embereth Blaze
 id=632234
 rarity=M
 [/card]
 [card]
-primitive=Embereth Blaze
-id=632234
-rarity=T
-[/card]
-[card]
-primitive=Bramble Familiar
+primitive=Bramble Familiar // Fetch Quest
 id=632235
 rarity=R
 [/card]
 [card]
-primitive=Fetch Quest
-id=632235
-rarity=T
-[/card]
-[card]
-primitive=Virtue of Strength
+primitive=Virtue of Strength // Garenbrig Growth
 id=632236
 rarity=M
 [/card]
 [card]
-primitive=Garenbrig Growth
-id=632236
-rarity=T
-[/card]
-[card]
-primitive=Beluna Grandsquall
+primitive=Beluna Grandsquall // Seek Thrills
 id=632237
 rarity=M
 [/card]
 [card]
-primitive=Seek Thrills
-id=632237
-rarity=T
-[/card]
-[card]
-primitive=Cruel Somnophage
+primitive=Cruel Somnophage // Can't Wake Up
 id=632238
 rarity=R
 [/card]
 [card]
-primitive=Can't Wake Up
-id=632238
-rarity=T
-[/card]
-[card]
-primitive=Decadent Dragon
+primitive=Decadent Dragon // Expensive Taste
 id=632239
 rarity=R
 [/card]
 [card]
-primitive=Expensive Taste
-id=632239
-rarity=T
-[/card]
-[card]
-primitive=Devouring Sugarmaw
+primitive=Devouring Sugarmaw // Have for Dinner
 id=632240
 rarity=R
 [/card]
 [card]
-primitive=Have for Dinner
-id=632240
-rarity=T
-[/card]
-[card]
-primitive=Elusive Otter
+primitive=Elusive Otter // Grove's Bounty
 id=632241
 rarity=R
 [/card]
 [card]
-primitive=Grove's Bounty
-id=632241
-rarity=T
-[/card]
-[card]
-primitive=Heartflame Duelist
+primitive=Heartflame Duelist // Heartflame Slash
 id=632242
 rarity=R
 [/card]
 [card]
-primitive=Heartflame Slash
-id=632242
-rarity=T
-[/card]
-[card]
-primitive=Kellan, the Fae-Blooded
+primitive=Kellan, the Fae-Blooded // Birthright Boon
 id=632243
 rarity=M
 [/card]
 [card]
-primitive=Birthright Boon
-id=632243
-rarity=T
-[/card]
-[card]
-primitive=Mosswood Dreadknight
+primitive=Mosswood Dreadknight // Dread Whispers
 id=632244
 rarity=R
 [/card]
 [card]
-primitive=Dread Whispers
-id=632244
-rarity=T
-[/card]
-[card]
-primitive=Pollen-Shield Hare
+primitive=Pollen-Shield Hare // Hare Raising
 id=632245
 rarity=R
 [/card]
 [card]
-primitive=Hare Raising
-id=632245
-rarity=T
-[/card]
-[card]
-primitive=Questing Druid
+primitive=Questing Druid // Seek the Beast
 id=632246
 rarity=R
 [/card]
 [card]
-primitive=Seek the Beast
-id=632246
-rarity=T
-[/card]
-[card]
-primitive=Scalding Viper
+primitive=Scalding Viper // Steam Clean
 id=632247
 rarity=R
 [/card]
 [card]
-primitive=Steam Clean
-id=632247
-rarity=T
-[/card]
-[card]
-primitive=Twining Twins
+primitive=Twining Twins // Swift Spiral
 id=632248
 rarity=R
-[/card]
-[card]
-primitive=Swift Spiral
-id=632248
-rarity=T
 [/card]
 [card]
 primitive=Ashiok, Wicked Manipulator
@@ -1840,14 +1490,9 @@ id=631790
 rarity=M
 [/card]
 [card]
-primitive=Kellan, the Fae-Blooded
+primitive=Kellan, the Fae-Blooded // Birthright Boon
 id=631710
 rarity=M
-[/card]
-[card]
-primitive=Birthright Boon
-id=631710
-rarity=T
 [/card]
 [card]
 primitive=Eriette of the Charmed Apple
@@ -1955,14 +1600,9 @@ id=632080
 rarity=R
 [/card]
 [card]
-primitive=Intrepid Trufflesnout
+primitive=Intrepid Trufflesnout // Go Hog Wild
 id=632081
 rarity=U
-[/card]
-[card]
-primitive=Go Hog Wild
-id=632081
-rarity=T
 [/card]
 [card]
 primitive=Provisions Merchant

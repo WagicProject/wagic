@@ -925,14 +925,9 @@ id=651919
 rarity=M
 [/card]
 [card]
-primitive=Depose
+primitive=Depose // Deploy
 id=651920
 rarity=U
-[/card]
-[card]
-primitive=Deploy
-id=651920
-rarity=T
 [/card]
 [card]
 primitive=Dimir Guildmage
@@ -940,14 +935,9 @@ id=651921
 rarity=U
 [/card]
 [card]
-primitive=Discovery
+primitive=Discovery // Dispersal
 id=651922
 rarity=U
-[/card]
-[card]
-primitive=Dispersal
-id=651922
-rarity=T
 [/card]
 [card]
 primitive=Duskmantle Seer
@@ -995,24 +985,14 @@ id=651931
 rarity=R
 [/card]
 [card]
-primitive=Incubation
+primitive=Incubation // Incongruity
 id=651932
 rarity=U
 [/card]
 [card]
-primitive=Incongruity
-id=651932
-rarity=T
-[/card]
-[card]
-primitive=Integrity
+primitive=Integrity // Intervention
 id=651933
 rarity=U
-[/card]
-[card]
-primitive=Intervention
-id=651933
-rarity=T
 [/card]
 [card]
 primitive=Lavinia of the Tenth
@@ -1070,14 +1050,9 @@ id=651944
 rarity=C
 [/card]
 [card]
-primitive=Status
+primitive=Status // Statue
 id=651945
 rarity=U
-[/card]
-[card]
-primitive=Statue
-id=651945
-rarity=T
 [/card]
 [card]
 primitive=Supreme Verdict
