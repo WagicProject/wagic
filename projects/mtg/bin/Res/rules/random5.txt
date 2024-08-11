@@ -5,7 +5,6 @@ unlock=prx_rnddeck
 mode=random5
 
 [PLAYERS]
-life:20
 auto=shuffle
 auto=draw:7
 

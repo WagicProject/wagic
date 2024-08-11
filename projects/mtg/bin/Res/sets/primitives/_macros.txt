@@ -169,9 +169,6 @@
 # Learn
 #AUTO_DEFINE _LEARN_ name(Learn) transforms((,newability[if type(*[lesson]|mysideboard)~morethan~0 then choice name(Put lesson in hand) name(Put lesson in hand) target(*[lesson]|mysideboard) moveto(myhand)],newability[if type(*|myhand)~morethan~0 then choice name(Discard and draw) name(Discard and draw) target(*|myhand) reject and!(draw:1)!],newability[if type(Retriever Phoenix|mygraveyard)~morethan~0 then choice name(Return a Retriever Phoenix) name(Return a Retriever Phoenix) target(Retriever Phoenix|mygraveyard) moveto(myBattlefield)],newability[choice name(Don't learn) donothing])) oneshot controller
 
-# Spectacle, if an opponent lost life this turn
-#AUTO_DEFINE _SPECTACLE_ compare(oplifelost)~morethan~0
-
 # Adventure
 #AUTO_DEFINE _ADVENTURE_ name(Adventure) transforms((,newability[moveto(exile) and!( transforms((,newability[canplayfromexile forever])) forever )!])) forever
 
@@ -187,7 +184,7 @@
 # Plot Cast
 #AUTO_DEFINE _PLOTCAST_ {0}restriction{compare(canforetellcast)~morethan~0}:name(Cast with plot) name(Cast with plot) activate castcard(alternative) asSorcery
 
-# Loot (draw a card, discard a card.)
+# Loot (draw a card, then discard a card.)
 #AUTO_DEFINE _LOOT_ draw:1 && transforms((,newability[target(*|myhand) reject])) forever
 
 # Unearth
@@ -232,7 +229,7 @@
 #AUTO_DEFINE _MUST_BE_BLOCKD_ newability[@combat(attacking) source(this):ability$! notatarget(creature|myBattlefield) transforms((,newability[mustblock])) ueot!$ opponent]
 
 # Suspect it (It has menace and can't block.)
-#AUTO_DEFINE _SUSPECT_IT_ name(Suspect it) transforms((,menace,cantblock,newability[becomes(suspect) forever])) forever
+#AUTO_DEFINE _SUSPECT_IT_ name(Suspect it) transforms((suspect,menace,cantblock)) forever
 
 # Finality counter, if it would die, it's exiled instead
 #AUTO_DEFINE _FINALITY_COUNTER_ and!( transforms((,newability[counter(0/0.1.finality)],newability[this(counter{0/0.1.finality}>=1) exiledeath])) forever )!

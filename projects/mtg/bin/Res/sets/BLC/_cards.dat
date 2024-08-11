@@ -140,12 +140,7 @@ id=671144
 rarity=R
 [/card]
 [card]
-primitive=Brightcap Badger
-id=671145
-rarity=R
-[/card]
-[card]
-primitive=Fungus Frolic
+primitive=Brightcap Badger // Fungus Frolic
 id=671145
 rarity=R
 [/card]
@@ -315,12 +310,7 @@ id=671006
 rarity=R
 [/card]
 [card]
-primitive=Brightcap Badger
-id=671007
-rarity=R
-[/card]
-[card]
-primitive=Fungus Frolic
+primitive=Brightcap Badger // Fungus Frolic
 id=671007
 rarity=R
 [/card]
@@ -700,12 +690,7 @@ id=671495
 rarity=R
 [/card]
 [card]
-primitive=Dusk
-id=671496
-rarity=R
-[/card]
-[card]
-primitive=Dawn
+primitive=Dusk // Dawn
 id=671496
 rarity=R
 [/card]
@@ -760,12 +745,7 @@ id=671506
 rarity=R
 [/card]
 [card]
-primitive=Realm-Cloaked Giant
-id=671507
-rarity=M
-[/card]
-[card]
-primitive=Cast Off
+primitive=Realm-Cloaked Giant // Cast Off
 id=671507
 rarity=M
 [/card]

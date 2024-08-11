@@ -5,13 +5,16 @@ unlock=prx_titania
 mode=mtg
 
 [PLAYERS]
-life:15
+life:25
 auto=shuffle
-auto=draw:9
+auto=draw:6
 
 auto=maxPlay(land)+1
-#auto=@each myupkeep:auto=moverandom(*) from(myBattlefield) to     #(opponentBattlefield)
-#auto=@each myupkeep:auto=moverandom(*) from(opponentBattlefield) #to(myBattlefield)
+auto=create(Llanowar Elves)
+auto=create(Magus of the Vineyard)
 
-#auto=@each myupkeep:draw:1
-#auto=@each myupkeep:life:-1
+auto=@each myupkeep:draw:1
+auto=@each myupkeep:life:-1
+
+auto=@movedTo(creature|mystack):create(Tukatongue Thallid)
+auto=@movedTo(*[instant;sorcery;enchantment]|mystack):create(Dryad Arbor)

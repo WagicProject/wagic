@@ -5,7 +5,6 @@ unlock=prx_horde
 mode=horde
 
 [PLAYERS]
-life:20
 auto=shuffle
 auto=draw:7
 
