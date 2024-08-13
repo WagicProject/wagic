@@ -42,7 +42,7 @@ rarity=R
 [card]
 primitive=Jurassic Park
 id=642679
-rarity=T
+rarity=R
 [/card]
 [card]
 primitive=Blue, Loyal Raptor
@@ -167,5 +167,5 @@ rarity=C
 [card]
 primitive=Command Tower
 id=642586
-rarity=T
+rarity=C
 [/card]
