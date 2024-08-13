@@ -1346,7 +1346,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         return NEW TrCardExerted(observer, id, card, tc, once, limitOnceATurn);
 
 //CombatTrigger
-    //Card card attacked and is blocked
+    //Card attacked and is blocked
     found = s.find("combat(");
     if (found != string::npos)
     {
