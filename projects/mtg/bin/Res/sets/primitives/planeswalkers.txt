@@ -85,7 +85,7 @@ name=Ajani, Adversary of Tyrants
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,+1,Loyalty)}:name(+1: Put a +1/+1 counter on up to two...) target(<upto:2>other creature|battlefield) counter(1/1)
 auto={C(0/0,-2,Loyalty)}:name(-2: Return target creature from graveyard) moveTo(mybattlefield) target(creature[manacost<=2]|mygraveyard)
-auto={C(0/0,-7,Loyalty)}:name(-7: Emblem: Create three tokens) emblem transforms((,newability[@each my endofturn:create(Cat:Creature Cat:1/1:lifelink:white)*3] )) forever dontremove
+auto={C(0/0,-7,Loyalty)}:name(-7: Emblem: Create three tokens) emblem transforms((,newability[@each my end:create(Cat:Creature Cat:1/1:lifelink:white)*3] )) forever dontremove
 text=+1: Put a +1/+1 counter on each of up to two target creatures. -- -2: Return target creature card with mana value 2 or less from your graveyard to the battlefield. -- -7: You get an emblem with "At the beginning of your end step, create three 1/1 white Cat creature tokens with lifelink."
 mana={2}{W}{W}
 type=Legendary Planeswalker
@@ -643,7 +643,7 @@ auto={C(0/0,0,Loyalty)}:name(+0: Remove 7 loyalty) name(+0: Remove 7 loyalty) ta
 auto={C(0/0,0,Loyalty)}:name(+0: Remove 8 loyalty) name(+0: Remove 8 loyalty) target(<8>*[counter{0/0.1.Loyalty}]|mybattlefield) counter(0/0.-1.Loyalty) && all(*[zpos<=8]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile ueot])) ueot )!
 auto={C(0/0,0,Loyalty)}:name(+0: Remove 9 loyalty) name(+0: Remove 9 loyalty) target(<9>*[counter{0/0.1.Loyalty}]|mybattlefield) counter(0/0.-1.Loyalty) && all(*[zpos<=9]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile ueot])) ueot )!
 auto={C(0/0,0,Loyalty)}:name(+0: Remove 10 loyalty) name(+0: Remove 10 loyalty) target(<10>*[counter{0/0.1.Loyalty}]|mybattlefield) counter(0/0.-1.Loyalty) && all(*[zpos<=10]|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile ueot])) ueot )!
-auto=@each my endofturn:name(Deal damage) foreach(planeswalker|mybattlefield) damage:1 opponent
+auto=@each my end:name(Deal damage) foreach(planeswalker|mybattlefield) damage:1 opponent
 text=At the beginning of your end step, Chandra, Legacy of Fire deals X damage to each opponent, where X is the number of planeswalkers you control. -- [+1]: Add {R} for each planeswalker you control. -- [0]: Remove a loyalty counter from each of any number of permanents you control. Exile that many cards from the top of your library. You may play them this turn.
 mana={4}{R}
 type=Legendary Planeswalker
@@ -702,8 +702,8 @@ name=Chandra, Torch of Defiance
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Exile Top Card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( transforms((,newability[choice name(Deals 2 damage) name(Deals 2 damage) damage:2 opponent],newability[if cantargetcard(*[-land]|*) then choice name(Cast card from exile) name(Cast card from exile) counter(0/0.1.ChandraEffect) notrg])) ueot )!
 auto=lord(*[counter{0/0.1.ChandraEffect}]|myexile) canplayfromexile
-auto=@each endofturn:if type(*[counter{0/0.1.ChandraEffect}]|myexile)~morethan~0 then name(Effect ends) name(Effect ends) all(*[counter{0/0.1.ChandraEffect}]|myexile) removeallcounters(0/0.1.ChandraEffect)
-auto=@each endofturn:if type(*[counter{0/0.1.ChandraEffect}]|myexile)~morethan~0 then name(Deals 2 damage) name(Deals 2 damage) damage:2 opponent
+auto=@each end:if type(*[counter{0/0.1.ChandraEffect}]|myexile)~morethan~0 then name(Effect ends) name(Effect ends) all(*[counter{0/0.1.ChandraEffect}]|myexile) removeallcounters(0/0.1.ChandraEffect)
+auto=@each end:if type(*[counter{0/0.1.ChandraEffect}]|myexile)~morethan~0 then name(Deals 2 damage) name(Deals 2 damage) damage:2 opponent
 auto={C(0/0,1,Loyalty)}:name(+1: Add two red mana) add{R}{R}
 auto={C(0/0,-3,Loyalty)}:name(-3: Deals 4 damage to target creature) damage:4 target(creature)
 auto={C(0/0,-7,Loyalty)}:name(-7: Emblem: Deals 5 damage when casting a spell) emblem transforms((,newability[@movedTo(*|mystack):damage:5 target(anytarget)])) forever dontremove
@@ -729,7 +729,7 @@ abilities=canbecommander
 auto=counter(0/0,5,loyalty)
 auto={C(0/0,+1,Loyalty)}:name(+1: Create wizard) token(Wizard,Creature Wizard,1/1,red) and!( transforms((,newability[this(variable{type:planeswalker:myrestrictedcastingzone}>0) {T}:add{R}])) forever )!
 auto={C(0/0,-3,Loyalty)}:name(-3: Draw and damage) draw:type:planeswalker:mybattlefield controller && damage:type:planeswalker:mybattlefield opponent
-auto=@each my endofturn:name(Put loyalty counter) target(other planeswalker|myBattlefield) counter(0/0,1,Loyalty)
+auto=@each my end:name(Put loyalty counter) target(other planeswalker|myBattlefield) counter(0/0,1,Loyalty)
 text=At the beginning of your end step, put a loyalty counter on another target planeswalker you control. -- [+1]: Create a 1/1 red Wizard creature token with "{T}: Add {R}. Spend this mana only to cast a planeswalker spell." -- [-3]: You draw X cards and Commodore Guff deals X damage to each opponent, where X is the number of planeswalkers you control. -- Commodore Guff can be your commander.
 mana={1}{U}{R}{W}
 type=Legendary Planeswalker
@@ -776,7 +776,7 @@ auto=counter(0/0,3,loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Discard and Draw) reject notatarget(<upto:2>*|myhand) and!( draw:1 controller )!
 auto={C(0/0,2,Loyalty)}:name(+2: Don't discard) donothing
 auto={C(0/0,-2,Loyalty)}:name(-2: Sacrifice an Artifact) sacrifice notatarget(artifact|mybattlefield) and!( moveto(mybattlefield) target(artifact|mygraveyard) )!
-auto={C(0/0,-10,Loyalty)}:name(-10: Emblem: "Reanimate artifacts") emblem transforms((,newability[@movedTo(artifact|mygraveyard) from(battlefield):all(trigger[to]) phaseaction[endofturn once] moveTo(mybattlefield)])) forever dontremove
+auto={C(0/0,-10,Loyalty)}:name(-10: Emblem: "Reanimate artifacts") emblem transforms((,newability[@movedTo(artifact|mygraveyard) from(battlefield):all(trigger[to]) phaseaction[end once] moveTo(mybattlefield)])) forever dontremove
 text=+2: Discard up to two cards, then draw that many cards. -- -2: Sacrifice an artifact. If you do, return target artifact card from your graveyard to the battlefield. -- -10: You get an emblem with "Whenever an artifact is put into your graveyard from the battlefield, return that card to the battlefield at the beginning of the next end step." -- Daretti, Scrap Savant can be your commander.
 mana={3}{R}
 type=Legendary Planeswalker
@@ -849,7 +849,7 @@ aicode=activate moveto(myHand) target(creature[zpos=2]|myLibrary)
 auto={C(0/0,1,Loyalty)}:name(+1: Add red if its a creature, Riot) add{R} && if type(creature|myStack)~morethan~0 then ability$!name(Choose one) choice name(Put a +1/1 counter) counter(1/1) target(creature[fresh]|myBattlefield) _ choice name(Gain Haste) haste target(creature[fresh]|myBattlefield)!$ controller
 auto={C(0/0,1,Loyalty)}:name(+1: Add green if its a creature, Riot) add{G} && if type(creature|myStack)~morethan~0 then ability$!name(Choose one) choice name(Put a +1/1 counter) counter(1/1) target(creature[fresh]|myBattlefield) _ choice name(Gain Haste) haste target(creature[fresh]|myBattlefield)!$ controller
 auto={C(0/0,-3,Loyalty)}:name(-3: Reveal four and put up to two creature) name(Look your Library) reveal:4 optionone name(Get a card) target(<upto:2>*[creature]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend revealend
-auto={C(0/0,-8,Loyalty)}:name(-8: Emblem: "Each end of turn create a 4/4 Beast) emblem transforms((,newability[@each endofturn: create(Beast:Creature Beast:4/4:red:green:trample)])) forever dontremove
+auto={C(0/0,-8,Loyalty)}:name(-8: Emblem: "Each end of turn create a 4/4 Beast) emblem transforms((,newability[@each end: create(Beast:Creature Beast:4/4:red:green:trample)])) forever dontremove
 text=+1: Add {R} or {G}. If that mana is spent on a creature spell, it gains riot. (It enters with your choice of a +1/+1 counter or haste.) -- -3: Look at the top four cards of your library. You may reveal up to two creature cards from among them and put them into your hand. Put the rest on the bottom of your library in a random order. -- -8: You get an emblem with "At the beginning of each end step, create a 4/4 red and green Beast creature token with trample."
 mana={2}{R}{G}
 type=Legendary Planeswalker
@@ -1113,7 +1113,7 @@ name=Garruk, Unleashed
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Target creature gets +3/+3 and trample) target(creature) 3/3 ueot && trample ueot
 auto={C(0/0,-2,Loyalty)}:name(-2: Create a Beast 3/3) _BEASTTOKEN_ && transforms((,newability[if type(creature|opponentbattlefield)~morethan~type(creature|mybattlefield) then counter(0/0,1,Loyalty) all(this)])) oneshot
-auto={C(0/0,-7,Loyalty)}:name(-7: Emblem: "Search a creature") emblem transforms((,newability[@each my endofturn:may target(creature|myLibrary) moveTo(myBattlefield) && shuffle])) forever dontremove
+auto={C(0/0,-7,Loyalty)}:name(-7: Emblem: "Search a creature") emblem transforms((,newability[@each my end:may target(creature|myLibrary) moveTo(myBattlefield) && shuffle])) forever dontremove
 text=+1: Up to one target creature gets +3/+3 and gains trample until end of turn. -- -2: Create a 3/3 green Beast creature token. Then if an opponent controls more creatures than you, put a loyalty counter on Garruk, Unleashed. -- -7: You get an emblem with "At the beginning of your end step, you may search your library for a creature card, put it onto the battlefield, then shuffle."
 mana={2}{G}{G}
 type=Legendary Planeswalker
@@ -1161,7 +1161,7 @@ auto=counter(0/0,4,loyalty)
 auto=protection from(*[-instant;-sorcery;counter{0/0.1.corruption}])
 auto={C(0/0,1,Loyalty)}:name(+1: Gain 2 life) life:2 controller && life:-2 opponent
 auto={C(0/0,1,Loyalty)}:name(+1: Gain 2 life and put counter) target(*[creature;planeswalker]|battlefield) counter(0/0,1,corruption) && life:2 controller && life:-2 opponent
-auto={C(0/0,-3,Loyalty)}:name(-3: Gain control of creature or planeswalker) target(*[creature;planeswalker]|battlefield) moveto(mybattlefield) and!(transforms((,newability[phaseaction[endofturn once sourceinplay] moveTo(previousbattlefield)],newability[counter(0/0.1.corruption)],newability[untap],haste)) ueot)!
+auto={C(0/0,-3,Loyalty)}:name(-3: Gain control of creature or planeswalker) target(*[creature;planeswalker]|battlefield) moveto(mybattlefield) and!(transforms((,newability[phaseaction[end once sourceinplay] moveTo(previousbattlefield)],newability[counter(0/0.1.corruption)],newability[untap],haste)) ueot)!
 auto={C(0/0,-7,Loyalty)}:name(-7: Gain control of all corrupted) all(*[counter{0/0.1.corruption}]|battlefield) moveto(mybattlefield)
 text=Protection from permanents with corruption counters on them -- +1: Each opponent loses 2 life and you gain 2 life. Put a corruption counter on up to one other target creature or planeswalker. -- -3: Gain control of target creature or planeswalker until end of turn. Untap it and put a corruption counter on it. It gains haste until end of turn. -- -7: Gain control of each permanent with a corruption counter on it.
 mana={1}{U}{B}{R}
@@ -1404,7 +1404,7 @@ subtype=Jace
 name=Jace, Cunning Castaway
 auto=counter(0/0,3,loyalty)
 auto=@combatdamaged(player) from(creature|mybattlefield) restriction{compare(hascntjaceeffect)~morethan~0} turnlimited:draw:1 controller && transforms((,newability[name(Discard a card) reject notatarget(*|myhand) ueot])) ueot
-auto=@each endofturn restriction{compare(hascntjaceeffect)~morethan~0}:name(Effect Ends) removeallcounters(0/0.1.JaceEffect)
+auto=@each end restriction{compare(hascntjaceeffect)~morethan~0}:name(Effect Ends) removeallcounters(0/0.1.JaceEffect)
 auto={C(0/0,1,Loyalty)}:name(+1: Draw on damage) counter(0/0.1.JaceEffect) notrg
 auto={C(0/0,-2,Loyalty)}:name(-2: Create Illusion) token(Illusion,Creature Illusion,2/2,blue) and!( transforms((,newability[@targeted(this) from(*|stack):name(Sacrifice) sacrifice])) forever )!
 auto={C(0/0,-5,Loyalty)}:name(-5: Create two copy) clone options(nolegend) && clone options(nolegend)
@@ -1686,7 +1686,7 @@ subtype=Yanggu
 [card]
 name=Kaito Shizuki
 auto=counter(0/0,3,loyalty)
-auto=transforms((,newability[@each my endofturn:name(Phaseout) phaseout])) ueot
+auto=transforms((,newability[@each my end:name(Phaseout) phaseout])) ueot
 auto={C(0/0,+1,Loyalty)}:name(+1: Draw and discard) draw:1 && ifnot raid then name(Discard a card) name(Discard a card) ability$!name(Discard a card) name(Discard a card) notatarget(*|myhand) reject !$ controller
 auto={C(0/0,-2,Loyalty)}:name(-2: Create ninja) token(Ninja,Creature Ninja,1/1,blue,unblockable)
 auto={C(0/0,-7,Loyalty)}:name(-7: Emblem search creature) emblem transforms((,newability[@combatdamaged(player) from(creature|myBattlefield):name(Search creature) target(creature[black;blue]|mylibrary) moveto(mybattlefield) and!( shuffle )!])) forever dontremove
@@ -1843,8 +1843,8 @@ subtype=Kaya
 [card]
 name=Kaya, Ghost Assassin
 auto=counter(0/0,5,loyalty)
-auto={C(0/0,0,Loyalty)}:name(+0: Exile creature) target(creature|battlefield) moveto(exile) and!( life:-2 controller && transforms((,newability[phaseaction[endofturn once checkex] moveto(ownerbattlefield)])) forever )!
-auto={C(0/0,0,Loyalty)}:name(+0: Exile kaya) moveto(exile) and!( life:-2 controller && counter(0/0,hascntloyalty,Loyalty) && transforms((,newability[@next endofturn:name(Return to battlefield) moveto(ownerbattlefield) and!( counter(0/0.hascntloyalty.Loyalty) notrg && counter(0/0.-5.Loyalty) notrg)! ])) forever )!
+auto={C(0/0,0,Loyalty)}:name(+0: Exile creature) target(creature|battlefield) moveto(exile) and!( life:-2 controller && transforms((,newability[phaseaction[end once checkex] moveto(ownerbattlefield)])) forever )!
+auto={C(0/0,0,Loyalty)}:name(+0: Exile kaya) moveto(exile) and!( life:-2 controller && counter(0/0,hascntloyalty,Loyalty) && transforms((,newability[@next end:name(Return to battlefield) moveto(ownerbattlefield) and!( counter(0/0.hascntloyalty.Loyalty) notrg && counter(0/0.-5.Loyalty) notrg)! ])) forever )!
 auto={C(0/0,0,Loyalty)}:name(+0: Don't exile anything) life:-2 controller
 auto={C(0/0,-1,Loyalty)}:name(-1: Opponent loses life) lifeleech:-2 opponent
 auto={C(0/0,-2,Loyalty)}:name(-2: Each opponent discard and draw) ability$!name(Discard a card) notatarget(*|myHand) reject!$ opponent && draw:1 controller
@@ -1891,7 +1891,7 @@ name=Kiora, the Crashing Wave
 auto=counter(0/0,2,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Prevention all damage dealt by and to) target(*|opponentbattlefield) transforms((,newability[preventalldamage from(this)],newability[preventalldamage to(this)])) uynt
 auto={C(0/0,-1,Loyalty)}:name(-1: Draw a card and may play additional land) draw:1 controller && maxPlay(land)+1 ueot
-auto={C(0/0,-5,Loyalty)}:name(-5: Emblem: "Each my end of turn create a 9/9 Kraken") emblem transforms((,newability[@each my endofturn:token(Kraken^Creature Kraken^9/9^blue) controller])) forever dontremove
+auto={C(0/0,-5,Loyalty)}:name(-5: Emblem: "Each my end of turn create a 9/9 Kraken") emblem transforms((,newability[@each my end:token(Kraken^Creature Kraken^9/9^blue) controller])) forever dontremove
 text=+1: Until your next turn, prevent all damage that would be dealt to and dealt by target permanent an opponent controls. -- -1: Draw a card. You may play an additional land this turn. -- -5: You get an emblem with "At the beginning of your end step, put a 9/9 blue Kraken creature token onto the battlefield."
 mana={2}{G}{U}
 type=Legendary Planeswalker
@@ -2026,7 +2026,7 @@ auto={C(0/0,-17,Loyalty)}:name(-17: Reanimate non-legendary creature with manaco
 auto={C(0/0,-18,Loyalty)}:name(-18: Reanimate non-legendary creature with manacost 18) moveto(mybattlefield) target(creature[-legendary;manacost=18]|mygraveyard)
 auto={C(0/0,-19,Loyalty)}:name(-19: Reanimate non-legendary creature with manacost 19) moveto(mybattlefield) target(creature[-legendary;manacost=19]|mygraveyard)
 auto={C(0/0,-20,Loyalty)}:name(-20: Reanimate non-legendary creature with manacost 20) moveto(mybattlefield) target(creature[-legendary;manacost>=20]|mygraveyard)
-auto={C(0/0,-8,Loyalty)}:name(-8: Emblem: "Whenever a creature dies, reanimate it") emblem transforms((,newability[@movedTo(creature|mygraveyard) from(battlefield):all(trigger[to]) phaseaction[endofturn once] moveTo(myBattlefield)],newability[@movedTo(creature|opponentgraveyard) from(battlefield):all(trigger[to]) phaseaction[endofturn once] moveTo(opponentBattlefield)])) forever dontremove
+auto={C(0/0,-8,Loyalty)}:name(-8: Emblem: "Whenever a creature dies, reanimate it") emblem transforms((,newability[@movedTo(creature|mygraveyard) from(battlefield):all(trigger[to]) phaseaction[end once] moveTo(myBattlefield)],newability[@movedTo(creature|opponentgraveyard) from(battlefield):all(trigger[to]) phaseaction[end once] moveTo(opponentBattlefield)])) forever dontremove
 text=+2: Each player discards a card. -- -X: Return target nonlegendary creature card with mana value X from your graveyard to the battlefield. -- -8: You get an emblem with "Whenever a creature dies, return it to the battlefield under your control at the beginning of the next end step."
 type=Legendary Planeswalker
 subtype=Liliana
@@ -2071,7 +2071,7 @@ name=Liliana, the Last Hope
 auto=counter(0/0,3,Loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Target creature gets -2/-1) ability$! may target(creature) transforms((,newability[-2/-1])) uynt !$ controller
 auto={C(0/0,-2,Loyalty)}:name(-2: Mils two and return a creature) deplete:2 controller && ability$!may name(Move to hand) moveto(myhand) target(creature|mygraveyard)!$ controller
-auto={C(0/0,-7,Loyalty)}:name(-7: Emblem: "Each my end of turn create X 2/2 Zombie plus two") emblem transforms((,newability[phaseactionmulti[my endofturn] foreach(zombie|mybattlefield) _ZOMBIETOKEN_ && _ZOMBIETOKEN_*2])) forever dontremove
+auto={C(0/0,-7,Loyalty)}:name(-7: Emblem: "Each my end of turn create X 2/2 Zombie plus two") emblem transforms((,newability[phaseactionmulti[my end] foreach(zombie|mybattlefield) _ZOMBIETOKEN_ && _ZOMBIETOKEN_*2])) forever dontremove
 text=+1: Up to one target creature gets -2/-1 until your next turn. -- -2: Put the top two cards of your library into your graveyard, then you may return a creature card from your graveyard to your hand. -- -7: You get an emblem with "At the beginning of your end step, put X 2/2 black Zombie creature tokens onto the battlefield, where X is two plus the number of Zombies you control."
 mana={1}{B}{B}
 type=Legendary Planeswalker
@@ -2263,11 +2263,11 @@ subtype=Nahiri
 [card]
 name=Nahiri, the Harbinger
 auto=counter(0/0,4,loyalty)
-aicode=activate target(*[artifact;creature]|myLibrary) moveto(myBattlefield) and!( transforms((,haste,newability[phaseaction[endofturn once sourceinplay] moveTo(ownerhand)])) ueot )!
+aicode=activate target(*[artifact;creature]|myLibrary) moveto(myBattlefield) and!( transforms((,haste,newability[phaseaction[end once sourceinplay] moveTo(ownerhand)])) ueot )!
 auto={C(0/0,2,Loyalty)}:name(+2: Don't discard any card) donothing
 auto={C(0/0,2,Loyalty)}:name(+2: Discard and draw a card) target(*|myHand) reject and!( draw:1 controller )!
 auto={C(0/0,-2,Loyalty)}:name(-2: Exile target enchantment, tapped Artifact or Creature) ability$!name(Choose one) choice name(Exile target enchantment) moveTo(exile) target(enchantment) _ choice name(Exile target tapped creature) moveTo(exile) target(creature[tapped]) _ choice name(Exile target tapped artifact) moveTo(exile) target(artifact[tapped])!$ controller
-auto={C(0/0,-8,Loyalty)}:name(-8: Search a creature or artifact) reveal:plibrarycount optionone name(choose a creature or artifact) target(*[artifact;creature]|reveal) moveTo(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(*|reveal) moveTo(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!( shuffle )! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(myBattlefield) and!( transforms((,haste,newability[phaseaction[endofturn once sourceinplay] moveTo(ownerhand)])) ueot )! afterrevealedend revealend
+auto={C(0/0,-8,Loyalty)}:name(-8: Search a creature or artifact) reveal:plibrarycount optionone name(choose a creature or artifact) target(*[artifact;creature]|reveal) moveTo(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(*|reveal) moveTo(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!( shuffle )! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(myBattlefield) and!( transforms((,haste,newability[phaseaction[end once sourceinplay] moveTo(ownerhand)])) ueot )! afterrevealedend revealend
 text=+2: You may discard a card. If you do, draw a card. -- -2: Exile target enchantment, tapped artifact, or tapped creature. -- -8: Search your library for an artifact or creature card, put it onto the battlefield, then shuffle. It gains haste. Return it to your hand at the beginning of the next end step.
 mana={2}{R}{W}
 type=Legendary Planeswalker
@@ -2391,8 +2391,8 @@ subtype=Bolas
 [card]
 name=Nicol Bolas, God-Pharaoh
 auto=counter(0/0,7,loyalty)
-aicode=activate transforms((,newability[all(*[zpos=oppofindfirsttypenonland]|opponentlibrary) moveto(myexile) and!( transforms((,newability[zerocast],newability[canplayfromexile],newability[phaseaction[my endofturn once checkex] moveto(ownerExile)],newability[all(*[zpos<=oppofindfirsttypenonland]|opponentlibrary) moveto(ownerExile)])) ueot )!])) oneshot
-auto={C(0/0,2,Loyalty)}:name(+2: Exile cards from top and may cast it) reveal:1 revealzone(opponentlibrary) revealuntil(*[-land]|opponentlibrary) optionone name(Move to your exile for cast) target(*[-land]|reveal) moveto(myexile) and!( transforms((,newability[zerocast],newability[canplayfromexile],newability[phaseaction[my endofturn once checkex] moveto(ownerExile)])) ueot )! optiononeend optiontwo name(Exile other cards) all(*|reveal) moveto(ownerExile) oneshot optiontwoend revealend
+aicode=activate transforms((,newability[all(*[zpos=oppofindfirsttypenonland]|opponentlibrary) moveto(myexile) and!( transforms((,newability[zerocast],newability[canplayfromexile],newability[phaseaction[my end once checkex] moveto(ownerExile)],newability[all(*[zpos<=oppofindfirsttypenonland]|opponentlibrary) moveto(ownerExile)])) ueot )!])) oneshot
+auto={C(0/0,2,Loyalty)}:name(+2: Exile cards from top and may cast it) reveal:1 revealzone(opponentlibrary) revealuntil(*[-land]|opponentlibrary) optionone name(Move to your exile for cast) target(*[-land]|reveal) moveto(myexile) and!( transforms((,newability[zerocast],newability[canplayfromexile],newability[phaseaction[my end once checkex] moveto(ownerExile)])) ueot )! optiononeend optiontwo name(Exile other cards) all(*|reveal) moveto(ownerExile) oneshot optiontwoend revealend
 auto={C(0/0,1,Loyalty)}:name(+1: Opponent exiles two cards from hand) ability$!name(Move to exile) name(Move to exile) moveto(exile) notatarget(<2>*|myhand)!$ opponent
 auto={C(0/0,-4,Loyalty)}:name(-4: Deals 7 damage) ability$!name(Choose one) choice name(Damage opponent) damage:7 opponent _ choice name(Damage creature or planeswalker) damage:7 target(*[creature;planeswalker]|opponentbattlefield)!$ controller
 auto={C(0/0,-12,Loyalty)}:name(-12: Exile all non-land permanents) moveTo(exile) all(*[-land]|opponentbattlefield)
@@ -3184,7 +3184,7 @@ subtype=Teferi
 [card]
 name=Teferi, Hero of Dominaria
 auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Draw a card and untap two lands) draw:1 controller && phaseaction[endofturn once] untap target(<2>land)
+auto={C(0/0,1,Loyalty)}:name(+1: Draw a card and untap two lands) draw:1 controller && phaseaction[end once] untap target(<2>land)
 auto={C(0/0,-3,Loyalty)}:name(-3: Return target nonland to library) target(*[-land]) placefromthetop(3)
 auto={C(0/0,-8,Loyalty)}:name(-8: Emblem: "Whenever draw, exile permanent") emblem transforms((,newability[@drawof(player):moveTo(exile) target(*|opponentBattlefield)])) forever dontremove
 text=+1: Draw a card. At the beginning of the next end step, untap up to two lands. -- -3: Put target nonland permanent into its owner's library third from the top. -- -8: You get an emblem with "Whenever you draw a card, exile target permanent an opponent controls."
@@ -3298,7 +3298,7 @@ auto=counter(0/0,4,Loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Don't target any creature) donothing
 auto={C(0/0,1,Loyalty)}:name(+1: Creature can attack) target(creature) counter(0/0.1.PerpetualTeyoEffect)
 auto={C(0/0,-2,Loyalty)}:name(-2: Conjure a Lumbering Lightshield) conjure cards(Lumbering Lightshield) zone(mybattlefield)
-auto={C(0/0,-6,Loyalty)}:name(-6: Emblem Return creature) ability$!emblem transforms((,newability[@each my endofturn:name(Return white creature) name(Return white creature) target(creature[white]|mygraveyard) moveto(mybattlefield) and!( transforms((,newability[life:toughness controller])) oneshot )!])) forever dontremove!$ controller
+auto={C(0/0,-6,Loyalty)}:name(-6: Emblem Return creature) ability$!emblem transforms((,newability[@each my end:name(Return white creature) name(Return white creature) target(creature[white]|mygraveyard) moveto(mybattlefield) and!( transforms((,newability[life:toughness controller])) oneshot )!])) forever dontremove!$ controller
 auto=emblem transforms((,newability[lord(*[counter{0/0.1.PerpetualTeyoEffect}]|myzones) transforms((,setpower=t,newability[canattack]))])) forever dontremove
 text=+1: Up to one target creature's base power perpetually becomes equal to its toughness. It perpetually gains "This creature can attack as though it didn't have defender." -- -2: Conjure a Lumbering Lightshield card onto the battlefield. -6: You get an emblem with "At the beginning of your end step, return target white creature card from your graveyard to the battlefield. You gain life equal to its toughness."
 mana={2}{W}{W}
@@ -3386,7 +3386,7 @@ name=Tezzeret, Artifice Master
 auto=counter(0/0,5,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Create a 1/1 Thopter) _THOPTERTOKEN_
 auto={C(0/0,0,Loyalty)}:name(+0: Draw a card or two) if type(artifact|myBattlefield)~morethan~2 then draw:2 controller else draw:1 controller
-auto={C(0/0,-9,Loyalty)}:name(-9: Emblem: Each end of turn search a permanent) emblem transforms((,newability[@each my endofturn:moveTo(myBattlefield) target(*[-instant;-sorcery]|myLibrary) && shuffle controller])) forever dontremove
+auto={C(0/0,-9,Loyalty)}:name(-9: Emblem: Each end of turn search a permanent) emblem transforms((,newability[@each my end:moveTo(myBattlefield) target(*[-instant;-sorcery]|myLibrary) && shuffle controller])) forever dontremove
 text=+1: Create a 1/1 colorless Thopter artifact creature token with flying. -- 0: Draw a card. If you control three or more artifacts, draw two cards instead. -- -9: You get an emblem with "At the beginning of your end step, search your library for a permanent card, put it onto the battlefield, then shuffle."
 mana={3}{U}{U}
 type=Legendary Planeswalker
@@ -3443,7 +3443,7 @@ subtype=Tezzeret
 name=The Eternal Wanderer
 #MISSING: No more than one creature can attack The Eternal Wanderer each combat
 auto=counter(0/0,5,loyalty)
-auto={C(0/0,+1,Loyalty)}:name(+1: Exile creature or artifact) target(*[artifact;creature]|battlefield) moveto(ownerexile) and!( transforms((,newability[phaseaction[my endofturn once sourceinplay] moveto(ownerbattlefield)])) forever )!
+auto={C(0/0,+1,Loyalty)}:name(+1: Exile creature or artifact) target(*[artifact;creature]|battlefield) moveto(ownerexile) and!( transforms((,newability[phaseaction[my end once sourceinplay] moveto(ownerbattlefield)])) forever )!
 auto={C(0/0,+1,Loyalty)}:name(+1: Don't exile creature or artifact) donothing
 auto={C(0/0,0,Loyalty)}:name(+0: Create a samurai) token(Samurai,Creature Samurai,2/2,white,double strike)
 auto=this(variable{type:creature:mybattlefield}>0) {C(0/0,-4,Loyalty)}:name(-4: Sacrifice creatures) name(-4: Sacrifice creatures) target(creature|mybattlefield) transforms((,newability[all(other creature|mybattlefield) sacrifice],newability[name(Choose opponent creature) name(Choose opponent creature) target(creature|opponentbattlefield) transforms((,newability[all(other creature|mybattlefield) sacrifice])) ueot])) ueot
@@ -3490,7 +3490,7 @@ type=Legendary Planeswalker
 name=Tibalt, Cosmic Impostor
 backside=Valki, God of Lies
 auto=counter(0/0,5,Loyalty)
-auto=token(Tibalt Emblem,Emblem,0/0,shroud,indestructible,notrigger) and!( transforms((,newability[lord(*[counter{0/0.1.TibaltExiled}]|myexile) canplayfromexile],newability[lord(*[counter{0/0.1.TibaltExiled}]|myexile) anytypeofmana],newability[{0}:name(Cast from opponent exile) target(*[counter{0/0.1.TibaltExiled}]|opponentexile) moveto(myexile) and!( transforms((,newability[counter(0/0.1.TibaltExiled)],newability[canplayfromexile],newability[anytypeofmana],newability[phaseaction[endofturn once checkex] moveTo(ownerexile)],newability[phaseaction[untap once checkex] counter(0/0.1.TibaltExiled)])) ueot )!])) forever )!
+auto=token(Tibalt Emblem,Emblem,0/0,shroud,indestructible,notrigger) and!( transforms((,newability[lord(*[counter{0/0.1.TibaltExiled}]|myexile) canplayfromexile],newability[lord(*[counter{0/0.1.TibaltExiled}]|myexile) anytypeofmana],newability[{0}:name(Cast from opponent exile) target(*[counter{0/0.1.TibaltExiled}]|opponentexile) moveto(myexile) and!( transforms((,newability[counter(0/0.1.TibaltExiled)],newability[canplayfromexile],newability[anytypeofmana],newability[phaseaction[end once checkex] moveTo(ownerexile)],newability[phaseaction[untap once checkex] counter(0/0.1.TibaltExiled)])) ueot )!])) forever )!
 auto={C(0/0,2,Loyalty)}:name(+2: Exile the top card) all(*[zpos=1]|library) moveto(ownerexile) and!( counter(0/0,1,TibaltExiled) )!
 auto={C(0/0,-3,Loyalty)}:name(-3: Exile target artifact or creature) target(*[artifact;creature]|battlefield) moveto(ownerexile) and!( counter(0/0,1,TibaltExiled) )!
 auto={C(0/0,-8,Loyalty)}:name(-8: Exile all cards from all graveyards) add{R}{R}{R} && ability$!all(*|graveyard) moveto(ownerexile) and!( counter(0/0.1.TibaltExiled) )! !$ controller
@@ -3559,7 +3559,7 @@ name=Tibalt, the Fiend-Blooded
 auto=counter(0/0,2,Loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Draw and discard) draw:1 controller && discard:1 controller
 auto={C(0/0,-4,Loyalty)}:name(-4: Deal damage to player) target(player) damage:type:*:targetedpersonshand
-auto={C(0/0,-6,Loyalty)}:name(-6: Gain control of creatures) all(creature|battlefield) moveTo(mybattlefield) and!( transforms((,newability[untap],haste,newability[phaseaction[endofturn once sourceinplay] moveTo(ownerbattlefield)])) ueot )!
+auto={C(0/0,-6,Loyalty)}:name(-6: Gain control of creatures) all(creature|battlefield) moveTo(mybattlefield) and!( transforms((,newability[untap],haste,newability[phaseaction[end once sourceinplay] moveTo(ownerbattlefield)])) ueot )!
 text=+1: Draw a card, then discard a card at random. -- -4: Tibalt, the Fiend-Blooded deals damage equal to the number of cards in target player's hand to that player. -- -6: Gain control of all creatures until end of turn. Untap them. They gain haste until end of turn.
 mana={R}{R}
 type=Legendary Planeswalker
@@ -3806,7 +3806,7 @@ subtype=Vraska
 [card]
 name=Vronos, Masked Inquisitor
 auto=counter(0/0,5,loyalty)
-auto={C(0/0,+1,Loyalty)}:name(+1: Phase out) target(<upto:2>other planeswalker|myBattlefield) transforms((,newability[phaseaction[endofturn once sourceinplay] phaseout])) forever
+auto={C(0/0,+1,Loyalty)}:name(+1: Phase out) target(<upto:2>other planeswalker|myBattlefield) transforms((,newability[phaseaction[end once sourceinplay] phaseout])) forever
 auto={C(0/0,+1,Loyalty)}:name(+1: Don't phase out) donothing
 auto={C(0/0,-2,Loyalty)}:name(-2: Return nonland permanent) target(*[-land]|opponentbattlefield) moveto(ownerhand)
 auto={C(0/0,-7,Loyalty)}:name(-7: Artifact becomes construct) target(artifact|myBattlefield) transforms((Creature Artifact Construct,setpower=9,settoughness=9,vigilance,indestructible,unblockable)) forever

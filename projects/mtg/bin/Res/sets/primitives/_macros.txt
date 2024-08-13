@@ -22,7 +22,7 @@
 #AUTO_DEFINE _PARTNER_  may name(Put partner in hand) moveto(myhand) target(*[partname]|mylibrary)
 
 # Goad
-#AUTO_DEFINE _GOAD_ transforms((,newability[counter(0/0.1.Goaded) notrg],newability[this(counter{0/0.1.Goaded}>0) mustattack],newability[phaseaction[endofturn next once sourceinplay] counter(0/0.-hascntgoaded.Goaded) notrg])) forever
+#AUTO_DEFINE _GOAD_ transforms((,newability[counter(0/0.1.Goaded) notrg],newability[this(counter{0/0.1.Goaded}>0) mustattack],newability[phaseaction[end next once sourceinplay] counter(0/0.-hascntgoaded.Goaded) notrg])) forever
 
 # Rebound
 #AUTO_DEFINE _REBOUND_ if rebound then all(this|mystack) moveto(exile) and!( transforms((,newability[@rebounded:may name(Cast rebounded card) activate castcard(normal)])) forever )!
@@ -208,7 +208,7 @@
 
 # Exile card. Return it to the battlefield under its owner's control at the beginning of the next end step.
 # (blink)ueot doesn't work if a creature uses it on itself
-#AUTO_DEFINE _BLINK_UEOT_  moveto(exile) and!( transforms((,newability[phaseaction[endofturn once checkex] moveto(ownerbattlefield)])) forever )!
+#AUTO_DEFINE _BLINK_UEOT_  moveto(exile) and!( transforms((,newability[phaseaction[end once checkex] moveto(ownerbattlefield)])) forever )!
 
 # Connives. (Draw a card, then discard a card. If you discarded a nonland card, put a +1/+1 counter on this creature.)
 #AUTO_DEFINE _CONNIVES_ draw:1 && transforms((,newability[if type(*[-land]|myhand)~morethan~0 then choice name(Discard a nonland) name(Discard a nonland) target(*[-land]|myhand) reject && counter(1/1) all(this)],newability[if type(land|myhand)~morethan~0 then choice name(Discard a land) name(Discard a land) target(land|myhand) reject])) oneshot
