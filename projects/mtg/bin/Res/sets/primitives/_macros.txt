@@ -122,7 +122,7 @@
 #AUTO_DEFINE _RIPPLE_($c) autostack=if casted(this) then reveal:$c optionone name(Cast Card) target(<upto:$c>[share!name!]|reveal) moveTo(mylibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put on bottom) target(<$c>*|reveal) bottomoflibrary optiontwoend afterrevealed all(tobecast|mylibrary) moveTo(myLibrary) and!( activate castcard(normal) )! afterrevealedend revealend
 
 # Recover
-#AUTO_DEFINE _RECOVER_($cost) @movedTo(creature|myGraveyard) from(Battlefield):may pay{$cost} name(Return to owner Hand) moveTo(ownerHand) all(this) donothing?moveTo(exile) all(this)
+#AUTO_DEFINE _RECOVER_($cost) @movedTo(creature|myGraveyard) from(Battlefield):may pay{$cost} name(Return to owner Hand) moveTo(hand) all(this) donothing?moveTo(exile) all(this)
 
 # Proliferate
 #AUTO_DEFINE _PROLIFERATE_ name(Proliferate) notatarget(proliferation) proliferate
@@ -191,7 +191,7 @@
 #AUTO_DEFINE _UNEARTH_ name(Unearth) moveto(mybattlefield) and!( transforms((,haste,newability[unearth],newability[exiledeath])) forever )! asSorcery
 
 # Exile the top card of your library. you may play it this turn.
-#AUTO_DEFINE _IMPULSEDRAW_ moveto(exile) and!( transforms((,canplayfromexile)) ueot )! all(*[zpos=1]|mylibrary)
+#AUTO_DEFINE _IMPULSE_DRAW_ name(Exile top card) moveto(exile) and!( transforms((,canplayfromexile)) ueot )! all(*[zpos=1]|mylibrary)
 
 # Exile the top card of your library. Until the end of your next turn, you may play that card.
 #AUTO_DEFINE _IMPULSEUENT_ moveto(exile) and!( transforms((,canplayfromexile)) uent )! all(*[zpos=1]|mylibrary)
