@@ -3397,8 +3397,8 @@ name=Tezzeret, Betrayer of Flesh
 #MISSING: The first activated ability of an artifact you activate each turn costs {2} less to activate.
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,+1,Loyalty)}:name(+1: Draw and discard) draw:2 controller && transforms((,newability[if type(artifact|myhand)~morethan~0 then choice name(Discard artifact) name(Discard artifact) notatarget(artifact|myhand) reject],newability[if type(*[-artifact]|myhand)~morethan~1 then choice name(Don't discard artifact) name(Don't discard artifact) notatarget(<2>*[-artifact]|myhand) reject])) ueot
-auto={C(0/0,-2,Loyalty)}:name(-2: Artifact becomes creature) target(artifact|battlefield) transforms((,newability[if cantargetcard(*[vehicle]|*) then becomes(Artifact Creature) ueot else becomes(Artifact Creature^4/4) ueot])) ueot
-auto={C(0/0,-6,Loyalty)}:name(-6: Emblem on tapped artifact) emblem transforms((,newability[@tapped(artifact|battlefield):name(Draw a card) draw:1 controller])) forever dontremove
+auto={C(0/0,-2,Loyalty)}:name(-2: Artifact becomes creature) target(artifact) transforms((,newability[if cantargetcard(*[vehicle]|*) then becomes(Artifact Creature) forever else becomes(Artifact Creature^4/4) forever])) forever
+auto={C(0/0,-6,Loyalty)}:name(-6: Emblem on tapped artifact) emblem transforms((,newability[@tapped(artifact|mybattlefield):name(Draw a card) draw:1 controller])) forever dontremove
 text=The first activated ability of an artifact you activate each turn costs {2} less to activate. -- [+1]: Draw two cards. Then discard two cards unless you discard an artifact card. -- [-2]: Target artifact becomes an artifact creature. If it isn't a Vehicle, it has base power and toughness 4/4. -- [-6]: You get an emblem with "Whenever an artifact you control becomes tapped, draw a card."
 mana={2}{U}{U}
 type=Legendary Planeswalker
