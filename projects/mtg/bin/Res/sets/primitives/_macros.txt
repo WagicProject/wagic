@@ -236,7 +236,7 @@
 
 #AUTO_DEFINE _HARNESSED_LIGHTNING_($c) this(variable{penergy}>=$c) choice damage:$c && alterenergy:-$c controller
 
-# Enlist. As this creature attacks, you may tap a nonattacking creature you control without summoning sickness. When you do, add its power to this creature’s until end of turn
+# Enlist. As this creature attacks, you may tap a nonattacking creature you control without summoning sickness. When you do, add its power to this creature's until end of turn
 #AUTO_DEFINE _ENLIST_ @combat(attacking) source(this) restriction{type(creature[-fresh]|mybattlefield)~morethan~0}:transforms((,newability[{T(creature[-attacking;-fresh]|mybattlefield)}:storedpower/0 ueot limit:1])) ueot
 
 # Angel Token

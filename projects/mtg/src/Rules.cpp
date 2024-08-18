@@ -168,9 +168,9 @@ void Rules::addExtraRules(GameObserver* g)
                 difficultyRating = 0;
             else if(g->mRules->gamemode == GAME_TYPE_RANDOM1 || g->mRules->gamemode == GAME_TYPE_RANDOM2)
                 difficultyRating = 0;
-              else if(g->mRules->gamemode == GAME_TYPE_RANDOM3 || g->mRules->gamemode == GAME_TYPE_RANDOM5 || g->mRules->gamemode == GAME_TYPE_RANDOMCOMMANDER)
+            else if(g->mRules->gamemode == GAME_TYPE_RANDOM3 || g->mRules->gamemode == GAME_TYPE_RANDOM5 || g->mRules->gamemode == GAME_TYPE_RANDOMCOMMANDER)
                 difficultyRating = 0;
-             else if(g->mRules->gamemode == GAME_TYPE_HORDE || g->mRules->gamemode == GAME_TYPE_SET_LIMITED)
+            else if(g->mRules->gamemode == GAME_TYPE_HORDE || g->mRules->gamemode == GAME_TYPE_SET_LIMITED)
                 difficultyRating = 0;
             else if (g->mRules->gamemode == GAME_TYPE_STORY)
                 difficultyRating = 0;
@@ -200,7 +200,7 @@ void Rules::addExtraRules(GameObserver* g)
                         a->resolve();
                     else if(g->mRules->gamemode == GAME_TYPE_RANDOM1 || g->mRules->gamemode == GAME_TYPE_RANDOM2)
                         a->resolve();
-                     else if(g->mRules->gamemode == GAME_TYPE_RANDOM3 || g->mRules->gamemode == GAME_TYPE_RANDOM5 || g->mRules->gamemode == GAME_TYPE_RANDOMCOMMANDER) 
+                    else if(g->mRules->gamemode == GAME_TYPE_RANDOM3 || g->mRules->gamemode == GAME_TYPE_RANDOM5 || g->mRules->gamemode == GAME_TYPE_RANDOMCOMMANDER) 
                         a->resolve();
                     else if (g->mRules->gamemode == GAME_TYPE_STORY)
                         a->resolve();
@@ -419,7 +419,7 @@ Player * Rules::loadPlayerRandomFive(GameObserver* observer, int isAI)
 
 Player * Rules::loadPlayerRandomCommander(GameObserver* observer, int isAI)
 {
-    MTGDeck * cmdTempDeck = NEW MTGDeck(MTGCollection()); 
+    MTGDeck * cmdTempDeck = NEW MTGDeck(MTGCollection());
     MTGDeck * tempDeck = NEW MTGDeck(MTGCollection());
     tempDeck->meta_commander = true;
 
@@ -491,7 +491,7 @@ Player * Rules::loadPlayerHorde(GameObserver* observer, int isAI)
     const char* const whiteTribes[] = { "Angel", "Archer", "Bird", "Cat", "Cleric", "Griffin", "Kithkin", "Knight", "Kor", "Monk", "Rebel", "Samurai", "Scout", "Soldier", "Spirit" };
     const char* const blueTribes[] = { "Artificer", "Bird", "Drake", "Faerie", "Illusion", "Merfolk", "Mutant", "Nightmare", "Pirate", "Shapeshifter", "Sphinx", "Spirit", "Vedalken", "Wizard" };
     const char* const blackTribes[] = { "Assassin", "Cleric", "Demon", "Faerie", "Horror", "Insect", "Knight", "Nightmare", "Orc", "Phyrexian", "Pirate", "Rat", "Rogue", "Shade", "Skeleton", "Spirit", "Vampire", "Wizard", "Zombie" };
-    const char* const redTribes[] = { "Artificer", "Beast", "Berserker", "Devil", "Dinosaur", "Dragon", "Dwarf", "Goblin", "Kavu", "Lizard", "Minotaur", "Ogre", "Orc", "Shaman", "Viashino", "Warrior", "Werewolf" };
+    const char* const redTribes[] = { "Artificer", "Beast", "Berserker", "Devil", "Dinosaur", "Dragon", "Dwarf", "Goblin", "Kavu", "Lizard", "Minotaur", "Ogre", "Orc", "Shaman", "Warrior", "Werewolf" };
     const char* const greenTribes[] = { "Archer", "Beast", "Cat", "Centaur", "Dinosaur", "Druid", "Dryad", "Elf", "Fungus", "Insect", "Kavu", "Lizard", "Mutant", "Plant", "Ranger", "Scout", "Shaman", "Snake", "Spider", "Treefolk", "Warrior", "Werewolf", "Wurm" };
 
     int multicolorTribesSize = sizeof(multicolorTribes)/sizeof(multicolorTribes[0]);
