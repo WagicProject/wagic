@@ -37,7 +37,7 @@ before_install:
       if [ `uname -m` = x86_64 ]; then 
         sudo dpkg --add-architecture i386 && sudo apt-get update &&
         sudo apt-get install -qq --force-yes libgd2-xpm-dev libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 jq ant; fi &&
-        wget https://dl.google.com/android/repository/android-ndk-r27-linux.zip -nv &&
+        wget https://dl.google.com/android/repository/android-ndk-r22-linux-x86_64.zip -nv &&
         wget http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz -nv;
     fi
     
@@ -46,7 +46,7 @@ install:
     tar -x --xz -f sdk.lzma;
   fi
 - if [ "$BUILD_ANDROID" == "YES" ]; then
-    unzip android-ndk-r27-linux.zip &&
+    unzip android-ndk-r22-linux-x86_64.zip &&
     tar -zxf android-sdk_r24.4.1-linux.tgz &&
     $ANDROID list sdk --extended -a &&
     echo yes | $ANDROID update sdk -a -t tools,platform-tools,build-tools-23.0.1,android-23 --no-ui --force --no-https;
