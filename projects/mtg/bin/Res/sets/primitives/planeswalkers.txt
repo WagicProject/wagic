@@ -2263,11 +2263,11 @@ subtype=Nahiri
 [card]
 name=Nahiri, the Harbinger
 auto=counter(0/0,4,loyalty)
-aicode=activate target(*[artifact;creature]|myLibrary) moveto(myBattlefield) and!( transforms((,haste,newability[@next end:moveTo(hand)])) ueot )!
+aicode=activate target(*[artifact;creature]|myLibrary) moveto(myBattlefield) and!( transforms((,haste,newability[@next end:all(this) moveTo(hand)])) ueot )!
 auto={C(0/0,2,Loyalty)}:name(+2: Don't discard any card) donothing
 auto={C(0/0,2,Loyalty)}:name(+2: Discard and draw a card) target(*|myHand) reject and!( draw:1 controller )!
 auto={C(0/0,-2,Loyalty)}:name(-2: Exile target enchantment, tapped Artifact or Creature) ability$!name(Choose one) choice name(Exile target enchantment) moveTo(exile) target(enchantment) _ choice name(Exile target tapped creature) moveTo(exile) target(creature[tapped]) _ choice name(Exile target tapped artifact) moveTo(exile) target(artifact[tapped])!$ controller
-auto={C(0/0,-8,Loyalty)}:name(-8: Search a creature or artifact) reveal:plibrarycount optionone name(choose a creature or artifact) target(*[artifact;creature]|reveal) moveTo(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(*|reveal) moveTo(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!( shuffle )! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(myBattlefield) and!( transforms((,haste,newability[@next end:moveTo(hand)])) ueot )! afterrevealedend revealend
+auto={C(0/0,-8,Loyalty)}:name(-8: Search a creature or artifact) reveal:plibrarycount optionone name(choose a creature or artifact) target(*[artifact;creature]|reveal) moveTo(ownerlibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put back) target(*|reveal) moveTo(ownerlibrary) and!( all(*|reveal) moveto(ownerlibrary) and!( shuffle )! )! optiontwoend afterrevealed all(tobecast|mylibrary) moveto(myBattlefield) and!( transforms((,haste,newability[@next end:all(this) moveTo(hand)])) ueot )! afterrevealedend revealend
 text=+2: You may discard a card. If you do, draw a card. -- -2: Exile target enchantment, tapped artifact, or tapped creature. -- -8: Search your library for an artifact or creature card, put it onto the battlefield, then shuffle. It gains haste. Return it to your hand at the beginning of the next end step.
 mana={2}{R}{W}
 type=Legendary Planeswalker
