@@ -505,7 +505,7 @@ Player* Rules::loadPlayerRandomCommanderFromFile(GameObserver* observer, int isA
         if (!outFile.is_open())
         {
             std::cerr << "Failed to create file: User/commander/commander.txt" << std::endl;
-            return nullptr;
+            return NULL;
         }
         outFile << "670972" << std::endl;
         outFile.close();
@@ -515,7 +515,7 @@ Player* Rules::loadPlayerRandomCommanderFromFile(GameObserver* observer, int isA
         if (!file.is_open())
         {
             std::cerr << "Failed to open file after creation: User/commander/commander.txt" << std::endl;
-            return nullptr;
+            return NULL;
         }
     }
 
@@ -563,7 +563,7 @@ Player* Rules::loadPlayerRandomCommanderFromFile(GameObserver* observer, int isA
     {
         int commanderIntId = std::atoi(commanderIds[i].c_str());
         MTGCard* card = MTGCollection()->getCardById(commanderIntId);
-        if (card != nullptr)
+        if (card != NULL)
         {
             validCommanderIds.push_back(commanderIds[i]);
         }
@@ -581,7 +581,7 @@ Player* Rules::loadPlayerRandomCommanderFromFile(GameObserver* observer, int isA
     }
 
     // Randomly select a commander ID
-    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+    std::srand(static_cast<unsigned int>(time(NULL)));
     int randomIndex = std::rand() % validCommanderIds.size();
     std::string commanderId = validCommanderIds[randomIndex];
 
@@ -590,7 +590,7 @@ Player* Rules::loadPlayerRandomCommanderFromFile(GameObserver* observer, int isA
     if (!cmdTempDeck->add(commanderIntId))
     {
         std::cerr << "Failed to add commander card with ID: " << commanderId << std::endl;
-        return nullptr;
+        return NULL;
     }
 
     MTGDeck* tempDeck = NEW MTGDeck(MTGCollection());
@@ -601,10 +601,10 @@ Player* Rules::loadPlayerRandomCommanderFromFile(GameObserver* observer, int isA
     DeckDataWrapper* myCommandZone = NEW DeckDataWrapper(cmdTempDeck);
     MTGCard* commander = myCommandZone->getCard(0, true);
 
-    if (commander == nullptr)
+    if (commander == NULL)
     {
         std::cerr << "Invalid commander card retrieved from the command zone." << std::endl;
-        return nullptr;
+        return NULL;
     }
 
     std::stringstream cid;
@@ -645,7 +645,7 @@ Player* Rules::loadPlayerRandomCommanderFromFile(GameObserver* observer, int isA
     std::string deckFile = "random";
     std::string deckFileSmall = "random";
 
-    Player* player = nullptr;
+    Player* player = NULL;
     if (!isAI) // Human Player
         player = NEW HumanPlayer(observer, deckFile, deckFileSmall, false, tempDeck);
     else
