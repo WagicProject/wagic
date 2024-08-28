@@ -287,6 +287,9 @@
 # Phyrexian Mite Token
 #AUTO_DEFINE _PHYREXIANMITETOKEN_ create(phyrexian mite:artifact creature phyrexian mite:1/1:poisontoxic:cantblock)
 
+# White Rabbit Token
+#AUTO_DEFINE _RABBITTOKEN_ create(rabbit:creature rabbit:1/1:white)
+
 # Red Elemental Token
 #AUTO_DEFINE _REDELEMENTALTOKEN_ create(Elemental:Creature Elemental:1/1:red)
 

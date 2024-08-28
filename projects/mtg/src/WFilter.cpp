@@ -566,7 +566,6 @@ float WCFilterAbility::filterFee()
     default:
         return 0.4f;
     }
-    return 0.0f;
 }
 
 //WCFilterType
