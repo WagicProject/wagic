@@ -7,29 +7,9 @@ year=2008-10-03
 total=250
 [/meta]
 [card]
-primitive=Ad Nauseam
-id=174915
-rarity=R
-[/card]
-[card]
-primitive=Agony Warp
-id=175052
-rarity=C
-[/card]
-[card]
-primitive=Ajani Vengeant
-id=174852
-rarity=M
-[/card]
-[card]
 primitive=Akrasan Squire
 id=174963
 rarity=C
-[/card]
-[card]
-primitive=Algae Gharial
-id=174986
-rarity=U
 [/card]
 [card]
 primitive=Angel's Herald
@@ -47,9 +27,299 @@ id=175000
 rarity=C
 [/card]
 [card]
-primitive=Arcane Sanctum
-id=175128
+primitive=Bant Battlemage
+id=175123
 rarity=U
+[/card]
+[card]
+primitive=Battlegrace Angel
+id=175394
+rarity=R
+[/card]
+[card]
+primitive=Cradle of Vitality
+id=174789
+rarity=R
+[/card]
+[card]
+primitive=Dispeller's Capsule
+id=174830
+rarity=C
+[/card]
+[card]
+primitive=Elspeth, Knight-Errant
+id=174859
+rarity=M
+[/card]
+[card]
+primitive=Ethersworn Canonist
+id=174931
+rarity=R
+[/card]
+[card]
+primitive=Excommunicate
+id=180144
+rarity=C
+[/card]
+[card]
+primitive=Guardians of Akrasa
+id=175103
+rarity=C
+[/card]
+[card]
+primitive=Gustrider Exuberant
+id=174805
+rarity=C
+[/card]
+[card]
+primitive=Invincible Hymn
+id=175039
+rarity=R
+[/card]
+[card]
+primitive=Knight of the Skyward Eye
+id=175047
+rarity=C
+[/card]
+[card]
+primitive=Knight of the White Orchid
+id=178094
+rarity=R
+[/card]
+[card]
+primitive=Knight-Captain of Eos
+id=179421
+rarity=R
+[/card]
+[card]
+primitive=Marble Chalice
+id=175249
+rarity=C
+[/card]
+[card]
+primitive=Metallurgeon
+id=175113
+rarity=U
+[/card]
+[card]
+primitive=Oblivion Ring
+id=174909
+rarity=C
+[/card]
+[card]
+primitive=Ranger of Eos
+id=174823
+rarity=R
+[/card]
+[card]
+primitive=Resounding Silence
+id=174985
+rarity=C
+[/card]
+[card]
+primitive=Rockcaster Platoon
+id=175024
+rarity=U
+[/card]
+[card]
+primitive=Sanctum Gargoyle
+id=174925
+rarity=C
+[/card]
+[card]
+primitive=Scourglass
+id=174853
+rarity=R
+[/card]
+[card]
+primitive=Sighted-Caste Sorcerer
+id=174956
+rarity=C
+[/card]
+[card]
+primitive=Sigiled Paladin
+id=174958
+rarity=U
+[/card]
+[card]
+primitive=Soul's Grace
+id=174813
+rarity=C
+[/card]
+[card]
+primitive=Sunseed Nurturer
+id=175122
+rarity=U
+[/card]
+[card]
+primitive=Welkin Guide
+id=178096
+rarity=C
+[/card]
+[card]
+primitive=Yoked Plowbeast
+id=175078
+rarity=C
+[/card]
+[card]
+primitive=Call to Heel
+id=175053
+rarity=C
+[/card]
+[card]
+primitive=Cancel
+id=178092
+rarity=C
+[/card]
+[card]
+primitive=Cathartic Adept
+id=176433
+rarity=C
+[/card]
+[card]
+primitive=Cloudheath Drake
+id=174814
+rarity=C
+[/card]
+[card]
+primitive=Coma Veil
+id=175042
+rarity=C
+[/card]
+[card]
+primitive=Courier's Capsule
+id=174800
+rarity=C
+[/card]
+[card]
+primitive=Covenant of Minds
+id=178091
+rarity=R
+[/card]
+[card]
+primitive=Dawnray Archer
+id=175085
+rarity=U
+[/card]
+[card]
+primitive=Esper Battlemage
+id=174872
+rarity=U
+[/card]
+[card]
+primitive=Etherium Astrolabe
+id=175138
+rarity=U
+[/card]
+[card]
+primitive=Etherium Sculptor
+id=176435
+rarity=C
+[/card]
+[card]
+primitive=Fatestitcher
+id=176456
+rarity=U
+[/card]
+[card]
+primitive=Filigree Sages
+id=174888
+rarity=U
+[/card]
+[card]
+primitive=Gather Specimens
+id=175011
+rarity=R
+[/card]
+[card]
+primitive=Jhessian Lookout
+id=176428
+rarity=C
+[/card]
+[card]
+primitive=Kathari Screecher
+id=174837
+rarity=C
+[/card]
+[card]
+primitive=Kederekt Leviathan
+id=174882
+rarity=R
+[/card]
+[card]
+primitive=Master of Etherium
+id=175114
+rarity=R
+[/card]
+[card]
+primitive=Memory Erosion
+id=175108
+rarity=R
+[/card]
+[card]
+primitive=Mindlock Orb
+id=175385
+rarity=R
+[/card]
+[card]
+primitive=Outrider of Jhess
+id=175252
+rarity=C
+[/card]
+[card]
+primitive=Protomatter Powder
+id=174833
+rarity=U
+[/card]
+[card]
+primitive=Resounding Wave
+id=175098
+rarity=C
+[/card]
+[card]
+primitive=Sharding Sphinx
+id=174881
+rarity=R
+[/card]
+[card]
+primitive=Skill Borrower
+id=179428
+rarity=R
+[/card]
+[card]
+primitive=Spell Snip
+id=175038
+rarity=C
+[/card]
+[card]
+primitive=Sphinx's Herald
+id=175242
+rarity=U
+[/card]
+[card]
+primitive=Steelclad Serpent
+id=175009
+rarity=C
+[/card]
+[card]
+primitive=Tezzeret the Seeker
+id=174912
+rarity=M
+[/card]
+[card]
+primitive=Tortoise Formation
+id=179432
+rarity=C
+[/card]
+[card]
+primitive=Vectis Silencers
+id=175147
+rarity=C
+[/card]
+[card]
+primitive=Ad Nauseam
+id=174915
+rarity=R
 [/card]
 [card]
 primitive=Archdemon of Unx
@@ -62,44 +332,139 @@ id=174817
 rarity=C
 [/card]
 [card]
-primitive=Bant Battlemage
-id=175123
-rarity=U
-[/card]
-[card]
-primitive=Bant Charm
-id=137931
-rarity=U
-[/card]
-[card]
-primitive=Bant Panorama
-id=174842
-rarity=C
-[/card]
-[card]
-primitive=Battlegrace Angel
-id=175394
-rarity=R
-[/card]
-[card]
-primitive=Behemoth's Herald
-id=175263
-rarity=U
-[/card]
-[card]
-primitive=Blightning
-id=174917
-rarity=C
-[/card]
-[card]
 primitive=Blister Beetle
 id=174893
 rarity=C
 [/card]
 [card]
-primitive=Blood Cultist
-id=175100
+primitive=Bone Splinters
+id=174967
+rarity=C
+[/card]
+[card]
+primitive=Corpse Connoisseur
+id=176448
 rarity=U
+[/card]
+[card]
+primitive=Cunning Lethemancer
+id=176429
+rarity=R
+[/card]
+[card]
+primitive=Death Baron
+id=176430
+rarity=R
+[/card]
+[card]
+primitive=Deathgreeter
+id=175073
+rarity=C
+[/card]
+[card]
+primitive=Demon's Herald
+id=175243
+rarity=U
+[/card]
+[card]
+primitive=Dreg Reaver
+id=174848
+rarity=C
+[/card]
+[card]
+primitive=Dregscape Zombie
+id=174835
+rarity=C
+[/card]
+[card]
+primitive=Executioner's Capsule
+id=174895
+rarity=C
+[/card]
+[card]
+primitive=Fleshbag Marauder
+id=174871
+rarity=U
+[/card]
+[card]
+primitive=Glaze Fiend
+id=174816
+rarity=C
+[/card]
+[card]
+primitive=Grixis Battlemage
+id=174868
+rarity=U
+[/card]
+[card]
+primitive=Immortal Coil
+id=175125
+rarity=R
+[/card]
+[card]
+primitive=Infest
+id=179424
+rarity=U
+[/card]
+[card]
+primitive=Onyx Goblet
+id=174831
+rarity=C
+[/card]
+[card]
+primitive=Puppet Conjurer
+id=175012
+rarity=U
+[/card]
+[card]
+primitive=Resounding Scream
+id=176444
+rarity=C
+[/card]
+[card]
+primitive=Salvage Titan
+id=174900
+rarity=R
+[/card]
+[card]
+primitive=Scavenger Drake
+id=174987
+rarity=U
+[/card]
+[card]
+primitive=Shadowfeed
+id=177473
+rarity=C
+[/card]
+[card]
+primitive=Shore Snapper
+id=175390
+rarity=C
+[/card]
+[card]
+primitive=Skeletal Kathari
+id=175119
+rarity=C
+[/card]
+[card]
+primitive=Tar Fiend
+id=175101
+rarity=R
+[/card]
+[card]
+primitive=Undead Leotau
+id=176452
+rarity=C
+[/card]
+[card]
+primitive=Vein Drinker
+id=175004
+rarity=R
+[/card]
+[card]
+primitive=Viscera Dragger
+id=175144
+rarity=C
 [/card]
 [card]
 primitive=Bloodpyre Elemental
@@ -112,9 +477,319 @@ id=174821
 rarity=C
 [/card]
 [card]
-primitive=Bone Splinters
-id=174967
+primitive=Caldera Hellion
+id=175072
+rarity=R
+[/card]
+[card]
+primitive=Crucible of Fire
+id=179426
+rarity=R
+[/card]
+[card]
+primitive=Dragon Fodder
+id=174936
 rarity=C
+[/card]
+[card]
+primitive=Dragon's Herald
+id=175239
+rarity=U
+[/card]
+[card]
+primitive=Exuberant Firestoker
+id=175049
+rarity=U
+[/card]
+[card]
+primitive=Flameblast Dragon
+id=177476
+rarity=R
+[/card]
+[card]
+primitive=Goblin Assault
+id=174939
+rarity=R
+[/card]
+[card]
+primitive=Goblin Mountaineer
+id=174938
+rarity=C
+[/card]
+[card]
+primitive=Hell's Thunder
+id=176455
+rarity=R
+[/card]
+[card]
+primitive=Hissing Iguanar
+id=174873
+rarity=C
+[/card]
+[card]
+primitive=Incurable Ogre
+id=174806
+rarity=C
+[/card]
+[card]
+primitive=Jund Battlemage
+id=175050
+rarity=U
+[/card]
+[card]
+primitive=Lightning Talons
+id=176446
+rarity=C
+[/card]
+[card]
+primitive=Magma Spray
+id=175245
+rarity=C
+[/card]
+[card]
+primitive=Predator Dragon
+id=174968
+rarity=R
+[/card]
+[card]
+primitive=Resounding Thunder
+id=175043
+rarity=C
+[/card]
+[card]
+primitive=Ridge Rannet
+id=175257
+rarity=C
+[/card]
+[card]
+primitive=Rockslide Elemental
+id=174988
+rarity=U
+[/card]
+[card]
+primitive=Scourge Devil
+id=174845
+rarity=U
+[/card]
+[card]
+primitive=Skeletonize
+id=175070
+rarity=U
+[/card]
+[card]
+primitive=Soul's Fire
+id=174951
+rarity=C
+[/card]
+[card]
+primitive=Thorn-Thrash Viashino
+id=175064
+rarity=C
+[/card]
+[card]
+primitive=Thunder-Thrash Elder
+id=174870
+rarity=U
+[/card]
+[card]
+primitive=Viashino Skeleton
+id=175097
+rarity=C
+[/card]
+[card]
+primitive=Vicious Shadows
+id=175048
+rarity=R
+[/card]
+[card]
+primitive=Vithian Stinger
+id=174922
+rarity=C
+[/card]
+[card]
+primitive=Volcanic Submersion
+id=174889
+rarity=C
+[/card]
+[card]
+primitive=Where Ancients Tread
+id=175115
+rarity=R
+[/card]
+[card]
+primitive=Algae Gharial
+id=174986
+rarity=U
+[/card]
+[card]
+primitive=Behemoth's Herald
+id=175263
+rarity=U
+[/card]
+[card]
+primitive=Cavern Thoctar
+id=174994
+rarity=C
+[/card]
+[card]
+primitive=Court Archers
+id=174960
+rarity=C
+[/card]
+[card]
+primitive=Cylian Elf
+id=174935
+rarity=C
+[/card]
+[card]
+primitive=Druid of the Anima
+id=174903
+rarity=C
+[/card]
+[card]
+primitive=Drumhunter
+id=174943
+rarity=U
+[/card]
+[card]
+primitive=Elvish Visionary
+id=175124
+rarity=C
+[/card]
+[card]
+primitive=Feral Hydra
+id=174973
+rarity=R
+[/card]
+[card]
+primitive=Gift of the Gargantuan
+id=175036
+rarity=C
+[/card]
+[card]
+primitive=Godtoucher
+id=174822
+rarity=C
+[/card]
+[card]
+primitive=Jungle Weaver
+id=175262
+rarity=C
+[/card]
+[card]
+primitive=Keeper of Progenitus
+id=175033
+rarity=R
+[/card]
+[card]
+primitive=Lush Growth
+id=176441
+rarity=C
+[/card]
+[card]
+primitive=Mighty Emergence
+id=178097
+rarity=U
+[/card]
+[card]
+primitive=Manaplasm
+id=175006
+rarity=R
+[/card]
+[card]
+primitive=Mosstodon
+id=174787
+rarity=C
+[/card]
+[card]
+primitive=Mycoloth
+id=174975
+rarity=R
+[/card]
+[card]
+primitive=Naturalize
+id=174890
+rarity=C
+[/card]
+[card]
+primitive=Naya Battlemage
+id=174944
+rarity=U
+[/card]
+[card]
+primitive=Ooze Garden
+id=174886
+rarity=R
+[/card]
+[card]
+primitive=Resounding Roar
+id=174901
+rarity=C
+[/card]
+[card]
+primitive=Rhox Charger
+id=174959
+rarity=U
+[/card]
+[card]
+primitive=Sacellum Godspeaker
+id=174828
+rarity=R
+[/card]
+[card]
+primitive=Savage Hunger
+id=174941
+rarity=C
+[/card]
+[card]
+primitive=Skullmulcher
+id=176436
+rarity=R
+[/card]
+[card]
+primitive=Soul's Might
+id=174808
+rarity=C
+[/card]
+[card]
+primitive=Spearbreaker Behemoth
+id=174916
+rarity=R
+[/card]
+[card]
+primitive=Topan Ascetic
+id=174999
+rarity=U
+[/card]
+[card]
+primitive=Wild Nacatl
+id=174989
+rarity=C
+[/card]
+[card]
+primitive=Agony Warp
+id=175052
+rarity=C
+[/card]
+[card]
+primitive=Ajani Vengeant
+id=174852
+rarity=M
+[/card]
+[card]
+primitive=Bant Charm
+id=137931
+rarity=U
+[/card]
+[card]
+primitive=Blightning
+id=174917
+rarity=C
+[/card]
+[card]
+primitive=Blood Cultist
+id=175100
+rarity=U
 [/card]
 [card]
 primitive=Branching Bolt
@@ -137,33 +812,8 @@ id=174952
 rarity=U
 [/card]
 [card]
-primitive=Caldera Hellion
-id=175072
-rarity=R
-[/card]
-[card]
-primitive=Call to Heel
-id=175053
-rarity=C
-[/card]
-[card]
-primitive=Cancel
-id=178092
-rarity=C
-[/card]
-[card]
 primitive=Carrion Thrash
 id=176443
-rarity=C
-[/card]
-[card]
-primitive=Cathartic Adept
-id=176433
-rarity=C
-[/card]
-[card]
-primitive=Cavern Thoctar
-id=174994
 rarity=C
 [/card]
 [card]
@@ -172,133 +822,13 @@ id=175142
 rarity=R
 [/card]
 [card]
-primitive=Cloudheath Drake
-id=174814
-rarity=C
-[/card]
-[card]
-primitive=Coma Veil
-id=175042
-rarity=C
-[/card]
-[card]
-primitive=Corpse Connoisseur
-id=176448
-rarity=U
-[/card]
-[card]
-primitive=Courier's Capsule
-id=174800
-rarity=C
-[/card]
-[card]
-primitive=Court Archers
-id=174960
-rarity=C
-[/card]
-[card]
-primitive=Covenant of Minds
-id=178091
-rarity=R
-[/card]
-[card]
-primitive=Cradle of Vitality
-id=174789
-rarity=R
-[/card]
-[card]
-primitive=Crucible of Fire
-id=179426
-rarity=R
-[/card]
-[card]
 primitive=Cruel Ultimatum
 id=175079
 rarity=R
 [/card]
 [card]
-primitive=Crumbling Necropolis
-id=175112
-rarity=U
-[/card]
-[card]
-primitive=Cunning Lethemancer
-id=176429
-rarity=R
-[/card]
-[card]
-primitive=Cylian Elf
-id=174935
-rarity=C
-[/card]
-[card]
-primitive=Dawnray Archer
-id=175085
-rarity=U
-[/card]
-[card]
-primitive=Death Baron
-id=176430
-rarity=R
-[/card]
-[card]
-primitive=Deathgreeter
-id=175073
-rarity=C
-[/card]
-[card]
 primitive=Deft Duelist
 id=175121
-rarity=C
-[/card]
-[card]
-primitive=Demon's Herald
-id=175243
-rarity=U
-[/card]
-[card]
-primitive=Dispeller's Capsule
-id=174830
-rarity=C
-[/card]
-[card]
-primitive=Dragon Fodder
-id=174936
-rarity=C
-[/card]
-[card]
-primitive=Dragon's Herald
-id=175239
-rarity=U
-[/card]
-[card]
-primitive=Dreg Reaver
-id=174848
-rarity=C
-[/card]
-[card]
-primitive=Dregscape Zombie
-id=174835
-rarity=C
-[/card]
-[card]
-primitive=Druid of the Anima
-id=174903
-rarity=C
-[/card]
-[card]
-primitive=Drumhunter
-id=174943
-rarity=U
-[/card]
-[card]
-primitive=Elspeth, Knight-Errant
-id=174859
-rarity=M
-[/card]
-[card]
-primitive=Elvish Visionary
-id=175124
 rarity=C
 [/card]
 [card]
@@ -307,63 +837,8 @@ id=175104
 rarity=M
 [/card]
 [card]
-primitive=Esper Battlemage
-id=174872
-rarity=U
-[/card]
-[card]
 primitive=Esper Charm
 id=137913
-rarity=U
-[/card]
-[card]
-primitive=Esper Panorama
-id=179431
-rarity=C
-[/card]
-[card]
-primitive=Etherium Astrolabe
-id=175138
-rarity=U
-[/card]
-[card]
-primitive=Etherium Sculptor
-id=176435
-rarity=C
-[/card]
-[card]
-primitive=Ethersworn Canonist
-id=174931
-rarity=R
-[/card]
-[card]
-primitive=Excommunicate
-id=180144
-rarity=C
-[/card]
-[card]
-primitive=Executioner's Capsule
-id=174895
-rarity=C
-[/card]
-[card]
-primitive=Exuberant Firestoker
-id=175049
-rarity=U
-[/card]
-[card]
-primitive=Fatestitcher
-id=176456
-rarity=U
-[/card]
-[card]
-primitive=Feral Hydra
-id=174973
-rarity=R
-[/card]
-[card]
-primitive=Filigree Sages
-id=174888
 rarity=U
 [/card]
 [card]
@@ -372,63 +847,8 @@ id=176447
 rarity=U
 [/card]
 [card]
-primitive=Flameblast Dragon
-id=177476
-rarity=R
-[/card]
-[card]
-primitive=Fleshbag Marauder
-id=174871
-rarity=U
-[/card]
-[card]
-primitive=Forest
-id=174927
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=174928
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=174929
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=174930
-rarity=L
-[/card]
-[card]
-primitive=Gather Specimens
-id=175011
-rarity=R
-[/card]
-[card]
-primitive=Gift of the Gargantuan
-id=175036
-rarity=C
-[/card]
-[card]
-primitive=Glaze Fiend
-id=174816
-rarity=C
-[/card]
-[card]
-primitive=Goblin Assault
-id=174939
-rarity=R
-[/card]
-[card]
 primitive=Goblin Deathraiders
 id=177596
-rarity=C
-[/card]
-[card]
-primitive=Goblin Mountaineer
-id=174938
 rarity=C
 [/card]
 [card]
@@ -437,39 +857,9 @@ id=175105
 rarity=M
 [/card]
 [card]
-primitive=Godtoucher
-id=174822
-rarity=C
-[/card]
-[card]
-primitive=Grixis Battlemage
-id=174868
-rarity=U
-[/card]
-[card]
 primitive=Grixis Charm
 id=137927
 rarity=U
-[/card]
-[card]
-primitive=Grixis Panorama
-id=179433
-rarity=C
-[/card]
-[card]
-primitive=Guardians of Akrasa
-id=175103
-rarity=C
-[/card]
-[card]
-primitive=Gustrider Exuberant
-id=174805
-rarity=C
-[/card]
-[card]
-primitive=Hell's Thunder
-id=176455
-rarity=R
 [/card]
 [card]
 primitive=Hellkite Overlord
@@ -482,63 +872,8 @@ id=177598
 rarity=C
 [/card]
 [card]
-primitive=Hissing Iguanar
-id=174873
-rarity=C
-[/card]
-[card]
-primitive=Immortal Coil
-id=175125
-rarity=R
-[/card]
-[card]
-primitive=Incurable Ogre
-id=174806
-rarity=C
-[/card]
-[card]
-primitive=Infest
-id=179424
-rarity=U
-[/card]
-[card]
-primitive=Invincible Hymn
-id=175039
-rarity=R
-[/card]
-[card]
-primitive=Island
-id=174977
-rarity=L
-[/card]
-[card]
-primitive=Island
-id=174978
-rarity=L
-[/card]
-[card]
-primitive=Island
-id=174979
-rarity=L
-[/card]
-[card]
-primitive=Island
-id=174980
-rarity=L
-[/card]
-[card]
 primitive=Jhessian Infiltrator
 id=175392
-rarity=U
-[/card]
-[card]
-primitive=Jhessian Lookout
-id=176428
-rarity=C
-[/card]
-[card]
-primitive=Jund Battlemage
-id=175050
 rarity=U
 [/card]
 [card]
@@ -547,39 +882,9 @@ id=137900
 rarity=U
 [/card]
 [card]
-primitive=Jund Panorama
-id=179425
-rarity=C
-[/card]
-[card]
-primitive=Jungle Shrine
-id=175060
-rarity=U
-[/card]
-[card]
-primitive=Jungle Weaver
-id=175262
-rarity=C
-[/card]
-[card]
-primitive=Kathari Screecher
-id=174837
-rarity=C
-[/card]
-[card]
 primitive=Kederekt Creeper
 id=179430
 rarity=C
-[/card]
-[card]
-primitive=Kederekt Leviathan
-id=174882
-rarity=R
-[/card]
-[card]
-primitive=Keeper of Progenitus
-id=175033
-rarity=R
 [/card]
 [card]
 primitive=Kiss of the Amesha
@@ -587,59 +892,9 @@ id=174976
 rarity=U
 [/card]
 [card]
-primitive=Knight of the Skyward Eye
-id=175047
-rarity=C
-[/card]
-[card]
-primitive=Knight of the White Orchid
-id=178094
-rarity=R
-[/card]
-[card]
-primitive=Knight-Captain of Eos
-id=179421
-rarity=R
-[/card]
-[card]
 primitive=Kresh the Bloodbraided
 id=174876
 rarity=M
-[/card]
-[card]
-primitive=Lich's Mirror
-id=174818
-rarity=M
-[/card]
-[card]
-primitive=Lightning Talons
-id=176446
-rarity=C
-[/card]
-[card]
-primitive=Lush Growth
-id=176441
-rarity=C
-[/card]
-[card]
-primitive=Magma Spray
-id=175245
-rarity=C
-[/card]
-[card]
-primitive=Manaplasm
-id=175006
-rarity=R
-[/card]
-[card]
-primitive=Marble Chalice
-id=175249
-rarity=C
-[/card]
-[card]
-primitive=Master of Etherium
-id=175114
-rarity=R
 [/card]
 [card]
 primitive=Mayael the Anima
@@ -647,84 +902,164 @@ id=175058
 rarity=M
 [/card]
 [card]
-primitive=Memory Erosion
-id=175108
-rarity=R
-[/card]
-[card]
-primitive=Metallurgeon
-id=175113
-rarity=U
-[/card]
-[card]
-primitive=Mighty Emergence
-id=178097
-rarity=U
-[/card]
-[card]
-primitive=Mindlock Orb
-id=175385
-rarity=R
-[/card]
-[card]
-primitive=Minion Reflector
-id=174796
-rarity=R
-[/card]
-[card]
-primitive=Mosstodon
-id=174787
-rarity=C
-[/card]
-[card]
-primitive=Mountain
-id=175017
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=175018
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=175019
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=175020
-rarity=L
-[/card]
-[card]
-primitive=Mycoloth
-id=174975
-rarity=R
-[/card]
-[card]
-primitive=Naturalize
-id=174890
-rarity=C
-[/card]
-[card]
-primitive=Naya Battlemage
-id=174944
-rarity=U
-[/card]
-[card]
 primitive=Naya Charm
 id=137905
 rarity=U
 [/card]
 [card]
-primitive=Naya Panorama
-id=179423
-rarity=C
-[/card]
-[card]
 primitive=Necrogenesis
 id=175023
 rarity=U
+[/card]
+[card]
+primitive=Prince of Thralls
+id=175106
+rarity=M
+[/card]
+[card]
+primitive=Punish Ignorance
+id=176450
+rarity=R
+[/card]
+[card]
+primitive=Qasali Ambusher
+id=174869
+rarity=U
+[/card]
+[card]
+primitive=Rafiq of the Many
+id=174948
+rarity=M
+[/card]
+[card]
+primitive=Rakeclaw Gargantuan
+id=175253
+rarity=C
+[/card]
+[card]
+primitive=Realm Razer
+id=179422
+rarity=R
+[/card]
+[card]
+primitive=Rhox War Monk
+id=174957
+rarity=U
+[/card]
+[card]
+primitive=Rip-Clan Crasher
+id=177600
+rarity=C
+[/card]
+[card]
+primitive=Sangrite Surge
+id=176438
+rarity=U
+[/card]
+[card]
+primitive=Sarkhan Vol
+id=174983
+rarity=M
+[/card]
+[card]
+primitive=Sedraxis Specter
+id=174838
+rarity=R
+[/card]
+[card]
+primitive=Sedris, the Traitor King
+id=175111
+rarity=M
+[/card]
+[card]
+primitive=Sharuum the Hegemon
+id=175127
+rarity=M
+[/card]
+[card]
+primitive=Sigil Blessing
+id=177597
+rarity=C
+[/card]
+[card]
+primitive=Sphinx Sovereign
+id=175107
+rarity=M
+[/card]
+[card]
+primitive=Sprouting Thrinax
+id=174863
+rarity=U
+[/card]
+[card]
+primitive=Steward of Valeron
+id=175134
+rarity=C
+[/card]
+[card]
+primitive=Stoic Angel
+id=175396
+rarity=R
+[/card]
+[card]
+primitive=Swerve
+id=175010
+rarity=U
+[/card]
+[card]
+primitive=Thoughtcutter Agent
+id=177601
+rarity=U
+[/card]
+[card]
+primitive=Tidehollow Sculler
+id=175054
+rarity=U
+[/card]
+[card]
+primitive=Tidehollow Strix
+id=175015
+rarity=C
+[/card]
+[card]
+primitive=Titanic Ultimatum
+id=174839
+rarity=R
+[/card]
+[card]
+primitive=Tower Gargoyle
+id=174924
+rarity=U
+[/card]
+[card]
+primitive=Violent Ultimatum
+id=175135
+rarity=R
+[/card]
+[card]
+primitive=Waveskimmer Aven
+id=174955
+rarity=C
+[/card]
+[card]
+primitive=Windwright Mage
+id=175014
+rarity=C
+[/card]
+[card]
+primitive=Woolly Thoctar
+id=175062
+rarity=U
+[/card]
+[card]
+primitive=Lich's Mirror
+id=174818
+rarity=M
+[/card]
+[card]
+primitive=Minion Reflector
+id=174796
+rarity=R
 [/card]
 [card]
 primitive=Obelisk of Bant
@@ -752,24 +1087,69 @@ id=175061
 rarity=C
 [/card]
 [card]
-primitive=Oblivion Ring
-id=174909
-rarity=C
-[/card]
-[card]
-primitive=Onyx Goblet
-id=174831
-rarity=C
-[/card]
-[card]
-primitive=Ooze Garden
-id=174886
+primitive=Quietus Spike
+id=185774
 rarity=R
 [/card]
 [card]
-primitive=Outrider of Jhess
-id=175252
+primitive=Relic of Progenitus
+id=174824
 rarity=C
+[/card]
+[card]
+primitive=Sigil of Distinction
+id=174867
+rarity=R
+[/card]
+[card]
+primitive=Arcane Sanctum
+id=175128
+rarity=U
+[/card]
+[card]
+primitive=Bant Panorama
+id=174842
+rarity=C
+[/card]
+[card]
+primitive=Crumbling Necropolis
+id=175112
+rarity=U
+[/card]
+[card]
+primitive=Esper Panorama
+id=179431
+rarity=C
+[/card]
+[card]
+primitive=Grixis Panorama
+id=179433
+rarity=C
+[/card]
+[card]
+primitive=Jund Panorama
+id=179425
+rarity=C
+[/card]
+[card]
+primitive=Jungle Shrine
+id=175060
+rarity=U
+[/card]
+[card]
+primitive=Naya Panorama
+id=179423
+rarity=C
+[/card]
+[card]
+primitive=Savage Lands
+id=174877
+rarity=U
+[/card]
+[card]
+primitive=Seaside Citadel
+id=174950
+rarity=U
 [/card]
 [card]
 primitive=Plains
@@ -792,318 +1172,23 @@ id=175032
 rarity=L
 [/card]
 [card]
-primitive=Predator Dragon
-id=174968
-rarity=R
-[/card]
-[card]
-primitive=Prince of Thralls
-id=175106
-rarity=M
-[/card]
-[card]
-primitive=Protomatter Powder
-id=174833
-rarity=U
-[/card]
-[card]
-primitive=Punish Ignorance
-id=176450
-rarity=R
-[/card]
-[card]
-primitive=Puppet Conjurer
-id=175012
-rarity=U
-[/card]
-[card]
-primitive=Qasali Ambusher
-id=174869
-rarity=U
-[/card]
-[card]
-primitive=Quietus Spike
-id=185774
-rarity=R
-[/card]
-[card]
-primitive=Rafiq of the Many
-id=174948
-rarity=M
-[/card]
-[card]
-primitive=Rakeclaw Gargantuan
-id=175253
-rarity=C
-[/card]
-[card]
-primitive=Ranger of Eos
-id=174823
-rarity=R
-[/card]
-[card]
-primitive=Realm Razer
-id=179422
-rarity=R
-[/card]
-[card]
-primitive=Relic of Progenitus
-id=174824
-rarity=C
-[/card]
-[card]
-primitive=Resounding Roar
-id=174901
-rarity=C
-[/card]
-[card]
-primitive=Resounding Scream
-id=176444
-rarity=C
-[/card]
-[card]
-primitive=Resounding Silence
-id=174985
-rarity=C
-[/card]
-[card]
-primitive=Resounding Thunder
-id=175043
-rarity=C
-[/card]
-[card]
-primitive=Resounding Wave
-id=175098
-rarity=C
-[/card]
-[card]
-primitive=Rhox Charger
-id=174959
-rarity=U
-[/card]
-[card]
-primitive=Rhox War Monk
-id=174957
-rarity=U
-[/card]
-[card]
-primitive=Ridge Rannet
-id=175257
-rarity=C
-[/card]
-[card]
-primitive=Rip-Clan Crasher
-id=177600
-rarity=C
-[/card]
-[card]
-primitive=Rockcaster Platoon
-id=175024
-rarity=U
-[/card]
-[card]
-primitive=Rockslide Elemental
-id=174988
-rarity=U
-[/card]
-[card]
-primitive=Sacellum Godspeaker
-id=174828
-rarity=R
-[/card]
-[card]
-primitive=Salvage Titan
-id=174900
-rarity=R
-[/card]
-[card]
-primitive=Sanctum Gargoyle
-id=174925
-rarity=C
-[/card]
-[card]
-primitive=Sangrite Surge
-id=176438
-rarity=U
-[/card]
-[card]
-primitive=Sarkhan Vol
-id=174983
-rarity=M
-[/card]
-[card]
-primitive=Savage Hunger
-id=174941
-rarity=C
-[/card]
-[card]
-primitive=Savage Lands
-id=174877
-rarity=U
-[/card]
-[card]
-primitive=Scavenger Drake
-id=174987
-rarity=U
-[/card]
-[card]
-primitive=Scourge Devil
-id=174845
-rarity=U
-[/card]
-[card]
-primitive=Scourglass
-id=174853
-rarity=R
-[/card]
-[card]
-primitive=Seaside Citadel
-id=174950
-rarity=U
-[/card]
-[card]
-primitive=Sedraxis Specter
-id=174838
-rarity=R
-[/card]
-[card]
-primitive=Sedris, the Traitor King
-id=175111
-rarity=M
-[/card]
-[card]
-primitive=Shadowfeed
-id=177473
-rarity=C
-[/card]
-[card]
-primitive=Sharding Sphinx
-id=174881
-rarity=R
-[/card]
-[card]
-primitive=Sharuum the Hegemon
-id=175127
-rarity=M
-[/card]
-[card]
-primitive=Shore Snapper
-id=175390
-rarity=C
-[/card]
-[card]
-primitive=Sighted-Caste Sorcerer
-id=174956
-rarity=C
-[/card]
-[card]
-primitive=Sigil Blessing
-id=177597
-rarity=C
-[/card]
-[card]
-primitive=Sigil of Distinction
-id=174867
-rarity=R
-[/card]
-[card]
-primitive=Sigiled Paladin
-id=174958
-rarity=U
-[/card]
-[card]
-primitive=Skeletal Kathari
-id=175119
-rarity=C
-[/card]
-[card]
-primitive=Skeletonize
-id=175070
-rarity=U
-[/card]
-[card]
-primitive=Skeleton Token
-id=-175070
-rarity=T
-[/card]
-[card]
-primitive=Skill Borrower
-id=179428
-rarity=R
-[/card]
-[card]
-primitive=Skullmulcher
-id=176436
-rarity=R
-[/card]
-[card]
-primitive=Soul's Fire
-id=174951
-rarity=C
-[/card]
-[card]
-primitive=Soul's Grace
-id=174813
-rarity=C
-[/card]
-[card]
-primitive=Soul's Might
-id=174808
-rarity=C
-[/card]
-[card]
-primitive=Spearbreaker Behemoth
-id=174916
-rarity=R
-[/card]
-[card]
-primitive=Spell Snip
-id=175038
-rarity=C
-[/card]
-[card]
-primitive=Sphinx Sovereign
-id=175107
-rarity=M
-[/card]
-[card]
-primitive=Sphinx's Herald
-id=175242
-rarity=U
-[/card]
-[card]
-primitive=Sprouting Thrinax
-id=174863
-rarity=U
-[/card]
-[card]
-primitive=Steelclad Serpent
-id=175009
-rarity=C
-[/card]
-[card]
-primitive=Steward of Valeron
-id=175134
-rarity=C
-[/card]
-[card]
-primitive=Stoic Angel
-id=175396
-rarity=R
-[/card]
-[card]
-primitive=Sunseed Nurturer
-id=175122
-rarity=U
-[/card]
-[card]
-primitive=Swamp
-id=175088
+primitive=Island
+id=174977
 rarity=L
 [/card]
 [card]
-primitive=Swamp
-id=175089
+primitive=Island
+id=174978
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=174980
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=174979
 rarity=L
 [/card]
 [card]
@@ -1113,146 +1198,56 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
+id=175089
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=175088
+rarity=L
+[/card]
+[card]
+primitive=Swamp
 id=175091
 rarity=L
 [/card]
 [card]
-primitive=Swerve
-id=175010
-rarity=U
+primitive=Mountain
+id=175019
+rarity=L
 [/card]
 [card]
-primitive=Tar Fiend
-id=175101
-rarity=R
+primitive=Mountain
+id=175018
+rarity=L
 [/card]
 [card]
-primitive=Tezzeret the Seeker
-id=174912
-rarity=M
+primitive=Mountain
+id=175017
+rarity=L
 [/card]
 [card]
-primitive=Thorn-Thrash Viashino
-id=175064
-rarity=C
+primitive=Mountain
+id=175020
+rarity=L
 [/card]
 [card]
-primitive=Thoughtcutter Agent
-id=177601
-rarity=U
+primitive=Forest
+id=174927
+rarity=L
 [/card]
 [card]
-primitive=Thunder-Thrash Elder
-id=174870
-rarity=U
+primitive=Forest
+id=174929
+rarity=L
 [/card]
 [card]
-primitive=Tidehollow Sculler
-id=175054
-rarity=U
+primitive=Forest
+id=174928
+rarity=L
 [/card]
 [card]
-primitive=Tidehollow Strix
-id=175015
-rarity=C
-[/card]
-[card]
-primitive=Titanic Ultimatum
-id=174839
-rarity=R
-[/card]
-[card]
-primitive=Topan Ascetic
-id=174999
-rarity=U
-[/card]
-[card]
-primitive=Tortoise Formation
-id=179432
-rarity=C
-[/card]
-[card]
-primitive=Tower Gargoyle
-id=174924
-rarity=U
-[/card]
-[card]
-primitive=Undead Leotau
-id=176452
-rarity=C
-[/card]
-[card]
-primitive=Vectis Silencers
-id=175147
-rarity=C
-[/card]
-[card]
-primitive=Vein Drinker
-id=175004
-rarity=R
-[/card]
-[card]
-primitive=Viashino Skeleton
-id=175097
-rarity=C
-[/card]
-[card]
-primitive=Vicious Shadows
-id=175048
-rarity=R
-[/card]
-[card]
-primitive=Violent Ultimatum
-id=175135
-rarity=R
-[/card]
-[card]
-primitive=Viscera Dragger
-id=175144
-rarity=C
-[/card]
-[card]
-primitive=Vithian Stinger
-id=174922
-rarity=C
-[/card]
-[card]
-primitive=Volcanic Submersion
-id=174889
-rarity=C
-[/card]
-[card]
-primitive=Waveskimmer Aven
-id=174955
-rarity=C
-[/card]
-[card]
-primitive=Welkin Guide
-id=178096
-rarity=C
-[/card]
-[card]
-primitive=Where Ancients Tread
-id=175115
-rarity=R
-[/card]
-[card]
-primitive=Wild Nacatl
-id=174989
-rarity=C
-[/card]
-[card]
-primitive=Windwright Mage
-id=175014
-rarity=C
-[/card]
-[card]
-primitive=Woolly Thoctar
-id=175062
-rarity=U
-[/card]
-[card]
-primitive=Yoked Plowbeast
-id=175078
-rarity=C
+primitive=Forest
+id=174930
+rarity=L
 [/card]

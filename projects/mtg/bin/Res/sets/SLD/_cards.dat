@@ -1,182 +1,662 @@
 [meta]
 author=Wagic Team
-name=Secret Lair Drop Series
+name=Secret Lair Drop
 orderindex=PRE-5.SLD
 year=2019-12-02
-total=35
+total=1618
 [/meta]
 [card]
-primitive=Cat
-id=-19472
-rarity=T
-[/card]
-[card]
-primitive=Cat
-id=-19471
-rarity=T
-[/card]
-[card]
-primitive=Rogue
-id=-19461
-rarity=T
-[/card]
-[card]
 primitive=Snow-Covered Plains
-id=19450
-rarity=L
+id=479369
+rarity=R
 [/card]
 [card]
 primitive=Snow-Covered Island
-id=19451
-rarity=L
+id=479370
+rarity=R
 [/card]
 [card]
 primitive=Snow-Covered Swamp
-id=19452
-rarity=L
+id=479371
+rarity=R
 [/card]
 [card]
 primitive=Snow-Covered Mountain
-id=19453
-rarity=L
+id=479372
+rarity=R
 [/card]
 [card]
 primitive=Snow-Covered Forest
-id=19454
-rarity=L
+id=479373
+rarity=R
 [/card]
 [card]
 primitive=Bloodghast
-id=19455
+id=479379
 rarity=R
 [/card]
 [card]
 primitive=Golgari Thug
-id=19456
+id=479380
 rarity=R
 [/card]
 [card]
 primitive=Life from the Loam
-id=19457
+id=479381
 rarity=R
 [/card]
 [card]
 primitive=Reaper King
-id=19458
+id=479382
 rarity=M
 [/card]
 [card]
 primitive=Sliver Overlord
-id=19459
+id=479383
 rarity=M
 [/card]
 [card]
 primitive=The Ur-Dragon
-id=19460
+id=479384
 rarity=M
 [/card]
 [card]
 primitive=Bitterblossom
-id=19461
+id=479392
 rarity=M
 [/card]
 [card]
-primitive=Faerie Rogue
-id=19462
-rarity=T
-[/card]
-[card]
-primitive=Faerie Rogue
-id=19463
-rarity=T
-[/card]
-[card]
-primitive=Faerie Rogue
-id=19464
-rarity=T
-[/card]
-[card]
-primitive=Faerie Rogue
-id=19465
-rarity=T
-[/card]
-[card]
 primitive=Goblin Bushwhacker
-id=19466
+id=479374
 rarity=R
 [/card]
 [card]
 primitive=Goblin Sharpshooter
-id=19467
+id=479375
 rarity=R
 [/card]
 [card]
 primitive=Goblin King
-id=19468
+id=479376
 rarity=R
 [/card]
 [card]
 primitive=Goblin Lackey
-id=19469
+id=479377
 rarity=R
 [/card]
 [card]
 primitive=Goblin Piledriver
-id=19470
+id=479378
 rarity=R
 [/card]
 [card]
 primitive=Leonin Warleader
-id=19471
+id=479385
 rarity=R
 [/card]
 [card]
 primitive=Regal Caracal
-id=19472
+id=479386
 rarity=R
 [/card]
 [card]
 primitive=Qasali Slingers
-id=19473
+id=479387
 rarity=R
 [/card]
 [card]
 primitive=Arahbo, Roar of the World
-id=19474
+id=479388
 rarity=M
 [/card]
 [card]
 primitive=Mirri, Weatherlight Duelist
-id=19475
+id=479389
 rarity=M
 [/card]
 [card]
-primitive=Cat
-id=19476
-rarity=T
-[/card]
-[card]
-primitive=Cat
-id=19477
-rarity=T
-[/card]
-[card]
 primitive=Serum Visions
-id=19478
+id=479397
 rarity=R
 [/card]
 [card]
 primitive=Serum Visions
-id=19479
+id=479398
 rarity=R
 [/card]
 [card]
 primitive=Serum Visions
-id=19480
+id=479399
 rarity=R
 [/card]
 [card]
 primitive=Serum Visions
-id=19481
+id=479400
 rarity=R
+[/card]
+[card]
+primitive=Ink-Eyes, Servant of Oni
+id=479365
+rarity=R
+[/card]
+[card]
+primitive=Marrow-Gnawer
+id=479366
+rarity=R
+[/card]
+[card]
+primitive=Pack Rat
+id=479367
+rarity=R
+[/card]
+[card]
+primitive=Rat Colony
+id=479368
+rarity=R
+[/card]
+[card]
+primitive=Thalia, Guardian of Thraben
+id=479517
+rarity=R
+[/card]
+[card]
+primitive=Thalia, Guardian of Thraben
+id=479518
+rarity=R
+[/card]
+[card]
+primitive=Thalia, Guardian of Thraben
+id=479519
+rarity=R
+[/card]
+[card]
+primitive=Thalia, Guardian of Thraben
+id=479520
+rarity=R
+[/card]
+[card]
+primitive=Spell Pierce
+id=485319
+rarity=R
+[/card]
+[card]
+primitive=Blood Artist
+id=485320
+rarity=R
+[/card]
+[card]
+primitive=Eternal Witness
+id=485321
+rarity=R
+[/card]
+[card]
+primitive=Pithing Needle
+id=485322
+rarity=R
+[/card]
+[card]
+primitive=Inkmoth Nexus
+id=485323
+rarity=R
+[/card]
+[card]
+primitive=Captain Sisay
+id=479512
+rarity=M
+[/card]
+[card]
+primitive=Meren of Clan Nel Toth
+id=479513
+rarity=M
+[/card]
+[card]
+primitive=Narset, Enlightened Master
+id=479514
+rarity=M
+[/card]
+[card]
+primitive=Oona, Queen of the Fae
+id=479515
+rarity=M
+[/card]
+[card]
+primitive=Saskia the Unyielding
+id=479516
+rarity=M
+[/card]
+[card]
+primitive=Arcbound Ravager
+id=485303
+rarity=R
+[/card]
+[card]
+primitive=Darksteel Colossus
+id=485304
+rarity=M
+[/card]
+[card]
+primitive=Walking Ballista
+id=485305
+rarity=R
+[/card]
+[card]
+primitive=Plains
+id=485276
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=485277
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=485278
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=485279
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=485280
+rarity=L
+[/card]
+[card]
+primitive=Heliod, God of the Sun
+id=479497
+rarity=M
+[/card]
+[card]
+primitive=Karametra, God of Harvests
+id=479498
+rarity=M
+[/card]
+[card]
+primitive=Iroas, God of Victory
+id=479499
+rarity=M
+[/card]
+[card]
+primitive=Thassa, God of the Sea
+id=479500
+rarity=M
+[/card]
+[card]
+primitive=Ephara, God of the Polis
+id=479501
+rarity=M
+[/card]
+[card]
+primitive=Kruphix, God of Horizons
+id=479502
+rarity=M
+[/card]
+[card]
+primitive=Erebos, God of the Dead
+id=479503
+rarity=M
+[/card]
+[card]
+primitive=Phenax, God of Deception
+id=479504
+rarity=M
+[/card]
+[card]
+primitive=Athreos, God of Passage
+id=479505
+rarity=M
+[/card]
+[card]
+primitive=Purphoros, God of the Forge
+id=479506
+rarity=M
+[/card]
+[card]
+primitive=Mogis, God of Slaughter
+id=479507
+rarity=M
+[/card]
+[card]
+primitive=Keranos, God of Storms
+id=479508
+rarity=M
+[/card]
+[card]
+primitive=Nylea, God of the Hunt
+id=479509
+rarity=M
+[/card]
+[card]
+primitive=Xenagos, God of Revels
+id=479510
+rarity=M
+[/card]
+[card]
+primitive=Pharika, God of Affliction
+id=479511
+rarity=M
+[/card]
+[card]
+primitive=Lightning Bolt
+id=485315
+rarity=R
+[/card]
+[card]
+primitive=Lightning Bolt
+id=485316
+rarity=R
+[/card]
+[card]
+primitive=Lightning Bolt
+id=485317
+rarity=R
+[/card]
+[card]
+primitive=Lightning Bolt
+id=485318
+rarity=R
+[/card]
+[card]
+primitive=Ajani Steadfast
+id=485311
+rarity=M
+[/card]
+[card]
+primitive=Domri Rade
+id=485312
+rarity=M
+[/card]
+[card]
+primitive=Tamiyo, Field Researcher
+id=485313
+rarity=M
+[/card]
+[card]
+primitive=Vraska, Golgari Queen
+id=485314
+rarity=M
+[/card]
+[card]
+primitive=Swan Song
+id=485306
+rarity=R
+[/card]
+[card]
+primitive=Birds of Paradise
+id=485307
+rarity=R
+[/card]
+[card]
+primitive=Gilded Goose
+id=485308
+rarity=R
+[/card]
+[card]
+primitive=Baleful Strix
+id=485309
+rarity=R
+[/card]
+[card]
+primitive=Dovescape
+id=485310
+rarity=R
+[/card]
+[card]
+primitive=Rest in Peace
+id=497501
+rarity=R
+[/card]
+[card]
+primitive=Dig Through Time
+id=497502
+rarity=R
+[/card]
+[card]
+primitive=Ancient Grudge
+id=497503
+rarity=R
+[/card]
+[card]
+primitive=Lightning Greaves
+id=497504
+rarity=R
+[/card]
+[card]
+primitive=Swords to Plowshares
+id=497491
+rarity=R
+[/card]
+[card]
+primitive=Opt
+id=497492
+rarity=R
+[/card]
+[card]
+primitive=Fatal Push
+id=497493
+rarity=R
+[/card]
+[card]
+primitive=Anger of the Gods
+id=497494
+rarity=R
+[/card]
+[card]
+primitive=Explore
+id=497495
+rarity=R
+[/card]
+[card]
+primitive=Glen Elendra Archmage
+id=509348
+rarity=R
+[/card]
+[card]
+primitive=Mistbind Clique
+id=509349
+rarity=R
+[/card]
+[card]
+primitive=Spellstutter Sprite
+id=509350
+rarity=R
+[/card]
+[card]
+primitive=Vendilion Clique
+id=509351
+rarity=M
+[/card]
+[card]
+primitive=Necrotic Ooze
+id=497496
+rarity=R
+[/card]
+[card]
+primitive=Acidic Slime
+id=497497
+rarity=R
+[/card]
+[card]
+primitive=Scavenging Ooze
+id=497498
+rarity=R
+[/card]
+[card]
+primitive=The Mimeoplasm
+id=497499
+rarity=M
+[/card]
+[card]
+primitive=Voidslime
+id=497500
+rarity=R
+[/card]
+[card]
+primitive=Greymond, Avacyn's Stalwart
+id=497505
+rarity=M
+[/card]
+[card]
+primitive=Hansk, Slayer Zealot
+id=497506
+rarity=M
+[/card]
+[card]
+primitive=Gregor, Shrewd Magistrate
+id=497507
+rarity=M
+[/card]
+[card]
+primitive=Enkira, Hostile Scavenger
+id=497508
+rarity=M
+[/card]
+[card]
+primitive=Malik, Grim Manipulator
+id=497509
+rarity=M
+[/card]
+[card]
+primitive=Teferi's Protection
+id=497517
+rarity=R
+[/card]
+[card]
+primitive=Consecrated Sphinx
+id=497518
+rarity=M
+[/card]
+[card]
+primitive=Collected Company
+id=497519
+rarity=R
+[/card]
+[card]
+primitive=Amulet of Vigor
+id=497520
+rarity=R
+[/card]
+[card]
+primitive=Heliod, Sun-Crowned
+id=509360
+rarity=M
+[/card]
+[card]
+primitive=Goblin Rabblemaster
+id=509361
+rarity=R
+[/card]
+[card]
+primitive=Monastery Swiftspear
+id=509362
+rarity=R
+[/card]
+[card]
+primitive=Boros Charm
+id=509363
+rarity=R
+[/card]
+[card]
+primitive=Gisela, Blade of Goldnight
+id=509364
+rarity=M
+[/card]
+[card]
+primitive=Frost Titan
+id=509345
+rarity=M
+[/card]
+[card]
+primitive=Primeval Titan
+id=509346
+rarity=M
+[/card]
+[card]
+primitive=Uro, Titan of Nature's Wrath
+id=509347
+rarity=M
+[/card]
+[card]
+primitive=Grave Titan
+id=509352
+rarity=M
+[/card]
+[card]
+primitive=Inferno Titan
+id=509353
+rarity=M
+[/card]
+[card]
+primitive=Kroxa, Titan of Death's Hunger
+id=509354
+rarity=M
+[/card]
+[card]
+primitive=Plains
+id=509355
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=509356
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=509357
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=509358
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=509359
+rarity=L
+[/card]
+[card]
+primitive=Shalai, Voice of Plenty
+id=513470
+rarity=R
+[/card]
+[card]
+primitive=Ponder
+id=513471
+rarity=R
+[/card]
+[card]
+primitive=Cultivate
+id=513472
+rarity=R
+[/card]
+[card]
+primitive=Kaya, Ghost Assassin
+id=513473
+rarity=M
+[/card]
+[card]
+primitive=Teferi, Hero of Dominaria
+id=513474
+rarity=M
+[/card]
+[card]
+primitive=Sol Ring
+id=513475
+rarity=R
+[/card]
+[card]
+primitive=Path of Ancestry
+id=513476
+rarity=R
+[/card]
+[card]
+primitive=Gisa's Favorite Shovel
+id=497516
+rarity=M
 [/card]

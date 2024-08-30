@@ -3,13 +3,8 @@ author=Wagic Team
 name=Antiquities
 orderindex=EXP-2.ATQ
 year=1994-03-04
-total=100
+total=102
 [/meta]
-[card]
-primitive=Amulet of Kroog
-id=992
-rarity=C
-[/card]
 [card]
 primitive=Argivian Archaeologist
 id=1064
@@ -19,6 +14,136 @@ rarity=R
 primitive=Argivian Blacksmith
 id=1065
 rarity=C
+[/card]
+[card]
+primitive=Artifact Ward
+id=1066
+rarity=C
+[/card]
+[card]
+primitive=Circle of Protection: Artifacts
+id=1067
+rarity=U
+[/card]
+[card]
+primitive=Damping Field
+id=1068
+rarity=U
+[/card]
+[card]
+primitive=Martyrs of Korlis
+id=1069
+rarity=U
+[/card]
+[card]
+primitive=Reverse Polarity
+id=1070
+rarity=C
+[/card]
+[card]
+primitive=Drafna's Restoration
+id=1037
+rarity=C
+[/card]
+[card]
+primitive=Energy Flux
+id=1038
+rarity=U
+[/card]
+[card]
+primitive=Hurkyl's Recall
+id=1041
+rarity=R
+[/card]
+[card]
+primitive=Power Artifact
+id=1043
+rarity=U
+[/card]
+[card]
+primitive=Reconstruction
+id=1045
+rarity=C
+[/card]
+[card]
+primitive=Sage of Lat-Nam
+id=1046
+rarity=C
+[/card]
+[card]
+primitive=Transmute Artifact
+id=1047
+rarity=U
+[/card]
+[card]
+primitive=Artifact Possession
+id=1036
+rarity=C
+[/card]
+[card]
+primitive=Gate to Phyrexia
+id=1039
+rarity=U
+[/card]
+[card]
+primitive=Haunting Wind
+id=1040
+rarity=U
+[/card]
+[card]
+primitive=Phyrexian Gremlins
+id=1042
+rarity=C
+[/card]
+[card]
+primitive=Priest of Yawgmoth
+id=1044
+rarity=C
+[/card]
+[card]
+primitive=Xenic Poltergeist
+id=1048
+rarity=U
+[/card]
+[card]
+primitive=Yawgmoth Demon
+id=1049
+rarity=R
+[/card]
+[card]
+primitive=Artifact Blast
+id=1057
+rarity=C
+[/card]
+[card]
+primitive=Atog
+id=1058
+rarity=C
+[/card]
+[card]
+primitive=Detonate
+id=1059
+rarity=U
+[/card]
+[card]
+primitive=Dwarven Weaponsmith
+id=1060
+rarity=U
+[/card]
+[card]
+primitive=Goblin Artisans
+id=1061
+rarity=U
+[/card]
+[card]
+primitive=Orcish Mechanics
+id=1062
+rarity=C
+[/card]
+[card]
+primitive=Shatterstorm
+id=1063
+rarity=R
 [/card]
 [card]
 primitive=Argothian Pixies
@@ -31,24 +156,39 @@ id=1051
 rarity=C
 [/card]
 [card]
-primitive=Armageddon Clock
-id=993
+primitive=Citanul Druid
+id=1052
 rarity=U
 [/card]
 [card]
-primitive=Artifact Blast
-id=1057
+primitive=Crumble
+id=1053
 rarity=C
 [/card]
 [card]
-primitive=Artifact Possession
-id=1036
+primitive=Gaea's Avenger
+id=1054
+rarity=R
+[/card]
+[card]
+primitive=Powerleech
+id=1055
+rarity=U
+[/card]
+[card]
+primitive=Titania's Song
+id=1056
+rarity=U
+[/card]
+[card]
+primitive=Amulet of Kroog
+id=992
 rarity=C
 [/card]
 [card]
-primitive=Artifact Ward
-id=1066
-rarity=C
+primitive=Armageddon Clock
+id=993
+rarity=U
 [/card]
 [card]
 primitive=Ashnod's Altar
@@ -66,11 +206,6 @@ id=996
 rarity=U
 [/card]
 [card]
-primitive=Atog
-id=1058
-rarity=C
-[/card]
-[card]
 primitive=Battering Ram
 id=997
 rarity=C
@@ -84,16 +219,6 @@ rarity=R
 primitive=Candelabra of Tawnos
 id=999
 rarity=R
-[/card]
-[card]
-primitive=Circle of Protection: Artifacts
-id=1067
-rarity=U
-[/card]
-[card]
-primitive=Citanul Druid
-id=1052
-rarity=U
 [/card]
 [card]
 primitive=Clay Statue
@@ -116,29 +241,9 @@ id=1003
 rarity=R
 [/card]
 [card]
-primitive=Crumble
-id=1053
-rarity=C
-[/card]
-[card]
 primitive=Cursed Rack
 id=1004
 rarity=U
-[/card]
-[card]
-primitive=Damping Field
-id=1068
-rarity=U
-[/card]
-[card]
-primitive=Detonate
-id=1059
-rarity=U
-[/card]
-[card]
-primitive=Drafna's Restoration
-id=1037
-rarity=C
 [/card]
 [card]
 primitive=Dragon Engine
@@ -146,33 +251,8 @@ id=1005
 rarity=C
 [/card]
 [card]
-primitive=Dwarven Weaponsmith
-id=1060
-rarity=U
-[/card]
-[card]
-primitive=Energy Flux
-id=1038
-rarity=U
-[/card]
-[card]
 primitive=Feldon's Cane
 id=1006
-rarity=U
-[/card]
-[card]
-primitive=Gaea's Avenger
-id=1054
-rarity=R
-[/card]
-[card]
-primitive=Gate to Phyrexia
-id=1039
-rarity=U
-[/card]
-[card]
-primitive=Goblin Artisans
-id=1061
 rarity=U
 [/card]
 [card]
@@ -186,16 +266,6 @@ id=1008
 rarity=C
 [/card]
 [card]
-primitive=Haunting Wind
-id=1040
-rarity=U
-[/card]
-[card]
-primitive=Hurkyl's Recall
-id=1041
-rarity=R
-[/card]
-[card]
 primitive=Ivory Tower
 id=1009
 rarity=U
@@ -203,11 +273,6 @@ rarity=U
 [card]
 primitive=Jalum Tome
 id=1010
-rarity=U
-[/card]
-[card]
-primitive=Martyrs of Korlis
-id=1069
 rarity=U
 [/card]
 [card]
@@ -221,33 +286,8 @@ id=1012
 rarity=U
 [/card]
 [card]
-primitive=Mishra's Factory
-id=1071
-rarity=R
-[/card]
-[card]
-primitive=Mishra's Factory
-id=1072
-rarity=R
-[/card]
-[card]
-primitive=Mishra's Factory
-id=1073
-rarity=R
-[/card]
-[card]
-primitive=Mishra's Factory
-id=1074
-rarity=U
-[/card]
-[card]
 primitive=Mishra's War Machine
 id=1013
-rarity=R
-[/card]
-[card]
-primitive=Mishra's Workshop
-id=1075
 rarity=R
 [/card]
 [card]
@@ -261,33 +301,8 @@ id=1015
 rarity=U
 [/card]
 [card]
-primitive=Orcish Mechanics
-id=1062
-rarity=C
-[/card]
-[card]
 primitive=Ornithopter
 id=1016
-rarity=C
-[/card]
-[card]
-primitive=Phyrexian Gremlins
-id=1042
-rarity=C
-[/card]
-[card]
-primitive=Power Artifact
-id=1043
-rarity=U
-[/card]
-[card]
-primitive=Powerleech
-id=1055
-rarity=U
-[/card]
-[card]
-primitive=Priest of Yawgmoth
-id=1044
 rarity=C
 [/card]
 [card]
@@ -301,24 +316,9 @@ id=1018
 rarity=U
 [/card]
 [card]
-primitive=Reconstruction
-id=1045
-rarity=C
-[/card]
-[card]
-primitive=Reverse Polarity
-id=1070
-rarity=C
-[/card]
-[card]
 primitive=Rocket Launcher
 id=1019
 rarity=U
-[/card]
-[card]
-primitive=Sage of Lat-Nam
-id=1046
-rarity=C
 [/card]
 [card]
 primitive=Shapeshifter
@@ -326,34 +326,9 @@ id=1020
 rarity=R
 [/card]
 [card]
-primitive=Shatterstorm
-id=1063
-rarity=R
-[/card]
-[card]
 primitive=Staff of Zegon
 id=1021
 rarity=C
-[/card]
-[card]
-primitive=Strip Mine
-id=1076
-rarity=R
-[/card]
-[card]
-primitive=Strip Mine
-id=1077
-rarity=R
-[/card]
-[card]
-primitive=Strip Mine
-id=1078
-rarity=R
-[/card]
-[card]
-primitive=Strip Mine
-id=1079
-rarity=U
 [/card]
 [card]
 primitive=Su-Chi
@@ -391,16 +366,6 @@ id=1028
 rarity=U
 [/card]
 [card]
-primitive=Titania's Song
-id=1056
-rarity=U
-[/card]
-[card]
-primitive=Transmute Artifact
-id=1047
-rarity=U
-[/card]
-[card]
 primitive=Triskelion
 id=1029
 rarity=R
@@ -416,13 +381,78 @@ id=1031
 rarity=C
 [/card]
 [card]
-primitive=Urza's Mine
-id=1080
+primitive=Urza's Miter
+id=1032
+rarity=R
+[/card]
+[card]
+primitive=Wall of Spears
+id=1033
+rarity=U
+[/card]
+[card]
+primitive=Weakstone
+id=1034
+rarity=U
+[/card]
+[card]
+primitive=Yotian Soldier
+id=1035
 rarity=C
+[/card]
+[card]
+primitive=Mishra's Factory
+id=1072
+rarity=U
+[/card]
+[card]
+primitive=Mishra's Factory
+id=1073
+rarity=R
+[/card]
+[card]
+primitive=Mishra's Factory
+id=1071
+rarity=R
+[/card]
+[card]
+primitive=Mishra's Factory
+id=1074
+rarity=R
+[/card]
+[card]
+primitive=Mishra's Workshop
+id=1075
+rarity=R
+[/card]
+[card]
+primitive=Strip Mine
+id=1076
+rarity=U
+[/card]
+[card]
+primitive=Strip Mine
+id=1078
+rarity=R
+[/card]
+[card]
+primitive=Strip Mine
+id=1079
+rarity=R
+[/card]
+[card]
+primitive=Strip Mine
+id=1077
+rarity=R
 [/card]
 [card]
 primitive=Urza's Mine
 id=1081
+rarity=U
+[/card]
+[card]
+primitive=Urza's Mine
+id=1083
 rarity=U
 [/card]
 [card]
@@ -432,13 +462,13 @@ rarity=C
 [/card]
 [card]
 primitive=Urza's Mine
-id=1083
-rarity=U
+id=1080
+rarity=C
 [/card]
 [card]
-primitive=Urza's Miter
-id=1032
-rarity=R
+primitive=Urza's Power Plant
+id=1087
+rarity=C
 [/card]
 [card]
 primitive=Urza's Power Plant
@@ -447,18 +477,18 @@ rarity=U
 [/card]
 [card]
 primitive=Urza's Power Plant
-id=1085
-rarity=C
-[/card]
-[card]
-primitive=Urza's Power Plant
 id=1086
 rarity=C
 [/card]
 [card]
 primitive=Urza's Power Plant
-id=1087
+id=1085
 rarity=U
+[/card]
+[card]
+primitive=Urza's Tower
+id=1090
+rarity=C
 [/card]
 [card]
 primitive=Urza's Tower
@@ -472,36 +502,6 @@ rarity=U
 [/card]
 [card]
 primitive=Urza's Tower
-id=1090
-rarity=C
-[/card]
-[card]
-primitive=Urza's Tower
 id=1091
 rarity=U
-[/card]
-[card]
-primitive=Wall of Spears
-id=1033
-rarity=U
-[/card]
-[card]
-primitive=Weakstone
-id=1034
-rarity=U
-[/card]
-[card]
-primitive=Xenic Poltergeist
-id=1048
-rarity=U
-[/card]
-[card]
-primitive=Yawgmoth Demon
-id=1049
-rarity=R
-[/card]
-[card]
-primitive=Yotian Soldier
-id=1035
-rarity=C
 [/card]

@@ -31,7 +31,7 @@
 #AUTO_DEFINE _POPULATE_ name(Populate) clone notAtarget(creature[token]|myBattlefield)
 
 # Ferocious
-#AUTO_DEFINE _FEROCIOUS_ if type(creature[power>=4]|myBattlefield)~morethan~0 then
+#AUTO_DEFINE _FEROCIOUS_ if type(creature[power>=4]|myBattlefield)~morethan~0 then 
 
 # Attacking
 #AUTO_DEFINE _ATTACKING_ @combat(attacking) source(this):
@@ -52,7 +52,7 @@
 #AUTO_DEFINE _LANDFALL_ @movedTo(land|myBattlefield):
 
 # Addendum
-#AUTO_DEFINE _ADDENDUM_ if compare(restriction{assorcery}~morethan~0) then
+#AUTO_DEFINE _ADDENDUM_ if compare(restriction{assorcery}~morethan~0) then 
 
 # Constellation
 #AUTO_DEFINE _CONSTELLATION_ @movedTo(enchantment|myBattlefield):
@@ -238,6 +238,9 @@
 
 # Enlist. As this creature attacks, you may tap a nonattacking creature you control without summoning sickness. When you do, add its power to this creature's until end of turn
 #AUTO_DEFINE _ENLIST_ @combat(attacking) source(this) restriction{type(creature[-fresh]|mybattlefield)~morethan~0}:transforms((,newability[{T(creature[-attacking;-fresh]|mybattlefield)}:storedpower/0 ueot limit:1])) ueot
+
+# Add one mana of any color.
+#AUTO_DEFINE _MANAOFANYCOLOR_ ability$! choice Add{W} _ choice Add{U} _ choice Add{B} _ choice Add{R} _ choice Add{G} !$ controller
 
 # Angel Token
 #AUTO_DEFINE _ANGELTOKEN_ create(Angel:Creature Angel:4/4:white:flying)

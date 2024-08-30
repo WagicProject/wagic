@@ -7,36 +7,6 @@ year=2009-10-02
 total=269
 [/meta]
 [card]
-primitive=Aether Figment
-id=170993
-rarity=U
-[/card]
-[card]
-primitive=Adventuring Gear
-id=178135
-rarity=C
-[/card]
-[card]
-primitive=Akoum Refuge
-id=189638
-rarity=U
-[/card]
-[card]
-primitive=Archive Trap
-id=197538
-rarity=R
-[/card]
-[card]
-primitive=Archmage Ascension
-id=197893
-rarity=R
-[/card]
-[card]
-primitive=Arid Mesa
-id=177584
-rarity=R
-[/card]
-[card]
 primitive=Armament Master
 id=190420
 rarity=R
@@ -45,71 +15,6 @@ rarity=R
 primitive=Arrow Volley Trap
 id=193404
 rarity=U
-[/card]
-[card]
-primitive=Bala Ged Thief
-id=197402
-rarity=R
-[/card]
-[card]
-primitive=Baloth Cage Trap
-id=197531
-rarity=U
-[/card]
-[card]
-primitive=Baloth Woodcrasher
-id=192231
-rarity=U
-[/card]
-[card]
-primitive=Beast Hunt
-id=185703
-rarity=C
-[/card]
-[card]
-primitive=Beastmaster Ascension
-id=197890
-rarity=R
-[/card]
-[card]
-primitive=Blade of the Bloodchief
-id=193397
-rarity=R
-[/card]
-[card]
-primitive=Bladetusk Boar
-id=180350
-rarity=C
-[/card]
-[card]
-primitive=Blazing Torch
-id=191372
-rarity=U
-[/card]
-[card]
-primitive=Blood Seeker
-id=180362
-rarity=C
-[/card]
-[card]
-primitive=Blood Tribute
-id=170995
-rarity=R
-[/card]
-[card]
-primitive=Bloodchief Ascension
-id=197892
-rarity=R
-[/card]
-[card]
-primitive=Bloodghast
-id=192230
-rarity=R
-[/card]
-[card]
-primitive=Bog Tatters
-id=177500
-rarity=C
 [/card]
 [card]
 primitive=Bold Defense
@@ -122,29 +27,9 @@ id=185734
 rarity=U
 [/card]
 [card]
-primitive=Burst Lightning
-id=177558
-rarity=C
-[/card]
-[card]
-primitive=Caller of Gales
-id=183417
-rarity=C
-[/card]
-[card]
-primitive=Cancel
-id=189001
-rarity=C
-[/card]
-[card]
 primitive=Caravan Hurda
 id=185697
 rarity=C
-[/card]
-[card]
-primitive=Carnage Altar
-id=193406
-rarity=U
 [/card]
 [card]
 primitive=Celestial Mantle
@@ -152,38 +37,13 @@ id=198524
 rarity=R
 [/card]
 [card]
-primitive=Chandra Ablaze
-id=195402
-rarity=M
-[/card]
-[card]
 primitive=Cliff Threader
 id=177546
 rarity=C
 [/card]
 [card]
-primitive=Cobra Trap
-id=197535
-rarity=U
-[/card]
-[card]
 primitive=Conqueror's Pledge
 id=195626
-rarity=R
-[/card]
-[card]
-primitive=Cosi's Trickster
-id=186322
-rarity=R
-[/card]
-[card]
-primitive=Crypt Ripper
-id=178121
-rarity=C
-[/card]
-[card]
-primitive=Crypt of Agadeem
-id=190394
 rarity=R
 [/card]
 [card]
@@ -192,38 +52,8 @@ id=186309
 rarity=R
 [/card]
 [card]
-primitive=Demolish
-id=190406
-rarity=C
-[/card]
-[card]
-primitive=Desecrated Earth
-id=178137
-rarity=C
-[/card]
-[card]
 primitive=Devout Lightcaster
 id=191374
-rarity=R
-[/card]
-[card]
-primitive=Disfigure
-id=180115
-rarity=C
-[/card]
-[card]
-primitive=Eldrazi Monument
-id=193398
-rarity=M
-[/card]
-[card]
-primitive=Electropotence
-id=191373
-rarity=R
-[/card]
-[card]
-primitive=Elemental Appeal
-id=192221
 rarity=R
 [/card]
 [card]
@@ -232,229 +62,9 @@ id=190399
 rarity=R
 [/card]
 [card]
-primitive=Emeria, the Sky Ruin
-id=190414
-rarity=R
-[/card]
-[card]
-primitive=Eternity Vessel
-id=189006
-rarity=M
-[/card]
-[card]
-primitive=Expedition Map
-id=193405
-rarity=C
-[/card]
-[card]
-primitive=Explorer's Scope
-id=190396
-rarity=C
-[/card]
-[card]
-primitive=Feast of Blood
-id=189629
-rarity=U
-[/card]
-[card]
 primitive=Felidar Sovereign
 id=185743
 rarity=M
-[/card]
-[card]
-primitive=Forest
-id=195158
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=195177
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=195183
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=195192
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=201959
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=201960
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=201961
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=201962
-rarity=L
-[/card]
-[card]
-primitive=Frontier Guide
-id=180361
-rarity=U
-[/card]
-[card]
-primitive=Gatekeeper of Malakir
-id=185698
-rarity=U
-[/card]
-[card]
-primitive=Geyser Glider
-id=197887
-rarity=U
-[/card]
-[card]
-primitive=Giant Scorpion
-id=192226
-rarity=C
-[/card]
-[card]
-primitive=Gigantiform
-id=195627
-rarity=R
-[/card]
-[card]
-primitive=Goblin Bushwhacker
-id=177501
-rarity=C
-[/card]
-[card]
-primitive=Goblin Guide
-id=170987
-rarity=R
-[/card]
-[card]
-primitive=Goblin Ruinblaster
-id=180411
-rarity=U
-[/card]
-[card]
-primitive=Goblin Shortcutter
-id=180473
-rarity=C
-[/card]
-[card]
-primitive=Goblin War Paint
-id=185701
-rarity=C
-[/card]
-[card]
-primitive=Gomazoa
-id=198523
-rarity=U
-[/card]
-[card]
-primitive=Grappling Hook
-id=192220
-rarity=R
-[/card]
-[card]
-primitive=Graypelt Refuge
-id=189631
-rarity=U
-[/card]
-[card]
-primitive=Grazing Gladehart
-id=189621
-rarity=C
-[/card]
-[card]
-primitive=Greenweaver Druid
-id=185694
-rarity=U
-[/card]
-[card]
-primitive=Grim Discovery
-id=180127
-rarity=C
-[/card]
-[card]
-primitive=Guul Draz Specter
-id=183418
-rarity=R
-[/card]
-[card]
-primitive=Guul Draz Vampire
-id=180498
-rarity=C
-[/card]
-[card]
-primitive=Hagra Crocodile
-id=170998
-rarity=C
-[/card]
-[card]
-primitive=Hagra Diabolist
-id=197404
-rarity=U
-[/card]
-[card]
-primitive=Halo Hunter
-id=185752
-rarity=R
-[/card]
-[card]
-primitive=Harrow
-id=180408
-rarity=C
-[/card]
-[card]
-primitive=Heartstabber Mosquito
-id=191361
-rarity=C
-[/card]
-[card]
-primitive=Hedron Crab
-id=180348
-rarity=U
-[/card]
-[card]
-primitive=Hedron Scrabbler
-id=193394
-rarity=C
-[/card]
-[card]
-primitive=Hellfire Mongrel
-id=192215
-rarity=U
-[/card]
-[card]
-primitive=Hellkite Charger
-id=185727
-rarity=R
-[/card]
-[card]
-primitive=Hideous End
-id=180435
-rarity=C
-[/card]
-[card]
-primitive=Highland Berserker
-id=180467
-rarity=C
-[/card]
-[card]
-primitive=Inferno Trap
-id=197530
-rarity=U
-[/card]
-[card]
-primitive=Into the Roil
-id=178151
-rarity=C
 [/card]
 [card]
 primitive=Iona, Shield of Emeria
@@ -462,68 +72,8 @@ id=190407
 rarity=M
 [/card]
 [card]
-primitive=Ior Ruin Expedition
-id=185711
-rarity=C
-[/card]
-[card]
-primitive=Island
-id=195161
-rarity=L
-[/card]
-[card]
-primitive=Island
-id=195165
-rarity=L
-[/card]
-[card]
-primitive=Island
-id=195170
-rarity=L
-[/card]
-[card]
-primitive=Island
-id=195187
-rarity=L
-[/card]
-[card]
-primitive=Island
-id=201963
-rarity=L
-[/card]
-[card]
-primitive=Island
-id=201964
-rarity=L
-[/card]
-[card]
-primitive=Island
-id=201965
-rarity=L
-[/card]
-[card]
-primitive=Island
-id=201966
-rarity=L
-[/card]
-[card]
-primitive=Joraga Bard
-id=192227
-rarity=C
-[/card]
-[card]
 primitive=Journey to Nowhere
 id=177505
-rarity=C
-[/card]
-[card]
-primitive=Jwar Isle Refuge
-id=189627
-rarity=U
-[/card]
-[card]
-primitive=Kabira Crossroads
-id=169963
 rarity=C
 [/card]
 [card]
@@ -532,34 +82,9 @@ id=180347
 rarity=R
 [/card]
 [card]
-primitive=Kalitas, Bloodchief of Ghet
-id=185704
-rarity=M
-[/card]
-[card]
 primitive=Kazandu Blademaster
 id=191356
 rarity=U
-[/card]
-[card]
-primitive=Kazandu Refuge
-id=189635
-rarity=U
-[/card]
-[card]
-primitive=Kazuul Warlord
-id=190408
-rarity=R
-[/card]
-[card]
-primitive=Khalni Gem
-id=198519
-rarity=U
-[/card]
-[card]
-primitive=Khalni Heart Expedition
-id=186320
-rarity=C
 [/card]
 [card]
 primitive=Kor Aeronaut
@@ -597,19 +122,139 @@ id=178145
 rarity=C
 [/card]
 [card]
-primitive=Kraken Hatchling
-id=177585
-rarity=C
-[/card]
-[card]
 primitive=Landbind Ritual
 id=188999
 rarity=U
 [/card]
 [card]
-primitive=Lavaball Trap
-id=197528
+primitive=Luminarch Ascension
+id=197889
 rarity=R
+[/card]
+[card]
+primitive=Makindi Shieldmate
+id=195628
+rarity=C
+[/card]
+[card]
+primitive=Narrow Escape
+id=180360
+rarity=C
+[/card]
+[card]
+primitive=Nimbus Wings
+id=180346
+rarity=C
+[/card]
+[card]
+primitive=Noble Vestige
+id=171001
+rarity=C
+[/card]
+[card]
+primitive=Ondu Cleric
+id=192210
+rarity=C
+[/card]
+[card]
+primitive=Pillarfield Ox
+id=190395
+rarity=C
+[/card]
+[card]
+primitive=Pitfall Trap
+id=197533
+rarity=U
+[/card]
+[card]
+primitive=Quest for the Holy Relic
+id=197406
+rarity=U
+[/card]
+[card]
+primitive=Shepherd of the Lost
+id=193399
+rarity=U
+[/card]
+[card]
+primitive=Shieldmate's Blessing
+id=178119
+rarity=C
+[/card]
+[card]
+primitive=Steppe Lynx
+id=171012
+rarity=C
+[/card]
+[card]
+primitive=Sunspring Expedition
+id=177551
+rarity=C
+[/card]
+[card]
+primitive=Windborne Charge
+id=190418
+rarity=U
+[/card]
+[card]
+primitive=World Queller
+id=191376
+rarity=R
+[/card]
+[card]
+primitive=Aether Figment
+id=170993
+rarity=U
+[/card]
+[card]
+primitive=Archive Trap
+id=197538
+rarity=R
+[/card]
+[card]
+primitive=Archmage Ascension
+id=197893
+rarity=R
+[/card]
+[card]
+primitive=Caller of Gales
+id=183417
+rarity=C
+[/card]
+[card]
+primitive=Cancel
+id=189001
+rarity=C
+[/card]
+[card]
+primitive=Cosi's Trickster
+id=186322
+rarity=R
+[/card]
+[card]
+primitive=Gomazoa
+id=198523
+rarity=U
+[/card]
+[card]
+primitive=Hedron Crab
+id=180348
+rarity=U
+[/card]
+[card]
+primitive=Into the Roil
+id=178151
+rarity=C
+[/card]
+[card]
+primitive=Ior Ruin Expedition
+id=185711
+rarity=C
+[/card]
+[card]
+primitive=Kraken Hatchling
+id=177585
+rarity=C
 [/card]
 [card]
 primitive=Lethargy Trap
@@ -627,53 +272,8 @@ id=191369
 rarity=M
 [/card]
 [card]
-primitive=Lotus Cobra
-id=185749
-rarity=M
-[/card]
-[card]
 primitive=Lullmage Mentor
 id=190404
-rarity=R
-[/card]
-[card]
-primitive=Luminarch Ascension
-id=197889
-rarity=R
-[/card]
-[card]
-primitive=Magma Rift
-id=180352
-rarity=C
-[/card]
-[card]
-primitive=Magosi, the Waterveil
-id=190412
-rarity=R
-[/card]
-[card]
-primitive=Makindi Shieldmate
-id=195628
-rarity=C
-[/card]
-[card]
-primitive=Malakir Bloodwitch
-id=190398
-rarity=R
-[/card]
-[card]
-primitive=Mark of Mutiny
-id=186324
-rarity=U
-[/card]
-[card]
-primitive=Marsh Casualties
-id=177543
-rarity=U
-[/card]
-[card]
-primitive=Marsh Flats
-id=191371
 rarity=R
 [/card]
 [card]
@@ -687,154 +287,9 @@ id=170978
 rarity=U
 [/card]
 [card]
-primitive=Mind Sludge
-id=193403
-rarity=U
-[/card]
-[card]
 primitive=Mindbreak Trap
 id=197532
 rarity=M
-[/card]
-[card]
-primitive=Mindless Null
-id=180415
-rarity=C
-[/card]
-[card]
-primitive=Mire Blight
-id=190401
-rarity=C
-[/card]
-[card]
-primitive=Misty Rainforest
-id=190413
-rarity=R
-[/card]
-[card]
-primitive=Mold Shambler
-id=183414
-rarity=C
-[/card]
-[card]
-primitive=Molten Ravager
-id=191359
-rarity=C
-[/card]
-[card]
-primitive=Mountain
-id=195171
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=195178
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=195181
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=195184
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=201967
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=201968
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=201969
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=201970
-rarity=L
-[/card]
-[card]
-primitive=Murasa Pyromancer
-id=195634
-rarity=U
-[/card]
-[card]
-primitive=Narrow Escape
-id=180360
-rarity=C
-[/card]
-[card]
-primitive=Needlebite Trap
-id=197529
-rarity=U
-[/card]
-[card]
-primitive=Nimana Sell-Sword
-id=197403
-rarity=C
-[/card]
-[card]
-primitive=Nimbus Wings
-id=180346
-rarity=C
-[/card]
-[card]
-primitive=Nissa Revane
-id=190411
-rarity=M
-[/card]
-[card]
-primitive=Nissa's Chosen
-id=185699
-rarity=C
-[/card]
-[card]
-primitive=Noble Vestige
-id=171001
-rarity=C
-[/card]
-[card]
-primitive=Ob Nixilis, the Fallen
-id=192219
-rarity=M
-[/card]
-[card]
-primitive=Obsidian Fireheart
-id=192224
-rarity=M
-[/card]
-[card]
-primitive=Ondu Cleric
-id=192210
-rarity=C
-[/card]
-[card]
-primitive=Oracle of Mul Daya
-id=185737
-rarity=R
-[/card]
-[card]
-primitive=Oran-Rief Recluse
-id=185696
-rarity=C
-[/card]
-[card]
-primitive=Oran-Rief Survivalist
-id=178138
-rarity=C
-[/card]
-[card]
-primitive=Oran-Rief, the Vastwood
-id=190417
-rarity=R
 [/card]
 [card]
 primitive=Paralyzing Grasp
@@ -842,118 +297,8 @@ id=178109
 rarity=C
 [/card]
 [card]
-primitive=Pillarfield Ox
-id=190395
-rarity=C
-[/card]
-[card]
-primitive=Piranha Marsh
-id=169975
-rarity=C
-[/card]
-[card]
-primitive=Pitfall Trap
-id=197533
-rarity=U
-[/card]
-[card]
-primitive=Plains
-id=195163
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=195173
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=195179
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=195196
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=201971
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=201972
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=201973
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=201974
-rarity=L
-[/card]
-[card]
-primitive=Plated Geopede
-id=170977
-rarity=C
-[/card]
-[card]
-primitive=Predatory Urge
-id=169958
-rarity=R
-[/card]
-[card]
-primitive=Primal Bellow
-id=193407
-rarity=U
-[/card]
-[card]
-primitive=Punishing Fire
-id=192217
-rarity=U
-[/card]
-[card]
-primitive=Pyromancer Ascension
-id=197891
-rarity=R
-[/card]
-[card]
 primitive=Quest for Ancient Secrets
 id=195635
-rarity=U
-[/card]
-[card]
-primitive=Quest for Pure Flame
-id=197407
-rarity=U
-[/card]
-[card]
-primitive=Quest for the Gemblades
-id=195572
-rarity=U
-[/card]
-[card]
-primitive=Quest for the Gravelord
-id=180448
-rarity=U
-[/card]
-[card]
-primitive=Quest for the Holy Relic
-id=197406
-rarity=U
-[/card]
-[card]
-primitive=Rampaging Baloths
-id=192222
-rarity=M
-[/card]
-[card]
-primitive=Ravenous Trap
-id=197537
 rarity=U
 [/card]
 [card]
@@ -962,59 +307,14 @@ id=180493
 rarity=C
 [/card]
 [card]
-primitive=Relic Crush
-id=178115
-rarity=C
-[/card]
-[card]
 primitive=Rite of Replication
 id=195630
 rarity=R
 [/card]
 [card]
-primitive=River Boa
-id=197405
-rarity=U
-[/card]
-[card]
 primitive=Roil Elemental
 id=185712
 rarity=R
-[/card]
-[card]
-primitive=Ruinous Minotaur
-id=189624
-rarity=C
-[/card]
-[card]
-primitive=Runeflare Trap
-id=197536
-rarity=U
-[/card]
-[card]
-primitive=Sadistic Sacrament
-id=195632
-rarity=R
-[/card]
-[card]
-primitive=Savage Silhouette
-id=186316
-rarity=C
-[/card]
-[card]
-primitive=Scalding Tarn
-id=190393
-rarity=R
-[/card]
-[card]
-primitive=Scute Mob
-id=180455
-rarity=R
-[/card]
-[card]
-primitive=Scythe Tiger
-id=178113
-rarity=C
 [/card]
 [card]
 primitive=Sea Gate Loremaster
@@ -1027,31 +327,6 @@ id=195631
 rarity=U
 [/card]
 [card]
-primitive=Seismic Shudder
-id=180134
-rarity=C
-[/card]
-[card]
-primitive=Sejiri Refuge
-id=189626
-rarity=U
-[/card]
-[card]
-primitive=Shatterskull Giant
-id=180505
-rarity=C
-[/card]
-[card]
-primitive=Shepherd of the Lost
-id=193399
-rarity=U
-[/card]
-[card]
-primitive=Shieldmate's Blessing
-id=178119
-rarity=C
-[/card]
-[card]
 primitive=Shoal Serpent
 id=177517
 rarity=C
@@ -1059,26 +334,6 @@ rarity=C
 [card]
 primitive=Sky Ruin Drake
 id=192211
-rarity=C
-[/card]
-[card]
-primitive=Slaughter Cry
-id=178136
-rarity=C
-[/card]
-[card]
-primitive=Soaring Seacliff
-id=177541
-rarity=C
-[/card]
-[card]
-primitive=Sorin Markov
-id=195403
-rarity=M
-[/card]
-[card]
-primitive=Soul Stair Expedition
-id=177586
 rarity=C
 [/card]
 [card]
@@ -1097,28 +352,8 @@ id=185751
 rarity=R
 [/card]
 [card]
-primitive=Spidersilk Net
-id=178134
-rarity=C
-[/card]
-[card]
-primitive=Spire Barrage
-id=180495
-rarity=C
-[/card]
-[card]
 primitive=Spreading Seas
 id=190405
-rarity=C
-[/card]
-[card]
-primitive=Steppe Lynx
-id=171012
-rarity=C
-[/card]
-[card]
-primitive=Stonework Puma
-id=190397
 rarity=C
 [/card]
 [card]
@@ -1127,104 +362,9 @@ id=191360
 rarity=U
 [/card]
 [card]
-primitive=Summoning Trap
-id=197527
-rarity=R
-[/card]
-[card]
-primitive=Sunspring Expedition
-id=177551
-rarity=C
-[/card]
-[card]
-primitive=Surrakar Marauder
-id=180465
-rarity=C
-[/card]
-[card]
-primitive=Swamp
-id=195157
-rarity=L
-[/card]
-[card]
-primitive=Swamp
-id=195159
-rarity=L
-[/card]
-[card]
-primitive=Swamp
-id=195172
-rarity=L
-[/card]
-[card]
-primitive=Swamp
-id=195194
-rarity=L
-[/card]
-[card]
-primitive=Swamp
-id=201975
-rarity=L
-[/card]
-[card]
-primitive=Swamp
-id=201976
-rarity=L
-[/card]
-[card]
-primitive=Swamp
-id=201977
-rarity=L
-[/card]
-[card]
-primitive=Swamp
-id=201978
-rarity=L
-[/card]
-[card]
-primitive=Tajuru Archer
-id=180457
-rarity=U
-[/card]
-[card]
-primitive=Tanglesap
-id=191355
-rarity=C
-[/card]
-[card]
-primitive=Teetering Peaks
-id=177549
-rarity=C
-[/card]
-[card]
 primitive=Tempest Owl
 id=180482
 rarity=C
-[/card]
-[card]
-primitive=Terra Stomper
-id=186321
-rarity=R
-[/card]
-[card]
-primitive=Territorial Baloth
-id=170971
-rarity=C
-[/card]
-[card]
-primitive=Timbermaw Larva
-id=180458
-rarity=C
-[/card]
-[card]
-primitive=Torch Slinger
-id=180423
-rarity=C
-[/card]
-[card]
-primitive=Trailblazer's Boots
-id=190410
-rarity=U
 [/card]
 [card]
 primitive=Trapfinder's Trick
@@ -1237,44 +377,199 @@ id=192223
 rarity=U
 [/card]
 [card]
-primitive=Trusty Machete
-id=193396
-rarity=U
-[/card]
-[card]
-primitive=Tuktuk Grunts
-id=192229
-rarity=C
-[/card]
-[card]
-primitive=Turntimber Basilisk
-id=178140
-rarity=U
-[/card]
-[card]
-primitive=Turntimber Grove
-id=169977
-rarity=C
-[/card]
-[card]
-primitive=Turntimber Ranger
-id=169971
-rarity=R
-[/card]
-[card]
 primitive=Umara Raptor
 id=180447
 rarity=C
 [/card]
 [card]
-primitive=Unstable Footing
-id=192209
+primitive=Welkin Tern
+id=191353
+rarity=C
+[/card]
+[card]
+primitive=Whiplash Trap
+id=197526
+rarity=C
+[/card]
+[card]
+primitive=Windrider Eel
+id=170982
+rarity=C
+[/card]
+[card]
+primitive=Bala Ged Thief
+id=197402
+rarity=R
+[/card]
+[card]
+primitive=Blood Seeker
+id=180362
+rarity=C
+[/card]
+[card]
+primitive=Blood Tribute
+id=170995
+rarity=R
+[/card]
+[card]
+primitive=Bloodchief Ascension
+id=197892
+rarity=R
+[/card]
+[card]
+primitive=Bloodghast
+id=192230
+rarity=R
+[/card]
+[card]
+primitive=Bog Tatters
+id=177500
+rarity=C
+[/card]
+[card]
+primitive=Crypt Ripper
+id=178121
+rarity=C
+[/card]
+[card]
+primitive=Desecrated Earth
+id=178137
+rarity=C
+[/card]
+[card]
+primitive=Disfigure
+id=180115
+rarity=C
+[/card]
+[card]
+primitive=Feast of Blood
+id=189629
 rarity=U
 [/card]
 [card]
-primitive=Valakut, the Molten Pinnacle
-id=190400
+primitive=Gatekeeper of Malakir
+id=185698
+rarity=U
+[/card]
+[card]
+primitive=Giant Scorpion
+id=192226
+rarity=C
+[/card]
+[card]
+primitive=Grim Discovery
+id=180127
+rarity=C
+[/card]
+[card]
+primitive=Guul Draz Specter
+id=183418
 rarity=R
+[/card]
+[card]
+primitive=Guul Draz Vampire
+id=180498
+rarity=C
+[/card]
+[card]
+primitive=Hagra Crocodile
+id=170998
+rarity=C
+[/card]
+[card]
+primitive=Hagra Diabolist
+id=197404
+rarity=U
+[/card]
+[card]
+primitive=Halo Hunter
+id=185752
+rarity=R
+[/card]
+[card]
+primitive=Heartstabber Mosquito
+id=191361
+rarity=C
+[/card]
+[card]
+primitive=Hideous End
+id=180435
+rarity=C
+[/card]
+[card]
+primitive=Kalitas, Bloodchief of Ghet
+id=185704
+rarity=M
+[/card]
+[card]
+primitive=Malakir Bloodwitch
+id=190398
+rarity=R
+[/card]
+[card]
+primitive=Marsh Casualties
+id=177543
+rarity=U
+[/card]
+[card]
+primitive=Mind Sludge
+id=193403
+rarity=U
+[/card]
+[card]
+primitive=Mindless Null
+id=180415
+rarity=C
+[/card]
+[card]
+primitive=Mire Blight
+id=190401
+rarity=C
+[/card]
+[card]
+primitive=Needlebite Trap
+id=197529
+rarity=U
+[/card]
+[card]
+primitive=Nimana Sell-Sword
+id=197403
+rarity=C
+[/card]
+[card]
+primitive=Ob Nixilis, the Fallen
+id=192219
+rarity=M
+[/card]
+[card]
+primitive=Quest for the Gravelord
+id=180448
+rarity=U
+[/card]
+[card]
+primitive=Ravenous Trap
+id=197537
+rarity=U
+[/card]
+[card]
+primitive=Sadistic Sacrament
+id=195632
+rarity=R
+[/card]
+[card]
+primitive=Sorin Markov
+id=195403
+rarity=M
+[/card]
+[card]
+primitive=Soul Stair Expedition
+id=177586
+rarity=C
+[/card]
+[card]
+primitive=Surrakar Marauder
+id=180465
+rarity=C
 [/card]
 [card]
 primitive=Vampire Hexmage
@@ -1297,19 +592,184 @@ id=178150
 rarity=C
 [/card]
 [card]
-primitive=Vastwood Gorger
-id=180454
+primitive=Bladetusk Boar
+id=180350
 rarity=C
 [/card]
 [card]
-primitive=Verdant Catacombs
-id=193400
+primitive=Burst Lightning
+id=177558
+rarity=C
+[/card]
+[card]
+primitive=Chandra Ablaze
+id=195402
+rarity=M
+[/card]
+[card]
+primitive=Demolish
+id=190406
+rarity=C
+[/card]
+[card]
+primitive=Electropotence
+id=191373
 rarity=R
 [/card]
 [card]
-primitive=Vines of Vastwood
-id=177571
+primitive=Elemental Appeal
+id=192221
+rarity=R
+[/card]
+[card]
+primitive=Geyser Glider
+id=197887
+rarity=U
+[/card]
+[card]
+primitive=Goblin Bushwhacker
+id=177501
 rarity=C
+[/card]
+[card]
+primitive=Goblin Guide
+id=170987
+rarity=R
+[/card]
+[card]
+primitive=Goblin Ruinblaster
+id=180411
+rarity=U
+[/card]
+[card]
+primitive=Goblin Shortcutter
+id=180473
+rarity=C
+[/card]
+[card]
+primitive=Goblin War Paint
+id=185701
+rarity=C
+[/card]
+[card]
+primitive=Hellfire Mongrel
+id=192215
+rarity=U
+[/card]
+[card]
+primitive=Hellkite Charger
+id=185727
+rarity=R
+[/card]
+[card]
+primitive=Highland Berserker
+id=180467
+rarity=C
+[/card]
+[card]
+primitive=Inferno Trap
+id=197530
+rarity=U
+[/card]
+[card]
+primitive=Kazuul Warlord
+id=190408
+rarity=R
+[/card]
+[card]
+primitive=Lavaball Trap
+id=197528
+rarity=R
+[/card]
+[card]
+primitive=Magma Rift
+id=180352
+rarity=C
+[/card]
+[card]
+primitive=Mark of Mutiny
+id=186324
+rarity=U
+[/card]
+[card]
+primitive=Molten Ravager
+id=191359
+rarity=C
+[/card]
+[card]
+primitive=Murasa Pyromancer
+id=195634
+rarity=U
+[/card]
+[card]
+primitive=Obsidian Fireheart
+id=192224
+rarity=M
+[/card]
+[card]
+primitive=Plated Geopede
+id=170977
+rarity=C
+[/card]
+[card]
+primitive=Punishing Fire
+id=192217
+rarity=U
+[/card]
+[card]
+primitive=Pyromancer Ascension
+id=197891
+rarity=R
+[/card]
+[card]
+primitive=Quest for Pure Flame
+id=197407
+rarity=U
+[/card]
+[card]
+primitive=Ruinous Minotaur
+id=189624
+rarity=C
+[/card]
+[card]
+primitive=Runeflare Trap
+id=197536
+rarity=U
+[/card]
+[card]
+primitive=Seismic Shudder
+id=180134
+rarity=C
+[/card]
+[card]
+primitive=Shatterskull Giant
+id=180505
+rarity=C
+[/card]
+[card]
+primitive=Slaughter Cry
+id=178136
+rarity=C
+[/card]
+[card]
+primitive=Spire Barrage
+id=180495
+rarity=C
+[/card]
+[card]
+primitive=Torch Slinger
+id=180423
+rarity=C
+[/card]
+[card]
+primitive=Tuktuk Grunts
+id=192229
+rarity=C
+[/card]
+[card]
+primitive=Unstable Footing
+id=192209
+rarity=U
 [/card]
 [card]
 primitive=Warren Instigator
@@ -1317,37 +777,577 @@ id=191368
 rarity=M
 [/card]
 [card]
-primitive=Welkin Tern
-id=191353
+primitive=Zektar Shrine Expedition
+id=183403
 rarity=C
 [/card]
 [card]
-primitive=Whiplash Trap
-id=197526
-rarity=C
-[/card]
-[card]
-primitive=Windborne Charge
-id=190418
+primitive=Baloth Cage Trap
+id=197531
 rarity=U
 [/card]
 [card]
-primitive=Windrider Eel
-id=170982
+primitive=Baloth Woodcrasher
+id=192231
+rarity=U
+[/card]
+[card]
+primitive=Beast Hunt
+id=185703
 rarity=C
 [/card]
 [card]
-primitive=World Queller
-id=191376
+primitive=Beastmaster Ascension
+id=197890
 rarity=R
 [/card]
 [card]
-primitive=Zektar Shrine Expedition
-id=183403
+primitive=Cobra Trap
+id=197535
+rarity=U
+[/card]
+[card]
+primitive=Frontier Guide
+id=180361
+rarity=U
+[/card]
+[card]
+primitive=Gigantiform
+id=195627
+rarity=R
+[/card]
+[card]
+primitive=Grazing Gladehart
+id=189621
+rarity=C
+[/card]
+[card]
+primitive=Greenweaver Druid
+id=185694
+rarity=U
+[/card]
+[card]
+primitive=Harrow
+id=180408
+rarity=C
+[/card]
+[card]
+primitive=Joraga Bard
+id=192227
+rarity=C
+[/card]
+[card]
+primitive=Khalni Heart Expedition
+id=186320
+rarity=C
+[/card]
+[card]
+primitive=Lotus Cobra
+id=185749
+rarity=M
+[/card]
+[card]
+primitive=Mold Shambler
+id=183414
+rarity=C
+[/card]
+[card]
+primitive=Nissa Revane
+id=190411
+rarity=M
+[/card]
+[card]
+primitive=Nissa's Chosen
+id=185699
+rarity=C
+[/card]
+[card]
+primitive=Oracle of Mul Daya
+id=185737
+rarity=R
+[/card]
+[card]
+primitive=Oran-Rief Recluse
+id=185696
+rarity=C
+[/card]
+[card]
+primitive=Oran-Rief Survivalist
+id=178138
+rarity=C
+[/card]
+[card]
+primitive=Predatory Urge
+id=169958
+rarity=R
+[/card]
+[card]
+primitive=Primal Bellow
+id=193407
+rarity=U
+[/card]
+[card]
+primitive=Quest for the Gemblades
+id=195572
+rarity=U
+[/card]
+[card]
+primitive=Rampaging Baloths
+id=192222
+rarity=M
+[/card]
+[card]
+primitive=Relic Crush
+id=178115
+rarity=C
+[/card]
+[card]
+primitive=River Boa
+id=197405
+rarity=U
+[/card]
+[card]
+primitive=Savage Silhouette
+id=186316
+rarity=C
+[/card]
+[card]
+primitive=Scute Mob
+id=180455
+rarity=R
+[/card]
+[card]
+primitive=Scythe Tiger
+id=178113
+rarity=C
+[/card]
+[card]
+primitive=Summoning Trap
+id=197527
+rarity=R
+[/card]
+[card]
+primitive=Tajuru Archer
+id=180457
+rarity=U
+[/card]
+[card]
+primitive=Tanglesap
+id=191355
+rarity=C
+[/card]
+[card]
+primitive=Terra Stomper
+id=186321
+rarity=R
+[/card]
+[card]
+primitive=Territorial Baloth
+id=170971
+rarity=C
+[/card]
+[card]
+primitive=Timbermaw Larva
+id=180458
+rarity=C
+[/card]
+[card]
+primitive=Turntimber Basilisk
+id=178140
+rarity=U
+[/card]
+[card]
+primitive=Turntimber Ranger
+id=169971
+rarity=R
+[/card]
+[card]
+primitive=Vastwood Gorger
+id=180454
+rarity=C
+[/card]
+[card]
+primitive=Vines of Vastwood
+id=177571
 rarity=C
 [/card]
 [card]
 primitive=Zendikar Farguide
 id=189620
 rarity=C
+[/card]
+[card]
+primitive=Adventuring Gear
+id=178135
+rarity=C
+[/card]
+[card]
+primitive=Blade of the Bloodchief
+id=193397
+rarity=R
+[/card]
+[card]
+primitive=Blazing Torch
+id=191372
+rarity=U
+[/card]
+[card]
+primitive=Carnage Altar
+id=193406
+rarity=U
+[/card]
+[card]
+primitive=Eldrazi Monument
+id=193398
+rarity=M
+[/card]
+[card]
+primitive=Eternity Vessel
+id=189006
+rarity=M
+[/card]
+[card]
+primitive=Expedition Map
+id=193405
+rarity=C
+[/card]
+[card]
+primitive=Explorer's Scope
+id=190396
+rarity=C
+[/card]
+[card]
+primitive=Grappling Hook
+id=192220
+rarity=R
+[/card]
+[card]
+primitive=Hedron Scrabbler
+id=193394
+rarity=C
+[/card]
+[card]
+primitive=Khalni Gem
+id=198519
+rarity=U
+[/card]
+[card]
+primitive=Spidersilk Net
+id=178134
+rarity=C
+[/card]
+[card]
+primitive=Stonework Puma
+id=190397
+rarity=C
+[/card]
+[card]
+primitive=Trailblazer's Boots
+id=190410
+rarity=U
+[/card]
+[card]
+primitive=Trusty Machete
+id=193396
+rarity=U
+[/card]
+[card]
+primitive=Akoum Refuge
+id=189638
+rarity=U
+[/card]
+[card]
+primitive=Arid Mesa
+id=177584
+rarity=R
+[/card]
+[card]
+primitive=Crypt of Agadeem
+id=190394
+rarity=R
+[/card]
+[card]
+primitive=Emeria, the Sky Ruin
+id=190414
+rarity=R
+[/card]
+[card]
+primitive=Graypelt Refuge
+id=189631
+rarity=U
+[/card]
+[card]
+primitive=Jwar Isle Refuge
+id=189627
+rarity=U
+[/card]
+[card]
+primitive=Kabira Crossroads
+id=169963
+rarity=C
+[/card]
+[card]
+primitive=Kazandu Refuge
+id=189635
+rarity=U
+[/card]
+[card]
+primitive=Magosi, the Waterveil
+id=190412
+rarity=R
+[/card]
+[card]
+primitive=Marsh Flats
+id=191371
+rarity=R
+[/card]
+[card]
+primitive=Misty Rainforest
+id=190413
+rarity=R
+[/card]
+[card]
+primitive=Oran-Rief, the Vastwood
+id=190417
+rarity=R
+[/card]
+[card]
+primitive=Piranha Marsh
+id=169975
+rarity=C
+[/card]
+[card]
+primitive=Scalding Tarn
+id=190393
+rarity=R
+[/card]
+[card]
+primitive=Sejiri Refuge
+id=189626
+rarity=U
+[/card]
+[card]
+primitive=Soaring Seacliff
+id=177541
+rarity=C
+[/card]
+[card]
+primitive=Teetering Peaks
+id=177549
+rarity=C
+[/card]
+[card]
+primitive=Turntimber Grove
+id=169977
+rarity=C
+[/card]
+[card]
+primitive=Valakut, the Molten Pinnacle
+id=190400
+rarity=R
+[/card]
+[card]
+primitive=Verdant Catacombs
+id=193400
+rarity=R
+[/card]
+[card]
+primitive=Plains
+id=201973
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=195179
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=195173
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=201972
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=195196
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=201974
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=195163
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=201971
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=195187
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=201966
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=201964
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=195165
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=201963
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=195161
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=201965
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=195170
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=201977
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=195172
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=195194
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=201978
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=201976
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=195159
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=195157
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=201975
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=201968
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=195178
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=201967
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=195171
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=195181
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=201969
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=201970
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=195184
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=195158
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=201959
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=201962
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=195192
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=195177
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=201960
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=201961
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=195183
+rarity=L
 [/card]

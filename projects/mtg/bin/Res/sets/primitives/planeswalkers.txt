@@ -2689,7 +2689,7 @@ subtype=Ral
 [card]
 name=Ral, Crackling Wit
 auto=counter(0/0,4,loyalty)
-auto=@movedTo(*|mystack):counter(0/0,1,Loyalty)
+auto=@movedTo(*[-creature]|mystack):counter(0/0,1,Loyalty)
 auto={C(0/0,+1,Loyalty)}:create(otter:creature otter:1/1:blue:red) and!( transforms((,newability[@movedTo(*[-creature]|mystack):1/1 ueot])) forever )!
 auto={C(0/0,-3,Loyalty)}:draw:3 && transforms((,newability[target(<2>*|myhand) reject])) forever
 auto={C(0/0,-10,Loyalty)}:emblem transforms((,newability[@movedTo(*[instant;sorcery]|mystack) from(mycastingzone):all(trigger) transforms((,newability[activate castcard(copied noevent)],newability[activate castcard(copied noevent)],newability[activate castcard(copied noevent)]))])) forever dontremove

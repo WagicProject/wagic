@@ -4,26 +4,161 @@ name=Alliances
 orderindex=EXP-8.ALL
 block=Ice Age
 year=1996-06-10
-total=201
+total=199
 [/meta]
 [card]
-primitive=Aesthir Glider
-id=3040
+primitive=Carrier Pigeons
+id=3191
 rarity=C
 [/card]
 [card]
-primitive=Aesthir Glider
-id=3041
+primitive=Carrier Pigeons
+id=3190
 rarity=C
 [/card]
 [card]
-primitive=Agent of Stromgald
-id=3159
+primitive=Errand of Duty
+id=3193
 rarity=C
 [/card]
 [card]
-primitive=Agent of Stromgald
-id=3160
+primitive=Errand of Duty
+id=3192
+rarity=C
+[/card]
+[card]
+primitive=Exile
+id=3194
+rarity=R
+[/card]
+[card]
+primitive=Inheritance
+id=3195
+rarity=U
+[/card]
+[card]
+primitive=Ivory Gargoyle
+id=3196
+rarity=R
+[/card]
+[card]
+primitive=Juniper Order Advocate
+id=3197
+rarity=U
+[/card]
+[card]
+primitive=Kjeldoran Escort
+id=3199
+rarity=C
+[/card]
+[card]
+primitive=Kjeldoran Escort
+id=3198
+rarity=C
+[/card]
+[card]
+primitive=Kjeldoran Home Guard
+id=3200
+rarity=U
+[/card]
+[card]
+primitive=Kjeldoran Pride
+id=3201
+rarity=C
+[/card]
+[card]
+primitive=Kjeldoran Pride
+id=3202
+rarity=C
+[/card]
+[card]
+primitive=Martyrdom
+id=3203
+rarity=C
+[/card]
+[card]
+primitive=Martyrdom
+id=3204
+rarity=C
+[/card]
+[card]
+primitive=Noble Steeds
+id=3206
+rarity=C
+[/card]
+[card]
+primitive=Noble Steeds
+id=3205
+rarity=C
+[/card]
+[card]
+primitive=Reinforcements
+id=3207
+rarity=C
+[/card]
+[card]
+primitive=Reinforcements
+id=3208
+rarity=C
+[/card]
+[card]
+primitive=Reprisal
+id=3209
+rarity=C
+[/card]
+[card]
+primitive=Reprisal
+id=3210
+rarity=C
+[/card]
+[card]
+primitive=Royal Decree
+id=3211
+rarity=R
+[/card]
+[card]
+primitive=Royal Herbalist
+id=3213
+rarity=C
+[/card]
+[card]
+primitive=Royal Herbalist
+id=3212
+rarity=C
+[/card]
+[card]
+primitive=Scars of the Veteran
+id=3214
+rarity=U
+[/card]
+[card]
+primitive=Seasoned Tactician
+id=3215
+rarity=U
+[/card]
+[card]
+primitive=Sustaining Spirit
+id=3216
+rarity=R
+[/card]
+[card]
+primitive=Sworn Defender
+id=3217
+rarity=R
+[/card]
+[card]
+primitive=Unlikely Alliance
+id=3218
+rarity=U
+[/card]
+[card]
+primitive=Wild Aesthir
+id=3220
+rarity=C
+[/card]
+[card]
+primitive=Wild Aesthir
+id=3219
 rarity=C
 [/card]
 [card]
@@ -37,21 +172,6 @@ id=3098
 rarity=C
 [/card]
 [card]
-primitive=Ashnod's Cylix
-id=3042
-rarity=R
-[/card]
-[card]
-primitive=Astrolabe
-id=3043
-rarity=C
-[/card]
-[card]
-primitive=Astrolabe
-id=3044
-rarity=C
-[/card]
-[card]
 primitive=Awesome Presence
 id=3099
 rarity=C
@@ -62,28 +182,8 @@ id=3100
 rarity=C
 [/card]
 [card]
-primitive=Balduvian Dead
-id=3066
-rarity=U
-[/card]
-[card]
-primitive=Balduvian Horde
-id=3161
-rarity=R
-[/card]
-[card]
-primitive=Balduvian Trading Post
-id=3231
-rarity=R
-[/card]
-[card]
-primitive=Balduvian War-Makers
-id=3162
-rarity=C
-[/card]
-[card]
-primitive=Balduvian War-Makers
-id=3163
+primitive=Benthic Explorers
+id=3102
 rarity=C
 [/card]
 [card]
@@ -92,78 +192,8 @@ id=3101
 rarity=C
 [/card]
 [card]
-primitive=Benthic Explorers
-id=3102
-rarity=C
-[/card]
-[card]
-primitive=Bestial Fury
-id=3164
-rarity=C
-[/card]
-[card]
-primitive=Bestial Fury
-id=3165
-rarity=C
-[/card]
-[card]
-primitive=Bounty of the Hunt
-id=3128
-rarity=U
-[/card]
-[card]
 primitive=Browse
 id=3103
-rarity=U
-[/card]
-[card]
-primitive=Burnout
-id=3166
-rarity=U
-[/card]
-[card]
-primitive=Carrier Pigeons
-id=3190
-rarity=C
-[/card]
-[card]
-primitive=Carrier Pigeons
-id=3191
-rarity=C
-[/card]
-[card]
-primitive=Casting of Bones
-id=3067
-rarity=C
-[/card]
-[card]
-primitive=Casting of Bones
-id=3068
-rarity=C
-[/card]
-[card]
-primitive=Chaos Harlequin
-id=3167
-rarity=R
-[/card]
-[card]
-primitive=Contagion
-id=3069
-rarity=U
-[/card]
-[card]
-primitive=Deadly Insect
-id=3129
-rarity=C
-[/card]
-[card]
-primitive=Deadly Insect
-id=3130
-rarity=C
-[/card]
-[card]
-primitive=Death Spark
-id=3168
 rarity=U
 [/card]
 [card]
@@ -172,104 +202,14 @@ id=3104
 rarity=R
 [/card]
 [card]
-primitive=Diseased Vermin
-id=3070
-rarity=U
-[/card]
-[card]
-primitive=Dystopia
-id=3071
-rarity=R
-[/card]
-[card]
-primitive=Elvish Bard
-id=3131
-rarity=U
-[/card]
-[card]
-primitive=Elvish Ranger
-id=3132
-rarity=C
-[/card]
-[card]
-primitive=Elvish Ranger
-id=3133
-rarity=C
-[/card]
-[card]
-primitive=Elvish Spirit Guide
-id=3134
-rarity=U
-[/card]
-[card]
-primitive=Energy Arc
-id=3221
-rarity=U
-[/card]
-[card]
-primitive=Enslaved Scout
-id=3169
-rarity=C
-[/card]
-[card]
-primitive=Enslaved Scout
-id=3170
-rarity=C
-[/card]
-[card]
-primitive=Errand of Duty
-id=3192
-rarity=C
-[/card]
-[card]
-primitive=Errand of Duty
-id=3193
-rarity=C
-[/card]
-[card]
-primitive=Exile
-id=3194
-rarity=R
-[/card]
-[card]
-primitive=False Demise
-id=3105
-rarity=C
-[/card]
-[card]
 primitive=False Demise
 id=3106
 rarity=C
 [/card]
 [card]
-primitive=Fatal Lore
-id=3072
-rarity=R
-[/card]
-[card]
-primitive=Feast or Famine
-id=3073
+primitive=False Demise
+id=3105
 rarity=C
-[/card]
-[card]
-primitive=Feast or Famine
-id=3074
-rarity=C
-[/card]
-[card]
-primitive=Fevered Strength
-id=3075
-rarity=C
-[/card]
-[card]
-primitive=Fevered Strength
-id=3076
-rarity=C
-[/card]
-[card]
-primitive=Floodwater Dam
-id=3045
-rarity=R
 [/card]
 [card]
 primitive=Force of Will
@@ -287,48 +227,308 @@ id=3109
 rarity=C
 [/card]
 [card]
-primitive=Fyndhorn Druid
-id=3135
+primitive=Lat-Nam's Legacy
+id=3110
 rarity=C
 [/card]
 [card]
-primitive=Fyndhorn Druid
-id=3136
+primitive=Lat-Nam's Legacy
+id=3111
 rarity=C
 [/card]
 [card]
-primitive=Gargantuan Gorilla
-id=3137
+primitive=Library of Lat-Nam
+id=3112
 rarity=R
 [/card]
 [card]
-primitive=Gift of the Woods
-id=3138
+primitive=Phantasmal Sphere
+id=3113
+rarity=R
+[/card]
+[card]
+primitive=Soldevi Heretic
+id=3115
 rarity=C
 [/card]
 [card]
-primitive=Gift of the Woods
-id=3139
+primitive=Soldevi Heretic
+id=3114
 rarity=C
 [/card]
 [card]
-primitive=Gorilla Berserkers
-id=3140
+primitive=Soldevi Sage
+id=3117
 rarity=C
 [/card]
 [card]
-primitive=Gorilla Berserkers
-id=3141
+primitive=Soldevi Sage
+id=3116
 rarity=C
 [/card]
 [card]
-primitive=Gorilla Chieftain
-id=3142
+primitive=Spiny Starfish
+id=3118
+rarity=U
+[/card]
+[card]
+primitive=Storm Crow
+id=3119
 rarity=C
 [/card]
 [card]
-primitive=Gorilla Chieftain
-id=3143
+primitive=Storm Crow
+id=3120
+rarity=C
+[/card]
+[card]
+primitive=Storm Elemental
+id=3121
+rarity=U
+[/card]
+[card]
+primitive=Suffocation
+id=3122
+rarity=U
+[/card]
+[card]
+primitive=Thought Lash
+id=3123
+rarity=R
+[/card]
+[card]
+primitive=Tidal Control
+id=3124
+rarity=R
+[/card]
+[card]
+primitive=Viscerid Armor
+id=3126
+rarity=C
+[/card]
+[card]
+primitive=Viscerid Armor
+id=3125
+rarity=C
+[/card]
+[card]
+primitive=Viscerid Drone
+id=3127
+rarity=U
+[/card]
+[card]
+primitive=Balduvian Dead
+id=3066
+rarity=U
+[/card]
+[card]
+primitive=Casting of Bones
+id=3068
+rarity=C
+[/card]
+[card]
+primitive=Casting of Bones
+id=3067
+rarity=C
+[/card]
+[card]
+primitive=Contagion
+id=3069
+rarity=U
+[/card]
+[card]
+primitive=Diseased Vermin
+id=3070
+rarity=U
+[/card]
+[card]
+primitive=Dystopia
+id=3071
+rarity=R
+[/card]
+[card]
+primitive=Fatal Lore
+id=3072
+rarity=R
+[/card]
+[card]
+primitive=Feast or Famine
+id=3074
+rarity=C
+[/card]
+[card]
+primitive=Feast or Famine
+id=3073
+rarity=C
+[/card]
+[card]
+primitive=Fevered Strength
+id=3075
+rarity=C
+[/card]
+[card]
+primitive=Fevered Strength
+id=3076
+rarity=C
+[/card]
+[card]
+primitive=Insidious Bookworms
+id=3077
+rarity=C
+[/card]
+[card]
+primitive=Insidious Bookworms
+id=3078
+rarity=C
+[/card]
+[card]
+primitive=Keeper of Tresserhorn
+id=3079
+rarity=R
+[/card]
+[card]
+primitive=Krovikan Horror
+id=3080
+rarity=R
+[/card]
+[card]
+primitive=Krovikan Plague
+id=3081
+rarity=U
+[/card]
+[card]
+primitive=Lim-Dûl's High Guard
+id=3083
+rarity=C
+[/card]
+[card]
+primitive=Lim-Dûl's High Guard
+id=3082
+rarity=C
+[/card]
+[card]
+primitive=Misinformation
+id=3084
+rarity=U
+[/card]
+[card]
+primitive=Phantasmal Fiend
+id=3085
+rarity=C
+[/card]
+[card]
+primitive=Phantasmal Fiend
+id=3086
+rarity=C
+[/card]
+[card]
+primitive=Phyrexian Boon
+id=3088
+rarity=C
+[/card]
+[card]
+primitive=Phyrexian Boon
+id=3087
+rarity=C
+[/card]
+[card]
+primitive=Ritual of the Machine
+id=3089
+rarity=R
+[/card]
+[card]
+primitive=Soldevi Adnate
+id=3090
+rarity=C
+[/card]
+[card]
+primitive=Soldevi Adnate
+id=3091
+rarity=C
+[/card]
+[card]
+primitive=Stench of Decay
+id=3093
+rarity=C
+[/card]
+[card]
+primitive=Stench of Decay
+id=3092
+rarity=C
+[/card]
+[card]
+primitive=Stromgald Spy
+id=3094
+rarity=U
+[/card]
+[card]
+primitive=Swamp Mosquito
+id=3095
+rarity=C
+[/card]
+[card]
+primitive=Swamp Mosquito
+id=3096
+rarity=C
+[/card]
+[card]
+primitive=Agent of Stromgald
+id=3159
+rarity=C
+[/card]
+[card]
+primitive=Agent of Stromgald
+id=3160
+rarity=C
+[/card]
+[card]
+primitive=Balduvian Horde
+id=3161
+rarity=R
+[/card]
+[card]
+primitive=Balduvian War-Makers
+id=3162
+rarity=C
+[/card]
+[card]
+primitive=Balduvian War-Makers
+id=3163
+rarity=C
+[/card]
+[card]
+primitive=Bestial Fury
+id=3165
+rarity=C
+[/card]
+[card]
+primitive=Bestial Fury
+id=3164
+rarity=C
+[/card]
+[card]
+primitive=Burnout
+id=3166
+rarity=U
+[/card]
+[card]
+primitive=Chaos Harlequin
+id=3167
+rarity=R
+[/card]
+[card]
+primitive=Death Spark
+id=3168
+rarity=U
+[/card]
+[card]
+primitive=Enslaved Scout
+id=3169
+rarity=C
+[/card]
+[card]
+primitive=Enslaved Scout
+id=3170
 rarity=C
 [/card]
 [card]
@@ -352,9 +552,9 @@ id=3174
 rarity=C
 [/card]
 [card]
-primitive=Graveborn Token
-id=-3066
-rarity=T
+primitive=Guerrilla Tactics
+id=3176
+rarity=C
 [/card]
 [card]
 primitive=Guerrilla Tactics
@@ -362,14 +562,149 @@ id=3175
 rarity=C
 [/card]
 [card]
-primitive=Guerrilla Tactics
-id=3176
+primitive=Omen of Fire
+id=3177
+rarity=R
+[/card]
+[card]
+primitive=Pillage
+id=3178
+rarity=U
+[/card]
+[card]
+primitive=Primitive Justice
+id=3179
+rarity=U
+[/card]
+[card]
+primitive=Pyrokinesis
+id=3180
+rarity=U
+[/card]
+[card]
+primitive=Rogue Skycaptain
+id=3181
+rarity=R
+[/card]
+[card]
+primitive=Soldier of Fortune
+id=3182
+rarity=U
+[/card]
+[card]
+primitive=Storm Shaman
+id=3184
 rarity=C
 [/card]
 [card]
-primitive=Gustha's Scepter
-id=3046
+primitive=Storm Shaman
+id=3183
+rarity=C
+[/card]
+[card]
+primitive=Varchild's Crusader
+id=3186
+rarity=C
+[/card]
+[card]
+primitive=Varchild's Crusader
+id=3185
+rarity=C
+[/card]
+[card]
+primitive=Varchild's War-Riders
+id=3187
 rarity=R
+[/card]
+[card]
+primitive=Veteran's Voice
+id=3189
+rarity=C
+[/card]
+[card]
+primitive=Veteran's Voice
+id=3188
+rarity=C
+[/card]
+[card]
+primitive=Bounty of the Hunt
+id=3128
+rarity=U
+[/card]
+[card]
+primitive=Deadly Insect
+id=3129
+rarity=C
+[/card]
+[card]
+primitive=Deadly Insect
+id=3130
+rarity=C
+[/card]
+[card]
+primitive=Elvish Bard
+id=3131
+rarity=U
+[/card]
+[card]
+primitive=Elvish Ranger
+id=3133
+rarity=C
+[/card]
+[card]
+primitive=Elvish Ranger
+id=3132
+rarity=C
+[/card]
+[card]
+primitive=Elvish Spirit Guide
+id=3134
+rarity=U
+[/card]
+[card]
+primitive=Fyndhorn Druid
+id=3136
+rarity=C
+[/card]
+[card]
+primitive=Fyndhorn Druid
+id=3135
+rarity=C
+[/card]
+[card]
+primitive=Gargantuan Gorilla
+id=3137
+rarity=R
+[/card]
+[card]
+primitive=Gift of the Woods
+id=3139
+rarity=C
+[/card]
+[card]
+primitive=Gift of the Woods
+id=3138
+rarity=C
+[/card]
+[card]
+primitive=Gorilla Berserkers
+id=3140
+rarity=C
+[/card]
+[card]
+primitive=Gorilla Berserkers
+id=3141
+rarity=C
+[/card]
+[card]
+primitive=Gorilla Chieftain
+id=3143
+rarity=C
+[/card]
+[card]
+primitive=Gorilla Chieftain
+id=3142
+rarity=C
 [/card]
 [card]
 primitive=Hail Storm
@@ -377,174 +712,9 @@ id=3144
 rarity=U
 [/card]
 [card]
-primitive=Heart of Yavimaya
-id=3232
-rarity=R
-[/card]
-[card]
-primitive=Helm of Obedience
-id=3047
-rarity=R
-[/card]
-[card]
-primitive=Inheritance
-id=3195
-rarity=U
-[/card]
-[card]
-primitive=Insidious Bookworms
-id=3077
-rarity=C
-[/card]
-[card]
-primitive=Insidious Bookworms
-id=3078
-rarity=C
-[/card]
-[card]
-primitive=Ivory Gargoyle
-id=3196
-rarity=R
-[/card]
-[card]
-primitive=Juniper Order Advocate
-id=3197
-rarity=U
-[/card]
-[card]
 primitive=Kaysa
 id=3145
 rarity=R
-[/card]
-[card]
-primitive=Keeper of Tresserhorn
-id=3079
-rarity=R
-[/card]
-[card]
-primitive=Kjeldoran Escort
-id=3198
-rarity=C
-[/card]
-[card]
-primitive=Kjeldoran Escort
-id=3199
-rarity=C
-[/card]
-[card]
-primitive=Kjeldoran Home Guard
-id=3200
-rarity=U
-[/card]
-[card]
-primitive=Kjeldoran Outpost
-id=3233
-rarity=R
-[/card]
-[card]
-primitive=Kjeldoran Pride
-id=3201
-rarity=C
-[/card]
-[card]
-primitive=Kjeldoran Pride
-id=3202
-rarity=C
-[/card]
-[card]
-primitive=Krovikan Horror
-id=3080
-rarity=R
-[/card]
-[card]
-primitive=Krovikan Plague
-id=3081
-rarity=U
-[/card]
-[card]
-primitive=Lake of the Dead
-id=3234
-rarity=R
-[/card]
-[card]
-primitive=Lat-Nam's Legacy
-id=3110
-rarity=C
-[/card]
-[card]
-primitive=Lat-Nam's Legacy
-id=3111
-rarity=C
-[/card]
-[card]
-primitive=Library of Lat-Nam
-id=3112
-rarity=R
-[/card]
-[card]
-primitive=Lim-Dul's High Guard
-id=3082
-rarity=C
-[/card]
-[card]
-primitive=Lim-Dul's High Guard
-id=3083
-rarity=C
-[/card]
-[card]
-primitive=Lim-Dul's Paladin
-id=3222
-rarity=U
-[/card]
-[card]
-primitive=Lim-Dul's Vault
-id=3223
-rarity=U
-[/card]
-[card]
-primitive=Lodestone Bauble
-id=3048
-rarity=R
-[/card]
-[card]
-primitive=Lord of Tresserhorn
-id=3224
-rarity=R
-[/card]
-[card]
-primitive=Martyrdom
-id=3203
-rarity=C
-[/card]
-[card]
-primitive=Martyrdom
-id=3204
-rarity=C
-[/card]
-[card]
-primitive=Misfortune
-id=3225
-rarity=R
-[/card]
-[card]
-primitive=Mishra's Groundbreaker
-id=3049
-rarity=U
-[/card]
-[card]
-primitive=Misinformation
-id=3084
-rarity=U
-[/card]
-[card]
-primitive=Mystic Compass
-id=3050
-rarity=U
-[/card]
-[card]
-primitive=Nature's Blessing
-id=3226
-rarity=U
 [/card]
 [card]
 primitive=Nature's Chosen
@@ -557,33 +727,103 @@ id=3147
 rarity=R
 [/card]
 [card]
-primitive=Noble Steeds
-id=3205
-rarity=C
-[/card]
-[card]
-primitive=Noble Steeds
-id=3206
-rarity=C
-[/card]
-[card]
-primitive=Omen of Fire
-id=3177
+primitive=Splintering Wind
+id=3148
 rarity=R
 [/card]
 [card]
-primitive=Phantasmal Fiend
-id=3085
+primitive=Taste of Paradise
+id=3150
 rarity=C
 [/card]
 [card]
-primitive=Phantasmal Fiend
-id=3086
+primitive=Taste of Paradise
+id=3149
 rarity=C
 [/card]
 [card]
-primitive=Phantasmal Sphere
-id=3113
+primitive=Tornado
+id=3151
+rarity=R
+[/card]
+[card]
+primitive=Undergrowth
+id=3152
+rarity=C
+[/card]
+[card]
+primitive=Undergrowth
+id=3153
+rarity=C
+[/card]
+[card]
+primitive=Whip Vine
+id=3154
+rarity=C
+[/card]
+[card]
+primitive=Whip Vine
+id=3155
+rarity=C
+[/card]
+[card]
+primitive=Yavimaya Ancients
+id=3156
+rarity=C
+[/card]
+[card]
+primitive=Yavimaya Ancients
+id=3157
+rarity=C
+[/card]
+[card]
+primitive=Yavimaya Ants
+id=3158
+rarity=U
+[/card]
+[card]
+primitive=Energy Arc
+id=3221
+rarity=U
+[/card]
+[card]
+primitive=Lim-Dûl's Vault
+id=3223
+rarity=U
+[/card]
+[card]
+primitive=Lim-Dûl's Paladin
+id=3222
+rarity=U
+[/card]
+[card]
+primitive=Surge of Strength
+id=3228
+rarity=U
+[/card]
+[card]
+primitive=Nature's Blessing
+id=3226
+rarity=U
+[/card]
+[card]
+primitive=Wandering Mage
+id=3229
+rarity=R
+[/card]
+[card]
+primitive=Lord of Tresserhorn
+id=3224
+rarity=R
+[/card]
+[card]
+primitive=Misfortune
+id=3225
+rarity=R
+[/card]
+[card]
+primitive=Winter's Night
+id=3230
 rarity=R
 [/card]
 [card]
@@ -592,14 +832,59 @@ id=3227
 rarity=R
 [/card]
 [card]
-primitive=Phyrexian Boon
-id=3087
+primitive=Aesthir Glider
+id=3040
 rarity=C
 [/card]
 [card]
-primitive=Phyrexian Boon
-id=3088
+primitive=Aesthir Glider
+id=3041
 rarity=C
+[/card]
+[card]
+primitive=Ashnod's Cylix
+id=3042
+rarity=R
+[/card]
+[card]
+primitive=Astrolabe
+id=3044
+rarity=C
+[/card]
+[card]
+primitive=Astrolabe
+id=3043
+rarity=C
+[/card]
+[card]
+primitive=Floodwater Dam
+id=3045
+rarity=R
+[/card]
+[card]
+primitive=Gustha's Scepter
+id=3046
+rarity=R
+[/card]
+[card]
+primitive=Helm of Obedience
+id=3047
+rarity=R
+[/card]
+[card]
+primitive=Lodestone Bauble
+id=3048
+rarity=R
+[/card]
+[card]
+primitive=Mishra's Groundbreaker
+id=3049
+rarity=U
+[/card]
+[card]
+primitive=Mystic Compass
+id=3050
+rarity=U
 [/card]
 [card]
 primitive=Phyrexian Devourer
@@ -622,89 +907,9 @@ id=3054
 rarity=C
 [/card]
 [card]
-primitive=Pillage
-id=3178
-rarity=U
-[/card]
-[card]
-primitive=Primitive Justice
-id=3179
-rarity=U
-[/card]
-[card]
-primitive=Pyrokinesis
-id=3180
-rarity=U
-[/card]
-[card]
-primitive=Reinforcements
-id=3207
-rarity=C
-[/card]
-[card]
-primitive=Reinforcements
-id=3208
-rarity=C
-[/card]
-[card]
-primitive=Reprisal
-id=3209
-rarity=C
-[/card]
-[card]
-primitive=Reprisal
-id=3210
-rarity=C
-[/card]
-[card]
-primitive=Ritual of the Machine
-id=3089
-rarity=R
-[/card]
-[card]
-primitive=Rogue Skycaptain
-id=3181
-rarity=R
-[/card]
-[card]
-primitive=Royal Decree
-id=3211
-rarity=R
-[/card]
-[card]
-primitive=Royal Herbalist
-id=3212
-rarity=C
-[/card]
-[card]
-primitive=Royal Herbalist
-id=3213
-rarity=C
-[/card]
-[card]
 primitive=Scarab of the Unseen
 id=3055
 rarity=U
-[/card]
-[card]
-primitive=Scars of the Veteran
-id=3214
-rarity=U
-[/card]
-[card]
-primitive=School of the Unseen
-id=3235
-rarity=U
-[/card]
-[card]
-primitive=Seasoned Tactician
-id=3215
-rarity=U
-[/card]
-[card]
-primitive=Sheltered Valley
-id=3236
-rarity=R
 [/card]
 [card]
 primitive=Shield Sphere
@@ -717,53 +922,18 @@ id=3057
 rarity=U
 [/card]
 [card]
-primitive=Soldevi Adnate
-id=3090
-rarity=C
-[/card]
-[card]
-primitive=Soldevi Adnate
-id=3091
-rarity=C
-[/card]
-[card]
 primitive=Soldevi Digger
 id=3058
 rarity=R
 [/card]
 [card]
-primitive=Soldevi Excavations
-id=3237
-rarity=R
-[/card]
-[card]
-primitive=Soldevi Heretic
-id=3114
-rarity=C
-[/card]
-[card]
-primitive=Soldevi Heretic
-id=3115
-rarity=C
-[/card]
-[card]
-primitive=Soldevi Sage
-id=3116
-rarity=C
-[/card]
-[card]
-primitive=Soldevi Sage
-id=3117
+primitive=Soldevi Sentry
+id=3060
 rarity=C
 [/card]
 [card]
 primitive=Soldevi Sentry
 id=3059
-rarity=C
-[/card]
-[card]
-primitive=Soldevi Sentry
-id=3060
 rarity=C
 [/card]
 [card]
@@ -777,139 +947,9 @@ id=3062
 rarity=C
 [/card]
 [card]
-primitive=Soldier of Fortune
-id=3182
-rarity=U
-[/card]
-[card]
-primitive=Spiny Starfish
-id=3118
-rarity=U
-[/card]
-[card]
-primitive=Splintering Wind
-id=3148
-rarity=R
-[/card]
-[card]
-primitive=Stench of Decay
-id=3092
-rarity=C
-[/card]
-[card]
-primitive=Stench of Decay
-id=3093
-rarity=C
-[/card]
-[card]
 primitive=Storm Cauldron
 id=3063
 rarity=R
-[/card]
-[card]
-primitive=Storm Crow
-id=3119
-rarity=C
-[/card]
-[card]
-primitive=Storm Crow
-id=3120
-rarity=C
-[/card]
-[card]
-primitive=Storm Elemental
-id=3121
-rarity=U
-[/card]
-[card]
-primitive=Storm Shaman
-id=3183
-rarity=C
-[/card]
-[card]
-primitive=Storm Shaman
-id=3184
-rarity=C
-[/card]
-[card]
-primitive=Stromgald Spy
-id=3094
-rarity=U
-[/card]
-[card]
-primitive=Suffocation
-id=3122
-rarity=U
-[/card]
-[card]
-primitive=Surge of Strength
-id=3228
-rarity=U
-[/card]
-[card]
-primitive=Sustaining Spirit
-id=3216
-rarity=R
-[/card]
-[card]
-primitive=Swamp Mosquito
-id=3095
-rarity=C
-[/card]
-[card]
-primitive=Swamp Mosquito
-id=3096
-rarity=C
-[/card]
-[card]
-primitive=Sworn Defender
-id=3217
-rarity=R
-[/card]
-[card]
-primitive=Taste of Paradise
-id=3149
-rarity=C
-[/card]
-[card]
-primitive=Taste of Paradise
-id=3150
-rarity=C
-[/card]
-[card]
-primitive=Thawing Glaciers
-id=3238
-rarity=R
-[/card]
-[card]
-primitive=Thought Lash
-id=3123
-rarity=R
-[/card]
-[card]
-primitive=Tidal Control
-id=3124
-rarity=R
-[/card]
-[card]
-primitive=Tornado
-id=3151
-rarity=R
-[/card]
-[card]
-primitive=Undergrowth
-id=3152
-rarity=C
-[/card]
-[card]
-primitive=Undergrowth
-id=3153
-rarity=C
-[/card]
-[card]
-primitive=Unlikely Alliance
-id=3218
-rarity=U
 [/card]
 [card]
 primitive=Urza's Engine
@@ -917,97 +957,47 @@ id=3064
 rarity=U
 [/card]
 [card]
-primitive=Varchild's Crusader
-id=3185
-rarity=C
-[/card]
-[card]
-primitive=Varchild's Crusader
-id=3186
-rarity=C
-[/card]
-[card]
-primitive=Varchild's War-Riders
-id=3187
-rarity=R
-[/card]
-[card]
-primitive=Survivor Token
-id=-3187
-rarity=T
-[/card]
-[card]
-primitive=Veteran's Voice
-id=3188
-rarity=C
-[/card]
-[card]
-primitive=Veteran's Voice
-id=3189
-rarity=C
-[/card]
-[card]
-primitive=Viscerid Armor
-id=3125
-rarity=C
-[/card]
-[card]
-primitive=Viscerid Armor
-id=3126
-rarity=C
-[/card]
-[card]
-primitive=Viscerid Drone
-id=3127
-rarity=U
-[/card]
-[card]
-primitive=Wandering Mage
-id=3229
-rarity=R
-[/card]
-[card]
-primitive=Whip Vine
-id=3154
-rarity=C
-[/card]
-[card]
-primitive=Whip Vine
-id=3155
-rarity=C
-[/card]
-[card]
 primitive=Whirling Catapult
 id=3065
 rarity=U
 [/card]
 [card]
-primitive=Wild Aesthir
-id=3219
-rarity=C
-[/card]
-[card]
-primitive=Wild Aesthir
-id=3220
-rarity=C
-[/card]
-[card]
-primitive=Winter's Night
-id=3230
+primitive=Balduvian Trading Post
+id=3231
 rarity=R
 [/card]
 [card]
-primitive=Yavimaya Ancients
-id=3156
-rarity=C
+primitive=Heart of Yavimaya
+id=3232
+rarity=R
 [/card]
 [card]
-primitive=Yavimaya Ancients
-id=3157
-rarity=C
+primitive=Kjeldoran Outpost
+id=3233
+rarity=R
 [/card]
 [card]
-primitive=Yavimaya Ants
-id=3158
+primitive=Lake of the Dead
+id=3234
+rarity=R
+[/card]
+[card]
+primitive=School of the Unseen
+id=3235
 rarity=U
+[/card]
+[card]
+primitive=Sheltered Valley
+id=3236
+rarity=R
+[/card]
+[card]
+primitive=Soldevi Excavations
+id=3237
+rarity=R
+[/card]
+[card]
+primitive=Thawing Glaciers
+id=3238
+rarity=R
 [/card]

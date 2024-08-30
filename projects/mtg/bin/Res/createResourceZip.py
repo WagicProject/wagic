@@ -10,7 +10,7 @@ def createResZipFile(filename):
         rename = False
         if not os.path.isfile('settings/options.txt'):
             os.rename('settings/options.orig.txt', 'settings/options.txt')
-            remame = True
+            rename = True
         if not os.path.isfile('player/options.txt'):
             os.rename('player/options.orig.txt', 'player/options.txt')
             rename = True
