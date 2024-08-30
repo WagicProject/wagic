@@ -1,79 +1,96 @@
-#Black/White Deck 10E/RV
-#NAME:The Hive
-#DESC:When the last living being
-#DESC:succumbs to the terrible blight
-#DESC:the wasps will rise
-#DESC:stirring the barren air
-#DESC:with their hum.
-#4x The hive
-135253
-135253
-135253
-135253
-#4x pestilence
-1172
-1172
-1172
-1172
-#4x Ancestor chosen
-130550
-130550
-130550
-130550
-#4x assassinate
-135194
-135194
-135194
-135194
-#4x bottle gnomes
-129495
-129495
-129495
-129495
-#4x Drudge skelettons
-129529
-129529
-129529
-129529
-#4x Glorious Anthem
-129572
-129572
-129572
-129572
-#4x Paladin en Vec
-129668
-129668
-129668
-129668
-#2 x Deathmark
-129910
-129910
-#2x Demistify
-129524
-129524
-#12 swamps
-129754
-129756
-129755
-129757
-129754
-129756
-129755
-129757
-129754
-129756
-129755
-129757
-#12x plains
-129680
-129681
-129682
-129683
-129680
-129681
-129682
-129683
-129680
-129681
-129682
-129683
+#NAME:Tobias Commander
+#DESC:Tobias Andrion considers himself
+#DESC:a master of strategy.  Can you
+#DESC:defeat him?
+#DESC: 
+#DESC:Win Wagic duels to unlock
+#DESC:more Commander opponents
+#DESC:
+#DESC:Original deck idea by Goraghull 
+#DESC:(mtggoldfish.com)
+#DESC:Built for Wagic by Bob
+#HINT:castpriority(commander,*)
+
+Acrobatic Maneuver (*) * 1
+Aethersnipe (*) * 1
+Alabaster Dragon (*) * 1
+Angelic Renewal (*) * 1
+Aqueous Form (*) * 1
+Archaeomancer (*) * 1
+Ash Barrens (*) * 1
+Azorius Guildgate (*) * 1
+Azorius Signet (*) * 1
+Blur (*) * 1
+Capsize (*) * 1
+Cloak of Mists (*) * 1
+Cloudshift (*) * 1
+Command Tower (*) * 1
+Commander's Sphere (*) * 1
+Counterspell (*) * 1
+Deep Analysis (*) * 1
+Displace (*) * 1
+Drifting Meadow (*) * 1
+Enlightened Maniac (*) * 1
+Ephemerate (*) * 1
+Essence Flux (*) * 1
+Fellwar Stone (*) * 1
+Flicker of Fate (*) * 1
+Forge of Heroes (*) * 1
+Forsake the Worldly (*) * 1
+Ghostly Flicker (*) * 1
+Icewind Stalwart (*) * 1
+Idyllic Beachfront (*) * 1
+Inspiring Overseer (*) * 1
+Island (*) * 4
+Island (WOE) (*) * 4
+Island (LCI) (*) * 4
+Journey to Nowhere (*) * 1
+Kor Cartographer (*) * 1
+Late to Dinner (*) * 1
+Lonely Sandbar (*) * 1
+Lose Focus (*) * 1
+Man-o'-War (*) * 1
+Meandering River (*) * 1
+Mind Stone (*) * 1
+Mist Raven (*) * 1
+Mnemonic Wall (*) * 1
+Momentary Blink (*) * 1
+Muse Drake (*) * 1
+Negate (M12) (*) * 1
+Oblivion Ring (*) * 1
+Opal Palace (*) * 1
+Palace Sentinels (*) * 1
+Pegasus Guardian (*) * 1
+Plains (*) * 4
+Plains (WOE) (*) * 4
+Plains (LCI) (*) * 4
+Plains (OTJ) (*) * 1
+Ponder (M12) (*) * 1
+Pondering Mage (*) * 1
+Preordain (*) * 1
+Protective Bubble (*) * 1
+Remote Isle (*) * 1
+Revoke Existence (*) * 1
+Salvager of Secrets (*) * 1
+Scrivener (*) * 1
+Scrollshift (*) * 1
+Sea Gate Oracle (*) * 1
+Sensor Splicer (*) * 1
+Settle Beyond Reality (*) * 1
+Skyscanner (*) * 1
+Soul Warden (*) * 1
+Soul of Migration (*) * 1
+Spirited Companion (*) * 1
+Stonehorn Dignitary (*) * 1
+Suture Priest (*) * 1
+Swords to Plowshares (*) * 1
+Teferi's Time Twist (*) * 1
+Temporal Fissure (*) * 1
+The Modern Age (*) * 1
+Thought Vessel (*) * 1
+Tranquil Cove (*) * 1
+Turn to Mist (*) * 1
+Vedalken Dismisser (RAV) (*) * 1
+Whirlpool Rider (*) * 1
+Whispersilk Cloak (*) * 1
+#CMD:Tobias Andrion (*) * 1
