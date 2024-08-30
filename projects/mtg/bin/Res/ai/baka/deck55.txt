@@ -1,22 +1,95 @@
-#NAME:Wild Cats
-#DESC:Ferocious predators
-#DESC:descend from the mountains,
-#DESC:lured down
-#DESC:by the sweet smell
-#DESC:of your fighters' cold sweat.
-Sabretooth Tiger (ICE)       * 4 #
-Raging Cougar (POR)          * 4 #
-Canyon Wildcat (TMP)         * 4 #
-Giant Strength (TMP)         * 4 #
-Guma (USG)                   * 4 #
-Reflexes (USG)               * 2 #
-Wild Jhovall (MRQ)           * 4 #
-Scarred Puma (INV)           * 4 #
-Maniacal Rage (INV)          * 4 #
-Brute Force (PLC)            * 2 #
-Mountain (10E)               * 4 #
-Mountain (10E)               * 4 #
-Mountain (10E)               * 4 #
-Mountain (10E)               * 4 #
-Mountain (M10)               * 4 #
-Mountain (M10)               * 4 #
+#NAME:Brimaz Commander
+#DESC:Brimaz draws power from his 
+#DESC:cat army.  Can you defeat him?
+#DESC: 
+#DESC:Win Wagic duels to unlock
+#DESC:more Commander opponents
+#DESC:
+#DESC:Original deck idea by Rowdy1705 
+#DESC:(mtggoldfish.com)
+#DESC:Built for Wagic by Bob
+#HINT:castpriority(commander,*)
+Ajani's Influence (*) * 1
+Ajani's Mantra (*) * 1
+Ajani's Sunstriker (*) * 1
+Ajani's Welcome (*) * 1
+Alms Collector (*) * 1
+Animal Sanctuary (*) * 1
+Arcane Signet (*) * 1
+Authority of the Consuls (*) * 1
+Basri's Acolyte (*) * 1
+Blade of the Sixth Pride (TSR) (*) * 1
+Blessing of the Nephilim (*) * 1
+Disenchant (BRO) (*) * 1
+Drifting Meadow (*) * 1
+Enlightened Ascetic (*) * 1
+Felidar Cub (*) * 1
+Garrison Cat (*) * 1
+Gift of Estates (*) * 1
+Graceful Cat (*) * 1
+Guardian Lions (*) * 1
+Healer of the Pride (*) * 1
+Heirloom Blade (*) * 1
+Idyllic Grange (*) * 1
+Intangible Virtue (*) * 1
+Ironpaw Aspirant (*) * 1
+Jedit's Dragoons (TSP) (*) * 1
+Jhovall Queen (*) * 1
+Kabira Crossroads (*) * 1
+Kemba, Kha Enduring (*) * 1
+Kemba, Kha Regent (*) * 1
+King of the Pride (*) * 1
+Land Tax (CMM) (*) * 1
+Leonin Abunas (*) * 1
+Leonin Battlemage (*) * 1
+Leonin Iconoclast (*) * 1
+Leonin Lightbringer (*) * 1
+Leonin Scimitar (MRD) (*) * 1
+Leonin Skyhunter (MRD) (*) * 1
+Leonin Snarecaster (*) * 1
+Leonin Vanguard (*) * 1
+Lightning Greaves (MRD) (*) * 1
+Loxodon Warhammer (MRD) (*) * 1
+Maned Serval (*) * 1
+Mask of Memory (*) * 1
+Mass Calcify (M15) (*) * 1
+Mesa Lynx (*) * 1
+Minas Tirith (*) * 1
+New Benalia (*) * 1
+Oblivion Ring (*) * 1
+Oreskos Sun Guide (*) * 1
+Path of Ancestry (*) * 1
+Path to Exile (*) * 1
+Plains (ONE) (*) * 4
+Plains (MOM) (*) * 4
+Plains (WOE) (*) * 4
+Plains (LCI) (*) * 4
+Plains (MKM) (*) * 4
+Plains (OTJ) (*) * 3
+Pride Guardian (*) * 1
+Ravnica at War (*) * 1
+Regal Caracal (*) * 1
+Reliquary Tower (*) * 1
+Sacred Cat (*) * 1
+Sanctuary Cat (DKA) (*) * 1
+Savannah Lions (*) * 1
+Savannah Sage (*) * 1
+Secluded Steppe (*) * 1
+Short Sword (*) * 1
+Sigarda's Aid (*) * 1
+Skullclamp (*) * 1
+Skyhunter Cub (MRD) (*) * 1
+Skyhunter Patrol (MRD) (*) * 1
+Skyhunter Prowler (*) * 1
+Skyhunter Skirmisher (10E) (*) * 1
+Sol Ring (*) * 1
+Steelshaper's Gift (*) * 1
+Steppe Lynx (*) * 1
+Swiftfoot Boots (*) * 1
+Sword of Vengeance (*) * 1
+Sword of the Animist (*) * 1
+Swords to Plowshares (*) * 1
+Trained Caracal (*) * 1
+White Sun's Zenith (*) * 1
+Zarichi Tiger (*) * 1
+#CMD:Brimaz, King of Oreskos (*) * 1
