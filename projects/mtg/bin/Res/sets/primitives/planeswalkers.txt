@@ -109,7 +109,7 @@ auto=counter(0/0,5,loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Gain 2 life without targeting any creature) life:2 controller
 auto={C(0/0,2,Loyalty)}:name(+2: Gain 2 life and target creature gets two +1/+1 counters) target(creature) counter(1/1,2) && life:2 controller
 auto={C(0/0,-3,Loyalty)}:name(-3: Exile target creature and gains life opponent) moveto(exile) target(creature) && life:2 targetController
-auto={C(0/0,-10,Loyalty)}:name(-10: Creatures gain doubles strike and flying) all(creature|myBattlefield) flying && double strike ueot
+auto={C(0/0,-10,Loyalty)}:name(-10: Creatures gain doubles strike and flying) all(creature|myBattlefield) transforms((,flying,double strike)) ueot
 text=+2: You gain 2 life. Put two +1/+1 counters on up to one target creature. -- -3: Exile target creature. Its controller gains 2 life. -- -10: Creatures you control gain flying and double strike until end of turn.
 mana={4}{W}{W}
 type=Legendary Planeswalker
@@ -2312,8 +2312,8 @@ auto=this(variable{hascntloyalty}=9) {C(0/0,0,Loyalty)}:name(+0: Exile creature)
 auto=this(variable{hascntloyalty}=9) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost<=8]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
 auto=this(variable{hascntloyalty}=10) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost<=9]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
 auto=this(variable{hascntloyalty}=10) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost<=9]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
-auto=this(variable{hascntloyalty}=11) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost=10]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
-auto=this(variable{hascntloyalty}=11) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost=10]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=11) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost<=10]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
+auto=this(variable{hascntloyalty}=11) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost<=10]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
 auto=this(variable{hascntloyalty}=12) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost<=11]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
 auto=this(variable{hascntloyalty}=12) {C(0/0,0,Loyalty)}:name(+0: Exile equipment) name(+0: Exile equipment) target(equipment[manacost<=11]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
 auto=this(variable{hascntloyalty}=13) {C(0/0,0,Loyalty)}:name(+0: Exile creature) name(+0: Exile creature) target(creature[manacost<=12]|mygraveyard) moveto(myexile) and!( clone with(haste,unearth) )!
@@ -2765,7 +2765,7 @@ subtype=Saheeli
 name=Saheeli, Filigree Master
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Scry 1) scry:1 scrycore delayed transforms((,newability[if type(artifact|mybattlefield)~morethan~0 then choice name(Don't tap artifact) name(Don't tap artifact) donothing],newability[if type(artifact|mybattlefield)~morethan~0 then choice name(Tap artifact) name(Tap artifact) target(artifact|mybattlefield) tap && draw:1 controller])) oneshot scrycoreend scryend
-auto={C(0/0,-2,Loyalty)}:name(-2: Create thopters) token(Thopter,Artifact Creature Thopter,1/1,flying)*2 and!( transforms((,haste)) ueot )!
+auto={C(0/0,-2,Loyalty)}:name(-2: Create thopters) _THOPTERTOKEN_*2 and!( transforms((,haste)) ueot )!
 auto={C(0/0,-4,Loyalty)}:name(-4: Emblem for artifact creatures) emblem transforms((,newability[lord(creature[artifact]|mybattlefield) 1/1],newability[lord(artifact|mycastingzone) changecost(colorless:-1) forcedalive])) forever dontremove
 text=[+1]: Scry 1. You may tap an untapped artifact you control. If you do, draw a card. -- [-2]: Create two 1/1 colorless Thopter artifact creature tokens with flying. They gain haste until end of turn. -- [-4]: You get an emblem with "Artifact creatures you control get +1/+1" and "Artifact spells you cast cost {1} less to cast."
 mana={2}{U}{R}

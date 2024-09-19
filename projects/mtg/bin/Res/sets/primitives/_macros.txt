@@ -248,6 +248,9 @@
 # Beast Token
 #AUTO_DEFINE _BEASTTOKEN_ create(Beast:Creature Beast:3/3:green)
 
+# Bird Token
+#AUTO_DEFINE _BIRDTOKEN_ create(bird:creature bird:1/1:white:flying)
+
 # 1/1 blue and red Otter creature token with prowess
 #AUTO_DEFINE _OTTERTOKEN_ create(otter:creature otter:1/1:blue:red) and!( transforms((,newability[@movedTo(*[-creature]|mystack):1/1 ueot])) forever )!
 
