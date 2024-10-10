@@ -1,85 +1,27 @@
-#NAME:Ragavan Commander 2023 
-#DESC:The Ragavan Commander Deck
-#DESC:Refined for Wagic by Bob
-#HINT:castpriority(commander,*)
-Treasure Nabber (PZ2) *1
-Dire Fleet Daredevil (AFC) *1
-Trash for Treasure (C16) *1
-Tome of Legends (ELD) *1
-Helm of the Host (DOM) *1
-Coercive Recruiter (CMR) *1
-World at War (ROE) *1
-Commander's Plate (CMR) *1
-Neheb, the Eternal (AKR) *1
-Strike It Rich (MH2) *1
-Stolen Strategy *1
-Shinka, the Bloodsoaked Keep (CHK) *1
-Inventors' Fair (KLD) *1
-Strip Mine (EXP) *1
-Embercleave (ELD) *1
-Break Through the Line (FRF) *1
-Valakut, the Molten Pinnacle (ZEN) *1
-Imperial Recruiter (ME2) *1
-Tibalt's Trickery (KHM) *1
-Mogg Salvage (NMS) *1
-Seize the Day (ODY) *1
-Mishra's Bauble (MB1) *1
-Hellkite Tyrant (GTC) *1
-Goblin Engineer (MH1) *1
-Aggravated Assault (ONS) *1
-Xorn (AFR) *1
-Chromatic Lantern *1
-Magda, Brazen Outlaw (KHM) *1
-Sensei's Divining Top (EMA) *1
-Combat Celebrant (AKR) *1
-Blood Moon (2XM) *1
-Access Tunnel (STX) *1
-Sword of Hearth and Home (MH2) *1
-Mox Opal (2XM) *1
-Treasure Vault (AFR) *1
-Sword of Fire and Ice (2XM) *1
-Urza's Saga (MH2) *1
-Jeska's Will (CMR) *1
-Sol Ring (C19) *1
-Seize the Spoils (KHM) *1
-Abrade (PLIST) *1
-Fury of the Horde (CSP) *1
-Valakut Awakening (ZNR) *1
-Mountain (UNH) *20
-Godo, Bandit Warlord (CHK) *1
-Mox Amber (DOM) *1
-Breeches, Brazen Plunderer *1
-Cursed Mirror (C21) *1
-Price of Glory (ODY) *1
-Spire of Industry (AER) *1
-Vandalblast (AFC) *1
-Ancient Tomb (ZNE) *1
-Passionate Archaeologist *1
-Mana Confluence (CMR) *1
-Shatterskull Smashing (ZNR) *1
-Thran Dynamo *1
-Lightning Greaves (MB1) *1
-Pirate's Pillage (RIX) *1
-Shatter *1
-Sword of Feast and Famine (MPS) *1
-Goblin Tunneler *1
-War's Toll (BBD) *1
-Wayfarer's Bauble (C17) *1
-Cathedral of War (M13) *1
-Sword of Light and Shadow (2XM) *1
-Underworld Breach (THB) *1
-Reckless Fireweaver *1
-Dockside Extortionist (C19) *1
-Mox Diamond (FVR) *1
-Bloodstained Mire (ONS) *1
-Lightning Bolt (ME1) *1
-City of Brass (ME4) *1
-Goldspan Dragon (KHM) *1
-Ruby Medallion (C14) *1
-Sword of the Animist (AFC) *1
-Grenzo, Havoc Raiser (PZ2) *1
-Ancient Copper Dragon *1
-Moraug, Fury of Akoum (ZNR) *1
-Wheel of Fortune (VMA) *1
-Port Razer (CMR) *1
-#CMD:Ragavan, Nimble Pilferer (MH2) *1
+#NAME:Rising Panic
+#DESC: Deck for Wagic by Bob
+#HINT:castpriority(artifact,instant,enchantment)
+#HINT:combo hold(Rising Waters|myhand)^cast(Rising Waters|myhand)^restriction{type(Rising Waters|mybattlefield)~lessthan~1}^totalmananeeded({3}{U})
+#HINT:combo hold(Dictate of Kruphix|myhand)^cast(Dictate of Kruphix|myhand)^restriction{type(Dictate of Kruphix|mybattlefield)~lessthan~1}^totalmananeeded({1}{U}{U})
+#HINT:combo hold(Frozen Aether|myhand)^cast(Frozen Aether|myhand)^restriction{type(Frozen Aether|mybattlefield)~lessthan~1}^totalmananeeded({3}{U})
+#HINT:combo hold(Propaganda|myhand)^cast(Propaganda|myhand)^restriction{type(Propaganda|mybattlefield)~lessthan~1}^totalmananeeded({2}{U})
+#HINT:combo hold(Overburden|myhand)^cast(Overburden|myhand)^restriction{type(Overburden|mybattlefield)~lessthan~1}^totalmananeeded({1}{U})
+#HINT:combo hold(Dream Tides|myhand)^cast(Dream Tides|myhand)^restriction{type(Dream Tides|mybattlefield)~lessthan~1}^totalmananeeded({1}{U})
+Anvil of Bogardan (*) * 2
+Black Vise (*) * 4
+Dictate of Kruphix (*) * 3
+Dream Tides (*) * 3
+Ebony Owl Netsuke (*) * 2
+Force of Will (*) * 4
+Frozen Aether (*) * 3 
+Howling Mine (*) * 4
+Iron Maiden (*) * 2
+Island (4ED) (*) * 4
+Island (M10) (*) * 4
+Island (ICE) (*) * 4
+Island (M20) (*) * 4
+Island (MIR) (*) * 4
+Island (REV) (*) * 3
+Overburden (*) * 3
+Propaganda (*) * 3
+Rising Waters (*) * 4
