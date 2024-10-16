@@ -2641,7 +2641,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             {
                 limit = sWithoutTc.substr(limit_str + 6);
             }
-            ////A stupid Special case for ManaProducers, becuase Ai only understands manaabilities that are not nested.
+            ////A stupid Special case for ManaProducers, because Ai only understands manaabilities that are not nested.
             AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
             if (amp)
             {
@@ -2702,7 +2702,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         if (sWithoutTc.find(ifKeywords[i]) == 0)
         {
-            string cond = sWithoutTc.substr(ifKeywords[i].length(),ifKeywords[i].length() + sWithoutTc.find(" then ")-6);
+            string cond = sWithoutTc.substr(ifKeywords[i].lengt
+            h(),ifKeywords[i].length() + sWithoutTc.find(" then ")-6);
             size_t foundElse = s.find(" else ");
             MTGAbility * a2 = NULL;
             if(foundElse != string::npos)
@@ -3118,14 +3119,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return NULL;
     }
 
-    //mana of the listed type doesnt get emptied from the pools.
+    //mana of the listed type doesn't get emptied from the pools.
     vector<string>colorType = parseBetween(s,"poolsave(",")",false);
     if (colorType.size())
     {
         return NEW AManaPoolSaver(observer, id, card, colorType[1], s.find("opponentpool")!=string::npos, s.find("terminate") != string::npos);// Added a way to terminate effect when source card leave battlefield.
     }
 
-    //opponent replace draw with
+    //opponent replaces draw with
     found = s.find("opponentreplacedraw ");
     if (found != string::npos)
     {
@@ -3405,7 +3406,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
-    //gain control until source is untapped or leaves battlefield
+    //gain control until the source is untapped or leaves the battlefield
     found = s.find("shackle");
     if (found != string::npos)
     {
@@ -3414,7 +3415,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
-    //grant ability until source is untapped or leaves battlefield
+    //grant ability until the source is untapped or leaves battlefield
     found = s.find("grant ");
     if (found != string::npos)
     {
@@ -3450,7 +3451,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         splitFizzle = parseBetween(s, "fizzleto(", ")");
     if (splitFizzle.size())
     {
-        // currently only hand, exile and library are supported
+        // currently only hand, exile, and library are supported
         string zone = splitFizzle[1];
         ActionStack::FizzleMode fizzleMode = ActionStack::PUT_IN_GRAVEARD;
         if (zone == "hand")
@@ -3519,7 +3520,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 storedAbilityString = splitName[0];
                 storedAbilityString.append(splitName[2]);
                 //we erase the name section from the string to avoid 
-                //accidently building an mtg ability with the text meant for menuText.
+                //accidentally building an mtg ability with the text meant for menuText.
             }
             ATargetedAbilityCreator * abl = NEW ATargetedAbilityCreator(observer, id, card,target, NULL,newName, storedAbilityString, who);
             abl->oneShot = 1;
@@ -3545,7 +3546,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             starfound = starfound.substr(0,starEnd);
             multiplier = NEW WParsedInt(starfound, spell, card);
         }
-        replace(splitToken[1].begin(), splitToken[1].end(), '^', ','); // To allow the usage of ^ instead of , char (e.g. using token keyword inside transforms)
+        replace(splitToken[1].begin(), splitToken[1].end(), '^', ','); // To allow the usage of ^ instead of, char (e.g. using token keyword inside transforms)
         int tokenId = atoi(splitToken[1].c_str());
         MTGCardInstance * creator = NULL;
         if(card  && card->name.empty() && card->storedSourceCard) // Fix for token creation inside ability$!!$ keyword.
@@ -3647,7 +3648,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return tok;  
     }
 
-    //Alternative Token creator. Name, type, p/t, abilities - uses ":" as delimeter
+    //Alternative Token creator. Name, type, p/t, abilities - uses ":" as delimiter
     vector<string> makeToken = parseBetween(s, "create(", ")");
     if (makeToken.size())
     {
@@ -3689,12 +3690,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         
         string tokenDesc = makeToken[1];
         vector<string> tokenParameters = split(tokenDesc, ':');
-        //lets try finding a token by card name.
+        //let's try finding a token by card name.
         if (makeToken[1].size() && tokenParameters.size() ==1)
         {
             string cardName = makeToken[1];
             MTGCard * mysafetycard = MTGCollection()->getCardByName(cardName);
-            if (mysafetycard) //lets try constructing it then,we didnt find it by name
+            if (mysafetycard) //lets try constructing it then, we didn't find it by name
             {
                 ATokenCreator * mtok = NEW ATokenCreator(observer, id, creator, target, NULL, cardName, myMultiplierfound, multiplier, who);
                 mtok->oneShot = 1;
@@ -3822,7 +3823,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
          return a;
     }
 
-    //put a card in a specifc position of owners library from the top
+    //put a card in a specific position of the owners library from the top
     vector<string> splitPlaceFromTop = parseBetween(s, "placefromthetop(", ")");
     if (splitPlaceFromTop.size())
     {
@@ -3942,7 +3943,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("conjure");
     if (found != string::npos)
     {
-        replace(s.begin(), s.end(), '^', ','); // To allow the usage of ^ instead of , char (e.g. using conjure keyword inside transforms)
+        replace(s.begin(), s.end(), '^', ','); // To allow the usage of ^ instead of, char (e.g. using conjure keyword inside transforms)
         string cardName = "";
         vector<string> splitCard = parseBetween(s, "cards(", ")");
         if (splitCard.size())
@@ -6081,11 +6082,11 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
      if (dynamic_cast<AAProliferate *> (a))
          return BAKA_EFFECT_GOOD;
 
-    // Equipment that gets immediately attached. Todo: check the abilities associated with Equip, to make sure they're good (for now it seems to be the majority of the cases)?
+    // Equipment that gets immediately attached. Todo: check the abilities associated with Equip, to make sure they're good (for now it seems to be the majority of the cases).
     if (dynamic_cast<AEquip *> (a))
         return BAKA_EFFECT_GOOD;
 
-    // For now, ACounterTracker is only used for Creatures that "belong" to one of our domains, need to target one of our own lands, so we return a "positive" value
+    // For now, ACounterTracker is only used for Creatures that "belong" to one of our domains, and need to target one of our lands, so we return a "positive" value
     if (dynamic_cast<ACounterTracker *>(a))
         return BAKA_EFFECT_GOOD;
 
