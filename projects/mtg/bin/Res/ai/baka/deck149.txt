@@ -1,92 +1,26 @@
-#NAME:Tatyova Commander 
-#DESC:The Tatyova Commander Deck
-#DESC:Refined for Wagic by Bob
-#HINT:castpriority(commander,*)
-#HINT:combo hold(Finale of Devastation|myhand)^cast(Finale of Devastation|myhand) targeting(Worldspine Wurm|mylibrary)~totalmananeeded({11}{G}{G})
-#HINT:combo hold(Genesis Wave|myhand)^cast(Genesis Wave|myhand)~totalmananeeded({5}{G}{G}{G})
-Arcane Signet (AFC) *1
-Avenger of Zendikar (PRM) *1
-Azusa, Lost but Seeking *1
-Birds of Paradise (PRM) *1
-Broken Bond (MB1) *1
-Castle Vantress (ELD) *1
-Command Beacon (PZ1) *1
-Command Tower (C19) *1
-Consecrated Sphinx (MBS) *1
-Courser of Kruphix (TSR) *1
-Crop Rotation (2XM) *1
-Crucible of Worlds (PRM) *1
-Cultivate (PZ1) *1
-Cyclonic Rift (MM3) *1
-Decanter of Endless Water *1
-Dryad Arbor (TSR) *1
-Echoing Truth (C19) *1
-Eternal Witness (PZ1) *1
-Exploration (PRM) *1
-Explore (C19) *1
-Finale of Devastation (WAR) *1
-Flooded Grove (EXP) *1
-Flooded Strand (EXP) *1
-Force of Will (EMA) *1
-Forest (2XM) *4
-Forest (BLB) *4
-Forest (OTJ) *3
-Gaea's Cradle (USG) *1
-Genesis Wave (IMA) *1
-Harmonize (PRM) *1
-Harrow (MB1) *1
-Hinterland Harbor *1
-Island (UNH) *4
-Island (OTJ) *4
-Island (BLB) *1
-Khalni Garden (PZ1) *1
-Kinnan, Bonder Prodigy (IKO) *1
-Kodama's Reach (C17) *1
-Koma, Cosmos Serpent (KHM) *1
-Lightning Greaves (AFC) *1
-Lotus Cobra (PRM) *1
-Mana Reflection (SHM) *1
-Misty Rainforest (ZNE) *1
-Multani, Yavimaya's Avatar *1
-Mystic Sanctuary (ELD) *1
-Narset, Parter of Veils (WAR) *1
-Nexus of Fate (M19) *1
-Nyxbloom Ancient (THB) *1
-Oran-Rief Hydra *1
-Polluted Delta (ONS) *1
-Pongify (TSR) *1
-Primeval Titan (TSR) *1
-Prismatic Vista (H1R) *1
-Prophet of Kruphix (PRM) *1
-Rampaging Baloths (C19) *1
-Rampant Growth (PRM) *1
-Ramunap Excavator (PRM) *1
-Reliquary Tower (C19) *1
-Rimewood Falls (KHM) *1
-Ruin Crab *1
-Sakura-Tribe Elder (MB1) *1
-Scalding Tarn (MH2) *1
-Search for Tomorrow (MB1) *1
-Seedborn Muse (C19) *1
-Simic Growth Chamber (C19) *1
-Simic Signet (C15) *1
-Sol Ring (C19) *1
-Solemn Simulacrum (MB1) *1
-Sporemound *1
-Strip Mine (EXP) *1
-Summer Bloom (POR) *1
-Sylvan Scrying (MB1) *1
-Tangled Islet *1
-Thran Dynamo *1
-Thrasios, Triton Hero (PZ2) *1
-Timetwister (PRM) *1
-Tropical Island (ME4) *1
-Tyrite Sanctum (KHM) *1
-Upheaval (MH2) *1
-Verdant Catacombs (MH2) *1
-Wayfarer's Bauble (C17) *1
-Wild Growth (AFC) *1
-Worldspine Wurm *1
-Yavimaya Elder (UDS) *1
-Zendikar's Roil *1
-#CMD:Tatyova, Benthic Druid (DOM) *1
+#NAME:Shocking Minotaurs
+#DESC:Deck for Wagic by Bob
+#HINT:combo hold(Raise Dead|myhand)^cast(Raise Dead|myhand)^restriction{type(creature[toughness>=2]|mygraveyard)~morethan~0}~totalmananeeded({B})
+Badlands (*) * 1
+Blackcleave Cliffs (*) * 2
+Bloodrage Brawler (*) * 4
+Dragonskull Summit  (*) * 2
+Fanatic of Mogis (*) * 1
+Felhide Petrifier (*) * 2
+Gnarled Scarhide (*) * 2
+Kragma Warcaller (*) * 4
+Lightning Bolt (*) * 4
+Mogis, God of Slaughter (*) * 2
+Moraug, Fury of Akoum (*) * 1
+Mountain (DSK) (*) * 4
+Mountain (MKM) (*) * 3
+Mountain (WOE) (*) * 4
+Neheb, the Eternal (*) * 1
+Neheb, the Worthy (*) * 3
+Rageblood Shaman (*) * 4
+Ragemonger (*) * 4
+Raise Dead (9ED) (*) * 2
+Shock (*) * 2
+Swamp (DSK) (*) * 4
+Swamp (WOE) (*) * 2
+Terminate (NCC) (*) * 2
