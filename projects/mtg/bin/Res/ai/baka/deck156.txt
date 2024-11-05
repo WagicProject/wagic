@@ -1,57 +1,91 @@
-#NAME:Lord of The Rings Commander 2023
-#DESC:Original Deck Concept by ElderKuradio (tappedout.net)
-#DESC:Designed for Wagic by Vitty85
-#HINT:castpriority(commander,creature,*)
-Aragorn and Arwen, Wed (*) * 1
-Aragorn, the Uniter (*) * 1
-Arwen, Mortal Queen (*) * 1
-Elvish Mariner (*) * 1
-Frodo, Determined Hero (*) * 1
-Galadriel, Gift-Giver (*) * 1
-Gandalf the White (*) * 1
-Gandalf, White Rider (*) * 1
-Gloin, Dwarf Emissary (*) * 1
-Gollum, Scheming Guide (*) * 1
-Gorbag of Minas Morgul (*) * 1
+#NAME:Sauron Commander
+#DESC:Original deck by Josh 
+#DESC:Edmundson (tappedout.net)
+#DESC:Refined for Wagic by Bob
+#HINT:castpriority(commander,*)
+Abrade (*) * 1
+An Offer You Can't Refuse (*) * 1
+Arcane Denial (*) * 1
+Arcane Signet (*) * 1
+Badlands (*) * 1
+Bedevil (*) * 1
+Big Score (*) * 1
+Bone Miser (*) * 1
+Callous Dismissal (*) * 1
+Changeling Outcast (*) * 1
+Chromatic Lantern (*) * 1
+Command Tower (*) * 1
+Commander's Sphere (*) * 1
+Crumbling Necropolis (*) * 1
+Dragonskull Summit (*) * 1
+Dreadhorde Invasion (*) * 1
+Drowned Catacomb (*) * 1
+Eternal Skylord (*) * 1
+Evolving Wilds (*) * 1
+Exotic Orchard (*) * 1
+Faithless Looting (*) * 1
+Feed the Swarm (*) * 1
+Fellwar Stone (*) * 1
+Foray of Orcs (*) * 1
+Gleaming Overseer (*) * 1
 Gothmog, Morgul Lieutenant (*) * 1
-Gwaihir the Windlord (*) * 1
-Ioreth of the Healing House (*) * 1
-Rangers of Ithilien (*) * 1
-Saruman of Many Colors (*) * 1
+Grishnakh, Brash Instigator (*) * 1
+Haunted Ridge (*) * 1
+Herald of Secret Streams (*) * 1
+Honor the God-Pharaoh (*) * 1
+Infernal Grasp (*) * 1
+Inherited Envelope (*) * 1
+Island (LTR) (*) * 4
+Island (WOE) (*) * 1
+Lazotep Chancellor (*) * 1
+Lazotep Plating (*) * 1
+March from the Black Gate (*) * 1
+Mauhur, Uruk-hai Captain (*) * 1
+Mindless Conscription (*) * 1
+Mithril Coat (*) * 1
+Mountain (LTR) (*) * 4
+616930
+619388
+619389
+619390
+619391
+619392
+619393
+619394
+619395
+Orcish Bowmasters (*) * 1
+Orcish Siegemaster (*) * 1
+Ringsight (*) * 1
 Saruman the White (*) * 1
-Sauron, the Dark Lord (*) * 1
-Sauron, the Lidless Eye (*) * 1
-Strider, Ranger of the North (*) * 1
-Witch-king of Angmar (*) * 1
+Saruman's Trickery (*) * 1
+Saruman, the White Hand (*) * 1
+Sauron, Lord of the Rings (*) * 1
+Sauron, the Necromancer (*) * 1
+Sheoldred, Whispering One (*) * 1
+Shipwreck Marsh (*) * 1
+Shivan Reef (*) * 1
+Smoldering Marsh (*) * 1
+Sol Ring (*) * 1
+Stormcarved Coast (*) * 1
+Sulfurous Springs (*) * 1
+Sunken Hollow (*) * 1
+Swamp (LTR) (*) * 4
+Swamp (WOE) (*) * 4
+Swamp (DSK) (*) * 3
+Swarming of Moria (*) * 1
+Talisman of Creativity (*) * 1
+Talisman of Dominance (*) * 1
+Talisman of Indulgence (*) * 1
+Teferi's Ageless Insight (*) * 1
+Temple of Epiphany (*) * 1
+The Locust God (*) * 1
+Thrill of Possibility (*) * 1
+Ulamog, The Infinite Gyre (*) * 1
+Underground River (*) * 1
+Underground Sea (*) * 1
+Vandalblast (*) * 1
+Whispersilk Cloak (*) * 1
+Widespread Brutality (*) * 1
+Windfall (*) * 1
 Witch-king, Bringer of Ruin (*) * 1
-Barad-dur (*) * 1
-Mount Doom (*) * 1
-Mountain (LTR) * 13
-Island (LTR) * 10
-Swamp (LTR) * 10
-Forest (LTR) * 10
-Plains (LTR) * 10
-Elven Chorus (*) * 1
-Fires of Mount Doom (*) * 1
-Gift of Strands (*) * 1
-Long List of the Ents (*) * 1
-Oath of the Grey Host (*) * 1
-Scroll of Isildur (*) * 1
-War of the Last Alliance (*) * 1
-Borne Upon a Wind (*) * 1
-Friendly Rivalry (*) * 1
-Press the Enemy (*) * 1
-Sauron's Ransom (*) * 1
-Stern Scolding (*) * 1
-You Cannot Pass! (*) * 1
-Assault on Osgiliath (*) * 1
-Hew the Entwood (*) * 1
-Horses of the Bruinen (*) * 1
-Last March of the Ents (*) * 1
-Shadow Summoning (*) * 1
-Shadow of the Enemy (*) * 1
-Bilbo's Ring (*) * 1
-Glamdring (*) * 1
-Palantir of Orthanc (*) * 1
-
-#CMD:Tom Bombadil (*) * 1
+#CMD:Sauron, the Dark Lord (*) * 1
