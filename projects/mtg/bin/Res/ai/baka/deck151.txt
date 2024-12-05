@@ -1,4 +1,4 @@
-#NAME:Arcades Commander 2023
+#NAME:Arcades Commander
 #DESC:Original Deck by ashby4 (tappedout.net),
 #DESC:refined for Wagic by Bob
 #HINT:castpriority(commander,*)
