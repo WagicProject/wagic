@@ -1,4 +1,4 @@
-#NAME:Edgar Markov Commander 2023
+#NAME:Edgar Markov Commander
 #DESC:Original Deck Concept by DespairFaction (tappedout.net)
 #DESC:Designed for Wagic by Bob
 #HINT:castpriority(commander,creature,*)
