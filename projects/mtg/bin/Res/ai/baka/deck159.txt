@@ -1,4 +1,4 @@
-#NAME:Graaz Commander 2023
+#NAME:Graaz Commander
 #DESC:Deck concept thanks to punkeduard 
 #DESC:Original deck by vasarto77 (tappedout.net)
 #DESC:Refined for Wagic by Bob
