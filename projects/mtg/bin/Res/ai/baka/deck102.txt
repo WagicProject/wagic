@@ -1,26 +1,84 @@
-#NAME:The KOR
-#DESC:The Kor never stand down.Golem-Skin Gauntlets	 (MRD) *1
-Plains	 (8ED) *4
-Plains	 (8ED) *4
-Bonesplitter	 (MRD) *2
-Vulshok Battlegear	 (MRD) *1
-Plains	 (MRD) *4
-Plains	 (MRD) *4
-Plains	 (MRD) *4
-Cranial Plating	 (5DN) *2
-Skyhunter Skirmisher	 (5DN) *2
-Paradise Mantle	 (5DN) *2
-Shuko	 (BOK) *2
-Umezawa's Jitte	 (BOK) *2
-Kor Duelist	 (ZEN) *2
-Spidersilk Net	 (ZEN) *1
-Bone Saw	 (CFX) *2
-Armament Master	 (ZEN) *3
-Lone Missionary	 (ROE) *2
-Pennon Blade	 (ROE) *1
-Kor Line-Slinger	 (ROE) *2
-Kitesail Apprentice	 (WWK) *2
-Stoneforge Mystic	 (WWK) *2
-Accorder's Shield	 (SOM) *2
-Swords to Plowshares	 (EVT) *2
-Kor Hookmaster	 (EVT) *2
+#NAME:Tergrid Commander
+#DESC:The Tergrid Commander Deck
+#DESC:Refined for Wagic by Bob
+#HINT:castpriority(commander,*)
+Ancient Tomb (EXP) *1
+Animate Dead (VMA) *1
+Arcane Signet (AFC) *1
+Archon of Cruelty (MH2) *1
+Barren Moor (C19) *1
+Blackblade Reforged (SS2) *1
+Bojuka Bog (C19) *1
+Braids, Cabal Minion (EMA) *1
+Butcher of Malakir *1
+Charcoal Diamond *1
+Command Beacon (PZ1) *1
+Commander's Sphere (C19) *1
+Corrupt *1
+Crypt Ghast (GTC) *1
+Damnation (MM3) *1
+Dreadhorde Invasion (WAR) *1
+Elvish Doomsayer *1
+Fell Specter *1 
+Geier Reach Sanitarium (C19) *1
+Gilded Lotus *1
+Grave Pact (CMD) *1
+Gray Merchant of Asphodel *1
+Hedron Archive (C19) *1
+Hymn to Tourach *1
+Hypnotic Specter *1
+Korlash, Heir to Blackblade *1
+Leaden Myr *1
+Lightning Greaves (AFC) *1
+Liliana of the Dark Realms *1
+Liliana, Dreadhorde General (WAR) *1
+Liliana's Triumph (WAR) *1
+Lotus Petal (MB1) *1
+Megrim *1
+Memory Jar (FVR) *1
+Mind Stone (AFC) *1
+Mortuary Mire *1
+Mox Jet *1
+Necrogen Mists (MRD) *1
+Night's Whisper (EMA) *1
+No Mercy (MP2) *1
+Oppression (7ED) *1
+Painful Quandary *1
+Palladium Myr (MB1) *1
+Phyrexian Arena (TD0) *1
+Phyrexian Obliterator *1
+Plaguecrafter (C19) *1
+Pox (ME1) *1
+Ravenous Chupacabra (MB1) *1
+Reliquary Tower (M13) *1
+Sangromancer (MBS) *1
+Shadowspear (THB) *1
+Sheoldred, Whispering One *1
+Smallpox (M12) *1
+Sol Ring (C19) *1
+Solemn Simulacrum (TSR) *1
+Soul Shatter (ZNR) *1
+Steel Hellkite (C17) *1
+Strip Mine (EXP) *1
+Swamp (2XM) *4
+Swamp (OTJ) *4
+Swamp (MKM) *4
+Swamp (WOE) *4
+Swamp (LCI) *4
+Swamp (DSK) *4
+Swamp (BLB) *3
+Sword of Feast and Famine (MPS) *1
+Syr Konrad, the Grim *1
+Temple of the False God *1
+The Eldest Reborn *1
+Thought Vessel (MB1) *1
+Thoughtseize (2XM) *1
+Thran Dynamo (C19) *1
+Tinybones, Trinket Thief (JMP) *1
+Tourach, Dread Cantor (MH2) *1
+Urborg, Tomb of Yawgmoth (TSR) *1
+Whip of Erebos (THS) *1
+Witch of the Moors (JMP) *1
+Witch's Cottage (ELD) *1
+Worn Powerstone (PZ1) *1
+#CMD:Tergrid, God of Fright (KHM) *1

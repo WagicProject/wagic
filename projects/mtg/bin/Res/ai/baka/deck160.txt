@@ -1,4 +1,4 @@
-#NAME:Shalai-Hallar Commander 2023
+#NAME:Shalai-Hallar Commander
 #DESC:Deck concept thanks to Vitty85
 #DESC:Original deck by gabao (tappedout.net)
 #DESC:Refined for Wagic by Bob

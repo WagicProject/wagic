@@ -1,4 +1,4 @@
-#NAME:Krenko Commander 2023
+#NAME:Krenko Commander
 #DESC:Original Deck by AGunWithLegs (tappedout.net),
 #DESC:refined for Wagic by Bob
 #HINT:castpriority(commander,creature,*)
