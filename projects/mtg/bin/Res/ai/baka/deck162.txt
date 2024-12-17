@@ -1,0 +1,25 @@
+#NAME:Draw and Die!
+#DESC:Deck concept by ChocolateLightning
+#DESC:(tappedout.net), refined for
+#DESC:Wagic by Bob
+#HINT:dontattackwith(Fate Unraveler)
+#HINT:dontblockwith(Fate Unraveler)
+Dictate of Kruphix (*) * 3
+Dismal Backwater (*) * 2
+Drowned Catacomb (*) * 4
+Fate Unraveler (*) * 4
+Fog Bank (*) * 2
+Forced Fruition (*) * 2
+Howling Mine (*) * 4
+Island (MIR) (*) * 4
+Island (ICE) (*) * 4
+Liliana's Caress (*) * 2
+Master of the Feast (*) * 4
+Ob Nixilis, the Hate-Twisted (*) * 3
+Peer into the Abyss (*) * 1
+Teferi's Puzzle Box (*) * 2
+Shield Sphere (*) * 3
+Swamp (ZEN) (*) * 4
+Swamp (4ED) (*) * 4
+Underworld Dreams (*) * 4
+Underground Sea (*) * 4

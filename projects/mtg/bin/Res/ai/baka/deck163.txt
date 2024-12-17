@@ -1,0 +1,29 @@
+#NAME:Cut Off One Head...
+#DESC:Deck concept by Prospekt
+#DESC:(tappedout.net), refined for
+#DESC:Wagic by Bob
+#HINT:dontattackwith(Birds of Paradise)
+#HINT:dontblockwith(Birds of Paradise)
+#HINT:dontattackwith(Karametra's Acolyte)
+#HINT:alwaysattackwith(Kalonian Hydra)
+#HINT:combo hold(Alpha Authority|myhand)^until(creature[-Hydra]|mybattlefield)^cast(Alpha Authority|myhand) targeting(creature[-Hydra]|mybattlefield)^restriction{type(Alpha Authority|mybattlefield)~lessthan~1}^totalmananeeded({1}{G})
+#HINT:combo hold(Canopy Cover|myhand)^until(creature[-Hydra]|mybattlefield)^cast(Canopy Cover|myhand) targeting(creature[-Hydra]|mybattlefield)^restriction{type(Canopy Cover|mybattlefield)~lessthan~1}^totalmananeeded({1}{G})
+Alpha Authority * 2
+Birds of Paradise * 4
+Beast Within * 3
+Canopy Cover * 2
+Cultivate * 4
+Forest (MIR) * 4
+Forest (ICE) * 4
+Forest (4ED) * 4
+Forest (5ED) * 4
+Forest (7ED) * 4
+Forest (RAV) * 2
+Kalonian Hydra * 2
+Karametra's Acolyte * 2
+Khalni Hydra * 4
+Managorger Hydra * 4
+Mistcutter Hydra * 3
+Primordial Hydra * 4
+Solidarity of Heroes * 2
+Voracious Hydra * 2
