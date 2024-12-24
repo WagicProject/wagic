@@ -2,7 +2,7 @@
 author=Wagic Team
 name=Special Guests
 year=2023-11-17
-total=71
+total=90
 [/meta]
 [card]
 primitive=Lord of Atlantis
@@ -292,5 +292,55 @@ rarity=M
 [card]
 primitive=Secluded Courtyard
 id=672833
+rarity=M
+[/card]
+[card]
+primitive=Hallowed Haunting
+id=677356
+rarity=M
+[/card]
+[card]
+primitive=Soul Warden
+id=677357
+rarity=M
+[/card]
+[card]
+primitive=Expropriate
+id=677358
+rarity=M
+[/card]
+[card]
+primitive=Phantasmal Image
+id=677359
+rarity=M
+[/card]
+[card]
+primitive=Damnation
+id=677360
+rarity=M
+[/card]
+[card]
+primitive=Sacrifice
+id=677361
+rarity=M
+[/card]
+[card]
+primitive=Maddening Hex
+id=677362
+rarity=M
+[/card]
+[card]
+primitive=Unholy Heat
+id=677363
+rarity=M
+[/card]
+[card]
+primitive=Collected Company
+id=677364
+rarity=M
+[/card]
+[card]
+primitive=Noxious Revival
+id=677365
 rarity=M
 [/card]
