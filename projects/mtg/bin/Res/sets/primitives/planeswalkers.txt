@@ -1,6 +1,6 @@
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#Sorted this programmatically - Thanks to Vitty85 11-08-2024
+#Sorted this programmatically - Thanks to Vitty85 24-12-2024
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -554,6 +554,17 @@ auto={C(0/0,-9,Loyalty)}:name(-9: Deals 9 damage to each creature) damage:9 all(
 auto={C(0/0,-10,Loyalty)}:name(-10: Deals 10 damage to each creature) damage:10 all(creature)
 text=+1: Put two 3/1 red Elemental creature tokens with haste onto the battlefield. Exile them at the beginning of the next end step. -- 0: Discard all the cards in your hand, then draw that many cards plus one. -- -X: Chandra, Flamecaller deals X damage to each creature.
 mana={4}{R}{R}
+type=Legendary Planeswalker
+subtype=Chandra
+[/card]
+[card]
+name=Chandra, Flameshaper
+auto=counter(0/0,6,loyalty)
+auto={C(0/0,+2,Loyalty)}:Add{R}{R}{R} && transforms((,newability[all(*[zpos<=3]|mylibrary) moveto(myexile) and!( name(Choose exiled card) target(*[fresh]|myexile) transforms((,newability[canplayfromexile])) ueot )!])) forever
+auto={C(0/0,+1,Loyalty)}:clone with(treason,haste) target(creature|mybattlefield)
+auto={C(0/0,-4,Loyalty)}:thisforeach(variable{8}) ability$!name(divide 8 damage) damage:1 target(creature,planeswalker)!$ controller
+text=[+2]: Add {R}{R}{R}. Exile the top three cards of your library. Choose one. You may play that card this turn. -- [+1]: Create a token that's a copy of target creature you control, except it has haste and "At the beginning of the end step, sacrifice this token." -- [-4]: Chandra deals 8 damage divided as you choose among any number of target creatures and/or planeswalkers.
+mana={5}{R}{R}
 type=Legendary Planeswalker
 subtype=Chandra
 [/card]
@@ -1692,6 +1703,19 @@ auto={C(0/0,-2,Loyalty)}:name(-2: Create ninja) token(Ninja,Creature Ninja,1/1,b
 auto={C(0/0,-7,Loyalty)}:name(-7: Emblem search creature) emblem transforms((,newability[@combatdamaged(player) from(creature|myBattlefield):name(Search creature) target(creature[black;blue]|mylibrary) moveto(mybattlefield) and!( shuffle )!])) forever dontremove
 text=At the beginning of your end step, if Kaito Shizuki entered the battlefield this turn, he phases out. -- [+1]: Draw a card. Then discard a card unless you attacked this turn. -- [-2]: Create a 1/1 blue Ninja creature token with "This creature can't be blocked." -- [-7]: You get an emblem with "Whenever a creature you control deals combat damage to a player, search your library for a blue or black creature card, put it onto the battlefield, then shuffle."
 mana={1}{U}{B}
+type=Legendary Planeswalker
+subtype=Kaito
+[/card]
+[card]
+name=Kaito, Bane of Nightmares
+auto=counter(0/0,4,loyalty)
+autohand={1}{U}{B}{N}:ninjutsu
+auto=this(variable{controllerturn}>0) becomes(Ninja Creature,3/4,hexproof)
+auto={C(0/0,+1,Loyalty)}:name(emblem) emblem transforms((,newability[all(ninja|myBattlefield) 1/1])) forever dontremove
+auto={C(0/0,0,Loyalty)}:name(Surveil 2) reveal:psurveiloffsetplus2plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus2plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus2plusend>*|reveal) moveto(ownerlibrary) optiontwoend afterrevealed all(*[zpos=1]|mylibrary) transforms((,newability[draw:1 controller])) oneshot afterrevealedend revealend
+auto={C(0/0,-2,Loyalty)}:name(-2 Tap target creature) target(creature) transforms((,newability[tap],newability[counter(0/0.2.Stun)]))
+text=Ninjutsu {1}{U}{B} ({1}{U}{B}, Return an unblocked attacker you control to hand: Put this card onto the battlefield from your hand tapped and attacking.) -- During your turn, as long as Kaito has one or more loyalty counters on him, he's a 3/4 Ninja creature and has hexproof. -- [+1]: You get an emblem with "Ninjas you control get +1/+1." -- [0]: Surveil 2. Then draw a card for each opponent who lost life this turn. -- [-2]: Tap target creature. Put two stun counters on it.
+mana={2}{U}{B}
 type=Legendary Planeswalker
 subtype=Kaito
 [/card]
