@@ -1,0 +1,327 @@
+[meta]
+author=Wagic Team
+name=Alchemy: Innistrad
+orderindex=ONL-E.YMID
+year=2021-12-09
+total=64
+[/meta]
+[card]
+primitive=Angel of Eternal Dawn
+id=548227
+rarity=R
+[/card]
+[card]
+primitive=Angel of Unity
+id=548228
+rarity=U
+[/card]
+[card]
+primitive=Captain Eberhart
+id=548229
+rarity=M
+[/card]
+[card]
+primitive=Divine Purge
+id=548230
+rarity=R
+[/card]
+[card]
+primitive=Ethereal Escort
+id=548231
+rarity=M
+[/card]
+[card]
+primitive=Expedition Supplier
+id=548232
+rarity=R
+[/card]
+[card]
+primitive=Faithful Disciple
+id=548233
+rarity=U
+[/card]
+[card]
+primitive=Inquisitor Captain
+id=548234
+rarity=R
+[/card]
+[card]
+primitive=Sigardian Evangel
+id=548235
+rarity=R
+[/card]
+[card]
+primitive=Slayer's Bounty
+id=548236
+rarity=R
+[/card]
+[card]
+primitive=Suntail Squadron
+id=548237
+rarity=R
+[/card]
+[card]
+primitive=Absorb Energy
+id=548238
+rarity=R
+[/card]
+[card]
+primitive=Unexpected Conversion
+id=548239
+rarity=R
+[/card]
+[card]
+primitive=Clone Crafter
+id=548240
+rarity=R
+[/card]
+[card]
+primitive=Discover the Formula
+id=548241
+rarity=R
+[/card]
+[card]
+primitive=Geist of Regret
+id=548242
+rarity=M
+[/card]
+[card]
+primitive=Geistchanneler
+id=548243
+rarity=R
+[/card]
+[card]
+primitive=Kindred Denial
+id=548244
+rarity=U
+[/card]
+[card]
+primitive=Obsessive Collector
+id=548245
+rarity=R
+[/card]
+[card]
+primitive=Oglor, Devoted Assistant
+id=548246
+rarity=M
+[/card]
+[card]
+primitive=Rimewall Protector
+id=548247
+rarity=U
+[/card]
+[card]
+primitive=Sinister Reflections
+id=548248
+rarity=R
+[/card]
+[card]
+primitive=Tireless Angler
+id=548249
+rarity=R
+[/card]
+[card]
+primitive=Cursebound Witch
+id=548250
+rarity=U
+[/card]
+[card]
+primitive=Assemble from Parts
+id=548251
+rarity=R
+[/card]
+[card]
+primitive=Break Expectations
+id=548252
+rarity=U
+[/card]
+[card]
+primitive=Citystalker Connoisseur
+id=548253
+rarity=R
+[/card]
+[card]
+primitive=Gutmorn, Pactbound Servant
+id=548254
+rarity=M
+[/card]
+[card]
+primitive=Patient Zero
+id=548255
+rarity=R
+[/card]
+[card]
+primitive=Predatory Sludge
+id=548256
+rarity=R
+[/card]
+[card]
+primitive=Puppet Raiser
+id=548257
+rarity=M
+[/card]
+[card]
+primitive=Sanguine Brushstroke
+id=548258
+rarity=R
+[/card]
+[card]
+primitive=Sap Vitality
+id=548259
+rarity=R
+[/card]
+[card]
+primitive=Veteran Ghoulcaller
+id=548260
+rarity=R
+[/card]
+[card]
+primitive=Arms Scavenger
+id=548261
+rarity=R
+[/card]
+[card]
+primitive=Bloodrage Alpha
+id=548262
+rarity=R
+[/card]
+[card]
+primitive=Brittle Blast
+id=548263
+rarity=U
+[/card]
+[card]
+primitive=Conductive Current
+id=548264
+rarity=R
+[/card]
+[card]
+primitive=Electrostatic Blast
+id=548265
+rarity=R
+[/card]
+[card]
+primitive=Fearsome Whelp
+id=548266
+rarity=U
+[/card]
+[card]
+primitive=Frenzied Geistblaster
+id=548267
+rarity=R
+[/card]
+[card]
+primitive=Rahilda, Wanted Cutthroat
+id=548268
+rarity=M
+[/card]
+[card]
+primitive=Rahilda, Feral Outlaw
+id=548268
+rarity=T
+[/card]
+[card]
+primitive=Tibalt, Wicked Tormentor
+id=548270
+rarity=M
+[/card]
+[card]
+primitive=Toralf's Disciple
+id=548271
+rarity=R
+[/card]
+[card]
+primitive=Town-Razer Tyrant
+id=548272
+rarity=R
+[/card]
+[card]
+primitive=Antique Collector
+id=548273
+rarity=R
+[/card]
+[card]
+primitive=Garruk, Wrath of the Wilds
+id=548274
+rarity=M
+[/card]
+[card]
+primitive=Geistpack Alpha
+id=548275
+rarity=R
+[/card]
+[card]
+primitive=Grizzled Huntmaster
+id=548276
+rarity=R
+[/card]
+[card]
+primitive=Hinterland Chef
+id=548277
+rarity=R
+[/card]
+[card]
+primitive=Hollowhenge Wrangler
+id=548278
+rarity=R
+[/card]
+[card]
+primitive=Ishkanah, Broodmother
+id=548279
+rarity=M
+[/card]
+[card]
+primitive=Lupine Harbingers
+id=548280
+rarity=R
+[/card]
+[card]
+primitive=Ravenous Pursuit
+id=548281
+rarity=R
+[/card]
+[card]
+primitive=Settle the Wilds
+id=548282
+rarity=U
+[/card]
+[card]
+primitive=Tenacious Pup
+id=548283
+rarity=U
+[/card]
+[card]
+primitive=Begin Anew
+id=548284
+rarity=R
+[/card]
+[card]
+primitive=Gitrog, Horror of Zhava
+id=548285
+rarity=R
+[/card]
+[card]
+primitive=Key to the Archive
+id=548286
+rarity=R
+[/card]
+[card]
+primitive=Soulstealer Axe
+id=548287
+rarity=U
+[/card]
+[card]
+primitive=Wickerwing Effigy
+id=548288
+rarity=R
+[/card]
+[card]
+primitive=Ominous Traveler
+id=548289
+rarity=R
+[/card]
+[card]
+primitive=Forsaken Crossroads
+id=548290
+rarity=R
+[/card]
