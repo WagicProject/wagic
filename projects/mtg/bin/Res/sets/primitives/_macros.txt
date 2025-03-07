@@ -22,7 +22,7 @@
 #AUTO_DEFINE _PARTNER_  may name(Put partner in hand) moveto(myhand) target(*[partname]|mylibrary)
 
 # Goad
-#AUTO_DEFINE _GOAD_ transforms((,newability[counter(0/0.1.Goaded) notrg],newability[this(counter{0/0.1.Goaded}>0) mustattack],newability[phaseaction[end next once sourceinplay] counter(0/0.-hascntgoaded.Goaded) notrg])) forever
+#AUTO_DEFINE _GOAD_ transforms((,newability[counter(0/0.1.Goaded) notrg],newability[this(counter{0/0.1.Goaded}>0) mustattack],newability[phaseaction[myupkeep next once sourceinplay] counter(0/0.-hascntgoaded.Goaded) notrg])) forever
 
 # Rebound
 #AUTO_DEFINE _REBOUND_ if rebound then all(this|mystack) moveto(exile) and!( transforms((,newability[@rebounded:may name(Cast rebounded card) activate castcard(normal)])) forever )!
@@ -247,6 +247,8 @@
 
 #AUTO_DEFINE _EERIE_ @movedTo(*[Room]|myBattlefield):
 
+#AUTO_DEFINE _CREW1_ {crew(other creature[power>=1]|myBattlefield)}:name(crew 1 [1 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=1]|mybattlefield)~morethan~0,compare(crewtotalpower)~morethan~0}
+
 # Angel Token
 #AUTO_DEFINE _ANGELTOKEN_ create(Angel:Creature Angel:4/4:white:flying)
 
@@ -342,3 +344,6 @@
 
 # Treasure Token
 #AUTO_DEFINE _TREASURE_ token(Treasure,Treasure Artifact,0/0) and!( transforms((,newability[{T}{S}:Add{W}],newability[{T}{S}:Add{U}],newability[{T}{S}:Add{B}],newability[{T}{S}:Add{R}],newability[{T}{S}:Add{G}])) forever )!
+
+# Vehicle Token
+#AUTO_DEFINE _VEHICLE_ token(Vehicle,Artifact Vehicle,3/2) and!( transforms((,newability[{crew(other creature[power>=1]|myBattlefield)}:name(crew 1 [1 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=1]|mybattlefield)~morethan~0,compare(crewtotalpower)~morethan~0}])) forever )!

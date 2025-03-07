@@ -2166,7 +2166,7 @@ int AALibraryPosition::resolve()
 
 const string AALibraryPosition::getMenuText()
 {
-    return "Put in Library in a specific position from the top";
+    return "Put in library in a specific position from the top";
 }
 
 AALibraryPosition * AALibraryPosition::clone() const
@@ -7954,7 +7954,6 @@ void AAlterCost::increaseTheCost(MTGCardInstance * card)
             card->getManaCost()->add(k,card->getIncreasedManaCost()->getCost(k));
         }
     }
-    return;
 }
 
 void AAlterCost::decreaseTheCost(MTGCardInstance * card)
