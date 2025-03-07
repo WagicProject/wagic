@@ -1,0 +1,2716 @@
+[meta]
+author=Wagic Team
+name=Aetherdrift
+year=2025-02-14
+total=553
+[/meta]
+[card]
+primitive=Air Response Unit
+id=690438
+rarity=U
+[/card]
+[card]
+primitive=Alacrian Armory
+id=690439
+rarity=U
+[/card]
+[card]
+primitive=Basri, Tomorrow's Champion
+id=690440
+rarity=R
+[/card]
+[card]
+primitive=Brightfield Glider
+id=690441
+rarity=C
+[/card]
+[card]
+primitive=Brightfield Mustang
+id=690442
+rarity=C
+[/card]
+[card]
+primitive=Broadcast Rambler
+id=690443
+rarity=C
+[/card]
+[card]
+primitive=Bulwark Ox
+id=690444
+rarity=R
+[/card]
+[card]
+primitive=Canyon Vaulter
+id=690445
+rarity=U
+[/card]
+[card]
+primitive=Cloudspire Captain
+id=690446
+rarity=U
+[/card]
+[card]
+primitive=Collision Course
+id=690447
+rarity=C
+[/card]
+[card]
+primitive=Daring Mechanic
+id=690448
+rarity=C
+[/card]
+[card]
+primitive=Detention Chariot
+id=690449
+rarity=U
+[/card]
+[card]
+primitive=Gallant Strike
+id=690450
+rarity=U
+[/card]
+[card]
+primitive=Gloryheath Lynx
+id=690451
+rarity=U
+[/card]
+[card]
+primitive=Guardian Sunmare
+id=690452
+rarity=R
+[/card]
+[card]
+primitive=Guidelight Synergist
+id=690453
+rarity=U
+[/card]
+[card]
+primitive=Interface Ace
+id=690454
+rarity=C
+[/card]
+[card]
+primitive=Leonin Surveyor
+id=690455
+rarity=C
+[/card]
+[card]
+primitive=Lightshield Parry
+id=690456
+rarity=C
+[/card]
+[card]
+primitive=Lightwheel Enhancements
+id=690457
+rarity=C
+[/card]
+[card]
+primitive=Lotusguard Disciple
+id=690458
+rarity=C
+[/card]
+[card]
+primitive=Nesting Bot
+id=690459
+rarity=U
+[/card]
+[card]
+primitive=Perilous Snare
+id=690460
+rarity=R
+[/card]
+[card]
+primitive=Pride of the Road
+id=690461
+rarity=U
+[/card]
+[card]
+primitive=Ride's End
+id=690462
+rarity=C
+[/card]
+[card]
+primitive=Roadside Assistance
+id=690463
+rarity=U
+[/card]
+[card]
+primitive=Salvation Engine
+id=690464
+rarity=M
+[/card]
+[card]
+primitive=Skyseer's Chariot
+id=690465
+rarity=R
+[/card]
+[card]
+primitive=Spectacular Pileup
+id=690466
+rarity=R
+[/card]
+[card]
+primitive=Spotcycle Scouter
+id=690467
+rarity=C
+[/card]
+[card]
+primitive=Sundial, Dawn Tyrant
+id=690468
+rarity=U
+[/card]
+[card]
+primitive=Swiftwing Assailant
+id=690469
+rarity=C
+[/card]
+[card]
+primitive=Tune Up
+id=690470
+rarity=U
+[/card]
+[card]
+primitive=Unswerving Sloth
+id=690471
+rarity=U
+[/card]
+[card]
+primitive=Valor's Flagship
+id=690472
+rarity=M
+[/card]
+[card]
+primitive=Voyager Glidecar
+id=690473
+rarity=R
+[/card]
+[card]
+primitive=Voyager Quickwelder
+id=690474
+rarity=C
+[/card]
+[card]
+primitive=Aether Syphon
+id=690475
+rarity=U
+[/card]
+[card]
+primitive=Bounce Off
+id=690476
+rarity=C
+[/card]
+[card]
+primitive=Caelorna, Coral Tyrant
+id=690477
+rarity=U
+[/card]
+[card]
+primitive=Diversion Unit
+id=690478
+rarity=U
+[/card]
+[card]
+primitive=Flood the Engine
+id=690479
+rarity=C
+[/card]
+[card]
+primitive=Gearseeker Serpent
+id=690480
+rarity=C
+[/card]
+[card]
+primitive=Glitch Ghost Surveyor
+id=690481
+rarity=C
+[/card]
+[card]
+primitive=Guidelight Optimizer
+id=690482
+rarity=C
+[/card]
+[card]
+primitive=Howler's Heavy
+id=690483
+rarity=C
+[/card]
+[card]
+primitive=Hulldrifter
+id=690484
+rarity=C
+[/card]
+[card]
+primitive=Keen Buccaneer
+id=690485
+rarity=C
+[/card]
+[card]
+primitive=Memory Guardian
+id=690486
+rarity=U
+[/card]
+[card]
+primitive=Midnight Mangler
+id=690487
+rarity=C
+[/card]
+[card]
+primitive=Mindspring Merfolk
+id=690488
+rarity=R
+[/card]
+[card]
+primitive=Mu Yanling, Wind Rider
+id=690489
+rarity=M
+[/card]
+[card]
+primitive=Nimble Thopterist
+id=690490
+rarity=C
+[/card]
+[card]
+primitive=Possession Engine
+id=690491
+rarity=R
+[/card]
+[card]
+primitive=Rangers' Refueler
+id=690492
+rarity=U
+[/card]
+[card]
+primitive=Repurposing Bay
+id=690493
+rarity=R
+[/card]
+[card]
+primitive=Riverchurn Monument
+id=690494
+rarity=R
+[/card]
+[card]
+primitive=Roadside Blowout
+id=690495
+rarity=U
+[/card]
+[card]
+primitive=Sabotage Strategist
+id=690496
+rarity=U
+[/card]
+[card]
+primitive=Scrounging Skyray
+id=690497
+rarity=U
+[/card]
+[card]
+primitive=Skystreak Engineer
+id=690498
+rarity=C
+[/card]
+[card]
+primitive=Slick Imitator
+id=690499
+rarity=U
+[/card]
+[card]
+primitive=Spectral Interference
+id=690500
+rarity=C
+[/card]
+[card]
+primitive=Spell Pierce
+id=690501
+rarity=U
+[/card]
+[card]
+primitive=Spikeshell Harrier
+id=690502
+rarity=U
+[/card]
+[card]
+primitive=Stall Out
+id=690503
+rarity=C
+[/card]
+[card]
+primitive=Stock Up
+id=690504
+rarity=U
+[/card]
+[card]
+primitive=Thopter Fabricator
+id=690505
+rarity=R
+[/card]
+[card]
+primitive=Trade the Helm
+id=690506
+rarity=U
+[/card]
+[card]
+primitive=Transit Mage
+id=690507
+rarity=U
+[/card]
+[card]
+primitive=Trip Up
+id=690508
+rarity=C
+[/card]
+[card]
+primitive=Unstoppable Plan
+id=690509
+rarity=R
+[/card]
+[card]
+primitive=Vnwxt, Verbose Host
+id=690510
+rarity=R
+[/card]
+[card]
+primitive=Waxen Shapethief
+id=690511
+rarity=R
+[/card]
+[card]
+primitive=Ancient Vendetta
+id=690512
+rarity=U
+[/card]
+[card]
+primitive=Back on Track
+id=690513
+rarity=U
+[/card]
+[card]
+primitive=Bloodghast
+id=690514
+rarity=R
+[/card]
+[card]
+primitive=Carrion Cruiser
+id=690515
+rarity=U
+[/card]
+[card]
+primitive=Chitin Gravestalker
+id=690516
+rarity=C
+[/card]
+[card]
+primitive=Cryptcaller Chariot
+id=690517
+rarity=R
+[/card]
+[card]
+primitive=Cursecloth Wrappings
+id=690518
+rarity=R
+[/card]
+[card]
+primitive=Deathless Pilot
+id=690519
+rarity=C
+[/card]
+[card]
+primitive=Demonic Junker
+id=690520
+rarity=R
+[/card]
+[card]
+primitive=Engine Rat
+id=690521
+rarity=C
+[/card]
+[card]
+primitive=Gas Guzzler
+id=690522
+rarity=R
+[/card]
+[card]
+primitive=Gastal Raider
+id=690523
+rarity=U
+[/card]
+[card]
+primitive=Gonti, Night Minister
+id=690524
+rarity=R
+[/card]
+[card]
+primitive=Grim Bauble
+id=690525
+rarity=C
+[/card]
+[card]
+primitive=Grim Javelineer
+id=690526
+rarity=C
+[/card]
+[card]
+primitive=Hellish Sideswipe
+id=690527
+rarity=U
+[/card]
+[card]
+primitive=Hour of Victory
+id=690528
+rarity=U
+[/card]
+[card]
+primitive=Intimidation Tactics
+id=690529
+rarity=U
+[/card]
+[card]
+primitive=Kalakscion, Hunger Tyrant
+id=690530
+rarity=U
+[/card]
+[card]
+primitive=The Last Ride
+id=690531
+rarity=M
+[/card]
+[card]
+primitive=Locust Spray
+id=690532
+rarity=U
+[/card]
+[card]
+primitive=Maximum Overdrive
+id=690533
+rarity=C
+[/card]
+[card]
+primitive=Momentum Breaker
+id=690534
+rarity=U
+[/card]
+[card]
+primitive=Mutant Surveyor
+id=690535
+rarity=C
+[/card]
+[card]
+primitive=Pactdoll Terror
+id=690536
+rarity=C
+[/card]
+[card]
+primitive=Quag Feast
+id=690537
+rarity=R
+[/card]
+[card]
+primitive=Ripclaw Wrangler
+id=690538
+rarity=C
+[/card]
+[card]
+primitive=Risen Necroregent
+id=690539
+rarity=U
+[/card]
+[card]
+primitive=Risky Shortcut
+id=690540
+rarity=C
+[/card]
+[card]
+primitive=Shefet Archfiend
+id=690541
+rarity=U
+[/card]
+[card]
+primitive=The Speed Demon
+id=690542
+rarity=M
+[/card]
+[card]
+primitive=Spin Out
+id=690543
+rarity=C
+[/card]
+[card]
+primitive=Streaking Oilgorger
+id=690544
+rarity=C
+[/card]
+[card]
+primitive=Syphon Fuel
+id=690545
+rarity=C
+[/card]
+[card]
+primitive=Wickerfolk Indomitable
+id=690546
+rarity=U
+[/card]
+[card]
+primitive=Wreckage Wickerfolk
+id=690547
+rarity=C
+[/card]
+[card]
+primitive=Wretched Doll
+id=690548
+rarity=U
+[/card]
+[card]
+primitive=Adrenaline Jockey
+id=690549
+rarity=U
+[/card]
+[card]
+primitive=Boommobile
+id=690550
+rarity=R
+[/card]
+[card]
+primitive=Burner Rocket
+id=690551
+rarity=C
+[/card]
+[card]
+primitive=Burnout Bashtronaut
+id=690552
+rarity=R
+[/card]
+[card]
+primitive=Chandra, Spark Hunter
+id=690553
+rarity=M
+[/card]
+[card]
+primitive=Clamorous Ironclad
+id=690554
+rarity=C
+[/card]
+[card]
+primitive=Count on Luck
+id=690555
+rarity=R
+[/card]
+[card]
+primitive=Crash and Burn
+id=690556
+rarity=C
+[/card]
+[card]
+primitive=Daretti, Rocketeer Engineer
+id=690557
+rarity=R
+[/card]
+[card]
+primitive=Draconautics Engineer
+id=690558
+rarity=R
+[/card]
+[card]
+primitive=Dracosaur Auxiliary
+id=690559
+rarity=U
+[/card]
+[card]
+primitive=Dynamite Diver
+id=690560
+rarity=C
+[/card]
+[card]
+primitive=Endrider Catalyzer
+id=690561
+rarity=C
+[/card]
+[card]
+primitive=Endrider Spikespitter
+id=690562
+rarity=U
+[/card]
+[card]
+primitive=Fuel the Flames
+id=690563
+rarity=U
+[/card]
+[card]
+primitive=Full Throttle
+id=690564
+rarity=R
+[/card]
+[card]
+primitive=Gastal Blockbuster
+id=690565
+rarity=C
+[/card]
+[card]
+primitive=Gastal Thrillroller
+id=690566
+rarity=R
+[/card]
+[card]
+primitive=Gilded Ghoda
+id=690567
+rarity=C
+[/card]
+[card]
+primitive=Goblin Surveyor
+id=690568
+rarity=C
+[/card]
+[card]
+primitive=Greasewrench Goblin
+id=690569
+rarity=U
+[/card]
+[card]
+primitive=Hazoret, Godseeker
+id=690570
+rarity=M
+[/card]
+[card]
+primitive=Howlsquad Heavy
+id=690571
+rarity=R
+[/card]
+[card]
+primitive=Kickoff Celebrations
+id=690572
+rarity=C
+[/card]
+[card]
+primitive=Lightning Strike
+id=690573
+rarity=C
+[/card]
+[card]
+primitive=Magmakin Artillerist
+id=690574
+rarity=C
+[/card]
+[card]
+primitive=Marauding Mako
+id=690575
+rarity=U
+[/card]
+[card]
+primitive=Outpace Oblivion
+id=690576
+rarity=U
+[/card]
+[card]
+primitive=Pacesetter Paragon
+id=690577
+rarity=U
+[/card]
+[card]
+primitive=Pedal to the Metal
+id=690578
+rarity=C
+[/card]
+[card]
+primitive=Prowcatcher Specialist
+id=690579
+rarity=C
+[/card]
+[card]
+primitive=Push the Limit
+id=690580
+rarity=U
+[/card]
+[card]
+primitive=Reckless Velocitaur
+id=690581
+rarity=U
+[/card]
+[card]
+primitive=Road Rage
+id=690582
+rarity=U
+[/card]
+[card]
+primitive=Skycrash
+id=690583
+rarity=U
+[/card]
+[card]
+primitive=Spire Mechcycle
+id=690584
+rarity=U
+[/card]
+[card]
+primitive=Thunderhead Gunner
+id=690585
+rarity=C
+[/card]
+[card]
+primitive=Tyrox, Saurid Tyrant
+id=690586
+rarity=U
+[/card]
+[card]
+primitive=Afterburner Expert
+id=690587
+rarity=R
+[/card]
+[card]
+primitive=Agonasaur Rex
+id=690588
+rarity=R
+[/card]
+[card]
+primitive=Alacrian Jaguar
+id=690589
+rarity=C
+[/card]
+[card]
+primitive=Autarch Mammoth
+id=690590
+rarity=U
+[/card]
+[card]
+primitive=Beastrider Vanguard
+id=690591
+rarity=C
+[/card]
+[card]
+primitive=Bestow Greatness
+id=690592
+rarity=C
+[/card]
+[card]
+primitive=Broken Wings
+id=690593
+rarity=C
+[/card]
+[card]
+primitive=Defend the Rider
+id=690594
+rarity=U
+[/card]
+[card]
+primitive=District Mascot
+id=690595
+rarity=R
+[/card]
+[card]
+primitive=Dredger's Insight
+id=690596
+rarity=U
+[/card]
+[card]
+primitive=Earthrumbler
+id=690597
+rarity=U
+[/card]
+[card]
+primitive=Elvish Refueler
+id=690598
+rarity=U
+[/card]
+[card]
+primitive=Fang Guardian
+id=690599
+rarity=U
+[/card]
+[card]
+primitive=Fang-Druid Summoner
+id=690600
+rarity=U
+[/card]
+[card]
+primitive=Greenbelt Guardian
+id=690601
+rarity=U
+[/card]
+[card]
+primitive=Hazard of the Dunes
+id=690602
+rarity=C
+[/card]
+[card]
+primitive=Jibbirik Omnivore
+id=690603
+rarity=C
+[/card]
+[card]
+primitive=Loxodon Surveyor
+id=690604
+rarity=C
+[/card]
+[card]
+primitive=Lumbering Worldwagon
+id=690605
+rarity=R
+[/card]
+[card]
+primitive=March of the World Ooze
+id=690606
+rarity=M
+[/card]
+[card]
+primitive=Migrating Ketradon
+id=690607
+rarity=C
+[/card]
+[card]
+primitive=Molt Tender
+id=690608
+rarity=U
+[/card]
+[card]
+primitive=Ooze Patrol
+id=690609
+rarity=U
+[/card]
+[card]
+primitive=Oviya, Automech Artisan
+id=690610
+rarity=R
+[/card]
+[card]
+primitive=Plow Through
+id=690611
+rarity=U
+[/card]
+[card]
+primitive=Point the Way
+id=690612
+rarity=U
+[/card]
+[card]
+primitive=Pothole Mole
+id=690613
+rarity=C
+[/card]
+[card]
+primitive=Regal Imperiosaur
+id=690614
+rarity=R
+[/card]
+[card]
+primitive=Rise from the Wreck
+id=690615
+rarity=U
+[/card]
+[card]
+primitive=Run Over
+id=690616
+rarity=C
+[/card]
+[card]
+primitive=Silken Strength
+id=690617
+rarity=C
+[/card]
+[card]
+primitive=Stampeding Scurryfoot
+id=690618
+rarity=C
+[/card]
+[card]
+primitive=Terrian, World Tyrant
+id=690619
+rarity=U
+[/card]
+[card]
+primitive=Thunderous Velocipede
+id=690620
+rarity=M
+[/card]
+[card]
+primitive=Veloheart Bike
+id=690621
+rarity=C
+[/card]
+[card]
+primitive=Venomsac Lagac
+id=690622
+rarity=C
+[/card]
+[card]
+primitive=Webstrike Elite
+id=690623
+rarity=R
+[/card]
+[card]
+primitive=Aatchik, Emerald Radian
+id=690624
+rarity=R
+[/card]
+[card]
+primitive=Apocalypse Runner
+id=690625
+rarity=U
+[/card]
+[card]
+primitive=Boom Scholar
+id=690626
+rarity=U
+[/card]
+[card]
+primitive=Boosted Sloop
+id=690627
+rarity=U
+[/card]
+[card]
+primitive=Brightglass Gearhulk
+id=690628
+rarity=M
+[/card]
+[card]
+primitive=Broadside Barrage
+id=690629
+rarity=U
+[/card]
+[card]
+primitive=Broodheart Engine
+id=690630
+rarity=U
+[/card]
+[card]
+primitive=Captain Howler, Sea Scourge
+id=690631
+rarity=R
+[/card]
+[card]
+primitive=Caradora, Heart of Alacria
+id=690632
+rarity=R
+[/card]
+[card]
+primitive=Cloudspire Coordinator
+id=690633
+rarity=U
+[/card]
+[card]
+primitive=Cloudspire Skycycle
+id=690634
+rarity=U
+[/card]
+[card]
+primitive=Coalstoke Gearhulk
+id=690635
+rarity=M
+[/card]
+[card]
+primitive=Debris Beetle
+id=690636
+rarity=R
+[/card]
+[card]
+primitive=Dune Drifter
+id=690637
+rarity=U
+[/card]
+[card]
+primitive=Embalmed Ascendant
+id=690638
+rarity=U
+[/card]
+[card]
+primitive=Explosive Getaway
+id=690639
+rarity=R
+[/card]
+[card]
+primitive=Far Fortune, End Boss
+id=690640
+rarity=R
+[/card]
+[card]
+primitive=Fearless Swashbuckler
+id=690641
+rarity=R
+[/card]
+[card]
+primitive=Gastal Thrillseeker
+id=690642
+rarity=U
+[/card]
+[card]
+primitive=Guidelight Pathmaker
+id=690643
+rarity=U
+[/card]
+[card]
+primitive=Haunt the Network
+id=690644
+rarity=U
+[/card]
+[card]
+primitive=Haunted Hellride
+id=690645
+rarity=U
+[/card]
+[card]
+primitive=Ketramose, the New Dawn
+id=690646
+rarity=M
+[/card]
+[card]
+primitive=Kolodin, Triumph Caster
+id=690647
+rarity=R
+[/card]
+[card]
+primitive=Lagorin, Soul of Alacria
+id=690648
+rarity=U
+[/card]
+[card]
+primitive=Loot, the Pathfinder
+id=690649
+rarity=M
+[/card]
+[card]
+primitive=Mendicant Core, Guidelight
+id=690650
+rarity=R
+[/card]
+[card]
+primitive=Mimeoplasm, Revered One
+id=690651
+rarity=M
+[/card]
+[card]
+primitive=Oildeep Gearhulk
+id=690652
+rarity=M
+[/card]
+[card]
+primitive=Pyrewood Gearhulk
+id=690653
+rarity=M
+[/card]
+[card]
+primitive=Rangers' Aetherhive
+id=690654
+rarity=U
+[/card]
+[card]
+primitive=Redshift, Rocketeer Chief
+id=690655
+rarity=R
+[/card]
+[card]
+primitive=Riptide Gearhulk
+id=690656
+rarity=M
+[/card]
+[card]
+primitive=Rocketeer Boostbuggy
+id=690657
+rarity=U
+[/card]
+[card]
+primitive=Sab-Sunen, Luxa Embodied
+id=690658
+rarity=M
+[/card]
+[card]
+primitive=Samut, the Driving Force
+id=690659
+rarity=R
+[/card]
+[card]
+primitive=Sita Varma, Masked Racer
+id=690660
+rarity=R
+[/card]
+[card]
+primitive=Skyserpent Seeker
+id=690661
+rarity=U
+[/card]
+[card]
+primitive=Thundering Broodwagon
+id=690662
+rarity=U
+[/card]
+[card]
+primitive=Veteran Beastrider
+id=690663
+rarity=U
+[/card]
+[card]
+primitive=Voyage Home
+id=690664
+rarity=U
+[/card]
+[card]
+primitive=Winter, Cursed Rider
+id=690665
+rarity=R
+[/card]
+[card]
+primitive=Zahur, Glory's Past
+id=690666
+rarity=R
+[/card]
+[card]
+primitive=Aetherjacket
+id=690667
+rarity=C
+[/card]
+[card]
+primitive=The Aetherspark
+id=690668
+rarity=M
+[/card]
+[card]
+primitive=Camera Launcher
+id=690669
+rarity=C
+[/card]
+[card]
+primitive=Guidelight Matrix
+id=690670
+rarity=C
+[/card]
+[card]
+primitive=Lifecraft Engine
+id=690671
+rarity=R
+[/card]
+[card]
+primitive=Marketback Walker
+id=690672
+rarity=R
+[/card]
+[card]
+primitive=Marshals' Pathcruiser
+id=690673
+rarity=U
+[/card]
+[card]
+primitive=Monument to Endurance
+id=690674
+rarity=R
+[/card]
+[card]
+primitive=Pit Automaton
+id=690675
+rarity=U
+[/card]
+[card]
+primitive=Racers' Scoreboard
+id=690676
+rarity=U
+[/card]
+[card]
+primitive=Radiant Lotus
+id=690677
+rarity=M
+[/card]
+[card]
+primitive=Rover Blades
+id=690678
+rarity=U
+[/card]
+[card]
+primitive=Scrap Compactor
+id=690679
+rarity=C
+[/card]
+[card]
+primitive=Skybox Ferry
+id=690680
+rarity=C
+[/card]
+[card]
+primitive=Starting Column
+id=690681
+rarity=C
+[/card]
+[card]
+primitive=Ticket Tortoise
+id=690682
+rarity=C
+[/card]
+[card]
+primitive=Walking Sarcophagus
+id=690683
+rarity=C
+[/card]
+[card]
+primitive=Wreck Remover
+id=690684
+rarity=C
+[/card]
+[card]
+primitive=Amonkhet Raceway
+id=690685
+rarity=U
+[/card]
+[card]
+primitive=Avishkar Raceway
+id=690686
+rarity=C
+[/card]
+[card]
+primitive=Bleachbone Verge
+id=690687
+rarity=R
+[/card]
+[card]
+primitive=Bloodfell Caves
+id=690688
+rarity=C
+[/card]
+[card]
+primitive=Blossoming Sands
+id=690689
+rarity=C
+[/card]
+[card]
+primitive=Country Roads
+id=690690
+rarity=U
+[/card]
+[card]
+primitive=Dismal Backwater
+id=690691
+rarity=C
+[/card]
+[card]
+primitive=Foul Roads
+id=690692
+rarity=U
+[/card]
+[card]
+primitive=Jungle Hollow
+id=690693
+rarity=C
+[/card]
+[card]
+primitive=Muraganda Raceway
+id=690694
+rarity=R
+[/card]
+[card]
+primitive=Night Market
+id=690695
+rarity=C
+[/card]
+[card]
+primitive=Reef Roads
+id=690696
+rarity=U
+[/card]
+[card]
+primitive=Riverpyre Verge
+id=690697
+rarity=R
+[/card]
+[card]
+primitive=Rocky Roads
+id=690698
+rarity=U
+[/card]
+[card]
+primitive=Rugged Highlands
+id=690699
+rarity=C
+[/card]
+[card]
+primitive=Scoured Barrens
+id=690700
+rarity=C
+[/card]
+[card]
+primitive=Sunbillow Verge
+id=690701
+rarity=R
+[/card]
+[card]
+primitive=Swiftwater Cliffs
+id=690702
+rarity=C
+[/card]
+[card]
+primitive=Thornwood Falls
+id=690703
+rarity=C
+[/card]
+[card]
+primitive=Tranquil Cove
+id=690704
+rarity=C
+[/card]
+[card]
+primitive=Wastewood Verge
+id=690705
+rarity=R
+[/card]
+[card]
+primitive=Wild Roads
+id=690706
+rarity=U
+[/card]
+[card]
+primitive=Willowrush Verge
+id=690707
+rarity=R
+[/card]
+[card]
+primitive=Wind-Scarred Crag
+id=690708
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=688977
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=688978
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=688979
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=688980
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=688981
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=689037
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=689038
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=689039
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=689040
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=689041
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=689042
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=689043
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=689044
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=689045
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=689046
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=689047
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=689048
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=689049
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=689050
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=689051
+rarity=L
+[/card]
+[card]
+primitive=Air Response Unit
+id=689217
+rarity=U
+[/card]
+[card]
+primitive=Broadcast Rambler
+id=689218
+rarity=C
+[/card]
+[card]
+primitive=Detention Chariot
+id=689219
+rarity=U
+[/card]
+[card]
+primitive=Salvation Engine
+id=689220
+rarity=M
+[/card]
+[card]
+primitive=Skyseer's Chariot
+id=689221
+rarity=R
+[/card]
+[card]
+primitive=Spotcycle Scouter
+id=689222
+rarity=C
+[/card]
+[card]
+primitive=Valor's Flagship
+id=689223
+rarity=M
+[/card]
+[card]
+primitive=Voyager Glidecar
+id=689224
+rarity=R
+[/card]
+[card]
+primitive=Hulldrifter
+id=689225
+rarity=C
+[/card]
+[card]
+primitive=Midnight Mangler
+id=689226
+rarity=C
+[/card]
+[card]
+primitive=Possession Engine
+id=689227
+rarity=R
+[/card]
+[card]
+primitive=Rangers' Refueler
+id=689228
+rarity=U
+[/card]
+[card]
+primitive=Thopter Fabricator
+id=689229
+rarity=R
+[/card]
+[card]
+primitive=Carrion Cruiser
+id=689230
+rarity=U
+[/card]
+[card]
+primitive=Cryptcaller Chariot
+id=689231
+rarity=R
+[/card]
+[card]
+primitive=Demonic Junker
+id=689232
+rarity=R
+[/card]
+[card]
+primitive=The Last Ride
+id=689233
+rarity=M
+[/card]
+[card]
+primitive=Ripclaw Wrangler
+id=689234
+rarity=C
+[/card]
+[card]
+primitive=Boommobile
+id=689235
+rarity=R
+[/card]
+[card]
+primitive=Burner Rocket
+id=689236
+rarity=C
+[/card]
+[card]
+primitive=Clamorous Ironclad
+id=689237
+rarity=C
+[/card]
+[card]
+primitive=Gastal Thrillroller
+id=689238
+rarity=R
+[/card]
+[card]
+primitive=Spire Mechcycle
+id=689239
+rarity=U
+[/card]
+[card]
+primitive=Earthrumbler
+id=689240
+rarity=U
+[/card]
+[card]
+primitive=Lumbering Worldwagon
+id=689241
+rarity=R
+[/card]
+[card]
+primitive=Thunderous Velocipede
+id=689242
+rarity=M
+[/card]
+[card]
+primitive=Veloheart Bike
+id=689243
+rarity=C
+[/card]
+[card]
+primitive=Apocalypse Runner
+id=689244
+rarity=U
+[/card]
+[card]
+primitive=Boosted Sloop
+id=689245
+rarity=U
+[/card]
+[card]
+primitive=Cloudspire Skycycle
+id=689246
+rarity=U
+[/card]
+[card]
+primitive=Debris Beetle
+id=689247
+rarity=R
+[/card]
+[card]
+primitive=Dune Drifter
+id=689248
+rarity=U
+[/card]
+[card]
+primitive=Guidelight Pathmaker
+id=689249
+rarity=U
+[/card]
+[card]
+primitive=Haunted Hellride
+id=689250
+rarity=U
+[/card]
+[card]
+primitive=Rangers' Aetherhive
+id=689251
+rarity=U
+[/card]
+[card]
+primitive=Rocketeer Boostbuggy
+id=689252
+rarity=U
+[/card]
+[card]
+primitive=Thundering Broodwagon
+id=689253
+rarity=U
+[/card]
+[card]
+primitive=Lifecraft Engine
+id=689254
+rarity=R
+[/card]
+[card]
+primitive=Marshals' Pathcruiser
+id=689255
+rarity=U
+[/card]
+[card]
+primitive=Rover Blades
+id=689256
+rarity=U
+[/card]
+[card]
+primitive=Skybox Ferry
+id=689257
+rarity=C
+[/card]
+[card]
+primitive=Bulwark Ox
+id=689769
+rarity=R
+[/card]
+[card]
+primitive=Guardian Sunmare
+id=689770
+rarity=R
+[/card]
+[card]
+primitive=Mindspring Merfolk
+id=689771
+rarity=R
+[/card]
+[card]
+primitive=Waxen Shapethief
+id=689772
+rarity=R
+[/card]
+[card]
+primitive=Bloodghast
+id=689773
+rarity=R
+[/card]
+[card]
+primitive=Gas Guzzler
+id=689774
+rarity=R
+[/card]
+[card]
+primitive=The Speed Demon
+id=689775
+rarity=M
+[/card]
+[card]
+primitive=Burnout Bashtronaut
+id=689776
+rarity=R
+[/card]
+[card]
+primitive=Draconautics Engineer
+id=689777
+rarity=R
+[/card]
+[card]
+primitive=Howlsquad Heavy
+id=689778
+rarity=R
+[/card]
+[card]
+primitive=Agonasaur Rex
+id=689779
+rarity=R
+[/card]
+[card]
+primitive=District Mascot
+id=689780
+rarity=R
+[/card]
+[card]
+primitive=Webstrike Elite
+id=689781
+rarity=R
+[/card]
+[card]
+primitive=Fearless Swashbuckler
+id=689782
+rarity=R
+[/card]
+[card]
+primitive=Hazoret, Godseeker
+id=689511
+rarity=M
+[/card]
+[card]
+primitive=Brightglass Gearhulk
+id=689512
+rarity=M
+[/card]
+[card]
+primitive=Coalstoke Gearhulk
+id=689513
+rarity=M
+[/card]
+[card]
+primitive=Ketramose, the New Dawn
+id=689514
+rarity=M
+[/card]
+[card]
+primitive=Oildeep Gearhulk
+id=689515
+rarity=M
+[/card]
+[card]
+primitive=Pyrewood Gearhulk
+id=689516
+rarity=M
+[/card]
+[card]
+primitive=Riptide Gearhulk
+id=689517
+rarity=M
+[/card]
+[card]
+primitive=Sab-Sunen, Luxa Embodied
+id=689518
+rarity=M
+[/card]
+[card]
+primitive=Basri, Tomorrow's Champion
+id=689589
+rarity=R
+[/card]
+[card]
+primitive=Vnwxt, Verbose Host
+id=689590
+rarity=R
+[/card]
+[card]
+primitive=Gonti, Night Minister
+id=689591
+rarity=R
+[/card]
+[card]
+primitive=Daretti, Rocketeer Engineer
+id=689592
+rarity=R
+[/card]
+[card]
+primitive=Oviya, Automech Artisan
+id=689593
+rarity=R
+[/card]
+[card]
+primitive=Aatchik, Emerald Radian
+id=689594
+rarity=R
+[/card]
+[card]
+primitive=Captain Howler, Sea Scourge
+id=689595
+rarity=R
+[/card]
+[card]
+primitive=Caradora, Heart of Alacria
+id=689596
+rarity=R
+[/card]
+[card]
+primitive=Far Fortune, End Boss
+id=689597
+rarity=R
+[/card]
+[card]
+primitive=Kolodin, Triumph Caster
+id=689598
+rarity=R
+[/card]
+[card]
+primitive=Mendicant Core, Guidelight
+id=689599
+rarity=R
+[/card]
+[card]
+primitive=Redshift, Rocketeer Chief
+id=689600
+rarity=R
+[/card]
+[card]
+primitive=Samut, the Driving Force
+id=689601
+rarity=R
+[/card]
+[card]
+primitive=Sita Varma, Masked Racer
+id=689602
+rarity=R
+[/card]
+[card]
+primitive=Winter, Cursed Rider
+id=689603
+rarity=R
+[/card]
+[card]
+primitive=Zahur, Glory's Past
+id=689604
+rarity=R
+[/card]
+[card]
+primitive=Bleachbone Verge
+id=689559
+rarity=R
+[/card]
+[card]
+primitive=Riverpyre Verge
+id=689560
+rarity=R
+[/card]
+[card]
+primitive=Sunbillow Verge
+id=689561
+rarity=R
+[/card]
+[card]
+primitive=Wastewood Verge
+id=689562
+rarity=R
+[/card]
+[card]
+primitive=Willowrush Verge
+id=689563
+rarity=R
+[/card]
+[card]
+primitive=Perilous Snare
+id=689858
+rarity=R
+[/card]
+[card]
+primitive=Spectacular Pileup
+id=689859
+rarity=R
+[/card]
+[card]
+primitive=Mu Yanling, Wind Rider
+id=689860
+rarity=M
+[/card]
+[card]
+primitive=Repurposing Bay
+id=689861
+rarity=R
+[/card]
+[card]
+primitive=Riverchurn Monument
+id=689862
+rarity=R
+[/card]
+[card]
+primitive=Unstoppable Plan
+id=689863
+rarity=R
+[/card]
+[card]
+primitive=Cursecloth Wrappings
+id=689864
+rarity=R
+[/card]
+[card]
+primitive=Quag Feast
+id=689865
+rarity=R
+[/card]
+[card]
+primitive=Count on Luck
+id=689866
+rarity=R
+[/card]
+[card]
+primitive=Full Throttle
+id=689867
+rarity=R
+[/card]
+[card]
+primitive=Afterburner Expert
+id=689868
+rarity=R
+[/card]
+[card]
+primitive=March of the World Ooze
+id=689869
+rarity=M
+[/card]
+[card]
+primitive=Regal Imperiosaur
+id=689870
+rarity=R
+[/card]
+[card]
+primitive=Explosive Getaway
+id=689871
+rarity=R
+[/card]
+[card]
+primitive=Loot, the Pathfinder
+id=689872
+rarity=M
+[/card]
+[card]
+primitive=Mimeoplasm, Revered One
+id=689873
+rarity=M
+[/card]
+[card]
+primitive=Marketback Walker
+id=689874
+rarity=R
+[/card]
+[card]
+primitive=Monument to Endurance
+id=689875
+rarity=R
+[/card]
+[card]
+primitive=Radiant Lotus
+id=689876
+rarity=M
+[/card]
+[card]
+primitive=Muraganda Raceway
+id=689877
+rarity=R
+[/card]
+[card]
+primitive=Salvation Engine
+id=690418
+rarity=M
+[/card]
+[card]
+primitive=Spectacular Pileup
+id=690419
+rarity=M
+[/card]
+[card]
+primitive=Mu Yanling, Wind Rider
+id=690420
+rarity=M
+[/card]
+[card]
+primitive=Cursecloth Wrappings
+id=690421
+rarity=M
+[/card]
+[card]
+primitive=Chandra, Spark Hunter
+id=690422
+rarity=M
+[/card]
+[card]
+primitive=March of the World Ooze
+id=690423
+rarity=M
+[/card]
+[card]
+primitive=Explosive Getaway
+id=690424
+rarity=M
+[/card]
+[card]
+primitive=Loot, the Pathfinder
+id=690425
+rarity=M
+[/card]
+[card]
+primitive=Mimeoplasm, Revered One
+id=690426
+rarity=M
+[/card]
+[card]
+primitive=Radiant Lotus
+id=690427
+rarity=M
+[/card]
+[card]
+primitive=Tune Up
+id=692064
+rarity=U
+[/card]
+[card]
+primitive=Gastal Raider
+id=692065
+rarity=U
+[/card]
+[card]
+primitive=Marauding Mako
+id=692066
+rarity=U
+[/card]
+[card]
+primitive=Skyserpent Seeker
+id=692067
+rarity=U
+[/card]
+[card]
+primitive=Voyage Home
+id=692068
+rarity=U
+[/card]
+[card]
+primitive=Lumbering Worldwagon
+id=689853
+rarity=R
+[/card]
+[card]
+primitive=Lifecraft Engine
+id=689856
+rarity=R
+[/card]
+[card]
+primitive=Amonkhet Raceway
+id=692075
+rarity=U
+[/card]
+[card]
+primitive=Avishkar Raceway
+id=692076
+rarity=C
+[/card]
+[card]
+primitive=Muraganda Raceway
+id=692077
+rarity=R
+[/card]
+[card]
+primitive=Basri, Tomorrow's Champion
+id=689938
+rarity=R
+[/card]
+[card]
+primitive=Bulwark Ox
+id=689939
+rarity=R
+[/card]
+[card]
+primitive=Guardian Sunmare
+id=689940
+rarity=R
+[/card]
+[card]
+primitive=Perilous Snare
+id=689941
+rarity=R
+[/card]
+[card]
+primitive=Salvation Engine
+id=689942
+rarity=M
+[/card]
+[card]
+primitive=Skyseer's Chariot
+id=689943
+rarity=R
+[/card]
+[card]
+primitive=Spectacular Pileup
+id=689944
+rarity=R
+[/card]
+[card]
+primitive=Valor's Flagship
+id=689945
+rarity=M
+[/card]
+[card]
+primitive=Voyager Glidecar
+id=689946
+rarity=R
+[/card]
+[card]
+primitive=Mindspring Merfolk
+id=689947
+rarity=R
+[/card]
+[card]
+primitive=Mu Yanling, Wind Rider
+id=689948
+rarity=M
+[/card]
+[card]
+primitive=Possession Engine
+id=689949
+rarity=R
+[/card]
+[card]
+primitive=Repurposing Bay
+id=689950
+rarity=R
+[/card]
+[card]
+primitive=Riverchurn Monument
+id=689951
+rarity=R
+[/card]
+[card]
+primitive=Thopter Fabricator
+id=689952
+rarity=R
+[/card]
+[card]
+primitive=Unstoppable Plan
+id=689953
+rarity=R
+[/card]
+[card]
+primitive=Vnwxt, Verbose Host
+id=689954
+rarity=R
+[/card]
+[card]
+primitive=Waxen Shapethief
+id=689955
+rarity=R
+[/card]
+[card]
+primitive=Bloodghast
+id=689956
+rarity=R
+[/card]
+[card]
+primitive=Cryptcaller Chariot
+id=689957
+rarity=R
+[/card]
+[card]
+primitive=Cursecloth Wrappings
+id=689958
+rarity=R
+[/card]
+[card]
+primitive=Demonic Junker
+id=689959
+rarity=R
+[/card]
+[card]
+primitive=Gas Guzzler
+id=689960
+rarity=R
+[/card]
+[card]
+primitive=Gonti, Night Minister
+id=689961
+rarity=R
+[/card]
+[card]
+primitive=The Last Ride
+id=689962
+rarity=M
+[/card]
+[card]
+primitive=Quag Feast
+id=689963
+rarity=R
+[/card]
+[card]
+primitive=The Speed Demon
+id=689964
+rarity=M
+[/card]
+[card]
+primitive=Boommobile
+id=689965
+rarity=R
+[/card]
+[card]
+primitive=Burnout Bashtronaut
+id=689966
+rarity=R
+[/card]
+[card]
+primitive=Chandra, Spark Hunter
+id=689967
+rarity=M
+[/card]
+[card]
+primitive=Count on Luck
+id=689968
+rarity=R
+[/card]
+[card]
+primitive=Daretti, Rocketeer Engineer
+id=689969
+rarity=R
+[/card]
+[card]
+primitive=Draconautics Engineer
+id=689970
+rarity=R
+[/card]
+[card]
+primitive=Full Throttle
+id=689971
+rarity=R
+[/card]
+[card]
+primitive=Gastal Thrillroller
+id=689972
+rarity=R
+[/card]
+[card]
+primitive=Hazoret, Godseeker
+id=689973
+rarity=M
+[/card]
+[card]
+primitive=Howlsquad Heavy
+id=689974
+rarity=R
+[/card]
+[card]
+primitive=Afterburner Expert
+id=689975
+rarity=R
+[/card]
+[card]
+primitive=Agonasaur Rex
+id=689976
+rarity=R
+[/card]
+[card]
+primitive=District Mascot
+id=689977
+rarity=R
+[/card]
+[card]
+primitive=Lumbering Worldwagon
+id=689978
+rarity=R
+[/card]
+[card]
+primitive=March of the World Ooze
+id=689979
+rarity=M
+[/card]
+[card]
+primitive=Oviya, Automech Artisan
+id=689980
+rarity=R
+[/card]
+[card]
+primitive=Regal Imperiosaur
+id=689981
+rarity=R
+[/card]
+[card]
+primitive=Thunderous Velocipede
+id=689982
+rarity=M
+[/card]
+[card]
+primitive=Webstrike Elite
+id=689983
+rarity=R
+[/card]
+[card]
+primitive=Aatchik, Emerald Radian
+id=689984
+rarity=R
+[/card]
+[card]
+primitive=Brightglass Gearhulk
+id=689985
+rarity=M
+[/card]
+[card]
+primitive=Captain Howler, Sea Scourge
+id=689986
+rarity=R
+[/card]
+[card]
+primitive=Caradora, Heart of Alacria
+id=689987
+rarity=R
+[/card]
+[card]
+primitive=Coalstoke Gearhulk
+id=689988
+rarity=M
+[/card]
+[card]
+primitive=Debris Beetle
+id=689989
+rarity=R
+[/card]
+[card]
+primitive=Explosive Getaway
+id=689990
+rarity=R
+[/card]
+[card]
+primitive=Far Fortune, End Boss
+id=689991
+rarity=R
+[/card]
+[card]
+primitive=Fearless Swashbuckler
+id=689992
+rarity=R
+[/card]
+[card]
+primitive=Ketramose, the New Dawn
+id=689993
+rarity=M
+[/card]
+[card]
+primitive=Kolodin, Triumph Caster
+id=689994
+rarity=R
+[/card]
+[card]
+primitive=Loot, the Pathfinder
+id=689995
+rarity=M
+[/card]
+[card]
+primitive=Mendicant Core, Guidelight
+id=689996
+rarity=R
+[/card]
+[card]
+primitive=Mimeoplasm, Revered One
+id=689997
+rarity=M
+[/card]
+[card]
+primitive=Oildeep Gearhulk
+id=689998
+rarity=M
+[/card]
+[card]
+primitive=Pyrewood Gearhulk
+id=689999
+rarity=M
+[/card]
+[card]
+primitive=Redshift, Rocketeer Chief
+id=690000
+rarity=R
+[/card]
+[card]
+primitive=Riptide Gearhulk
+id=690001
+rarity=M
+[/card]
+[card]
+primitive=Sab-Sunen, Luxa Embodied
+id=690002
+rarity=M
+[/card]
+[card]
+primitive=Samut, the Driving Force
+id=690003
+rarity=R
+[/card]
+[card]
+primitive=Sita Varma, Masked Racer
+id=690004
+rarity=R
+[/card]
+[card]
+primitive=Winter, Cursed Rider
+id=690005
+rarity=R
+[/card]
+[card]
+primitive=Zahur, Glory's Past
+id=690006
+rarity=R
+[/card]
+[card]
+primitive=The Aetherspark
+id=690007
+rarity=M
+[/card]
+[card]
+primitive=Lifecraft Engine
+id=690008
+rarity=R
+[/card]
+[card]
+primitive=Marketback Walker
+id=690009
+rarity=R
+[/card]
+[card]
+primitive=Monument to Endurance
+id=690010
+rarity=R
+[/card]
+[card]
+primitive=Radiant Lotus
+id=690011
+rarity=M
+[/card]
+[card]
+primitive=Bleachbone Verge
+id=690012
+rarity=R
+[/card]
+[card]
+primitive=Muraganda Raceway
+id=690013
+rarity=R
+[/card]
+[card]
+primitive=Riverpyre Verge
+id=690014
+rarity=R
+[/card]
+[card]
+primitive=Sunbillow Verge
+id=690015
+rarity=R
+[/card]
+[card]
+primitive=Wastewood Verge
+id=690016
+rarity=R
+[/card]
+[card]
+primitive=Willowrush Verge
+id=690017
+rarity=R
+[/card]
+[card]
+primitive=Plains
+id=688947
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=688948
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=688949
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=688950
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=688951
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=689007
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=689008
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=689009
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=689010
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=689011
+rarity=L
+[/card]
+[card]
+primitive=Salvation Engine
+id=689127
+rarity=M
+[/card]
+[card]
+primitive=Skyseer's Chariot
+id=689128
+rarity=R
+[/card]
+[card]
+primitive=Valor's Flagship
+id=689129
+rarity=M
+[/card]
+[card]
+primitive=Voyager Glidecar
+id=689130
+rarity=R
+[/card]
+[card]
+primitive=Possession Engine
+id=689131
+rarity=R
+[/card]
+[card]
+primitive=Thopter Fabricator
+id=689132
+rarity=R
+[/card]
+[card]
+primitive=Cryptcaller Chariot
+id=689133
+rarity=R
+[/card]
+[card]
+primitive=Demonic Junker
+id=689134
+rarity=R
+[/card]
+[card]
+primitive=The Last Ride
+id=689135
+rarity=M
+[/card]
+[card]
+primitive=Boommobile
+id=689136
+rarity=R
+[/card]
+[card]
+primitive=Gastal Thrillroller
+id=689137
+rarity=R
+[/card]
+[card]
+primitive=Lumbering Worldwagon
+id=689138
+rarity=R
+[/card]
+[card]
+primitive=Thunderous Velocipede
+id=689139
+rarity=M
+[/card]
+[card]
+primitive=Debris Beetle
+id=689140
+rarity=R
+[/card]
+[card]
+primitive=Lifecraft Engine
+id=689141
+rarity=R
+[/card]
+[card]
+primitive=Bulwark Ox
+id=689685
+rarity=R
+[/card]
+[card]
+primitive=Guardian Sunmare
+id=689686
+rarity=R
+[/card]
+[card]
+primitive=Mindspring Merfolk
+id=689687
+rarity=R
+[/card]
+[card]
+primitive=Waxen Shapethief
+id=689688
+rarity=R
+[/card]
+[card]
+primitive=Bloodghast
+id=689689
+rarity=R
+[/card]
+[card]
+primitive=Gas Guzzler
+id=689690
+rarity=R
+[/card]
+[card]
+primitive=The Speed Demon
+id=689691
+rarity=M
+[/card]
+[card]
+primitive=Burnout Bashtronaut
+id=689692
+rarity=R
+[/card]
+[card]
+primitive=Draconautics Engineer
+id=689693
+rarity=R
+[/card]
+[card]
+primitive=Howlsquad Heavy
+id=689694
+rarity=R
+[/card]
+[card]
+primitive=Agonasaur Rex
+id=689695
+rarity=R
+[/card]
+[card]
+primitive=District Mascot
+id=689696
+rarity=R
+[/card]
+[card]
+primitive=Webstrike Elite
+id=689697
+rarity=R
+[/card]
+[card]
+primitive=Fearless Swashbuckler
+id=689698
+rarity=R
+[/card]
+[card]
+primitive=Hazoret, Godseeker
+id=689463
+rarity=M
+[/card]
+[card]
+primitive=Brightglass Gearhulk
+id=689464
+rarity=M
+[/card]
+[card]
+primitive=Coalstoke Gearhulk
+id=689465
+rarity=M
+[/card]
+[card]
+primitive=Ketramose, the New Dawn
+id=689466
+rarity=M
+[/card]
+[card]
+primitive=Oildeep Gearhulk
+id=689467
+rarity=M
+[/card]
+[card]
+primitive=Pyrewood Gearhulk
+id=689468
+rarity=M
+[/card]
+[card]
+primitive=Riptide Gearhulk
+id=689469
+rarity=M
+[/card]
+[card]
+primitive=Sab-Sunen, Luxa Embodied
+id=689470
+rarity=M
+[/card]
