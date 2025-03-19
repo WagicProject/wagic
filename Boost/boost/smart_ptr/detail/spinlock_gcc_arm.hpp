@@ -29,11 +29,30 @@ public:
     {
         int r;
 
+        #if defined(__ARM_FEATURE_LSE)
+        // Use LSE atomic instructions if supported
+        #pragma message("LSE feature detected") // This will print a message in your build logs
         __asm__ __volatile__(
-            "swp %0, %1, [%2]":
-            "=&r"( r ): // outputs
-            "r"( 1 ), "r"( &v_ ): // inputs
-            "memory", "cc" );
+            "ldaxr %0, [%1];"   // Load-Exclusive instruction
+            "cbnz %0, 1f;"       // If the value is non-zero, the lock is already acquired
+            "stlxr %w0, %2, [%1];" // Store-Exclusive instruction
+            "cbnz %w0, 1f;"      // If the store failed, retry
+            "mov %0, #0;"        // Success, zero indicates lock acquired
+            "1:"
+            : "=&r"(r)
+            : "r"(&v_), "r"(1)
+            : "memory", "cc"
+        );
+        #else
+        // Fallback for systems that don't support LSE
+        #pragma message("LSE feature not detected") // This will print a message in your build logs if LSE is not detected
+        __asm__ __volatile__(
+            "swp %0, %1, [%2];"  // Swap instruction (used as a fallback)
+            : "=&r"(r)            // output constraint
+            : "r"(1), "r"(&v_)    // input constraints
+            : "memory", "cc"      // clobbered registers
+        );
+        #endif
 
         return r == 0;
     }
