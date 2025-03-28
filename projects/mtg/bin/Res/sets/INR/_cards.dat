@@ -46,7 +46,7 @@ rarity=U
 [/card]
 [card]
 primitive=Seasoned Cathar
-id=685822
+id=685823
 rarity=T
 [/card]
 [card]
@@ -66,7 +66,7 @@ rarity=M
 [/card]
 [card]
 primitive=Avacyn, the Purifier
-id=685826
+id=685827
 rarity=T
 [/card]
 [card]
@@ -86,7 +86,7 @@ rarity=R
 [/card]
 [card]
 primitive=Brisela, Voice of Nightmares
-id=686144
+id=686145
 rarity=T
 [/card]
 [card]
@@ -181,7 +181,7 @@ rarity=C
 [/card]
 [card]
 primitive=Luminous Phantom
-id=685848
+id=685849
 rarity=T
 [/card]
 [card]
@@ -256,7 +256,7 @@ rarity=U
 [/card]
 [card]
 primitive=Incited Rabble
-id=685863
+id=685864
 rarity=T
 [/card]
 [card]
@@ -266,7 +266,7 @@ rarity=U
 [/card]
 [card]
 primitive=Twinblade Invocation
-id=685865
+id=685866
 rarity=T
 [/card]
 [card]
@@ -291,7 +291,7 @@ rarity=R
 [/card]
 [card]
 primitive=Wedding Festivity
-id=685870
+id=685871
 rarity=T
 [/card]
 [card]
@@ -301,7 +301,7 @@ rarity=U
 [/card]
 [card]
 primitive=Perfected Form
-id=685872
+id=685873
 rarity=T
 [/card]
 [card]
@@ -316,7 +316,7 @@ rarity=U
 [/card]
 [card]
 primitive=Biolume Serpent
-id=685875
+id=685876
 rarity=T
 [/card]
 [card]
@@ -341,7 +341,7 @@ rarity=U
 [/card]
 [card]
 primitive=Ghostly Castigator
-id=685880
+id=685881
 rarity=T
 [/card]
 [card]
@@ -356,7 +356,7 @@ rarity=C
 [/card]
 [card]
 primitive=Insectile Aberration
-id=685883
+id=685884
 rarity=T
 [/card]
 [card]
@@ -371,7 +371,7 @@ rarity=R
 [/card]
 [card]
 primitive=Final Iteration
-id=685886
+id=685887
 rarity=T
 [/card]
 [card]
@@ -401,7 +401,7 @@ rarity=U
 [/card]
 [card]
 primitive=Grisly Anglerfish
-id=685892
+id=685893
 rarity=T
 [/card]
 [card]
@@ -431,7 +431,7 @@ rarity=C
 [/card]
 [card]
 primitive=Lanterns' Lift
-id=685898
+id=685899
 rarity=T
 [/card]
 [card]
@@ -501,7 +501,7 @@ rarity=U
 [/card]
 [card]
 primitive=Cipherbound Spirit
-id=685912
+id=685913
 rarity=T
 [/card]
 [card]
@@ -536,7 +536,7 @@ rarity=R
 [/card]
 [card]
 primitive=Awoken Horror
-id=685919
+id=685920
 rarity=T
 [/card]
 [card]
@@ -576,7 +576,7 @@ rarity=M
 [/card]
 [card]
 primitive=Lord of Lineage
-id=685927
+id=685928
 rarity=T
 [/card]
 [card]
@@ -616,7 +616,7 @@ rarity=C
 [/card]
 [card]
 primitive=Depraved Harvester
-id=685935
+id=685936
 rarity=T
 [/card]
 [card]
@@ -631,7 +631,7 @@ rarity=C
 [/card]
 [card]
 primitive=Awoken Demon
-id=685938
+id=685939
 rarity=T
 [/card]
 [card]
@@ -701,7 +701,7 @@ rarity=R
 [/card]
 [card]
 primitive=Deluge of the Dead
-id=685952
+id=685953
 rarity=T
 [/card]
 [card]
@@ -721,7 +721,7 @@ rarity=C
 [/card]
 [card]
 primitive=Chittering Host
-id=686143
+id=686144
 rarity=T
 [/card]
 [card]
@@ -751,7 +751,7 @@ rarity=U
 [/card]
 [card]
 primitive=Bloodsoaked Reveler
-id=685961
+id=685962
 rarity=T
 [/card]
 [card]
@@ -806,7 +806,7 @@ rarity=R
 [/card]
 [card]
 primitive=Bloodbat Summoner
-id=685972
+id=685973
 rarity=T
 [/card]
 [card]
@@ -871,7 +871,7 @@ rarity=C
 [/card]
 [card]
 primitive=Conduit of Emrakul
-id=685985
+id=685986
 rarity=T
 [/card]
 [card]
@@ -906,7 +906,7 @@ rarity=U
 [/card]
 [card]
 primitive=Vildin-Pack Alpha
-id=685992
+id=685993
 rarity=T
 [/card]
 [card]
@@ -916,7 +916,7 @@ rarity=R
 [/card]
 [card]
 primitive=Hanweir, the Writhing Township
-id=686145
+id=686146
 rarity=T
 [/card]
 [card]
@@ -926,7 +926,7 @@ rarity=C
 [/card]
 [card]
 primitive=Bane of Hanweir
-id=685995
+id=685996
 rarity=T
 [/card]
 [card]
@@ -946,7 +946,7 @@ rarity=R
 [/card]
 [card]
 primitive=Terror of Kruin Pass
-id=685999
+id=686000
 rarity=T
 [/card]
 [card]
@@ -1001,7 +1001,7 @@ rarity=U
 [/card]
 [card]
 primitive=Erupting Dreadwolf
-id=686010
+id=686011
 rarity=T
 [/card]
 [card]
@@ -1046,7 +1046,7 @@ rarity=C
 [/card]
 [card]
 primitive=Moonrise Intruder
-id=686019
+id=686020
 rarity=T
 [/card]
 [card]
@@ -1121,7 +1121,7 @@ rarity=U
 [/card]
 [card]
 primitive=Krallenhorde Howler
-id=686034
+id=686035
 rarity=T
 [/card]
 [card]
@@ -1146,7 +1146,7 @@ rarity=M
 [/card]
 [card]
 primitive=Garruk, the Veil-Cursed
-id=686039
+id=686040
 rarity=T
 [/card]
 [card]
@@ -1181,7 +1181,7 @@ rarity=C
 [/card]
 [card]
 primitive=Timber Shredder
-id=686046
+id=686047
 rarity=T
 [/card]
 [card]
@@ -1206,7 +1206,7 @@ rarity=R
 [/card]
 [card]
 primitive=Howlpack Alpha
-id=686051
+id=686052
 rarity=T
 [/card]
 [card]
@@ -1236,7 +1236,7 @@ rarity=C
 [/card]
 [card]
 primitive=Moonscarred Werewolf
-id=686057
+id=686058
 rarity=T
 [/card]
 [card]
@@ -1251,7 +1251,7 @@ rarity=U
 [/card]
 [card]
 primitive=Howling Chorus
-id=686060
+id=686061
 rarity=T
 [/card]
 [card]
@@ -1306,7 +1306,7 @@ rarity=C
 [/card]
 [card]
 primitive=Howlpack of Estwald
-id=686071
+id=686072
 rarity=T
 [/card]
 [card]
@@ -1341,7 +1341,7 @@ rarity=M
 [/card]
 [card]
 primitive=Arlinn, Embraced by the Moon
-id=686078
+id=686079
 rarity=T
 [/card]
 [card]
@@ -1401,7 +1401,7 @@ rarity=R
 [/card]
 [card]
 primitive=Ravager of the Fells
-id=686090
+id=686091
 rarity=T
 [/card]
 [card]
@@ -1486,7 +1486,7 @@ rarity=U
 [/card]
 [card]
 primitive=Chalice of Death
-id=686107
+id=686108
 rarity=T
 [/card]
 [card]
@@ -1506,7 +1506,7 @@ rarity=U
 [/card]
 [card]
 primitive=Aurora of Emrakul
-id=686111
+id=686112
 rarity=T
 [/card]
 [card]
@@ -1536,7 +1536,7 @@ rarity=C
 [/card]
 [card]
 primitive=Scrounged Scythe
-id=686117
+id=686118
 rarity=T
 [/card]
 [card]
@@ -1561,7 +1561,7 @@ rarity=U
 [/card]
 [card]
 primitive=Ashmouth Blade
-id=686122
+id=686123
 rarity=T
 [/card]
 [card]
@@ -1656,7 +1656,7 @@ rarity=R
 [/card]
 [card]
 primitive=Ormendahl, Profane Prince
-id=686141
+id=686142
 rarity=T
 [/card]
 [card]
@@ -1841,7 +1841,7 @@ rarity=U
 [/card]
 [card]
 primitive=Krallenhorde Howler
-id=688901
+id=688902
 rarity=T
 [/card]
 [card]
@@ -1851,7 +1851,7 @@ rarity=M
 [/card]
 [card]
 primitive=Arlinn, Embraced by the Moon
-id=688903
+id=688904
 rarity=T
 [/card]
 [card]
@@ -1861,7 +1861,7 @@ rarity=R
 [/card]
 [card]
 primitive=Ravager of the Fells
-id=688905
+id=688906
 rarity=T
 [/card]
 [card]
@@ -1876,7 +1876,7 @@ rarity=M
 [/card]
 [card]
 primitive=Lord of Lineage
-id=688878
+id=688879
 rarity=T
 [/card]
 [card]
@@ -2486,7 +2486,7 @@ rarity=U
 [/card]
 [card]
 primitive=Seasoned Cathar
-id=687803
+id=687804
 rarity=T
 [/card]
 [card]
@@ -2496,7 +2496,7 @@ rarity=M
 [/card]
 [card]
 primitive=Avacyn, the Purifier
-id=687805
+id=687806
 rarity=T
 [/card]
 [card]
@@ -2506,7 +2506,7 @@ rarity=C
 [/card]
 [card]
 primitive=Luminous Phantom
-id=687807
+id=687808
 rarity=T
 [/card]
 [card]
@@ -2516,7 +2516,7 @@ rarity=U
 [/card]
 [card]
 primitive=Incited Rabble
-id=687809
+id=687810
 rarity=T
 [/card]
 [card]
@@ -2526,7 +2526,7 @@ rarity=U
 [/card]
 [card]
 primitive=Twinblade Invocation
-id=687811
+id=687812
 rarity=T
 [/card]
 [card]
@@ -2536,7 +2536,7 @@ rarity=R
 [/card]
 [card]
 primitive=Wedding Festivity
-id=687813
+id=687814
 rarity=T
 [/card]
 [card]
@@ -2546,7 +2546,7 @@ rarity=U
 [/card]
 [card]
 primitive=Perfected Form
-id=687815
+id=687816
 rarity=T
 [/card]
 [card]
@@ -2556,7 +2556,7 @@ rarity=U
 [/card]
 [card]
 primitive=Biolume Serpent
-id=687817
+id=687818
 rarity=T
 [/card]
 [card]
@@ -2566,7 +2566,7 @@ rarity=U
 [/card]
 [card]
 primitive=Ghostly Castigator
-id=687819
+id=687820
 rarity=T
 [/card]
 [card]
@@ -2576,7 +2576,7 @@ rarity=C
 [/card]
 [card]
 primitive=Insectile Aberration
-id=687821
+id=687822
 rarity=T
 [/card]
 [card]
@@ -2586,7 +2586,7 @@ rarity=U
 [/card]
 [card]
 primitive=Grisly Anglerfish
-id=687823
+id=687824
 rarity=T
 [/card]
 [card]
@@ -2596,7 +2596,7 @@ rarity=U
 [/card]
 [card]
 primitive=Cipherbound Spirit
-id=687825
+id=687826
 rarity=T
 [/card]
 [card]
@@ -2606,7 +2606,7 @@ rarity=R
 [/card]
 [card]
 primitive=Awoken Horror
-id=687827
+id=687828
 rarity=T
 [/card]
 [card]
@@ -2616,7 +2616,7 @@ rarity=M
 [/card]
 [card]
 primitive=Lord of Lineage
-id=687829
+id=687830
 rarity=T
 [/card]
 [card]
@@ -2626,7 +2626,7 @@ rarity=C
 [/card]
 [card]
 primitive=Awoken Demon
-id=687831
+id=687832
 rarity=T
 [/card]
 [card]
@@ -2636,7 +2636,7 @@ rarity=U
 [/card]
 [card]
 primitive=Bloodsoaked Reveler
-id=687833
+id=687834
 rarity=T
 [/card]
 [card]
@@ -2646,7 +2646,7 @@ rarity=U
 [/card]
 [card]
 primitive=Vildin-Pack Alpha
-id=687835
+id=687836
 rarity=T
 [/card]
 [card]
@@ -2656,7 +2656,7 @@ rarity=U
 [/card]
 [card]
 primitive=Erupting Dreadwolf
-id=687837
+id=687838
 rarity=T
 [/card]
 [card]
@@ -2666,7 +2666,7 @@ rarity=C
 [/card]
 [card]
 primitive=Moonrise Intruder
-id=687839
+id=687840
 rarity=T
 [/card]
 [card]
@@ -2676,7 +2676,7 @@ rarity=U
 [/card]
 [card]
 primitive=Krallenhorde Howler
-id=687841
+id=687842
 rarity=T
 [/card]
 [card]
@@ -2686,7 +2686,7 @@ rarity=C
 [/card]
 [card]
 primitive=Moonscarred Werewolf
-id=687843
+id=687844
 rarity=T
 [/card]
 [card]
@@ -2696,7 +2696,7 @@ rarity=U
 [/card]
 [card]
 primitive=Howling Chorus
-id=687845
+id=687846
 rarity=T
 [/card]
 [card]
@@ -2706,7 +2706,7 @@ rarity=R
 [/card]
 [card]
 primitive=Ravager of the Fells
-id=687847
+id=687848
 rarity=T
 [/card]
 [card]
@@ -2716,7 +2716,7 @@ rarity=U
 [/card]
 [card]
 primitive=Chalice of Death
-id=687849
+id=687850
 rarity=T
 [/card]
 [card]
@@ -2726,7 +2726,7 @@ rarity=U
 [/card]
 [card]
 primitive=Aurora of Emrakul
-id=687851
+id=687852
 rarity=T
 [/card]
 [card]
@@ -2736,7 +2736,7 @@ rarity=U
 [/card]
 [card]
 primitive=Ashmouth Blade
-id=687853
+id=687854
 rarity=T
 [/card]
 [card]
@@ -2746,7 +2746,7 @@ rarity=R
 [/card]
 [card]
 primitive=Ormendahl, Profane Prince
-id=687855
+id=687856
 rarity=T
 [/card]
 [card]

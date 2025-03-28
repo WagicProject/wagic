@@ -1340,6 +1340,7 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
         card->has(Constants::AFFINITYCONTROLLERCREATURES) ||
         card->has(Constants::AFFINITYOPPONENTCREATURES) ||
         card->has(Constants::AFFINITYALLDEADCREATURES) ||
+        card->has(Constants::AFFINITYTWOALLDEADCREATURES) ||
         card->has(Constants::AFFINITYPARTY) ||
         card->has(Constants::AFFINITYBASICLANDTYPES) ||
         card->has(Constants::AFFINITYTWOBASICLANDTYPES) ||
@@ -1381,7 +1382,7 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
             color = 1;
             type = "creature";
         }
-        else if (card->has(Constants::AFFINITYALLCREATURES) || card->has(Constants::AFFINITYCONTROLLERCREATURES) || card->has(Constants::AFFINITYOPPONENTCREATURES) || card->has(Constants::AFFINITYALLDEADCREATURES))
+        else if (card->has(Constants::AFFINITYALLCREATURES) || card->has(Constants::AFFINITYCONTROLLERCREATURES) || card->has(Constants::AFFINITYOPPONENTCREATURES) || card->has(Constants::AFFINITYALLDEADCREATURES) || card->has(Constants::AFFINITYTWOALLDEADCREATURES))
         {
             type = "creature";
         }
@@ -1454,6 +1455,13 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
             WParsedInt* value = NEW WParsedInt("bothalldeadcreature", NULL, card);
             if(value)
                 reduce = value->getValue();
+            SAFE_DELETE(value);
+        }
+        else if (card->has(Constants::AFFINITYTWOALLDEADCREATURES))
+        {
+            WParsedInt* value = NEW WParsedInt("bothalldeadcreature", NULL, card);
+            if(value)
+                reduce = value->getValue() * 2;
             SAFE_DELETE(value);
         }
         else if (card->has(Constants::AFFINITYPARTY))

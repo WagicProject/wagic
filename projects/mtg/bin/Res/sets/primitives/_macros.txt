@@ -163,9 +163,6 @@
 # Afterlife
 #AUTO_DEFINE _AFTERLIFETOKEN_ create(Spirit:Creature Spirit:1/1:white:black:flying)
 
-# Riot
-#AUTO_DEFINE _RIOT_ movedTo(this|myBattlefield):transforms((,newability[ability$! name(Choose counter or ability) choice name(Put a +1/+1 counter) counter(1/1) target(creature) _ choice name(Gains Haste) haste target(creature) forever !$ controller]))
-
 # Learn
 #AUTO_DEFINE _LEARN_ name(Learn) transforms((,newability[if type(*[lesson]|mysideboard)~morethan~0 then choice name(Put lesson in hand) name(Put lesson in hand) target(*[lesson]|mysideboard) moveto(myhand)],newability[if type(*|myhand)~morethan~0 then choice name(Discard and draw) name(Discard and draw) target(*|myhand) reject and!(draw:1)!],newability[if type(Retriever Phoenix|mygraveyard)~morethan~0 then choice name(Return a Retriever Phoenix) name(Return a Retriever Phoenix) target(Retriever Phoenix|mygraveyard) moveto(myBattlefield)],newability[choice name(Don't learn) donothing])) oneshot controller
 
@@ -179,12 +176,12 @@
 #AUTO_DEFINE _FORETELL_ {2}:name(Pay 2 and exile face-down) name(Pay 2 and exile face-down) doforetell myturnonly
 
 # Plot
-#AUTO_DEFINE _PLOT_ name(Plot and exile) name(Plot and exile) doforetell asSorcery
+#AUTO_DEFINE _PLOT_ name(Plot) name(Plot) doforetell asSorcery
 
 # Plot Cast
-#AUTO_DEFINE _PLOTCAST_ {0}restriction{compare(canforetellcast)~morethan~0}:name(Cast with plot) name(Cast with plot) activate castcard(alternative) asSorcery
+#AUTO_DEFINE _PLOTCAST_ {0}restriction{compare(canforetellcast)~morethan~0}:name(Cast) name(Cast) activate castcard(alternative) asSorcery
 
-# Loot (draw a card, then discard a card.)
+# Loot. Draw a card, then discard a card.
 #AUTO_DEFINE _LOOT_ draw:1 && transforms((,newability[target(*|myhand) reject])) forever
 
 # Unearth
@@ -210,7 +207,7 @@
 # (blink)ueot doesn't work if a creature uses it on itself
 #AUTO_DEFINE _BLINK_UEOT_  moveto(exile) and!( transforms((,newability[phaseaction[end once checkex] moveto(ownerbattlefield)])) forever )!
 
-# Connives. (Draw a card, then discard a card. If you discarded a nonland card, put a +1/+1 counter on this creature.)
+# Connives. Draw a card, then discard a card. If you discarded a nonland card, put a +1/+1 counter on this creature.
 #AUTO_DEFINE _CONNIVES_ draw:1 && transforms((,newability[if type(*[-land]|myhand)~morethan~0 then choice name(Discard a nonland) name(Discard a nonland) target(*[-land]|myhand) reject && counter(1/1) all(this)],newability[if type(land|myhand)~morethan~0 then choice name(Discard a land) name(Discard a land) target(land|myhand) reject])) oneshot
 
 # Eternalize
@@ -225,10 +222,13 @@
 # Target creature deals damage equal to its power to target creature you don't control.
 #AUTO_DEFINE _PUNCH_ transforms((,newability[dynamicability<!powerstrike!> target(creature|opponentbattlefield)])) oneshot
 
+# Fight. Both creatures deal damage equal to their Power to each other.
+#AUTO_DEFINE _FIGHT_ transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>])) oneshot
+
 # Must be blocked this turn if able
 #AUTO_DEFINE _MUST_BE_BLOCKD_ newability[@combat(attacking) source(this):ability$! notatarget(creature|myBattlefield) transforms((,newability[mustblock])) ueot!$ opponent]
 
-# Suspect it (It has menace and can't block.)
+# Suspect it. It has menace and can't block.
 #AUTO_DEFINE _SUSPECT_IT_ name(Suspect it) transforms((suspect,menace,cantblock)) forever
 
 # Finality counter, if it would die, it's exiled instead
@@ -242,12 +242,21 @@
 # Add one mana of any color.
 #AUTO_DEFINE _MANAOFANYCOLOR_ ability$! choice Add{W} _ choice Add{U} _ choice Add{B} _ choice Add{R} _ choice Add{G} !$ controller
 
-# Manifest dread. (Look at the top two cards of your library. Put one onto the battlefield face down as a 2/2 creature and the other into your graveyard. Turn it face up any time for its mana cost if it's a creature card.)
+# Manifest dread. Look at the top two cards of your library. Put one onto the battlefield face down as a 2/2 creature and the other into your graveyard. Turn it face up any time for its mana cost if it's a creature card.
 #AUTO_DEFINE _MANIFEST_DREAD_ name(Manifest dread) reveal:2 optionone name(Manifest) target(*|reveal) manifest optiononeend optiontwo all(*|reveal) moveto(mygraveyard) optiontwoend revealend
 
 #AUTO_DEFINE _EERIE_ @movedTo(*[Room]|myBattlefield):
 
 #AUTO_DEFINE _CREW1_ {crew(other creature[power>=1]|myBattlefield)}:name(crew 1 [1 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=1]|mybattlefield)~morethan~0,compare(crewtotalpower)~morethan~0}
+
+# Endure
+#AUTO_DEFINE _ENDURE_($c) transforms((,newability[choice counter(1/1.$c)],newability[choice create(Spirit:Creature:$c/$c:white)])) ueot
+
+# Flurry
+#AUTO_DEFINE _FLURRY_ @movedto(*|mystack) restriction{thisturn(*|mystack)~equalto~1}:
+
+# Mobilize
+#AUTO_DEFINE _MOBILIZE_($c) @combat(attacking) source(this):create(Warrior:creature Warrior:1/1:red:battleready:treason)*$c
 
 # Angel Token
 #AUTO_DEFINE _ANGELTOKEN_ create(Angel:Creature Angel:4/4:white:flying)

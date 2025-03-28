@@ -252,7 +252,7 @@ const char* Constants::MTGBasicAbilities[] = {
     "affinityallcreatures", //Cost 1 less for each creature in all battlefields.
     "affinitycontrollercreatures", //Cost 1 less for each creature in controller battlefield.
     "affinityopponentcreatures", //Cost 1 less for each creature in opponent battlefield.
-    "affinityalldeadcreatures", //Cost 1 less for each died creature in this turn.
+    "affinityalldeadcreatures", //Costs {1} less to cast for each creature that died this turn
     "affinityparty", //Cost 1 less for each creature in your party.
     "affinityenchantments", //Cost 1 less for each enchantment in your battlefield.
     "affinitybasiclandtypes", //Cost 1 less for each basic land type in your battlefield.
@@ -268,7 +268,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "poisontentoxic", // Card has toxic 10
     "eqpasinst", // Can equip as instant
     "canloyaltyasinst", // Can activate loyalty abilities as instant (e.g. "The Wandering Emperor").
-    "canplayenchantmentlibrarytop" // May play enchantments from top
+    "canplayenchantmentlibrarytop", // May play enchantments from top
+	"affinitytwoalldeadcreatures" // Costs {2} less to cast for each creature that died this turn
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

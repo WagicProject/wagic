@@ -1292,6 +1292,7 @@ void GameObserver::Affinity()
                     card->has(Constants::AFFINITYCONTROLLERCREATURES) ||
                     card->has(Constants::AFFINITYOPPONENTCREATURES) ||
                     card->has(Constants::AFFINITYALLDEADCREATURES) ||
+                    card->has(Constants::AFFINITYTWOALLDEADCREATURES) ||
                     card->has(Constants::AFFINITYPARTY) ||
                     card->has(Constants::AFFINITYBASICLANDTYPES) ||
                     card->has(Constants::AFFINITYTWOBASICLANDTYPES) ||

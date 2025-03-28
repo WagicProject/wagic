@@ -1,7 +1,6 @@
 [meta]
 author=Wagic Team
 name=Alchemy: Innistrad
-orderindex=ONL-E.YMID
 year=2021-12-09
 total=64
 [/meta]
@@ -217,7 +216,7 @@ rarity=M
 [/card]
 [card]
 primitive=Rahilda, Feral Outlaw
-id=548268
+id=548269
 rarity=T
 [/card]
 [card]

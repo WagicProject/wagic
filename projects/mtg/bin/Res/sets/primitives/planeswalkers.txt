@@ -1,6 +1,6 @@
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#Sorted this programmatically - Thanks to Vitty85 24-12-2024
+#Sorted this programmatically - Thanks to Vitty85 28-03-2024
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -709,6 +709,20 @@ subtype=Chandra
 color=red
 [/card]
 [card]
+name=Chandra, Spark Hunter
+auto=counter(0/0,4,loyalty)
+auto=@each my combatbegins:may target(vehicle|myBattlefield) becomes(Artifact Creature,haste) ueot
+auto={C(0/0,+2,Loyalty)}:sacrifice notatarget(artifact|mybattlefield) and!( draw:1 )!
+auto={C(0/0,+2,Loyalty)}:_DISCARD&DRAW_
+auto={C(0/0,+2,Loyalty)}:name(Only +2 counters) doNothing
+auto={C(0/0,0,Loyalty)}:_VEHICLE_
+auto={C(0/0,-7,Loyalty)}:name(emblem) emblem transforms((,newability[@movedTo(artifact|myBattlefield):damage:3 target(anytarget)])) forever dontremove
+text=At the beginning of combat on your turn, choose up to one target Vehicle you control. Until end of turn, it becomes an artifact creature and gains haste. -- [+2]: You may sacrifice an artifact or discard a card. If you do, draw a card. -- [0]: Create a 3/2 colorless Vehicle artifact token with crew 1. -- [-7]: You get an emblem with "Whenever an artifact you control enters, this emblem deals 3 damage to any target."
+mana={3}{R}
+type=Legendary Planeswalker
+subtype=Chandra
+[/card]
+[card]
 name=Chandra, Torch of Defiance
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Exile Top Card) all(*[zpos=1]|mylibrary) moveto(myexile) and!( transforms((,newability[choice name(Deals 2 damage) name(Deals 2 damage) damage:2 opponent],newability[if cantargetcard(*[-land]|*) then choice name(Cast card from exile) name(Cast card from exile) counter(0/0.1.ChandraEffect) notrg])) ueot )!
@@ -847,7 +861,7 @@ auto=counter(0/0,3,loyalty)
 auto=lord(other creature|myBattlefield) 1/0
 auto={C(0/0,1,Loyalty)}:name(+1: Add Red mana and creatures can't be countered this turn) transforms((,newability[add{R}],newability[lord(creature|mystack) nofizzle])) ueot
 auto={C(0/0,1,Loyalty)}:name(+1: Add Green mana and creatures can't be countered this turn) transforms((,newability[add{G}],newability[lord(creature|mystack) nofizzle])) ueot
-auto={C(0/0,-2,Loyalty)}:name(-2: Target creature fights another creature) target(creature|myBattlefield) transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>])) ueot
+auto={C(0/0,-2,Loyalty)}:name(-2: Target creature fights another creature) target(creature|myBattlefield) _FIGHT_
 text=Creatures you control get +1/+0. -- +1: Add {R} or {G}. Creature spells you cast this turn can't be countered. -- -2: Target creature you control fights target creature you don't control.
 mana={1}{R}{G}
 type=Legendary Planeswalker
@@ -1720,6 +1734,19 @@ type=Legendary Planeswalker
 subtype=Kaito
 [/card]
 [card]
+name=Kaito, Cunning Infiltrator
+auto=counter(0/0,3,loyalty)
+auto=@combatdamagefoeof(player) from(creature|mybattlefield):counter(0/0,1,Loyalty)
+auto={C(0/0,+1,Loyalty)}:target(creature|myBattlefield) unblockable && _LOOT_
+auto={C(0/0,+1,Loyalty)}:name(+1: No target, only draw and discard) _LOOT_
+auto={C(0/0,-2,Loyalty)}:create(ninja:creature ninja:2/1:blue)
+auto={C(0/0,-9,Loyalty)}:name(-9: Emblem) emblem transforms((,newability[@movedTo(*|stack):create(ninja:creature ninja:2/1:blue)])) forever dontremove
+text=Whenever a creature you control deals combat damage to a player, put a loyalty counter on Kaito. -- [+1]: Up to one target creature you control can't be blocked this turn. Draw a card, then discard a card. -- [-2]: Create a 2/1 blue Ninja creature token. -- [-9]: You get an emblem with "Whenever a player casts a spell, you create a 2/1 blue Ninja creature token."
+mana={1}{U}{U}
+type=Legendary Planeswalker
+subtype=Kaito
+[/card]
+[card]
 name=Kaito, Dancing Shadow
 auto=counter(0/0,3,loyalty)
 auto=@combatdamaged(player) from(creature|myBattlefield) turnlimited:may name(Return to hand) target(creature[attacking]|myBattlefield) moveto(hand) && all(this) transforms((,newability[canloyaltytwice])) ueot
@@ -1855,8 +1882,8 @@ subtype=Kaya
 [card]
 name=Kaya, Geist Hunter
 auto=counter(0/0,3,Loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Creatures gain deathtouch) all(creature|mybattlefield) transforms((,deathtouch)) ueot
-auto={C(0/0,1,Loyalty)}:name(+1: Creatures gain deathtouch and put counter) target(creature[token]|mybattlefield) counter(1/1) && all(creature|mybattlefield) transforms((,deathtouch)) ueot
+auto={C(0/0,1,Loyalty)}:name(+1: Creatures gain deathtouch) all(creature|mybattlefield) deathtouch ueot
+auto={C(0/0,1,Loyalty)}:name(+1: Creatures gain deathtouch and put counter) target(creature[token]|mybattlefield) counter(1/1) && all(creature|mybattlefield) deathtouch ueot
 auto={C(0/0,-2,Loyalty)}:name(-2: Double the tokens) transforms((,newability[@tokencreated(*|myBattlefield):name(Double the token) all(trigger) clone options(notrigger)])) ueot
 auto={C(0/0,-6,Loyalty)}:name(-6: Exile cards) all(*|graveyard) moveto(exile) and!( _SPIRITTOKEN_ )!
 text=+1: Creatures you control gain deathtouch until end of turn. Put a +1/+1 counter on up to one target creature token you control. -- -2: Until end of turn, if one or more tokens would be created under your control, twice that many of those tokens are created instead. -- -6: Exile all cards from all graveyards, then create a 1/1 white Spirit creature token with flying for each card exiled this way.
@@ -1907,6 +1934,18 @@ auto=@movedTo(creature[power>=4]|myBattlefield):draw:1
 auto={C(0/0,-1,Loyalty)}:name(-1: Untap target permanent) untap target(*)
 text=Whenever a creature with power 4 or greater enters under your control, draw a card. -- -1: Untap target permanent.
 mana={2}{GU}
+type=Legendary Planeswalker
+subtype=Kiora
+[/card]
+[card]
+name=Kiora, Master of the Depths
+auto=counter(0/0,4,loyalty)
+aicode=activate target(*[zpos<=4]|mylibrary) moveto(hand)
+auto={C(0/0,1,Loyalty)}:name(+1: Untap target creature and land) untap target(<upto:1>creature) && ability$!may name(Untap land) untap target(<upto:1>land)!$ controller
+auto={C(0/0,-2,Loyalty)}:name(-2: Reveal the top four and put in hand creature or land) name(look) reveal:4 optionone name(Get a card) target(<1>*[creature;land]|reveal) moveTo(myHand) optiononeend optiontwo name(put in grave) all(*|reveal) moveTo(myGraveyard) optiontwoend revealend
+auto={C(0/0,-8,Loyalty)}:name(-8: Emblem: "Whenever enter, fight another creature" create a 8/8 octopus) emblem transforms((,newability[@movedTo(creature|myBattlefield):may name(fight) all(trigger[to]) _FIGHT_],newability[create(Octopus:Creature Octopus:8/8:blue)*3])) forever dontremove
+text=+1: Untap up to one target creature and up to one target land. -- ⿿2: Reveal the top four cards of your library. You may put a creature card and/or a land card from among them into your hand. Put the rest into your graveyard. -- ⿿8: You get an emblem with "Whenever a creature enters the battlefield under your control, you may have it fight target creature." Then create three 8/8 blue Octopus creature tokens.
+mana={2}{G}{U}
 type=Legendary Planeswalker
 subtype=Kiora
 [/card]
@@ -2812,7 +2851,7 @@ abilities=canbecommander
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Create a 1/1 colorless Servo) _SERVOTOKEN_
 auto={C(0/0,1,Loyalty)}:name(-1: The next spell has affinity for artifacts) target(*|mycastingzone) transforms((,newability[affinityartifacts])) ueot
-auto={C(0/0,-7,Loyalty)}:name(-7: Create a token for each artifact) clone all(artifact|mybattlefield) with (unearth)
+auto={C(0/0,-7,Loyalty)}:name(-7: Create a token for each artifact) clone all(artifact|mybattlefield) with(unearth)
 text=+1: Create a 1/1 colorless Servo artifact creature token. -- +1: The next spell you cast this turn costs {1} less to cast for each artifact you control as you cast it. -- -7: For each artifact you control, create a token that's a copy of it. Those tokens gain haste. Exile those tokens at the beginning of the next end step. -- Saheeli, the Gifted can be your commander.
 mana={2}{U}{R}
 type=Legendary Planeswalker
@@ -3235,6 +3274,7 @@ auto=counter(0/0,5,loyalty)
 aicode=activate transforms((,newability[moveto(myhand) all(*[zpos=1]|mylibrary) && bottomoflibrary all(*[zpos=2]|mylibrary)])) ueot
 auto={C(0/0,1,Loyalty)}:name(+1: Look at the top two, one in hand other to bottom) name(Look) reveal:2 optionone name(Get a card) target(<1>*|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<2>*|reveal) bottomoflibrary optiontwoend revealend
 auto={C(0/0,-1,Loyalty)}:name(-1: Untap up to four permanents) untap target(<upto:4>*|battlefield)
+auto={C(0/0,-10,Loyalty)}:name(Emblem) emblem transforms((,newability[lord(planeswalker|myBattlefield) canloyaltyasinst])) forever dontremove
 text=+1: Look at the top two cards of your library. Put one of them into your hand and the other on the bottom of your library. -- -1: Untap up to four target permanents. -- -10: You get an emblem with "You may activate loyalty abilities of planeswalkers you control on any player's turn any time you could cast an instant." -- Teferi, Temporal Archmage can be your commander.
 mana={4}{U}{U}
 type=Legendary Planeswalker
