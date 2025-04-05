@@ -300,6 +300,12 @@
 # Glimmer Token
 #AUTO_DEFINE _GLIMMERTOKEN_ create(glimmer:creature glimmer enchantment:1/1:white)
 
+# Human Knight Token
+#AUTO_DEFINE _HUMANKNIGHTTOKEN_ create(Human Knight:Creature Human Knight:2/2:red:trample:haste)
+
+# Human Soldier Token
+#AUTO_DEFINE _HUMANSOLDIERTOKEN_ create(soldier:creature Human soldier:1/1:white)
+
 # Insect Token
 #AUTO_DEFINE _INSECTTOKEN_ create(Insect:Creature Insect:1/1:green)
 
