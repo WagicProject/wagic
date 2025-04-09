@@ -572,7 +572,7 @@ subtype=Chandra
 name=Chandra, Gremlin Wrangler
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Create a 2/2 red Gremlin creature token) token(Gremlin,Creature Gremlin,2/2,red)
-auto={C(0/0,-2,Loyalty)}:name(-2: Deals X damage to any target... ) damage:damage:type:creature[Gremlin]|myBattlefield target(anytarget)
+auto={C(0/0,-2,Loyalty)}:name(-2: Deals X damage to any target... ) damage:type:creature[Gremlin]:myBattlefield target(anytarget)
 text=+1: Create a 2/2 red Gremlin creature token. -- -2: Chandra, Gremlin Wrangler deals X damage to any target, where X is the number of Gremlins you control.
 mana={2}{R}{R}
 type=Legendary Planeswalker
@@ -3770,7 +3770,7 @@ abilities=showfromtoplibrary,canplaycreaturelibrarytop
 aicode=activate moveto(myBattlefield) target(creature[manacost<=storedmanacost]|mylibrary)
 auto=counter(0/0,3,Loyalty)
 auto={C(0/0,1,Loyalty)}:name(+1: Create a Creature Beast 3/3) token(Beast Viv)
-auto={C(0/0,-2,Loyalty)}:name(-2: Cast a creature to search a lesser creature) emblem transforms((,newability[@movedTo(creature|myStak):moveTo(myBattlefield) target(creature[manacost<=storedmanacost]|myLibrary) && shuffle])) oneshot
+auto={C(0/0,-2,Loyalty)}:name(-2: Cast a creature to search a lesser creature) emblem transforms((,newability[@movedTo(creature|myStack):moveTo(myBattlefield) target(creature[manacost<=storedmanacost]|myLibrary) && shuffle])) oneshot
 text=You may look at the top card of your library any time. -- You may cast creature spells from the top of your library. -- +1: Create a 3/3 green Beast creature token. Put your choice of a vigilance counter, a reach counter, or a trample counter on it. -- -2: When you cast your next creature spell this turn, search your library for a creature card with lesser mana value, put it onto the battlefield, then shuffle.
 mana={3}{G}{G}
 type=Legendary Planeswalker

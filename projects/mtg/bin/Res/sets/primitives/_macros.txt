@@ -182,7 +182,7 @@
 #AUTO_DEFINE _PLOTCAST_ {0}restriction{compare(canforetellcast)~morethan~0}:name(Cast) name(Cast) activate castcard(alternative) asSorcery
 
 # Loot. Draw a card, then discard a card.
-#AUTO_DEFINE _LOOT_ draw:1 && transforms((,newability[target(*|myhand) reject])) forever
+#AUTO_DEFINE _LOOT_ draw:1 && transforms((,newability[notatarget(*|myhand) reject])) forever
 
 # Unearth
 #AUTO_DEFINE _UNEARTH_ name(Unearth) moveto(mybattlefield) and!( transforms((,haste,newability[unearth],newability[exiledeath])) forever )! asSorcery
@@ -214,7 +214,7 @@
 #AUTO_DEFINE _ETERNALIZE_ name(Eternalize) clone and!( transforms((Zombie,removemc,setpower=4,settoughness=4,black)) forever )! assorcery
 
 # Explores
-#AUTO_DEFINE _EXPLORES_ name(Explores) reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) forever optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend afterrevealed explores afterrevealedend revealend
+#AUTO_DEFINE _EXPLORES_ name(Explores) reveal:1 optionone if type(land|reveal)~lessthan~1 then counter(1/1) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend afterrevealed explores afterrevealedend revealend
 
 # Discard a card. If you do, draw a card
 #AUTO_DEFINE _DISCARD&DRAW_ reject notatarget(*|myhand) and!(draw:1 controller)!
