@@ -30,16 +30,25 @@ macro(FindOrBuildSDL2)
             set(SDL_AUDIO FALSE)
             set(SDL_JOYSTICK FALSE)
             set(SDL_HAPTIC FALSE)
-            set(SDL_SHARED FALSE)
+            # Forcing static build on Windows as SDL2main is often needed and easier to link statically.
+            # Set SDL_SHARED to OFF *before* adding the subdirectory to influence its build.
+            set(SDL_SHARED OFF CACHE BOOL "Build SDL2 as a static library" FORCE)
         endif()
-        add_subdirectory(${CMAKE_SOURCE_DIR}/thirdparty/SDL2)
+        # Add the subdirectory. This creates targets like SDL2::SDL2, SDL2::SDL2-static, SDL2::SDL2main
+        add_subdirectory(${CMAKE_SOURCE_DIR}/thirdparty/SDL2 ${CMAKE_BINARY_DIR}/thirdparty/SDL2)
         set(SDL2_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/thirdparty/SDL2/include ${CMAKE_BINARY_DIR}/thirdparty/SDL2)
+        # Linking against SDL2::SDL2 below handles includes automatically.
         if(EMSCRIPTEN)
-            set(SDL2_LIBRARY SDL2-static)
+            # Emscripten typically uses static linking
+            set(SDL2_LIBRARY SDL2::SDL2-static) # Use the CMake target
         else()
-            set(SDL2_LIBRARY SDL2)
+            # Link against SDL2 (shared or static based on SDL_SHARED) and SDL2main
+            # SDL2::SDL2 resolves to the correct shared/static target.
+            # SDL2::SDL2main is needed on many platforms, especially Windows.
+            set(SDL2_LIBRARY SDL2::SDL2 SDL2::SDL2main) # Use the CMake targets
         endif()
     elseif(NOT EMSCRIPTEN)
+        # If not building from source, use the find_package module
         find_package(SDL2)
     endif()
 endmacro()
@@ -228,4 +237,3 @@ endmacro()
 macro(FindOrBuildPSPSDK)
     find_package(PSPSDK COMPONENTS psppower pspmpeg pspaudiocodec pspaudiolib pspaudio pspmp3 pspgum pspgu psprtc pspfpu REQUIRED)
 endmacro()
-
