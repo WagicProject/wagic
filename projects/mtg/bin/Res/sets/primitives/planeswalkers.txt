@@ -1558,7 +1558,7 @@ subtype=Jace
 [/card]
 [card]
 name=Jace, the Perfected Mind
-auto=if paid(alternative) then counter(0/0,3,loyalty)
+auto=alternative counter(0/0,3,loyalty)
 auto=ifnot paid(alternative) then counter(0/0,5,loyalty)
 auto={C(0/0,+1,Loyalty)}:name(+1: Target creature gains -3/-0) target(creature|battlefield) transforms((,newability[-3/-0])) uynt
 auto={C(0/0,+1,Loyalty)}:name(+1: Don't target any creature) donothing
@@ -2179,7 +2179,7 @@ subtype=Windgrace
 [card]
 name=Lukka, Bound to Ruin
 auto=ifnot paid(alternative) then counter(0/0,5,loyalty)
-auto=if paid(alternative) then counter(0/0,3,loyalty)
+auto=alternative counter(0/0,3,loyalty)
 auto=aslongas(creature|mybattlefield,myrestrictedcastingzone) {C(0/0,+1,Loyalty)}:name(+1: Add mana) name(+1: Add mana) add{R}{G}
 auto={C(0/0,-1,Loyalty)}:name(-1: Create beast) token(Phyrexian Beast,Creature Phyrexian Beast,3/3,green,poisontoxic)
 auto=aslongas(creature[power=1]|mybattlefield) {C(0/0,-4,Loyalty)}:name(-4: Deal 1 damage) name(-4: Deal 1 damage) thisforeach(variable{1}) ability$!name(Deal 1 damage) damage:1 target(*[creature;planeswalker]|battlefield)!$ controller
@@ -2351,7 +2351,7 @@ subtype=Nahiri
 [card]
 name=Nahiri, the Unforgiving
 auto=ifnot paid(alternative) then counter(0/0,5,loyalty)
-auto=if paid(alternative) then counter(0/0,3,loyalty)
+auto=alternative counter(0/0,3,loyalty)
 auto={C(0/0,+1,Loyalty)}:name(+1: Creature must attack) target(creature|battlefield) transforms((,newability[mustattack])) uynt
 auto={C(0/0,+1,Loyalty)}:name(+1: Don't target any creature) donothing
 auto={C(0/0,+1,Loyalty)}:name(+1: Discard and draw) _DISCARD&DRAW_
@@ -2540,7 +2540,7 @@ subtype=Nissa
 [card]
 name=Nissa, Ascended Animist
 auto=ifnot paid(kicker) then ifnot paid(alternative) then counter(0/0,7,loyalty)
-auto=if paid(alternative) then counter(0/0,5,loyalty)
+auto=alternative counter(0/0,5,loyalty)
 auto=if paid(kicker) then counter(0/0,3,loyalty)
 auto={C(0/0,+1,Loyalty)}:name(+1: Create horror) token(Phyrexian Horror,Creature Phyrexian Horror,hascntloyalty/hascntloyalty,green)
 auto={C(0/0,-1,Loyalty)}:name(-1: Destroy artifact or enchantment) destroy target(*[artifact;enchantment]|battlefield)
@@ -2803,7 +2803,7 @@ otherrestriction=can play planeswalker,compare(isflipped)~equalto~1
 restriction=compare(isflipped)~equalto~0
 anyzone={0}:doubleside(Will, Scholar of Frost)
 autostack=if paid(alternative) then name(Will, Scholar of Frost) name(Will, Scholar of Frost) flip(Will, Scholar of Frost) forcetype(Legendary Planeswalker)
-auto=if paid(alternative) then counter(0/0,4,Loyalty) else counter(0/0,2,loyalty)
+auto=alternative counter(0/0,4,Loyalty) else counter(0/0,2,loyalty)
 auto=this(variable{isflipped}<1) lord(instant,sorcery|mycastingzone) altercost(colorless,-1)
 auto=this(variable{isflipped}<1) {C(0/0,1,Loyalty)}:name(+1: Deals damage) name(+1: Deals damage) if compare(pdrewcount)~lessthan~3 then damage:1 opponent else damage:3 opponent
 auto=this(variable{isflipped}<1) {C(0/0,-4,Loyalty)}:name(-4: Emblem copy spells) name(-4: Emblem copy spells) emblem transforms((,newability[@movedto(*[instant;sorcery]|mystack):all(trigger[to]<1>) transforms((,newability[pay[[{2}]] name(copy spell) activate name(copy spell) castcard(copied noevent)])) forever])) forever dontremove
@@ -3136,7 +3136,7 @@ subtype=Tamiyo
 [card]
 name=Tamiyo, Compleated Sage
 auto=ifnot paid(alternative) then counter(0/0,5,loyalty)
-auto=if paid(alternative) then counter(0/0,3,loyalty)
+auto=alternative counter(0/0,3,loyalty)
 auto={C(0/0,+1,Loyalty)}:name(+1: Tap artifact or creature) target(*[artifact;creature]|battlefield) freeze
 auto={C(0/0,+1,Loyalty)}:name(+1: Don't tap anything) donothing
 auto={C(0/0,0,Loyalty)}:name(0: Exile and copy with cost 0) target(*[-land&manacost=0]|mygraveyard) moveto(myexile) and!( clone )!
@@ -3801,7 +3801,7 @@ subtype=Vraska
 [/card]
 [card]
 name=Vraska, Betrayal's Sting
-auto=if paid(alternative) then counter(0/0,4,loyalty)
+auto=alternative counter(0/0,4,loyalty)
 auto=ifnot paid(alternative) then counter(0/0,6,loyalty)
 auto={C(0/0,0,Loyalty)}:name(0: Draw card and lose life) draw:1 controller && life:-1 controller && _PROLIFERATE_
 auto={C(0/0,-2,Loyalty)}:name(-2: Creature becomes treasure) target(creature|battlefield) transforms((removeallsubtypes,removeallcolors,newability[becomes(Treasure artifact)],,newability[{T}{S}:Add{W}],newability[{T}{S}:Add{U}],newability[{T}{S}:Add{B}],newability[{T}{S}:Add{R}],newability[{T}{S}:Add{G}])) forever
