@@ -1,30 +1,24 @@
 #NAME:Howlings
-#DESC:Supported by elemental rage
-#DESC:goblins descend from the mountains
-#DESC:to conquer the lands below.
-
-# (PSY) added 2 Mountains, 1 Black Vise, 1 Howling Mine
-# (would've been better to add creatures, but all creatures in the
-# deck were already at 4 pieces))
-
-# Land(s)
-Mountain (8ED) * 20
-
-# Creature(s)
+#DESC:'What the howling deep down
+#DESC:there conceals, no blessed
+#DESC:living soul can tell'
+#DESC:Friedrich Schiller
+#DESC:
+#DESC:Win matches to unlock more
+#DESC:opponents, sets and game modes
+Black Vise (MPS) * 4
 Goblin King (8ED) * 4
 Goblin Mountaineer (9ED) * 4
 Goblin Piker (9ED) * 4
 Goblin Striker (MRD) * 4
 Hearthfire Hobgoblin (EVE) * 4
+Howling Mine (8ED) * 3
+Lightning Bolt (M10) * 4
+Mountain (10E) * 4
+Mountain (7ED) * 4
+Mountain (8ED) * 4
+Mountain (9ED) * 4
+Mountain (M10) * 4
 Raging Goblin (8ED) * 4
 Spark Elemental (5DN) * 4
-
-# Artifact(s)
-Black Vise (V10) * 4
-Howling Mine (8ED) * 3
-
-# Instant(s)
-Lightning Bolt (M10) * 4
-
-# Sorcery(s)
 Wheel of Fortune (VMA) * 1
