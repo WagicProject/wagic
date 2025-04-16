@@ -1,76 +1,18 @@
 #NAME:Nightmare
-#DESC:I had a terrible Nightmare once
-#DESC:and then a second
-#DESC:and a third
-#DESC:and then I won.
-#2x Obsianus Golem
-1129
-1129
-#2x animate dead
-1143
-1143
-#2x Bad Moon
-1144
-1144
-#2x Bog Wraith
-1146
-1146
-#1x Cursed Land
-1148
-#1x Fear
-1161
-#2x El-Hajjâj
-1158
-1158
-#2x Hypnotic Specter
-1165
-1165
-#4x Nightmare
-1170
-1170
-1170
-1170
-#3x Scathe Zombie
-1177
-1177
-1177
-#1x Unholy Strength
-1183
-#1x Wall of Bone 
-1184
-#1x Zombie Master
-1188
-#2x Air Elemental
-1189
-1189
-#2x Lifetap
-1205
-1205
-#2x Lord of Atlantis
-1206
-1206
-#2x Mahamoti Djinn
-1208
-1208
-#4x Merfolk of the Pearl Trident
-1210
-1210
-1210
-1210
-# Swamp (RV)
-1373
-1373
-1373
-1373
-1374
-1374
-1374
-1374
-1375
-1375
-1375
-1375
-# Island (RV)
+#DESC:'All evil is as a nightmare'
+#DESC:Thomas Carlyle
+#DESC:
+#DESC:Win matches to unlock more
+#DESC:opponents, sets and game modes
+Air Elemental (RV) (*) * 2
+Animate Dead (RV) (*) * 2
+Bad Moon (RV) (*) * 2
+Bog Wraith (RV) (*) * 2
+Cursed Land (RV) (*) * 1
+El-Hajjaj (RV) (*) * 2
+Fear (RV) (*) * 1
+Hypnotic Specter (RV) (*) * 2 
+# RV Islands
 1392
 1392
 1392
@@ -83,3 +25,26 @@
 1394
 1394
 1394
+Lifetap (RV) (*) * 2
+Lord of Atlantis (RV) (*) * 2
+Mahamoti Djinn (RV) (*) * 2
+Merfolk of the Pearl Trident (RV) (*) * 4
+Nightmare (RV) (*) * 4
+Obsianus Golem (RV) (*) * 2
+Scathe Zombies (RV) (*) * 3
+# RV Islands
+1373
+1373
+1373
+1373
+1374
+1374
+1374
+1374
+1375
+1375
+1375
+1375
+Unholy Strength (RV)(*) * 1
+Wall of Bone (RV) (*) * 1
+Zombie Master (RV) (*) * 1
