@@ -1,66 +1,18 @@
 #NAME:Yavimaya
-#DESC:Beasts of the woods and the
-#DESC:seas are gathering, preparing
-#DESC:for battle.
-#Armageddon Clock
-1095
-#Obsianus Golem
-1129
-1129
-#Air Elemental
-1189
-1189
-1189
-1189
-#Lifetap
-1205
-1205
-#Lord of Atlantis
-1206
-1206
-#Merfolk of the Pearl Trident
-1210
-1210
-1210
-1210
-#Phantom Monster
-1213
-1213
-#Serendib Efreet
-1221
-1221
-#Sea Serpent
-1220
-1220
-#Cockatrice
-1238
-#Craw Wurm
-1239
-#Elvish Archers
-1242
-#Giant Spider
-1249
-1249
-#Grizzly Bears
-1250
-1250
-#Scryb Sprites
-1264
-1264
-1264
-#Thicket Basilisk
-1267
-# (PSY) Timber Wolves not available any more, replaced with Scryb Sprites
-#Timber Wolves
-#1268
-#Tsunami
-1271
-#Wall of Ice
-1274
-#War Mammoth
-1277
-1277
-#Forest
+#DESC:On the island of Yavimaya
+#DESC:the forest is not just
+#DESC:ancient and wild.  It is
+#DESC:also sentient.
+#DESC:
+#DESC:Win matches to unlock more
+#DESC:opponents, sets and game modes
+#HINT:combo hold(Tranquility|myhand)^cast(Tranquility|myhand)^restriction{type(enchantment|opponentbattlefield)~morethan~0}^totalmananeeded({2}{G})
+Air Elemental (RV) * 4
+Armageddon Clock (RV) * 1
+Cockatrice (RV) * 1
+Craw Wurm (RV) * 1
+Elvish Archers (RV) * 2
+# RV Forests
 1386
 1387
 1388
@@ -73,7 +25,9 @@
 1386
 1387
 1388
-#Island
+Giant Spider (RV) * 2
+Grizzly Bears (RV) * 2
+# RV Islands
 1392
 1393
 1394
@@ -86,3 +40,14 @@
 1392
 1393
 1394
+Lord of Atlantis (RV) * 3 
+Merfolk of the Pearl Trident (RV) * 4
+Obsianus Golem (RV) * 2
+Phantom Monster (RV) * 2
+Scryb Sprites (RV) * 3
+Sea Serpent (RV) * 2
+Serendib Efreet (RV) * 2
+Thicket Basilisk (RV) * 1
+Tranquility (RV) * 1
+Wall of Ice (RV) * 1
+War Mammoth (RV) * 2

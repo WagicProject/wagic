@@ -1,66 +1,17 @@
 #NAME:Taiga
-#DESC:The forces of fire and nature unite.
+#DESC:Beware the fires deep in
+#DESC:the boreal forest
 #DESC:
-#DESC:Can you withstand
-#DESC:their combined fervor?
-#2x Cockatrice
-1238
-1238
-#3x Craw Wurm
-1239
-1239
-1239
-#2x Elvish Archers
-1242
-1242
-#2x Giant Spider
-1249
-1249
-#2x Grizzly Bears
-1250
-1250
-#2x Scryb Sprites
-1264
-1264
-#2x Shanodin Dryads
-1265
-1265
-#1x Tranquility
-1270
-#1x Tsunami
-1271
-#2x Earth Elemental
-1287
-1287
-#2x Fire Elemental
-1290
-1290
-#1x Flashfires 
-1293
-#3x Goblin King
-1296
-1296
-1296
-#2x Hill Giant 
-1299
-1299
-#4x Mons's Goblin Raiders 
-1308
-1308
-1308
-1308
-#2x Orcish Oriflamme 
-1310
-1310
-1310
-# (PSY) Power Surge not available any more, replaced with a third Orcish Oriflamme
-#1x Power Surge 
-#1311
-#1x Wheel of Fortune
-1326
-#1x White Ward 
-1371
-#Forest (RV)
+#DESC:Win matches to unlock more
+#DESC:opponents, sets and game modes
+Cockatrice (RV) (*) * 2
+Craw Wurm (RV) (*) * 3
+Earth Elemental  (RV) (*) * 2
+Elvish Archers (RV) (*) * 2
+Firebreathing (RV) (*) * 1
+Fire Elemental (RV) (*) * 2
+Flashfires (RV) (*) * 2
+# RV Forests
 1386
 1386
 1386
@@ -73,7 +24,12 @@
 1388
 1388
 1388
-#Mountain
+Giant Spider (RV) (*) * 2
+Goblin King (RV) (*) * 3
+Grizzly Bears (RV) (*) * 2
+Hill Giant (RV) (*) * 2
+Mons's Goblin Raiders (RV) (*) * 4 
+# RV Mountains
 1389
 1389
 1389
@@ -86,3 +42,9 @@
 1391
 1391
 1391
+Orcish Oriflamme (RV) (*) * 2
+Scryb Sprites (RV) (*) * 2
+Shanodin Dryads (RV) (*) * 2
+Tranquility (RV) (*) * 1
+Tsunami (RV) (*) * 1
+Wheel of Fortune (RV) (*) * 1

@@ -1,22 +1,23 @@
 #NAME:Shatter
-#DESC:See all your efforts shattered
-#DESC:by the all-consuming power
-#DESC:of righteous fury.
-# Land(s)
-Mountain (8ED) * 12
-Plains (8ED) * 12
-
-# Creature(s)
+#DESC:See your efforts shattered
+#DESC:by righteous fury
+#DESC:
+#DESC:Win matches to unlock more
+#DESC:opponents, sets and game modes
 Anaba Bodyguard (10E) * 4
 Ancestor's Chosen (10E) * 4
 Angelic Wall (10E) * 4
-Rock Badger (10E) * 4
-Steadfast Guard (10E) * 4
-Suntail Hawk (8ED) * 2
-Thundering Giant (10E) * 4
-
-# Instant(s)
 Disenchant (M20) * 2
 Lightning Bolt (M10) * 4
+Mountain (10E) * 4
+Mountain (8ED) * 4
+Mountain (M10) * 4
+Plains (10E) * 4
+Plains (8ED) * 4
+Plains (M10) * 4
+Rock Badger (10E) * 4
 Shatter (8ED) * 2
+Steadfast Guard (10E) * 4
+Suntail Hawk (8ED) * 2
 Tempest of Light (MRD) * 2
+Thundering Giant (10E) * 4

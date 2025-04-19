@@ -1,25 +1,26 @@
 #NAME:Wrath
-#DESC:O miserable of happy 
-#DESC:Is this the end
-#DESC:Of this new glorious world 
-# Land(s)
-Plains (8ED) * 21
-
-# Creature(s)
+#DESC:The truly wrathful person 
+#DESC:harms themselves as much as
+#DESC:their enemies 
+#DESC:
+#DESC:Win matches to unlock more
+#DESC:opponents, sets and game modes
+#HINT:combo hold(Armageddon|myhand)^cast(Armageddon|myhand)^restriction{type(creature|mybattlefield)~morethan~1}^totalmananeeded({3}{W})
+#HINT:combo hold(Wrath of God|myhand)^cast(Wrath of God|myhand)^restriction{type(creature|opponentbattlefield)~morethan~2}^totalmananeeded({2}{W}{W})
+Armageddon (VMA) * 4
+Crusade (DDF) * 4
 Guardians of Akrasa (ALA) * 4
 Paladin en-Vec (9ED) * 1
+Plains (8ED) * 4
+Plains (9ED) * 4
+Plains (M10) * 4
+Plains (ALA) * 4
+Plains (DDF) * 4
+Plains (10E) * 1
 Savannah Lions (8ED) * 4
 Serra Angel (8ED) * 4
 Sigiled Paladin (ALA) * 4
 Skyhunter Skirmisher (5DN) * 3
-White Knight (M10) * 4
-
-# Enchantment(s)
-Crusade (DDF) * 4
-
-# Instant(s)
 Swords to Plowshares (DDF) * 4
-
-# Sorcery(s)
-Armageddon (VMA) * 4
+White Knight (M10) * 4
 Wrath of God (8ED) * 3
