@@ -1,0 +1,1126 @@
+[meta]
+author=Wagic Team
+name=Phyrexia: All Will Be One Commander
+year=2023-02-03
+total=224
+[/meta]
+[card]
+primitive=Rebel
+id=-605671
+rarity=T
+[/card]
+[card]
+primitive=Mite
+id=-605672
+rarity=T
+[/card]
+[card]
+primitive=Rebel
+id=-605688
+rarity=T
+[/card]
+[card]
+primitive=Rebel
+id=-605689
+rarity=T
+[/card]
+[card]
+primitive=more
+id=-605692
+rarity=T
+[/card]
+[card]
+primitive=Rebel
+id=-605695
+rarity=T
+[/card]
+[card]
+primitive=Rebel
+id=-605696
+rarity=T
+[/card]
+[card]
+primitive=Golem
+id=-605698
+rarity=T
+[/card]
+[card]
+primitive=Wurm
+id=-605701
+rarity=T
+[/card]
+[card]
+primitive=Germ
+id=-605456
+rarity=T
+[/card]
+[card]
+primitive=Myr
+id=-605458
+rarity=T
+[/card]
+[card]
+primitive=Germ
+id=-605520
+rarity=T
+[/card]
+[card]
+primitive=Rebel
+id=-605523
+rarity=T
+[/card]
+[card]
+primitive=Mite
+id=-605524
+rarity=T
+[/card]
+[card]
+primitive=Myr
+id=-605526
+rarity=T
+[/card]
+[card]
+primitive=Rebel
+id=-605576
+rarity=T
+[/card]
+[card]
+primitive=Rebel
+id=-605577
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-605580
+rarity=T
+[/card]
+[card]
+primitive=Rebel
+id=-605583
+rarity=T
+[/card]
+[card]
+primitive=Rebel
+id=-605584
+rarity=T
+[/card]
+[card]
+primitive=Golem
+id=-605586
+rarity=T
+[/card]
+[card]
+primitive=Wurm
+id=-605589
+rarity=T
+[/card]
+[card]
+primitive=Bird
+id=-605799
+rarity=T
+[/card]
+[card]
+primitive=Soldier
+id=-605800
+rarity=T
+[/card]
+[card]
+primitive=Angel
+id=-605802
+rarity=T
+[/card]
+[card]
+primitive=Soldier
+id=-605804
+rarity=T
+[/card]
+[card]
+primitive=Bird
+id=-605805
+rarity=T
+[/card]
+[card]
+primitive=Beast
+id=-605806
+rarity=T
+[/card]
+[card]
+primitive=Angel
+id=-605807
+rarity=T
+[/card]
+[card]
+primitive=Elephant
+id=-605810
+rarity=T
+[/card]
+[card]
+primitive=Human
+id=-605814
+rarity=T
+[/card]
+[card]
+primitive=Human
+id=-605816
+rarity=T
+[/card]
+[card]
+primitive=Soldier
+id=-605819
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-605822
+rarity=T
+[/card]
+[card]
+primitive=Horror
+id=-605826
+rarity=T
+[/card]
+[card]
+primitive=Soldier
+id=-605827
+rarity=T
+[/card]
+[card]
+primitive=Knight
+id=-605828
+rarity=T
+[/card]
+[card]
+primitive=Cat
+id=-605830
+rarity=T
+[/card]
+[card]
+primitive=Dragon
+id=-605838
+rarity=T
+[/card]
+[card]
+primitive=Goblin
+id=-605840
+rarity=T
+[/card]
+[card]
+primitive=Goblin
+id=-605841
+rarity=T
+[/card]
+[card]
+primitive=Thopter
+id=-605842
+rarity=T
+[/card]
+[card]
+primitive=Goblin
+id=-605843
+rarity=T
+[/card]
+[card]
+primitive=Beast
+id=-605844
+rarity=T
+[/card]
+[card]
+primitive=Insect
+id=-605846
+rarity=T
+[/card]
+[card]
+primitive=Insect
+id=-605851
+rarity=T
+[/card]
+[card]
+primitive=Soldier
+id=-605855
+rarity=T
+[/card]
+[card]
+primitive=Soldier
+id=-605858
+rarity=T
+[/card]
+[card]
+primitive=Eldrazi
+id=-605874
+rarity=T
+[/card]
+[card]
+primitive=Myr
+id=-605878
+rarity=T
+[/card]
+[card]
+primitive=Human
+id=-605889
+rarity=T
+[/card]
+[card]
+primitive=Kobold
+id=-605897
+rarity=T
+[/card]
+[card]
+primitive=Ixhel, Scion of Atraxa
+id=605655
+rarity=M
+[/card]
+[card]
+primitive=Neyali, Suns' Vanguard
+id=605656
+rarity=M
+[/card]
+[card]
+primitive=Otharri, Suns' Glory
+id=605671
+rarity=M
+[/card]
+[card]
+primitive=Vishgraz, the Doomhive
+id=605672
+rarity=M
+[/card]
+[card]
+primitive=Clever Concealment
+id=605687
+rarity=R
+[/card]
+[card]
+primitive=Glimmer Lens
+id=605688
+rarity=R
+[/card]
+[card]
+primitive=Kemba's Banner
+id=605689
+rarity=R
+[/card]
+[card]
+primitive=Norn's Choirmaster
+id=605690
+rarity=R
+[/card]
+[card]
+primitive=Norn's Decree
+id=605691
+rarity=R
+[/card]
+[card]
+primitive=Staff of the Storyteller
+id=605692
+rarity=R
+[/card]
+[card]
+primitive=Geth's Summons
+id=605693
+rarity=R
+[/card]
+[card]
+primitive=Phyresis Outbreak
+id=605694
+rarity=R
+[/card]
+[card]
+primitive=Goldwardens' Gambit
+id=605695
+rarity=R
+[/card]
+[card]
+primitive=Hexplate Wallbreaker
+id=605696
+rarity=R
+[/card]
+[card]
+primitive=Roar of Resistance
+id=605697
+rarity=R
+[/card]
+[card]
+primitive=Vulshok Factory
+id=605698
+rarity=R
+[/card]
+[card]
+primitive=Contaminant Grafter
+id=605699
+rarity=R
+[/card]
+[card]
+primitive=Glissa's Retriever
+id=605700
+rarity=R
+[/card]
+[card]
+primitive=Wurmquake
+id=605701
+rarity=R
+[/card]
+[card]
+primitive=Glistening Sphere
+id=605702
+rarity=R
+[/card]
+[card]
+primitive=Skyhunter Strike Force
+id=605451
+rarity=R
+[/card]
+[card]
+primitive=Mirage Mockery
+id=605452
+rarity=R
+[/card]
+[card]
+primitive=Synthesis Pod
+id=605453
+rarity=R
+[/card]
+[card]
+primitive=Monumental Corruption
+id=605454
+rarity=R
+[/card]
+[card]
+primitive=Chiss-Goria, Forge Tyrant
+id=605455
+rarity=M
+[/card]
+[card]
+primitive=Tangleweave Armor
+id=605456
+rarity=R
+[/card]
+[card]
+primitive=Lux Artillery
+id=605457
+rarity=R
+[/card]
+[card]
+primitive=Urtet, Remnant of Memnarch
+id=605458
+rarity=M
+[/card]
+[card]
+primitive=Skyhunter Strike Force
+id=605515
+rarity=R
+[/card]
+[card]
+primitive=Mirage Mockery
+id=605516
+rarity=R
+[/card]
+[card]
+primitive=Synthesis Pod
+id=605517
+rarity=R
+[/card]
+[card]
+primitive=Monumental Corruption
+id=605518
+rarity=R
+[/card]
+[card]
+primitive=Chiss-Goria, Forge Tyrant
+id=605519
+rarity=M
+[/card]
+[card]
+primitive=Tangleweave Armor
+id=605520
+rarity=R
+[/card]
+[card]
+primitive=Ixhel, Scion of Atraxa
+id=605521
+rarity=M
+[/card]
+[card]
+primitive=Neyali, Suns' Vanguard
+id=605522
+rarity=M
+[/card]
+[card]
+primitive=Otharri, Suns' Glory
+id=605523
+rarity=M
+[/card]
+[card]
+primitive=Vishgraz, the Doomhive
+id=605524
+rarity=M
+[/card]
+[card]
+primitive=Lux Artillery
+id=605525
+rarity=R
+[/card]
+[card]
+primitive=Urtet, Remnant of Memnarch
+id=605526
+rarity=R
+[/card]
+[card]
+primitive=Clever Concealment
+id=605575
+rarity=R
+[/card]
+[card]
+primitive=Glimmer Lens
+id=605576
+rarity=R
+[/card]
+[card]
+primitive=Kemba's Banner
+id=605577
+rarity=R
+[/card]
+[card]
+primitive=Norn's Choirmaster
+id=605578
+rarity=R
+[/card]
+[card]
+primitive=Norn's Decree
+id=605579
+rarity=R
+[/card]
+[card]
+primitive=Staff of the Storyteller
+id=605580
+rarity=R
+[/card]
+[card]
+primitive=Geth's Summons
+id=605581
+rarity=R
+[/card]
+[card]
+primitive=Phyresis Outbreak
+id=605582
+rarity=R
+[/card]
+[card]
+primitive=Goldwardens' Gambit
+id=605583
+rarity=R
+[/card]
+[card]
+primitive=Hexplate Wallbreaker
+id=605584
+rarity=R
+[/card]
+[card]
+primitive=Roar of Resistance
+id=605585
+rarity=R
+[/card]
+[card]
+primitive=Vulshok Factory
+id=605586
+rarity=R
+[/card]
+[card]
+primitive=Contaminant Grafter
+id=605587
+rarity=R
+[/card]
+[card]
+primitive=Glissa's Retriever
+id=605588
+rarity=R
+[/card]
+[card]
+primitive=Wurmquake
+id=605589
+rarity=R
+[/card]
+[card]
+primitive=Glistening Sphere
+id=605590
+rarity=R
+[/card]
+[card]
+primitive=Battle Screech
+id=605799
+rarity=U
+[/card]
+[card]
+primitive=Call the Coppercoats
+id=605800
+rarity=R
+[/card]
+[card]
+primitive=Collective Effort
+id=605801
+rarity=R
+[/card]
+[card]
+primitive=Court of Grace
+id=605802
+rarity=R
+[/card]
+[card]
+primitive=Cut a Deal
+id=605803
+rarity=U
+[/card]
+[card]
+primitive=Elspeth Tirel
+id=605804
+rarity=M
+[/card]
+[card]
+primitive=Emeria Angel
+id=605805
+rarity=R
+[/card]
+[card]
+primitive=Felidar Retreat
+id=605806
+rarity=R
+[/card]
+[card]
+primitive=Finale of Glory
+id=605807
+rarity=M
+[/card]
+[card]
+primitive=Flawless Maneuver
+id=605808
+rarity=R
+[/card]
+[card]
+primitive=Fumigate
+id=605809
+rarity=R
+[/card]
+[card]
+primitive=Generous Gift
+id=605810
+rarity=U
+[/card]
+[card]
+primitive=Ghostly Prison
+id=605811
+rarity=U
+[/card]
+[card]
+primitive=Goldnight Commander
+id=605812
+rarity=U
+[/card]
+[card]
+primitive=Grateful Apparition
+id=605813
+rarity=U
+[/card]
+[card]
+primitive=Harmonious Archon
+id=605814
+rarity=M
+[/card]
+[card]
+primitive=Hour of Reckoning
+id=605815
+rarity=R
+[/card]
+[card]
+primitive=Increasing Devotion
+id=605816
+rarity=R
+[/card]
+[card]
+primitive=Intangible Virtue
+id=605817
+rarity=U
+[/card]
+[card]
+primitive=Mace of the Valiant
+id=605818
+rarity=R
+[/card]
+[card]
+primitive=Martial Coup
+id=605819
+rarity=R
+[/card]
+[card]
+primitive=Maul of the Skyclaves
+id=605820
+rarity=R
+[/card]
+[card]
+primitive=Mentor of the Meek
+id=605821
+rarity=R
+[/card]
+[card]
+primitive=Midnight Haunting
+id=605822
+rarity=U
+[/card]
+[card]
+primitive=Norn's Annex
+id=605823
+rarity=R
+[/card]
+[card]
+primitive=Path to Exile
+id=605824
+rarity=U
+[/card]
+[card]
+primitive=Phantom General
+id=605825
+rarity=U
+[/card]
+[card]
+primitive=Phyrexian Rebirth
+id=605826
+rarity=R
+[/card]
+[card]
+primitive=Prava of the Steel Legion
+id=605827
+rarity=U
+[/card]
+[card]
+primitive=Silverwing Squadron
+id=605828
+rarity=R
+[/card]
+[card]
+primitive=Swords to Plowshares
+id=605829
+rarity=U
+[/card]
+[card]
+primitive=White Sun's Zenith
+id=605830
+rarity=R
+[/card]
+[card]
+primitive=Windborn Muse
+id=605831
+rarity=R
+[/card]
+[card]
+primitive=Caress of Phyrexia
+id=605832
+rarity=U
+[/card]
+[card]
+primitive=Ichor Rats
+id=605833
+rarity=U
+[/card]
+[card]
+primitive=Night's Whisper
+id=605834
+rarity=C
+[/card]
+[card]
+primitive=Painful Truths
+id=605835
+rarity=R
+[/card]
+[card]
+primitive=Plague Stinger
+id=605836
+rarity=C
+[/card]
+[card]
+primitive=Chain Reaction
+id=605837
+rarity=R
+[/card]
+[card]
+primitive=Dragonmaster Outcast
+id=605838
+rarity=M
+[/card]
+[card]
+primitive=Hate Mirage
+id=605839
+rarity=U
+[/card]
+[card]
+primitive=Hordeling Outburst
+id=605840
+rarity=U
+[/card]
+[card]
+primitive=Legion Warboss
+id=605841
+rarity=R
+[/card]
+[card]
+primitive=Loyal Apprentice
+id=605842
+rarity=U
+[/card]
+[card]
+primitive=Siege-Gang Commander
+id=605843
+rarity=R
+[/card]
+[card]
+primitive=Beast Within
+id=605844
+rarity=U
+[/card]
+[card]
+primitive=Blight Mamba
+id=605845
+rarity=C
+[/card]
+[card]
+primitive=Carrion Call
+id=605846
+rarity=U
+[/card]
+[card]
+primitive=Cultivate
+id=605847
+rarity=C
+[/card]
+[card]
+primitive=Evolution Sage
+id=605848
+rarity=U
+[/card]
+[card]
+primitive=Mycosynth Fiend
+id=605849
+rarity=U
+[/card]
+[card]
+primitive=Noxious Revival
+id=605850
+rarity=U
+[/card]
+[card]
+primitive=Phyrexian Swarmlord
+id=605851
+rarity=R
+[/card]
+[card]
+primitive=Scavenging Ooze
+id=605852
+rarity=R
+[/card]
+[card]
+primitive=Viridian Corrupter
+id=605853
+rarity=U
+[/card]
+[card]
+primitive=Adriana, Captain of the Guard
+id=605854
+rarity=R
+[/card]
+[card]
+primitive=Assemble the Legion
+id=605855
+rarity=R
+[/card]
+[card]
+primitive=Boros Charm
+id=605856
+rarity=U
+[/card]
+[card]
+primitive=Culling Ritual
+id=605857
+rarity=R
+[/card]
+[card]
+primitive=Heroic Reinforcements
+id=605858
+rarity=U
+[/card]
+[card]
+primitive=Jor Kadeen, the Prevailer
+id=605859
+rarity=R
+[/card]
+[card]
+primitive=Merciless Eviction
+id=605860
+rarity=R
+[/card]
+[card]
+primitive=Moldervine Reclamation
+id=605861
+rarity=U
+[/card]
+[card]
+primitive=Mortify
+id=605862
+rarity=U
+[/card]
+[card]
+primitive=Putrefy
+id=605863
+rarity=U
+[/card]
+[card]
+primitive=Rip Apart
+id=605864
+rarity=U
+[/card]
+[card]
+primitive=Arcane Signet
+id=605865
+rarity=C
+[/card]
+[card]
+primitive=Boros Signet
+id=605866
+rarity=U
+[/card]
+[card]
+primitive=Chromatic Lantern
+id=605867
+rarity=R
+[/card]
+[card]
+primitive=Commander's Sphere
+id=605868
+rarity=C
+[/card]
+[card]
+primitive=Contagion Clasp
+id=605869
+rarity=U
+[/card]
+[card]
+primitive=Fellwar Stone
+id=605870
+rarity=U
+[/card]
+[card]
+primitive=Golgari Signet
+id=605871
+rarity=U
+[/card]
+[card]
+primitive=Grafted Exoskeleton
+id=605872
+rarity=U
+[/card]
+[card]
+primitive=Ichorclaw Myr
+id=605873
+rarity=C
+[/card]
+[card]
+primitive=Idol of Oblivion
+id=605874
+rarity=R
+[/card]
+[card]
+primitive=Loxodon Warhammer
+id=605875
+rarity=R
+[/card]
+[card]
+primitive=Mask of Memory
+id=605876
+rarity=U
+[/card]
+[card]
+primitive=Mind Stone
+id=605877
+rarity=U
+[/card]
+[card]
+primitive=Myr Battlesphere
+id=605878
+rarity=R
+[/card]
+[card]
+primitive=Plague Myr
+id=605879
+rarity=U
+[/card]
+[card]
+primitive=Sol Ring
+id=605880
+rarity=U
+[/card]
+[card]
+primitive=Solemn Simulacrum
+id=605881
+rarity=R
+[/card]
+[card]
+primitive=Soul-Guide Lantern
+id=605882
+rarity=U
+[/card]
+[card]
+primitive=Talisman of Conviction
+id=605883
+rarity=U
+[/card]
+[card]
+primitive=Trailblazer's Boots
+id=605884
+rarity=U
+[/card]
+[card]
+primitive=Bojuka Bog
+id=605885
+rarity=C
+[/card]
+[card]
+primitive=Boros Garrison
+id=605886
+rarity=U
+[/card]
+[card]
+primitive=Buried Ruin
+id=605887
+rarity=U
+[/card]
+[card]
+primitive=Canopy Vista
+id=605888
+rarity=R
+[/card]
+[card]
+primitive=Castle Ardenvale
+id=605889
+rarity=R
+[/card]
+[card]
+primitive=Castle Embereth
+id=605890
+rarity=R
+[/card]
+[card]
+primitive=Command Tower
+id=605891
+rarity=C
+[/card]
+[card]
+primitive=Exotic Orchard
+id=605892
+rarity=R
+[/card]
+[card]
+primitive=Forgotten Cave
+id=605893
+rarity=U
+[/card]
+[card]
+primitive=Fortified Village
+id=605894
+rarity=R
+[/card]
+[card]
+primitive=Furycalm Snarl
+id=605895
+rarity=R
+[/card]
+[card]
+primitive=Karn's Bastion
+id=605896
+rarity=R
+[/card]
+[card]
+primitive=Kher Keep
+id=605897
+rarity=R
+[/card]
+[card]
+primitive=Krosan Verge
+id=605898
+rarity=U
+[/card]
+[card]
+primitive=Myriad Landscape
+id=605899
+rarity=U
+[/card]
+[card]
+primitive=Necroblossom Snarl
+id=605900
+rarity=R
+[/card]
+[card]
+primitive=Path of Ancestry
+id=605901
+rarity=C
+[/card]
+[card]
+primitive=Sandsteppe Citadel
+id=605902
+rarity=U
+[/card]
+[card]
+primitive=Secluded Steppe
+id=605903
+rarity=U
+[/card]
+[card]
+primitive=Shineshadow Snarl
+id=605904
+rarity=R
+[/card]
+[card]
+primitive=Slayers' Stronghold
+id=605905
+rarity=R
+[/card]
+[card]
+primitive=Sungrass Prairie
+id=605906
+rarity=R
+[/card]
+[card]
+primitive=Tainted Field
+id=605907
+rarity=U
+[/card]
+[card]
+primitive=Tainted Wood
+id=605908
+rarity=U
+[/card]
+[card]
+primitive=Temple of Malady
+id=605909
+rarity=R
+[/card]
+[card]
+primitive=Temple of Plenty
+id=605910
+rarity=R
+[/card]
+[card]
+primitive=Temple of Silence
+id=605911
+rarity=R
+[/card]
+[card]
+primitive=Temple of the False God
+id=605912
+rarity=U
+[/card]
+[card]
+primitive=Temple of Triumph
+id=605913
+rarity=R
+[/card]
+[card]
+primitive=Windbrisk Heights
+id=605914
+rarity=R
+[/card]

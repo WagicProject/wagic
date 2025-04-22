@@ -72,7 +72,7 @@ const char* Constants::MTGBasicAbilities[] = {
     "mustattack",
     "cantblock",
     "doesnotuntap",
-    "opponentshroud",
+    "hexproof",
     "indestructible",
     "intimidate",
     "deathtouch",
@@ -80,9 +80,9 @@ const char* Constants::MTGBasicAbilities[] = {
     "cantregen",
     "oneblocker",
     "infect",
-    "poisontoxic",
-    "poisontwotoxic",
-    "poisonthreetoxic",
+    "poisontoxic", // Card has toxic 1
+    "poisontwotoxic", // Card has toxic 2
+    "poisonthreetoxic", // Card has toxic 3
     "phantom",//prevents damage and remove 1 +1/+1 counter
     "wilting",//source takes damage in the form of -1/-1 counters.
     "vigor",//instead of taking damage the source gains +1/+1 counters
@@ -158,7 +158,7 @@ const char* Constants::MTGBasicAbilities[] = {
     "cantchangelife",
     "combattoughness",
     "cantpaylife",
-    "cantbesacrified",
+    "cantbesacrified", // The card cannot be sacrified (e.g. "Hithlain Rope").
     "skulk",
     "menace",
     "nosolo",
@@ -197,7 +197,7 @@ const char* Constants::MTGBasicAbilities[] = {
     "hasotherkicker", //Kicker cost is expressed with "other" keyword (eg. not mana kicker such as life and/or tap a creature)
     "partner", //Has partner ability
     "canbecommander", //Can be a commander (eg. some planeswalkers can)
-    "iscommander", //It's the current commander
+    "poisonfourtoxic", // Card has toxic 4
     "threeblockers", //It can be blocked just by 3 creatures or more.
     "handdeath", //It goes in hand after death.
     "inplaydeath", //It goes back in play untapped after death.
@@ -225,7 +225,7 @@ const char* Constants::MTGBasicAbilities[] = {
     "perpetualdeathtouch", //It gains deathtouch perpetually
     "noncombatvigor", //instead of taking non-combat damage the source gains +1/+1 counters (e.g. Stormwild Capridor)
     "nomovetrigger", //no trigger when playing these cards (e.g. fake ability cards such as Davriel Conditions, Davriel Offers, Annihilation Rooms)
-    "wascommander", //It was the current commander (e.g. after it flipped or morphed)
+    "canloyaltytwice", //Planeswalker can activate its loyalty abilities twice in a turn (e.g. "Urza, Planeswalker").
     "showopponenthand", //opponent plays with his hand revealed.
     "showcontrollerhand", //controller plays with his hand revealed.
     "hasreplicate", //Kicker cost is a replicate cost (e.g. "Vacuumelt")
@@ -244,7 +244,32 @@ const char* Constants::MTGBasicAbilities[] = {
     "expshroud", //Player can't get experience counters (e.g. "Solemnity").
     "countershroud", //Card can't get any kind of counter (e.g. "Solemnity").
     "nonight", //It can't become night (e.g. "Angel of Eternal Dawn").
-    "nodamageremoved" //Damage is not removed from card (e.g. "Patient Zero").
+    "nodamageremoved", //Damage is not removed from card (e.g. "Patient Zero").
+    "backgroundpartner", //Can choose a backgorund partner as commander (e.g. "Faceless One").
+    "bottomlibrarydeath", //It goes to bottom of library after death (e.g. "Quintorius, Loremaster").
+    "noloyaltydamage", //Damage does not cause loyalty counter to be removed from a Planeswalker (e.g. "Spark Rupture").
+    "nodefensedamage", //Damage does not cause defense counter to be removed from a Battle.
+    "affinityallcreatures", //Cost 1 less for each creature in all battlefields.
+    "affinitycontrollercreatures", //Cost 1 less for each creature in controller battlefield.
+    "affinityopponentcreatures", //Cost 1 less for each creature in opponent battlefield.
+    "affinityalldeadcreatures", //Costs {1} less to cast for each creature that died this turn
+    "affinityparty", //Cost 1 less for each creature in your party.
+    "affinityenchantments", //Cost 1 less for each enchantment in your battlefield.
+    "affinitybasiclandtypes", //Cost 1 less for each basic land type in your battlefield.
+    "affinitytwobasiclandtypes", //Cost 2 less for each basic land type in your battlefield.
+    "affinitygravecreatures", //Cost 1 less for each creature in your graveyard.
+    "affinityattackingcreatures", //Cost 1 less for each attacking creature in your battlefield.
+    "affinitygraveinstsorc", //Cost 1 less for each instant or sorcery in your graveyard.
+    "poisonfivetoxic", // Card has toxic 5
+    "poisonsixtoxic", // Card has toxic 6
+    "poisonseventoxic", // Card has toxic 7
+    "poisoneighttoxic", // Card has toxic 8
+    "poisonninetoxic", // Card has toxic 9
+    "poisontentoxic", // Card has toxic 10
+    "eqpasinst", // Can equip as instant
+    "canloyaltyasinst", // Can activate loyalty abilities as instant (e.g. "The Wandering Emperor").
+    "canplayenchantmentlibrarytop", // May play enchantments from top
+	"affinitytwoalldeadcreatures" // Costs {2} less to cast for each creature that died this turn
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

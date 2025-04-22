@@ -1,0 +1,2091 @@
+[meta]
+author=Wagic Team
+name=Duskmourn: House of Horror
+year=2024-09-27
+total=451
+[/meta]
+[card]
+primitive=Acrobatic Cheerleader
+id=673406
+rarity=C
+[/card]
+[card]
+primitive=Cult Healer
+id=673407
+rarity=C
+[/card]
+[card]
+primitive=Dazzling Theater // Prop Room
+id=673408
+rarity=R
+[/card]
+[card]
+primitive=Dollmaker's Shop // Porcelain Gallery
+id=673409
+rarity=M
+[/card]
+[card]
+primitive=Emerge from the Cocoon
+id=673410
+rarity=C
+[/card]
+[card]
+primitive=Enduring Innocence
+id=673411
+rarity=R
+[/card]
+[card]
+primitive=Ethereal Armor
+id=673412
+rarity=U
+[/card]
+[card]
+primitive=Exorcise
+id=673413
+rarity=U
+[/card]
+[card]
+primitive=Fear of Abduction
+id=673414
+rarity=U
+[/card]
+[card]
+primitive=Fear of Immobility
+id=673415
+rarity=C
+[/card]
+[card]
+primitive=Fear of Surveillance
+id=673416
+rarity=C
+[/card]
+[card]
+primitive=Friendly Ghost
+id=673417
+rarity=C
+[/card]
+[card]
+primitive=Ghostly Dancers
+id=673418
+rarity=R
+[/card]
+[card]
+primitive=Glimmer Seeker
+id=673419
+rarity=U
+[/card]
+[card]
+primitive=Grand Entryway // Elegant Rotunda
+id=673420
+rarity=C
+[/card]
+[card]
+primitive=Hardened Escort
+id=673421
+rarity=C
+[/card]
+[card]
+primitive=Jump Scare
+id=673422
+rarity=C
+[/card]
+[card]
+primitive=Leyline of Hope
+id=673423
+rarity=R
+[/card]
+[card]
+primitive=Lionheart Glimmer
+id=673424
+rarity=U
+[/card]
+[card]
+primitive=Living Phone
+id=673425
+rarity=C
+[/card]
+[card]
+primitive=Optimistic Scavenger
+id=673426
+rarity=U
+[/card]
+[card]
+primitive=Orphans of the Wheat
+id=673427
+rarity=U
+[/card]
+[card]
+primitive=Overlord of the Mistmoors
+id=673428
+rarity=M
+[/card]
+[card]
+primitive=Patched Plaything
+id=673429
+rarity=U
+[/card]
+[card]
+primitive=Possessed Goat
+id=673430
+rarity=C
+[/card]
+[card]
+primitive=Reluctant Role Model
+id=673431
+rarity=R
+[/card]
+[card]
+primitive=Savior of the Small
+id=673432
+rarity=U
+[/card]
+[card]
+primitive=Seized from Slumber
+id=673433
+rarity=C
+[/card]
+[card]
+primitive=Shardmage's Rescue
+id=673434
+rarity=U
+[/card]
+[card]
+primitive=Sheltered by Ghosts
+id=673435
+rarity=U
+[/card]
+[card]
+primitive=Shepherding Spirits
+id=673436
+rarity=C
+[/card]
+[card]
+primitive=Split Up
+id=673437
+rarity=R
+[/card]
+[card]
+primitive=Splitskin Doll
+id=673438
+rarity=U
+[/card]
+[card]
+primitive=Surgical Suite // Hospital Room
+id=673439
+rarity=U
+[/card]
+[card]
+primitive=Toby, Beastie Befriender
+id=673440
+rarity=R
+[/card]
+[card]
+primitive=Trapped in the Screen
+id=673441
+rarity=C
+[/card]
+[card]
+primitive=Unidentified Hovership
+id=673442
+rarity=R
+[/card]
+[card]
+primitive=Unsettling Twins
+id=673443
+rarity=C
+[/card]
+[card]
+primitive=Unwanted Remake
+id=673444
+rarity=U
+[/card]
+[card]
+primitive=Veteran Survivor
+id=673445
+rarity=U
+[/card]
+[card]
+primitive=The Wandering Rescuer
+id=673446
+rarity=M
+[/card]
+[card]
+primitive=Abhorrent Oculus
+id=673447
+rarity=M
+[/card]
+[card]
+primitive=Bottomless Pool // Locker Room
+id=673448
+rarity=U
+[/card]
+[card]
+primitive=Central Elevator // Promising Stairs
+id=673449
+rarity=R
+[/card]
+[card]
+primitive=Clammy Prowler
+id=673450
+rarity=C
+[/card]
+[card]
+primitive=Creeping Peeper
+id=673451
+rarity=C
+[/card]
+[card]
+primitive=Cursed Windbreaker
+id=673452
+rarity=U
+[/card]
+[card]
+primitive=Daggermaw Megalodon
+id=673453
+rarity=C
+[/card]
+[card]
+primitive=Don't Make a Sound
+id=673454
+rarity=C
+[/card]
+[card]
+primitive=Duskmourn's Domination
+id=673455
+rarity=U
+[/card]
+[card]
+primitive=Enduring Curiosity
+id=673456
+rarity=R
+[/card]
+[card]
+primitive=Enter the Enigma
+id=673457
+rarity=C
+[/card]
+[card]
+primitive=Entity Tracker
+id=673458
+rarity=R
+[/card]
+[card]
+primitive=Erratic Apparition
+id=673459
+rarity=C
+[/card]
+[card]
+primitive=Fear of Failed Tests
+id=673460
+rarity=U
+[/card]
+[card]
+primitive=Fear of Falling
+id=673461
+rarity=U
+[/card]
+[card]
+primitive=Fear of Impostors
+id=673462
+rarity=U
+[/card]
+[card]
+primitive=Fear of Isolation
+id=673463
+rarity=U
+[/card]
+[card]
+primitive=Floodpits Drowner
+id=673464
+rarity=U
+[/card]
+[card]
+primitive=Get Out
+id=673465
+rarity=U
+[/card]
+[card]
+primitive=Ghostly Keybearer
+id=673466
+rarity=U
+[/card]
+[card]
+primitive=Glimmerburst
+id=673467
+rarity=C
+[/card]
+[card]
+primitive=Leyline of Transformation
+id=673468
+rarity=R
+[/card]
+[card]
+primitive=Marina Vendrell's Grimoire
+id=673469
+rarity=R
+[/card]
+[card]
+primitive=Meat Locker // Drowned Diner
+id=673470
+rarity=C
+[/card]
+[card]
+primitive=The Mindskinner
+id=673471
+rarity=R
+[/card]
+[card]
+primitive=Mirror Room // Fractured Realm
+id=673472
+rarity=M
+[/card]
+[card]
+primitive=Overlord of the Floodpits
+id=673473
+rarity=M
+[/card]
+[card]
+primitive=Paranormal Analyst
+id=673474
+rarity=U
+[/card]
+[card]
+primitive=Piranha Fly
+id=673475
+rarity=C
+[/card]
+[card]
+primitive=Scrabbling Skullcrab
+id=673476
+rarity=U
+[/card]
+[card]
+primitive=Silent Hallcreeper
+id=673477
+rarity=R
+[/card]
+[card]
+primitive=Stalked Researcher
+id=673478
+rarity=C
+[/card]
+[card]
+primitive=Stay Hidden, Stay Silent
+id=673479
+rarity=U
+[/card]
+[card]
+primitive=The Tale of Tamiyo
+id=673480
+rarity=R
+[/card]
+[card]
+primitive=Tunnel Surveyor
+id=673481
+rarity=C
+[/card]
+[card]
+primitive=Twist Reality
+id=673482
+rarity=C
+[/card]
+[card]
+primitive=Unable to Scream
+id=673483
+rarity=C
+[/card]
+[card]
+primitive=Underwater Tunnel // Slimy Aquarium
+id=673484
+rarity=C
+[/card]
+[card]
+primitive=Unnerving Grasp
+id=673485
+rarity=U
+[/card]
+[card]
+primitive=Unwilling Vessel
+id=673486
+rarity=U
+[/card]
+[card]
+primitive=Vanish from Sight
+id=673487
+rarity=C
+[/card]
+[card]
+primitive=Appendage Amalgam
+id=673488
+rarity=C
+[/card]
+[card]
+primitive=Balemurk Leech
+id=673489
+rarity=C
+[/card]
+[card]
+primitive=Cackling Slasher
+id=673490
+rarity=C
+[/card]
+[card]
+primitive=Come Back Wrong
+id=673491
+rarity=R
+[/card]
+[card]
+primitive=Commune with Evil
+id=673492
+rarity=U
+[/card]
+[card]
+primitive=Cracked Skull
+id=673493
+rarity=C
+[/card]
+[card]
+primitive=Cynical Loner
+id=673494
+rarity=U
+[/card]
+[card]
+primitive=Dashing Bloodsucker
+id=673495
+rarity=U
+[/card]
+[card]
+primitive=Defiled Crypt // Cadaver Lab
+id=673496
+rarity=U
+[/card]
+[card]
+primitive=Demonic Counsel
+id=673497
+rarity=R
+[/card]
+[card]
+primitive=Derelict Attic // Widow's Walk
+id=673498
+rarity=C
+[/card]
+[card]
+primitive=Doomsday Excruciator
+id=673499
+rarity=R
+[/card]
+[card]
+primitive=Enduring Tenacity
+id=673500
+rarity=R
+[/card]
+[card]
+primitive=Fanatic of the Harrowing
+id=673501
+rarity=C
+[/card]
+[card]
+primitive=Fear of Lost Teeth
+id=673502
+rarity=C
+[/card]
+[card]
+primitive=Fear of the Dark
+id=673503
+rarity=C
+[/card]
+[card]
+primitive=Final Vengeance
+id=673504
+rarity=C
+[/card]
+[card]
+primitive=Funeral Room // Awakening Hall
+id=673505
+rarity=M
+[/card]
+[card]
+primitive=Give In to Violence
+id=673506
+rarity=C
+[/card]
+[card]
+primitive=Grievous Wound
+id=673507
+rarity=R
+[/card]
+[card]
+primitive=Innocuous Rat
+id=673508
+rarity=C
+[/card]
+[card]
+primitive=Killer's Mask
+id=673509
+rarity=U
+[/card]
+[card]
+primitive=Let's Play a Game
+id=673510
+rarity=U
+[/card]
+[card]
+primitive=Leyline of the Void
+id=673511
+rarity=R
+[/card]
+[card]
+primitive=Live or Die
+id=673512
+rarity=U
+[/card]
+[card]
+primitive=Meathook Massacre II
+id=673513
+rarity=M
+[/card]
+[card]
+primitive=Miasma Demon
+id=673514
+rarity=U
+[/card]
+[card]
+primitive=Murder
+id=673515
+rarity=C
+[/card]
+[card]
+primitive=Nowhere to Run
+id=673516
+rarity=U
+[/card]
+[card]
+primitive=Osseous Sticktwister
+id=673517
+rarity=U
+[/card]
+[card]
+primitive=Overlord of the Balemurk
+id=673518
+rarity=M
+[/card]
+[card]
+primitive=Popular Egotist
+id=673519
+rarity=U
+[/card]
+[card]
+primitive=Resurrected Cultist
+id=673520
+rarity=C
+[/card]
+[card]
+primitive=Spectral Snatcher
+id=673521
+rarity=C
+[/card]
+[card]
+primitive=Sporogenic Infection
+id=673522
+rarity=U
+[/card]
+[card]
+primitive=Unholy Annex // Ritual Chamber
+id=673523
+rarity=R
+[/card]
+[card]
+primitive=Unstoppable Slasher
+id=673524
+rarity=R
+[/card]
+[card]
+primitive=Valgavoth, Terror Eater
+id=673525
+rarity=M
+[/card]
+[card]
+primitive=Valgavoth's Faithful
+id=673526
+rarity=U
+[/card]
+[card]
+primitive=Vile Mutilator
+id=673527
+rarity=U
+[/card]
+[card]
+primitive=Winter's Intervention
+id=673528
+rarity=C
+[/card]
+[card]
+primitive=Withering Torment
+id=673529
+rarity=U
+[/card]
+[card]
+primitive=Bedhead Beastie
+id=673530
+rarity=C
+[/card]
+[card]
+primitive=Betrayer's Bargain
+id=673531
+rarity=U
+[/card]
+[card]
+primitive=Boilerbilges Ripper
+id=673532
+rarity=C
+[/card]
+[card]
+primitive=Chainsaw
+id=673533
+rarity=R
+[/card]
+[card]
+primitive=Charred Foyer // Warped Space
+id=673534
+rarity=M
+[/card]
+[card]
+primitive=Clockwork Percussionist
+id=673535
+rarity=C
+[/card]
+[card]
+primitive=Cursed Recording
+id=673536
+rarity=R
+[/card]
+[card]
+primitive=Diversion Specialist
+id=673537
+rarity=U
+[/card]
+[card]
+primitive=Enduring Courage
+id=673538
+rarity=R
+[/card]
+[card]
+primitive=Fear of Being Hunted
+id=673539
+rarity=U
+[/card]
+[card]
+primitive=Fear of Burning Alive
+id=673540
+rarity=U
+[/card]
+[card]
+primitive=Fear of Missing Out
+id=673541
+rarity=R
+[/card]
+[card]
+primitive=Glassworks // Shattered Yard
+id=673542
+rarity=C
+[/card]
+[card]
+primitive=Grab the Prize
+id=673543
+rarity=C
+[/card]
+[card]
+primitive=Hand That Feeds
+id=673544
+rarity=C
+[/card]
+[card]
+primitive=Impossible Inferno
+id=673545
+rarity=C
+[/card]
+[card]
+primitive=Infernal Phantom
+id=673546
+rarity=U
+[/card]
+[card]
+primitive=Irreverent Gremlin
+id=673547
+rarity=U
+[/card]
+[card]
+primitive=Leyline of Resonance
+id=673548
+rarity=R
+[/card]
+[card]
+primitive=Most Valuable Slayer
+id=673549
+rarity=C
+[/card]
+[card]
+primitive=Norin, Swift Survivalist
+id=673550
+rarity=U
+[/card]
+[card]
+primitive=Overlord of the Boilerbilges
+id=673551
+rarity=M
+[/card]
+[card]
+primitive=Painter's Studio // Defaced Gallery
+id=673552
+rarity=U
+[/card]
+[card]
+primitive=Piggy Bank
+id=673553
+rarity=U
+[/card]
+[card]
+primitive=Pyroclasm
+id=673554
+rarity=U
+[/card]
+[card]
+primitive=Ragged Playmate
+id=673555
+rarity=C
+[/card]
+[card]
+primitive=Rampaging Soulrager
+id=673556
+rarity=C
+[/card]
+[card]
+primitive=Razorkin Hordecaller
+id=673557
+rarity=U
+[/card]
+[card]
+primitive=Razorkin Needlehead
+id=673558
+rarity=R
+[/card]
+[card]
+primitive=Ripchain Razorkin
+id=673559
+rarity=C
+[/card]
+[card]
+primitive=The Rollercrusher Ride
+id=673560
+rarity=M
+[/card]
+[card]
+primitive=Scorching Dragonfire
+id=673561
+rarity=C
+[/card]
+[card]
+primitive=Screaming Nemesis
+id=673562
+rarity=M
+[/card]
+[card]
+primitive=Ticket Booth // Tunnel of Hate
+id=673563
+rarity=C
+[/card]
+[card]
+primitive=Trial of Agony
+id=673564
+rarity=U
+[/card]
+[card]
+primitive=Turn Inside Out
+id=673565
+rarity=C
+[/card]
+[card]
+primitive=Untimely Malfunction
+id=673566
+rarity=U
+[/card]
+[card]
+primitive=Vengeful Possession
+id=673567
+rarity=U
+[/card]
+[card]
+primitive=Vicious Clown
+id=673568
+rarity=C
+[/card]
+[card]
+primitive=Violent Urge
+id=673569
+rarity=U
+[/card]
+[card]
+primitive=Waltz of Rage
+id=673570
+rarity=R
+[/card]
+[card]
+primitive=Altanak, the Thrice-Called
+id=673571
+rarity=U
+[/card]
+[card]
+primitive=Anthropede
+id=673572
+rarity=C
+[/card]
+[card]
+primitive=Balustrade Wurm
+id=673573
+rarity=R
+[/card]
+[card]
+primitive=Bashful Beastie
+id=673574
+rarity=C
+[/card]
+[card]
+primitive=Break Down the Door
+id=673575
+rarity=U
+[/card]
+[card]
+primitive=Cathartic Parting
+id=673576
+rarity=U
+[/card]
+[card]
+primitive=Cautious Survivor
+id=673577
+rarity=C
+[/card]
+[card]
+primitive=Coordinated Clobbering
+id=673578
+rarity=U
+[/card]
+[card]
+primitive=Cryptid Inspector
+id=673579
+rarity=C
+[/card]
+[card]
+primitive=Defiant Survivor
+id=673580
+rarity=U
+[/card]
+[card]
+primitive=Enduring Vitality
+id=673581
+rarity=R
+[/card]
+[card]
+primitive=Fear of Exposure
+id=673582
+rarity=U
+[/card]
+[card]
+primitive=Flesh Burrower
+id=673583
+rarity=C
+[/card]
+[card]
+primitive=Frantic Strength
+id=673584
+rarity=C
+[/card]
+[card]
+primitive=Grasping Longneck
+id=673585
+rarity=C
+[/card]
+[card]
+primitive=Greenhouse // Rickety Gazebo
+id=673586
+rarity=U
+[/card]
+[card]
+primitive=Hauntwoods Shrieker
+id=673587
+rarity=M
+[/card]
+[card]
+primitive=Hedge Shredder
+id=673588
+rarity=R
+[/card]
+[card]
+primitive=Horrid Vigor
+id=673589
+rarity=C
+[/card]
+[card]
+primitive=House Cartographer
+id=673590
+rarity=U
+[/card]
+[card]
+primitive=Insidious Fungus
+id=673591
+rarity=U
+[/card]
+[card]
+primitive=Kona, Rescue Beastie
+id=673592
+rarity=R
+[/card]
+[card]
+primitive=Leyline of Mutation
+id=673593
+rarity=R
+[/card]
+[card]
+primitive=Manifest Dread
+id=673594
+rarity=C
+[/card]
+[card]
+primitive=Moldering Gym // Weight Room
+id=673595
+rarity=C
+[/card]
+[card]
+primitive=Monstrous Emergence
+id=673596
+rarity=C
+[/card]
+[card]
+primitive=Omnivorous Flytrap
+id=673597
+rarity=R
+[/card]
+[card]
+primitive=Overgrown Zealot
+id=673598
+rarity=U
+[/card]
+[card]
+primitive=Overlord of the Hauntwoods
+id=673599
+rarity=M
+[/card]
+[card]
+primitive=Patchwork Beastie
+id=673600
+rarity=U
+[/card]
+[card]
+primitive=Rootwise Survivor
+id=673601
+rarity=U
+[/card]
+[card]
+primitive=Say Its Name
+id=673602
+rarity=C
+[/card]
+[card]
+primitive=Slavering Branchsnapper
+id=673603
+rarity=C
+[/card]
+[card]
+primitive=Spineseeker Centipede
+id=673604
+rarity=C
+[/card]
+[card]
+primitive=Threats Around Every Corner
+id=673605
+rarity=U
+[/card]
+[card]
+primitive=Twitching Doll
+id=673606
+rarity=R
+[/card]
+[card]
+primitive=Tyvar, the Pummeler
+id=673607
+rarity=M
+[/card]
+[card]
+primitive=Under the Skin
+id=673608
+rarity=U
+[/card]
+[card]
+primitive=Valgavoth's Onslaught
+id=673609
+rarity=R
+[/card]
+[card]
+primitive=Walk-In Closet // Forgotten Cellar
+id=673610
+rarity=M
+[/card]
+[card]
+primitive=Wary Watchdog
+id=673611
+rarity=C
+[/card]
+[card]
+primitive=Wickerfolk Thresher
+id=673612
+rarity=U
+[/card]
+[card]
+primitive=Arabella, Abandoned Doll
+id=673613
+rarity=U
+[/card]
+[card]
+primitive=Baseball Bat
+id=673614
+rarity=U
+[/card]
+[card]
+primitive=Beastie Beatdown
+id=673615
+rarity=U
+[/card]
+[card]
+primitive=Broodspinner
+id=673616
+rarity=U
+[/card]
+[card]
+primitive=Disturbing Mirth
+id=673617
+rarity=U
+[/card]
+[card]
+primitive=Drag to the Roots
+id=673618
+rarity=U
+[/card]
+[card]
+primitive=Fear of Infinity
+id=673619
+rarity=U
+[/card]
+[card]
+primitive=Gremlin Tamer
+id=673620
+rarity=U
+[/card]
+[card]
+primitive=Growing Dread
+id=673621
+rarity=U
+[/card]
+[card]
+primitive=Inquisitive Glimmer
+id=673622
+rarity=U
+[/card]
+[card]
+primitive=Intruding Soulrager
+id=673623
+rarity=U
+[/card]
+[card]
+primitive=The Jolly Balloon Man
+id=673624
+rarity=R
+[/card]
+[card]
+primitive=Kaito, Bane of Nightmares
+id=673625
+rarity=M
+[/card]
+[card]
+primitive=Marina Vendrell
+id=673626
+rarity=R
+[/card]
+[card]
+primitive=Midnight Mayhem
+id=673627
+rarity=U
+[/card]
+[card]
+primitive=Nashi, Searcher in the Dark
+id=673628
+rarity=R
+[/card]
+[card]
+primitive=Niko, Light of Hope
+id=673629
+rarity=M
+[/card]
+[card]
+primitive=Oblivious Bookworm
+id=673630
+rarity=U
+[/card]
+[card]
+primitive=Peer Past the Veil
+id=673631
+rarity=R
+[/card]
+[card]
+primitive=Restricted Office // Lecture Hall
+id=673632
+rarity=R
+[/card]
+[card]
+primitive=Rip, Spawn Hunter
+id=673633
+rarity=R
+[/card]
+[card]
+primitive=Rite of the Moth
+id=673634
+rarity=U
+[/card]
+[card]
+primitive=Roaring Furnace // Steaming Sauna
+id=673635
+rarity=R
+[/card]
+[card]
+primitive=Sawblade Skinripper
+id=673636
+rarity=U
+[/card]
+[card]
+primitive=Shrewd Storyteller
+id=673637
+rarity=U
+[/card]
+[card]
+primitive=Shroudstomper
+id=673638
+rarity=U
+[/card]
+[card]
+primitive=Skullsnap Nuisance
+id=673639
+rarity=U
+[/card]
+[card]
+primitive=Smoky Lounge // Misty Salon
+id=673640
+rarity=U
+[/card]
+[card]
+primitive=The Swarmweaver
+id=673641
+rarity=R
+[/card]
+[card]
+primitive=Undead Sprinter
+id=673642
+rarity=R
+[/card]
+[card]
+primitive=Victor, Valgavoth's Seneschal
+id=673643
+rarity=R
+[/card]
+[card]
+primitive=Wildfire Wickerfolk
+id=673644
+rarity=U
+[/card]
+[card]
+primitive=Winter, Misanthropic Guide
+id=673645
+rarity=R
+[/card]
+[card]
+primitive=Zimone, All-Questioning
+id=673646
+rarity=R
+[/card]
+[card]
+primitive=Attack-in-the-Box
+id=673647
+rarity=U
+[/card]
+[card]
+primitive=Bear Trap
+id=673648
+rarity=C
+[/card]
+[card]
+primitive=Conductive Machete
+id=673649
+rarity=U
+[/card]
+[card]
+primitive=Dissection Tools
+id=673650
+rarity=R
+[/card]
+[card]
+primitive=Found Footage
+id=673651
+rarity=C
+[/card]
+[card]
+primitive=Friendly Teddy
+id=673652
+rarity=C
+[/card]
+[card]
+primitive=Ghost Vacuum
+id=673653
+rarity=R
+[/card]
+[card]
+primitive=Glimmerlight
+id=673654
+rarity=C
+[/card]
+[card]
+primitive=Haunted Screen
+id=673655
+rarity=U
+[/card]
+[card]
+primitive=Keys to the House
+id=673656
+rarity=U
+[/card]
+[card]
+primitive=Malevolent Chandelier
+id=673657
+rarity=C
+[/card]
+[card]
+primitive=Marvin, Murderous Mimic
+id=673658
+rarity=R
+[/card]
+[card]
+primitive=Saw
+id=673659
+rarity=U
+[/card]
+[card]
+primitive=Abandoned Campground
+id=673660
+rarity=C
+[/card]
+[card]
+primitive=Blazemire Verge
+id=673661
+rarity=R
+[/card]
+[card]
+primitive=Bleeding Woods
+id=673662
+rarity=C
+[/card]
+[card]
+primitive=Etched Cornfield
+id=673663
+rarity=C
+[/card]
+[card]
+primitive=Floodfarm Verge
+id=673664
+rarity=R
+[/card]
+[card]
+primitive=Gloomlake Verge
+id=673665
+rarity=R
+[/card]
+[card]
+primitive=Hushwood Verge
+id=673666
+rarity=R
+[/card]
+[card]
+primitive=Lakeside Shack
+id=673667
+rarity=C
+[/card]
+[card]
+primitive=Murky Sewer
+id=673668
+rarity=C
+[/card]
+[card]
+primitive=Neglected Manor
+id=673669
+rarity=C
+[/card]
+[card]
+primitive=Peculiar Lighthouse
+id=673670
+rarity=C
+[/card]
+[card]
+primitive=Raucous Carnival
+id=673671
+rarity=C
+[/card]
+[card]
+primitive=Razortrap Gorge
+id=673672
+rarity=C
+[/card]
+[card]
+primitive=Strangled Cemetery
+id=673673
+rarity=C
+[/card]
+[card]
+primitive=Terramorphic Expanse
+id=673674
+rarity=C
+[/card]
+[card]
+primitive=Thornspire Verge
+id=673675
+rarity=R
+[/card]
+[card]
+primitive=Valgavoth's Lair
+id=673676
+rarity=R
+[/card]
+[card]
+primitive=Plains
+id=672884
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=672885
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=672886
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=672887
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=672888
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=672914
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=672915
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=672916
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=672917
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=672918
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=672919
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=672920
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=672921
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=672922
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=672923
+rarity=L
+[/card]
+[card]
+primitive=Grand Entryway // Elegant Rotunda
+id=673316
+rarity=C
+[/card]
+[card]
+primitive=Optimistic Scavenger
+id=673317
+rarity=U
+[/card]
+[card]
+primitive=Reluctant Role Model
+id=673318
+rarity=R
+[/card]
+[card]
+primitive=Entity Tracker
+id=673319
+rarity=R
+[/card]
+[card]
+primitive=Stay Hidden, Stay Silent
+id=673320
+rarity=U
+[/card]
+[card]
+primitive=Come Back Wrong
+id=673321
+rarity=R
+[/card]
+[card]
+primitive=Meathook Massacre II
+id=673322
+rarity=M
+[/card]
+[card]
+primitive=Unstoppable Slasher
+id=673323
+rarity=R
+[/card]
+[card]
+primitive=Clockwork Percussionist
+id=673324
+rarity=C
+[/card]
+[card]
+primitive=Cursed Recording
+id=673325
+rarity=R
+[/card]
+[card]
+primitive=Norin, Swift Survivalist
+id=673326
+rarity=U
+[/card]
+[card]
+primitive=The Rollercrusher Ride
+id=673327
+rarity=M
+[/card]
+[card]
+primitive=Kona, Rescue Beastie
+id=673328
+rarity=R
+[/card]
+[card]
+primitive=Oblivious Bookworm
+id=673329
+rarity=U
+[/card]
+[card]
+primitive=The Swarmweaver
+id=673330
+rarity=R
+[/card]
+[card]
+primitive=Ghostly Dancers
+id=675062
+rarity=R
+[/card]
+[card]
+primitive=Reluctant Role Model
+id=675063
+rarity=R
+[/card]
+[card]
+primitive=Split Up
+id=675064
+rarity=R
+[/card]
+[card]
+primitive=Unidentified Hovership
+id=675065
+rarity=R
+[/card]
+[card]
+primitive=Unwanted Remake
+id=675066
+rarity=U
+[/card]
+[card]
+primitive=Entity Tracker
+id=675067
+rarity=R
+[/card]
+[card]
+primitive=Marina Vendrell's Grimoire
+id=675068
+rarity=R
+[/card]
+[card]
+primitive=Come Back Wrong
+id=675069
+rarity=R
+[/card]
+[card]
+primitive=Demonic Counsel
+id=675070
+rarity=R
+[/card]
+[card]
+primitive=Meathook Massacre II
+id=675071
+rarity=M
+[/card]
+[card]
+primitive=Unstoppable Slasher
+id=675072
+rarity=R
+[/card]
+[card]
+primitive=Withering Torment
+id=675073
+rarity=U
+[/card]
+[card]
+primitive=Chainsaw
+id=675074
+rarity=R
+[/card]
+[card]
+primitive=Cursed Recording
+id=675075
+rarity=R
+[/card]
+[card]
+primitive=Fear of Missing Out
+id=675076
+rarity=R
+[/card]
+[card]
+primitive=The Rollercrusher Ride
+id=675077
+rarity=M
+[/card]
+[card]
+primitive=Waltz of Rage
+id=675078
+rarity=R
+[/card]
+[card]
+primitive=Balustrade Wurm
+id=675079
+rarity=R
+[/card]
+[card]
+primitive=Hedge Shredder
+id=675080
+rarity=R
+[/card]
+[card]
+primitive=Insidious Fungus
+id=675081
+rarity=U
+[/card]
+[card]
+primitive=Omnivorous Flytrap
+id=675082
+rarity=R
+[/card]
+[card]
+primitive=Under the Skin
+id=675083
+rarity=U
+[/card]
+[card]
+primitive=Valgavoth's Onslaught
+id=675084
+rarity=R
+[/card]
+[card]
+primitive=Peer Past the Veil
+id=675085
+rarity=R
+[/card]
+[card]
+primitive=Ghost Vacuum
+id=675086
+rarity=R
+[/card]
+[card]
+primitive=Valgavoth's Lair
+id=675087
+rarity=R
+[/card]
+[card]
+primitive=Kaito, Bane of Nightmares
+id=673148
+rarity=M
+[/card]
+[card]
+primitive=Blazemire Verge
+id=673076
+rarity=R
+[/card]
+[card]
+primitive=Floodfarm Verge
+id=673077
+rarity=R
+[/card]
+[card]
+primitive=Gloomlake Verge
+id=673078
+rarity=R
+[/card]
+[card]
+primitive=Hushwood Verge
+id=673079
+rarity=R
+[/card]
+[card]
+primitive=Thornspire Verge
+id=673080
+rarity=R
+[/card]
+[card]
+primitive=Dazzling Theater // Prop Room
+id=673154
+rarity=R
+[/card]
+[card]
+primitive=Dollmaker's Shop // Porcelain Gallery
+id=673155
+rarity=M
+[/card]
+[card]
+primitive=Central Elevator // Promising Stairs
+id=673156
+rarity=R
+[/card]
+[card]
+primitive=Mirror Room // Fractured Realm
+id=673157
+rarity=M
+[/card]
+[card]
+primitive=Funeral Room // Awakening Hall
+id=673158
+rarity=M
+[/card]
+[card]
+primitive=Unholy Annex // Ritual Chamber
+id=673159
+rarity=R
+[/card]
+[card]
+primitive=Charred Foyer // Warped Space
+id=673160
+rarity=M
+[/card]
+[card]
+primitive=Walk-In Closet // Forgotten Cellar
+id=673161
+rarity=M
+[/card]
+[card]
+primitive=Restricted Office // Lecture Hall
+id=673162
+rarity=R
+[/card]
+[card]
+primitive=Roaring Furnace // Steaming Sauna
+id=673163
+rarity=R
+[/card]
+[card]
+primitive=Abhorrent Oculus
+id=673106
+rarity=M
+[/card]
+[card]
+primitive=Silent Hallcreeper
+id=673107
+rarity=R
+[/card]
+[card]
+primitive=Doomsday Excruciator
+id=673108
+rarity=R
+[/card]
+[card]
+primitive=Razorkin Needlehead
+id=673109
+rarity=R
+[/card]
+[card]
+primitive=Screaming Nemesis
+id=673110
+rarity=M
+[/card]
+[card]
+primitive=Hauntwoods Shrieker
+id=673111
+rarity=M
+[/card]
+[card]
+primitive=Undead Sprinter
+id=673112
+rarity=R
+[/card]
+[card]
+primitive=The Wandering Rescuer
+id=672974
+rarity=M
+[/card]
+[card]
+primitive=Valgavoth, Terror Eater
+id=672975
+rarity=M
+[/card]
+[card]
+primitive=Tyvar, the Pummeler
+id=672976
+rarity=M
+[/card]
+[card]
+primitive=Kaito, Bane of Nightmares
+id=672977
+rarity=M
+[/card]
+[card]
+primitive=Niko, Light of Hope
+id=672978
+rarity=M
+[/card]
+[card]
+primitive=Toby, Beastie Befriender
+id=673004
+rarity=R
+[/card]
+[card]
+primitive=The Mindskinner
+id=673005
+rarity=R
+[/card]
+[card]
+primitive=Kona, Rescue Beastie
+id=673006
+rarity=R
+[/card]
+[card]
+primitive=The Jolly Balloon Man
+id=673007
+rarity=R
+[/card]
+[card]
+primitive=Marina Vendrell
+id=673008
+rarity=R
+[/card]
+[card]
+primitive=Nashi, Searcher in the Dark
+id=673009
+rarity=R
+[/card]
+[card]
+primitive=Rip, Spawn Hunter
+id=673010
+rarity=R
+[/card]
+[card]
+primitive=The Swarmweaver
+id=673011
+rarity=R
+[/card]
+[card]
+primitive=Victor, Valgavoth's Seneschal
+id=673012
+rarity=R
+[/card]
+[card]
+primitive=Winter, Misanthropic Guide
+id=673013
+rarity=R
+[/card]
+[card]
+primitive=Zimone, All-Questioning
+id=673014
+rarity=R
+[/card]
+[card]
+primitive=Marvin, Murderous Mimic
+id=673015
+rarity=R
+[/card]
+[card]
+primitive=Enduring Innocence
+id=673244
+rarity=R
+[/card]
+[card]
+primitive=Leyline of Hope
+id=673245
+rarity=R
+[/card]
+[card]
+primitive=Overlord of the Mistmoors
+id=673246
+rarity=M
+[/card]
+[card]
+primitive=Enduring Curiosity
+id=673247
+rarity=R
+[/card]
+[card]
+primitive=Leyline of Transformation
+id=673248
+rarity=R
+[/card]
+[card]
+primitive=Overlord of the Floodpits
+id=673249
+rarity=M
+[/card]
+[card]
+primitive=Enduring Tenacity
+id=673250
+rarity=R
+[/card]
+[card]
+primitive=Grievous Wound
+id=673251
+rarity=R
+[/card]
+[card]
+primitive=Leyline of the Void
+id=673252
+rarity=R
+[/card]
+[card]
+primitive=Overlord of the Balemurk
+id=673253
+rarity=M
+[/card]
+[card]
+primitive=Enduring Courage
+id=673254
+rarity=R
+[/card]
+[card]
+primitive=Leyline of Resonance
+id=673255
+rarity=R
+[/card]
+[card]
+primitive=Overlord of the Boilerbilges
+id=673256
+rarity=M
+[/card]
+[card]
+primitive=Enduring Vitality
+id=673257
+rarity=R
+[/card]
+[card]
+primitive=Leyline of Mutation
+id=673258
+rarity=R
+[/card]
+[card]
+primitive=Overlord of the Hauntwoods
+id=673259
+rarity=M
+[/card]
+[card]
+primitive=Twitching Doll
+id=673260
+rarity=R
+[/card]
+[card]
+primitive=Dissection Tools
+id=673261
+rarity=R
+[/card]
+[card]
+primitive=Enduring Innocence
+id=675042
+rarity=M
+[/card]
+[card]
+primitive=Overlord of the Mistmoors
+id=675043
+rarity=M
+[/card]
+[card]
+primitive=Enduring Curiosity
+id=675044
+rarity=M
+[/card]
+[card]
+primitive=Overlord of the Floodpits
+id=675045
+rarity=M
+[/card]
+[card]
+primitive=Enduring Tenacity
+id=675046
+rarity=M
+[/card]
+[card]
+primitive=Overlord of the Balemurk
+id=675047
+rarity=M
+[/card]
+[card]
+primitive=Enduring Courage
+id=675048
+rarity=M
+[/card]
+[card]
+primitive=Overlord of the Boilerbilges
+id=675049
+rarity=M
+[/card]
+[card]
+primitive=Enduring Vitality
+id=675050
+rarity=M
+[/card]
+[card]
+primitive=Overlord of the Hauntwoods
+id=675051
+rarity=M
+[/card]
+[card]
+primitive=Enduring Innocence
+id=673224
+rarity=R
+[/card]
+[card]
+primitive=Overlord of the Mistmoors
+id=673225
+rarity=M
+[/card]
+[card]
+primitive=Enduring Curiosity
+id=673226
+rarity=M
+[/card]
+[card]
+primitive=Overlord of the Floodpits
+id=673227
+rarity=M
+[/card]
+[card]
+primitive=Enduring Tenacity
+id=673228
+rarity=M
+[/card]
+[card]
+primitive=Overlord of the Balemurk
+id=673229
+rarity=M
+[/card]
+[card]
+primitive=Enduring Courage
+id=673230
+rarity=M
+[/card]
+[card]
+primitive=Overlord of the Boilerbilges
+id=673231
+rarity=M
+[/card]
+[card]
+primitive=Enduring Vitality
+id=673232
+rarity=M
+[/card]
+[card]
+primitive=Overlord of the Hauntwoods
+id=673233
+rarity=M
+[/card]
+[card]
+primitive=The Wandering Rescuer
+id=673219
+rarity=M
+[/card]
+[card]
+primitive=Valgavoth, Terror Eater
+id=673220
+rarity=M
+[/card]
+[card]
+primitive=Tyvar, the Pummeler
+id=673221
+rarity=M
+[/card]
+[card]
+primitive=Kaito, Bane of Nightmares
+id=673222
+rarity=M
+[/card]
+[card]
+primitive=Niko, Light of Hope
+id=673223
+rarity=M
+[/card]
+[card]
+primitive=Shardmage's Rescue
+id=675032
+rarity=U
+[/card]
+[card]
+primitive=Valgavoth's Faithful
+id=675033
+rarity=U
+[/card]
+[card]
+primitive=Pyroclasm
+id=675034
+rarity=U
+[/card]
+[card]
+primitive=Drag to the Roots
+id=675035
+rarity=U
+[/card]
+[card]
+primitive=Inquisitive Glimmer
+id=675036
+rarity=U
+[/card]
+[card]
+primitive=Grievous Wound
+id=673214
+rarity=R
+[/card]
+[card]
+primitive=Twitching Doll
+id=673217
+rarity=R
+[/card]

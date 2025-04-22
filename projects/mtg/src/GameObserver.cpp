@@ -726,7 +726,6 @@ void GameObserver::gameStateBasedEffects()
     for (int i = 0; i < 2; i++)
     {
         MTGGameZone * zone = players[i]->game->inPlay;
-        players[i]->curses.clear();
         for (int j = zone->nb_cards - 1; j >= 0; j--)
         {
             MTGCardInstance * card = zone->cards[j];
@@ -738,6 +737,17 @@ void GameObserver::gameStateBasedEffects()
             card->mPropertiesChangedSinceLastUpdate = false;
             if(card->hasType(Subtypes::TYPE_PLANESWALKER) && (!card->counters||!card->counters->hasCounter("loyalty",0,0)))
                 players[i]->game->putInGraveyard(card);
+            if(card->hasType(Subtypes::TYPE_BATTLE) && (!card->counters||!card->counters->hasCounter("defense",0,0))){
+                if(!card->isDefeated){
+                    card->isDefeated = true;
+                    WEvent * e = NEW WEventCardDefeated(card);
+                    receiveEvent(e);
+                }
+            }
+            if(!card->isCreature() && card->hasType(Subtypes::TYPE_PLANESWALKER) && card->counters->hasCounter("loyalty", 0, 0))
+                card->life = card->counters->hasCounter("loyalty", 0, 0)->nb;
+            if(!card->isCreature() && card->hasType(Subtypes::TYPE_BATTLE) && card->counters->hasCounter("defense", 0, 0))
+                card->life = card->counters->hasCounter("defense", 0, 0)->nb;
             if(card->myPair && !isInPlay(card->myPair))
             {
                 card->myPair->myPair = NULL;
@@ -803,7 +813,7 @@ void GameObserver::gameStateBasedEffects()
                                 else if((!card->target->isLand() && card->hasType("fortification")))
                                     ((AEquip*)a)->unequip();
                             }
-                            if(card->controller() && !card->mutation)
+                            if(card->controller() && !card->mutation && ((AEquip*)a)->getActionTc())
                                 ((AEquip*)a)->getActionTc()->Owner = card->controller();
                             //fix for equip ability when the equipment changed controller... 
                         }
@@ -832,10 +842,6 @@ void GameObserver::gameStateBasedEffects()
             {
                 card->target->enchanted = true;
             }
-            if (card->playerTarget && card->hasType("curse"))
-            {
-                card->playerTarget->curses.push_back(card);
-            }
 
             //704.5n If an Aura is attached to an illegal object or player,
             //or is not attached to an object or player, that Aura is put into its owner’s graveyard.
@@ -856,6 +862,8 @@ void GameObserver::gameStateBasedEffects()
                     if(stypes.find("land") != string::npos && card->target->hasType("land"))
                         found++;
                     if(stypes.find("planeswalker") != string::npos && card->target->hasType("planeswalker"))
+                        found++;
+                    if(stypes.find("battle") != string::npos && card->target->hasType("battle"))
                         found++;
                 }
 
@@ -1072,7 +1080,7 @@ void GameObserver::gameStateBasedEffects()
                 MTGCardInstance * card = fc->cards[k];
                 card->fresh = 0; // Remove fresh attribute to cards put in commandzone last turn
             }
-            MTGGameZone * fl = p->game->commandzone;
+            MTGGameZone * fl = p->game->library;
             for (int k = 0; k < fl->nb_cards; k++)
             {
                 MTGCardInstance * card = fl->cards[k];
@@ -1272,6 +1280,7 @@ void GameObserver::Affinity()
                 bool DoReduceIncrease = false;
                 if (
                     (card->has(Constants::AFFINITYARTIFACTS) ||
+                    card->has(Constants::AFFINITYENCHANTMENTS) ||
                     card->has(Constants::AFFINITYFOREST) ||
                     card->has(Constants::AFFINITYGREENCREATURES) ||
                     card->has(Constants::AFFINITYISLAND) ||
@@ -1279,6 +1288,17 @@ void GameObserver::Affinity()
                     card->has(Constants::AFFINITYPLAINS) ||
                     card->has(Constants::AFFINITYSWAMP) ||
                     card->has(Constants::CONDUITED) ||
+                    card->has(Constants::AFFINITYALLCREATURES) ||
+                    card->has(Constants::AFFINITYCONTROLLERCREATURES) ||
+                    card->has(Constants::AFFINITYOPPONENTCREATURES) ||
+                    card->has(Constants::AFFINITYALLDEADCREATURES) ||
+                    card->has(Constants::AFFINITYTWOALLDEADCREATURES) ||
+                    card->has(Constants::AFFINITYPARTY) ||
+                    card->has(Constants::AFFINITYBASICLANDTYPES) ||
+                    card->has(Constants::AFFINITYTWOBASICLANDTYPES) ||
+                    card->has(Constants::AFFINITYGRAVECREATURES) ||
+                    card->has(Constants::AFFINITYATTACKINGCREATURES) ||
+                    card->has(Constants::AFFINITYGRAVEINSTSORC) ||
                     card->getIncreasedManaCost()->getConvertedCost() ||
                     card->getReducedManaCost()->getConvertedCost() ||
                     NewAffinityFound || checkAuraP)

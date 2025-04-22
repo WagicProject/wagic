@@ -1,4 +1,16 @@
 [card]
+name=Secret Plans
+text=Face-down creatures you control get +0/+1. -- Whenever a permanent you control is turned face up, draw a card.
+mana={G}{U}
+type=Enchantment
+[/card]
+[card]
+name=Epic Experiment
+text=Exile the top X cards of your library. For each instant and sorcery card with converted mana cost X or less among them, you may cast that card without paying its mana cost. Then put all cards exiled this way that weren't cast into your graveyard.
+mana={X}{U}{R}
+type=Sorcery
+[/card]
+[card]
 name=Panharmonicon
 text=If an artifact or creature entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.
 mana={4}
@@ -12,43 +24,6 @@ type=Legendary Creature
 subtype=Human Wizard
 power=1
 toughness=3
-[/card]
-[card]
-name=Epic Experiment
-text=Exile the top X cards of your library. For each instant and sorcery card with converted mana cost X or less among them, you may cast that card without paying its mana cost. Then put all cards exiled this way that weren't cast into your graveyard.
-mana={X}{U}{R}
-type=Sorcery
-[/card]
-[card]
-name=Secret Plans
-text=Face-down creatures you control get +0/+1. -- Whenever a permanent you control is turned face up, draw a card.
-mana={G}{U}
-type=Enchantment
-[/card]
-[card]
-name=Kor Dirge
-text=All damage that would be dealt this turn to target creature you control by a source of your choice is dealt to another target creature instead.
-mana={2}{B}
-type=Instant
-[/card]
-[card]
-name=Muck Drubb
-abilities=flash
-text=Flash (You may cast this spell any time you could cast an instant.) -- When Muck Drubb enters the battlefield, change the target of target spell that targets only a single creature to Muck Drubb. -- Madness {2}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
-mana={3}{B}{B}
-type=Creature
-subtype=Beast
-power=3
-toughness=3
-[/card]
-[card]
-name=Thick-Skinned Goblin
-text=You may pay {0} rather than pay the echo cost for permanents you control. -- {R}: Thick-Skinned Goblin gains protection from red until end of turn.
-mana={1}{R}
-type=Creature
-subtype=Goblin Shaman
-power=2
-toughness=1
 [/card]
 [card]
 name=Muraganda Petroglyphs
@@ -75,10 +50,20 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Delay
-text=Counter target spell. If the spell is countered this way, exile it with three time counters on it instead of putting it into its owner's graveyard. If it doesn't have suspend, it gains suspend. (At the beginning of its owner's upkeep, remove a counter from that card. When the last is removed, the player plays it without paying its mana cost. If it's a creature, it has haste.)
-mana={1}{U}
+name=Kor Dirge
+text=All damage that would be dealt this turn to target creature you control by a source of your choice is dealt to another target creature instead.
+mana={2}{B}
 type=Instant
+[/card]
+[card]
+name=Muck Drubb
+abilities=flash
+text=Flash (You may cast this spell any time you could cast an instant.) -- When Muck Drubb enters the battlefield, change the target of target spell that targets only a single creature to Muck Drubb. -- Madness {2}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={3}{B}{B}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
 [/card]
 [card]
 name=Outrider en-Kor
@@ -89,4 +74,19 @@ type=Creature
 subtype=Kor Rebel Knight
 power=2
 toughness=2
+[/card]
+[card]
+name=Delay
+text=Counter target spell. If the spell is countered this way, exile it with three time counters on it instead of putting it into its owner's graveyard. If it doesn't have suspend, it gains suspend. (At the beginning of its owner's upkeep, remove a counter from that card. When the last is removed, the player plays it without paying its mana cost. If it's a creature, it has haste.)
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Thick-Skinned Goblin
+text=You may pay {0} rather than pay the echo cost for permanents you control. -- {R}: Thick-Skinned Goblin gains protection from red until end of turn.
+mana={1}{R}
+type=Creature
+subtype=Goblin Shaman
+power=2
+toughness=1
 [/card]

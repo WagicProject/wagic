@@ -1,103 +1,87 @@
-#NAME:Scion Of The Ur-Dragon
-#DESC:The Scion Commander Deck
+#NAME:Lyra Commander
+#DESC:Deck by guitrunks01 
+#DESC:(archidekt.com)
+#DESC:Refined for Wagic by Bob
 #HINT:castpriority(commander,*)
-Aggravated Assault (*) * 1
-Ancient Tomb (*) * 1
-Arcane Signet (*) * 1
-Arid Mesa (*) * 1
-Atarka, World Render (*) * 1
-Balefire Dragon (*) * 1
-Bladewing the Risen (*) * 1
-Blood Crypt (*) * 1
-Bloom Tender (*) * 1
-Breeding Pool (*) * 1
-Cascading Cataracts (*) * 1
-Cavern of Souls (*) * 1
-Chromatic Lantern (*) * 1
-Chromatic Orrery (*) * 1
-Chrome Mox (*) * 1
-Coalition Relic (*) * 1
-Command Beacon (*) * 1
+#HINT:combo hold(Mass Calcify|myhand)^cast(Mass Calcify|myhand)^restriction{type(creature|opponentbattlefield)~morethan~2}^totalmananeeded({2}{W}{W})
+#HINT:combo hold(Blinding Light|myhand)^cast(Blinding Light|myhand)^restriction{type(creature|opponentbattlefield)~morethan~2}^totalmananeeded({3}{W}{W})
+Always Watching (*) * 1
+Akroma's Memorial (m13) (*) * 1
+Akroma, Angel of Wrath (c20) (*) * 1
+Angel of Finality (moc) (*) * 1
+Angel of Invention (kld) (*) * 1
+Angel of Jubilation (avr) (*) * 1
+Angel of Serenity (c21) (*) * 1
+Angel of the Dire Hour (plst) (*) * 1
+Angel of the Ruins (c21) (*) * 1
+Angelic Accord (plst) (*) * 1
+Angelic Arbiter (m11) (*) * 1
+Angelic Field Marshal (*) * 1
+Arcane Signet (blc) (*) * 1
+Avacyn, Angel of Hope (cmm) (*) * 1
+Baneslayer Angel (m21) (*) * 1
+Bishop of Wings (plst) (*) * 1
+Blinding Light (*) * 1
+Boon-Bringer Valkyrie (mom) (*) * 1
+Burnished Hart (dsc) (*) * 1
 Command Tower (*) * 1
-Crux of Fate (*) * 1
-Crystal Quarry (*) * 1
-Curiosity (*) * 1
-Cyclonic Rift (*) * 1
-Debtors' Knell (*) * 1
-Defense of the Heart (*) * 1
-Demonic Tutor (*) * 1
-Dragonlord Silumgar (*) * 1
-Drakuseth, Maw of Flames (*) * 1
-Faeburrow Elder (*) * 1
-Farseek (*) * 1
-Fearsome Awakening (*) * 1
-Flooded Strand (*) * 1
-Force of Will (*) * 1
-Godless Shrine (*) * 1
-Greater Good (*) * 1
-Grim Tutor (*) * 1
-Hallowed Fountain (*) * 1
-Haven of the Spirit Dragon (*) * 1
-Hellkite Charger (*) * 1
-Hellkite Tyrant (*) * 1
-Indatha Triome (*) * 1
-Karrthus, Tyrant of Jund (*) * 1
-Keiga, the Tide Star (*) * 1
-Ketria Triome (*) * 1
-Kokusho, the Evening Star (*) * 1
-Lightning Greaves (*) * 1
-Living Death (*) * 1
-Lotus Petal (*) * 1
-Malfegor (*) * 1
-Mana Confluence (*) * 1
-Mana Crypt (*) * 1
-Mana Drain (*) * 1
-Marsh Flats (*) * 1
-Misty Rainforest (*) * 1
-Moltensteel Dragon (*) * 1
-Mox Amber (*) * 1
-Mox Diamond (*) * 1
-Mox Opal (*) * 1
-Mox Tantalite (*) * 1
-Nicol Bolas (*) * 1
-Niv-Mizzet, the Firemind (*) * 1
-Overgrown Tomb (*) * 1
-Path of Ancestry (*) * 1
-Polluted Delta (*) * 1
-Prismatic Geoscope (*) * 1
-Raugrin Triome (*) * 1
-Sacred Foundry (*) * 1
-Savage Ventmaw (*) * 1
-Savai Triome (*) * 1
-Scalding Tarn (*) * 1
-Sensei's Divining Top (*) * 1
-Silumgar, the Drifting Death (*) * 1
-Skithiryx, the Blight Dragon (*) * 1
-Skyclave Relic (*) * 1
-Skyshroud Claim (*) * 1
-Sneak Attack (*) * 1
-Sol Ring (*) * 1
-Spoils of Victory (*) * 1
-Steam Vents (*) * 1
-Stomping Ground (*) * 1
-Swiftfoot Boots (*) * 1
-Sword of Feast and Famine (*) * 1
-Sylvan Library (*) * 1
-Temple Garden (*) * 1
-Temur Ascendancy (*) * 1
-Teneb, the Harvester (*) * 1
-Terror of the Peaks (*) * 1
-The Ur-Dragon (*) * 1
-Three Visits (*) * 1
-Unburial Rites (*) * 1
-Utvara Hellkite (*) * 1
-Vaevictis Asmadi, the Dire (*) * 1
-Vampiric Tutor (*) * 1
-Verdant Catacombs (*) * 1
-Watery Grave (*) * 1
-Wheel of Sun and Moon (*) * 1
-Windswept Heath (*) * 1
-Wooded Foothills (*) * 1
-Yosei, the Morning Star (*) * 1
-Zagoth Triome (*) * 1
-#CMD:Scion of the Ur-Dragon (*) * 1
+Cosmos Elixir (khm) (*) * 1
+Court of Grace (*) * 1
+Crush Contraband (scd) (*) * 1
+Darksteel Citadel (c18) (*) * 1
+Divine Sacrament (*) * 1
+Emeria Shepherd (znc) (*) * 1
+Emeria, the Sky Ruin (plst) (*) * 1
+Endless Atlas (cmm) (*) * 1
+Entreat the Angels (avr) (*) * 1
+Firemane Commando (moc) (*) * 1
+Generous Gift (*) * 1
+Ghostly Prison (*) * 1
+Herald of War (mic) (*) * 1
+Inspiring Overseer (blc) (*) * 1
+Karmic Guide (ulg) (*) * 1
+Lightning Greaves (m3c) (*) * 1
+Linvala, Keeper of Silence (*) * 1
+Luminarch Ascension (a25) (*) * 1
+Marble Diamond (*) * 1
+Mass Calcify (m15) (*) * 1
+Minas Tirith (ltr) (*) * 1
+Path to Exile (pf20) (*) * 1
+Plains (bro) (*) * 4
+Plains (woe) (*) * 4
+Plains (dsk) (*) * 4
+Plains (lci) (*) * 4
+Plains (mkm) (*) * 4
+Plains (blb) (*) * 3
+Platinum Angel (plst) (*) * 1
+Pristine Talisman (*) * 1
+Quicksilver Amulet (brr) (*) * 1
+Radiant Fountain (*) * 1
+Rebuff the Wicked (tsr) (*) * 1
+Revitalize (*) * 1
+Righteous Valkyrie (khm) (*) * 1
+Segovian Angel (plst) (*) * 1
+Sephara, Sky's Blade (cmm) (*) * 1
+Seraph Sanctuary (*) * 1
+Serra Angel (*) * 1
+Serra Ascendant (*) * 1
+Serra Avenger (*) * 1
+Serra the Benevolent (mh1) (*) * 1
+Shadowspear (plst) (*) * 1
+Sigarda's Splendor (mid) (*) * 1
+Silence (m14) (*) * 1
+Sol Ring (m3c) (*) * 1
+Solemn Simulacrum (dsc) (*) * 1
+Snow-Covered Plains (mh1) (*) * 4
+Starnheim Aspirant (j22) (*) * 1
+Steel Seraph (bro) (*) * 1
+Swiftfoot Boots (blc) (*) * 1
+Swords to Plowshares (cns) (*) * 1
+Test of Endurance (*) * 1
+The Book of Exalted Deeds (afr) (*) * 1
+Thraben Watcher (mh2) (*) * 1
+Thran Dynamo (uds) (*) * 1
+Valkyrie Harbinger (j22) (*) * 1
+Worn Powerstone (*) * 1
+Youthful Valkyrie (fdn) (*) * 1
+#CMD:Lyra Dawnbringer (dmr) (*) * 1

@@ -1,0 +1,36 @@
+[card]
+name=Cryptic Gateway
+text=Tap two untapped creatures you control: You may put a creature card from your hand that shares a creature type with each creature tapped this way onto the battlefield.
+mana={5}
+type=Artifact
+[/card]
+[card]
+name=Damping Sphere
+text=If a land is tapped for two or more mana, it produces {C} instead of any other type and amount. -- Each spell a player casts costs 1 more to cast for each other spell that player has cast this turn.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Crawlspace
+text=No more than two creatures can attack you each combat.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Crawlspace
+text=No more than two creatures can attack you each combat.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Damping Sphere
+text=If a land is tapped for two or more mana, it produces {C} instead of any other type and amount. -- Each spell a player casts costs 1 more to cast for each other spell that player has cast this turn.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Cryptic Gateway
+text=Tap two untapped creatures you control: You may put a creature card from your hand that shares a creature type with each creature tapped this way onto the battlefield.
+mana={5}
+type=Artifact
+[/card]

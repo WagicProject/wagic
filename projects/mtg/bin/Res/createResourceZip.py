@@ -10,7 +10,7 @@ def createResZipFile(filename):
         rename = False
         if not os.path.isfile('settings/options.txt'):
             os.rename('settings/options.orig.txt', 'settings/options.txt')
-            remame = True
+            rename = True
         if not os.path.isfile('player/options.txt'):
             os.rename('player/options.orig.txt', 'player/options.txt')
             rename = True
@@ -49,6 +49,7 @@ def createStandardResFile(filename):
     if not filename:
         filename = getFilename() + '.zip'
     createResZipFile( filename )
+    #print('Created Resource Package for Standard Distribution: {0}'.format(filename), file=sys.stderr)
     print >> sys.stderr, 'Created Resource Package for Standard Distribution: {0}'.format( filename)
 
 def createIosResFile(filename):
@@ -61,6 +62,7 @@ def createIosResFile(filename):
     zip_file.write("../../iOS/Res/rules/modrules.xml", "rules/modrules.xml", zipfile.ZIP_STORED)
     zip_file.close()
 
+    #print('Created Resource Package for Standard Distribution: {0}'.format(filename), file=sys.stderr)
     print >> sys.stderr, 'Created Resource Package for iOS Distribution: {0}'.format( filename)
 
 

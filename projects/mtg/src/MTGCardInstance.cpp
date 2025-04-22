@@ -112,8 +112,13 @@ void MTGCardInstance::copy(MTGCardInstance * card, bool nolegend)
             source = MTGCollection()->getCardById(card->getMTGId());
         else
         {
-            source = card->tokCard;
-            source->data = card->tokCard;//?wtf
+            if(card->tokCard){  // Fix a possible crash when tokCard is null...
+                source = card->tokCard;
+                source->data = card->tokCard; //?wtf
+            } else {
+                source = card;
+                source->data = card;
+            }
         }
     }
     else
@@ -233,6 +238,9 @@ void MTGCardInstance::initMTGCI()
     isMorphed = false;
     MeldedFrom = "";
     isFlipped = 0;
+    isCommander = 0;
+    isRingBearer = 0;
+    isDefeated = false;
     isPhased = false;
     isCascaded = false;
     phasedTurn = -1;
@@ -577,6 +585,33 @@ int MTGCardInstance::has(int basicAbility)
     return basicAbilities[basicAbility];
 }
 
+//Return the toxicity of card
+int MTGCardInstance::getToxicity()
+{
+    int toxicity = 0;
+    if(has(Constants::POISONTOXIC))
+        toxicity = 1;
+    else if(has(Constants::POISONTWOTOXIC))
+        toxicity = 2;
+    else if(has(Constants::POISONTHREETOXIC))
+        toxicity = 3;
+    else if(has(Constants::POISONFOURTOXIC))
+        toxicity = 4;
+    else if(has(Constants::POISONFIVETOXIC))
+        toxicity = 5;
+    else if(has(Constants::POISONSIXTOXIC))
+        toxicity = 6;
+    else if(has(Constants::POISONSEVENTOXIC))
+        toxicity = 7;
+    else if(has(Constants::POISONEIGHTTOXIC))
+        toxicity = 8;
+    else if(has(Constants::POISONNINETOXIC))
+        toxicity = 9;
+    else if(has(Constants::POISONTENTOXIC))
+        toxicity = 10;
+    return toxicity;
+}
+
 ManaCost* MTGCardInstance::getReducedManaCost()
 {
     return &reducedCost;
@@ -584,6 +619,10 @@ ManaCost* MTGCardInstance::getReducedManaCost()
 ManaCost* MTGCardInstance::getIncreasedManaCost()
 {
     return &increasedCost;
+}
+ManaCost* MTGCardInstance::getProducedMana()
+{
+    return &producedMana;
 }
 
 //sets card as attacked and sends events
@@ -1031,6 +1070,9 @@ bool MTGCardInstance::canPlayFromLibrary()
     if(hasSubtype(Subtypes::TYPE_ARTIFACT) && (has(Constants::CANPLAYARTIFACTTOPLIBRARY)
         || (controller()->game->inPlay->nb_cards && controller()->game->inPlay->hasAbility(Constants::CANPLAYARTIFACTTOPLIBRARY))))
         found++;
+    if(hasSubtype(Subtypes::TYPE_ENCHANTMENT) && (has(Constants::CANPLAYENCHANTMENTTOPLIBRARY)
+        || (controller()->game->inPlay->nb_cards && controller()->game->inPlay->hasAbility(Constants::CANPLAYENCHANTMENTTOPLIBRARY))))
+        found++;
     if(isCreature() && (has(Constants::CANPLAYCREATURETOPLIBRARY)
         || (controller()->game->inPlay->nb_cards && controller()->game->inPlay->hasAbility(Constants::CANPLAYCREATURETOPLIBRARY))))
         found++;
@@ -1247,41 +1289,73 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
                     }
                 }
             }
-            TargetChooserFactory tf(getObserver());
-            TargetChooser * tcn = tf.createTargetChooser(newAff->tcString, card, NULL);
-
-            for (int w = 0; w < 2; ++w)
+            if(newAff->tcString.find("variable{") != string::npos)
             {
-                Player *p = getObserver()->players[w];
-                MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile, p->game->commandzone, p->game->sideboard, p->game->reveal };
-                for (int k = 0; k < 9; k++)
+                vector<string> eval = parseBetween(newAff->tcString, "variable{", "}");
+                if(eval.size())
                 {
-                    MTGGameZone * z = zones[k];
-                    if (tcn->targetsZone(z))
+                    WParsedInt* value = NEW WParsedInt(eval[1], NULL, card);
+                    if(value)
                     {
-                        reducem += z->countByCanTarget(tcn);
+                        reducem += value->getValue();
+                        SAFE_DELETE(value);
                     }
                 }
             }
-            SAFE_DELETE(tcn);
+            else 
+            {
+                TargetChooserFactory tf(getObserver());
+                TargetChooser * tcn = tf.createTargetChooser(newAff->tcString, card, NULL);
+
+                for (int w = 0; w < 2; ++w)
+                {
+                    Player *p = getObserver()->players[w];
+                    MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile, p->game->commandzone, p->game->sideboard, p->game->reveal };
+                    for (int k = 0; k < 9; k++)
+                    {
+                        MTGGameZone * z = zones[k];
+                        if (tcn->targetsZone(z))
+                        {
+                            reducem += z->countByCanTarget(tcn);
+                        }
+                    }
+                }
+                SAFE_DELETE(tcn);
+            }
             ManaCost * removingCost = ManaCost::parseManaCost(newAff->manaString);
             for (int j = 0; j < reducem; j++)
-                original->remove(removingCost);
+                Cost->remove(removingCost);
             SAFE_DELETE(removingCost);
         }
     }//end2
     if (card->has(Constants::AFFINITYARTIFACTS) ||
+        card->has(Constants::AFFINITYENCHANTMENTS) ||
         card->has(Constants::AFFINITYFOREST) ||
         card->has(Constants::AFFINITYGREENCREATURES) ||
         card->has(Constants::AFFINITYISLAND) ||
         card->has(Constants::AFFINITYMOUNTAIN) ||
         card->has(Constants::AFFINITYPLAINS) ||
         card->has(Constants::AFFINITYSWAMP) ||
+        card->has(Constants::AFFINITYALLCREATURES) ||
+        card->has(Constants::AFFINITYCONTROLLERCREATURES) ||
+        card->has(Constants::AFFINITYOPPONENTCREATURES) ||
+        card->has(Constants::AFFINITYALLDEADCREATURES) ||
+        card->has(Constants::AFFINITYTWOALLDEADCREATURES) ||
+        card->has(Constants::AFFINITYPARTY) ||
+        card->has(Constants::AFFINITYBASICLANDTYPES) ||
+        card->has(Constants::AFFINITYTWOBASICLANDTYPES) ||
+        card->has(Constants::AFFINITYGRAVECREATURES) ||
+        card->has(Constants::AFFINITYATTACKINGCREATURES) ||
+        card->has(Constants::AFFINITYGRAVEINSTSORC) ||
         card->has(Constants::CONDUITED))
     {//start3
         if (card->has(Constants::AFFINITYARTIFACTS))
         {
             type = "artifact";
+        }
+        if (card->has(Constants::AFFINITYENCHANTMENTS))
+        {
+            type = "enchantment";
         }
         else if (card->has(Constants::AFFINITYSWAMP))
         {
@@ -1308,6 +1382,22 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
             color = 1;
             type = "creature";
         }
+        else if (card->has(Constants::AFFINITYALLCREATURES) || card->has(Constants::AFFINITYCONTROLLERCREATURES) || card->has(Constants::AFFINITYOPPONENTCREATURES) || card->has(Constants::AFFINITYALLDEADCREATURES) || card->has(Constants::AFFINITYTWOALLDEADCREATURES))
+        {
+            type = "creature";
+        }
+        else if (card->has(Constants::AFFINITYPARTY) || card->has(Constants::AFFINITYGRAVECREATURES) || card->has(Constants::AFFINITYATTACKINGCREATURES))
+        {
+            type = "creature";
+        }
+        else if (card->has(Constants::AFFINITYBASICLANDTYPES) || card->has(Constants::AFFINITYTWOBASICLANDTYPES))
+        {
+            type = "land";
+        }
+        else if (card->has(Constants::AFFINITYGRAVEINSTSORC))
+        {
+            type = "instant,sorcery";
+        }
 
         Cost->copy(original);
         if (Cost->extraCosts)
@@ -1325,7 +1415,84 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * Cos
             }
         }
         int reduce = 0;
-        if (card->has(Constants::AFFINITYGREENCREATURES))
+        if (card->has(Constants::AFFINITYALLCREATURES))
+        {
+            TargetChooserFactory tf(getObserver());
+            TargetChooser * tc = tf.createTargetChooser("creature", NULL);
+            reduce = card->controller()->game->battlefield->countByCanTarget(tc) + card->controller()->opponent()->game->battlefield->countByCanTarget(tc);
+            SAFE_DELETE(tc);
+        }
+        else if (card->has(Constants::AFFINITYCONTROLLERCREATURES))
+        {
+            TargetChooserFactory tf(getObserver());
+            TargetChooser * tc = tf.createTargetChooser("creature", NULL);
+            reduce = card->controller()->game->battlefield->countByCanTarget(tc);
+            SAFE_DELETE(tc);
+        }
+        else if (card->has(Constants::AFFINITYATTACKINGCREATURES))
+        {
+            TargetChooserFactory tf(getObserver());
+            TargetChooser * tc = tf.createTargetChooser("creature[attacking]", NULL);
+            reduce = card->controller()->game->battlefield->countByCanTarget(tc);
+            SAFE_DELETE(tc);
+        }
+        else if (card->has(Constants::AFFINITYOPPONENTCREATURES))
+        {
+            TargetChooserFactory tf(getObserver());
+            TargetChooser * tc = tf.createTargetChooser("creature", NULL);
+            reduce = card->controller()->opponent()->game->battlefield->countByCanTarget(tc);
+            SAFE_DELETE(tc);
+        }
+        else if (card->has(Constants::AFFINITYGRAVECREATURES))
+        {
+            WParsedInt* value = NEW WParsedInt("type:creature:mygraveyard", NULL, card);
+            if(value)
+                reduce = value->getValue();
+            SAFE_DELETE(value);
+        }
+        else if (card->has(Constants::AFFINITYALLDEADCREATURES))
+        {
+            WParsedInt* value = NEW WParsedInt("bothalldeadcreature", NULL, card);
+            if(value)
+                reduce = value->getValue();
+            SAFE_DELETE(value);
+        }
+        else if (card->has(Constants::AFFINITYTWOALLDEADCREATURES))
+        {
+            WParsedInt* value = NEW WParsedInt("bothalldeadcreature", NULL, card);
+            if(value)
+                reduce = value->getValue() * 2;
+            SAFE_DELETE(value);
+        }
+        else if (card->has(Constants::AFFINITYPARTY))
+        {
+            WParsedInt* value = NEW WParsedInt("calculateparty", NULL, card);
+            if(value)
+                reduce = value->getValue();
+            SAFE_DELETE(value);
+        }
+        else if (card->has(Constants::AFFINITYBASICLANDTYPES))
+        {
+            WParsedInt* value = NEW WParsedInt("pbasiclandtypes", NULL, card);
+            if(value)
+                reduce = value->getValue();
+            SAFE_DELETE(value);
+        }
+        else if (card->has(Constants::AFFINITYTWOBASICLANDTYPES))
+        {
+            WParsedInt* value = NEW WParsedInt("pbasiclandtypes", NULL, card);
+            if(value)
+                reduce = value->getValue() * 2;
+            SAFE_DELETE(value);
+        }
+        else if (card->has(Constants::AFFINITYGRAVEINSTSORC))
+        {
+            WParsedInt* value = NEW WParsedInt("pginstantsorcery", NULL, card);
+            if(value)
+                reduce = value->getValue();
+            SAFE_DELETE(value);
+        }
+        else if (card->has(Constants::AFFINITYGREENCREATURES))
         {
             TargetChooserFactory tf(getObserver());
             TargetChooser * tc = tf.createTargetChooser("creature[green]", NULL);

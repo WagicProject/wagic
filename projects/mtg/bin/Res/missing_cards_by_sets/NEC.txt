@@ -1,0 +1,18 @@
+[card]
+name=Swift Reconfiguration
+target=creature,vehicle
+abilities=flash
+text=Flash -- Enchant creature or Vehicle -- Enchanted permanent is a Vehicle artifact with crew 5 and it loses all other card types. (It's not a creature unless it's crewed.)
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Swift Reconfiguration
+target=creature,vehicle
+abilities=flash
+text=Flash -- Enchant creature or Vehicle -- Enchanted permanent is a Vehicle artifact with crew 5 and it loses all other card types. (It's not a creature unless it's crewed.)
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]

@@ -195,7 +195,8 @@ public:
         {
             return 0;
         }
-        //Creatures entering the battlefield don't cause abilities to trigger (e.g. "Hushbringer").
+        //Creatures entering the battlefield don't cause abilities to trigger (e.g. "Hushbringer"). 
+		//NOT WORKING
         if (e->card->isCreature() && (game->players[0]->game->battlefield->hasAbility(Constants::NOENTERTRG) || game->players[1]->game->battlefield->hasAbility(Constants::NOENTERTRG)) 
             && (e->to == game->players[0]->game->battlefield || e->to == game->players[1]->game->battlefield))
         {
@@ -230,9 +231,12 @@ class TrCardTapped: public Trigger
 {
 public:
     bool tap;
-    TrCardTapped(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool tap = true, bool once = false) :
-        Trigger(observer, id, source, once, tc), tap(tap)
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardTapped(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool tap = true, bool once = false, bool limitOnceATurn = false) :
+        Trigger(observer, id, source, once, tc), tap(tap), limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
@@ -241,9 +245,12 @@ public:
         if (!e) return 0;
         if (e->noTrigger)
             return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
         if (e->before == e->after) return 0;
         if (e->after != tap) return 0;
         if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
         return 1;
     }
 
@@ -257,18 +264,24 @@ class TrCardTappedformana: public Trigger
 {
 public:
     bool tap;
-    TrCardTappedformana(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool tap = true, bool once = false) :
-        Trigger(observer, id, source, once, tc), tap(tap)
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardTappedformana(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool tap = true, bool once = false, bool limitOnceATurn = false) :
+        Trigger(observer, id, source, once, tc), tap(tap), limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
     {
         WEventCardTappedForMana * e = dynamic_cast<WEventCardTappedForMana *> (event);
         if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
         if (e->before == e->after) return 0;
         if (e->after != tap) return 0;
         if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
         return 1;
     }
 
@@ -278,19 +291,53 @@ public:
     }
 };
 
+class TrCardManaproduced: public Trigger
+{
+public:
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardManaproduced(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn)
+    {
+        triggeredTurn = -1;
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardManaProduced * e = dynamic_cast<WEventCardManaProduced *> (event);
+        if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
+        return 1;
+    }
+
+    TrCardManaproduced * clone() const
+    {
+        return NEW TrCardManaproduced(*this);
+    }
+};
+
 class TrCardPhasesIn: public Trigger
 {
 public:
-    TrCardPhasesIn(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false) :
-        Trigger(observer, id, source, once, tc)
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardPhasesIn(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
     {
         WEventCardPhasesIn * e = dynamic_cast<WEventCardPhasesIn *> (event);
         if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
         if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
         return 1;
     }
 
@@ -303,16 +350,22 @@ public:
 class TrCardFaceUp: public Trigger
 {
 public:
-    TrCardFaceUp(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false) :
-        Trigger(observer, id, source, once, tc)
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardFaceUp(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
     {
         WEventCardFaceUp * e = dynamic_cast<WEventCardFaceUp *> (event);
         if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
         if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
         return 1;
     }
 
@@ -325,16 +378,22 @@ public:
 class TrCardTransformed: public Trigger
 {
 public:
-    TrCardTransformed(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false) :
-        Trigger(observer, id, source, once, tc)
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardTransformed(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int triggerOnEventImpl(WEvent * event)
     {
         WEventCardTransforms * e = dynamic_cast<WEventCardTransforms *> (event);
         if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
         if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
         return 1;
     }
 
@@ -495,8 +554,11 @@ class TrplayerPoisoned: public Trigger
 {
 public:
     bool thiscontroller, thisopponent;
-    TrplayerPoisoned(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false) :
-        Trigger(observer, id, source, once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent)
+    int plus;
+    bool duplicate;
+    bool half;
+    TrplayerPoisoned(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false, int plus = 0, bool duplicate = false, bool half = false) :
+        Trigger(observer, id, source, once, tc), thiscontroller(thiscontroller), thisopponent(thisopponent), plus(plus), duplicate(duplicate), half(half)
     {
     }
 
@@ -511,6 +573,19 @@ public:
         if(thisopponent)
             if(e->player == source->controller())
                 return 0;
+        if(plus > 0)
+            e->player->poisonCount++;
+        if(duplicate)
+            e->player->poisonCount = e->player->poisonCount + e->nb_count;
+        if(half){
+            int amount = e->nb_count;
+            if (amount % 2 == 1)
+                amount++;
+            amount = amount / 2;
+            e->player->poisonCount = e->player->poisonCount - amount;
+        }
+        e->player->thatmuch = e->nb_count;
+        this->source->thatmuch = e->nb_count;
         return 1;
     }
 
@@ -524,8 +599,11 @@ class TrplayerEnergized: public Trigger
 {
 public:
     bool thiscontroller, thisopponent;
-    TrplayerEnergized(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false) :
-        Trigger(observer, id, source, once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent)
+    int plus;
+    bool duplicate;
+    bool half;
+    TrplayerEnergized(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false, int plus = 0, bool duplicate = false, bool half = false) :
+        Trigger(observer, id, source, once, tc),thiscontroller(thiscontroller), thisopponent(thisopponent), plus(plus), duplicate(duplicate), half(half)
     {
     }
 
@@ -540,6 +618,19 @@ public:
         if(thisopponent)
             if(e->player == source->controller())
                 return 0;
+        if(plus > 0)
+            e->player->energyCount++;
+        if(duplicate)
+            e->player->energyCount = e->player->energyCount + e->nb_count;
+        if(half){
+            int amount = e->nb_count;
+            if (amount % 2 == 1)
+                amount++;
+            amount = amount / 2;
+            e->player->energyCount = e->player->energyCount - amount;
+        }
+        e->player->thatmuch = e->nb_count;
+        this->source->thatmuch = e->nb_count;
         return 1;
     }
 
@@ -553,8 +644,11 @@ class TrplayerExperienced: public Trigger
 {
 public:
     bool thiscontroller, thisopponent;
-    TrplayerExperienced(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false) :
-        Trigger(observer, id, source, once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent)
+    int plus;
+    bool duplicate;
+    bool half;
+    TrplayerExperienced(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false, int plus = 0, bool duplicate = false, bool half = false) :
+        Trigger(observer, id, source, once, tc),thiscontroller(thiscontroller), thisopponent(thisopponent), plus(plus), duplicate(duplicate), half(half)
     {
     }
 
@@ -569,6 +663,19 @@ public:
         if(thisopponent)
             if(e->player == source->controller())
                 return 0;
+        if(plus > 0)
+            e->player->experienceCount++;
+        if(duplicate)
+            e->player->experienceCount = e->player->experienceCount + e->nb_count;
+        if(half){
+            int amount = e->nb_count;
+            if (amount % 2 == 1)
+                amount++;
+            amount = amount / 2;
+            e->player->experienceCount = e->player->experienceCount - amount;
+        }
+        e->player->thatmuch = e->nb_count;
+        this->source->thatmuch = e->nb_count;
         return 1;
     }
 
@@ -604,6 +711,95 @@ public:
     TrplayerMonarch * clone() const
     {
         return NEW TrplayerMonarch(*this);
+    }
+};
+
+class TrplayerTempted: public Trigger
+{
+public:
+    bool thiscontroller, thisopponent;
+    TrplayerTempted(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false) :
+        Trigger(observer, id, source, once, tc), thiscontroller(thiscontroller), thisopponent(thisopponent)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventplayerTempted * e = dynamic_cast<WEventplayerTempted *> (event);
+        if (!e) return 0;
+        if (!tc->canTarget(e->player)) return 0;
+        if(thiscontroller)
+            if(e->player != source->controller())
+                return 0;
+        if(thisopponent)
+            if(e->player == source->controller())
+                return 0;
+        return 1;
+    }
+
+    TrplayerTempted * clone() const
+    {
+        return NEW TrplayerTempted(*this);
+    }
+};
+
+class TrplayerProliferated: public Trigger
+{
+public:
+    bool thiscontroller, thisopponent;
+    TargetChooser * proliferateException; //added exception to avid a proliferation loop (eg. Tekuthal, Inquiry Dominus)
+    TrplayerProliferated(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false, TargetChooser * proliferateException = NULL) :
+        Trigger(observer, id, source, once, tc), thiscontroller(thiscontroller), thisopponent(thisopponent), proliferateException(proliferateException)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventplayerProliferated * e = dynamic_cast<WEventplayerProliferated *> (event);
+        if (!e) return 0;
+        if (proliferateException && proliferateException->canTarget(e->source)) return 0; //If the source of proliferation belongs to exception it doesn't have effect (loop avoidance);   
+        if (!tc->canTarget(e->player)) return 0;
+        if(thiscontroller)
+            if(e->player != source->controller())
+                return 0;
+        if(thisopponent)
+            if(e->player == source->controller())
+                return 0;
+        return 1;
+    }
+
+    TrplayerProliferated * clone() const
+    {
+        return NEW TrplayerProliferated(*this);
+    }
+};
+
+class TrplayerInitiative: public Trigger
+{
+public:
+    bool thiscontroller, thisopponent;
+    TrplayerInitiative(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool thiscontroller = false, bool thisopponent = false) :
+        Trigger(observer, id, source, once, tc), thiscontroller(thiscontroller), thisopponent(thisopponent)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventplayerInitiative * e = dynamic_cast<WEventplayerInitiative *> (event);
+        if (!e) return 0;
+        if (!tc->canTarget(e->player)) return 0;
+        if(thiscontroller)
+            if(e->player != source->controller())
+                return 0;
+        if(thisopponent)
+            if(e->player == source->controller())
+                return 0;
+        return 1;
+    }
+
+    TrplayerInitiative * clone() const
+    {
+        return NEW TrplayerInitiative(*this);
     }
 };
 
@@ -727,6 +923,37 @@ public:
     }
 };
 
+class TrCardBearerChosen: public Trigger
+{
+public:
+    bool limitOnceATurn;
+    int triggeredTurn;
+    bool checkBearerChanged;
+    TrCardBearerChosen(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false, bool checkBearerChanged = false) :
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn), checkBearerChanged(checkBearerChanged)
+    {
+        triggeredTurn = -1;
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardBearerChosen * e = dynamic_cast<WEventCardBearerChosen *> (event);
+        if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
+        if (checkBearerChanged && !e->bearerChanged)
+            return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
+        return 1;
+    }
+
+    TrCardBearerChosen * clone() const
+    {
+        return NEW TrCardBearerChosen(*this);
+    }
+};
+
 class TrCardBoasted: public Trigger
 {
 public:
@@ -752,6 +979,34 @@ public:
     TrCardBoasted * clone() const
     {
         return NEW TrCardBoasted(*this);
+    }
+};
+
+class TrCardDefeated: public Trigger
+{
+public:
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardDefeated(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn)
+    {
+        triggeredTurn = -1;
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardDefeated * e = dynamic_cast<WEventCardDefeated *> (event);
+        if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
+        return 1;
+    }
+
+    TrCardDefeated * clone() const
+    {
+        return NEW TrCardDefeated(*this);
     }
 };
 
@@ -866,6 +1121,34 @@ public:
     TrCardScryed * clone() const
     {
         return NEW TrCardScryed(*this);
+    }
+};
+
+class TrCardNinja: public Trigger
+{
+public:
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardNinja(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, bool once = false, bool limitOnceATurn = false) :
+        Trigger(observer, id, source, once, tc), limitOnceATurn(limitOnceATurn)
+    {
+        triggeredTurn = -1;
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCardNinja * e = dynamic_cast<WEventCardNinja *> (event);
+        if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = game->turn;
+        return 1;
+    }
+
+    TrCardNinja * clone() const
+    {
+        return NEW TrCardNinja(*this);
     }
 };
 
@@ -1174,6 +1457,10 @@ public:
             e->damage->target->exceededDamage = e->damage->target->life;
             e->damage->source->exceededDamage = e->damage->target->life;
             this->source->exceededDamage = e->damage->target->life;
+        } else {
+            e->damage->target->exceededDamage = 0;
+            e->damage->source->exceededDamage = 0;
+            this->source->exceededDamage = 0;
         }
         triggeredTurn = game->turn;
 
@@ -1199,8 +1486,8 @@ public:
     bool sourceUntapped, thiscontroller, thisopponent;
     bool limitOnceATurn;
     int triggeredTurn;
-    MTGCardInstance * gainException; //added exception to avid a gainlife loop (eg. Angels of Vitality)
-    TrLifeGained(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0, bool sourceUntapped = false, bool once = false, bool thiscontroller = false, bool thisopponent = false, bool limitOnceATurn = false, MTGCardInstance * gainException = NULL) :
+    TargetChooser * gainException; //added exception to avid a gainlife loop
+    TrLifeGained(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0, bool sourceUntapped = false, bool once = false, bool thiscontroller = false, bool thisopponent = false, bool limitOnceATurn = false, TargetChooser * gainException = NULL) :
         Trigger(observer, id, source, once , tc),  fromTc(fromTc), type(type), sourceUntapped(sourceUntapped), thiscontroller(thiscontroller), thisopponent(thisopponent), limitOnceATurn(limitOnceATurn), gainException(gainException)
     {
         triggeredTurn = -1;
@@ -1217,7 +1504,7 @@ public:
         if (!tc->canTarget(e->player)) return 0;
         //if (fromTc && !fromTc->canTarget(e->player)) return 0;
         if (fromTc && !fromTc->canTarget(e->source)) return 0; //Now it's possible to specify if a source can trigger or not the event of life gain
-        if (gainException && e->source && !strcmp(gainException->data->name.c_str(), e->source->data->name.c_str())) return 0; //If the source of life gain it's the exception card don't gain life (loop avoidance);
+        if (gainException && gainException->canTarget(e->source)) return 0; //If the source of life gain belongs to exception it doesn't have effect (loop avoidance);   
         if (type == 1 && (e->amount > 0)) return 0;
         if (type == 0 && (e->amount < 0)) return 0;
         if(thiscontroller)
@@ -1332,8 +1619,8 @@ public:
     bool duplicate;
     bool limitOnceATurn;
     int triggeredTurn;
-    MTGCardInstance * counterException; //added exception to avid a counter loop (eg. Doubling Season)
-    TrCounter(GameObserver* observer, int id, MTGCardInstance * source, Counter * counter, TargetChooser * tc, int type = 0, bool once = false, bool duplicate = false, bool limitOnceATurn = false, MTGCardInstance * counterException = NULL) :
+    TargetChooser * counterException; //added exception to avid a counter loop (eg. Doubling Season)
+    TrCounter(GameObserver* observer, int id, MTGCardInstance * source, Counter * counter, TargetChooser * tc, int type = 0, bool once = false, bool duplicate = false, bool limitOnceATurn = false, TargetChooser * counterException = NULL) :
     Trigger(observer, id, source, once, tc), counter(counter), type(type), duplicate(duplicate), limitOnceATurn(limitOnceATurn), counterException(counterException)
     {
         triggeredTurn = -1;
@@ -1347,7 +1634,7 @@ public:
             return 0;
         if (type == 0 && !e->removed) return 0;
         if (type == 1 && !e->added) return 0;
-        if (counterException && e->source && !strcmp(counterException->data->name.c_str(), e->source->data->name.c_str())) return 0; //If the source of counter gain/loss it's the exception card it doesn't have effect (loop avoidance);        
+        if (counterException && counterException->canTarget(e->source)) return 0; //If the source of counter gain/loss belongs to exception it doesn't have effect (loop avoidance);   
         if (counter && !(e->power == counter->power && e->toughness == counter->toughness && e->name == counter->name)) return 0;
         if (tc && !tc->canTarget(e->targetCard)) return 0;
         if (duplicate){
@@ -1368,6 +1655,95 @@ public:
     TrCounter * clone() const
     {
         TrCounter * mClone = NEW TrCounter(*this);
+        mClone->counter = NEW Counter(*this->counter);
+        return mClone;
+    }
+};
+
+//counter trigger
+class TrTotalCounter: public Trigger
+{
+public:
+    Counter * counter;
+    int type;
+    bool duplicate;
+    bool half;
+    int plus;
+    bool nocost; //added to avoid trigger on counter cost payment (eg. Doubling Season)
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TargetChooser * counterException; //added exception to avid a counter loop.
+    TrTotalCounter(GameObserver* observer, int id, MTGCardInstance * source, Counter * counter, TargetChooser * tc, int type = 0, bool once = false, bool duplicate = false, bool half = false, int plus = 0, bool nocost = false, bool limitOnceATurn = false, TargetChooser * counterException = NULL) :
+    Trigger(observer, id, source, once, tc), counter(counter), type(type), duplicate(duplicate), half(half), plus(plus), nocost(nocost), limitOnceATurn(limitOnceATurn), counterException(counterException)
+    {
+        triggeredTurn = -1;
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventTotalCounters * e = dynamic_cast<WEventTotalCounters *> (event);
+        if (!e) return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
+        if (type == 0 && !e->removed) return 0;
+        if (type == 1 && !e->added) return 0;
+        if (nocost && e->iscost) return 0;
+        if (counterException && counterException->canTarget(e->source)) return 0; //If the source of counter gain/loss belongs to exception it doesn't have effect (loop avoidance);        
+        if (counter && !(e->power == counter->power && e->toughness == counter->toughness && e->name == counter->name)) return 0;
+        if (tc && !tc->canTarget(e->targetCard)) return 0;
+        if (plus > 0){
+            if(type == 1){
+                for(int i = 0; i < plus; i++)
+                    e->targetCard->counters->addCounter(e->name.c_str(),e->power,e->toughness,true,true,e->source);
+            }
+            else {
+                for(int i = 0; i < plus; i++)
+                    e->targetCard->counters->removeCounter(e->name.c_str(),e->power,e->toughness,true,true,e->source);
+            }
+            e->source->thatmuch = e->totalamount + plus;
+            this->source->thatmuch = e->totalamount + plus;
+        }
+        else if (duplicate){
+            if(type == 1) {
+                for(int i = 0; i < e->totalamount; i++)
+                    e->targetCard->counters->addCounter(e->name.c_str(),e->power,e->toughness,true,true,e->source);
+            } else {
+                for(int i = 0; i < e->totalamount; i++)
+                    e->targetCard->counters->removeCounter(e->name.c_str(),e->power,e->toughness,true,true,e->source);
+            }
+            e->source->thatmuch = e->totalamount * 2;
+            this->source->thatmuch = e->totalamount * 2;
+        }
+        else if (half){
+            int amount = e->totalamount;
+            if (amount % 2 == 1)
+                amount++;
+            amount = amount / 2;
+            if(type == 1) {
+                for(int i = 0; i < amount; i++)
+                    e->targetCard->counters->removeCounter(e->name.c_str(),e->power,e->toughness,true,true,e->source);
+            } else {
+                for(int i = 0; i < amount; i++)
+                    e->targetCard->counters->addCounter(e->name.c_str(),e->power,e->toughness,true,true,e->source);
+            }
+            e->source->thatmuch = e->totalamount - amount;
+            this->source->thatmuch = e->totalamount - amount;
+        } else {
+            e->source->thatmuch = e->totalamount;
+            this->source->thatmuch = e->totalamount;
+        }
+        triggeredTurn = game->turn;
+        return 1;
+    }
+
+    ~TrTotalCounter()
+    {
+        SAFE_DELETE(counter);
+    }
+
+    TrTotalCounter * clone() const
+    {
+        TrTotalCounter * mClone = NEW TrTotalCounter(*this);
         mClone->counter = NEW Counter(*this->counter);
         return mClone;
     }
@@ -1492,7 +1868,7 @@ class ANewAffinity: public MTGAbility
 public:
     string tcString;
     string manaString;
-    ANewAffinity(GameObserver* observer, int _id, MTGCardInstance * _source,string Tc = "", string mana ="");
+    ANewAffinity(GameObserver* observer, int _id, MTGCardInstance * _source, string Tc = "", string mana ="");
     void Update(float dt);
     int testDestroy();
     ANewAffinity * clone() const;
@@ -1572,6 +1948,7 @@ class AAProliferate: public ActivatedAbility
 {
 public:
     bool allcounters;
+    bool notrigger;
     AAProliferate(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, ManaCost * cost = NULL);
     int resolve();
     const string getMenuText();
@@ -1594,6 +1971,7 @@ class AARemoveSingleCounter: public ActivatedAbility
 {
 public:
     int nb;
+    bool allcounters;
     AARemoveSingleCounter(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, ManaCost * cost = NULL, int nb = 1);
     int resolve();
     const string getMenuText();
@@ -1882,8 +2260,9 @@ public:
 class ANinja: public ActivatedAbility
 {
 public:
-    ANinja(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target) :
-        ActivatedAbility(observer, _id, card)
+    bool ninjutsu;
+    ANinja(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, bool ninjutsu = true) :
+        ActivatedAbility(observer, _id, card), ninjutsu(ninjutsu)
     {
         target = _target;
     }
@@ -1896,7 +2275,7 @@ public:
         MTGCardInstance * newcard = _target;
         Spell * spell = NULL;
         if(_target->currentZone != _target->controller()->game->battlefield){ // If the card is already in play no need to recast a spell (e.g. "Olivia, Crimson Bride").
-            MTGCardInstance * copy = _target->controller()->game->putInZone(_target,_target->currentZone, source->controller()->game->temp);
+            MTGCardInstance * copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->temp);
             spell = NEW Spell(game, copy);
             spell->resolve();
             newcard = spell->source;
@@ -1904,13 +2283,19 @@ public:
         newcard->summoningSickness = 0;
         newcard->tap();
         newcard->setAttacker(1);
+        if(ninjutsu){
+            WEvent * e = NEW WEventCardNinja(newcard);
+            game->receiveEvent(e);
+        }
         SAFE_DELETE(spell);
         return 1;
     }
 
     const string getMenuText()
     {
-        return "Ninjutsu";
+        if(ninjutsu)
+            return "Ninjutsu";
+        return "Ready to Fight";
     }
 
     ANinja * clone() const
@@ -1956,7 +2341,7 @@ public:
 class AADrawer: public ActivatedAbilityTP
 {
 public:
-
+    MTGAbility * andAbility;
     string nbcardsStr;
     bool noReplace;
     AADrawer(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost,string nbcardsStr, int who =
@@ -1964,6 +2349,7 @@ public:
     int resolve();
     const string getMenuText();
     AADrawer * clone() const;
+    ~AADrawer();
     int getNumCards();
 };
 
@@ -1985,7 +2371,6 @@ public:
     const string getMenuText();
     ACastRestriction * clone() const;
     ~ACastRestriction();
-
 };
 
 
@@ -2006,6 +2391,7 @@ public:
 class AALifer: public ActivatedAbilityTP
 {
 public:
+    MTGAbility * andAbility;
     string life_s;
     bool siphon;
     AALifer(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string life_s, bool siphon = false, ManaCost * _cost = NULL,
@@ -2013,8 +2399,8 @@ public:
     int resolve();
     const string getMenuText();
     AALifer * clone() const;
+    ~AALifer();
     int getLife();
-
 };
 
 /*Player Wins Game*/
@@ -2474,11 +2860,13 @@ public:
     string PT;
     bool nonstatic;
     bool cda;
+    int triggers;
     APowerToughnessModifier(GameObserver* observer, int id, MTGCardInstance * _source, MTGCardInstance * _target, WParsedPT * wppt,string PT, bool nonstatic) :
         MTGAbility(observer, id, _source, _target), wppt(wppt),PT(PT),nonstatic(nonstatic)
     {
         aType = MTGAbility::STANDARD_PUMP;
         cda = PT.find("cdaactive") != string::npos;
+        triggers = 0;
     }
     
     void Update(float)
@@ -2495,6 +2883,10 @@ public:
             this->forceDestroy = 1;
             return;
         }
+        if (newPhase == MTG_PHASE_AFTER_EOT)
+        {
+            triggers = 0;
+        }
         if(!cda || (cda && (((MTGCardInstance *) target)->isSettingBase < 1)))
         {
             if(((MTGCardInstance *) target)->isSwitchedPT)
@@ -2505,6 +2897,20 @@ public:
             if(PT.size())
                 {
                     SAFE_DELETE(wppt);
+                    char buffer[4];
+                    sprintf(buffer, "%i", triggers);
+                    string trg;
+                    trg.append(buffer);
+                    if(PT.find("numofactivation") != string::npos){
+                        size_t pos = PT.find("numofactivation");
+                        if(pos != string::npos)
+                            PT.replace(pos, 15, trg);
+                    }
+                    if(PT.find("numofactivation") != string::npos){
+                        size_t pos = PT.find("numofactivation");
+                        if(pos != string::npos)
+                            PT.replace(pos, 15, trg);
+                    }
                     if(cda)
                         wppt = NEW WParsedPT(cReplaceString(PT, " cdaactive", ""),NULL,(MTGCardInstance *) source);
                     else
@@ -2522,6 +2928,20 @@ public:
             if(PT.size())
                 {
                     SAFE_DELETE(wppt);
+                    char buffer[4];
+                    sprintf(buffer, "%i", triggers);
+                    string trg;
+                    trg.append(buffer);
+                    if(PT.find("numofactivation") != string::npos){
+                        size_t pos = PT.find("numofactivation");
+                        if(pos != string::npos)
+                            PT.replace(pos, 15, trg);
+                    }
+                    if(PT.find("numofactivation") != string::npos){
+                        size_t pos = PT.find("numofactivation");
+                        if(pos != string::npos)
+                            PT.replace(pos, 15, trg);
+                    }
                     if(cda)
                         wppt = NEW WParsedPT(cReplaceString(PT, " cdaactive", ""),NULL,(MTGCardInstance *) source);
                     else
@@ -2537,6 +2957,20 @@ public:
         if(PT.size())
         {
             SAFE_DELETE(wppt);
+            char buffer[4];
+            sprintf(buffer, "%i", triggers);
+            string trg;
+            trg.append(buffer);
+            if(PT.find("numofactivation") != string::npos){
+                size_t pos = PT.find("numofactivation");
+                if(pos != string::npos)
+                    PT.replace(pos, 15, trg);
+            }
+            if(PT.find("numofactivation") != string::npos){
+                size_t pos = PT.find("numofactivation");
+                if(pos != string::npos)
+                    PT.replace(pos, 15, trg);
+            }
             if(cda)
                 wppt = NEW WParsedPT(cReplaceString(PT, " cdaactive", ""),NULL,(MTGCardInstance *) source);
             else
@@ -2588,6 +3022,20 @@ public:
         if(PT.size())
         {
             SAFE_DELETE(wppt);
+            char buffer[4];
+            sprintf(buffer, "%i", triggers);
+            string trg;
+            trg.append(buffer);
+            if(PT.find("numofactivation") != string::npos){
+                size_t pos = PT.find("numofactivation");
+                if(pos != string::npos)
+                    PT.replace(pos, 15, trg);
+            }
+            if(PT.find("numofactivation") != string::npos){
+                size_t pos = PT.find("numofactivation");
+                if(pos != string::npos)
+                    PT.replace(pos, 15, trg);
+            }
             if(cda)
                 wppt = NEW WParsedPT(cReplaceString(PT, " cdaactive", ""),NULL,(MTGCardInstance *) source);
             else
@@ -2620,7 +3068,7 @@ public:
     int addToGame()
     {
         if(!ability)
-            return 1; //Fix a possible crash on mutate cards 
+            return 1; //Fix a possible crash on mutate cards.
         ability->forceDestroy = -1;
         ability->target = target; //Might have changed since initialization
         ability->addToGame();
@@ -3333,6 +3781,7 @@ private:
     vector<MTGAbility *> currentAbilities;
 
 public:
+    bool isReconfiguration;
     AEquip(GameObserver* observer, int _id, MTGCardInstance * _source, ManaCost * _cost = NULL,
         int restrictions = ActivatedAbility::AS_SORCERY);
     
@@ -3389,9 +3838,11 @@ public:
         ActivatedAbility(observer, _id, _source, _cost, 0), _cardName(cardName), starfound(starfound), multiplier(multiplier), who(who), aLivingWeapon(aLivingWeapon)
     {
         if (!multiplier) this->multiplier = NEW WParsedInt(1);
-        MTGCard * card = MTGCollection()->getCardByName(_cardName);
-        tokenId = card->getId();
-        if (card) name = card->data->getName();
+        MTGCard * card = MTGCollection()->getCardByName(_cardName, _source->setId); // Try to retrieve token id from the same set of source card (e.g. Urza's Saga).
+        if (card) {
+            tokenId = card->getId();
+            name = card->data->getName();
+        }
         battleReady = false;
         andAbility = NULL;
         cID = "";
@@ -3485,7 +3936,6 @@ public:
         }
         for (int i = 0; i < Tokenizer(); ++i)
         {
-            //MTGCardInstance * myToken;
             if (tokenId)
             {
                 MTGCard * card = MTGCollection()->getCardById(tokenId);
@@ -4175,7 +4625,6 @@ public:
     const string getMenuText();
     AAuraIncreaseReduce * clone() const;
     //~AAuraIncreaseReduce();
-
 };
 
 //Modify Hand
@@ -4221,11 +4670,10 @@ public:
 
 };
 
-//lifesetend
-
 class AADamager: public ActivatedAbilityTP
 {
 public:
+    MTGAbility * andAbility;
     string d;
     bool redirected;
 
@@ -4235,7 +4683,7 @@ public:
     const string getMenuText();
     int getDamage();
     AADamager * clone() const;
-
+    ~AADamager();
 };
 
 //prevent next damage
@@ -4264,6 +4712,7 @@ public:
     AAAlterPoison * clone() const;
     ~AAAlterPoison();
 };
+
 //Energy Counter
 class AAAlterEnergy: public ActivatedAbilityTP
 {
@@ -4277,6 +4726,7 @@ public:
     AAAlterEnergy * clone() const;
     ~AAAlterEnergy();
 };
+
 //Experience Counter
 class AAAlterExperience: public ActivatedAbilityTP
 {
@@ -4290,6 +4740,7 @@ public:
     AAAlterExperience * clone() const;
     ~AAAlterExperience();
 };
+
 //Boast Event
 class AABoastEvent: public ActivatedAbilityTP
 {
@@ -4303,6 +4754,7 @@ public:
     AABoastEvent * clone() const;
     ~AABoastEvent();
 };
+
 //Surveil Event
 class AASurveilEvent: public ActivatedAbilityTP
 {
@@ -4316,6 +4768,7 @@ public:
     AASurveilEvent * clone() const;
     ~AASurveilEvent();
 };
+
 //Explores Event
 class AAExploresEvent: public ActivatedAbilityTP
 {
@@ -4329,6 +4782,20 @@ public:
     AAExploresEvent * clone() const;
     ~AAExploresEvent();
 };
+
+//Ring bearer has been chosen
+class AARingBearerChosen : public ActivatedAbility
+{
+public:
+    MTGAbility * andAbility;
+    AARingBearerChosen(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL);
+    int resolve();
+
+    const string getMenuText();
+    AARingBearerChosen * clone() const;
+    ~AARingBearerChosen();
+};
+
 //Dungeon Completed
 class AAAlterDungeonCompleted: public ActivatedAbilityTP
 {
@@ -4342,6 +4809,7 @@ public:
     AAAlterDungeonCompleted * clone() const;
     ~AAAlterDungeonCompleted();
 };
+
 //Yidaro Counter
 class AAAlterYidaroCount: public ActivatedAbilityTP
 {
@@ -4355,6 +4823,21 @@ public:
     AAAlterYidaroCount * clone() const;
     ~AAAlterYidaroCount();
 };
+
+//Ring Temptations
+class AAAlterRingTemptations: public ActivatedAbilityTP
+{
+public:
+    int temptations;
+    MTGAbility * andAbility;
+    AAAlterRingTemptations(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int temptations = 1, ManaCost * _cost = NULL,
+            int who = TargetChooser::UNSET);
+    int resolve();
+    const string getMenuText();
+    AAAlterRingTemptations * clone() const;
+    ~AAAlterRingTemptations();
+};
+
 //Monarch
 class AAAlterMonarch: public ActivatedAbilityTP
 {
@@ -4367,6 +4850,20 @@ public:
     AAAlterMonarch * clone() const;
     ~AAAlterMonarch();
 };
+
+//Initiative
+class AAAlterInitiative: public ActivatedAbilityTP
+{
+public:
+
+    AAAlterInitiative(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost = NULL,
+            int who = TargetChooser::UNSET);
+    int resolve();
+    const string getMenuText();
+    AAAlterInitiative * clone() const;
+    ~AAAlterInitiative();
+};
+
 //Surveil Offset
 class AAAlterSurveilOffset: public ActivatedAbilityTP
 {
@@ -4380,6 +4877,7 @@ public:
     AAAlterSurveilOffset * clone() const;
     ~AAAlterSurveilOffset();
 };
+
 //Devotion Offset
 class AAAlterDevotionOffset: public ActivatedAbilityTP
 {
@@ -4393,6 +4891,7 @@ public:
     AAAlterDevotionOffset * clone() const;
     ~AAAlterDevotionOffset();
 };
+
 /* Standard Damager, can choose a NEW target each time the price is paid */
 class TADamager: public TargetAbility
 {
@@ -4410,6 +4909,7 @@ public:
         return NEW TADamager(*this);
     }
 };
+
 //bestow
 class ABestow : public ActivatedAbility
 {
@@ -4425,21 +4925,25 @@ public:
 class AATapper: public ActivatedAbility
 {
 public:
+    MTGAbility * andAbility;
     bool _sendNoEvent;
     AATapper(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL, bool _sendNoEvent = true);
     int resolve();
     const string getMenuText();
     AATapper * clone() const;
+    ~AATapper();
 };
 
 /* Can untap a target for a cost */
 class AAUntapper: public ActivatedAbility
 {
 public:
+    MTGAbility * andAbility;
     AAUntapper(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL);
     int resolve();
     const string getMenuText();
     AAUntapper * clone() const;
+    ~AAUntapper();
 };
 
 /*announce card X*/
@@ -4492,11 +4996,13 @@ public:
 class AAFrozen: public ActivatedAbility
 {
 public:
+    MTGAbility * andAbility;
     bool freeze;
     AAFrozen(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, bool tap, ManaCost * _cost = NULL);
     int resolve();
     const string getMenuText();
     AAFrozen * clone() const;
+    ~AAFrozen();
 };
 /* ghetto new target*/
 class AANewTarget: public ActivatedAbility
@@ -4507,7 +5013,8 @@ public:
     bool newhook;
     int mutation;
     bool fromplay;
-    AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL, bool retarget = false, bool reequip = false, bool newhook = false, int mutation = 0, bool fromplay = false);
+    bool untap;
+    AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL, bool retarget = false, bool reequip = false, bool newhook = false, int mutation = 0, bool fromplay = false, bool untap = false);
     int resolve();
     const string getMenuText();
     AANewTarget * clone() const;
@@ -4539,12 +5046,14 @@ public:
 class AAMeld : public ActivatedAbility
 {
 public:
+    MTGAbility * andAbility;
     string _MeldedName;
     AAMeld(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string MeldedName = "");
     int resolve();
 
     const string getMenuText();
     AAMeld * clone() const;
+    ~AAMeld();
 };
 
 /* doubleside */
@@ -4923,10 +5432,12 @@ public:
     list<int> oldtypes;
     vector<int> dontremove;
     bool removemc;
+    bool removeAllColors;
     bool addNewColors;
     bool remove;
     bool removeCreatureSubtypes;
     bool removeTypes;
+    bool removeAllSubtypes;
     string menu;
     
     string newpower;
@@ -4941,6 +5452,7 @@ public:
     bool UYNT;
     bool UENT;
     int myCurrentTurn;
+    int controllerId;
     string menutext; //this overrides the previous.
     ATransformer(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower, bool newpowerfound,string newtoughness, bool newtoughnessfound,vector<string> newAbilitiesList, bool newAbilityFound = false, bool aForever = false, bool UYNT = false, bool UENT = false, string menutext = "");
     int addToGame();
@@ -4984,6 +5496,7 @@ public:
     WParsedPT * wppt;
     string s;
     bool nonstatic;
+    int lastTriggeredTurn;
     WParsedPT * newWppt;
     PTInstant(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, WParsedPT * wppt, string s = "", bool nonstatic = false);
     int resolve();
@@ -5322,6 +5835,7 @@ class ASeizeWrapper: public InstantAbility
 {
 public:
     ASeize * ability;
+    MTGAbility * andAbility;
     ASeizeWrapper(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target);
     int resolve();
     const string getMenuText();
@@ -6357,6 +6871,7 @@ public:
 class AADepleter: public ActivatedAbilityTP
 {
 public:
+    MTGAbility * andAbility;
     string nbcardsStr;
     bool toexile;
     bool colorrepeat;
@@ -6366,6 +6881,7 @@ public:
     int resolve();
     const string getMenuText();
     AADepleter * clone() const;
+    ~AADepleter();
 };
 
 
@@ -6402,11 +6918,13 @@ public:
 class AAShuffle: public ActivatedAbilityTP
 {
 public:
+    MTGAbility * andAbility;
     AAShuffle(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost = NULL, int who =
             TargetChooser::UNSET);
     int resolve();
     const string getMenuText();
     AAShuffle * clone() const;
+    ~AAShuffle();
 };
 
 //Mulligan
@@ -6432,7 +6950,6 @@ public:
     const string getMenuText();
     AARemoveMana * clone() const;
     ~AARemoveMana();
-
 };
 
 //Random Discard
@@ -6684,7 +7201,8 @@ public:
     int kicked;
     int costx;
     bool flipped;
-    AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, bool restricted, bool copied, bool _asNormal, string nameCard, string abilityName, bool _noEvent, bool putinplay, bool asNormalMadness = false, bool alternative = false, int kicked = 0, int costx = 0, bool flipped = false);
+    bool flashback;
+    AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, bool restricted, bool copied, bool _asNormal, string nameCard, string abilityName, bool _noEvent, bool putinplay, bool asNormalMadness = false, bool alternative = false, int kicked = 0, int costx = 0, bool flipped = false, bool flashback = false);
 
     int testDestroy(){return 0;};
     void Update(float dt);
@@ -6865,7 +7383,7 @@ public:
     string abilityWin;
     string abilityLose;
     MTGAbility * abilityAltered;
-    AASetCoin(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, int side = -1,string toAdd = "");
+    AASetCoin(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, int side = -1, string toAdd = "");
     int resolve();
     const string getMenuText();
     AASetCoin * clone() const;
@@ -6876,7 +7394,8 @@ class GenericFlipACoin: public ActivatedAbility
 public:
     string baseAbility;
     AASetCoin * setCoin;
-    GenericFlipACoin(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, string toAdd = "", ManaCost * cost = NULL);
+    int userchoice;
+    GenericFlipACoin(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, string toAdd = "", ManaCost * cost = NULL, int userchoice = 0);
     int resolve();
     const string getMenuText();
     GenericFlipACoin * clone() const;

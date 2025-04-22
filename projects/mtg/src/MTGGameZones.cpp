@@ -61,7 +61,7 @@ void MTGPlayerCards::initDeck(MTGDeck * deck)
             {
                 MTGCardInstance * newCard = NEW MTGCardInstance(card, this);
                 //the card is marked as commander ad added to library.
-                newCard->basicAbilities[Constants::ISCOMMANDER] = 1;
+                newCard->isCommander = 1;
                 library->addCard(newCard);
             }
         }
@@ -475,7 +475,8 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
         return card; //Error check
 
     int doCopy = 1;
-    bool shufflelibrary = card->basicAbilities[(int)Constants::SHUFFLELIBRARYDEATH];
+    bool shufflelibrary = false;
+    bool bottomoflibrary = false;
     bool inplaytoinplay = false;
     bool ripToken = false;
     if (card->discarderOwner)
@@ -496,10 +497,13 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     {
         if ((to == g->players[i]->game->graveyard) && (
         card->basicAbilities[(int)Constants::LIBRARYDEATH]||
+        card->basicAbilities[(int)Constants::BOTTOMLIBRARYDEATH]||
         card->basicAbilities[(int)Constants::SHUFFLELIBRARYDEATH]))
         {
             to = g->players[i]->game->library;
-        }
+            shufflelibrary = card->basicAbilities[(int)Constants::SHUFFLELIBRARYDEATH];
+            bottomoflibrary = card->basicAbilities[(int)Constants::BOTTOMLIBRARYDEATH];
+        } 
     }
     //Leyline of the Void, Yawgmoth's Agenda... effect...
     for(int i = 0; i < 2; ++i)
@@ -551,14 +555,40 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     if (!(copy = from->removeCard(card, doCopy)))
         return NULL; //ERROR
 
+    for(int i = 0; i < 2; ++i)
+    {
+        if ((to == g->players[i]->game->battlefield || to == g->players[i]->game->stack) && (
+        card->basicAbilities[(int)Constants::LIBRARYDEATH]||
+        card->basicAbilities[(int)Constants::BOTTOMLIBRARYDEATH]||
+        card->basicAbilities[(int)Constants::SHUFFLELIBRARYDEATH]))
+        {
+            copy->basicAbilities[Constants::LIBRARYDEATH] = card->basicAbilities[Constants::LIBRARYDEATH];
+            copy->basicAbilities[Constants::BOTTOMLIBRARYDEATH] = card->basicAbilities[Constants::BOTTOMLIBRARYDEATH];
+            copy->basicAbilities[Constants::SHUFFLELIBRARYDEATH] = card->basicAbilities[Constants::SHUFFLELIBRARYDEATH];
+        }
+    }
+
     // Set the mana value used to cast this spell
     if((to == g->players[0]->game->stack || to == g->players[1]->game->stack) && card->getManaCost() && card->getManaCost()->getManaUsedToCast()){
         copy->getManaCost()->setManaUsedToCast(NEW ManaCost());
         copy->getManaCost()->getManaUsedToCast()->copy(card->getManaCost()->getManaUsedToCast());
     }
 
-    if(!card->hasType(Subtypes::TYPE_LEGENDARY) && copy->hasType(Subtypes::TYPE_LEGENDARY)) // This fix issue when cloning a card with nolegend option (e.g. Double Major)
+    if(card->name == copy->name && !card->hasType(Subtypes::TYPE_LEGENDARY) && copy->hasType(Subtypes::TYPE_LEGENDARY)) // This fix issue when cloning a card with nolegend option (e.g. Double Major)
         copy->removeType(Subtypes::TYPE_LEGENDARY);
+
+    // This fix issue types problem when card change zone with different card types than its original version (e.g. double face cards or cards that gained new types before to change zone).
+    std::vector<int> realTypes;
+    string realName = copy->name;
+    if(doCopy && !asCopy && !inplaytoinplay && !card->isMorphed && ((copy->types.size() != card->types.size()) || ((copy->types.size() == card->types.size()) && (!equal(copy->types.begin(), copy->types.end(), card->types.begin())))) ){
+        realTypes = copy->types;
+        copy->types = card->types;
+        copy->mPropertiesChangedSinceLastUpdate = false;
+    }
+
+    // This fix issue when card changes zone with different name than its original version (e.g. double face cards).
+    if(doCopy && !asCopy && !inplaytoinplay && copy->name != card->name)
+        copy->name = card->name;
 
     // Copy all the counters of the original card... (solving the bug on comparison cards with counter before zone changing events)
     if(card->counters && doCopy && !asCopy && !inplaytoinplay){
@@ -654,12 +684,12 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
         if (copy->previous && copy->previous->MeldedFrom.size() && !copy->isACopier && !copy->isToken)//!copier & !token fix kiki-jiki clones crash
         {
             vector<string> names = split(copy->previous->MeldedFrom, '|');
-            MTGCard * cardone = MTGCollection()->getCardByName(names[0]);
+            MTGCard * cardone = MTGCollection()->getCardByName(names[0], copy->setId);
             MTGCardInstance * cardOne = NEW MTGCardInstance(cardone, copy->owner->game);
             to->addCard(cardOne);
             WEvent * e = NEW WEventZoneChange(cardOne, from, to);
             g->receiveEvent(e);
-            MTGCard * cardtwo = MTGCollection()->getCardByName(names[1]);
+            MTGCard * cardtwo = MTGCollection()->getCardByName(names[1], copy->setId);
             MTGCardInstance * cardTwo = NEW MTGCardInstance(cardtwo, copy->owner->game);
             to->addCard(cardTwo);
             WEvent * e2 = NEW WEventZoneChange(cardTwo, from, to);
@@ -728,7 +758,21 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     if(!asCopy)
     {
         if(shufflelibrary)
-            copy->owner->game->library->shuffle();//shouldnt we only ever do this if you clicked close on your library gui??????
+            copy->owner->game->library->shuffle();
+
+        if(bottomoflibrary){
+            MTGLibrary * library = copy->owner->game->library;
+            vector<MTGCardInstance *>oldOrder = library->cards;
+            vector<MTGCardInstance *>newOrder;
+            newOrder.push_back(copy);
+            for(unsigned int k = 0;k < oldOrder.size();++k)
+            {
+                MTGCardInstance * rearranged = oldOrder[k];
+                if(rearranged != copy)
+                    newOrder.push_back(rearranged);
+            }
+            library->cards = newOrder;
+        }
 
         if(copy->has(Constants::ADVENTURE) && copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_ALTERNATIVE] == 1 && //Added to correctly set the adventure cards type on stack.
             (to == g->players[0]->game->stack || to == g->players[1]->game->stack)){
@@ -756,6 +800,17 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
         // Reset the haunted status... (if the creature is moving from battlefield is no longer a prey)
         if(doCopy && !inplaytoinplay && copy->has(Constants::ISPREY))
             copy->basicAbilities[Constants::ISPREY] = 0;
+
+        // Reset original types when card changes zone with different card types than its original version (e.g. double face cards).
+        if(doCopy && !inplaytoinplay && realTypes.size()){
+            copy->types = realTypes;
+            realTypes.clear();
+            copy->mPropertiesChangedSinceLastUpdate = false;
+        }
+
+        // Reset the original name when card changes zone with different name than its original version (e.g. double face cards).
+        if(doCopy && !inplaytoinplay && copy->name != realName)
+            copy->name = realName;
 
         // Erasing counters from copy after the event has been triggered (no counter can survive to a zone changing except the perpetual ones)
         if(doCopy && !inplaytoinplay && copy->counters && copy->counters->mCount > 0){
@@ -891,7 +946,7 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy
                 copy->storedSourceCard = card->storedSourceCard;
                 copy->lastController = card->controller();
                 copy->previousController = card->controller();
-                copy->basicAbilities[Constants::ISCOMMANDER] = (card->basicAbilities[Constants::ISCOMMANDER] | card->basicAbilities[Constants::WASCOMMANDER]);
+                copy->isCommander = card->isCommander;
                 copy->basicAbilities[Constants::GAINEDEXILEDEATH] = card->basicAbilities[Constants::GAINEDEXILEDEATH];
                 copy->basicAbilities[Constants::GAINEDHANDDEATH] = card->basicAbilities[Constants::GAINEDHANDDEATH];
                 copy->basicAbilities[Constants::GAINEDDOUBLEFACEDEATH] = card->basicAbilities[Constants::GAINEDDOUBLEFACEDEATH];

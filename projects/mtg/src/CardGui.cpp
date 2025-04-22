@@ -257,9 +257,11 @@ void CardGui::Render()
             if(game)
             {
                 if(card->has(Constants::PAYZERO) ||
-                ((card->has(Constants::CANPLAYFROMGRAVEYARD) || card->has(Constants::TEMPFLASHBACK) || card->getManaCost()->getFlashback() || card->getManaCost()->getRetrace()) && game->isInGrave(card)) ||
-                (((card->has(Constants::FORETELL) && card->foretellTurn > -1 && game->turn > card->foretellTurn) || card->has(Constants::CANPLAYFROMEXILE)) && game->isInExile(card)))
-                    fakeborder->SetColor(ARGB((int)(actA),7,235,7));//green border
+                    ((card->has(Constants::CANPLAYFROMGRAVEYARD) || card->has(Constants::TEMPFLASHBACK) || card->getManaCost()->getFlashback() || card->getManaCost()->getRetrace()) && game->isInGrave(card)) ||
+                    (((card->has(Constants::FORETELL) && card->foretellTurn > -1 && game->turn > card->foretellTurn) || card->has(Constants::CANPLAYFROMEXILE)) && game->isInExile(card)))
+                    fakeborder->SetColor(ARGB((int)(actA),7,235,7)); //green border
+                else if(card->isCommander)
+                    fakeborder->SetColor(ARGB((int)(actA),255,255,255)); //white border for commanders
                 else
                     fakeborder->SetColor(ARGB((int)(actA),15,15,15));
             }
@@ -1520,7 +1522,19 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                         cd.unsecureSetHasKickerCost(1);
                     }
                 }
-                //Has kicker cost
+                //Has convoke cost
+                else if (attribute.find("hasconvoke") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.unsecureSetHasConvokeCost(-1);
+                    }
+                    else
+                    {
+                        cd.unsecureSetHasConvokeCost(1);
+                    }
+                }
+                //Has flashback cost
                 else if (attribute.find("hasflashback") != string::npos)
                 {
                     if (minus)
@@ -1544,6 +1558,30 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                         cd.unsecureSetHasBackSide(1);
                     }
                 }
+                //Is modified
+                else if (attribute.find("modified") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.unsecureSetModified(-1);
+                    }
+                    else
+                    {
+                        cd.unsecureSetModified(1);
+                    }
+                }
+                //Has toxic
+                else if (attribute.find("hastoxic") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.unsecureSetHasToxic(-1);
+                    }
+                    else
+                    {
+                        cd.unsecureSetHasToxic(1);
+                    }
+                }
                 //Has partner
                 else if (attribute.find("haspartner") != string::npos)
                 {
@@ -1554,6 +1592,18 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                     else
                     {
                         cd.unsecureSetHasPartner(1);
+                    }
+                }
+                //Is a permanent
+                else if (attribute.find("permanent") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.unsecureSetIsPermanent(-1);
+                    }
+                    else
+                    {
+                        cd.unsecureSetIsPermanent(1);
                     }
                 }
                 //Token
@@ -1578,6 +1628,30 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                     else
                     {
                         cd.isFlipped = 1;
+                    }
+                }
+                //Card is commander
+                else if (attribute.find("iscommander") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.isCommander = -1;
+                    }
+                    else
+                    {
+                        cd.isCommander = 1;
+                    }
+                }
+                //Card is Ring bearer
+                else if (attribute.find("ringbearer") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.isRingBearer = -1;
+                    }
+                    else
+                    {
+                        cd.isRingBearer = 1;
                     }
                 }
                 //Has x in cost
@@ -1737,6 +1811,12 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                     }
 
                 }
+                else if (attribute.find("numofcols") != string::npos)
+                {
+                    //Number of color restrictions
+                    cd.numofColors = comparisonCriterion;
+                    cd.numofColorsComparisonMode = comparisonMode;
+                }
                 else if (attribute.find("power") != string::npos)
                 {
                     //Power restrictions
@@ -1845,9 +1925,13 @@ void CardGui::RenderCountersBig(MTGCard * mtgcard, const Pos& pos, int drawMode)
     if (!card)
         return;
 
-    if (!card->counters)
+    int ringTemptations = 0;
+    if(card->controller())
+        ringTemptations = card->controller()->ringTemptations;
+
+    if (!card->counters && !ringTemptations)
         return;
-    if (!card->counters->mCount)
+    if (!card->counters->mCount && !ringTemptations)
         return;
 
     // Write Named Counters
@@ -1862,6 +1946,73 @@ void CardGui::RenderCountersBig(MTGCard * mtgcard, const Pos& pos, int drawMode)
         i = txt.size() + 1;
     }
     
+    if (ringTemptations > 0 && card->name == "The Ring") // Added a label on Ring to show the number of temptations.
+    {
+        char buf[512];
+        bool renderText = true;
+        string gfx = "";
+        if (counterGraphics.find("temptations") == counterGraphics.end())
+        {
+            string gfxRelativeName = "counters/";
+            gfxRelativeName.append("temptations");
+            gfxRelativeName.append(".png");
+            string _gfx = WResourceManager::Instance()->graphicsFile(gfxRelativeName);
+            if (!fileExists(_gfx.c_str()))
+                _gfx = "";
+            counterGraphics["temptations"] = _gfx;
+        }
+        gfx = counterGraphics["temptations"];
+        if (gfx.size())
+            renderText = false;
+           
+        if (renderText)
+        {
+            std::string s = "temptations";
+            s[0] = toupper(s[0]);
+            sprintf(buf, _("%s: %i").c_str(), s.c_str(), ringTemptations);
+        }
+        
+        if (!gfx.size())
+        {
+            gfx = "counters/default.png";
+        }
+        
+        float x = pos.actX + (22 - BigWidth / 2) * pos.actZ;
+        float y =  pos.actY + (-BigHeight / 2 + 80 + 11 * i + 21 * 0) * pos.actZ;
+        if (y > pos.actY + 105) 
+        {
+           y =  (-BigHeight / 2 + 80 + 11 * i) * pos.actZ + (y - 105 - 21);
+           x +=  (BigWidth / 2) * pos.actZ;
+        }
+
+        if (gfx.size())
+        {
+            JQuadPtr q = WResourceManager::Instance()->RetrieveTempQuad(gfx);
+
+            if (q.get() && q->mTex)
+            {
+                float scale = 20.f / q->mHeight;
+                if (renderText)
+                {
+                    float scaleX = (font->GetStringWidth(buf) + 20) / q->mWidth;
+                    JRenderer::GetInstance()->RenderQuad(q.get(), x, y, 0, scaleX, scale);
+                }
+                else
+                {
+                    JRenderer::GetInstance()->RenderQuad(q.get(), x + (scale * q->mWidth * 0), y, 0, scale, scale);
+                }
+            }
+        }
+
+        if (renderText)
+        {
+            font->SetColor(ARGB(255,0,0,0));
+            font->DrawString(buf, x + 5, y + 5);
+        }
+
+        return; // No need to check counters on The Ring.
+    }
+
     for (size_t t = 0; t < card->counters->counters.size(); t++)
     {
         Counter * c = card->counters->counters[t];

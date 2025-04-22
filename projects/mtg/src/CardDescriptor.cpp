@@ -3,6 +3,8 @@
 #include "CardDescriptor.h"
 #include "Subtypes.h"
 #include "Counters.h"
+#include "ExtraCost.h"
+#include "WParsedInt.h"
 
 CardDescriptor::CardDescriptor()
     :  MTGCardInstance(), mColorExclusions(0)
@@ -20,14 +22,20 @@ CardDescriptor::CardDescriptor()
     manacostComparisonMode = COMPARISON_NONE;
     counterComparisonMode = COMPARISON_NONE;
     convertedManacost = -1;
+    numofColorsComparisonMode = COMPARISON_NONE;
+    numofColors = -1;
     zposComparisonMode = COMPARISON_NONE;
     zposition = -1;
     hasKickerCost = 0;
+    hasConvokeCost = 0;
     hasFlashbackCost = 0;
     hasBackSide = 0;
     hasPartner = 0;
+    isPermanent = 0;
+    modified = 0;
+    toxicity = 0;
     hasXCost = 0;
-    compareName ="";
+    compareName = "";
     nameComparisonMode = COMPARISON_NONE;
     colorComparisonMode = COMPARISON_NONE;
     CDopponentDamaged = 0;
@@ -69,6 +77,11 @@ void CardDescriptor::unsecureSetHasKickerCost(int k)
     hasKickerCost = k;
 }
 
+void CardDescriptor::unsecureSetHasConvokeCost(int k)
+{
+    hasConvokeCost = k;
+}
+
 void CardDescriptor::unsecureSetHasFlashbackCost(int k)
 {
     hasFlashbackCost = k;
@@ -79,9 +92,24 @@ void CardDescriptor::unsecureSetHasBackSide(int k)
     hasBackSide = k;
 }
 
+void CardDescriptor::unsecureSetModified(int k)
+{
+    modified = k;
+}
+
+void CardDescriptor::unsecureSetHasToxic(int k)
+{
+    toxicity = k;
+}
+
 void CardDescriptor::unsecureSetHasPartner(int k)
 {
     hasPartner = k;
+}
+
+void CardDescriptor::unsecureSetIsPermanent(int k)
+{
+    isPermanent = k;
 }
 
 void CardDescriptor::unsecureSetTapped(int i)
@@ -181,8 +209,27 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card)
         return NULL;
     if (powerComparisonMode && !valueInRange(powerComparisonMode, card->getPower(), power))
         return NULL;
-    if (toughnessComparisonMode && !valueInRange(toughnessComparisonMode, card->getToughness(), toughness))
-        return NULL;
+    if (toughnessComparisonMode){ // Toughness comparison has a different meaning for planeswalkers and battles.
+        if(!card->isCreature() && card->counters && (card->hasType(Subtypes::TYPE_PLANESWALKER) || card->hasType(Subtypes::TYPE_BATTLE))){
+            for(size_t i = 0; i < card->counters->counters.size(); ++i){
+                if((card->counters->counters[i]->name == "loyalty" && card->hasType(Subtypes::TYPE_PLANESWALKER)) || (card->counters->counters[i]->name == "defense" && card->hasType(Subtypes::TYPE_BATTLE))){
+                    if(!valueInRange(toughnessComparisonMode, card->counters->counters[i]->nb, toughness))
+                        return NULL;
+                }
+            }
+        } else if(!valueInRange(toughnessComparisonMode, card->getToughness(), toughness))
+            return NULL;
+    }
+    if (numofColorsComparisonMode){
+        int totalcolor = 0;
+        WParsedInt* value = NEW WParsedInt("mycolnum", NULL, card);
+        if(value){
+            totalcolor = value->getValue();
+            SAFE_DELETE(value);
+        }
+        if(!valueInRange(numofColorsComparisonMode, totalcolor, numofColors))
+            return NULL;
+    }
     if (manacostComparisonMode && !valueInRange(manacostComparisonMode, card->myconvertedcost, convertedManacost))
         return NULL;
     if (zposComparisonMode && !valueInRange(zposComparisonMode, card->zpos, zposition))
@@ -229,8 +276,27 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card)
         match = NULL;
     if (powerComparisonMode && !valueInRange(powerComparisonMode, card->getPower(), power))
         match = NULL;
-    if (toughnessComparisonMode && !valueInRange(toughnessComparisonMode, card->getToughness(), toughness))
-        match = NULL;
+    if (toughnessComparisonMode){ // Toughness comparison has a different meaning for planeswalkers and battles.
+       if(!card->isCreature() && card->counters && (card->hasType(Subtypes::TYPE_PLANESWALKER) || card->hasType(Subtypes::TYPE_BATTLE))){
+            for(size_t i = 0; i < card->counters->counters.size(); ++i){
+                if((card->counters->counters[i]->name == "loyalty" && card->hasType(Subtypes::TYPE_PLANESWALKER)) || (card->counters->counters[i]->name == "defense" && card->hasType(Subtypes::TYPE_BATTLE))){
+                    if(!valueInRange(toughnessComparisonMode, card->counters->counters[i]->nb, toughness))
+                        return NULL;
+                }
+            }
+        } else if(!valueInRange(toughnessComparisonMode, card->getToughness(), toughness))
+            return NULL;
+    }
+    if (numofColorsComparisonMode){
+        int totalcolor = 0;
+        WParsedInt* value = NEW WParsedInt("mycolnum", NULL, card);
+        if(value){
+            totalcolor = value->getValue();
+            SAFE_DELETE(value);
+        }
+        if(!valueInRange(numofColorsComparisonMode, totalcolor, numofColors))
+            return NULL;
+    }
     if (manacostComparisonMode && !valueInRange(manacostComparisonMode, card->myconvertedcost, convertedManacost))
         match = NULL;
     if (zposComparisonMode && !valueInRange(zposComparisonMode, card->zpos, zposition))
@@ -278,6 +344,26 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     if (excludedSet.any())
         return NULL;
 
+    if (hasConvokeCost != 0){
+        bool hasConvoke = false;
+        ManaCost * extra = card->getManaCost()->getAlternative(); 
+        if(extra && extra->extraCosts){
+            for(unsigned int i = 0; i < extra->extraCosts->costs.size() && !hasConvoke; i++){
+                if(dynamic_cast<Convoke*> (extra->extraCosts->costs[i]))
+                    hasConvoke = true;
+            }
+        }
+        if ((hasConvokeCost == -1 && hasConvoke) || (hasConvokeCost == 1 && !hasConvoke))
+        {
+            match = NULL;
+        }
+    }
+
+    if ((modified == -1 && ((card->enchanted) || (card->equipment > 0) || (card->counters->mCount))) || (modified == 1 && !((card->enchanted) || (card->equipment > 0) || (card->counters->mCount))))
+    {
+        match = NULL;
+    }
+
     if ((hasKickerCost == -1 && ((card->getManaCost()->getKicker() && !card->basicAbilities[Constants::HASNOKICKER]) || (!card->getManaCost()->getKicker() && card->basicAbilities[Constants::HASOTHERKICKER]))) || (hasKickerCost == 1 && !((card->getManaCost()->getKicker() && !card->basicAbilities[Constants::HASNOKICKER]) || (!card->getManaCost()->getKicker() && card->basicAbilities[Constants::HASOTHERKICKER]))))
     {
         match = NULL; //Some kicker costs are not a real kicker (e.g. Fuse cost).
@@ -293,7 +379,17 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
         match = NULL;
     }
 
+    if ((toxicity == -1 && card->getToxicity() > 0) || (toxicity == 1 && card->getToxicity() == 0))
+    {
+        match = NULL;
+    }
+
     if ((hasPartner == -1 && card->partner != "") || (hasPartner == 1 && card->partner == ""))
+    {
+        match = NULL;
+    }
+
+    if ((isPermanent == -1 && card->isPermanent()) || (isPermanent == 1 && !card->isPermanent()))
     {
         match = NULL;
     }
@@ -304,6 +400,16 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     }
 
     if ((isFlipped == -1 && card->isFlipped > 0) || (isFlipped == 1 && card->isFlipped == 0))
+    {
+        match = NULL;
+    }
+
+    if ((isCommander == -1 && card->isCommander > 0) || (isCommander == 1 && card->isCommander == 0))
+    {
+        match = NULL;
+    }
+
+    if ((isRingBearer == -1 && card->isRingBearer > 0) || (isRingBearer == 1 && card->isRingBearer == 0))
     {
         match = NULL;
     }
@@ -366,6 +472,7 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
         if (count)
             match = NULL;
     }
+
     if (CDcanProduceC == 1)
     {
         int count = card->canproduceMana(Constants::MTG_COLOR_ARTIFACT) + card->canproduceMana(Constants::MTG_COLOR_WASTE);
@@ -413,24 +520,27 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     {
         match = NULL;
     }
-        if ((isLeveler == -1 && card->isLeveler) || (isLeveler == 1 && !card->isLeveler))
-        {
-            match = NULL;
-        }
-        if ((CDenchanted == -1 && card->enchanted) || (CDenchanted == 1 && !card->enchanted))
-        {
-            match = NULL;
-        }
-        if ((CDdamaged == -1 && card->wasDealtDamage > 0) || (CDdamaged == 1 && card->wasDealtDamage == 0))
-        {
-            match = NULL;
-        }
 
-        if ((CDdamager == -1 && (card->damageToOpponent > 0 || card->damageToController > 0 || card->damageToCreature > 0)) 
-                || (CDdamager == 1 && !(card->damageToOpponent > 0 || card->damageToController > 0 || card->damageToCreature > 0)))
-        {
-            match = NULL;
-        }
+    if ((isLeveler == -1 && card->isLeveler) || (isLeveler == 1 && !card->isLeveler))
+    {
+        match = NULL;
+    }
+
+    if ((CDenchanted == -1 && card->enchanted) || (CDenchanted == 1 && !card->enchanted))
+    {
+        match = NULL;
+    }
+
+    if ((CDdamaged == -1 && card->wasDealtDamage > 0) || (CDdamaged == 1 && card->wasDealtDamage == 0))
+    {
+        match = NULL;
+    }
+
+    if ((CDdamager == -1 && (card->damageToOpponent > 0 || card->damageToController > 0 || card->damageToCreature > 0)) 
+            || (CDdamager == 1 && !(card->damageToOpponent > 0 || card->damageToController > 0 || card->damageToCreature > 0)))
+    {
+        match = NULL;
+    }
 
     if(CDopponentDamaged == -1 || CDopponentDamaged == 1 || CDcontrollerDamaged == -1 || CDcontrollerDamaged == 1)
     {
@@ -450,10 +560,12 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
             match = NULL;
         }
     }
-        if ((isToken == -1 && card->isToken) || (isToken == 1 && !card->isToken))
-        {
-            match = NULL;
-        }
+
+    if ((isToken == -1 && card->isToken) || (isToken == 1 && !card->isToken))
+    {
+        match = NULL;
+    }
+
     if (attacker == 1)
     {
         if (defenser == &AnyCard)

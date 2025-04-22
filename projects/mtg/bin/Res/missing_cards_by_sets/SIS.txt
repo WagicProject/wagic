@@ -1,0 +1,25 @@
+[card]
+name=Sigarda, Host of Herons
+abilities=flying,opponentshroud
+text=Flying, hexproof -- Spells and abilities your opponents control can't cause you to sacrifice permanents.
+mana={2}{G}{W}{W}
+type=Legendary Creature
+subtype=Angel
+power=5
+toughness=5
+[/card]
+[card]
+name=Havengul Lich
+text={1}: You may cast target creature card in a graveyard this turn. When you cast that card this turn, Havengul Lich gains all activated abilities of that card until end of turn.
+mana={3}{U}{B}
+type=Creature
+subtype=Zombie Wizard
+power=4
+toughness=4
+[/card]
+[card]
+name=Divine Reckoning
+text=Each player chooses a creature he or she controls. Destroy the rest. -- Flashback {5}{W}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={2}{W}{W}
+type=Sorcery
+[/card]

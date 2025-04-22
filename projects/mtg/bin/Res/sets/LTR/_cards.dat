@@ -1,0 +1,3746 @@
+[meta]
+author=Wagic Team
+name=The Lord of the Rings: Tales of Middle-earth
+year=2023-06-23
+total=854
+[/meta]
+[card]
+primitive=The Ring
+id=-999906
+rarity=T
+[/card]
+[card]
+primitive=Banish from Edoras
+id=616831
+rarity=C
+[/card]
+[card]
+primitive=The Battle of Bywater
+id=616832
+rarity=R
+[/card]
+[card]
+primitive=Bill the Pony
+id=616833
+rarity=U
+[/card]
+[card]
+primitive=Boromir, Warden of the Tower
+id=616834
+rarity=R
+[/card]
+[card]
+primitive=Dawn of a New Age
+id=616835
+rarity=M
+[/card]
+[card]
+primitive=Dunedain Blade
+id=616836
+rarity=C
+[/card]
+[card]
+primitive=Eagles of the North
+id=616837
+rarity=C
+[/card]
+[card]
+primitive=Eastfarthing Farmer
+id=616838
+rarity=C
+[/card]
+[card]
+primitive=East-Mark Cavalier
+id=616839
+rarity=C
+[/card]
+[card]
+primitive=Eowyn, Lady of Rohan
+id=616840
+rarity=U
+[/card]
+[card]
+primitive=Errand-Rider of Gondor
+id=616841
+rarity=C
+[/card]
+[card]
+primitive=Escape from Orthanc
+id=616842
+rarity=C
+[/card]
+[card]
+primitive=Esquire of the King
+id=616843
+rarity=C
+[/card]
+[card]
+primitive=Faramir, Field Commander
+id=616844
+rarity=U
+[/card]
+[card]
+primitive=Flowering of the White Tree
+id=616845
+rarity=R
+[/card]
+[card]
+primitive=Fog on the Barrow-Downs
+id=616846
+rarity=C
+[/card]
+[card]
+primitive=Forge Anew
+id=616847
+rarity=R
+[/card]
+[card]
+primitive=Frodo, Sauron's Bane
+id=616848
+rarity=R
+[/card]
+[card]
+primitive=Gandalf the White
+id=616849
+rarity=M
+[/card]
+[card]
+primitive=Hobbit's Sting
+id=616850
+rarity=C
+[/card]
+[card]
+primitive=Landroval, Horizon Witness
+id=616851
+rarity=U
+[/card]
+[card]
+primitive=Lost to Legend
+id=616852
+rarity=U
+[/card]
+[card]
+primitive=Nimble Hobbit
+id=616853
+rarity=C
+[/card]
+[card]
+primitive=Now for Wrath, Now for Ruin!
+id=616854
+rarity=C
+[/card]
+[card]
+primitive=Protector of Gondor
+id=616855
+rarity=C
+[/card]
+[card]
+primitive=Reprieve
+id=616856
+rarity=U
+[/card]
+[card]
+primitive=Rosie Cotton of South Lane
+id=616857
+rarity=U
+[/card]
+[card]
+primitive=Samwise the Stouthearted
+id=616858
+rarity=U
+[/card]
+[card]
+primitive=Second Breakfast
+id=616859
+rarity=C
+[/card]
+[card]
+primitive=Shire Shirriff
+id=616860
+rarity=U
+[/card]
+[card]
+primitive=Slip On the Ring
+id=616861
+rarity=C
+[/card]
+[card]
+primitive=Soldier of the Grey Host
+id=616862
+rarity=C
+[/card]
+[card]
+primitive=Stalwarts of Osgiliath
+id=616863
+rarity=C
+[/card]
+[card]
+primitive=Tale of Tinuviel
+id=616864
+rarity=U
+[/card]
+[card]
+primitive=Took Reaper
+id=616865
+rarity=C
+[/card]
+[card]
+primitive=War of the Last Alliance
+id=616866
+rarity=R
+[/card]
+[card]
+primitive=Westfold Rider
+id=616867
+rarity=C
+[/card]
+[card]
+primitive=You Cannot Pass!
+id=616868
+rarity=U
+[/card]
+[card]
+primitive=Arwen's Gift
+id=616869
+rarity=C
+[/card]
+[card]
+primitive=The Bath Song
+id=616870
+rarity=U
+[/card]
+[card]
+primitive=Bewitching Leechcraft
+id=616871
+rarity=C
+[/card]
+[card]
+primitive=Bill Ferny, Bree Swindler
+id=616872
+rarity=U
+[/card]
+[card]
+primitive=Birthday Escape
+id=616873
+rarity=C
+[/card]
+[card]
+primitive=Borne Upon a Wind
+id=616874
+rarity=R
+[/card]
+[card]
+primitive=Captain of Umbar
+id=616875
+rarity=C
+[/card]
+[card]
+primitive=Council's Deliberation
+id=616876
+rarity=U
+[/card]
+[card]
+primitive=Deceive the Messenger
+id=616877
+rarity=C
+[/card]
+[card]
+primitive=Dreadful as the Storm
+id=616878
+rarity=C
+[/card]
+[card]
+primitive=Elrond, Lord of Rivendell
+id=616879
+rarity=U
+[/card]
+[card]
+primitive=Gandalf, Friend of the Shire
+id=616880
+rarity=U
+[/card]
+[card]
+primitive=Glorious Gale
+id=616881
+rarity=C
+[/card]
+[card]
+primitive=Goldberry, River-Daughter
+id=616882
+rarity=R
+[/card]
+[card]
+primitive=Grey Havens Navigator
+id=616883
+rarity=C
+[/card]
+[card]
+primitive=Hithlain Knots
+id=616884
+rarity=C
+[/card]
+[card]
+primitive=Horses of the Bruinen
+id=616885
+rarity=U
+[/card]
+[card]
+primitive=Ioreth of the Healing House
+id=616886
+rarity=U
+[/card]
+[card]
+primitive=Isolation at Orthanc
+id=616887
+rarity=C
+[/card]
+[card]
+primitive=Ithilien Kingfisher
+id=616888
+rarity=C
+[/card]
+[card]
+primitive=Knights of Dol Amroth
+id=616889
+rarity=C
+[/card]
+[card]
+primitive=Lorien Revealed
+id=616890
+rarity=C
+[/card]
+[card]
+primitive=Lost Isle Calling
+id=616891
+rarity=R
+[/card]
+[card]
+primitive=Meneldor, Swift Savior
+id=616892
+rarity=U
+[/card]
+[card]
+primitive=Nimrodel Watcher
+id=616893
+rarity=C
+[/card]
+[card]
+primitive=Pelargir Survivor
+id=616894
+rarity=C
+[/card]
+[card]
+primitive=Press the Enemy
+id=616895
+rarity=R
+[/card]
+[card]
+primitive=Rangers of Ithilien
+id=616896
+rarity=R
+[/card]
+[card]
+primitive=Saruman the White
+id=616897
+rarity=U
+[/card]
+[card]
+primitive=Saruman's Trickery
+id=616898
+rarity=U
+[/card]
+[card]
+primitive=Scroll of Isildur
+id=616899
+rarity=R
+[/card]
+[card]
+primitive=Soothing of Smeagol
+id=616900
+rarity=C
+[/card]
+[card]
+primitive=Stern Scolding
+id=616901
+rarity=U
+[/card]
+[card]
+primitive=Storm of Saruman
+id=616902
+rarity=M
+[/card]
+[card]
+primitive=Surrounded by Orcs
+id=616903
+rarity=C
+[/card]
+[card]
+primitive=Treason of Isengard
+id=616904
+rarity=C
+[/card]
+[card]
+primitive=The Watcher in the Water
+id=616905
+rarity=M
+[/card]
+[card]
+primitive=Willow-Wind
+id=616906
+rarity=C
+[/card]
+[card]
+primitive=Bitter Downfall
+id=616907
+rarity=U
+[/card]
+[card]
+primitive=The Black Breath
+id=616908
+rarity=C
+[/card]
+[card]
+primitive=Call of the Ring
+id=616909
+rarity=R
+[/card]
+[card]
+primitive=Cirith Ungol Patrol
+id=616910
+rarity=C
+[/card]
+[card]
+primitive=Claim the Precious
+id=616911
+rarity=C
+[/card]
+[card]
+primitive=Dunland Crebain
+id=616912
+rarity=C
+[/card]
+[card]
+primitive=Easterling Vanguard
+id=616913
+rarity=C
+[/card]
+[card]
+primitive=Gollum, Patient Plotter
+id=616914
+rarity=U
+[/card]
+[card]
+primitive=Gollum's Bite
+id=616915
+rarity=U
+[/card]
+[card]
+primitive=Gorbag of Minas Morgul
+id=616916
+rarity=U
+[/card]
+[card]
+primitive=Gothmog, Morgul Lieutenant
+id=616917
+rarity=U
+[/card]
+[card]
+primitive=Grima Wormtongue
+id=616918
+rarity=U
+[/card]
+[card]
+primitive=Grond, the Gatebreaker
+id=616919
+rarity=U
+[/card]
+[card]
+primitive=Haunt of the Dead Marshes
+id=616920
+rarity=C
+[/card]
+[card]
+primitive=Isildur's Fateful Strike
+id=616921
+rarity=R
+[/card]
+[card]
+primitive=Lash of the Balrog
+id=616922
+rarity=C
+[/card]
+[card]
+primitive=Lobelia Sackville-Baggins
+id=616923
+rarity=R
+[/card]
+[card]
+primitive=March from the Black Gate
+id=616924
+rarity=U
+[/card]
+[card]
+primitive=Mirkwood Bats
+id=616925
+rarity=C
+[/card]
+[card]
+primitive=Mordor Muster
+id=616926
+rarity=C
+[/card]
+[card]
+primitive=Mordor Trebuchet
+id=616927
+rarity=C
+[/card]
+[card]
+primitive=Morgul-Knife Wound
+id=616928
+rarity=C
+[/card]
+[card]
+primitive=Nasty End
+id=616929
+rarity=C
+[/card]
+[card]
+primitive=Nazgul
+id=616930
+rarity=U
+[/card]
+[card]
+primitive=Oath of the Grey Host
+id=616931
+rarity=U
+[/card]
+[card]
+primitive=One Ring to Rule Them All
+id=616932
+rarity=R
+[/card]
+[card]
+primitive=Orcish Bowmasters
+id=616933
+rarity=R
+[/card]
+[card]
+primitive=Orcish Medicine
+id=616934
+rarity=C
+[/card]
+[card]
+primitive=Sam's Desperate Rescue
+id=616935
+rarity=C
+[/card]
+[card]
+primitive=Sauron, the Necromancer
+id=616936
+rarity=R
+[/card]
+[card]
+primitive=Shadow of the Enemy
+id=616937
+rarity=M
+[/card]
+[card]
+primitive=Shelob's Ambush
+id=616938
+rarity=C
+[/card]
+[card]
+primitive=Snarling Warg
+id=616939
+rarity=C
+[/card]
+[card]
+primitive=The Torment of Gollum
+id=616940
+rarity=C
+[/card]
+[card]
+primitive=Troll of Khazad-dum
+id=616941
+rarity=C
+[/card]
+[card]
+primitive=Uruk-hai Berserker
+id=616942
+rarity=C
+[/card]
+[card]
+primitive=Voracious Fell Beast
+id=616943
+rarity=U
+[/card]
+[card]
+primitive=Witch-king of Angmar
+id=616944
+rarity=M
+[/card]
+[card]
+primitive=Battle-Scarred Goblin
+id=616945
+rarity=C
+[/card]
+[card]
+primitive=Book of Mazarbul
+id=616946
+rarity=U
+[/card]
+[card]
+primitive=Breaking of the Fellowship
+id=616947
+rarity=C
+[/card]
+[card]
+primitive=Cast into the Fire
+id=616948
+rarity=C
+[/card]
+[card]
+primitive=Display of Power
+id=616949
+rarity=R
+[/card]
+[card]
+primitive=Eomer, Marshal of Rohan
+id=616950
+rarity=R
+[/card]
+[card]
+primitive=Eomer of the Riddermark
+id=616951
+rarity=U
+[/card]
+[card]
+primitive=Erebor Flamesmith
+id=616952
+rarity=C
+[/card]
+[card]
+primitive=Erkenbrand, Lord of Westfold
+id=616953
+rarity=U
+[/card]
+[card]
+primitive=Fall of Cair Andros
+id=616954
+rarity=R
+[/card]
+[card]
+primitive=Fear, Fire, Foes!
+id=616955
+rarity=U
+[/card]
+[card]
+primitive=Fiery Inscription
+id=616956
+rarity=U
+[/card]
+[card]
+primitive=Fire of Orthanc
+id=616957
+rarity=C
+[/card]
+[card]
+primitive=Foray of Orcs
+id=616958
+rarity=U
+[/card]
+[card]
+primitive=Gimli, Counter of Kills
+id=616959
+rarity=U
+[/card]
+[card]
+primitive=Gimli's Axe
+id=616960
+rarity=C
+[/card]
+[card]
+primitive=Gimli's Fury
+id=616961
+rarity=C
+[/card]
+[card]
+primitive=Gloin, Dwarf Emissary
+id=616962
+rarity=R
+[/card]
+[card]
+primitive=Goblin Fireleaper
+id=616963
+rarity=U
+[/card]
+[card]
+primitive=Grishnakh, Brash Instigator
+id=616964
+rarity=U
+[/card]
+[card]
+primitive=Haradrim Spearmaster
+id=616965
+rarity=C
+[/card]
+[card]
+primitive=Hew the Entwood
+id=616966
+rarity=M
+[/card]
+[card]
+primitive=Improvised Club
+id=616967
+rarity=C
+[/card]
+[card]
+primitive=Moria Marauder
+id=616968
+rarity=R
+[/card]
+[card]
+primitive=Oliphaunt
+id=616969
+rarity=C
+[/card]
+[card]
+primitive=Olog-hai Crusher
+id=616970
+rarity=C
+[/card]
+[card]
+primitive=Quarrel's End
+id=616971
+rarity=C
+[/card]
+[card]
+primitive=Rally at the Hornburg
+id=616972
+rarity=C
+[/card]
+[card]
+primitive=Ranger's Firebrand
+id=616973
+rarity=U
+[/card]
+[card]
+primitive=Relentless Rohirrim
+id=616974
+rarity=C
+[/card]
+[card]
+primitive=Rising of the Day
+id=616975
+rarity=U
+[/card]
+[card]
+primitive=Rohirrim Lancer
+id=616976
+rarity=C
+[/card]
+[card]
+primitive=Rush the Room
+id=616977
+rarity=C
+[/card]
+[card]
+primitive=Smite the Deathless
+id=616978
+rarity=C
+[/card]
+[card]
+primitive=Spiteful Banditry
+id=616979
+rarity=M
+[/card]
+[card]
+primitive=Swarming of Moria
+id=616980
+rarity=C
+[/card]
+[card]
+primitive=There and Back Again
+id=616981
+rarity=R
+[/card]
+[card]
+primitive=Warbeast of Gorgoroth
+id=616982
+rarity=C
+[/card]
+[card]
+primitive=Bag End Porter
+id=616983
+rarity=C
+[/card]
+[card]
+primitive=Bombadil's Song
+id=616984
+rarity=C
+[/card]
+[card]
+primitive=Brandywine Farmer
+id=616985
+rarity=C
+[/card]
+[card]
+primitive=Celeborn the Wise
+id=616986
+rarity=U
+[/card]
+[card]
+primitive=Chance-Met Elves
+id=616987
+rarity=C
+[/card]
+[card]
+primitive=Delighted Halfling
+id=616988
+rarity=R
+[/card]
+[card]
+primitive=Dunedain Rangers
+id=616989
+rarity=U
+[/card]
+[card]
+primitive=Elven Chorus
+id=616990
+rarity=R
+[/card]
+[card]
+primitive=Elven Farsight
+id=616991
+rarity=C
+[/card]
+[card]
+primitive=Enraged Huorn
+id=616992
+rarity=C
+[/card]
+[card]
+primitive=Entish Restoration
+id=616993
+rarity=U
+[/card]
+[card]
+primitive=Ent's Fury
+id=616994
+rarity=C
+[/card]
+[card]
+primitive=Fall of Gil-galad
+id=616995
+rarity=R
+[/card]
+[card]
+primitive=Fangorn, Tree Shepherd
+id=616996
+rarity=R
+[/card]
+[card]
+primitive=Galadhrim Bow
+id=616997
+rarity=C
+[/card]
+[card]
+primitive=Galadhrim Guide
+id=616998
+rarity=C
+[/card]
+[card]
+primitive=Generous Ent
+id=616999
+rarity=C
+[/card]
+[card]
+primitive=Gift of Strands
+id=617000
+rarity=U
+[/card]
+[card]
+primitive=Glorfindel, Dauntless Rescuer
+id=617001
+rarity=U
+[/card]
+[card]
+primitive=Last March of the Ents
+id=617002
+rarity=M
+[/card]
+[card]
+primitive=Legolas, Master Archer
+id=617003
+rarity=R
+[/card]
+[card]
+primitive=Long List of the Ents
+id=617004
+rarity=U
+[/card]
+[card]
+primitive=Lothlorien Lookout
+id=617005
+rarity=C
+[/card]
+[card]
+primitive=Many Partings
+id=617006
+rarity=C
+[/card]
+[card]
+primitive=Meriadoc Brandybuck
+id=617007
+rarity=U
+[/card]
+[card]
+primitive=Mirkwood Spider
+id=617008
+rarity=C
+[/card]
+[card]
+primitive=Mirrormere Guardian
+id=617009
+rarity=C
+[/card]
+[card]
+primitive=Mushroom Watchdogs
+id=617010
+rarity=C
+[/card]
+[card]
+primitive=Peregrin Took
+id=617011
+rarity=U
+[/card]
+[card]
+primitive=Pippin's Bravery
+id=617012
+rarity=C
+[/card]
+[card]
+primitive=Quickbeam, Upstart Ent
+id=617013
+rarity=U
+[/card]
+[card]
+primitive=Radagast the Brown
+id=617014
+rarity=M
+[/card]
+[card]
+primitive=Revive the Shire
+id=617015
+rarity=C
+[/card]
+[card]
+primitive=The Ring Goes South
+id=617016
+rarity=R
+[/card]
+[card]
+primitive=Shortcut to Mushrooms
+id=617017
+rarity=U
+[/card]
+[card]
+primitive=Shower of Arrows
+id=617018
+rarity=C
+[/card]
+[card]
+primitive=Stew the Coneys
+id=617019
+rarity=U
+[/card]
+[card]
+primitive=Wose Pathfinder
+id=617020
+rarity=C
+[/card]
+[card]
+primitive=Aragorn, Company Leader
+id=617021
+rarity=R
+[/card]
+[card]
+primitive=Aragorn, the Uniter
+id=617022
+rarity=M
+[/card]
+[card]
+primitive=Arwen, Mortal Queen
+id=617023
+rarity=M
+[/card]
+[card]
+primitive=Arwen Undomiel
+id=617024
+rarity=U
+[/card]
+[card]
+primitive=The Balrog, Durin's Bane
+id=617025
+rarity=R
+[/card]
+[card]
+primitive=Bilbo, Retired Burglar
+id=617026
+rarity=U
+[/card]
+[card]
+primitive=Butterbur, Bree Innkeeper
+id=617027
+rarity=U
+[/card]
+[card]
+primitive=Denethor, Ruling Steward
+id=617028
+rarity=U
+[/card]
+[card]
+primitive=Doors of Durin
+id=617029
+rarity=R
+[/card]
+[card]
+primitive=Elrond, Master of Healing
+id=617030
+rarity=R
+[/card]
+[card]
+primitive=Eowyn, Fearless Knight
+id=617031
+rarity=R
+[/card]
+[card]
+primitive=Faramir, Prince of Ithilien
+id=617032
+rarity=R
+[/card]
+[card]
+primitive=Flame of Anor
+id=617033
+rarity=R
+[/card]
+[card]
+primitive=Friendly Rivalry
+id=617034
+rarity=U
+[/card]
+[card]
+primitive=Frodo Baggins
+id=617035
+rarity=U
+[/card]
+[card]
+primitive=Galadriel of Lothlorien
+id=617036
+rarity=R
+[/card]
+[card]
+primitive=Gandalf the Grey
+id=617037
+rarity=R
+[/card]
+[card]
+primitive=Gandalf's Sanction
+id=617038
+rarity=U
+[/card]
+[card]
+primitive=Gimli, Mournful Avenger
+id=617039
+rarity=R
+[/card]
+[card]
+primitive=Gwaihir the Windlord
+id=617040
+rarity=U
+[/card]
+[card]
+primitive=King of the Oathbreakers
+id=617041
+rarity=R
+[/card]
+[card]
+primitive=Legolas, Counter of Kills
+id=617042
+rarity=U
+[/card]
+[card]
+primitive=Lotho, Corrupt Shirriff
+id=617043
+rarity=R
+[/card]
+[card]
+primitive=Mauhur, Uruk-hai Captain
+id=617044
+rarity=U
+[/card]
+[card]
+primitive=Merry, Esquire of Rohan
+id=617045
+rarity=R
+[/card]
+[card]
+primitive=The Mouth of Sauron
+id=617046
+rarity=U
+[/card]
+[card]
+primitive=Old Man Willow
+id=617047
+rarity=U
+[/card]
+[card]
+primitive=Pippin, Guard of the Citadel
+id=617048
+rarity=R
+[/card]
+[card]
+primitive=Prince Imrahil the Fair
+id=617049
+rarity=U
+[/card]
+[card]
+primitive=Ringsight
+id=617050
+rarity=U
+[/card]
+[card]
+primitive=Rise of the Witch-king
+id=617051
+rarity=U
+[/card]
+[card]
+primitive=Samwise Gamgee
+id=617052
+rarity=R
+[/card]
+[card]
+primitive=Saruman of Many Colors
+id=617053
+rarity=M
+[/card]
+[card]
+primitive=Sauron, the Dark Lord
+id=617054
+rarity=M
+[/card]
+[card]
+primitive=Sauron's Ransom
+id=617055
+rarity=R
+[/card]
+[card]
+primitive=Shadow Summoning
+id=617056
+rarity=U
+[/card]
+[card]
+primitive=Shadowfax, Lord of Horses
+id=617057
+rarity=U
+[/card]
+[card]
+primitive=Shagrat, Loot Bearer
+id=617058
+rarity=R
+[/card]
+[card]
+primitive=Sharkey, Tyrant of the Shire
+id=617059
+rarity=R
+[/card]
+[card]
+primitive=Shelob, Child of Ungoliant
+id=617060
+rarity=R
+[/card]
+[card]
+primitive=Smeagol, Helpful Guide
+id=617061
+rarity=R
+[/card]
+[card]
+primitive=Strider, Ranger of the North
+id=617062
+rarity=U
+[/card]
+[card]
+primitive=Theoden, King of Rohan
+id=617063
+rarity=U
+[/card]
+[card]
+primitive=Tom Bombadil
+id=617064
+rarity=M
+[/card]
+[card]
+primitive=Ugluk of the White Hand
+id=617065
+rarity=U
+[/card]
+[card]
+primitive=Anduril, Flame of the West
+id=617066
+rarity=M
+[/card]
+[card]
+primitive=Barrow-Blade
+id=617067
+rarity=U
+[/card]
+[card]
+primitive=Ent-Draught Basin
+id=617068
+rarity=U
+[/card]
+[card]
+primitive=Glamdring
+id=617069
+rarity=M
+[/card]
+[card]
+primitive=Horn of Gondor
+id=617070
+rarity=R
+[/card]
+[card]
+primitive=Horn of the Mark
+id=617071
+rarity=R
+[/card]
+[card]
+primitive=Inherited Envelope
+id=617072
+rarity=C
+[/card]
+[card]
+primitive=Lembas
+id=617073
+rarity=C
+[/card]
+[card]
+primitive=Mirror of Galadriel
+id=617074
+rarity=U
+[/card]
+[card]
+primitive=Mithril Coat
+id=617075
+rarity=R
+[/card]
+[card]
+primitive=The One Ring
+id=617076
+rarity=M
+[/card]
+[card]
+primitive=Palantir of Orthanc
+id=617077
+rarity=M
+[/card]
+[card]
+primitive=Phial of Galadriel
+id=617078
+rarity=R
+[/card]
+[card]
+primitive=Shire Scarecrow
+id=617079
+rarity=C
+[/card]
+[card]
+primitive=Sting, the Glinting Dagger
+id=617080
+rarity=R
+[/card]
+[card]
+primitive=Stone of Erech
+id=617081
+rarity=U
+[/card]
+[card]
+primitive=Wizard's Rockets
+id=617082
+rarity=C
+[/card]
+[card]
+primitive=Barad-dur
+id=617083
+rarity=R
+[/card]
+[card]
+primitive=Great Hall of the Citadel
+id=617084
+rarity=C
+[/card]
+[card]
+primitive=The Grey Havens
+id=617085
+rarity=U
+[/card]
+[card]
+primitive=Minas Tirith
+id=617086
+rarity=R
+[/card]
+[card]
+primitive=Mines of Moria
+id=617087
+rarity=R
+[/card]
+[card]
+primitive=Mount Doom
+id=617088
+rarity=M
+[/card]
+[card]
+primitive=Rivendell
+id=617089
+rarity=R
+[/card]
+[card]
+primitive=The Shire
+id=617090
+rarity=R
+[/card]
+[card]
+primitive=Shire Terrace
+id=617091
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=618999
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=619000
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=619001
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=619002
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=619003
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=619004
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=619005
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=619006
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=619007
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=619008
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=618919
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=618920
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=618921
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=618922
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=618923
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=618924
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=618925
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=618926
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=618927
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=618928
+rarity=L
+[/card]
+[card]
+primitive=Saradoc, Master of Buckland
+id=620037
+rarity=R
+[/card]
+[card]
+primitive=Elvish Mariner
+id=620038
+rarity=R
+[/card]
+[card]
+primitive=Ringwraiths
+id=620039
+rarity=R
+[/card]
+[card]
+primitive=Assault on Osgiliath
+id=620040
+rarity=R
+[/card]
+[card]
+primitive=Elanor Gardner
+id=620041
+rarity=R
+[/card]
+[card]
+primitive=Aragorn and Arwen, Wed
+id=620182
+rarity=M
+[/card]
+[card]
+primitive=Sauron, the Lidless Eye
+id=620183
+rarity=M
+[/card]
+[card]
+primitive=Frodo, Determined Hero
+id=620102
+rarity=R
+[/card]
+[card]
+primitive=Gandalf, White Rider
+id=620103
+rarity=R
+[/card]
+[card]
+primitive=Knight of the Keep
+id=620104
+rarity=C
+[/card]
+[card]
+primitive=Gollum, Scheming Guide
+id=620105
+rarity=R
+[/card]
+[card]
+primitive=Witch-king, Bringer of Ruin
+id=620106
+rarity=R
+[/card]
+[card]
+primitive=Fires of Mount Doom
+id=620107
+rarity=R
+[/card]
+[card]
+primitive=Goblin Assailant
+id=620108
+rarity=C
+[/card]
+[card]
+primitive=Galadriel, Gift-Giver
+id=620109
+rarity=R
+[/card]
+[card]
+primitive=The Balrog, Flame of Udun
+id=620110
+rarity=R
+[/card]
+[card]
+primitive=Bilbo's Ring
+id=620111
+rarity=R
+[/card]
+[card]
+primitive=Boromir, Warden of the Tower
+id=619452
+rarity=R
+[/card]
+[card]
+primitive=Faramir, Field Commander
+id=619453
+rarity=U
+[/card]
+[card]
+primitive=Frodo, Sauron's Bane
+id=619454
+rarity=R
+[/card]
+[card]
+primitive=Gandalf the White
+id=619455
+rarity=M
+[/card]
+[card]
+primitive=Samwise the Stouthearted
+id=619456
+rarity=U
+[/card]
+[card]
+primitive=Elrond, Lord of Rivendell
+id=619457
+rarity=U
+[/card]
+[card]
+primitive=Gandalf, Friend of the Shire
+id=619458
+rarity=U
+[/card]
+[card]
+primitive=Gollum, Patient Plotter
+id=619459
+rarity=U
+[/card]
+[card]
+primitive=Sauron, the Necromancer
+id=619460
+rarity=R
+[/card]
+[card]
+primitive=Witch-king of Angmar
+id=619461
+rarity=M
+[/card]
+[card]
+primitive=Gimli, Counter of Kills
+id=619462
+rarity=U
+[/card]
+[card]
+primitive=Legolas, Master Archer
+id=619463
+rarity=R
+[/card]
+[card]
+primitive=Meriadoc Brandybuck
+id=619464
+rarity=U
+[/card]
+[card]
+primitive=Peregrin Took
+id=619465
+rarity=U
+[/card]
+[card]
+primitive=Aragorn, Company Leader
+id=619466
+rarity=R
+[/card]
+[card]
+primitive=Aragorn, the Uniter
+id=619467
+rarity=M
+[/card]
+[card]
+primitive=Elrond, Master of Healing
+id=619468
+rarity=R
+[/card]
+[card]
+primitive=Faramir, Prince of Ithilien
+id=619469
+rarity=R
+[/card]
+[card]
+primitive=Frodo Baggins
+id=619470
+rarity=U
+[/card]
+[card]
+primitive=Galadriel of Lothlorien
+id=619471
+rarity=R
+[/card]
+[card]
+primitive=Gandalf the Grey
+id=619472
+rarity=R
+[/card]
+[card]
+primitive=Gimli, Mournful Avenger
+id=619473
+rarity=R
+[/card]
+[card]
+primitive=Legolas, Counter of Kills
+id=619474
+rarity=U
+[/card]
+[card]
+primitive=Merry, Esquire of Rohan
+id=619475
+rarity=R
+[/card]
+[card]
+primitive=Pippin, Guard of the Citadel
+id=619476
+rarity=R
+[/card]
+[card]
+primitive=Samwise Gamgee
+id=619477
+rarity=R
+[/card]
+[card]
+primitive=Saruman of Many Colors
+id=619478
+rarity=M
+[/card]
+[card]
+primitive=Sauron, the Dark Lord
+id=619479
+rarity=M
+[/card]
+[card]
+primitive=Smeagol, Helpful Guide
+id=619480
+rarity=R
+[/card]
+[card]
+primitive=Tom Bombadil
+id=619481
+rarity=M
+[/card]
+[card]
+primitive=Nazgul
+id=619388
+rarity=U
+[/card]
+[card]
+primitive=Nazgul
+id=619389
+rarity=U
+[/card]
+[card]
+primitive=Nazgul
+id=619390
+rarity=U
+[/card]
+[card]
+primitive=Nazgul
+id=619391
+rarity=U
+[/card]
+[card]
+primitive=Nazgul
+id=619392
+rarity=U
+[/card]
+[card]
+primitive=Nazgul
+id=619393
+rarity=U
+[/card]
+[card]
+primitive=Nazgul
+id=619394
+rarity=U
+[/card]
+[card]
+primitive=Nazgul
+id=619395
+rarity=U
+[/card]
+[card]
+primitive=Barad-dur
+id=619079
+rarity=R
+[/card]
+[card]
+primitive=Minas Tirith
+id=619080
+rarity=R
+[/card]
+[card]
+primitive=Mines of Moria
+id=619081
+rarity=R
+[/card]
+[card]
+primitive=Mount Doom
+id=619082
+rarity=M
+[/card]
+[card]
+primitive=Rivendell
+id=619083
+rarity=R
+[/card]
+[card]
+primitive=The Shire
+id=619084
+rarity=R
+[/card]
+[card]
+primitive=The Battle of Bywater
+id=619155
+rarity=R
+[/card]
+[card]
+primitive=Dawn of a New Age
+id=619156
+rarity=M
+[/card]
+[card]
+primitive=Flowering of the White Tree
+id=619157
+rarity=R
+[/card]
+[card]
+primitive=Forge Anew
+id=619158
+rarity=R
+[/card]
+[card]
+primitive=Borne Upon a Wind
+id=619159
+rarity=R
+[/card]
+[card]
+primitive=Goldberry, River-Daughter
+id=619160
+rarity=R
+[/card]
+[card]
+primitive=Press the Enemy
+id=619161
+rarity=R
+[/card]
+[card]
+primitive=Rangers of Ithilien
+id=619162
+rarity=R
+[/card]
+[card]
+primitive=The Watcher in the Water
+id=619163
+rarity=M
+[/card]
+[card]
+primitive=Call of the Ring
+id=619164
+rarity=R
+[/card]
+[card]
+primitive=Isildur's Fateful Strike
+id=619165
+rarity=R
+[/card]
+[card]
+primitive=Lobelia Sackville-Baggins
+id=619166
+rarity=R
+[/card]
+[card]
+primitive=Display of Power
+id=619167
+rarity=R
+[/card]
+[card]
+primitive=Fall of Cair Andros
+id=619168
+rarity=R
+[/card]
+[card]
+primitive=Gloin, Dwarf Emissary
+id=619169
+rarity=R
+[/card]
+[card]
+primitive=Hew the Entwood
+id=619170
+rarity=M
+[/card]
+[card]
+primitive=Moria Marauder
+id=619171
+rarity=R
+[/card]
+[card]
+primitive=Delighted Halfling
+id=619172
+rarity=R
+[/card]
+[card]
+primitive=Elven Chorus
+id=619173
+rarity=R
+[/card]
+[card]
+primitive=Radagast the Brown
+id=619174
+rarity=M
+[/card]
+[card]
+primitive=The Ring Goes South
+id=619175
+rarity=R
+[/card]
+[card]
+primitive=Arwen, Mortal Queen
+id=619176
+rarity=M
+[/card]
+[card]
+primitive=Doors of Durin
+id=619177
+rarity=R
+[/card]
+[card]
+primitive=King of the Oathbreakers
+id=619178
+rarity=R
+[/card]
+[card]
+primitive=Lotho, Corrupt Shirriff
+id=619179
+rarity=R
+[/card]
+[card]
+primitive=Sauron's Ransom
+id=619180
+rarity=R
+[/card]
+[card]
+primitive=Shagrat, Loot Bearer
+id=619181
+rarity=R
+[/card]
+[card]
+primitive=Sharkey, Tyrant of the Shire
+id=619182
+rarity=R
+[/card]
+[card]
+primitive=Shelob, Child of Ungoliant
+id=619183
+rarity=R
+[/card]
+[card]
+primitive=Anduril, Flame of the West
+id=619184
+rarity=M
+[/card]
+[card]
+primitive=Glamdring
+id=619185
+rarity=M
+[/card]
+[card]
+primitive=Horn of Gondor
+id=619186
+rarity=R
+[/card]
+[card]
+primitive=Horn of the Mark
+id=619187
+rarity=R
+[/card]
+[card]
+primitive=Mithril Coat
+id=619188
+rarity=R
+[/card]
+[card]
+primitive=The One Ring
+id=619189
+rarity=M
+[/card]
+[card]
+primitive=Palantir of Orthanc
+id=619190
+rarity=M
+[/card]
+[card]
+primitive=Phial of Galadriel
+id=619191
+rarity=R
+[/card]
+[card]
+primitive=Saradoc, Master of Buckland
+id=620077
+rarity=R
+[/card]
+[card]
+primitive=Elvish Mariner
+id=620078
+rarity=R
+[/card]
+[card]
+primitive=Ringwraiths
+id=620079
+rarity=R
+[/card]
+[card]
+primitive=Assault on Osgiliath
+id=620080
+rarity=R
+[/card]
+[card]
+primitive=Elanor Gardner
+id=620081
+rarity=R
+[/card]
+[card]
+primitive=Frodo, Determined Hero
+id=620198
+rarity=R
+[/card]
+[card]
+primitive=Gandalf, White Rider
+id=620199
+rarity=R
+[/card]
+[card]
+primitive=Gollum, Scheming Guide
+id=620200
+rarity=R
+[/card]
+[card]
+primitive=Witch-king, Bringer of Ruin
+id=620201
+rarity=R
+[/card]
+[card]
+primitive=Fires of Mount Doom
+id=620202
+rarity=R
+[/card]
+[card]
+primitive=Galadriel, Gift-Giver
+id=620203
+rarity=R
+[/card]
+[card]
+primitive=Aragorn and Arwen, Wed
+id=620204
+rarity=M
+[/card]
+[card]
+primitive=The Balrog, Flame of Udun
+id=620205
+rarity=R
+[/card]
+[card]
+primitive=Sauron, the Lidless Eye
+id=620206
+rarity=M
+[/card]
+[card]
+primitive=Bilbo's Ring
+id=620207
+rarity=R
+[/card]
+[card]
+primitive=Trailblazer's Boots
+id=619147
+rarity=R
+[/card]
+[card]
+primitive=Lobelia Sackville-Baggins
+id=619340
+rarity=R
+[/card]
+[card]
+primitive=Wizard's Rockets
+id=619341
+rarity=C
+[/card]
+[card]
+primitive=Gandalf, Friend of the Shire
+id=619342
+rarity=U
+[/card]
+[card]
+primitive=Delighted Halfling
+id=619343
+rarity=R
+[/card]
+[card]
+primitive=Bilbo, Retired Burglar
+id=619344
+rarity=U
+[/card]
+[card]
+primitive=Frodo Baggins
+id=619345
+rarity=U
+[/card]
+[card]
+primitive=The Balrog, Durin's Bane
+id=619692
+rarity=R
+[/card]
+[card]
+primitive=Flame of Anor
+id=619693
+rarity=R
+[/card]
+[card]
+primitive=Boromir, Warden of the Tower
+id=619694
+rarity=R
+[/card]
+[card]
+primitive=Lash of the Balrog
+id=619695
+rarity=C
+[/card]
+[card]
+primitive=Sting, the Glinting Dagger
+id=619696
+rarity=R
+[/card]
+[card]
+primitive=Aragorn, Company Leader
+id=619697
+rarity=R
+[/card]
+[card]
+primitive=Dunland Crebain
+id=619698
+rarity=C
+[/card]
+[card]
+primitive=Saruman of Many Colors
+id=619699
+rarity=M
+[/card]
+[card]
+primitive=Storm of Saruman
+id=619700
+rarity=M
+[/card]
+[card]
+primitive=Pippin's Bravery
+id=619701
+rarity=C
+[/card]
+[card]
+primitive=Fangorn, Tree Shepherd
+id=619702
+rarity=R
+[/card]
+[card]
+primitive=Nasty End
+id=619703
+rarity=C
+[/card]
+[card]
+primitive=Foray of Orcs
+id=619704
+rarity=U
+[/card]
+[card]
+primitive=Last March of the Ents
+id=619705
+rarity=M
+[/card]
+[card]
+primitive=Quickbeam, Upstart Ent
+id=619706
+rarity=U
+[/card]
+[card]
+primitive=Minas Tirith
+id=619707
+rarity=R
+[/card]
+[card]
+primitive=Mirkwood Bats
+id=619708
+rarity=C
+[/card]
+[card]
+primitive=Voracious Fell Beast
+id=619709
+rarity=U
+[/card]
+[card]
+primitive=Witch-king of Angmar
+id=619710
+rarity=M
+[/card]
+[card]
+primitive=Shadow of the Enemy
+id=619711
+rarity=M
+[/card]
+[card]
+primitive=Barad-dur
+id=619712
+rarity=R
+[/card]
+[card]
+primitive=Oliphaunt
+id=619713
+rarity=C
+[/card]
+[card]
+primitive=Rising of the Day
+id=619714
+rarity=U
+[/card]
+[card]
+primitive=Eomer, Marshal of Rohan
+id=619715
+rarity=R
+[/card]
+[card]
+primitive=Gothmog, Morgul Lieutenant
+id=619716
+rarity=U
+[/card]
+[card]
+primitive=Eowyn, Fearless Knight
+id=619717
+rarity=R
+[/card]
+[card]
+primitive=Prince Imrahil the Fair
+id=619718
+rarity=U
+[/card]
+[card]
+primitive=Knights of Dol Amroth
+id=619719
+rarity=C
+[/card]
+[card]
+primitive=Orcish Bowmasters
+id=619720
+rarity=R
+[/card]
+[card]
+primitive=Aragorn, the Uniter
+id=619721
+rarity=M
+[/card]
+[card]
+primitive=Legolas, Master Archer
+id=619722
+rarity=R
+[/card]
+[card]
+primitive=Gimli, Mournful Avenger
+id=619723
+rarity=R
+[/card]
+[card]
+primitive=Merry, Esquire of Rohan
+id=619724
+rarity=R
+[/card]
+[card]
+primitive=Pippin, Guard of the Citadel
+id=619725
+rarity=R
+[/card]
+[card]
+primitive=Spiteful Banditry
+id=619726
+rarity=M
+[/card]
+[card]
+primitive=Rosie Cotton of South Lane
+id=619727
+rarity=U
+[/card]
+[card]
+primitive=Shire Shirriff
+id=619728
+rarity=U
+[/card]
+[card]
+primitive=Gandalf the White
+id=619729
+rarity=M
+[/card]
+[card]
+primitive=The Grey Havens
+id=619730
+rarity=U
+[/card]
+[card]
+primitive=Lost Isle Calling
+id=619731
+rarity=R
+[/card]
+[card]
+primitive=Many Partings
+id=619732
+rarity=C
+[/card]
+[card]
+primitive=Galadriel of Lothlorien
+id=619733
+rarity=R
+[/card]
+[card]
+primitive=Elrond, Master of Healing
+id=619734
+rarity=R
+[/card]
+[card]
+primitive=Frodo, Sauron's Bane
+id=619127
+rarity=R
+[/card]
+[card]
+primitive=Samwise the Stouthearted
+id=619128
+rarity=U
+[/card]
+[card]
+primitive=Gollum, Patient Plotter
+id=619129
+rarity=U
+[/card]
+[card]
+primitive=The One Ring
+id=619130
+rarity=M
+[/card]
+[card]
+primitive=Banish from Edoras
+id=636049
+rarity=C
+[/card]
+[card]
+primitive=The Battle of Bywater
+id=636050
+rarity=R
+[/card]
+[card]
+primitive=Bill the Pony
+id=636051
+rarity=U
+[/card]
+[card]
+primitive=Boromir, Warden of the Tower
+id=636052
+rarity=R
+[/card]
+[card]
+primitive=Dawn of a New Age
+id=636053
+rarity=M
+[/card]
+[card]
+primitive=Dunedain Blade
+id=636054
+rarity=C
+[/card]
+[card]
+primitive=Eagles of the North
+id=636055
+rarity=C
+[/card]
+[card]
+primitive=Eastfarthing Farmer
+id=636056
+rarity=C
+[/card]
+[card]
+primitive=East-Mark Cavalier
+id=636057
+rarity=C
+[/card]
+[card]
+primitive=Eowyn, Lady of Rohan
+id=636058
+rarity=U
+[/card]
+[card]
+primitive=Errand-Rider of Gondor
+id=636059
+rarity=C
+[/card]
+[card]
+primitive=Escape from Orthanc
+id=636060
+rarity=C
+[/card]
+[card]
+primitive=Esquire of the King
+id=636061
+rarity=C
+[/card]
+[card]
+primitive=Faramir, Field Commander
+id=636062
+rarity=U
+[/card]
+[card]
+primitive=Flowering of the White Tree
+id=636063
+rarity=R
+[/card]
+[card]
+primitive=Fog on the Barrow-Downs
+id=636064
+rarity=C
+[/card]
+[card]
+primitive=Forge Anew
+id=636065
+rarity=R
+[/card]
+[card]
+primitive=Frodo, Sauron's Bane
+id=636066
+rarity=R
+[/card]
+[card]
+primitive=Gandalf the White
+id=636067
+rarity=M
+[/card]
+[card]
+primitive=Hobbit's Sting
+id=636068
+rarity=C
+[/card]
+[card]
+primitive=Landroval, Horizon Witness
+id=636069
+rarity=U
+[/card]
+[card]
+primitive=Lost to Legend
+id=636070
+rarity=U
+[/card]
+[card]
+primitive=Nimble Hobbit
+id=636071
+rarity=C
+[/card]
+[card]
+primitive=Now for Wrath, Now for Ruin!
+id=636072
+rarity=C
+[/card]
+[card]
+primitive=Protector of Gondor
+id=636073
+rarity=C
+[/card]
+[card]
+primitive=Reprieve
+id=636074
+rarity=U
+[/card]
+[card]
+primitive=Rosie Cotton of South Lane
+id=636075
+rarity=U
+[/card]
+[card]
+primitive=Samwise the Stouthearted
+id=636076
+rarity=U
+[/card]
+[card]
+primitive=Second Breakfast
+id=636077
+rarity=C
+[/card]
+[card]
+primitive=Shire Shirriff
+id=636078
+rarity=U
+[/card]
+[card]
+primitive=Slip On the Ring
+id=636079
+rarity=C
+[/card]
+[card]
+primitive=Soldier of the Grey Host
+id=636080
+rarity=C
+[/card]
+[card]
+primitive=Stalwarts of Osgiliath
+id=636081
+rarity=C
+[/card]
+[card]
+primitive=Tale of Tinuviel
+id=636082
+rarity=U
+[/card]
+[card]
+primitive=Took Reaper
+id=636083
+rarity=C
+[/card]
+[card]
+primitive=War of the Last Alliance
+id=636084
+rarity=R
+[/card]
+[card]
+primitive=Westfold Rider
+id=636085
+rarity=C
+[/card]
+[card]
+primitive=You Cannot Pass!
+id=636086
+rarity=U
+[/card]
+[card]
+primitive=Arwen's Gift
+id=636087
+rarity=C
+[/card]
+[card]
+primitive=The Bath Song
+id=636088
+rarity=U
+[/card]
+[card]
+primitive=Bewitching Leechcraft
+id=636089
+rarity=C
+[/card]
+[card]
+primitive=Bill Ferny, Bree Swindler
+id=636090
+rarity=U
+[/card]
+[card]
+primitive=Birthday Escape
+id=636091
+rarity=C
+[/card]
+[card]
+primitive=Borne Upon a Wind
+id=636092
+rarity=R
+[/card]
+[card]
+primitive=Captain of Umbar
+id=636093
+rarity=C
+[/card]
+[card]
+primitive=Council's Deliberation
+id=636094
+rarity=U
+[/card]
+[card]
+primitive=Deceive the Messenger
+id=636095
+rarity=C
+[/card]
+[card]
+primitive=Dreadful as the Storm
+id=636096
+rarity=C
+[/card]
+[card]
+primitive=Elrond, Lord of Rivendell
+id=636097
+rarity=U
+[/card]
+[card]
+primitive=Gandalf, Friend of the Shire
+id=636098
+rarity=U
+[/card]
+[card]
+primitive=Glorious Gale
+id=636099
+rarity=C
+[/card]
+[card]
+primitive=Goldberry, River-Daughter
+id=636100
+rarity=R
+[/card]
+[card]
+primitive=Grey Havens Navigator
+id=636101
+rarity=C
+[/card]
+[card]
+primitive=Hithlain Knots
+id=636102
+rarity=C
+[/card]
+[card]
+primitive=Horses of the Bruinen
+id=636103
+rarity=U
+[/card]
+[card]
+primitive=Ioreth of the Healing House
+id=636104
+rarity=U
+[/card]
+[card]
+primitive=Isolation at Orthanc
+id=636105
+rarity=C
+[/card]
+[card]
+primitive=Ithilien Kingfisher
+id=636106
+rarity=C
+[/card]
+[card]
+primitive=Knights of Dol Amroth
+id=636107
+rarity=C
+[/card]
+[card]
+primitive=Lorien Revealed
+id=636108
+rarity=C
+[/card]
+[card]
+primitive=Lost Isle Calling
+id=636109
+rarity=R
+[/card]
+[card]
+primitive=Meneldor, Swift Savior
+id=636110
+rarity=U
+[/card]
+[card]
+primitive=Nimrodel Watcher
+id=636111
+rarity=C
+[/card]
+[card]
+primitive=Pelargir Survivor
+id=636112
+rarity=C
+[/card]
+[card]
+primitive=Press the Enemy
+id=636113
+rarity=R
+[/card]
+[card]
+primitive=Rangers of Ithilien
+id=636114
+rarity=R
+[/card]
+[card]
+primitive=Saruman the White
+id=636115
+rarity=U
+[/card]
+[card]
+primitive=Saruman's Trickery
+id=636116
+rarity=U
+[/card]
+[card]
+primitive=Scroll of Isildur
+id=636117
+rarity=R
+[/card]
+[card]
+primitive=Soothing of Smeagol
+id=636118
+rarity=C
+[/card]
+[card]
+primitive=Stern Scolding
+id=636119
+rarity=U
+[/card]
+[card]
+primitive=Storm of Saruman
+id=636120
+rarity=M
+[/card]
+[card]
+primitive=Surrounded by Orcs
+id=636121
+rarity=C
+[/card]
+[card]
+primitive=Treason of Isengard
+id=636122
+rarity=C
+[/card]
+[card]
+primitive=The Watcher in the Water
+id=636123
+rarity=M
+[/card]
+[card]
+primitive=Willow-Wind
+id=636124
+rarity=C
+[/card]
+[card]
+primitive=Bitter Downfall
+id=636125
+rarity=U
+[/card]
+[card]
+primitive=The Black Breath
+id=636126
+rarity=C
+[/card]
+[card]
+primitive=Call of the Ring
+id=636127
+rarity=R
+[/card]
+[card]
+primitive=Cirith Ungol Patrol
+id=636128
+rarity=C
+[/card]
+[card]
+primitive=Claim the Precious
+id=636129
+rarity=C
+[/card]
+[card]
+primitive=Dunland Crebain
+id=636130
+rarity=C
+[/card]
+[card]
+primitive=Easterling Vanguard
+id=636131
+rarity=C
+[/card]
+[card]
+primitive=Gollum, Patient Plotter
+id=636132
+rarity=U
+[/card]
+[card]
+primitive=Gollum's Bite
+id=636133
+rarity=U
+[/card]
+[card]
+primitive=Gorbag of Minas Morgul
+id=636134
+rarity=U
+[/card]
+[card]
+primitive=Gothmog, Morgul Lieutenant
+id=636135
+rarity=U
+[/card]
+[card]
+primitive=Grima Wormtongue
+id=636136
+rarity=U
+[/card]
+[card]
+primitive=Grond, the Gatebreaker
+id=636137
+rarity=U
+[/card]
+[card]
+primitive=Haunt of the Dead Marshes
+id=636138
+rarity=C
+[/card]
+[card]
+primitive=Isildur's Fateful Strike
+id=636139
+rarity=R
+[/card]
+[card]
+primitive=Lash of the Balrog
+id=636140
+rarity=C
+[/card]
+[card]
+primitive=Lobelia Sackville-Baggins
+id=636141
+rarity=R
+[/card]
+[card]
+primitive=March from the Black Gate
+id=636142
+rarity=U
+[/card]
+[card]
+primitive=Mirkwood Bats
+id=636143
+rarity=C
+[/card]
+[card]
+primitive=Mordor Muster
+id=636144
+rarity=C
+[/card]
+[card]
+primitive=Mordor Trebuchet
+id=636145
+rarity=C
+[/card]
+[card]
+primitive=Morgul-Knife Wound
+id=636146
+rarity=C
+[/card]
+[card]
+primitive=Nasty End
+id=636147
+rarity=C
+[/card]
+[card]
+primitive=Nazgul
+id=636148
+rarity=U
+[/card]
+[card]
+primitive=Oath of the Grey Host
+id=636149
+rarity=U
+[/card]
+[card]
+primitive=One Ring to Rule Them All
+id=636150
+rarity=R
+[/card]
+[card]
+primitive=Orcish Bowmasters
+id=636151
+rarity=R
+[/card]
+[card]
+primitive=Orcish Medicine
+id=636152
+rarity=C
+[/card]
+[card]
+primitive=Sam's Desperate Rescue
+id=636153
+rarity=C
+[/card]
+[card]
+primitive=Sauron, the Necromancer
+id=636154
+rarity=R
+[/card]
+[card]
+primitive=Shadow of the Enemy
+id=636155
+rarity=M
+[/card]
+[card]
+primitive=Shelob's Ambush
+id=636156
+rarity=C
+[/card]
+[card]
+primitive=Snarling Warg
+id=636157
+rarity=C
+[/card]
+[card]
+primitive=The Torment of Gollum
+id=636158
+rarity=C
+[/card]
+[card]
+primitive=Troll of Khazad-dum
+id=636159
+rarity=C
+[/card]
+[card]
+primitive=Uruk-hai Berserker
+id=636160
+rarity=C
+[/card]
+[card]
+primitive=Voracious Fell Beast
+id=636161
+rarity=U
+[/card]
+[card]
+primitive=Witch-king of Angmar
+id=636162
+rarity=M
+[/card]
+[card]
+primitive=Battle-Scarred Goblin
+id=636163
+rarity=C
+[/card]
+[card]
+primitive=Book of Mazarbul
+id=636164
+rarity=U
+[/card]
+[card]
+primitive=Breaking of the Fellowship
+id=636165
+rarity=C
+[/card]
+[card]
+primitive=Cast into the Fire
+id=636166
+rarity=C
+[/card]
+[card]
+primitive=Display of Power
+id=636167
+rarity=R
+[/card]
+[card]
+primitive=Eomer, Marshal of Rohan
+id=636168
+rarity=R
+[/card]
+[card]
+primitive=Eomer of the Riddermark
+id=636169
+rarity=U
+[/card]
+[card]
+primitive=Erebor Flamesmith
+id=636170
+rarity=C
+[/card]
+[card]
+primitive=Erkenbrand, Lord of Westfold
+id=636171
+rarity=U
+[/card]
+[card]
+primitive=Fall of Cair Andros
+id=636172
+rarity=R
+[/card]
+[card]
+primitive=Fear, Fire, Foes!
+id=636173
+rarity=U
+[/card]
+[card]
+primitive=Fiery Inscription
+id=636174
+rarity=U
+[/card]
+[card]
+primitive=Fire of Orthanc
+id=636175
+rarity=C
+[/card]
+[card]
+primitive=Foray of Orcs
+id=636176
+rarity=U
+[/card]
+[card]
+primitive=Gimli, Counter of Kills
+id=636177
+rarity=U
+[/card]
+[card]
+primitive=Gimli's Axe
+id=636178
+rarity=C
+[/card]
+[card]
+primitive=Gimli's Fury
+id=636179
+rarity=C
+[/card]
+[card]
+primitive=Gloin, Dwarf Emissary
+id=636180
+rarity=R
+[/card]
+[card]
+primitive=Goblin Fireleaper
+id=636181
+rarity=U
+[/card]
+[card]
+primitive=Grishnakh, Brash Instigator
+id=636182
+rarity=U
+[/card]
+[card]
+primitive=Haradrim Spearmaster
+id=636183
+rarity=C
+[/card]
+[card]
+primitive=Hew the Entwood
+id=636184
+rarity=M
+[/card]
+[card]
+primitive=Improvised Club
+id=636185
+rarity=C
+[/card]
+[card]
+primitive=Moria Marauder
+id=636186
+rarity=R
+[/card]
+[card]
+primitive=Oliphaunt
+id=636187
+rarity=C
+[/card]
+[card]
+primitive=Olog-hai Crusher
+id=636188
+rarity=C
+[/card]
+[card]
+primitive=Quarrel's End
+id=636189
+rarity=C
+[/card]
+[card]
+primitive=Rally at the Hornburg
+id=636190
+rarity=C
+[/card]
+[card]
+primitive=Ranger's Firebrand
+id=636191
+rarity=U
+[/card]
+[card]
+primitive=Relentless Rohirrim
+id=636192
+rarity=C
+[/card]
+[card]
+primitive=Rising of the Day
+id=636193
+rarity=U
+[/card]
+[card]
+primitive=Rohirrim Lancer
+id=636194
+rarity=C
+[/card]
+[card]
+primitive=Rush the Room
+id=636195
+rarity=C
+[/card]
+[card]
+primitive=Smite the Deathless
+id=636196
+rarity=C
+[/card]
+[card]
+primitive=Spiteful Banditry
+id=636197
+rarity=M
+[/card]
+[card]
+primitive=Swarming of Moria
+id=636198
+rarity=C
+[/card]
+[card]
+primitive=There and Back Again
+id=636199
+rarity=R
+[/card]
+[card]
+primitive=Warbeast of Gorgoroth
+id=636200
+rarity=C
+[/card]
+[card]
+primitive=Bag End Porter
+id=636201
+rarity=C
+[/card]
+[card]
+primitive=Bombadil's Song
+id=636202
+rarity=C
+[/card]
+[card]
+primitive=Brandywine Farmer
+id=636203
+rarity=C
+[/card]
+[card]
+primitive=Celeborn the Wise
+id=636204
+rarity=U
+[/card]
+[card]
+primitive=Chance-Met Elves
+id=636205
+rarity=C
+[/card]
+[card]
+primitive=Delighted Halfling
+id=636206
+rarity=R
+[/card]
+[card]
+primitive=Dunedain Rangers
+id=636207
+rarity=U
+[/card]
+[card]
+primitive=Elven Chorus
+id=636208
+rarity=R
+[/card]
+[card]
+primitive=Elven Farsight
+id=636209
+rarity=C
+[/card]
+[card]
+primitive=Enraged Huorn
+id=636210
+rarity=C
+[/card]
+[card]
+primitive=Entish Restoration
+id=636211
+rarity=U
+[/card]
+[card]
+primitive=Ent's Fury
+id=636212
+rarity=C
+[/card]
+[card]
+primitive=Fall of Gil-galad
+id=636213
+rarity=R
+[/card]
+[card]
+primitive=Fangorn, Tree Shepherd
+id=636214
+rarity=R
+[/card]
+[card]
+primitive=Galadhrim Bow
+id=636215
+rarity=C
+[/card]
+[card]
+primitive=Galadhrim Guide
+id=636216
+rarity=C
+[/card]
+[card]
+primitive=Generous Ent
+id=636217
+rarity=C
+[/card]
+[card]
+primitive=Gift of Strands
+id=636218
+rarity=U
+[/card]
+[card]
+primitive=Glorfindel, Dauntless Rescuer
+id=636219
+rarity=U
+[/card]
+[card]
+primitive=Last March of the Ents
+id=636220
+rarity=M
+[/card]
+[card]
+primitive=Legolas, Master Archer
+id=636221
+rarity=R
+[/card]
+[card]
+primitive=Long List of the Ents
+id=636222
+rarity=U
+[/card]
+[card]
+primitive=Lothlorien Lookout
+id=636223
+rarity=C
+[/card]
+[card]
+primitive=Many Partings
+id=636224
+rarity=C
+[/card]
+[card]
+primitive=Meriadoc Brandybuck
+id=636225
+rarity=U
+[/card]
+[card]
+primitive=Mirkwood Spider
+id=636226
+rarity=C
+[/card]
+[card]
+primitive=Mirrormere Guardian
+id=636227
+rarity=C
+[/card]
+[card]
+primitive=Mushroom Watchdogs
+id=636228
+rarity=C
+[/card]
+[card]
+primitive=Peregrin Took
+id=636229
+rarity=U
+[/card]
+[card]
+primitive=Pippin's Bravery
+id=636230
+rarity=C
+[/card]
+[card]
+primitive=Quickbeam, Upstart Ent
+id=636231
+rarity=U
+[/card]
+[card]
+primitive=Radagast the Brown
+id=636232
+rarity=M
+[/card]
+[card]
+primitive=Revive the Shire
+id=636233
+rarity=C
+[/card]
+[card]
+primitive=The Ring Goes South
+id=636234
+rarity=R
+[/card]
+[card]
+primitive=Shortcut to Mushrooms
+id=636235
+rarity=U
+[/card]
+[card]
+primitive=Shower of Arrows
+id=636236
+rarity=C
+[/card]
+[card]
+primitive=Stew the Coneys
+id=636237
+rarity=U
+[/card]
+[card]
+primitive=Wose Pathfinder
+id=636238
+rarity=C
+[/card]
+[card]
+primitive=Aragorn, Company Leader
+id=636239
+rarity=R
+[/card]
+[card]
+primitive=Aragorn, the Uniter
+id=636240
+rarity=M
+[/card]
+[card]
+primitive=Arwen, Mortal Queen
+id=636241
+rarity=M
+[/card]
+[card]
+primitive=Arwen Undomiel
+id=636242
+rarity=U
+[/card]
+[card]
+primitive=The Balrog, Durin's Bane
+id=636243
+rarity=R
+[/card]
+[card]
+primitive=Bilbo, Retired Burglar
+id=636244
+rarity=U
+[/card]
+[card]
+primitive=Butterbur, Bree Innkeeper
+id=636245
+rarity=U
+[/card]
+[card]
+primitive=Denethor, Ruling Steward
+id=636246
+rarity=U
+[/card]
+[card]
+primitive=Doors of Durin
+id=636247
+rarity=R
+[/card]
+[card]
+primitive=Elrond, Master of Healing
+id=636248
+rarity=R
+[/card]
+[card]
+primitive=Eowyn, Fearless Knight
+id=636249
+rarity=R
+[/card]
+[card]
+primitive=Faramir, Prince of Ithilien
+id=636250
+rarity=R
+[/card]
+[card]
+primitive=Flame of Anor
+id=636251
+rarity=R
+[/card]
+[card]
+primitive=Friendly Rivalry
+id=636252
+rarity=U
+[/card]
+[card]
+primitive=Frodo Baggins
+id=636253
+rarity=U
+[/card]
+[card]
+primitive=Galadriel of Lothlorien
+id=636254
+rarity=R
+[/card]
+[card]
+primitive=Gandalf the Grey
+id=636255
+rarity=R
+[/card]
+[card]
+primitive=Gandalf's Sanction
+id=636256
+rarity=U
+[/card]
+[card]
+primitive=Gimli, Mournful Avenger
+id=636257
+rarity=R
+[/card]
+[card]
+primitive=Gwaihir the Windlord
+id=636258
+rarity=U
+[/card]
+[card]
+primitive=King of the Oathbreakers
+id=636259
+rarity=R
+[/card]
+[card]
+primitive=Legolas, Counter of Kills
+id=636260
+rarity=U
+[/card]
+[card]
+primitive=Lotho, Corrupt Shirriff
+id=636261
+rarity=R
+[/card]
+[card]
+primitive=Mauhur, Uruk-hai Captain
+id=636262
+rarity=U
+[/card]
+[card]
+primitive=Merry, Esquire of Rohan
+id=636263
+rarity=R
+[/card]
+[card]
+primitive=The Mouth of Sauron
+id=636264
+rarity=U
+[/card]
+[card]
+primitive=Old Man Willow
+id=636265
+rarity=U
+[/card]
+[card]
+primitive=Pippin, Guard of the Citadel
+id=636266
+rarity=R
+[/card]
+[card]
+primitive=Prince Imrahil the Fair
+id=636267
+rarity=U
+[/card]
+[card]
+primitive=Ringsight
+id=636268
+rarity=U
+[/card]
+[card]
+primitive=Rise of the Witch-king
+id=636269
+rarity=U
+[/card]
+[card]
+primitive=Samwise Gamgee
+id=636270
+rarity=R
+[/card]
+[card]
+primitive=Saruman of Many Colors
+id=636271
+rarity=M
+[/card]
+[card]
+primitive=Sauron, the Dark Lord
+id=636272
+rarity=M
+[/card]
+[card]
+primitive=Sauron's Ransom
+id=636273
+rarity=R
+[/card]
+[card]
+primitive=Shadow Summoning
+id=636274
+rarity=U
+[/card]
+[card]
+primitive=Shadowfax, Lord of Horses
+id=636275
+rarity=U
+[/card]
+[card]
+primitive=Shagrat, Loot Bearer
+id=636276
+rarity=R
+[/card]
+[card]
+primitive=Sharkey, Tyrant of the Shire
+id=636277
+rarity=R
+[/card]
+[card]
+primitive=Shelob, Child of Ungoliant
+id=636278
+rarity=R
+[/card]
+[card]
+primitive=Smeagol, Helpful Guide
+id=636279
+rarity=R
+[/card]
+[card]
+primitive=Strider, Ranger of the North
+id=636280
+rarity=U
+[/card]
+[card]
+primitive=Theoden, King of Rohan
+id=636281
+rarity=U
+[/card]
+[card]
+primitive=Tom Bombadil
+id=636282
+rarity=M
+[/card]
+[card]
+primitive=Ugluk of the White Hand
+id=636283
+rarity=U
+[/card]
+[card]
+primitive=Anduril, Flame of the West
+id=636284
+rarity=M
+[/card]
+[card]
+primitive=Barrow-Blade
+id=636285
+rarity=U
+[/card]
+[card]
+primitive=Ent-Draught Basin
+id=636286
+rarity=U
+[/card]
+[card]
+primitive=Glamdring
+id=636287
+rarity=M
+[/card]
+[card]
+primitive=Horn of Gondor
+id=636288
+rarity=R
+[/card]
+[card]
+primitive=Horn of the Mark
+id=636289
+rarity=R
+[/card]
+[card]
+primitive=Inherited Envelope
+id=636290
+rarity=C
+[/card]
+[card]
+primitive=Lembas
+id=636291
+rarity=C
+[/card]
+[card]
+primitive=Mirror of Galadriel
+id=636292
+rarity=U
+[/card]
+[card]
+primitive=Mithril Coat
+id=636293
+rarity=R
+[/card]
+[card]
+primitive=The One Ring
+id=636294
+rarity=M
+[/card]
+[card]
+primitive=Palantir of Orthanc
+id=636295
+rarity=M
+[/card]
+[card]
+primitive=Phial of Galadriel
+id=636296
+rarity=R
+[/card]
+[card]
+primitive=Shire Scarecrow
+id=636297
+rarity=C
+[/card]
+[card]
+primitive=Sting, the Glinting Dagger
+id=636298
+rarity=R
+[/card]
+[card]
+primitive=Stone of Erech
+id=636299
+rarity=U
+[/card]
+[card]
+primitive=Wizard's Rockets
+id=636300
+rarity=C
+[/card]
+[card]
+primitive=Barad-dur
+id=636301
+rarity=R
+[/card]
+[card]
+primitive=Great Hall of the Citadel
+id=636302
+rarity=C
+[/card]
+[card]
+primitive=The Grey Havens
+id=636303
+rarity=U
+[/card]
+[card]
+primitive=Minas Tirith
+id=636304
+rarity=R
+[/card]
+[card]
+primitive=Mines of Moria
+id=636305
+rarity=R
+[/card]
+[card]
+primitive=Mount Doom
+id=636306
+rarity=M
+[/card]
+[card]
+primitive=Rivendell
+id=636307
+rarity=R
+[/card]
+[card]
+primitive=The Shire
+id=636308
+rarity=R
+[/card]
+[card]
+primitive=Shire Terrace
+id=636309
+rarity=C
+[/card]
+[card]
+primitive=Nazgul
+id=636036
+rarity=U
+[/card]
+[card]
+primitive=Nazgul
+id=636037
+rarity=U
+[/card]
+[card]
+primitive=Nazgul
+id=636038
+rarity=U
+[/card]
+[card]
+primitive=Nazgul
+id=636039
+rarity=U
+[/card]
+[card]
+primitive=Nazgul
+id=636040
+rarity=U
+[/card]
+[card]
+primitive=Nazgul
+id=636041
+rarity=U
+[/card]
+[card]
+primitive=Nazgul
+id=636042
+rarity=U
+[/card]
+[card]
+primitive=Nazgul
+id=636043
+rarity=U
+[/card]
+[card]
+primitive=Dawn of a New Age
+id=636315
+rarity=M
+[/card]
+[card]
+primitive=Gandalf the White
+id=636316
+rarity=M
+[/card]
+[card]
+primitive=Storm of Saruman
+id=636317
+rarity=M
+[/card]
+[card]
+primitive=The Watcher in the Water
+id=636318
+rarity=M
+[/card]
+[card]
+primitive=Shadow of the Enemy
+id=636319
+rarity=M
+[/card]
+[card]
+primitive=Witch-king of Angmar
+id=636320
+rarity=M
+[/card]
+[card]
+primitive=Hew the Entwood
+id=636321
+rarity=M
+[/card]
+[card]
+primitive=Spiteful Banditry
+id=636322
+rarity=M
+[/card]
+[card]
+primitive=Last March of the Ents
+id=636323
+rarity=M
+[/card]
+[card]
+primitive=Radagast the Brown
+id=636324
+rarity=M
+[/card]
+[card]
+primitive=Aragorn, the Uniter
+id=636325
+rarity=M
+[/card]
+[card]
+primitive=Arwen, Mortal Queen
+id=636326
+rarity=M
+[/card]
+[card]
+primitive=Saruman of Many Colors
+id=636327
+rarity=M
+[/card]
+[card]
+primitive=Sauron, the Dark Lord
+id=636328
+rarity=M
+[/card]
+[card]
+primitive=Tom Bombadil
+id=636329
+rarity=M
+[/card]
+[card]
+primitive=Anduril, Flame of the West
+id=636330
+rarity=M
+[/card]
+[card]
+primitive=Glamdring
+id=636331
+rarity=M
+[/card]
+[card]
+primitive=The One Ring
+id=636332
+rarity=M
+[/card]
+[card]
+primitive=Palantir of Orthanc
+id=636333
+rarity=M
+[/card]
+[card]
+primitive=Mount Doom
+id=636334
+rarity=M
+[/card]
+[card]
+primitive=Eagle of Deliverance
+id=636310
+rarity=R
+[/card]
+[card]
+primitive=Minas Tirith Garrison
+id=636311
+rarity=R
+[/card]
+[card]
+primitive=Warg Rider
+id=636312
+rarity=R
+[/card]
+[card]
+primitive=Riders of the Mark
+id=636313
+rarity=R
+[/card]
+[card]
+primitive=Mirkwood Channeler
+id=636314
+rarity=R
+[/card]
+[card]
+primitive=Eagle of Deliverance
+id=636044
+rarity=R
+[/card]
+[card]
+primitive=Minas Tirith Garrison
+id=636045
+rarity=R
+[/card]
+[card]
+primitive=Warg Rider
+id=636046
+rarity=R
+[/card]
+[card]
+primitive=Riders of the Mark
+id=636047
+rarity=R
+[/card]
+[card]
+primitive=Mirkwood Channeler
+id=636048
+rarity=R
+[/card]

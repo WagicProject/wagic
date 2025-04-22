@@ -45,9 +45,11 @@ public:
     int energyCount;
     int experienceCount;
     int yidaroCount;
+    int ringTemptations;
     int dungeonCompleted;
     int numOfCommandCast;
     int monarch;
+    int initiative;
     int surveilOffset;
     int devotionOffset;
     int lastShuffleTurn;
@@ -66,7 +68,6 @@ public:
     int snowManaC;
     string lastChosenName;
     vector<string> prowledTypes;
-    vector<MTGCardInstance*>curses;
     Player(GameObserver *observer, string deckFile, string deckFileSmall, MTGDeck * deck = NULL);
     virtual ~Player();
     virtual void setObserver(GameObserver*g);

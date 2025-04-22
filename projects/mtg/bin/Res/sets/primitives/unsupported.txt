@@ -2,7 +2,7 @@ grade=unsupported
 #The cards in this file are not implemented/incomplete yet.
 #Updated Card lists not in primitives (Borderline, Crappy, Unsupported and Missing Cards)
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#I sorted this programatically - Vitty85 21-12-2021
+#I sorted this programatically - Vitty85 06-08-2023
 [card]
 name="Ach! Hans, Run!"
 text=At the beginning of your upkeep, you may say "Ach Hans, run It's the . . ." and name a creature card. If you do, search your library for the named card, put it into play, then shuffle your library. That creature has haste. Remove it from the game at end of turn.
@@ -28,34 +28,21 @@ text=When you set this scheme in motion, until your next turn, whenever a player
 type=Scheme
 [/card]
 [card]
-name=Aether Searcher
-text=Reveal Aether Searcher as you draft it. Reveal the next card you draft and note its name.  -- When Aether Searcher enters the battlefield, you may search your hand and/or library for a card with a name noted as you drafted cards named Aether Searcher. You may cast it without paying its mana cost. If you searched your library this way, shuffle it.
-mana={7}
-type=Artifact Creature
-subtype=Construct
-power=6
-toughness=4
-[/card]
-[card]
-name=Aetherplasm
-text=Whenever Aetherplasm blocks a creature, you may return Aetherplasm to its owner's hand. If you do, you may put a creature card from your hand onto the battlefield blocking that creature.
-mana={2}{U}{U}
-type=Creature
-subtype=Illusion
-power=1
-toughness=1
-[/card]
-[card]
-name=Aethersnatch
-text=Gain control of target spell. You may choose new targets for it. (If that spell becomes a permanent, it enters the battlefield under your control.)
-mana={4}{U}{U}
-type=Instant
-[/card]
-[card]
 name=AWOL
 text=Remove target attacking creature from the game. Then remove it from the removed-from-game zone and put it into the absolutely-removed-from-the-freaking-game-forever zone.
 mana={2}{W}
 type=Instant
+[/card]
+[card]
+name=Aboleth Spawn
+abilities=flash
+auto=_WARD_(2)
+text=Flash -- Ward {2} -- Probing Telepathy - Whenever a creature entering the battlefield under an opponent's control causes a triggered ability of that creature to trigger, you may copy that ability. You may choose new targets for the copy.
+mana={2}{U}
+type=Creature
+subtype=Fish Horror
+power=2
+toughness=3
 [/card]
 [card]
 name=Abstract Iguanart
@@ -65,6 +52,16 @@ type=Creature
 subtype=Art Lizard
 power=1
 toughness=1
+[/card]
+[card]
+name=Abstruse Archaic
+abilities=vigilance
+text=Vigilance -- {1}, {T}: Copy target activated or triggered ability you control from a colorless source. You may choose new targets for the copy. (Mana abilities can't be targeted.)
+mana={4}
+type=Creature
+subtype=Avatar
+power=3
+toughness=4
 [/card]
 [card]
 name=Academy at Tolaria West
@@ -150,6 +147,30 @@ mana={B}
 type=Instant
 [/card]
 [card]
+name=Aether Searcher
+text=Reveal Aether Searcher as you draft it. Reveal the next card you draft and note its name.  -- When Aether Searcher enters the battlefield, you may search your hand and/or library for a card with a name noted as you drafted cards named Aether Searcher. You may cast it without paying its mana cost. If you searched your library this way, shuffle it.
+mana={7}
+type=Artifact Creature
+subtype=Construct
+power=6
+toughness=4
+[/card]
+[card]
+name=Aetherplasm
+text=Whenever Aetherplasm blocks a creature, you may return Aetherplasm to its owner's hand. If you do, you may put a creature card from your hand onto the battlefield blocking that creature.
+mana={2}{U}{U}
+type=Creature
+subtype=Illusion
+power=1
+toughness=1
+[/card]
+[card]
+name=Aethersnatch
+text=Gain control of target spell. You may choose new targets for it. (If that spell becomes a permanent, it enters the battlefield under your control.)
+mana={4}{U}{U}
+type=Instant
+[/card]
+[card]
 name=Agent of Acquisitions
 text=Draft Agent of Acquisitions face up. -- Instead of drafting a card from a booster pack, you may draft each card in that booster pack, one at a time. If you do, turn Agent of Acquisitions face down and you can't draft cards for the rest of this draft round. (You may look at booster packs passed to you.)
 mana={2}
@@ -157,6 +178,16 @@ type=Artifact Creature
 subtype=Construct
 power=2
 toughness=1
+[/card]
+[card]
+name=Agrus Kos, Eternal Soldier
+abilities=vigilance
+text=Vigilance -- Whenever Agrus Kos, Eternal Soldier becomes the target of an ability that targets only it, you may pay {1}{R/W}. If you do, copy that ability for each other creature you control that ability could target. Each copy targets a different one of those creatures. ({R/W} can be paid with either {R} or {W}.)
+mana={3}{W}
+type=Legendary Creature
+subtype=Spirit Soldier
+power=3
+toughness=4
 [/card]
 [card]
 name=Agyrem
@@ -350,6 +381,16 @@ power=5
 toughness=4
 [/card]
 [card]
+name=Archivist of Oghma
+abilities=flash
+text=Flash -- Whenever an opponent searches their library, you gain 1 life and draw a card.
+mana={1}{W}
+type=Creature
+subtype=Halfling Cleric
+power=2
+toughness=2
+[/card]
+[card]
 name=Arcum's Whistle
 text={3}, {T}: Choose target non-Wall creature the active player has controlled continuously since the beginning of the turn. That player may pay {X}, where X is that creature's converted mana cost. If he or she doesn't, the creature attacks this turn if able, and at the beginning of the next end step, destroy it if it didn't attack. Activate this ability only before attackers are declared.
 mana={3}
@@ -375,13 +416,6 @@ type=Creature
 subtype=Wurm
 power=6
 toughness=6
-[/card]
-[card]
-name=Armor of Thorns
-text=You may cast Armor of Thorns as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant nonblack creature -- Enchanted creature gets +2/+2.
-mana={1}{G}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Arms Depot
@@ -439,6 +473,16 @@ name=Ashnod's Coupon
 text=ocT, Sacrifice Ashnod's Coupon: Target player gets you target drink. -- Errata: You pay any costs for the drink.
 mana={0}
 type=Artifact
+[/card]
+[card]
+name=Ashnod the Uncaring
+abilities=deathtouch
+text=Deathtouch -- Whenever you activate an ability of an artifact or creature that isn't a mana ability, if one or more permanents were sacrificed to activate it, you may copy that ability. You may choose new targets for the copy. (Sacrificing an artifact for mana to activate an ability doesn't count.)
+mana={2}{U}{B}{R}
+type=Legendary Creature
+subtype=Human Artificer
+power=1
+toughness=4
 [/card]
 [card]
 name=Ass Whuppin'
@@ -741,6 +785,14 @@ type=Artifact
 subtype=Contraption
 [/card]
 [card]
+name=Begin the Invasion
+search your library for up x battle cards with different names, put them onto the battlefield && shuffle
+auto=Search your library for up to X battle cards with different names put them onto the battlefield then shuffle
+text=Search your library for up to X battle cards with different names, put them onto the battlefield, then shuffle.
+mana={X}{W}{U}{B}{R}{G}
+type=Sorcery
+[/card]
+[card]
 name=Behold the Power of Destruction
 text=When you set this scheme in motion, destroy all nonland permanents target opponent controls.
 type=Scheme
@@ -864,6 +916,17 @@ text=Target creature you control gains protection from the color of your choice 
 mana={W}
 type=Instant
 subtype=Arcane
+[/card]
+[card]
+name=Blight Titan
+abilities=deathtouch
+auto=@ or attacksdeplete:2 && incubate x, where x is the number of creature cards in your graveyard
+text=Deathtouch -- Whenever Blight Titan enters the battlefield or attacks, mill two cards, then incubate X, where X is the number of creature cards in your graveyard. (Create an Incubator token with X +1/+1 counters on it and "{2}: Transform this artifact." It transforms into a 0/0 Phyrexian artifact creature.)
+mana={4}{B}{B}
+type=Creature
+subtype=Phyrexian Giant
+power=6
+toughness=6
 [/card]
 [card]
 name=Blim, Comedic Genius
@@ -1056,6 +1119,17 @@ name=Break Open
 text=Turn target face-down creature an opponent controls face up.
 mana={1}{R}
 type=Instant
+[/card]
+[card]
+name=Bright-Palm, Soul Awakener
+auto=cantbeblockedby(creature[power<=2])
+auto=@this creature attacksdouble the number of counter(1/1)starget(creature that creature unblockable by creature with power 2,less this turn
+text=Backup 1 (When this creature enters the battlefield, put a +1/+1 counter on target creature. If that's another creature, it gains the following ability until end of turn.) -- Whenever this creature attacks, double the number of +1/+1 counters on target creature. That creature can't be blocked by creatures with power 2 or less this turn.
+mana={1}{R}{G}{W}
+type=Legendary Creature
+subtype=Fox Shaman
+power=4
+toughness=3
 [/card]
 [card]
 name=Brilliant Ultimatum
@@ -1599,6 +1673,16 @@ mana={1}{W}
 type=Enchantment
 [/card]
 [card]
+name=Cirdan the Shipwright
+abilities=vigilance
+text=Vigilance -- Secret council - Whenever Cirdan the Shipwright enters the battlefield or attacks, each player secretly votes for a player, then those votes are revealed. Each player draws a card for each vote they received. Each player who received no votes may put a permanent card from their hand onto the battlefield.
+mana={3}{G}{U}
+type=Legendary Creature
+subtype=Elf Noble
+power=3
+toughness=4
+[/card]
+[card]
 name=City in a Bottle
 text=Whenever a nontoken permanent from the Arabian Nights expansion other than City in a Bottle is on the battlefield, its controller sacrifices it.  -- Players can't play cards from the Arabian Nights expansion.
 mana={2}
@@ -1807,6 +1891,18 @@ name=Common Courtesy
 text=Counter any spell unless its caster asks your permission to play that spell. If you refuse permission, Sacrifice Common Courtesy and counter the spell.
 mana={2}{U}{U}
 type=Enchantment
+[/card]
+[card]
+name=Conclave Sledge-Captain
+abilities=trample
+auto=@combatdamaged(player) from(this):
+auto=@this creature deals combat damage to a playerput that many counter(1/1)sit
+text=Backup 1, backup 1, backup 1 (When this creature enters the battlefield, put a +1/+1 counter on target creature. If that's another creature, it gains the following abilities until end of turn. Each backup ability triggers separately.) -- Trample -- Whenever this creature deals combat damage to a player, put that many +1/+1 counters on it.
+mana={5}{G}
+type=Creature
+subtype=Elephant Soldier
+power=4
+toughness=4
 [/card]
 [card]
 name=Confusion in the Ranks
@@ -2069,6 +2165,17 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Cutthroat Negotiator
+auto=Parley ? _ATTACKING_token(Treasure,Artifact Treasure) and!( transforms((,newability[{T}{S}:Add{W}])(,newability[{T}{S}:Add{R}])(,newability[{T}{S}:Add{G}])(,newability[{T}{S}:Add{U}])(,newability[{T}{S}:Add{B}])) forever )!
+auto=foreach(|myBattlefield)
+text=Parley ? Whenever Cutthroat Negotiator attacks, each player reveals the top card of their library. For each nonland card revealed this way, you create a tapped Treasure token. Then each player draws a card.
+mana={2}{U}{R}
+type=Creature
+subtype=Orc Pirate
+power=4
+toughness=3
+[/card]
+[card]
 name=Dakra Mystic
 text={U}, {T}: Each player reveals the top card of his or her library. You may put the revealed cards into their owners' graveyards. If you don't, each player draws a card.
 mana={U}
@@ -2095,6 +2202,15 @@ name=Damping Sphere
 text=If a land is tapped for two or more mana, it produces {C} instead of any other type and amount. -- Each spell a player casts costs 1 more to cast for each other spell that player has cast this turn.
 mana={2}
 type=Artifact
+[/card]
+[card]
+name=Dance with Calamity
+shuffle your library as many times as you choose, may exile the top card of your library if the total mana value of the cards exiled this way is 13,less, may cast any number of spells from among those cards without paying their mana costs
+auto=moveto(exile)
+auto=Shuffle your library As many times as you choose you may exile the top card of your library If the total mana value of the cards exiled this way13 or less you may cast any number of spells from among those cards without paying their mana costs
+text=Shuffle your library. As many times as you choose, you may exile the top card of your library. If the total mana value of the cards exiled this way is 13 or less, you may cast any number of spells from among those cards without paying their mana costs.
+mana={7}{R}
+type=Sorcery
 [/card]
 [card]
 name=Dance, Pathetic Marionette
@@ -2242,6 +2358,12 @@ mana={3}{U}
 type=Instant
 [/card]
 [card]
+name=Deification
+text=As Deification enters the battlefield, choose a planeswalker type. -- Planeswalkers you control of the chosen type have hexproof. -- As long as you control a creature, if damage dealt to a planeswalker you control of the chosen type would result in all loyalty counters on it being removed, instead all but one of those counters are removed.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
 name=Delay
 text=Counter target spell. If the spell is countered this way, exile it with three time counters on it instead of putting it into its owner's graveyard. If it doesn't have suspend, it gains suspend. (At the beginning of its owner's upkeep, remove a counter from that card. When the last is removed, the player plays it without paying its mana cost. If it's a creature, it has haste.)
 mana={1}{U}
@@ -2371,6 +2493,15 @@ name=Disarm
 text=Unattach all Equipment from target creature.
 mana={U}
 type=Instant
+[/card]
+[card]
+name=Disciple of Caelus Nin
+text=When Disciple of Caelus Nin enters the battlefield, starting with you, each player chooses up to five permanents they control. All permanents other than Disciple of Caelus Nin that weren't chosen this way phase out. -- Permanents can't phase in.
+mana={4}{W}
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=4
 [/card]
 [card]
 name=Discontinuity
@@ -2560,6 +2691,15 @@ mana={2}
 type=Artifact
 [/card]
 [card]
+name=Drivnod, Carnage Dominus
+text=If a creature dying causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time. -- {B/P}{B/P}, Exile three creature cards from your graveyard: Put an indestructible counter on Drivnod, Carnage Dominus. ({B/P} can be paid with either {B} or 2 life.)
+mana={3}{B}{B}
+type=Legendary Creature
+subtype=Phyrexian Horror
+power=8
+toughness=3
+[/card]
+[card]
 name=Dromoka's Command
 text=Choose two -- Prevent all damage target instant or sorcery spell would deal this turn. -- Target player sacrifices an enchantment. -- Put a +1/+1 counter on target creature. -- Target creature you control fights target creature you don't control.
 mana={G}{W}
@@ -2605,18 +2745,18 @@ power=3{1/2}
 toughness=2
 [/card]
 [card]
-name=Duplication Device
-text=Whenever you crank Duplication Device, until end of turn, target creature becomes a copy of any creature on the battlefield, except it's an artifact in addition to its other types.
-type=Artifact
-subtype=Contraption
-[/card]
-[card]
 name=Dungeon Master
 auto=counter(0/0,1,loyalty)
 text=+1: Target opponent creates a 1/1 black Skeleton creature token with "When this creature dies, each opponent gains 2 life." -- +1: Roll a d20. If you roll a 1, skip your next turn. If you roll a 12 or higher, draw a card. -- -6: You get an adventuring party. (Your party is a 3/3 red Fighter with first strike, a 1/1 white Cleric with lifelink, a 2/2 black Rogue with hexproof, and a 1/1 blue Wizard with flying.) -- Loyalty: 1d4+1
 mana={2}{W}{U}
 type=Legendary Planeswalker
 subtype=Dungeon Master
+[/card]
+[card]
+name=Duplication Device
+text=Whenever you crank Duplication Device, until end of turn, target creature becomes a copy of any creature on the battlefield, except it's an artifact in addition to its other types.
+type=Artifact
+subtype=Contraption
 [/card]
 [card]
 name=Duplicity
@@ -2638,6 +2778,16 @@ name=Dwarven Shrine
 text=Whenever a player casts a spell, Dwarven Shrine deals X damage to that player, where X is twice the number of cards in all graveyards with the same name as that spell.
 mana={1}{R}{R}
 type=Enchantment
+[/card]
+[card]
+name=Dynaheir, Invoker Adept
+abilities=haste
+text=Haste -- You may activate abilities of other creatures you control as though those creatures had haste. -- {T}: When you next activate an ability that isn't a mana ability this turn by spending four or more mana to activate it, copy that ability. You may choose new targets for the copy.
+mana={1}{U}{R}{W}
+type=Legendary Creature
+subtype=Human Wizard
+power=4
+toughness=4
 [/card]
 [card]
 name=Earl of Squirrel
@@ -2675,6 +2825,26 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Elenda and Azor
+abilities=flying
+text=Flying, ward {2} -- Whenever Elenda and Azor attacks, you may pay {X}{W}{U}{B}. If you do, draw X cards. -- At the beginning of each end step, you may pay 4 life. If you do, create a number of 1/1 black Vampire Knight creature tokens with lifelink equal to the number of cards you've drawn this turn.
+mana={3}{W}{U}{B}
+type=Legendary Creature
+subtype=Vampire Knight Sphinx
+power=6
+toughness=6
+[/card]
+[card]
+name=Elesh Norn, Mother of Machines
+abilities=vigilance
+text=Vigilance -- If a permanent entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time. -- Permanents entering the battlefield don't cause abilities of permanents your opponents control to trigger.
+mana={4}{W}
+type=Legendary Creature
+subtype=Phyrexian Praetor
+power=4
+toughness=7
+[/card]
+[card]
 name=Elkin Lair
 text=At the beginning of each player's upkeep, that player exiles a card at random from his or her hand. The player may play that card this turn. At the beginning of the next end step, if the player hasn't played the card, he or she puts it into his or her graveyard.
 mana={3}{R}
@@ -2685,6 +2855,28 @@ name=Eloren Wilds
 text=Whenever a player taps a permanent for mana, that player adds one mana to his or her mana pool of any type that permanent produced. -- Whenever you roll {C}, target player can't cast spells until a player planeswalks.
 type=Plane
 subtype=Shandalar
+[/card]
+[card]
+name=Elrond of the White Council
+text=Secret council - When Elrond of the White Council enters the battlefield, each player secretly votes for fellowship or aid, then those votes are revealed. For each fellowship vote, the voter chooses a creature they control. You gain control of each creature chosen this way, and they gain "This creature can't attack its owner." Then for each aid vote, put a +1/+1 counter on each creature you control.
+mana={3}{G}{U}
+type=Legendary Creature
+subtype=Elf Noble
+power=3
+toughness=3
+[/card]
+[card]
+name=Elspeth's Talent
+target=planeswalker
+auto=teach(creature) Enchant planeswalker
+auto=teach(creature) Enchanted planeswalker
+auto=teach(creature) "[+1]: Create three 1/1 white Soldier creature tokens"
+auto=teach(creature) Whenever you activateloyalty ability of enchanted planeswalker creatures you control get +2/+2
+auto=teach(creature) gain vigilance 
+text=Enchant planeswalker -- Enchanted planeswalker has "[+1]: Create three 1/1 white Soldier creature tokens." -- Whenever you activate a loyalty ability of enchanted planeswalker, creatures you control get +2/+2 and gain vigilance until end of turn.
+mana={2}{W}{W}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Elvish House Party
@@ -2728,6 +2920,16 @@ power=0
 toughness=1
 [/card]
 [card]
+name=Emergent Woodwurm
+auto=@this creature attackslook at the top x cards of your library, where x is its power may permanent card with mana value x,less from among them onmoveTo(mybattlefield) put the restthe bottom of your library in a random order
+text=Backup 3 (When this creature enters the battlefield, put three +1/+1 counters on target creature. If that's another creature, it gains the following ability until end of turn.) -- Whenever this creature attacks, look at the top X cards of your library, where X is its power. You may put a permanent card with mana value X or less from among them onto the battlefield. Put the rest on the bottom of your library in a random order.
+mana={6}{G}
+type=Creature
+subtype=Wurm
+power=4
+toughness=4
+[/card]
+[card]
 name=Emissary of Grudges
 text=Flying, haste -- As Emissary of Grudges enters the battlefield, secretly choose an opponent. -- Reveal the player you chose: Choose new targets for target spell or ability if it's controlled by the chosen player and if it targets you or a permanent you control. Activate this ability only once.
 mana={5}{R}
@@ -2762,6 +2964,14 @@ name=Energy Vortex
 text=As Energy Vortex enters the battlefield, choose an opponent. -- At the beginning of your upkeep, remove all energy counters from Energy Vortex. -- At the beginning of the chosen player's upkeep, Energy Vortex deals 3 damage to that player unless he or she pays {1} for each energy counter on Energy Vortex. -- {X}: Put X energy counters on Energy Vortex. Activate this ability only during your upkeep.
 mana={3}{U}{U}
 type=Enchantment
+[/card]
+[card]
+name=Enigma Ridges
+auto=@chaos ensuesdraw:1 && may land card from your hand onmoveTo(mybattlefield)
+text=When you planeswalk to Enigma Ridges, each player who controls fewer lands than the player who controls the most lands searches their library for a number of basic land cards less than or equal to the difference, reveals them, puts them into their hand, then shuffles. -- Whenever chaos ensues, draw a card, then you may put a land card from your hand onto the battlefield.
+mana=null
+type=Plane
+subtype=Echoir
 [/card]
 [card]
 name=Enraging Licid
@@ -2843,6 +3053,15 @@ mana={2}{W}
 type=Instant
 [/card]
 [card]
+name=Erestor of the Council
+text=Whenever players finish voting, each opponent who voted for a choice you voted for creates a Treasure token. You scry X, where X is the number of opponents who voted for a choice you didn't vote for. Draw a card.
+mana={1}{G}{U}
+type=Legendary Creature
+subtype=Elf Noble
+power=2
+toughness=4
+[/card]
+[card]
 name=Errand of Duty
 text=Put a 1/1 white Knight creature token with banding onto the battlefield. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 mana={1}{W}
@@ -2871,20 +3090,20 @@ mana={X}{U}
 type=Instant
 [/card]
 [card]
+name=Esper
+auto=all(other creature|myBattlefield)s vigilance, menace, and lifelink 
+auto=@chaos ensuescreature|myBattlefield) that are white, blue, and/or black become artifacts in addition their other types ueot then all(artifact creature|myBattlefield)) vigilance, menace, && lifelink ueot
+text=Artifact spells cost {1} less to cast. -- Whenever chaos ensues, creatures you control that are white, blue, and/or black become artifacts in addition to their other types until end of turn. Then each artifact creature you control gains vigilance, menace, and lifelink until end of turn.
+mana=null
+type=Plane
+subtype=Alara
+[/card]
+[card]
 name=Essence Leak
 text=Enchant permanent -- As long as enchanted permanent is red or green, it has "At the beginning of your upkeep, sacrifice this permanent unless you pay its mana cost."
 mana={U}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Etrata, the Silencer
-text=Etrata, the Silencer can't be blocked. -- Whenever Etrata deals combat damage to a player, exile target creature that player controls and put a hit counter on that card. That player loses the game if they own three or more exiled cards with hit counters on them. Etrata's owner shuffles Etrata into their library.
-mana={2}{U}{B}
-type=Legendary Creature
-subtype=Vampire Assassin
-power=3
-toughness=5
 [/card]
 [card]
 name=Everdream
@@ -3251,6 +3470,17 @@ mana={X}{G}{G}
 type=Sorcery
 [/card]
 [card]
+name=Flockchaser Phantom
+abilities=flying,vigilance
+auto=_ATTACKING_the next spell you cast this turn) convoke
+text=Convoke (Your creatures can help cast this spell. Each creature you tap while casting this spell pays for {1} or one mana of that creature's color.) -- Flying, vigilance -- Whenever Flockchaser Phantom attacks, the next spell you cast this turn has convoke.
+mana={4}{W}{U}
+type=Creature
+subtype=Spirit
+power=5
+toughness=5
+[/card]
+[card]
 name=Flooded Woodlands
 text=Green creatures can't attack unless their controller sacrifices a land for each green creature he or she controls that's attacking.
 mana={2}{U}{B}
@@ -3353,12 +3583,6 @@ power=1
 toughness=1{1/2}
 [/card]
 [card]
-name=Fractured Powerstone
-text={T}: Add {1} to your mana pool. -- {T}: Roll the planar die. Activate this ability only any time you could cast a sorcery.
-mana={2}
-type=Artifact
-[/card]
-[card]
 name=Framed!
 text=Tap or untap all permanents by the artist of your choice.
 mana={1}{U}
@@ -3384,9 +3608,15 @@ toughness=3
 [/card]
 [card]
 name=Fraternal Exaltation
-text=Sneak into your parents’ closet to get a deck. Your new brother is joining the game.
+text=Sneak into your parents? closet to get a deck. Your new brother is joining the game.
 mana={U}{U}{U}{U}
 type=Sorcery
+[/card]
+[card]
+name=Fraying Line
+text=When Fraying Line enters the battlefield, put a rope counter on target creature you control. -- At the beginning of each player's upkeep, that player may pay {2}. If they do, they put a rope counter on a creature they control. Otherwise, exile Fraying Line and each creature without a rope counter on it, then remove all rope counters from all creatures.
+mana={4}
+type=Artifact
 [/card]
 [card]
 name=Frazzled Editor
@@ -3487,6 +3717,15 @@ type=Creature
 subtype=Avatar
 power=*
 toughness=*
+[/card]
+[card]
+name=Galadriel, Elven-Queen
+text=Will of the council - At the beginning of combat on your turn, if another Elf entered the battlefield under your control this turn, starting with you, each player votes for dominion or guidance. If dominion gets more votes, the Ring tempts you, then you put a +1/+1 counter on your Ring-bearer. If guidance gets more votes or the vote is tied, draw a card.
+mana={2}{G}{U}
+type=Legendary Creature
+subtype=Elf Noble
+power=4
+toughness=5
 [/card]
 [card]
 name=Game Preserve
@@ -3624,6 +3863,16 @@ type=Summon
 subtype=Ogre
 [/card]
 [card]
+name=Ghirapur
+abilities=haste
+auto=@each my combatbegins:ueot, all(noncreature, non-vehicle artifact|myBattlefield) becomes a 5/3 vehicle in addition its other types && trample, haste, && crew 2
+auto=@chaos ensuestarget(noncreature artifact|mygraveyard) moveto(ownerhand)
+text=At the beginning of combat on your turn, until end of turn, each noncreature, non-Vehicle artifact you control becomes a 5/3 Vehicle in addition to its other types and gains trample, haste, and crew 2. -- Whenever chaos ensues, return target noncreature artifact card from your graveyard to your hand.
+mana=null
+type=Plane
+subtype=Kaladesh
+[/card]
+[card]
 name=Ghostly Flame
 text=Black and/or red permanents and spells are colorless sources of damage.
 mana={B}{R}
@@ -3684,7 +3933,7 @@ subtype=Aura
 [/card]
 [card]
 name=Gifts Given
-text=Search target opponent’s library for four cards with different names and reveal them. That player chooses two of those cards. Put the chosen cards into the player’s graveyard and the rest into your hand. Then that player shuffles their library.
+text=Search target opponent?s library for four cards with different names and reveal them. That player chooses two of those cards. Put the chosen cards into the player?s graveyard and the rest into your hand. Then that player shuffles their library.
 mana={3}{U}
 type=Instant
 [/card]
@@ -3710,6 +3959,18 @@ text=Put two 1/1 green Elf Warrior creature tokens onto the battlefield. Clash w
 mana={2}{G}
 type=Tribal Instant
 subtype=Elf
+[/card]
+[card]
+name=Gimbal, Gremlin Prodigy
+auto=lord(other creature|myBattlefield) trample
+auto=lord(creature|myBattlefield)
+auto=@each my endofturn:create(gremlin artifact:creature gremlin artifact:0/0:red)
+text=Artifact creatures you control have trample. -- At the beginning of your end step, create a 0/0 red Gremlin artifact creature token. Put X +1/+1 counters on it, where X is the number of differently named artifact tokens you control.
+mana={2}{G}{U}{R}
+type=Legendary Creature
+subtype=Gremlin Artificer
+power=4
+toughness=4
 [/card]
 [card]
 name=Gimme Five
@@ -3938,6 +4199,15 @@ type=Legendary Artifact
 subtype=Equipment
 [/card]
 [card]
+name=Goldberry, River-Daughter
+text={T}: Move a counter of each kind not on Goldberry, River-Daughter from another target permanent you control onto Goldberry. -- {U}, {T}: Move one or more counters from Goldberry onto another target permanent you control. If you do, draw a card.
+mana={1}{U}
+type=Legendary Creature
+subtype=Nymph
+power=1
+toughness=3
+[/card]
+[card]
 name=Golgothian Sylex
 text={1}, {T}: Each nontoken permanent from the Antiquities expansion is sacrificed by its controller.
 mana={4}
@@ -3975,13 +4245,6 @@ mana={2}{G}
 type=Instant
 [/card]
 [card]
-name=Grave Servitude
-text=You may cast Grave Servitude as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- Enchanted creature gets +3/-1 and is black.
-mana={1}{B}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Graveyard Busybody
 text=All graveyards are also your graveyards. -- Graveyard Busybody's power and toughness are each equal to the number of cards with flavor text in your graveyards.
 mana={4}{U}{U}
@@ -4004,6 +4267,25 @@ name=Greater Realm of Preservation
 text={1}{W}: The next time a black or red source of your choice would deal damage to you this turn, prevent that damage.
 mana={1}{W}
 type=Enchantment
+[/card]
+[card]
+name=Green Slime
+abilities=flash
+text=Flash -- When Green Slime enters the battlefield, counter target activated or triggered ability from an artifact or enchantment source. If a permanent's ability is countered this way, destroy that permanent. -- Foretell {G} (During your turn, you may pay {2} and exile this card from your hand face down. Cast it on a later turn for its foretell cost.)
+mana={2}{G}
+type=Creature
+subtype=Ooze
+power=2
+toughness=2
+[/card]
+[card]
+name=Grell Philosopher
+text=Aberrant Tinkering - When Grell Philosopher enters the battlefield and at the beginning of your upkeep, each Horror you control gains all activated abilities of target artifact an opponent controls until end of turn. You may spend blue mana as though it were mana of any color to activate those abilities.
+mana={2}{U}
+type=Creature
+subtype=Horror Wizard
+power=1
+toughness=4
 [/card]
 [card]
 name=Grim Reminder
@@ -4250,6 +4532,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Hatchery Sliver
+text=Replicate {1}{G} (When you cast this spell, copy it for each time you paid its replicate cost.) -- Each Sliver spell you cast has replicate. The replicate cost is equal to its mana cost. (A copy of a permanent spell becomes a token.)
+mana={1}{G}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+[/card]
+[card]
 name=Haunting Wind
 text=Whenever an artifact becomes tapped or a player activates an artifact's ability without {T} in its activation cost, Haunting Wind deals 1 damage to that artifact's controller.
 mana={3}{B}
@@ -4418,7 +4709,7 @@ type=Instant
 [/card]
 [card]
 name=Horizon Boughs
-text=All permanents untap during each player’s untap step. -- Whenever you roll {K}, you may search your library for up to three basic land cards, put them onto the battlefield tapped, then shuffle.
+text=All permanents untap during each player?s untap step. -- Whenever you roll {K}, you may search your library for up to three basic land cards, put them onto the battlefield tapped, then shuffle.
 type=Plane
 subtype=Pyrulea
 [/card]
@@ -4794,12 +5085,6 @@ type=Artifact
 subtype=Contraption
 [/card]
 [card]
-name=Inkshield
-text=Prevent all combat damage that would be dealt to you this turn. For each 1 damage prevented this way, create a 2/1 white and black Inkling creature token with flying.
-mana={3}{W}{B}
-type=Instant
-[/card]
-[card]
 name=Ink-Treader Nephilim
 text=Whenever a player casts an instant or sorcery spell, if Ink-Treader Nephilim is the only target of that spell, copy the spell for each other creature that spell could target. Each copy targets a different one of those creatures.
 mana={R}{G}{W}{U}
@@ -4807,6 +5092,12 @@ type=Creature
 subtype=Nephilim
 power=3
 toughness=3
+[/card]
+[card]
+name=Inkshield
+text=Prevent all combat damage that would be dealt to you this turn. For each 1 damage prevented this way, create a 2/1 white and black Inkling creature token with flying.
+mana={3}{W}{B}
+type=Instant
 [/card]
 [card]
 name=Inspiring Statuary
@@ -4873,6 +5164,14 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
+name=Inys Haen
+auto=@chaos ensuestarget(nonland|mygraveyard) moveto(ownerhand)
+text=When you planeswalk to Inys Haen and at the beginning of your upkeep, mill three cards. -- When you planeswalk away from Inys Haen, each player returns all land cards from their graveyard to the battlefield tapped. -- Whenever chaos ensues, return target nonland card from your graveyard to your hand.
+mana=null
+type=Plane
+subtype=Cridhe
+[/card]
+[card]
 name=Ironclaw Curse
 text=Enchant creature -- Enchanted creature gets -0/-1. -- Enchanted creature can't block creatures with power equal to or greater than the enchanted creature's toughness.
 mana={R}
@@ -4894,6 +5193,15 @@ type=Legendary Creature
 subtype=Sphinx
 power=3
 toughness=6
+[/card]
+[card]
+name=Isshin, Two Heavens as One
+text=If a creature attacking causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.
+mana={R}{W}{B}
+type=Legendary Creature
+subtype=Human Samurai
+power=3
+toughness=4
 [/card]
 [card]
 name=It That Gets Left Hanging
@@ -4933,6 +5241,16 @@ name=Jade Monolith
 text={1}: The next time a source of your choice would deal damage to target creature this turn, that source deals that damage to you instead.
 mana={4}
 type=Artifact
+[/card]
+[card]
+name=Jaya's Phoenix
+abilities=flying,haste
+text=Flying, haste -- Whenever Jaya's Phoenix deals combat damage to a player or planeswalker, copy the next loyalty ability you activate this turn when you activate it. You may choose new targets for the copy. -- Whenever you cast a planeswalker spell, you may return Jaya's Phoenix from your graveyard to the battlefield.
+mana={4}{R}
+type=Creature
+subtype=Phoenix
+power=3
+toughness=3
 [/card]
 [card]
 name=Jalum Grifter
@@ -5010,6 +5328,15 @@ mana={1}
 type=Artifact
 [/card]
 [card]
+name=Jon Irenicus, Shattered One
+text=At the beginning of your end step, target opponent gains control of up to one target creature you control. Put two +1/+1 counters on it and tap it. It's goaded for the rest of the game and it gains "This creature can't be sacrificed." (It attacks each combat if able and attacks a player other than you if able.) -- Whenever a creature you own but don't control attacks, you draw a card.
+mana={2}{U}{B}
+type=Legendary Creature
+subtype=Elf Wizard
+power=3
+toughness=3
+[/card]
+[card]
 name=Jotun Grunt
 text=Cumulative upkeep-Put two cards from a single graveyard on the bottom of their owner's library. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
 mana={1}{W}
@@ -5055,15 +5382,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Kaheera, the Orphanguard
-text=Companion - Each creature card in your starting deck is a Cat, Elemental, Nightmare, Dinosaur, or Beast card. (If this card is your chosen companion, you may cast it once from outside the game.) -- Vigilance -- Each other creature you control that's a Cat, Elemental, Nightmare, Dinosaur, or Beast gets +1/+1 and has vigilance.
-mana={1}{GW}{GW}
-type=Legendary Creature
-subtype=Cat Beast
-power=3
-toughness=2
-[/card]
-[card]
 name=Kamahl's Summons
 text=Each player may reveal any number of creature cards from his or her hand. Then each player puts a 2/2 green Bear creature token onto the battlefield for each card he or she revealed this way.
 mana={3}{G}
@@ -5092,6 +5410,17 @@ type=Creature
 subtype=Minotaur Warrior
 power=3
 toughness=3
+[/card]
+[card]
+name=Kasla, the Broken Halo
+abilities=flying,haste,vigilance
+auto=@movedTo(nother|mystack):auto=_SCRY_(2)
+text=Convoke (Your creatures can help cast this spell. Each creature you tap while casting this spell pays for {1} or one mana of that creature's color.) -- Flying, vigilance, haste -- Whenever you cast another spell that has convoke, scry 2, then draw a card.
+mana={3}{U}{R}{W}
+type=Legendary Creature
+subtype=Angel Ally
+power=5
+toughness=4
 [/card]
 [card]
 name=Kathril, Aspect Warper
@@ -5127,13 +5456,21 @@ mana={1}{B}{R}
 type=Enchantment
 [/card]
 [card]
-name=Keruga, the Macrosage
-text=Companion - Your starting deck contains only cards with converted mana cost 3 or greater and land cards. (If this card is your chosen companion, you may cast it once from outside the game.) -- When Keruga, the Macrosage enters the battlefield, draw a card for each other permanent you control with converted mana cost 3 or greater.
-mana={3}{GU}{GU}
+name=Kenessos, Priest of Thassa
+text=If you would scry a number of cards, scry that many cards plus one instead. -- {3}{G/U}: Look at the top card of your library. If it's a Kraken, Leviathan, Octopus, or Serpent creature card, you may put it onto the battlefield. If you don't put the card onto the battlefield, you may put it on the bottom of your library.
+mana={1}{U}
 type=Legendary Creature
-subtype=Dinosaur Hippo
-power=5
-toughness=4
+subtype=Merfolk Cleric
+power=1
+toughness=3
+[/card]
+[card]
+name=Ketria
+auto=@chaos ensuesexile cards from the top of your library until you exile a nonland permanent card put that card onto the battlefield,inmoveto(ownerhand)
+text=When you planeswalk to Ketria and at the beginning of your upkeep, put your choice of a vigilance, menace, or trample counter on target creature you control. -- Whenever chaos ensues, exile cards from the top of your library until you exile a nonland permanent card. Put that card onto the battlefield or into your hand.
+mana=null
+type=Plane
+subtype=Ikoria
 [/card]
 [card]
 name=Kharasha Foothills
@@ -5467,6 +5804,22 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Lae'zel's Acrobatics
+text=Exile all nontoken creatures you control, then roll a d20. -- 1-9 | Return those cards to the battlefield under their owner's control at the beginning of the next end step. -- 10-20 | Return those cards to the battlefield under their owner's control, then exile them again. Return those cards to the battlefield under their owner's control at the beginning of the next end step.
+mana={3}{W}
+type=Instant
+[/card]
+[card]
+name=Lae'zel, Vlaakith's Champion
+abilities=backgroundpartner
+text=If you would put one or more counters on a creature or planeswalker you control or on yourself, put that many plus one of each of those kinds of counters on that permanent or player instead. -- Choose a Background (You can have a Background as a second commander.)
+mana={2}{W}
+type=Legendary Creature
+subtype=Gith Warrior
+power=3
+toughness=3
+[/card]
+[card]
 name=Lair of the Ashen Idol
 text=At the beginning of your upkeep, sacrifice a creature. If you can't, planeswalk. -- Whenever you roll {K}, any number of target players each put a 2/2 black Zombie creature token onto the battlefield.
 type=Plane
@@ -5595,13 +5948,14 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Leonin Shikari
-text=You may activate equip abilities any time you could cast an instant.
-mana={1}{W}
-type=Creature
-subtype=Cat Soldier
-power=2
-toughness=2
+name=Leori, Sparktouched Hunter
+abilities=flying,vigilance
+text=Flying, vigilance -- Whenever Leori, Sparktouched Hunter deals combat damage to a player, choose a planeswalker type. Until end of turn, whenever you activate an ability of a planeswalker of that type, copy that ability. You may choose new targets for the copies.
+mana={U}{R}{W}
+type=Legendary Creature
+subtype=Elemental Cat
+power=3
+toughness=3
 [/card]
 [card]
 name=Leovold's Operative
@@ -5690,13 +6044,6 @@ mana={2}{W}{W}
 type=Enchantment
 [/card]
 [card]
-name=Lightning Reflexes
-text=You may cast Lightning Reflexes as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- Enchanted creature gets +1/+0 and has first strike.
-mana={1}{R}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Lightning Storm
 text=Lightning Storm deals X damage to target creature or player, where X is 3 plus the number of charge counters on it. -- Discard a land card: Put two charge counters on Lightning Storm. You may choose a new target for it. Any player may activate this ability but only if Lightning Storm is on the stack.
 mana={1}{R}{R}
@@ -5722,6 +6069,14 @@ type=Legendary Creature
 subtype=Human Wizard
 power=3
 toughness=3
+[/card]
+[card]
+name=Littjara
+auto=@chaos ensueschoose a creature type counter(1/1)all(creature|myBattlefield) of that type
+text=When you planeswalk to Littjara and at the beginning of your upkeep, create a 2/2 blue Shapeshifter creature token with changeling. (It is every creature type.) -- Whenever chaos ensues, choose a creature type. Put a +1/+1 counter on each creature you control of that type.
+mana=null
+type=Plane
+subtype=Kaldheim
 [/card]
 [card]
 name=Little Girl
@@ -5820,13 +6175,10 @@ power=0
 toughness=0
 [/card]
 [card]
-name=Lutri, the Spellchaser
-text=Companion - Each nonland card in your starting deck has a different name. (If this card is your chosen companion, you may cast it once from outside the game.) -- Flash -- When Lutri, the Spellchaser enters the battlefield, if you cast it, copy target instant or sorcery spell you control. You may choose new targets for the copy.
-mana={1}{UR}{UR}
-type=Legendary Creature
-subtype=Elemental Otter
-power=3
-toughness=2
+name=Lux Artillery
+text=Whenever you cast an artifact creature spell, it gains sunburst. (It enters the battlefield with a +1/+1 counter on it for each color of mana spent to cast it.) -- At the beginning of your end step, if there are thirty or more counters among artifacts and creatures you control, Lux Artillery deals 10 damage to each opponent.
+mana={4}
+type=Artifact
 [/card]
 [card]
 name=Maddening Imp
@@ -6122,10 +6474,27 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Megaflora Jungle
+auto=@chaos ensuescreate(insect:creature insect:1/1:green:flying named butterfly)
+text=Each creature with mana value 2 or less gets +2/+2. -- Whenever chaos ensues, create a 1/1 green Insect creature token with flying named Butterfly.
+mana=null
+type=Plane
+subtype=Gargantikar
+[/card]
+[card]
 name=Melee
 text=Cast Melee only during your turn and only during combat before blockers are declared. -- You choose which creatures block this combat and how those creatures block. -- Whenever a creature attacks and isn't blocked this combat, untap it and remove it from combat.
 mana={4}{R}
 type=Instant
+[/card]
+[card]
+name=Melira, the Living Cure
+text=If you would get one or more poison counters, instead you get one poison counter and you can't get additional poison counters this turn. -- Exile Melira, the Living Cure: Choose another target creature or artifact. When it's put into a graveyard this turn, return that card to the battlefield under its owner's control.
+mana={G}{W}
+type=Legendary Creature
+subtype=Human Scout
+power=3
+toughness=3
 [/card]
 [card]
 name=Memory Crystal
@@ -6215,6 +6584,16 @@ mana={5}{R}
 type=Enchantment
 [/card]
 [card]
+name=Mighty Servant of Leuk-o
+abilities=trample
+text=Trample -- Ward-Discard a card. -- Whenever Mighty Servant of Leuk-o becomes crewed for the first time each turn, if it was crewed by exactly two creatures, it gains "Whenever this creature deals combat damage to a player, draw two cards" until end of turn. -- Crew 4
+mana={3}
+type=Artifact
+subtype=Vehicle
+power=6
+toughness=6
+[/card]
+[card]
 name=Minamo's Meddling
 text=Counter target spell. That spell's controller reveals his or her hand, then discards each card with the same name as a card spliced onto that spell.
 mana={2}{U}{U}
@@ -6284,6 +6663,12 @@ mana={4}{G}{G}
 type=Enchantment
 [/card]
 [card]
+name=Mirran Safehouse
+text=As long as Mirran Safehouse is on the battlefield, it has all activated abilities of all land cards in all graveyards.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Mirrodin Besieged
 text=As Mirrodin Besieged enters the battlefield, choose Mirran or Phyrexian. -- Mirran - Whenever you cast an artifact spell, create a 1/1 colorless Myr artifact creature token. -- Phyrexian - At the beginning of your end step, draw a card, then discard a card. Then if there are fifteen or more artifact cards in your graveyard, target opponent loses the game.
 mana={2}{U}
@@ -6311,6 +6696,16 @@ mana={7}
 type=Artifact
 [/card]
 [card]
+name=Mirror-Shield Hoplite
+abilities=vigilance
+text=Vigilance -- Whenever a creature you control becomes the target of a backup ability, copy that ability. You may choose new targets for the copy. This ability triggers only once each turn.
+mana={R}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
 name=Mirror Strike
 text=All combat damage that would be dealt to you this turn by target unblocked creature is dealt to its controller instead.
 mana={3}{W}
@@ -6324,7 +6719,7 @@ type=Artifact
 [/card]
 [card]
 name=Mirrored Depths
-text=Whenever a player casts a spell, that player flips a coin. If the player loses the flip, counter that spell. -- Whenever you roll {K}, target player reveals the top card of their library. If it’s a nonland card, you may cast it without paying its mana cost.
+text=Whenever a player casts a spell, that player flips a coin. If the player loses the flip, counter that spell. -- Whenever you roll {K}, target player reveals the top card of their library. If it?s a nonland card, you may cast it without paying its mana cost.
 type=Plane
 subtype=Karsus
 [/card]
@@ -6425,16 +6820,6 @@ type=Creature
 subtype=Goblin Assassin
 power=2
 toughness=1
-[/card]
-[card]
-name=Mogis, God of Slaughter
-abilities=indestructible
-text=Indestructible -- As long as your devotion to black and red is less than seven, Mogis isn't a creature. -- At the beginning of each opponent's upkeep, Mogis deals 2 damage to that player unless he or she sacrifices a creature.
-mana={2}{B}{R}
-type=Legendary Enchantment Creature
-subtype=God
-power=7
-toughness=5
 [/card]
 [card]
 name=Molten Psyche
@@ -6586,15 +6971,6 @@ power=+4
 toughness=+4
 [/card]
 [card]
-name=Mungha Wurm
-text=You can't untap more than one land during your untap step.
-mana={2}{G}{G}
-type=Creature
-subtype=Wurm
-power=6
-toughness=5
-[/card]
-[card]
 name=Muraganda Petroglyphs
 text=Creatures with no abilities get +2/+2.
 mana={3}{G}
@@ -6684,13 +7060,6 @@ mana={4}{W}
 type=Enchantment
 [/card]
 [card]
-name=Mystic Veil
-text=You may cast Mystic Veil as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- Enchanted creature has shroud. (It can't be the target of spells or abilities.)
-mana={1}{U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Mythos of Snapdax
 text=Each player chooses an artifact, a creature, an enchantment, and a planeswalker from among the nonland permanents they control, then sacrifices the rest. If {B}{R} was spent to cast this spell, you choose the permanents for each player instead.
 mana={2}{W}{W}
@@ -6731,6 +7100,14 @@ name=Naked Singularity
 text=Cumulative upkeep {3} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- If tapped for mana, Plains produce {R}, Islands produce {G}, Swamps produce {W}, Mountains produce {U}, and Forests produce {B} instead of any other type.
 mana={5}
 type=Artifact
+[/card]
+[card]
+name=Naktamun
+auto=@chaos ensuesmay ability$!name(discard) reject notatarget(*|myhand)!$ draw:1
+text=Each creature card in your graveyard has embalm. Its embalm cost is equal to its mana cost. (Exile a creature card from your graveyard and pay its embalm cost: Create a token that's a copy of it, except it's a white Zombie in addition to its other types with no mana cost. Embalm only as a sorcery.) -- Whenever chaos ensues, you may discard a card. If you do, draw a card.
+mana=null
+type=Plane
+subtype=Amonkhet
 [/card]
 [card]
 name=Nalathni Dragon
@@ -6849,7 +7226,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Nerf War
-text=Fire a Nerf blaster until empty at target library from at least two meters away. For each card knocked off that library, put it into its owner’s graveyard and Nerf War deals ½ damage to that player. (Foam darts only.)
+text=Fire a Nerf blaster until empty at target library from at least two meters away. For each card knocked off that library, put it into its owner?s graveyard and Nerf War deals ½ damage to that player. (Foam darts only.)
 mana={3}{U}{R}
 type=Sorcery
 [/card]
@@ -6880,6 +7257,15 @@ name=Neural Network
 text=Whenever you crank Neural Network, gain control of target creature an opponent controls with power less than or equal to the number of creature cards in its controller's graveyard until end of turn. Untap that creature. It gains haste until end of turn.
 type=Artifact
 subtype=Contraption
+[/card]
+[card]
+name=New Argive
+auto=@historic creature you control attacks2/2 ueot
+auto=@chaos ensuesreveal cards from the top of your library until you reveal a artifact,*[legendary],enchantment[saga] card put that card inmoveto(ownerhand) && the restthe bottom of your library in a random order
+text=Whenever a historic creature you control attacks, it gets +2/+2 until end of turn. (Artifacts, legendaries, and Sagas are historic.) -- Whenever chaos ensues, reveal cards from the top of your library until you reveal a historic card. Put that card into your hand and the rest on the bottom of your library in a random order.
+mana=null
+type=Plane
+subtype=Dominaria
 [/card]
 [card]
 name=Ninja
@@ -6927,6 +7313,13 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Noble Heritage
+text=Commander creatures you own have "When this creature enters the battlefield and at the beginning of your upkeep, each player may put two +1/+1 counters on a creature they control. For each opponent who does, you gain protection from that player until your next turn." (You can't be targeted, dealt damage, or enchanted by anything controlled by that player.)
+mana={1}{W}
+type=Legendary Enchantment
+subtype=Background
+[/card]
+[card]
 name=Nomads en-Kor
 text={0}: The next 1 damage that would be dealt to Nomads en-Kor this turn is dealt to target creature you control instead.
 mana={W}
@@ -6944,6 +7337,14 @@ type=Artifact
 [card]
 name=Norn's Dominion
 text=When you planeswalk away from Norn's Dominion, destroy each nonland permanent without a fate counter on it, then remove all fate counters from all permanents. -- Whenever you roll {K}, you may put a fate counter on target permanent.
+type=Plane
+subtype=New Phyrexia
+[/card]
+[card]
+name=Norn's Seedcore
+auto=@chaos ensuesreveal cards from the top of your planar deck until you reveal a plane card planeswalk it, except don't planeswalk away from any plane put the rest of the revealed cardsthe bottom of your planar deck in any order
+text=When you planeswalk to Norn's Seedcore, chaos ensues. -- Whenever chaos ensues, reveal cards from the top of your planar deck until you reveal a plane card. Planeswalk to it, except don't planeswalk away from any plane. Put the rest of the revealed cards on the bottom of your planar deck in any order.
+mana=null
 type=Plane
 subtype=New Phyrexia
 [/card]
@@ -7017,13 +7418,13 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Nylea's Colossus
-text=Constellation - Whenever Nylea's Colossus or another enchantment enters the battlefield under your control, double target creature's power and toughness until end of turn.
-mana={6}{G}
-type=Enchantment Creature
-subtype=Giant
-power=6
-toughness=6
+name=Nyx
+auto=Constellation ? @an enchantment movedTo(*[]|myBattlefield):life:1
+auto=@chaos ensueschoose a color add an amount of mana of that color equal your devotion that color
+text=Nontoken creatures are enchantments in addition to their other types. -- Constellation ? Whenever an enchantment enters the battlefield under your control, you gain 1 life. -- Whenever chaos ensues, choose a color. Add an amount of mana of that color equal to your devotion to that color.
+mana=null
+type=Plane
+subtype=Theros
 [/card]
 [card]
 name=Oaken Brawler
@@ -7370,6 +7771,12 @@ mana={2}{B}
 type=Sorcery
 [/card]
 [card]
+name=Paliano
+text=When one or more creatures you control deal combat damage to a player, if there is no monarch, you become the monarch. -- Whenever chaos ensues, create a 1/1 black Assassin creature token with deathtouch and haste.
+type=Plane
+subtype=Fiora
+[/card]
+[card]
 name=Paliano Vanguard
 text=Draft Paliano Vanguard face up. -- As you draft a creature card, you may reveal it, note its creature types, then turn Paliano Vanguard face down. -- Other creatures you control of a type you noted for cards named Paliano Vanguard get +1/+1.
 mana={1}{W}
@@ -7425,12 +7832,6 @@ name=Paranoid Delusions
 text=Target player puts the top three cards of his or her library into his or her graveyard. -- Cipher (Then you may exile this spell card encoded on a creature you control. Whenever that creature deals combat damage to a player, its controller may cast a copy of the encoded card without paying its mana cost.)
 mana={U}{B}
 type=Sorcery
-[/card]
-[card]
-name=Parapet
-text=You may cast Parapet as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Creatures you control get +0/+1.
-mana={1}{W}
-type=Enchantment
 [/card]
 [card]
 name=Pardic Dragon
@@ -7676,14 +8077,14 @@ type=Instant
 name=Pools of Becoming
 text=At the beginning of your end step, put the cards in your hand on the bottom of your library in any order, then draw that many cards. -- Whenever you roll {C}, reveal the top three cards of your planar deck. Each of the revealed cards' {C} abilities triggers. Then put the revealed cards on the bottom of your planar deck in any order.
 type=Plane
-subtype=Bolas’s Meditation Realm
+subtype=Bolas?s Meditation Realm
 [/card]
 [card]
 name=Portal Mage
 abilities=flash
 auto=phasealter(remove,combatphases,controller)
 auto=nextphasealter(add,combatphases,controller,after<combatends>)
-text=Flash -- When Portal Mage enters the battlefield during the declare attackers step, you may reselect which player or planeswalker target attacking creature is attacking. (It can’t attack its controller or its controller’s planeswalkers.)
+text=Flash -- When Portal Mage enters the battlefield during the declare attackers step, you may reselect which player or planeswalker target attacking creature is attacking. (It can?t attack its controller or its controller?s planeswalkers.)
 mana={2}{U}
 type=Creature
 subtype=Human Wizard
@@ -7973,6 +8374,15 @@ mana={4}{PR}
 type=Artifact
 [/card]
 [card]
+name=Raggadragga, Goreguts Boss
+text=Each creature you control with a mana ability gets +2/+2. -- Whenever a creature you control with a mana ability attacks, untap it. -- Whenever you cast a spell, if at least seven mana was spent to cast it, untap target creature. It gets +7/+7 and gains trample until end of turn.
+mana={2}{R}{G}
+type=Legendary Creature
+subtype=Human Boar
+power=4
+toughness=4
+[/card]
+[card]
 name=Raging River
 text=Whenever one or more creatures you control attack, each defending player divides all creatures without flying he or she controls into a "left" pile and a "right" pile. Then, for each attacking creature you control, choose "left" or "right." That creature can't be blocked this combat except by creatures with flying and creatures in a pile with the chosen label.
 mana={R}{R}
@@ -8007,6 +8417,16 @@ name=Rare-B-Gone
 text=Each player sacrifices all rare permanents, then reveals his or her hand and discards all rare cards.
 mana={2}{B}{R}
 type=Sorcery
+[/card]
+[card]
+name=Rashmi and Ragavan
+auto=lord(creature|myBattlefield) opponent's library and create a treasure token. then you may cast the exiled card without paying its mana cost if it's a spell with mana value less than the number of artifacts you control. if you don't cast it this way, you may cast it this turn
+text=Whenever you cast your first spell during each of your turns, exile the top card of target opponent's library and create a Treasure token. Then you may cast the exiled card without paying its mana cost if it's a spell with mana value less than the number of artifacts you control. If you don't cast it this way, you may cast it this turn.
+mana={1}{G}{U}{R}
+type=Legendary Creature
+subtype=Elf Monkey
+power=2
+toughness=4
 [/card]
 [card]
 name=Razia, Boros Archangel
@@ -8097,7 +8517,7 @@ type=Sorcery
 [/card]
 [card]
 name=Red-Hot Hottie
-text=Whenever Red-Hot Hottie deals damage to a creature, put a third-degree-burn counter on that creature. It has "At the end of each turn, sacrifice this creature unless you scream ‘Aaah' at the top of your lungs."
+text=Whenever Red-Hot Hottie deals damage to a creature, put a third-degree-burn counter on that creature. It has "At the end of each turn, sacrifice this creature unless you scream ?Aaah' at the top of your lungs."
 mana={2}{R}{R}
 type=Creature
 subtype=Elemental
@@ -8168,13 +8588,6 @@ name=Release the Ants
 text=Release the Ants deals 1 damage to target creature or player. Clash with an opponent. If you win, return Release the Ants to its owner's hand. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={1}{R}
 type=Instant
-[/card]
-[card]
-name=Relic Ward
-text=You may cast Relic Ward as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant artifact -- Enchanted artifact has shroud. (It can't be the target of spells or abilities.)
-mana={1}{W}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Remodel
@@ -8322,6 +8735,15 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Riptide Island
+auto=all(creature|myBattlefield) haste and get +x/+x , where x is the number of slivers you control +x/+x , where x is the number of slivers you control
+auto=@chaos ensuesslivers|myBattlefield)) haste &&) x/x ueot, where x is the number of slivers|myBattlefield)
+text=When you planeswalk to Riptide Island and at the beginning of your upkeep, create two 1/1 colorless Sliver creature tokens. -- Whenever chaos ensues, Slivers you control gain haste and get +X/+X until end of turn, where X is the number of Slivers you control.
+mana=null
+type=Plane
+subtype=Dominaria
+[/card]
+[card]
 name=Risky Move
 text=At the beginning of each player's upkeep, that player gains control of Risky Move. --  When you gain control of Risky Move from another player, choose a creature you control and an opponent. Flip a coin. If you lose the flip, that opponent gains control of that creature.
 mana={3}{R}{R}{R}
@@ -8396,6 +8818,21 @@ toughness=3
 name=Rotted Ones, Lay Siege
 text=When you set this scheme in motion, for each opponent, put a 2/2 black Zombie creature token onto the battlefield that attacks that player each combat if able.
 type=Scheme
+[/card]
+[card]
+name=Rowan's Talent
+target=planeswalker
+auto=teach(creature) Enchant planeswalker
+auto=teach(creature) Enchanted planeswalker
+auto=teach(creature) "[+1]: Up to one target creature
+auto=teach(creature) +2/+0
+auto=teach(creature) first strike
+auto=teach(creature) trample "
+auto=teach(creature) Whenever you activateloyalty ability of enchanted planeswalker copy that ability You may choose new targets for the copy
+text=Enchant planeswalker -- Enchanted planeswalker has "[+1]: Up to one target creature gets +2/+0 and gains first strike and trample until end of turn." -- Whenever you activate a loyalty ability of enchanted planeswalker, copy that ability. You may choose new targets for the copy.
+mana={2}{R}{R}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Rules Lawyer
@@ -8480,6 +8917,23 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Sail into the West
+text=Will of the council - Starting with you, each player votes for return or embark. If return gets more votes, each player returns up to two cards from their graveyard to their hand, then you exile Sail into the West. If embark gets more votes or the vote is tied, each player may discard their hand and draw seven cards.
+mana={2}{G}{U}
+type=Instant
+[/card]
+[card]
+name=Saint Traft and Rem Karolus
+auto=@tapped(this):create(human:creature human:1/1:red)
+auto=@movedTo(|mystack):untap saint traft && rem karolus
+text=Whenever Saint Traft and Rem Karolus becomes tapped, create a 1/1 red Human creature token if this is the first time this ability has resolved this turn. If it's the second time, create a 1/1 blue Spirit creature token with flying. If it's the third time, create a 4/4 white Angel creature token with flying. -- Whenever you cast a spell that has convoke, untap Saint Traft and Rem Karolus.
+mana={U}{R}{W}
+type=Legendary Creature
+subtype=Spirit Human
+power=3
+toughness=4
+[/card]
+[card]
 name=Sakashima the Impostor
 text=You may have Sakashima the Impostor enter the battlefield as a copy of any creature on the battlefield, except its name is still Sakashima the Impostor, it's legendary in addition to its other types, and it gains "{2}{U}{U}: Return Sakashima the Impostor to its owner's hand at the beginning of the next end step."
 mana={2}{U}{U}
@@ -8507,7 +8961,7 @@ type=Instant
 name=Sanctum of Serra
 text=When you planeswalk away from Sanctum of Serra, destroy all nonland permanents. -- Whenever you roll {C}, you may have your life total become 20.
 type=Plane
-subtype=Serra’s Realm
+subtype=Serra?s Realm
 [/card]
 [card]
 name=Sands of Time
@@ -8516,16 +8970,22 @@ mana={4}
 type=Artifact
 [/card]
 [card]
+name=Sandsteppe War Riders
+abilities=trample
+auto=lord(creature|myBattlefield)
+auto=@each my combatbegins:bolster x, where x is the number of differently named artifact tokens|myBattlefield)
+text=Trample -- At the beginning of combat on your turn, bolster X, where X is the number of differently named artifact tokens you control. (Choose a creature with the least toughness among creatures you control and put X +1/+1 counters on it.)
+mana={3}{G}
+type=Creature
+subtype=Human Warrior
+power=4
+toughness=4
+[/card]
+[card]
 name=Sap Sucker
 text=Whenever you crank Sap Sucker, add {G}. Until end of turn, you don't lose this mana as steps and phases end.
 type=Artifact
 subtype=Contraption
-[/card]
-[card]
-name=Sapphire Charm
-text=Choose one -- Target player draws a card at the beginning of the next turn's upkeep; or target creature gains flying until end of turn; or target creature an opponent controls phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step.)
-mana={U}
-type=Instant
 [/card]
 [card]
 name=Saute
@@ -8838,6 +9298,15 @@ mana={B}
 type=Sorcery
 [/card]
 [card]
+name=Sharkey, Tyrant of the Shire
+text=Activated abilities of lands your opponents control can't be activated unless they're mana abilities. -- Sharkey, Tyrant of the Shire has all activated abilities of lands your opponents control except mana abilities. -- Mana of any type can be spent to activate Sharkey's abilities.
+mana={2}{U}{B}
+type=Legendary Creature
+subtype=Avatar Rogue
+power=2
+toughness=4
+[/card]
+[card]
 name=Shelkin Brownie
 text={T}: Target creature loses all "bands with other" abilities until end of turn.
 mana={1}{G}
@@ -8859,7 +9328,7 @@ type=Land
 [/card]
 [card]
 name=Shellephant
-text={0}: Choose one. You may activate this ability while Shellephant is in any zone. -- • Shellephant has base power and toughness 1/4. -- • Shellephant has base power and toughness 3/3.
+text={0}: Choose one. You may activate this ability while Shellephant is in any zone. -- ? Shellephant has base power and toughness 1/4. -- ? Shellephant has base power and toughness 3/3.
 mana={1}{G}{G}
 type=Creature
 subtype=Turtle and/or Elephant
@@ -9224,13 +9693,6 @@ mana={2}{U}
 type=Enchantment
 [/card]
 [card]
-name=Soar
-text=You may cast Soar as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- Enchanted creature gets +0/+1 and has flying.
-mana={1}{U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Socketed Sprocketer
 text={T}: Uninstall all results from Socketed Sprocketer, then roll a six-sided die. Install the result on Socketed Sprocketer. (Put the die on this card.) -- You may uninstall a result from Socketed Sprocketer to use it for a die you rolled. -- Uninstall a 6 from Socketed Sprocketer: Draw a card.
 mana={U}
@@ -9480,13 +9942,6 @@ type=Creature
 subtype=Sphinx
 power=5
 toughness=6
-[/card]
-[card]
-name=Spider Climb
-text=You may cast Spider Climb as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- Enchanted creature gets +0/+3 and has reach. (It can block creatures with flying.)
-mana={G}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Spire Phantasm
@@ -9744,6 +10199,12 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Stick Together
+text=Each player chooses a party from among creatures they control, then sacrifices the rest. (To choose a party, choose up to one each of Cleric, Rogue, Warrior, and Wizard.)
+mana={3}{W}{W}
+type=Sorcery
+[/card]
+[card]
 name=Stifle
 text=Counter target activated or triggered ability. (Mana abilities can't be targeted.)
 mana={U}
@@ -9778,15 +10239,6 @@ name=Stolen Identity
 text=Put a token onto the battlefield that's a copy of target artifact or creature. -- Cipher (Then you may exile this spell card encoded on a creature you control. Whenever that creature deals combat damage to a player, its controller may cast a copy of the encoded card without paying its mana cost.)
 mana={4}{U}{U}
 type=Sorcery
-[/card]
-[card]
-name=Stone Giant
-text={T}: Target creature you control with toughness less than Stone Giant's power gains flying until end of turn. Destroy that creature at the beginning of the next end step.
-mana={2}{R}{R}
-type=Creature
-subtype=Giant
-power=3
-toughness=4
 [/card]
 [card]
 name=Stone-Cold Basilisk
@@ -9874,6 +10326,14 @@ name=Strip Bare
 text=Destroy all Auras and Equipment attached to target creature.
 mana={W}
 type=Instant
+[/card]
+[card]
+name=Strixhaven
+auto=@chaos ensues<upto:1> target(instant,sorcery card from a graveyard moveto(ownerhand)
+text=Instant and sorcery spells players cast have demonstrate. (Whenever a player casts an instant or sorcery spell, they may copy it. If they do, they choose an opponent to also copy it. Players may choose new targets for their copies.) -- Whenever chaos ensues, return up to one target instant or sorcery card from a graveyard to its owner's hand.
+mana=null
+type=Plane
+subtype=Arcavios
 [/card]
 [card]
 name=Stromgald Spy
@@ -10036,6 +10496,15 @@ power=*
 toughness=*
 [/card]
 [card]
+name=Swift Reconfiguration
+target=creature,vehicle
+abilities=flash
+text=Flash -- Enchant creature or Vehicle -- Enchanted permanent is a Vehicle artifact with crew 5 and it loses all other card types. (It's not a creature unless it's crewed.)
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Swirl the Mists
 text=As Swirl the Mists enters the battlefield, choose a color word. -- All instances of color words in the text of spells and permanents are changed to the chosen color word.
 mana={2}{U}{U}
@@ -10193,6 +10662,18 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
+name=Teferi's Talent
+target=planeswalker
+auto=teach(creature) Enchant planeswalker
+auto=teach(creature) Enchanted planeswalker
+auto=teach(creature) "[-12]: You get an emblem with 'You may activate loyalty abilities of planeswalkers you control on any player's turn any time you could cast an instant'"
+auto=teach(creature) Whenever you drawcard putloyalty counter on enchanted planeswalker
+text=Enchant planeswalker -- Enchanted planeswalker has "[-12]: You get an emblem with 'You may activate loyalty abilities of planeswalkers you control on any player's turn any time you could cast an instant.'" -- Whenever you draw a card, put a loyalty counter on enchanted planeswalker.
+mana={3}{U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Tember City
 text=Whenever a player taps a land for mana, Tember City deals 1 damage to that player. -- Whenever you roll {K}, each other player sacrifices a nonland permanent.
 type=Plane
@@ -10260,6 +10741,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Ten Wizards Mountain
+auto=@roll the planar diecounter(1/1)<upto:1> target(creature
+auto=all(other creature|myBattlefield) flying 
+auto=@chaos ensuescreature|myBattlefield)) flying ueot
+text=Whenever you roll the planar die, put a +1/+1 counter on up to one target creature. -- Whenever chaos ensues, creatures you control gain flying until end of turn.
+mana=null
+type=Plane
+subtype=Shenmeng
+[/card]
+[card]
 name=Teremko Griffin
 abilities=flying,banding
 text=Flying; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
@@ -10274,6 +10765,14 @@ name=The Aether Flues
 text=When you planeswalk to The Aether Flues or at the beginning of your upkeep, you may sacrifice a creature. If you do, reveal cards from the top of your library until you reveal a creature card, put that card onto the battlefield, then shuffle all other cards revealed this way into your library. -- Whenever you roll {C}, you may put a creature card from your hand onto the battlefield.
 type=Plane
 subtype=Iquatana
+[/card]
+[card]
+name=The Caldaia
+auto=@chaos ensuestarget(creature|mygraveyard) moveto(ownerhand)
+text=Creature spells you cast from your hand have blitz {3}. (If you cast a spell for its blitz cost, it gains haste and "When this creature dies, draw a card." Sacrifice it at the beginning of the next end step.) -- Whenever chaos ensues, return target creature card from your graveyard to your hand.
+mana=null
+type=Plane
+subtype=Capenna
 [/card]
 [card]
 name=The Chain Veil
@@ -10318,7 +10817,15 @@ name=The Fate of the Flammable
 text=When you set this scheme in motion, target opponent chooses self or others. If that player chooses self, this scheme deals 6 damage to him or her. If the player chooses others, this scheme deals 3 damage to each of your other opponents.
 type=Scheme
 [/card]
-
+[card]
+name=The Fertile Lands of Saulvinia
+auto=@player taps a land for manathat player adds one mana of any type that land produced
+auto=@chaos ensuesreveal cards from the top of your planar deck until you reveal a plane card chaos ensuesthat plane then put all cards revealed this waythe bottom of your planar deck in any order
+text=Whenever a player taps a land for mana, that player adds one mana of any type that land produced. -- Whenever chaos ensues, reveal cards from the top of your planar deck until you reveal a plane card. Chaos ensues on that plane. Then put all cards revealed this way on the bottom of your planar deck in any order.
+mana=null
+type=Plane
+subtype=Antausia
+[/card]
 [card]
 name=The Fourth Sphere
 text=At the beginning of your upkeep, sacrifice a nonblack creature. -- Whenever you roll {C}, put a 2/2 black Zombie creature token onto the battlefield.
@@ -10326,10 +10833,28 @@ type=Plane
 subtype=Phyrexia
 [/card]
 [card]
+name=The Golden City of Orazca
+auto=lord(other creature|myBattlefield) the city's blessing
+auto=@one or more creatures you control deal combat damage to a playertoken(Treasure,Artifact Treasure) and!( transforms((,newability[{T}{S}:Add{W}])(,newability[{T}{S}:Add{R}])(,newability[{T}{S}:Add{G}])(,newability[{T}{S}:Add{U}])(,newability[{T}{S}:Add{B}])) forever )!
+auto=@chaos ensuesmay permanent card from your hand onto the battlefield tapped
+text=Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.) -- Whenever one or more creatures you control deal combat damage to a player, create a Treasure token. Then draw a card if you have the city's blessing. -- Whenever chaos ensues, you may put a permanent card from your hand onto the battlefield tapped.
+mana=null
+type=Plane
+subtype=Ixalan
+[/card]
+[card]
 name=The Grand Calcutron
 text=When The Grand Calcutron enters the battlefield, each player's hand becomes a program (an ordered row of revealed cards). -- Players can only play the first card of their program. -- If a card would be put into a player's hand from anywhere, that player reveals it and places it anywhere within their program instead. -- At the beginning of each player's end step, if that player's program has fewer than five cards, they draw cards equal to the difference.
 mana={W}{U}
 type=Legendary Artifact
+[/card]
+[card]
+name=The Great Aerie
+auto=@chaos ensueschoose <upto:1> target(creature|myBattlefield) && <upto:1> target(creature|opponentBattlefield) all(of those creature deals damage equal its toughness the other
+text=When you planeswalk to The Great Aerie and at the beginning of your upkeep, bolster 3. (Choose a creature with the least toughness among creatures you control and put three +1/+1 counters on it.) -- Whenever chaos ensues, choose up to one target creature you control and up to one target creature an opponent controls. Each of those creatures deals damage equal to its toughness to the other.
+mana=null
+type=Plane
+subtype=Tarkir
 [/card]
 [card]
 name=The Great Aurora
@@ -10381,6 +10906,15 @@ text=When you set this scheme in motion, draw two cards. Artifact spells you cas
 type=Scheme
 [/card]
 [card]
+name=The Pit
+auto=@you planeswalk to The Pitall(player creates their choice of a 3/3 white angel creature token with flying,a 6/6 black demon creature token with flying, trample, && "at the beginning of your upkeep, {S(other creature|mybattlefield)} if you can't, this creature damage:6 you"
+auto=@chaos ensuesall(player sacrifices a nonartifact creature
+text=When you planeswalk to The Pit, each player creates their choice of a 3/3 white Angel creature token with flying or a 6/6 black Demon creature token with flying, trample, and "At the beginning of your upkeep, sacrifice another creature. If you can't, this creature deals 6 damage to you." -- Whenever chaos ensues, each player sacrifices a nonartifact creature.
+mana=null
+type=Plane
+subtype=The Abyss
+[/card]
+[card]
 name=The Ultimate Nightmare of Wizards of the Coast® Customer Service
 text=The Ultimate Nightmare of Wizards of the Coast® Customer Service deals X damage to each of Y target creatures and Z target players.
 mana={X}{R}{R}
@@ -10390,6 +10924,23 @@ type=Sorcery
 name=The Very Soil Shall Shake
 text=(An ongoing scheme remains face up until it's abandoned.) -- Creatures you control get +2/+2 and have trample. -- When a creature you control dies, abandon this scheme.
 type=Ongoing Scheme
+[/card]
+[card]
+name=The Western Cloud
+auto=lord(creature|myBattlefield)
+auto=@chaos ensuestoken(Treasure,Artifact Treasure) and!( transforms((,newability[{T}{S}:Add{W}])(,newability[{T}{S}:Add{R}])(,newability[{T}{S}:Add{G}])(,newability[{T}{S}:Add{U}])(,newability[{T}{S}:Add{B}])) forever )!
+text=Prevent all damage that would be dealt to creatures and planeswalkers you control. -- Whenever chaos ensues, create three tapped Treasure tokens. They each deal 1 damage to each creature and each planeswalker.
+mana=null
+type=Plane
+subtype=Gobakhan
+[/card]
+[card]
+name=The Wilds
+auto=@chaos ensuestoken
+text=When you planeswalk to The Wilds and at the beginning of your upkeep, create a Food token. -- Whenever chaos ensues, target player sacrifices a creature. If they do, you create a Food token. You create two Food tokens instead if the sacrificed creature's toughness was 4 or greater.
+mana=null
+type=Plane
+subtype=Eldraine
 [/card]
 [card]
 name=The Wretched
@@ -10696,6 +11247,12 @@ mana={3}{R}
 type=Sorcery
 [/card]
 [card]
+name=Towashi
+text=Modified creatures you control have trample and "Whenever this creature deals combat damage to a player or planeswalker, draw a card." (Equipment, Auras you control, and counters are modifications.) -- Whenever chaos ensues, distribute three +1/+1 counters among one, two, or three target creatures you control.
+type=Plane
+subtype=Kamigawa
+[/card]
+[card]
 name=Toy Boat
 text=Cumulative upkeep-Say "Toy Boat" quickly. (At the beginning of your upkeep, put an age counter on Toy Boat, then sacrifice it unless you say "Toy Boat" once for each age counter on it-without pausing between or fumbling it.)
 mana={3}
@@ -10747,6 +11304,18 @@ toughness=2
 name=Transmute Artifact
 text=Sacrifice an artifact. If you do, search your library for an artifact card. If that card's converted mana cost is less than or equal to the sacrificed artifact's converted mana cost, put it onto the battlefield. If it's greater, you may pay {X}, where X is the difference. If you do, put it onto the battlefield. If you don't, put it into its owner's graveyard. Then shuffle your library.
 mana={U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Trap the Trespassers
+text=Secret council - Each player secretly votes for a creature you don't control, then those votes are revealed. For each creature with one or more votes, put that many stun counters on it, then tap it. (If a permanent with a stun counter would become untapped, remove one from it instead.)
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Travel Through Caradhras
+text=Council's dilemma - Starting with you, each player votes for Redhorn Pass or Mines of Moria. For each Redhorn Pass vote, search your library for a basic land card and put it onto the battlefield tapped. If you search your library this way, shuffle. For each Mines of Moria vote, return a card from your graveyard to your hand. -- Exile Travel Through Caradhras.
+mana={5}{G}
 type=Sorcery
 [/card]
 [card]
@@ -10880,18 +11449,16 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Umori, the Collector
-text=Companion - Each nonland card in your starting deck shares a card type. (If this card is your chosen companion, you may cast it once from outside the game.) -- As Umori, the CollectorUmori, the Collector enters the battlefield, choose a card type. -- Spells you cast of the chosen type cost 1 less to cast.
-mana={2}{BG}{BG}
-type=Legendary Creature
-subtype=Ooze
-power=4
-toughness=5
-[/card]
-[card]
 name=Unbound Flourishing
 text=Whenever you cast a permanent spell with a mana cost that contains {X}, double the value of X. -- Whenever you cast an instant or sorcery spell or activate an ability, if that spell's mana cost or that ability's activation cost contains {X}, copy that spell or ability. You may choose new targets for the copy.
 mana={2}{G}
+type=Enchantment
+[/card]
+[card]
+name=Uncivil Unrest
+auto=lord(other creature|myBattlefield) riot
+text=Nontoken creatures you control have riot. (They enter the battlefield with your choice of a +1/+1 counter or haste.) -- If a creature you control with a +1/+1 counter on it would deal damage to a permanent or player, it deals double that damage instead.
+mana={4}{R}
 type=Enchantment
 [/card]
 [card]
@@ -10921,6 +11488,15 @@ name=Unpredictable Cyclone
 text=If a cycling ability of another nonland card would cause you to draw a card, instead exile cards from the top of your library until you exile a card that shares a card type with the cycled card. You may cast that card without paying its mana cost. Then put the exiled cards that weren't cast this way on the bottom of your library in a random order. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={3}{R}{R}
 type=Enchantment
+[/card]
+[card]
+name=Unyaro
+auto=@each my endofturn:if you planeswalked  this turn, untap all creature they phase out until a player planeswalks
+auto=@chaos ensuescreate(knight:creature knight:2/2:white,blue:vigilance)*2
+text=At the beginning of your end step, if you planeswalked to Unyaro this turn, untap all creatures. They phase out until a player planeswalks. (Treat them and anything attached to them as though they didn't exist.) -- Whenever chaos ensues, create two 2/2 white and blue Knight creature tokens with vigilance.
+mana=null
+type=Plane
+subtype=Zhalfir
 [/card]
 [card]
 name=Urza's Contact Lenses
@@ -10975,6 +11551,15 @@ name=Valor Made Real
 text=Target creature can block any number of creatures this turn.
 mana={W}
 type=Instant
+[/card]
+[card]
+name=Valor's Reach
+auto=@your team attacks with exactly two creaturesthose creature) double strike ueot
+auto=@chaos ensuesuntap <upto:2> target(creature your team controls if it's a main phase, there is an additional combat phase after this phase, followed by an additional main phase
+text=Whenever your team attacks with exactly two creatures, those creatures gain double strike until end of turn. -- Whenever chaos ensues, untap up to two target creatures your team controls. If it's a main phase, there is an additional combat phase after this phase, followed by an additional main phase.
+mana=null
+type=Plane
+subtype=Kylem
 [/card]
 [card]
 name=Varolz, the Scar-Striped
@@ -11174,6 +11759,16 @@ power=6
 toughness=5
 [/card]
 [card]
+name=Volo, Itinerant Scholar
+abilities=backgroundpartner
+text=When Volo enters the battlefield, create Volo's Journal, a legendary colorless artifact token with hexproof and "Whenever you cast a creature spell, note one of its creature types that hasn't been noted for this artifact." -- {2}, {T}: Draw a card for each creature type noted for target permanent you control named Volo's Journal. -- Choose a Background
+mana={2}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=2
+toughness=3
+[/card]
+[card]
 name=Volrath's Curse
 text=Enchant creature -- Enchanted creature can't attack or block, and its activated abilities can't be activated. That creature's controller may sacrifice a permanent for that player to ignore this effect until end of turn. -- {1}{U}: Return Volrath's Curse to its owner's hand.
 mana={1}{U}
@@ -11223,6 +11818,17 @@ type=Creature
 subtype=Elemental
 power=0
 toughness=1
+[/card]
+[card]
+name=Vulpine Harvester
+auto=lord(creature|myBattlefield) artifact card from your graveyard to the battlefield if its mana value is less than or equal to their total power
+auto=@one or more Phyrexians you control attacktarget(artifact|mygraveyard) the battlefield if its mana value is less than,equal their total power
+text=Whenever one or more Phyrexians you control attack, return target artifact card from your graveyard to the battlefield if its mana value is less than or equal to their total power.
+mana={3}{W}
+type=Creature
+subtype=Phyrexian Fox
+power=3
+toughness=3
 [/card]
 [card]
 name=Wall of Caltrops
@@ -11296,6 +11902,16 @@ toughness=4
 name=Wand of Ith
 text={3}, {T}: Target player reveals a card at random from his or her hand. If it's a land card, that player discards it unless he or she pays 1 life. If it isn't a land card, the player discards it unless he or she pays life equal to its converted mana cost. Activate this ability only during your turn.
 mana={4}
+type=Artifact
+[/card]
+[card]
+name=Wand of the Worldsoul
+auto=tapped
+auto={T}:add {w}
+auto={T}:Add{W}
+auto={T}:the next spell you cast this turn) convoke
+text=Wand of the Worldsoul enters the battlefield tapped. -- {T}: Add {W}. -- {T}: The next spell you cast this turn has convoke.
+mana={2}{W}
 type=Artifact
 [/card]
 [card]
@@ -11381,6 +11997,16 @@ type=Creature
 subtype=Human Soldier
 power=2
 toughness=5
+[/card]
+[card]
+name=Weaver of Harmony
+auto=lord(other creature[enchantment]|myBattlefield) 1/1
+text=Other enchantment creatures you control get +1/+1. -- {G}, {T}: Copy target activated or triggered ability you control from an enchantment source. You may choose new targets for the copy. (Mana abilities can't be targeted.)
+mana={1}{G}
+type=Enchantment Creature
+subtype=Snake Druid
+power=2
+toughness=2
 [/card]
 [card]
 name=Weaver of Lies
@@ -11536,6 +12162,16 @@ mana={3}{R}
 type=Sorcery
 [/card]
 [card]
+name=Wildfire Awakener
+auto=create(elemental:creature elemental:1/1:red:"whenever this creature becomes tapped, it deals 1 damage to target player)x
+text=Convoke (Your creatures can help cast this spell. Each creature you tap while casting this spell pays for {1} or one mana of that creature's color.) -- When Wildfire Awakener enters the battlefield, create X 1/1 red Elemental creature tokens with "Whenever this creature becomes tapped, it deals 1 damage to target player."
+mana={X}{1}{R}{W}
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=2
+[/card]
+[card]
 name=Wildfire Devils
 text=When Wildfire Devils enters the battlefield and at the beginning of your upkeep, choose a player at random. That player exiles an instant or sorcery card from their graveyard. Copy that card. You may cast the copy without paying its mana cost.
 mana={3}{R}
@@ -11557,15 +12193,6 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Winding Constrictor
-text=If one or more counters would be placed on an artifact or creature you control, that many plus one of each of those kinds of counters are placed on that permanent instead. -- If you would get one or more counters, you get that many plus one of each of those kinds of counters instead.
-mana={B}{G}
-type=Creature
-subtype=Snake
-power=2
-toughness=3
-[/card]
-[card]
 name=Windriddle Palaces
 text=Players play with the top card of their libraries revealed. -- You may play the top card of any player's library. -- Whenever you roll {K}, each player puts the top card of his or her library into his or her graveyard.
 type=Plane
@@ -11576,6 +12203,16 @@ name=Winter's Chill
 text=Cast Winter's Chill only during combat before blockers are declared. -- X can't be greater than the number of snow lands you control. -- Choose X target attacking creatures. For each of those creatures, its controller may pay {1} or {2}. If that player doesn't, destroy that creature at end of combat. If that player pays only {1}, prevent all combat damage that would be dealt to and dealt by that creature this combat.
 mana={X}{U}
 type=Instant
+[/card]
+[card]
+name=Wire Surgeons
+abilities=fear
+text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- Each artifact creature card in your graveyard has encore. Its encore cost is equal to its mana cost. (Exile it and pay its mana cost: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)
+mana={4}{B}{B}
+type=Creature
+subtype=Human Artificer
+power=6
+toughness=5
 [/card]
 [card]
 name=Wishmonger
@@ -11664,6 +12301,13 @@ mana={2}{U}
 type=Sorcery
 [/card]
 [card]
+name=Wyll's Reversal
+target=*|stack
+text=Choose target spell or ability with one or more targets. Roll a d20 and add the greatest power among creatures you control. -- 1-14 | You may choose new targets for that spell or ability. -- 15+ | You may choose new targets for that spell or ability. Then copy it. You may choose new targets for the copy.
+mana={2}{R}
+type=Instant
+[/card]
+[card]
 name=X
 text=As long as X is in X's owner's opponent's hand, X's owner may cast X and activate X's abilities. That opponent can't cast X and plays with their hand revealed. -- {U}{B}, {T}: Put X into target opponent's hand. -- {3}{U}{B}: You may play a card in the same hand as X without paying its mana cost.
 mana={U}{B}
@@ -11708,12 +12352,6 @@ type=Legendary Creature
 subtype=Sphinx
 power=3
 toughness=5
-[/card]
-[card]
-name=Yet Another Aether Vortex
-text=All creatures have haste. -- Players play with the top card of their libraries revealed. -- Noninstant, nonsorcery cards on top of a library are in play under their owner's control in addition to being in that library.
-mana={3}{R}{R}
-type=Enchantment
 [/card]
 [card]
 name=Yet Another Aether Vortex

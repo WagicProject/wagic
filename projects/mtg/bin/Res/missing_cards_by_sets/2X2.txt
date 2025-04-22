@@ -1,0 +1,199 @@
+[card]
+name=Skullbriar, the Walking Grave
+text=Haste -- Whenever Skullbriar, the Walking Grave deals combat damage to a player, put a +1/+1 counter on it. -- Counters remain on Skullbriar as it moves to any zone other than a player's hand or library.
+mana={B}{G}
+type=Legendary Creature
+subtype=Zombie Elemental
+power=1
+toughness=1
+[/card]
+[card]
+name=Necrotic Ooze
+text=As long as Necrotic Ooze is on the battlefield, it has all activated abilities of all creature cards in all graveyards.
+mana={2}{B}{B}
+type=Creature
+subtype=Ooze
+power=4
+toughness=3
+[/card]
+[card]
+name=Leonin Arbiter
+text=Players can't search libraries. Any player may pay {2} for that player to ignore this effect until end of turn.
+mana={1}{W}
+type=Creature
+subtype=Cat Cleric
+power=2
+toughness=2
+[/card]
+[card]
+name=The Mimeoplasm
+text=As The Mimeoplasm enters the battlefield, you may exile two creature cards from graveyards. If you do, it enters the battlefield as a copy of one of those cards with a number of additional +1/+1 counters on it equal to the power of the other card.
+mana={2}{G}{U}{B}
+type=Legendary Creature
+subtype=Ooze
+power=0
+toughness=0
+[/card]
+[card]
+name=Mizzix of the Izmagnus
+text=Whenever you cast an instant or sorcery spell with converted mana cost greater than the number of experience counters you have, you get an experience counter. -- Instant and sorcery spells you cast cost {1} less to cast for each experience counter you have.
+mana={2}{U}{R}
+type=Legendary Creature
+subtype=Goblin Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Thrumming Stone
+text=Spells you cast have ripple 4. (Whenever you cast a spell, you may reveal the top four cards of your library. You may cast any revealed cards with the same name as the spell without paying their mana costs. Put the rest on the bottom of your library.)
+mana={5}
+type=Legendary Artifact
+[/card]
+[card]
+name=Oona's Prowler
+abilities=flying
+text=Flying -- Discard a card: Oona's Prowler gets -2/-0 until end of turn. Any player may activate this ability.
+mana={1}{B}
+type=Creature
+subtype=Faerie Rogue
+power=3
+toughness=1
+[/card]
+[card]
+name=Ob Nixilis, Unshackled
+abilities=flying,trample
+text=Flying, trample -- Whenever an opponent searches his or her library, that player sacrifices a creature and loses 10 life. -- Whenever another creature dies, put a +1/+1 counter on Ob Nixilis, Unshackled.
+mana={4}{B}{B}
+type=Legendary Creature
+subtype=Demon
+power=4
+toughness=4
+[/card]
+[card]
+name=Panharmonicon
+text=If an artifact or creature entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Thrumming Stone
+text=Spells you cast have ripple 4. (Whenever you cast a spell, you may reveal the top four cards of your library. You may cast any revealed cards with the same name as the spell without paying their mana costs. Put the rest on the bottom of your library.)
+mana={5}
+type=Legendary Artifact
+[/card]
+[card]
+name=Panharmonicon
+text=If an artifact or creature entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Oona's Prowler
+abilities=flying
+text=Flying -- Discard a card: Oona's Prowler gets -2/-0 until end of turn. Any player may activate this ability.
+mana={1}{B}
+type=Creature
+subtype=Faerie Rogue
+power=3
+toughness=1
+[/card]
+[card]
+name=Dromoka's Command
+text=Choose two -- Prevent all damage target instant or sorcery spell would deal this turn. -- Target player sacrifices an enchantment. -- Put a +1/+1 counter on target creature. -- Target creature you control fights target creature you don't control.
+mana={G}{W}
+type=Instant
+[/card]
+[card]
+name=Necrotic Ooze
+text=As long as Necrotic Ooze is on the battlefield, it has all activated abilities of all creature cards in all graveyards.
+mana={2}{B}{B}
+type=Creature
+subtype=Ooze
+power=4
+toughness=3
+[/card]
+[card]
+name=Ob Nixilis, Unshackled
+abilities=flying,trample
+text=Flying, trample -- Whenever an opponent searches his or her library, that player sacrifices a creature and loses 10 life. -- Whenever another creature dies, put a +1/+1 counter on Ob Nixilis, Unshackled.
+mana={4}{B}{B}
+type=Legendary Creature
+subtype=Demon
+power=4
+toughness=4
+[/card]
+[card]
+name=Skullbriar, the Walking Grave
+text=Haste -- Whenever Skullbriar, the Walking Grave deals combat damage to a player, put a +1/+1 counter on it. -- Counters remain on Skullbriar as it moves to any zone other than a player's hand or library.
+mana={B}{G}
+type=Legendary Creature
+subtype=Zombie Elemental
+power=1
+toughness=1
+[/card]
+[card]
+name=Leonin Arbiter
+text=Players can't search libraries. Any player may pay {2} for that player to ignore this effect until end of turn.
+mana={1}{W}
+type=Creature
+subtype=Cat Cleric
+power=2
+toughness=2
+[/card]
+[card]
+name=Gifts Ungiven
+text=Search your library for four cards with different names and reveal them. Target opponent chooses two of those cards. Put the chosen cards into your graveyard and the rest into your hand. Then shuffle your library.
+mana={3}{U}
+type=Instant
+[/card]
+[card]
+name=The Mimeoplasm
+text=As The Mimeoplasm enters the battlefield, you may exile two creature cards from graveyards. If you do, it enters the battlefield as a copy of one of those cards with a number of additional +1/+1 counters on it equal to the power of the other card.
+mana={2}{G}{U}{B}
+type=Legendary Creature
+subtype=Ooze
+power=0
+toughness=0
+[/card]
+[card]
+name=Panharmonicon
+text=If an artifact or creature entering the battlefield causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Gifts Ungiven
+text=Search your library for four cards with different names and reveal them. Target opponent chooses two of those cards. Put the chosen cards into your graveyard and the rest into your hand. Then shuffle your library.
+mana={3}{U}
+type=Instant
+[/card]
+[card]
+name=Mizzix of the Izmagnus
+text=Whenever you cast an instant or sorcery spell with converted mana cost greater than the number of experience counters you have, you get an experience counter. -- Instant and sorcery spells you cast cost {1} less to cast for each experience counter you have.
+mana={2}{U}{R}
+type=Legendary Creature
+subtype=Goblin Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=The Mimeoplasm
+text=As The Mimeoplasm enters the battlefield, you may exile two creature cards from graveyards. If you do, it enters the battlefield as a copy of one of those cards with a number of additional +1/+1 counters on it equal to the power of the other card.
+mana={2}{G}{U}{B}
+type=Legendary Creature
+subtype=Ooze
+power=0
+toughness=0
+[/card]
+[card]
+name=Gifts Ungiven
+text=Search your library for four cards with different names and reveal them. Target opponent chooses two of those cards. Put the chosen cards into your graveyard and the rest into your hand. Then shuffle your library.
+mana={3}{U}
+type=Instant
+[/card]
+[card]
+name=Dromoka's Command
+text=Choose two -- Prevent all damage target instant or sorcery spell would deal this turn. -- Target player sacrifices an enchantment. -- Put a +1/+1 counter on target creature. -- Target creature you control fights target creature you don't control.
+mana={G}{W}
+type=Instant
+[/card]

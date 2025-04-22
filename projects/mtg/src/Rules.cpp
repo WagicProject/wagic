@@ -168,9 +168,9 @@ void Rules::addExtraRules(GameObserver* g)
                 difficultyRating = 0;
             else if(g->mRules->gamemode == GAME_TYPE_RANDOM1 || g->mRules->gamemode == GAME_TYPE_RANDOM2)
                 difficultyRating = 0;
-             else if(g->mRules->gamemode == GAME_TYPE_RANDOM3 || g->mRules->gamemode == GAME_TYPE_RANDOM5)
+            else if(g->mRules->gamemode == GAME_TYPE_RANDOM3 || g->mRules->gamemode == GAME_TYPE_RANDOM5 || g->mRules->gamemode == GAME_TYPE_RANDOMCOMMANDER || g->mRules->gamemode == GAME_TYPE_RANDOMCOMMANDERFROMFILE)
                 difficultyRating = 0;
-             else if(g->mRules->gamemode == GAME_TYPE_HORDE || g->mRules->gamemode == GAME_TYPE_SET_LIMITED)
+            else if(g->mRules->gamemode == GAME_TYPE_HORDE || g->mRules->gamemode == GAME_TYPE_SET_LIMITED)
                 difficultyRating = 0;
             else if (g->mRules->gamemode == GAME_TYPE_STORY)
                 difficultyRating = 0;
@@ -200,7 +200,7 @@ void Rules::addExtraRules(GameObserver* g)
                         a->resolve();
                     else if(g->mRules->gamemode == GAME_TYPE_RANDOM1 || g->mRules->gamemode == GAME_TYPE_RANDOM2)
                         a->resolve();
-                     else if(g->mRules->gamemode == GAME_TYPE_RANDOM3 || g->mRules->gamemode == GAME_TYPE_RANDOM5) 
+                    else if(g->mRules->gamemode == GAME_TYPE_RANDOM3 || g->mRules->gamemode == GAME_TYPE_RANDOM5 || g->mRules->gamemode == GAME_TYPE_RANDOMCOMMANDER || g->mRules->gamemode == GAME_TYPE_RANDOMCOMMANDERFROMFILE) 
                         a->resolve();
                     else if (g->mRules->gamemode == GAME_TYPE_STORY)
                         a->resolve();
@@ -365,7 +365,7 @@ Player * Rules::loadPlayerRandomThree(GameObserver* observer, int isAI)
     int colors[] = { color1, color2, color3, color0 };
     int nbcolors = 4;
 
-    string lands[] = { "", "forest", "island", "mountain", "swamp", "plains", "" };
+    string lands[] = { "", "forest", "island", "mountain", "swamp", "plains" };
 
     MTGDeck * tempDeck = NEW MTGDeck(MTGCollection());
     tempDeck->addRandomCards(5, 0, 0, -1, lands[color1].c_str());
@@ -382,7 +382,8 @@ Player * Rules::loadPlayerRandomThree(GameObserver* observer, int isAI)
     tempDeck->addRandomCards(3, 0, 0, -1, "enchantment", colors, nbcolors);
     tempDeck->addRandomCards(3, 0, 0, -1, "instant", colors, nbcolors);
     tempDeck->addRandomCards(3, 0, 0, -1, "sorcery", colors, nbcolors);
-    tempDeck->addRandomCards(4, 0, 0, -1, "artifact", colors, nbcolors);
+    tempDeck->addRandomCards(3, 0, 0, -1, "artifact", colors, nbcolors);
+    tempDeck->addRandomCards(1, 0, 0, -1, "battle", colors, nbcolors);
     tempDeck->addRandomCards(1, 0, 0, -1, "planeswalker", colors, nbcolors);
 
     string deckFile = "random";
@@ -402,13 +403,249 @@ Player * Rules::loadPlayerRandomFive(GameObserver* observer, int isAI)
     MTGDeck * tempDeck = NEW MTGDeck(MTGCollection());
 
     tempDeck->addRandomCards(24, 0, 0, -1, "land");
-    tempDeck->addRandomCards(10, 0, 0, -1, "legendary");
-    tempDeck->addRandomCards(26, 0, 0, -1, "");
+    tempDeck->addRandomCards(36, 0, 0, -1, "");
     
     string deckFile = "random";
     string deckFileSmall = "random";
 
     Player *player = NULL;
+    if (!isAI) // Human Player
+        player = NEW HumanPlayer(observer, deckFile, deckFileSmall, false, tempDeck);
+    else
+        player = NEW AIPlayerBaka(observer, deckFile, deckFileSmall, "", tempDeck);
+
+    return player;
+}
+
+Player * Rules::loadPlayerRandomCommander(GameObserver* observer, int isAI)
+{
+    MTGDeck * cmdTempDeck = NEW MTGDeck(MTGCollection());
+    MTGDeck * tempDeck = NEW MTGDeck(MTGCollection());
+    tempDeck->meta_commander = true;
+
+    string lands[] = { "", "forest", "island", "mountain", "swamp", "plains", "basic", "basic" };
+
+    cmdTempDeck->addRandomCards(1, 0, 0, -1, "legendary");
+    DeckDataWrapper * myCommandZone = NEW DeckDataWrapper(cmdTempDeck);
+    MTGCard * commander = myCommandZone->getCard(0, true);
+
+    while(!commander->data->isCreature())
+    {
+        cmdTempDeck->addRandomCards(1, 0, 0, -1, "legendary");
+        myCommandZone = NEW DeckDataWrapper(cmdTempDeck);
+        commander = myCommandZone->getCard(0, true);
+        delete myCommandZone; // Clean up to avoid memory leaks
+    }
+
+    stringstream cid;
+    cid << commander->getMTGId();
+    vector<string> newCMD;
+    newCMD.push_back(cid.str());
+    tempDeck->replaceCMD(newCMD);
+
+    std::vector< int > colors;
+
+    for (int i = 0; i < Constants::NB_Colors; i++)
+    {
+        if (commander->data->getManaCost()->hasColor(i))
+            colors.push_back(i);
+    }
+
+    if(colors.data()[0] != 0) { colors.insert(colors.begin(),0); }
+
+    // Add lands
+    int numLands = colors.size() > 1 ? 40 / (colors.size() - 1) : 40;
+    if(colors.size() > 1)
+    {
+        for (unsigned int i = 1; i < colors.size(); i++)
+        {
+            tempDeck->addRandomCards(numLands, 0, 0, -1, lands[colors.data()[i]].c_str());
+        }
+    }
+    else { tempDeck->addRandomCards(numLands, 0, 0, Constants::RARITY_L); }
+
+    tempDeck->addRandomCards(59, 0, 0, -1, "", colors.data(), colors.size());
+
+    string deckFile = "random";
+    string deckFileSmall = "random";
+
+    Player *player = NULL;
+    if (!isAI) // Human Player
+        player = NEW HumanPlayer(observer, deckFile, deckFileSmall, false, tempDeck);
+    else
+        player = NEW AIPlayerBaka(observer, deckFile, deckFileSmall, "", tempDeck);
+
+    return player;
+}
+
+/**
+ * @brief Loads a player with a randomly selected commander from a specified file.
+ * 
+ * This function reads a file ('User/commander/commander.txt') that contains a list of potential commander IDs or names. 
+ * It selects one randomly to be used as the player's commander. If the file doesn't exist, or no valid commanders 
+ * are found, a default commander ID (670972) is used.
+ * 
+ * @param observer A pointer to the GameObserver, used to track game events.
+ * @param isAI An integer indicating if the player is AI (non-zero) or human (zero).
+ * 
+ * @return A pointer to the Player object created, either a human or AI player with a deck constructed 
+ *         around the selected commander. Returns 'nullptr' if a player could not be created due to errors.
+ */
+Player* Rules::loadPlayerRandomCommanderFromFile(GameObserver* observer, int isAI)
+{
+    std::ifstream file("User/commander/commander.txt");
+
+    // Check if the file exists
+    if (!file.is_open())
+    {
+        std::cerr << "File not found: User/commander/commander.txt. Creating file with default value 670972." << std::endl;
+
+        // Create the file with a default commander ID
+        std::ofstream outFile("User/commander/commander.txt");
+        if (!outFile.is_open())
+        {
+            std::cerr << "Failed to create file: User/commander/commander.txt" << std::endl;
+            return NULL;
+        }
+        outFile << "670972" << std::endl;
+        outFile.close();
+
+        // Re-open the file to continue processing
+        file.open("User/commander/commander.txt");
+        if (!file.is_open())
+        {
+            std::cerr << "Failed to open file after creation: User/commander/commander.txt" << std::endl;
+            return NULL;
+        }
+    }
+
+    std::vector<std::string> commanderIds;
+    std::string line;
+    while (std::getline(file, line))
+    {
+        // Ignore lines that start with '#'
+        if (!line.empty() && line[0] == '#')
+        {
+            continue;
+        }
+
+        // Validate and add the line if it's a valid numeric ID
+        char* end;
+        long id = std::strtol(line.c_str(), &end, 10);
+        if (*end == '\0' && id > 0)
+        {
+            commanderIds.push_back(line);
+        }
+        else
+        {
+            // Attempt to convert name to ID if it's not a valid numeric ID
+            int cardId = getMTGId(line); // Assumes getMTGId is defined and returns -1 if not found
+            if (cardId != -1)
+            {
+                std::stringstream ss;
+                ss << cardId;
+                commanderIds.push_back(ss.str());
+            }
+        }
+    }
+    file.close();
+
+    // If no valid commander IDs found, default to 670972
+    if (commanderIds.empty())
+    {
+        std::cerr << "No valid commander IDs found in file. Using default commander ID 670972." << std::endl;
+        commanderIds.push_back("670972");
+    }
+
+    // Filter out invalid commander IDs
+    std::vector<std::string> validCommanderIds;
+    for (size_t i = 0; i < commanderIds.size(); ++i)
+    {
+        int commanderIntId = std::atoi(commanderIds[i].c_str());
+        MTGCard* card = MTGCollection()->getCardById(commanderIntId);
+        if (card != NULL)
+        {
+            validCommanderIds.push_back(commanderIds[i]);
+        }
+        else
+        {
+            std::cerr << "Commander with ID " << commanderIds[i] << " does not exist in primitives." << std::endl;
+        }
+    }
+
+    // If no valid commander IDs after filtering, default to 670972
+    if (validCommanderIds.empty())
+    {
+        std::cerr << "No valid commanders available after filtering. Using default commander ID 670972." << std::endl;
+        validCommanderIds.push_back("670972");
+    }
+
+    // Randomly select a commander ID
+    std::srand(static_cast<unsigned int>(time(NULL)));
+    int randomIndex = std::rand() % validCommanderIds.size();
+    std::string commanderId = validCommanderIds[randomIndex];
+
+    MTGDeck* cmdTempDeck = NEW MTGDeck(MTGCollection());
+    int commanderIntId = std::atoi(commanderId.c_str());
+    if (!cmdTempDeck->add(commanderIntId))
+    {
+        std::cerr << "Failed to add commander card with ID: " << commanderId << std::endl;
+        return NULL;
+    }
+
+    MTGDeck* tempDeck = NEW MTGDeck(MTGCollection());
+    tempDeck->meta_commander = true;
+
+    std::string lands[] = { "", "forest", "island", "mountain", "swamp", "plains", "basic", "basic" };
+
+    DeckDataWrapper* myCommandZone = NEW DeckDataWrapper(cmdTempDeck);
+    MTGCard* commander = myCommandZone->getCard(0, true);
+
+    if (commander == NULL)
+    {
+        std::cerr << "Invalid commander card retrieved from the command zone." << std::endl;
+        return NULL;
+    }
+
+    std::stringstream cid;
+    cid << commanderId;
+    std::vector<std::string> newCMD;
+    newCMD.push_back(cid.str());
+    tempDeck->replaceCMD(newCMD);
+
+    std::vector<int> colors;
+
+    for (int i = 0; i < Constants::NB_Colors; i++)
+    {
+        if (commander->data->getManaCost()->hasColor(i))
+            colors.push_back(i);
+    }
+
+    if (!colors.empty() && colors[0] != 0)
+    {
+        colors.insert(colors.begin(), 0);
+    }
+
+    // Add lands
+    int numLands = colors.size() > 1 ? 40 / (colors.size() - 1) : 40;
+    if (colors.size() > 1)
+    {
+        for (unsigned int i = 1; i < colors.size(); i++)
+        {
+            tempDeck->addRandomCards(numLands, 0, 0, -1, lands[colors[i]].c_str());
+        }
+    }
+    else
+    {
+        tempDeck->addRandomCards(numLands, 0, 0, Constants::RARITY_L);
+    }
+
+    tempDeck->addRandomCards(59, 0, 0, -1, "", colors.data(), colors.size());
+
+    std::string deckFile = "random";
+    std::string deckFileSmall = "random";
+
+    Player* player = NULL;
     if (!isAI) // Human Player
         player = NEW HumanPlayer(observer, deckFile, deckFileSmall, false, tempDeck);
     else
@@ -429,9 +666,9 @@ Player * Rules::loadPlayerHorde(GameObserver* observer, int isAI)
           "Sliver", "Spellshaper", "Spirit", "Wizard" };
     const char* const whiteTribes[] = { "Angel", "Archer", "Bird", "Cat", "Cleric", "Griffin", "Kithkin", "Knight", "Kor", "Monk", "Rebel", "Samurai", "Scout", "Soldier", "Spirit" };
     const char* const blueTribes[] = { "Artificer", "Bird", "Drake", "Faerie", "Illusion", "Merfolk", "Mutant", "Nightmare", "Pirate", "Shapeshifter", "Sphinx", "Spirit", "Vedalken", "Wizard" };
-    const char* const blackTribes[] = { "Assassin", "Cleric", "Demon", "Faerie", "Horror", "Insect", "Knight", "Nightmare", "Orc", "Pirate", "Rat", "Rogue", "Shade", "Skeleton", "Spirit", "Vampire", "Wizard", "Zombie" };
-    const char* const redTribes[] = { "Artificer", "Beast", "Berserker", "Devil", "Dinosaur", "Dragon", "Dwarf", "Goblin", "Kavu", "Lizard", "Minotaur", "Ogre", "Orc", "Shaman", "Viashino", "Warrior", "Werewolf" };
-    const char* const greenTribes[] = { "Archer", "Beast", "Cat", "Centaur", "Dinosaur", "Druid", "Dryad", "Elf", "Fungus", "Insect", "Kavu", "Lizard", "Mutant", "Plant", "Scout", "Shaman", "Snake", "Spider", "Treefolk", "Warrior", "Werewolf", "Wurm" };
+    const char* const blackTribes[] = { "Assassin", "Cleric", "Demon", "Faerie", "Horror", "Insect", "Knight", "Nightmare", "Orc", "Phyrexian", "Pirate", "Rat", "Rogue", "Shade", "Skeleton", "Spirit", "Vampire", "Wizard", "Zombie" };
+    const char* const redTribes[] = { "Artificer", "Beast", "Berserker", "Devil", "Dinosaur", "Dragon", "Dwarf", "Goblin", "Kavu", "Lizard", "Minotaur", "Ogre", "Orc", "Shaman", "Warrior", "Werewolf" };
+    const char* const greenTribes[] = { "Archer", "Beast", "Cat", "Centaur", "Dinosaur", "Druid", "Dryad", "Elf", "Fungus", "Insect", "Kavu", "Lizard", "Mutant", "Plant", "Ranger", "Scout", "Shaman", "Snake", "Spider", "Treefolk", "Warrior", "Werewolf", "Wurm" };
 
     int multicolorTribesSize = sizeof(multicolorTribes)/sizeof(multicolorTribes[0]);
     int whiteTribesSize = sizeof(whiteTribes)/sizeof(whiteTribes[0]);
@@ -471,7 +708,7 @@ Player * Rules::loadPlayerHorde(GameObserver* observer, int isAI)
     tempDeck->addRandomCards(5, 0, 0, -1, "enchantment", tribeColor, nbColors);
     tempDeck->addRandomCards(5, 0, 0, -1, "instant", tribeColor, nbColors);
     tempDeck->addRandomCards(5, 0, 0, -1, "sorcery", tribeColor, nbColors);
-    tempDeck->addRandomCards(1, 0, 0, -1, "artifact", tribeColor, nbColors);
+    tempDeck->addRandomCards(1, 0, 0, -1, "battle", tribeColor, nbColors);
 
     string deckFile = "random";
     string deckFileSmall = "random";
@@ -508,6 +745,10 @@ Player * Rules::initPlayer(GameObserver *g, int playerId)
             return loadPlayerRandomThree(g, isAI);
          case GAME_TYPE_RANDOM5:
             return loadPlayerRandomFive(g, isAI);
+         case GAME_TYPE_RANDOMCOMMANDER:
+            return loadPlayerRandomCommander(g, isAI);
+         case GAME_TYPE_RANDOMCOMMANDERFROMFILE:
+            return loadPlayerRandomCommanderFromFile(g, isAI);
          case GAME_TYPE_HORDE:
             return loadPlayerHorde(g, isAI);
          case GAME_TYPE_SET_LIMITED:
@@ -604,9 +845,11 @@ void Rules::initGame(GameObserver *g, bool currentPlayerSet)
         p->energyCount = initState.playerData[i].player->energyCount;
         p->experienceCount = initState.playerData[i].player->experienceCount;
         p->yidaroCount = initState.playerData[i].player->yidaroCount;
+        p->ringTemptations = initState.playerData[i].player->ringTemptations;
         p->dungeonCompleted = initState.playerData[i].player->dungeonCompleted;
         p->numOfCommandCast = initState.playerData[i].player->numOfCommandCast;
         p->monarch = initState.playerData[i].player->monarch;
+        p->initiative = initState.playerData[i].player->initiative;
         p->surveilOffset = initState.playerData[i].player->surveilOffset;
         p->devotionOffset = initState.playerData[i].player->devotionOffset;
         p->lastChosenName = initState.playerData[i].player->lastChosenName;
@@ -829,6 +1072,8 @@ GameType Rules::strToGameMode(string s)
     if (s.compare("random2") == 0) return GAME_TYPE_RANDOM2;
     if (s.compare("random3") == 0) return GAME_TYPE_RANDOM3;
     if (s.compare("random5") == 0) return GAME_TYPE_RANDOM5;
+    if (s.compare("random_commander") == 0) return GAME_TYPE_RANDOMCOMMANDER;
+    if (s.compare("random_commander_from_file") == 0) return GAME_TYPE_RANDOMCOMMANDERFROMFILE;
     if (s.compare("horde") == 0) return GAME_TYPE_HORDE;
     if (s.compare("set_limited") == 0) return GAME_TYPE_SET_LIMITED;
     if (s.compare("story") == 0) return GAME_TYPE_STORY;

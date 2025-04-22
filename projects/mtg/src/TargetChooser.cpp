@@ -65,7 +65,9 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
     if (found == 0)
     {
         MTGCardInstance * target = card->target;
-        if (ability) target = (MTGCardInstance *) (ability->target);
+        bool forced = (s.find("forced") != string::npos);
+        if (ability && !forced) 
+            target = (MTGCardInstance *) (ability->target);
         return NEW CardTargetChooser(observer, target, card);
     };
 
@@ -140,21 +142,101 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         }
         several = s.find("<anyamount>");
         if (several != string::npos) maxtargets = TargetChooser::UNLITMITED_TARGETS;
+        found = s.find("creature,planeswalker,battle");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker,battle"); //4 Damageable target (player, creature, planeswalker, battle)
+        found = s.find("creature^planeswalker^battle");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker,battle"); //4 Damageable target (player, creature, planeswalker, battle)
+        found = s.find("creature,battle,planeswalker");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker,battle"); //4 Damageable target (player, creature, planeswalker, battle)
+        found = s.find("creature^battle^planeswalker");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker,battle"); //4 Damageable target (player, creature, planeswalker, battle)
+        found = s.find("planeswalker,creature,battle");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker,battle"); //4 Damageable target (player, creature, planeswalker, battle)
+        found = s.find("planeswalker^creature^battle");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker,battle"); //4 Damageable target (player, creature, planeswalker, battle)
+        found = s.find("planeswalker,battle,creature");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker,battle"); //4 Damageable target (player, creature, planeswalker, battle)
+        found = s.find("planeswalker^battle^creature");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker,battle"); //4 Damageable target (player, creature, planeswalker, battle)
+        found = s.find("battle,planeswalker,creature");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker,battle"); //4 Damageable target (player, creature, planeswalker, battle)
+        found = s.find("battle^planeswalker^creature");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker,battle"); //4 Damageable target (player, creature, planeswalker, battle)
+        found = s.find("battle,creature,planeswalker");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker,battle"); //4 Damageable target (player, creature, planeswalker, battle)
+        found = s.find("battle^creature^planeswalker");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker,battle"); //4 Damageable target (player, creature, planeswalker, battle)
         found = s.find("creature,planeswalker");
-        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //Any Damageable target (player, creature, planeswalker)
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //3 Damageable target (player, creature, planeswalker)
         found = s.find("planeswalker,creature");
-        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //Any Damageable target (player, creature, planeswalker)
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //3 Damageable target (player, creature, planeswalker)
         found = s.find("creature^planeswalker");
-        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //Any Damageable target (player, creature, planeswalker)
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //3 Damageable target (player, creature, planeswalker)
         found = s.find("planeswalker^creature");
-        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //Any Damageable target (player, creature, planeswalker)
-        found = s.find("permanent");
-        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "permanent"); //Any player or permanet (player, creature, planeswalker, artifact, land, enchantment)
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,planeswalker"); //3 Damageable target (player, creature, planeswalker)
+        found = s.find("creature,battle");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,battle"); //3 Damageable target (player, creature, battle)
+        found = s.find("battle,creature");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,battle"); //3 Damageable target (player, creature, battle)
+        found = s.find("creature^battle");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,battle"); //3 Damageable target (player, creature, battle)
+        found = s.find("battle^creature");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "creature,battle"); //3 Damageable target (player, creature, battle)
+        found = s.find("planeswalker,battle");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "planeswalker,battle"); //3 Damageable target (player, planeswalker, battle)
+        found = s.find("battle,planeswalker");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "planeswalker,battle"); //3 Damageable target (player, planeswalker, battle)
+        found = s.find("planeswalker^battle");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "planeswalker,battle"); //3 Damageable target (player, planeswalker, battle)
+        found = s.find("battle^planeswalker");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "planeswalker,battle"); //3 Damageable target (player, planeswalker, battle)
         found = s.find("creature");
         if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other); //2 Damageable target (player, creature)
         found = s.find("planeswalker");
         if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "planeswalker"); //2 Damageable target (player, planeswalker)
+        found = s.find("battle");
+        if (found != string::npos) return NEW DamageableTargetChooser(observer, card, maxtargets, other, false, "battle"); //2 Damageable target (player, battle)
         return NEW PlayerTargetChooser(observer, card, maxtargets); //Any player
+    }
+
+    found = s.find("anytarget");
+    if (found != string::npos)
+    {
+        int maxtargets = 1;
+        bool targetMin = false;
+        size_t limit = s.find('<');
+        if (limit != string::npos) 
+        {
+            size_t end = s.find(">", limit);
+            string howmany;
+            if (end != string::npos)
+            {
+                howmany = s.substr(limit + 1, end - limit - 1);
+                size_t uptoamount= howmany.find("upto:");
+
+                if(uptoamount != string::npos)
+                {
+                    howmany = s.substr(uptoamount + 6, end - uptoamount - 6);
+                }
+                else
+                {
+                    targetMin = true; //if upto: is not found, then we need to have a minimum of the amount....
+                }
+                if (howmany.find("anyamount") != string::npos)
+                {
+                    maxtargets = TargetChooser::UNLITMITED_TARGETS;
+                    targetMin = false;
+                }
+                else
+                {
+                    WParsedInt * howmuch = NEW WParsedInt(howmany, NULL, card);
+                    maxtargets = howmuch->getValue();
+                    delete howmuch;
+                }  
+                s = s.substr(end + 1);
+            }
+        }
+        return NEW DamageableTargetChooser(observer, card, maxtargets, other, targetMin, "creature,planeswalker,battle"); //Any Damageable target (player, creature, planeswalker, battle)
     }
 
     found = s.find("mycurses");
@@ -168,6 +250,13 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
     if (found != string::npos)
     {
         int maxtargets = TargetChooser::UNLITMITED_TARGETS;
+        return NEW ProliferateChooser(observer, card, maxtargets);
+    }
+
+    found = s.find("propagation");
+    if (found != string::npos)
+    {
+        int maxtargets = 1;
         return NEW ProliferateChooser(observer, card, maxtargets);
     }
 
@@ -280,6 +369,26 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
             {
                 zones[nbzones++] = MTGGameZone::MY_HAND;
                 zones[nbzones++] = MTGGameZone::MY_LIBRARY;
+            }
+            else if (zoneName.compare("mygravelibrary") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_GRAVEYARD;
+                zones[nbzones++] = MTGGameZone::MY_LIBRARY;
+            }
+            else if (zoneName.compare("opponentgravelibrary") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::OPPONENT_GRAVEYARD;
+                zones[nbzones++] = MTGGameZone::OPPONENT_LIBRARY;
+            }
+            else if (zoneName.compare("mygraveexile") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_EXILE;
+                zones[nbzones++] = MTGGameZone::MY_GRAVEYARD;
+            }
+            else if (zoneName.compare("opponentgraveexile") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::OPPONENT_EXILE;
+                zones[nbzones++] = MTGGameZone::OPPONENT_GRAVEYARD;
             }
             else if (zoneName.compare("opponentcastingzone") == 0)
             {
@@ -593,6 +702,18 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->unsecureSetHasKickerCost(1);
                     }
                 }
+                //Has convoke cost
+                else if (attribute.find("hasconvoke") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->unsecureSetHasConvokeCost(-1);
+                    }
+                    else
+                    {
+                        cd->unsecureSetHasConvokeCost(1);
+                    }
+                }
                 //Has flashback cost
                 else if (attribute.find("hasflashback") != string::npos)
                 {
@@ -617,6 +738,30 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->unsecureSetHasBackSide(1);
                     }
                 }
+                //Is modified
+                else if (attribute.find("modified") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->unsecureSetModified(-1);
+                    }
+                    else
+                    {
+                        cd->unsecureSetModified(1);
+                    }
+                }
+                //Has toxic
+                else if (attribute.find("hastoxic") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->unsecureSetHasToxic(-1);
+                    }
+                    else
+                    {
+                        cd->unsecureSetHasToxic(1);
+                    }
+                }
                 //Has partner
                 else if (attribute.find("haspartner") != string::npos)
                 {
@@ -627,6 +772,18 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     else
                     {
                         cd->unsecureSetHasPartner(1);
+                    }
+                }
+                //Is a permanent
+                else if (attribute.find("permanent") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->unsecureSetIsPermanent(-1);
+                    }
+                    else
+                    {
+                        cd->unsecureSetIsPermanent(1);
                     }
                 }
                 //Token
@@ -651,6 +808,30 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     else
                     {
                         cd->isFlipped = 1;
+                    }
+                }
+                //Card is commander
+                else if (attribute.find("iscommander") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->isCommander = -1;
+                    }
+                    else
+                    {
+                        cd->isCommander = 1;
+                    }
+                }
+                //Card is Ring bearer
+                else if (attribute.find("ringbearer") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->isRingBearer = -1;
+                    }
+                    else
+                    {
+                        cd->isRingBearer = 1;
                     }
                 }
                 //Has x in cost
@@ -883,6 +1064,12 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     }
 
                 }
+                else if (attribute.find("numofcols") != string::npos)
+                {
+                    //Number of color restrictions
+                    cd->numofColors = comparisonCriterion;
+                    cd->numofColorsComparisonMode = comparisonMode;
+                }
                 else if (attribute.find("power") != string::npos)
                 {
                     //Power restrictions
@@ -967,6 +1154,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->removeType("legendary");
                         cd->removeType("creature");
                         cd->removeType("planeswalker");
+                        cd->removeType("battle");
                         cd->removeType("tribal");
                         if (!cd->types.size()){
                             int i = rand() % 10000 + 1;
@@ -1333,7 +1521,7 @@ bool TargetChooser::canTarget(Targetable * target, bool withoutProtections)
             if (card->has(Constants::SHROUD)) return targetter->bypassTC;
             if (card->protectedAgainst(targetter)) return targetter->bypassTC;
             if (card->CantBeTargetby(targetter)) return targetter->bypassTC;
-            if ((targetter->controller() != card->controller()) && card->has(Constants::OPPONENTSHROUD)) return targetter->bypassTC;
+            if ((targetter->controller() != card->controller()) && card->has(Constants::HEXPROOF)) return targetter->bypassTC;
             if (card->has(Constants::PROTECTIONFROMCOLOREDSPELLS))
             {//a spell that has no target=criteria means it's not targetted unless its a workaround card...
                 if((targetter->spellTargetType.size()) && (targetter->hasColor(1)||targetter->hasColor(2)||targetter->hasColor(3)||targetter->hasColor(4)||targetter->hasColor(5)))
@@ -1527,16 +1715,22 @@ TypeTargetChooser::TypeTargetChooser(GameObserver *observer, const char * _type,
         addType(id);
         id = MTGAllCards::findType("planeswalker");
         addType(id);
-    } else if(!strcmp(_type,"permanent")){
+    } else if(!strcmp(_type,"creature,battle")){
+        int id = MTGAllCards::findType("creature");
+        addType(id);
+        id = MTGAllCards::findType("battle");
+        addType(id);
+    } else if(!strcmp(_type,"planeswalker,battle")){
+        int id = MTGAllCards::findType("planeswalker");
+        addType(id);
+        id = MTGAllCards::findType("battle");
+        addType(id);
+    } else if(!strcmp(_type,"creature,planeswalker,battle")){
         int id = MTGAllCards::findType("creature");
         addType(id);
         id = MTGAllCards::findType("planeswalker");
         addType(id);
-        id = MTGAllCards::findType("land");
-        addType(id);
-        id = MTGAllCards::findType("artifact");
-        addType(id);
-        id = MTGAllCards::findType("enchantment");
+        id = MTGAllCards::findType("battle");
         addType(id);
     } else {
         int id = MTGAllCards::findType(_type);
@@ -1896,7 +2090,7 @@ bool DamageableTargetChooser::canTarget(Targetable * target, bool withoutProtect
             if (card->has(Constants::SHROUD)) return source->bypassTC;
             if (card->protectedAgainst(targetter)) return source->bypassTC;
             if (card->CantBeTargetby(targetter)) return source->bypassTC;
-            if ((source->controller() != card->controller()) && card->has(Constants::OPPONENTSHROUD)) return source->bypassTC;
+            if ((source->controller() != card->controller()) && card->has(Constants::HEXPROOF)) return source->bypassTC;
             if (card->has(Constants::PROTECTIONFROMCOLOREDSPELLS)){
                 if((source->spellTargetType.size()) && (source->hasColor(1)||source->hasColor(2)||source->hasColor(3)||source->hasColor(4)||source->hasColor(5)))
                     return source->bypassTC;
@@ -2095,12 +2289,18 @@ bool TriggerTargetChooser::equals(TargetChooser * tc)
 }
 
 /*my curses */
-bool myCursesChooser::canTarget(Targetable * target,bool)
+bool myCursesChooser::canTarget(Targetable * target, bool)
 {
-    for(unsigned int i = 0;i < source->controller()->curses.size();++i)
+    for (int j = source->controller()->game->battlefield->nb_cards - 1; j >= 0; --j)
     {
-        MTGCardInstance * compare = source->controller()->curses[i];
-        if(compare == dynamic_cast<MTGCardInstance*>(target))
+        MTGCardInstance * compare = source->controller()->game->battlefield->cards[j];
+        if(compare->hasType("Curse") && compare->playerTarget == source->controller() && compare == dynamic_cast<MTGCardInstance*>(target))
+            return true;
+    }
+    for (int j = source->controller()->opponent()->game->battlefield->nb_cards - 1; j >= 0; --j)
+    {
+        MTGCardInstance * compare = source->controller()->opponent()->game->battlefield->cards[j];
+        if(compare->hasType("Curse") && compare->playerTarget == source->controller() && compare == dynamic_cast<MTGCardInstance*>(target))
             return true;
     }
     return false;
@@ -2180,7 +2380,7 @@ bool pairableChooser::canTarget(Targetable * target,bool)
             return false;
         if(card->controller() != source->controller())
             return false;
-        if(!card->has(Constants::soulbond) && !source->has(Constants::soulbond))
+        if(!card->has(Constants::SOULBOND) && !source->has(Constants::SOULBOND))
             return false;
         return true;
     }
@@ -2261,7 +2461,7 @@ bool ProliferateChooser::canTarget(Targetable * target, bool withoutProtections)
             if (card->has(Constants::SHROUD)) return source->bypassTC;
             if (card->protectedAgainst(source)) return source->bypassTC;
             if (card->CantBeTargetby(source)) return source->bypassTC;
-            if ((source->controller() != card->controller()) && card->has(Constants::OPPONENTSHROUD)) return source->bypassTC;
+            if ((source->controller() != card->controller()) && card->has(Constants::HEXPROOF)) return source->bypassTC;
             if (card->has(Constants::PROTECTIONFROMCOLOREDSPELLS)){
                 if((source->spellTargetType.size()) && (source->hasColor(1)||source->hasColor(2)||source->hasColor(3)||source->hasColor(4)||source->hasColor(5)))
                     return source->bypassTC;

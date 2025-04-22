@@ -6,91 +6,6 @@ year=1994-11-01
 total=187
 [/meta]
 [card]
-primitive=Aeolipile
-id=1827
-rarity=R
-[/card]
-[card]
-primitive=Armor Thrull
-id=1838
-rarity=C
-[/card]
-[card]
-primitive=Armor Thrull
-id=1839
-rarity=C
-[/card]
-[card]
-primitive=Armor Thrull
-id=1840
-rarity=C
-[/card]
-[card]
-primitive=Armor Thrull
-id=1841
-rarity=C
-[/card]
-[card]
-primitive=Balm of Restoration
-id=1828
-rarity=R
-[/card]
-[card]
-primitive=Basal Thrull
-id=1842
-rarity=C
-[/card]
-[card]
-primitive=Basal Thrull
-id=1843
-rarity=C
-[/card]
-[card]
-primitive=Basal Thrull
-id=1844
-rarity=C
-[/card]
-[card]
-primitive=Basal Thrull
-id=1845
-rarity=C
-[/card]
-[card]
-primitive=Bottomless Vault
-id=2003
-rarity=R
-[/card]
-[card]
-primitive=Brassclaw Orcs
-id=1937
-rarity=C
-[/card]
-[card]
-primitive=Brassclaw Orcs
-id=1938
-rarity=C
-[/card]
-[card]
-primitive=Brassclaw Orcs
-id=1940
-rarity=C
-[/card]
-[card]
-primitive=Brassclaw Orcs
-id=1966
-rarity=C
-[/card]
-[card]
-primitive=Breeding Pit
-id=1846
-rarity=U
-[/card]
-[card]
-primitive=Combat Medic
-id=1970
-rarity=C
-[/card]
-[card]
 primitive=Combat Medic
 id=1971
 rarity=C
@@ -102,147 +17,12 @@ rarity=C
 [/card]
 [card]
 primitive=Combat Medic
+id=1970
+rarity=C
+[/card]
+[card]
+primitive=Combat Medic
 id=1973
-rarity=C
-[/card]
-[card]
-primitive=Conch Horn
-id=1829
-rarity=R
-[/card]
-[card]
-primitive=Deep Spawn
-id=1871
-rarity=U
-[/card]
-[card]
-primitive=Delif's Cone
-id=1830
-rarity=C
-[/card]
-[card]
-primitive=Delif's Cube
-id=1831
-rarity=R
-[/card]
-[card]
-primitive=Derelor
-id=1847
-rarity=R
-[/card]
-[card]
-primitive=Draconian Cylix
-id=1832
-rarity=R
-[/card]
-[card]
-primitive=Dwarven Armorer
-id=1941
-rarity=R
-[/card]
-[card]
-primitive=Dwarven Catapult
-id=1942
-rarity=U
-[/card]
-[card]
-primitive=Dwarven Hold
-id=2004
-rarity=R
-[/card]
-[card]
-primitive=Dwarven Lieutenant
-id=1943
-rarity=U
-[/card]
-[card]
-primitive=Dwarven Ruins
-id=2005
-rarity=U
-[/card]
-[card]
-primitive=Dwarven Soldier
-id=1944
-rarity=C
-[/card]
-[card]
-primitive=Dwarven Soldier
-id=1945
-rarity=C
-[/card]
-[card]
-primitive=Dwarven Soldier
-id=1946
-rarity=C
-[/card]
-[card]
-primitive=Ebon Praetor
-id=1848
-rarity=R
-[/card]
-[card]
-primitive=Ebon Stronghold
-id=2006
-rarity=U
-[/card]
-[card]
-primitive=Elven Fortress
-id=1904
-rarity=C
-[/card]
-[card]
-primitive=Elven Fortress
-id=1905
-rarity=C
-[/card]
-[card]
-primitive=Elven Fortress
-id=1906
-rarity=C
-[/card]
-[card]
-primitive=Elven Fortress
-id=1907
-rarity=C
-[/card]
-[card]
-primitive=Elven Lyre
-id=1833
-rarity=R
-[/card]
-[card]
-primitive=Elvish Farmer
-id=1908
-rarity=R
-[/card]
-[card]
-primitive=Elvish Hunter
-id=1909
-rarity=C
-[/card]
-[card]
-primitive=Elvish Hunter
-id=1910
-rarity=C
-[/card]
-[card]
-primitive=Elvish Hunter
-id=1911
-rarity=C
-[/card]
-[card]
-primitive=Elvish Scout
-id=1912
-rarity=C
-[/card]
-[card]
-primitive=Elvish Scout
-id=1913
-rarity=C
-[/card]
-[card]
-primitive=Elvish Scout
-id=1914
 rarity=C
 [/card]
 [card]
@@ -252,7 +32,7 @@ rarity=U
 [/card]
 [card]
 primitive=Farrel's Zealot
-id=1975
+id=1977
 rarity=C
 [/card]
 [card]
@@ -262,7 +42,7 @@ rarity=C
 [/card]
 [card]
 primitive=Farrel's Zealot
-id=1977
+id=1975
 rarity=C
 [/card]
 [card]
@@ -271,179 +51,14 @@ id=1978
 rarity=U
 [/card]
 [card]
-primitive=Feral Thallid
-id=1915
-rarity=U
-[/card]
-[card]
-primitive=Fungal Bloom
-id=1916
-rarity=R
-[/card]
-[card]
-primitive=Goblin Chirurgeon
-id=1947
-rarity=C
-[/card]
-[card]
-primitive=Goblin Chirurgeon
-id=1948
-rarity=C
-[/card]
-[card]
-primitive=Goblin Chirurgeon
-id=1949
-rarity=C
-[/card]
-[card]
-primitive=Goblin Flotilla
-id=1950
-rarity=R
-[/card]
-[card]
-primitive=Goblin Grenade
-id=1951
-rarity=C
-[/card]
-[card]
-primitive=Goblin Grenade
-id=1952
-rarity=C
-[/card]
-[card]
-primitive=Goblin Grenade
-id=1953
-rarity=C
-[/card]
-[card]
-primitive=Goblin Kites
-id=1954
-rarity=U
-[/card]
-[card]
-primitive=Goblin War Drums
-id=1955
-rarity=C
-[/card]
-[card]
-primitive=Goblin War Drums
-id=1956
-rarity=C
-[/card]
-[card]
-primitive=Goblin War Drums
-id=1957
-rarity=C
-[/card]
-[card]
-primitive=Goblin War Drums
-id=1958
-rarity=C
-[/card]
-[card]
-primitive=Goblin Warrens
-id=1959
-rarity=R
-[/card]
-[card]
 primitive=Hand of Justice
 id=1979
 rarity=R
 [/card]
 [card]
-primitive=Havenwood Battleground
-id=2007
-rarity=U
-[/card]
-[card]
 primitive=Heroism
 id=1980
 rarity=U
-[/card]
-[card]
-primitive=High Tide
-id=1872
-rarity=C
-[/card]
-[card]
-primitive=High Tide
-id=1873
-rarity=C
-[/card]
-[card]
-primitive=High Tide
-id=1874
-rarity=C
-[/card]
-[card]
-primitive=Hollow Trees
-id=2008
-rarity=R
-[/card]
-[card]
-primitive=Homarid Shaman
-id=1879
-rarity=R
-[/card]
-[card]
-primitive=Homarid Spawning Bed
-id=1880
-rarity=U
-[/card]
-[card]
-primitive=Homarid Warrior
-id=1881
-rarity=C
-[/card]
-[card]
-primitive=Homarid Warrior
-id=1882
-rarity=C
-[/card]
-[card]
-primitive=Homarid Warrior
-id=1883
-rarity=C
-[/card]
-[card]
-primitive=Homarid
-id=1875
-rarity=C
-[/card]
-[card]
-primitive=Homarid
-id=1876
-rarity=C
-[/card]
-[card]
-primitive=Homarid
-id=1877
-rarity=C
-[/card]
-[card]
-primitive=Homarid
-id=1878
-rarity=C
-[/card]
-[card]
-primitive=Hymn to Tourach
-id=1849
-rarity=C
-[/card]
-[card]
-primitive=Hymn to Tourach
-id=1850
-rarity=C
-[/card]
-[card]
-primitive=Hymn to Tourach
-id=1851
-rarity=C
-[/card]
-[card]
-primitive=Hymn to Tourach
-id=1852
-rarity=C
 [/card]
 [card]
 primitive=Icatian Infantry
@@ -467,12 +82,12 @@ rarity=C
 [/card]
 [card]
 primitive=Icatian Javelineers
-id=1985
+id=1986
 rarity=C
 [/card]
 [card]
 primitive=Icatian Javelineers
-id=1986
+id=1985
 rarity=C
 [/card]
 [card]
@@ -517,7 +132,7 @@ rarity=C
 [/card]
 [card]
 primitive=Icatian Scout
-id=1995
+id=1997
 rarity=C
 [/card]
 [card]
@@ -527,7 +142,7 @@ rarity=C
 [/card]
 [card]
 primitive=Icatian Scout
-id=1997
+id=1995
 rarity=C
 [/card]
 [card]
@@ -536,33 +151,88 @@ id=1998
 rarity=R
 [/card]
 [card]
-primitive=Icatian Store
-id=2009
-rarity=R
-[/card]
-[card]
 primitive=Icatian Town
 id=1999
 rarity=R
 [/card]
 [card]
-primitive=Implements of Sacrifice
-id=1834
+primitive=Order of Leitbur
+id=2001
+rarity=C
+[/card]
+[card]
+primitive=Order of Leitbur
+id=2000
+rarity=C
+[/card]
+[card]
+primitive=Order of Leitbur
+id=2002
+rarity=C
+[/card]
+[card]
+primitive=Deep Spawn
+id=1871
+rarity=U
+[/card]
+[card]
+primitive=High Tide
+id=1873
+rarity=C
+[/card]
+[card]
+primitive=High Tide
+id=1872
+rarity=C
+[/card]
+[card]
+primitive=High Tide
+id=1874
+rarity=C
+[/card]
+[card]
+primitive=Homarid
+id=1875
+rarity=C
+[/card]
+[card]
+primitive=Homarid
+id=1876
+rarity=C
+[/card]
+[card]
+primitive=Homarid
+id=1877
+rarity=C
+[/card]
+[card]
+primitive=Homarid
+id=1878
+rarity=C
+[/card]
+[card]
+primitive=Homarid Shaman
+id=1879
 rarity=R
 [/card]
 [card]
-primitive=Initiates of the Ebon Hand
-id=1853
+primitive=Homarid Spawning Bed
+id=1880
+rarity=U
+[/card]
+[card]
+primitive=Homarid Warrior
+id=1882
 rarity=C
 [/card]
 [card]
-primitive=Initiates of the Ebon Hand
-id=1854
+primitive=Homarid Warrior
+id=1881
 rarity=C
 [/card]
 [card]
-primitive=Initiates of the Ebon Hand
-id=1855
+primitive=Homarid Warrior
+id=1883
 rarity=C
 [/card]
 [card]
@@ -577,17 +247,182 @@ rarity=C
 [/card]
 [card]
 primitive=Merseine
-id=1886
-rarity=C
-[/card]
-[card]
-primitive=Merseine
 id=1887
 rarity=C
 [/card]
 [card]
-primitive=Mindstab Thrull
-id=1856
+primitive=Merseine
+id=1886
+rarity=C
+[/card]
+[card]
+primitive=River Merfolk
+id=1888
+rarity=R
+[/card]
+[card]
+primitive=Seasinger
+id=1889
+rarity=U
+[/card]
+[card]
+primitive=Svyelunite Priest
+id=1890
+rarity=U
+[/card]
+[card]
+primitive=Tidal Flats
+id=1892
+rarity=C
+[/card]
+[card]
+primitive=Tidal Flats
+id=1891
+rarity=C
+[/card]
+[card]
+primitive=Tidal Flats
+id=1893
+rarity=C
+[/card]
+[card]
+primitive=Tidal Influence
+id=1894
+rarity=U
+[/card]
+[card]
+primitive=Vodalian Knights
+id=1895
+rarity=R
+[/card]
+[card]
+primitive=Vodalian Mage
+id=1896
+rarity=C
+[/card]
+[card]
+primitive=Vodalian Mage
+id=1898
+rarity=C
+[/card]
+[card]
+primitive=Vodalian Mage
+id=1897
+rarity=C
+[/card]
+[card]
+primitive=Vodalian Soldiers
+id=1899
+rarity=C
+[/card]
+[card]
+primitive=Vodalian Soldiers
+id=1901
+rarity=C
+[/card]
+[card]
+primitive=Vodalian Soldiers
+id=1900
+rarity=C
+[/card]
+[card]
+primitive=Vodalian Soldiers
+id=1902
+rarity=C
+[/card]
+[card]
+primitive=Vodalian War Machine
+id=1903
+rarity=R
+[/card]
+[card]
+primitive=Armor Thrull
+id=1841
+rarity=C
+[/card]
+[card]
+primitive=Armor Thrull
+id=1840
+rarity=C
+[/card]
+[card]
+primitive=Armor Thrull
+id=1838
+rarity=C
+[/card]
+[card]
+primitive=Armor Thrull
+id=1839
+rarity=C
+[/card]
+[card]
+primitive=Basal Thrull
+id=1842
+rarity=C
+[/card]
+[card]
+primitive=Basal Thrull
+id=1844
+rarity=C
+[/card]
+[card]
+primitive=Basal Thrull
+id=1843
+rarity=C
+[/card]
+[card]
+primitive=Basal Thrull
+id=1845
+rarity=C
+[/card]
+[card]
+primitive=Breeding Pit
+id=1846
+rarity=U
+[/card]
+[card]
+primitive=Derelor
+id=1847
+rarity=R
+[/card]
+[card]
+primitive=Ebon Praetor
+id=1848
+rarity=R
+[/card]
+[card]
+primitive=Hymn to Tourach
+id=1850
+rarity=C
+[/card]
+[card]
+primitive=Hymn to Tourach
+id=1849
+rarity=C
+[/card]
+[card]
+primitive=Hymn to Tourach
+id=1851
+rarity=C
+[/card]
+[card]
+primitive=Hymn to Tourach
+id=1852
+rarity=C
+[/card]
+[card]
+primitive=Initiates of the Ebon Hand
+id=1853
+rarity=C
+[/card]
+[card]
+primitive=Initiates of the Ebon Hand
+id=1855
+rarity=C
+[/card]
+[card]
+primitive=Initiates of the Ebon Hand
+id=1854
 rarity=C
 [/card]
 [card]
@@ -597,12 +432,12 @@ rarity=C
 [/card]
 [card]
 primitive=Mindstab Thrull
-id=1858
+id=1856
 rarity=C
 [/card]
 [card]
-primitive=Necrite
-id=1859
+primitive=Mindstab Thrull
+id=1858
 rarity=C
 [/card]
 [card]
@@ -612,23 +447,173 @@ rarity=C
 [/card]
 [card]
 primitive=Necrite
+id=1859
+rarity=C
+[/card]
+[card]
+primitive=Necrite
 id=1861
 rarity=C
 [/card]
 [card]
-primitive=Night Soil
-id=1917
+primitive=Order of the Ebon Hand
+id=1863
 rarity=C
 [/card]
 [card]
-primitive=Night Soil
-id=1918
+primitive=Order of the Ebon Hand
+id=1862
 rarity=C
 [/card]
 [card]
-primitive=Night Soil
-id=1919
+primitive=Order of the Ebon Hand
+id=1864
 rarity=C
+[/card]
+[card]
+primitive=Soul Exchange
+id=1865
+rarity=U
+[/card]
+[card]
+primitive=Thrull Champion
+id=1866
+rarity=R
+[/card]
+[card]
+primitive=Thrull Retainer
+id=1867
+rarity=U
+[/card]
+[card]
+primitive=Thrull Wizard
+id=1868
+rarity=U
+[/card]
+[card]
+primitive=Tourach's Chant
+id=1869
+rarity=U
+[/card]
+[card]
+primitive=Tourach's Gate
+id=1870
+rarity=R
+[/card]
+[card]
+primitive=Brassclaw Orcs
+id=1966
+rarity=C
+[/card]
+[card]
+primitive=Brassclaw Orcs
+id=1938
+rarity=C
+[/card]
+[card]
+primitive=Brassclaw Orcs
+id=1937
+rarity=C
+[/card]
+[card]
+primitive=Brassclaw Orcs
+id=1940
+rarity=C
+[/card]
+[card]
+primitive=Dwarven Armorer
+id=1941
+rarity=R
+[/card]
+[card]
+primitive=Dwarven Catapult
+id=1942
+rarity=U
+[/card]
+[card]
+primitive=Dwarven Lieutenant
+id=1943
+rarity=U
+[/card]
+[card]
+primitive=Dwarven Soldier
+id=1945
+rarity=C
+[/card]
+[card]
+primitive=Dwarven Soldier
+id=1944
+rarity=C
+[/card]
+[card]
+primitive=Dwarven Soldier
+id=1946
+rarity=C
+[/card]
+[card]
+primitive=Goblin Chirurgeon
+id=1948
+rarity=C
+[/card]
+[card]
+primitive=Goblin Chirurgeon
+id=1949
+rarity=C
+[/card]
+[card]
+primitive=Goblin Chirurgeon
+id=1947
+rarity=C
+[/card]
+[card]
+primitive=Goblin Flotilla
+id=1950
+rarity=R
+[/card]
+[card]
+primitive=Goblin Grenade
+id=1951
+rarity=C
+[/card]
+[card]
+primitive=Goblin Grenade
+id=1952
+rarity=C
+[/card]
+[card]
+primitive=Goblin Grenade
+id=1953
+rarity=C
+[/card]
+[card]
+primitive=Goblin Kites
+id=1954
+rarity=U
+[/card]
+[card]
+primitive=Goblin War Drums
+id=1955
+rarity=C
+[/card]
+[card]
+primitive=Goblin War Drums
+id=1957
+rarity=C
+[/card]
+[card]
+primitive=Goblin War Drums
+id=1956
+rarity=C
+[/card]
+[card]
+primitive=Goblin War Drums
+id=1958
+rarity=C
+[/card]
+[card]
+primitive=Goblin Warrens
+id=1959
+rarity=R
 [/card]
 [card]
 primitive=Orcish Captain
@@ -637,17 +622,27 @@ rarity=U
 [/card]
 [card]
 primitive=Orcish Spy
-id=1961
-rarity=C
-[/card]
-[card]
-primitive=Orcish Spy
 id=1962
 rarity=C
 [/card]
 [card]
 primitive=Orcish Spy
+id=1961
+rarity=C
+[/card]
+[card]
+primitive=Orcish Spy
 id=1963
+rarity=C
+[/card]
+[card]
+primitive=Orcish Veteran
+id=1967
+rarity=C
+[/card]
+[card]
+primitive=Orcish Veteran
+id=1965
 rarity=C
 [/card]
 [card]
@@ -661,46 +656,6 @@ id=1964
 rarity=C
 [/card]
 [card]
-primitive=Orcish Veteran
-id=1965
-rarity=C
-[/card]
-[card]
-primitive=Orcish Veteran
-id=1967
-rarity=C
-[/card]
-[card]
-primitive=Order of Leitbur
-id=2000
-rarity=C
-[/card]
-[card]
-primitive=Order of Leitbur
-id=2001
-rarity=C
-[/card]
-[card]
-primitive=Order of Leitbur
-id=2002
-rarity=C
-[/card]
-[card]
-primitive=Order of the Ebon Hand
-id=1862
-rarity=C
-[/card]
-[card]
-primitive=Order of the Ebon Hand
-id=1863
-rarity=C
-[/card]
-[card]
-primitive=Order of the Ebon Hand
-id=1864
-rarity=C
-[/card]
-[card]
 primitive=Orgg
 id=1968
 rarity=R
@@ -711,44 +666,84 @@ id=1969
 rarity=U
 [/card]
 [card]
-primitive=Rainbow Vale
-id=2010
+primitive=Elven Fortress
+id=1905
+rarity=C
+[/card]
+[card]
+primitive=Elven Fortress
+id=1904
+rarity=C
+[/card]
+[card]
+primitive=Elven Fortress
+id=1906
+rarity=C
+[/card]
+[card]
+primitive=Elven Fortress
+id=1907
+rarity=C
+[/card]
+[card]
+primitive=Elvish Farmer
+id=1908
 rarity=R
 [/card]
 [card]
-primitive=Ring of Renewal
-id=1835
-rarity=R
+primitive=Elvish Hunter
+id=1910
+rarity=C
 [/card]
 [card]
-primitive=River Merfolk
-id=1888
-rarity=R
+primitive=Elvish Hunter
+id=1911
+rarity=C
 [/card]
 [card]
-primitive=Ruins of Trokair
-id=2011
+primitive=Elvish Hunter
+id=1909
+rarity=C
+[/card]
+[card]
+primitive=Elvish Scout
+id=1913
+rarity=C
+[/card]
+[card]
+primitive=Elvish Scout
+id=1912
+rarity=C
+[/card]
+[card]
+primitive=Elvish Scout
+id=1914
+rarity=C
+[/card]
+[card]
+primitive=Feral Thallid
+id=1915
 rarity=U
 [/card]
 [card]
-primitive=Sand Silos
-id=2012
+primitive=Fungal Bloom
+id=1916
 rarity=R
 [/card]
 [card]
-primitive=Seasinger
-id=1889
-rarity=U
+primitive=Night Soil
+id=1918
+rarity=C
 [/card]
 [card]
-primitive=Soul Exchange
-id=1865
-rarity=U
+primitive=Night Soil
+id=1917
+rarity=C
 [/card]
 [card]
-primitive=Spirit Shield
-id=1836
-rarity=R
+primitive=Night Soil
+id=1919
+rarity=C
 [/card]
 [card]
 primitive=Spore Cloud
@@ -771,28 +766,8 @@ id=1923
 rarity=U
 [/card]
 [card]
-primitive=Svyelunite Priest
-id=1890
-rarity=U
-[/card]
-[card]
-primitive=Svyelunite Temple
-id=2013
-rarity=U
-[/card]
-[card]
-primitive=Thallid Devourer
-id=1928
-rarity=U
-[/card]
-[card]
 primitive=Thallid
 id=1924
-rarity=C
-[/card]
-[card]
-primitive=Thallid
-id=1925
 rarity=C
 [/card]
 [card]
@@ -804,6 +779,16 @@ rarity=C
 primitive=Thallid
 id=1927
 rarity=C
+[/card]
+[card]
+primitive=Thallid
+id=1925
+rarity=C
+[/card]
+[card]
+primitive=Thallid Devourer
+id=1928
+rarity=U
 [/card]
 [card]
 primitive=Thelon's Chant
@@ -846,97 +831,112 @@ id=1936
 rarity=C
 [/card]
 [card]
-primitive=Thrull Champion
-id=1866
+primitive=Aeolipile
+id=1827
 rarity=R
 [/card]
 [card]
-primitive=Thrull Retainer
-id=1867
-rarity=U
-[/card]
-[card]
-primitive=Thrull Wizard
-id=1868
-rarity=U
-[/card]
-[card]
-primitive=Tidal Flats
-id=1891
-rarity=C
-[/card]
-[card]
-primitive=Tidal Flats
-id=1892
-rarity=C
-[/card]
-[card]
-primitive=Tidal Flats
-id=1893
-rarity=C
-[/card]
-[card]
-primitive=Tidal Influence
-id=1894
-rarity=U
-[/card]
-[card]
-primitive=Tourach's Chant
-id=1869
-rarity=U
-[/card]
-[card]
-primitive=Tourach's Gate
-id=1870
+primitive=Balm of Restoration
+id=1828
 rarity=R
 [/card]
 [card]
-primitive=Vodalian Knights
-id=1895
+primitive=Conch Horn
+id=1829
 rarity=R
 [/card]
 [card]
-primitive=Vodalian Mage
-id=1896
+primitive=Delif's Cone
+id=1830
 rarity=C
 [/card]
 [card]
-primitive=Vodalian Mage
-id=1897
-rarity=C
+primitive=Delif's Cube
+id=1831
+rarity=R
 [/card]
 [card]
-primitive=Vodalian Mage
-id=1898
-rarity=C
+primitive=Draconian Cylix
+id=1832
+rarity=R
 [/card]
 [card]
-primitive=Vodalian Soldiers
-id=1899
-rarity=C
+primitive=Elven Lyre
+id=1833
+rarity=R
 [/card]
 [card]
-primitive=Vodalian Soldiers
-id=1900
-rarity=C
+primitive=Implements of Sacrifice
+id=1834
+rarity=R
 [/card]
 [card]
-primitive=Vodalian Soldiers
-id=1901
-rarity=C
+primitive=Ring of Renewal
+id=1835
+rarity=R
 [/card]
 [card]
-primitive=Vodalian Soldiers
-id=1902
-rarity=C
-[/card]
-[card]
-primitive=Vodalian War Machine
-id=1903
+primitive=Spirit Shield
+id=1836
 rarity=R
 [/card]
 [card]
 primitive=Zelyon Sword
 id=1837
 rarity=R
+[/card]
+[card]
+primitive=Bottomless Vault
+id=2003
+rarity=R
+[/card]
+[card]
+primitive=Dwarven Hold
+id=2004
+rarity=R
+[/card]
+[card]
+primitive=Dwarven Ruins
+id=2005
+rarity=U
+[/card]
+[card]
+primitive=Ebon Stronghold
+id=2006
+rarity=U
+[/card]
+[card]
+primitive=Havenwood Battleground
+id=2007
+rarity=U
+[/card]
+[card]
+primitive=Hollow Trees
+id=2008
+rarity=R
+[/card]
+[card]
+primitive=Icatian Store
+id=2009
+rarity=R
+[/card]
+[card]
+primitive=Rainbow Vale
+id=2010
+rarity=R
+[/card]
+[card]
+primitive=Ruins of Trokair
+id=2011
+rarity=U
+[/card]
+[card]
+primitive=Sand Silos
+id=2012
+rarity=R
+[/card]
+[card]
+primitive=Svyelunite Temple
+id=2013
+rarity=U
 [/card]

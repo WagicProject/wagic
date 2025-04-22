@@ -1,0 +1,36 @@
+[card]
+name=Sharkey, Tyrant of the Shire
+text=Activated abilities of lands your opponents control can't be activated unless they're mana abilities. -- Sharkey, Tyrant of the Shire has all activated abilities of lands your opponents control except mana abilities. -- Mana of any type can be spent to activate Sharkey's abilities.
+mana={2}{U}{B}
+type=Legendary Creature
+subtype=Avatar Rogue
+power=2
+toughness=4
+[/card]
+[card]
+name=Goldberry, River-Daughter
+text={T}: Move a counter of each kind not on Goldberry, River-Daughter from another target permanent you control onto Goldberry. -- {U}, {T}: Move one or more counters from Goldberry onto another target permanent you control. If you do, draw a card.
+mana={1}{U}
+type=Legendary Creature
+subtype=Nymph
+power=1
+toughness=3
+[/card]
+[card]
+name=Goldberry, River-Daughter
+text={T}: Move a counter of each kind not on Goldberry, River-Daughter from another target permanent you control onto Goldberry. -- {U}, {T}: Move one or more counters from Goldberry onto another target permanent you control. If you do, draw a card.
+mana={1}{U}
+type=Legendary Creature
+subtype=Nymph
+power=1
+toughness=3
+[/card]
+[card]
+name=Sharkey, Tyrant of the Shire
+text=Activated abilities of lands your opponents control can't be activated unless they're mana abilities. -- Sharkey, Tyrant of the Shire has all activated abilities of lands your opponents control except mana abilities. -- Mana of any type can be spent to activate Sharkey's abilities.
+mana={2}{U}{B}
+type=Legendary Creature
+subtype=Avatar Rogue
+power=2
+toughness=4
+[/card]

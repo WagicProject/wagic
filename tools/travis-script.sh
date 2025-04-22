@@ -27,7 +27,7 @@ fi
 # we create resource package
 if [ "$BUILD_RES" = "YES" ] || [ "$BUILD_PSP" = "YES" ]; then
     cd projects/mtg/bin/Res
-    python createResourceZip.py
+    python2 createResourceZip.py
     # if we let the zip here, Wagic will use it in the testsuite
     # and we'll get 51 failed test cases
     mv core_*.zip ../../../../core.zip

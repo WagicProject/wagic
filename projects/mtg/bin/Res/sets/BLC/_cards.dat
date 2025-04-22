@@ -1,0 +1,1786 @@
+[meta]
+author=Wagic Team
+name=Bloomburrow Commander
+year=2024-08-02
+total=360
+[/meta]
+[card]
+primitive=Bello, Bard of the Brambles
+id=670836
+rarity=M
+[/card]
+[card]
+primitive=Hazel of the Rootbloom
+id=670837
+rarity=M
+[/card]
+[card]
+primitive=Ms. Bumbleflower
+id=670838
+rarity=M
+[/card]
+[card]
+primitive=Zinnia, Valley's Voice
+id=670839
+rarity=M
+[/card]
+[card]
+primitive=Arthur, Marigold Knight
+id=671102
+rarity=M
+[/card]
+[card]
+primitive=Mr. Foxglove
+id=671103
+rarity=M
+[/card]
+[card]
+primitive=The Odd Acorn Gang
+id=671104
+rarity=M
+[/card]
+[card]
+primitive=Wildsear, Scouring Maw
+id=671105
+rarity=M
+[/card]
+[card]
+primitive=Jacked Rabbit
+id=671126
+rarity=R
+[/card]
+[card]
+primitive=Murmuration
+id=671127
+rarity=R
+[/card]
+[card]
+primitive=Perch Protection
+id=671128
+rarity=R
+[/card]
+[card]
+primitive=Steelburr Champion
+id=671129
+rarity=R
+[/card]
+[card]
+primitive=Tempt with Bunnies
+id=671130
+rarity=R
+[/card]
+[card]
+primitive=Fortune Teller's Talent
+id=671131
+rarity=R
+[/card]
+[card]
+primitive=Pollywog Prodigy
+id=671132
+rarity=R
+[/card]
+[card]
+primitive=Twenty-Toed Toad
+id=671133
+rarity=R
+[/card]
+[card]
+primitive=Hazel's Brewmaster
+id=671134
+rarity=R
+[/card]
+[card]
+primitive=Insatiable Frugivore
+id=671135
+rarity=R
+[/card]
+[card]
+primitive=Moonstone Eulogist
+id=671136
+rarity=R
+[/card]
+[card]
+primitive=Swarmyard Massacre
+id=671137
+rarity=R
+[/card]
+[card]
+primitive=Agate Instigator
+id=671138
+rarity=R
+[/card]
+[card]
+primitive=Alchemist's Talent
+id=671139
+rarity=R
+[/card]
+[card]
+primitive=Calamity of Cinders
+id=671140
+rarity=R
+[/card]
+[card]
+primitive=Echoing Assault
+id=671141
+rarity=R
+[/card]
+[card]
+primitive=Prosperous Bandit
+id=671142
+rarity=R
+[/card]
+[card]
+primitive=Pyreswipe Hawk
+id=671143
+rarity=R
+[/card]
+[card]
+primitive=Bloodroot Apothecary
+id=671144
+rarity=R
+[/card]
+[card]
+primitive=Brightcap Badger // Fungus Frolic
+id=671145
+rarity=R
+[/card]
+[card]
+primitive=Communal Brewing
+id=671146
+rarity=R
+[/card]
+[card]
+primitive=Evercoat Ursine
+id=671147
+rarity=R
+[/card]
+[card]
+primitive=Gourmand's Talent
+id=671148
+rarity=R
+[/card]
+[card]
+primitive=Rootcast Apprenticeship
+id=671149
+rarity=R
+[/card]
+[card]
+primitive=Scurry of Squirrels
+id=671150
+rarity=R
+[/card]
+[card]
+primitive=Thickest in the Thicket
+id=671151
+rarity=R
+[/card]
+[card]
+primitive=Trailtracker Scout
+id=671152
+rarity=R
+[/card]
+[card]
+primitive=Fisher's Talent
+id=671153
+rarity=R
+[/card]
+[card]
+primitive=Octomancer
+id=671154
+rarity=R
+[/card]
+[card]
+primitive=Rapid Augmenter
+id=671155
+rarity=R
+[/card]
+[card]
+primitive=Rolling Hamsphere
+id=671156
+rarity=R
+[/card]
+[card]
+primitive=Sword of the Squeak
+id=671157
+rarity=R
+[/card]
+[card]
+primitive=Arthur, Marigold Knight
+id=670974
+rarity=M
+[/card]
+[card]
+primitive=Mr. Foxglove
+id=670975
+rarity=M
+[/card]
+[card]
+primitive=The Odd Acorn Gang
+id=670976
+rarity=M
+[/card]
+[card]
+primitive=Wildsear, Scouring Maw
+id=670977
+rarity=M
+[/card]
+[card]
+primitive=Jacked Rabbit
+id=670990
+rarity=R
+[/card]
+[card]
+primitive=Murmuration
+id=670991
+rarity=R
+[/card]
+[card]
+primitive=Perch Protection
+id=670992
+rarity=R
+[/card]
+[card]
+primitive=Steelburr Champion
+id=670993
+rarity=R
+[/card]
+[card]
+primitive=Tempt with Bunnies
+id=670994
+rarity=R
+[/card]
+[card]
+primitive=Pollywog Prodigy
+id=670995
+rarity=R
+[/card]
+[card]
+primitive=Twenty-Toed Toad
+id=670996
+rarity=R
+[/card]
+[card]
+primitive=Hazel's Brewmaster
+id=670997
+rarity=R
+[/card]
+[card]
+primitive=Insatiable Frugivore
+id=670998
+rarity=R
+[/card]
+[card]
+primitive=Moonstone Eulogist
+id=670999
+rarity=R
+[/card]
+[card]
+primitive=Swarmyard Massacre
+id=671000
+rarity=R
+[/card]
+[card]
+primitive=Agate Instigator
+id=671001
+rarity=R
+[/card]
+[card]
+primitive=Calamity of Cinders
+id=671002
+rarity=R
+[/card]
+[card]
+primitive=Echoing Assault
+id=671003
+rarity=R
+[/card]
+[card]
+primitive=Prosperous Bandit
+id=671004
+rarity=R
+[/card]
+[card]
+primitive=Pyreswipe Hawk
+id=671005
+rarity=R
+[/card]
+[card]
+primitive=Bloodroot Apothecary
+id=671006
+rarity=R
+[/card]
+[card]
+primitive=Brightcap Badger // Fungus Frolic
+id=671007
+rarity=R
+[/card]
+[card]
+primitive=Communal Brewing
+id=671008
+rarity=R
+[/card]
+[card]
+primitive=Evercoat Ursine
+id=671009
+rarity=R
+[/card]
+[card]
+primitive=Rootcast Apprenticeship
+id=671010
+rarity=R
+[/card]
+[card]
+primitive=Scurry of Squirrels
+id=671011
+rarity=R
+[/card]
+[card]
+primitive=Thickest in the Thicket
+id=671012
+rarity=R
+[/card]
+[card]
+primitive=Trailtracker Scout
+id=671013
+rarity=R
+[/card]
+[card]
+primitive=Octomancer
+id=671014
+rarity=R
+[/card]
+[card]
+primitive=Rapid Augmenter
+id=671015
+rarity=R
+[/card]
+[card]
+primitive=Rolling Hamsphere
+id=671016
+rarity=R
+[/card]
+[card]
+primitive=Sword of the Squeak
+id=671017
+rarity=R
+[/card]
+[card]
+primitive=Karn, the Great Creator
+id=670892
+rarity=M
+[/card]
+[card]
+primitive=Luminous Broodmoth
+id=670893
+rarity=M
+[/card]
+[card]
+primitive=Jace, the Mind Sculptor
+id=670894
+rarity=M
+[/card]
+[card]
+primitive=Narset, Parter of Veils
+id=670895
+rarity=R
+[/card]
+[card]
+primitive=Ink-Eyes, Servant of Oni
+id=670896
+rarity=R
+[/card]
+[card]
+primitive=Liliana of the Dark Realms
+id=670897
+rarity=M
+[/card]
+[card]
+primitive=Marrow-Gnawer
+id=670898
+rarity=R
+[/card]
+[card]
+primitive=Ant Queen
+id=670899
+rarity=R
+[/card]
+[card]
+primitive=Birds of Paradise
+id=670900
+rarity=R
+[/card]
+[card]
+primitive=Chatterfang, Squirrel General
+id=670901
+rarity=M
+[/card]
+[card]
+primitive=Gilded Goose
+id=670902
+rarity=R
+[/card]
+[card]
+primitive=Nissa, Who Shakes the World
+id=670903
+rarity=R
+[/card]
+[card]
+primitive=Squirrel Mob
+id=670904
+rarity=R
+[/card]
+[card]
+primitive=Baleful Strix
+id=670905
+rarity=R
+[/card]
+[card]
+primitive=Derevi, Empyrial Tactician
+id=670906
+rarity=R
+[/card]
+[card]
+primitive=The Gitrog Monster
+id=670907
+rarity=M
+[/card]
+[card]
+primitive=Ishai, Ojutai Dragonspeaker
+id=670908
+rarity=M
+[/card]
+[card]
+primitive=Kwain, Itinerant Meddler
+id=670909
+rarity=R
+[/card]
+[card]
+primitive=Kykar, Wind's Fury
+id=670910
+rarity=M
+[/card]
+[card]
+primitive=Teferi, Time Raveler
+id=670911
+rarity=R
+[/card]
+[card]
+primitive=Jace, the Mind Sculptor
+id=670884
+rarity=M
+[/card]
+[card]
+primitive=Liliana of the Dark Realms
+id=670885
+rarity=M
+[/card]
+[card]
+primitive=Chatterfang, Squirrel General
+id=670886
+rarity=M
+[/card]
+[card]
+primitive=Nissa, Who Shakes the World
+id=670887
+rarity=R
+[/card]
+[card]
+primitive=Elspeth, Sun's Champion
+id=670860
+rarity=M
+[/card]
+[card]
+primitive=Domri, Anarch of Bolas
+id=670861
+rarity=R
+[/card]
+[card]
+primitive=Garruk, Cursed Huntsman
+id=670862
+rarity=M
+[/card]
+[card]
+primitive=Tamiyo, Field Researcher
+id=670863
+rarity=M
+[/card]
+[card]
+primitive=Bello, Bard of the Brambles
+id=670828
+rarity=M
+[/card]
+[card]
+primitive=Hazel of the Rootbloom
+id=670829
+rarity=M
+[/card]
+[card]
+primitive=Ms. Bumbleflower
+id=670830
+rarity=M
+[/card]
+[card]
+primitive=Zinnia, Valley's Voice
+id=670831
+rarity=M
+[/card]
+[card]
+primitive=Cut a Deal
+id=671318
+rarity=U
+[/card]
+[card]
+primitive=Generous Gift
+id=671319
+rarity=U
+[/card]
+[card]
+primitive=Loyal Warhound
+id=671320
+rarity=R
+[/card]
+[card]
+primitive=Martial Impetus
+id=671321
+rarity=U
+[/card]
+[card]
+primitive=Swords to Plowshares
+id=671322
+rarity=U
+[/card]
+[card]
+primitive=Chart a Course
+id=671323
+rarity=U
+[/card]
+[card]
+primitive=Rapid Hybridization
+id=671324
+rarity=U
+[/card]
+[card]
+primitive=Wizard Class
+id=671325
+rarity=U
+[/card]
+[card]
+primitive=Saw in Half
+id=671326
+rarity=R
+[/card]
+[card]
+primitive=Blasphemous Act
+id=671327
+rarity=R
+[/card]
+[card]
+primitive=Chaos Warp
+id=671328
+rarity=R
+[/card]
+[card]
+primitive=Sunbird's Invocation
+id=671329
+rarity=R
+[/card]
+[card]
+primitive=Warstorm Surge
+id=671330
+rarity=R
+[/card]
+[card]
+primitive=Beastmaster Ascension
+id=671331
+rarity=R
+[/card]
+[card]
+primitive=Farseek
+id=671332
+rarity=U
+[/card]
+[card]
+primitive=Harmonize
+id=671333
+rarity=U
+[/card]
+[card]
+primitive=Prosperous Innkeeper
+id=671334
+rarity=U
+[/card]
+[card]
+primitive=Rites of Flourishing
+id=671335
+rarity=R
+[/card]
+[card]
+primitive=Second Harvest
+id=671336
+rarity=R
+[/card]
+[card]
+primitive=Tempt with Discovery
+id=671337
+rarity=R
+[/card]
+[card]
+primitive=Casualties of War
+id=671338
+rarity=R
+[/card]
+[card]
+primitive=Maelstrom Pulse
+id=671339
+rarity=R
+[/card]
+[card]
+primitive=Arcane Signet
+id=671340
+rarity=C
+[/card]
+[card]
+primitive=Boros Signet
+id=671341
+rarity=U
+[/card]
+[card]
+primitive=Sol Ring
+id=671342
+rarity=U
+[/card]
+[card]
+primitive=Command Tower
+id=671343
+rarity=C
+[/card]
+[card]
+primitive=Exotic Orchard
+id=671344
+rarity=R
+[/card]
+[card]
+primitive=Reliquary Tower
+id=671345
+rarity=U
+[/card]
+[card]
+primitive=Swarmyard
+id=671346
+rarity=R
+[/card]
+[card]
+primitive=Angel of the Ruins
+id=671492
+rarity=R
+[/card]
+[card]
+primitive=Baird, Steward of Argive
+id=671493
+rarity=U
+[/card]
+[card]
+primitive=Blade Splicer
+id=671494
+rarity=R
+[/card]
+[card]
+primitive=Boss's Chauffeur
+id=671495
+rarity=R
+[/card]
+[card]
+primitive=Dusk // Dawn
+id=671496
+rarity=R
+[/card]
+[card]
+primitive=Hanged Executioner
+id=671497
+rarity=R
+[/card]
+[card]
+primitive=Hoofprints of the Stag
+id=671498
+rarity=R
+[/card]
+[card]
+primitive=Inspiring Overseer
+id=671499
+rarity=C
+[/card]
+[card]
+primitive=Jazal Goldmane
+id=671500
+rarity=R
+[/card]
+[card]
+primitive=Loran of the Third Path
+id=671501
+rarity=R
+[/card]
+[card]
+primitive=Luminous Broodmoth
+id=671502
+rarity=M
+[/card]
+[card]
+primitive=Mangara, the Diplomat
+id=671503
+rarity=M
+[/card]
+[card]
+primitive=Martial Coup
+id=671504
+rarity=R
+[/card]
+[card]
+primitive=Path to Exile
+id=671505
+rarity=U
+[/card]
+[card]
+primitive=Promise of Loyalty
+id=671506
+rarity=R
+[/card]
+[card]
+primitive=Realm-Cloaked Giant // Cast Off
+id=671507
+rarity=M
+[/card]
+[card]
+primitive=Restoration Angel
+id=671508
+rarity=R
+[/card]
+[card]
+primitive=Riot Control
+id=671509
+rarity=C
+[/card]
+[card]
+primitive=Secret Rendezvous
+id=671510
+rarity=U
+[/card]
+[card]
+primitive=Selfless Spirit
+id=671511
+rarity=R
+[/card]
+[card]
+primitive=Skyclave Apparition
+id=671512
+rarity=R
+[/card]
+[card]
+primitive=Spirited Companion
+id=671513
+rarity=C
+[/card]
+[card]
+primitive=Storm of Souls
+id=671514
+rarity=R
+[/card]
+[card]
+primitive=Sun Titan
+id=671515
+rarity=M
+[/card]
+[card]
+primitive=Sunscorch Regent
+id=671516
+rarity=R
+[/card]
+[card]
+primitive=Tenuous Truce
+id=671517
+rarity=R
+[/card]
+[card]
+primitive=Aether Channeler
+id=671518
+rarity=R
+[/card]
+[card]
+primitive=Aetherize
+id=671519
+rarity=U
+[/card]
+[card]
+primitive=Bident of Thassa
+id=671520
+rarity=R
+[/card]
+[card]
+primitive=Body of Knowledge
+id=671521
+rarity=R
+[/card]
+[card]
+primitive=Chasm Skulker
+id=671522
+rarity=R
+[/card]
+[card]
+primitive=Curiosity Crafter
+id=671523
+rarity=R
+[/card]
+[card]
+primitive=Illusionist's Gambit
+id=671524
+rarity=R
+[/card]
+[card]
+primitive=Illusory Ambusher
+id=671525
+rarity=U
+[/card]
+[card]
+primitive=Intellectual Offering
+id=671526
+rarity=R
+[/card]
+[card]
+primitive=Junk Winder
+id=671527
+rarity=U
+[/card]
+[card]
+primitive=An Offer You Can't Refuse
+id=671528
+rarity=U
+[/card]
+[card]
+primitive=Perplexing Test
+id=671529
+rarity=R
+[/card]
+[card]
+primitive=Pull from Tomorrow
+id=671530
+rarity=R
+[/card]
+[card]
+primitive=Rowdy Research
+id=671531
+rarity=U
+[/card]
+[card]
+primitive=Shield Broker
+id=671532
+rarity=R
+[/card]
+[card]
+primitive=Sphinx of Enlightenment
+id=671533
+rarity=M
+[/card]
+[card]
+primitive=Stolen by the Fae
+id=671534
+rarity=R
+[/card]
+[card]
+primitive=Tetsuko Umezawa, Fugitive
+id=671535
+rarity=U
+[/card]
+[card]
+primitive=Triskaidekaphile
+id=671536
+rarity=R
+[/card]
+[card]
+primitive=Bastion of Remembrance
+id=671537
+rarity=U
+[/card]
+[card]
+primitive=Chittering Witch
+id=671538
+rarity=R
+[/card]
+[card]
+primitive=Deadly Dispute
+id=671539
+rarity=C
+[/card]
+[card]
+primitive=Decree of Pain
+id=671540
+rarity=R
+[/card]
+[card]
+primitive=Morbid Opportunist
+id=671541
+rarity=U
+[/card]
+[card]
+primitive=Nadier's Nightblade
+id=671542
+rarity=U
+[/card]
+[card]
+primitive=Nested Shambler
+id=671543
+rarity=C
+[/card]
+[card]
+primitive=Ogre Slumlord
+id=671544
+rarity=R
+[/card]
+[card]
+primitive=Plaguecrafter
+id=671545
+rarity=U
+[/card]
+[card]
+primitive=Plumb the Forbidden
+id=671546
+rarity=U
+[/card]
+[card]
+primitive=Woe Strider
+id=671547
+rarity=R
+[/card]
+[card]
+primitive=Zulaport Cutthroat
+id=671548
+rarity=U
+[/card]
+[card]
+primitive=Abrade
+id=671549
+rarity=C
+[/card]
+[card]
+primitive=Berserkers' Onslaught
+id=671550
+rarity=R
+[/card]
+[card]
+primitive=Big Score
+id=671551
+rarity=C
+[/card]
+[card]
+primitive=Combat Celebrant
+id=671552
+rarity=M
+[/card]
+[card]
+primitive=Devilish Valet
+id=671553
+rarity=R
+[/card]
+[card]
+primitive=Etali, Primal Storm
+id=671554
+rarity=R
+[/card]
+[card]
+primitive=Gratuitous Violence
+id=671555
+rarity=R
+[/card]
+[card]
+primitive=Inferno Titan
+id=671556
+rarity=M
+[/card]
+[card]
+primitive=Outpost Siege
+id=671557
+rarity=R
+[/card]
+[card]
+primitive=Rain of Riches
+id=671558
+rarity=R
+[/card]
+[card]
+primitive=Rose Room Treasurer
+id=671559
+rarity=R
+[/card]
+[card]
+primitive=Siege-Gang Commander
+id=671560
+rarity=R
+[/card]
+[card]
+primitive=Starstorm
+id=671561
+rarity=R
+[/card]
+[card]
+primitive=Thopter Engineer
+id=671562
+rarity=U
+[/card]
+[card]
+primitive=Arasta of the Endless Web
+id=671563
+rarity=R
+[/card]
+[card]
+primitive=Beast Within
+id=671564
+rarity=U
+[/card]
+[card]
+primitive=Bootleggers' Stash
+id=671565
+rarity=M
+[/card]
+[card]
+primitive=Broken Wings
+id=671566
+rarity=C
+[/card]
+[card]
+primitive=Chatterfang, Squirrel General
+id=671567
+rarity=M
+[/card]
+[card]
+primitive=Chatterstorm
+id=671568
+rarity=C
+[/card]
+[card]
+primitive=Chitterspitter
+id=671569
+rarity=R
+[/card]
+[card]
+primitive=Cultivate
+id=671570
+rarity=C
+[/card]
+[card]
+primitive=Deep Forest Hermit
+id=671571
+rarity=R
+[/card]
+[card]
+primitive=End-Raze Forerunners
+id=671572
+rarity=R
+[/card]
+[card]
+primitive=Esika's Chariot
+id=671573
+rarity=R
+[/card]
+[card]
+primitive=Explore
+id=671574
+rarity=C
+[/card]
+[card]
+primitive=Forgotten Ancient
+id=671575
+rarity=R
+[/card]
+[card]
+primitive=Garruk's Packleader
+id=671576
+rarity=U
+[/card]
+[card]
+primitive=Garruk's Uprising
+id=671577
+rarity=U
+[/card]
+[card]
+primitive=Ghalta, Primal Hunger
+id=671578
+rarity=R
+[/card]
+[card]
+primitive=Gilded Goose
+id=671579
+rarity=R
+[/card]
+[card]
+primitive=Goreclaw, Terror of Qal Sisma
+id=671580
+rarity=R
+[/card]
+[card]
+primitive=Greater Good
+id=671581
+rarity=R
+[/card]
+[card]
+primitive=Grothama, All-Devouring
+id=671582
+rarity=M
+[/card]
+[card]
+primitive=Jolrael, Mwonvuli Recluse
+id=671583
+rarity=R
+[/card]
+[card]
+primitive=Kalonian Hydra
+id=671584
+rarity=M
+[/card]
+[card]
+primitive=Kodama of the East Tree
+id=671585
+rarity=R
+[/card]
+[card]
+primitive=Llanowar Loamspeaker
+id=671586
+rarity=R
+[/card]
+[card]
+primitive=Lotus Cobra
+id=671587
+rarity=R
+[/card]
+[card]
+primitive=Managorger Hydra
+id=671588
+rarity=R
+[/card]
+[card]
+primitive=Path of Discovery
+id=671589
+rarity=R
+[/card]
+[card]
+primitive=Primeval Bounty
+id=671590
+rarity=M
+[/card]
+[card]
+primitive=Rampaging Baloths
+id=671591
+rarity=M
+[/card]
+[card]
+primitive=Rampant Growth
+id=671592
+rarity=C
+[/card]
+[card]
+primitive=Rishkar, Peema Renegade
+id=671593
+rarity=R
+[/card]
+[card]
+primitive=Sakura-Tribe Elder
+id=671594
+rarity=C
+[/card]
+[card]
+primitive=Shamanic Revelation
+id=671595
+rarity=R
+[/card]
+[card]
+primitive=Spore Frog
+id=671596
+rarity=C
+[/card]
+[card]
+primitive=Squirrel Nest
+id=671597
+rarity=U
+[/card]
+[card]
+primitive=Squirrel Sovereign
+id=671598
+rarity=U
+[/card]
+[card]
+primitive=Tear Asunder
+id=671599
+rarity=U
+[/card]
+[card]
+primitive=Tendershoot Dryad
+id=671600
+rarity=R
+[/card]
+[card]
+primitive=Tireless Provisioner
+id=671601
+rarity=U
+[/card]
+[card]
+primitive=Toski, Bearer of Secrets
+id=671602
+rarity=R
+[/card]
+[card]
+primitive=Unnatural Growth
+id=671603
+rarity=R
+[/card]
+[card]
+primitive=Wolfwillow Haven
+id=671604
+rarity=U
+[/card]
+[card]
+primitive=Beledros Witherbloom
+id=671605
+rarity=M
+[/card]
+[card]
+primitive=Binding the Old Gods
+id=671606
+rarity=U
+[/card]
+[card]
+primitive=Cloudblazer
+id=671607
+rarity=U
+[/card]
+[card]
+primitive=Coiling Oracle
+id=671608
+rarity=C
+[/card]
+[card]
+primitive=Decimate
+id=671609
+rarity=R
+[/card]
+[card]
+primitive=Faeburrow Elder
+id=671610
+rarity=R
+[/card]
+[card]
+primitive=Grumgully, the Generous
+id=671611
+rarity=U
+[/card]
+[card]
+primitive=Kwain, Itinerant Meddler
+id=671612
+rarity=R
+[/card]
+[card]
+primitive=Moldervine Reclamation
+id=671613
+rarity=U
+[/card]
+[card]
+primitive=Poison-Tip Archer
+id=671614
+rarity=U
+[/card]
+[card]
+primitive=Putrefy
+id=671615
+rarity=U
+[/card]
+[card]
+primitive=Ravenous Squirrel
+id=671616
+rarity=U
+[/card]
+[card]
+primitive=Selvala, Explorer Returned
+id=671617
+rarity=R
+[/card]
+[card]
+primitive=Simic Ascendancy
+id=671618
+rarity=R
+[/card]
+[card]
+primitive=Skyfisher Spider
+id=671619
+rarity=U
+[/card]
+[card]
+primitive=Time Wipe
+id=671620
+rarity=R
+[/card]
+[card]
+primitive=Windgrace's Judgment
+id=671621
+rarity=R
+[/card]
+[card]
+primitive=Academy Manufactor
+id=671622
+rarity=R
+[/card]
+[card]
+primitive=Azorius Signet
+id=671623
+rarity=U
+[/card]
+[card]
+primitive=Burnished Hart
+id=671624
+rarity=U
+[/card]
+[card]
+primitive=Circuit Mender
+id=671625
+rarity=U
+[/card]
+[card]
+primitive=Coveted Jewel
+id=671626
+rarity=R
+[/card]
+[card]
+primitive=Fellwar Stone
+id=671627
+rarity=U
+[/card]
+[card]
+primitive=Ghirapur Orrery
+id=671628
+rarity=R
+[/card]
+[card]
+primitive=Gilded Lotus
+id=671629
+rarity=R
+[/card]
+[card]
+primitive=Golgari Signet
+id=671630
+rarity=U
+[/card]
+[card]
+primitive=Gruul Signet
+id=671631
+rarity=U
+[/card]
+[card]
+primitive=Haywire Mite
+id=671632
+rarity=U
+[/card]
+[card]
+primitive=Hedron Archive
+id=671633
+rarity=U
+[/card]
+[card]
+primitive=Helm of the Host
+id=671634
+rarity=R
+[/card]
+[card]
+primitive=Idol of Oblivion
+id=671635
+rarity=R
+[/card]
+[card]
+primitive=Izzet Signet
+id=671636
+rarity=U
+[/card]
+[card]
+primitive=Maskwood Nexus
+id=671637
+rarity=R
+[/card]
+[card]
+primitive=Mind Stone
+id=671638
+rarity=U
+[/card]
+[card]
+primitive=Ornithopter of Paradise
+id=671639
+rarity=C
+[/card]
+[card]
+primitive=Psychosis Crawler
+id=671640
+rarity=R
+[/card]
+[card]
+primitive=Skullclamp
+id=671641
+rarity=U
+[/card]
+[card]
+primitive=Solemn Simulacrum
+id=671642
+rarity=R
+[/card]
+[card]
+primitive=Spine of Ish Sah
+id=671643
+rarity=R
+[/card]
+[card]
+primitive=Swiftfoot Boots
+id=671644
+rarity=U
+[/card]
+[card]
+primitive=Talisman of Impulse
+id=671645
+rarity=U
+[/card]
+[card]
+primitive=Talisman of Resilience
+id=671646
+rarity=U
+[/card]
+[card]
+primitive=Thought Vessel
+id=671647
+rarity=C
+[/card]
+[card]
+primitive=Thran Dynamo
+id=671648
+rarity=U
+[/card]
+[card]
+primitive=Adarkar Wastes
+id=671649
+rarity=R
+[/card]
+[card]
+primitive=Barren Moor
+id=671650
+rarity=U
+[/card]
+[card]
+primitive=Battlefield Forge
+id=671651
+rarity=R
+[/card]
+[card]
+primitive=Bojuka Bog
+id=671652
+rarity=C
+[/card]
+[card]
+primitive=Brushland
+id=671653
+rarity=R
+[/card]
+[card]
+primitive=Canopy Vista
+id=671654
+rarity=R
+[/card]
+[card]
+primitive=Cascade Bluffs
+id=671655
+rarity=R
+[/card]
+[card]
+primitive=Castle Ardenvale
+id=671656
+rarity=R
+[/card]
+[card]
+primitive=Cinder Glade
+id=671657
+rarity=R
+[/card]
+[card]
+primitive=Clifftop Retreat
+id=671658
+rarity=R
+[/card]
+[card]
+primitive=Copperline Gorge
+id=671659
+rarity=R
+[/card]
+[card]
+primitive=Evolving Wilds
+id=671660
+rarity=C
+[/card]
+[card]
+primitive=Ferrous Lake
+id=671661
+rarity=R
+[/card]
+[card]
+primitive=Flooded Grove
+id=671662
+rarity=R
+[/card]
+[card]
+primitive=Forgotten Cave
+id=671663
+rarity=C
+[/card]
+[card]
+primitive=Game Trail
+id=671664
+rarity=R
+[/card]
+[card]
+primitive=Glacial Fortress
+id=671665
+rarity=R
+[/card]
+[card]
+primitive=Golgari Rot Farm
+id=671666
+rarity=U
+[/card]
+[card]
+primitive=Grim Backwoods
+id=671667
+rarity=R
+[/card]
+[card]
+primitive=Gruul Turf
+id=671668
+rarity=C
+[/card]
+[card]
+primitive=Haunted Mire
+id=671669
+rarity=C
+[/card]
+[card]
+primitive=Hinterland Harbor
+id=671670
+rarity=R
+[/card]
+[card]
+primitive=Jungle Hollow
+id=671671
+rarity=C
+[/card]
+[card]
+primitive=Karplusan Forest
+id=671672
+rarity=R
+[/card]
+[card]
+primitive=Llanowar Wastes
+id=671673
+rarity=R
+[/card]
+[card]
+primitive=Mossfire Valley
+id=671674
+rarity=R
+[/card]
+[card]
+primitive=Mosswort Bridge
+id=671675
+rarity=R
+[/card]
+[card]
+primitive=Mystic Monastery
+id=671676
+rarity=U
+[/card]
+[card]
+primitive=Necroblossom Snarl
+id=671677
+rarity=R
+[/card]
+[card]
+primitive=Oran-Rief, the Vastwood
+id=671678
+rarity=R
+[/card]
+[card]
+primitive=Overflowing Basin
+id=671679
+rarity=R
+[/card]
+[card]
+primitive=Path of Ancestry
+id=671680
+rarity=C
+[/card]
+[card]
+primitive=Prairie Stream
+id=671681
+rarity=R
+[/card]
+[card]
+primitive=Raging Ravine
+id=671682
+rarity=R
+[/card]
+[card]
+primitive=Razorverge Thicket
+id=671683
+rarity=R
+[/card]
+[card]
+primitive=Rootbound Crag
+id=671684
+rarity=R
+[/card]
+[card]
+primitive=Rugged Prairie
+id=671685
+rarity=R
+[/card]
+[card]
+primitive=Seachrome Coast
+id=671686
+rarity=R
+[/card]
+[card]
+primitive=Seaside Citadel
+id=671687
+rarity=U
+[/card]
+[card]
+primitive=Sheltered Thicket
+id=671688
+rarity=R
+[/card]
+[card]
+primitive=Shivan Reef
+id=671689
+rarity=R
+[/card]
+[card]
+primitive=Skycloud Expanse
+id=671690
+rarity=R
+[/card]
+[card]
+primitive=Sulfur Falls
+id=671691
+rarity=R
+[/card]
+[card]
+primitive=Sungrass Prairie
+id=671692
+rarity=R
+[/card]
+[card]
+primitive=Sunpetal Grove
+id=671693
+rarity=R
+[/card]
+[card]
+primitive=Sunscorched Divide
+id=671694
+rarity=R
+[/card]
+[card]
+primitive=Tainted Wood
+id=671695
+rarity=U
+[/card]
+[card]
+primitive=Temple of Abandon
+id=671696
+rarity=R
+[/card]
+[card]
+primitive=Temple of Enlightenment
+id=671697
+rarity=R
+[/card]
+[card]
+primitive=Temple of Epiphany
+id=671698
+rarity=R
+[/card]
+[card]
+primitive=Temple of Malady
+id=671699
+rarity=R
+[/card]
+[card]
+primitive=Temple of Mystery
+id=671700
+rarity=R
+[/card]
+[card]
+primitive=Temple of Plenty
+id=671701
+rarity=R
+[/card]
+[card]
+primitive=Temple of Triumph
+id=671702
+rarity=R
+[/card]
+[card]
+primitive=Terramorphic Expanse
+id=671703
+rarity=C
+[/card]
+[card]
+primitive=Thriving Bluff
+id=671704
+rarity=C
+[/card]
+[card]
+primitive=Thriving Grove
+id=671705
+rarity=C
+[/card]
+[card]
+primitive=Thriving Heath
+id=671706
+rarity=C
+[/card]
+[card]
+primitive=Thriving Isle
+id=671707
+rarity=C
+[/card]
+[card]
+primitive=Tranquil Thicket
+id=671708
+rarity=C
+[/card]
+[card]
+primitive=Twilight Mire
+id=671709
+rarity=R
+[/card]
+[card]
+primitive=Viridescent Bog
+id=671710
+rarity=R
+[/card]
+[card]
+primitive=Wooded Ridgeline
+id=671711
+rarity=C
+[/card]
+[card]
+primitive=Woodland Cemetery
+id=671712
+rarity=R
+[/card]
+[card]
+primitive=Yavimaya Coast
+id=671713
+rarity=R
+[/card]
+[card]
+primitive=Flubs, the Fool
+id=670972
+rarity=M
+[/card]

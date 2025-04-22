@@ -1,14 +1,4 @@
 [card]
-name=Mogis, God of Slaughter
-abilities=indestructible
-text=Indestructible -- As long as your devotion to black and red is less than seven, Mogis isn't a creature. -- At the beginning of each opponent's upkeep, Mogis deals 2 damage to that player unless he or she sacrifices a creature.
-mana={2}{B}{R}
-type=Legendary Enchantment Creature
-subtype=God
-power=7
-toughness=5
-[/card]
-[card]
 name=Acolyte's Reward
 text=Prevent the next X damage that would be dealt to target creature this turn, where X is your devotion to white. If damage is prevented this way, Acolyte's Reward deals that much damage to target creature or player. (Each {W} in the mana costs of permanents you control counts toward your devotion to white.)
 mana={1}{W}

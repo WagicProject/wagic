@@ -2,7 +2,7 @@ name=Hermit Druid Basic
 unlock=prx_timreh
 [INIT]
 mode=hermit
-#I could do "include mtg.txt" but instead I want this to reflect that if you don't you need to manuelly add these rules yourself.
+#I could do "include mtg.txt" but instead I want this to reflect that if you don't you need to manually add these rules yourself.
 auto=bonusrule
 auto=putinplayrule
 auto=kickerrule

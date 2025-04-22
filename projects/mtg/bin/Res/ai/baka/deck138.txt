@@ -1,30 +1,92 @@
-#NAME:Turbo Stasi
-#DESC:Black Summer 1996
-City of Brass (*) *4
-Island (*) *13
-Underground River (*) *4
-Boomerang (*) *4
-Force of Will (*) *4
-Recall (*) *2
-Kismet (*) *2
-Land Tax (*) *1
-Stasis (*) *4
-Despotic Scepter (*) *3
-Feldon's Cane (*) *2
-Howling Mine (*) *4
-Ivory Tower (*) *2
-Zuran Orb (*) *1
-Black Vise (*) *2
-Counterspell (*) *4
-Adarkar Wastes (*) *4
-
-#SB: Kismet (*) *1
-#SB: Wall of Air (*) *2
-#SB: Arcane Denial (*) *4
-#SB: Blue Elemental Blast (*) *2
-#SB: Disenchant (*) *2
-#SB: Hydroblast (*) *2
-#SB: Lodestone Bauble (*) *1
-#SB: Mana Short (*) *3
-#SB: Swords to Plowshares (*) *1
-#SB: Lim-Dul's Vault (*) *4
+#NAME:Bello Commander
+#DESC:Bloomburrow Precon Deck
+#DESC:Refined for Wagic by Bob
+#HINT:castpriority(commander,*)
+#HINT:alwaysattackwith(creature[Elemental])
+Abrade (BLC) (*) * 1
+Arcane Signet (BLC) (*) * 1
+Beast Within (BLC) (*) * 1
+Berserkers' Onslaught (BLC) (*) * 1
+Big Score (BLC) (*) * 1
+Blasphemous Act (*) * 1
+Bristling Backwoods (*) * 1
+Burnished Hart (BLC) (*) * 1
+Chaos Warp (*) * 1
+Cinder Glade (BLC) (*) * 1
+Command Tower (BLC) (*) * 1
+Copperline Gorge (BLC) (*) * 1
+Court of Embereth (*) * 1
+Cultivate (BLC) (*) * 1
+Decimate (BLC) (*) * 1
+Domri, Anarch of Bolas (BLC) (*) * 1
+Esika's Chariot (BLC) (*) * 1
+Etali, Primal Storm (BLC) (*) * 1
+Evercoat Ursine (BLC) (*) * 1
+Evolving Wilds (BLC) (*) * 1
+Exotic Orchard (BLC) (*) * 1
+Explore (BLC) (*) * 1
+Fanatic of Rhonas (*) * 1
+Farseek (BLC) (*) * 1
+Fellwar Stone (BLC) (*) * 1
+Forest (BLB) (*) * 10
+Forest (MH3) (*) * 4
+Forest (LCI) (*) * 2
+Forgotten Cave (BLC) (*) * 1
+Frontier Warmonger (*) * 1
+Game Trail (BLC) (*) * 1
+Garruk's Packleader (BLC) (*) * 1
+Garruk's Uprising (BLC) (*) * 1
+Ghalta, Primal Hunger (BLC) (*) * 1
+Gilded Lotus (BLC) (*) * 1
+Goblin Anarchomancer (*) * 1
+Goreclaw, Terror of Qal Sisma (BLC) (*) * 1
+Grumgully, the Generous (BLC) (*) * 1
+Gruul Signet (BLC) (*) * 1
+Gruul Turf (BLC) (*) * 1
+Gruul War Chant (*() * 1
+Harmonize (BLC) (*) * 1
+Hedron Archive (BLC) (*) * 1
+Kodama of the East Tree (BLC) (*) * 1
+Kona, Rescue Beastie (*) * 1
+Llanowar Loamspeaker (BLC) (*) * 1
+Lotus Cobra (BLC) (*) * 1
+Mind Stone (BLC) (*) * 1
+Mossfire Valley (BLC) (*) * 1
+Mosswort Bridge (BLC) (*) * 1
+Mountain (BLB) (*) * 4
+Mountain (MH3) (*) * 4
+Nature's Will (*) * 1
+Ohran Frostfang (*) * 1
+Outpost Siege (BLC) (*) * 1
+Path of Discovery (BLC) (*) * 1
+Primeval Bounty (BLC) (*) * 1
+Prosperous Bandit (BLC) (*) * 1
+Rampaging Baloths (BLC) (*) * 1
+Rampant Growth (BLC) (*) * 1
+Reliquary Tower (BLC) (*) * 1
+Rolling Hamsphere (BLC) (*) * 1
+Rootbound Crag (BLC) (*) * 1
+Rugged Highlands (*) * 1
+Sakura-Tribe Elder (BLC) (*) * 1
+Sheltered Thicket (BLC) (*) * 1
+Sol Ring (BLC) (*) * 1
+Spine of Ish Sah (BLC) (*) * 1
+Starstorm (BLC) (*) * 1
+Street Riot (*) * 1
+Sunbird's Invocation (BLC) (*) * 1
+Taiga (*) * 1
+Talisman of Impulse (BLC) (*) * 1
+Temple of Abandon (BLC) (*) * 1
+Tendershoot Dryad (BLC) (*) * 1
+Terramorphic Expanse (BLC) (*) * 1
+The Immortal Sun (*) * 1
+The Shattered States Era (*) * 1
+Thickest in the Thicket (BLC) (*) * 1
+Thought Vessel (BLC) (*) * 1
+Thran Dynamo (BLC) (*) * 1
+Tranquil Thicket (BLC) (*) * 1
+Unnatural Growth (BLC) (*) * 1
+Warstorm Surge (BLC) (*) * 1
+Wildsear, Scouring Maw (BLC) (*) * 1
+Wooded Ridgeline (BLC) (*) * 1
+#CMD:Bello, Bard of the Brambles (*) * 1

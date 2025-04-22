@@ -1,13 +1,4 @@
 [card]
-name=Stone Giant
-text={T}: Target creature you control with toughness less than Stone Giant's power gains flying until end of turn. Destroy that creature at the beginning of the next end step.
-mana={2}{R}{R}
-type=Creature
-subtype=Giant
-power=3
-toughness=4
-[/card]
-[card]
 name=Tempest Efreet
 text=Remove Tempest Efreet from your deck before playing if you're not playing for ante. -- {T}, Sacrifice Tempest Efreet: Target opponent may pay 10 life. If that player doesn't, he or she reveals a card at random from his or her hand. Exchange ownership of the revealed card and Tempest Efreet. Put the revealed card into your hand and Tempest Efreet from anywhere into that player's graveyard.
 mana={1}{R}{R}{R}

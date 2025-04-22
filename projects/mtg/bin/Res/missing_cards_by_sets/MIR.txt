@@ -68,13 +68,6 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=Lightning Reflexes
-text=You may cast Lightning Reflexes as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- Enchanted creature gets +1/+0 and has first strike.
-mana={1}{R}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Energy Vortex
 text=As Energy Vortex enters the battlefield, choose an opponent. -- At the beginning of your upkeep, remove all energy counters from Energy Vortex. -- At the beginning of the chosen player's upkeep, Energy Vortex deals 3 damage to that player unless he or she pays {1} for each energy counter on Energy Vortex. -- {X}: Put X energy counters on Energy Vortex. Activate this ability only during your upkeep.
 mana={3}{U}{U}
@@ -111,23 +104,10 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Soar
-text=You may cast Soar as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- Enchanted creature gets +0/+1 and has flying.
-mana={1}{U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Celestial Dawn
 text=Lands you control are Plains. -- Nonland cards you own that aren't on the battlefield, spells you control, and nonland permanents you control are white. -- You may spend white mana as though it were mana of any color. You may spend other mana only as though it were colorless mana.
 mana={1}{W}{W}
 type=Enchantment
-[/card]
-[card]
-name=Sapphire Charm
-text=Choose one -- Target player draws a card at the beginning of the next turn's upkeep; or target creature gains flying until end of turn; or target creature an opponent controls phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step.)
-mana={U}
-type=Instant
 [/card]
 [card]
 name=Acidic Dagger
@@ -145,13 +125,6 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Armor of Thorns
-text=You may cast Armor of Thorns as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant nonblack creature -- Enchanted creature gets +2/+2.
-mana={1}{G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Mangara's Tome
 text=When Mangara's Tome enters the battlefield, search your library for five cards, exile them in a face-down pile, and shuffle that pile. Then shuffle your library. -- {2}: The next time you would draw a card this turn, instead put the top card of the exiled pile into its owner's hand.
 mana={5}
@@ -162,13 +135,6 @@ name=Hall of Gemstone
 text=At the beginning of each player's upkeep, that player chooses a color. Until end of turn, lands tapped for mana produce mana of the chosen color instead of any other color.
 mana={1}{G}{G}
 type=World Enchantment
-[/card]
-[card]
-name=Grave Servitude
-text=You may cast Grave Servitude as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Enchant creature -- Enchanted creature gets +3/-1 and is black.
-mana={1}{B}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Noble Elephant

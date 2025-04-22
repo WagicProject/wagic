@@ -170,9 +170,11 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                             size_t var_start = value.find("(");
                             size_t var_end = value.find(")", var_start);
                             string varString = value.substr(var_start + 1, var_end - var_start - 1);
-                            WParsedInt * value = NEW WParsedInt(varString.c_str(),NULL,c);
-                            if(value)
+                            WParsedInt * value = NEW WParsedInt(varString,NULL,c);
+                            if(value){
                                 manaCost->add(Constants::MTG_COLOR_ARTIFACT,  value->getValue());
+                                SAFE_DELETE(value);
+                            }
                             else
                                 break;
                         }
@@ -329,7 +331,7 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                             else if(value == "chosencolor")
                             {
                                 if(c)
-                                manaCost->add(c->chooseacolor, 1);
+                                    manaCost->add(c->chooseacolor, 1);
                             }
                             else if(value == "cycle")
                             {

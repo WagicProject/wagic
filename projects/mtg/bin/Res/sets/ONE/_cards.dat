@@ -1,0 +1,2241 @@
+[meta]
+author=Wagic Team
+name=Phyrexia: All Will Be One
+year=2023-02-03
+total=447
+[/meta]
+[card]
+primitive=Mite
+id=-602534
+rarity=T
+[/card]
+[card]
+primitive=Mite
+id=-602536
+rarity=T
+[/card]
+[card]
+primitive=Mite
+id=-602538
+rarity=T
+[/card]
+[card]
+primitive=Samurai
+id=-602541
+rarity=T
+[/card]
+[card]
+primitive=Rebel
+id=-602543
+rarity=T
+[/card]
+[card]
+primitive=Rebel
+id=-602544
+rarity=T
+[/card]
+[card]
+primitive=Mite
+id=-602546
+rarity=T
+[/card]
+[card]
+primitive=Mite
+id=-602547
+rarity=T
+[/card]
+[card]
+primitive=Cat
+id=-602549
+rarity=T
+[/card]
+[card]
+primitive=Rebel
+id=-602552
+rarity=T
+[/card]
+[card]
+primitive=Mite
+id=-602564
+rarity=T
+[/card]
+[card]
+primitive=Mite
+id=-602568
+rarity=T
+[/card]
+[card]
+primitive=Rebel
+id=-602572
+rarity=T
+[/card]
+[card]
+primitive=Mite
+id=-602640
+rarity=T
+[/card]
+[card]
+primitive=Rebel
+id=-602651
+rarity=T
+[/card]
+[card]
+primitive=Goblin
+id=-602656
+rarity=T
+[/card]
+[card]
+primitive=Goblin
+id=-602657
+rarity=T
+[/card]
+[card]
+primitive=Rebel
+id=-602658
+rarity=T
+[/card]
+[card]
+primitive=Goblin
+id=-602664
+rarity=T
+[/card]
+[card]
+primitive=Rebel
+id=-602666
+rarity=T
+[/card]
+[card]
+primitive=Horror
+id=-602683
+rarity=T
+[/card]
+[card]
+primitive=Rebel
+id=-602686
+rarity=T
+[/card]
+[card]
+primitive=Golem
+id=-602701
+rarity=T
+[/card]
+[card]
+primitive=Horror
+id=-602705
+rarity=T
+[/card]
+[card]
+primitive=Rebel
+id=-602714
+rarity=T
+[/card]
+[card]
+primitive=Beast
+id=-602724
+rarity=T
+[/card]
+[card]
+primitive=Rebel
+id=-602727
+rarity=T
+[/card]
+[card]
+primitive=Goblin
+id=-602729
+rarity=T
+[/card]
+[card]
+primitive=Drone
+id=-602734
+rarity=T
+[/card]
+[card]
+primitive=Beast
+id=-602737
+rarity=T
+[/card]
+[card]
+primitive=Golem
+id=-602738
+rarity=T
+[/card]
+[card]
+primitive=Goblin
+id=-602743
+rarity=T
+[/card]
+[card]
+primitive=Mite
+id=-602744
+rarity=T
+[/card]
+[card]
+primitive=Golem
+id=-602749
+rarity=T
+[/card]
+[card]
+primitive=Mite
+id=-602784
+rarity=T
+[/card]
+[card]
+primitive=Rebel
+id=-604961
+rarity=T
+[/card]
+[card]
+primitive=Golem
+id=-605124
+rarity=T
+[/card]
+[card]
+primitive=Goblin
+id=-605126
+rarity=T
+[/card]
+[card]
+primitive=Mite
+id=-605127
+rarity=T
+[/card]
+[card]
+primitive=Golem
+id=-605128
+rarity=T
+[/card]
+[card]
+primitive=Horror
+id=-605448
+rarity=T
+[/card]
+[card]
+primitive=Beast
+id=-605449
+rarity=T
+[/card]
+[card]
+primitive=Cat
+id=-605406
+rarity=T
+[/card]
+[card]
+primitive=Samurai
+id=-605326
+rarity=T
+[/card]
+[card]
+primitive=Horror
+id=-605330
+rarity=T
+[/card]
+[card]
+primitive=Drone
+id=-605331
+rarity=T
+[/card]
+[card]
+primitive=Beast
+id=-605333
+rarity=T
+[/card]
+[card]
+primitive=Mite
+id=-604748
+rarity=T
+[/card]
+[card]
+primitive=Mite
+id=-604749
+rarity=T
+[/card]
+[card]
+primitive=Rebel
+id=-604750
+rarity=T
+[/card]
+[card]
+primitive=Rebel
+id=-604757
+rarity=T
+[/card]
+[card]
+primitive=Horror
+id=-604759
+rarity=T
+[/card]
+[card]
+primitive=Mite
+id=-604772
+rarity=T
+[/card]
+[card]
+primitive=Mite
+id=-604917
+rarity=T
+[/card]
+[card]
+primitive=Beast
+id=-604921
+rarity=T
+[/card]
+[card]
+primitive=Mite
+id=-604892
+rarity=T
+[/card]
+[card]
+primitive=Beast
+id=-604896
+rarity=T
+[/card]
+[card]
+primitive=Against All Odds
+id=602531
+rarity=U
+[/card]
+[card]
+primitive=Annex Sentry
+id=602532
+rarity=U
+[/card]
+[card]
+primitive=Apostle of Invasion
+id=602533
+rarity=U
+[/card]
+[card]
+primitive=Basilica Shepherd
+id=602534
+rarity=C
+[/card]
+[card]
+primitive=Bladed Ambassador
+id=602535
+rarity=U
+[/card]
+[card]
+primitive=Charge of the Mites
+id=602536
+rarity=C
+[/card]
+[card]
+primitive=Compleat Devotion
+id=602537
+rarity=C
+[/card]
+[card]
+primitive=Crawling Chorus
+id=602538
+rarity=C
+[/card]
+[card]
+primitive=Duelist of Deep Faith
+id=602539
+rarity=C
+[/card]
+[card]
+primitive=Elesh Norn, Mother of Machines
+id=602540
+rarity=M
+[/card]
+[card]
+primitive=The Eternal Wanderer
+id=602541
+rarity=R
+[/card]
+[card]
+primitive=Flensing Raptor
+id=602542
+rarity=C
+[/card]
+[card]
+primitive=Goldwarden's Helm
+id=602543
+rarity=C
+[/card]
+[card]
+primitive=Hexgold Hoverwings
+id=602544
+rarity=U
+[/card]
+[card]
+primitive=Incisor Glider
+id=602545
+rarity=C
+[/card]
+[card]
+primitive=Indoctrination Attendant
+id=602546
+rarity=C
+[/card]
+[card]
+primitive=Infested Fleshcutter
+id=602547
+rarity=U
+[/card]
+[card]
+primitive=Jawbone Duelist
+id=602548
+rarity=U
+[/card]
+[card]
+primitive=Kemba, Kha Enduring
+id=602549
+rarity=R
+[/card]
+[card]
+primitive=Leonin Lightbringer
+id=602550
+rarity=C
+[/card]
+[card]
+primitive=Mandible Justiciar
+id=602551
+rarity=C
+[/card]
+[card]
+primitive=Mirran Bardiche
+id=602552
+rarity=C
+[/card]
+[card]
+primitive=Mondrak, Glory Dominus
+id=602553
+rarity=M
+[/card]
+[card]
+primitive=Norn's Wellspring
+id=602554
+rarity=R
+[/card]
+[card]
+primitive=Orthodoxy Enforcer
+id=602555
+rarity=C
+[/card]
+[card]
+primitive=Ossification
+id=602556
+rarity=U
+[/card]
+[card]
+primitive=Phyrexian Vindicator
+id=602557
+rarity=M
+[/card]
+[card]
+primitive=Planar Disruption
+id=602558
+rarity=C
+[/card]
+[card]
+primitive=Plated Onslaught
+id=602559
+rarity=U
+[/card]
+[card]
+primitive=Porcelain Zealot
+id=602560
+rarity=U
+[/card]
+[card]
+primitive=Resistance Reunited
+id=602561
+rarity=U
+[/card]
+[card]
+primitive=Sinew Dancer
+id=602562
+rarity=C
+[/card]
+[card]
+primitive=Skrelv, Defector Mite
+id=602563
+rarity=R
+[/card]
+[card]
+primitive=Skrelv's Hive
+id=602564
+rarity=R
+[/card]
+[card]
+primitive=Swooping Lookout
+id=602565
+rarity=U
+[/card]
+[card]
+primitive=Vanish into Eternity
+id=602566
+rarity=C
+[/card]
+[card]
+primitive=Veil of Assimilation
+id=602567
+rarity=U
+[/card]
+[card]
+primitive=White Sun's Twilight
+id=602568
+rarity=R
+[/card]
+[card]
+primitive=Zealot's Conviction
+id=602569
+rarity=C
+[/card]
+[card]
+primitive=Aspirant's Ascent
+id=602570
+rarity=C
+[/card]
+[card]
+primitive=Atmosphere Surgeon
+id=602571
+rarity=U
+[/card]
+[card]
+primitive=Blade of Shared Souls
+id=602572
+rarity=R
+[/card]
+[card]
+primitive=Blue Sun's Twilight
+id=602573
+rarity=R
+[/card]
+[card]
+primitive=Bring the Ending
+id=602574
+rarity=C
+[/card]
+[card]
+primitive=Chrome Prowler
+id=602575
+rarity=C
+[/card]
+[card]
+primitive=Distorted Curiosity
+id=602576
+rarity=U
+[/card]
+[card]
+primitive=Encroaching Mycosynth
+id=602577
+rarity=R
+[/card]
+[card]
+primitive=Escaped Experiment
+id=602578
+rarity=C
+[/card]
+[card]
+primitive=Experimental Augury
+id=602579
+rarity=C
+[/card]
+[card]
+primitive=Eye of Malcator
+id=602580
+rarity=C
+[/card]
+[card]
+primitive=Font of Progress
+id=602581
+rarity=U
+[/card]
+[card]
+primitive=Gitaxian Anatomist
+id=602582
+rarity=C
+[/card]
+[card]
+primitive=Gitaxian Raptor
+id=602583
+rarity=C
+[/card]
+[card]
+primitive=Glistener Seer
+id=602584
+rarity=C
+[/card]
+[card]
+primitive=Ichor Synthesizer
+id=602585
+rarity=C
+[/card]
+[card]
+primitive=Ichormoon Gauntlet
+id=602586
+rarity=M
+[/card]
+[card]
+primitive=Jace, the Perfected Mind
+id=602587
+rarity=M
+[/card]
+[card]
+primitive=Malcator's Watcher
+id=602588
+rarity=C
+[/card]
+[card]
+primitive=Meldweb Curator
+id=602589
+rarity=C
+[/card]
+[card]
+primitive=Meldweb Strider
+id=602590
+rarity=C
+[/card]
+[card]
+primitive=Mercurial Spelldancer
+id=602591
+rarity=R
+[/card]
+[card]
+primitive=Mesmerizing Dose
+id=602592
+rarity=C
+[/card]
+[card]
+primitive=Mindsplice Apparatus
+id=602593
+rarity=R
+[/card]
+[card]
+primitive=Minor Misstep
+id=602594
+rarity=U
+[/card]
+[card]
+primitive=Prologue to Phyresis
+id=602595
+rarity=C
+[/card]
+[card]
+primitive=Quicksilver Fisher
+id=602596
+rarity=C
+[/card]
+[card]
+primitive=Reject Imperfection
+id=602597
+rarity=U
+[/card]
+[card]
+primitive=Serum Snare
+id=602598
+rarity=U
+[/card]
+[card]
+primitive=Tamiyo's Immobilizer
+id=602599
+rarity=U
+[/card]
+[card]
+primitive=Tamiyo's Logbook
+id=602600
+rarity=U
+[/card]
+[card]
+primitive=Tekuthal, Inquiry Dominus
+id=602601
+rarity=M
+[/card]
+[card]
+primitive=Thrummingbird
+id=602602
+rarity=U
+[/card]
+[card]
+primitive=Transplant Theorist
+id=602603
+rarity=U
+[/card]
+[card]
+primitive=Trawler Drake
+id=602604
+rarity=U
+[/card]
+[card]
+primitive=Unctus, Grand Metatect
+id=602605
+rarity=R
+[/card]
+[card]
+primitive=Unctus's Retrofitter
+id=602606
+rarity=U
+[/card]
+[card]
+primitive=Vivisurgeon's Insight
+id=602607
+rarity=C
+[/card]
+[card]
+primitive=Watchful Blisterzoa
+id=602608
+rarity=U
+[/card]
+[card]
+primitive=Ambulatory Edifice
+id=602609
+rarity=U
+[/card]
+[card]
+primitive=Annihilating Glare
+id=602610
+rarity=C
+[/card]
+[card]
+primitive=Anoint with Affliction
+id=602611
+rarity=C
+[/card]
+[card]
+primitive=Archfiend of the Dross
+id=602612
+rarity=R
+[/card]
+[card]
+primitive=Bilious Skulldweller
+id=602613
+rarity=U
+[/card]
+[card]
+primitive=Black Sun's Twilight
+id=602614
+rarity=R
+[/card]
+[card]
+primitive=Blightbelly Rat
+id=602615
+rarity=C
+[/card]
+[card]
+primitive=Bonepicker Skirge
+id=602616
+rarity=C
+[/card]
+[card]
+primitive=Chittering Skitterling
+id=602617
+rarity=U
+[/card]
+[card]
+primitive=Cruel Grimnarch
+id=602618
+rarity=C
+[/card]
+[card]
+primitive=Cutthroat Centurion
+id=602619
+rarity=C
+[/card]
+[card]
+primitive=Drivnod, Carnage Dominus
+id=602620
+rarity=M
+[/card]
+[card]
+primitive=Drown in Ichor
+id=602621
+rarity=U
+[/card]
+[card]
+primitive=Duress
+id=602622
+rarity=C
+[/card]
+[card]
+primitive=Feed the Infection
+id=602623
+rarity=U
+[/card]
+[card]
+primitive=Fleshless Gladiator
+id=602624
+rarity=C
+[/card]
+[card]
+primitive=Geth, Thane of Contracts
+id=602625
+rarity=R
+[/card]
+[card]
+primitive=Gulping Scraptrap
+id=602626
+rarity=C
+[/card]
+[card]
+primitive=Infectious Inquiry
+id=602627
+rarity=C
+[/card]
+[card]
+primitive=Karumonix, the Rat King
+id=602628
+rarity=R
+[/card]
+[card]
+primitive=Necrogen Communion
+id=602629
+rarity=U
+[/card]
+[card]
+primitive=Necrosquito
+id=602630
+rarity=U
+[/card]
+[card]
+primitive=Nimraiser Paladin
+id=602631
+rarity=U
+[/card]
+[card]
+primitive=Offer Immortality
+id=602632
+rarity=C
+[/card]
+[card]
+primitive=Pestilent Syphoner
+id=602633
+rarity=C
+[/card]
+[card]
+primitive=Phyrexian Arena
+id=602634
+rarity=R
+[/card]
+[card]
+primitive=Phyrexian Obliterator
+id=602635
+rarity=M
+[/card]
+[card]
+primitive=Ravenous Necrotitan
+id=602636
+rarity=U
+[/card]
+[card]
+primitive=Scheming Aspirant
+id=602637
+rarity=U
+[/card]
+[card]
+primitive=Sheoldred's Edict
+id=602638
+rarity=U
+[/card]
+[card]
+primitive=Sheoldred's Headcleaver
+id=602639
+rarity=C
+[/card]
+[card]
+primitive=Stinging Hivemaster
+id=602640
+rarity=C
+[/card]
+[card]
+primitive=Testament Bearer
+id=602641
+rarity=C
+[/card]
+[card]
+primitive=Vat Emergence
+id=602642
+rarity=U
+[/card]
+[card]
+primitive=Vat of Rebirth
+id=602643
+rarity=U
+[/card]
+[card]
+primitive=Vraan, Executioner Thane
+id=602644
+rarity=R
+[/card]
+[card]
+primitive=Vraska, Betrayal's Sting
+id=602645
+rarity=M
+[/card]
+[card]
+primitive=Vraska's Fall
+id=602646
+rarity=C
+[/card]
+[card]
+primitive=Whisper of the Dross
+id=602647
+rarity=C
+[/card]
+[card]
+primitive=All Will Be One
+id=602648
+rarity=M
+[/card]
+[card]
+primitive=Awaken the Sleeper
+id=602649
+rarity=U
+[/card]
+[card]
+primitive=Axiom Engraver
+id=602650
+rarity=C
+[/card]
+[card]
+primitive=Barbed Batterfist
+id=602651
+rarity=C
+[/card]
+[card]
+primitive=Bladegraft Aspirant
+id=602652
+rarity=C
+[/card]
+[card]
+primitive=Blazing Crescendo
+id=602653
+rarity=C
+[/card]
+[card]
+primitive=Cacophony Scamp
+id=602654
+rarity=U
+[/card]
+[card]
+primitive=Capricious Hellraiser
+id=602655
+rarity=M
+[/card]
+[card]
+primitive=Chimney Rabble
+id=602656
+rarity=C
+[/card]
+[card]
+primitive=Churning Reservoir
+id=602657
+rarity=U
+[/card]
+[card]
+primitive=Dragonwing Glider
+id=602658
+rarity=R
+[/card]
+[card]
+primitive=Exuberant Fuseling
+id=602659
+rarity=U
+[/card]
+[card]
+primitive=Forgehammer Centurion
+id=602660
+rarity=C
+[/card]
+[card]
+primitive=Free from Flesh
+id=602661
+rarity=C
+[/card]
+[card]
+primitive=Furnace Punisher
+id=602662
+rarity=U
+[/card]
+[card]
+primitive=Furnace Strider
+id=602663
+rarity=C
+[/card]
+[card]
+primitive=Gleeful Demolition
+id=602664
+rarity=U
+[/card]
+[card]
+primitive=Hazardous Blast
+id=602665
+rarity=C
+[/card]
+[card]
+primitive=Hexgold Halberd
+id=602666
+rarity=U
+[/card]
+[card]
+primitive=Hexgold Slash
+id=602667
+rarity=C
+[/card]
+[card]
+primitive=Koth, Fire of Resistance
+id=602668
+rarity=R
+[/card]
+[card]
+primitive=Kuldotha Cackler
+id=602669
+rarity=C
+[/card]
+[card]
+primitive=Magmatic Sprinter
+id=602670
+rarity=U
+[/card]
+[card]
+primitive=Molten Rebuke
+id=602671
+rarity=C
+[/card]
+[card]
+primitive=Nahiri's Sacrifice
+id=602672
+rarity=U
+[/card]
+[card]
+primitive=Oxidda Finisher
+id=602673
+rarity=U
+[/card]
+[card]
+primitive=Rebel Salvo
+id=602674
+rarity=U
+[/card]
+[card]
+primitive=Red Sun's Twilight
+id=602675
+rarity=R
+[/card]
+[card]
+primitive=Resistance Skywarden
+id=602676
+rarity=U
+[/card]
+[card]
+primitive=Sawblade Scamp
+id=602677
+rarity=C
+[/card]
+[card]
+primitive=Shrapnel Slinger
+id=602678
+rarity=C
+[/card]
+[card]
+primitive=Slobad, Iron Goblin
+id=602679
+rarity=R
+[/card]
+[card]
+primitive=Solphim, Mayhem Dominus
+id=602680
+rarity=M
+[/card]
+[card]
+primitive=Thrill of Possibility
+id=602681
+rarity=C
+[/card]
+[card]
+primitive=Urabrask's Anointer
+id=602682
+rarity=U
+[/card]
+[card]
+primitive=Urabrask's Forge
+id=602683
+rarity=R
+[/card]
+[card]
+primitive=Vindictive Flamestoker
+id=602684
+rarity=R
+[/card]
+[card]
+primitive=Volt Charge
+id=602685
+rarity=C
+[/card]
+[card]
+primitive=Vulshok Splitter
+id=602686
+rarity=C
+[/card]
+[card]
+primitive=Adaptive Sporesinger
+id=602687
+rarity=C
+[/card]
+[card]
+primitive=Armored Scrapgorger
+id=602688
+rarity=U
+[/card]
+[card]
+primitive=Bloated Contaminator
+id=602689
+rarity=R
+[/card]
+[card]
+primitive=Branchblight Stalker
+id=602690
+rarity=C
+[/card]
+[card]
+primitive=Cankerbloom
+id=602691
+rarity=U
+[/card]
+[card]
+primitive=Carnivorous Canopy
+id=602692
+rarity=C
+[/card]
+[card]
+primitive=Conduit of Worlds
+id=602693
+rarity=R
+[/card]
+[card]
+primitive=Contagious Vorrac
+id=602694
+rarity=C
+[/card]
+[card]
+primitive=Copper Longlegs
+id=602695
+rarity=C
+[/card]
+[card]
+primitive=Evolved Spinoderm
+id=602696
+rarity=R
+[/card]
+[card]
+primitive=Evolving Adaptive
+id=602697
+rarity=U
+[/card]
+[card]
+primitive=Expand the Sphere
+id=602698
+rarity=U
+[/card]
+[card]
+primitive=Green Sun's Twilight
+id=602699
+rarity=R
+[/card]
+[card]
+primitive=Ichorspit Basilisk
+id=602700
+rarity=C
+[/card]
+[card]
+primitive=Incubation Sac
+id=602701
+rarity=U
+[/card]
+[card]
+primitive=Infectious Bite
+id=602702
+rarity=U
+[/card]
+[card]
+primitive=Lattice-Blade Mantis
+id=602703
+rarity=C
+[/card]
+[card]
+primitive=Maze's Mantle
+id=602704
+rarity=C
+[/card]
+[card]
+primitive=Nissa, Ascended Animist
+id=602705
+rarity=M
+[/card]
+[card]
+primitive=Noxious Assault
+id=602706
+rarity=U
+[/card]
+[card]
+primitive=Oil-Gorger Troll
+id=602707
+rarity=C
+[/card]
+[card]
+primitive=Paladin of Predation
+id=602708
+rarity=U
+[/card]
+[card]
+primitive=Plague Nurse
+id=602709
+rarity=C
+[/card]
+[card]
+primitive=Predation Steward
+id=602710
+rarity=C
+[/card]
+[card]
+primitive=Rustvine Cultivator
+id=602711
+rarity=C
+[/card]
+[card]
+primitive=Ruthless Predation
+id=602712
+rarity=C
+[/card]
+[card]
+primitive=Skyscythe Engulfer
+id=602713
+rarity=C
+[/card]
+[card]
+primitive=Sylvok Battle-Chair
+id=602714
+rarity=U
+[/card]
+[card]
+primitive=Thirsting Roots
+id=602715
+rarity=C
+[/card]
+[card]
+primitive=Thrun, Breaker of Silence
+id=602716
+rarity=R
+[/card]
+[card]
+primitive=Titanic Growth
+id=602717
+rarity=C
+[/card]
+[card]
+primitive=Tyrranax Atrocity
+id=602718
+rarity=C
+[/card]
+[card]
+primitive=Tyrranax Rex
+id=602719
+rarity=M
+[/card]
+[card]
+primitive=Tyvar's Stand
+id=602720
+rarity=U
+[/card]
+[card]
+primitive=Unnatural Restoration
+id=602721
+rarity=U
+[/card]
+[card]
+primitive=Venerated Rotpriest
+id=602722
+rarity=R
+[/card]
+[card]
+primitive=Venomous Brutalizer
+id=602723
+rarity=U
+[/card]
+[card]
+primitive=Viral Spawning
+id=602724
+rarity=U
+[/card]
+[card]
+primitive=Zopandrel, Hunger Dominus
+id=602725
+rarity=M
+[/card]
+[card]
+primitive=Atraxa, Grand Unifier
+id=602726
+rarity=M
+[/card]
+[card]
+primitive=Bladehold War-Whip
+id=602727
+rarity=U
+[/card]
+[card]
+primitive=Cephalopod Sentry
+id=602728
+rarity=U
+[/card]
+[card]
+primitive=Charforger
+id=602729
+rarity=U
+[/card]
+[card]
+primitive=Cinderslash Ravager
+id=602730
+rarity=U
+[/card]
+[card]
+primitive=Ezuri, Stalker of Spheres
+id=602731
+rarity=R
+[/card]
+[card]
+primitive=Glissa Sunslayer
+id=602732
+rarity=R
+[/card]
+[card]
+primitive=Jor Kadeen, First Goldwarden
+id=602733
+rarity=R
+[/card]
+[card]
+primitive=Kaito, Dancing Shadow
+id=602734
+rarity=R
+[/card]
+[card]
+primitive=Kaya, Intangible Slayer
+id=602735
+rarity=R
+[/card]
+[card]
+primitive=Kethek, Crucible Goliath
+id=602736
+rarity=R
+[/card]
+[card]
+primitive=Lukka, Bound to Ruin
+id=602737
+rarity=M
+[/card]
+[card]
+primitive=Malcator, Purity Overseer
+id=602738
+rarity=R
+[/card]
+[card]
+primitive=Melira, the Living Cure
+id=602739
+rarity=R
+[/card]
+[card]
+primitive=Migloz, Maze Crusher
+id=602740
+rarity=R
+[/card]
+[card]
+primitive=Nahiri, the Unforgiving
+id=602741
+rarity=M
+[/card]
+[card]
+primitive=Necrogen Rotpriest
+id=602742
+rarity=U
+[/card]
+[card]
+primitive=Ovika, Enigma Goliath
+id=602743
+rarity=R
+[/card]
+[card]
+primitive=Ria Ivor, Bane of Bladehold
+id=602744
+rarity=R
+[/card]
+[card]
+primitive=Serum-Core Chimera
+id=602745
+rarity=U
+[/card]
+[card]
+primitive=Slaughter Singer
+id=602746
+rarity=U
+[/card]
+[card]
+primitive=Tainted Observer
+id=602747
+rarity=U
+[/card]
+[card]
+primitive=Tyvar, Jubilant Brawler
+id=602748
+rarity=R
+[/card]
+[card]
+primitive=Venser, Corpse Puppet
+id=602749
+rarity=R
+[/card]
+[card]
+primitive=Vivisection Evangelist
+id=602750
+rarity=U
+[/card]
+[card]
+primitive=Voidwing Hybrid
+id=602751
+rarity=U
+[/card]
+[card]
+primitive=Argentum Masticore
+id=602752
+rarity=R
+[/card]
+[card]
+primitive=Atraxa's Skitterfang
+id=602753
+rarity=U
+[/card]
+[card]
+primitive=Basilica Skullbomb
+id=602754
+rarity=C
+[/card]
+[card]
+primitive=Dross Skullbomb
+id=602755
+rarity=C
+[/card]
+[card]
+primitive=Dune Mover
+id=602756
+rarity=C
+[/card]
+[card]
+primitive=The Filigree Sylex
+id=602757
+rarity=R
+[/card]
+[card]
+primitive=Furnace Skullbomb
+id=602758
+rarity=C
+[/card]
+[card]
+primitive=Graaz, Unstoppable Juggernaut
+id=602759
+rarity=R
+[/card]
+[card]
+primitive=Ichorplate Golem
+id=602760
+rarity=U
+[/card]
+[card]
+primitive=Maze Skullbomb
+id=602761
+rarity=C
+[/card]
+[card]
+primitive=Mirran Safehouse
+id=602762
+rarity=R
+[/card]
+[card]
+primitive=Monument to Perfection
+id=602763
+rarity=R
+[/card]
+[card]
+primitive=Myr Convert
+id=602764
+rarity=U
+[/card]
+[card]
+primitive=Myr Custodian
+id=602765
+rarity=C
+[/card]
+[card]
+primitive=Myr Kinsmith
+id=602766
+rarity=C
+[/card]
+[card]
+primitive=Phyrexian Atlas
+id=602767
+rarity=C
+[/card]
+[card]
+primitive=Prophetic Prism
+id=602768
+rarity=C
+[/card]
+[card]
+primitive=Prosthetic Injector
+id=602769
+rarity=U
+[/card]
+[card]
+primitive=Ribskiff
+id=602770
+rarity=U
+[/card]
+[card]
+primitive=Soulless Jailer
+id=602771
+rarity=R
+[/card]
+[card]
+primitive=Staff of Compleation
+id=602772
+rarity=M
+[/card]
+[card]
+primitive=Surgical Skullbomb
+id=602773
+rarity=C
+[/card]
+[card]
+primitive=Sword of Forge and Frontier
+id=602774
+rarity=M
+[/card]
+[card]
+primitive=Tablet of Compleation
+id=602775
+rarity=R
+[/card]
+[card]
+primitive=Zenith Chronicler
+id=602776
+rarity=R
+[/card]
+[card]
+primitive=The Autonomous Furnace
+id=602777
+rarity=C
+[/card]
+[card]
+primitive=Blackcleave Cliffs
+id=602778
+rarity=R
+[/card]
+[card]
+primitive=Copperline Gorge
+id=602779
+rarity=R
+[/card]
+[card]
+primitive=Darkslick Shores
+id=602780
+rarity=R
+[/card]
+[card]
+primitive=The Dross Pits
+id=602781
+rarity=C
+[/card]
+[card]
+primitive=The Fair Basilica
+id=602782
+rarity=C
+[/card]
+[card]
+primitive=The Hunter Maze
+id=602783
+rarity=C
+[/card]
+[card]
+primitive=Mirrex
+id=602784
+rarity=R
+[/card]
+[card]
+primitive=The Monumental Facade
+id=602785
+rarity=R
+[/card]
+[card]
+primitive=The Mycosynth Gardens
+id=602786
+rarity=R
+[/card]
+[card]
+primitive=Razorverge Thicket
+id=602787
+rarity=R
+[/card]
+[card]
+primitive=Seachrome Coast
+id=602788
+rarity=R
+[/card]
+[card]
+primitive=The Seedcore
+id=602789
+rarity=R
+[/card]
+[card]
+primitive=The Surgical Bay
+id=602790
+rarity=C
+[/card]
+[card]
+primitive=Terramorphic Expanse
+id=602791
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=604624
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=604625
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=604626
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=604627
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=604628
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=604619
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=604620
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=604621
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=604622
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=604623
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=604664
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=604665
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=604666
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=604667
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=604668
+rarity=L
+[/card]
+[card]
+primitive=Ossification
+id=604958
+rarity=U
+[/card]
+[card]
+primitive=Experimental Augury
+id=604959
+rarity=C
+[/card]
+[card]
+primitive=Sheoldred's Edict
+id=604960
+rarity=U
+[/card]
+[card]
+primitive=Bladehold War-Whip
+id=604961
+rarity=U
+[/card]
+[card]
+primitive=Slaughter Singer
+id=604962
+rarity=U
+[/card]
+[card]
+primitive=Karumonix, the Rat King
+id=604744
+rarity=R
+[/card]
+[card]
+primitive=Phyrexian Arena
+id=604746
+rarity=R
+[/card]
+[card]
+primitive=Green Sun's Twilight
+id=604745
+rarity=R
+[/card]
+[card]
+primitive=Bladed Ambassador
+id=604998
+rarity=U
+[/card]
+[card]
+primitive=Sinew Dancer
+id=604999
+rarity=C
+[/card]
+[card]
+primitive=Quicksilver Fisher
+id=605000
+rarity=C
+[/card]
+[card]
+primitive=Thrummingbird
+id=605001
+rarity=U
+[/card]
+[card]
+primitive=Blightbelly Rat
+id=605002
+rarity=C
+[/card]
+[card]
+primitive=Bonepicker Skirge
+id=605003
+rarity=C
+[/card]
+[card]
+primitive=Furnace Punisher
+id=605004
+rarity=U
+[/card]
+[card]
+primitive=Sawblade Scamp
+id=605005
+rarity=C
+[/card]
+[card]
+primitive=Urabrask's Anointer
+id=605006
+rarity=U
+[/card]
+[card]
+primitive=Cankerbloom
+id=605007
+rarity=U
+[/card]
+[card]
+primitive=Rustvine Cultivator
+id=605008
+rarity=C
+[/card]
+[card]
+primitive=Necrogen Rotpriest
+id=605009
+rarity=U
+[/card]
+[card]
+primitive=Myr Convert
+id=605010
+rarity=U
+[/card]
+[card]
+primitive=Elesh Norn, Mother of Machines
+id=605102
+rarity=M
+[/card]
+[card]
+primitive=Mondrak, Glory Dominus
+id=605103
+rarity=M
+[/card]
+[card]
+primitive=Phyrexian Vindicator
+id=605104
+rarity=M
+[/card]
+[card]
+primitive=Skrelv, Defector Mite
+id=605105
+rarity=R
+[/card]
+[card]
+primitive=Tekuthal, Inquiry Dominus
+id=605106
+rarity=M
+[/card]
+[card]
+primitive=Unctus, Grand Metatect
+id=605107
+rarity=R
+[/card]
+[card]
+primitive=Archfiend of the Dross
+id=605108
+rarity=R
+[/card]
+[card]
+primitive=Drivnod, Carnage Dominus
+id=605109
+rarity=M
+[/card]
+[card]
+primitive=Geth, Thane of Contracts
+id=605110
+rarity=R
+[/card]
+[card]
+primitive=Karumonix, the Rat King
+id=605111
+rarity=R
+[/card]
+[card]
+primitive=Phyrexian Obliterator
+id=605112
+rarity=M
+[/card]
+[card]
+primitive=Vraan, Executioner Thane
+id=605113
+rarity=R
+[/card]
+[card]
+primitive=Capricious Hellraiser
+id=605114
+rarity=M
+[/card]
+[card]
+primitive=Slobad, Iron Goblin
+id=605115
+rarity=R
+[/card]
+[card]
+primitive=Solphim, Mayhem Dominus
+id=605116
+rarity=M
+[/card]
+[card]
+primitive=Evolved Spinoderm
+id=605117
+rarity=R
+[/card]
+[card]
+primitive=Tyrranax Rex
+id=605118
+rarity=M
+[/card]
+[card]
+primitive=Zopandrel, Hunger Dominus
+id=605119
+rarity=M
+[/card]
+[card]
+primitive=Atraxa, Grand Unifier
+id=605120
+rarity=M
+[/card]
+[card]
+primitive=Ezuri, Stalker of Spheres
+id=605121
+rarity=R
+[/card]
+[card]
+primitive=Glissa Sunslayer
+id=605122
+rarity=R
+[/card]
+[card]
+primitive=Kethek, Crucible Goliath
+id=605123
+rarity=R
+[/card]
+[card]
+primitive=Malcator, Purity Overseer
+id=605124
+rarity=R
+[/card]
+[card]
+primitive=Migloz, Maze Crusher
+id=605125
+rarity=R
+[/card]
+[card]
+primitive=Ovika, Enigma Goliath
+id=605126
+rarity=R
+[/card]
+[card]
+primitive=Ria Ivor, Bane of Bladehold
+id=605127
+rarity=R
+[/card]
+[card]
+primitive=Venser, Corpse Puppet
+id=605128
+rarity=R
+[/card]
+[card]
+primitive=Jace, the Perfected Mind
+id=605446
+rarity=M
+[/card]
+[card]
+primitive=Vraska, Betrayal's Sting
+id=605447
+rarity=M
+[/card]
+[card]
+primitive=Nissa, Ascended Animist
+id=605448
+rarity=M
+[/card]
+[card]
+primitive=Lukka, Bound to Ruin
+id=605449
+rarity=M
+[/card]
+[card]
+primitive=Nahiri, the Unforgiving
+id=605450
+rarity=M
+[/card]
+[card]
+primitive=Kemba, Kha Enduring
+id=605406
+rarity=R
+[/card]
+[card]
+primitive=Thrun, Breaker of Silence
+id=605407
+rarity=R
+[/card]
+[card]
+primitive=Jor Kadeen, First Goldwarden
+id=605408
+rarity=R
+[/card]
+[card]
+primitive=Melira, the Living Cure
+id=605409
+rarity=R
+[/card]
+[card]
+primitive=Graaz, Unstoppable Juggernaut
+id=605410
+rarity=R
+[/card]
+[card]
+primitive=The Eternal Wanderer
+id=605326
+rarity=R
+[/card]
+[card]
+primitive=Jace, the Perfected Mind
+id=605327
+rarity=M
+[/card]
+[card]
+primitive=Vraska, Betrayal's Sting
+id=605328
+rarity=M
+[/card]
+[card]
+primitive=Koth, Fire of Resistance
+id=605329
+rarity=R
+[/card]
+[card]
+primitive=Nissa, Ascended Animist
+id=605330
+rarity=M
+[/card]
+[card]
+primitive=Kaito, Dancing Shadow
+id=605331
+rarity=R
+[/card]
+[card]
+primitive=Kaya, Intangible Slayer
+id=605332
+rarity=R
+[/card]
+[card]
+primitive=Lukka, Bound to Ruin
+id=605333
+rarity=M
+[/card]
+[card]
+primitive=Nahiri, the Unforgiving
+id=605334
+rarity=M
+[/card]
+[card]
+primitive=Tyvar, Jubilant Brawler
+id=605335
+rarity=R
+[/card]
+[card]
+primitive=Blackcleave Cliffs
+id=604704
+rarity=R
+[/card]
+[card]
+primitive=Copperline Gorge
+id=604705
+rarity=R
+[/card]
+[card]
+primitive=Darkslick Shores
+id=604706
+rarity=R
+[/card]
+[card]
+primitive=Razorverge Thicket
+id=604707
+rarity=R
+[/card]
+[card]
+primitive=Seachrome Coast
+id=604708
+rarity=R
+[/card]
+[card]
+primitive=Norn's Wellspring
+id=604747
+rarity=R
+[/card]
+[card]
+primitive=Skrelv's Hive
+id=604748
+rarity=R
+[/card]
+[card]
+primitive=White Sun's Twilight
+id=604749
+rarity=R
+[/card]
+[card]
+primitive=Blade of Shared Souls
+id=604750
+rarity=R
+[/card]
+[card]
+primitive=Blue Sun's Twilight
+id=604751
+rarity=R
+[/card]
+[card]
+primitive=Encroaching Mycosynth
+id=604752
+rarity=R
+[/card]
+[card]
+primitive=Mercurial Spelldancer
+id=604753
+rarity=R
+[/card]
+[card]
+primitive=Mindsplice Apparatus
+id=604754
+rarity=R
+[/card]
+[card]
+primitive=Black Sun's Twilight
+id=604755
+rarity=R
+[/card]
+[card]
+primitive=Phyrexian Arena
+id=604756
+rarity=R
+[/card]
+[card]
+primitive=Dragonwing Glider
+id=604757
+rarity=R
+[/card]
+[card]
+primitive=Red Sun's Twilight
+id=604758
+rarity=R
+[/card]
+[card]
+primitive=Urabrask's Forge
+id=604759
+rarity=R
+[/card]
+[card]
+primitive=Vindictive Flamestoker
+id=604760
+rarity=R
+[/card]
+[card]
+primitive=Bloated Contaminator
+id=604761
+rarity=R
+[/card]
+[card]
+primitive=Conduit of Worlds
+id=604762
+rarity=R
+[/card]
+[card]
+primitive=Green Sun's Twilight
+id=604763
+rarity=R
+[/card]
+[card]
+primitive=Venerated Rotpriest
+id=604764
+rarity=R
+[/card]
+[card]
+primitive=Argentum Masticore
+id=604765
+rarity=R
+[/card]
+[card]
+primitive=The Filigree Sylex
+id=604766
+rarity=R
+[/card]
+[card]
+primitive=Mirran Safehouse
+id=604767
+rarity=R
+[/card]
+[card]
+primitive=Monument to Perfection
+id=604768
+rarity=R
+[/card]
+[card]
+primitive=Soulless Jailer
+id=604769
+rarity=R
+[/card]
+[card]
+primitive=Tablet of Compleation
+id=604770
+rarity=R
+[/card]
+[card]
+primitive=Zenith Chronicler
+id=604771
+rarity=R
+[/card]
+[card]
+primitive=Mirrex
+id=604772
+rarity=R
+[/card]
+[card]
+primitive=The Monumental Facade
+id=604773
+rarity=R
+[/card]
+[card]
+primitive=The Mycosynth Gardens
+id=604774
+rarity=R
+[/card]
+[card]
+primitive=The Seedcore
+id=604775
+rarity=R
+[/card]
+[card]
+primitive=Mite Overseer
+id=604917
+rarity=R
+[/card]
+[card]
+primitive=Serum Sovereign
+id=604918
+rarity=R
+[/card]
+[card]
+primitive=Kinzu of the Bleak Coven
+id=604919
+rarity=R
+[/card]
+[card]
+primitive=Rhuk, Hexgold Nabber
+id=604920
+rarity=R
+[/card]
+[card]
+primitive=Goliath Hatchery
+id=604921
+rarity=R
+[/card]
+[card]
+primitive=Mite Overseer
+id=604892
+rarity=R
+[/card]
+[card]
+primitive=Serum Sovereign
+id=604893
+rarity=R
+[/card]
+[card]
+primitive=Kinzu of the Bleak Coven
+id=604894
+rarity=R
+[/card]
+[card]
+primitive=Rhuk, Hexgold Nabber
+id=604895
+rarity=R
+[/card]
+[card]
+primitive=Goliath Hatchery
+id=604896
+rarity=R
+[/card]
+[card]
+primitive=Elesh Norn, Mother of Machines
+id=604957
+rarity=M
+[/card]
+[card]
+primitive=Elesh Norn, Mother of Machines
+id=605318
+rarity=M
+[/card]

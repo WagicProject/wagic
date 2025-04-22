@@ -4,7 +4,7 @@
 # it means that if you have a macro named MACRO and a macro named MACRO2, you'll run into trouble because MACRO2 will match MACRO
 # Because of that, you need to use a unique delimiter at the beginning and the end of a macro, I personally use "__"
 #
-# Limitations: parameter inside macro must not contain ")"
+# Limitations: parameter inside macro must not contain "()"
 
 # Standard Cycling
 #AUTO_DEFINE __CYCLING__($cost) $cost{cycle}:name(cycling) draw:1
@@ -22,7 +22,7 @@
 #AUTO_DEFINE _PARTNER_  may name(Put partner in hand) moveto(myhand) target(*[partname]|mylibrary)
 
 # Goad
-#AUTO_DEFINE _GOAD_ transforms((,newability[counter(0/0.1.Goaded)],newability[this(counter{0/0.1.Goaded}>0) mustattack],newability[phaseaction[endofturn next once sourceinplay] removeallcounters(0/0.-1.Goaded)])) forever
+#AUTO_DEFINE _GOAD_ transforms((,newability[counter(0/0.1.Goaded) notrg],newability[this(counter{0/0.1.Goaded}>0) mustattack],newability[phaseaction[myupkeep next once sourceinplay] counter(0/0.-hascntgoaded.Goaded) notrg])) forever
 
 # Rebound
 #AUTO_DEFINE _REBOUND_ if rebound then all(this|mystack) moveto(exile) and!( transforms((,newability[@rebounded:may name(Cast rebounded card) activate castcard(normal)])) forever )!
@@ -31,7 +31,7 @@
 #AUTO_DEFINE _POPULATE_ name(Populate) clone notAtarget(creature[token]|myBattlefield)
 
 # Ferocious
-#AUTO_DEFINE _FEROCIOUS_ if type(creature[power>=4]|myBattlefield)~morethan~0 then
+#AUTO_DEFINE _FEROCIOUS_ if type(creature[power>=4]|myBattlefield)~morethan~0 then 
 
 # Attacking
 #AUTO_DEFINE _ATTACKING_ @combat(attacking) source(this):
@@ -42,6 +42,9 @@
 # Heroic
 #AUTO_DEFINE _HEROIC_ @targeted(this) from(*[instant;sorcery;aura]|myCastingzone):
 
+# Valiant
+#AUTO_DEFINE _VALIANT_ @targeted(this) from(*|myCastingzone,myBattlefield) turnlimited:
+
 # Rally
 #AUTO_DEFINE _RALLY_ @movedTo(other ally|myBattlefield):
 
@@ -49,16 +52,38 @@
 #AUTO_DEFINE _LANDFALL_ @movedTo(land|myBattlefield):
 
 # Addendum
-#AUTO_DEFINE _ADDENDUM_ if compare(restriction{assorcery}~morethan~0) then
+#AUTO_DEFINE _ADDENDUM_ if compare(restriction{assorcery}~morethan~0) then 
 
 # Constellation
 #AUTO_DEFINE _CONSTELLATION_ @movedTo(enchantment|myBattlefield):
 
-# Amass, Set WAR
-#AUTO_DEFINE _AMASS_($c) if type(army|mybattlefield)~morethan~0 then counter(1/1,$c) notATarget(army|myBattlefield) else create(Zombie Army:creature Zombie Army:0/0:black) and!(counter(1/1,$c) notATarget(army|myBattlefield))!
+# Amass Zombies, Set WAR
+#AUTO_DEFINE _AMASSZOMBIE1_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counter) name(Put 1/1 counter) notatarget(army|myBattlefield) transforms((Zombie,newability[counter(1/1)])) forever else name(Create Zombie Army) token(Zombie Army^Creature Zombie Army^0/0^black) and!( name(Put 1/1 counter) counter(1/1) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSZOMBIE2_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Zombie,newability[counter(1/1.2)])) forever else name(Create Zombie Army) token(Zombie Army^Creature Zombie Army^0/0^black) and!( name(Put 1/1 counters) counter(1/1.2) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSZOMBIE3_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Zombie,newability[counter(1/1.3)])) forever else name(Create Zombie Army) token(Zombie Army^Creature Zombie Army^0/0^black) and!( name(Put 1/1 counters) counter(1/1.3) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSZOMBIE4_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Zombie,newability[counter(1/1.4)])) forever else name(Create Zombie Army) token(Zombie Army^Creature Zombie Army^0/0^black) and!( name(Put 1/1 counters) counter(1/1.4) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSZOMBIE5_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Zombie,newability[counter(1/1.5)])) forever else name(Create Zombie Army) token(Zombie Army^Creature Zombie Army^0/0^black) and!( name(Put 1/1 counters) counter(1/1.5) notatarget(army|myBattlefield) )!
+
+# Amass Orcs, Set LTR
+#AUTO_DEFINE _AMASSORC1_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counter) name(Put 1/1 counter) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1)])) forever else name(Create Orc Army) token(Orc Army^Creature Orc Army^0/0^black) and!( name(Put 1/1 counter) counter(1/1) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSORC2_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1.2)])) forever else name(Create Orc Army) token(Orc Army^Creature Orc Army^0/0^black) and!( name(Put 1/1 counters) counter(1/1.2) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSORC3_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1.3)])) forever else name(Create Orc Army) token(Orc Army^Creature Orc Army^0/0^black) and!( name(Put 1/1 counters) counter(1/1.3) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSORC4_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1.4)])) forever else name(Create Orc Army) token(Orc Army^Creature Orc Army^0/0^black) and!( name(Put 1/1 counters) counter(1/1.4) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSORC5_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Orc,newability[counter(1/1.5)])) forever else name(Create Orc Army) token(Orc Army^Creature Orc Army^0/0^black) and!( name(Put 1/1 counters) counter(1/1.5) notatarget(army|myBattlefield) )!
+
+# Amass Slivers, Set CMM
+#AUTO_DEFINE _AMASSSLIVER1_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counter) name(Put 1/1 counter) notatarget(army|myBattlefield) transforms((Sliver,newability[counter(1/1)])) forever else name(Create Sliver Army) token(Sliver Army) and!( name(Put 1/1 counter) counter(1/1) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSSLIVER2_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Sliver,newability[counter(1/1.2)])) forever else name(Create Sliver Army) token(Sliver Army) and!( name(Put 1/1 counters) counter(1/1.2) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSSLIVER3_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Sliver,newability[counter(1/1.3)])) forever else name(Create Sliver Army) token(Sliver Army) and!( name(Put 1/1 counters) counter(1/1.3) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSSLIVER4_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Sliver,newability[counter(1/1.4)])) forever else name(Create Sliver Army) token(Sliver Army) and!( name(Put 1/1 counters) counter(1/1.4) notatarget(army|myBattlefield) )!
+#AUTO_DEFINE _AMASSSLIVER5_ if type(army|mybattlefield)~morethan~0 then name(Put 1/1 counters) name(Put 1/1 counters) notatarget(army|myBattlefield) transforms((Sliver,newability[counter(1/1.5)])) forever else name(Create Sliver Army) token(Sliver Army) and!( name(Put 1/1 counters) counter(1/1.5) notatarget(army|myBattlefield) )!
 
 # Scry, Evergreen
-#AUTO_DEFINE _SCRY_($c) scry:$c scrycore delayed dontshow donothing scrycoreend scryend
+#AUTO_DEFINE _SCRY1_ scry:1 scrycore delayed dontshow donothing scrycoreend scryend controller
+#AUTO_DEFINE _SCRY2_ scry:2 scrycore delayed dontshow donothing scrycoreend scryend controller
+#AUTO_DEFINE _SCRY3_ scry:3 scrycore delayed dontshow donothing scrycoreend scryend controller
+#AUTO_DEFINE _SCRY4_ scry:4 scrycore delayed dontshow donothing scrycoreend scryend controller
+#AUTO_DEFINE _SCRY5_ scry:5 scrycore delayed dontshow donothing scrycoreend scryend controller
 
 # Fabricate
 #AUTO_DEFINE _FABRICATE_($c) transforms((,newability[choice counter(1/1.$c)],newability[choice create(Servo:Artifact Creature Servo:1/1)*$c])) ueot
@@ -69,53 +94,41 @@
 # Whenever you draw your second card each turn
 #AUTO_DEFINE _SECOND_DRAW_ @drawof(player) restriction{compare(pdrewcount)~equalto~2}:
 
+# Adapt
+#AUTO_DEFINE _ADAPT1_ name(Adapt 1) this(counter{1/1}<1) counter(1/1)
+#AUTO_DEFINE _ADAPT2_ name(Adapt 2) this(counter{1/1}<1) counter(1/1.2)
+#AUTO_DEFINE _ADAPT3_ name(Adapt 3) this(counter{1/1}<1) counter(1/1.3)
+#AUTO_DEFINE _ADAPT4_ name(Adapt 4) this(counter{1/1}<1) counter(1/1.4)
+
 # Battalion
 #AUTO_DEFINE _BATTALION_ @combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:
 
-# Champion
+# Champion, not implemented
 #AUTO_DEFINE _CHAMPION_($Word) aslongas(other $word|myBattlefield) choice notAtarget(other $word|myBattlefield) (blink)forsrc oneshot
 
-# Metalcraft
-#AUTO_DEFINE _METALCRAFT_ aslongas(artifact|mybattlefield) >2
+# Metalcraft, not implemented
+#AUTO_DEFINE _METALCRAFT_ if type(artifact|mybattlefield)~morethan~2 then
 
-# Echo
+# Echo, not implemented
 #AUTO_DEFINE _ECHO_($cost) $cost[{$c};next upkeep] sacrifice
 
 # Threshold
-#AUTO_DEFINE _THRESHOLD_ if type(*|mygraveyard)~morethan~6
+#AUTO_DEFINE _THRESHOLD_ if type(*|mygraveyard)~morethan~6 then 
 
-# Splice onto Arcane
+# Splice onto Arcane, not implemented
 #AUTO_DEFINE _SPLICEARCANE_ movedTo(*[Arcane]|myStack):may castcard(copied noevent) target(*[Arcane]|myHand)
 
 # Ripple
 #AUTO_DEFINE _RIPPLE_($c) autostack=if casted(this) then reveal:$c optionone name(Cast Card) target(<upto:$c>[share!name!]|reveal) moveTo(mylibrary) and!( becomes(tobecast) ueot )! optiononeend optiontwo name(put on bottom) target(<$c>*|reveal) bottomoflibrary optiontwoend afterrevealed all(tobecast|mylibrary) moveTo(myLibrary) and!( activate castcard(normal) )! afterrevealedend revealend
 
-# Recover                              
-#AUTO_DEFINE _RECOVER_($cost) @movedTo(creature|myGraveyard) from(Battlefield):may pay{$cost} name(Return to owner Hand) moveTo(ownerHand) all(this) donothing?moveTo(exile) all(this)
-
-# Clash
-$AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Erratic Explosion. Meaby it would work with a few fix
-
-# Conspire
-#AUTO_DEFINE _CONSPIRE_ @movedTo(this|myStak):may {T(creature|myBattlefield)}{T(creature|myBattlefield)} castcard(copied noevent) target(*|myStack)
+# Recover
+#AUTO_DEFINE _RECOVER_($cost) @movedTo(creature|myGraveyard) from(Battlefield):may pay{$cost} name(Return to owner Hand) moveTo(hand) all(this) donothing?moveTo(exile) all(this)
 
 # Proliferate
 #AUTO_DEFINE _PROLIFERATE_ name(Proliferate) notatarget(proliferation) proliferate
 
 # Scavenge
-#AUTO_DEFINE _SCAVENGE_($cost) name(Scavenge) autograveyard={$cost}{E}:counter(1/1,$c) target(creature) asSorcery
-
-# Monstrosity
-#AUTO_DEFINE _MONSTROSITY_($cost) name(Monstrosity) this(cantargetcard(*[-monstrous]) {$cost}:becomes(monstrous) forever && counter(1/1,$c)
-
-# Outlast
-#AUTO_DEFINE _OUTLAST_($cost) {$cost}{$cost}:counter(1/1,1) all(this) asSorcery
-
-# Investigate token, Shadows over Innistrad SOI
-#AUTO_DEFINE _INVESTIGATE_ token(Clue)
-
-# Soulshift
-#AUTO_DEFINE _SOULSHIFT_($c) @movedTo(this|myGraveyard) from(battlefield):may moveTo(myHand) target(creature[spirit;manacost<=$c]|myGraveyard)
+#AUTO_DEFINE _SCAVENGE_($power) name(scavenge) counter(1/1.$power) target(creature) asSorcery
 
 # Ascend, Set XLN
 #AUTO_DEFINE _ASCEND_ if type(City's Blessing|mybattlefield)~lessthan~1 then transforms((,newability[if type(*|mybattlefield)~morethan~9 then token(City's Blessing^notrigger)])) oneshot
@@ -124,35 +137,228 @@ $AUTO_DEFINE _CLASH_ Put here a code if compare the casting cost based on Errati
 #AUTO_DEFINE _CITY'S_BLESSING_ aslongas(City's Blessing|mybattlefield)>0
 
 # Monarch
-#AUTO_DEFINE _MONARCH_CONTROLLER_ if type(The Monarch|battlefield)~lessthan~1 then token(The Monarch) else all(The Monarch|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
-#AUTO_DEFINE _MONARCH_OPPONENT_ if type(The Monarch|battlefield)~lessthan~1 then token(The Monarch) opponent else all(The Monarch|battlefield) moveto(opponentbattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )! 
+#AUTO_DEFINE _MONARCH_CONTROLLER_ if type(The Monarch|battlefield)~lessthan~1 then token(The Monarch^notrigger) else all(The Monarch|battlefield) moveto(mybattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
+#AUTO_DEFINE _MONARCH_OPPONENT_ if type(The Monarch|battlefield)~lessthan~1 then token(The Monarch^notrigger) opponent else all(The Monarch|battlefield) moveto(opponentbattlefield) and!( transforms((,newability[becomesmonarch controller])) forever )!
 
-# Explore
-#AUTO_DEFINE _EXPLORE_ reveal:1 optionone if type(land|reveal)~lessthan~1 then transforms((,newability[counter(1/1)])) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) optiontwoend revealend limit:1
+# Initiative
+#AUTO_DEFINE _INITIATIVE_CONTROLLER_ if type(The Initiative|battlefield)~lessthan~1 then token(The Initiative^notrigger) else all(The Initiative|battlefield) moveto(mybattlefield) and!( transforms((,newability[takesinitiative controller])) forever )!
+#AUTO_DEFINE _INITIATIVE_OPPONENT_ if type(The Initiative|battlefield)~lessthan~1 then token(The Initiative^notrigger) opponent else all(The Initiative|battlefield) moveto(opponentbattlefield) and!( transforms((,newability[takesinitiative controller])) forever )!
 
-# Treasure token, Set XLN
-#AUTO_DEFINE _TREASURE_ token(Treasure Sur)
+# The Ring Tempts
+#AUTO_DEFINE _RINGTEMPTS_ if type(The Ring|mybattlefield)~morethan~0 then all(The Ring|mybattlefield) transforms((,newability[theringtempts:1 controller],newability[name(Chose a ring bearer) target(creature|mybattlefield) becomesringbearer])) oneshot else token(The Ring^notrigger) and!( theringtempts:1 controller and!( name(Choose a ring bearer) target(creature|myBattlefield) becomesringbearer )! )!
 
-# Historic
-#AUTO_DEFINE _HISTORIC_ notAtarget(*[artifact;saga;legendary]|myZones)
+# Cast a historic spell
+#AUTO_DEFINE _CASTHISTORIC_ @movedTo(*[artifact;legendary;saga]|mystack):
 
-# Mentor, still not working with enhancements, pump effects
-#AUTO_DEFINE _MENTOR_ @combat(attacking) source(this):counter(1/1,1) target(other creature[attacking;power<=pminus1minusend]|myBattlefield)
+# Mentor
+#AUTO_DEFINE _MENTOR_ @combat(attacking) source(this):name(Choose attacking creature) transforms((,newability[target(other creature[attacking;power<=pminus1minusend]|myBattlefield) counter(1/1)])) oneshot
 
-# Surveil
-#AUTO_DEFINE _SURVEIL_ name(surveil) reveal:1 optionone name(put in graveyard) target(<upto:1>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<1>*|reveal) moveto(ownerlibrary) optiontwoend revealend
+# Surveil, like scry, using parameters causes bugs so each value has to be indicated
+#AUTO_DEFINE _SURVEIL1_ name(Surveil 1) reveal:psurveiloffsetplus1plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus1plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus1plusend>*|reveal) moveto(ownerlibrary) optiontwoend afterrevealed surveil afterrevealedend revealend
 
-# Undergrowth
-#AUTO_DEFINE _UNDERGROWTH_ foreach(creature|myGraveyard)
+#AUTO_DEFINE _SURVEIL2_ name(Surveil 2) reveal:psurveiloffsetplus2plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus2plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus2plusend>*|reveal) moveto(ownerlibrary) optiontwoend afterrevealed surveil afterrevealedend revealend
 
-# Adapt
-#AUTO_DEFINE _ADAPT_($c) aslongas(this[counter{1/1}<1]|myBattlefield):counter(1/1,$c)
+#AUTO_DEFINE _SURVEIL3_ name(Surveil 3) reveal:psurveiloffsetplus3plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus3plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus3plusend>*|reveal) moveto(ownerlibrary) optiontwoend afterrevealed surveil afterrevealedend revealend
 
 # Afterlife
-#AUTO_DEFINE _AFTERLIFE_($c) @movedTo(this|graveyard) from(battlefield):create(Spirit:Creature Spirit:1/1:white,black:flying)*$c
+#AUTO_DEFINE _AFTERLIFETOKEN_ create(Spirit:Creature Spirit:1/1:white:black:flying)
 
-# Riot
-#AUTO_DEFINE _RIOT_ movedTo(this|myBattlefield):transforms((,newability[ability$! name(Choose counter or ability) choice name(Put a +1/+1 counter) counter(1/1,1) target(creature) _ choice name(Gains Haste) haste target(creature) forever !$ controller]))
+# Learn
+#AUTO_DEFINE _LEARN_ name(Learn) transforms((,newability[if type(*[lesson]|mysideboard)~morethan~0 then choice name(Put lesson in hand) name(Put lesson in hand) target(*[lesson]|mysideboard) moveto(myhand)],newability[if type(*|myhand)~morethan~0 then choice name(Discard and draw) name(Discard and draw) target(*|myhand) reject and!(draw:1)!],newability[if type(Retriever Phoenix|mygraveyard)~morethan~0 then choice name(Return a Retriever Phoenix) name(Return a Retriever Phoenix) target(Retriever Phoenix|mygraveyard) moveto(myBattlefield)],newability[choice name(Don't learn) donothing])) oneshot controller
 
-# Spectacle
-#AUTO_DEFINE _SPECTACLE_($cost) compare(oplifelost)~morethan~0 {$cost}:
+# Adventure
+#AUTO_DEFINE _ADVENTURE_ name(Adventure) transforms((,newability[moveto(exile) and!( transforms((,newability[canplayfromexile forever])) forever )!])) forever
+
+# Extort
+#AUTO_DEFINE _EXTORT_ @movedto(*|mystack):pay({WB}) life:-1 opponent && life:1 controller
+
+# Foretell
+#AUTO_DEFINE _FORETELL_ {2}:name(Pay 2 and exile face-down) name(Pay 2 and exile face-down) doforetell myturnonly
+
+# Plot
+#AUTO_DEFINE _PLOT_ name(Plot) name(Plot) doforetell asSorcery
+
+# Plot Cast
+#AUTO_DEFINE _PLOTCAST_ {0}restriction{compare(canforetellcast)~morethan~0}:name(Cast) name(Cast) activate castcard(alternative) asSorcery
+
+# Loot. Draw a card, then discard a card.
+#AUTO_DEFINE _LOOT_ draw:1 && transforms((,newability[notatarget(*|myhand) reject])) forever
+
+# Unearth
+#AUTO_DEFINE _UNEARTH_ name(Unearth) moveto(mybattlefield) and!( transforms((,haste,newability[unearth],newability[exiledeath])) forever )! asSorcery
+
+# Exile the top card of your library. you may play it this turn.
+#AUTO_DEFINE _IMPULSE_DRAW_ name(Exile top card) moveto(exile) and!( transforms((,canplayfromexile)) ueot )! all(*[zpos=1]|mylibrary)
+
+# Exile the top card of your library. Until the end of your next turn, you may play that card.
+#AUTO_DEFINE _IMPULSEUENT_ moveto(exile) and!( transforms((,canplayfromexile)) uent )! all(*[zpos=1]|mylibrary)
+
+# Ward
+#AUTO_DEFINE _WARD1_ @targeted(this) from(*|opponentzones):choice name(This spell costs 1 more) name(This spell costs 1 more) target(*|opponentzones) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) oneshot
+#AUTO_DEFINE _WARD2_ @targeted(this) from(*|opponentzones):choice name(This spell costs 2 more) name(This spell costs 2 more) target(*|opponentzones) transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) oneshot
+#AUTO_DEFINE _WARD3_ @targeted(this) from(*|opponentzones):choice name(This spell costs 3 more) name(This spell costs 3 more) target(*|opponentzones) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) oneshot
+#AUTO_DEFINE _WARD4_ @targeted(this) from(*|opponentzones):choice name(This spell costs 4 more) name(This spell costs 4 more) target(*|opponentzones) transforms((,newability[pay[[{4}]] name(pay 4 mana) donothing?fizzle])) oneshot
+#AUTO_DEFINE _WARD8_ @targeted(this) from(*|opponentzones):choice name(This spell costs 8 more) name(This spell costs 8 more) target(*|opponentzones) transforms((,newability[pay[[{8}]] name(pay 8 mana) donothing?fizzle])) oneshot
+
+# Renown
+#AUTO_DEFINE _RENOWN_($c) this(cantargetcard(*[-renown]) transforms((,newability[@combatdamaged(player) from(this):counter(1/1.$c) && becomes(renown) forever]))
+
+# Exile card. Return it to the battlefield under its owner's control at the beginning of the next end step.
+# (blink)ueot doesn't work if a creature uses it on itself
+#AUTO_DEFINE _BLINK_UEOT_  moveto(exile) and!( transforms((,newability[phaseaction[end once checkex] moveto(ownerbattlefield)])) forever )!
+
+# Connives. Draw a card, then discard a card. If you discarded a nonland card, put a +1/+1 counter on this creature.
+#AUTO_DEFINE _CONNIVES_ draw:1 && transforms((,newability[if type(*[-land]|myhand)~morethan~0 then choice name(Discard a nonland) name(Discard a nonland) target(*[-land]|myhand) reject && counter(1/1) all(this)],newability[if type(land|myhand)~morethan~0 then choice name(Discard a land) name(Discard a land) target(land|myhand) reject])) oneshot
+
+# Eternalize
+#AUTO_DEFINE _ETERNALIZE_ name(Eternalize) clone and!( transforms((Zombie,removemc,setpower=4,settoughness=4,black)) forever )! assorcery
+
+# Explores
+#AUTO_DEFINE _EXPLORES_ name(Explores) reveal:1 optionone if type(land|reveal)~lessthan~1 then counter(1/1) optiononeend optiontwo if type(land|reveal)~morethan~0 then name(move to Hand) target(<1>*|reveal) moveto(myHand) else transforms((,newability[Choice name(back to library) target(<1>*|reveal) moveto(mylibrary)],newability[Choice name(put into Graveyard) target(<1>*|reveal) moveto(myGraveyard)])) oneshot optiontwoend afterrevealed explores afterrevealedend revealend
+
+# Discard a card. If you do, draw a card
+#AUTO_DEFINE _DISCARD&DRAW_ reject notatarget(*|myhand) and!(draw:1 controller)!
+
+# Target creature deals damage equal to its power to target creature you don't control.
+#AUTO_DEFINE _PUNCH_ transforms((,newability[dynamicability<!powerstrike!> target(creature|opponentbattlefield)])) oneshot
+
+# Fight. Both creatures deal damage equal to their Power to each other.
+#AUTO_DEFINE _FIGHT_ transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>])) oneshot
+
+# Must be blocked this turn if able
+#AUTO_DEFINE _MUST_BE_BLOCKD_ newability[@combat(attacking) source(this):ability$! notatarget(creature|myBattlefield) transforms((,newability[mustblock])) ueot!$ opponent]
+
+# Suspect it. It has menace and can't block.
+#AUTO_DEFINE _SUSPECT_IT_ name(Suspect it) transforms((suspect,menace,cantblock)) forever
+
+# Finality counter, if it would die, it's exiled instead
+#AUTO_DEFINE _FINALITY_COUNTER_ and!( transforms((,newability[counter(0/0.1.finality)],newability[this(counter{0/0.1.finality}>=1) exiledeath])) forever )!
+
+#AUTO_DEFINE _HARNESSED_LIGHTNING_($c) this(variable{penergy}>=$c) choice damage:$c && alterenergy:-$c controller
+
+# Enlist. As this creature attacks, you may tap a nonattacking creature you control without summoning sickness. When you do, add its power to this creature's until end of turn
+#AUTO_DEFINE _ENLIST_ @combat(attacking) source(this) restriction{type(creature[-fresh]|mybattlefield)~morethan~0}:transforms((,newability[{T(creature[-attacking;-fresh]|mybattlefield)}:storedpower/0 ueot limit:1])) ueot
+
+# Add one mana of any color.
+#AUTO_DEFINE _MANAOFANYCOLOR_ ability$! choice Add{W} _ choice Add{U} _ choice Add{B} _ choice Add{R} _ choice Add{G} !$ controller
+
+# Manifest dread. Look at the top two cards of your library. Put one onto the battlefield face down as a 2/2 creature and the other into your graveyard. Turn it face up any time for its mana cost if it's a creature card.
+#AUTO_DEFINE _MANIFEST_DREAD_ name(Manifest dread) reveal:2 optionone name(Manifest) target(*|reveal) manifest optiononeend optiontwo all(*|reveal) moveto(mygraveyard) optiontwoend revealend
+
+#AUTO_DEFINE _EERIE_ @movedTo(*[Room]|myBattlefield):
+
+#AUTO_DEFINE _CREW1_ {crew(other creature[power>=1]|myBattlefield)}:name(crew 1 [1 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=1]|mybattlefield)~morethan~0,compare(crewtotalpower)~morethan~0}
+
+# Endure
+#AUTO_DEFINE _ENDURE_($c) transforms((,newability[choice counter(1/1.$c)],newability[choice create(Spirit:Creature:$c/$c:white)])) ueot
+
+# Flurry
+#AUTO_DEFINE _FLURRY_ @movedto(*|mystack) restriction{thisturn(*|mystack)~equalto~1}:
+
+# Mobilize
+#AUTO_DEFINE _MOBILIZE_($c) @combat(attacking) source(this):create(Warrior:creature Warrior:1/1:red:battleready:treason)*$c
+
+# Angel Token
+#AUTO_DEFINE _ANGELTOKEN_ create(Angel:Creature Angel:4/4:white:flying)
+
+# Beast Token
+#AUTO_DEFINE _BEASTTOKEN_ create(Beast:Creature Beast:3/3:green)
+
+# Bird Token
+#AUTO_DEFINE _BIRDTOKEN_ create(bird:creature bird:1/1:white:flying)
+
+# 1/1 blue and red Otter creature token with prowess
+#AUTO_DEFINE _OTTERTOKEN_ create(otter:creature otter:1/1:blue:red) and!( transforms((,newability[@movedTo(*[-creature]|mystack):1/1 ueot])) forever )!
+
+# Citizen Token
+#AUTO_DEFINE _CITIZENTOKEN_ create(citizen:creature citizen:1/1:green:white)
+
+# Detective Token
+#AUTO_DEFINE _DETECTIVETOKEN_ create(detective:creature detective:2/2:white:blue)
+
+# Dragon Token
+#AUTO_DEFINE _DRAGONTOKEN_ create(Dragon:Creature Dragon:5/5:red:flying)
+
+# Eldrazi Scion Token
+#AUTO_DEFINE _ELDRAZISCION_ create(Eldrazi Scion:Creature Eldrazi Scion:1/1) and!( transforms((,newability[{S}:Add{C}])) forever )!
+
+# Eldrazi Spawn Token
+#AUTO_DEFINE _ELDRAZISPAWN_ create(Eldrazi Spawn:Creature Eldrazi Spawn:0/1) and!( transforms((,newability[{S}:Add{C}])) forever )!
+
+# Elephant Token
+#AUTO_DEFINE _ELEPHANTTOKEN_ create(Elephant:Creature Elephant:3/3:green)
+
+# Fish Token
+#AUTO_DEFINE _FISHTOKEN_ create(fish:creature fish:1/1:blue)
+
+# Goblin Token
+#AUTO_DEFINE _GOBLINTOKEN_ create(Goblin:Creature Goblin:1/1:red)
+
+# Gnome Token
+#AUTO_DEFINE _GNOMETOKEN_ create(gnome artifact:creature gnome artifact:1/1)
+
+# Glimmer Token
+#AUTO_DEFINE _GLIMMERTOKEN_ create(glimmer:creature glimmer enchantment:1/1:white)
+
+# Human Knight Token
+#AUTO_DEFINE _HUMANKNIGHTTOKEN_ create(Human Knight:Creature Human Knight:2/2:red:trample:haste)
+
+# Human Soldier Token
+#AUTO_DEFINE _HUMANSOLDIERTOKEN_ create(soldier:creature Human soldier:1/1:white)
+
+# Insect Token
+#AUTO_DEFINE _INSECTTOKEN_ create(Insect:Creature Insect:1/1:green)
+
+# Knight Token
+#AUTO_DEFINE _KNIGHTTOKEN_ create(Knight:Creature Knight:2/2:white:vigilance)
+
+# Outlaws, 1/1 red Mercenary creature token with "{T}: Target creature you control gets +1/+0 until end of turn. Activate only as a sorcery." Token
+#AUTO_DEFINE _MERCENARYTOKEN_ create(mercenary:creature mercenary:1/1:red) and!( transforms((,newability[{T}:target(creature|myBattlefield) 1/0 asSorcery])) forever )!
+
+# Phyrexian Mite Token
+#AUTO_DEFINE _PHYREXIANMITETOKEN_ create(phyrexian mite:artifact creature phyrexian mite:1/1:poisontoxic:cantblock)
+
+# White Rabbit Token
+#AUTO_DEFINE _RABBITTOKEN_ create(rabbit:creature rabbit:1/1:white)
+
+# Red Elemental Token
+#AUTO_DEFINE _REDELEMENTALTOKEN_ create(Elemental:Creature Elemental:1/1:red)
+
+# Saproling Token
+#AUTO_DEFINE _SAPROLINGTOKEN_ create(Saproling:creature Saproling:1/1:green)
+
+# Servo Token
+#AUTO_DEFINE _SERVOTOKEN_ create(Servo:Artifact Creature Servo:1/1)
+
+# Soldier Token
+#AUTO_DEFINE _SOLDIERTOKEN_ create(soldier:creature soldier:1/1:white)
+
+# Spirit Token
+#AUTO_DEFINE _SPIRITTOKEN_ create(Spirit:creature Spirit:1/1:white:flying)
+
+# Squirrel Token
+#AUTO_DEFINE _SQUIRRELTOKEN_ create(Squirrel:Creature Squirrel:1/1:green)
+
+# Thopter Token
+#AUTO_DEFINE _THOPTERTOKEN_ create(Thopter:Artifact Creature Thopter:1/1:flying)
+
+# Wolf Token
+#AUTO_DEFINE _WOLFTOKEN_ create(Wolf:creature Wolf:2/2:green)
+
+# White Vampire with lifelink Token
+#AUTO_DEFINE _WHITEVAMPIRE_ create(vampire:creature vampire:1/1:white:lifelink)
+
+# Zombie Token
+#AUTO_DEFINE _ZOMBIETOKEN_ create(zombie:creature zombie:2/2:black)
+
+# Clue Token
+#AUTO_DEFINE _CLUE_ token(Clue,Clue Artifact,0/0) and!( transforms((,newability[{2}{S}:draw:1])) forever )!
+
+# Food Token
+#AUTO_DEFINE _FOOD_ token(Food,Food Artifact,0/0) and!( transforms((,newability[{2}{T}{S}:life:3])) forever )!
+
+# Treasure Token
+#AUTO_DEFINE _TREASURE_ token(Treasure,Treasure Artifact,0/0) and!( transforms((,newability[{T}{S}:Add{W}],newability[{T}{S}:Add{U}],newability[{T}{S}:Add{B}],newability[{T}{S}:Add{R}],newability[{T}{S}:Add{G}])) forever )!
+
+# Vehicle Token
+#AUTO_DEFINE _VEHICLE_ token(Vehicle,Artifact Vehicle,3/2) and!( transforms((,newability[{crew(other creature[power>=1]|myBattlefield)}:name(crew 1 [1 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=1]|mybattlefield)~morethan~0,compare(crewtotalpower)~morethan~0}])) forever )!

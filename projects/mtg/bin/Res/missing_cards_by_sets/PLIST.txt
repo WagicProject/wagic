@@ -83,12 +83,6 @@ mana={2}
 type=Legendary Artifact
 [/card]
 [card]
-name=Fractured Powerstone
-text={T}: Add {1} to your mana pool. -- {T}: Roll the planar die. Activate this ability only any time you could cast a sorcery.
-mana={2}
-type=Artifact
-[/card]
-[card]
 name=Council's Judgment
 text=Will of the council - Starting with you, each player votes for a nonland permanent you don't control. Exile each permanent with the most votes or tied for most votes.
 mana={1}{W}{W}

@@ -72,7 +72,7 @@ private:
     vector<MTGCardInstance*> subBooster;
     MTGDeck * booster;
     bool bListCards;
-    InteractiveButton *cycleCardsButton, *showCardListButton;
+    InteractiveButton *cycleCardsButton, *showCardListButton, *shopMenuButton;
     bool disablePurchase, clearInput;
 
     void beginFilters();

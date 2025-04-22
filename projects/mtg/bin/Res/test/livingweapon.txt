@@ -14,7 +14,7 @@ next
 #combatbegins
 next
 #attackers
-Germ
+Phyrexian Germ
 next
 #blockers
 next

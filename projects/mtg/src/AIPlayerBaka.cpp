@@ -701,7 +701,7 @@ int OrderedAIAction::getEfficiency()
                 if(tapper)
                     continue;                
                 else if(sacrifice)
-                    efficiency = efficiency / 3;
+                    efficiency = efficiency / 10;
                 else
                     efficiency = efficiency / 2;
             }
@@ -723,8 +723,8 @@ int OrderedAIAction::getEfficiency()
     
     if (ability->source)
     {
-        if(ability->source->hasType(Subtypes::TYPE_PLANESWALKER))
-            efficiency += 40;
+        if(ability->source->hasType(Subtypes::TYPE_PLANESWALKER) || ability->source->hasType(Subtypes::TYPE_BATTLE))
+            efficiency += 50;
         else if(ability->source->hasType(Subtypes::TYPE_LAND))
             { // probably a shockland, don't pay life if hand is empty
                 if (p->life<=2)
@@ -1609,9 +1609,9 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target, ManaCost 
         AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
         if(amp && (amp->getCost() && amp->getCost()->extraCosts && !amp->getCost()->extraCosts->canPay()))
             continue;
-        if(fullColor == needColorConverted && result->getConvertedCost() < cost->getConvertedCost())
+        if((fullColor == needColorConverted || cost->hasColor(0) || cost->hasColor(7)) && result->getConvertedCost() < cost->getConvertedCost()) // Fixed a bug on colorless mana calculation for AI.
         {
-            if(cost->hasColor(0) && amp)//find colorless after color mana.
+            if((cost->hasColor(0) || cost->hasColor(7)) && amp)//find colorless after color mana.
             {
                 if(result->canAfford(cost,0))
                     continue;
@@ -2750,7 +2750,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     CardDescriptor cd;
     cd.init();
     if(!strcmp(type,"commander")) //Added to allow the casting priority for commanders
-        cd.basicAbilities[Constants::ISCOMMANDER] = 1;
+        cd.isCommander = 1;
     else if(strcmp(type,"*")) //Added to allow the wildcard in casting priority
         cd.setType(type);
     card = NULL;
@@ -2812,6 +2812,9 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                 continue;
 
             if (card->hasType(Subtypes::TYPE_PLANESWALKER) && card->types.size() > 0 && game->inPlay->hasTypeSpecificInt(Subtypes::TYPE_PLANESWALKER,card->types[1]))
+                continue;
+
+            if (card->hasType(Subtypes::TYPE_BATTLE) && card->types.size() > 0 && game->inPlay->hasTypeSpecificInt(Subtypes::TYPE_BATTLE,card->types[1]))
                 continue;
         
             if(hints && hints->HintSaysItsForCombo(observer,card))
@@ -2980,6 +2983,9 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
             continue;
 
         if (card->hasType(Subtypes::TYPE_PLANESWALKER) && card->types.size() > 0 && game->inPlay->hasTypeSpecificInt(Subtypes::TYPE_PLANESWALKER,card->types[1]))
+            continue;
+
+        if (card->hasType(Subtypes::TYPE_BATTLE) && card->types.size() > 0 && game->inPlay->hasTypeSpecificInt(Subtypes::TYPE_BATTLE,card->types[1]))
             continue;
         
         if(hints && hints->HintSaysItsForCombo(observer,card))
@@ -3748,7 +3754,7 @@ int AIPlayerBaka::computeActions()
                 else
                 {
                     //look for the most expensive creature we can afford. If not found, try enchantment, then artifact, etc...
-                    const char* types[] = {"planeswalker","creature", "enchantment", "artifact", "sorcery", "instant"};
+                    const char* types[] = {"planeswalker","creature", "enchantment", "artifact", "sorcery", "instant", "battle"};
                     int count = 0;
                     while (!nextCardToPlay && count < 6)
                     {
@@ -4292,7 +4298,7 @@ AIPlayerBaka::AIPlayerBaka(GameObserver *observer, string file, string fileSmall
     else //load a random avatar.
     {
         avatarFile = "avatar";
-        char buffer[3];
+        char buffer[4];
         sprintf(buffer, "%i", int(observer->getRandomGenerator()->random()%200));
         avatarFile.append(buffer);
         avatarFile.append(".jpg");

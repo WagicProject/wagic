@@ -30,16 +30,14 @@ Dark Ritual (*) * 1
 Dragonskull Summit (*) * 1
 Drana, Liberator of Malakir (*) * 1
 Duskborne Skymarcher (*) * 1
-Elenda, the Dusk Rose (*) * 1
-Exquisite Blood (*) * 1 
+Elenda, the Dusk Rose (*) * 1 
+Exquisite Blood (*) * 1
 Falkenrath Exterminator (*) * 1
 Falkenrath Noble (*) * 1
 Falkenrath Perforator (*) * 1
-Fervor (*) * 1 
 Gift of Estates (*) * 1
 Gifted Aetherborn (*) * 1
 Godless Shrine (*) * 1
-Guul Draz Assassin (*) * 1
 Guul Draz Vampire (*) * 1
 Impact Tremors (*) * 1
 Inspiring Vantage (*) * 1
@@ -50,6 +48,7 @@ Land Tax (*) * 1
 Legion Lieutenant (*) * 1
 Legion's Landing (*) * 1
 Malakir Cullblade (*) * 1
+Markov Baron (*) * 1
 Martyr of Dusk (*) * 1
 Mountain (*) * 1
 Necropolis Regent (*) * 1
@@ -63,6 +62,7 @@ Plateau (*) * 1
 Pulse Tracker (*) * 1
 Purphoros, God of the Forge (*) * 1
 Quag Vampires (*) * 1 
+Rising of the Day (*) * 1
 Ruthless Cullblade (*) * 1
 Sacred Foundry (*) * 1
 Sanctum Seeker (*) * 1

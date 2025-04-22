@@ -1,0 +1,92 @@
+#NAME:Shalai-Hallar Commander
+#DESC:Deck concept thanks to Vitty85
+#DESC:Original deck by gabao (tappedout.net)
+#DESC:Refined for Wagic by Bob
+#HINT:castpriority(commander,creature,*)
+#HINT:dontattackwith(Birds of Paradise)
+#HINT:dontblockwith(Birds of Paradise)
+#HINT:alwaysattackwith(Kalonian Hydra)
+Abzan Battle Priest (*) * 1
+Abzan Falconer (*) * 1
+Ajani's Pridemate (M11) (*) * 1
+All Will Be One (*) * 1
+Arcane Signet (*) * 1
+Arwen, Weaver of Hope (*) * 1
+Basri's Solidarity (*) * 1
+Birds of Paradise (*) * 1
+Botanical Brawler (*) * 1
+Branching Evolution (*) * 1
+Bretagard Stronghold (*) * 1
+Canopy Vista (*) * 1
+Cathars' Crusade (*) * 1
+Cinder Glade (*) * 1
+Command Tower (*) * 1
+Conclave Mentor (*) * 1
+Cultivate (*) * 1
+Death's Presence (*) * 1
+Defiler of Vigor (*) * 1
+Dusk Legion Duelist (*) * 1
+Enduring Scalelord (*) * 1
+Evolution Sage (*) * 1
+Evolving Wilds (*) * 1
+Exotic Orchard (*) * 1
+Farseek (*) * 1
+Felidar Retreat (*) * 1
+Forest (LTR) (*) * 4
+Forest (CMM) (*) * 4
+Fortified Village (*) * 1
+Game Trail (*) * 1
+Goblin Anarchomancer (*) * 1
+Good-Fortune Unicorn (*) * 1
+Grumgully, the Generous (*) * 1
+Gyre Sage (*) * 1
+Halana and Alena, Partners (*) * 1
+Hardened Scales (*) * 1
+Heliod, Sun-Crowned (*) * 1
+Hydra's Growth (*) * 1
+Incubation Druid (*) * 1
+Inspiring Call (*) * 1
+Invigorating Surge (*) * 1
+Ivy Lane Denizen (*) * 1
+Kalonian Hydra (*) * 1
+Kami of Whispered Hopes (*) * 1
+Keen Sense (*) * 1
+Kodama's Reach (CMM) (*) * 1
+Krenko, Tin Street Kingpin (*) * 1
+Krosan Grip (*) * 1
+Krosan Verge (*) * 1
+Lifelink (*) * 1
+Loyal Guardian (*) * 1
+Managorger Hydra (*) * 1
+Master Chef (*) * 1
+Mayael's Aria (*) * 1
+Mikaeus, the Lunarch (*) * 1
+Mountain (LTR) (*) * 4
+Mountain (CMM) (*) * 4
+Nature's Lore (*) * 1
+Ozolith, the Shattered Spire (*) * 1
+Path to Exile (*) * 1
+Plains (LTR) (*) * 4
+Plains (CMM) (*) * 4
+Pledge of Unity (*) * 1
+Rampant Growth (*) * 1
+Renata, Called to the Hunt (*) * 1
+Resourceful Defense (*) * 1
+Rhythm of the Wild (*) * 1
+Shalai, Voice of Plenty (*) * 1
+Sol Ring (*) * 1
+Solidarity of Heroes (*) * 1
+Sungrass Prairie (*) * 1
+Surge of Salvation (*) * 1
+Sword of Truth and Justice (*) * 1
+Swords to Plowshares (*) * 1
+Take Up the Shield (*) * 1
+Taurean Mauler (*) * 1
+Temple of the False God (*) * 1
+Terramorphic Expanse (*) * 1
+Together Forever (*) * 1
+Trelasarra, Moon Dancer (*) * 1
+Twinblade Paladin (*) * 1
+Visions of Dominance (*) * 1
+Wildwood Scourge (*) * 1
+#CMD:Shalai and Hallar (*) * 1

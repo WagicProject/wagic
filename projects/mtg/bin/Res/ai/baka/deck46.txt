@@ -1,49 +1,92 @@
-#NAME:Ashenmoor Cohort
-#
-#DESC: How does it feel
-#DESC: to be dead
-#DESC: I hear you ask?
-#DESC: 
-#DESC: It hurts.
-#DESC: It burns.
-#DESC: 
-#DESC: It makes you ...
-#DESC: ... want to come back.
-
-Ashenmoor Cohort (SHM)   *2  # lots of Cinder creatures
-Ashenmoor Gouger (SHM)   *3
-Corrosive Mentor (SHM)   *3
-Crowd of Cinders (SHM)   *4
-Smoldering Butcher (EVE) *4
-Emberstrike Duo (SHM)    *3  # gets pumped by red or black spells
-Nyxathid (CFX)           *2
-Sickle Ripper (SHM)      *3
-Spiteflame Witch (SHM)   *2
-Soul Snuffers (EVE)      *2  # dangerous for the AI
-
-Scar (SHM)               *4  # cheap red/black damage spell
-Haunted Crossroads (MRQ) *2  # compensates for Soul Snuffers
-Raise Dead (RV)          *2  # compensates for Soul Snuffers
-
-
-Swamp (10E) *24
-
-
-# Cards considered, but not included:
-# Cinderbones: Expensive and weak in this deck
-# Sootstoke Kindler - AI can't choose target well
-# Fulminator Mage - most lands of player will be basic for a while
-# Midnight Covenant - buggy in 0.8.1
-
-# Cards removed from the deck:
-# none
-
-# Notes:
-# The Soul Snuffers may have to be removed since the AI often
-# hurts itself with them.
-#
-# This is a pure black deck, it doesn't explore most of the
-# potential red/black synergies. I'd like to do that as well, but
-# I'd want the Ashenmoor Liege as a central card in that deck, and
-# that card isn't implemented yet. Hence, the deck is black and
-# the central creature is a black creature.
+#NAME:Tatyova Commander 
+#DESC:The Tatyova Commander Deck
+#DESC:Refined for Wagic by Bob
+#HINT:castpriority(commander,*)
+#HINT:combo hold(Finale of Devastation|myhand)^cast(Finale of Devastation|myhand) targeting(Worldspine Wurm|mylibrary)~totalmananeeded({11}{G}{G})
+#HINT:combo hold(Genesis Wave|myhand)^cast(Genesis Wave|myhand)~totalmananeeded({5}{G}{G}{G})
+Arcane Signet (AFC) *1
+Avenger of Zendikar (PRM) *1
+Azusa, Lost but Seeking *1
+Birds of Paradise (PRM) *1
+Broken Bond (MB1) *1
+Castle Vantress (ELD) *1
+Command Beacon (PZ1) *1
+Command Tower (C19) *1
+Consecrated Sphinx (MBS) *1
+Courser of Kruphix (TSR) *1
+Crop Rotation (2XM) *1
+Crucible of Worlds (PRM) *1
+Cultivate (PZ1) *1
+Cyclonic Rift (MM3) *1
+Decanter of Endless Water *1
+Dryad Arbor (TSR) *1
+Echoing Truth (C19) *1
+Eternal Witness (PZ1) *1
+Exploration (PRM) *1
+Explore (C19) *1
+Finale of Devastation (WAR) *1
+Flooded Grove (EXP) *1
+Flooded Strand (EXP) *1
+Force of Will (EMA) *1
+Forest (2XM) *4
+Forest (BLB) *4
+Forest (OTJ) *3
+Gaea's Cradle (USG) *1
+Genesis Wave (IMA) *1
+Harmonize (PRM) *1
+Harrow (MB1) *1
+Hinterland Harbor *1
+Island (UNH) *4
+Island (OTJ) *4
+Island (BLB) *1
+Khalni Garden (PZ1) *1
+Kinnan, Bonder Prodigy (IKO) *1
+Kodama's Reach (C17) *1
+Koma, Cosmos Serpent (KHM) *1
+Lightning Greaves (AFC) *1
+Lotus Cobra (PRM) *1
+Mana Reflection (SHM) *1
+Misty Rainforest (ZNE) *1
+Multani, Yavimaya's Avatar *1
+Mystic Sanctuary (ELD) *1
+Narset, Parter of Veils (WAR) *1
+Nexus of Fate (M19) *1
+Nyxbloom Ancient (THB) *1
+Oran-Rief Hydra *1
+Polluted Delta (ONS) *1
+Pongify (TSR) *1
+Primeval Titan (TSR) *1
+Prismatic Vista (H1R) *1
+Prophet of Kruphix (PRM) *1
+Rampaging Baloths (C19) *1
+Rampant Growth (PRM) *1
+Ramunap Excavator (PRM) *1
+Reliquary Tower (C19) *1
+Rimewood Falls (KHM) *1
+Ruin Crab *1
+Sakura-Tribe Elder (MB1) *1
+Scalding Tarn (MH2) *1
+Search for Tomorrow (MB1) *1
+Seedborn Muse (C19) *1
+Simic Growth Chamber (C19) *1
+Simic Signet (C15) *1
+Sol Ring (C19) *1
+Solemn Simulacrum (MB1) *1
+Sporemound *1
+Strip Mine (EXP) *1
+Summer Bloom (POR) *1
+Sylvan Scrying (MB1) *1
+Tangled Islet *1
+Thran Dynamo *1
+Thrasios, Triton Hero (PZ2) *1
+Timetwister (PRM) *1
+Tropical Island (ME4) *1
+Tyrite Sanctum (KHM) *1
+Upheaval (MH2) *1
+Verdant Catacombs (MH2) *1
+Wayfarer's Bauble (C17) *1
+Wild Growth (AFC) *1
+Worldspine Wurm *1
+Yavimaya Elder (UDS) *1
+Zendikar's Roil *1
+#CMD:Tatyova, Benthic Druid (DOM) *1

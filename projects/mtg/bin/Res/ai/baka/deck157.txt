@@ -1,0 +1,26 @@
+#NAME:Counter Attack
+#DESC:Deck Concept by Vitty85
+#DESC:Designed for Wagic by Bob
+#HINT:castpriority(creature,*)
+#HINT:combo hold(Time of Need|myhand)^cast(Time of Need|myhand) targeting(Shalai and Hallar|mylibrary)^restriction{type(Shalai and Hallar|mybattlefield)~lessthan~1}^totalmananeeded({1}{G})
+#HINT:combo hold(Basri's Solidarity|myhand)^until(Shalai and Hallar|mybattlefield)^cast(Basri's Solidarity|myhand)^totalmananeeded({1}{W})
+#HINT:alwaysattackwith(Kalonian Hydra)
+Basri's Solidarity (*) * 4
+Birds of Paradise (M12) (*) * 3
+Cathars' Crusade (*) * 2
+Clifftop Retreat (*) * 3
+Essence Warden (*) * 3
+Graypelt Refuge (*) * 4
+Heliod, Sun-Crowned (*) * 3
+Jetmir's Garden (*) * 4
+Kazandu Refuge (*) * 2
+Prosperous Innkeeper (*) * 2
+Razorverge Thicket (*) * 4
+Archangel of Thune (*) * 3
+Rootbound Crag (*) * 2
+Kalonian Hydra (*) * 4
+Shalai and Hallar (*) * 4
+Soul Warden (*) * 3
+Sunpetal Grove (*) * 2
+Time of Need (*) * 4
+Windswept Heath (*) * 4

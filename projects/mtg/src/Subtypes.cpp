@@ -26,6 +26,8 @@ Subtypes::Subtypes()
     find("Dungeon");
     find("Emblem");
     find("Conspiracy");
+    find("Backgorund");
+    find("Battle");
 }
 
 int Subtypes::find(string value, bool forceAdd)
@@ -97,7 +99,12 @@ bool Subtypes::isType(unsigned int type)
         type == TYPE_TRIBAL ||
         type == TYPE_PLANE ||
         type == TYPE_SCHEME ||
-        type == TYPE_VANGUARD 
+        type == TYPE_VANGUARD ||
+        type == TYPE_DUNGEON ||
+        type == TYPE_EMBLEM ||
+        type == TYPE_CONSPIRACY ||
+        type == TYPE_BACKGROUND ||
+        type == TYPE_BATTLE
     );
 }
 

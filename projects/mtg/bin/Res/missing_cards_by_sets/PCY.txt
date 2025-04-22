@@ -38,15 +38,6 @@ mana={3}{W}
 type=Instant
 [/card]
 [card]
-name=Mungha Wurm
-text=You can't untap more than one land during your untap step.
-mana={2}{G}{G}
-type=Creature
-subtype=Wurm
-power=6
-toughness=5
-[/card]
-[card]
 name=Dual Nature
 text=Whenever a nontoken creature enters the battlefield, its controller puts a token that's a copy of that creature onto the battlefield. -- Whenever a nontoken creature leaves the battlefield, exile all tokens with the same name as that creature. -- When Dual Nature leaves the battlefield, exile all tokens put onto the battlefield with Dual Nature.
 mana={4}{G}{G}

@@ -1,0 +1,346 @@
+[meta]
+author=Wagic Team
+name=Special Guests
+year=2023-11-17
+total=90
+[/meta]
+[card]
+primitive=Lord of Atlantis
+id=642840
+rarity=R
+[/card]
+[card]
+primitive=Malcolm, Keen-Eyed Navigator
+id=642841
+rarity=U
+[/card]
+[card]
+primitive=Bridge from Below
+id=642842
+rarity=R
+[/card]
+[card]
+primitive=Mephidross Vampire
+id=642843
+rarity=R
+[/card]
+[card]
+primitive=Pitiless Plunderer
+id=642844
+rarity=U
+[/card]
+[card]
+primitive=Breeches, Brazen Plunderer
+id=642845
+rarity=U
+[/card]
+[card]
+primitive=Dargo, the Shipwrecker
+id=642846
+rarity=U
+[/card]
+[card]
+primitive=Rampaging Ferocidon
+id=642847
+rarity=R
+[/card]
+[card]
+primitive=Underworld Breach
+id=642848
+rarity=R
+[/card]
+[card]
+primitive=Carnage Tyrant
+id=642849
+rarity=M
+[/card]
+[card]
+primitive=Ghalta, Primal Hunger
+id=642850
+rarity=R
+[/card]
+[card]
+primitive=Polyraptor
+id=642851
+rarity=M
+[/card]
+[card]
+primitive=Kalamax, the Stormsire
+id=642852
+rarity=M
+[/card]
+[card]
+primitive=Lord Windgrace
+id=642853
+rarity=M
+[/card]
+[card]
+primitive=Mirri, Weatherlight Duelist
+id=642854
+rarity=M
+[/card]
+[card]
+primitive=Thrasios, Triton Hero
+id=642855
+rarity=R
+[/card]
+[card]
+primitive=Mana Crypt
+id=642856
+rarity=M
+[/card]
+[card]
+primitive=Star Compass
+id=642857
+rarity=U
+[/card]
+[card]
+primitive=Ghostly Prison
+id=651677
+rarity=M
+[/card]
+[card]
+primitive=Fabricate
+id=651678
+rarity=M
+[/card]
+[card]
+primitive=Show and Tell
+id=651679
+rarity=M
+[/card]
+[card]
+primitive=Tragic Slip
+id=651680
+rarity=M
+[/card]
+[card]
+primitive=Victimize
+id=651681
+rarity=M
+[/card]
+[card]
+primitive=Gamble
+id=651682
+rarity=M
+[/card]
+[card]
+primitive=Crashing Footfalls
+id=651683
+rarity=M
+[/card]
+[card]
+primitive=Tireless Tracker
+id=651684
+rarity=M
+[/card]
+[card]
+primitive=Drown in the Loch
+id=651685
+rarity=M
+[/card]
+[card]
+primitive=Field of the Dead
+id=651686
+rarity=M
+[/card]
+[card]
+primitive=Stoneforge Mystic
+id=660837
+rarity=M
+[/card]
+[card]
+primitive=Brazen Borrower // Petty Theft
+id=660838
+rarity=M
+[/card]
+[card]
+primitive=Desertion
+id=660839
+rarity=M
+[/card]
+[card]
+primitive=Morbid Opportunist
+id=660840
+rarity=M
+[/card]
+[card]
+primitive=Port Razer
+id=660841
+rarity=M
+[/card]
+[card]
+primitive=Scapeshift
+id=660842
+rarity=M
+[/card]
+[card]
+primitive=Mystic Snake
+id=660843
+rarity=M
+[/card]
+[card]
+primitive=Notion Thief
+id=660844
+rarity=M
+[/card]
+[card]
+primitive=Desert
+id=660845
+rarity=M
+[/card]
+[card]
+primitive=Prismatic Vista
+id=660846
+rarity=M
+[/card]
+[card]
+primitive=Thought-Knot Seer
+id=666681
+rarity=M
+[/card]
+[card]
+primitive=Prismatic Ending
+id=666682
+rarity=M
+[/card]
+[card]
+primitive=Dismember
+id=666683
+rarity=M
+[/card]
+[card]
+primitive=Persist
+id=666684
+rarity=M
+[/card]
+[card]
+primitive=Expressive Iteration
+id=666685
+rarity=M
+[/card]
+[card]
+primitive=Solitude
+id=666641
+rarity=M
+[/card]
+[card]
+primitive=Subtlety
+id=666642
+rarity=M
+[/card]
+[card]
+primitive=Grief
+id=666643
+rarity=M
+[/card]
+[card]
+primitive=Fury
+id=666644
+rarity=M
+[/card]
+[card]
+primitive=Endurance
+id=666645
+rarity=M
+[/card]
+[card]
+primitive=Swords to Plowshares
+id=672824
+rarity=M
+[/card]
+[card]
+primitive=Ledger Shredder
+id=672825
+rarity=M
+[/card]
+[card]
+primitive=Rat Colony
+id=672826
+rarity=M
+[/card]
+[card]
+primitive=Relentless Rats
+id=672827
+rarity=M
+[/card]
+[card]
+primitive=Kindred Charge
+id=672828
+rarity=M
+[/card]
+[card]
+primitive=Sylvan Tutor
+id=672829
+rarity=M
+[/card]
+[card]
+primitive=Toski, Bearer of Secrets
+id=672830
+rarity=M
+[/card]
+[card]
+primitive=Frogmite
+id=672831
+rarity=M
+[/card]
+[card]
+primitive=Sword of Fire and Ice
+id=672832
+rarity=M
+[/card]
+[card]
+primitive=Secluded Courtyard
+id=672833
+rarity=M
+[/card]
+[card]
+primitive=Hallowed Haunting
+id=677356
+rarity=M
+[/card]
+[card]
+primitive=Soul Warden
+id=677357
+rarity=M
+[/card]
+[card]
+primitive=Expropriate
+id=677358
+rarity=M
+[/card]
+[card]
+primitive=Phantasmal Image
+id=677359
+rarity=M
+[/card]
+[card]
+primitive=Damnation
+id=677360
+rarity=M
+[/card]
+[card]
+primitive=Sacrifice
+id=677361
+rarity=M
+[/card]
+[card]
+primitive=Maddening Hex
+id=677362
+rarity=M
+[/card]
+[card]
+primitive=Unholy Heat
+id=677363
+rarity=M
+[/card]
+[card]
+primitive=Collected Company
+id=677364
+rarity=M
+[/card]
+[card]
+primitive=Noxious Revival
+id=677365
+rarity=M
+[/card]

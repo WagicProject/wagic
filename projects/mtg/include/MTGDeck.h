@@ -129,7 +129,7 @@ public:
     void prefetchCardNameCache();
 #endif
 
-    MTGCard * getCardByName(string name);
+    MTGCard * getCardByName(string name, int forcedSetId = -1);
     void loadFolder(const string& folder, const string& filename="" );
 
     int load(const string& config_file);

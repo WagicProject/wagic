@@ -514,23 +514,23 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
             MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->commandzone, p->game->sideboard };
             for(int i = 0; i < 7; i++){
                 for(int j = 0; j < zones[i]->nb_cards; j++){
-                    if(zones[i]->cards[j]->has(Constants::ISCOMMANDER) && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_RED) && !redFound){
+                    if(zones[i]->cards[j]->isCommander && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_RED) && !redFound){
                         intValue++;
                         redFound = true;
                     }
-                    if(zones[i]->cards[j]->has(Constants::ISCOMMANDER) && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_BLACK) && !blackFound){
+                    if(zones[i]->cards[j]->isCommander && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_BLACK) && !blackFound){
                         intValue++;
                         blackFound = true;
                     }
-                    if(zones[i]->cards[j]->has(Constants::ISCOMMANDER) && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_BLUE) && !blueFound){
+                    if(zones[i]->cards[j]->isCommander && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_BLUE) && !blueFound){
                         intValue++;
                         blueFound = true;
                     }
-                    if(zones[i]->cards[j]->has(Constants::ISCOMMANDER) && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_GREEN) && !greenFound){
+                    if(zones[i]->cards[j]->isCommander && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_GREEN) && !greenFound){
                         intValue++;
                         greenFound = true;
                     }
-                    if(zones[i]->cards[j]->has(Constants::ISCOMMANDER) && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_WHITE) && !whiteFound){
+                    if(zones[i]->cards[j]->isCommander && zones[i]->cards[j]->hasColor(Constants::MTG_COLOR_WHITE) && !whiteFound){
                         intValue++;
                         whiteFound = true;
                     }
@@ -572,7 +572,19 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
     }
     else if (s == "targetedcurses")
     {
-        intValue = (card->playerTarget)?card->playerTarget->curses.size():0;
+        intValue = 0;
+        for (int j = card->controller()->game->battlefield->nb_cards - 1; j >= 0; --j)
+        {
+            MTGCardInstance * curse = card->controller()->game->battlefield->cards[j];
+            if (curse->hasType("Curse") && curse->playerTarget == card->playerTarget)
+                intValue++;
+        }
+        for (int j = card->controller()->opponent()->game->battlefield->nb_cards - 1; j >= 0; --j)
+        {
+            MTGCardInstance * curse = card->controller()->opponent()->game->battlefield->cards[j];
+            if (curse->hasType("Curse") && curse->playerTarget == card->playerTarget)
+                intValue++;
+        }
     }
     else if (s == "lifetotal" || s == "opponentlifetotal")
     {
@@ -735,8 +747,12 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
     }
     else if (s.find("genrand") != string::npos) //Return a random value between 0 and a specific number (minus 1);
     {
+        intValue = 0;
         WParsedInt * value = NEW WParsedInt(s.substr(7).c_str(), NULL, card);
-        intValue = std::rand() % value->getValue();
+        if(value){
+            intValue = std::rand() % value->getValue();
+            SAFE_DELETE(value);
+        }
     }
     else if (s == "manacost") //Return the converted manacost
     {
@@ -816,9 +832,9 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
     {
         intValue = (s == "countedamount")?target->CountedObjects:target->CountedObjectsB;
     }
-    else if (s == "kicked" || s == "handsize")
+    else if (s == "handsize" || s == "ohandsize")
     {
-        intValue = (s == "kicked")?card->kicked:target->controller()->handsize;
+        intValue = (s == "ohandsize")?card->controller()->opponent()->handsize:target->controller()->handsize;
     }
     else if (s == "olandg" || s == "olandu")
     {
@@ -1184,6 +1200,8 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
                 intValue++;
             if(card->hasType(Subtypes::TYPE_ARTIFACT))
                 intValue++;
+            if(card->hasType(Subtypes::TYPE_BATTLE))
+                intValue++;
         }
     }
     else if (s == "pcycledcount" || s == "ocycledcount") //return how may cards have been cycled this turn from a specific player.
@@ -1258,6 +1276,8 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
                     cc = 1;
                 if(cardHasTypeinZone("artifact",checkZone))
                     ac = 1;
+                if(cardHasTypeinZone("battle",checkZone))
+                    ac = 1;
             }
         } else {
             MTGGameZone * checkZone = (s.find("oppbattlefieldcardtypes")!=string::npos)?card->getObserver()->opponent()->game->inPlay:card->controller()->game->inPlay;
@@ -1276,6 +1296,8 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
             if(cardHasTypeinZone("creature",checkZone))
                 cc = 1;
             if(cardHasTypeinZone("artifact",checkZone))
+                ac = 1;
+            if(cardHasTypeinZone("battle",checkZone))
                 ac = 1;
         }
         intValue = pc+tc+sc+lc+ic+ec+cc+ac;
@@ -1303,6 +1325,8 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
                     cc = 1;
                 if(cardHasTypeinZone("artifact",checkZone))
                     ac = 1;
+                if(cardHasTypeinZone("battle",checkZone))
+                    ac = 1;
             }
         } else {
             MTGGameZone * checkZone = (s.find("oppgravecardtypes")!=string::npos)?card->getObserver()->opponent()->game->graveyard:card->controller()->game->graveyard;
@@ -1322,6 +1346,8 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
                 cc = 1;
             if(cardHasTypeinZone("artifact",checkZone))
                 ac = 1;
+            if(cardHasTypeinZone("battle",checkZone))
+                ac = 1;
         }
         intValue = pc+tc+sc+lc+ic+ec+cc+ac;
     }
@@ -1334,6 +1360,7 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
                 (s.find("totcntart") != string::npos && card->controller()->game->inPlay->cards[j]->hasType(Subtypes::TYPE_ARTIFACT)) ||
                 (s.find("totcntenc") != string::npos && card->controller()->game->inPlay->cards[j]->hasType(Subtypes::TYPE_ENCHANTMENT)) ||
                 (s.find("totcntlan") != string::npos && card->controller()->game->inPlay->cards[j]->hasType(Subtypes::TYPE_LAND)) || 
+                (s.find("totcntbat") != string::npos && card->controller()->game->inPlay->cards[j]->hasType(Subtypes::TYPE_BATTLE)) || 
                 s.find("totcntall") != string::npos){
                 if (card->controller()->game->inPlay->cards[j]->counters){
                     Counters * counters = card->controller()->game->inPlay->cards[j]->counters;
@@ -1372,6 +1399,10 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
     else if (s == "pdungeoncompleted" || s == "odungeoncompleted")
     {
         intValue = (s == "pdungeoncompleted")?card->controller()->dungeonCompleted:card->controller()->opponent()->dungeonCompleted;
+    }
+    else if (s == "pinitiative" || s == "oinitiative") // Which player has the initiative
+    {
+        intValue = (s == "pinitiative")?card->controller()->initiative:card->controller()->opponent()->initiative;
     }
     else if (s == "pwrtotatt" || s == "thstotatt")//count Total Power or toughness of attacking creatures (e.g. Battle Cry Goblin)
     {
@@ -1496,12 +1527,157 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
             }
         }
     }
-    else if(s.find("startingplayer") != string::npos){ //Return who was the starting player (0 is controller, 1 is opponent).
+    else if(s.find("startingplayer") != string::npos){ // Return who was the starting player (0 is controller, 1 is opponent).
         intValue = card->controller()->getObserver()->turn%2;
         if(card->controller()->getObserver()->currentlyActing() != card->controller())
             intValue = 1 - intValue;
     }
-    else if(!intValue)//found nothing, try parsing a atoi
+    else if (s == "pinstsorcount" || s == "oinstsorcount") //Return the number of instant or sorceries that were casted this turn by controller or opponent.
+    {
+        intValue = (s == "pinstsorcount")?card->controller()->game->stack->seenThisTurn("*[instant;sorcery]", Constants::CAST_ALL):card->controller()->opponent()->game->stack->seenThisTurn("*[instant;sorcery]", Constants::CAST_ALL);
+    }
+    else if ((s.find("palldead") != string::npos) || (s.find("oalldead") != string::npos)) //Return the number of cards of a specific type that died this turn for controller or opponent.
+    {
+        int hasdeadtype = 0;
+        MTGGameZone * grave = (s.find("oalldead") != string::npos)?card->controller()->opponent()->game->graveyard:card->controller()->game->graveyard;
+        Player * checkCurrent = (s.find("oalldead") != string::npos)?card->controller()->opponent():card->controller();
+        string checktype = s.substr(8);
+        for(unsigned int gy = 0; gy < grave->cardsSeenThisTurn.size(); gy++)
+        {
+            MTGCardInstance * checkCard = grave->cardsSeenThisTurn[gy];
+            if(checkCard->hasType(checktype) &&
+                ((checkCard->previousZone == checkCurrent->game->battlefield)||
+                (checkCard->previousZone == checkCurrent->opponent()->game->battlefield)) //died from battlefield
+                )
+            {
+                hasdeadtype++;
+            }
+        }
+        intValue = hasdeadtype;
+    }
+    else if (s.find("bothalldead") != string::npos) //Return the number of cards of a specific type that died this turn.
+    {
+        int hasdeadtype = 0;
+        string checktype = s.substr(11);
+        for(int cp = 0; cp < 2; cp++)
+        {
+            Player * checkCurrent = card->getObserver()->players[cp];
+            MTGGameZone * grave = checkCurrent->game->graveyard;
+            for(unsigned int gy = 0; gy < grave->cardsSeenThisTurn.size(); gy++)
+            {
+                MTGCardInstance * checkCard = grave->cardsSeenThisTurn[gy];
+                if(checkCard->hasType(checktype) &&
+                    ((checkCard->previousZone == checkCurrent->game->battlefield)||
+                    (checkCard->previousZone == checkCurrent->opponent()->game->battlefield))//died from battlefield
+                    )
+                {
+                    hasdeadtype++;
+                }
+            }
+        }
+        intValue = hasdeadtype;
+    }
+    else if(s.find("hasmansym") != string::npos){
+        string manatocheck = s.substr(9);
+        if(manatocheck == "c")
+            intValue = card->getManaCost()->getManaSymbolsHybridMerged(Constants::MTG_COLOR_ARTIFACT);
+        else if(manatocheck == "g")
+            intValue = card->getManaCost()->getManaSymbolsHybridMerged(Constants::MTG_COLOR_GREEN);
+        else if(manatocheck == "u")
+            intValue = card->getManaCost()->getManaSymbolsHybridMerged(Constants::MTG_COLOR_BLUE);
+        else if(manatocheck == "r")
+            intValue = card->getManaCost()->getManaSymbolsHybridMerged(Constants::MTG_COLOR_RED);
+        else if(manatocheck == "b")
+            intValue = card->getManaCost()->getManaSymbolsHybridMerged(Constants::MTG_COLOR_BLACK);
+        else if(manatocheck == "w")
+            intValue = card->getManaCost()->getManaSymbolsHybridMerged(Constants::MTG_COLOR_WHITE);
+        else intValue = 0;
+    }
+    else if(s.find("prodmana") != string::npos){
+        intValue = 0;
+        string manatocheck = s.substr(8);
+        if(card->getProducedMana()){
+            if(manatocheck == "c")
+                intValue = card->getProducedMana()->getManaSymbolsHybridMerged(Constants::MTG_COLOR_ARTIFACT);
+            else if(manatocheck == "g")
+                intValue = card->getProducedMana()->getManaSymbolsHybridMerged(Constants::MTG_COLOR_GREEN);
+            else if(manatocheck == "u")
+                intValue = card->getProducedMana()->getManaSymbolsHybridMerged(Constants::MTG_COLOR_BLUE);
+            else if(manatocheck == "r")
+                intValue = card->getProducedMana()->getManaSymbolsHybridMerged(Constants::MTG_COLOR_RED);
+            else if(manatocheck == "b")
+                intValue = card->getProducedMana()->getManaSymbolsHybridMerged(Constants::MTG_COLOR_BLACK);
+            else if(manatocheck == "w")
+                intValue = card->getProducedMana()->getManaSymbolsHybridMerged(Constants::MTG_COLOR_WHITE);
+            else if(manatocheck == "tot")
+                intValue = card->getProducedMana()->getConvertedCost();
+        }
+    }
+    else if(s.find("usedmana") != string::npos){
+        intValue = 0;
+        string manatocheck = s.substr(8);
+        if(card->getManaCost() && card->getManaCost()->getManaUsedToCast()){
+            if(manatocheck == "g")
+                intValue = card->getManaCost()->getManaUsedToCast()->getManaSymbols(Constants::MTG_COLOR_GREEN);
+            else if(manatocheck == "u")
+                intValue = card->getManaCost()->getManaUsedToCast()->getManaSymbols(Constants::MTG_COLOR_BLUE);
+            else if(manatocheck == "r")
+                intValue = card->getManaCost()->getManaUsedToCast()->getManaSymbols(Constants::MTG_COLOR_RED);
+            else if(manatocheck == "b")
+                intValue = card->getManaCost()->getManaUsedToCast()->getManaSymbols(Constants::MTG_COLOR_BLACK);
+            else if(manatocheck == "w")
+                intValue = card->getManaCost()->getManaUsedToCast()->getManaSymbols(Constants::MTG_COLOR_WHITE);
+            else if(manatocheck == "tot")
+                intValue = card->getManaCost()->getManaUsedToCast()->getConvertedCost();
+        }
+    }
+    else if(s.find("toxicity") != string::npos){ //Return the toxicity of card.
+        intValue = card->getToxicity();
+    }
+    else if (s.find("ninelands") != string::npos) //Count the number of lands with different names among the Basic, Sphere, and Locus lands you control.
+    {
+        intValue = 0;
+        vector<string> list;
+        for (int j = card->controller()->game->inPlay->nb_cards - 1; j >= 0; --j)
+        {
+            if (card->controller()->game->inPlay->cards[j]->isLand() && 
+                (card->controller()->game->inPlay->cards[j]->hasType("basic") || card->controller()->game->inPlay->cards[j]->hasType("sphere") || card->controller()->game->inPlay->cards[j]->hasType("locus"))){
+                bool name_found = false;
+                for(unsigned int i = 0; i < list.size() && !name_found; i++){
+                    if(list[i] == card->controller()->game->inPlay->cards[j]->name)
+                        name_found = true;
+                }
+                if(!name_found){
+                    list.push_back(card->controller()->game->inPlay->cards[j]->name);
+                    intValue += 1;
+                }
+            }
+        }
+    }
+    else if (s == "pringtemptations" || s == "oringtemptations") //How many times the player has been tempted by the Ring.
+    {
+        intValue = (s == "pringtemptations")?card->controller()->ringTemptations:card->controller()->opponent()->ringTemptations;
+    }
+    else if (s == "iscommander" || s == "ringbearer") //Return 1 if card is the commander -- Return 1 if card is the Ring bearer
+    {
+        intValue = (s == "iscommander")?card->isCommander:card->isRingBearer;
+    }
+    else if (s == "oppotgt" || s == "ctrltgt") //Return 1 if card targeted the opponent -- Return 1 if card targeted its controller
+    {
+        intValue = 0;
+        Player* p = (s == "oppotgt")?card->controller()->opponent():card->controller();
+        if(card->playerTarget == p)
+            intValue = 1;
+    }
+    else if (s == "isattacker" || s == "couldattack") //Return 1 if creature is attacking. -- Return 1 if creature can attack.
+    {
+        intValue = (s == "isattacker")?card->isAttacker():card->canAttack();
+    }
+    else if (s == "kicked") //Return the number of times kicker has been paid
+    {
+        intValue = card->kicked;
+    }
+    else if(!intValue) //Found nothing, try parsing a atoi
     {
         intValue = atoi(s.c_str());
     }

@@ -1,6 +1,6 @@
 [card]
 name=Nerf War
-text=Fire a Nerf blaster until empty at target library from at least two meters away. For each card knocked off that library, put it into its owners graveyard and Nerf War deals ½ damage to that player. (Foam darts only.)
+text=Fire a Nerf blaster until empty at target library from at least two meters away. For each card knocked off that library, put it into its owner?s graveyard and Nerf War deals ½ damage to that player. (Foam darts only.)
 mana={3}{U}{R}
 type=Sorcery
 [/card]

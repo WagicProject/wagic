@@ -2,7 +2,6 @@
 #DESC:Original Deck by ashby4 (tappedout.net),
 #DESC:refined for Wagic by Bob
 #HINT:castpriority(commander,*)
-Adarkar Wastes (*) * 1
 Akroma's Will (*) * 1
 Arcane Signet (*) * 1
 Assault Formation (*) * 1
@@ -22,10 +21,9 @@ Crashing Drawbridge (*) * 1
 Dismantling Wave (*) * 1
 Drift of Phantasms (*) * 1
 Dusk // Dawn (*) * 1 
-Edge of Autumn (*) * 1
 Farseek (*) * 1
 Fell the Mighty (*) * 1
-Forest (*) * 6 
+Forest (*) * 4 
 Fortified Rampart (*) * 1
 Fortified Village (*) * 1
 Glacial Fortress (*) * 1
@@ -38,6 +36,7 @@ Irrigated Farmland (*) * 1
 Island (*) * 2
 Jeskai Barricade (*) * 1
 Jungle Barrier (*) * 1
+Last March of the Ents (*) *1
 Leyline of Vitality (*) * 1
 Lightning Greaves (MPS) (*) * 1
 Lumithread Field (*) * 1
@@ -48,7 +47,7 @@ Noetic Scales (*) * 1
 Oathsworn Giant (*) * 1
 Overgrown Battlement (*) * 1
 Perimeter Captain (*) * 1
-Plains (*) * 5
+Plains (*) * 4
 Port Town (*) * 1
 Prairie Stream (*) * 1
 Rejuvenating Springs (*) * 1

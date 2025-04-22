@@ -39,7 +39,6 @@ cache:
     - android-ndk-r9   
 
 before_install:
-<<<<<<< HEAD
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty universe" &&
       sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty main" &&
@@ -59,51 +58,19 @@ before_install:
       pwd &&
       ls;
     fi    
-=======
-  - export BUILD_PSP=YES
-  - export BUILD_ANDROID=YES
-  - export BUILD_Qt=YES
-  - export BUILD_MAC=NO
-# Only building on Mac when not handling pull request
-# - if [ "$TRAVIS_PULL_REQUEST" ==  "false" ]; then
-#     export BUILD_MAC=YES;
-#   fi
-  - sudo apt-get update -qq
->>>>>>> master
 # Building for PSP here
   - if [ "$BUILD_TYPE" == "PSP" ]; then
       export PSPDEV="$TRAVIS_BUILD_DIR/opt/pspsdk" &&
       export PSPSDK="$PSPDEV/psp/sdk" &&
       export PATH="$PATH:$PSPDEV/bin:$PSPSDK/bin" &&
-<<<<<<< HEAD
       wget -O sdk.lzma https://sourceforge.net/projects/minpspw/files/SDK%20%2B%20devpak/pspsdk%200.11.2/minpspw_0.11.2-amd64.tar.lzma/download;
     fi
 # Building for Android here
   - if [ "$BUILD_TYPE" == "ANDROID" ]; then
       export ANDROID="/usr/local/android-sdk-linux/tools/android" &&
       export PATH=$PATH:"/usr/local/android-sdk-linux/tools" &&
-      wget http://dl.google.com/android/ndk/android-ndk-r9-linux-x86_64.tar.bz2 -nv &&
+      wget https://dl.google.com/android/repository/android-ndk-r22-linux-x86_64.zip -nv &&
       wget https://bitbucket.org/ewing/sdl_androidcmake/get/4e9e88c03f04.zip -nv;
-=======
-      wget --no-check-certificate -O sdk.lzma http://downloads.sourceforge.net/project/minpspw/SDK%20%2B%20devpak/pspsdk%200.11.2/minpspw_0.11.2-amd64.tar.lzma;
-    fi
-# Building for Qt here
-  - if [ "$BUILD_Qt" == "YES" ]; then
-      sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu xenial universe" &&
-      sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu xenial main" &&
-      sudo apt-get -qq update &&
-      sudo apt-get -qq install qt5-qmake qtbase5-dev qtdeclarative5-dev qttools5-dev qtmultimedia5-dev libqt5opengl5 libqt5opengl5-dev pulseaudio libpulse-dev &&
-      export QMAKE="qmake -qt=qt5";
-    fi
-# Building for Android here
-  - if [ "$BUILD_ANDROID" == "YES" ]; then
-      export ANDROID="android-sdk-linux/tools/android" &&
-      if [ `uname -m` = x86_64 ]; then 
-        sudo dpkg --add-architecture i386 && sudo apt-get update &&
-        sudo apt-get install -qq --force-yes libgd2-xpm-dev libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 jq ant; fi &&
-        wget https://dl.google.com/android/repository/android-ndk-r22-linux-x86_64.zip -nv &&
-        wget http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz -nv;
->>>>>>> master
     fi
 # Building for Qt here
   - if [ "$BUILD_TYPE" == "Qt" ] && [ "$TRAVIS_OS_NAME" == "osx" ]; then
@@ -111,7 +78,10 @@ before_install:
       export QMAKE="qmake -qt=qt5";
     fi
   - if [ "$BUILD_TYPE" == "Qt" ] && [ "$TRAVIS_OS_NAME" == "linux" ]; then
-      sudo apt-get install -qq qt5-qmake qtbase5-dev qtdeclarative5-dev qttools5-dev qtmultimedia5-dev pulseaudio libpulse-dev &&
+      sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu xenial universe" &&
+      sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu xenial main" &&
+      sudo apt-get -qq update &&
+      sudo apt-get -qq install qt5-qmake qtbase5-dev qtdeclarative5-dev qttools5-dev qtmultimedia5-dev libqt5opengl5 libqt5opengl5-dev pulseaudio libpulse-dev &&
       export QMAKE="qmake -qt=qt5";
     fi
 # Building for SDL here
@@ -124,7 +94,6 @@ before_install:
     fi
 
 install:
-<<<<<<< HEAD
   - |
     if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
       if [[ -z "$(ls -A ${DEPS_DIR}/cmake/bin)" ]]; then
@@ -164,27 +133,7 @@ env:
   - secure: "X5dTQfofqAutnXxmu11Ep2MQ5QYnMN8m0AITRtwymhEF2UclcOudI1+skPtuhAGbWQnSO+lhunV3cvMfw2/Ml3k/VDz6VdFSKFrzAu7ja1VLJfcxr7chi0s8q30pVBb66tGydjIBac3B+RQyqgmZQW1frbRrhC/kPFQ6wPWOJdQ="
   - secure: "T97NUPnxCpVZ/c5HH0zfo0FO3DPSRMSmze58ubW5EUTZOjAMtEt+OFdsrNZvUTCugUj2M1agtonZbAbczpaAL+lgZcHDgXgWMkfO0pMnsWX1yyCNqMuE/iTMpJr/xsLQeyWlftWjJLsseQU45abZsd1XVmda/G+ZhrDLF1y55SA="
 
-=======
-- if [ "$BUILD_PSP" == "YES" ]; then
-    tar -x --xz -f sdk.lzma;
-  fi
-- if [ "$BUILD_ANDROID" == "YES" ]; then
-    unzip android-ndk-r22-linux-x86_64.zip &&
-    tar -zxf android-sdk_r24.4.1-linux.tgz &&
-    $ANDROID list sdk --extended -a &&
-    echo yes | $ANDROID update sdk -a -t tools,platform-tools,build-tools-23.0.1,android-23 --no-ui --force --no-https;
-    sudo apt-get install openjdk-8-jdk;
-    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64;
-    export PATH=$JAVA_HOME/bin:$PATH;
-  fi
-- sudo pip install --upgrade pip
-- sudo pip install setuptools-rust
-- sudo pip install pyOpenSSL
-- sudo pip install pyjavaproperties
-- sudo pip install github3.py
-- sudo pip install cpp-coveralls
-  
->>>>>>> master
+
 script: "tools/travis-script.sh"
 
 after_success:
@@ -207,3 +156,4 @@ after_success:
 - if [ "$TRAVIS_OS_NAME" == "osx" ] && [ "$BUILD_TYPE" == "Emscripten" ]; then
     ./tools/deploy-emscripten.sh;
   fi
+

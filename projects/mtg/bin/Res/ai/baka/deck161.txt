@@ -1,0 +1,89 @@
+#NAME:Vial Smasher Commander
+#DESC:Original deck by GrwingErbw (tappedout.net)
+#DESC:Refined for Wagic by Bob
+#HINT:castpriority(commander,*)
+#HINT:dontattackwith(Vial Smasher the Fierce)
+#HINT:dontblockwith(Vial Smasher the Fierce)
+Abrade (*) * 1
+Angrath, the Flame-Chained (*) * 1
+Archfiend of Despair (*) * 1
+Badlands (*) * 1
+Banefire (M19) (*) * 1
+Baneful Omen (*) * 1
+Bituminous Blast (C16) (*) * 1
+Black Market (*) * 1
+Blasphemous Act (*) * 1
+Bojuka Bog (*) * 1
+Brash Taunter (*) * 1
+Breath of Malfegor (*) * 1
+Charmbreaker Devils (*) * 1
+Cinder Barrens (*) * 1
+City on Fire (*) * 1
+Command Tower (*) * 1
+Curtains' Call (*) * 1
+Decree of Pain (*) * 1
+Doom Blade (*) * 1
+Dragonskull Summit (*) * 1
+Dreadbore (*) * 1
+Everlasting Torment (*) * 1
+Expedition Map (*) * 1
+Exsanguinate (*) * 1
+Falkenrath Noble (*) * 1
+Fiery Confluence (*) * 1
+Fiery Emancipation (*) * 1
+Fire Diamond (*) * 1
+Font of Mythos (CON) (*) * 1
+Foreboding Ruins (*) * 1
+Go for the Throat (*) * 1
+Gratuitous Violence (*) * 1
+Gray Merchant of Asphodel (*) * 1
+Guttersnipe (*) * 1
+Hero's Downfall (*) * 1
+Howling Mine (*) * 1
+In Garruk's Wake (*) * 1
+Indulgent Tormentor (*) * 1
+Kaervek the Merciless (*) * 1
+Kederekt Parasite (*) * 1
+Lightning Reaver (*) * 1
+Malfegor (*) * 1
+Mogis, God of Slaughter (*) * 1
+Mountain (MKM) (*) * 4
+Mountain (WOE) (*) * 4
+Mountain (LCI) (*) * 4
+Mountain (LTR) (*) * 1
+Murder (*) * 1
+Neheb, the Eternal (*) * 1
+Painful Quandary (*) * 1
+Phyrexian Arena (*) * 1
+Polluted Bonds (*) * 1
+Rakdos Carnarium (*) * 1
+Rakdos Guildgate (*) * 1
+Rakdos Signet (*) * 1
+Rakdos's Return (*) * 1
+Rakdos, Lord of Riots (*) * 1
+Sheoldred, the Apocalypse (*) * 1
+Sin Prodder (*) * 1
+Skull Rend (*) * 1
+Smoldering Marsh (*) * 1
+Sol Ring (*) * 1
+Solemn Simulacrum (*) * 1
+Star of Extinction (*) * 1
+Starstorm (*) * 1
+Swamp (MKM) (*) * 4
+Swamp (WOE) (*) * 4
+Swamp (LCI) (*) * 4
+Swamp (LTR) (*) * 1
+Temple of Malice (*) * 1
+Temple of the False God (*) * 1
+Temporal Extortion (*) * 1
+Terminate (CMD) (*) * 1
+Thought Vessel (*) * 1
+Torment of Hailfire (*) * 1
+Tragic Slip (*) * 1
+Twilight Prophet (*) * 1
+Unlicenced Disintergration (*) * 1
+Vicious Shadows (*) * 1
+Volcanic Vision (*) * 1
+Waste Not (*) * 1
+Wound Reflection (*) * 1
+#CMD:Vial Smasher the Fierce (*) * 1

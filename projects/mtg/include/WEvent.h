@@ -69,6 +69,22 @@ struct WEventCounters : public WEvent {
   virtual Targetable * getTarget(int target);
 };
 
+struct WEventTotalCounters : public WEvent {
+  MTGCardInstance * targetCard;
+  Counters * counter;
+  string name;
+  int power;
+  int toughness;
+  bool added;
+  bool removed;
+  int totalamount;
+  bool iscost;
+  MTGCardInstance * source;
+  WEventTotalCounters(Counters *counter,string name,int power, int toughness,bool added = false, bool removed = false, int totalamount = 0, bool iscost = false, MTGCardInstance * source = NULL);
+  using WEvent::getTarget;
+  virtual Targetable * getTarget(int target);
+};
+
 struct WEventLife : public WEvent {
     Player * player;
     int amount;
@@ -146,6 +162,10 @@ struct WEventCardTappedForMana : public WEventCardUpdate {
   virtual Targetable * getTarget(int target);
 };
 
+struct WEventCardManaProduced : public WEventCardUpdate {
+  WEventCardManaProduced(MTGCardInstance * card);
+  virtual Targetable * getTarget(int target);
+};
 
 //Event when a card's "attacker" status changes
 //before:Player/Planeswalker that card was attacking previously
@@ -385,6 +405,31 @@ struct WEventplayerMonarch : public WEvent {
     virtual Targetable * getTarget(Player * player);
 };
 
+//ring tempts event
+struct WEventplayerTempted : public WEvent {
+    WEventplayerTempted(Player * player);
+    Player * player;
+    using WEvent::getTarget;
+    virtual Targetable * getTarget(Player * player);
+};
+
+//proliferate event
+struct WEventplayerProliferated : public WEvent {
+    WEventplayerProliferated(Player * player);
+    Player * player;
+    MTGCardInstance * source;
+    using WEvent::getTarget;
+    virtual Targetable * getTarget(Player * player);
+};
+
+//initiative event
+struct WEventplayerInitiative : public WEvent {
+    WEventplayerInitiative(Player * player);
+    Player * player;
+    using WEvent::getTarget;
+    virtual Targetable * getTarget(Player * player);
+};
+
 //shuffle event
 struct WEventplayerShuffled : public WEvent {
     WEventplayerShuffled(Player * player);
@@ -396,6 +441,12 @@ struct WEventplayerShuffled : public WEvent {
 //boast event
 struct WEventCardBoasted : public WEventCardUpdate {
     WEventCardBoasted(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
+//defeated event
+struct WEventCardDefeated : public WEventCardUpdate {
+    WEventCardDefeated(MTGCardInstance * card);
     virtual Targetable * getTarget(int target);
 };
 
@@ -423,9 +474,22 @@ struct WEventCardScryed : public WEventCardUpdate {
     virtual Targetable * getTarget(int target);
 };
 
+//ninjutsu event
+struct WEventCardNinja : public WEventCardUpdate {
+    WEventCardNinja(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
 //explores event
 struct WEventCardExplored : public WEventCardUpdate {
     WEventCardExplored(MTGCardInstance * card);
+    virtual Targetable * getTarget(int target);
+};
+
+//ring bearer event
+struct WEventCardBearerChosen : public WEventCardUpdate {
+    bool bearerChanged;
+    WEventCardBearerChosen(MTGCardInstance * card);
     virtual Targetable * getTarget(int target);
 };
 

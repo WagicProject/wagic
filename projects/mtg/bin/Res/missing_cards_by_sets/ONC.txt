@@ -1,0 +1,18 @@
+[card]
+name=Norn's Annex
+text=({PW} can be paid with either {W} or 2 life.) -- Creatures can't attack you or a planeswalker you control unless their controller pays {PW} for each of those creatures.
+mana={3}{PW}{PW}
+type=Artifact
+[/card]
+[card]
+name=Lux Artillery
+text=Whenever you cast an artifact creature spell, it gains sunburst. (It enters the battlefield with a +1/+1 counter on it for each color of mana spent to cast it.) -- At the beginning of your end step, if there are thirty or more counters among artifacts and creatures you control, Lux Artillery deals 10 damage to each opponent.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Lux Artillery
+text=Whenever you cast an artifact creature spell, it gains sunburst. (It enters the battlefield with a +1/+1 counter on it for each color of mana spent to cast it.) -- At the beginning of your end step, if there are thirty or more counters among artifacts and creatures you control, Lux Artillery deals 10 damage to each opponent.
+mana={4}
+type=Artifact
+[/card]

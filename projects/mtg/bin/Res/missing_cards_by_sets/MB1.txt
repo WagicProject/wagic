@@ -38,15 +38,6 @@ mana={2}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Winding Constrictor
-text=If one or more counters would be placed on an artifact or creature you control, that many plus one of each of those kinds of counters are placed on that permanent instead. -- If you would get one or more counters, you get that many plus one of each of those kinds of counters instead.
-mana={B}{G}
-type=Creature
-subtype=Snake
-power=2
-toughness=3
-[/card]
-[card]
 name=Goblin Charbelcher
 text={3}, {T}: Reveal cards from the top of your library until you reveal a land card. Goblin Charbelcher deals damage equal to the number of nonland cards revealed this way to target creature or player. If the revealed land card was a Mountain, Goblin Charbelcher deals double that damage instead. Put the revealed cards on the bottom of your library in any order.
 mana={4}
@@ -126,12 +117,6 @@ type=Creature
 subtype=Turtle
 power=5
 toughness=9
-[/card]
-[card]
-name=Sapphire Charm
-text=Choose one -- Target player draws a card at the beginning of the next turn's upkeep; or target creature gains flying until end of turn; or target creature an opponent controls phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step.)
-mana={U}
-type=Instant
 [/card]
 [card]
 name=Sakashima the Impostor

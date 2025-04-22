@@ -1066,6 +1066,88 @@ AAAlterPoison::~AAAlterPoison()
 {
 }
 
+//AA Bearer Chosen
+AARingBearerChosen::AARingBearerChosen(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost) :
+    ActivatedAbility(observer, _id, _source, _cost, 0)
+{
+    target = _target;
+    andAbility = NULL;
+}
+
+int AARingBearerChosen::resolve()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if(_target)
+    {
+        MTGCardInstance * currentBearer = NULL;
+        for (int j = _target->controller()->game->inPlay->nb_cards - 1; j >= 0; --j){
+            if(_target->controller()->game->inPlay->cards[j]->isRingBearer == 1){
+                currentBearer = _target->controller()->game->inPlay->cards[j];
+                _target->controller()->game->inPlay->cards[j]->isRingBearer = 0;
+                break;
+            }
+        }
+        _target->isRingBearer = 1;
+        bool bearerChanged = false;
+        if(currentBearer == NULL || currentBearer != _target){
+            for (int j = _target->controller()->game->inPlay->nb_cards - 1; j >= 0; --j){
+                if(_target->controller()->game->inPlay->cards[j]->name == "The Ring"){
+                    for (size_t i = 1; i < game->mLayers->actionLayer()->mObjects.size(); i++)
+                    {
+                        MTGAbility * a = ((MTGAbility *) game->mLayers->actionLayer()->mObjects[i]);
+                        AEquip * eq = dynamic_cast<AEquip*> (a);
+                        if (eq && eq->source == _target->controller()->game->inPlay->cards[j])
+                        {
+                            ((AEquip*)a)->unequip();
+                            ((AEquip*)a)->equip(_target);
+                            bearerChanged = true;
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        WEventCardBearerChosen * e = NEW WEventCardBearerChosen(_target);
+        e->bearerChanged = bearerChanged;
+        game->receiveEvent(e);
+        if(andAbility)
+        {
+            MTGAbility * andAbilityClone = andAbility->clone();
+            andAbilityClone->target = _target;
+            if(andAbility->oneShot)
+            {
+                andAbilityClone->resolve();
+                SAFE_DELETE(andAbilityClone);
+            }
+            else
+            {
+                andAbilityClone->addToGame();
+            }
+        }
+        return 1;
+    }
+    return 0;
+}
+
+const string AARingBearerChosen::getMenuText()
+{
+    return "The Ring bearer has been chosen";
+}
+
+AARingBearerChosen * AARingBearerChosen::clone() const
+{
+    AARingBearerChosen * a = NEW AARingBearerChosen(*this);
+    if(andAbility)
+        a->andAbility = andAbility->clone();
+    return a;
+}
+
+AARingBearerChosen::~AARingBearerChosen()
+{
+    SAFE_DELETE(andAbility);
+}
+
 //AA Explores Event
 AAExploresEvent::AAExploresEvent(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost,
         int who) :
@@ -1330,6 +1412,64 @@ AAAlterYidaroCount::~AAAlterYidaroCount()
 {
 }
 
+//AA Ring Temptations
+AAAlterRingTemptations::AAAlterRingTemptations(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int temptations, ManaCost * _cost,
+        int who) :
+    ActivatedAbilityTP(observer, _id, _source, _target, _cost, who), temptations(temptations)
+{
+    andAbility = NULL;
+}
+
+int AAAlterRingTemptations::resolve()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    if (_target)
+    {
+        Player * pTarget = (Player*)_target;
+        if(pTarget)
+        {
+            pTarget->ringTemptations += temptations;
+            if(pTarget->ringTemptations < 0)
+                pTarget->ringTemptations = 0;
+            WEvent * e = NEW WEventplayerTempted(pTarget);
+            game->receiveEvent(e);
+            if(andAbility)
+            {
+                MTGAbility * andAbilityClone = andAbility->clone();
+                andAbilityClone->target = _target;
+                if(andAbility->oneShot)
+                {
+                    andAbilityClone->resolve();
+                    SAFE_DELETE(andAbilityClone);
+                }
+                else
+                {
+                    andAbilityClone->addToGame();
+                }
+            }
+        }
+    }
+    return 0;
+}
+
+const string AAAlterRingTemptations::getMenuText()
+{
+    return "The Ring tempts you";
+}
+
+AAAlterRingTemptations * AAAlterRingTemptations::clone() const
+{
+    AAAlterRingTemptations * a = NEW AAAlterRingTemptations(*this);
+    if(andAbility)
+        a->andAbility = andAbility->clone();
+    return a;
+}
+
+AAAlterRingTemptations::~AAAlterRingTemptations()
+{
+    SAFE_DELETE(andAbility);
+}
+
 //AA Monarch
 AAAlterMonarch::AAAlterMonarch(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost,
         int who) :
@@ -1367,6 +1507,44 @@ AAAlterMonarch * AAAlterMonarch::clone() const
 }
 
 AAAlterMonarch::~AAAlterMonarch()
+{
+}
+
+//AA Initiative
+AAAlterInitiative::AAAlterInitiative(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost,
+        int who) :
+    ActivatedAbilityTP(observer, _id, _source, _target, _cost, who)
+{
+}
+
+int AAAlterInitiative::resolve()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    if (_target)
+    {
+        Player * pTarget = (Player*)_target;
+        if(pTarget)
+        {
+            pTarget->initiative = 1;
+            pTarget->opponent()->initiative = 0;
+            WEvent * e = NEW WEventplayerInitiative(pTarget);
+            game->receiveEvent(e);
+        }
+    }
+    return 0;
+}
+
+const string AAAlterInitiative::getMenuText()
+{
+    return _("A player takes the Initiative").c_str();
+}
+
+AAAlterInitiative * AAAlterInitiative::clone() const
+{
+    return NEW AAAlterInitiative(*this);
+}
+
+AAAlterInitiative::~AAAlterInitiative()
 {
 }
 
@@ -1499,219 +1677,256 @@ AADamager::AADamager(GameObserver* observer, int _id, MTGCardInstance * _source,
 {
     aType = MTGAbility::DAMAGER;
     redirected = false;
-    }
+    andAbility = NULL;
+}
 
-    int AADamager::resolve()
-    {
-        Damageable * _target = (Damageable *) getTarget();
-        if (_target)
-        {
-            WParsedInt damage(d, NULL, (MTGCardInstance *)source);
-            if(_target == game->opponent() && game->opponent()->inPlay()->hasType("planeswalker") && !redirected)
-            {
-                vector<MTGAbility*>selection;
-                MTGCardInstance * check = NULL;
-                this->redirected = true;
-                MTGAbility * setPlayer = this->clone();
-                this->redirected = false;
-                selection.push_back(setPlayer);
-                int checkWalkers = ((Player*)_target)->game->battlefield->cards.size();
-                for(int i = 0; i < checkWalkers;++i)
-                {
-                    check = ((Player*)_target)->game->battlefield->cards[i];
-                    if(check->hasType(Subtypes::TYPE_PLANESWALKER))
-                    {
-                        this->redirected = true;
-                        MTGAbility * setWalker = this->clone();
-                        this->redirected = false;
-                        setWalker->oneShot = true;
-                        setWalker->target = check;
-                        selection.push_back(setWalker);
-                    }
-                }
-                if(selection.size())
-                {
-                    MTGAbility * a1 = NEW MenuAbility(game, this->GetId(), source, source,true,selection);
-                    game->mLayers->actionLayer()->currentActionCard = source;
-                    a1->resolve();
-                }
-                return 1;
-            }
-            game->mLayers->stackLayer()->addDamage(source, _target, damage.getValue());
-            game->mLayers->stackLayer()->resolve();
-            return 1;
-        }
-        return 0;
-    }
-
-    int AADamager::getDamage()
+int AADamager::resolve()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    if (_target)
     {
         WParsedInt damage(d, NULL, (MTGCardInstance *)source);
-        return damage.getValue();
-    }
-
-    const string AADamager::getMenuText()
-    {
-        MTGCardInstance * _target = dynamic_cast<MTGCardInstance*>(target);
-        if(_target && _target->hasType(Subtypes::TYPE_PLANESWALKER))
-            return _target->name.c_str();
-        if(redirected)
+        if(_target == game->opponent() && game->opponent()->inPlay()->hasType("planeswalker") && !redirected)
         {
-            if(d.size())
+            vector<MTGAbility*>selection;
+            MTGCardInstance * check = NULL;
+            this->redirected = true;
+            MTGAbility * setPlayer = this->clone();
+            this->redirected = false;
+            selection.push_back(setPlayer);
+            int checkWalkers = ((Player*)_target)->game->battlefield->cards.size();
+            for(int i = 0; i < checkWalkers;++i)
             {
-                WParsedInt parsedNum(d, NULL, source);
-                return _("Deal " + parsedNum.getStringValue() + " Damage to Player").c_str();
+                check = ((Player*)_target)->game->battlefield->cards[i];
+                if(check->hasType(Subtypes::TYPE_PLANESWALKER))
+                {
+                    this->redirected = true;
+                    MTGAbility * setWalker = this->clone();
+                    this->redirected = false;
+                    setWalker->oneShot = true;
+                    setWalker->target = check;
+                    selection.push_back(setWalker);
+                }
             }
-            return "Damage Player";
+            if(selection.size())
+            {
+                MTGAbility * a1 = NEW MenuAbility(game, this->GetId(), source, source,true,selection);
+                game->mLayers->actionLayer()->currentActionCard = source;
+                a1->resolve();
+            }
+            return 1;
         }
-        
+        game->mLayers->stackLayer()->addDamage(source, _target, damage.getValue());
+        game->mLayers->stackLayer()->resolve();
+        if(andAbility)
+        {
+            MTGAbility * andAbilityClone = andAbility->clone();
+            andAbilityClone->target = source;
+            if(andAbility->oneShot)
+            {
+                andAbilityClone->resolve();
+                SAFE_DELETE(andAbilityClone);
+            }
+            else
+            {
+                andAbilityClone->addToGame();
+            }
+        }
+        return 1;
+    }
+    return 0;
+}
+
+int AADamager::getDamage()
+{
+    WParsedInt damage(d, NULL, (MTGCardInstance *)source);
+    return damage.getValue();
+}
+
+const string AADamager::getMenuText()
+{
+    MTGCardInstance * _target = dynamic_cast<MTGCardInstance*>(target);
+    if(_target && (_target->hasType(Subtypes::TYPE_PLANESWALKER) || _target->hasType(Subtypes::TYPE_BATTLE)))
+        return _target->name.c_str();
+    if(redirected)
+    {
         if(d.size())
         {
             WParsedInt parsedNum(d, NULL, source);
-            return _("Deal " + parsedNum.getStringValue() + " Damage").c_str();
+            return _("Deal " + parsedNum.getStringValue() + " Damage to Player").c_str();
         }
-        return "Damage";
+        return "Damage Player";
     }
+        
+    if(d.size())
+    {
+        WParsedInt parsedNum(d, NULL, source);
+        return _("Deal " + parsedNum.getStringValue() + " Damage").c_str();
+    }
+    return "Damage";
+}
 
 AADamager * AADamager::clone() const
 {
-    return NEW AADamager(*this);
+    AADamager * a = NEW AADamager(*this);
+    if(andAbility)
+        a->andAbility = andAbility->clone();
+    return a;
 }
 
+AADamager::~AADamager()
+{
+    SAFE_DELETE(andAbility);
+}
 
 //AADepleter
 AADepleter::AADepleter(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost, int who, bool toexile, bool colorrepeat, bool namerepeat) :
     ActivatedAbilityTP(observer, _id, card, _target, _cost, who),nbcardsStr(nbcardsStr),toexile(toexile), colorrepeat(colorrepeat), namerepeat(namerepeat)
 {
+    andAbility = NULL;
 }
-    int AADepleter::resolve()
+
+int AADepleter::resolve()
+{
+    Player * player = getPlayerFromTarget(getTarget());
+    if (player)
     {
-        Player * player = getPlayerFromTarget(getTarget());
-        if (player)
+        WParsedInt numCards(nbcardsStr, NULL, source);
+        MTGLibrary * library = player->game->library;
+        if (colorrepeat && library->nb_cards)
         {
-            WParsedInt numCards(nbcardsStr, NULL, source);
-            MTGLibrary * library = player->game->library;
-            if (colorrepeat && library->nb_cards)
+            bool repeating = false;
+            do
             {
-                bool repeating = false;
-                do
-                {
-                    repeating = false;
-                    vector<MTGCardInstance*>found;
-                    for (int i = 0; i < numCards.getValue(); i++)
-                    {
-                        if (library->nb_cards)
-                        {
-                            if(library->nb_cards > i)
-                            found.push_back(library->cards[(library->nb_cards - 1) - i]);
-                        }
-                    }
-
-                    for (vector<MTGCardInstance*>::iterator it = found.begin(); it != found.end(); it++)
-                    {
-                        MTGCardInstance * cardFirst = *it;
-                        if (cardFirst->isLand())
-                            continue;
-                        for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i)
-                        {
-                            if (cardFirst->hasColor(i))
-                            {
-                                for (vector<MTGCardInstance*>::iterator secondit = found.begin(); secondit != found.end(); secondit++)
-                                {
-                                    MTGCardInstance * cardSecond = *secondit;
-                                    if (cardSecond->isLand())
-                                        continue;
-                                    if (cardSecond->hasColor(i) && cardFirst != cardSecond)
-                                    {
-                                        repeating = true;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    do
-                    {
-                        if (found.size())
-                        {
-                            MTGCardInstance * toMove = found.back();
-                            if (toMove)
-                            {
-                                if (toexile)
-                                    player->game->putInZone(toMove, library, player->game->exile);
-                                else
-                                    player->game->putInZone(toMove, library, player->game->graveyard);
-                                found.pop_back();
-                            }
-                        }
-                    } while (found.size());
-
-                } while (repeating);
-            }
-            else if (namerepeat && library->nb_cards)
-            {
-                bool repeating = false;
-                do
-                {
-                    repeating = false;
-                    vector<MTGCardInstance*>found;
-                    for (int i = 0; i < numCards.getValue(); i++)
-                    {
-                        if (library->nb_cards)
-                        {
-                            if (library->nb_cards  > i)
-                            found.push_back(library->cards[(library->nb_cards - 1) - i]);
-                        }
-                    }
-
-                    for (vector<MTGCardInstance*>::iterator it = found.begin(); it != found.end(); it++)
-                    {
-                        MTGCardInstance * cardFirst = *it;
-                        for (vector<MTGCardInstance*>::iterator secondit = found.begin(); secondit != found.end(); secondit++)
-                        {
-                            MTGCardInstance * cardSecond = *secondit;
-                            if (cardSecond->name == cardFirst->name && cardFirst != cardSecond)
-                            {
-                                repeating = true;
-                            }
-                        }
-
-                    }
-
-                    do
-                    {
-                        if (found.size())
-                        {
-                            MTGCardInstance * toMove = found.back();
-                            if (toMove)
-                            {
-                                if (toexile)
-                                    player->game->putInZone(toMove, library, player->game->exile);
-                                else
-                                    player->game->putInZone(toMove, library, player->game->graveyard);
-                                found.pop_back();
-                            }
-                        }
-                    } while (found.size());
-                } while (repeating);
-            }
-            else
-            {
+                repeating = false;
+                vector<MTGCardInstance*>found;
                 for (int i = 0; i < numCards.getValue(); i++)
                 {
                     if (library->nb_cards)
                     {
-                        if (toexile)
-                            player->game->putInZone(library->cards[library->nb_cards - 1], library, player->game->exile);
-                        else
-                            player->game->putInZone(library->cards[library->nb_cards - 1], library, player->game->graveyard);
+                        if(library->nb_cards > i)
+                        found.push_back(library->cards[(library->nb_cards - 1) - i]);
                     }
                 }
-            }
 
+                for (vector<MTGCardInstance*>::iterator it = found.begin(); it != found.end(); it++)
+                {
+                    MTGCardInstance * cardFirst = *it;
+                    if (cardFirst->isLand())
+                        continue;
+                    for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i)
+                    {
+                        if (cardFirst->hasColor(i))
+                        {
+                            for (vector<MTGCardInstance*>::iterator secondit = found.begin(); secondit != found.end(); secondit++)
+                            {
+                                MTGCardInstance * cardSecond = *secondit;
+                                if (cardSecond->isLand())
+                                    continue;
+                                if (cardSecond->hasColor(i) && cardFirst != cardSecond)
+                                {
+                                    repeating = true;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                do
+                {
+                    if (found.size())
+                    {
+                        MTGCardInstance * toMove = found.back();
+                        if (toMove)
+                        {
+                            if (toexile)
+                                player->game->putInZone(toMove, library, player->game->exile);
+                            else
+                                player->game->putInZone(toMove, library, player->game->graveyard);
+                            found.pop_back();
+                        }
+                    }
+                } while (found.size());
+
+            } while (repeating);
         }
-        return 1;
+        else if (namerepeat && library->nb_cards)
+        {
+            bool repeating = false;
+            do
+            {
+                repeating = false;
+                vector<MTGCardInstance*>found;
+                for (int i = 0; i < numCards.getValue(); i++)
+                {
+                    if (library->nb_cards)
+                    {
+                        if (library->nb_cards  > i)
+                        found.push_back(library->cards[(library->nb_cards - 1) - i]);
+                    }
+                }
+
+                for (vector<MTGCardInstance*>::iterator it = found.begin(); it != found.end(); it++)
+                {
+                    MTGCardInstance * cardFirst = *it;
+                    for (vector<MTGCardInstance*>::iterator secondit = found.begin(); secondit != found.end(); secondit++)
+                    {
+                        MTGCardInstance * cardSecond = *secondit;
+                        if (cardSecond->name == cardFirst->name && cardFirst != cardSecond)
+                        {
+                            repeating = true;
+                        }
+                    }
+
+                }
+
+                do
+                {
+                    if (found.size())
+                    {
+                        MTGCardInstance * toMove = found.back();
+                        if (toMove)
+                        {
+                            if (toexile)
+                                player->game->putInZone(toMove, library, player->game->exile);
+                            else
+                                player->game->putInZone(toMove, library, player->game->graveyard);
+                            found.pop_back();
+                        }
+                    }
+                } while (found.size());
+            } while (repeating);
+        }
+        else
+        {
+            for (int i = 0; i < numCards.getValue(); i++)
+            {
+                if (library->nb_cards)
+                {
+                    if (toexile)
+                        player->game->putInZone(library->cards[library->nb_cards - 1], library, player->game->exile);
+                    else
+                        player->game->putInZone(library->cards[library->nb_cards - 1], library, player->game->graveyard);
+                }
+            }
+        }
+        if(andAbility)
+        {
+            MTGAbility * andAbilityClone = andAbility->clone();
+            andAbilityClone->target = source;
+            if(andAbility->oneShot)
+            {
+                andAbilityClone->resolve();
+                SAFE_DELETE(andAbilityClone);
+            }
+            else
+            {
+                andAbilityClone->addToGame();
+            }
+        }
     }
+    return 1;
+}
 
 const string AADepleter::getMenuText()
 {
@@ -1735,7 +1950,15 @@ const string AADepleter::getMenuText()
 
 AADepleter * AADepleter::clone() const
 {
-    return NEW AADepleter(*this);
+    AADepleter * a = NEW AADepleter(*this);
+    if(andAbility)
+        a->andAbility = andAbility->clone();
+    return a;
+}
+
+AADepleter::~AADepleter()
+{
+    SAFE_DELETE(andAbility);
 }
 
 //AACascade
@@ -1943,7 +2166,7 @@ int AALibraryPosition::resolve()
 
 const string AALibraryPosition::getMenuText()
 {
-    return "Put in Library in a specific position from the top";
+    return "Put in library in a specific position from the top";
 }
 
 AALibraryPosition * AALibraryPosition::clone() const
@@ -2434,7 +2657,7 @@ MTGCardInstance * AAConjure::makeCard()
         newName = names.at(std::rand() % names.size());
     }
     MTGCardInstance * card = NULL;
-    MTGCard * cardData = MTGCollection()->getCardByName(newName);
+    MTGCard * cardData = MTGCollection()->getCardByName(newName, source->setId);
     if(!cardData) return NULL;
     card = NEW MTGCardInstance(cardData, source->controller()->game);
     card->owner = source->controller();
@@ -2451,7 +2674,26 @@ int AAConjure::resolve()
         if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be conjured, they will follow the fate of top-card
         theNamedCard = makeCard();
         if(theNamedCard){
-           MTGCardInstance * copy =  source->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, MTGGameZone::stringToZone(game, cardZone, theNamedCard, NULL));
+            Spell * spell = NULL;
+            MTGGameZone * targetZone = MTGGameZone::stringToZone(game, cardZone, theNamedCard, NULL);
+            MTGCardInstance * copy =  source->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, targetZone);
+            if(!copy){
+                this->forceDestroy = true;
+                return 0;
+            }
+            if(targetZone == copy->controller()->game->battlefield){
+                copy->changeController(source->controller(), true);
+                if (game->targetChooser)
+                {
+                    game->targetChooser->Owner = source->controller();
+                    spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, NULL, 1, 0);
+                    game->targetChooser = NULL;
+                }
+                else
+                {
+                    spell = game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, 1, 0);
+                }
+            }
             if(andAbility)
             {
                 MTGAbility * andAbilityClone = andAbility->clone();
@@ -2466,9 +2708,9 @@ int AAConjure::resolve()
                     andAbilityClone->addToGame();
                 }
             }
+            this->forceDestroy = true;
+            return 1;
         }
-        this->forceDestroy = true;
-        return 1;
     }
     return 0;
 }
@@ -2561,6 +2803,7 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
                 nb = checkcounter->nb;
                 delete checkcounter;
             }
+            int totalcounters = 0;
             if (nb > 0)
             {
                if(_target->has(Constants::COUNTERSHROUD)) // Added to avoid the counter increasement (e.g. "Solemnity").
@@ -2575,7 +2818,7 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
                     if(_target->getCurrentZone() != _target->controller()->game->battlefield ||
                         _target->getCurrentZone() != _target->controller()->opponent()->game->battlefield)
                     {
-                        if(power||toughness)
+                        if(!_target->isFlipped && (power||toughness)) // Skipped control for flipped card to solve a bug on double faces cards (e.g. "Ashen Reaper").
                         {
                             if(_target->previousZone == _target->controller()->game->battlefield ||
                                 _target->previousZone == _target->controller()->opponent()->game->battlefield)
@@ -2593,7 +2836,14 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
                     if(!maxNb || (maxNb && currentAmount < maxNb))
                     {
                         _target->counters->addCounter(name.c_str(), power, toughness, noevent, false, source);
+                        totalcounters++;
                     }
+                }
+                if (!noevent)
+                {
+                    WEvent * w = NEW WEventTotalCounters(_target->counters, name.c_str(), power, toughness, true, false, totalcounters, false, source);
+                    dynamic_cast<WEventTotalCounters*>(w)->targetCard = _target->counters->target;
+                    _target->getObserver()->receiveEvent(w);
                 }
             }
             else
@@ -2603,6 +2853,13 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
                     while (_target->next)
                         _target = _target->next;
                     _target->counters->removeCounter(name.c_str(), power, toughness, noevent, false, source);
+                    totalcounters++;
+                }
+                if (!noevent)
+                {
+                    WEvent * e = NEW WEventTotalCounters(_target->counters, name.c_str(), power, toughness, false, true, totalcounters, false, source);
+                    dynamic_cast<WEventTotalCounters*>(e)->targetCard = _target->counters->target;
+                    _target->getObserver()->receiveEvent(e);
                 }
             }
 
@@ -2860,6 +3117,7 @@ AARemoveSingleCounter::AARemoveSingleCounter(GameObserver* observer, int id, MTG
 ActivatedAbility(observer, id, source, cost, 0), nb(nb)
 {
     this->GetId();
+    allcounters = false;
 }
  
 int AARemoveSingleCounter::resolve()
@@ -2896,15 +3154,25 @@ int AARemoveSingleCounter::resolve()
         for(size_t i = 0; i < counters->counters.size(); ++i)
         {
             Counter * counter = counters->counters[i];
-            MTGAbility * a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, cTarget,"", counter->name.c_str(), counter->power, counter->toughness, -nb, 0);
+            MTGAbility * a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, cTarget, "", counter->name.c_str(), counter->power, counter->toughness, -nb, 0);
             a->oneShot = true;
             pcounters.push_back(a);
         }
     }
     if(pcounters.size())
     {
-        MTGAbility * a = NEW MenuAbility(game, this->GetId(), target, source,false,pcounters);
-        a->resolve();
+        if(allcounters)
+        {
+            for(size_t j = 0; j < pcounters.size(); j++)
+            {
+                pcounters[j]->resolve();
+            }
+        }
+        else
+        {
+            MTGAbility * a = NEW MenuAbility(game, this->GetId(), target, source, true, pcounters);
+            a->resolve();
+        }
     }
     return 1;
 
@@ -2981,9 +3249,9 @@ int AADuplicateCounters::resolve()
             Counter * counter = counters->counters[i];
             MTGAbility * a = NULL;
             if(single)
-                a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, cTarget,"", counter->name.c_str(), counter->power, counter->toughness, 1, 0);
+                a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, cTarget, "", counter->name.c_str(), counter->power, counter->toughness, 1, 0);
             else
-                a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, cTarget,"", counter->name.c_str(), counter->power, counter->toughness, counter->nb, 0);
+                a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, cTarget, "", counter->name.c_str(), counter->power, counter->toughness, counter->nb, 0);
             a->oneShot = true;
             pcounters.push_back(a);
         }
@@ -2992,14 +3260,14 @@ int AADuplicateCounters::resolve()
     {
         if(allcounters)
         {
-             for(size_t j = 0; j < pcounters.size(); j++)
-             {
-                 pcounters[j]->resolve();
-             }
+            for(size_t j = 0; j < pcounters.size(); j++)
+            {
+                pcounters[j]->resolve();
+            }
         }
         else
         {
-            MTGAbility * a = NEW MenuAbility(game, this->GetId(), target, source,false,pcounters);
+            MTGAbility * a = NEW MenuAbility(game, this->GetId(), target, source, true, pcounters);
             a->resolve();
         }
     }
@@ -3029,6 +3297,7 @@ ActivatedAbility(observer, id, source, cost, 0)
 {
     this->GetId();
     allcounters = false;
+    notrigger = false;
 }
  
 int AAProliferate::resolve()
@@ -3065,7 +3334,7 @@ int AAProliferate::resolve()
         for(size_t i = 0; i < counters->counters.size(); ++i)
         {
             Counter * counter = counters->counters[i];
-            MTGAbility * a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, cTarget,"", counter->name.c_str(), counter->power, counter->toughness, 1, 0);
+            MTGAbility * a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, cTarget, "", counter->name.c_str(), counter->power, counter->toughness, 1, 0);
             a->oneShot = true;
             pcounters.push_back(a);
         }
@@ -3084,6 +3353,11 @@ int AAProliferate::resolve()
             MTGAbility * a = NEW MenuAbility(game, this->GetId(), target, source,false,pcounters);
             a->resolve();
         }
+    }
+    if(!notrigger){
+        WEventplayerProliferated * e = NEW WEventplayerProliferated(source->controller());
+        e->source = source;
+        game->receiveEvent(e);
     }
     return 1;
 
@@ -3378,8 +3652,8 @@ AASetNameChosen::~AASetNameChosen()
 
 //
 //choosing flip coin
-GenericFlipACoin::GenericFlipACoin(GameObserver* observer, int id, MTGCardInstance * source, Targetable *,string _toAdd, ManaCost * cost) :
-ActivatedAbility(observer, id, source, cost, 0), baseAbility(_toAdd)
+GenericFlipACoin::GenericFlipACoin(GameObserver* observer, int id, MTGCardInstance * source, Targetable *,string _toAdd, ManaCost * cost, int userchoice) :
+ActivatedAbility(observer, id, source, cost, 0), baseAbility(_toAdd), userchoice(userchoice)
 {
     this->GetId();
     setCoin = NULL;
@@ -3390,15 +3664,23 @@ int GenericFlipACoin::resolve()
     if (!target)
         return 0;
     vector<MTGAbility*>selection;
-    for (int i = 0; i <2; ++i)
-    {
-        setCoin = NEW AASetCoin(game, game->mLayers->actionLayer()->getMaxId(), source,(MTGCardInstance*)target, i, baseAbility);
+    if(userchoice > 0 && userchoice <= 2){
+        setCoin = NEW AASetCoin(game, game->mLayers->actionLayer()->getMaxId(), source,(MTGCardInstance*)target, userchoice, baseAbility);
         MTGAbility * set = setCoin->clone();
         set->oneShot = true;
-        selection.push_back(set);
+        game->mLayers->actionLayer()->currentActionCard = (MTGCardInstance *)target;
+        set->resolve();
         SAFE_DELETE(setCoin);
+    } else{
+        for (int i = 1; i <=2; ++i)
+        {
+            setCoin = NEW AASetCoin(game, game->mLayers->actionLayer()->getMaxId(), source,(MTGCardInstance*)target, i, baseAbility);
+            MTGAbility * set = setCoin->clone();
+            set->oneShot = true;
+            selection.push_back(set);
+            SAFE_DELETE(setCoin);
+        }
     }
-
     if(selection.size())
     {
         MTGAbility * a1 = NEW MenuAbility(game, this->GetId(), target, source,false,selection);
@@ -3425,7 +3707,7 @@ GenericFlipACoin::~GenericFlipACoin()
 }
 
 //set coin result
- AASetCoin::AASetCoin(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target,int _side , string toAlter):
+ AASetCoin::AASetCoin(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target, int _side, string toAlter):
     InstantAbility(observer, id, source),side(_side), abilityToAlter(toAlter)
 {
     this->target = _target;
@@ -3437,7 +3719,7 @@ int AASetCoin::resolve()
     MTGCardInstance * _target =  (MTGCardInstance *)target; 
     _target->coinSide = side;
 
-    int flip = game->getRandomGenerator()->random() % 2;
+    int flip = 1 + game->getRandomGenerator()->random() % 2;
     _target->lastFlipResult = flip;
     WEvent * e = NEW WEventCardFlipCoin(_target, source->controller()->getDisplayName());
     game->receiveEvent(e);
@@ -3580,7 +3862,7 @@ GenericRollDie::~GenericRollDie()
 
 //set die result
  AASetDie::AASetDie(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target, int _side, int _diefaces, string toAlter):
-    InstantAbility(observer, id, source),side(_side), diefaces(_diefaces), abilityToAlter(toAlter)
+    InstantAbility(observer, id, source), side(_side), diefaces(_diefaces), abilityToAlter(toAlter)
 {
     this->target = _target;
     abilityAltered = NULL;
@@ -3596,12 +3878,12 @@ int AASetDie::resolve()
     _target->dieNumFaces = diefaces;
     WEvent * e = NEW WEventCardRollDie(_target, source->controller()->getDisplayName());
     game->receiveEvent(e);
-    vector<string>Win = parseBetween(abilityToAlter,"winability "," winabilityend");
+    vector<string>Win = parseBetween(abilityToAlter, "winability ", " winabilityend");
     if(Win.size())
     {
         abilityWin = Win[1];
     }
-    vector<string>Lose = parseBetween(abilityToAlter,"loseability "," loseabilityend");
+    vector<string>Lose = parseBetween(abilityToAlter, "loseability ", " loseabilityend");
     if(Lose.size())
     {
         abilityLose = Lose[1];
@@ -3623,14 +3905,14 @@ int AASetDie::resolve()
             abilityAltered->addToGame();
         }
         msg << "Result is: " << roll << ". You Won The Die Roll";
-        MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, msg.str());
+        MTGAbility * message = NEW MTGEventText(game, this->GetId(), source, msg.str());
         message->oneShot = true;
         message->addToGame();
     }
     else if(abilityWin.size() && !abilityLose.size())
     {
         msg << "Result is: " << roll << ". You Lost The Die Roll";
-        MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, msg.str());
+        MTGAbility * message = NEW MTGEventText(game, this->GetId(), source, msg.str());
         message->oneShot = true;
         message->addToGame();
     }
@@ -3649,14 +3931,14 @@ int AASetDie::resolve()
             abilityAltered->addToGame();
         }
         msg << "Result is: " << roll << ". You Lost The Die Roll";
-        MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, msg.str());
+        MTGAbility * message = NEW MTGEventText(game, this->GetId(), source, msg.str());
         message->oneShot = true;
         message->addToGame();
     }
     else if(abilityLose.size())
     {
         msg << "Result is: " << roll << ". You Won The Die Roll";
-        MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, msg.str());
+        MTGAbility * message = NEW MTGEventText(game, this->GetId(), source, msg.str());
         message->oneShot = true;
         message->addToGame();
     }
@@ -3901,8 +4183,18 @@ ADrawReplacer::~ADrawReplacer()
 int AAResetDamage::resolve()
 {
     MTGCardInstance * _target =  (MTGCardInstance *)target; 
-    if(!_target->has(Constants::NODAMAGEREMOVED)) // Added to avoid damage is removed from a card (e.g. "Patient Zero").
-        _target->life = _target->toughness;
+    if(!_target->has(Constants::NODAMAGEREMOVED)){ // Added to avoid damage is removed from a card (e.g. "Patient Zero").
+        if (!_target->isCreature() && _target->hasType(Subtypes::TYPE_PLANESWALKER)){ // Fix life calculation for planeswalker damage.
+            if (_target->counters && _target->counters->hasCounter("loyalty", 0, 0)) {
+                _target->life = _target->counters->hasCounter("loyalty", 0, 0)->nb;
+            }
+        } else if (!_target->isCreature() && _target->hasType(Subtypes::TYPE_BATTLE)){ // Fix life calculation for battle damage.
+            if (_target->counters && _target->counters->hasCounter("defense", 0, 0)) {
+                _target->life = _target->counters->hasCounter("defense", 0, 0)->nb;
+            }
+        } else
+            _target->life = _target->toughness;
+    }
     return 1;
 }
 
@@ -4157,6 +4449,7 @@ int AASacrificeCard::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
+        if(_target->has(Constants::CANTBESACRIFIED)) return 0; // The card cannot be sacrified (e.g. "Hithlain Rope")
         if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be sacrificed or exploited, they will follow the fate of top-card
         Player * p = _target->controller();
         MTGCardInstance * beforeCard = _target;
@@ -4207,8 +4500,8 @@ AASacrificeCard::~AASacrificeCard()
 {
     SAFE_DELETE(andAbility);
 }
-// Discard 
 
+// Discard
 AADiscardCard::AADiscardCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target) :
    ActivatedAbility(observer, _id, _source)
 {
@@ -4262,57 +4555,72 @@ AADiscardCard * AADiscardCard::clone() const
         a->andAbility = andAbility->clone();
     return a;
 }
+
 AADiscardCard::~AADiscardCard()
 {
     SAFE_DELETE(andAbility);
 }
 
-
-//
+//Draw
 AADrawer::AADrawer(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, string nbcardsStr,
         int who, bool noreplace) :
     ActivatedAbilityTP(observer, _id, card, _target, _cost, who), nbcardsStr(nbcardsStr),noReplace(noreplace)
 {
     aType = MTGAbility::STANDARD_DRAW;
+    andAbility = NULL;
 }
 
-    int AADrawer::resolve()
-    {
-        Player * player = getPlayerFromTarget(getTarget());
+int AADrawer::resolve()
+{
+    Player * player = getPlayerFromTarget(getTarget());
 
-        if (player)
-        {
-            WParsedInt numCards(nbcardsStr, NULL, source);
-            WEvent * e = NEW WEventDraw(player, numCards.getValue(),this);
-            if(!noReplace)
-            e = game->replacementEffects->replace(e);
-            if(e)
-            {
-                game->mLayers->stackLayer()->addDraw(player, numCards.getValue());
-                game->mLayers->stackLayer()->resolve();
-                for(int i = numCards.getValue(); i > 0;i--)
-                {
-                    player->drawCounter += 1;
-                    if ((game->turn < 1) && game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
-                    && game->currentPlayer->game->inPlay->nb_cards == 0 && game->currentPlayer->game->graveyard->nb_cards == 0
-                    && game->currentPlayer->game->exile->nb_cards == 0 && game->currentlyActing() == (Player*)game->currentPlayer) //1st Play Check
-                    {
-                        game->currentPlayer->drawCounter = 0;//Reset drawCounter for pre-game draw
-                    }
-                    WEvent * e = NEW WEventcardDraw(player, 1);
-                    game->receiveEvent(e);
-                }
-            }
-            SAFE_DELETE(e);
-        }
-        return 1;
-    }
-
-    int AADrawer::getNumCards()
+    if (player)
     {
         WParsedInt numCards(nbcardsStr, NULL, source);
-        return numCards.getValue();
+        WEvent * e = NEW WEventDraw(player, numCards.getValue(),this);
+        if(!noReplace)
+        e = game->replacementEffects->replace(e);
+        if(e)
+        {
+            game->mLayers->stackLayer()->addDraw(player, numCards.getValue());
+            game->mLayers->stackLayer()->resolve();
+            for(int i = numCards.getValue(); i > 0;i--)
+            {
+                player->drawCounter += 1;
+                if ((game->turn < 1) && game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
+                && game->currentPlayer->game->inPlay->nb_cards == 0 && game->currentPlayer->game->graveyard->nb_cards == 0
+                && game->currentPlayer->game->exile->nb_cards == 0 && game->currentlyActing() == (Player*)game->currentPlayer) //1st Play Check
+                {
+                    game->currentPlayer->drawCounter = 0;//Reset drawCounter for pre-game draw
+                }
+                WEvent * e = NEW WEventcardDraw(player, 1);
+                game->receiveEvent(e);
+            }
+        }
+        SAFE_DELETE(e);
+        if(andAbility)
+        {
+            MTGAbility * andAbilityClone = andAbility->clone();
+            andAbilityClone->target = source;
+            if(andAbility->oneShot)
+            {
+                andAbilityClone->resolve();
+                SAFE_DELETE(andAbilityClone);
+            }
+            else
+            {
+                andAbilityClone->addToGame();
+            }
+        }
     }
+    return 1;
+}
+
+int AADrawer::getNumCards()
+{
+    WParsedInt numCards(nbcardsStr, NULL, source);
+    return numCards.getValue();
+}
 
 const string AADrawer::getMenuText()
 {
@@ -4326,7 +4634,15 @@ const string AADrawer::getMenuText()
 
 AADrawer * AADrawer::clone() const
 {
-    return NEW AADrawer(*this);
+    AADrawer * a = NEW AADrawer(*this);
+    if(andAbility)
+        a->andAbility = andAbility->clone();
+    return a;
+}
+
+AADrawer::~AADrawer()
+{
+    SAFE_DELETE(andAbility);
 }
 
 // AAFrozen: Prevent a card from untapping during next untap phase
@@ -4335,6 +4651,7 @@ ActivatedAbility(observer, id, card, _cost, 0)
 {
     target = _target;
     freeze = tap;
+    andAbility = NULL;
 }
 
 int AAFrozen::resolve()
@@ -4350,6 +4667,20 @@ int AAFrozen::resolve()
             _target->tap();//easier to manage for cards that allow you to tap and also freeze.
         }
         _target->frozen += 1;
+        if(andAbility)
+        {
+            MTGAbility * andAbilityClone = andAbility->clone();
+            andAbilityClone->target = _target;
+            if(andAbility->oneShot)
+            {
+                andAbilityClone->resolve();
+                SAFE_DELETE(andAbilityClone);
+            }
+            else
+            {
+                andAbilityClone->addToGame();
+            }
+        }
     }
     return 1;
 }
@@ -4361,12 +4692,20 @@ const string AAFrozen::getMenuText()
 
 AAFrozen * AAFrozen::clone() const
 {
-    return NEW AAFrozen(*this);
+    AAFrozen * a = NEW AAFrozen(*this);
+    if(andAbility)
+        a->andAbility = andAbility->clone();
+    return a;
+}
+
+AAFrozen::~AAFrozen()
+{
+    SAFE_DELETE(andAbility);
 }
 
 // chose a new target for an aura or enchantment and equip it note: VERY basic right now.
-AANewTarget::AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost, bool retarget, bool reequip, bool newhook, int mutation, bool fromplay) :
-ActivatedAbility(observer, id, card, _cost, 0),retarget(retarget),reequip(reequip),newhook(newhook),mutation(mutation),fromplay(fromplay)
+AANewTarget::AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost, bool retarget, bool reequip, bool newhook, int mutation, bool fromplay, bool untap) :
+ActivatedAbility(observer, id, card, _cost, 0), retarget(retarget), reequip(reequip), newhook(newhook), mutation(mutation), fromplay(fromplay), untap(untap)
 {
     target = _target;
 }
@@ -4406,6 +4745,8 @@ int AANewTarget::resolve()
                 {
                     ((AEquip*)a)->unequip();
                     ((AEquip*)a)->equip(source);
+                    if(untap)
+                        source->untap();
                 }
             }
         }
@@ -4415,7 +4756,6 @@ int AANewTarget::resolve()
             target = source;
             source = _target;
         }
-
     }
     if (_target && _target->currentZone == _target->controller()->game->battlefield && reequip && !mutation)
     {
@@ -4443,6 +4783,8 @@ int AANewTarget::resolve()
                 {
                     ((AEquip*)a)->unequip();
                     ((AEquip*)a)->equip(source);
+                    if(untap)
+                        source->untap();
                 }
             }
         }
@@ -4489,6 +4831,7 @@ int AANewTarget::resolve()
                         source->types[0] = 7;
                         source->types[1] = 1;
                     }
+                    source->mPropertiesChangedSinceLastUpdate = false;
                     if(source->hasType(Subtypes::TYPE_LEGENDARY)){ // Check if the mutated card is a duplicated legendary card
                         MTGNewLegend *testlegend = NEW MTGNewLegend(source->getObserver(),source->getObserver()->mLayers->actionLayer()->getMaxId());
                         testlegend->CheckLegend(source);
@@ -4663,6 +5006,7 @@ AAMeld::AAMeld(GameObserver* observer, int id, MTGCardInstance * card, MTGCardIn
     ActivatedAbility(observer, id, card, 0), _MeldedName(MeldedName)
 {
     target = _target;
+    andAbility = NULL;
    // aType = MTGAbility::Melder;
 }
 
@@ -4679,6 +5023,8 @@ int AAMeld::resolve()
         MTGAbility *a = NEW AACastCard(game, game->mLayers->actionLayer()->getMaxId(), source, source, false, false, false, _MeldedName, _MeldedName, false, true);
         a->oneShot = false;
         a->canBeInterrupted = false;
+        if(andAbility)
+            ((AACastCard*)a)->andAbility = andAbility->clone();
         a->addToGame();
 
         return 1;
@@ -4693,7 +5039,15 @@ const string AAMeld::getMenuText()
 
 AAMeld * AAMeld::clone() const
 {
-    return NEW AAMeld(*this);
+    AAMeld * a = NEW AAMeld(*this);
+    if(andAbility)
+        a->andAbility = andAbility->clone();
+    return a;
+}
+
+AAMeld::~AAMeld()
+{
+    SAFE_DELETE(andAbility);
 }
 
 //Turn side of double faced cards
@@ -4716,7 +5070,7 @@ int AATurnSide::resolve()
         if(_target->isFlipped == 0){
             if(_SideName == "backside" && _target->backSide != "") 
                 _SideName = _target->backSide; // Added to allow to turn a card on its backside.
-            fcard = MTGCollection()->getCardByName(_SideName);
+            fcard = MTGCollection()->getCardByName(_SideName, _target->setId);
             if(!fcard) return 0;
             sideCard = NEW MTGCardInstance(fcard, _target->controller()->game);
             _target->nameOrig = _target->name; 
@@ -4743,7 +5097,7 @@ int AATurnSide::resolve()
                 }
             }
         } else {
-            fcard = MTGCollection()->getCardByName(_target->nameOrig);
+            fcard = MTGCollection()->getCardByName(_target->nameOrig, _target->setId);
             if(!fcard) return 0;
             _target->name = _target->nameOrig;
             _target->setName(_target->nameOrig);
@@ -4779,7 +5133,6 @@ int AATurnSide::resolve()
         _target->magicText = sideCard->magicText;
         _target->colors = sideCard->colors;
         _target->isFlipped = (_target->isFlipped > 0)?0:1;
-        _target->mPropertiesChangedSinceLastUpdate = true;
         SAFE_DELETE(sideCard);
         return 1;
     }
@@ -4819,7 +5172,7 @@ int AAFlip::resolve()
     if (_target)
     {
         if(_target->mutation && _target->parentCards.size() > 0) return 0; // Mutated down cards cannot be flipped, they will follow the fate of top-card
-        if(((_target->isACopier||_target->isToken) && !isflipcard && !backfromcopy) || _target->has(Constants::CANTTRANSFORM))
+        if(((_target->isACopier || (_target->isToken && _target->backSide == "" && !backfromcopy)) && !isflipcard && !backfromcopy) || _target->has(Constants::CANTTRANSFORM))
         {
             game->removeObserver(this);
             return 0;
@@ -4853,7 +5206,7 @@ int AAFlip::resolve()
                 flipStats = _target->chooseaname; // Added to allow the transformation of a card in a choosen name.
             else if(flipStats == "backside" && _target->backSide != "") 
                 flipStats = _target->backSide; // Added to allow the transformation of a card in its backside (e.g. Werewolves transformations).
-            MTGCard * fcard = MTGCollection()->getCardByName(flipStats);
+            MTGCard * fcard = MTGCollection()->getCardByName(flipStats, _target->setId);
             if(!fcard) return 0;
             MTGCardInstance * myFlip = NEW MTGCardInstance(fcard, _target->controller()->game);
             MTGCardInstance * myParent = NULL;
@@ -4877,7 +5230,7 @@ int AAFlip::resolve()
             _target->text = myFlip->text;
             _target->formattedText = myFlip->formattedText;
             if(_target->enchanted || _target->equipment > 0){ // Try to keep auras and equipment effects on basicAbilities (issue #1065).
-                MTGCardInstance * myOrig = NEW MTGCardInstance(MTGCollection()->getCardByName(nameOrig), _target->controller()->game);
+                MTGCardInstance * myOrig = NEW MTGCardInstance(MTGCollection()->getCardByName(nameOrig, _target->setId), _target->controller()->game);
                 for(unsigned int i = 0; i < _target->basicAbilities.size(); i++) {
                     if(myOrig->basicAbilities[i] == 1)
                         _target->basicAbilities[i] = 0;
@@ -4886,12 +5239,8 @@ int AAFlip::resolve()
                 }
                 SAFE_DELETE(myOrig);
             } else{
-                if(_target->has(Constants::ISCOMMANDER)){
-                    _target->basicAbilities[Constants::WASCOMMANDER] = 1;
-                    _target->basicAbilities[Constants::ISCOMMANDER] = 0;
-                }
                 for(size_t i = 0; i < _target->basicAbilities.size(); i++) {
-                    if(i != Constants::WASCOMMANDER && i != Constants::GAINEDEXILEDEATH && i != Constants::GAINEDHANDDEATH && i != Constants::GAINEDDOUBLEFACEDEATH && 
+                    if(i != Constants::GAINEDEXILEDEATH && i != Constants::GAINEDHANDDEATH && i != Constants::GAINEDDOUBLEFACEDEATH && 
                         i != Constants::DUNGEONCOMPLETED && i != Constants::PERPETUALDEATHTOUCH && i != Constants::PERPETUALLIFELINK)
                         _target->basicAbilities[i] = myFlip->model->data->basicAbilities[i]; // Try to keep the original special abilities on card flip.
                 }
@@ -5476,6 +5825,7 @@ AALifer::AALifer(GameObserver* observer, int _id, MTGCardInstance * card, Target
 ActivatedAbilityTP(observer, _id, card, _target, _cost, who),life_s(life_s),siphon(siphon)
 {
     aType = MTGAbility::LIFER;
+    andAbility = NULL;
 }
 
 int AALifer::resolve()
@@ -5493,6 +5843,21 @@ int AALifer::resolve()
     int slife = abs(player->gainOrLoseLife(life.getValue(), source));
     if(siphon && (slife > 0) && (life.getValue() < 0))
         source->controller()->gainOrLoseLife(slife, source);
+
+    if(andAbility)
+    {
+        MTGAbility * andAbilityClone = andAbility->clone();
+        andAbilityClone->target = source;
+        if(andAbility->oneShot)
+        {
+            andAbilityClone->resolve();
+            SAFE_DELETE(andAbilityClone);
+        }
+        else
+        {
+            andAbilityClone->addToGame();
+        }
+    }
 
     return 1;
 }
@@ -5512,7 +5877,15 @@ const string AALifer::getMenuText()
 
 AALifer * AALifer::clone() const
 {
-    return NEW AALifer(*this);
+    AALifer * a = NEW AALifer(*this);
+    if(andAbility)
+        a->andAbility = andAbility->clone();
+    return a;
+}
+
+AALifer::~AALifer()
+{
+    SAFE_DELETE(andAbility);
 }
 
 //Extra for Bestow ... partial fix since there's no update when react to click for bestow cards...
@@ -6390,6 +6763,7 @@ AARandomDiscarder * AARandomDiscarder::clone() const
 AAShuffle::AAShuffle(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, int who) :
     ActivatedAbilityTP(observer, _id, card, _target, _cost, who)
 {
+    andAbility = NULL;
 }
 
 int AAShuffle::resolve()
@@ -6410,7 +6784,15 @@ const string AAShuffle::getMenuText()
 
 AAShuffle * AAShuffle::clone() const
 {
-    return NEW AAShuffle(*this);
+    AAShuffle * a = NEW AAShuffle(*this);
+    if(andAbility)
+        a->andAbility = andAbility->clone();
+    return a;
+}
+
+AAShuffle::~AAShuffle()
+{
+    SAFE_DELETE(andAbility);
 }
 
 // Mulligan 
@@ -6603,6 +6985,7 @@ AATapper::AATapper(GameObserver* observer, int id, MTGCardInstance * card, MTGCa
 {
     target = _target;
     aType = MTGAbility::TAPPER;
+    andAbility = NULL;
 }
 
 int AATapper::resolve()
@@ -6614,6 +6997,20 @@ int AATapper::resolve()
         while (_target->next)
             _target = _target->next; //This is for cards such as rampant growth
         _target->tap(_sendNoEvent);
+        if(andAbility)
+        {
+            MTGAbility * andAbilityClone = andAbility->clone();
+            andAbilityClone->target = _target;
+            if(andAbility->oneShot)
+            {
+                andAbilityClone->resolve();
+                SAFE_DELETE(andAbilityClone);
+            }
+            else
+            {
+                andAbilityClone->addToGame();
+            }
+        }
     }
     return 1;
 }
@@ -6625,7 +7022,15 @@ const string AATapper::getMenuText()
 
 AATapper * AATapper::clone() const
 {
-    return NEW AATapper(*this);
+    AATapper * a = NEW AATapper(*this);
+    if(andAbility)
+        a->andAbility = andAbility->clone();
+    return a;
+}
+
+AATapper::~AATapper()
+{
+    SAFE_DELETE(andAbility);
 }
 
 //AA Untapper
@@ -6634,6 +7039,7 @@ AAUntapper::AAUntapper(GameObserver* observer, int id, MTGCardInstance * card, M
 {
     target = _target;
     aType = MTGAbility::UNTAPPER;
+    andAbility = NULL;
 }
 
 int AAUntapper::resolve()
@@ -6645,6 +7051,20 @@ int AAUntapper::resolve()
         while (_target->next)
             _target = _target->next; //This is for cards such as rampant growth
         _target->untap();
+        if(andAbility)
+        {
+            MTGAbility * andAbilityClone = andAbility->clone();
+            andAbilityClone->target = _target;
+            if(andAbility->oneShot)
+            {
+                andAbilityClone->resolve();
+                SAFE_DELETE(andAbilityClone);
+            }
+            else
+            {
+                andAbilityClone->addToGame();
+            }
+        }
     }
     return 1;
 }
@@ -6656,7 +7076,15 @@ const string AAUntapper::getMenuText()
 
 AAUntapper * AAUntapper::clone() const
 {
-    return NEW AAUntapper(*this);
+    AAUntapper * a = NEW AAUntapper(*this);
+    if(andAbility)
+        a->andAbility = andAbility->clone();
+    return a;
+}
+
+AAUntapper::~AAUntapper()
+{
+    SAFE_DELETE(andAbility);
 }
 
 AAWhatsMax::AAWhatsMax(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance *, ManaCost * _cost, int value) :
@@ -7526,7 +7954,6 @@ void AAlterCost::increaseTheCost(MTGCardInstance * card)
             card->getManaCost()->add(k,card->getIncreasedManaCost()->getCost(k));
         }
     }
-    return;
 }
 
 void AAlterCost::decreaseTheCost(MTGCardInstance * card)
@@ -7568,10 +7995,12 @@ ATransformer::ATransformer(GameObserver* observer, int id, MTGCardInstance * sou
     myCurrentTurn = 1000;
     //this subkeyword adds a color without removing the existing colors.
     removemc = (sabilities.find("removemc") != string::npos);
+    removeAllColors = (sabilities.find("removeallcolors") != string::npos);
     addNewColors = (sabilities.find("newcolors") != string::npos);
     remove = (stypes.find("removealltypes") != string::npos);
     removeCreatureSubtypes = (stypes.find("removecreaturesubtypes") != string::npos);
     removeTypes = (stypes.find("removetypes") != string::npos);
+    removeAllSubtypes = (stypes.find("removeallsubtypes") != string::npos);
 
     if (stypes.find("allsubtypes") != string::npos || stypes.find("removecreaturesubtypes") != string::npos)
     {  
@@ -7594,8 +8023,10 @@ ATransformer::ATransformer(GameObserver* observer, int id, MTGCardInstance * sou
 
 int ATransformer::addToGame()
 {
-    if(UYNT || UENT)
+    if(UYNT || UENT){
         myCurrentTurn = game->turn;
+        controllerId = source->controller()->getId();
+    }
     MTGCardInstance * _target = NULL;
         Interruptible * action = (Interruptible *) target;
     if (action && action->type == ACTION_SPELL && action->state == NOT_RESOLVED)
@@ -7634,12 +8065,27 @@ int ATransformer::addToGame()
         if(!addNewColors)
             _target->setColor(0, 1);
     }
-
+    if (removeAllColors)
+    {
+        for (it = oldcolors.begin(); it != oldcolors.end(); it++)
+        {
+            _target->removeColor(*it);
+        }
+    }
     if (removeTypes)
     {
         //remove the main types from a card, ie: hidden enchantment cycle.
         for (int i = 0; i < Subtypes::LAST_TYPE; ++ i)
             _target->removeType(i,1);
+    }
+    else if (removeAllSubtypes)
+    {
+        //remove all the types from a card without removing official supertypes (e.g. Imprisoned in the Moon)
+        for (it = oldtypes.begin(); it != oldtypes.end(); it++)
+        {
+           if(*it != Subtypes::TYPE_LEGENDARY && *it != Subtypes::TYPE_BASIC && *it != Subtypes::TYPE_SNOW && *it != Subtypes::TYPE_WORLD)
+                _target->removeType(*it);
+        }
     }
     else if (remove)
     {
@@ -7763,6 +8209,9 @@ int ATransformer::addToGame()
         else
             _target->addbaseT(val->getValue());
         delete val;
+
+        if(_target->isCreature() && (_target->hasType(Subtypes::TYPE_BATTLE) || _target->hasType(Subtypes::TYPE_PLANESWALKER)) && _target->life > _target->toughness)
+            _target->life = _target->toughness; // Fix for a Planeswalker or a Battle that becomes a creature (e.g. "Spark Rupture").
     }
     //remove manacost
     if(removemc)
@@ -7799,13 +8248,13 @@ int ATransformer::addToGame()
     {
         if(UYNT)
         {
-            if(myCurrentTurn != 1000 && game->turn > myCurrentTurn && source->controller()->getId() == game->currentPlayer->getId())
+            if(myCurrentTurn != 1000 && game->turn > myCurrentTurn && controllerId == game->currentPlayer->getId())
                 return 1;
             return 0; // Fixed an issue when the transformation with uynt is triggered by instant/sorcery or by card that left the battlefield before the ability ending turn.
         } 
         else if(UENT)
         {
-            if(myCurrentTurn != 1000 && game->turn > (myCurrentTurn + 1) && source->controller()->getId() != game->currentPlayer->getId())
+            if(myCurrentTurn != 1000 && game->turn > (myCurrentTurn + 1) && controllerId != game->currentPlayer->getId())
                 return 1;
             return 0; // Fixed an issue when the transformation with uent is triggered by instant/sorcery or by card that left the battlefield before the ability ending turn.
         }
@@ -7870,8 +8319,8 @@ int ATransformer::destroy()
         {
             for (unsigned int i = 0;i < newAbilities[_target].size(); i++)
             {
-                // The mutated cards probably cause a double free error and a crash in Wagic, so for now they have been exluded...
-                if(newAbilities[_target].at(i) && !_target->mutation && _target->currentZone != _target->owner->game->library)
+                // The mutated cards probably cause a double free error and a crash, so for now they have been exluded...
+                if(newAbilities[_target].at(i) && !_target->mutation && _target->currentZone != _target->owner->game->library && !(_target->name == "" && (UYNT || UENT)))
                 {
                     newAbilities[_target].at(i)->forceDestroy = 1;
                     newAbilities[_target].at(i)->removeFromGame();
@@ -7882,7 +8331,7 @@ int ATransformer::destroy()
                 newAbilities.erase(_target);
             }
         }
-        if (remove || removeCreatureSubtypes)
+        if (remove || removeCreatureSubtypes || removeAllSubtypes)
         {
             for (it = oldtypes.begin(); it != oldtypes.end(); it++)
             {
@@ -7954,21 +8403,29 @@ ATransformerInstant::~ATransformerInstant()
 }
 
 //P/t ueot
-PTInstant::PTInstant(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, WParsedPT * wppt,string s,bool nonstatic) :
-InstantAbility(observer, id, source, target), wppt(wppt),s(s),nonstatic(nonstatic)
+PTInstant::PTInstant(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, WParsedPT * wppt, string s, bool nonstatic) :
+InstantAbility(observer, id, source, target), wppt(wppt), s(s), nonstatic(nonstatic)
 {
-    ability = NEW APowerToughnessModifier(game, id, source, target, wppt,s,nonstatic);
+    ability = NEW APowerToughnessModifier(game, id, source, target, wppt, s, nonstatic);
     aType = MTGAbility::STANDARD_PUMP;
+    lastTriggeredTurn = source->getObserver()->turn;
 }
 
 int PTInstant::resolve()
 {
+    if(lastTriggeredTurn == source->getObserver()->turn)
+        ability->triggers++;
+    else
+        ability->triggers = 1;
+    lastTriggeredTurn = source->getObserver()->turn;
     APowerToughnessModifier * a = ability->clone();
+    a->triggers = ability->triggers;
     GenericInstantAbility * wrapper = NEW GenericInstantAbility(game, 1, source, (Damageable *) (this->target), a);
     wrapper->addToGame();
     ((Damageable *) (this->target))->afterDamage();//additional check the negative pt after resolving..
     return 1;
 }
+
 const string PTInstant::getMenuText()
 {
     return ability->getMenuText();
@@ -7985,6 +8442,7 @@ PTInstant::~PTInstant()
 {
     SAFE_DELETE(ability);
 }
+
 // ASwapPTUEOT
 ASwapPTUEOT::ASwapPTUEOT(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target) :
     InstantAbility(observer, id, source, target)
@@ -8419,7 +8877,7 @@ int AProduceMana::produce()
 {
     if(ManaDescription == "selectmana")
     {
-        //I tried menu ability and vector<MTGAbility*abi> to have a shorter code but it crashes wagic at end of turn...
+        //I tried menu ability and vector<MTGAbility*abi> to have a shorter code but it crashes at end of turn...
         //The may ability on otherhand works but the ability is cumulative...
         //This must be wrapped on menuability so we can use it on successions...
         AManaProducer *ap0 = NEW AManaProducer(game, game->mLayers->actionLayer()->getMaxId(), source, source->controller(), ManaCost::parseManaCost(mana[0],NULL,source), NULL, 0,"",false);
@@ -8928,6 +9386,7 @@ ASeizeWrapper::ASeizeWrapper(GameObserver* observer, int _id, MTGCardInstance * 
     InstantAbility(observer, _id, source, _target)
 {
     ability = NEW ASeize(observer, _id,card,_target);
+    andAbility = NULL;
 }
 
 int ASeizeWrapper::resolve()
@@ -8935,6 +9394,20 @@ int ASeizeWrapper::resolve()
     ASeize * a = ability->clone();
     a->target = target;
     a->addToGame();
+    if(andAbility)
+    {
+        MTGAbility * andAbilityClone = andAbility->clone();
+        andAbilityClone->target = target;
+        if(andAbility->oneShot)
+        {
+            andAbilityClone->resolve();
+            SAFE_DELETE(andAbilityClone);
+        }
+        else
+        {
+            andAbilityClone->addToGame();
+        }
+    }
     return 1;
 }
 
@@ -8948,12 +9421,15 @@ ASeizeWrapper * ASeizeWrapper::clone() const
     ASeizeWrapper * a = NEW ASeizeWrapper(*this);
     a->ability = this->ability->clone();
     a->oneShot = 1;
+    if(andAbility)
+        a->andAbility = andAbility->clone();
     return a;
 }
 
 ASeizeWrapper::~ASeizeWrapper()
 {
     SAFE_DELETE(ability);
+    SAFE_DELETE(andAbility);
 }
 
 //AShackle
@@ -9231,9 +9707,9 @@ void ABlink::resolveBlink()
             //it is later moved to garbage by garbage collection.
             //then we build 2 seperate blinks with the 2 parts as the targets.
             vector<string> names = split(_target->MeldedFrom, '|');
-            MTGCard * cardone = MTGCollection()->getCardByName(names[0]);
+            MTGCard * cardone = MTGCollection()->getCardByName(names[0], _target->setId);
             MTGCardInstance * cardOne = NEW MTGCardInstance(cardone, _target->owner->game);
-            MTGCard * cardtwo = MTGCollection()->getCardByName(names[1]);
+            MTGCard * cardtwo = MTGCollection()->getCardByName(names[1], _target->setId);
             MTGCardInstance * cardTwo = NEW MTGCardInstance(cardtwo, _target->owner->game);
             _target->controller()->game->putInZone(_target, _target->currentZone,
                 _target->owner->game->temp);
@@ -9339,7 +9815,7 @@ void ABlink::returnCardIntoPlay(MTGCardInstance* _target) {
             }
         }*/
         //replaced with castcard(putinplay)
-        MTGAbility *a = NEW AACastCard(game, game->mLayers->actionLayer()->getMaxId(), Blinker, Blinker,false,false,false,"","Return to Play",false,true);
+        MTGAbility *a = NEW AACastCard(game, game->mLayers->actionLayer()->getMaxId(), Blinker, Blinker, false, false, false, "", "Return to Play", false, true);
         a->oneShot = false;
         a->canBeInterrupted = false;
         a->addToGame();
@@ -9565,6 +10041,7 @@ AEquip::AEquip(GameObserver* observer, int _id, MTGCardInstance * _source, ManaC
 {
     aType = MTGAbility::STANDARD_EQUIP;
     isAttach = restrictions != ActivatedAbility::AS_SORCERY;
+    isReconfiguration = false;
 }
 
 int AEquip::unequip()
@@ -9593,6 +10070,8 @@ int AEquip::unequip()
         }
         game->removeObserver(currentAbilities[i]);
     }
+    if(isReconfiguration && !source->hasType(Subtypes::TYPE_CREATURE))
+        source->addType(Subtypes::TYPE_CREATURE);
     currentAbilities.clear();
     WEvent * e = NEW WEventCardUnattached(source);
     game->receiveEvent(e);
@@ -9601,6 +10080,8 @@ int AEquip::unequip()
 
 int AEquip::equip(MTGCardInstance * equipped)
 {
+    if(isReconfiguration && source->hasType(Subtypes::TYPE_CREATURE))
+        source->removeType(Subtypes::TYPE_CREATURE);
     source->target = equipped;
     source->target->equipment += 1;
     source->parentCards.push_back(equipped);
@@ -9683,6 +10164,8 @@ const string AEquip::getMenuText()
 {
     if (isAttach)
         return "Attach";
+    else if (isReconfiguration)
+        return "Reconfigure Attach";
     else
         return "Equip";
 }
@@ -9716,8 +10199,8 @@ AEquip * AEquip::clone() const
 }
 
 // casting a card for free, or casting a copy of a card.
-AACastCard::AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool _restricted,bool _copied,bool asNormal,string _namedCard,string _name,bool _noEvent,bool putinplay,bool madness, bool alternative, int kicked, int costx, bool flipped) :
-   MTGAbility(observer, _id, _source),restricted(_restricted),asCopy(_copied),normal(asNormal),cardNamed(_namedCard),nameThis(_name),noEvent(_noEvent),putinplay(putinplay), asNormalMadness(madness), alternative(alternative), kicked(kicked), costx(costx), flipped(flipped)
+AACastCard::AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, bool _restricted, bool _copied, bool asNormal, string _namedCard, string _name, bool _noEvent, bool putinplay, bool madness, bool alternative, int kicked, int costx, bool flipped, bool flashback) :
+   MTGAbility(observer, _id, _source), restricted(_restricted), asCopy(_copied), normal(asNormal), cardNamed(_namedCard), nameThis(_name), noEvent(_noEvent), putinplay(putinplay), asNormalMadness(madness), alternative(alternative), kicked(kicked), costx(costx), flipped(flipped), flashback(flashback)
 {
     target = _target;
     andAbility = NULL;
@@ -9728,145 +10211,190 @@ AACastCard::AACastCard(GameObserver* observer, int _id, MTGCardInstance * _sourc
 
 void AACastCard::Update(float dt)
 {
-   MTGAbility::Update(dt);
-   if (processed)
-       return;
-   if(cardNamed.size() && !theNamedCard)
-   {
-       if(cardNamed.find("randomcard") != string::npos){ //cast a random card from collection.
-           MTGCard *rndCard = NULL;
-           while(!rndCard || rndCard->data->isLand())
-               rndCard = MTGCollection()->getCardById(MTGCollection()->ids.at(std::rand() % (MTGCollection()->ids).size()));
-           cardNamed = rndCard->data->name;
-       }
-       if (cardNamed.find("imprintedcard") != string::npos)
-       {
-           if (source && source->currentimprintName.size())
-           {
-               cardNamed = source->currentimprintName;
-           }
-       }
-       theNamedCard = makeCard();
-       //if somehow the imprinted card leaves its zone destroy this...
-       if(cardNamed.find("imprintedcard") != string::npos && !theNamedCard)
-       {
-           this->forceDestroy = 1;
-           return;
-       }
-   }
-   if(putinplay)
-   {
-       MTGCardInstance * toCheck = (MTGCardInstance*)target;
-       toCheck->target = NULL;
-       toCheck->playerTarget = NULL;
-       toCheck->bypassTC = true;
-       TargetChooserFactory tcf(game);
-       TargetChooser * atc = tcf.createTargetChooser(toCheck->spellTargetType,toCheck);
-       if ((toCheck->hasType(Subtypes::TYPE_AURA) && !atc->validTargetsExist())||toCheck->isToken)
-       {
-           processed = true;
-           this->forceDestroy = 1;
-           return ;
-       }
-       SAFE_DELETE(atc);
-   }
-   if (restricted)
-   {
-       MTGCardInstance * toCheck = (MTGCardInstance*)target;
-       if(theNamedCard)
-           toCheck = theNamedCard;
-       if (game->currentActionPlayer->game->playRestrictions->canPutIntoZone(toCheck, source->controller()->game->stack) == PlayRestriction::CANT_PLAY)
-       {
-           processed = true;
-           this->forceDestroy = 1;
-           return ;
-       }
-       if(!allowedToCast(toCheck,source->controller()))
-       {
-           processed = true;
-           this->forceDestroy = 1;
-           return;
-       }
-       /*if(!toCheck->hasType(Subtypes::TYPE_INSTANT) && !(game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN))
-       {
-           processed = true;
-           this->forceDestroy = 1;
-           return;
-       }*/
-   }
-   MTGCardInstance * toCheck = (MTGCardInstance*)target;
-   if(theNamedCard)
-       toCheck = theNamedCard;
-   if(toCheck && toCheck->spellTargetType.size())
-   {
-       string backupST = toCheck->spellTargetType;
-       if((toCheck->spellTargetType == "opponent") && (toCheck->owner != source->controller()))
-           toCheck->spellTargetType = "controller";
-       else if((toCheck->spellTargetType.find("|opponent") != string::npos) && (toCheck->owner != source->controller()))
-       {
-           string replaceMe = backupST;
-           toCheck->spellTargetType = cReplaceString(replaceMe, "|opponent", "|my");
-       }
-       //Since we control the card to cast, if the card should target an opponent,
-       //direct it to source ability controller->opponent
-       //example card is Bribery, if we cast it targeting from opponent's library,
-       //we should target the source ability controller->opponent
+    MTGAbility::Update(dt);
+    if (processed)
+        return;
+    if(cardNamed.size() && !theNamedCard)
+    {
+        if(cardNamed.find("randomcard") != string::npos){ //cast a random card from collection.
+            MTGCard *rndCard = NULL;
+            while(!rndCard || rndCard->data->isLand())
+                rndCard = MTGCollection()->getCardById(MTGCollection()->ids.at(std::rand() % (MTGCollection()->ids).size()));
+            cardNamed = rndCard->data->name;
+        }
+        if (cardNamed.find("imprintedcard") != string::npos)
+        {
+            if (source && source->currentimprintName.size())
+            {
+                cardNamed = source->currentimprintName;
+            }
+        }
+        theNamedCard = makeCard();
+        //if somehow the imprinted card leaves its zone destroy this...
+        if(cardNamed.find("imprintedcard") != string::npos && !theNamedCard)
+        {
+            this->forceDestroy = 1;
+            return;
+        }
+    }
+    if(putinplay)
+    {
+        MTGCardInstance * toCheck = (MTGCardInstance*)target;
+        toCheck->target = NULL;
+        toCheck->playerTarget = NULL;
+        toCheck->bypassTC = true;
+        TargetChooserFactory tcf(game);
+        TargetChooser * atc = tcf.createTargetChooser(toCheck->spellTargetType,toCheck);
+        if ((toCheck->hasType(Subtypes::TYPE_AURA) && !atc->validTargetsExist())||toCheck->isToken)
+        {
+            processed = true;
+            this->forceDestroy = 1;
+            return;
+        }
+        SAFE_DELETE(atc);
+    }
+    if (restricted)
+    {
+        MTGCardInstance * toCheck = (MTGCardInstance*)target;
+        if(theNamedCard)
+            toCheck = theNamedCard;
+        if (game->currentActionPlayer->game->playRestrictions->canPutIntoZone(toCheck, source->controller()->game->stack) == PlayRestriction::CANT_PLAY)
+        {
+            processed = true;
+            if(andAbility) // Allow to use and!()! even when restriction occurred (e.g. "Gix, Yawgmoth Praetor").
+            {
+                MTGAbility * andAbilityClone = andAbility->clone();
+                andAbilityClone->target = toCheck;
+                if(andAbility->oneShot)
+                {
+                    andAbilityClone->resolve();
+                    SAFE_DELETE(andAbilityClone);
+                }
+                else
+                {
+                    andAbilityClone->addToGame();
+                }
+            }
+            this->forceDestroy = 1;
+            return ;
+        }
+        if(!allowedToCast(toCheck,source->controller()))
+        {
+            processed = true;
+            if(andAbility) // Allow to use and!()! even when restriction occurred (e.g. "Gix, Yawgmoth Praetor").
+            {
+                MTGAbility * andAbilityClone = andAbility->clone();
+                andAbilityClone->target = toCheck;
+                if(andAbility->oneShot)
+                {
+                    andAbilityClone->resolve();
+                    SAFE_DELETE(andAbilityClone);
+                }
+                else
+                {
+                    andAbilityClone->addToGame();
+                }
+            }
+            this->forceDestroy = 1;
+            return;
+        }
+        if(toCheck->isLand())
+        {
+            TargetChooser* tc = NEW TypeTargetChooser(game, "land");
+            if(game->currentActionPlayer->game->battlefield->seenThisTurn(tc, Constants::CAST_DONT_CARE, false) >= game->currentActionPlayer->game->playRestrictions->getMaxPerTurnRestrictionByTargetChooser(tc)->maxPerTurn){
+                processed = true;
+                if(andAbility) // Allow to use and!()! even when restriction occurred (e.g. "Gix, Yawgmoth Praetor").
+                {
+                    MTGAbility * andAbilityClone = andAbility->clone();
+                    andAbilityClone->target = toCheck;
+                    if(andAbility->oneShot)
+                    {
+                        andAbilityClone->resolve();
+                        SAFE_DELETE(andAbilityClone);
+                    }
+                    else
+                    {
+                        andAbilityClone->addToGame();
+                    }
+                }
+                this->forceDestroy = 1;
+                return;
+            }
+        } 
+    }
+    MTGCardInstance * toCheck = (MTGCardInstance*)target;
+    if(theNamedCard)
+        toCheck = theNamedCard;
+    if(toCheck && toCheck->spellTargetType.size())
+    {
+        string backupST = toCheck->spellTargetType;
+        if((toCheck->spellTargetType == "opponent") && (toCheck->owner != source->controller()))
+            toCheck->spellTargetType = "controller";
+        else if((toCheck->spellTargetType.find("|opponent") != string::npos) && (toCheck->owner != source->controller()))
+        {
+            string replaceMe = backupST;
+            toCheck->spellTargetType = cReplaceString(replaceMe, "|opponent", "|my");
+        }
+        //Since we control the card to cast, if the card should target an opponent,
+        //direct it to source ability controller->opponent
+        //example card is Bribery, if we cast it targeting from opponent's library,
+        //we should target the source ability controller->opponent
 
-       TargetChooserFactory tcf(game);
-       TargetChooser * stc = tcf.createTargetChooser(toCheck->spellTargetType,toCheck);
-       if (!stc->validTargetsExist()||toCheck->isToken)
-       {
-           toCheck->spellTargetType = backupST;
+        TargetChooserFactory tcf(game);
+        TargetChooser * stc = tcf.createTargetChooser(toCheck->spellTargetType,toCheck);
+        if (!stc->validTargetsExist()||toCheck->isToken)
+        {
+            toCheck->spellTargetType = backupST;
 
-           processed = true;
-           this->forceDestroy = 1;
-           return;
-       }
-       SAFE_DELETE(stc);
-   }
-   if (Spell * checkSpell = dynamic_cast<Spell*>(target))
-   {
-       toCheck = checkSpell->source;
-   }
-   if (!game->targetListIsSet(toCheck))
-   {
-       if(game->targetChooser)
-           game->targetChooser->Owner = source->controller();//sources controller is the caster
-       return;
-   }
-   resolveSpell();
-   this->forceDestroy = 1;
-   return;
+            processed = true;
+            this->forceDestroy = 1;
+            return;
+        }
+        SAFE_DELETE(stc);
+    }
+    if (Spell * checkSpell = dynamic_cast<Spell*>(target))
+    {
+        toCheck = checkSpell->source;
+    }
+    if (!game->targetListIsSet(toCheck))
+    {
+        if(game->targetChooser)
+            game->targetChooser->Owner = source->controller();//sources controller is the caster
+        return;
+    }
+    resolveSpell();
+    this->forceDestroy = 1;
+    return;
 }
 int AACastCard::isReactingToTargetClick(Targetable * card){return 0;}
 int AACastCard::reactToTargetClick(Targetable * object)
 {
-   if (MTGCardInstance * cObject = dynamic_cast<MTGCardInstance *>(object))
-       return reactToClick(cObject);
+    if (MTGCardInstance * cObject = dynamic_cast<MTGCardInstance *>(object))
+        return reactToClick(cObject);
 
-   if (waitingForAnswer)
-   {
-       if (tc->toggleTarget(object) == TARGET_OK_FULL)
-       {
-           waitingForAnswer = 0;
-           game->mLayers->actionLayer()->setCurrentWaitingAction(NULL);
-           return MTGAbility::reactToClick(source);
-       }
-       return 1;
-   }
-   return 0;
+    if (waitingForAnswer)
+    {
+        if (tc->toggleTarget(object) == TARGET_OK_FULL)
+        {
+            waitingForAnswer = 0;
+            game->mLayers->actionLayer()->setCurrentWaitingAction(NULL);
+            return MTGAbility::reactToClick(source);
+        }
+        return 1;
+    }
+    return 0;
 }
 
 MTGCardInstance * AACastCard::makeCard()
 {
-   MTGCardInstance * card = NULL;
-   MTGCard * cardData = MTGCollection()->getCardByName(cardNamed);
-   if(!cardData) return NULL;
-   card = NEW MTGCardInstance(cardData, source->controller()->game);
-   card->owner = source->controller();
-   card->lastController = source->controller();
-   source->controller()->game->sideboard->addCard(card);
-   return card;
+    MTGCardInstance * card = NULL;
+    MTGCard * cardData = MTGCollection()->getCardByName(cardNamed, source->setId);
+    if(!cardData) return NULL;
+    card = NEW MTGCardInstance(cardData, source->controller()->game);
+    card->owner = source->controller();
+    card->lastController = source->controller();
+    source->controller()->game->sideboard->addCard(card);
+    return card;
 }
 
 int AACastCard::resolveSpell()
@@ -9928,16 +10456,50 @@ int AACastCard::resolveSpell()
             processed = true;
             return 1;
         }
-
         if(theNamedCard)
         {
             Spell * spell = NULL;
-            MTGCardInstance * copy = source->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, source->controller()->game->stack, noEvent); // Fixed a bug when using noevent option with namedcard option.
-            
+            MTGCardInstance * copy = NULL;
+            if ((normal || asNormalMadness) || !theNamedCard->isSorceryorInstant())
+            {
+                if (putinplay && theNamedCard->isPermanent())
+                    copy = theNamedCard->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, source->controller()->game->battlefield, noEvent); // Fixed a problem with double activation of card abilities.
+                else if (asCopy && theNamedCard->isPermanent()){
+                    theNamedCard->isToken = 0; // Fixed a bug when using copied option with namedcard option.
+                    copy = _target->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, source->controller()->game->stack, noEvent);
+                    copy->isToken = 1; // Fixed a bug when using copied option with namedcard option.
+                    copy = _target->controller()->game->putInZone(copy, copy->currentZone, source->controller()->game->battlefield, noEvent); // Fixed a problem with copied option for permanent.
+                }
+                else
+                    copy = theNamedCard->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, source->controller()->game->stack, noEvent); // Fixed a bug when using noevent option with namedcard option.
+            }
+            else
+            {
+                if (putinplay && theNamedCard->isPermanent())
+                    copy = theNamedCard->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, source->controller()->game->battlefield, noEvent); // Fixed a problem with double activation of card abilities.
+                else if (asCopy && theNamedCard->isPermanent()){
+                    theNamedCard->isToken = 0; // Fixed a bug when using copied option with namedcard option.
+                    copy = _target->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, source->controller()->game->stack, noEvent);
+                    copy->isToken = 1; // Fixed a bug when using copied option with namedcard option.
+                    copy = _target->controller()->game->putInZone(copy, copy->currentZone, source->controller()->game->battlefield, noEvent); // Fixed a problem with copied option for permanent.
+                }
+                else
+                    copy = theNamedCard->controller()->game->putInZone(theNamedCard, theNamedCard->currentZone, source->controller()->game->stack, noEvent); // Fixed a bug when using noevent option with namedcard option.
+            }
+            if(!copy){
+                this->forceDestroy = true;
+                processed = false;
+                return 0;
+            }
+            copy->changeController(source->controller(),true);
+            if(asNormalMadness)
+                copy->MadnessPlay = true;
             if(asCopy) 
                 copy->isToken = 1; // Fixed a bug when using copied option with namedcard option.
             if(alternative)
                 copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_ALTERNATIVE] = 1;
+            if(flashback)
+                copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_FLASHBACK] = 1;
             if(kicked > 0){
                 copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_KICKER] = 1;
                 copy->kicked = kicked;
@@ -9947,7 +10509,6 @@ int AACastCard::resolveSpell()
                 copy->setX = costx;
                 copy->X = costx;
             }
-
             if (game->targetChooser)
             {
                 game->targetChooser->Owner = source->controller();
@@ -9958,7 +10519,6 @@ int AACastCard::resolveSpell()
             {
                 spell = game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, 1, 0);
             }
-
             if (copy->has(Constants::STORM))
             {
                 int storm = source->controller()->game->stack->seenThisTurn("*", Constants::CAST_ALL) + source->controller()->opponent()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
@@ -9976,10 +10536,6 @@ int AACastCard::resolveSpell()
                     copy->castX = copy->X;
                 }
             }
-
-            if (putinplay && (copy->hasType(Subtypes::TYPE_ARTIFACT) || copy->hasType(Subtypes::TYPE_CREATURE) || copy->hasType(Subtypes::TYPE_ENCHANTMENT) || copy->hasType(Subtypes::TYPE_PLANESWALKER)))
-                spell->resolve(); // Fixed a crash when using and!()! with namedcard permanents.
-
             if(andAbility)
             {
                 MTGAbility * andAbilityClone = andAbility->clone();
@@ -9998,29 +10554,48 @@ int AACastCard::resolveSpell()
             processed = true;
             return 1;
         }
-
         Spell * spell = NULL;
         MTGCardInstance * copy = NULL;
-        if ((normal || asNormalMadness)||(!_target->hasType(Subtypes::TYPE_INSTANT) && !_target->hasType(Subtypes::TYPE_SORCERY)))
+        if ((normal || asNormalMadness) || !_target->isSorceryorInstant())
         {
-            if (putinplay && (_target->hasType(Subtypes::TYPE_ARTIFACT)||_target->hasType(Subtypes::TYPE_CREATURE)||_target->hasType(Subtypes::TYPE_ENCHANTMENT)||_target->hasType(Subtypes::TYPE_PLANESWALKER)))
-                copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->reveal, noEvent); // Fixed a problem with previous zone of card, it cannot be directly battlefield.
+            if (putinplay  && _target->isPermanent())
+                copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->battlefield, noEvent); // Fixed a problem with double activation of card abilities.
+            else if (asCopy && _target->isPermanent()){
+                _target->isToken = 0; // Fixed a bug when using copied option for permanent.
+                copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack, noEvent);
+                copy->isToken = 1; // Fixed a bug when using copied option for permanent.
+                copy = _target->controller()->game->putInZone(copy, copy->currentZone, source->controller()->game->battlefield, noEvent); // Fixed a problem with copied option for permanent.
+            }
             else
-               copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack, noEvent); 
-            copy->changeController(source->controller(),true);
-            if(asNormalMadness)
-                copy->MadnessPlay = true;
+                copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack, noEvent); // Fixed a bug when using noevent option with namedcard option.
         }
         else
         {
-            if (putinplay && (_target->hasType(Subtypes::TYPE_ARTIFACT)||_target->hasType(Subtypes::TYPE_CREATURE)||_target->hasType(Subtypes::TYPE_ENCHANTMENT)||_target->hasType(Subtypes::TYPE_PLANESWALKER)))
-                copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->reveal, noEvent); // Fixed a problem with previous zone of card, it cannot be directly battlefield.
-            else
+            if (putinplay && _target->isPermanent())
+                copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->battlefield, noEvent); // Fixed a problem with double activation of card abilities.
+            else if (asCopy && _target->isPermanent()){
+                _target->isToken = 0; // Fixed a bug when using copied option for permanent.
                 copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack, noEvent);
-            copy->changeController(source->controller(),true);
+                copy->isToken = 1; // Fixed a bug when using copied option for permanent.
+                copy = _target->controller()->game->putInZone(copy, copy->currentZone, source->controller()->game->battlefield, noEvent); // Fixed a problem with copied option for permanent.
+            }
+            else
+                copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack, noEvent); // Fixed a bug when using noevent option with namedcard option.
         }
+        if(!copy){
+            this->forceDestroy = true;
+            processed = false;
+            return 0;
+        }
+        copy->changeController(source->controller(), true);
+        if(asNormalMadness)
+            copy->MadnessPlay = true;
+        if(asCopy) 
+            copy->isToken = 1; // Fixed a bug when using copied option for permanent.
         if(alternative)
             copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_ALTERNATIVE] = 1;
+        if(flashback)
+            copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_FLASHBACK] = 1;
         if(kicked > 0){
             copy->alternateCostPaid[ManaCost::MANA_PAID_WITH_KICKER] = 1;
             copy->kicked = kicked;
@@ -10035,7 +10610,7 @@ int AACastCard::resolveSpell()
             game->targetChooser->Owner = source->controller();
             if(putinplay)
             {
-                spell =  NEW Spell(game, 0,copy,game->targetChooser,NULL, 1);
+                spell =  NEW Spell(game, 0, copy, game->targetChooser, NULL, 1);
                 spell->resolve();
             }
             else
@@ -10046,13 +10621,12 @@ int AACastCard::resolveSpell()
         {
             if(putinplay)
             {
-                spell =  NEW Spell(game, 0,copy,NULL,NULL, 1);
+                spell =  NEW Spell(game, 0, copy, NULL, NULL, 1);
                 spell->resolve();
             }
             else if(!flipped)
                 spell = game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, 1, 0);
         }
-
         if (copy->has(Constants::STORM))
         {
             int storm = _target->controller()->game->stack->seenThisTurn("*", Constants::CAST_ALL) + source->controller()->opponent()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
@@ -10084,7 +10658,6 @@ int AACastCard::resolveSpell()
                 andAbilityClone->addToGame();
             }
         }
-
         this->forceDestroy = true;
         processed = true;
         return 1;

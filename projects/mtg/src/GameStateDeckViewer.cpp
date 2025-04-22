@@ -55,6 +55,7 @@ GameStateDeckViewer::GameStateDeckViewer(GameApp* parent) :
     sellCardButton = NEW InteractiveButton(NULL, kSellCardActionId, Fonts::MAIN_FONT, "Sell Card", (SCREEN_WIDTH_F/ 2) - 125, SCREEN_HEIGHT_F - 20, JGE_BTN_SEC);
     sb_cmd_dng_Button = NEW InteractiveButton(NULL, kSBActionId, Fonts::MAIN_FONT, "View SB", (SCREEN_WIDTH_F/ 2) - 35, SCREEN_HEIGHT_F - 20, JGE_BTN_CTRL);
     filterButton = NEW InteractiveButton(NULL, kFilterButtonId, Fonts::MAIN_FONT, "Filter", (SCREEN_WIDTH_F - 116), SCREEN_HEIGHT_F - 20, JGE_BTN_SOUND);
+    menuButton = NEW InteractiveButton(NULL, kMenuButtonId, Fonts::MAIN_FONT, "Menu", (SCREEN_WIDTH_F - 76), SCREEN_HEIGHT_F - 20, JGE_BTN_MENU);
     //TODO: Check if that button is available:
     toggleViewButton = NEW InteractiveButton(NULL, kSwitchViewButton, Fonts::MAIN_FONT, "Grid", (SCREEN_WIDTH_F/ 2) + 50, SCREEN_HEIGHT_F - 20, JGE_BTN_MAX);
     toggleUpButton = NEW InteractiveButton(NULL, kToggleUpButton, Fonts::MAIN_FONT, "UP", 10, 25, JGE_BTN_DOWN);
@@ -413,7 +414,7 @@ void GameStateDeckViewer::choiceAddRemove(MTGCard * card)
             if(!card->data->hasType("Dungeon")){
                 sbMenu->Add(SBMENU_ADD_NORMAL, "Add to Deck");
                 sbMenu->Add(SBMENU_ADD_SB, "Add to Sideboard");
-                if(card->data->hasType("Legendary") && (card->data->hasType("Creature") || card->data->basicAbilities[Constants::CANBECOMMANDER]))
+                if(card->data->hasType("Legendary") && (card->data->hasType("Creature") || card->data->basicAbilities[Constants::CANBECOMMANDER] || card->data->hasType("Background")))
                     sbMenu->Add(SBMENU_ADD_CMD, "Choose as Commander");
             } else
                 sbMenu->Add(SBMENU_ADD_DNG, "Add to Dungeons");
@@ -578,6 +579,7 @@ bool GameStateDeckViewer::userPressedButton()
             || (sb_cmd_dng_Button->ButtonPressed())
             || (statsPrevButton->ButtonPressed())
             || (filterButton->ButtonPressed())
+            || (menuButton->ButtonPressed())
             || (toggleViewButton->ButtonPressed())
             || (toggleUpButton->ButtonPressed())
             || (toggleDownButton->ButtonPressed())
@@ -593,6 +595,7 @@ void GameStateDeckViewer::setButtonState(bool state)
     sb_cmd_dng_Button->setIsSelectionValid(state);
     statsPrevButton->setIsSelectionValid(state);
     filterButton->setIsSelectionValid(state);
+    menuButton->setIsSelectionValid(state);
     toggleViewButton->setIsSelectionValid(state);
     toggleUpButton->setIsSelectionValid(state);
     toggleDownButton->setIsSelectionValid(state);
@@ -609,6 +612,7 @@ void GameStateDeckViewer::RenderButtons()
         sb_cmd_dng_Button->Render();
     if(mView->deck() != mySideboard && mView->deck() != myCommandZone && mView->deck() != myDungeonZone)
         filterButton->Render();
+    menuButton->Render();
     statsPrevButton->Render();
     toggleViewButton->Render();
     toggleUpButton->Render();

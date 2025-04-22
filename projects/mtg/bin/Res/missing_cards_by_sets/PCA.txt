@@ -1,10 +1,4 @@
 [card]
-name=Fractured Powerstone
-text={T}: Add {1} to your mana pool. -- {T}: Roll the planar die. Activate this ability only any time you could cast a sorcery.
-mana={2}
-type=Artifact
-[/card]
-[card]
 name=Auratouched Mage
 text=When Auratouched Mage enters the battlefield, search your library for an Aura card that could enchant it. If Auratouched Mage is still on the battlefield, put that Aura card onto the battlefield attached to it. Otherwise, reveal the Aura card and put it into your hand. Then shuffle your library.
 mana={5}{W}

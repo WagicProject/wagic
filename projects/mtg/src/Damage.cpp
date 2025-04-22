@@ -7,6 +7,7 @@
 #include "Translate.h"
 #include "WResourceManager.h"
 #include "GameObserver.h"
+#include "WParsedInt.h"
 
 Damage::Damage(GameObserver* observer, MTGCardInstance * source, Damageable * target)
     : Interruptible(observer)
@@ -24,7 +25,10 @@ void Damage::init(MTGCardInstance * _source, Damageable * _target, int _damage, 
 {
     typeOfDamage = _typeOfDamage;
     target = _target;
-    source = _source;
+    if(_source  && _source->name.empty() && _source->storedSourceCard) // Fix for damage dealt inside ability$!!$ keyword.
+        source = _source->storedSourceCard;
+    else
+        source = _source;
 
     if (_damage < 0)
         _damage = 0; //Negative damages cannot happen
@@ -75,7 +79,7 @@ int Damage::resolve()
 
     //-------------------------------------------------
     //Ajani Steadfast ---
-    if(target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && ((MTGCardInstance*)target)->hasType("planeswalker") && ((MTGCardInstance*)target)->controller()->forcefield)
+    if(target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && (((MTGCardInstance*)target)->hasType("planeswalker") || ((MTGCardInstance*)target)->hasType("battle")) && ((MTGCardInstance*)target)->controller()->forcefield)
         damage = 1;
     if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
     {
@@ -210,10 +214,9 @@ int Damage::resolve()
             }
         }
     }
-    else if (target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER && (source->has(Constants::POISONTOXIC) ||
-                    source->has(Constants::POISONTWOTOXIC) || source->has(Constants::POISONTHREETOXIC)))
+    else if ((target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER) && (source->getToxicity() > 0))
     {
-        //Damage + 1, 2, or 3 poison counters on player
+        //Damage + poison counters on player
         Player * _target = (Player *) target;
         if(!_target->inPlay()->hasAbility(Constants::CANTCHANGELIFE))
             a = target->dealDamage(damage);
@@ -231,20 +234,7 @@ int Damage::resolve()
         }
         if(!_target->inPlay()->hasAbility(Constants::POISONSHROUD))
         {
-            int poison = 0;
-            if (source->has(Constants::POISONTOXIC))
-            {
-                poison = 1;
-            }
-            else if (source->has(Constants::POISONTWOTOXIC))
-            {
-                poison = 2;
-            }
-            else
-            {
-                poison = 3;
-            }
-            _target->poisonCount += poison;
+            _target->poisonCount += source->getToxicity();
              WEvent * e = NEW WEventplayerPoisoned(_target, damage); // Added an event when player receives any poison counter.
             _target->getObserver()->receiveEvent(e);
         }
@@ -276,7 +266,7 @@ int Damage::resolve()
             else
             {
                 ((MTGCardInstance*)source)->damageToOpponent += damage;
-                if(((MTGCardInstance*)source)->basicAbilities[Constants::ISCOMMANDER])
+                if(((MTGCardInstance*)source)->isCommander > 0 && typeOfDamage == DAMAGE_COMBAT)
                     ((MTGCardInstance*)source)->damageInflictedAsCommander += damage;
             }
             target->lifeLostThisTurn += damage;
@@ -293,21 +283,8 @@ int Damage::resolve()
             }
             WEvent * lifed = NEW WEventLife((Player*)target,-damage, source);
             observer->receiveEvent(lifed);
-            if(((MTGCardInstance*)source)->damageInflictedAsCommander > 20) // if a Commander has dealt 21 or more damages to a player, he loose game.
+            if(((MTGCardInstance*)source)->damageInflictedAsCommander > 20) // If a player has been dealt 21 points of combat damage by a particular Commander during the game, that player loses a game.
                 observer->setLoser(((MTGCardInstance*)source)->controller()->opponent());
-        }
-    }
-
-    if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && ((MTGCardInstance*)target)->hasType(Subtypes::TYPE_PLANESWALKER)){ // Fix life calculation for planeswalker damage.
-        if (((MTGCardInstance*)target)->counters){
-            Counters * counters = ((MTGCardInstance*)target)->counters;
-            for(size_t i = 0; i < counters->counters.size(); ++i){
-                Counter * counter = counters->counters[i];
-                if(counter->name ==  "loyalty"){
-                    target->life = counter->nb - target->damageCount;
-                    break;
-                }
-            }
         }
     }
     //Send (Damage/Replaced effect) event to listeners

@@ -14,10 +14,11 @@
      claim that you wrote the original software. If you use this software
      in a product, an acknowledgment in the product documentation would be
      appreciated but is not required.
-  2. Altered source versions must be plainly marked as such, and must not be
-     misrepresented as being the original software.
+  2. Altered source versions must be plainly marked as such, and must not
+     be misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
+
 #include "SDL_stdinc.h"
 
 #include "SDL_atomic.h"
@@ -30,8 +31,7 @@
 #endif
 
 /* This function is where all the magic happens... */
-SDL_bool
-SDL_AtomicTryLock(SDL_SpinLock *lock)
+SDL_bool SDL_AtomicTryLock(SDL_SpinLock *lock)
 {
 #if SDL_ATOMIC_DISABLED
     /* Terrible terrible damage */
@@ -85,13 +85,27 @@ SDL_AtomicTryLock(SDL_SpinLock *lock)
     return (result == 0);
 
 #else
-    /* Need CPU instructions for spinlock here! */
-    __need_spinlock_implementation__
+    /* Fallback implementation using a standard mutex */
+    /* You can use SDL_mutex as a fallback if no atomic instructions are available */
+    static SDL_mutex *mutex;
+    if (!mutex) {
+        mutex = SDL_CreateMutex();
+    }
+
+    SDL_mutexP(mutex);
+    if (*lock == 0) {
+        *lock = 1;
+        SDL_mutexV(mutex);
+        return SDL_TRUE;
+    } else {
+        SDL_mutexV(mutex);
+        return SDL_FALSE;
+    }
+
 #endif
 }
 
-void
-SDL_AtomicLock(SDL_SpinLock *lock)
+void SDL_AtomicLock(SDL_SpinLock *lock)
 {
     /* FIXME: Should we have an eventual timeout? */
     while (!SDL_AtomicTryLock(lock)) {
@@ -99,8 +113,7 @@ SDL_AtomicLock(SDL_SpinLock *lock)
     }
 }
 
-void
-SDL_AtomicUnlock(SDL_SpinLock *lock)
+void SDL_AtomicUnlock(SDL_SpinLock *lock)
 {
 #if defined(_MSC_VER)
     _ReadWriteBarrier();

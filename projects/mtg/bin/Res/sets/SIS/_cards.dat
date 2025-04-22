@@ -1,0 +1,461 @@
+[meta]
+author=Wagic Team
+name=Shadows of the Past
+year=2023-03-21
+total=91
+[/meta]
+[card]
+primitive=Spirit
+id=-606934
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-606938
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-606940
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-606941
+rarity=T
+[/card]
+[card]
+primitive=Zombie
+id=-606945
+rarity=T
+[/card]
+[card]
+primitive=Homunculus
+id=-606953
+rarity=T
+[/card]
+[card]
+primitive=Vampire
+id=-606957
+rarity=T
+[/card]
+[card]
+primitive=Demon
+id=-606964
+rarity=T
+[/card]
+[card]
+primitive=Wolf
+id=-606981
+rarity=T
+[/card]
+[card]
+primitive=Ooze
+id=-606983
+rarity=T
+[/card]
+[card]
+primitive=Wolf
+id=-606929
+rarity=T
+[/card]
+[card]
+primitive=Spider
+id=-606989
+rarity=T
+[/card]
+[card]
+primitive=Angel
+id=-606995
+rarity=T
+[/card]
+[card]
+primitive=Wolf
+id=-606998
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-607002
+rarity=T
+[/card]
+[card]
+primitive=Angel of Flight Alabaster
+id=606930
+rarity=R
+[/card]
+[card]
+primitive=Avacyn, Angel of Hope
+id=606931
+rarity=M
+[/card]
+[card]
+primitive=Bonds of Faith
+id=606932
+rarity=C
+[/card]
+[card]
+primitive=Divine Reckoning
+id=606933
+rarity=R
+[/card]
+[card]
+primitive=Doomed Traveler
+id=606934
+rarity=C
+[/card]
+[card]
+primitive=Elder Cathar
+id=606935
+rarity=C
+[/card]
+[card]
+primitive=Feeling of Dread
+id=606936
+rarity=C
+[/card]
+[card]
+primitive=Fiend Hunter
+id=606937
+rarity=U
+[/card]
+[card]
+primitive=Lingering Souls
+id=606938
+rarity=U
+[/card]
+[card]
+primitive=Rally the Peasants
+id=606939
+rarity=U
+[/card]
+[card]
+primitive=Requiem Angel
+id=606940
+rarity=R
+[/card]
+[card]
+primitive=Séance
+id=606941
+rarity=U
+[/card]
+[card]
+primitive=Battleground Geist
+id=606942
+rarity=C
+[/card]
+[card]
+primitive=Cackling Counterpart
+id=606943
+rarity=R
+[/card]
+[card]
+primitive=Forbidden Alchemy
+id=606944
+rarity=C
+[/card]
+[card]
+primitive=Havengul Runebinder
+id=606945
+rarity=R
+[/card]
+[card]
+primitive=Invisible Stalker
+id=606946
+rarity=U
+[/card]
+[card]
+primitive=Mist Raven
+id=606947
+rarity=C
+[/card]
+[card]
+primitive=Murder of Crows
+id=606948
+rarity=U
+[/card]
+[card]
+primitive=Mystic Retrieval
+id=606949
+rarity=U
+[/card]
+[card]
+primitive=Selhoff Occultist
+id=606950
+rarity=C
+[/card]
+[card]
+primitive=Silent Departure
+id=606951
+rarity=C
+[/card]
+[card]
+primitive=Snapcaster Mage
+id=606952
+rarity=M
+[/card]
+[card]
+primitive=Stitcher's Apprentice
+id=606953
+rarity=C
+[/card]
+[card]
+primitive=Barter in Blood
+id=606954
+rarity=U
+[/card]
+[card]
+primitive=Bloodflow Connoisseur
+id=606955
+rarity=C
+[/card]
+[card]
+primitive=Bloodline Keeper
+id=606957
+rarity=M
+[/card]
+[card]
+primitive=Bump in the Night
+id=606958
+rarity=C
+[/card]
+[card]
+primitive=Falkenrath Noble
+id=606959
+rarity=U
+[/card]
+[card]
+primitive=Ghoulraiser
+id=606960
+rarity=C
+[/card]
+[card]
+primitive=Griselbrand
+id=606961
+rarity=M
+[/card]
+[card]
+primitive=Increasing Ambition
+id=606962
+rarity=R
+[/card]
+[card]
+primitive=Sever the Bloodline
+id=606963
+rarity=U
+[/card]
+[card]
+primitive=Skirsdag High Priest
+id=606964
+rarity=R
+[/card]
+[card]
+primitive=Tragic Slip
+id=606965
+rarity=C
+[/card]
+[card]
+primitive=Unburial Rites
+id=606966
+rarity=U
+[/card]
+[card]
+primitive=Balefire Dragon
+id=606967
+rarity=M
+[/card]
+[card]
+primitive=Brimstone Volley
+id=606968
+rarity=U
+[/card]
+[card]
+primitive=Devil's Play
+id=606969
+rarity=R
+[/card]
+[card]
+primitive=Faithless Looting
+id=606970
+rarity=C
+[/card]
+[card]
+primitive=Forge Devil
+id=606971
+rarity=C
+[/card]
+[card]
+primitive=Kruin Outlaw
+id=606973
+rarity=R
+[/card]
+[card]
+primitive=Past in Flames
+id=606974
+rarity=M
+[/card]
+[card]
+primitive=Skirsdag Cultist
+id=606975
+rarity=U
+[/card]
+[card]
+primitive=Traitorous Blood
+id=606976
+rarity=C
+[/card]
+[card]
+primitive=Vampiric Fury
+id=606977
+rarity=C
+[/card]
+[card]
+primitive=Zealous Conscripts
+id=606978
+rarity=R
+[/card]
+[card]
+primitive=Avacyn's Pilgrim
+id=606979
+rarity=C
+[/card]
+[card]
+primitive=Garruk Relentless
+id=606981
+rarity=M
+[/card]
+[card]
+primitive=Gnaw to the Bone
+id=606982
+rarity=C
+[/card]
+[card]
+primitive=Gutter Grime
+id=606983
+rarity=R
+[/card]
+[card]
+primitive=Hollowhenge Scavenger
+id=606984
+rarity=C
+[/card]
+[card]
+primitive=Mayor of Avabruck
+id=606929
+rarity=R
+[/card]
+[card]
+primitive=Moonmist
+id=606987
+rarity=C
+[/card]
+[card]
+primitive=Somberwald Sage
+id=606988
+rarity=U
+[/card]
+[card]
+primitive=Spider Spawning
+id=606989
+rarity=U
+[/card]
+[card]
+primitive=Travel Preparations
+id=606990
+rarity=C
+[/card]
+[card]
+primitive=Young Wolf
+id=606991
+rarity=C
+[/card]
+[card]
+primitive=Diregraf Captain
+id=606992
+rarity=U
+[/card]
+[card]
+primitive=Drogskol Captain
+id=606993
+rarity=U
+[/card]
+[card]
+primitive=Falkenrath Aristocrat
+id=606994
+rarity=M
+[/card]
+[card]
+primitive=Geist of Saint Traft
+id=606995
+rarity=M
+[/card]
+[card]
+primitive=Havengul Lich
+id=606996
+rarity=M
+[/card]
+[card]
+primitive=Huntmaster of the Fells
+id=606998
+rarity=M
+[/card]
+[card]
+primitive=Immerwolf
+id=606999
+rarity=U
+[/card]
+[card]
+primitive=Sigarda, Host of Herons
+id=607000
+rarity=M
+[/card]
+[card]
+primitive=Stromkirk Captain
+id=607001
+rarity=U
+[/card]
+[card]
+primitive=Avacyn's Collar
+id=607002
+rarity=U
+[/card]
+[card]
+primitive=Blazing Torch
+id=607003
+rarity=C
+[/card]
+[card]
+primitive=Butcher's Cleaver
+id=607004
+rarity=U
+[/card]
+[card]
+primitive=Demonmail Hauberk
+id=607005
+rarity=U
+[/card]
+[card]
+primitive=Galvanic Juggernaut
+id=607006
+rarity=U
+[/card]
+[card]
+primitive=Traveler's Amulet
+id=607007
+rarity=C
+[/card]
+[card]
+primitive=Vessel of Endless Rest
+id=607008
+rarity=U
+[/card]
+[card]
+primitive=Evolving Wilds
+id=607009
+rarity=C
+[/card]
+[card]
+primitive=Haunted Fengraf
+id=607010
+rarity=C
+[/card]

@@ -107,15 +107,6 @@ mana={1}{B}
 type=Enchantment
 [/card]
 [card]
-name=Stone Giant
-text={T}: Target creature you control with toughness less than Stone Giant's power gains flying until end of turn. Destroy that creature at the beginning of the next end step.
-mana={2}{R}{R}
-type=Creature
-subtype=Giant
-power=3
-toughness=4
-[/card]
-[card]
 name=Tawnos's Coffin
 text=You may choose not to untap Tawnos's Coffin during your untap step. -- {3}, {T}: Exile target creature and all Auras attached to it. Note the number and kind of counters that were on that creature. When Tawnos's Coffin leaves the battlefield or becomes untapped, return the exiled card to the battlefield under its owner's control tapped with the noted number and kind of counters on it, and if you do, return the exiled Aura cards to the battlefield under their owner's control attached to that permanent.
 mana={4}

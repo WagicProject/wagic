@@ -2109,9 +2109,14 @@ void WGuiFilterItem::updateValue()
             mParent->addArg("Instant", "t:Instant;");
             mParent->addArg("Land", "t:Land;");
             mParent->addArg("Legendary", "t:Legendary;");
+            mParent->addArg("Legendary Creature", "t:Legendary;&t:Creature;");
             mParent->addArg("Sorcery", "t:Sorcery;");
+            mParent->addArg("Snow", "t:Snow;");
             mParent->addArg("Tribal", "t:Tribal;");
             mParent->addArg("Planeswalker", "t:Planeswalker;");
+            mParent->addArg("Battle", "t:Battle;");
+            mParent->addArg("Dungeon", "t:Dungeon;");
+            mParent->addArg("Conspiracy", "t:Conspiracy;");
 
         }
         else if (filterType == FILTER_SUBTYPE)
@@ -2145,7 +2150,7 @@ void WGuiFilterItem::updateValue()
             mParent->addArg("Rare", "r:r;");
             mParent->addArg("Uncommon", "r:u;");
             mParent->addArg("Common", "r:c;");
-            mParent->addArg("Special Rarity", "{r:m;|r:t;|r:r;|r:u;|r:c;}");
+            mParent->addArg("Special Rarity", "{r:m;|r:t;|r:r;|r:u;|r:c;|r:l;}");
         }
         else if (filterType == FILTER_CMC)
         {

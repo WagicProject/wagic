@@ -4,3 +4,6 @@
 [submodule "thirdparty/SDL2"]
 	path = thirdparty/SDL2
 	url = https://github.com/libsdl-org/SDL
+[submodule "docs/wiki"]
+	path = docs/wiki
+	url = https://github.com/WagicProject/wagic.wiki

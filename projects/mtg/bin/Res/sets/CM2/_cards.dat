@@ -356,14 +356,14 @@ id=446806
 rarity=R
 [/card]
 [card]
-primitive=Nighteyes the Desecrator
-id=44680711
-rarity=T
-[/card]
-[card]
 primitive=Nezumi Graverobber
 id=446807
 rarity=U
+[/card]
+[card]
+primitive=Nighteyes the Desecrator
+id=446808
+rarity=T
 [/card]
 [card]
 primitive=Patron of the Nezumi

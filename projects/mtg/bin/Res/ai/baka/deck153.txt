@@ -13,7 +13,6 @@ Boggart Shenanigans (*) * 1
 Chancellor of the Forge (*) * 1
 Coat of Arms (*) * 1
 Dragon Fodder (ALA) (*) * 1
-Fervor (*) * 1
 Flamekin Village (*) * 1
 Foundry Street Denizen (*) * 1
 Goblin Assassin (*) * 1
@@ -38,50 +37,99 @@ Goblin Warchief (*) * 1
 Goblin Wardriver (*) * 1
 Goblin War Drums (*) * 1
 Goblin Wizard (*) * 1
+
 Homeward Path (*) * 1
+
 Horde of Boggarts (*) * 1
+
 Hordeling Outburst (*) * 1
+
 Impact Tremors (*) * 1
+
 Intimidator Initiate (*) * 1
+
 Krenko's Enforcer (*) * 1
+
 Krenko's Command (*) * 1
+
 Krenko, Tin Street Kingpin (*) * 1
+
 Legion Loyalist (*) * 1
+
 Legion Warboss (*) * 1
+
 Lightning Greaves (MRD) (*) * 1
+
 Madblind Mountain (*) * 1
+
 Mask of Avacyn (*) * 1
+
 Mob Justice (*) * 1
+
 Mogg Alarm (*) * 1
+
 Mogg Flunkies (*) * 1
+
 Mogg Maniac (*) * 1
+
 Mogg Raider (*) * 1
+
 Moggcatcher (*) * 1
+
 Mons's Goblin Raiders (*) * 1
+
 Mountain (4ED) (*) * 4
+
 Mountain (M10) (*) * 4
+
 Mountain (ICE) (*) * 4
+
 Mountain (M20) (*) * 4
+
 Mountain (MIR) (*) * 4
+
 Mountain (LEA) (*) * 3
+
 Mountain (5ED) (*) * 3
+
 Pashalik Mons (*) * 1
+
 Prophetic Ravings (*) * 1
+
 Purphoros, God of the Forge (*) * 1
+
 Quest for the Goblin Lord (*) * 1
+
+Rising of the Day (*) * 1
+
 Reckless Bushwhacker (*) * 1
+
 Reckless One (*) * 1
+
 Reliquary Tower (*) * 1
+
 Ruby Medallion (*) * 1
+
 Shared Animosity (*) * 1
+
 Siege-Gang Commander (*) * 1
+
 Skirk Commando (*) * 1
+
 Smash (*) * 1
+
 Smoldering Spires (*) * 1
+
 Sol Ring (*) * 1
+
 Swiftfoot Boots (*) * 1
+
 Valakut, the Molten Pinnacle (*) * 1
+
 Vandalblast (*) * 1
+
 Warren Instigator (*) * 1
+
 Whispersilk Cloak (*) * 1
+
 #CMD:Krenko, Mob Boss (*) * 1

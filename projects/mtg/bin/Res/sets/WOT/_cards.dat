@@ -1,0 +1,421 @@
+[meta]
+author=Wagic Team
+name=Wilds of Eldraine: Enchanting Tales
+year=2023-09-08
+total=103
+[/meta]
+[card]
+primitive=Blind Obedience
+id=632429
+rarity=R
+[/card]
+[card]
+primitive=Dawn of Hope
+id=632430
+rarity=R
+[/card]
+[card]
+primitive=Grasp of Fate
+id=632431
+rarity=U
+[/card]
+[card]
+primitive=Greater Auramancy
+id=632432
+rarity=M
+[/card]
+[card]
+primitive=Griffin Aerie
+id=632433
+rarity=U
+[/card]
+[card]
+primitive=Intangible Virtue
+id=632434
+rarity=U
+[/card]
+[card]
+primitive=Karmic Justice
+id=632435
+rarity=R
+[/card]
+[card]
+primitive=Knightly Valor
+id=632436
+rarity=U
+[/card]
+[card]
+primitive=Land Tax
+id=632437
+rarity=M
+[/card]
+[card]
+primitive=Leyline of Sanctity
+id=632438
+rarity=R
+[/card]
+[card]
+primitive=Phyrexian Unlife
+id=632439
+rarity=R
+[/card]
+[card]
+primitive=Rest in Peace
+id=632440
+rarity=R
+[/card]
+[card]
+primitive=Smothering Tithe
+id=632441
+rarity=M
+[/card]
+[card]
+primitive=As Foretold
+id=632442
+rarity=R
+[/card]
+[card]
+primitive=Compulsion
+id=632443
+rarity=U
+[/card]
+[card]
+primitive=Copy Enchantment
+id=632444
+rarity=R
+[/card]
+[card]
+primitive=Curiosity
+id=632445
+rarity=U
+[/card]
+[card]
+primitive=Forced Fruition
+id=632446
+rarity=R
+[/card]
+[card]
+primitive=Fraying Sanity
+id=632447
+rarity=R
+[/card]
+[card]
+primitive=Hatching Plans
+id=632448
+rarity=U
+[/card]
+[card]
+primitive=Intruder Alarm
+id=632449
+rarity=R
+[/card]
+[card]
+primitive=Kindred Discovery
+id=632450
+rarity=M
+[/card]
+[card]
+primitive=Leyline of Anticipation
+id=632451
+rarity=R
+[/card]
+[card]
+primitive=Omniscience
+id=632452
+rarity=M
+[/card]
+[card]
+primitive=Rhystic Study
+id=632453
+rarity=M
+[/card]
+[card]
+primitive=Spreading Seas
+id=632454
+rarity=U
+[/card]
+[card]
+primitive=Bitterblossom
+id=632455
+rarity=M
+[/card]
+[card]
+primitive=Dark Tutelage
+id=632456
+rarity=U
+[/card]
+[card]
+primitive=Grave Pact
+id=632457
+rarity=M
+[/card]
+[card]
+primitive=Leyline of the Void
+id=632458
+rarity=R
+[/card]
+[card]
+primitive=Necropotence
+id=632459
+rarity=M
+[/card]
+[card]
+primitive=Oppression
+id=632460
+rarity=R
+[/card]
+[card]
+primitive=Oversold Cemetery
+id=632461
+rarity=R
+[/card]
+[card]
+primitive=Polluted Bonds
+id=632462
+rarity=R
+[/card]
+[card]
+primitive=Sanguine Bond
+id=632463
+rarity=R
+[/card]
+[card]
+primitive=Stab Wound
+id=632464
+rarity=U
+[/card]
+[card]
+primitive=Vampiric Rites
+id=632465
+rarity=U
+[/card]
+[card]
+primitive=Waste Not
+id=632466
+rarity=R
+[/card]
+[card]
+primitive=Aggravated Assault
+id=632467
+rarity=R
+[/card]
+[card]
+primitive=Blood Moon
+id=632468
+rarity=M
+[/card]
+[card]
+primitive=Dragon Mantle
+id=632469
+rarity=U
+[/card]
+[card]
+primitive=Fiery Emancipation
+id=632470
+rarity=R
+[/card]
+[card]
+primitive=Goblin Bombardment
+id=632471
+rarity=R
+[/card]
+[card]
+primitive=Impact Tremors
+id=632472
+rarity=U
+[/card]
+[card]
+primitive=Leyline of Lightning
+id=632473
+rarity=R
+[/card]
+[card]
+primitive=Mana Flare
+id=632474
+rarity=R
+[/card]
+[card]
+primitive=Raid Bombardment
+id=632475
+rarity=U
+[/card]
+[card]
+primitive=Repercussion
+id=632476
+rarity=M
+[/card]
+[card]
+primitive=Shared Animosity
+id=632477
+rarity=R
+[/card]
+[card]
+primitive=Sneak Attack
+id=632478
+rarity=M
+[/card]
+[card]
+primitive=Defense of the Heart
+id=632479
+rarity=M
+[/card]
+[card]
+primitive=Doubling Season
+id=632480
+rarity=M
+[/card]
+[card]
+primitive=Garruk's Uprising
+id=632481
+rarity=U
+[/card]
+[card]
+primitive=Ground Seal
+id=632482
+rarity=U
+[/card]
+[card]
+primitive=Hardened Scales
+id=632483
+rarity=R
+[/card]
+[card]
+primitive=Leyline of Abundance
+id=632484
+rarity=R
+[/card]
+[card]
+primitive=Nature's Will
+id=632485
+rarity=R
+[/card]
+[card]
+primitive=Parallel Lives
+id=632486
+rarity=M
+[/card]
+[card]
+primitive=Primal Vigor
+id=632487
+rarity=R
+[/card]
+[card]
+primitive=Prismatic Omen
+id=632488
+rarity=R
+[/card]
+[card]
+primitive=Season of Growth
+id=632489
+rarity=U
+[/card]
+[card]
+primitive=Unnatural Growth
+id=632490
+rarity=R
+[/card]
+[card]
+primitive=Utopia Sprawl
+id=632491
+rarity=U
+[/card]
+[card]
+primitive=Greater Auramancy
+id=632389
+rarity=M
+[/card]
+[card]
+primitive=Karmic Justice
+id=632390
+rarity=R
+[/card]
+[card]
+primitive=Land Tax
+id=632391
+rarity=M
+[/card]
+[card]
+primitive=Smothering Tithe
+id=632392
+rarity=M
+[/card]
+[card]
+primitive=As Foretold
+id=632393
+rarity=R
+[/card]
+[card]
+primitive=Kindred Discovery
+id=632394
+rarity=M
+[/card]
+[card]
+primitive=Omniscience
+id=632395
+rarity=M
+[/card]
+[card]
+primitive=Rhystic Study
+id=632396
+rarity=M
+[/card]
+[card]
+primitive=Bitterblossom
+id=632397
+rarity=M
+[/card]
+[card]
+primitive=Grave Pact
+id=632398
+rarity=M
+[/card]
+[card]
+primitive=Necropotence
+id=632399
+rarity=M
+[/card]
+[card]
+primitive=Polluted Bonds
+id=632400
+rarity=R
+[/card]
+[card]
+primitive=Aggravated Assault
+id=632401
+rarity=R
+[/card]
+[card]
+primitive=Blood Moon
+id=632402
+rarity=M
+[/card]
+[card]
+primitive=Repercussion
+id=632403
+rarity=M
+[/card]
+[card]
+primitive=Sneak Attack
+id=632404
+rarity=M
+[/card]
+[card]
+primitive=Defense of the Heart
+id=632405
+rarity=M
+[/card]
+[card]
+primitive=Doubling Season
+id=632406
+rarity=M
+[/card]
+[card]
+primitive=Nature's Will
+id=632407
+rarity=R
+[/card]
+[card]
+primitive=Parallel Lives
+id=632408
+rarity=M
+[/card]

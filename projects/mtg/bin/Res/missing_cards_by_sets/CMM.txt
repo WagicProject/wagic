@@ -1,0 +1,375 @@
+[card]
+name=Inspiring Statuary
+text=Nonartifact spells you cast have improvise. (Your artifacts can help cast those spells. Each artifact you tap after you're done activating mana abilities pays for {1}.)
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Yennett, Cryptic Sovereign
+text=Flying, vigilance, menace -- Whenever Yennett, Cryptic Sovereign attacks, reveal the top card of your library. You may cast it without paying its mana cost if its converted mana cost is odd. If you don't cast it, draw a card.
+mana={2}{W}{U}{B}
+type=Legendary Creature
+subtype=Sphinx
+power=3
+toughness=5
+[/card]
+[card]
+name=Mizzix of the Izmagnus
+text=Whenever you cast an instant or sorcery spell with converted mana cost greater than the number of experience counters you have, you get an experience counter. -- Instant and sorcery spells you cast cost {1} less to cast for each experience counter you have.
+mana={2}{U}{R}
+type=Legendary Creature
+subtype=Goblin Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Gisela, Blade of Goldnight
+abilities=flying,first strike
+text=Flying, first strike -- If a source would deal damage to an opponent or a permanent an opponent controls, that source deals double that damage to that player or permanent instead. -- If a source would deal damage to you or a permanent you control, prevent half that damage, rounded up.
+mana={4}{R}{W}{W}
+type=Legendary Creature
+subtype=Angel
+power=5
+toughness=5
+[/card]
+[card]
+name=Hatchery Sliver
+text=Replicate {1}{G} (When you cast this spell, copy it for each time you paid its replicate cost.) -- Each Sliver spell you cast has replicate. The replicate cost is equal to its mana cost. (A copy of a permanent spell becomes a token.)
+mana={1}{G}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+[/card]
+[card]
+name=The Chain Veil
+text=At the beginning of your end step, if you didn't activate a loyalty ability of a planeswalker this turn, you lose 2 life. -- {4}, {T}: For each planeswalker you control, you may activate one of its loyalty abilities once this turn as though none of its loyalty abilities have been activated this turn.
+mana={4}
+type=Legendary Artifact
+[/card]
+[card]
+name=Gisela, Blade of Goldnight
+abilities=flying,first strike
+text=Flying, first strike -- If a source would deal damage to an opponent or a permanent an opponent controls, that source deals double that damage to that player or permanent instead. -- If a source would deal damage to you or a permanent you control, prevent half that damage, rounded up.
+mana={4}{R}{W}{W}
+type=Legendary Creature
+subtype=Angel
+power=5
+toughness=5
+[/card]
+[card]
+name=Jaya's Phoenix
+abilities=flying,haste
+text=Flying, haste -- Whenever Jaya's Phoenix deals combat damage to a player or planeswalker, copy the next loyalty ability you activate this turn when you activate it. You may choose new targets for the copy. -- Whenever you cast a planeswalker spell, you may return Jaya's Phoenix from your graveyard to the battlefield.
+mana={4}{R}
+type=Creature
+subtype=Phoenix
+power=3
+toughness=3
+[/card]
+[card]
+name=Experiment Kraj
+text=Experiment Kraj has all activated abilities of each other creature with a +1/+1 counter on it. -- {T}: Put a +1/+1 counter on target creature.
+mana={2}{G}{G}{U}{U}
+type=Legendary Creature
+subtype=Ooze Mutant
+power=4
+toughness=6
+[/card]
+[card]
+name=Oath of Teferi
+text=When Oath of Teferi enters the battlefield, exile another target permanent you control. Return it to the battlefield under its owner's control at the beginning of the next end step. -- You may activate the loyalty abilities of planeswalkers you control twice each turn rather than only once.
+mana={3}{W}{U}
+type=Legendary Enchantment
+[/card]
+[card]
+name=Tempt with Vengeance
+text=Tempting offer - Put X 1/1 red Elemental creature tokens with haste onto the battlefield. Each opponent may put X 1/1 red Elemental creature tokens with haste onto the battlefield. For each player who does, put X 1/1 red Elemental creature tokens with haste onto the battlefield.
+mana={X}{R}
+type=Sorcery
+[/card]
+[card]
+name=Portal Mage
+abilities=flash
+auto=phasealter(remove,combatphases,controller)
+auto=nextphasealter(add,combatphases,controller,after<combatends>)
+text=Flash -- When Portal Mage enters the battlefield during the declare attackers step, you may reselect which player or planeswalker target attacking creature is attacking. (It can?t attack its controller or its controller?s planeswalkers.)
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+Power=2
+toughness=2
+[/card]
+[card]
+name=Minds Aglow
+text=Join forces - Starting with you, each player may pay any amount of mana. Each player draws X cards, where X is the total amount of mana paid this way.
+mana={U}
+type=Sorcery
+[/card]
+[card]
+name=Aminatou's Augury
+text=Exile the top eight cards of your library. You may put a land card from among them onto the battlefield. Until end of turn, for each nonland card type, you may cast a spell of that type from among the exiled cards without paying its mana cost.
+mana={6}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Custodi Squire
+abilities=flying
+text=Flying -- Will of the council - When Custodi Squire enters the battlefield, starting with you, each player votes for an artifact, creature, or enchantment card in your graveyard. Return each card with the most votes or tied for most votes to your hand.
+mana={4}{W}
+type=Creature
+subtype=Spirit Cleric
+power=3
+toughness=3
+[/card]
+[card]
+name=Alms Collector
+text=Flash -- If an opponent would draw two or more cards, instead you and that player each draw a card.
+mana={3}{W}
+type=Creature
+subtype=Cat Cleric
+power=3
+toughness=4
+[/card]
+[card]
+name=Tempt with Vengeance
+text=Tempting offer - Put X 1/1 red Elemental creature tokens with haste onto the battlefield. Each opponent may put X 1/1 red Elemental creature tokens with haste onto the battlefield. For each player who does, put X 1/1 red Elemental creature tokens with haste onto the battlefield.
+mana={X}{R}
+type=Sorcery
+[/card]
+[card]
+name=Zada, Hedron Grinder
+text=Whenever you cast an instant or sorcery spell that targets only Zada, Hedron Grinder, copy that spell for each other creature you control that the spell could target. Each copy targets a different one of those creatures.
+mana={3}{R}
+type=Legendary Creature
+subtype=Goblin Ally
+power=3
+toughness=3
+[/card]
+[card]
+name=Hatchery Sliver
+text=Replicate {1}{G} (When you cast this spell, copy it for each time you paid its replicate cost.) -- Each Sliver spell you cast has replicate. The replicate cost is equal to its mana cost. (A copy of a permanent spell becomes a token.)
+mana={1}{G}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+[/card]
+[card]
+name=Jaya's Phoenix
+abilities=flying,haste
+text=Flying, haste -- Whenever Jaya's Phoenix deals combat damage to a player or planeswalker, copy the next loyalty ability you activate this turn when you activate it. You may choose new targets for the copy. -- Whenever you cast a planeswalker spell, you may return Jaya's Phoenix from your graveyard to the battlefield.
+mana={4}{R}
+type=Creature
+subtype=Phoenix
+power=3
+toughness=3
+[/card]
+[card]
+name=Day's Undoing
+text=Each player shuffles his or her hand and graveyard into his or her library, then draws seven cards. If it's your turn, end the turn. (Exile all spells and abilities on the stack, including this card. Discard down to your maximum hand size. Damage wears off, and "this turn" and "until end of turn" effects end.)
+mana={2}{U}
+type=Sorcery
+[/card]
+[card]
+name=Abstruse Archaic
+abilities=vigilance
+text=Vigilance -- {1}, {T}: Copy target activated or triggered ability you control from a colorless source. You may choose new targets for the copy. (Mana abilities can't be targeted.)
+mana={4}
+type=Creature
+subtype=Avatar
+power=3
+toughness=4
+[/card]
+[card]
+name=Commandeer
+text=You may exile two blue cards from your hand rather than pay Commandeer's mana cost. -- Gain control of target noncreature spell. You may choose new targets for it. (If that spell is an artifact, enchantment, or planeswalker, the permanent enters the battlefield under your control.)
+mana={5}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Imp's Mischief
+text=Change the target of target spell with a single target. You lose life equal to that spell's converted mana cost.
+mana={1}{B}
+type=Instant
+[/card]
+[card]
+name=Stitcher Geralf
+text={2}{U}, {T}: Each player puts the top three cards of his or her library into his or her graveyard. Exile up to two creature cards put into graveyards this way. Put an X/X blue Zombie creature token onto the battlefield, where X is the total power of the cards exiled this way.
+mana={3}{U}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=3
+toughness=4
+[/card]
+[card]
+name=Minds Aglow
+text=Join forces - Starting with you, each player may pay any amount of mana. Each player draws X cards, where X is the total amount of mana paid this way.
+mana={U}
+type=Sorcery
+[/card]
+[card]
+name=Day's Undoing
+text=Each player shuffles his or her hand and graveyard into his or her library, then draws seven cards. If it's your turn, end the turn. (Exile all spells and abilities on the stack, including this card. Discard down to your maximum hand size. Damage wears off, and "this turn" and "until end of turn" effects end.)
+mana={2}{U}
+type=Sorcery
+[/card]
+[card]
+name=Commandeer
+text=You may exile two blue cards from your hand rather than pay Commandeer's mana cost. -- Gain control of target noncreature spell. You may choose new targets for it. (If that spell is an artifact, enchantment, or planeswalker, the permanent enters the battlefield under your control.)
+mana={5}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Aminatou's Augury
+text=Exile the top eight cards of your library. You may put a land card from among them onto the battlefield. Until end of turn, for each nonland card type, you may cast a spell of that type from among the exiled cards without paying its mana cost.
+mana={6}{U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Oreskos Explorer
+text=When Oreskos Explorer enters the battlefield, search your library for up to X Plains cards, where X is the number of players who control more lands than you. Reveal those cards, put them into your hand, then shuffle your library.
+mana={1}{W}
+type=Creature
+subtype=Cat Scout
+power=2
+toughness=2
+[/card]
+[card]
+name=Norn's Annex
+text=({PW} can be paid with either {W} or 2 life.) -- Creatures can't attack you or a planeswalker you control unless their controller pays {PW} for each of those creatures.
+mana={3}{PW}{PW}
+type=Artifact
+[/card]
+[card]
+name=Alms Collector
+text=Flash -- If an opponent would draw two or more cards, instead you and that player each draw a card.
+mana={3}{W}
+type=Creature
+subtype=Cat Cleric
+power=3
+toughness=4
+[/card]
+[card]
+name=Not of This World
+text=Counter target spell or ability that targets a permanent you control. -- Not of This World costs {7} less to cast if it targets a spell or ability that targets a creature you control with power 7 or greater.
+mana={7}
+type=Tribal Instant
+subtype=Eldrazi
+[/card]
+[card]
+name=Inspiring Statuary
+text=Nonartifact spells you cast have improvise. (Your artifacts can help cast those spells. Each artifact you tap after you're done activating mana abilities pays for {1}.)
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Abstruse Archaic
+abilities=vigilance
+text=Vigilance -- {1}, {T}: Copy target activated or triggered ability you control from a colorless source. You may choose new targets for the copy. (Mana abilities can't be targeted.)
+mana={4}
+type=Creature
+subtype=Avatar
+power=3
+toughness=4
+[/card]
+[card]
+name=Leori, Sparktouched Hunter
+abilities=flying,vigilance
+text=Flying, vigilance -- Whenever Leori, Sparktouched Hunter deals combat damage to a player, choose a planeswalker type. Until end of turn, whenever you activate an ability of a planeswalker of that type, copy that ability. You may choose new targets for the copies.
+mana={U}{R}{W}
+type=Legendary Creature
+subtype=Elemental Cat
+power=3
+toughness=3
+[/card]
+[card]
+name=Divergent Transformations
+text=Undaunted (This spell costs {1} less to cast for each opponent.) -- Exile two target creatures. For each of those creatures, its controller reveals cards from the top of his or her library until he or she reveals a creature card, puts that card onto the battlefield, then shuffles the rest into his or her library.
+mana={6}{R}
+type=Instant
+[/card]
+[card]
+name=Divergent Transformations
+text=Undaunted (This spell costs {1} less to cast for each opponent.) -- Exile two target creatures. For each of those creatures, its controller reveals cards from the top of his or her library until he or she reveals a creature card, puts that card onto the battlefield, then shuffles the rest into his or her library.
+mana={6}{R}
+type=Instant
+[/card]
+[card]
+name=Experiment Kraj
+text=Experiment Kraj has all activated abilities of each other creature with a +1/+1 counter on it. -- {T}: Put a +1/+1 counter on target creature.
+mana={2}{G}{G}{U}{U}
+type=Legendary Creature
+subtype=Ooze Mutant
+power=4
+toughness=6
+[/card]
+[card]
+name=Gisela, Blade of Goldnight
+abilities=flying,first strike
+text=Flying, first strike -- If a source would deal damage to an opponent or a permanent an opponent controls, that source deals double that damage to that player or permanent instead. -- If a source would deal damage to you or a permanent you control, prevent half that damage, rounded up.
+mana={4}{R}{W}{W}
+type=Legendary Creature
+subtype=Angel
+power=5
+toughness=5
+[/card]
+[card]
+name=Imp's Mischief
+text=Change the target of target spell with a single target. You lose life equal to that spell's converted mana cost.
+mana={1}{B}
+type=Instant
+[/card]
+[card]
+name=Mizzix of the Izmagnus
+text=Whenever you cast an instant or sorcery spell with converted mana cost greater than the number of experience counters you have, you get an experience counter. -- Instant and sorcery spells you cast cost {1} less to cast for each experience counter you have.
+mana={2}{U}{R}
+type=Legendary Creature
+subtype=Goblin Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Yennett, Cryptic Sovereign
+text=Flying, vigilance, menace -- Whenever Yennett, Cryptic Sovereign attacks, reveal the top card of your library. You may cast it without paying its mana cost if its converted mana cost is odd. If you don't cast it, draw a card.
+mana={2}{W}{U}{B}
+type=Legendary Creature
+subtype=Sphinx
+power=3
+toughness=5
+[/card]
+[card]
+name=Assault Suit
+text=Equipped creature gets +2/+2, has haste, can't attack you or a planeswalker you control, and can't be sacrificed. -- At the beginning of each opponent's upkeep, you may have that player gain control of equipped creature until end of turn. If you do, untap it. -- Equip {3}
+mana={4}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Tromokratis
+text=Tromokratis has hexproof unless it's attacking or blocking. -- Tromokratis can't be blocked unless all creatures defending player controls block it. (If any creature that player controls doesn't block this creature, it can't be blocked.)
+mana={5}{U}{U}
+type=Legendary Creature
+subtype=Kraken
+power=8
+toughness=8
+[/card]
+[card]
+name=Stitcher Geralf
+text={2}{U}, {T}: Each player puts the top three cards of his or her library into his or her graveyard. Exile up to two creature cards put into graveyards this way. Put an X/X blue Zombie creature token onto the battlefield, where X is the total power of the cards exiled this way.
+mana={3}{U}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=3
+toughness=4
+[/card]
+[card]
+name=Leori, Sparktouched Hunter
+abilities=flying,vigilance
+text=Flying, vigilance -- Whenever Leori, Sparktouched Hunter deals combat damage to a player, choose a planeswalker type. Until end of turn, whenever you activate an ability of a planeswalker of that type, copy that ability. You may choose new targets for the copies.
+mana={U}{R}{W}
+type=Legendary Creature
+subtype=Elemental Cat
+power=3
+toughness=3
+[/card]

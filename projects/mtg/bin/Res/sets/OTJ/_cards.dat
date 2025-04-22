@@ -1,0 +1,1876 @@
+[meta]
+author=Wagic Team
+name=Outlaws of Thunder Junction
+year=2024-04-19
+total=374
+[/meta]
+[card]
+primitive=Another Round
+id=654942
+rarity=R
+[/card]
+[card]
+primitive=Archangel of Tithes
+id=654943
+rarity=M
+[/card]
+[card]
+primitive=Armored Armadillo
+id=654944
+rarity=C
+[/card]
+[card]
+primitive=Aven Interrupter
+id=654945
+rarity=R
+[/card]
+[card]
+primitive=Bounding Felidar
+id=654946
+rarity=U
+[/card]
+[card]
+primitive=Bovine Intervention
+id=654947
+rarity=U
+[/card]
+[card]
+primitive=Bridled Bighorn
+id=654948
+rarity=C
+[/card]
+[card]
+primitive=Claim Jumper
+id=654949
+rarity=R
+[/card]
+[card]
+primitive=Dust Animus
+id=654950
+rarity=R
+[/card]
+[card]
+primitive=Eriette's Lullaby
+id=654951
+rarity=C
+[/card]
+[card]
+primitive=Final Showdown
+id=654952
+rarity=M
+[/card]
+[card]
+primitive=Fortune, Loyal Steed
+id=654953
+rarity=R
+[/card]
+[card]
+primitive=Frontier Seeker
+id=654954
+rarity=U
+[/card]
+[card]
+primitive=Getaway Glamer
+id=654955
+rarity=U
+[/card]
+[card]
+primitive=High Noon
+id=654956
+rarity=R
+[/card]
+[card]
+primitive=Holy Cow
+id=654957
+rarity=C
+[/card]
+[card]
+primitive=Inventive Wingsmith
+id=654958
+rarity=C
+[/card]
+[card]
+primitive=Lassoed by the Law
+id=654959
+rarity=U
+[/card]
+[card]
+primitive=Mystical Tether
+id=654960
+rarity=C
+[/card]
+[card]
+primitive=Nurturing Pixie
+id=654961
+rarity=U
+[/card]
+[card]
+primitive=Omenport Vigilante
+id=654962
+rarity=U
+[/card]
+[card]
+primitive=One Last Job
+id=654963
+rarity=R
+[/card]
+[card]
+primitive=Outlaw Medic
+id=654964
+rarity=C
+[/card]
+[card]
+primitive=Prairie Dog
+id=654965
+rarity=U
+[/card]
+[card]
+primitive=Prosperity Tycoon
+id=654966
+rarity=U
+[/card]
+[card]
+primitive=Requisition Raid
+id=654967
+rarity=U
+[/card]
+[card]
+primitive=Rustler Rampage
+id=654968
+rarity=U
+[/card]
+[card]
+primitive=Shepherd of the Clouds
+id=654969
+rarity=U
+[/card]
+[card]
+primitive=Sheriff of Safe Passage
+id=654970
+rarity=U
+[/card]
+[card]
+primitive=Stagecoach Security
+id=654971
+rarity=C
+[/card]
+[card]
+primitive=Steer Clear
+id=654972
+rarity=C
+[/card]
+[card]
+primitive=Sterling Keykeeper
+id=654973
+rarity=C
+[/card]
+[card]
+primitive=Sterling Supplier
+id=654974
+rarity=C
+[/card]
+[card]
+primitive=Take Up the Shield
+id=654975
+rarity=C
+[/card]
+[card]
+primitive=Thunder Lasso
+id=654976
+rarity=U
+[/card]
+[card]
+primitive=Trained Arynx
+id=654977
+rarity=C
+[/card]
+[card]
+primitive=Vengeful Townsfolk
+id=654978
+rarity=C
+[/card]
+[card]
+primitive=Wanted Griffin
+id=654979
+rarity=C
+[/card]
+[card]
+primitive=Archmage's Newt
+id=654980
+rarity=R
+[/card]
+[card]
+primitive=Canyon Crab
+id=654981
+rarity=U
+[/card]
+[card]
+primitive=Daring Thunder-Thief
+id=654982
+rarity=C
+[/card]
+[card]
+primitive=Deepmuck Desperado
+id=654983
+rarity=U
+[/card]
+[card]
+primitive=Djinn of Fool's Fall
+id=654984
+rarity=C
+[/card]
+[card]
+primitive=Double Down
+id=654985
+rarity=M
+[/card]
+[card]
+primitive=Duelist of the Mind
+id=654986
+rarity=R
+[/card]
+[card]
+primitive=Emergent Haunting
+id=654987
+rarity=U
+[/card]
+[card]
+primitive=Failed Fording
+id=654988
+rarity=C
+[/card]
+[card]
+primitive=Fblthp, Lost on the Range
+id=654989
+rarity=R
+[/card]
+[card]
+primitive=Fleeting Reflection
+id=654990
+rarity=U
+[/card]
+[card]
+primitive=Geralf, the Fleshwright
+id=654991
+rarity=M
+[/card]
+[card]
+primitive=Geyser Drake
+id=654992
+rarity=C
+[/card]
+[card]
+primitive=Harrier Strix
+id=654993
+rarity=C
+[/card]
+[card]
+primitive=Jailbreak Scheme
+id=654994
+rarity=C
+[/card]
+[card]
+primitive=The Key to the Vault
+id=654995
+rarity=R
+[/card]
+[card]
+primitive=Loan Shark
+id=654996
+rarity=C
+[/card]
+[card]
+primitive=Marauding Sphinx
+id=654997
+rarity=U
+[/card]
+[card]
+primitive=Metamorphic Blast
+id=654998
+rarity=U
+[/card]
+[card]
+primitive=Nimble Brigand
+id=654999
+rarity=U
+[/card]
+[card]
+primitive=Outlaw Stitcher
+id=655000
+rarity=U
+[/card]
+[card]
+primitive=Peerless Ropemaster
+id=655001
+rarity=C
+[/card]
+[card]
+primitive=Phantom Interference
+id=655002
+rarity=C
+[/card]
+[card]
+primitive=Plan the Heist
+id=655003
+rarity=U
+[/card]
+[card]
+primitive=Razzle-Dazzler
+id=655004
+rarity=C
+[/card]
+[card]
+primitive=Seize the Secrets
+id=655005
+rarity=C
+[/card]
+[card]
+primitive=Shackle Slinger
+id=655006
+rarity=U
+[/card]
+[card]
+primitive=Shifting Grift
+id=655007
+rarity=U
+[/card]
+[card]
+primitive=Slickshot Lockpicker
+id=655008
+rarity=U
+[/card]
+[card]
+primitive=Slickshot Vault-Buster
+id=655009
+rarity=C
+[/card]
+[card]
+primitive=Spring Splasher
+id=655010
+rarity=C
+[/card]
+[card]
+primitive=Step Between Worlds
+id=655011
+rarity=R
+[/card]
+[card]
+primitive=Stoic Sphinx
+id=655012
+rarity=R
+[/card]
+[card]
+primitive=Stop Cold
+id=655013
+rarity=C
+[/card]
+[card]
+primitive=Take the Fall
+id=655014
+rarity=C
+[/card]
+[card]
+primitive=This Town Ain't Big Enough
+id=655015
+rarity=U
+[/card]
+[card]
+primitive=Three Steps Ahead
+id=655016
+rarity=R
+[/card]
+[card]
+primitive=Visage Bandit
+id=655017
+rarity=U
+[/card]
+[card]
+primitive=Ambush Gigapede
+id=655018
+rarity=C
+[/card]
+[card]
+primitive=Binding Negotiation
+id=655019
+rarity=U
+[/card]
+[card]
+primitive=Blacksnag Buzzard
+id=655020
+rarity=C
+[/card]
+[card]
+primitive=Blood Hustler
+id=655021
+rarity=U
+[/card]
+[card]
+primitive=Boneyard Desecrator
+id=655022
+rarity=C
+[/card]
+[card]
+primitive=Caustic Bronco
+id=655023
+rarity=R
+[/card]
+[card]
+primitive=Consuming Ashes
+id=655024
+rarity=C
+[/card]
+[card]
+primitive=Corrupted Conviction
+id=655025
+rarity=C
+[/card]
+[card]
+primitive=Desert's Due
+id=655026
+rarity=C
+[/card]
+[card]
+primitive=Desperate Bloodseeker
+id=655027
+rarity=C
+[/card]
+[card]
+primitive=Fake Your Own Death
+id=655028
+rarity=C
+[/card]
+[card]
+primitive=Forsaken Miner
+id=655029
+rarity=U
+[/card]
+[card]
+primitive=Gisa, the Hellraiser
+id=655030
+rarity=M
+[/card]
+[card]
+primitive=Hollow Marauder
+id=655031
+rarity=U
+[/card]
+[card]
+primitive=Insatiable Avarice
+id=655032
+rarity=R
+[/card]
+[card]
+primitive=Kaervek, the Punisher
+id=655033
+rarity=R
+[/card]
+[card]
+primitive=Lively Dirge
+id=655034
+rarity=U
+[/card]
+[card]
+primitive=Mourner's Surprise
+id=655035
+rarity=C
+[/card]
+[card]
+primitive=Neutralize the Guards
+id=655036
+rarity=U
+[/card]
+[card]
+primitive=Nezumi Linkbreaker
+id=655037
+rarity=C
+[/card]
+[card]
+primitive=Overzealous Muscle
+id=655038
+rarity=C
+[/card]
+[card]
+primitive=Pitiless Carnage
+id=655039
+rarity=R
+[/card]
+[card]
+primitive=Rakish Crew
+id=655040
+rarity=U
+[/card]
+[card]
+primitive=Rattleback Apothecary
+id=655041
+rarity=U
+[/card]
+[card]
+primitive=Raven of Fell Omens
+id=655042
+rarity=C
+[/card]
+[card]
+primitive=Rictus Robber
+id=655043
+rarity=U
+[/card]
+[card]
+primitive=Rooftop Assassin
+id=655044
+rarity=C
+[/card]
+[card]
+primitive=Rush of Dread
+id=655045
+rarity=R
+[/card]
+[card]
+primitive=Servant of the Stinger
+id=655046
+rarity=U
+[/card]
+[card]
+primitive=Shoot the Sheriff
+id=655047
+rarity=U
+[/card]
+[card]
+primitive=Skulduggery
+id=655048
+rarity=C
+[/card]
+[card]
+primitive=Tinybones Joins Up
+id=655049
+rarity=R
+[/card]
+[card]
+primitive=Tinybones, the Pickpocket
+id=655050
+rarity=M
+[/card]
+[card]
+primitive=Treasure Dredger
+id=655051
+rarity=U
+[/card]
+[card]
+primitive=Unfortunate Accident
+id=655052
+rarity=U
+[/card]
+[card]
+primitive=Unscrupulous Contractor
+id=655053
+rarity=U
+[/card]
+[card]
+primitive=Vadmir, New Blood
+id=655054
+rarity=R
+[/card]
+[card]
+primitive=Vault Plunderer
+id=655055
+rarity=C
+[/card]
+[card]
+primitive=Brimstone Roundup
+id=655056
+rarity=U
+[/card]
+[card]
+primitive=Calamity, Galloping Inferno
+id=655057
+rarity=R
+[/card]
+[card]
+primitive=Caught in the Crossfire
+id=655058
+rarity=U
+[/card]
+[card]
+primitive=Cunning Coyote
+id=655059
+rarity=U
+[/card]
+[card]
+primitive=Deadeye Duelist
+id=655060
+rarity=C
+[/card]
+[card]
+primitive=Demonic Ruckus
+id=655061
+rarity=U
+[/card]
+[card]
+primitive=Discerning Peddler
+id=655062
+rarity=C
+[/card]
+[card]
+primitive=Explosive Derailment
+id=655063
+rarity=C
+[/card]
+[card]
+primitive=Ferocification
+id=655064
+rarity=U
+[/card]
+[card]
+primitive=Gila Courser
+id=655065
+rarity=U
+[/card]
+[card]
+primitive=Great Train Heist
+id=655066
+rarity=R
+[/card]
+[card]
+primitive=Hell to Pay
+id=655067
+rarity=R
+[/card]
+[card]
+primitive=Hellspur Brute
+id=655068
+rarity=U
+[/card]
+[card]
+primitive=Hellspur Posse Boss
+id=655069
+rarity=R
+[/card]
+[card]
+primitive=Highway Robbery
+id=655070
+rarity=C
+[/card]
+[card]
+primitive=Irascible Wolverine
+id=655071
+rarity=C
+[/card]
+[card]
+primitive=Iron-Fist Pulverizer
+id=655072
+rarity=C
+[/card]
+[card]
+primitive=Longhorn Sharpshooter
+id=655073
+rarity=U
+[/card]
+[card]
+primitive=Magda, the Hoardmaster
+id=655074
+rarity=R
+[/card]
+[card]
+primitive=Magebane Lizard
+id=655075
+rarity=U
+[/card]
+[card]
+primitive=Mine Raider
+id=655076
+rarity=C
+[/card]
+[card]
+primitive=Outlaws' Fury
+id=655077
+rarity=C
+[/card]
+[card]
+primitive=Prickly Pair
+id=655078
+rarity=C
+[/card]
+[card]
+primitive=Quick Draw
+id=655079
+rarity=C
+[/card]
+[card]
+primitive=Quilled Charger
+id=655080
+rarity=C
+[/card]
+[card]
+primitive=Reckless Lackey
+id=655081
+rarity=C
+[/card]
+[card]
+primitive=Resilient Roadrunner
+id=655082
+rarity=U
+[/card]
+[card]
+primitive=Return the Favor
+id=655083
+rarity=U
+[/card]
+[card]
+primitive=Rodeo Pyromancers
+id=655084
+rarity=C
+[/card]
+[card]
+primitive=Scalestorm Summoner
+id=655085
+rarity=U
+[/card]
+[card]
+primitive=Scorching Shot
+id=655086
+rarity=U
+[/card]
+[card]
+primitive=Slickshot Show-Off
+id=655087
+rarity=R
+[/card]
+[card]
+primitive=Stingerback Terror
+id=655088
+rarity=R
+[/card]
+[card]
+primitive=Take for a Ride
+id=655089
+rarity=U
+[/card]
+[card]
+primitive=Terror of the Peaks
+id=655090
+rarity=M
+[/card]
+[card]
+primitive=Thunder Salvo
+id=655091
+rarity=C
+[/card]
+[card]
+primitive=Trick Shot
+id=655092
+rarity=C
+[/card]
+[card]
+primitive=Aloe Alchemist
+id=655093
+rarity=U
+[/card]
+[card]
+primitive=Ankle Biter
+id=655094
+rarity=C
+[/card]
+[card]
+primitive=Beastbond Outcaster
+id=655095
+rarity=U
+[/card]
+[card]
+primitive=Betrayal at the Vault
+id=655096
+rarity=U
+[/card]
+[card]
+primitive=Bristlepack Sentry
+id=655097
+rarity=C
+[/card]
+[card]
+primitive=Bristly Bill, Spine Sower
+id=655098
+rarity=M
+[/card]
+[card]
+primitive=Cactarantula
+id=655099
+rarity=C
+[/card]
+[card]
+primitive=Colossal Rattlewurm
+id=655100
+rarity=R
+[/card]
+[card]
+primitive=Dance of the Tumbleweeds
+id=655101
+rarity=C
+[/card]
+[card]
+primitive=Drover Grizzly
+id=655102
+rarity=C
+[/card]
+[card]
+primitive=Freestrider Commando
+id=655103
+rarity=C
+[/card]
+[card]
+primitive=Freestrider Lookout
+id=655104
+rarity=R
+[/card]
+[card]
+primitive=Full Steam Ahead
+id=655105
+rarity=U
+[/card]
+[card]
+primitive=Giant Beaver
+id=655106
+rarity=C
+[/card]
+[card]
+primitive=Gold Rush
+id=655107
+rarity=U
+[/card]
+[card]
+primitive=Goldvein Hydra
+id=655108
+rarity=M
+[/card]
+[card]
+primitive=Hardbristle Bandit
+id=655109
+rarity=C
+[/card]
+[card]
+primitive=Intrepid Stablemaster
+id=655110
+rarity=U
+[/card]
+[card]
+primitive=Map the Frontier
+id=655111
+rarity=U
+[/card]
+[card]
+primitive=Ornery Tumblewagg
+id=655112
+rarity=R
+[/card]
+[card]
+primitive=Outcaster Greenblade
+id=655113
+rarity=U
+[/card]
+[card]
+primitive=Outcaster Trailblazer
+id=655114
+rarity=R
+[/card]
+[card]
+primitive=Patient Naturalist
+id=655115
+rarity=C
+[/card]
+[card]
+primitive=Railway Brawler
+id=655116
+rarity=M
+[/card]
+[card]
+primitive=Rambling Possum
+id=655117
+rarity=U
+[/card]
+[card]
+primitive=Raucous Entertainer
+id=655118
+rarity=U
+[/card]
+[card]
+primitive=Reach for the Sky
+id=655119
+rarity=C
+[/card]
+[card]
+primitive=Rise of the Varmints
+id=655120
+rarity=U
+[/card]
+[card]
+primitive=Smuggler's Surprise
+id=655121
+rarity=R
+[/card]
+[card]
+primitive=Snakeskin Veil
+id=655122
+rarity=C
+[/card]
+[card]
+primitive=Spinewoods Armadillo
+id=655123
+rarity=U
+[/card]
+[card]
+primitive=Spinewoods Paladin
+id=655124
+rarity=C
+[/card]
+[card]
+primitive=Stubborn Burrowfiend
+id=655125
+rarity=U
+[/card]
+[card]
+primitive=Throw from the Saddle
+id=655126
+rarity=C
+[/card]
+[card]
+primitive=Trash the Town
+id=655127
+rarity=U
+[/card]
+[card]
+primitive=Tumbleweed Rising
+id=655128
+rarity=C
+[/card]
+[card]
+primitive=Voracious Varmint
+id=655129
+rarity=C
+[/card]
+[card]
+primitive=Akul the Unrepentant
+id=655130
+rarity=R
+[/card]
+[card]
+primitive=Annie Flash, the Veteran
+id=655131
+rarity=M
+[/card]
+[card]
+primitive=Annie Joins Up
+id=655132
+rarity=R
+[/card]
+[card]
+primitive=Assimilation Aegis
+id=655133
+rarity=M
+[/card]
+[card]
+primitive=At Knifepoint
+id=655134
+rarity=U
+[/card]
+[card]
+primitive=Badlands Revival
+id=655135
+rarity=U
+[/card]
+[card]
+primitive=Baron Bertram Graywater
+id=655136
+rarity=U
+[/card]
+[card]
+primitive=Bonny Pall, Clearcutter
+id=655137
+rarity=R
+[/card]
+[card]
+primitive=Breeches, the Blastmaker
+id=655138
+rarity=R
+[/card]
+[card]
+primitive=Bruse Tarl, Roving Rancher
+id=655139
+rarity=R
+[/card]
+[card]
+primitive=Cactusfolk Sureshot
+id=655140
+rarity=U
+[/card]
+[card]
+primitive=Congregation Gryff
+id=655141
+rarity=U
+[/card]
+[card]
+primitive=Doc Aurlock, Grizzled Genius
+id=655142
+rarity=U
+[/card]
+[card]
+primitive=Eriette, the Beguiler
+id=655143
+rarity=R
+[/card]
+[card]
+primitive=Ertha Jo, Frontier Mentor
+id=655144
+rarity=U
+[/card]
+[card]
+primitive=Form a Posse
+id=655145
+rarity=U
+[/card]
+[card]
+primitive=Ghired, Mirror of the Wilds
+id=655146
+rarity=M
+[/card]
+[card]
+primitive=The Gitrog, Ravenous Ride
+id=655147
+rarity=M
+[/card]
+[card]
+primitive=Honest Rutstein
+id=655148
+rarity=U
+[/card]
+[card]
+primitive=Intimidation Campaign
+id=655149
+rarity=U
+[/card]
+[card]
+primitive=Jem Lightfoote, Sky Explorer
+id=655150
+rarity=U
+[/card]
+[card]
+primitive=Jolene, Plundering Pugilist
+id=655151
+rarity=U
+[/card]
+[card]
+primitive=Kambal, Profiteering Mayor
+id=655152
+rarity=R
+[/card]
+[card]
+primitive=Kellan Joins Up
+id=655153
+rarity=R
+[/card]
+[card]
+primitive=Kellan, the Kid
+id=655154
+rarity=M
+[/card]
+[card]
+primitive=Kraum, Violent Cacophony
+id=655155
+rarity=U
+[/card]
+[card]
+primitive=Laughing Jasper Flint
+id=655156
+rarity=R
+[/card]
+[card]
+primitive=Lazav, Familiar Stranger
+id=655157
+rarity=U
+[/card]
+[card]
+primitive=Lilah, Undefeated Slickshot
+id=655158
+rarity=R
+[/card]
+[card]
+primitive=Make Your Own Luck
+id=655159
+rarity=U
+[/card]
+[card]
+primitive=Malcolm, the Eyes
+id=655160
+rarity=R
+[/card]
+[card]
+primitive=Marchesa, Dealer of Death
+id=655161
+rarity=R
+[/card]
+[card]
+primitive=Miriam, Herd Whisperer
+id=655162
+rarity=U
+[/card]
+[card]
+primitive=Obeka, Splitter of Seconds
+id=655163
+rarity=R
+[/card]
+[card]
+primitive=Oko, the Ringleader
+id=655164
+rarity=M
+[/card]
+[card]
+primitive=Pillage the Bog
+id=655165
+rarity=R
+[/card]
+[card]
+primitive=Rakdos Joins Up
+id=655166
+rarity=R
+[/card]
+[card]
+primitive=Rakdos, the Muscle
+id=655167
+rarity=M
+[/card]
+[card]
+primitive=Riku of Many Paths
+id=655168
+rarity=R
+[/card]
+[card]
+primitive=Roxanne, Starfall Savant
+id=655169
+rarity=R
+[/card]
+[card]
+primitive=Ruthless Lawbringer
+id=655170
+rarity=U
+[/card]
+[card]
+primitive=Satoru, the Infiltrator
+id=655171
+rarity=R
+[/card]
+[card]
+primitive=Selvala, Eager Trailblazer
+id=655172
+rarity=M
+[/card]
+[card]
+primitive=Seraphic Steed
+id=655173
+rarity=R
+[/card]
+[card]
+primitive=Slick Sequence
+id=655174
+rarity=U
+[/card]
+[card]
+primitive=Taii Wakeen, Perfect Shot
+id=655175
+rarity=R
+[/card]
+[card]
+primitive=Vial Smasher, Gleeful Grenadier
+id=655176
+rarity=U
+[/card]
+[card]
+primitive=Vraska Joins Up
+id=655177
+rarity=R
+[/card]
+[card]
+primitive=Vraska, the Silencer
+id=655178
+rarity=M
+[/card]
+[card]
+primitive=Wrangler of the Damned
+id=655179
+rarity=U
+[/card]
+[card]
+primitive=Wylie Duke, Atiin Hero
+id=655180
+rarity=R
+[/card]
+[card]
+primitive=Bandit's Haul
+id=655181
+rarity=U
+[/card]
+[card]
+primitive=Boom Box
+id=655182
+rarity=U
+[/card]
+[card]
+primitive=Gold Pan
+id=655183
+rarity=C
+[/card]
+[card]
+primitive=Lavaspur Boots
+id=655184
+rarity=U
+[/card]
+[card]
+primitive=Luxurious Locomotive
+id=655185
+rarity=U
+[/card]
+[card]
+primitive=Mobile Homestead
+id=655186
+rarity=U
+[/card]
+[card]
+primitive=Oasis Gardener
+id=655187
+rarity=C
+[/card]
+[card]
+primitive=Redrock Sentinel
+id=655188
+rarity=U
+[/card]
+[card]
+primitive=Silver Deputy
+id=655189
+rarity=C
+[/card]
+[card]
+primitive=Sterling Hound
+id=655190
+rarity=C
+[/card]
+[card]
+primitive=Tomb Trawler
+id=655191
+rarity=U
+[/card]
+[card]
+primitive=Abraded Bluffs
+id=655192
+rarity=C
+[/card]
+[card]
+primitive=Arid Archway
+id=655193
+rarity=U
+[/card]
+[card]
+primitive=Bristling Backwoods
+id=655194
+rarity=C
+[/card]
+[card]
+primitive=Conduit Pylons
+id=655195
+rarity=C
+[/card]
+[card]
+primitive=Creosote Heath
+id=655196
+rarity=C
+[/card]
+[card]
+primitive=Eroded Canyon
+id=655197
+rarity=C
+[/card]
+[card]
+primitive=Festering Gulch
+id=655198
+rarity=C
+[/card]
+[card]
+primitive=Forlorn Flats
+id=655199
+rarity=C
+[/card]
+[card]
+primitive=Jagged Barrens
+id=655200
+rarity=C
+[/card]
+[card]
+primitive=Lonely Arroyo
+id=655201
+rarity=C
+[/card]
+[card]
+primitive=Lush Oasis
+id=655202
+rarity=C
+[/card]
+[card]
+primitive=Mirage Mesa
+id=655203
+rarity=C
+[/card]
+[card]
+primitive=Sandstorm Verge
+id=655204
+rarity=U
+[/card]
+[card]
+primitive=Soured Springs
+id=655205
+rarity=C
+[/card]
+[card]
+primitive=Bucolic Ranch
+id=657174
+rarity=U
+[/card]
+[card]
+primitive=Blooming Marsh
+id=657175
+rarity=R
+[/card]
+[card]
+primitive=Botanical Sanctum
+id=657176
+rarity=R
+[/card]
+[card]
+primitive=Concealed Courtyard
+id=657177
+rarity=R
+[/card]
+[card]
+primitive=Inspiring Vantage
+id=657178
+rarity=R
+[/card]
+[card]
+primitive=Spirebluff Canal
+id=657179
+rarity=R
+[/card]
+[card]
+primitive=Jace Reawakened
+id=657738
+rarity=M
+[/card]
+[card]
+primitive=Plains
+id=657054
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=657055
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=657056
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=657057
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=657058
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=657094
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=657095
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=657096
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=657097
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=657098
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=657099
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=657100
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=657101
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=657102
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=657103
+rarity=L
+[/card]
+[card]
+primitive=Geralf, the Fleshwright
+id=657222
+rarity=M
+[/card]
+[card]
+primitive=Gisa, the Hellraiser
+id=657223
+rarity=M
+[/card]
+[card]
+primitive=Kaervek, the Punisher
+id=657224
+rarity=R
+[/card]
+[card]
+primitive=Tinybones, the Pickpocket
+id=657225
+rarity=M
+[/card]
+[card]
+primitive=Annie Flash, the Veteran
+id=657226
+rarity=M
+[/card]
+[card]
+primitive=Breeches, the Blastmaker
+id=657227
+rarity=R
+[/card]
+[card]
+primitive=Eriette, the Beguiler
+id=657228
+rarity=R
+[/card]
+[card]
+primitive=Kellan, the Kid
+id=657229
+rarity=M
+[/card]
+[card]
+primitive=Malcolm, the Eyes
+id=657230
+rarity=R
+[/card]
+[card]
+primitive=Oko, the Ringleader
+id=657231
+rarity=M
+[/card]
+[card]
+primitive=Rakdos, the Muscle
+id=657232
+rarity=M
+[/card]
+[card]
+primitive=Satoru, the Infiltrator
+id=657233
+rarity=R
+[/card]
+[card]
+primitive=Vraska, the Silencer
+id=657234
+rarity=M
+[/card]
+[card]
+primitive=Blooming Marsh
+id=657639
+rarity=R
+[/card]
+[card]
+primitive=Botanical Sanctum
+id=657640
+rarity=R
+[/card]
+[card]
+primitive=Concealed Courtyard
+id=657641
+rarity=R
+[/card]
+[card]
+primitive=Inspiring Vantage
+id=657642
+rarity=R
+[/card]
+[card]
+primitive=Spirebluff Canal
+id=657643
+rarity=R
+[/card]
+[card]
+primitive=Oko, the Ringleader
+id=657326
+rarity=M
+[/card]
+[card]
+primitive=Jace Reawakened
+id=657730
+rarity=M
+[/card]
+[card]
+primitive=Another Round
+id=657334
+rarity=R
+[/card]
+[card]
+primitive=Archangel of Tithes
+id=657335
+rarity=M
+[/card]
+[card]
+primitive=Aven Interrupter
+id=657336
+rarity=R
+[/card]
+[card]
+primitive=Claim Jumper
+id=657337
+rarity=R
+[/card]
+[card]
+primitive=Dust Animus
+id=657338
+rarity=R
+[/card]
+[card]
+primitive=Final Showdown
+id=657339
+rarity=M
+[/card]
+[card]
+primitive=Fortune, Loyal Steed
+id=657340
+rarity=R
+[/card]
+[card]
+primitive=High Noon
+id=657341
+rarity=R
+[/card]
+[card]
+primitive=One Last Job
+id=657342
+rarity=R
+[/card]
+[card]
+primitive=Archmage's Newt
+id=657343
+rarity=R
+[/card]
+[card]
+primitive=Double Down
+id=657344
+rarity=M
+[/card]
+[card]
+primitive=Duelist of the Mind
+id=657345
+rarity=R
+[/card]
+[card]
+primitive=Fblthp, Lost on the Range
+id=657346
+rarity=R
+[/card]
+[card]
+primitive=The Key to the Vault
+id=657347
+rarity=R
+[/card]
+[card]
+primitive=Step Between Worlds
+id=657348
+rarity=R
+[/card]
+[card]
+primitive=Stoic Sphinx
+id=657349
+rarity=R
+[/card]
+[card]
+primitive=Three Steps Ahead
+id=657350
+rarity=R
+[/card]
+[card]
+primitive=Caustic Bronco
+id=657351
+rarity=R
+[/card]
+[card]
+primitive=Insatiable Avarice
+id=657352
+rarity=R
+[/card]
+[card]
+primitive=Pitiless Carnage
+id=657353
+rarity=R
+[/card]
+[card]
+primitive=Rush of Dread
+id=657354
+rarity=R
+[/card]
+[card]
+primitive=Tinybones Joins Up
+id=657355
+rarity=R
+[/card]
+[card]
+primitive=Vadmir, New Blood
+id=657356
+rarity=R
+[/card]
+[card]
+primitive=Calamity, Galloping Inferno
+id=657357
+rarity=R
+[/card]
+[card]
+primitive=Great Train Heist
+id=657358
+rarity=R
+[/card]
+[card]
+primitive=Hell to Pay
+id=657359
+rarity=R
+[/card]
+[card]
+primitive=Hellspur Posse Boss
+id=657360
+rarity=R
+[/card]
+[card]
+primitive=Magda, the Hoardmaster
+id=657361
+rarity=R
+[/card]
+[card]
+primitive=Slickshot Show-Off
+id=657362
+rarity=R
+[/card]
+[card]
+primitive=Stingerback Terror
+id=657363
+rarity=R
+[/card]
+[card]
+primitive=Terror of the Peaks
+id=657364
+rarity=M
+[/card]
+[card]
+primitive=Bristly Bill, Spine Sower
+id=657365
+rarity=M
+[/card]
+[card]
+primitive=Colossal Rattlewurm
+id=657366
+rarity=R
+[/card]
+[card]
+primitive=Freestrider Lookout
+id=657367
+rarity=R
+[/card]
+[card]
+primitive=Goldvein Hydra
+id=657368
+rarity=M
+[/card]
+[card]
+primitive=Ornery Tumblewagg
+id=657369
+rarity=R
+[/card]
+[card]
+primitive=Outcaster Trailblazer
+id=657370
+rarity=R
+[/card]
+[card]
+primitive=Railway Brawler
+id=657371
+rarity=M
+[/card]
+[card]
+primitive=Smuggler's Surprise
+id=657372
+rarity=R
+[/card]
+[card]
+primitive=Akul the Unrepentant
+id=657373
+rarity=R
+[/card]
+[card]
+primitive=Annie Joins Up
+id=657374
+rarity=R
+[/card]
+[card]
+primitive=Assimilation Aegis
+id=657375
+rarity=M
+[/card]
+[card]
+primitive=Bonny Pall, Clearcutter
+id=657376
+rarity=R
+[/card]
+[card]
+primitive=Bruse Tarl, Roving Rancher
+id=657377
+rarity=R
+[/card]
+[card]
+primitive=Ghired, Mirror of the Wilds
+id=657378
+rarity=M
+[/card]
+[card]
+primitive=The Gitrog, Ravenous Ride
+id=657379
+rarity=M
+[/card]
+[card]
+primitive=Kambal, Profiteering Mayor
+id=657380
+rarity=R
+[/card]
+[card]
+primitive=Kellan Joins Up
+id=657381
+rarity=R
+[/card]
+[card]
+primitive=Laughing Jasper Flint
+id=657382
+rarity=R
+[/card]
+[card]
+primitive=Lilah, Undefeated Slickshot
+id=657383
+rarity=R
+[/card]
+[card]
+primitive=Marchesa, Dealer of Death
+id=657384
+rarity=R
+[/card]
+[card]
+primitive=Obeka, Splitter of Seconds
+id=657385
+rarity=R
+[/card]
+[card]
+primitive=Pillage the Bog
+id=657386
+rarity=R
+[/card]
+[card]
+primitive=Rakdos Joins Up
+id=657387
+rarity=R
+[/card]
+[card]
+primitive=Riku of Many Paths
+id=657388
+rarity=R
+[/card]
+[card]
+primitive=Roxanne, Starfall Savant
+id=657389
+rarity=R
+[/card]
+[card]
+primitive=Selvala, Eager Trailblazer
+id=657390
+rarity=M
+[/card]
+[card]
+primitive=Seraphic Steed
+id=657391
+rarity=R
+[/card]
+[card]
+primitive=Taii Wakeen, Perfect Shot
+id=657392
+rarity=R
+[/card]
+[card]
+primitive=Vraska Joins Up
+id=657393
+rarity=R
+[/card]
+[card]
+primitive=Wylie Duke, Atiin Hero
+id=657394
+rarity=R
+[/card]
+[card]
+primitive=Frontier Seeker
+id=657679
+rarity=U
+[/card]
+[card]
+primitive=Scorching Shot
+id=657680
+rarity=U
+[/card]
+[card]
+primitive=Honest Rutstein
+id=657681
+rarity=U
+[/card]
+[card]
+primitive=Make Your Own Luck
+id=657682
+rarity=U
+[/card]
+[card]
+primitive=Ruthless Lawbringer
+id=657683
+rarity=U
+[/card]
+[card]
+primitive=The Key to the Vault
+id=657719
+rarity=R
+[/card]
+[card]
+primitive=Magda, the Hoardmaster
+id=657722
+rarity=R
+[/card]

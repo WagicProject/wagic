@@ -1,0 +1,3081 @@
+[meta]
+author=Wagic Team
+name=Kamigawa: Neon Dynasty
+year=2022-02-18
+total=615
+[/meta]
+[card]
+primitive=Goblin Shaman
+id=-551741
+rarity=T
+[/card]
+[card]
+primitive=Goblin Shaman
+id=-548443
+rarity=T
+[/card]
+[card]
+primitive=Samurai
+id=-548293
+rarity=T
+[/card]
+[card]
+primitive=Pilot
+id=-548297
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-548307
+rarity=T
+[/card]
+[card]
+primitive=Samurai
+id=-548310
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-548328
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-548329
+rarity=T
+[/card]
+[card]
+primitive=Samurai
+id=-548337
+rarity=T
+[/card]
+[card]
+primitive=Treasure
+id=-548371
+rarity=T
+[/card]
+[card]
+primitive=Keimi
+id=-548424
+rarity=T
+[/card]
+[card]
+primitive=Rat Rogue
+id=-548425
+rarity=T
+[/card]
+[card]
+primitive=Rat Rogue
+id=-548426
+rarity=T
+[/card]
+[card]
+primitive=Treasure
+id=-548428
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-548432
+rarity=T
+[/card]
+[card]
+primitive=Treasure
+id=-548436
+rarity=T
+[/card]
+[card]
+primitive=Samurai
+id=-548440
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-548446
+rarity=T
+[/card]
+[card]
+primitive=Dragon Spirit
+id=-548448
+rarity=T
+[/card]
+[card]
+primitive=Construct
+id=-548469
+rarity=T
+[/card]
+[card]
+primitive=Human Monk
+id=-548485
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-548501
+rarity=T
+[/card]
+[card]
+primitive=Human Monk
+id=-548502
+rarity=T
+[/card]
+[card]
+primitive=Human Monk
+id=-548503
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-548509
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-548522
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-548523
+rarity=T
+[/card]
+[card]
+primitive=Samurai
+id=-548528
+rarity=T
+[/card]
+[card]
+primitive=Ninja
+id=-548538
+rarity=T
+[/card]
+[card]
+primitive=Samurai
+id=-548542
+rarity=T
+[/card]
+[card]
+primitive=Construct
+id=-548543
+rarity=T
+[/card]
+[card]
+primitive=Pilot
+id=-548544
+rarity=T
+[/card]
+[card]
+primitive=Tamiyo's Notebook
+id=-548551
+rarity=T
+[/card]
+[card]
+primitive=Mechtitan
+id=-548562
+rarity=T
+[/card]
+[card]
+primitive=Pilot
+id=-548568
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-548571
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-548589
+rarity=T
+[/card]
+[card]
+primitive=Samurai
+id=-551646
+rarity=T
+[/card]
+[card]
+primitive=Ninja
+id=-551648
+rarity=T
+[/card]
+[card]
+primitive=Tamiyo's Notebook
+id=-551649
+rarity=T
+[/card]
+[card]
+primitive=Samurai
+id=-553225
+rarity=T
+[/card]
+[card]
+primitive=Dragon Spirit
+id=-553229
+rarity=T
+[/card]
+[card]
+primitive=Treasure
+id=-552715
+rarity=T
+[/card]
+[card]
+primitive=Keimi
+id=-552724
+rarity=T
+[/card]
+[card]
+primitive=Ninja
+id=-552729
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-553020
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-553021
+rarity=T
+[/card]
+[card]
+primitive=Rat Rogue
+id=-553024
+rarity=T
+[/card]
+[card]
+primitive=Rat Rogue
+id=-553025
+rarity=T
+[/card]
+[card]
+primitive=Goblin Shaman
+id=-553026
+rarity=T
+[/card]
+[card]
+primitive=Human Monk
+id=-553030
+rarity=T
+[/card]
+[card]
+primitive=Human Monk
+id=-553031
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-553032
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-553033
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-552264
+rarity=T
+[/card]
+[card]
+primitive=Samurai
+id=-552270
+rarity=T
+[/card]
+[card]
+primitive=Mechtitan
+id=-552276
+rarity=T
+[/card]
+[card]
+primitive=Pilot
+id=-552278
+rarity=T
+[/card]
+[card]
+primitive=Treasure
+id=-552120
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-552121
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-552125
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-551715
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-551716
+rarity=T
+[/card]
+[card]
+primitive=Keimi
+id=-551736
+rarity=T
+[/card]
+[card]
+primitive=Rat Rogue
+id=-551737
+rarity=T
+[/card]
+[card]
+primitive=Rat Rogue
+id=-551738
+rarity=T
+[/card]
+[card]
+primitive=Treasure
+id=-551739
+rarity=T
+[/card]
+[card]
+primitive=Dragon Spirit
+id=-551743
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-551752
+rarity=T
+[/card]
+[card]
+primitive=Human Monk
+id=-551753
+rarity=T
+[/card]
+[card]
+primitive=Human Monk
+id=-551754
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-551757
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-551761
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-551762
+rarity=T
+[/card]
+[card]
+primitive=Samurai
+id=-551764
+rarity=T
+[/card]
+[card]
+primitive=Mechtitan
+id=-551779
+rarity=T
+[/card]
+[card]
+primitive=Pilot
+id=-551781
+rarity=T
+[/card]
+[card]
+primitive=Spirit
+id=-551786
+rarity=T
+[/card]
+[card]
+primitive=Ancestral Katana
+id=548291
+rarity=C
+[/card]
+[card]
+primitive=Ao, the Dawn Sky
+id=548292
+rarity=M
+[/card]
+[card]
+primitive=Banishing Slash
+id=548293
+rarity=U
+[/card]
+[card]
+primitive=Befriending the Moths
+id=548294
+rarity=C
+[/card]
+[card]
+primitive=Imperial Moth
+id=548295
+rarity=T
+[/card]
+[card]
+primitive=Blade-Blizzard Kitsune
+id=548296
+rarity=U
+[/card]
+[card]
+primitive=Born to Drive
+id=548297
+rarity=U
+[/card]
+[card]
+primitive=Brilliant Restoration
+id=548298
+rarity=R
+[/card]
+[card]
+primitive=Cloudsteel Kirin
+id=548299
+rarity=R
+[/card]
+[card]
+primitive=Dragonfly Suit
+id=548300
+rarity=C
+[/card]
+[card]
+primitive=Eiganjo Exemplar
+id=548301
+rarity=C
+[/card]
+[card]
+primitive=Era of Enlightenment
+id=548302
+rarity=C
+[/card]
+[card]
+primitive=Hand of Enlightenment
+id=548303
+rarity=T
+[/card]
+[card]
+primitive=The Fall of Lord Konda
+id=548304
+rarity=U
+[/card]
+[card]
+primitive=Fragment of Konda
+id=548305
+rarity=T
+[/card]
+[card]
+primitive=Farewell
+id=548306
+rarity=R
+[/card]
+[card]
+primitive=Go-Shintai of Shared Purpose
+id=548307
+rarity=U
+[/card]
+[card]
+primitive=Golden-Tail Disciple
+id=548308
+rarity=C
+[/card]
+[card]
+primitive=Hotshot Mechanic
+id=548309
+rarity=U
+[/card]
+[card]
+primitive=Imperial Oath
+id=548310
+rarity=C
+[/card]
+[card]
+primitive=Imperial Recovery Unit
+id=548311
+rarity=U
+[/card]
+[card]
+primitive=Imperial Subduer
+id=548312
+rarity=C
+[/card]
+[card]
+primitive=Intercessor's Arrest
+id=548313
+rarity=C
+[/card]
+[card]
+primitive=Invoke Justice
+id=548314
+rarity=R
+[/card]
+[card]
+primitive=Kitsune Ace
+id=548315
+rarity=C
+[/card]
+[card]
+primitive=Kyodai, Soul of Kamigawa
+id=548316
+rarity=R
+[/card]
+[card]
+primitive=Light the Way
+id=548317
+rarity=C
+[/card]
+[card]
+primitive=Light-Paws, Emperor's Voice
+id=548318
+rarity=R
+[/card]
+[card]
+primitive=Lion Sash
+id=548319
+rarity=R
+[/card]
+[card]
+primitive=Lucky Offering
+id=548320
+rarity=C
+[/card]
+[card]
+primitive=March of Otherworldly Light
+id=548321
+rarity=R
+[/card]
+[card]
+primitive=Michiko's Reign of Truth
+id=548322
+rarity=U
+[/card]
+[card]
+primitive=Portrait of Michiko
+id=548323
+rarity=T
+[/card]
+[card]
+primitive=Mothrider Patrol
+id=548324
+rarity=C
+[/card]
+[card]
+primitive=Norika Yamazaki, the Poet
+id=548325
+rarity=U
+[/card]
+[card]
+primitive=Regent's Authority
+id=548326
+rarity=C
+[/card]
+[card]
+primitive=Repel the Vile
+id=548327
+rarity=C
+[/card]
+[card]
+primitive=The Restoration of Eiganjo
+id=548328
+rarity=R
+[/card]
+[card]
+primitive=Architect of Restoration
+id=548329
+rarity=T
+[/card]
+[card]
+primitive=Selfless Samurai
+id=548330
+rarity=U
+[/card]
+[card]
+primitive=Seven-Tail Mentor
+id=548331
+rarity=C
+[/card]
+[card]
+primitive=Sky-Blessed Samurai
+id=548332
+rarity=U
+[/card]
+[card]
+primitive=Spirited Companion
+id=548333
+rarity=C
+[/card]
+[card]
+primitive=Sunblade Samurai
+id=548334
+rarity=C
+[/card]
+[card]
+primitive=Touch the Spirit Realm
+id=548335
+rarity=U
+[/card]
+[card]
+primitive=Wanderer's Intervention
+id=548336
+rarity=C
+[/card]
+[card]
+primitive=The Wandering Emperor
+id=548337
+rarity=M
+[/card]
+[card]
+primitive=When We Were Young
+id=548338
+rarity=U
+[/card]
+[card]
+primitive=Acquisition Octopus
+id=548339
+rarity=U
+[/card]
+[card]
+primitive=Anchor to Reality
+id=548340
+rarity=U
+[/card]
+[card]
+primitive=Armguard Familiar
+id=548341
+rarity=C
+[/card]
+[card]
+primitive=Awakened Awareness
+id=548342
+rarity=U
+[/card]
+[card]
+primitive=Behold the Unspeakable
+id=548343
+rarity=U
+[/card]
+[card]
+primitive=Vision of the Unspeakable
+id=548344
+rarity=T
+[/card]
+[card]
+primitive=Covert Technician
+id=548345
+rarity=U
+[/card]
+[card]
+primitive=Discover the Impossible
+id=548346
+rarity=U
+[/card]
+[card]
+primitive=Disruption Protocol
+id=548347
+rarity=C
+[/card]
+[card]
+primitive=Essence Capture
+id=548348
+rarity=U
+[/card]
+[card]
+primitive=Futurist Operative
+id=548349
+rarity=U
+[/card]
+[card]
+primitive=Futurist Sentinel
+id=548350
+rarity=C
+[/card]
+[card]
+primitive=Go-Shintai of Lost Wisdom
+id=548351
+rarity=U
+[/card]
+[card]
+primitive=Guardians of Oboro
+id=548352
+rarity=C
+[/card]
+[card]
+primitive=Inventive Iteration
+id=548353
+rarity=R
+[/card]
+[card]
+primitive=Living Breakthrough
+id=548354
+rarity=T
+[/card]
+[card]
+primitive=Invoke the Winds
+id=548355
+rarity=R
+[/card]
+[card]
+primitive=Jin-Gitaxias, Progress Tyrant
+id=548356
+rarity=M
+[/card]
+[card]
+primitive=Kairi, the Swirling Sky
+id=548357
+rarity=M
+[/card]
+[card]
+primitive=March of Swirling Mist
+id=548358
+rarity=R
+[/card]
+[card]
+primitive=Mindlink Mech
+id=548359
+rarity=R
+[/card]
+[card]
+primitive=Mirrorshell Crab
+id=548360
+rarity=C
+[/card]
+[card]
+primitive=Mnemonic Sphere
+id=548361
+rarity=C
+[/card]
+[card]
+primitive=Mobilizer Mech
+id=548362
+rarity=U
+[/card]
+[card]
+primitive=The Modern Age
+id=548363
+rarity=C
+[/card]
+[card]
+primitive=Vector Glider
+id=548364
+rarity=T
+[/card]
+[card]
+primitive=Moon-Circuit Hacker
+id=548365
+rarity=C
+[/card]
+[card]
+primitive=Moonfolk Puzzlemaker
+id=548366
+rarity=C
+[/card]
+[card]
+primitive=Moonsnare Prototype
+id=548367
+rarity=C
+[/card]
+[card]
+primitive=Moonsnare Specialist
+id=548368
+rarity=C
+[/card]
+[card]
+primitive=Network Disruptor
+id=548369
+rarity=C
+[/card]
+[card]
+primitive=Planar Incision
+id=548370
+rarity=C
+[/card]
+[card]
+primitive=Prosperous Thief
+id=548371
+rarity=U
+[/card]
+[card]
+primitive=The Reality Chip
+id=548372
+rarity=R
+[/card]
+[card]
+primitive=Reality Heist
+id=548373
+rarity=U
+[/card]
+[card]
+primitive=Replication Specialist
+id=548374
+rarity=U
+[/card]
+[card]
+primitive=Saiba Trespassers
+id=548375
+rarity=C
+[/card]
+[card]
+primitive=Short Circuit
+id=548376
+rarity=C
+[/card]
+[card]
+primitive=Skyswimmer Koi
+id=548377
+rarity=C
+[/card]
+[card]
+primitive=Spell Pierce
+id=548378
+rarity=C
+[/card]
+[card]
+primitive=Suit Up
+id=548379
+rarity=C
+[/card]
+[card]
+primitive=Tameshi, Reality Architect
+id=548380
+rarity=R
+[/card]
+[card]
+primitive=Tamiyo's Compleation
+id=548381
+rarity=C
+[/card]
+[card]
+primitive=Tezzeret, Betrayer of Flesh
+id=548382
+rarity=M
+[/card]
+[card]
+primitive=Thirst for Knowledge
+id=548383
+rarity=U
+[/card]
+[card]
+primitive=Thousand-Faced Shadow
+id=548384
+rarity=R
+[/card]
+[card]
+primitive=Assassin's Ink
+id=548385
+rarity=U
+[/card]
+[card]
+primitive=Biting-Palm Ninja
+id=548386
+rarity=R
+[/card]
+[card]
+primitive=Blade of the Oni
+id=548387
+rarity=M
+[/card]
+[card]
+primitive=Chainflail Centipede
+id=548388
+rarity=C
+[/card]
+[card]
+primitive=Clawing Torment
+id=548389
+rarity=C
+[/card]
+[card]
+primitive=Debt to the Kami
+id=548390
+rarity=C
+[/card]
+[card]
+primitive=Dockside Chef
+id=548391
+rarity=U
+[/card]
+[card]
+primitive=Dokuchi Shadow-Walker
+id=548392
+rarity=C
+[/card]
+[card]
+primitive=Dokuchi Silencer
+id=548393
+rarity=U
+[/card]
+[card]
+primitive=Enormous Energy Blade
+id=548394
+rarity=U
+[/card]
+[card]
+primitive=Go-Shintai of Hidden Cruelty
+id=548395
+rarity=U
+[/card]
+[card]
+primitive=Gravelighter
+id=548396
+rarity=U
+[/card]
+[card]
+primitive=Hidetsugu, Devouring Chaos
+id=548397
+rarity=R
+[/card]
+[card]
+primitive=Inkrise Infiltrator
+id=548398
+rarity=C
+[/card]
+[card]
+primitive=Invoke Despair
+id=548399
+rarity=R
+[/card]
+[card]
+primitive=Junji, the Midnight Sky
+id=548400
+rarity=M
+[/card]
+[card]
+primitive=Kaito's Pursuit
+id=548401
+rarity=C
+[/card]
+[card]
+primitive=Kami of Restless Shadows
+id=548402
+rarity=C
+[/card]
+[card]
+primitive=Kami of Terrible Secrets
+id=548403
+rarity=C
+[/card]
+[card]
+primitive=Leech Gauntlet
+id=548404
+rarity=U
+[/card]
+[card]
+primitive=Lethal Exploit
+id=548405
+rarity=C
+[/card]
+[card]
+primitive=Life of Toshiro Umezawa
+id=548406
+rarity=U
+[/card]
+[card]
+primitive=Memory of Toshiro
+id=548407
+rarity=T
+[/card]
+[card]
+primitive=The Long Reach of Night
+id=548408
+rarity=U
+[/card]
+[card]
+primitive=Animus of Night's Reach
+id=548409
+rarity=T
+[/card]
+[card]
+primitive=Malicious Malfunction
+id=548410
+rarity=U
+[/card]
+[card]
+primitive=March of Wretched Sorrow
+id=548411
+rarity=R
+[/card]
+[card]
+primitive=Mukotai Ambusher
+id=548412
+rarity=C
+[/card]
+[card]
+primitive=Mukotai Soulripper
+id=548413
+rarity=R
+[/card]
+[card]
+primitive=Nashi, Moon Sage's Scion
+id=548414
+rarity=M
+[/card]
+[card]
+primitive=Nezumi Bladeblesser
+id=548415
+rarity=C
+[/card]
+[card]
+primitive=Nezumi Prowler
+id=548416
+rarity=U
+[/card]
+[card]
+primitive=Okiba Reckoner Raid
+id=548417
+rarity=C
+[/card]
+[card]
+primitive=Nezumi Road Captain
+id=548418
+rarity=T
+[/card]
+[card]
+primitive=Okiba Salvage
+id=548419
+rarity=U
+[/card]
+[card]
+primitive=Reckoner Shakedown
+id=548420
+rarity=C
+[/card]
+[card]
+primitive=Reckoner's Bargain
+id=548421
+rarity=C
+[/card]
+[card]
+primitive=Return to Action
+id=548422
+rarity=C
+[/card]
+[card]
+primitive=Soul Transfer
+id=548423
+rarity=R
+[/card]
+[card]
+primitive=Tatsunari, Toad Rider
+id=548424
+rarity=R
+[/card]
+[card]
+primitive=Tribute to Horobi
+id=548425
+rarity=R
+[/card]
+[card]
+primitive=Echo of Death's Wail
+id=548426
+rarity=T
+[/card]
+[card]
+primitive=Twisted Embrace
+id=548427
+rarity=C
+[/card]
+[card]
+primitive=Undercity Scrounger
+id=548428
+rarity=C
+[/card]
+[card]
+primitive=Unforgiving One
+id=548429
+rarity=U
+[/card]
+[card]
+primitive=Virus Beetle
+id=548430
+rarity=C
+[/card]
+[card]
+primitive=You Are Already Dead
+id=548431
+rarity=C
+[/card]
+[card]
+primitive=Akki Ember-Keeper
+id=548432
+rarity=C
+[/card]
+[card]
+primitive=Akki Ronin
+id=548433
+rarity=C
+[/card]
+[card]
+primitive=Akki War Paint
+id=548434
+rarity=C
+[/card]
+[card]
+primitive=Ambitious Assault
+id=548435
+rarity=C
+[/card]
+[card]
+primitive=Atsushi, the Blazing Sky
+id=548436
+rarity=M
+[/card]
+[card]
+primitive=Bronzeplate Boar
+id=548437
+rarity=U
+[/card]
+[card]
+primitive=Crackling Emergence
+id=548438
+rarity=C
+[/card]
+[card]
+primitive=Dragonspark Reactor
+id=548439
+rarity=U
+[/card]
+[card]
+primitive=Experimental Synthesizer
+id=548440
+rarity=C
+[/card]
+[card]
+primitive=Explosive Entry
+id=548441
+rarity=C
+[/card]
+[card]
+primitive=Explosive Singularity
+id=548442
+rarity=M
+[/card]
+[card]
+primitive=Fable of the Mirror-Breaker
+id=548443
+rarity=R
+[/card]
+[card]
+primitive=Reflection of Kiki-Jiki
+id=548444
+rarity=T
+[/card]
+[card]
+primitive=Flame Discharge
+id=548445
+rarity=U
+[/card]
+[card]
+primitive=Gift of Wrath
+id=548446
+rarity=C
+[/card]
+[card]
+primitive=Go-Shintai of Ancient Wars
+id=548447
+rarity=U
+[/card]
+[card]
+primitive=Goro-Goro, Disciple of Ryusei
+id=548448
+rarity=R
+[/card]
+[card]
+primitive=Heiko Yamazaki, the General
+id=548449
+rarity=U
+[/card]
+[card]
+primitive=Invoke Calamity
+id=548450
+rarity=R
+[/card]
+[card]
+primitive=Ironhoof Boar
+id=548451
+rarity=C
+[/card]
+[card]
+primitive=Kami of Industry
+id=548452
+rarity=C
+[/card]
+[card]
+primitive=Kami's Flare
+id=548453
+rarity=C
+[/card]
+[card]
+primitive=Kindled Fury
+id=548454
+rarity=C
+[/card]
+[card]
+primitive=Kumano Faces Kakkazan
+id=548455
+rarity=U
+[/card]
+[card]
+primitive=Etching of Kumano
+id=548456
+rarity=T
+[/card]
+[card]
+primitive=Lizard Blades
+id=548457
+rarity=R
+[/card]
+[card]
+primitive=March of Reckless Joy
+id=548458
+rarity=R
+[/card]
+[card]
+primitive=Ogre-Head Helm
+id=548459
+rarity=R
+[/card]
+[card]
+primitive=Peerless Samurai
+id=548460
+rarity=C
+[/card]
+[card]
+primitive=Rabbit Battery
+id=548461
+rarity=U
+[/card]
+[card]
+primitive=Reinforced Ronin
+id=548462
+rarity=U
+[/card]
+[card]
+primitive=Scrap Welder
+id=548463
+rarity=R
+[/card]
+[card]
+primitive=Scrapyard Steelbreaker
+id=548464
+rarity=C
+[/card]
+[card]
+primitive=Seismic Wave
+id=548465
+rarity=U
+[/card]
+[card]
+primitive=The Shattered States Era
+id=548466
+rarity=C
+[/card]
+[card]
+primitive=Nameless Conqueror
+id=548467
+rarity=T
+[/card]
+[card]
+primitive=Simian Sling
+id=548468
+rarity=C
+[/card]
+[card]
+primitive=Sokenzan Smelter
+id=548469
+rarity=U
+[/card]
+[card]
+primitive=Tempered in Solitude
+id=548470
+rarity=U
+[/card]
+[card]
+primitive=Thundering Raiju
+id=548471
+rarity=R
+[/card]
+[card]
+primitive=Towashi Songshaper
+id=548472
+rarity=C
+[/card]
+[card]
+primitive=Twinshot Sniper
+id=548473
+rarity=U
+[/card]
+[card]
+primitive=Unstoppable Ogre
+id=548474
+rarity=C
+[/card]
+[card]
+primitive=Upriser Renegade
+id=548475
+rarity=U
+[/card]
+[card]
+primitive=Voltage Surge
+id=548476
+rarity=C
+[/card]
+[card]
+primitive=Azusa's Many Journeys
+id=548477
+rarity=U
+[/card]
+[card]
+primitive=Likeness of the Seeker
+id=548478
+rarity=T
+[/card]
+[card]
+primitive=Bamboo Grove Archer
+id=548479
+rarity=C
+[/card]
+[card]
+primitive=Bearer of Memory
+id=548480
+rarity=C
+[/card]
+[card]
+primitive=Blossom Prancer
+id=548481
+rarity=U
+[/card]
+[card]
+primitive=Boon of Boseiju
+id=548482
+rarity=U
+[/card]
+[card]
+primitive=Boseiju Reaches Skyward
+id=548483
+rarity=U
+[/card]
+[card]
+primitive=Branch of Boseiju
+id=548484
+rarity=T
+[/card]
+[card]
+primitive=Careful Cultivation
+id=548485
+rarity=C
+[/card]
+[card]
+primitive=Coiling Stalker
+id=548486
+rarity=C
+[/card]
+[card]
+primitive=Commune with Spirits
+id=548487
+rarity=C
+[/card]
+[card]
+primitive=The Dragon-Kami Reborn
+id=548488
+rarity=R
+[/card]
+[card]
+primitive=Dragon-Kami's Egg
+id=548489
+rarity=T
+[/card]
+[card]
+primitive=Fade into Antiquity
+id=548490
+rarity=C
+[/card]
+[card]
+primitive=Fang of Shigeki
+id=548491
+rarity=C
+[/card]
+[card]
+primitive=Favor of Jukai
+id=548492
+rarity=C
+[/card]
+[card]
+primitive=Generous Visitor
+id=548493
+rarity=U
+[/card]
+[card]
+primitive=Geothermal Kami
+id=548494
+rarity=C
+[/card]
+[card]
+primitive=Go-Shintai of Boundless Vigor
+id=548495
+rarity=U
+[/card]
+[card]
+primitive=Grafted Growth
+id=548496
+rarity=C
+[/card]
+[card]
+primitive=Greater Tanuki
+id=548497
+rarity=C
+[/card]
+[card]
+primitive=Harmonious Emergence
+id=548498
+rarity=C
+[/card]
+[card]
+primitive=Heir of the Ancient Fang
+id=548499
+rarity=C
+[/card]
+[card]
+primitive=Historian's Wisdom
+id=548500
+rarity=U
+[/card]
+[card]
+primitive=Invoke the Ancients
+id=548501
+rarity=R
+[/card]
+[card]
+primitive=Jugan Defends the Temple
+id=548502
+rarity=M
+[/card]
+[card]
+primitive=Remnant of the Rising Star
+id=548503
+rarity=T
+[/card]
+[card]
+primitive=Jukai Preserver
+id=548504
+rarity=C
+[/card]
+[card]
+primitive=Jukai Trainee
+id=548505
+rarity=C
+[/card]
+[card]
+primitive=Kami of Transience
+id=548506
+rarity=R
+[/card]
+[card]
+primitive=Kappa Tech-Wrecker
+id=548507
+rarity=U
+[/card]
+[card]
+primitive=Kodama of the West Tree
+id=548508
+rarity=M
+[/card]
+[card]
+primitive=Kura, the Boundless Sky
+id=548509
+rarity=M
+[/card]
+[card]
+primitive=March of Burgeoning Life
+id=548510
+rarity=R
+[/card]
+[card]
+primitive=Master's Rebuke
+id=548511
+rarity=C
+[/card]
+[card]
+primitive=Orochi Merge-Keeper
+id=548512
+rarity=U
+[/card]
+[card]
+primitive=Roaring Earth
+id=548513
+rarity=U
+[/card]
+[card]
+primitive=Season of Renewal
+id=548514
+rarity=C
+[/card]
+[card]
+primitive=Shigeki, Jukai Visionary
+id=548515
+rarity=R
+[/card]
+[card]
+primitive=Spinning Wheel Kick
+id=548516
+rarity=U
+[/card]
+[card]
+primitive=Spring-Leaf Avenger
+id=548517
+rarity=R
+[/card]
+[card]
+primitive=Storyweave
+id=548518
+rarity=U
+[/card]
+[card]
+primitive=Tales of Master Seshiro
+id=548519
+rarity=C
+[/card]
+[card]
+primitive=Seshiro's Living Legacy
+id=548520
+rarity=T
+[/card]
+[card]
+primitive=Tamiyo's Safekeeping
+id=548521
+rarity=C
+[/card]
+[card]
+primitive=Teachings of the Kirin
+id=548522
+rarity=R
+[/card]
+[card]
+primitive=Kirin-Touched Orochi
+id=548523
+rarity=T
+[/card]
+[card]
+primitive=Weaver of Harmony
+id=548524
+rarity=R
+[/card]
+[card]
+primitive=Webspinner Cuff
+id=548525
+rarity=U
+[/card]
+[card]
+primitive=Asari Captain
+id=548526
+rarity=U
+[/card]
+[card]
+primitive=Colossal Skyturtle
+id=548527
+rarity=U
+[/card]
+[card]
+primitive=Eiganjo Uprising
+id=548528
+rarity=R
+[/card]
+[card]
+primitive=Enthusiastic Mechanaut
+id=548529
+rarity=U
+[/card]
+[card]
+primitive=Gloomshrieker
+id=548530
+rarity=U
+[/card]
+[card]
+primitive=Greasefang, Okiba Boss
+id=548531
+rarity=R
+[/card]
+[card]
+primitive=Hidetsugu Consumes All
+id=548532
+rarity=M
+[/card]
+[card]
+primitive=Vessel of the All-Consuming
+id=548533
+rarity=T
+[/card]
+[card]
+primitive=Hinata, Dawn-Crowned
+id=548534
+rarity=R
+[/card]
+[card]
+primitive=Invigorating Hot Spring
+id=548535
+rarity=U
+[/card]
+[card]
+primitive=Isshin, Two Heavens as One
+id=548536
+rarity=R
+[/card]
+[card]
+primitive=Jukai Naturalist
+id=548537
+rarity=U
+[/card]
+[card]
+primitive=Kaito Shizuki
+id=548538
+rarity=M
+[/card]
+[card]
+primitive=The Kami War
+id=548539
+rarity=M
+[/card]
+[card]
+primitive=O-Kagachi Made Manifest
+id=548540
+rarity=T
+[/card]
+[card]
+primitive=Kotose, the Silent Spider
+id=548541
+rarity=R
+[/card]
+[card]
+primitive=Naomi, Pillar of Order
+id=548542
+rarity=U
+[/card]
+[card]
+primitive=Oni-Cult Anvil
+id=548543
+rarity=U
+[/card]
+[card]
+primitive=Prodigy's Prototype
+id=548544
+rarity=U
+[/card]
+[card]
+primitive=Raiyuu, Storm's Edge
+id=548545
+rarity=R
+[/card]
+[card]
+primitive=Risona, Asari Commander
+id=548546
+rarity=R
+[/card]
+[card]
+primitive=Satoru Umezawa
+id=548547
+rarity=R
+[/card]
+[card]
+primitive=Satsuki, the Living Lore
+id=548548
+rarity=R
+[/card]
+[card]
+primitive=Silver-Fur Master
+id=548549
+rarity=U
+[/card]
+[card]
+primitive=Spirit-Sister's Call
+id=548550
+rarity=M
+[/card]
+[card]
+primitive=Tamiyo, Compleated Sage
+id=548551
+rarity=M
+[/card]
+[card]
+primitive=Automated Artificer
+id=548552
+rarity=C
+[/card]
+[card]
+primitive=Bronze Cudgels
+id=548553
+rarity=U
+[/card]
+[card]
+primitive=Brute Suit
+id=548554
+rarity=C
+[/card]
+[card]
+primitive=Circuit Mender
+id=548555
+rarity=U
+[/card]
+[card]
+primitive=Containment Construct
+id=548556
+rarity=U
+[/card]
+[card]
+primitive=Dramatist's Puppet
+id=548557
+rarity=C
+[/card]
+[card]
+primitive=Eater of Virtue
+id=548558
+rarity=R
+[/card]
+[card]
+primitive=Ecologist's Terrarium
+id=548559
+rarity=C
+[/card]
+[card]
+primitive=High-Speed Hoverbike
+id=548560
+rarity=U
+[/card]
+[card]
+primitive=Iron Apprentice
+id=548561
+rarity=C
+[/card]
+[card]
+primitive=Mechtitan Core
+id=548562
+rarity=R
+[/card]
+[card]
+primitive=Mirror Box
+id=548563
+rarity=R
+[/card]
+[card]
+primitive=Network Terminal
+id=548564
+rarity=C
+[/card]
+[card]
+primitive=Ninja's Kunai
+id=548565
+rarity=C
+[/card]
+[card]
+primitive=Papercraft Decoy
+id=548566
+rarity=C
+[/card]
+[card]
+primitive=Patchwork Automaton
+id=548567
+rarity=U
+[/card]
+[card]
+primitive=Reckoner Bankbuster
+id=548568
+rarity=R
+[/card]
+[card]
+primitive=Reito Sentinel
+id=548569
+rarity=U
+[/card]
+[card]
+primitive=Runaway Trash-Bot
+id=548570
+rarity=U
+[/card]
+[card]
+primitive=Searchlight Companion
+id=548571
+rarity=C
+[/card]
+[card]
+primitive=Shrine Steward
+id=548572
+rarity=C
+[/card]
+[card]
+primitive=Surgehacker Mech
+id=548573
+rarity=R
+[/card]
+[card]
+primitive=Thundersteel Colossus
+id=548574
+rarity=C
+[/card]
+[card]
+primitive=Towashi Guide-Bot
+id=548575
+rarity=U
+[/card]
+[card]
+primitive=Walking Skyscraper
+id=548576
+rarity=U
+[/card]
+[card]
+primitive=Bloodfell Caves
+id=548577
+rarity=C
+[/card]
+[card]
+primitive=Blossoming Sands
+id=548578
+rarity=C
+[/card]
+[card]
+primitive=Boseiju, Who Endures
+id=548579
+rarity=R
+[/card]
+[card]
+primitive=Dismal Backwater
+id=548580
+rarity=C
+[/card]
+[card]
+primitive=Eiganjo, Seat of the Empire
+id=548581
+rarity=R
+[/card]
+[card]
+primitive=Jungle Hollow
+id=548582
+rarity=C
+[/card]
+[card]
+primitive=Mech Hangar
+id=548583
+rarity=U
+[/card]
+[card]
+primitive=Otawara, Soaring City
+id=548584
+rarity=R
+[/card]
+[card]
+primitive=Roadside Reliquary
+id=548585
+rarity=U
+[/card]
+[card]
+primitive=Rugged Highlands
+id=548586
+rarity=C
+[/card]
+[card]
+primitive=Scoured Barrens
+id=548587
+rarity=C
+[/card]
+[card]
+primitive=Secluded Courtyard
+id=548588
+rarity=U
+[/card]
+[card]
+primitive=Sokenzan, Crucible of Defiance
+id=548589
+rarity=R
+[/card]
+[card]
+primitive=Swiftwater Cliffs
+id=548590
+rarity=C
+[/card]
+[card]
+primitive=Takenuma, Abandoned Mire
+id=548591
+rarity=R
+[/card]
+[card]
+primitive=Thornwood Falls
+id=548592
+rarity=C
+[/card]
+[card]
+primitive=Tranquil Cove
+id=548593
+rarity=C
+[/card]
+[card]
+primitive=Uncharted Haven
+id=548594
+rarity=C
+[/card]
+[card]
+primitive=Wind-Scarred Crag
+id=548595
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=553460
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=553461
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=553462
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=553463
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=553464
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=553465
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=553466
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=553467
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=553468
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=553469
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=553570
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=553571
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=553572
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=553573
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=553574
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=553575
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=553576
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=553577
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=553578
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=553579
+rarity=L
+[/card]
+[card]
+primitive=The Wandering Emperor
+id=551646
+rarity=M
+[/card]
+[card]
+primitive=Tezzeret, Betrayer of Flesh
+id=551647
+rarity=M
+[/card]
+[card]
+primitive=Kaito Shizuki
+id=551648
+rarity=M
+[/card]
+[card]
+primitive=Tamiyo, Compleated Sage
+id=551649
+rarity=M
+[/card]
+[card]
+primitive=Jin-Gitaxias, Progress Tyrant
+id=552963
+rarity=M
+[/card]
+[card]
+primitive=Tamiyo, Compleated Sage
+id=552964
+rarity=M
+[/card]
+[card]
+primitive=Eiganjo Exemplar
+id=553218
+rarity=C
+[/card]
+[card]
+primitive=Imperial Subduer
+id=553219
+rarity=C
+[/card]
+[card]
+primitive=Norika Yamazaki, the Poet
+id=553220
+rarity=U
+[/card]
+[card]
+primitive=Selfless Samurai
+id=553221
+rarity=U
+[/card]
+[card]
+primitive=Seven-Tail Mentor
+id=553222
+rarity=C
+[/card]
+[card]
+primitive=Sky-Blessed Samurai
+id=553223
+rarity=U
+[/card]
+[card]
+primitive=Sunblade Samurai
+id=553224
+rarity=C
+[/card]
+[card]
+primitive=The Wandering Emperor
+id=553225
+rarity=M
+[/card]
+[card]
+primitive=Guardians of Oboro
+id=553226
+rarity=C
+[/card]
+[card]
+primitive=Nezumi Bladeblesser
+id=553227
+rarity=C
+[/card]
+[card]
+primitive=Akki Ronin
+id=553228
+rarity=C
+[/card]
+[card]
+primitive=Goro-Goro, Disciple of Ryusei
+id=553229
+rarity=R
+[/card]
+[card]
+primitive=Heiko Yamazaki, the General
+id=553230
+rarity=U
+[/card]
+[card]
+primitive=Peerless Samurai
+id=553231
+rarity=C
+[/card]
+[card]
+primitive=Reinforced Ronin
+id=553232
+rarity=U
+[/card]
+[card]
+primitive=Upriser Renegade
+id=553233
+rarity=U
+[/card]
+[card]
+primitive=Heir of the Ancient Fang
+id=553234
+rarity=C
+[/card]
+[card]
+primitive=Jukai Trainee
+id=553235
+rarity=C
+[/card]
+[card]
+primitive=Asari Captain
+id=553236
+rarity=U
+[/card]
+[card]
+primitive=Isshin, Two Heavens as One
+id=553237
+rarity=R
+[/card]
+[card]
+primitive=Raiyuu, Storm's Edge
+id=553238
+rarity=R
+[/card]
+[card]
+primitive=Risona, Asari Commander
+id=553239
+rarity=R
+[/card]
+[card]
+primitive=Blade-Blizzard Kitsune
+id=552710
+rarity=U
+[/card]
+[card]
+primitive=Covert Technician
+id=552711
+rarity=U
+[/card]
+[card]
+primitive=Futurist Operative
+id=552712
+rarity=U
+[/card]
+[card]
+primitive=Moon-Circuit Hacker
+id=552713
+rarity=C
+[/card]
+[card]
+primitive=Moonsnare Specialist
+id=552714
+rarity=C
+[/card]
+[card]
+primitive=Prosperous Thief
+id=552715
+rarity=U
+[/card]
+[card]
+primitive=Thousand-Faced Shadow
+id=552716
+rarity=R
+[/card]
+[card]
+primitive=Biting-Palm Ninja
+id=552717
+rarity=R
+[/card]
+[card]
+primitive=Dokuchi Shadow-Walker
+id=552718
+rarity=C
+[/card]
+[card]
+primitive=Dokuchi Silencer
+id=552719
+rarity=U
+[/card]
+[card]
+primitive=Inkrise Infiltrator
+id=552720
+rarity=C
+[/card]
+[card]
+primitive=Mukotai Ambusher
+id=552721
+rarity=C
+[/card]
+[card]
+primitive=Nashi, Moon Sage's Scion
+id=552722
+rarity=M
+[/card]
+[card]
+primitive=Nezumi Prowler
+id=552723
+rarity=U
+[/card]
+[card]
+primitive=Tatsunari, Toad Rider
+id=552724
+rarity=R
+[/card]
+[card]
+primitive=Coiling Stalker
+id=552725
+rarity=C
+[/card]
+[card]
+primitive=Fang of Shigeki
+id=552726
+rarity=C
+[/card]
+[card]
+primitive=Kappa Tech-Wrecker
+id=552727
+rarity=U
+[/card]
+[card]
+primitive=Spring-Leaf Avenger
+id=552728
+rarity=R
+[/card]
+[card]
+primitive=Kaito Shizuki
+id=552729
+rarity=M
+[/card]
+[card]
+primitive=Kotose, the Silent Spider
+id=552730
+rarity=R
+[/card]
+[card]
+primitive=Satoru Umezawa
+id=552731
+rarity=R
+[/card]
+[card]
+primitive=Silver-Fur Master
+id=552732
+rarity=U
+[/card]
+[card]
+primitive=The Restoration of Eiganjo
+id=553020
+rarity=R
+[/card]
+[card]
+primitive=Architect of Restoration
+id=553021
+rarity=T
+[/card]
+[card]
+primitive=Inventive Iteration
+id=553022
+rarity=R
+[/card]
+[card]
+primitive=Living Breakthrough
+id=553023
+rarity=T
+[/card]
+[card]
+primitive=Tribute to Horobi
+id=553024
+rarity=R
+[/card]
+[card]
+primitive=Echo of Death's Wail
+id=553025
+rarity=T
+[/card]
+[card]
+primitive=Fable of the Mirror-Breaker
+id=553026
+rarity=R
+[/card]
+[card]
+primitive=Reflection of Kiki-Jiki
+id=553027
+rarity=T
+[/card]
+[card]
+primitive=The Dragon-Kami Reborn
+id=553028
+rarity=R
+[/card]
+[card]
+primitive=Dragon-Kami's Egg
+id=553029
+rarity=T
+[/card]
+[card]
+primitive=Jugan Defends the Temple
+id=553030
+rarity=M
+[/card]
+[card]
+primitive=Remnant of the Rising Star
+id=553031
+rarity=T
+[/card]
+[card]
+primitive=Teachings of the Kirin
+id=553032
+rarity=R
+[/card]
+[card]
+primitive=Kirin-Touched Orochi
+id=553033
+rarity=T
+[/card]
+[card]
+primitive=Hidetsugu Consumes All
+id=553034
+rarity=M
+[/card]
+[card]
+primitive=Vessel of the All-Consuming
+id=553035
+rarity=T
+[/card]
+[card]
+primitive=The Kami War
+id=553036
+rarity=M
+[/card]
+[card]
+primitive=O-Kagachi Made Manifest
+id=553037
+rarity=T
+[/card]
+[card]
+primitive=Brilliant Restoration
+id=552237
+rarity=R
+[/card]
+[card]
+primitive=Cloudsteel Kirin
+id=552238
+rarity=R
+[/card]
+[card]
+primitive=Farewell
+id=552239
+rarity=R
+[/card]
+[card]
+primitive=Invoke Justice
+id=552240
+rarity=R
+[/card]
+[card]
+primitive=Light-Paws, Emperor's Voice
+id=552241
+rarity=R
+[/card]
+[card]
+primitive=Lion Sash
+id=552242
+rarity=R
+[/card]
+[card]
+primitive=March of Otherworldly Light
+id=552243
+rarity=R
+[/card]
+[card]
+primitive=Invoke the Winds
+id=552244
+rarity=R
+[/card]
+[card]
+primitive=Jin-Gitaxias, Progress Tyrant
+id=552245
+rarity=M
+[/card]
+[card]
+primitive=March of Swirling Mist
+id=552246
+rarity=R
+[/card]
+[card]
+primitive=Mindlink Mech
+id=552247
+rarity=R
+[/card]
+[card]
+primitive=The Reality Chip
+id=552248
+rarity=R
+[/card]
+[card]
+primitive=Tameshi, Reality Architect
+id=552249
+rarity=R
+[/card]
+[card]
+primitive=Tezzeret, Betrayer of Flesh
+id=552250
+rarity=M
+[/card]
+[card]
+primitive=Blade of the Oni
+id=552251
+rarity=M
+[/card]
+[card]
+primitive=Hidetsugu, Devouring Chaos
+id=552252
+rarity=R
+[/card]
+[card]
+primitive=Invoke Despair
+id=552253
+rarity=R
+[/card]
+[card]
+primitive=March of Wretched Sorrow
+id=552254
+rarity=R
+[/card]
+[card]
+primitive=Mukotai Soulripper
+id=552255
+rarity=R
+[/card]
+[card]
+primitive=Soul Transfer
+id=552256
+rarity=R
+[/card]
+[card]
+primitive=Explosive Singularity
+id=552257
+rarity=M
+[/card]
+[card]
+primitive=Invoke Calamity
+id=552258
+rarity=R
+[/card]
+[card]
+primitive=Lizard Blades
+id=552259
+rarity=R
+[/card]
+[card]
+primitive=March of Reckless Joy
+id=552260
+rarity=R
+[/card]
+[card]
+primitive=Ogre-Head Helm
+id=552261
+rarity=R
+[/card]
+[card]
+primitive=Scrap Welder
+id=552262
+rarity=R
+[/card]
+[card]
+primitive=Thundering Raiju
+id=552263
+rarity=R
+[/card]
+[card]
+primitive=Invoke the Ancients
+id=552264
+rarity=R
+[/card]
+[card]
+primitive=Kami of Transience
+id=552265
+rarity=R
+[/card]
+[card]
+primitive=Kodama of the West Tree
+id=552266
+rarity=M
+[/card]
+[card]
+primitive=March of Burgeoning Life
+id=552267
+rarity=R
+[/card]
+[card]
+primitive=Shigeki, Jukai Visionary
+id=552268
+rarity=R
+[/card]
+[card]
+primitive=Weaver of Harmony
+id=552269
+rarity=R
+[/card]
+[card]
+primitive=Eiganjo Uprising
+id=552270
+rarity=R
+[/card]
+[card]
+primitive=Greasefang, Okiba Boss
+id=552271
+rarity=R
+[/card]
+[card]
+primitive=Hinata, Dawn-Crowned
+id=552272
+rarity=R
+[/card]
+[card]
+primitive=Satsuki, the Living Lore
+id=552273
+rarity=R
+[/card]
+[card]
+primitive=Spirit-Sister's Call
+id=552274
+rarity=M
+[/card]
+[card]
+primitive=Eater of Virtue
+id=552275
+rarity=R
+[/card]
+[card]
+primitive=Mechtitan Core
+id=552276
+rarity=R
+[/card]
+[card]
+primitive=Mirror Box
+id=552277
+rarity=R
+[/card]
+[card]
+primitive=Reckoner Bankbuster
+id=552278
+rarity=R
+[/card]
+[card]
+primitive=Surgehacker Mech
+id=552279
+rarity=R
+[/card]
+[card]
+primitive=Ao, the Dawn Sky
+id=552116
+rarity=M
+[/card]
+[card]
+primitive=Kyodai, Soul of Kamigawa
+id=552117
+rarity=R
+[/card]
+[card]
+primitive=Kairi, the Swirling Sky
+id=552118
+rarity=M
+[/card]
+[card]
+primitive=Junji, the Midnight Sky
+id=552119
+rarity=M
+[/card]
+[card]
+primitive=Atsushi, the Blazing Sky
+id=552120
+rarity=M
+[/card]
+[card]
+primitive=Kura, the Boundless Sky
+id=552121
+rarity=M
+[/card]
+[card]
+primitive=Boseiju, Who Endures
+id=552122
+rarity=R
+[/card]
+[card]
+primitive=Eiganjo, Seat of the Empire
+id=552123
+rarity=R
+[/card]
+[card]
+primitive=Otawara, Soaring City
+id=552124
+rarity=R
+[/card]
+[card]
+primitive=Sokenzan, Crucible of Defiance
+id=552125
+rarity=R
+[/card]
+[card]
+primitive=Takenuma, Abandoned Mire
+id=552126
+rarity=R
+[/card]
+[card]
+primitive=Ao, the Dawn Sky
+id=551706
+rarity=M
+[/card]
+[card]
+primitive=Brilliant Restoration
+id=551707
+rarity=R
+[/card]
+[card]
+primitive=Cloudsteel Kirin
+id=551708
+rarity=R
+[/card]
+[card]
+primitive=Farewell
+id=551709
+rarity=R
+[/card]
+[card]
+primitive=Invoke Justice
+id=551710
+rarity=R
+[/card]
+[card]
+primitive=Kyodai, Soul of Kamigawa
+id=551711
+rarity=R
+[/card]
+[card]
+primitive=Light-Paws, Emperor's Voice
+id=551712
+rarity=R
+[/card]
+[card]
+primitive=Lion Sash
+id=551713
+rarity=R
+[/card]
+[card]
+primitive=March of Otherworldly Light
+id=551714
+rarity=R
+[/card]
+[card]
+primitive=The Restoration of Eiganjo
+id=551715
+rarity=R
+[/card]
+[card]
+primitive=Architect of Restoration
+id=551716
+rarity=T
+[/card]
+[card]
+primitive=Inventive Iteration
+id=551717
+rarity=R
+[/card]
+[card]
+primitive=Living Breakthrough
+id=551718
+rarity=T
+[/card]
+[card]
+primitive=Invoke the Winds
+id=551719
+rarity=R
+[/card]
+[card]
+primitive=Jin-Gitaxias, Progress Tyrant
+id=551720
+rarity=M
+[/card]
+[card]
+primitive=Kairi, the Swirling Sky
+id=551721
+rarity=M
+[/card]
+[card]
+primitive=March of Swirling Mist
+id=551722
+rarity=R
+[/card]
+[card]
+primitive=Mindlink Mech
+id=551723
+rarity=R
+[/card]
+[card]
+primitive=The Reality Chip
+id=551724
+rarity=R
+[/card]
+[card]
+primitive=Tameshi, Reality Architect
+id=551725
+rarity=R
+[/card]
+[card]
+primitive=Thousand-Faced Shadow
+id=551726
+rarity=R
+[/card]
+[card]
+primitive=Biting-Palm Ninja
+id=551727
+rarity=R
+[/card]
+[card]
+primitive=Blade of the Oni
+id=551728
+rarity=M
+[/card]
+[card]
+primitive=Hidetsugu, Devouring Chaos
+id=551729
+rarity=R
+[/card]
+[card]
+primitive=Invoke Despair
+id=551730
+rarity=R
+[/card]
+[card]
+primitive=Junji, the Midnight Sky
+id=551731
+rarity=M
+[/card]
+[card]
+primitive=March of Wretched Sorrow
+id=551732
+rarity=R
+[/card]
+[card]
+primitive=Mukotai Soulripper
+id=551733
+rarity=R
+[/card]
+[card]
+primitive=Nashi, Moon Sage's Scion
+id=551734
+rarity=M
+[/card]
+[card]
+primitive=Soul Transfer
+id=551735
+rarity=R
+[/card]
+[card]
+primitive=Tatsunari, Toad Rider
+id=551736
+rarity=R
+[/card]
+[card]
+primitive=Tribute to Horobi
+id=551737
+rarity=R
+[/card]
+[card]
+primitive=Echo of Death's Wail
+id=551738
+rarity=T
+[/card]
+[card]
+primitive=Atsushi, the Blazing Sky
+id=551739
+rarity=M
+[/card]
+[card]
+primitive=Explosive Singularity
+id=551740
+rarity=M
+[/card]
+[card]
+primitive=Fable of the Mirror-Breaker
+id=551741
+rarity=R
+[/card]
+[card]
+primitive=Reflection of Kiki-Jiki
+id=551742
+rarity=T
+[/card]
+[card]
+primitive=Goro-Goro, Disciple of Ryusei
+id=551743
+rarity=R
+[/card]
+[card]
+primitive=Invoke Calamity
+id=551744
+rarity=R
+[/card]
+[card]
+primitive=Lizard Blades
+id=551745
+rarity=R
+[/card]
+[card]
+primitive=March of Reckless Joy
+id=551746
+rarity=R
+[/card]
+[card]
+primitive=Ogre-Head Helm
+id=551747
+rarity=R
+[/card]
+[card]
+primitive=Scrap Welder
+id=551748
+rarity=R
+[/card]
+[card]
+primitive=Thundering Raiju
+id=551749
+rarity=R
+[/card]
+[card]
+primitive=The Dragon-Kami Reborn
+id=551750
+rarity=R
+[/card]
+[card]
+primitive=Dragon-Kami's Egg
+id=551751
+rarity=T
+[/card]
+[card]
+primitive=Invoke the Ancients
+id=551752
+rarity=R
+[/card]
+[card]
+primitive=Jugan Defends the Temple
+id=551753
+rarity=M
+[/card]
+[card]
+primitive=Remnant of the Rising Star
+id=551754
+rarity=T
+[/card]
+[card]
+primitive=Kami of Transience
+id=551755
+rarity=R
+[/card]
+[card]
+primitive=Kodama of the West Tree
+id=551756
+rarity=M
+[/card]
+[card]
+primitive=Kura, the Boundless Sky
+id=551757
+rarity=M
+[/card]
+[card]
+primitive=March of Burgeoning Life
+id=551758
+rarity=R
+[/card]
+[card]
+primitive=Shigeki, Jukai Visionary
+id=551759
+rarity=R
+[/card]
+[card]
+primitive=Spring-Leaf Avenger
+id=551760
+rarity=R
+[/card]
+[card]
+primitive=Teachings of the Kirin
+id=551761
+rarity=R
+[/card]
+[card]
+primitive=Kirin-Touched Orochi
+id=551762
+rarity=T
+[/card]
+[card]
+primitive=Weaver of Harmony
+id=551763
+rarity=R
+[/card]
+[card]
+primitive=Eiganjo Uprising
+id=551764
+rarity=R
+[/card]
+[card]
+primitive=Greasefang, Okiba Boss
+id=551765
+rarity=R
+[/card]
+[card]
+primitive=Hidetsugu Consumes All
+id=551766
+rarity=M
+[/card]
+[card]
+primitive=Vessel of the All-Consuming
+id=551767
+rarity=T
+[/card]
+[card]
+primitive=Hinata, Dawn-Crowned
+id=551768
+rarity=R
+[/card]
+[card]
+primitive=Isshin, Two Heavens as One
+id=551769
+rarity=R
+[/card]
+[card]
+primitive=The Kami War
+id=551770
+rarity=M
+[/card]
+[card]
+primitive=O-Kagachi Made Manifest
+id=551771
+rarity=T
+[/card]
+[card]
+primitive=Kotose, the Silent Spider
+id=551772
+rarity=R
+[/card]
+[card]
+primitive=Raiyuu, Storm's Edge
+id=551773
+rarity=R
+[/card]
+[card]
+primitive=Risona, Asari Commander
+id=551774
+rarity=R
+[/card]
+[card]
+primitive=Satoru Umezawa
+id=551775
+rarity=R
+[/card]
+[card]
+primitive=Satsuki, the Living Lore
+id=551776
+rarity=R
+[/card]
+[card]
+primitive=Spirit-Sister's Call
+id=551777
+rarity=M
+[/card]
+[card]
+primitive=Eater of Virtue
+id=551778
+rarity=R
+[/card]
+[card]
+primitive=Mechtitan Core
+id=551779
+rarity=R
+[/card]
+[card]
+primitive=Mirror Box
+id=551780
+rarity=R
+[/card]
+[card]
+primitive=Reckoner Bankbuster
+id=551781
+rarity=R
+[/card]
+[card]
+primitive=Surgehacker Mech
+id=551782
+rarity=R
+[/card]
+[card]
+primitive=Boseiju, Who Endures
+id=551783
+rarity=R
+[/card]
+[card]
+primitive=Eiganjo, Seat of the Empire
+id=551784
+rarity=R
+[/card]
+[card]
+primitive=Otawara, Soaring City
+id=551785
+rarity=R
+[/card]
+[card]
+primitive=Sokenzan, Crucible of Defiance
+id=551786
+rarity=R
+[/card]
+[card]
+primitive=Takenuma, Abandoned Mire
+id=551787
+rarity=R
+[/card]
+[card]
+primitive=Invoke Despair
+id=551690
+rarity=R
+[/card]
+[card]
+primitive=Satoru Umezawa
+id=551695
+rarity=R
+[/card]
+[card]
+primitive=Spirited Companion
+id=552965
+rarity=C
+[/card]
+[card]
+primitive=Enthusiastic Mechanaut
+id=552966
+rarity=U
+[/card]
+[card]
+primitive=Jukai Naturalist
+id=552967
+rarity=U
+[/card]
+[card]
+primitive=Silver-Fur Master
+id=552968
+rarity=U
+[/card]
+[card]
+primitive=Secluded Courtyard
+id=552969
+rarity=U
+[/card]

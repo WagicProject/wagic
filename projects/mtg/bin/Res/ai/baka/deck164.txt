@@ -1,0 +1,31 @@
+#NAME:Nazgul
+#DESC:Deck for Wagic by Bob
+#HINT:combo hold(Sam's Desperate Rescue|myhand)^cast(Sam's Desperate Rescue|myhand) targeting(Nazgul|mygraveyard)^totalmananeeded({B})
+#HINT:combo hold(Demonic Tutor|myhand)^cast(Demonic Tutor|myhand) targeting(Nazgul|mylibrary)^totalmananeeded({1}{B})
+Bog Wraith (*) * 4
+Claim the Precious (*) * 3
+Demonic Tutor (*) * 2
+Forced Adaptation (*) * 2
+Forest (LTR) (*) * 4
+Forest (WOE) (*) * 3
+Hardened Scales (*) * 4
+Inherited Envelope (*) * 3
+Ringwraiths (*) * 2
+Sam's Desperate Rescue (*) * 2
+Sheoldred, Whispering One (*) * 1
+Smeagol, Helpful Guide (*) * 2
+Swamp (DSK) (*) * 4
+Swamp (LTR) (*) * 4
+Swamp (WOE) (*) * 3
+The Black Breath (*) * 2
+Urborg, Tomb of Yawgmoth (LTC) (*) * 2
+Woodland Cemetery (LTC) * 4
+616930
+619388
+619389
+619390
+619391
+619392
+619393
+619394
+619395

@@ -1,0 +1,91 @@
+#NAME:Sauron Commander
+#DESC:Original deck by Josh 
+#DESC:Edmundson (tappedout.net)
+#DESC:Refined for Wagic by Bob
+#HINT:castpriority(commander,*)
+Abrade (*) * 1
+An Offer You Can't Refuse (*) * 1
+Arcane Denial (*) * 1
+Arcane Signet (*) * 1
+Badlands (*) * 1
+Bedevil (*) * 1
+Big Score (*) * 1
+Bone Miser (*) * 1
+Callous Dismissal (*) * 1
+Changeling Outcast (*) * 1
+Chromatic Lantern (*) * 1
+Command Tower (*) * 1
+Commander's Sphere (*) * 1
+Crumbling Necropolis (*) * 1
+Dragonskull Summit (*) * 1
+Dreadhorde Invasion (*) * 1
+Drowned Catacomb (*) * 1
+Eternal Skylord (*) * 1
+Evolving Wilds (*) * 1
+Exotic Orchard (*) * 1
+Faithless Looting (*) * 1
+Feed the Swarm (*) * 1
+Fellwar Stone (*) * 1
+Foray of Orcs (*) * 1
+Gleaming Overseer (*) * 1
+Gothmog, Morgul Lieutenant (*) * 1
+Grishnakh, Brash Instigator (*) * 1
+Haunted Ridge (*) * 1
+Herald of Secret Streams (*) * 1
+Honor the God-Pharaoh (*) * 1
+Infernal Grasp (*) * 1
+Inherited Envelope (*) * 1
+Island (LTR) (*) * 4
+Island (WOE) (*) * 1
+Lazotep Chancellor (*) * 1
+Lazotep Plating (*) * 1
+March from the Black Gate (*) * 1
+Mauhur, Uruk-hai Captain (*) * 1
+Mindless Conscription (*) * 1
+Mithril Coat (*) * 1
+Mountain (LTR) (*) * 4
+616930
+619388
+619389
+619390
+619391
+619392
+619393
+619394
+619395
+Orcish Bowmasters (*) * 1
+Orcish Siegemaster (*) * 1
+Ringsight (*) * 1
+Saruman the White (*) * 1
+Saruman's Trickery (*) * 1
+Saruman, the White Hand (*) * 1
+Sauron, Lord of the Rings (*) * 1
+Sauron, the Necromancer (*) * 1
+Sheoldred, Whispering One (*) * 1
+Shipwreck Marsh (*) * 1
+Shivan Reef (*) * 1
+Smoldering Marsh (*) * 1
+Sol Ring (*) * 1
+Stormcarved Coast (*) * 1
+Sulfurous Springs (*) * 1
+Sunken Hollow (*) * 1
+Swamp (LTR) (*) * 4
+Swamp (WOE) (*) * 4
+Swamp (DSK) (*) * 3
+Swarming of Moria (*) * 1
+Talisman of Creativity (*) * 1
+Talisman of Dominance (*) * 1
+Talisman of Indulgence (*) * 1
+Teferi's Ageless Insight (*) * 1
+Temple of Epiphany (*) * 1
+The Locust God (*) * 1
+Thrill of Possibility (*) * 1
+Ulamog, The Infinite Gyre (*) * 1
+Underground River (*) * 1
+Underground Sea (*) * 1
+Vandalblast (*) * 1
+Whispersilk Cloak (*) * 1
+Widespread Brutality (*) * 1
+Windfall (*) * 1
+Witch-king, Bringer of Ruin (*) * 1
+#CMD:Sauron, the Dark Lord (*) * 1

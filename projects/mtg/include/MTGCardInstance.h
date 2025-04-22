@@ -97,6 +97,9 @@ public:
     bool turningOver;
     bool isMorphed;
     int isFlipped;
+    int isCommander;
+    int isRingBearer;
+    bool isDefeated;
     string MeldedFrom;
     bool isPhased;
     bool isCascaded;
@@ -149,8 +152,10 @@ public:
     int summoningSickness;
     ManaCost reducedCost;
     ManaCost increasedCost;
+    ManaCost producedMana;
     ManaCost * getReducedManaCost();
     ManaCost * getIncreasedManaCost();
+    ManaCost * getProducedMana();
     bool matchesCastFilter(int castMethod);
     bool hasTotemArmor();
 
@@ -207,6 +212,7 @@ public:
     int stepPower(CombatStep step);
     int afterDamage();
     int has(int ability);
+    int getToxicity();
     int cleanup();
 
     MTGCard * model;

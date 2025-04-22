@@ -3,13 +3,8 @@ author=Wagic Team
 name=Homelands
 orderindex=EXP-6.HML
 year=1995-10-01
-total=141
+total=140
 [/meta]
-[card]
-primitive=Aether Storm
-id=2935
-rarity=U
-[/card]
 [card]
 primitive=Abbey Gargoyles
 id=3010
@@ -24,96 +19,6 @@ rarity=C
 primitive=Abbey Matron
 id=3012
 rarity=C
-[/card]
-[card]
-primitive=Aliban's Tower
-id=2985
-rarity=C
-[/card]
-[card]
-primitive=Aliban's Tower
-id=2986
-rarity=C
-[/card]
-[card]
-primitive=Ambush Party
-id=2988
-rarity=C
-[/card]
-[card]
-primitive=Ambush Party
-id=2989
-rarity=C
-[/card]
-[card]
-primitive=Ambush
-id=2987
-rarity=C
-[/card]
-[card]
-primitive=An-Havva Constable
-id=2960
-rarity=R
-[/card]
-[card]
-primitive=An-Havva Inn
-id=2961
-rarity=U
-[/card]
-[card]
-primitive=An-Havva Township
-id=3035
-rarity=U
-[/card]
-[card]
-primitive=An-Zerrin Ruins
-id=2990
-rarity=R
-[/card]
-[card]
-primitive=Anaba Ancestor
-id=2991
-rarity=R
-[/card]
-[card]
-primitive=Anaba Bodyguard
-id=2992
-rarity=C
-[/card]
-[card]
-primitive=Anaba Bodyguard
-id=2993
-rarity=C
-[/card]
-[card]
-primitive=Anaba Shaman
-id=2994
-rarity=C
-[/card]
-[card]
-primitive=Anaba Shaman
-id=2995
-rarity=C
-[/card]
-[card]
-primitive=Anaba Spirit Crafter
-id=2996
-rarity=R
-[/card]
-[card]
-primitive=Apocalypse Chime
-id=2900
-rarity=R
-[/card]
-[card]
-primitive=Autumn Willow
-id=2962
-rarity=R
-[/card]
-[card]
-primitive=Aysen Abbey
-id=3036
-rarity=U
 [/card]
 [card]
 primitive=Aysen Bureaucrats
@@ -136,98 +41,8 @@ id=3016
 rarity=R
 [/card]
 [card]
-primitive=Baki's Curse
-id=2936
-rarity=R
-[/card]
-[card]
-primitive=Baron Sengir
-id=2910
-rarity=R
-[/card]
-[card]
 primitive=Beast Walkers
 id=3017
-rarity=R
-[/card]
-[card]
-primitive=Black Carriage
-id=2911
-rarity=R
-[/card]
-[card]
-primitive=Broken Visage
-id=2912
-rarity=R
-[/card]
-[card]
-primitive=Carapace
-id=2963
-rarity=C
-[/card]
-[card]
-primitive=Carapace
-id=2964
-rarity=C
-[/card]
-[card]
-primitive=Castle Sengir
-id=3037
-rarity=U
-[/card]
-[card]
-primitive=Cemetery Gate
-id=2913
-rarity=C
-[/card]
-[card]
-primitive=Cemetery Gate
-id=2914
-rarity=C
-[/card]
-[card]
-primitive=Chain Stasis
-id=2937
-rarity=R
-[/card]
-[card]
-primitive=Chandler
-id=2997
-rarity=C
-[/card]
-[card]
-primitive=Clockwork Gnomes
-id=2901
-rarity=C
-[/card]
-[card]
-primitive=Clockwork Steed
-id=2902
-rarity=C
-[/card]
-[card]
-primitive=Clockwork Swarm
-id=2903
-rarity=C
-[/card]
-[card]
-primitive=Coral Reef
-id=2938
-rarity=C
-[/card]
-[card]
-primitive=Dark Maze
-id=2939
-rarity=C
-[/card]
-[card]
-primitive=Dark Maze
-id=2940
-rarity=C
-[/card]
-[card]
-primitive=Daughter of Autumn
-id=2965
 rarity=R
 [/card]
 [card]
@@ -236,214 +51,9 @@ id=3018
 rarity=U
 [/card]
 [card]
-primitive=Didgeridoo
-id=2904
-rarity=R
-[/card]
-[card]
-primitive=Drudge Spell
-id=2915
-rarity=U
-[/card]
-[card]
-primitive=Dry Spell
-id=2916
-rarity=C
-[/card]
-[card]
-primitive=Dry Spell
-id=2917
-rarity=C
-[/card]
-[card]
-primitive=Dwarven Pony
-id=2998
-rarity=R
-[/card]
-[card]
-primitive=Dwarven Sea Clan
-id=2999
-rarity=R
-[/card]
-[card]
-primitive=Dwarven Trader
-id=3000
-rarity=C
-[/card]
-[card]
-primitive=Dwarven Trader
-id=3001
-rarity=C
-[/card]
-[card]
-primitive=Ebony Rhino
-id=2905
-rarity=C
-[/card]
-[card]
-primitive=Eron the Relentless
-id=3002
-rarity=U
-[/card]
-[card]
-primitive=Evaporate
-id=3003
-rarity=U
-[/card]
-[card]
-primitive=Faerie Noble
-id=2966
-rarity=R
-[/card]
-[card]
-primitive=Feast of the Unicorn
-id=2918
-rarity=C
-[/card]
-[card]
-primitive=Feast of the Unicorn
-id=2919
-rarity=C
-[/card]
-[card]
-primitive=Feroz's Ban
-id=2906
-rarity=R
-[/card]
-[card]
-primitive=Folk of An-Havva
-id=2967
-rarity=C
-[/card]
-[card]
-primitive=Folk of An-Havva
-id=2968
-rarity=C
-[/card]
-[card]
-primitive=Forget
-id=2941
-rarity=R
-[/card]
-[card]
-primitive=Funeral March
-id=2920
-rarity=C
-[/card]
-[card]
-primitive=Ghost Hounds
-id=2921
-rarity=U
-[/card]
-[card]
-primitive=Giant Albatross
-id=2942
-rarity=C
-[/card]
-[card]
-primitive=Giant Albatross
-id=2943
-rarity=C
-[/card]
-[card]
-primitive=Giant Oyster
-id=2944
-rarity=U
-[/card]
-[card]
-primitive=Grandmother Sengir
-id=2922
-rarity=R
-[/card]
-[card]
-primitive=Greater Werewolf
-id=2923
-rarity=C
-[/card]
-[card]
 primitive=Hazduhr the Abbot
 id=3019
 rarity=R
-[/card]
-[card]
-primitive=Headstone
-id=2924
-rarity=C
-[/card]
-[card]
-primitive=Heart Wolf
-id=3004
-rarity=R
-[/card]
-[card]
-primitive=Hungry Mist
-id=2969
-rarity=C
-[/card]
-[card]
-primitive=Hungry Mist
-id=2970
-rarity=C
-[/card]
-[card]
-primitive=Ihsan's Shade
-id=2925
-rarity=U
-[/card]
-[card]
-primitive=Irini Sengir
-id=2926
-rarity=U
-[/card]
-[card]
-primitive=Ironclaw Curse
-id=3005
-rarity=R
-[/card]
-[card]
-primitive=Jinx
-id=2945
-rarity=C
-[/card]
-[card]
-primitive=Joven's Ferrets
-id=2971
-rarity=C
-[/card]
-[card]
-primitive=Joven's Tools
-id=2907
-rarity=U
-[/card]
-[card]
-primitive=Joven
-id=3006
-rarity=C
-[/card]
-[card]
-primitive=Koskun Falls
-id=2927
-rarity=R
-[/card]
-[card]
-primitive=Koskun Keep
-id=3038
-rarity=U
-[/card]
-[card]
-primitive=Labyrinth Minotaur
-id=2946
-rarity=C
-[/card]
-[card]
-primitive=Labyrinth Minotaur
-id=2947
-rarity=C
-[/card]
-[card]
-primitive=Leaping Lizard
-id=2972
-rarity=C
 [/card]
 [card]
 primitive=Leeches
@@ -451,59 +61,14 @@ id=3020
 rarity=R
 [/card]
 [card]
-primitive=Mammoth Harness
-id=2973
-rarity=R
-[/card]
-[card]
-primitive=Marjhan
-id=2948
-rarity=R
-[/card]
-[card]
-primitive=Memory Lapse
-id=2949
-rarity=C
-[/card]
-[card]
-primitive=Memory Lapse
-id=2950
-rarity=C
-[/card]
-[card]
-primitive=Merchant Scroll
-id=2951
+primitive=Mesa Falcon
+id=3022
 rarity=C
 [/card]
 [card]
 primitive=Mesa Falcon
 id=3021
 rarity=C
-[/card]
-[card]
-primitive=Mesa Falcon
-id=3022
-rarity=C
-[/card]
-[card]
-primitive=Mystic Decree
-id=2952
-rarity=R
-[/card]
-[card]
-primitive=Narwhal
-id=2953
-rarity=R
-[/card]
-[card]
-primitive=Orcish Mine
-id=3007
-rarity=U
-[/card]
-[card]
-primitive=Primal Order
-id=2974
-rarity=R
 [/card]
 [card]
 primitive=Prophecy
@@ -516,51 +81,6 @@ id=3024
 rarity=U
 [/card]
 [card]
-primitive=Reef Pirates
-id=2954
-rarity=C
-[/card]
-[card]
-primitive=Reef Pirates
-id=2955
-rarity=C
-[/card]
-[card]
-primitive=Renewal
-id=2975
-rarity=C
-[/card]
-[card]
-primitive=Retribution
-id=3008
-rarity=U
-[/card]
-[card]
-primitive=Reveka, Wizard Savant
-id=2956
-rarity=R
-[/card]
-[card]
-primitive=Root Spider
-id=2976
-rarity=U
-[/card]
-[card]
-primitive=Roots
-id=2977
-rarity=U
-[/card]
-[card]
-primitive=Roterothopter
-id=2908
-rarity=C
-[/card]
-[card]
-primitive=Rysorian Badger
-id=2978
-rarity=R
-[/card]
-[card]
 primitive=Samite Alchemist
 id=3025
 rarity=C
@@ -568,31 +88,6 @@ rarity=C
 [card]
 primitive=Samite Alchemist
 id=3026
-rarity=C
-[/card]
-[card]
-primitive=Sea Sprite
-id=2957
-rarity=U
-[/card]
-[card]
-primitive=Sea Troll
-id=2958
-rarity=U
-[/card]
-[card]
-primitive=Sengir Autocrat
-id=2928
-rarity=U
-[/card]
-[card]
-primitive=Sengir Bats
-id=2929
-rarity=C
-[/card]
-[card]
-primitive=Sengir Bats
-id=2930
 rarity=C
 [/card]
 [card]
@@ -616,49 +111,9 @@ id=3030
 rarity=C
 [/card]
 [card]
-primitive=Serrated Arrows
-id=2909
-rarity=C
-[/card]
-[card]
-primitive=Shrink
-id=2979
-rarity=C
-[/card]
-[card]
-primitive=Shrink
-id=2980
-rarity=C
-[/card]
-[card]
-primitive=Skeleton
-id=-2915
-rarity=T
-[/card]
-[card]
 primitive=Soraya the Falconer
 id=3031
 rarity=R
-[/card]
-[card]
-primitive=Spectral Bears
-id=2981
-rarity=U
-[/card]
-[card]
-primitive=Timmerian Fiends
-id=2931
-rarity=R
-[/card]
-[card]
-primitive=Torture
-id=2932
-rarity=C
-[/card]
-[card]
-primitive=Torture
-id=2933
-rarity=C
 [/card]
 [card]
 primitive=Trade Caravan
@@ -676,14 +131,489 @@ id=3034
 rarity=R
 [/card]
 [card]
-primitive=Veldrane of Sengir
-id=2934
+primitive=Aether Storm
+id=2935
+rarity=U
+[/card]
+[card]
+primitive=Baki's Curse
+id=2936
 rarity=R
+[/card]
+[card]
+primitive=Chain Stasis
+id=2937
+rarity=R
+[/card]
+[card]
+primitive=Coral Reef
+id=2938
+rarity=C
+[/card]
+[card]
+primitive=Dark Maze
+id=2940
+rarity=C
+[/card]
+[card]
+primitive=Dark Maze
+id=2939
+rarity=C
+[/card]
+[card]
+primitive=Forget
+id=2941
+rarity=R
+[/card]
+[card]
+primitive=Giant Albatross
+id=2943
+rarity=C
+[/card]
+[card]
+primitive=Giant Albatross
+id=2942
+rarity=C
+[/card]
+[card]
+primitive=Giant Oyster
+id=2944
+rarity=U
+[/card]
+[card]
+primitive=Jinx
+id=2945
+rarity=C
+[/card]
+[card]
+primitive=Labyrinth Minotaur
+id=2947
+rarity=C
+[/card]
+[card]
+primitive=Labyrinth Minotaur
+id=2946
+rarity=C
+[/card]
+[card]
+primitive=Marjhan
+id=2948
+rarity=R
+[/card]
+[card]
+primitive=Memory Lapse
+id=2949
+rarity=C
+[/card]
+[card]
+primitive=Memory Lapse
+id=2950
+rarity=C
+[/card]
+[card]
+primitive=Merchant Scroll
+id=2951
+rarity=C
+[/card]
+[card]
+primitive=Mystic Decree
+id=2952
+rarity=R
+[/card]
+[card]
+primitive=Narwhal
+id=2953
+rarity=R
+[/card]
+[card]
+primitive=Reef Pirates
+id=2955
+rarity=C
+[/card]
+[card]
+primitive=Reef Pirates
+id=2954
+rarity=C
+[/card]
+[card]
+primitive=Reveka, Wizard Savant
+id=2956
+rarity=R
+[/card]
+[card]
+primitive=Sea Sprite
+id=2957
+rarity=U
+[/card]
+[card]
+primitive=Sea Troll
+id=2958
+rarity=U
 [/card]
 [card]
 primitive=Wall of Kelp
 id=2959
 rarity=R
+[/card]
+[card]
+primitive=Baron Sengir
+id=2910
+rarity=R
+[/card]
+[card]
+primitive=Black Carriage
+id=2911
+rarity=R
+[/card]
+[card]
+primitive=Broken Visage
+id=2912
+rarity=R
+[/card]
+[card]
+primitive=Cemetery Gate
+id=2913
+rarity=C
+[/card]
+[card]
+primitive=Cemetery Gate
+id=2914
+rarity=C
+[/card]
+[card]
+primitive=Drudge Spell
+id=2915
+rarity=U
+[/card]
+[card]
+primitive=Dry Spell
+id=2916
+rarity=C
+[/card]
+[card]
+primitive=Dry Spell
+id=2917
+rarity=C
+[/card]
+[card]
+primitive=Feast of the Unicorn
+id=2918
+rarity=C
+[/card]
+[card]
+primitive=Feast of the Unicorn
+id=2919
+rarity=C
+[/card]
+[card]
+primitive=Funeral March
+id=2920
+rarity=C
+[/card]
+[card]
+primitive=Ghost Hounds
+id=2921
+rarity=U
+[/card]
+[card]
+primitive=Grandmother Sengir
+id=2922
+rarity=R
+[/card]
+[card]
+primitive=Greater Werewolf
+id=2923
+rarity=C
+[/card]
+[card]
+primitive=Headstone
+id=2924
+rarity=C
+[/card]
+[card]
+primitive=Ihsan's Shade
+id=2925
+rarity=U
+[/card]
+[card]
+primitive=Irini Sengir
+id=2926
+rarity=U
+[/card]
+[card]
+primitive=Koskun Falls
+id=2927
+rarity=R
+[/card]
+[card]
+primitive=Sengir Autocrat
+id=2928
+rarity=U
+[/card]
+[card]
+primitive=Sengir Bats
+id=2930
+rarity=C
+[/card]
+[card]
+primitive=Sengir Bats
+id=2929
+rarity=C
+[/card]
+[card]
+primitive=Timmerian Fiends
+id=2931
+rarity=R
+[/card]
+[card]
+primitive=Torture
+id=2933
+rarity=C
+[/card]
+[card]
+primitive=Torture
+id=2932
+rarity=C
+[/card]
+[card]
+primitive=Veldrane of Sengir
+id=2934
+rarity=R
+[/card]
+[card]
+primitive=Aliban's Tower
+id=2986
+rarity=C
+[/card]
+[card]
+primitive=Aliban's Tower
+id=2985
+rarity=C
+[/card]
+[card]
+primitive=Ambush
+id=2987
+rarity=C
+[/card]
+[card]
+primitive=Ambush Party
+id=2989
+rarity=C
+[/card]
+[card]
+primitive=Ambush Party
+id=2988
+rarity=C
+[/card]
+[card]
+primitive=An-Zerrin Ruins
+id=2990
+rarity=R
+[/card]
+[card]
+primitive=Anaba Ancestor
+id=2991
+rarity=R
+[/card]
+[card]
+primitive=Anaba Bodyguard
+id=2992
+rarity=C
+[/card]
+[card]
+primitive=Anaba Bodyguard
+id=2993
+rarity=C
+[/card]
+[card]
+primitive=Anaba Shaman
+id=2995
+rarity=C
+[/card]
+[card]
+primitive=Anaba Shaman
+id=2994
+rarity=C
+[/card]
+[card]
+primitive=Anaba Spirit Crafter
+id=2996
+rarity=R
+[/card]
+[card]
+primitive=Chandler
+id=2997
+rarity=C
+[/card]
+[card]
+primitive=Dwarven Pony
+id=2998
+rarity=R
+[/card]
+[card]
+primitive=Dwarven Sea Clan
+id=2999
+rarity=R
+[/card]
+[card]
+primitive=Dwarven Trader
+id=3000
+rarity=C
+[/card]
+[card]
+primitive=Dwarven Trader
+id=3001
+rarity=C
+[/card]
+[card]
+primitive=Eron the Relentless
+id=3002
+rarity=U
+[/card]
+[card]
+primitive=Evaporate
+id=3003
+rarity=U
+[/card]
+[card]
+primitive=Heart Wolf
+id=3004
+rarity=R
+[/card]
+[card]
+primitive=Ironclaw Curse
+id=3005
+rarity=R
+[/card]
+[card]
+primitive=Joven
+id=3006
+rarity=C
+[/card]
+[card]
+primitive=Orcish Mine
+id=3007
+rarity=U
+[/card]
+[card]
+primitive=Retribution
+id=3008
+rarity=U
+[/card]
+[card]
+primitive=Winter Sky
+id=3009
+rarity=R
+[/card]
+[card]
+primitive=An-Havva Constable
+id=2960
+rarity=R
+[/card]
+[card]
+primitive=An-Havva Inn
+id=2961
+rarity=U
+[/card]
+[card]
+primitive=Autumn Willow
+id=2962
+rarity=R
+[/card]
+[card]
+primitive=Carapace
+id=2963
+rarity=C
+[/card]
+[card]
+primitive=Carapace
+id=2964
+rarity=C
+[/card]
+[card]
+primitive=Daughter of Autumn
+id=2965
+rarity=R
+[/card]
+[card]
+primitive=Faerie Noble
+id=2966
+rarity=R
+[/card]
+[card]
+primitive=Folk of An-Havva
+id=2968
+rarity=C
+[/card]
+[card]
+primitive=Folk of An-Havva
+id=2967
+rarity=C
+[/card]
+[card]
+primitive=Hungry Mist
+id=2969
+rarity=C
+[/card]
+[card]
+primitive=Hungry Mist
+id=2970
+rarity=C
+[/card]
+[card]
+primitive=Joven's Ferrets
+id=2971
+rarity=C
+[/card]
+[card]
+primitive=Leaping Lizard
+id=2972
+rarity=C
+[/card]
+[card]
+primitive=Mammoth Harness
+id=2973
+rarity=R
+[/card]
+[card]
+primitive=Primal Order
+id=2974
+rarity=R
+[/card]
+[card]
+primitive=Renewal
+id=2975
+rarity=C
+[/card]
+[card]
+primitive=Root Spider
+id=2976
+rarity=U
+[/card]
+[card]
+primitive=Roots
+id=2977
+rarity=U
+[/card]
+[card]
+primitive=Rysorian Badger
+id=2978
+rarity=R
+[/card]
+[card]
+primitive=Shrink
+id=2979
+rarity=C
+[/card]
+[card]
+primitive=Shrink
+id=2980
+rarity=C
+[/card]
+[card]
+primitive=Spectral Bears
+id=2981
+rarity=U
 [/card]
 [card]
 primitive=Willow Faerie
@@ -701,9 +631,74 @@ id=2984
 rarity=R
 [/card]
 [card]
-primitive=Winter Sky
-id=3009
+primitive=Apocalypse Chime
+id=2900
 rarity=R
+[/card]
+[card]
+primitive=Clockwork Gnomes
+id=2901
+rarity=C
+[/card]
+[card]
+primitive=Clockwork Steed
+id=2902
+rarity=C
+[/card]
+[card]
+primitive=Clockwork Swarm
+id=2903
+rarity=C
+[/card]
+[card]
+primitive=Didgeridoo
+id=2904
+rarity=R
+[/card]
+[card]
+primitive=Ebony Rhino
+id=2905
+rarity=C
+[/card]
+[card]
+primitive=Feroz's Ban
+id=2906
+rarity=R
+[/card]
+[card]
+primitive=Joven's Tools
+id=2907
+rarity=U
+[/card]
+[card]
+primitive=Roterothopter
+id=2908
+rarity=C
+[/card]
+[card]
+primitive=Serrated Arrows
+id=2909
+rarity=C
+[/card]
+[card]
+primitive=An-Havva Township
+id=3035
+rarity=U
+[/card]
+[card]
+primitive=Aysen Abbey
+id=3036
+rarity=U
+[/card]
+[card]
+primitive=Castle Sengir
+id=3037
+rarity=U
+[/card]
+[card]
+primitive=Koskun Keep
+id=3038
+rarity=U
 [/card]
 [card]
 primitive=Wizards' School

@@ -1561,18 +1561,18 @@ int MTGMorphCostRule::reactToClick(MTGCardInstance * card)
         card->getManaCost()->setManaUsedToCast(NEW ManaCost());
         card->getManaCost()->getManaUsedToCast()->copy(spellCost);
     }
-    int iscommander = card->has(Constants::ISCOMMANDER);
-    card->basicAbilities[Constants::ISCOMMANDER] = 0;//Morph is not a commander on stack
+    int iscommander = card->isCommander;
+    card->isCommander = 0;//Morph is not a commander on stack
     MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->stack);
     if(iscommander > 0)
-        copy->basicAbilities[Constants::ISCOMMANDER] = 1;
+        copy->isCommander = 1;
     copy->getManaCost()->resetCosts();//Morph has no ManaCost on stack
     copy->setColor(0,1);
     copy->types.clear();
     string cre = "Creature";
     copy->setType(cre.c_str());
     for(size_t i = 0; i < copy->basicAbilities.size(); i++) {
-        if(i != Constants::ISCOMMANDER && i != Constants::GAINEDEXILEDEATH && i != Constants::GAINEDHANDDEATH && i != Constants::GAINEDDOUBLEFACEDEATH && 
+        if(i != Constants::GAINEDEXILEDEATH && i != Constants::GAINEDHANDDEATH && i != Constants::GAINEDDOUBLEFACEDEATH && 
             i != Constants::DUNGEONCOMPLETED && i != Constants::PERPETUALDEATHTOUCH && i != Constants::PERPETUALLIFELINK)
             copy->basicAbilities[i] = 0; // Try to keep the original special abilities on card morph.
     }
@@ -2055,7 +2055,7 @@ int MTGAttackRule::receiveEvent(WEvent *e)
                         if(dtarget->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
                         {
                             MTGCardInstance * ctarget = ((MTGCardInstance *)card->isAttacking);
-                            if(ctarget->hasType(Subtypes::TYPE_PLANESWALKER))
+                            if(ctarget->hasType(Subtypes::TYPE_PLANESWALKER) || ctarget->hasType(Subtypes::TYPE_BATTLE))
                                 card->toggleAttacker();//if a card has cantpwattack, then you cant
                         }
                     }
@@ -2112,14 +2112,20 @@ int MTGPlaneswalkerAttackRule::isReactingToClick(MTGCardInstance * card, ManaCos
 {
     if (currentPhase == MTG_PHASE_COMBATATTACKERS && card->controller() == game->currentPlayer && card->controller() == game->currentlyActing())//on my turn and when I am the acting player.
     {
-        if(!card->controller()->opponent()->game->inPlay->hasType("planeswalker"))
+        if(!card->controller()->opponent()->game->inPlay->hasType("planeswalker") && !card->controller()->opponent()->game->inPlay->hasType("battle"))
             return 0;
         if(card->isPhased)
             return 0;
         if ((card->isAttacker()) || (card->canAttack(true) && card->attackPlaneswalkerCost < 1))
         {
-            if(!card->isAttacker())
-                attackpwmenu = "Attack Planeswalker";
+            if(!card->isAttacker()){
+                if(card->controller()->opponent()->game->inPlay->hasType("planeswalker") && !card->controller()->opponent()->game->inPlay->hasType("battle"))
+                    attackpwmenu = "Attack a Planeswalker";
+                else if(!card->controller()->opponent()->game->inPlay->hasType("planeswalker") && card->controller()->opponent()->game->inPlay->hasType("battle"))
+                    attackpwmenu = "Attack a Battle";
+                else
+                    attackpwmenu = "Attack Planeswalker or Battle";
+            }
             else
                 attackpwmenu = "Remove Attacker";
 
@@ -2158,7 +2164,7 @@ int MTGPlaneswalkerAttackRule::reactToClick(MTGCardInstance * card)
     for(int i = 0; i < checkWalkers;++i)
     {
         check = card->controller()->opponent()->game->battlefield->cards[i];
-        if(check->hasType(Subtypes::TYPE_PLANESWALKER))
+        if(check->hasType(Subtypes::TYPE_PLANESWALKER) || check->hasType(Subtypes::TYPE_BATTLE))
         {
             MTGAbility * setPw = NEW AAPlaneswalkerAttacked(game, game->mLayers->actionLayer()->getMaxId(), card,check);
             MTGAbility * setWalker = setPw->clone();
@@ -2167,7 +2173,6 @@ int MTGPlaneswalkerAttackRule::reactToClick(MTGCardInstance * card)
             SAFE_DELETE(setPw);
         }
     }
-
 
     if(selection.size())
     {
@@ -3058,7 +3063,7 @@ int MTGSoulbondRule::receiveEvent(WEvent * event)
         MTGCardInstance * card = e->card;
         if (!card || !card->isCreature()) return 0;
         int ok = 0;
-        if(card->has(Constants::soulbond) || soulbonders.size())
+        if(card->has(Constants::SOULBOND) || soulbonders.size())
         {
             for (int i = 0; i < 2; i++)
             {
@@ -3066,7 +3071,7 @@ int MTGSoulbondRule::receiveEvent(WEvent * event)
                 if (e->to == p->game->inPlay)
                 {
                     ok = 1;
-                    if(card->basicAbilities[(int)Constants::soulbond])
+                    if(card->basicAbilities[(int)Constants::SOULBOND])
                         soulbonders.push_back(e->card);
                 }
             }
@@ -3965,8 +3970,23 @@ int MTGPlaneswalkerDamage::receiveEvent(WEvent * event)
             int howMany = d->damage;
             for(int k = 0; k < howMany; k++)
             {
-                card->counters->removeCounter("loyalty", 0, 0);
+                if(!card->basicAbilities[Constants::NOLOYALTYDAMAGE])
+                     card->counters->removeCounter("loyalty", 0, 0);
             }
+            if(!card->isCreature() && card->counters->hasCounter("loyalty", 0, 0))
+                card->life = card->counters->hasCounter("loyalty", 0, 0)->nb;
+            return 1;
+        }
+        if (d->damage > 0 && card && card->hasType(Subtypes::TYPE_BATTLE))
+        {
+            int howMany = d->damage;
+            for(int k = 0; k < howMany; k++)
+            {
+                if(!card->basicAbilities[Constants::NODEFENSEDAMAGE])
+                    card->counters->removeCounter("defense", 0, 0);
+            }
+            if(!card->isCreature() && card->counters->hasCounter("defense", 0, 0))
+                card->life = card->counters->hasCounter("defense", 0, 0)->nb;
             return 1;
         }
     }
@@ -3978,7 +3998,16 @@ int MTGPlaneswalkerDamage::receiveEvent(WEvent * event)
                 removel->targetCard->toGrave(true);
                 return 1;
             }
-
+        if(removel->removed && removel->targetCard && removel->targetCard->hasType(Subtypes::TYPE_BATTLE))
+            if(!removel->targetCard->counters->hasCounter("defense", 0, 0))
+            {
+                if(!removel->targetCard->isDefeated){
+                    removel->targetCard->isDefeated = true;
+                    WEvent * e = NEW WEventCardDefeated(removel->targetCard);
+                    game->receiveEvent(e);
+                }
+                return 1;
+            }
     }
     return 0;
 }
@@ -4048,8 +4077,11 @@ int MTGDeathtouchRule::receiveEvent(WEvent * event)
 
         if (card->basicAbilities[(int)Constants::DEATHTOUCH]||card->basicAbilities[(int)Constants::PERPETUALDEATHTOUCH]||card->LKIbasicAbilities[(int)Constants::DEATHTOUCH]||card->LKIbasicAbilities[(int)Constants::PERPETUALDEATHTOUCH])
         {
-            _target->destroy();
-            return 1;
+            if(_target->isCreature())
+            {
+				_target->destroy();
+				return 1;
+            }
         }
     }
     return 0;

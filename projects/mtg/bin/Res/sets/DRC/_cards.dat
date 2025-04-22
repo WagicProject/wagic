@@ -1,0 +1,926 @@
+[meta]
+author=Wagic Team
+name=Aetherdrift Commander
+year=2025-02-14
+total=187
+[/meta]
+[card]
+primitive=Hashaton, Scarab's Fist
+id=692078
+rarity=M
+[/card]
+[card]
+primitive=Pia Nalaar, Chief Mechanic
+id=692079
+rarity=M
+[/card]
+[card]
+primitive=Saheeli, Radiant Creator
+id=692080
+rarity=M
+[/card]
+[card]
+primitive=Temmet, Naktamun's Will
+id=692081
+rarity=M
+[/card]
+[card]
+primitive=On Wings of Gold
+id=692166
+rarity=R
+[/card]
+[card]
+primitive=Priest of the Crossing
+id=692167
+rarity=R
+[/card]
+[card]
+primitive=Renewed Solidarity
+id=692168
+rarity=R
+[/card]
+[card]
+primitive=Wizened Mentor
+id=692169
+rarity=R
+[/card]
+[card]
+primitive=Prophet of the Scarab
+id=692170
+rarity=R
+[/card]
+[card]
+primitive=Rhet-Tomb Mystic
+id=692171
+rarity=R
+[/card]
+[card]
+primitive=Lost Monarch of Ifnir
+id=692172
+rarity=R
+[/card]
+[card]
+primitive=Territorial Aetherkite
+id=692173
+rarity=R
+[/card]
+[card]
+primitive=Nissa, Worldsoul Speaker
+id=692174
+rarity=R
+[/card]
+[card]
+primitive=Peema Trailblazer
+id=692175
+rarity=R
+[/card]
+[card]
+primitive=Rampaging Aetherhood
+id=692176
+rarity=R
+[/card]
+[card]
+primitive=Adaptive Omnitool
+id=692177
+rarity=R
+[/card]
+[card]
+primitive=Aetherflux Conduit
+id=692178
+rarity=R
+[/card]
+[card]
+primitive=Aetheric Amplifier
+id=692179
+rarity=R
+[/card]
+[card]
+primitive=Stridehangar Automaton
+id=692180
+rarity=R
+[/card]
+[card]
+primitive=Accursed Duneyard
+id=692181
+rarity=R
+[/card]
+[card]
+primitive=On Wings of Gold
+id=692102
+rarity=R
+[/card]
+[card]
+primitive=Priest of the Crossing
+id=692103
+rarity=R
+[/card]
+[card]
+primitive=Renewed Solidarity
+id=692104
+rarity=R
+[/card]
+[card]
+primitive=Wizened Mentor
+id=692105
+rarity=R
+[/card]
+[card]
+primitive=Prophet of the Scarab
+id=692106
+rarity=R
+[/card]
+[card]
+primitive=Rhet-Tomb Mystic
+id=692107
+rarity=R
+[/card]
+[card]
+primitive=Lost Monarch of Ifnir
+id=692108
+rarity=R
+[/card]
+[card]
+primitive=Territorial Aetherkite
+id=692109
+rarity=R
+[/card]
+[card]
+primitive=Nissa, Worldsoul Speaker
+id=692110
+rarity=R
+[/card]
+[card]
+primitive=Peema Trailblazer
+id=692111
+rarity=R
+[/card]
+[card]
+primitive=Rampaging Aetherhood
+id=692112
+rarity=R
+[/card]
+[card]
+primitive=Adaptive Omnitool
+id=692113
+rarity=R
+[/card]
+[card]
+primitive=Aetherflux Conduit
+id=692114
+rarity=R
+[/card]
+[card]
+primitive=Aetheric Amplifier
+id=692115
+rarity=R
+[/card]
+[card]
+primitive=Stridehangar Automaton
+id=692116
+rarity=R
+[/card]
+[card]
+primitive=Accursed Duneyard
+id=692117
+rarity=R
+[/card]
+[card]
+primitive=Swords to Plowshares
+id=692262
+rarity=U
+[/card]
+[card]
+primitive=Commence the Endgame
+id=692263
+rarity=R
+[/card]
+[card]
+primitive=Reality Shift
+id=692264
+rarity=U
+[/card]
+[card]
+primitive=Corpse Augur
+id=692265
+rarity=U
+[/card]
+[card]
+primitive=Cryptbreaker
+id=692266
+rarity=R
+[/card]
+[card]
+primitive=Grave Titan
+id=692267
+rarity=M
+[/card]
+[card]
+primitive=Gravecrawler
+id=692268
+rarity=R
+[/card]
+[card]
+primitive=Midnight Reaper
+id=692269
+rarity=R
+[/card]
+[card]
+primitive=Murderous Rider // Swift End
+id=692270
+rarity=R
+[/card]
+[card]
+primitive=Zombie Master
+id=692271
+rarity=R
+[/card]
+[card]
+primitive=Chain Reaction
+id=692272
+rarity=R
+[/card]
+[card]
+primitive=Chaos Warp
+id=692273
+rarity=R
+[/card]
+[card]
+primitive=Druid of Purification
+id=692274
+rarity=R
+[/card]
+[card]
+primitive=Corpse Knight
+id=692275
+rarity=U
+[/card]
+[card]
+primitive=Arcane Signet
+id=692276
+rarity=C
+[/card]
+[card]
+primitive=Arcane Signet
+id=692277
+rarity=C
+[/card]
+[card]
+primitive=Chromatic Lantern
+id=692278
+rarity=R
+[/card]
+[card]
+primitive=Duplicant
+id=692279
+rarity=R
+[/card]
+[card]
+primitive=Lightning Greaves
+id=692280
+rarity=U
+[/card]
+[card]
+primitive=Sol Ring
+id=692281
+rarity=U
+[/card]
+[card]
+primitive=Sol Ring
+id=692282
+rarity=U
+[/card]
+[card]
+primitive=Academy Ruins
+id=692283
+rarity=R
+[/card]
+[card]
+primitive=Command Tower
+id=692284
+rarity=C
+[/card]
+[card]
+primitive=Command Tower
+id=692285
+rarity=C
+[/card]
+[card]
+primitive=Path of Ancestry
+id=692286
+rarity=C
+[/card]
+[card]
+primitive=Angel of Sanctions
+id=692412
+rarity=M
+[/card]
+[card]
+primitive=Binding Mummy
+id=692413
+rarity=C
+[/card]
+[card]
+primitive=Cast Out
+id=692414
+rarity=U
+[/card]
+[card]
+primitive=Dusk // Dawn
+id=692415
+rarity=R
+[/card]
+[card]
+primitive=God-Eternal Oketra
+id=692416
+rarity=M
+[/card]
+[card]
+primitive=Timeless Dragon
+id=692417
+rarity=R
+[/card]
+[card]
+primitive=Aethersquall Ancient
+id=692418
+rarity=R
+[/card]
+[card]
+primitive=Aethertide Whale
+id=692419
+rarity=R
+[/card]
+[card]
+primitive=Arcane Denial
+id=692420
+rarity=C
+[/card]
+[card]
+primitive=Bespoke Battlewagon
+id=692421
+rarity=U
+[/card]
+[card]
+primitive=Champion of Wits
+id=692422
+rarity=R
+[/card]
+[card]
+primitive=Confiscation Coup
+id=692423
+rarity=R
+[/card]
+[card]
+primitive=Disallow
+id=692424
+rarity=R
+[/card]
+[card]
+primitive=Era of Innovation
+id=692425
+rarity=U
+[/card]
+[card]
+primitive=Eternal Skylord
+id=692426
+rarity=U
+[/card]
+[card]
+primitive=Forgotten Creation
+id=692427
+rarity=R
+[/card]
+[card]
+primitive=Glimmer of Genius
+id=692428
+rarity=U
+[/card]
+[card]
+primitive=Midnight Clock
+id=692429
+rarity=R
+[/card]
+[card]
+primitive=One with the Machine
+id=692430
+rarity=R
+[/card]
+[card]
+primitive=Pull from Tomorrow
+id=692431
+rarity=R
+[/card]
+[card]
+primitive=Sai, Master Thopterist
+id=692432
+rarity=R
+[/card]
+[card]
+primitive=Thopter Spy Network
+id=692433
+rarity=R
+[/card]
+[card]
+primitive=Vizier of Many Faces
+id=692434
+rarity=R
+[/card]
+[card]
+primitive=Whirler Rogue
+id=692435
+rarity=U
+[/card]
+[card]
+primitive=Archfiend of Ifnir
+id=692436
+rarity=R
+[/card]
+[card]
+primitive=Cemetery Reaper
+id=692437
+rarity=R
+[/card]
+[card]
+primitive=Crowded Crypt
+id=692438
+rarity=R
+[/card]
+[card]
+primitive=Damn
+id=692439
+rarity=R
+[/card]
+[card]
+primitive=Dread Summons
+id=692440
+rarity=R
+[/card]
+[card]
+primitive=Dreadhorde Invasion
+id=692441
+rarity=R
+[/card]
+[card]
+primitive=Fleshbag Marauder
+id=692442
+rarity=U
+[/card]
+[card]
+primitive=Gempalm Polluter
+id=692443
+rarity=C
+[/card]
+[card]
+primitive=Liliana, Death's Majesty
+id=692444
+rarity=M
+[/card]
+[card]
+primitive=Lord of the Accursed
+id=692445
+rarity=U
+[/card]
+[card]
+primitive=Never // Return
+id=692446
+rarity=R
+[/card]
+[card]
+primitive=Plague Belcher
+id=692447
+rarity=R
+[/card]
+[card]
+primitive=Rot Hulk
+id=692448
+rarity=M
+[/card]
+[card]
+primitive=Twisted Abomination
+id=692449
+rarity=C
+[/card]
+[card]
+primitive=Undead Augur
+id=692450
+rarity=U
+[/card]
+[card]
+primitive=Blasphemous Act
+id=692451
+rarity=R
+[/card]
+[card]
+primitive=Combustible Gearhulk
+id=692452
+rarity=M
+[/card]
+[card]
+primitive=Lightning Runner
+id=692453
+rarity=M
+[/card]
+[card]
+primitive=Loyal Apprentice
+id=692454
+rarity=U
+[/card]
+[card]
+primitive=Pia and Kiran Nalaar
+id=692455
+rarity=R
+[/card]
+[card]
+primitive=Reckless Fireweaver
+id=692456
+rarity=C
+[/card]
+[card]
+primitive=Aetherwind Basker
+id=692457
+rarity=M
+[/card]
+[card]
+primitive=Architect of the Untamed
+id=692458
+rarity=R
+[/card]
+[card]
+primitive=Attune with Aether
+id=692459
+rarity=C
+[/card]
+[card]
+primitive=Bootleggers' Stash
+id=692460
+rarity=M
+[/card]
+[card]
+primitive=Elder Gargaroth
+id=692461
+rarity=M
+[/card]
+[card]
+primitive=Explosive Vegetation
+id=692462
+rarity=U
+[/card]
+[card]
+primitive=Peema Aether-Seer
+id=692463
+rarity=U
+[/card]
+[card]
+primitive=Servant of the Conduit
+id=692464
+rarity=U
+[/card]
+[card]
+primitive=Despark
+id=692465
+rarity=U
+[/card]
+[card]
+primitive=Gleaming Overseer
+id=692466
+rarity=U
+[/card]
+[card]
+primitive=Lazotep Chancellor
+id=692467
+rarity=U
+[/card]
+[card]
+primitive=Rogue Refiner
+id=692468
+rarity=U
+[/card]
+[card]
+primitive=Saheeli, Sublime Artificer
+id=692469
+rarity=U
+[/card]
+[card]
+primitive=The Scarab God
+id=692470
+rarity=M
+[/card]
+[card]
+primitive=Wayward Servant
+id=692471
+rarity=U
+[/card]
+[card]
+primitive=Whirler Virtuoso
+id=692472
+rarity=U
+[/card]
+[card]
+primitive=Aetherworks Marvel
+id=692473
+rarity=M
+[/card]
+[card]
+primitive=Bontu's Monument
+id=692474
+rarity=U
+[/card]
+[card]
+primitive=Commander's Sphere
+id=692475
+rarity=C
+[/card]
+[card]
+primitive=Conjurer's Closet
+id=692476
+rarity=R
+[/card]
+[card]
+primitive=Cultivator's Caravan
+id=692477
+rarity=R
+[/card]
+[card]
+primitive=Decoction Module
+id=692478
+rarity=U
+[/card]
+[card]
+primitive=Dimir Signet
+id=692479
+rarity=U
+[/card]
+[card]
+primitive=Gate to the Afterlife
+id=692480
+rarity=U
+[/card]
+[card]
+primitive=God-Pharaoh's Gift
+id=692481
+rarity=R
+[/card]
+[card]
+primitive=Maskwood Nexus
+id=692482
+rarity=R
+[/card]
+[card]
+primitive=Ornithopter of Paradise
+id=692483
+rarity=C
+[/card]
+[card]
+primitive=Orzhov Signet
+id=692484
+rarity=U
+[/card]
+[card]
+primitive=Panharmonicon
+id=692485
+rarity=R
+[/card]
+[card]
+primitive=Retrofitter Foundry
+id=692486
+rarity=R
+[/card]
+[card]
+primitive=Solar Transformer
+id=692487
+rarity=U
+[/card]
+[card]
+primitive=Solemn Simulacrum
+id=692488
+rarity=R
+[/card]
+[card]
+primitive=Soul-Guide Lantern
+id=692489
+rarity=U
+[/card]
+[card]
+primitive=Talisman of Curiosity
+id=692490
+rarity=U
+[/card]
+[card]
+primitive=Talisman of Dominance
+id=692491
+rarity=U
+[/card]
+[card]
+primitive=Talisman of Hierarchy
+id=692492
+rarity=U
+[/card]
+[card]
+primitive=Triplicate Titan
+id=692493
+rarity=R
+[/card]
+[card]
+primitive=Adarkar Wastes
+id=692494
+rarity=R
+[/card]
+[card]
+primitive=Aether Hub
+id=692495
+rarity=U
+[/card]
+[card]
+primitive=Arcane Sanctum
+id=692496
+rarity=U
+[/card]
+[card]
+primitive=Ash Barrens
+id=692497
+rarity=C
+[/card]
+[card]
+primitive=Caves of Koilos
+id=692498
+rarity=R
+[/card]
+[card]
+primitive=Desert of the Glorified
+id=692499
+rarity=C
+[/card]
+[card]
+primitive=Desert of the Mindful
+id=692500
+rarity=C
+[/card]
+[card]
+primitive=Desert of the True
+id=692501
+rarity=C
+[/card]
+[card]
+primitive=Drowned Catacomb
+id=692502
+rarity=R
+[/card]
+[card]
+primitive=Evolving Wilds
+id=692503
+rarity=C
+[/card]
+[card]
+primitive=Evolving Wilds
+id=692504
+rarity=C
+[/card]
+[card]
+primitive=Exotic Orchard
+id=692505
+rarity=R
+[/card]
+[card]
+primitive=Fetid Pools
+id=692506
+rarity=R
+[/card]
+[card]
+primitive=Frontier Bivouac
+id=692507
+rarity=U
+[/card]
+[card]
+primitive=Frostboil Snarl
+id=692508
+rarity=R
+[/card]
+[card]
+primitive=Glacial Fortress
+id=692509
+rarity=R
+[/card]
+[card]
+primitive=Hinterland Harbor
+id=692510
+rarity=R
+[/card]
+[card]
+primitive=Irrigated Farmland
+id=692511
+rarity=R
+[/card]
+[card]
+primitive=Isolated Chapel
+id=692512
+rarity=R
+[/card]
+[card]
+primitive=Karplusan Forest
+id=692513
+rarity=R
+[/card]
+[card]
+primitive=Orzhov Basilica
+id=692514
+rarity=U
+[/card]
+[card]
+primitive=Overflowing Basin
+id=692515
+rarity=R
+[/card]
+[card]
+primitive=Path of Ancestry
+id=692516
+rarity=C
+[/card]
+[card]
+primitive=Prairie Stream
+id=692517
+rarity=R
+[/card]
+[card]
+primitive=Rootbound Crag
+id=692518
+rarity=R
+[/card]
+[card]
+primitive=Sheltered Thicket
+id=692519
+rarity=R
+[/card]
+[card]
+primitive=Shivan Reef
+id=692520
+rarity=R
+[/card]
+[card]
+primitive=Slagwoods Bridge
+id=692521
+rarity=C
+[/card]
+[card]
+primitive=Spire of Industry
+id=692522
+rarity=R
+[/card]
+[card]
+primitive=Sulfur Falls
+id=692523
+rarity=R
+[/card]
+[card]
+primitive=Sunken Hollow
+id=692524
+rarity=R
+[/card]
+[card]
+primitive=Tanglepool Bridge
+id=692525
+rarity=C
+[/card]
+[card]
+primitive=Temple of Deceit
+id=692526
+rarity=R
+[/card]
+[card]
+primitive=Temple of Epiphany
+id=692527
+rarity=R
+[/card]
+[card]
+primitive=Temple of Silence
+id=692528
+rarity=R
+[/card]
+[card]
+primitive=Terramorphic Expanse
+id=692529
+rarity=C
+[/card]
+[card]
+primitive=Treasure Vault
+id=692530
+rarity=R
+[/card]
+[card]
+primitive=Underground River
+id=692531
+rarity=R
+[/card]
+[card]
+primitive=Unholy Grotto
+id=692532
+rarity=R
+[/card]
+[card]
+primitive=Vineglimmer Snarl
+id=692533
+rarity=R
+[/card]
+[card]
+primitive=Yavimaya Coast
+id=692534
+rarity=R
+[/card]

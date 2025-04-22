@@ -1563,12 +1563,18 @@ int CounterCost::doPay()
     if (!target)
         return 0;
 
+    //Add counters as a cost
     if (counter->nb >= 0)
-    { //Add counters as a cost
+    {
+        int totalcounters = 0;
         for (int i = 0; i < counter->nb; i++)
-        {//send no event because its a cost not an effect... for doubling season
-            target->counters->addCounter(counter->name.c_str(), counter->power, counter->toughness, true);
+        {
+            target->counters->addCounter(counter->name.c_str(), counter->power, counter->toughness);
+            totalcounters++;
         }
+        WEvent * w = NEW WEventTotalCounters(target->counters, counter->name.c_str(), counter->power, counter->toughness, true, false, totalcounters, true, source);
+        dynamic_cast<WEventTotalCounters*>(w)->targetCard = target->counters->target;
+        target->getObserver()->receiveEvent(w);
         if (tc)
             tc->initTargets();
         target = NULL;
@@ -1578,10 +1584,15 @@ int CounterCost::doPay()
     //remove counters as a cost
     if (hasCounters)
     {
+        int totalcounters = 0;
         for (int i = 0; i < -counter->nb; i++)
         {
             target->counters->removeCounter(counter->name.c_str(), counter->power, counter->toughness);
+            totalcounters++;
         }
+        WEvent * w = NEW WEventTotalCounters(target->counters, counter->name.c_str(), counter->power, counter->toughness, false, true, totalcounters, true, source);
+        dynamic_cast<WEventTotalCounters*>(w)->targetCard = target->counters->target;
+        target->getObserver()->receiveEvent(w);
         hasCounters = 0;
         if (tc)
             tc->initTargets();

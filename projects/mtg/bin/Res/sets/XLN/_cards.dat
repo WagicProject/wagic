@@ -7,6 +7,11 @@ year=2017-09-29
 total=300
 [/meta]
 [card]
+primitive=Treasure
+id=435451
+rarity=T
+[/card]
+[card]
 primitive=Adanto Vanguard
 id=435152
 rarity=U
@@ -1500,9 +1505,4 @@ rarity=R
 primitive=Stone Quarry
 id=435450
 rarity=C
-[/card]
-[card]
-primitive=TreasureArtifactToken
-id=435451
-rarity=T
 [/card]

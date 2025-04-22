@@ -7,53 +7,13 @@ year=2007-10-12
 total=301
 [/meta]
 [card]
-primitive=Aethersnipe
-id=145817
-rarity=C
-[/card]
-[card]
-primitive=Adder-Staff Boggart
-id=145992
-rarity=C
-[/card]
-[card]
 primitive=Ajani Goldmane
 id=140233
 rarity=R
 [/card]
 [card]
-primitive=Amoeboid Changeling
-id=140339
-rarity=C
-[/card]
-[card]
-primitive=Ancient Amphitheater
-id=153454
-rarity=R
-[/card]
-[card]
-primitive=Aquitect's Will
-id=142354
-rarity=C
-[/card]
-[card]
 primitive=Arbiter of Knollridge
 id=140189
-rarity=R
-[/card]
-[card]
-primitive=Ashling the Pilgrim
-id=141822
-rarity=R
-[/card]
-[card]
-primitive=Ashling's Prerogative
-id=146595
-rarity=R
-[/card]
-[card]
-primitive=Auntie's Hovel
-id=153457
 rarity=R
 [/card]
 [card]
@@ -67,18 +27,243 @@ id=145813
 rarity=C
 [/card]
 [card]
-primitive=Axegrinder Giant
-id=145976
-rarity=C
-[/card]
-[card]
 primitive=Battle Mastery
 id=145973
 rarity=U
 [/card]
 [card]
-primitive=Battlewand Oak
-id=141857
+primitive=Brigid, Hero of Kinsbaile
+id=141829
+rarity=R
+[/card]
+[card]
+primitive=Burrenton Forge-Tender
+id=139395
+rarity=U
+[/card]
+[card]
+primitive=Cenn's Heir
+id=142360
+rarity=C
+[/card]
+[card]
+primitive=Changeling Hero
+id=145968
+rarity=U
+[/card]
+[card]
+primitive=Cloudgoat Ranger
+id=139664
+rarity=U
+[/card]
+[card]
+primitive=Crib Swap
+id=143380
+rarity=U
+[/card]
+[card]
+primitive=Dawnfluke
+id=145801
+rarity=C
+[/card]
+[card]
+primitive=Entangling Trap
+id=146583
+rarity=U
+[/card]
+[card]
+primitive=Favor of the Mighty
+id=143683
+rarity=R
+[/card]
+[card]
+primitive=Galepowder Mage
+id=139666
+rarity=R
+[/card]
+[card]
+primitive=Goldmeadow Dodger
+id=142356
+rarity=C
+[/card]
+[card]
+primitive=Goldmeadow Harrier
+id=139397
+rarity=C
+[/card]
+[card]
+primitive=Goldmeadow Stalwart
+id=139698
+rarity=U
+[/card]
+[card]
+primitive=Harpoon Sniper
+id=139407
+rarity=U
+[/card]
+[card]
+primitive=Hillcomber Giant
+id=145971
+rarity=C
+[/card]
+[card]
+primitive=Hoofprints of the Stag
+id=143730
+rarity=R
+[/card]
+[card]
+primitive=Judge of Currents
+id=139406
+rarity=C
+[/card]
+[card]
+primitive=Kinsbaile Balloonist
+id=139403
+rarity=C
+[/card]
+[card]
+primitive=Kinsbaile Skirmisher
+id=143018
+rarity=C
+[/card]
+[card]
+primitive=Kithkin Greatheart
+id=146444
+rarity=C
+[/card]
+[card]
+primitive=Kithkin Harbinger
+id=139399
+rarity=U
+[/card]
+[card]
+primitive=Kithkin Healer
+id=145986
+rarity=C
+[/card]
+[card]
+primitive=Knight of Meadowgrain
+id=139715
+rarity=U
+[/card]
+[card]
+primitive=Lairwatch Giant
+id=143383
+rarity=C
+[/card]
+[card]
+primitive=Militia's Pride
+id=140193
+rarity=R
+[/card]
+[card]
+primitive=Mirror Entity
+id=141818
+rarity=R
+[/card]
+[card]
+primitive=Neck Snap
+id=139693
+rarity=C
+[/card]
+[card]
+primitive=Oaken Brawler
+id=145988
+rarity=C
+[/card]
+[card]
+primitive=Oblivion Ring
+id=139414
+rarity=C
+[/card]
+[card]
+primitive=Plover Knights
+id=139396
+rarity=C
+[/card]
+[card]
+primitive=Pollen Lullaby
+id=145815
+rarity=U
+[/card]
+[card]
+primitive=Purity
+id=140214
+rarity=R
+[/card]
+[card]
+primitive=Sentry Oak
+id=145970
+rarity=U
+[/card]
+[card]
+primitive=Shields of Velis Vel
+id=139411
+rarity=C
+[/card]
+[card]
+primitive=Soaring Hope
+id=139511
+rarity=C
+[/card]
+[card]
+primitive=Springjack Knight
+id=143016
+rarity=C
+[/card]
+[card]
+primitive=Summon the School
+id=143684
+rarity=U
+[/card]
+[card]
+primitive=Surge of Thoughtweft
+id=145799
+rarity=C
+[/card]
+[card]
+primitive=Thoughtweft Trio
+id=140232
+rarity=R
+[/card]
+[card]
+primitive=Triclopean Sight
+id=146580
+rarity=C
+[/card]
+[card]
+primitive=Veteran of the Depths
+id=139669
+rarity=U
+[/card]
+[card]
+primitive=Wellgabber Apothecary
+id=139400
+rarity=C
+[/card]
+[card]
+primitive=Wispmare
+id=145974
+rarity=C
+[/card]
+[card]
+primitive=Wizened Cenn
+id=139716
+rarity=U
+[/card]
+[card]
+primitive=Aethersnipe
+id=145817
+rarity=C
+[/card]
+[card]
+primitive=Amoeboid Changeling
+id=140339
+rarity=C
+[/card]
+[card]
+primitive=Aquitect's Will
+id=142354
 rarity=C
 [/card]
 [card]
@@ -87,18 +272,233 @@ id=139696
 rarity=U
 [/card]
 [card]
+primitive=Broken Ambitions
+id=145989
+rarity=C
+[/card]
+[card]
+primitive=Captivating Glance
+id=146172
+rarity=U
+[/card]
+[card]
+primitive=Cryptic Command
+id=141819
+rarity=R
+[/card]
+[card]
+primitive=Deeptread Merrow
+id=142352
+rarity=C
+[/card]
+[card]
+primitive=Drowner of Secrets
+id=145979
+rarity=U
+[/card]
+[card]
+primitive=Ego Erasure
+id=139692
+rarity=U
+[/card]
+[card]
+primitive=Ethereal Whiskergill
+id=139431
+rarity=U
+[/card]
+[card]
+primitive=Faerie Harbinger
+id=139427
+rarity=U
+[/card]
+[card]
+primitive=Faerie Trickery
+id=139435
+rarity=C
+[/card]
+[card]
+primitive=Fallowsage
+id=145803
+rarity=U
+[/card]
+[card]
+primitive=Familiar's Ruse
+id=146584
+rarity=U
+[/card]
+[card]
+primitive=Fathom Trawl
+id=146170
+rarity=R
+[/card]
+[card]
+primitive=Forced Fruition
+id=146166
+rarity=R
+[/card]
+[card]
+primitive=Glen Elendra Pranksters
+id=146162
+rarity=U
+[/card]
+[card]
+primitive=Glimmerdust Nap
+id=139436
+rarity=C
+[/card]
+[card]
+primitive=Guile
+id=140190
+rarity=R
+[/card]
+[card]
+primitive=Inkfathom Divers
+id=139419
+rarity=C
+[/card]
+[card]
+primitive=Jace Beleren
+id=140222
+rarity=R
+[/card]
+[card]
+primitive=Merrow Commerce
+id=139663
+rarity=U
+[/card]
+[card]
+primitive=Merrow Harbinger
+id=139420
+rarity=U
+[/card]
+[card]
+primitive=Merrow Reejerey
+id=139702
+rarity=U
+[/card]
+[card]
+primitive=Mistbind Clique
+id=141825
+rarity=R
+[/card]
+[card]
+primitive=Mulldrifter
+id=145811
+rarity=C
+[/card]
+[card]
+primitive=Paperfin Rascal
+id=145814
+rarity=C
+[/card]
+[card]
+primitive=Pestermite
+id=139428
+rarity=C
+[/card]
+[card]
+primitive=Ponder
+id=139512
+rarity=C
+[/card]
+[card]
+primitive=Protective Bubble
+id=139687
+rarity=C
+[/card]
+[card]
+primitive=Ringskipper
+id=145802
+rarity=C
+[/card]
+[card]
+primitive=Scattering Stroke
+id=139668
+rarity=U
+[/card]
+[card]
+primitive=Scion of Oona
+id=139741
+rarity=R
+[/card]
+[card]
+primitive=Sentinels of Glen Elendra
+id=139426
+rarity=C
+[/card]
+[card]
+primitive=Shapesharer
+id=140200
+rarity=R
+[/card]
+[card]
+primitive=Silvergill Adept
+id=139682
+rarity=U
+[/card]
+[card]
+primitive=Silvergill Douser
+id=141853
+rarity=C
+[/card]
+[card]
+primitive=Sower of Temptation
+id=140165
+rarity=R
+[/card]
+[card]
+primitive=Spellstutter Sprite
+id=139429
+rarity=C
+[/card]
+[card]
+primitive=Stonybrook Angler
+id=142358
+rarity=C
+[/card]
+[card]
+primitive=Streambed Aquitects
+id=139424
+rarity=C
+[/card]
+[card]
+primitive=Surgespanner
+id=141828
+rarity=R
+[/card]
+[card]
+primitive=Tideshaper Mystic
+id=142362
+rarity=C
+[/card]
+[card]
+primitive=Turtleshell Changeling
+id=145807
+rarity=U
+[/card]
+[card]
+primitive=Wanderwine Prophets
+id=140177
+rarity=R
+[/card]
+[card]
+primitive=Whirlpool Whelm
+id=145975
+rarity=C
+[/card]
+[card]
+primitive=Wings of Velis Vel
+id=139678
+rarity=C
+[/card]
+[card]
+primitive=Zephyr Net
+id=142357
+rarity=C
+[/card]
+[card]
 primitive=Black Poplar Shaman
 id=139454
-rarity=C
-[/card]
-[card]
-primitive=Blades of Velis Vel
-id=139480
-rarity=C
-[/card]
-[card]
-primitive=Blind-Spot Giant
-id=146597
 rarity=C
 [/card]
 [card]
@@ -107,18 +507,8 @@ id=145966
 rarity=C
 [/card]
 [card]
-primitive=Bog-Strider Ash
-id=139410
-rarity=C
-[/card]
-[card]
 primitive=Boggart Birth Rite
 id=142359
-rarity=C
-[/card]
-[card]
-primitive=Boggart Forager
-id=146168
 rarity=C
 [/card]
 [card]
@@ -137,158 +527,13 @@ id=140230
 rarity=R
 [/card]
 [card]
-primitive=Boggart Shenanigans
-id=139445
-rarity=U
-[/card]
-[card]
-primitive=Boggart Sprite-Chaser
-id=146446
-rarity=C
-[/card]
-[card]
-primitive=Briarhorn
-id=142365
-rarity=U
-[/card]
-[card]
-primitive=Brigid, Hero of Kinsbaile
-id=141829
-rarity=R
-[/card]
-[card]
-primitive=Brion Stoutarm
-id=140217
-rarity=R
-[/card]
-[card]
-primitive=Broken Ambitions
-id=145989
-rarity=C
-[/card]
-[card]
-primitive=Burrenton Forge-Tender
-id=139395
-rarity=U
-[/card]
-[card]
 primitive=Cairn Wanderer
 id=140171
 rarity=R
 [/card]
 [card]
-primitive=Captivating Glance
-id=146172
-rarity=U
-[/card]
-[card]
-primitive=Caterwauling Boggart
-id=139471
-rarity=C
-[/card]
-[card]
-primitive=Ceaseless Searblades
-id=139466
-rarity=U
-[/card]
-[card]
-primitive=Cenn's Heir
-id=142360
-rarity=C
-[/card]
-[card]
-primitive=Chandra Nalaar
-id=140176
-rarity=R
-[/card]
-[card]
-primitive=Changeling Berserker
-id=145804
-rarity=U
-[/card]
-[card]
-primitive=Changeling Hero
-id=145968
-rarity=U
-[/card]
-[card]
-primitive=Changeling Titan
-id=140345
-rarity=U
-[/card]
-[card]
-primitive=Cloudcrown Oak
-id=139492
-rarity=C
-[/card]
-[card]
-primitive=Cloudgoat Ranger
-id=139664
-rarity=U
-[/card]
-[card]
-primitive=Cloudthresher
-id=146173
-rarity=R
-[/card]
-[card]
 primitive=Colfenor's Plans
 id=146581
-rarity=R
-[/card]
-[card]
-primitive=Colfenor's Urn
-id=140209
-rarity=R
-[/card]
-[card]
-primitive=Consuming Bonfire
-id=139688
-rarity=C
-[/card]
-[card]
-primitive=Crib Swap
-id=143380
-rarity=U
-[/card]
-[card]
-primitive=Crush Underfoot
-id=143384
-rarity=U
-[/card]
-[card]
-primitive=Cryptic Command
-id=141819
-rarity=R
-[/card]
-[card]
-primitive=Dauntless Dourbark
-id=141851
-rarity=R
-[/card]
-[card]
-primitive=Dawnfluke
-id=145801
-rarity=C
-[/card]
-[card]
-primitive=Deathrender
-id=139727
-rarity=R
-[/card]
-[card]
-primitive=Deeptread Merrow
-id=142352
-rarity=C
-[/card]
-[card]
-primitive=Dolmen Gate
-id=140206
-rarity=R
-[/card]
-[card]
-primitive=Doran, the Siege Tower
-id=140201
 rarity=R
 [/card]
 [card]
@@ -302,14 +547,479 @@ id=139453
 rarity=C
 [/card]
 [card]
-primitive=Drowner of Secrets
-id=145979
+primitive=Exiled Boggart
+id=146443
+rarity=C
+[/card]
+[card]
+primitive=Eyeblight's Ending
+id=139449
+rarity=C
+[/card]
+[card]
+primitive=Facevaulter
+id=142361
+rarity=C
+[/card]
+[card]
+primitive=Faerie Tauntings
+id=139685
 rarity=U
 [/card]
 [card]
-primitive=Ego Erasure
-id=139692
+primitive=Final Revels
+id=146171
 rarity=U
+[/card]
+[card]
+primitive=Fodder Launch
+id=146447
+rarity=U
+[/card]
+[card]
+primitive=Footbottom Feast
+id=139440
+rarity=C
+[/card]
+[card]
+primitive=Ghostly Changeling
+id=139447
+rarity=U
+[/card]
+[card]
+primitive=Hoarder's Greed
+id=146160
+rarity=U
+[/card]
+[card]
+primitive=Hornet Harasser
+id=142355
+rarity=C
+[/card]
+[card]
+primitive=Hunter of Eyeblights
+id=139723
+rarity=U
+[/card]
+[card]
+primitive=Knucklebone Witch
+id=143609
+rarity=R
+[/card]
+[card]
+primitive=Liliana Vess
+id=140212
+rarity=R
+[/card]
+[card]
+primitive=Lys Alana Scarblade
+id=143021
+rarity=U
+[/card]
+[card]
+primitive=Mad Auntie
+id=139708
+rarity=R
+[/card]
+[card]
+primitive=Makeshift Mannequin
+id=139670
+rarity=U
+[/card]
+[card]
+primitive=Marsh Flitter
+id=139705
+rarity=U
+[/card]
+[card]
+primitive=Moonglove Winnower
+id=139483
+rarity=C
+[/card]
+[card]
+primitive=Mournwhelk
+id=145800
+rarity=C
+[/card]
+[card]
+primitive=Nameless Inversion
+id=143388
+rarity=C
+[/card]
+[card]
+primitive=Nath's Buffoon
+id=139446
+rarity=C
+[/card]
+[card]
+primitive=Nectar Faerie
+id=139451
+rarity=U
+[/card]
+[card]
+primitive=Nettlevine Blight
+id=143731
+rarity=R
+[/card]
+[card]
+primitive=Nightshade Stinger
+id=139456
+rarity=C
+[/card]
+[card]
+primitive=Oona's Prowler
+id=146582
+rarity=R
+[/card]
+[card]
+primitive=Peppersmoke
+id=139458
+rarity=C
+[/card]
+[card]
+primitive=Profane Command
+id=141814
+rarity=R
+[/card]
+[card]
+primitive=Prowess of the Fair
+id=146167
+rarity=U
+[/card]
+[card]
+primitive=Quill-Slinger Boggart
+id=139469
+rarity=C
+[/card]
+[card]
+primitive=Scarred Vinebreeder
+id=139674
+rarity=C
+[/card]
+[card]
+primitive=Shriekmaw
+id=146175
+rarity=U
+[/card]
+[card]
+primitive=Skeletal Changeling
+id=145809
+rarity=C
+[/card]
+[card]
+primitive=Spiderwig Boggart
+id=146445
+rarity=C
+[/card]
+[card]
+primitive=Squeaking Pie Sneak
+id=139710
+rarity=U
+[/card]
+[card]
+primitive=Thieving Sprite
+id=139452
+rarity=C
+[/card]
+[card]
+primitive=Thorntooth Witch
+id=143015
+rarity=U
+[/card]
+[card]
+primitive=Thoughtseize
+id=145969
+rarity=R
+[/card]
+[card]
+primitive=Warren Pilferers
+id=145967
+rarity=C
+[/card]
+[card]
+primitive=Weed Strangle
+id=145991
+rarity=C
+[/card]
+[card]
+primitive=Adder-Staff Boggart
+id=145992
+rarity=C
+[/card]
+[card]
+primitive=Ashling the Pilgrim
+id=141822
+rarity=R
+[/card]
+[card]
+primitive=Ashling's Prerogative
+id=146595
+rarity=R
+[/card]
+[card]
+primitive=Axegrinder Giant
+id=145976
+rarity=C
+[/card]
+[card]
+primitive=Blades of Velis Vel
+id=139480
+rarity=C
+[/card]
+[card]
+primitive=Blind-Spot Giant
+id=146597
+rarity=C
+[/card]
+[card]
+primitive=Boggart Forager
+id=146168
+rarity=C
+[/card]
+[card]
+primitive=Boggart Shenanigans
+id=139445
+rarity=U
+[/card]
+[card]
+primitive=Boggart Sprite-Chaser
+id=146446
+rarity=C
+[/card]
+[card]
+primitive=Caterwauling Boggart
+id=139471
+rarity=C
+[/card]
+[card]
+primitive=Ceaseless Searblades
+id=139466
+rarity=U
+[/card]
+[card]
+primitive=Chandra Nalaar
+id=140176
+rarity=R
+[/card]
+[card]
+primitive=Changeling Berserker
+id=145804
+rarity=U
+[/card]
+[card]
+primitive=Consuming Bonfire
+id=139688
+rarity=C
+[/card]
+[card]
+primitive=Crush Underfoot
+id=143384
+rarity=U
+[/card]
+[card]
+primitive=Faultgrinder
+id=145964
+rarity=C
+[/card]
+[card]
+primitive=Fire-Belly Changeling
+id=140338
+rarity=C
+[/card]
+[card]
+primitive=Flamekin Bladewhirl
+id=140343
+rarity=U
+[/card]
+[card]
+primitive=Flamekin Brawler
+id=139461
+rarity=C
+[/card]
+[card]
+primitive=Flamekin Harbinger
+id=139463
+rarity=U
+[/card]
+[card]
+primitive=Flamekin Spitfire
+id=139728
+rarity=U
+[/card]
+[card]
+primitive=Giant Harbinger
+id=139474
+rarity=U
+[/card]
+[card]
+primitive=Giant's Ire
+id=139477
+rarity=C
+[/card]
+[card]
+primitive=Glarewielder
+id=145981
+rarity=U
+[/card]
+[card]
+primitive=Goatnapper
+id=142363
+rarity=U
+[/card]
+[card]
+primitive=Hamletback Goliath
+id=143682
+rarity=R
+[/card]
+[card]
+primitive=Hearthcage Giant
+id=139691
+rarity=U
+[/card]
+[card]
+primitive=Heat Shimmer
+id=139468
+rarity=R
+[/card]
+[card]
+primitive=Hostility
+id=140164
+rarity=R
+[/card]
+[card]
+primitive=Hurly-Burly
+id=143381
+rarity=C
+[/card]
+[card]
+primitive=Incandescent Soulstoke
+id=139730
+rarity=R
+[/card]
+[card]
+primitive=Incendiary Command
+id=141830
+rarity=R
+[/card]
+[card]
+primitive=Ingot Chewer
+id=139686
+rarity=C
+[/card]
+[card]
+primitive=Inner-Flame Acolyte
+id=146599
+rarity=C
+[/card]
+[card]
+primitive=Inner-Flame Igniter
+id=139462
+rarity=U
+[/card]
+[card]
+primitive=Lash Out
+id=145987
+rarity=C
+[/card]
+[card]
+primitive=Lowland Oaf
+id=140183
+rarity=C
+[/card]
+[card]
+primitive=Mudbutton Torchrunner
+id=139742
+rarity=C
+[/card]
+[card]
+primitive=Needle Drop
+id=146161
+rarity=C
+[/card]
+[card]
+primitive=Nova Chaser
+id=140239
+rarity=R
+[/card]
+[card]
+primitive=Rebellion of the Flamekin
+id=139679
+rarity=U
+[/card]
+[card]
+primitive=Smokebraider
+id=139465
+rarity=C
+[/card]
+[card]
+primitive=Soulbright Flamekin
+id=139467
+rarity=C
+[/card]
+[card]
+primitive=Stinkdrinker Daredevil
+id=143607
+rarity=C
+[/card]
+[card]
+primitive=Sunrise Sovereign
+id=139667
+rarity=R
+[/card]
+[card]
+primitive=Tar Pitcher
+id=139470
+rarity=U
+[/card]
+[card]
+primitive=Tarfire
+id=139476
+rarity=C
+[/card]
+[card]
+primitive=Thundercloud Shaman
+id=139738
+rarity=U
+[/card]
+[card]
+primitive=Wild Ricochet
+id=146600
+rarity=R
+[/card]
+[card]
+primitive=Battlewand Oak
+id=141857
+rarity=C
+[/card]
+[card]
+primitive=Bog-Strider Ash
+id=139410
+rarity=C
+[/card]
+[card]
+primitive=Briarhorn
+id=142365
+rarity=U
+[/card]
+[card]
+primitive=Changeling Titan
+id=140345
+rarity=U
+[/card]
+[card]
+primitive=Cloudcrown Oak
+id=139492
+rarity=C
+[/card]
+[card]
+primitive=Cloudthresher
+id=146173
+rarity=R
+[/card]
+[card]
+primitive=Dauntless Dourbark
+id=141851
+rarity=R
 [/card]
 [card]
 primitive=Elvish Branchbender
@@ -337,78 +1047,13 @@ id=139676
 rarity=U
 [/card]
 [card]
-primitive=Entangling Trap
-id=146583
-rarity=U
-[/card]
-[card]
 primitive=Epic Proportions
 id=143732
 rarity=R
 [/card]
 [card]
-primitive=Ethereal Whiskergill
-id=139431
-rarity=U
-[/card]
-[card]
-primitive=Exiled Boggart
-id=146443
-rarity=C
-[/card]
-[card]
-primitive=Eyeblight's Ending
-id=139449
-rarity=C
-[/card]
-[card]
 primitive=Eyes of the Wisent
 id=143728
-rarity=R
-[/card]
-[card]
-primitive=Facevaulter
-id=142361
-rarity=C
-[/card]
-[card]
-primitive=Faerie Harbinger
-id=139427
-rarity=U
-[/card]
-[card]
-primitive=Faerie Tauntings
-id=139685
-rarity=U
-[/card]
-[card]
-primitive=Faerie Trickery
-id=139435
-rarity=C
-[/card]
-[card]
-primitive=Fallowsage
-id=145803
-rarity=U
-[/card]
-[card]
-primitive=Familiar's Ruse
-id=146584
-rarity=U
-[/card]
-[card]
-primitive=Fathom Trawl
-id=146170
-rarity=R
-[/card]
-[card]
-primitive=Faultgrinder
-id=145964
-rarity=C
-[/card]
-[card]
-primitive=Favor of the Mighty
-id=143683
 rarity=R
 [/card]
 [card]
@@ -417,84 +1062,9 @@ id=139502
 rarity=C
 [/card]
 [card]
-primitive=Final Revels
-id=146171
-rarity=U
-[/card]
-[card]
-primitive=Fire-Belly Changeling
-id=140338
-rarity=C
-[/card]
-[card]
 primitive=Fistful of Force
 id=143372
 rarity=C
-[/card]
-[card]
-primitive=Flamekin Bladewhirl
-id=140343
-rarity=U
-[/card]
-[card]
-primitive=Flamekin Brawler
-id=139461
-rarity=C
-[/card]
-[card]
-primitive=Flamekin Harbinger
-id=139463
-rarity=U
-[/card]
-[card]
-primitive=Flamekin Spitfire
-id=139728
-rarity=U
-[/card]
-[card]
-primitive=Fodder Launch
-id=146447
-rarity=U
-[/card]
-[card]
-primitive=Footbottom Feast
-id=139440
-rarity=C
-[/card]
-[card]
-primitive=Forced Fruition
-id=146166
-rarity=R
-[/card]
-[card]
-primitive=Forest
-id=143617
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=143618
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=143625
-rarity=L
-[/card]
-[card]
-primitive=Forest
-id=143633
-rarity=L
-[/card]
-[card]
-primitive=Gaddock Teeg
-id=140188
-rarity=R
-[/card]
-[card]
-primitive=Galepowder Mage
-id=139666
-rarity=R
 [/card]
 [card]
 primitive=Garruk Wildspeaker
@@ -502,29 +1072,9 @@ id=140205
 rarity=R
 [/card]
 [card]
-primitive=Ghostly Changeling
-id=139447
-rarity=U
-[/card]
-[card]
-primitive=Giant Harbinger
-id=139474
-rarity=U
-[/card]
-[card]
-primitive=Giant's Ire
-id=139477
-rarity=C
-[/card]
-[card]
 primitive=Gilt-Leaf Ambush
 id=145984
 rarity=C
-[/card]
-[card]
-primitive=Gilt-Leaf Palace
-id=153455
-rarity=R
 [/card]
 [card]
 primitive=Gilt-Leaf Seer
@@ -532,58 +1082,8 @@ id=145812
 rarity=C
 [/card]
 [card]
-primitive=Glarewielder
-id=145981
-rarity=U
-[/card]
-[card]
-primitive=Glen Elendra Pranksters
-id=146162
-rarity=U
-[/card]
-[card]
-primitive=Glimmerdust Nap
-id=139436
-rarity=C
-[/card]
-[card]
-primitive=Goatnapper
-id=142363
-rarity=U
-[/card]
-[card]
-primitive=Goldmeadow Dodger
-id=142356
-rarity=C
-[/card]
-[card]
-primitive=Goldmeadow Harrier
-id=139397
-rarity=C
-[/card]
-[card]
-primitive=Goldmeadow Stalwart
-id=139698
-rarity=U
-[/card]
-[card]
 primitive=Guardian of Cloverdell
 id=139665
-rarity=U
-[/card]
-[card]
-primitive=Guile
-id=140190
-rarity=R
-[/card]
-[card]
-primitive=Hamletback Goliath
-id=143682
-rarity=R
-[/card]
-[card]
-primitive=Harpoon Sniper
-id=139407
 rarity=U
 [/card]
 [card]
@@ -592,68 +1092,8 @@ id=145808
 rarity=C
 [/card]
 [card]
-primitive=Hearthcage Giant
-id=139691
-rarity=U
-[/card]
-[card]
-primitive=Heat Shimmer
-id=139468
-rarity=R
-[/card]
-[card]
-primitive=Herbal Poultice
-id=139740
-rarity=C
-[/card]
-[card]
-primitive=Hillcomber Giant
-id=145971
-rarity=C
-[/card]
-[card]
-primitive=Hoarder's Greed
-id=146160
-rarity=U
-[/card]
-[card]
-primitive=Hoofprints of the Stag
-id=143730
-rarity=R
-[/card]
-[card]
-primitive=Horde of Notions
-id=140219
-rarity=R
-[/card]
-[card]
-primitive=Hornet Harasser
-id=142355
-rarity=C
-[/card]
-[card]
-primitive=Hostility
-id=140164
-rarity=R
-[/card]
-[card]
-primitive=Howltooth Hollow
-id=139513
-rarity=R
-[/card]
-[card]
 primitive=Hunt Down
 id=143611
-rarity=C
-[/card]
-[card]
-primitive=Hunter of Eyeblights
-id=139723
-rarity=U
-[/card]
-[card]
-primitive=Hurly-Burly
-id=143381
 rarity=C
 [/card]
 [card]
@@ -667,64 +1107,9 @@ id=139683
 rarity=U
 [/card]
 [card]
-primitive=Incandescent Soulstoke
-id=139730
-rarity=R
-[/card]
-[card]
-primitive=Incendiary Command
-id=141830
-rarity=R
-[/card]
-[card]
 primitive=Incremental Growth
 id=146777
 rarity=U
-[/card]
-[card]
-primitive=Ingot Chewer
-id=139686
-rarity=C
-[/card]
-[card]
-primitive=Inkfathom Divers
-id=139419
-rarity=C
-[/card]
-[card]
-primitive=Inner-Flame Acolyte
-id=146599
-rarity=C
-[/card]
-[card]
-primitive=Inner-Flame Igniter
-id=139462
-rarity=U
-[/card]
-[card]
-primitive=Island
-id=143619
-rarity=L
-[/card]
-[card]
-primitive=Island
-id=143624
-rarity=L
-[/card]
-[card]
-primitive=Island
-id=143628
-rarity=L
-[/card]
-[card]
-primitive=Island
-id=143632
-rarity=L
-[/card]
-[card]
-primitive=Jace Beleren
-id=140222
-rarity=R
 [/card]
 [card]
 primitive=Jagged-Scar Archers
@@ -732,38 +1117,8 @@ id=139726
 rarity=U
 [/card]
 [card]
-primitive=Judge of Currents
-id=139406
-rarity=C
-[/card]
-[card]
-primitive=Kinsbaile Balloonist
-id=139403
-rarity=C
-[/card]
-[card]
-primitive=Kinsbaile Skirmisher
-id=143018
-rarity=C
-[/card]
-[card]
 primitive=Kithkin Daggerdare
 id=139498
-rarity=C
-[/card]
-[card]
-primitive=Kithkin Greatheart
-id=146444
-rarity=C
-[/card]
-[card]
-primitive=Kithkin Harbinger
-id=139399
-rarity=U
-[/card]
-[card]
-primitive=Kithkin Healer
-id=145986
 rarity=C
 [/card]
 [card]
@@ -772,34 +1127,14 @@ id=139497
 rarity=U
 [/card]
 [card]
-primitive=Knight of Meadowgrain
-id=139715
-rarity=U
-[/card]
-[card]
-primitive=Knucklebone Witch
-id=143609
-rarity=R
-[/card]
-[card]
 primitive=Lace with Moonglove
 id=143376
-rarity=C
-[/card]
-[card]
-primitive=Lairwatch Giant
-id=143383
 rarity=C
 [/card]
 [card]
 primitive=Lammastide Weave
 id=139404
 rarity=U
-[/card]
-[card]
-primitive=Lash Out
-id=145987
-rarity=C
 [/card]
 [card]
 primitive=Leaf Gilder
@@ -812,39 +1147,9 @@ id=139703
 rarity=C
 [/card]
 [card]
-primitive=Liliana Vess
-id=140212
-rarity=R
-[/card]
-[card]
-primitive=Lowland Oaf
-id=140183
-rarity=C
-[/card]
-[card]
 primitive=Lys Alana Huntmaster
 id=139401
 rarity=C
-[/card]
-[card]
-primitive=Lys Alana Scarblade
-id=143021
-rarity=U
-[/card]
-[card]
-primitive=Mad Auntie
-id=139708
-rarity=R
-[/card]
-[card]
-primitive=Makeshift Mannequin
-id=139670
-rarity=U
-[/card]
-[card]
-primitive=Marsh Flitter
-id=139705
-rarity=U
 [/card]
 [card]
 primitive=Masked Admirers
@@ -852,138 +1157,8 @@ id=140184
 rarity=R
 [/card]
 [card]
-primitive=Merrow Commerce
-id=139663
-rarity=U
-[/card]
-[card]
-primitive=Merrow Harbinger
-id=139420
-rarity=U
-[/card]
-[card]
-primitive=Merrow Reejerey
-id=139702
-rarity=U
-[/card]
-[card]
-primitive=Militia's Pride
-id=140193
-rarity=R
-[/card]
-[card]
-primitive=Mirror Entity
-id=141818
-rarity=R
-[/card]
-[card]
-primitive=Mistbind Clique
-id=141825
-rarity=R
-[/card]
-[card]
-primitive=Moonglove Extract
-id=139506
-rarity=C
-[/card]
-[card]
-primitive=Moonglove Winnower
-id=139483
-rarity=C
-[/card]
-[card]
-primitive=Mosswort Bridge
-id=139515
-rarity=R
-[/card]
-[card]
-primitive=Mountain
-id=143623
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=143626
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=143627
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=143631
-rarity=L
-[/card]
-[card]
-primitive=Mournwhelk
-id=145800
-rarity=C
-[/card]
-[card]
-primitive=Mudbutton Torchrunner
-id=139742
-rarity=C
-[/card]
-[card]
-primitive=Mulldrifter
-id=145811
-rarity=C
-[/card]
-[card]
-primitive=Nameless Inversion
-id=143388
-rarity=C
-[/card]
-[card]
-primitive=Nath of the Gilt-Leaf
-id=143370
-rarity=R
-[/card]
-[card]
-primitive=Nath's Buffoon
-id=139446
-rarity=C
-[/card]
-[card]
 primitive=Nath's Elite
 id=145990
-rarity=C
-[/card]
-[card]
-primitive=Neck Snap
-id=139693
-rarity=C
-[/card]
-[card]
-primitive=Nectar Faerie
-id=139451
-rarity=U
-[/card]
-[card]
-primitive=Needle Drop
-id=146161
-rarity=C
-[/card]
-[card]
-primitive=Nettlevine Blight
-id=143731
-rarity=R
-[/card]
-[card]
-primitive=Nightshade Stinger
-id=139456
-rarity=C
-[/card]
-[card]
-primitive=Nova Chaser
-id=140239
-rarity=R
-[/card]
-[card]
-primitive=Oaken Brawler
-id=145988
 rarity=C
 [/card]
 [card]
@@ -992,109 +1167,9 @@ id=139494
 rarity=C
 [/card]
 [card]
-primitive=Oblivion Ring
-id=139414
-rarity=C
-[/card]
-[card]
-primitive=Oona's Prowler
-id=146582
-rarity=R
-[/card]
-[card]
-primitive=Paperfin Rascal
-id=145814
-rarity=C
-[/card]
-[card]
-primitive=Peppersmoke
-id=139458
-rarity=C
-[/card]
-[card]
-primitive=Pestermite
-id=139428
-rarity=C
-[/card]
-[card]
-primitive=Plains
-id=143620
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=143621
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=143622
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=143630
-rarity=L
-[/card]
-[card]
-primitive=Plover Knights
-id=139396
-rarity=C
-[/card]
-[card]
-primitive=Pollen Lullaby
-id=145815
-rarity=U
-[/card]
-[card]
-primitive=Ponder
-id=139512
-rarity=C
-[/card]
-[card]
 primitive=Primal Command
 id=141824
 rarity=R
-[/card]
-[card]
-primitive=Profane Command
-id=141814
-rarity=R
-[/card]
-[card]
-primitive=Protective Bubble
-id=139687
-rarity=C
-[/card]
-[card]
-primitive=Prowess of the Fair
-id=146167
-rarity=U
-[/card]
-[card]
-primitive=Purity
-id=140214
-rarity=R
-[/card]
-[card]
-primitive=Quill-Slinger Boggart
-id=139469
-rarity=C
-[/card]
-[card]
-primitive=Rebellion of the Flamekin
-id=139679
-rarity=U
-[/card]
-[card]
-primitive=Rings of Brighthearth
-id=140216
-rarity=R
-[/card]
-[card]
-primitive=Ringskipper
-id=145802
-rarity=C
 [/card]
 [card]
 primitive=Rootgrapple
@@ -1102,119 +1177,9 @@ id=139499
 rarity=C
 [/card]
 [card]
-primitive=Runed Stalactite
-id=139508
-rarity=C
-[/card]
-[card]
-primitive=Scarred Vinebreeder
-id=139674
-rarity=C
-[/card]
-[card]
-primitive=Scattering Stroke
-id=139668
-rarity=U
-[/card]
-[card]
-primitive=Scion of Oona
-id=139741
-rarity=R
-[/card]
-[card]
-primitive=Secluded Glen
-id=153458
-rarity=R
-[/card]
-[card]
 primitive=Seedguide Ash
 id=146165
 rarity=U
-[/card]
-[card]
-primitive=Sentinels of Glen Elendra
-id=139426
-rarity=C
-[/card]
-[card]
-primitive=Sentry Oak
-id=145970
-rarity=U
-[/card]
-[card]
-primitive=Shapesharer
-id=140200
-rarity=R
-[/card]
-[card]
-primitive=Shelldock Isle
-id=146178
-rarity=R
-[/card]
-[card]
-primitive=Shields of Velis Vel
-id=139411
-rarity=C
-[/card]
-[card]
-primitive=Shimmering Grotto
-id=141802
-rarity=C
-[/card]
-[card]
-primitive=Shriekmaw
-id=146175
-rarity=U
-[/card]
-[card]
-primitive=Silvergill Adept
-id=139682
-rarity=U
-[/card]
-[card]
-primitive=Silvergill Douser
-id=141853
-rarity=C
-[/card]
-[card]
-primitive=Skeletal Changeling
-id=145809
-rarity=C
-[/card]
-[card]
-primitive=Smokebraider
-id=139465
-rarity=C
-[/card]
-[card]
-primitive=Soaring Hope
-id=139511
-rarity=C
-[/card]
-[card]
-primitive=Soulbright Flamekin
-id=139467
-rarity=C
-[/card]
-[card]
-primitive=Sower of Temptation
-id=140165
-rarity=R
-[/card]
-[card]
-primitive=Spellstutter Sprite
-id=139429
-rarity=C
-[/card]
-[card]
-primitive=Spiderwig Boggart
-id=146445
-rarity=C
-[/card]
-[card]
-primitive=Spinerock Knoll
-id=139514
-rarity=R
 [/card]
 [card]
 primitive=Spring Cleaning
@@ -1222,134 +1187,9 @@ id=139489
 rarity=C
 [/card]
 [card]
-primitive=Springjack Knight
-id=143016
-rarity=C
-[/card]
-[card]
-primitive=Springleaf Drum
-id=139509
-rarity=C
-[/card]
-[card]
-primitive=Squeaking Pie Sneak
-id=139710
-rarity=U
-[/card]
-[card]
-primitive=Stinkdrinker Daredevil
-id=143607
-rarity=C
-[/card]
-[card]
-primitive=Stonybrook Angler
-id=142358
-rarity=C
-[/card]
-[card]
-primitive=Streambed Aquitects
-id=139424
-rarity=C
-[/card]
-[card]
-primitive=Summon the School
-id=143684
-rarity=U
-[/card]
-[card]
-primitive=Sunrise Sovereign
-id=139667
-rarity=R
-[/card]
-[card]
-primitive=Surge of Thoughtweft
-id=145799
-rarity=C
-[/card]
-[card]
-primitive=Surgespanner
-id=141828
-rarity=R
-[/card]
-[card]
-primitive=Swamp
-id=143629
-rarity=L
-[/card]
-[card]
-primitive=Swamp
-id=143634
-rarity=L
-[/card]
-[card]
-primitive=Swamp
-id=143635
-rarity=L
-[/card]
-[card]
-primitive=Swamp
-id=143636
-rarity=L
-[/card]
-[card]
-primitive=Sygg, River Guide
-id=140172
-rarity=R
-[/card]
-[card]
 primitive=Sylvan Echoes
 id=146601
 rarity=U
-[/card]
-[card]
-primitive=Tar Pitcher
-id=139470
-rarity=U
-[/card]
-[card]
-primitive=Tarfire
-id=139476
-rarity=C
-[/card]
-[card]
-primitive=Thieving Sprite
-id=139452
-rarity=C
-[/card]
-[card]
-primitive=Thorn of Amethyst
-id=140166
-rarity=R
-[/card]
-[card]
-primitive=Thorntooth Witch
-id=143015
-rarity=U
-[/card]
-[card]
-primitive=Thoughtseize
-id=145969
-rarity=R
-[/card]
-[card]
-primitive=Thoughtweft Trio
-id=140232
-rarity=R
-[/card]
-[card]
-primitive=Thousand-Year Elixir
-id=139505
-rarity=R
-[/card]
-[card]
-primitive=Thundercloud Shaman
-id=139738
-rarity=U
-[/card]
-[card]
-primitive=Tideshaper Mystic
-id=142362
-rarity=C
 [/card]
 [card]
 primitive=Timber Protector
@@ -1362,14 +1202,124 @@ id=139495
 rarity=U
 [/card]
 [card]
-primitive=Triclopean Sight
-id=146580
+primitive=Vigor
+id=140227
+rarity=R
+[/card]
+[card]
+primitive=Warren-Scourge Elf
+id=139450
 rarity=C
 [/card]
 [card]
-primitive=Turtleshell Changeling
-id=145807
+primitive=Woodland Changeling
+id=145816
+rarity=C
+[/card]
+[card]
+primitive=Woodland Guidance
+id=146594
 rarity=U
+[/card]
+[card]
+primitive=Wren's Run Packmaster
+id=140194
+rarity=R
+[/card]
+[card]
+primitive=Wren's Run Vanquisher
+id=139736
+rarity=U
+[/card]
+[card]
+primitive=Brion Stoutarm
+id=140217
+rarity=R
+[/card]
+[card]
+primitive=Doran, the Siege Tower
+id=140201
+rarity=R
+[/card]
+[card]
+primitive=Gaddock Teeg
+id=140188
+rarity=R
+[/card]
+[card]
+primitive=Horde of Notions
+id=140219
+rarity=R
+[/card]
+[card]
+primitive=Nath of the Gilt-Leaf
+id=143370
+rarity=R
+[/card]
+[card]
+primitive=Sygg, River Guide
+id=140172
+rarity=R
+[/card]
+[card]
+primitive=Wort, Boggart Auntie
+id=140226
+rarity=R
+[/card]
+[card]
+primitive=Wydwen, the Biting Gale
+id=140229
+rarity=R
+[/card]
+[card]
+primitive=Colfenor's Urn
+id=140209
+rarity=R
+[/card]
+[card]
+primitive=Deathrender
+id=139727
+rarity=R
+[/card]
+[card]
+primitive=Dolmen Gate
+id=140206
+rarity=R
+[/card]
+[card]
+primitive=Herbal Poultice
+id=139740
+rarity=C
+[/card]
+[card]
+primitive=Moonglove Extract
+id=139506
+rarity=C
+[/card]
+[card]
+primitive=Rings of Brighthearth
+id=140216
+rarity=R
+[/card]
+[card]
+primitive=Runed Stalactite
+id=139508
+rarity=C
+[/card]
+[card]
+primitive=Springleaf Drum
+id=139509
+rarity=C
+[/card]
+[card]
+primitive=Thorn of Amethyst
+id=140166
+rarity=R
+[/card]
+[card]
+primitive=Thousand-Year Elixir
+id=139505
+rarity=R
 [/card]
 [card]
 primitive=Twinning Glass
@@ -1377,13 +1327,53 @@ id=143375
 rarity=R
 [/card]
 [card]
-primitive=Veteran of the Depths
-id=139669
-rarity=U
+primitive=Wanderer's Twig
+id=139510
+rarity=C
 [/card]
 [card]
-primitive=Vigor
-id=140227
+primitive=Ancient Amphitheater
+id=153454
+rarity=R
+[/card]
+[card]
+primitive=Auntie's Hovel
+id=153457
+rarity=R
+[/card]
+[card]
+primitive=Gilt-Leaf Palace
+id=153455
+rarity=R
+[/card]
+[card]
+primitive=Howltooth Hollow
+id=139513
+rarity=R
+[/card]
+[card]
+primitive=Mosswort Bridge
+id=139515
+rarity=R
+[/card]
+[card]
+primitive=Secluded Glen
+id=153458
+rarity=R
+[/card]
+[card]
+primitive=Shelldock Isle
+id=146178
+rarity=R
+[/card]
+[card]
+primitive=Shimmering Grotto
+id=141802
+rarity=C
+[/card]
+[card]
+primitive=Spinerock Knoll
+id=139514
 rarity=R
 [/card]
 [card]
@@ -1412,48 +1402,8 @@ id=141883
 rarity=U
 [/card]
 [card]
-primitive=Wanderer's Twig
-id=139510
-rarity=C
-[/card]
-[card]
 primitive=Wanderwine Hub
 id=153456
-rarity=R
-[/card]
-[card]
-primitive=Wanderwine Prophets
-id=140177
-rarity=R
-[/card]
-[card]
-primitive=Warren Pilferers
-id=145967
-rarity=C
-[/card]
-[card]
-primitive=Warren-Scourge Elf
-id=139450
-rarity=C
-[/card]
-[card]
-primitive=Weed Strangle
-id=145991
-rarity=C
-[/card]
-[card]
-primitive=Wellgabber Apothecary
-id=139400
-rarity=C
-[/card]
-[card]
-primitive=Whirlpool Whelm
-id=145975
-rarity=C
-[/card]
-[card]
-primitive=Wild Ricochet
-id=146600
 rarity=R
 [/card]
 [card]
@@ -1462,52 +1412,102 @@ id=145798
 rarity=R
 [/card]
 [card]
-primitive=Wings of Velis Vel
-id=139678
-rarity=C
+primitive=Plains
+id=143621
+rarity=L
 [/card]
 [card]
-primitive=Wispmare
-id=145974
-rarity=C
+primitive=Plains
+id=143630
+rarity=L
 [/card]
 [card]
-primitive=Wizened Cenn
-id=139716
-rarity=U
+primitive=Plains
+id=143622
+rarity=L
 [/card]
 [card]
-primitive=Woodland Changeling
-id=145816
-rarity=C
+primitive=Plains
+id=143620
+rarity=L
 [/card]
 [card]
-primitive=Woodland Guidance
-id=146594
-rarity=U
+primitive=Island
+id=143628
+rarity=L
 [/card]
 [card]
-primitive=Wort, Boggart Auntie
-id=140226
-rarity=R
+primitive=Island
+id=143624
+rarity=L
 [/card]
 [card]
-primitive=Wren's Run Packmaster
-id=140194
-rarity=R
+primitive=Island
+id=143632
+rarity=L
 [/card]
 [card]
-primitive=Wren's Run Vanquisher
-id=139736
-rarity=U
+primitive=Island
+id=143619
+rarity=L
 [/card]
 [card]
-primitive=Wydwen, the Biting Gale
-id=140229
-rarity=R
+primitive=Swamp
+id=143636
+rarity=L
 [/card]
 [card]
-primitive=Zephyr Net
-id=142357
-rarity=C
+primitive=Swamp
+id=143634
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=143629
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=143635
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=143623
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=143627
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=143631
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=143626
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=143618
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=143625
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=143617
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=143633
+rarity=L
 [/card]

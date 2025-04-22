@@ -3,7 +3,7 @@ author=Wagic Team
 name=Crimson Vow Commander
 orderindex=COM-T.VOC
 year=2021-11-19
-total=176
+total=188
 [/meta]
 [card]
 primitive=Wolf
@@ -31,7 +31,7 @@ id=-546993
 rarity=T
 [/card]
 [card]
-primitive=Treasure Sur
+primitive=Treasure
 id=-546992
 rarity=T
 [/card]
@@ -134,6 +134,386 @@ rarity=T
 primitive=Spirit
 id=-545698
 rarity=T
+[/card]
+[card]
+primitive=Millicent, Restless Revenant
+id=547249
+rarity=M
+[/card]
+[card]
+primitive=Strefan, Maurer Progenitor
+id=547250
+rarity=M
+[/card]
+[card]
+primitive=Donal, Herald of Wings
+id=547229
+rarity=M
+[/card]
+[card]
+primitive=Timothar, Baron of Bats
+id=547230
+rarity=M
+[/card]
+[card]
+primitive=Drogskol Reinforcements
+id=546969
+rarity=R
+[/card]
+[card]
+primitive=Haunted Library
+id=546970
+rarity=R
+[/card]
+[card]
+primitive=Priest of the Blessed Graf
+id=546971
+rarity=R
+[/card]
+[card]
+primitive=Rhoda, Geist Avenger
+id=546972
+rarity=R
+[/card]
+[card]
+primitive=Storm of Souls
+id=546973
+rarity=R
+[/card]
+[card]
+primitive=Sudden Salvation
+id=546974
+rarity=R
+[/card]
+[card]
+primitive=Breath of the Sleepless
+id=546975
+rarity=R
+[/card]
+[card]
+primitive=Ethereal Investigator
+id=546976
+rarity=R
+[/card]
+[card]
+primitive=Haunting Imitation
+id=546977
+rarity=R
+[/card]
+[card]
+primitive=Occult Epiphany
+id=546978
+rarity=R
+[/card]
+[card]
+primitive=Spectral Arcanist
+id=546979
+rarity=R
+[/card]
+[card]
+primitive=Timin, Youthful Geist
+id=546980
+rarity=R
+[/card]
+[card]
+primitive=Crossway Troublemakers
+id=546981
+rarity=R
+[/card]
+[card]
+primitive=Glass-Cast Heart
+id=546982
+rarity=R
+[/card]
+[card]
+primitive=Kamber, the Plunderer
+id=546983
+rarity=R
+[/card]
+[card]
+primitive=Olivia's Wrath
+id=546984
+rarity=R
+[/card]
+[card]
+primitive=Predators' Hour
+id=546985
+rarity=R
+[/card]
+[card]
+primitive=Shadowgrange Archfiend
+id=546986
+rarity=R
+[/card]
+[card]
+primitive=Arterial Alchemy
+id=546987
+rarity=R
+[/card]
+[card]
+primitive=Imposing Grandeur
+id=546988
+rarity=R
+[/card]
+[card]
+primitive=Laurine, the Diversion
+id=546989
+rarity=R
+[/card]
+[card]
+primitive=Markov Enforcer
+id=546990
+rarity=R
+[/card]
+[card]
+primitive=Midnight Arsonist
+id=546991
+rarity=R
+[/card]
+[card]
+primitive=Scion of Opulence
+id=546992
+rarity=R
+[/card]
+[card]
+primitive=Disorder in the Court
+id=546993
+rarity=R
+[/card]
+[card]
+primitive=Sinister Waltz
+id=546994
+rarity=R
+[/card]
+[card]
+primitive=Breathkeeper Seraph
+id=547269
+rarity=R
+[/card]
+[card]
+primitive=Wedding Ring
+id=547270
+rarity=M
+[/card]
+[card]
+primitive=Imperious Mindbreaker
+id=547271
+rarity=R
+[/card]
+[card]
+primitive=Doom Weaver
+id=547272
+rarity=R
+[/card]
+[card]
+primitive=Mirage Phalanx
+id=547273
+rarity=R
+[/card]
+[card]
+primitive=Hollowhenge Overlord
+id=547274
+rarity=R
+[/card]
+[card]
+primitive=Thundering Mightmare
+id=547275
+rarity=R
+[/card]
+[card]
+primitive=Umbris, Fear Manifest
+id=547276
+rarity=M
+[/card]
+[card]
+primitive=Millicent, Restless Revenant
+id=546817
+rarity=M
+[/card]
+[card]
+primitive=Strefan, Maurer Progenitor
+id=546818
+rarity=M
+[/card]
+[card]
+primitive=Donal, Herald of Wings
+id=546819
+rarity=M
+[/card]
+[card]
+primitive=Timothar, Baron of Bats
+id=546820
+rarity=M
+[/card]
+[card]
+primitive=Drogskol Reinforcements
+id=546821
+rarity=R
+[/card]
+[card]
+primitive=Haunted Library
+id=546822
+rarity=R
+[/card]
+[card]
+primitive=Priest of the Blessed Graf
+id=546823
+rarity=R
+[/card]
+[card]
+primitive=Rhoda, Geist Avenger
+id=546824
+rarity=R
+[/card]
+[card]
+primitive=Storm of Souls
+id=546825
+rarity=R
+[/card]
+[card]
+primitive=Sudden Salvation
+id=546826
+rarity=R
+[/card]
+[card]
+primitive=Breath of the Sleepless
+id=546827
+rarity=R
+[/card]
+[card]
+primitive=Ethereal Investigator
+id=546828
+rarity=R
+[/card]
+[card]
+primitive=Haunting Imitation
+id=546829
+rarity=R
+[/card]
+[card]
+primitive=Occult Epiphany
+id=546830
+rarity=R
+[/card]
+[card]
+primitive=Spectral Arcanist
+id=546831
+rarity=R
+[/card]
+[card]
+primitive=Timin, Youthful Geist
+id=546832
+rarity=R
+[/card]
+[card]
+primitive=Crossway Troublemakers
+id=546833
+rarity=R
+[/card]
+[card]
+primitive=Glass-Cast Heart
+id=546834
+rarity=R
+[/card]
+[card]
+primitive=Kamber, the Plunderer
+id=546835
+rarity=R
+[/card]
+[card]
+primitive=Olivia's Wrath
+id=546836
+rarity=R
+[/card]
+[card]
+primitive=Predators' Hour
+id=546837
+rarity=R
+[/card]
+[card]
+primitive=Shadowgrange Archfiend
+id=546838
+rarity=R
+[/card]
+[card]
+primitive=Arterial Alchemy
+id=546839
+rarity=R
+[/card]
+[card]
+primitive=Imposing Grandeur
+id=546840
+rarity=R
+[/card]
+[card]
+primitive=Laurine, the Diversion
+id=546841
+rarity=R
+[/card]
+[card]
+primitive=Markov Enforcer
+id=546842
+rarity=R
+[/card]
+[card]
+primitive=Midnight Arsonist
+id=546843
+rarity=R
+[/card]
+[card]
+primitive=Scion of Opulence
+id=546844
+rarity=R
+[/card]
+[card]
+primitive=Disorder in the Court
+id=546845
+rarity=R
+[/card]
+[card]
+primitive=Sinister Waltz
+id=546846
+rarity=R
+[/card]
+[card]
+primitive=Breathkeeper Seraph
+id=546847
+rarity=R
+[/card]
+[card]
+primitive=Wedding Ring
+id=546848
+rarity=M
+[/card]
+[card]
+primitive=Imperious Mindbreaker
+id=546849
+rarity=R
+[/card]
+[card]
+primitive=Doom Weaver
+id=546850
+rarity=R
+[/card]
+[card]
+primitive=Mirage Phalanx
+id=546851
+rarity=R
+[/card]
+[card]
+primitive=Hollowhenge Overlord
+id=546852
+rarity=R
+[/card]
+[card]
+primitive=Thundering Mightmare
+id=546853
+rarity=R
+[/card]
+[card]
+primitive=Umbris, Fear Manifest
+id=546854
+rarity=M
 [/card]
 [card]
 primitive=Angel of Flight Alabaster
@@ -653,7 +1033,7 @@ rarity=R
 [card]
 primitive=Rakdos Carnarium
 id=545800
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=Shadowblood Ridge
@@ -694,194 +1074,4 @@ rarity=U
 primitive=Unclaimed Territory
 id=545808
 rarity=U
-[/card]
-[card]
-primitive=Drogskol Reinforcements
-id=546969
-rarity=R
-[/card]
-[card]
-primitive=Haunted Library
-id=546970
-rarity=R
-[/card]
-[card]
-primitive=Priest of the Blessed Graf
-id=546971
-rarity=R
-[/card]
-[card]
-primitive=Rhoda, Geist Avenger
-id=546972
-rarity=R
-[/card]
-[card]
-primitive=Storm of Souls
-id=546973
-rarity=R
-[/card]
-[card]
-primitive=Sudden Salvation
-id=546974
-rarity=R
-[/card]
-[card]
-primitive=Breath of the Sleepless
-id=546975
-rarity=R
-[/card]
-[card]
-primitive=Ethereal Investigator
-id=546976
-rarity=R
-[/card]
-[card]
-primitive=Haunting Imitation
-id=546977
-rarity=R
-[/card]
-[card]
-primitive=Occult Epiphany
-id=546978
-rarity=R
-[/card]
-[card]
-primitive=Spectral Arcanist
-id=546979
-rarity=R
-[/card]
-[card]
-primitive=Timin, Youthful Geist
-id=546980
-rarity=R
-[/card]
-[card]
-primitive=Crossway Troublemakers
-id=546981
-rarity=R
-[/card]
-[card]
-primitive=Glass-Cast Heart
-id=546982
-rarity=R
-[/card]
-[card]
-primitive=Kamber, the Plunderer
-id=546983
-rarity=R
-[/card]
-[card]
-primitive=Olivia's Wrath
-id=546984
-rarity=R
-[/card]
-[card]
-primitive=Predators' Hour
-id=546985
-rarity=R
-[/card]
-[card]
-primitive=Shadowgrange Archfiend
-id=546986
-rarity=R
-[/card]
-[card]
-primitive=Arterial Alchemy
-id=546987
-rarity=R
-[/card]
-[card]
-primitive=Imposing Grandeur
-id=546988
-rarity=R
-[/card]
-[card]
-primitive=Laurine, the Diversion
-id=546989
-rarity=R
-[/card]
-[card]
-primitive=Markov Enforcer
-id=546990
-rarity=R
-[/card]
-[card]
-primitive=Midnight Arsonist
-id=546991
-rarity=R
-[/card]
-[card]
-primitive=Scion of Opulence
-id=546992
-rarity=R
-[/card]
-[card]
-primitive=Disorder in the Court
-id=546993
-rarity=R
-[/card]
-[card]
-primitive=Sinister Waltz
-id=546994
-rarity=R
-[/card]
-[card]
-primitive=Donal, Herald of Wings
-id=547229
-rarity=M
-[/card]
-[card]
-primitive=Timothar, Baron of Bats
-id=547230
-rarity=M
-[/card]
-[card]
-primitive=Millicent, Restless Revenant
-id=547249
-rarity=M
-[/card]
-[card]
-primitive=Strefan, Maurer Progenitor
-id=547250
-rarity=M
-[/card]
-[card]
-primitive=Breathkeeper Seraph
-id=547269
-rarity=R
-[/card]
-[card]
-primitive=Wedding Ring
-id=547270
-rarity=M
-[/card]
-[card]
-primitive=Imperious Mindbreaker
-id=547271
-rarity=R
-[/card]
-[card]
-primitive=Doom Weaver
-id=547272
-rarity=R
-[/card]
-[card]
-primitive=Mirage Phalanx
-id=547273
-rarity=R
-[/card]
-[card]
-primitive=Hollowhenge Overlord
-id=547274
-rarity=R
-[/card]
-[card]
-primitive=Thundering Mightmare
-id=547275
-rarity=R
-[/card]
-[card]
-primitive=Umbris, Fear Manifest
-id=547276
-rarity=M
 [/card]

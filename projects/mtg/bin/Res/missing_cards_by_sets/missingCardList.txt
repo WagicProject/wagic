@@ -1,0 +1,355 @@
+Primal Command
+Rowan Kenrith
+Pyre-Sledge Arsonist
+Star Pupil
+Sun Droplet
+Hall of the Bandit Lord
+Boseiju, Who Shelters All
+Chief Engineer
+Conqueror's Flail
+Cryptic Spires
+Thromok the Insatiable
+Austere Command
+Collective Defiance
+SÃ©ance
+Primeval Spawn
+Fallaji Wayfarer
+Mana Cannons
+Baru, Wurmspeaker
+Cadric, Soul Kindler
+Historian's Boon
+Robaran Mercenaries
+Activated Sleeper
+Obsidian Obelisk
+The Peregrine Dynamo
+Tiller Engine
+Unite the Coalition
+Verrak, Warped Sengir
+Gerrard's Hourglass Pendant
+Stangg, Echo Warrior
+Sivitri, Dragon Master
+Ramirez DePietro, Pillager
+Orca, Siege Demon
+Rasputin, the Oneiromancer
+Jedit Ojanen, Mercenary
+Ohabi Caleria
+The Lady of Otaria
+General Marhault Elsdragon
+The Ever-Changing 'Dane
+Jasmine Boreal of the Seven
+Ayesha Tanaka, Armorer
+The Mana Rig
+Xira, the Golden Sting
+Tobias, Doomed Conqueror
+Tetsuo, Imperial Champion
+Torsten, Founder of Benalia
+Tor Wauki the Younger
+Stensia
+Krosa
+Sokenzan
+Gavony
+Jund
+Order of Midnight
+Golden Argosy
+Inscribed Tablet
+Jodah's Codex
+Karn's Sylex
+Walking Bulwark
+The Elder Dragon War
+Weatherlight Compleated
+Fires of Victory
+Plaza of Heroes
+In Thrall to the Pit
+Jaya, Fiery Negotiator
+Keldon Flamesage
+Keldon Strike Team
+Thran Portal
+Phoenix Chick
+Radha's Firebrand
+Rundvelt Hordemaster
+Love Song of Night and Day
+Temporal Firestorm
+Twinferno
+Braids, Arisen Nightmare
+Astor, Bearer of Blades
+Baird, Argivian Recruiter
+Ajani, Sleeper Agent
+Ertai Resurrected
+Garna, Bloodfist of Keld
+Jodah, the Unifier
+Ivy, Gleeful Spellthief
+Jhoira, Ageless Innovator
+Nael, Avizoa Aeronaut
+Lagomos, Hand of Hatred
+Najal, the Storm Runner
+Rith, Liberated Primeval
+Rivaz of the Claw
+Rulik Mons, Warren Chief
+Shanna, Purifying Blade
+Stenn, Paranoid Partisan
+Sol'Kanar the Tainted
+Vohar, Vodalian Desecrator
+Archangel of Wrath
+Anointed Peacekeeper
+Karn, Living Legacy
+Argivian Cavalier
+Silver Scrutiny
+Balduvian Berserker
+Guardian of New Benalia
+Chaotic Transformation
+Defiler of Faith
+Coalition Warbrute
+Serra Paragon
+Defiler of Instinct
+Academy Loremaster
+Defiler of Dreams
+Cleaving Skyrider
+Coalition Skyknight
+Vesuvan Duplimancy
+Benalish Faithbonder
+Sphinx of Clear Skies
+Vodalian Mindsinger
+Defiler of Flesh
+Stronghold Arena
+Llanowar Greenwidow
+Quirion Beastcaller
+Defiler of Vigor
+Tyrannical Pitlord
+Threats Undetected
+Silverback Elder
+Urborg Lhurgoyf
+Voda Sea Scavenger
+Volshe Tideturner
+Braids's Frightful Return
+The Cruelty of Gix
+Cut Down
+Shadow Prophecy
+Warhost's Frenzy
+Yavimaya Steelcrusher
+Yotia Declares War
+Barkweave Crusher
+Stall for Time
+Urza Assembles the Titans
+Combat Research
+Hexbane Tortoise
+Djinn of the Fountain
+Linebreaker Baloth
+Ertai's Scorn
+Founding the Third Path
+Frostfist Strider
+Impede Momentum
+Joint Exploration
+Slimefoot's Survey
+The Phasing of Zhalfir
+Tail Swipe
+Tear Asunder
+Rona's Vortex
+The Weatherseed Treaty
+The World Spell
+Dusk Mangler
+Mage's Attendant
+Rumor Gatherer
+Induced Amnesia
+Zilortha, Strength Incarnate
+Brass Knuckles
+Naban, Dean of Iteration
+Goblin Bangchuckers
+Mari, the Killing Quill
+Spiteful Repossession
+Tenuous Truce
+Swindler's Scheme
+Bennie Bracks, Zoologist
+Kitt Kanto, Mayhem Diva
+Perrie, the Pulverizer
+Henzie "Toolbox" Torre
+Kamiz, Obscura Oculus
+Anhelo, the Painter
+Weathered Sentinels
+Vazi, Keen Negotiator
+Threefold Signal
+Boxing Ring
+Wave of Rats
+Waste Management
+Xander's Pact
+Writ of Return
+Audacious Swap
+Life of the Party
+Industrial Advancement
+Mezzio Mugger
+Rose Room Treasurer
+The Beamtown Bullies
+Rain of Riches
+Spellbinding Soprano
+Seize the Spotlight
+Parnesse, the Subtle Brush
+Bribe Taker
+Kros, Defense Contractor
+Turf War
+Phabine, Boss's Confidant
+Tivit, Seller of Secrets
+Dodgy Jalopy
+First Responder
+Family's Favor
+Next of Kin
+Killer Service
+Agent's Toolkit
+Vivien's Stampede
+Brokers Confluence
+Bess, Soul Nourisher
+Cabaretti Confluence
+Denry Klin, Editor in Chief
+Cryptic Pursuit
+Grime Gorger
+Maestros Confluence
+Oskar, Rubbish Reclaimer
+Obscura Confluence
+Syrix, Carrier of the Flame
+Riveteers Confluence
+Currency Converter
+Smuggler's Buggy
+Gavel of the Righteous
+Aerial Extortionist
+Contractual Safeguard
+Boss's Chauffeur
+Jailbreak
+Resourceful Defense
+Master of Ceremonies
+Smuggler's Share
+Cephalid Facetaker
+Aven Courier
+Change of Plans
+In Too Deep
+Flawless Forgery
+Mask of the Schemer
+Sinister Concierge
+Shield Broker
+Storm of Forms
+Skyway Robber
+Body Count
+Lethal Scheme
+Dogged Detective
+Make an Example
+Protection Racket
+Misfortune Teller
+Devastating Dreams
+Darksteel Garrison
+Metropolis Reformer
+Gala Greeters
+Jinnie Fay, Jetmir's Second
+Hostile Takeover
+Glamorous Outlaw
+Falco Spara, Pactweaver
+Mysterious Limousine
+Cabaretti Ascendancy
+Sanguine Spy
+Shadow of Mortality
+Shakedown Heavy
+Aven Heartstabber
+Meeting of the Five
+Getaway Car
+Park Heights Pegasus
+Unlicensed Hearse
+Luxior, Giada's Gift
+Unleash the Inferno
+Arcane Bombardment
+Hoard Hauler
+Fight Rigging
+Urabrask, Heretic Praetor
+Structural Assault
+Evolving Door
+Ziatora's Envoy
+Widespread Thieving
+Toluz, Clever Conductor
+Raffine, Scheming Seer
+Undercover Operative
+Reservoir Kraken
+Spara's Adjudicators
+Cut of the Profits
+Shattered Seraph
+Riveteers Ascendancy
+Angel of Suffering
+Wiretapping
+Rakish Revelers
+Cemetery Tampering
+Rigo, Streetwise Mentor
+Rabble Rousing
+Even the Score
+Obscura Ascendancy
+Cut Your Losses
+Masked Bandits
+Maestros Diabolist
+Maestros Ascendancy
+Lagrella, the Magpie
+Lord Xander, the Collector
+Voice of the Vermin
+Warm Welcome
+Titan of Industry
+Venom Connoisseur
+Errant, Street Artist
+Vivien on the Hunt
+Backstreet Bruiser
+Brokers Veteran
+Swooping Protector
+All-Seeing Arbiter
+Rhox Pummeler
+Sanctuary Warden
+Freelance Muscle
+Knockout Blow
+Patch Up
+Capenna Express
+Riveteers Overlook
+Giada, Font of Hope
+Bouncer's Beatdown
+Dapper Shieldmate
+Maestros Theater
+Obscura Storefront
+Elspeth Resplendent
+Cabaretti Courtyard
+Torch Breath
+Brokers Hideout
+Unlucky Witness
+Sizzling Soloist
+Ballroom Brawlers
+Boon of Safety
+Fake Your Own Death
+Graveyard Shift
+Grisly Sigil
+Illicit Shipment
+Incriminate
+Join the Maestros
+Scheming Fence
+Ob Nixilis, the Adversary
+Dig Up the Body
+Extract the Truth
+Jetmir's Fixer
+Wingshield Agent
+Exotic Pets
+Witness Protection
+Fatal Grudge
+Sewer Crocodile
+Sleep with the Fishes
+Disciplined Duelist
+Endless Detour
+Evelyn, the Covetous
+Rooftop Nuisance
+Corpse Appraiser
+Run Out of Town
+Celestial Regulator
+Civil Servant
+Make Disappear
+Out of the Way
+A Little Chat
+Rob the Archives
+Arc Spitter
+Syndicate Infiltrator
+Tainted Indulgence
+Glittering Stockpile
+Snooping Newsie
+Call In a Professional
+Whack
+Security Rhox
+Ormos, Archive Keeper
+Myojin of Cryptic Dreams
+Lithoform Engine
+Reality Spasm
+Suffer the Past

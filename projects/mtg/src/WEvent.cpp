@@ -43,8 +43,13 @@ WEventCardUpdate::WEventCardUpdate(MTGCardInstance * card) :
 }
 ;
 
-WEventCounters::WEventCounters(Counters *counter,string name,int power,int toughness,bool added,bool removed, MTGCardInstance* source) :
+WEventCounters::WEventCounters(Counters *counter, string name, int power, int toughness, bool added, bool removed, MTGCardInstance* source) :
 WEvent(),counter(counter),name(name),power(power),toughness(toughness),added(added),removed(removed),source(source)
+{
+}
+
+WEventTotalCounters::WEventTotalCounters(Counters *counter, string name, int power, int toughness, bool added, bool removed, int totalamount, bool iscost, MTGCardInstance* source) :
+WEvent(),counter(counter),name(name),power(power),toughness(toughness),added(added),removed(removed),totalamount(totalamount),iscost(iscost),source(source)
 {
 }
 
@@ -67,6 +72,11 @@ WEventCardTap::WEventCardTap(MTGCardInstance * card, bool before, bool after) :
 
 WEventCardTappedForMana::WEventCardTappedForMana(MTGCardInstance * card, bool before, bool after) :
     WEventCardUpdate(card), before(before), after(after)
+{
+}
+
+WEventCardManaProduced::WEventCardManaProduced(MTGCardInstance * card) :
+    WEventCardUpdate(card)
 {
 }
 
@@ -307,12 +317,32 @@ WEventplayerMonarch::WEventplayerMonarch(Player * player) :
 {
 }
 
+WEventplayerTempted::WEventplayerTempted(Player * player) :
+    player(player)
+{
+}
+
+WEventplayerProliferated::WEventplayerProliferated(Player * player) :
+    player(player)
+{
+}
+
+WEventplayerInitiative::WEventplayerInitiative(Player * player) :
+    player(player)
+{
+}
+
 WEventplayerShuffled::WEventplayerShuffled(Player * player) :
     player(player)
 {
 }
 
 WEventCardBoasted::WEventCardBoasted(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
+WEventCardDefeated::WEventCardDefeated(MTGCardInstance * card) :
     WEventCardUpdate(card)
 {
 }
@@ -337,7 +367,17 @@ WEventCardScryed::WEventCardScryed(MTGCardInstance * card) :
 {
 }
 
+WEventCardNinja::WEventCardNinja(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
 WEventCardExplored::WEventCardExplored(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
+WEventCardBearerChosen::WEventCardBearerChosen(MTGCardInstance * card) :
     WEventCardUpdate(card)
 {
 }
@@ -395,6 +435,11 @@ Targetable * WEventLife::getTarget(int target)
 }
 
 Targetable * WEventCounters::getTarget(int target)
+{
+    return targetCard;
+}
+
+Targetable * WEventTotalCounters::getTarget(int target)
 {
     return targetCard;
 }
@@ -519,6 +564,12 @@ Targetable * WEventCardTappedForMana::getTarget(int target)
     return NULL;
 }
 
+Targetable * WEventCardManaProduced::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
 Targetable * WEventcardDraw::getTarget(Player * player)
 {
     if (player) return player;
@@ -585,6 +636,12 @@ Targetable * WEventCardBoasted::getTarget(int target)
     return NULL;
 }
 
+Targetable * WEventCardDefeated::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
 Targetable * WEventCardSurveiled::getTarget(int target)
 {
     if (target) return card;
@@ -609,7 +666,19 @@ Targetable * WEventCardScryed::getTarget(int target)
     return NULL;
 }
 
+Targetable * WEventCardNinja::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
 Targetable * WEventCardExplored::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardBearerChosen::getTarget(int target)
 {
     if (target) return card;
     return NULL;
@@ -658,6 +727,24 @@ Targetable * WEventplayerExperienced::getTarget(Player * player)
 }
 
 Targetable * WEventplayerMonarch::getTarget(Player * player)
+{
+    if (player) return player;
+    return NULL;
+}
+
+Targetable * WEventplayerTempted::getTarget(Player * player)
+{
+    if (player) return player;
+    return NULL;
+}
+
+Targetable * WEventplayerProliferated::getTarget(Player * player)
+{
+    if (player) return player;
+    return NULL;
+}
+
+Targetable * WEventplayerInitiative::getTarget(Player * player)
 {
     if (player) return player;
     return NULL;

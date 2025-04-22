@@ -23,15 +23,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Leonin Shikari
-text=You may activate equip abilities any time you could cast an instant.
-mana={1}{W}
-type=Creature
-subtype=Cat Soldier
-power=2
-toughness=2
-[/card]
-[card]
 name=Mairsil, the Pretender
 text=When Mairsil, the Pretender enters the battlefield, you may exile an artifact or creature card from your hand or graveyard and put a cage counter on it. -- Mairsil, the Pretender has all activated abilities of all cards you own in exile with cage counters on them. You may activate each of those abilities only once each turn.
 mana={1}{U}{B}{R}
@@ -60,7 +51,7 @@ name=Portal Mage
 abilities=flash
 auto=phasealter(remove,combatphases,controller)
 auto=nextphasealter(add,combatphases,controller,after<combatends>)
-text=Flash -- When Portal Mage enters the battlefield during the declare attackers step, you may reselect which player or planeswalker target attacking creature is attacking. (It cant attack its controller or its controllers planeswalkers.)
+text=Flash -- When Portal Mage enters the battlefield during the declare attackers step, you may reselect which player or planeswalker target attacking creature is attacking. (It can?t attack its controller or its controller?s planeswalkers.)
 mana={2}{U}
 type=Creature
 subtype=Human Wizard

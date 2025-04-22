@@ -29,6 +29,7 @@ def createStandardResFile(buildpath):
     os.chdir("Res")
     os.system(cmd)
     os.chdir("..")
+    #print("Creating Windows Package File")
     print "Creating Windows Package File"
     filename = 'Wagic-windows.zip'
     createWindowsZipFile( filename, buildpath )
@@ -50,10 +51,10 @@ class ZipUtilities:
             if file != '.svn':
                 full_path = os.path.join(folder, file)
                 if os.path.isfile(full_path):
-                        print 'File added: ' + str(full_path)
+                        #print('File added: ' + str(full_path))
                         zip_file.write(full_path)
                 elif os.path.isdir(full_path):
-                        print 'Entering folder: ' + str(full_path)
+                        #print('Entering folder: ' + str(full_path))
                         self.addFolderToZip(zip_file, full_path)
 
 

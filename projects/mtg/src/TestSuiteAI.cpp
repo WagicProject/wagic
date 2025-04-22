@@ -440,7 +440,7 @@ void TestSuiteGame::assertGame()
     handleResults(wasAI, error);
 
     if(!error)
-        Log("<span class=\"success\">==Test Succesful !==</span>");
+        Log("<span class=\"success\">==Test Successful !==</span>");
     else
         Log("<span class=\"error\">==Test Failed !==</span>");
 #ifdef CAPTURE_STDERR

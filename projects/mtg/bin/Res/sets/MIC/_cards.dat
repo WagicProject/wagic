@@ -3,7 +3,7 @@ author=Wagic Team
 name=Midnight Hunt Commander
 orderindex=COM-S.MIC
 year=2021-09-24
-total=188
+total=187
 [/meta]
 [card]
 primitive=Beast Som2
@@ -51,7 +51,7 @@ id=-53939511
 rarity=T
 [/card]
 [card]
-primitive=Treasure Sur
+primitive=Treasure
 id=-540753
 rarity=T
 [/card]
@@ -199,6 +199,386 @@ rarity=T
 primitive=Spirit
 id=-539344
 rarity=T
+[/card]
+[card]
+primitive=Leinore, Autumn Sovereign
+id=540728
+rarity=M
+[/card]
+[card]
+primitive=Wilhelt, the Rotcleaver
+id=540729
+rarity=M
+[/card]
+[card]
+primitive=Eloise, Nephalia Sleuth
+id=540708
+rarity=M
+[/card]
+[card]
+primitive=Kyler, Sigardian Emissary
+id=540709
+rarity=M
+[/card]
+[card]
+primitive=Celestial Judgment
+id=540448
+rarity=R
+[/card]
+[card]
+primitive=Curse of Conformity
+id=540449
+rarity=R
+[/card]
+[card]
+primitive=Moorland Rescuer
+id=540450
+rarity=R
+[/card]
+[card]
+primitive=Sigarda's Vanguard
+id=540451
+rarity=R
+[/card]
+[card]
+primitive=Stalwart Pathlighter
+id=540452
+rarity=R
+[/card]
+[card]
+primitive=Wall of Mourning
+id=540453
+rarity=R
+[/card]
+[card]
+primitive=Cleaver Skaab
+id=540454
+rarity=R
+[/card]
+[card]
+primitive=Curse of Unbinding
+id=540455
+rarity=R
+[/card]
+[card]
+primitive=Drown in Dreams
+id=540456
+rarity=R
+[/card]
+[card]
+primitive=Empty the Laboratory
+id=540457
+rarity=R
+[/card]
+[card]
+primitive=Hordewing Skaab
+id=540458
+rarity=R
+[/card]
+[card]
+primitive=Shadow Kin
+id=540459
+rarity=R
+[/card]
+[card]
+primitive=Crowded Crypt
+id=540460
+rarity=R
+[/card]
+[card]
+primitive=Curse of the Restless Dead
+id=540461
+rarity=R
+[/card]
+[card]
+primitive=Ghouls' Night Out
+id=540462
+rarity=R
+[/card]
+[card]
+primitive=Gorex, the Tombshell
+id=540463
+rarity=R
+[/card]
+[card]
+primitive=Prowling Geistcatcher
+id=540464
+rarity=R
+[/card]
+[card]
+primitive=Ravenous Rotbelly
+id=540465
+rarity=R
+[/card]
+[card]
+primitive=Tomb Tyrant
+id=540466
+rarity=R
+[/card]
+[card]
+primitive=Celebrate the Harvest
+id=540467
+rarity=R
+[/card]
+[card]
+primitive=Curse of Clinging Webs
+id=540468
+rarity=R
+[/card]
+[card]
+primitive=Heronblade Elite
+id=540469
+rarity=R
+[/card]
+[card]
+primitive=Kurbis, Harvest Celebrant
+id=540470
+rarity=R
+[/card]
+[card]
+primitive=Ruinous Intrusion
+id=540471
+rarity=R
+[/card]
+[card]
+primitive=Sigardian Zealot
+id=540472
+rarity=R
+[/card]
+[card]
+primitive=Somberwald Beastmaster
+id=540473
+rarity=R
+[/card]
+[card]
+primitive=Avacyn's Memorial
+id=540748
+rarity=M
+[/card]
+[card]
+primitive=Visions of Glory
+id=540749
+rarity=R
+[/card]
+[card]
+primitive=Visions of Duplicity
+id=540750
+rarity=R
+[/card]
+[card]
+primitive=Visions of Dread
+id=540751
+rarity=R
+[/card]
+[card]
+primitive=Curse of Obsession
+id=540752
+rarity=R
+[/card]
+[card]
+primitive=Visions of Ruin
+id=540753
+rarity=R
+[/card]
+[card]
+primitive=Visions of Dominance
+id=540754
+rarity=R
+[/card]
+[card]
+primitive=Lynde, Cheerful Tormentor
+id=540755
+rarity=M
+[/card]
+[card]
+primitive=Leinore, Autumn Sovereign
+id=539110
+rarity=M
+[/card]
+[card]
+primitive=Wilhelt, the Rotcleaver
+id=539111
+rarity=M
+[/card]
+[card]
+primitive=Eloise, Nephalia Sleuth
+id=539112
+rarity=M
+[/card]
+[card]
+primitive=Kyler, Sigardian Emissary
+id=539113
+rarity=M
+[/card]
+[card]
+primitive=Celestial Judgment
+id=539114
+rarity=R
+[/card]
+[card]
+primitive=Curse of Conformity
+id=539115
+rarity=R
+[/card]
+[card]
+primitive=Moorland Rescuer
+id=539116
+rarity=R
+[/card]
+[card]
+primitive=Sigarda's Vanguard
+id=539117
+rarity=R
+[/card]
+[card]
+primitive=Stalwart Pathlighter
+id=539118
+rarity=R
+[/card]
+[card]
+primitive=Wall of Mourning
+id=539119
+rarity=R
+[/card]
+[card]
+primitive=Cleaver Skaab
+id=539120
+rarity=R
+[/card]
+[card]
+primitive=Curse of Unbinding
+id=539121
+rarity=R
+[/card]
+[card]
+primitive=Drown in Dreams
+id=539122
+rarity=R
+[/card]
+[card]
+primitive=Empty the Laboratory
+id=539123
+rarity=R
+[/card]
+[card]
+primitive=Hordewing Skaab
+id=539124
+rarity=R
+[/card]
+[card]
+primitive=Shadow Kin
+id=539125
+rarity=R
+[/card]
+[card]
+primitive=Crowded Crypt
+id=539126
+rarity=R
+[/card]
+[card]
+primitive=Curse of the Restless Dead
+id=539127
+rarity=R
+[/card]
+[card]
+primitive=Ghouls' Night Out
+id=539128
+rarity=R
+[/card]
+[card]
+primitive=Gorex, the Tombshell
+id=539129
+rarity=M
+[/card]
+[card]
+primitive=Prowling Geistcatcher
+id=539130
+rarity=R
+[/card]
+[card]
+primitive=Ravenous Rotbelly
+id=539131
+rarity=R
+[/card]
+[card]
+primitive=Tomb Tyrant
+id=539132
+rarity=R
+[/card]
+[card]
+primitive=Celebrate the Harvest
+id=539133
+rarity=R
+[/card]
+[card]
+primitive=Curse of Clinging Webs
+id=539134
+rarity=R
+[/card]
+[card]
+primitive=Heronblade Elite
+id=539135
+rarity=R
+[/card]
+[card]
+primitive=Kurbis, Harvest Celebrant
+id=539136
+rarity=M
+[/card]
+[card]
+primitive=Ruinous Intrusion
+id=539137
+rarity=R
+[/card]
+[card]
+primitive=Sigardian Zealot
+id=539138
+rarity=R
+[/card]
+[card]
+primitive=Somberwald Beastmaster
+id=539139
+rarity=R
+[/card]
+[card]
+primitive=Avacyn's Memorial
+id=539140
+rarity=M
+[/card]
+[card]
+primitive=Visions of Glory
+id=539141
+rarity=R
+[/card]
+[card]
+primitive=Visions of Duplicity
+id=539142
+rarity=R
+[/card]
+[card]
+primitive=Visions of Dread
+id=539143
+rarity=R
+[/card]
+[card]
+primitive=Curse of Obsession
+id=539144
+rarity=R
+[/card]
+[card]
+primitive=Visions of Ruin
+id=539145
+rarity=R
+[/card]
+[card]
+primitive=Visions of Dominance
+id=539146
+rarity=R
+[/card]
+[card]
+primitive=Lynde, Cheerful Tormentor
+id=539147
+rarity=M
 [/card]
 [card]
 primitive=Abzan Falconer
@@ -754,194 +1134,4 @@ rarity=U
 primitive=Unclaimed Territory
 id=539448
 rarity=U
-[/card]
-[card]
-primitive=Celestial Judgment
-id=540448
-rarity=R
-[/card]
-[card]
-primitive=Curse of Conformity
-id=540449
-rarity=R
-[/card]
-[card]
-primitive=Moorland Rescuer
-id=540450
-rarity=R
-[/card]
-[card]
-primitive=Sigarda's Vanguard
-id=540451
-rarity=R
-[/card]
-[card]
-primitive=Stalwart Pathlighter
-id=540452
-rarity=R
-[/card]
-[card]
-primitive=Wall of Mourning
-id=540453
-rarity=R
-[/card]
-[card]
-primitive=Cleaver Skaab
-id=540454
-rarity=R
-[/card]
-[card]
-primitive=Curse of Unbinding
-id=540455
-rarity=R
-[/card]
-[card]
-primitive=Drown in Dreams
-id=540456
-rarity=R
-[/card]
-[card]
-primitive=Empty the Laboratory
-id=540457
-rarity=R
-[/card]
-[card]
-primitive=Hordewing Skaab
-id=540458
-rarity=R
-[/card]
-[card]
-primitive=Shadow Kin
-id=540459
-rarity=R
-[/card]
-[card]
-primitive=Crowded Crypt
-id=540460
-rarity=R
-[/card]
-[card]
-primitive=Curse of the Restless Dead
-id=540461
-rarity=R
-[/card]
-[card]
-primitive=Ghouls' Night Out
-id=540462
-rarity=R
-[/card]
-[card]
-primitive=Gorex, the Tombshell
-id=540463
-rarity=R
-[/card]
-[card]
-primitive=Prowling Geistcatcher
-id=540464
-rarity=R
-[/card]
-[card]
-primitive=Ravenous Rotbelly
-id=540465
-rarity=R
-[/card]
-[card]
-primitive=Tomb Tyrant
-id=540466
-rarity=R
-[/card]
-[card]
-primitive=Celebrate the Harvest
-id=540467
-rarity=R
-[/card]
-[card]
-primitive=Curse of Clinging Webs
-id=540468
-rarity=R
-[/card]
-[card]
-primitive=Heronblade Elite
-id=540469
-rarity=R
-[/card]
-[card]
-primitive=Kurbis, Harvest Celebrant
-id=540470
-rarity=R
-[/card]
-[card]
-primitive=Ruinous Intrusion
-id=540471
-rarity=R
-[/card]
-[card]
-primitive=Sigardian Zealot
-id=540472
-rarity=R
-[/card]
-[card]
-primitive=Somberwald Beastmaster
-id=540473
-rarity=R
-[/card]
-[card]
-primitive=Eloise, Nephalia Sleuth
-id=540708
-rarity=M
-[/card]
-[card]
-primitive=Kyler, Sigardian Emissary
-id=540709
-rarity=M
-[/card]
-[card]
-primitive=Leinore, Autumn Sovereign
-id=540728
-rarity=M
-[/card]
-[card]
-primitive=Wilhelt, the Rotcleaver
-id=540729
-rarity=M
-[/card]
-[card]
-primitive=Avacyn's Memorial
-id=540748
-rarity=M
-[/card]
-[card]
-primitive=Visions of Glory
-id=540749
-rarity=R
-[/card]
-[card]
-primitive=Visions of Duplicity
-id=540750
-rarity=R
-[/card]
-[card]
-primitive=Visions of Dread
-id=540751
-rarity=R
-[/card]
-[card]
-primitive=Curse of Obsession
-id=540752
-rarity=R
-[/card]
-[card]
-primitive=Visions of Ruin
-id=540753
-rarity=R
-[/card]
-[card]
-primitive=Visions of Dominance
-id=540754
-rarity=R
-[/card]
-[card]
-primitive=Lynde, Cheerful Tormentor
-id=540755
-rarity=M
 [/card]

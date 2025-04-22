@@ -1,10 +1,4 @@
 [card]
-name=Fractured Powerstone
-text={T}: Add {1} to your mana pool. -- {T}: Roll the planar die. Activate this ability only any time you could cast a sorcery.
-mana={2}
-type=Artifact
-[/card]
-[card]
 name=Three Dreams
 text=Search your library for up to three Aura cards with different names, reveal them, and put them into your hand. Then shuffle your library.
 mana={4}{W}
