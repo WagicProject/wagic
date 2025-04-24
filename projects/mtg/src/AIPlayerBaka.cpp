@@ -46,9 +46,9 @@ int OrderedAIAction::getEfficiency(AADamager * aad)
         return  0;
     }
 
-     if(p && target)
-         if(p == target->controller())
-             return 0;
+    if(p && target)
+        if(p == target->controller())
+            return 0;
 
     if (dTarget && aad && (aad->getDamage() == dTarget->toughness))
         return 100;
@@ -107,7 +107,7 @@ int OrderedAIAction::getEfficiency()
     {
         target = a->source;
     }
-    
+
     AACastCard * CC = dynamic_cast<AACastCard*> (a);
     if (CC)
         return 99;
@@ -126,13 +126,13 @@ int OrderedAIAction::getEfficiency()
                 break;
 
             if (!coreAbilityCardTarget->regenerateTokens && currentPhase == MTG_PHASE_COMBATBLOCKERS
-                    && (coreAbilityCardTarget->defenser || coreAbilityCardTarget->blockers.size())
-            )
+                && (coreAbilityCardTarget->defenser || coreAbilityCardTarget->blockers.size())
+                )
             {
                 efficiency = 95;
             }
-             //TODO If the card is the target of a damage spell                      
-             break;
+            //TODO If the card is the target of a damage spell                      
+            break;
         }
     case MTGAbility::STANDARD_PREVENT:
         {
@@ -272,7 +272,7 @@ int OrderedAIAction::getEfficiency()
         }
     case MTGAbility::STANDARD_PUMP:
         {
-             efficiency = 0;
+            efficiency = 0;
             if(!coreAbilityCardTarget)
                 break;
             if(!target && !dynamic_cast<ALord*> (a) && (((MTGCardInstance *)a->source)->hasSubtype(Subtypes::TYPE_AURA) || ((MTGCardInstance *)a->source)->hasSubtype(Subtypes::TYPE_EQUIPMENT)))
@@ -296,9 +296,9 @@ int OrderedAIAction::getEfficiency()
             int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
             //i do not set a starting eff. on this ability, this allows Ai to sometimes randomly do it as it normally does.
             int currentPhase = g->getCurrentGamePhase();
-             if ((currentPhase == MTG_PHASE_COMBATBLOCKERS) || (currentPhase == MTG_PHASE_COMBATATTACKERS))            
+            if ((currentPhase == MTG_PHASE_COMBATBLOCKERS) || (currentPhase == MTG_PHASE_COMBATATTACKERS))            
             {
-                 if (suggestion == BAKA_EFFECT_GOOD && target->controller() == p)                 
+                if (suggestion == BAKA_EFFECT_GOOD && target->controller() == p)                 
                 {
                     if(coreAbilityCardTarget->defenser || coreAbilityCardTarget->blockers.size())
                     {
@@ -350,30 +350,30 @@ int OrderedAIAction::getEfficiency()
             break;
         }
     case MTGAbility::MANA_PRODUCER://only way to hit this condition is nested manaabilities, ai skips manaproducers by defualt when finding an ability to use.
-    {
-         AManaProducer * manamaker = dynamic_cast<AManaProducer*>(a);
-         GenericActivatedAbility * GAA = dynamic_cast<GenericActivatedAbility*>(ability);
-         if(GAA)
-         {
-             AForeach * forMana = dynamic_cast<AForeach*>(GAA->ability);
-             if (manamaker && forMana)
-             {
-                  int outPut = forMana->checkActivation();
-                 if (ability->getCost() && outPut > int(ability->getCost()->getConvertedCost() +1) && currentPhase == MTG_PHASE_FIRSTMAIN && ability->source->controller()->game->hand->nb_cards > 1)
-                    efficiency = 60;//might be a bit random, but better than never using them.
-             }
-         }
-         else
-             efficiency = 0;
-         break; 
-    }
+        {
+            AManaProducer * manamaker = dynamic_cast<AManaProducer*>(a);
+            GenericActivatedAbility * GAA = dynamic_cast<GenericActivatedAbility*>(ability);
+            if(GAA)
+            {
+                AForeach * forMana = dynamic_cast<AForeach*>(GAA->ability);
+                if (manamaker && forMana)
+                {
+                    int outPut = forMana->checkActivation();
+                    if (ability->getCost() && outPut > int(ability->getCost()->getConvertedCost() +1) && currentPhase == MTG_PHASE_FIRSTMAIN && ability->source->controller()->game->hand->nb_cards > 1)
+                        efficiency = 60;//might be a bit random, but better than never using them.
+                }
+            }
+            else
+                efficiency = 0;
+            break; 
+        }
     case MTGAbility::STANDARDABILITYGRANT:
         {
             efficiency = 0;
 
             if (!target)
                 break;
-            
+
             //ensuring that Ai grants abilities to creatures during first main, so it can actually use them in combat.
             //quick note: the eff is multiplied by creatures ranking then divided by the number of cards in hand.
             //the reason i do this is to encourage more casting and less waste of mana on abilities.
@@ -391,8 +391,8 @@ int OrderedAIAction::getEfficiency()
             }
 
             if (!target->has(a->abilitygranted) && g->getCurrentGamePhase() == MTG_PHASE_COMBATBEGIN
-                    && p == target->controller()
-            )
+                && p == target->controller()
+                )
             {
                 efficiency += efficiencyModifier;
             }
@@ -404,8 +404,8 @@ int OrderedAIAction::getEfficiency()
             }
 
             if ((suggestion == BAKA_EFFECT_BAD && p == target->controller()) 
-                    || (suggestion == BAKA_EFFECT_GOOD && p != target->controller())
-            )
+                || (suggestion == BAKA_EFFECT_GOOD && p != target->controller())
+                )
             {
                 efficiency = 0;
                 //stop giving trample to the players creatures.
@@ -547,13 +547,13 @@ int OrderedAIAction::getEfficiency()
                 }
             }
             if ((suggestion == BAKA_EFFECT_BAD && p == target->controller())
-                    || (suggestion == BAKA_EFFECT_GOOD && p != target->controller()))
+                || (suggestion == BAKA_EFFECT_GOOD && p != target->controller()))
             {
                 efficiency = 0;
             }
             else
             {
-            //without a base to start with Wrand % 5 almost always returns 0.
+                //without a base to start with Wrand % 5 almost always returns 0.
                 efficiency = 10 + (owner->getRandomGenerator()->random() % 20); //Small percentage of chance for unknown abilities
             }
         }
@@ -650,7 +650,7 @@ int OrderedAIAction::getEfficiency()
         }
         if(p->game->battlefield->countByType("token") >= 25)
             efficiency = 0;
-        
+
     }
     else if (GenericRevealAbility * grA = dynamic_cast<GenericRevealAbility *>(a))
     {
@@ -684,7 +684,7 @@ int OrderedAIAction::getEfficiency()
     {
         AIPlayer * chk = (AIPlayer*)p;
         if(may->ability && may->ability->getActionTc() && chk->chooseTarget(may->ability->getActionTc(),NULL,NULL,true))
-        efficiency = 50 + (owner->getRandomGenerator()->random() % 50);
+            efficiency = 50 + (owner->getRandomGenerator()->random() % 50);
     }
     if (p->game->hand->nb_cards == 0)
         efficiency = (int) ((float) efficiency * 1.3); //increase chance of using ability if hand is empty
@@ -720,18 +720,18 @@ int OrderedAIAction::getEfficiency()
     {
         efficiency += 55;
     }
-    
+
     if (ability->source)
     {
         if(ability->source->hasType(Subtypes::TYPE_PLANESWALKER) || ability->source->hasType(Subtypes::TYPE_BATTLE))
             efficiency += 50;
         else if(ability->source->hasType(Subtypes::TYPE_LAND))
-            { // probably a shockland, don't pay life if hand is empty
-                if (p->life<=2)
-                    // check that's not a manland(like Celestial Colonnade)
-                    if(efficiency < 50)
-                        efficiency = 0;
-            } 
+        { // probably a shockland, don't pay life if hand is empty
+            if (p->life<=2)
+                // check that's not a manland(like Celestial Colonnade)
+                if(efficiency < 50)
+                    efficiency = 0;
+        } 
     }
 
     SAFE_DELETE(transAbility);
@@ -781,7 +781,7 @@ int OrderedAIAction::getRevealedEfficiency(MTGAbility * ability2)
     {
         target = a->source;
     }
-    
+
     AACastCard * CC = dynamic_cast<AACastCard*> (a);
     if (CC)
         return 99;
@@ -800,8 +800,8 @@ int OrderedAIAction::getRevealedEfficiency(MTGAbility * ability2)
                 break;
 
             if (!coreAbilityCardTarget->regenerateTokens && currentPhase == MTG_PHASE_COMBATBLOCKERS
-                    && (coreAbilityCardTarget->defenser || coreAbilityCardTarget->blockers.size())
-            )
+                && (coreAbilityCardTarget->defenser || coreAbilityCardTarget->blockers.size())
+                )
             {
                 eff2 = 95;
             }
@@ -1010,27 +1010,27 @@ int OrderedAIAction::getRevealedEfficiency(MTGAbility * ability2)
             break;
         }
     case MTGAbility::MANA_PRODUCER://only way to hit this condition is nested manaabilities, ai skips manaproducers by defualt when finding an ability to use.
-    {
-        AManaProducer * manamaker = dynamic_cast<AManaProducer*>(a);
-        GenericActivatedAbility * GAA = dynamic_cast<GenericActivatedAbility*>(ability2);
-        AForeach * forMana = dynamic_cast<AForeach*>(GAA->ability);
-        if (manamaker && forMana)
         {
-            int outPut = forMana->checkActivation();
-            if (ability2->getCost() && outPut > int(ability2->getCost()->getConvertedCost() +1) && currentPhase == MTG_PHASE_FIRSTMAIN && ability2->source->controller()->game->hand->nb_cards > 1)
-                eff2 = 60;//might be a bit random, but better than never using them.
+            AManaProducer * manamaker = dynamic_cast<AManaProducer*>(a);
+            GenericActivatedAbility * GAA = dynamic_cast<GenericActivatedAbility*>(ability2);
+            AForeach * forMana = dynamic_cast<AForeach*>(GAA->ability);
+            if (manamaker && forMana)
+            {
+                int outPut = forMana->checkActivation();
+                if (ability2->getCost() && outPut > int(ability2->getCost()->getConvertedCost() +1) && currentPhase == MTG_PHASE_FIRSTMAIN && ability2->source->controller()->game->hand->nb_cards > 1)
+                    eff2 = 60;//might be a bit random, but better than never using them.
+            }
+            else
+                eff2 = 0;
+            break;
         }
-        else
-        eff2 = 0;
-        break;
-    }
     case MTGAbility::STANDARDABILITYGRANT:
         {
             eff2 = 0;
 
             if (!target)
                 break;
-            
+
             //ensuring that Ai grants abilities to creatures during first main, so it can actually use them in combat.
             //quick note: the eff is multiplied by creatures ranking then divided by the number of cards in hand.
             //the reason i do this is to encourage more casting and less waste of mana on abilities.
@@ -1048,8 +1048,8 @@ int OrderedAIAction::getRevealedEfficiency(MTGAbility * ability2)
             }
 
             if (!target->has(a->abilitygranted) && g->getCurrentGamePhase() == MTG_PHASE_COMBATBEGIN
-                    && p == target->controller()
-            )
+                && p == target->controller()
+                )
             {
                 eff2 += eff2Modifier;
             }
@@ -1061,8 +1061,8 @@ int OrderedAIAction::getRevealedEfficiency(MTGAbility * ability2)
             }
 
             if ((suggestion == BAKA_EFFECT_BAD && p == target->controller()) 
-                    || (suggestion == BAKA_EFFECT_GOOD && p != target->controller())
-            )
+                || (suggestion == BAKA_EFFECT_GOOD && p != target->controller())
+                )
             {
                 eff2 = 0;
                 //stop giving trample to the players creatures.
@@ -1203,13 +1203,13 @@ int OrderedAIAction::getRevealedEfficiency(MTGAbility * ability2)
                 }
             }
             if ((suggestion == BAKA_EFFECT_BAD && p == target->controller())
-                    || (suggestion == BAKA_EFFECT_GOOD && p != target->controller()))
+                || (suggestion == BAKA_EFFECT_GOOD && p != target->controller()))
             {
                 eff2 = 0;
             }
             else
             {
-            //without a base to start with Wrand % 5 almost always returns 0.
+                //without a base to start with Wrand % 5 almost always returns 0.
                 eff2 = 10 + (owner->getRandomGenerator()->random() % 20); //Small percentage of chance for unknown abilities
             }
         }
@@ -1290,7 +1290,7 @@ int OrderedAIAction::getRevealedEfficiency(MTGAbility * ability2)
         }
         if(p->game->battlefield->countByType("token") >= 25)
             eff2 = 0;
-        
+
     }
     //At this point the "basic" eff2 is computed, we further tweak it depending on general decisions, independent of theAbility type
 
@@ -1299,7 +1299,7 @@ int OrderedAIAction::getRevealedEfficiency(MTGAbility * ability2)
     {
         AIPlayer * chk = (AIPlayer*)p;
         if(may->ability && may->ability->getActionTc() && chk->chooseTarget(may->ability->getActionTc(),NULL,NULL,true))
-        eff2 = 50 + (owner->getRandomGenerator()->random() % 50);
+            eff2 = 50 + (owner->getRandomGenerator()->random() % 50);
     }
     if (p->game->hand->nb_cards == 0)
         eff2 = (int) ((float) eff2 * 1.3); //increase chance of using ability if hand is empty
@@ -1351,7 +1351,7 @@ MTGCardInstance * AIPlayerBaka::chooseCard(TargetChooser * tc, MTGCardInstance *
     MTGPlayerCards * playerZones = source->controller()->game;
     if (comboHint && comboHint->cardTargets.size())
     {
-       tc = GetComboTc(observer,tc);
+        tc = GetComboTc(observer,tc);
     }
     for(int players = 0; players < 2;++players)
     {
@@ -1376,9 +1376,9 @@ MTGCardInstance * AIPlayerBaka::chooseCard(TargetChooser * tc, MTGCardInstance *
 
 bool AIPlayerBaka::payTheManaCost(ManaCost * cost, int anytypeofmana, MTGCardInstance * target,vector<MTGAbility*>gotPayments)
 {
-     DebugTrace("AIPlayerBaka: AI attempting to pay a mana cost." << endl
-            << "-  Target: " << (target ? target->name : "None" ) << endl
-            << "-  Cost: " << (cost ? cost->toString() : "NULL") );
+    DebugTrace("AIPlayerBaka: AI attempting to pay a mana cost." << endl
+        << "-  Target: " << (target ? target->name : "None" ) << endl
+        << "-  Cost: " << (cost ? cost->toString() : "NULL") );
 
     if (!cost)
     {
@@ -1450,7 +1450,7 @@ bool AIPlayerBaka::payTheManaCost(ManaCost * cost, int anytypeofmana, MTGCardIns
                 }
             }
             if(k == gotPayments.size()-1)//only add it once, and at the end.
-            paid->add(this->getManaPool());//incase some of our payments were mana already in the pool/.
+                paid->add(this->getManaPool());//incase some of our payments were mana already in the pool/.
             if(paid->canAfford(cost, anytypeofmana))
             {
                 if((!cost->hasX() && !cost->hasAnotherCost()) || k == gotPayments.size()-1)
@@ -1575,7 +1575,7 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target, ManaCost 
     if(!cost || (cost && !cost->getConvertedCost()) || !target)
         return vector<MTGAbility*>();
     map<MTGCardInstance*, bool> usedCards;
- 
+
     return canPayMana(target, cost, anytypeofmana, usedCards);
 }
 
@@ -1857,7 +1857,7 @@ vector<MTGAbility*> AIPlayerBaka::canPaySunBurst(ManaCost * cost)
             }
         }
     }
-    
+
     for(int i = fullColor;i < cost->getConvertedCost();i++)
     {
         for (size_t i = 0; i < observer->mLayers->actionLayer()->manaObjects.size(); i++)
@@ -1902,7 +1902,7 @@ int AIPlayerBaka::CanHandleCost(ManaCost * cost, MTGCardInstance * card)
         {
             ec->costs[i]->setSource(card);
             if(!ec->costs[i]->tc->countValidTargets())
-            return 0;
+                return 0;
             if(!chooseCard(ec->costs[i]->tc,card))
                 return 0;
         }
@@ -1981,7 +1981,7 @@ int AIPlayerBaka::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, Rank
 
             MTGCardInstance * cTargeting = dynamic_cast<MTGCardInstance*>(potentialTargets[0]);
             if(cTargeting)
-             check = NEW OrderedAIAction(this, a,c,cTargeting);
+                check = NEW OrderedAIAction(this, a,c,cTargeting);
 
             Player * pTargeting = dynamic_cast<Player*>(potentialTargets[0]);
             if(pTargeting)
@@ -2084,17 +2084,17 @@ int AIPlayerBaka::selectAbility()
             }
         }
     }
-   // Try Deck hints first
-   if (selectHintAbility())
+    // Try Deck hints first
+    if (selectHintAbility())
         return 1;
 
-   if(observer->mLayers->stackLayer()->lastActionController == this)
-   {
-       //this is here for 2 reasons, MTG rules state that priority is passed with each action.
-       //without this ai is able to chain cast {t}:damage:1 target(creature) from everything it can all at once.
-       //this not only is illegal but cause ai to waste abilities ei:all damage:1 on a single 1/1 creature.
-       return 1;
-   }
+    if(observer->mLayers->stackLayer()->lastActionController == this)
+    {
+        //this is here for 2 reasons, MTG rules state that priority is passed with each action.
+        //without this ai is able to chain cast {t}:damage:1 target(creature) from everything it can all at once.
+        //this not only is illegal but cause ai to waste abilities ei:all damage:1 on a single 1/1 creature.
+        return 1;
+    }
 
     RankingContainer ranking;
     list<int>::iterator it;
@@ -2504,8 +2504,8 @@ int AIPlayerBaka::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCard
 {
     if(observer->mExtraPayment)
     {
-    observer->mExtraPayment->action->CheckUserInput(JGE_BTN_SEC);
-    observer->mExtraPayment = NULL;
+        observer->mExtraPayment->action->CheckUserInput(JGE_BTN_SEC);
+        observer->mExtraPayment = NULL;
     }
     //there should never be a case where a extra cost target selection is happening at the same time as this..
     //extracost uses "chooseCard()" to determine its targets.
@@ -2522,7 +2522,7 @@ int AIPlayerBaka::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCard
     assert(tc);
     if (comboHint && comboHint->cardTargets.size())
     {
-       tc = GetComboTc(observer,tc);
+        tc = GetComboTc(observer,tc);
     }
     if(!checkOnly && tc->maxtargets > 1)
     {
@@ -2619,7 +2619,7 @@ int AIPlayerBaka::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCard
             }
         }
         if(playerTargetedZone > 1)
-        target = target->opponent();
+            target = target->opponent();
         playerTargetedZone--;
     }
     if (potentialTargets.size())
@@ -2665,10 +2665,10 @@ int AIPlayerBaka::getEfficiency(MTGAbility * ability)
         check = NEW OrderedAIAction(this, ability, pTarget, ability->source);
     else
         check = NEW OrderedAIAction(this, ability, ability->source);
-    
+
     if (!check)
         return -1;
-    
+
     int result = getEfficiency(check);
     SAFE_DELETE(check);
     return result;
@@ -2757,8 +2757,8 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     payAlternative = NONE;
     gotPayments = vector<MTGAbility*>();
     //canplayfromgraveyard
-     while ((card = cd.nextmatch(game->graveyard, card)))
-     {
+    while ((card = cd.nextmatch(game->graveyard, card)))
+    {
         bool hasFlashback = false;
 
         if(card->getManaCost())
@@ -2784,11 +2784,11 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
 
             /*// Case were manacost is equal to flashback cost, if they are different the AI hangs
             if (hasFlashback && (card->getManaCost() != card->getManaCost()->getFlashback()))
-                continue;
+            continue;
 
             // Case were manacost is equal to retrace cost, if they are different the AI hangs
             if (hasRetrace && (card->getManaCost() != card->getManaCost()->getRetrace()))
-                continue;*/
+            continue;*/
 
             if (card->hasType(Subtypes::TYPE_LAND))
             {
@@ -2816,7 +2816,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
 
             if (card->hasType(Subtypes::TYPE_BATTLE) && card->types.size() > 0 && game->inPlay->hasTypeSpecificInt(Subtypes::TYPE_BATTLE,card->types[1]))
                 continue;
-        
+
             if(hints && hints->HintSaysItsForCombo(observer,card))
             {
                 if(hints->canWeCombo(observer,card,this))
@@ -2834,7 +2834,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                 else
                 {
                     nextCardToPlay = NULL;
-                        continue;
+                    continue;
                 }
             }
             int currentCost = card->getManaCost()->getConvertedCost();
@@ -2987,7 +2987,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
 
         if (card->hasType(Subtypes::TYPE_BATTLE) && card->types.size() > 0 && game->inPlay->hasTypeSpecificInt(Subtypes::TYPE_BATTLE,card->types[1]))
             continue;
-        
+
         if(hints && hints->HintSaysItsForCombo(observer,card))
         {
             if(hints->canWeCombo(observer,card,this))
@@ -3005,7 +3005,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
             else
             {
                 nextCardToPlay = NULL;
-                    continue;
+                continue;
             }
         }
         int currentCost = card->getManaCost()->getConvertedCost();
@@ -3013,7 +3013,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
         gotPayments.clear();
         if((!pMana->canAfford(card->getManaCost(),0) || card->getManaCost()->getKicker()))
             gotPayments = canPayMana(card,card->getManaCost(),card->has(Constants::ANYTYPEOFMANA));
-            //for preformence reason we only look for specific mana if the payment couldn't be made with pmana.
+        //for preformence reason we only look for specific mana if the payment couldn't be made with pmana.
         if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(card->getManaCost(),card->has(Constants::ANYTYPEOFMANA))))
         {
             TargetChooserFactory tcf(observer);
@@ -3122,10 +3122,10 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
 
         if (game->playRestrictions->canPutIntoZone(card, game->stack) == PlayRestriction::CANT_PLAY)
             continue;
-        
+
         if (card->hasType(Subtypes::TYPE_LEGENDARY) && game->inPlay->findByName(card->name))
             continue;
-        
+
         if(hints && hints->HintSaysItsForCombo(observer,card))
         {
             if(hints->canWeCombo(observer,card,this))
@@ -3143,7 +3143,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
             else
             {
                 nextCardToPlay = NULL;
-                    continue;
+                continue;
             }
         }
         int currentCost = card->getManaCost()->getConvertedCost();
@@ -3151,7 +3151,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
         gotPayments.clear();
         if((!pMana->canAfford(card->getManaCost(),0) || card->getManaCost()->getKicker()))
             gotPayments = canPayMana(card,card->getManaCost(),card->has(Constants::ANYTYPEOFMANA));
-            //for preformence reason we only look for specific mana if the payment couldn't be made with pmana.
+        //for preformence reason we only look for specific mana if the payment couldn't be made with pmana.
         if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(card->getManaCost(),card->has(Constants::ANYTYPEOFMANA))))
         {
             TargetChooserFactory tcf(observer);
@@ -3275,8 +3275,8 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
 
         //PLaneswalkers are now legendary so this is redundant
         //if (card->hasType(Subtypes::TYPE_PLANESWALKER) && card->types.size() > 0 && game->inPlay->hasTypeSpecificInt(Subtypes::TYPE_PLANESWALKER,card->types[1]))
-            //continue;
-        
+        //continue;
+
         if(hints && hints->HintSaysItsForCombo(observer,card))
         {
             if(hints->canWeCombo(observer,card,this))
@@ -3294,7 +3294,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
             else
             {
                 nextCardToPlay = NULL;
-                    continue;
+                continue;
             }
         }
         int currentCost = card->getManaCost()->getConvertedCost();
@@ -3487,7 +3487,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
         if(hints && hints->HintSaysItsForCombo(observer,nextCardToPlay))
         {
             DebugTrace(" AI wants to play a card that belongs to a combo.");
-                nextCardToPlay = NULL;
+            nextCardToPlay = NULL;
         }
 
     }
@@ -3521,7 +3521,7 @@ MTGCardInstance * AIPlayerBaka::activateCombo()
         if(comboCards.size())
         {
             nextCardToPlay = comboCards.back();
-            
+
             DebugTrace("ai is doing a combo:" << nextCardToPlay->getName());
             DebugTrace("ai is doing a combo:" << nextCardToPlay->getName());
             DebugTrace("ai is doing a combo:" << nextCardToPlay->getName());
@@ -3574,7 +3574,7 @@ int AIPlayerBaka::computeActions()
         if(doThis >= 0)
         {
             if(object->abilitiesMenu->isMultipleChoice)
-                  observer->mLayers->actionLayer()->ButtonPressedOnMultipleChoice(doThis);
+                observer->mLayers->actionLayer()->ButtonPressedOnMultipleChoice(doThis);
             else
                 observer->mLayers->actionLayer()->doReactTo(doThis);
         }
@@ -3985,16 +3985,16 @@ int AIPlayerBaka::getCreaturesInfo(Player * player, int neededInfo, int untapMod
 
 int AIPlayerBaka::chooseAttackers()
 {
-     int myCreatures = getCreaturesInfo(this, INFO_NBCREATURES, -1, 1);
-     if (myCreatures < 1)
-         return 0;
+    int myCreatures = getCreaturesInfo(this, INFO_NBCREATURES, -1, 1);
+    if (myCreatures < 1)
+        return 0;
     //Attack with all creatures
     //How much damage can the other player do during his next Attack ?
     int opponentForce = getCreaturesInfo(opponent(), INFO_CREATURESPOWER);
     int opponentCreatures = getCreaturesInfo(opponent(), INFO_NBCREATURES);
     int myForce = getCreaturesInfo(this, INFO_CREATURESPOWER, -1, 1);
-     if(opponent()->life < 5)
-         agressivity += 31;
+    if(opponent()->life < 5)
+        agressivity += 31;
 
     bool attack = ((myCreatures > opponentCreatures) || (myForce > opponentForce) || (myForce > 2 * opponent()->life));
     if (agressivity > 80 && !attack && life > opponentForce)
@@ -4002,7 +4002,7 @@ int AIPlayerBaka::chooseAttackers()
         opponentCreatures = getCreaturesInfo(opponent(), INFO_NBCREATURES, -1);
         opponentForce = getCreaturesInfo(opponent(), INFO_CREATURESPOWER, -1);
         attack = (myCreatures >= opponentCreatures && myForce > opponentForce)
-                || (myForce > opponentForce) || (myForce > opponent()->life) || ((life - opponentForce) > 30) ;
+            || (myForce > opponentForce) || (myForce > opponent()->life) || ((life - opponentForce) > 30) ;
     }
     printf("Choose attackers : %i %i %i %i -> %i\n", opponentForce, opponentCreatures, myForce, myCreatures, attack);
 
@@ -4012,16 +4012,13 @@ int AIPlayerBaka::chooseAttackers()
     MTGCardInstance * card = NULL;
     while ((card = cd.nextmatch(game->inPlay, card)))
     {
-         if ((hints && hints->HintSaysAlwaysAttack(observer, card)) || card->has(Constants::UNBLOCKABLE))
+        if (shouldAIForceAttack(card, attack))
         {
-            if (!card->isAttacker())
+            if (card->attackCost)
             {
-                if (card->attackCost)
-                {
-                    MTGAbility * a = observer->mLayers->actionLayer()->getAbility(MTGAbility::ATTACK_COST);
-                    doAbility(a,card);
-                    observer->cardClick(card, MTGAbility::ATTACK_COST);
-                }
+                MTGAbility* a = observer->mLayers->actionLayer()->getAbility(MTGAbility::ATTACK_COST);
+                doAbility(a, card);
+                observer->cardClick(card, MTGAbility::ATTACK_COST);
             }
             observer->cardClick(card, MTGAbility::MTG_ATTACK_RULE);
         }
@@ -4050,6 +4047,83 @@ int AIPlayerBaka::chooseAttackers()
         }
     }
     return 1;
+}
+
+bool AIPlayerBaka::shouldAIForceAttack(MTGCardInstance* card, bool globalAttack)
+{
+    if (globalAttack)
+        return true;
+
+    if (!card || card->isAttacker())
+        return false;
+
+    if (hints)
+    {
+        if (hints->HintSaysDontAttack(observer, card))
+            return false;
+        if (hints->HintSaysAlwaysAttack(observer, card))
+            return true;
+    }
+
+    if (card->has(Constants::UNBLOCKABLE))
+        return true;
+
+    // Flags for opponent defenses
+    bool oppHasShadow = false;
+    bool oppHasAirDefense = false;
+    bool oppHasHorsemanship = false;
+    bool oppHasBlackOrArtifact = false;
+    bool oppHasMatchingColorOrArtifact = false;
+
+    // Flags for landwalk checks
+    bool oppHasSwamp = opponent()->game->inPlay->hasType("Swamp");
+    bool oppHasIsland = opponent()->game->inPlay->hasType("Island");
+    bool oppHasForest = opponent()->game->inPlay->hasType("Forest");
+    bool oppHasMountain = opponent()->game->inPlay->hasType("Mountain");
+    bool oppHasPlains = opponent()->game->inPlay->hasType("Plains");
+
+    MTGCardInstance* oppCard = NULL;
+    CardDescriptor desc;
+    desc.init();
+    desc.setType("creature");
+
+    while ((oppCard = desc.nextmatch(opponent()->game->inPlay, oppCard)))
+    {
+        if (oppCard->isTapped())
+            continue;
+
+        if (oppCard->has(Constants::SHADOW))
+            oppHasShadow = true;
+        if (oppCard->has(Constants::FLYING) || oppCard->has(Constants::REACH))
+            oppHasAirDefense = true;
+        if (oppCard->has(Constants::HORSEMANSHIP))
+            oppHasHorsemanship = true;
+
+        if (oppCard->hasColor(Constants::MTG_COLOR_BLACK) || oppCard->hasType("Artifact"))
+            oppHasBlackOrArtifact = true;
+
+        // Intimidate check: artifact or shares color
+        if (oppCard->hasType("Artifact") || (oppCard->colors & card->colors))
+            oppHasMatchingColorOrArtifact = true;
+    }
+
+    // Decision logic based on evasion
+    if ((card->has(Constants::SHADOW) && !oppHasShadow) ||
+        (card->has(Constants::FLYING) && !oppHasAirDefense) ||
+        (card->has(Constants::HORSEMANSHIP) && !oppHasHorsemanship) ||
+        (card->has(Constants::FEAR) && !oppHasBlackOrArtifact) ||
+        (card->has(Constants::INTIMIDATE) && !oppHasMatchingColorOrArtifact))
+        return true;
+
+    // Landwalk abilities
+    if ((card->has(Constants::SWAMPWALK) && oppHasSwamp) ||
+        (card->has(Constants::ISLANDWALK) && oppHasIsland) ||
+        (card->has(Constants::FORESTWALK) && oppHasForest) ||
+        (card->has(Constants::MOUNTAINWALK) && oppHasMountain) ||
+        (card->has(Constants::PLAINSWALK) && oppHasPlains))
+        return true;
+
+    return false;
 }
 
 /* Can I first strike my oponent and get away with murder ? */
@@ -4197,7 +4271,7 @@ int AIPlayerBaka::chooseBlockers()
             }
         }
     }
- 
+
     return 1;
 }
 
@@ -4269,7 +4343,7 @@ int AIPlayerBaka::receiveEvent(WEvent * event)
 
 
 AIPlayerBaka::AIPlayerBaka(GameObserver *observer, string file, string fileSmall, string avatarFile, MTGDeck * deck) :
-    AIPlayer(observer, file, fileSmall, deck)
+AIPlayer(observer, file, fileSmall, deck)
 {
 
     nextCardToPlay = NULL;
@@ -4312,7 +4386,7 @@ AIPlayerBaka::AIPlayerBaka(GameObserver *observer, string file, string fileSmall
 
     if (fileSmall == "ai_baka_eviltwin")
         mAvatar->SetHFlip(true);
-    
+
     initTimer();
 }
 
@@ -4379,17 +4453,17 @@ int AIPlayerBaka::Act(float dt)
         else
         {
             if (observer->currentActionPlayer == this)//if im not the action player why would i requestnextphase?
-            observer->userRequestNextGamePhase();
+                observer->userRequestNextGamePhase();
         }
     }
     else
     {
         while(clickstream.size())
         {
-        AIAction * action = clickstream.front();
-        action->Act();
-        SAFE_DELETE(action);
-        clickstream.pop();
+            AIAction * action = clickstream.front();
+            action->Act();
+            SAFE_DELETE(action);
+            clickstream.pop();
         }
     }
     return 1;
