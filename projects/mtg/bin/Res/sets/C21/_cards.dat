@@ -3,218 +3,8 @@ author=Wagic Team
 name=Commander 2021
 orderindex=COM-P.C21
 year=2021-04-23
-total=371
+total=410
 [/meta]
-[card]
-primitive=Myr
-id=-519288
-rarity=T
-[/card]
-[card]
-primitive=Eldrazi
-id=-519281
-rarity=T
-[/card]
-[card]
-primitive=Saproling
-id=-519276
-rarity=T
-[/card]
-[card]
-primitive=Spirit
-id=-519265
-rarity=T
-[/card]
-[card]
-primitive=Elemental
-id=-519246
-rarity=T
-[/card]
-[card]
-primitive=Elephant
-id=-519242
-rarity=T
-[/card]
-[card]
-primitive=Beast
-id=-519238
-rarity=T
-[/card]
-[card]
-primitive=Elephant
-id=-519231
-rarity=T
-[/card]
-[card]
-primitive=Hydra
-id=-519229
-rarity=T
-[/card]
-[card]
-primitive=Insect
-id=-519228
-rarity=T
-[/card]
-[card]
-primitive=Insect
-id=-519227
-rarity=T
-[/card]
-[card]
-primitive=Wurm
-id=-519225
-rarity=T
-[/card]
-[card]
-primitive=Beast
-id=-519223
-rarity=T
-[/card]
-[card]
-primitive=Beast
-id=-519221
-rarity=T
-[/card]
-[card]
-primitive=Thopter
-id=-519216
-rarity=T
-[/card]
-[card]
-primitive=Thopter
-id=-519212
-rarity=T
-[/card]
-[card]
-primitive=Zombie
-id=-519173
-rarity=T
-[/card]
-[card]
-primitive=Drake
-id=-519166
-rarity=T
-[/card]
-[card]
-primitive=Kraken
-id=-519162
-rarity=T
-[/card]
-[card]
-primitive=Lizard
-id=-519161
-rarity=T
-[/card]
-[card]
-primitive=Construct
-id=-519157
-rarity=T
-[/card]
-[card]
-primitive=Boar
-id=-519153
-rarity=T
-[/card]
-[card]
-primitive=Horror
-id=-519129
-rarity=T
-[/card]
-[card]
-primitive=Eldrazi
-id=-519117
-rarity=T
-[/card]
-[card]
-primitive=Golem
-id=-518475
-rarity=T
-[/card]
-[card]
-primitive=Fractal
-id=-518473
-rarity=T
-[/card]
-[card]
-primitive=Fractal
-id=-518468
-rarity=T
-[/card]
-[card]
-primitive=Inkling
-id=-518467
-rarity=T
-[/card]
-[card]
-primitive=Beast
-id=-518465
-rarity=T
-[/card]
-[card]
-primitive=Fractal
-id=-518463
-rarity=T
-[/card]
-[card]
-primitive=Pest
-id=-518461
-rarity=T
-[/card]
-[card]
-primitive=Fractal
-id=-518460
-rarity=T
-[/card]
-[card]
-primitive=Fractal
-id=-518457
-rarity=T
-[/card]
-[card]
-primitive=Demon
-id=-518441
-rarity=T
-[/card]
-[card]
-primitive=Inkling
-id=-518436
-rarity=T
-[/card]
-[card]
-primitive=Pest
-id=-518432
-rarity=T
-[/card]
-[card]
-primitive=Kraken
-id=-518429
-rarity=T
-[/card]
-[card]
-primitive=Target
-id=-518422
-rarity=T
-[/card]
-[card]
-primitive=Construct
-id=-518411
-rarity=T
-[/card]
-[card]
-primitive=Inkling
-id=-518410
-rarity=T
-[/card]
-[card]
-primitive=Elemental
-id=-518310
-rarity=T
-[/card]
-[card]
-primitive=Inkling
-id=-518308
-rarity=T
-[/card]
 [card]
 primitive=Breena, the Demagogue
 id=518307
@@ -938,7 +728,7 @@ rarity=C
 [card]
 primitive=Greed
 id=519180
-rarity=R
+rarity=U
 [/card]
 [card]
 primitive=Infernal Offering
@@ -1703,7 +1493,7 @@ rarity=R
 [card]
 primitive=Lonely Sandbar
 id=519333
-rarity=C
+rarity=U
 [/card]
 [card]
 primitive=Lumbering Falls
@@ -1788,7 +1578,7 @@ rarity=R
 [card]
 primitive=Secluded Steppe
 id=519350
-rarity=C
+rarity=U
 [/card]
 [card]
 primitive=Shivan Reef
@@ -1848,6 +1638,406 @@ rarity=U
 [card]
 primitive=Temple of Triumph
 id=519362
+rarity=R
+[/card]
+[card]
+primitive=Breena, the Demagogue
+id=521597
+rarity=M
+[/card]
+[card]
+primitive=Felisa, Fang of Silverquill
+id=521598
+rarity=M
+[/card]
+[card]
+primitive=Veyran, Voice of Duality
+id=521599
+rarity=M
+[/card]
+[card]
+primitive=Zaffai, Thunder Conductor
+id=521600
+rarity=M
+[/card]
+[card]
+primitive=Gyome, Master Chef
+id=521601
+rarity=M
+[/card]
+[card]
+primitive=Willowdusk, Essence Seer
+id=521602
+rarity=M
+[/card]
+[card]
+primitive=Alibou, Ancient Witness
+id=521603
+rarity=M
+[/card]
+[card]
+primitive=Osgir, the Reconstructor
+id=521604
+rarity=M
+[/card]
+[card]
+primitive=Adrix and Nev, Twincasters
+id=521605
+rarity=M
+[/card]
+[card]
+primitive=Esix, Fractal Bloom
+id=521606
+rarity=M
+[/card]
+[card]
+primitive=Angel of the Ruins
+id=521607
+rarity=R
+[/card]
+[card]
+primitive=Archaeomancer's Map
+id=521608
+rarity=R
+[/card]
+[card]
+primitive=Bronze Guardian
+id=521609
+rarity=R
+[/card]
+[card]
+primitive=Combat Calligrapher
+id=521610
+rarity=R
+[/card]
+[card]
+primitive=Digsite Engineer
+id=521611
+rarity=R
+[/card]
+[card]
+primitive=Excavation Technique
+id=521612
+rarity=R
+[/card]
+[card]
+primitive=Guardian Archon
+id=521613
+rarity=R
+[/card]
+[card]
+primitive=Losheel, Clockwork Scholar
+id=521614
+rarity=R
+[/card]
+[card]
+primitive=Monologue Tax
+id=521615
+rarity=R
+[/card]
+[card]
+primitive=Nils, Discipline Enforcer
+id=521616
+rarity=R
+[/card]
+[card]
+primitive=Promise of Loyalty
+id=521617
+rarity=R
+[/card]
+[card]
+primitive=Scholarship Sponsor
+id=521618
+rarity=R
+[/card]
+[card]
+primitive=Commander's Insight
+id=521619
+rarity=R
+[/card]
+[card]
+primitive=Curiosity Crafter
+id=521620
+rarity=R
+[/card]
+[card]
+primitive=Dazzling Sphinx
+id=521621
+rarity=R
+[/card]
+[card]
+primitive=Deekah, Fractal Theorist
+id=521622
+rarity=R
+[/card]
+[card]
+primitive=Inspiring Refrain
+id=521623
+rarity=R
+[/card]
+[card]
+primitive=Muse Vortex
+id=521624
+rarity=R
+[/card]
+[card]
+primitive=Octavia, Living Thesis
+id=521625
+rarity=R
+[/card]
+[card]
+primitive=Perplexing Test
+id=521626
+rarity=R
+[/card]
+[card]
+primitive=Replication Technique
+id=521627
+rarity=R
+[/card]
+[card]
+primitive=Sly Instigator
+id=521628
+rarity=R
+[/card]
+[card]
+primitive=Spawning Kraken
+id=521629
+rarity=R
+[/card]
+[card]
+primitive=Theoretical Duplication
+id=521630
+rarity=R
+[/card]
+[card]
+primitive=Author of Shadows
+id=521631
+rarity=R
+[/card]
+[card]
+primitive=Blight Mound
+id=521632
+rarity=R
+[/card]
+[card]
+primitive=Bold Plagiarist
+id=521633
+rarity=R
+[/card]
+[card]
+primitive=Cunning Rhetoric
+id=521634
+rarity=R
+[/card]
+[card]
+primitive=Essence Pulse
+id=521635
+rarity=R
+[/card]
+[card]
+primitive=Fain, the Broker
+id=521636
+rarity=R
+[/card]
+[card]
+primitive=Incarnation Technique
+id=521637
+rarity=R
+[/card]
+[card]
+primitive=Keen Duelist
+id=521638
+rarity=R
+[/card]
+[card]
+primitive=Marshland Bloodcaster
+id=521639
+rarity=R
+[/card]
+[card]
+primitive=Stinging Study
+id=521640
+rarity=R
+[/card]
+[card]
+primitive=Tivash, Gloom Summoner
+id=521641
+rarity=R
+[/card]
+[card]
+primitive=Veinwitch Coven
+id=521642
+rarity=R
+[/card]
+[card]
+primitive=Audacious Reshapers
+id=521643
+rarity=R
+[/card]
+[card]
+primitive=Battlemage's Bracers
+id=521644
+rarity=R
+[/card]
+[card]
+primitive=Creative Technique
+id=521645
+rarity=R
+[/card]
+[card]
+primitive=Cursed Mirror
+id=521646
+rarity=R
+[/card]
+[card]
+primitive=Fiery Encore
+id=521647
+rarity=R
+[/card]
+[card]
+primitive=Inferno Project
+id=521648
+rarity=R
+[/card]
+[card]
+primitive=Laelia, the Blade Reforged
+id=521649
+rarity=R
+[/card]
+[card]
+primitive=Radiant Performer
+id=521650
+rarity=R
+[/card]
+[card]
+primitive=Rionya, Fire Dancer
+id=521651
+rarity=R
+[/card]
+[card]
+primitive=Rousing Refrain
+id=521652
+rarity=R
+[/card]
+[card]
+primitive=Ruin Grinder
+id=521653
+rarity=R
+[/card]
+[card]
+primitive=Surge to Victory
+id=521654
+rarity=R
+[/card]
+[card]
+primitive=Blossoming Bogbeast
+id=521655
+rarity=R
+[/card]
+[card]
+primitive=Ezzaroot Channeler
+id=521656
+rarity=R
+[/card]
+[card]
+primitive=Fractal Harness
+id=521657
+rarity=R
+[/card]
+[card]
+primitive=Guardian Augmenter
+id=521658
+rarity=R
+[/card]
+[card]
+primitive=Healing Technique
+id=521659
+rarity=R
+[/card]
+[card]
+primitive=Paradox Zone
+id=521660
+rarity=R
+[/card]
+[card]
+primitive=Pest Infestation
+id=521661
+rarity=R
+[/card]
+[card]
+primitive=Ruxa, Patient Professor
+id=521662
+rarity=R
+[/card]
+[card]
+primitive=Sequence Engine
+id=521663
+rarity=R
+[/card]
+[card]
+primitive=Sproutback Trudge
+id=521664
+rarity=R
+[/card]
+[card]
+primitive=Trudge Garden
+id=521665
+rarity=R
+[/card]
+[card]
+primitive=Yedora, Grave Gardener
+id=521666
+rarity=R
+[/card]
+[card]
+primitive=Inkshield
+id=521667
+rarity=R
+[/card]
+[card]
+primitive=Oversimplify
+id=521668
+rarity=R
+[/card]
+[card]
+primitive=Reinterpret
+id=521669
+rarity=R
+[/card]
+[card]
+primitive=Revival Experiment
+id=521670
+rarity=R
+[/card]
+[card]
+primitive=Wake the Past
+id=521671
+rarity=R
+[/card]
+[card]
+primitive=Elementalist's Palette
+id=521672
+rarity=R
+[/card]
+[card]
+primitive=Geometric Nexus
+id=521673
+rarity=R
+[/card]
+[card]
+primitive=Tempting Contract
+id=521674
+rarity=R
+[/card]
+[card]
+primitive=Triplicate Titan
+id=521675
+rarity=R
+[/card]
+[card]
+primitive=Witch's Clinic
+id=521676
 rarity=R
 [/card]
 [card]

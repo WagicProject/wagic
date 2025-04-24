@@ -192,7 +192,7 @@ subtype=Aminatou
 name=Angrath, Captain of Chaos
 auto=counter(0/0,5,loyalty)
 auto=lord(creature|myBattlefield) menace
-auto={C(0/0,-2,Loyalty)}:name(-2: Amass 2) _AMASSZOMBIE2_
+auto={C(0/0,-2,Loyalty)}:name(-2: Amass 2) ability$! _AMASSZOMBIE2_ !$ controller
 text=Creatures you control have menace. -- -2: Amass 2. (Put two +1/+1 counters on an Army you control. If you don't control one, create a 0/0 black Zombie Army creature token first.)
 mana={2}{BR}{BR}
 type=Legendary Planeswalker
@@ -452,7 +452,7 @@ subtype=Chandra
 [/card]
 [card]
 name=Chandra, Awakened Inferno
-auto=nofizzle
+abilities=nofizzle
 auto=counter(0/0,6,loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Emblem: "1 damage each upkeep") emblem transforms((,newability[@each opponent upkeep:damage:1 opponent])) forever dontremove
 auto={C(0/0,-3,Loyalty)}:name(-3: Deals 3 damage to each non-elemental) damage:3 all(creature[-elemental])
@@ -595,7 +595,7 @@ auto=counter(0/0,5,loyalty)
 auto=@movedTo(*[instant;sorcery]|mystack) turnlimited:name(Copy spell) name(Copy spell) all(trigger[to]) transforms((,newability[name(Copy spell) activate castcard(copied noevent)])) oneshot
 auto={C(0/0,+2,Loyalty)}:name(+2: Add 2 mana) thisforeach(variable{2}) ability$!name(Choose one) choice name(Add white) add{W} _ choice name(Add blue) add{U} _ choice name(Add red) add{B} _ choice name(Add green) add{R} _ choice name(Add black) add{G}!$ controller
 auto={C(0/0,+1,Loyalty)}:name(+1: Exile top 5 cards) all(*[zpos<=5]|mylibrary) moveto(myexile) and!( if cantargetcard(*[instant;sorcery]|*) then transforms((,newability[canplayfromexile])) ueot )!
-auto={C(0/0,-1,Loyalty)}:name(-1: Damage one target) ability$!name(Damage target) name(Damage  target) target(anytarget) damage:1!$ controller
+auto={C(0/0,-1,Loyalty)}:name(-1: Damage one target) ability$!name(Damage target) name(Damage target) target(anytarget) damage:1!$ controller
 auto={C(0/0,-1,Loyalty)}:name(-1: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>anytarget) damage:1!$ controller
 auto={C(0/0,-2,Loyalty)}:name(-2: Damage one target) ability$!name(Damage target) name(Damage target) target(anytarget) damage:2!$ controller
 auto={C(0/0,-2,Loyalty)}:name(-2: Damage two target) ability$!name(Damage targets) name(Damage targets) target(<2>anytarget) damage:2!$ controller
@@ -1269,7 +1269,7 @@ auto=counter(0/0,5,loyalty)
 auto={C(0/0,2,Loyalty)}:name(+2: Untap all creatures and get +1/+1) all(creature|mybattlefield) 1/1 && all(creature|mybattlefield) untap ueot
 auto={C(0/0,0,Loyalty)}:name(+0: Transforms to Human Soldier 5/5) transforms((Creature Human Soldier,setpower=5,settoughness=5,indestructible,newability[preventAllDamage to(this)])) ueot
 auto={C(0/0,-10,Loyalty)}:name(10: Tap all creatures and +2/+2) all(creature|opponentbattlefield) tap && all(creature|mybattlefield) 2/2 ueot
-text=+2: Untap all creatures you control. Those creatures get +1/+1 until end of turn.  -- 0: Until end of turn, Gideon, Martial Paragon becomes a 5/5 Human Soldier creature with indestructible that's still a planeswalker. Prevent all damage that would be dealt to him this turn. -- -10: Creatures you control get +2/+2 until end of turn. Tap all creatures your opponents control.
+text=+2: Untap all creatures you control. Those creatures get +1/+1 until end of turn. -- 0: Until end of turn, Gideon, Martial Paragon becomes a 5/5 Human Soldier creature with indestructible that's still a planeswalker. Prevent all damage that would be dealt to him this turn. -- -10: Creatures you control get +2/+2 until end of turn. Tap all creatures your opponents control.
 mana={4}{W}
 type=Legendary Planeswalker
 subtype=Gideon
@@ -1725,7 +1725,7 @@ name=Kaito, Bane of Nightmares
 auto=counter(0/0,4,loyalty)
 autohand={1}{U}{B}{N}:ninjutsu
 auto=this(variable{controllerturn}>0) becomes(Ninja Creature,3/4,hexproof)
-auto={C(0/0,+1,Loyalty)}:name(emblem) emblem transforms((,newability[all(ninja|myBattlefield) 1/1])) forever dontremove
+auto={C(0/0,+1,Loyalty)}:name(emblem) emblem transforms((,newability[lord(ninja|myBattlefield) 1/1])) forever dontremove
 auto={C(0/0,0,Loyalty)}:name(Surveil 2) reveal:psurveiloffsetplus2plusend optionone name(put in graveyard) target(<upto:psurveiloffsetplus2plusend>*|reveal) moveto(ownergraveyard) optiononeend optiontwo name(put in library) target(<psurveiloffsetplus2plusend>*|reveal) moveto(ownerlibrary) optiontwoend afterrevealed all(*[zpos=1]|mylibrary) transforms((,newability[draw:1 controller])) oneshot afterrevealedend revealend
 auto={C(0/0,-2,Loyalty)}:name(-2 Tap target creature) target(creature) transforms((,newability[tap],newability[counter(0/0.2.Stun)]))
 text=Ninjutsu {1}{U}{B} ({1}{U}{B}, Return an unblocked attacker you control to hand: Put this card onto the battlefield from your hand tapped and attacking.) -- During your turn, as long as Kaito has one or more loyalty counters on him, he's a 3/4 Ninja creature and has hexproof. -- [+1]: You get an emblem with "Ninjas you control get +1/+1." -- [0]: Surveil 2. Then draw a card for each opponent who lost life this turn. -- [-2]: Tap target creature. Put two stun counters on it.

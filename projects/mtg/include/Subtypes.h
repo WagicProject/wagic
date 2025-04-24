@@ -26,7 +26,7 @@ public:
         TYPE_EQUIPMENT = 11,
         TYPE_AURA = 12,
         TYPE_PLANESWALKER = 13,
-        TYPE_TRIBAL = 14,
+        TYPE_KINDRED = 14,
         TYPE_PLANE = 15,
         TYPE_SCHEME = 16,
         TYPE_VANGUARD = 17,

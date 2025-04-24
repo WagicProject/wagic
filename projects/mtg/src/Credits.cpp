@@ -685,7 +685,7 @@ void Credits::Render()
     {
         f2->DrawString(_("There's more!").c_str(), 10, y + 15);
         f->DrawString(_("Mods, additional cards, updates and more at:").c_str(), 10, y + 30);
-        f2->DrawString("-> Discord: Wagic - MTG Game", 10, y + 42);
+        f2->DrawString("Discord and GitHub: Wagic game", 10, y + 42);
     }
 
 }

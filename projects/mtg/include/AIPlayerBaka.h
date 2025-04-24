@@ -76,7 +76,7 @@ class AIPlayerBaka: public AIPlayer{
     virtual int chooseBlockers();
     virtual int canFirstStrikeKill(MTGCardInstance * card, MTGCardInstance *ennemy);
     virtual int effectBadOrGood(MTGCardInstance * card, int mode = MODE_PUTINTOPLAY, TargetChooser * tc = NULL);
-
+    virtual bool shouldAIForceAttack(MTGCardInstance* card, bool globalAttack);
 
     // returns 1 if the AI algorithm supports a given cost (ex:simple mana cost), 0 otherwise (ex: cost involves Sacrificing a target)
     virtual int CanHandleCost(ManaCost * cost, MTGCardInstance * card = NULL); 

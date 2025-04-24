@@ -2099,22 +2099,24 @@ void WGuiFilterItem::updateValue()
         mParent->subMenu = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), -1234, this, Fonts::MAIN_FONT, 20, 20, "Filter:");
         if (filterType == FILTER_TYPE)
         {
+            mParent->addArg("Legendary Creature", "t:Legendary;&t:Creature;");
             mParent->addArg("Artifact", "t:Artifact;");
             mParent->addArg("Artifact Creature", "t:Artifact;&t:Creature;");
             mParent->addArg("Aura", "t:Aura;");
             mParent->addArg("Basic", "t:Basic;");
+            mParent->addArg("Battle", "t:Battle;");
             mParent->addArg("Creature", "t:Creature;");
             mParent->addArg("Enchantment", "t:Enchantment;");
             mParent->addArg("Equipment", "t:Equipment;");
             mParent->addArg("Instant", "t:Instant;");
+            mParent->addArg("Kindred", "t:Kindred;");
             mParent->addArg("Land", "t:Land;");
             mParent->addArg("Legendary", "t:Legendary;");
-            mParent->addArg("Legendary Creature", "t:Legendary;&t:Creature;");
-            mParent->addArg("Sorcery", "t:Sorcery;");
-            mParent->addArg("Snow", "t:Snow;");
-            mParent->addArg("Tribal", "t:Tribal;");
+            mParent->addArg("Noncreature", "{t:Creature;}");
+            mParent->addArg("Nonland", "{t:Land;}");
             mParent->addArg("Planeswalker", "t:Planeswalker;");
-            mParent->addArg("Battle", "t:Battle;");
+            mParent->addArg("Snow", "t:Snow;");
+            mParent->addArg("Sorcery", "t:Sorcery;");
             mParent->addArg("Dungeon", "t:Dungeon;");
             mParent->addArg("Conspiracy", "t:Conspiracy;");
 
@@ -2150,6 +2152,7 @@ void WGuiFilterItem::updateValue()
             mParent->addArg("Rare", "r:r;");
             mParent->addArg("Uncommon", "r:u;");
             mParent->addArg("Common", "r:c;");
+            mParent->addArg("Basic", "r:l;");
             mParent->addArg("Special Rarity", "{r:m;|r:t;|r:r;|r:u;|r:c;|r:l;}");
         }
         else if (filterType == FILTER_CMC)

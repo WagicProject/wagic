@@ -319,6 +319,11 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::MY_HAND;
                 zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
             }
+            else if (zoneName.compare("mybattlefieldhand") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_HAND;
+                zones[nbzones++] = MTGGameZone::MY_BATTLEFIELD;                
+            }
             else if (zoneName.compare("library") == 0)
             {
                 zones[nbzones++] = MTGGameZone::MY_LIBRARY;
@@ -1155,7 +1160,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->removeType("creature");
                         cd->removeType("planeswalker");
                         cd->removeType("battle");
-                        cd->removeType("tribal");
+                        cd->removeType("kindred");
                         if (!cd->types.size()){
                             int i = rand() % 10000 + 1;
                             ostringstream subt;

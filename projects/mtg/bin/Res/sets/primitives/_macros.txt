@@ -226,7 +226,7 @@
 #AUTO_DEFINE _FIGHT_ transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>])) oneshot
 
 # Must be blocked this turn if able
-#AUTO_DEFINE _MUST_BE_BLOCKD_ newability[@combat(attacking) source(this):ability$! notatarget(creature|myBattlefield) transforms((,newability[mustblock])) ueot!$ opponent]
+#AUTO_DEFINE _MUST_BE_BLOCKD_ newability[@combat(attacking) source(this):ability$! notatarget(creature[-tapped]|myBattlefield) transforms((,newability[mustblock])) ueot!$ opponent]
 
 # Suspect it. It has menace and can't block.
 #AUTO_DEFINE _SUSPECT_IT_ name(Suspect it) transforms((suspect,menace,cantblock)) forever
@@ -240,7 +240,7 @@
 #AUTO_DEFINE _ENLIST_ @combat(attacking) source(this) restriction{type(creature[-fresh]|mybattlefield)~morethan~0}:transforms((,newability[{T(creature[-attacking;-fresh]|mybattlefield)}:storedpower/0 ueot limit:1])) ueot
 
 # Add one mana of any color.
-#AUTO_DEFINE _MANAOFANYCOLOR_ ability$! choice Add{W} _ choice Add{U} _ choice Add{B} _ choice Add{R} _ choice Add{G} !$ controller
+#AUTO_DEFINE _MANAOFANYCOLOR_ name(Add one mana of any color) ability$! choice Add{W} _ choice Add{U} _ choice Add{B} _ choice Add{R} _ choice Add{G} !$ controller
 
 # Manifest dread. Look at the top two cards of your library. Put one onto the battlefield face down as a 2/2 creature and the other into your graveyard. Turn it face up any time for its mana cost if it's a creature card.
 #AUTO_DEFINE _MANIFEST_DREAD_ name(Manifest dread) reveal:2 optionone name(Manifest) target(*|reveal) manifest optiononeend optiontwo all(*|reveal) moveto(mygraveyard) optiontwoend revealend
@@ -249,8 +249,31 @@
 
 #AUTO_DEFINE _CREW1_ {crew(other creature[power>=1]|myBattlefield)}:name(crew 1 [1 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=1]|mybattlefield)~morethan~0,compare(crewtotalpower)~morethan~0}
 
+#AUTO_DEFINE _CREW2_ {crew(other creature[power>=2]|myBattlefield)}:name(crew 2 [1 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=2]|mybattlefield)~morethan~0,compare(crewtotalpower)~morethan~1}
+
+#AUTO_DEFINE _CREW2COMPLEMENT_ {crew(other creature[power>=1]|myBattlefield)}{crew(other creature[power>=1]|myBattlefield)}:name(crew 2 [2 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=1]|mybattlefield)~morethan~1,compare(crewtotalpower)~morethan~1}
+
 # Endure
-#AUTO_DEFINE _ENDURE_($c) transforms((,newability[choice counter(1/1.$c)],newability[choice create(Spirit:Creature:$c/$c:white)])) ueot
+#AUTO_DEFINE _ENDURE1_  transforms((,newability[choice counter(1/1)],newability[choice create(Spirit:Creature:1/1:white)])) ueot
+#AUTO_DEFINE _ENDURE2_  transforms((,newability[choice counter(1/1.2)],newability[choice create(Spirit:Creature:2/2:white)])) ueot
+#AUTO_DEFINE _ENDURE3_  transforms((,newability[choice counter(1/1.3)],newability[choice create(Spirit:Creature:3/3:white)])) ueot
+#AUTO_DEFINE _ENDURE4_  transforms((,newability[choice counter(1/1.4)],newability[choice create(Spirit:Creature:4/4:white)])) ueot
+#AUTO_DEFINE _ENDURE5_  transforms((,newability[choice counter(1/1.5)],newability[choice create(Spirit:Creature:5/5:white)])) ueot
+#AUTO_DEFINE _ENDURE6_  transforms((,newability[choice counter(1/1.6)],newability[choice create(Spirit:Creature:6/6:white)])) ueot
+#AUTO_DEFINE _ENDURE7_  transforms((,newability[choice counter(1/1.7)],newability[choice create(Spirit:Creature:7/7:white)])) ueot
+#AUTO_DEFINE _ENDURE8_  transforms((,newability[choice counter(1/1.8)],newability[choice create(Spirit:Creature:8/8:white)])) ueot
+#AUTO_DEFINE _ENDURE9_  transforms((,newability[choice counter(1/1.9)],newability[choice create(Spirit:Creature:9/9:white)])) ueot
+#AUTO_DEFINE _ENDURE10_ transforms((,newability[choice counter(1/1.10)],newability[choice create(Spirit:Creature:10/10:white)])) ueot
+#AUTO_DEFINE _ENDURE11_ transforms((,newability[choice counter(1/1.11)],newability[choice create(Spirit:Creature:11/11:white)])) ueot
+#AUTO_DEFINE _ENDURE12_ transforms((,newability[choice counter(1/1.12)],newability[choice create(Spirit:Creature:12/12:white)])) ueot
+#AUTO_DEFINE _ENDURE13_ transforms((,newability[choice counter(1/1.13)],newability[choice create(Spirit:Creature:13/13:white)])) ueot
+#AUTO_DEFINE _ENDURE14_ transforms((,newability[choice counter(1/1.14)],newability[choice create(Spirit:Creature:14/14:white)])) ueot
+#AUTO_DEFINE _ENDURE15_ transforms((,newability[choice counter(1/1.15)],newability[choice create(Spirit:Creature:15/15:white)])) ueot
+#AUTO_DEFINE _ENDURE16_ transforms((,newability[choice counter(1/1.16)],newability[choice create(Spirit:Creature:16/16:white)])) ueot
+#AUTO_DEFINE _ENDURE17_ transforms((,newability[choice counter(1/1.17)],newability[choice create(Spirit:Creature:17/17:white)])) ueot
+#AUTO_DEFINE _ENDURE18_ transforms((,newability[choice counter(1/1.18)],newability[choice create(Spirit:Creature:18/18:white)])) ueot
+#AUTO_DEFINE _ENDURE19_ transforms((,newability[choice counter(1/1.19)],newability[choice create(Spirit:Creature:19/19:white)])) ueot
+#AUTO_DEFINE _ENDURE20_ transforms((,newability[choice counter(1/1.20)],newability[choice create(Spirit:Creature:20/20:white)])) ueot
 
 # Flurry
 #AUTO_DEFINE _FLURRY_ @movedto(*|mystack) restriction{thisturn(*|mystack)~equalto~1}:

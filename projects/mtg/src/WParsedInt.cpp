@@ -1186,7 +1186,7 @@ void WParsedInt::init(string s, Spell * spell, MTGCardInstance * card)
             intValue = 0;
             if(card->hasType(Subtypes::TYPE_PLANESWALKER))
                 intValue++;
-            if(card->hasType(Subtypes::TYPE_TRIBAL))
+            if(card->hasType(Subtypes::TYPE_KINDRED))
                 intValue++;
             if(card->hasType(Subtypes::TYPE_SORCERY))
                 intValue++;
@@ -1262,7 +1262,7 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
                 MTGGameZone * checkZone = card->getObserver()->players[j]->game->inPlay;
                 if(cardHasTypeinZone("planeswalker",checkZone))
                     pc = 1;
-                if(cardHasTypeinZone("tribal",checkZone))
+                if(cardHasTypeinZone("kindred",checkZone))
                     tc = 1;
                 if(cardHasTypeinZone("sorcery",checkZone))
                     sc = 1;
@@ -1283,7 +1283,7 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
             MTGGameZone * checkZone = (s.find("oppbattlefieldcardtypes")!=string::npos)?card->getObserver()->opponent()->game->inPlay:card->controller()->game->inPlay;
             if(cardHasTypeinZone("planeswalker",checkZone))
                 pc = 1;
-            if(cardHasTypeinZone("tribal",checkZone))
+            if(cardHasTypeinZone("kindred",checkZone))
                 tc = 1;
             if(cardHasTypeinZone("sorcery",checkZone))
                 sc = 1;
@@ -1311,7 +1311,7 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
                 MTGGameZone * checkZone = card->getObserver()->players[j]->game->graveyard;
                 if(cardHasTypeinZone("planeswalker",checkZone))
                     pc = 1;
-                if(cardHasTypeinZone("tribal",checkZone))
+                if(cardHasTypeinZone("kindred",checkZone))
                     tc = 1;
                 if(cardHasTypeinZone("sorcery",checkZone))
                     sc = 1;
@@ -1332,7 +1332,7 @@ void WParsedInt::extendedParse(string s, Spell * spell, MTGCardInstance * card)
             MTGGameZone * checkZone = (s.find("oppgravecardtypes")!=string::npos)?card->getObserver()->opponent()->game->graveyard:card->controller()->game->graveyard;
             if(cardHasTypeinZone("planeswalker",checkZone))
                 pc = 1;
-            if(cardHasTypeinZone("tribal",checkZone))
+            if(cardHasTypeinZone("kindred",checkZone))
                 tc = 1;
             if(cardHasTypeinZone("sorcery",checkZone))
                 sc = 1;
