@@ -1,0 +1,136 @@
+[meta]
+author=Wagic Team
+name=Ugin's Fate
+year=2015-01-17
+total=26
+[/meta]
+[card]
+primitive=Ugin, the Spirit Dragon
+id=394086
+rarity=M
+[/card]
+[card]
+primitive=Mastery of the Unseen
+id=394079
+rarity=R
+[/card]
+[card]
+primitive=Smite the Monstrous
+id=394083
+rarity=C
+[/card]
+[card]
+primitive=Soul Summons
+id=394084
+rarity=C
+[/card]
+[card]
+primitive=Watcher of the Roost
+id=394088
+rarity=U
+[/card]
+[card]
+primitive=Jeskai Infiltrator
+id=394078
+rarity=R
+[/card]
+[card]
+primitive=Reality Shift
+id=394081
+rarity=U
+[/card]
+[card]
+primitive=Mystic of the Hidden Way
+id=394080
+rarity=C
+[/card]
+[card]
+primitive=Write into Being
+id=394090
+rarity=C
+[/card]
+[card]
+primitive=Debilitating Injury
+id=394070
+rarity=C
+[/card]
+[card]
+primitive=Grim Haruspex
+id=394075
+rarity=R
+[/card]
+[card]
+primitive=Sultai Emissary
+id=394085
+rarity=C
+[/card]
+[card]
+primitive=Ruthless Ripper
+id=394082
+rarity=U
+[/card]
+[card]
+primitive=Ainok Tracker
+id=394065
+rarity=C
+[/card]
+[card]
+primitive=Arc Lightning
+id=394068
+rarity=U
+[/card]
+[card]
+primitive=Fierce Invocation
+id=394072
+rarity=C
+[/card]
+[card]
+primitive=Jeering Instigator
+id=394077
+rarity=R
+[/card]
+[card]
+primitive=Arashin War Beast
+id=394067
+rarity=U
+[/card]
+[card]
+primitive=Formless Nurturing
+id=394073
+rarity=C
+[/card]
+[card]
+primitive=Dragonscale Boon
+id=394071
+rarity=C
+[/card]
+[card]
+primitive=Wildcall
+id=394089
+rarity=R
+[/card]
+[card]
+primitive=Hewed Stone Retainers
+id=394076
+rarity=U
+[/card]
+[card]
+primitive=Ugin's Construct
+id=394087
+rarity=U
+[/card]
+[card]
+primitive=Altar of the Brood
+id=394066
+rarity=R
+[/card]
+[card]
+primitive=Briber's Purse
+id=394069
+rarity=U
+[/card]
+[card]
+primitive=Ghostfire Blade
+id=394074
+rarity=R
+[/card]
