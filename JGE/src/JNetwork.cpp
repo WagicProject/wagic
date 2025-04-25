@@ -42,7 +42,7 @@ bool JNetwork::isConnected(){
 
 void JNetwork::getServerIp(string& aString)
 {
-#ifdef WIN32
+#if (defined WIN32) && (!defined __GNUG__)
     char ac[80];
     if (gethostname(ac, sizeof(ac)) == SOCKET_ERROR) {
         DebugTrace("Error " << WSAGetLastError() <<

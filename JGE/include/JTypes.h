@@ -112,6 +112,7 @@ enum {
 #endif // CONSOLE_CONFIG
 
 #if (defined WIN32) && (!defined LINUX)
+	#define WIN32_LEAN_AND_MEAN
 	#include <windows.h>
 #endif
 #if defined(LINUX) && (!defined WIN32) || defined(IOS) || defined (ANDROID)

@@ -42,9 +42,9 @@ private:
   // convert the socket into non-blocking state
   bool SetNonBlocking(int sock);
   // socket handle
-#ifdef WIN32
+#if (defined WIN32) && (!defined __GNUG__)
   SOCKET mfd;
-#elif LINUX || PSP
+#elif LINUX || PSP || __GNUG__
   int mfd;
 #endif
 };

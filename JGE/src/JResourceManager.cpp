@@ -16,7 +16,7 @@
 #include "../include/JLBFont.h"
 #include "tinyxml.h"
 
-#if defined (_DEBUG) && defined (WIN32) && (!defined LINUX)
+#if defined (_DEBUG) && defined (WIN32) && (!defined LINUX) && (!defined __GNUG__)
 #include "crtdbg.h"
 #define NEW new(_NORMAL_BLOCK, __FILE__, __LINE__)
 #else

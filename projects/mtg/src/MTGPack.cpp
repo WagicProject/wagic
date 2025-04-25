@@ -10,6 +10,7 @@
 #include "DeckDataWrapper.h"
 #include "MTGPack.h"
 #include "tinyxml.h"
+#include <random>
 
 MTGPack MTGPacks::defaultBooster;
 
@@ -47,9 +48,13 @@ int MTGPackSlot::add(WSrcCards * ocean, MTGDeck *to, int carryover)
     if (!myPool)
         myPool = ocean;
 
+    std::random_device rd;
+    std::mt19937 g(rd());
+
     for (int i = 0; i < amt; i++)
     {
-        std::random_shuffle(entries.begin(), entries.end());
+        //std::random_shuffle(entries.begin(), entries.end());
+        std::shuffle(entries.begin(), entries.end(), g);
         size_t pos = 0;
         while (pos < entries.size() && entries[pos]->addCard(myPool, to))
             pos++;

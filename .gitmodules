@@ -7,3 +7,6 @@
 [submodule "docs/wiki"]
 	path = docs/wiki
 	url = https://github.com/WagicProject/wagic.wiki
+[submodule "thirdparty/curl"]
+	path = thirdparty/curl
+	url = https://github.com/curl/curl.git

@@ -16,6 +16,8 @@
 #include "ModRules.h"
 #include "GameApp.h"
 
+#include <random>
+
 #ifdef TESTSUITE
 #include "TestSuiteAI.h"
 #endif
@@ -2258,7 +2260,10 @@ std::string Tournament::exportTournamentDescription()
 }
 
 void Tournament::enableTournamantMode(int tournamentMode,int player)
-{
+{                    
+    std::random_device rd;
+    std::mt19937 g(rd());
+
     if (mTournamentMode!=tournamentMode && tournamentMode>0)
     {
 
@@ -2302,9 +2307,9 @@ void Tournament::enableTournamantMode(int tournamentMode,int player)
                     //shuffle remaining decks
                     // human player is always on first place
                     if (player>0)
-                        std::random_shuffle ( TournamentsDecks.begin()+1, TournamentsDecks.end() );
+                        std::shuffle ( TournamentsDecks.begin()+1, TournamentsDecks.end(), g );
                     else
-                         std::random_shuffle ( TournamentsDecks.begin(), TournamentsDecks.end() );
+                         std::shuffle ( TournamentsDecks.begin(), TournamentsDecks.end(), g );
                     Deck[0]=TournamentsDecks[0];
                     Deck[1]=TournamentsDecks[1];
                 }
@@ -2322,7 +2327,7 @@ void Tournament::enableTournamantMode(int tournamentMode,int player)
                     for (unsigned int i=0;i<nmbDecks;i++)
                         TournamentsDecks.push_back(TDeck(i+1,PLAYER_TYPE_CPU));
                     //shuffle remaining decks
-                    std::random_shuffle ( TournamentsDecks.begin(), TournamentsDecks.end() );
+                    std::shuffle ( TournamentsDecks.begin(), TournamentsDecks.end(), g );
                     Deck[0]=TournamentsDecks[0];
                     Deck[1]=TournamentsDecks[1];
                 }

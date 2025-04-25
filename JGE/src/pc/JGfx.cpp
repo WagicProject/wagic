@@ -35,7 +35,7 @@ extern "C" {
 #include "../../include/JFileSystem.h"
 #include "../../include/JAssert.h"
 
-#if (defined WIN32) && (!defined QT_CONFIG)
+#if (defined WIN32) && (!defined QT_CONFIG) && (!defined SDL_CONFIG)
 #ifndef __attribute__
 #define __attribute__((a))
 #endif
@@ -1665,7 +1665,7 @@ static void jpeg_mem_src(j_decompress_ptr cinfo, byte *mem, int len)
     cinfo->src->resync_to_restart = jpeg_resync_to_restart;
     cinfo->src->term_source = jpg_null;
     cinfo->src->bytes_in_buffer = len;
-    cinfo->src->next_input_byte = mem;
+    cinfo->src->next_input_byte = (const JOCTET*)mem;
 }
 
 /*
@@ -1702,7 +1702,7 @@ void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode
     cinfo.err = jpeg_std_error(&jerr);
     jpeg_create_decompress(&cinfo);
 
-    jpeg_mem_src(&cinfo, rawdata, rawsize);
+    jpeg_mem_src(&cinfo, (byte*)rawdata, rawsize);
 
     // Process JPEG header
     jpeg_read_header(&cinfo, true);
@@ -1740,7 +1740,7 @@ void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode
     // Pass sizes to output
 
     // Allocate Scanline buffer
-    scanline = (byte *)malloc(cinfo.output_width * 3);
+    scanline = (BYTE *)malloc(cinfo.output_width * 3);
     if(!scanline)
     {
         ////		ri.Con_Printf(PRINT_ALL, "Insufficient RAM for JPEG scanline buffer\n");
