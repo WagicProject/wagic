@@ -4142,7 +4142,6 @@ int AIPlayerBaka::chooseBlockers()
         return 0;
 
     map<MTGCardInstance*, int> opponentsToughness;
-    int opponentForce = getCreaturesInfo(opponent(), INFO_CREATURESPOWER);
 
     //Initialize the list of opponent's attacking cards toughness
     CardDescriptor cdAttackers;
