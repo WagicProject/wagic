@@ -227,7 +227,7 @@ void Credits::compute(GameObserver* g, GameApp * _app)
 
         if (p1->game->hand->nb_cards == 7)
         {
-            CreditBonus * b = NEW CreditBonus(77, _("'Seven-Tail Mentor' Bonus"));
+            CreditBonus * b = NEW CreditBonus(77, _("'Library of Alexandria' Bonus"));
             bonus.push_back(b);
         }
 

@@ -4075,13 +4075,6 @@ bool AIPlayerBaka::shouldAIForceAttack(MTGCardInstance* card, bool globalAttack)
     bool oppHasBlackOrArtifact = false;
     bool oppHasMatchingColorOrArtifact = false;
 
-    // Flags for landwalk checks
-    bool oppHasSwamp = opponent()->game->inPlay->hasType("Swamp");
-    bool oppHasIsland = opponent()->game->inPlay->hasType("Island");
-    bool oppHasForest = opponent()->game->inPlay->hasType("Forest");
-    bool oppHasMountain = opponent()->game->inPlay->hasType("Mountain");
-    bool oppHasPlains = opponent()->game->inPlay->hasType("Plains");
-
     MTGCardInstance* oppCard = NULL;
     CardDescriptor desc;
     desc.init();
@@ -4116,11 +4109,11 @@ bool AIPlayerBaka::shouldAIForceAttack(MTGCardInstance* card, bool globalAttack)
         return true;
 
     // Landwalk abilities
-    if ((card->has(Constants::SWAMPWALK) && oppHasSwamp) ||
-        (card->has(Constants::ISLANDWALK) && oppHasIsland) ||
-        (card->has(Constants::FORESTWALK) && oppHasForest) ||
-        (card->has(Constants::MOUNTAINWALK) && oppHasMountain) ||
-        (card->has(Constants::PLAINSWALK) && oppHasPlains))
+    if ((card->has(Constants::SWAMPWALK) && opponent()->game->inPlay->hasType("Swamp")) ||
+        (card->has(Constants::ISLANDWALK) && opponent()->game->inPlay->hasType("Island")) ||
+        (card->has(Constants::FORESTWALK) && opponent()->game->inPlay->hasType("Forest")) ||
+        (card->has(Constants::MOUNTAINWALK) && opponent()->game->inPlay->hasType("Mountain")) ||
+        (card->has(Constants::PLAINSWALK) && opponent()->game->inPlay->hasType("Plains")))
         return true;
 
     return false;
@@ -4147,14 +4140,17 @@ int AIPlayerBaka::chooseBlockers()
     //Should not block during my own turn...
     if (observer->currentPlayer == this)
         return 0;
-    map<MTGCardInstance *, int> opponentsToughness;
+
+    map<MTGCardInstance*, int> opponentsToughness;
     int opponentForce = getCreaturesInfo(opponent(), INFO_CREATURESPOWER);
 
     //Initialize the list of opponent's attacking cards toughness
     CardDescriptor cdAttackers;
     cdAttackers.init();
     cdAttackers.setType("Creature");
-    MTGCardInstance * card = NULL;
+    MTGCardInstance* card = NULL;
+
+    // Gather all attacking creatures and store their toughness
     while ((card = cdAttackers.nextmatch(opponent()->game->inPlay, card)))
     {
         if (card->isAttacker())
@@ -4168,11 +4164,12 @@ int AIPlayerBaka::chooseBlockers()
     cd.unsecureSetTapped(-1);
     card = NULL;
 
-    // We first try to block the major threats, those that are marked in the Top 3 of our stats
+    // First pass: auto-block top 3 threats if can be killed
     while ((card = cd.nextmatch(game->inPlay, card)))
     {
-        if(hints && hints->HintSaysDontBlock(observer,card))
+        if (hints && hints->HintSaysDontBlock(observer, card))
             continue;
+
         observer->cardClick(card, MTGAbility::MTG_BLOCK_RULE);
         int set = 0;
         while (!set)
@@ -4183,8 +4180,8 @@ int AIPlayerBaka::chooseBlockers()
             }
             else
             {
-                MTGCardInstance * attacker = card->defenser;
-                map<MTGCardInstance *, int>::iterator it = opponentsToughness.find(attacker);
+                MTGCardInstance* attacker = card->defenser;
+                map<MTGCardInstance*, int>::iterator it = opponentsToughness.find(attacker);
                 if (it == opponentsToughness.end())
                 {
                     opponentsToughness[attacker] = attacker->toughness;
@@ -4199,7 +4196,7 @@ int AIPlayerBaka::chooseBlockers()
                 {
                     if (card->blockCost)
                     {
-                        MTGAbility * a = observer->mLayers->actionLayer()->getAbility(MTGAbility::BLOCK_COST);
+                        MTGAbility* a = observer->mLayers->actionLayer()->getAbility(MTGAbility::BLOCK_COST);
                         doAbility(a, card);
                         observer->cardClick(card, MTGAbility::BLOCK_COST);
                     }
@@ -4209,13 +4206,13 @@ int AIPlayerBaka::chooseBlockers()
         }
     }
 
-    //If blocking one of the major threats is not enough to kill it,
-    // We change strategy, first we unassign its blockers that where assigned above
+    // Second pass: unassign if attacker is not expected to die
     card = NULL;
     while ((card = cd.nextmatch(game->inPlay, card)))
     {
-        if(hints && hints->HintSaysDontBlock(observer,card))
+        if (hints && hints->HintSaysDontBlock(observer, card))
             continue;
+
         if (card->defenser && opponentsToughness[card->defenser] > 0)
         {
             while (card->defenser)
@@ -4225,48 +4222,141 @@ int AIPlayerBaka::chooseBlockers()
         }
     }
 
-    //Assign the "free" potential blockers to attacking creatures that are not blocked enough
+    // Third pass: intelligent blocking
     card = NULL;
     while ((card = cd.nextmatch(game->inPlay, card)))
     {
-        if(hints && hints->HintSaysDontBlock(observer,card))
+        if (hints && hints->HintSaysDontBlock(observer, card))
             continue;
-        if (!card->defenser)
+        if (card->defenser)
+            continue;
+
+        MTGCardInstance* bestAttacker = NULL;
+        int bestScore = -1;
+
+        for (map<MTGCardInstance*, int>::iterator it = opponentsToughness.begin(); it != opponentsToughness.end(); ++it)
         {
-            if (card->blockCost)
+            MTGCardInstance* attacker = it->first;
+            if (!attacker)
+                continue;
+
+            int currentBlockers = (int)attacker->blockers.size();
+            int totalAssignedDamage = 0;
+
+            list<MTGCardInstance*>::iterator itb;
+            for (itb = attacker->blockers.begin(); itb != attacker->blockers.end(); ++itb)
             {
-                MTGAbility * a = observer->mLayers->actionLayer()->getAbility(MTGAbility::BLOCK_COST);
-                doAbility(a, card);
+                MTGCardInstance* blocker = *itb;
+                if (blocker)
+                    totalAssignedDamage += blocker->power;
             }
-            observer->cardClick(card, MTGAbility::MTG_BLOCK_RULE);
-            int set = 0;
-            while (!set)
+
+            int maxBlockers = 1;
+            if (attacker->basicAbilities[Constants::MENACE]) maxBlockers = 2;
+            if (attacker->basicAbilities[Constants::THREEBLOCKERS]) maxBlockers = 3;
+
+            if (totalAssignedDamage >= attacker->toughness || currentBlockers >= maxBlockers)
+                continue;
+
+            bool canKill = (card->power >= attacker->toughness);
+            bool survives = (card->toughness > attacker->power);
+
+            // Always block if can kill, regardless of survivability or damage
+            if (canKill)
             {
-                if (!card->defenser)
+                int score = attacker->power * 2 + attacker->toughness;
+                if (getStats() && getStats()->isInTop(attacker, 3, false))
+                    score += 100;
+
+                if (score > bestScore)
                 {
-                    set = 1;
+                    bestScore = score;
+                    bestAttacker = attacker;
                 }
-                else
+            }
+            // Block even if can't kill, but we survive and reduce damage
+            else if (survives && attacker->power < life)
+            {
+                int score = attacker->power;
+                if (getStats() && getStats()->isInTop(attacker, 3, false))
+                    score += 50;
+
+                if (score > bestScore)
                 {
-                    MTGCardInstance * attacker = card->defenser;
-                    if (opponentsToughness[attacker] <= 0 || (card->toughness <= attacker->power && opponentForce * 2 < life && !canFirstStrikeKill(card, attacker)) || attacker->nbOpponents() > 1)
+                    bestScore = score;
+                    bestAttacker = attacker;
+                }
+            }
+            // Block to prevent lethal damage, even if we die
+            else if (!survives && attacker->power >= life)
+            {
+                int score = attacker->power;
+                if (getStats() && getStats()->isInTop(attacker, 3, false))
+                    score += 75;
+
+                if (score > bestScore)
+                {
+                    bestScore = score;
+                    bestAttacker = attacker;
+                }
+            }
+        }
+
+        if (bestAttacker)
+        {
+            int requiredBlockers = 1;
+            if (bestAttacker->basicAbilities[Constants::MENACE]) requiredBlockers = 2;
+            if (bestAttacker->basicAbilities[Constants::THREEBLOCKERS]) requiredBlockers = 3;
+
+            int currentBlockers = (int)bestAttacker->blockers.size();
+            if (currentBlockers >= requiredBlockers)
+                continue;
+
+            vector<MTGCardInstance*> extraBlockers;
+            if (requiredBlockers > 1)
+            {
+                CardDescriptor cd2;
+                cd2.init();
+                cd2.setType("Creature");
+                cd2.unsecureSetTapped(-1);
+                MTGCardInstance* c2 = NULL;
+                while ((c2 = cd2.nextmatch(game->inPlay, c2)))
+                {
+                    if (c2 == card || c2->defenser || (hints && hints->HintSaysDontBlock(observer, c2)))
+                        continue;
+
+                    int combinedPower = c2->power + card->power;
+                    bool combinedCanKill = (combinedPower >= bestAttacker->toughness);
+
+                    if (combinedCanKill)
                     {
-                        if (card->blockCost)
-                        {
-                            MTGAbility * a = observer->mLayers->actionLayer()->getAbility(MTGAbility::BLOCK_COST);
-                            doAbility(a, card);
-                        }
-                        if((!attacker->basicAbilities[Constants::MENACE] && !attacker->basicAbilities[Constants::THREEBLOCKERS]) || 
-                            (attacker->basicAbilities[Constants::MENACE] && attacker->blockers.size() > 2) ||
-                            (attacker->basicAbilities[Constants::THREEBLOCKERS] && attacker->blockers.size() > 3))
-                            observer->cardClick(card, MTGAbility::MTG_BLOCK_RULE);
-                        else
-                            set = 1;
+                        extraBlockers.push_back(c2);
+                        if ((int)extraBlockers.size() + currentBlockers + 1 >= requiredBlockers)
+                            break;
                     }
-                    else
+                }
+            }
+
+            if (currentBlockers + (int)extraBlockers.size() + 1 >= requiredBlockers)
+            {
+                if (card->blockCost)
+                {
+                    MTGAbility* a = observer->mLayers->actionLayer()->getAbility(MTGAbility::BLOCK_COST);
+                    doAbility(a, card);
+                }
+                observer->cardClick(card, MTGAbility::MTG_BLOCK_RULE);
+                opponentsToughness[bestAttacker] -= card->power;
+
+                for (size_t i = 0; i < extraBlockers.size(); ++i)
+                {
+                    MTGCardInstance* extra = extraBlockers[i];
+                    if (extra->blockCost)
                     {
-                        set = 1;
+                        MTGAbility* a = observer->mLayers->actionLayer()->getAbility(MTGAbility::BLOCK_COST);
+                        doAbility(a, extra);
                     }
+                    observer->cardClick(extra, MTGAbility::MTG_BLOCK_RULE);
+                    opponentsToughness[bestAttacker] -= extra->power;
                 }
             }
         }

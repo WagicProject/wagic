@@ -375,13 +375,13 @@
 #AUTO_DEFINE _ZOMBIETOKEN_ create(zombie:creature zombie:2/2:black)
 
 # Clue Token
-#AUTO_DEFINE _CLUE_ token(Clue,Clue Artifact,0/0) and!( transforms((,newability[{2}{S}:draw:1])) forever )!
+#AUTO_DEFINE _CLUE_ token(Clue^Clue Artifact^0/0) and!( transforms((,newability[{2}{S}:draw:1])) forever )!
 
 # Food Token
-#AUTO_DEFINE _FOOD_ token(Food,Food Artifact,0/0) and!( transforms((,newability[{2}{T}{S}:life:3])) forever )!
+#AUTO_DEFINE _FOOD_ token(Food^Food Artifact^0/0) and!( transforms((,newability[{2}{T}{S}:life:3])) forever )!
 
 # Treasure Token
-#AUTO_DEFINE _TREASURE_ token(Treasure,Treasure Artifact,0/0) and!( transforms((,newability[{T}{S}:Add{W}],newability[{T}{S}:Add{U}],newability[{T}{S}:Add{B}],newability[{T}{S}:Add{R}],newability[{T}{S}:Add{G}])) forever )!
+#AUTO_DEFINE _TREASURE_ token(Treasure^Treasure Artifact^0/0) and!( transforms((,newability[{T}{S}:Add{W}],newability[{T}{S}:Add{U}],newability[{T}{S}:Add{B}],newability[{T}{S}:Add{R}],newability[{T}{S}:Add{G}])) forever )!
 
 # Vehicle Token
-#AUTO_DEFINE _VEHICLE_ token(Vehicle,Artifact Vehicle,3/2) and!( transforms((,newability[{crew(other creature[power>=1]|myBattlefield)}:name(crew 1 [1 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=1]|mybattlefield)~morethan~0,compare(crewtotalpower)~morethan~0}])) forever )!
+#AUTO_DEFINE _VEHICLE_ token(Vehicle^Artifact Vehicle^3/2) and!( transforms((,newability[{crew(other creature[power>=1]|myBattlefield)}:name(crew 1 [1 creature]) becomes(Artifact Creature) ueot restriction{type(other creature[-tapped;power>=1]|mybattlefield)~morethan~0,compare(crewtotalpower)~morethan~0}])) forever )!

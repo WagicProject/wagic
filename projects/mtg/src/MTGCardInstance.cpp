@@ -347,12 +347,17 @@ void MTGCardInstance::initMTGCI()
     data = this; //an MTGCardInstance point to itself for data, allows to update it without killing the underlying database item
 
     if (observer && basicAbilities[(int)Constants::CHANGELING])
-    {//if the card is a changeling, it gains all creature subtypes
+    {
+        //if the card is a changeling, it gains all creature subtypes except "Equipment"
         vector<string> values = MTGAllCards::getCreatureValuesById();
         for (size_t i = 0; i < values.size(); ++i)
         {
-            //Don' want to send any event to the gameObserver inside of initMCGI, so calling the parent setSubtype method instead of mine
-            CardPrimitive::setSubtype(values[i].c_str());
+            const string& subtype = values[i];
+            if (subtype == "Clue" || subtype == "Equipment" || subtype == "Food" || subtype == "Treasure")
+                continue;
+
+            // Don't send any event to the gameObserver inside of initMCGI, so calling the parent setSubtype method instead
+            CardPrimitive::setSubtype(subtype.c_str());
         }
     }
 
@@ -1147,8 +1152,8 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent)
         return 0;
     if (opponent->basicAbilities[(int)Constants::FEAR] && !(this->hasType(Subtypes::TYPE_ARTIFACT) || this->hasColor(Constants::MTG_COLOR_BLACK)))
         return 0;
-    if (opponent->controller()->game->battlefield->hasAbility(Constants::LURE) && !opponent->has(Constants::LURE))
-        return 0;
+    //if (opponent->controller()->game->battlefield->hasAbility(Constants::LURE) && !opponent->has(Constants::LURE))
+        //return 0; Doesn't consider if the lure creature is attacking
     //intimidate
     if (opponent->basicAbilities[(int)Constants::INTIMIDATE] && !(this->hasType(Subtypes::TYPE_ARTIFACT)))
     {

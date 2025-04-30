@@ -1,6 +1,6 @@
 #Planeswalkers Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-#Sorted this programmatically - Thanks to Vitty85 28-03-2024
+#Sorted this programmatically - Thanks to Vitty85 29-04-2024
 [card]
 name=Abian, Luvion Usurper
 auto=counter(0/0,5,loyalty)
@@ -979,6 +979,18 @@ auto={C(0/0,1,Loyalty)}:name(+1: Target creature gets +3/+3 and flying) 3/3 ueot
 auto={C(0/0,-8,Loyalty)}:name(-8: Emblem: "Permanents becomes indestructible") emblem transforms((,newability[lord(*[artifact;creature;land;enchantment]|mybattlefield) indestructible])) forever dontremove
 text=+1: Put a 1/1 white Soldier creature token onto the battlefield. -- +1: Target creature gets +3/+3 and gains flying until end of turn. -- -8: For the rest of the game, artifacts, creatures, enchantments, and lands you control are indestructible.
 mana={2}{W}{W}
+type=Legendary Planeswalker
+subtype=Elspeth
+[/card]
+[card]
+name=Elspeth, Storm Slayer
+auto=counter(0/0,5,loyalty)
+auto=@tokencreated(*|myBattlefield):name(Double the token) all(trigger) clone options(notrigger)
+auto={C(0/0,+1,Loyalty)}:create(soldier:creature soldier:1/1:white)
+auto={C(0/0,0,Loyalty)}:all(creature|myBattlefield) counter(1/1) && flying uynt
+auto={C(0/0,-3,Loyalty)}:destroy target(creature[manacost>=3]|opponentBattlefield)
+text=If one or more tokens would be created under your control, twice that many of those tokens are created instead. -- [+1]: Create a 1/1 white Soldier creature token. -- [0]: Put a +1/+1 counter on each creature you control. Those creatures gain flying until your next turn. -- [-3]: Destroy target creature an opponent controls with mana value 3 or greater.
+mana={3}{W}{W}
 type=Legendary Planeswalker
 subtype=Elspeth
 [/card]
@@ -3654,6 +3666,19 @@ type=Legendary Planeswalker
 subtype=Tyvar
 [/card]
 [card]
+name=Ugin, Eye of the Storms
+auto=counter(0/0,7,loyalty)
+autostack=may moveTo(exile) target(*[white;blue;black;red;green])
+auto=@movedTo(*[colorless]|mystack):may moveTo(exile) target(*[white;blue;black;red;green])
+auto={C(0/0,+2,Loyalty)}:life:3 && draw:1
+auto={C(0/0,0,Loyalty)}:Add{C}{C}{C}
+auto={C(0/0,-11,Loyalty)}:target(<anyAmount>*[colorless]|myLibrary) moveTo(exile) and!( transforms((,newability[zerocast],newability[canplayfromexile])) ueot )!
+text=When you cast this spell, exile up to one target permanent that's one or more colors. -- Whenever you cast a colorless spell, exile up to one target permanent that's one or more colors. -- [+2]: You gain 3 life and draw a card. -- [0]: Add {C}{C}{C}. -- [-11]: Search your library for any number of colorless nonland cards, exile them, then shuffle. Until end of turn, you may cast those cards without paying their mana costs.
+mana={7}
+type=Legendary Planeswalker
+subtype=Ugin
+[/card]
+[card]
 name=Ugin, the Ineffable
 auto=counter(0/0,4,loyalty)
 auto=lord(*[colorless]|mycastingzone) altercost(colorless,-2)
@@ -3720,7 +3745,7 @@ subtype=Venser
 name=Vivien Reid
 auto=counter(0/0,5,loyalty)
 aicode=activate moveto(myhand) target(*[creature;land;zpos<=4]|mylibrary)
-auto={C(0/0,+1,Loyalty)}:name(+1: Look four and put creature or land in hand) name(look) reveal:4 optionone name(Get a creature or land) target(<1>*[creature;land]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) target(<4>*|reveal) bottomoflibrary optiontwoend revealend
+auto={C(0/0,+1,Loyalty)}:name(+1: Look four and put creature or land in hand) name(look) reveal:4 optionone name(Get a creature or land) target(<1>*[creature;land]|reveal) moveto(myhand) optiononeend optiontwo name(put on bottom) all(*|reveal) bottomoflibrary optiontwoend revealend
 auto={C(0/0,-3,Loyalty)}:name(-3: Destroy target artifact) destroy target(artifact)
 auto={C(0/0,-3,Loyalty)}:name(-3: Destroy target enchantment) destroy target(enchantment)
 auto={C(0/0,-3,Loyalty)}:name(-3: Destroy target creature with flying) destroy target(creature[flying])
