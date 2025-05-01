@@ -4242,7 +4242,7 @@ int AIPlayerBaka::chooseBlockers()
             int currentBlockers = (int)attacker->blockers.size();
             int totalAssignedDamage = 0;
 
-            list<MTGCardInstance*>::iterator itb;
+            std::list<MTGCardInstance*>::iterator itb;
             for (itb = attacker->blockers.begin(); itb != attacker->blockers.end(); ++itb)
             {
                 MTGCardInstance* blocker = *itb;
@@ -4308,7 +4308,17 @@ int AIPlayerBaka::chooseBlockers()
             if (bestAttacker->basicAbilities[Constants::THREEBLOCKERS]) requiredBlockers = 3;
 
             int currentBlockers = (int)bestAttacker->blockers.size();
-            if (currentBlockers >= requiredBlockers)
+            int currentBlockPower = 0;
+
+            std::list<MTGCardInstance*>::iterator itb;
+            for (itb = bestAttacker->blockers.begin(); itb != bestAttacker->blockers.end(); ++itb)
+            {
+                MTGCardInstance* blocker = *itb;
+                if (blocker)
+                    currentBlockPower += blocker->power;
+            }
+
+            if (currentBlockers >= requiredBlockers || currentBlockPower >= bestAttacker->toughness)
                 continue;
 
             vector<MTGCardInstance*> extraBlockers;
