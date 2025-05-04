@@ -14,7 +14,7 @@ Mod by: Vitty85
 /* Wagic versions */
 #define WAGIC_VERSION_MAJOR     0
 #define WAGIC_VERSION_MEDIUM    25
-#define WAGIC_VERSION_MINOR     3
+#define WAGIC_VERSION_MINOR     5
 
 #define VERSION_DOT(a, b, c) a ##.## b ##.## c
 #define VERSION_WITHOUT_DOT(a, b, c) a ## b ## c
