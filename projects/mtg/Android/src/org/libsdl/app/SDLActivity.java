@@ -1115,24 +1115,49 @@ public class SDLActivity extends Activity implements OnKeyListener {
     }
 
     // Setup
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        //Log.d(TAG, "onCreate()");
-        super.onCreate(savedInstanceState);
+	private void enterImmersiveMode() {
+		final View decorView = getWindow().getDecorView();
+		decorView.setSystemUiVisibility(
+			View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+			| View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+			| View.SYSTEM_UI_FLAG_FULLSCREEN
+			| View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+			| View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+			| View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+		);
+	}
+	
+	@Override
+		public void onWindowFocusChanged(boolean hasFocus) {
+			super.onWindowFocusChanged(hasFocus);
+			if (hasFocus) {
+				enterImmersiveMode();
+			}
+		}
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll()
-                                                                              .build();
-        StrictMode.setThreadPolicy(policy);
-        setContentView(R.layout.main);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        // So we can call stuff from static callbacks
-        mSingleton = this;
-        mContext = this.getApplicationContext();
-        RES_FILENAME = getResourceName();
-        StorageOptions.determineStorageOptions(mContext);
-        checkStorageLocationPreference();
-        prepareOptionMenu(null);
-    }
+	
+    @Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+		StrictMode.setThreadPolicy(policy);
+
+		setContentView(R.layout.main);
+
+		// Enable immersive mode
+		enterImmersiveMode();
+
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+		// So we can call stuff from static callbacks
+		mSingleton = this;
+		mContext = this.getApplicationContext();
+		RES_FILENAME = getResourceName();
+		StorageOptions.determineStorageOptions(mContext);
+		checkStorageLocationPreference();
+		prepareOptionMenu(null);
+}
 
     public void forceResDownload(final File oldRes) {
         AlertDialog.Builder resChooser = new AlertDialog.Builder(this);
