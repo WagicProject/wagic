@@ -307,16 +307,18 @@ public class SDLActivity extends Activity implements OnKeyListener {
         importDeck.setTitle("Choose Deck to Import:");
 
         File root = new File(System.getenv("EXTERNAL_STORAGE") + "/Download");
-        File[] files = root.listFiles();
+	File[] files = root.listFiles();
 
-        for (File f : files) {
-            if (!myresult.contains(f.toString()) &&
-                    (f.toString().contains(".txt") ||
-                    f.toString().contains(".dck") ||
-                    f.toString().contains(".dec"))) {
-                myresult.add(f.toString());
-            }
-        }
+        if (files != null) {
+			for (File f : files) {
+				if (!myresult.contains(f.toString()) &&
+						(f.toString().contains(".txt") ||
+						 f.toString().contains(".dck") ||
+						 f.toString().contains(".dec"))) {
+					myresult.add(f.toString());
+				}
+			}
+		}  
 
         //get first item?
         if (!myresult.isEmpty()) {
