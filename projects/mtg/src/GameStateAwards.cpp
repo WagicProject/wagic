@@ -97,6 +97,12 @@ void GameStateAwards::Start()
 
     wgh = NEW WGuiHeader("");
     listview->Add(wgh);
+ 
+    #if !defined(PSP)
+	   WGuiItem* backLabel = NEW WGuiItem("Back to Main Menu");
+	   WGuiButton* backBtn = NEW WGuiButton(backLabel, EXIT_AWARDS_MENU, GameStateAwardsConst::kBackToMainMenuID, this);
+	   listview->Add(backBtn);
+	   #endif
 
     int locked = 0;
 
