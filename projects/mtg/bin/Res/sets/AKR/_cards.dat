@@ -3,1805 +3,1700 @@ author=Wagic Team
 name=Amonkhet Remastered
 orderindex=ONL-B.AKR
 year=2020-08-13
-total=360
+total=364
 [/meta]
 [card]
-primitive=Cat
-id=-295178
-rarity=T
-[/card]
-[card]
-primitive=Warrior
-id=-295116
-rarity=T
-[/card]
-[card]
-primitive=Warrior
-id=-295103
-rarity=T
-[/card]
-[card]
-primitive=Insect
-id=-295082
-rarity=T
-[/card]
-[card]
-primitive=Snake
-id=-295077
-rarity=T
-[/card]
-[card]
-primitive=Beast
-id=-295062
-rarity=T
-[/card]
-[card]
-primitive=Wurm
-id=-295054
-rarity=T
-[/card]
-[card]
-primitive=Cat
-id=-295047
-rarity=T
-[/card]
-[card]
-primitive=Hippo
-id=-295041
-rarity=T
-[/card]
-[card]
-primitive=Zombie
-id=-295036
-rarity=T
-[/card]
-[card]
-primitive=Insect
-id=-295035
-rarity=T
-[/card]
-[card]
-primitive=Insect
-id=-294956
-rarity=T
-[/card]
-[card]
-primitive=Zombie
-id=-294952
-rarity=T
-[/card]
-[card]
-primitive=Zombie
-id=-294950
-rarity=T
-[/card]
-[card]
-primitive=Zombie
-id=-294940
-rarity=T
-[/card]
-[card]
-primitive=Drake
-id=-294898
-rarity=T
-[/card]
-[card]
-primitive=Warrior
-id=-294878
-rarity=T
-[/card]
-[card]
-primitive=Warrior
-id=-294876
-rarity=T
-[/card]
-[card]
-primitive=Warrior
-id=-294866
-rarity=T
-[/card]
-[card]
-primitive=Horse
-id=-294850
-rarity=T
-[/card]
-[card]
-primitive=Warrior
-id=-294847
-rarity=T
-[/card]
-[card]
 primitive=Angel of Sanctions
-id=294840
+id=547468
 rarity=M
 [/card]
 [card]
 primitive=Anointed Procession
-id=294841
+id=547469
 rarity=R
 [/card]
 [card]
 primitive=Anointer Priest
-id=294842
+id=547470
 rarity=C
 [/card]
 [card]
 primitive=Approach of the Second Sun
-id=294843
+id=547471
 rarity=R
 [/card]
 [card]
 primitive=Aven Mindcensor
-id=294844
+id=547472
 rarity=R
 [/card]
 [card]
 primitive=Aven of Enduring Hope
-id=294845
+id=547473
 rarity=C
 [/card]
 [card]
 primitive=Binding Mummy
-id=294846
+id=547474
 rarity=C
 [/card]
 [card]
 primitive=Cartouche of Solidarity
-id=294847
+id=547475
 rarity=C
 [/card]
 [card]
 primitive=Cast Out
-id=294848
+id=547476
 rarity=U
 [/card]
 [card]
 primitive=Compulsory Rest
-id=294849
+id=547477
 rarity=C
 [/card]
 [card]
 primitive=Crested Sunmare
-id=294850
+id=547478
 rarity=M
 [/card]
 [card]
 primitive=Dauntless Aven
-id=294851
+id=547479
 rarity=C
 [/card]
 [card]
 primitive=Desert's Hold
-id=294852
+id=547480
 rarity=U
 [/card]
 [card]
 primitive=Disposal Mummy
-id=294853
+id=547481
 rarity=C
 [/card]
 [card]
 primitive=Djeru's Resolve
-id=294854
+id=547482
 rarity=C
 [/card]
 [card]
 primitive=Dusk // Dawn
-id=294855
+id=547483
 rarity=R
 [/card]
 [card]
 primitive=Fan Bearer
-id=294856
+id=547484
 rarity=C
 [/card]
 [card]
 primitive=Forsake the Worldly
-id=294857
+id=547485
 rarity=C
 [/card]
 [card]
 primitive=Gideon of the Trials
-id=294858
+id=547486
 rarity=M
 [/card]
 [card]
 primitive=Gideon's Intervention
-id=294859
+id=547487
 rarity=R
 [/card]
 [card]
 primitive=Glory-Bound Initiate
-id=294860
+id=547488
 rarity=R
 [/card]
 [card]
 primitive=Gust Walker
-id=294861
+id=547489
 rarity=C
 [/card]
 [card]
 primitive=Hour of Revelation
-id=294862
+id=547490
 rarity=R
 [/card]
 [card]
 primitive=Impeccable Timing
-id=294863
+id=547491
 rarity=C
 [/card]
 [card]
 primitive=In Oketra's Name
-id=294864
+id=547492
 rarity=C
 [/card]
 [card]
 primitive=Mighty Leap
-id=294865
+id=547493
 rarity=C
 [/card]
 [card]
 primitive=Oketra the True
-id=294866
+id=547494
 rarity=M
 [/card]
 [card]
 primitive=Oketra's Attendant
-id=294867
+id=547495
 rarity=U
 [/card]
 [card]
 primitive=Oketra's Avenger
-id=294868
+id=547496
 rarity=C
 [/card]
 [card]
 primitive=Overwhelming Splendor
-id=294869
+id=547497
 rarity=M
 [/card]
 [card]
 primitive=Protection of the Hekma
-id=294870
+id=547498
 rarity=U
 [/card]
 [card]
 primitive=Renewed Faith
-id=294871
+id=547499
 rarity=U
 [/card]
 [card]
 primitive=Rest in Peace
-id=294872
+id=547500
 rarity=R
 [/card]
 [card]
 primitive=Sacred Cat
-id=294873
+id=547501
 rarity=C
 [/card]
 [card]
 primitive=Solemnity
-id=294874
+id=547502
 rarity=R
 [/card]
 [card]
 primitive=Solitary Camel
-id=294875
+id=547503
 rarity=C
 [/card]
 [card]
 primitive=Steward of Solidarity
-id=294876
+id=547504
 rarity=U
 [/card]
 [card]
 primitive=Sunscourge Champion
-id=294877
+id=547505
 rarity=U
 [/card]
 [card]
 primitive=Supply Caravan
-id=294878
+id=547506
 rarity=C
 [/card]
 [card]
 primitive=Tah-Crop Elite
-id=294879
+id=547507
 rarity=C
 [/card]
 [card]
 primitive=Those Who Serve
-id=294880
+id=547508
 rarity=C
 [/card]
 [card]
 primitive=Trial of Solidarity
-id=294881
+id=547509
 rarity=U
 [/card]
 [card]
 primitive=Unconventional Tactics
-id=294882
+id=547510
 rarity=U
 [/card]
 [card]
 primitive=Vizier of Deferment
-id=294883
+id=547511
 rarity=U
 [/card]
 [card]
 primitive=Vizier of Remedies
-id=294884
+id=547512
 rarity=U
 [/card]
 [card]
 primitive=Wrath of God
-id=294885
+id=547513
 rarity=R
 [/card]
 [card]
 primitive=Aerial Guide
-id=294886
+id=547514
 rarity=C
 [/card]
 [card]
 primitive=Ancient Crab
-id=294887
+id=547515
 rarity=C
 [/card]
 [card]
 primitive=As Foretold
-id=294888
+id=547516
 rarity=M
 [/card]
 [card]
 primitive=Aven Initiate
-id=294889
+id=547517
 rarity=C
 [/card]
 [card]
 primitive=Cartouche of Knowledge
-id=294890
+id=547518
 rarity=C
 [/card]
 [card]
 primitive=Censor
-id=294891
+id=547519
 rarity=U
 [/card]
 [card]
 primitive=Champion of Wits
-id=294892
+id=547520
 rarity=R
 [/card]
 [card]
 primitive=Commit // Memory
-id=294893
+id=547521
 rarity=R
 [/card]
 [card]
 primitive=Compelling Argument
-id=294894
+id=547522
 rarity=C
 [/card]
 [card]
 primitive=Countervailing Winds
-id=294895
+id=547523
 rarity=C
 [/card]
 [card]
 primitive=Cryptic Serpent
-id=294896
+id=547524
 rarity=U
 [/card]
 [card]
 primitive=Curator of Mysteries
-id=294897
+id=547525
 rarity=R
 [/card]
 [card]
 primitive=Drake Haven
-id=294898
+id=547526
 rarity=R
 [/card]
 [card]
 primitive=Essence Scatter
-id=294899
+id=547527
 rarity=C
 [/card]
 [card]
 primitive=Eternal of Harsh Truths
-id=294900
+id=547528
 rarity=U
 [/card]
 [card]
 primitive=Floodwaters
-id=294901
+id=547529
 rarity=C
 [/card]
 [card]
 primitive=Hekma Sentinels
-id=294902
+id=547530
 rarity=C
 [/card]
 [card]
 primitive=Hieroglyphic Illumination
-id=294903
+id=547531
 rarity=C
 [/card]
 [card]
 primitive=Jace, Unraveler of Secrets
-id=294904
+id=547532
 rarity=M
 [/card]
 [card]
 primitive=Kefnet the Mindful
-id=294905
+id=547533
 rarity=M
 [/card]
 [card]
 primitive=Labyrinth Guardian
-id=294906
+id=547534
 rarity=U
 [/card]
 [card]
 primitive=Lay Claim
-id=294907
+id=547535
 rarity=U
 [/card]
 [card]
 primitive=Naga Oracle
-id=294908
+id=547536
 rarity=C
 [/card]
 [card]
 primitive=New Perspectives
-id=294909
+id=547537
 rarity=R
 [/card]
 [card]
 primitive=Nimble Obstructionist
-id=294910
+id=547538
 rarity=R
 [/card]
 [card]
 primitive=Ominous Sphinx
-id=294911
+id=547539
 rarity=U
 [/card]
 [card]
 primitive=Pact of Negation
-id=294912
+id=547540
 rarity=R
 [/card]
 [card]
 primitive=Pull from Tomorrow
-id=294913
+id=547541
 rarity=R
 [/card]
 [card]
 primitive=Riddleform
-id=294914
+id=547542
 rarity=U
 [/card]
 [card]
 primitive=Seeker of Insight
-id=294915
+id=547543
 rarity=C
 [/card]
 [card]
 primitive=Seer of the Last Tomorrow
-id=294916
+id=547544
 rarity=C
 [/card]
 [card]
 primitive=Shimmerscale Drake
-id=294917
+id=547545
 rarity=C
 [/card]
 [card]
 primitive=Slither Blade
-id=294918
+id=547546
 rarity=C
 [/card]
 [card]
 primitive=Spellweaver Eternal
-id=294919
+id=547547
 rarity=C
 [/card]
 [card]
 primitive=Strategic Planning
-id=294920
+id=547548
 rarity=C
 [/card]
 [card]
 primitive=Striped Riverwinder
-id=294921
+id=547549
 rarity=C
 [/card]
 [card]
 primitive=Supreme Will
-id=294922
+id=547550
 rarity=U
 [/card]
 [card]
 primitive=Trial of Knowledge
-id=294923
+id=547551
 rarity=U
 [/card]
 [card]
 primitive=Unesh, Criosphinx Sovereign
-id=294924
+id=547552
 rarity=M
 [/card]
 [card]
 primitive=Unquenchable Thirst
-id=294925
+id=547553
 rarity=C
 [/card]
 [card]
 primitive=Vizier of Many Faces
-id=294926
+id=547554
 rarity=R
 [/card]
 [card]
 primitive=Vizier of the Anointed
-id=294927
+id=547555
 rarity=U
 [/card]
 [card]
 primitive=Vizier of Tumbling Sands
-id=294928
+id=547556
 rarity=U
 [/card]
 [card]
 primitive=Winds of Rebuke
-id=294929
+id=547557
 rarity=C
 [/card]
 [card]
 primitive=Archfiend of Ifnir
-id=294930
+id=547558
 rarity=R
 [/card]
 [card]
 primitive=Baleful Ammit
-id=294931
+id=547559
 rarity=U
 [/card]
 [card]
 primitive=Blighted Bat
-id=294932
+id=547560
 rarity=C
 [/card]
 [card]
 primitive=Bone Picker
-id=294933
+id=547561
 rarity=U
 [/card]
 [card]
 primitive=Bontu the Glorified
-id=294934
+id=547562
 rarity=M
 [/card]
 [card]
 primitive=Bontu's Last Reckoning
-id=294935
+id=547563
 rarity=R
 [/card]
 [card]
 primitive=Cartouche of Ambition
-id=294936
+id=547564
 rarity=C
 [/card]
 [card]
 primitive=Cruel Reality
-id=294937
+id=547565
 rarity=M
 [/card]
 [card]
 primitive=Demonic Pact
-id=294938
+id=547566
 rarity=M
 [/card]
 [card]
 primitive=Dispossess
-id=294939
+id=547567
 rarity=R
 [/card]
 [card]
 primitive=Doomed Dissenter
-id=294940
+id=547568
 rarity=C
 [/card]
 [card]
 primitive=Doomfall
-id=294941
+id=547569
 rarity=U
 [/card]
 [card]
 primitive=Dread Wanderer
-id=294942
+id=547570
 rarity=R
 [/card]
 [card]
 primitive=Dune Beetle
-id=294943
+id=547571
 rarity=C
 [/card]
 [card]
 primitive=Festering Mummy
-id=294944
+id=547572
 rarity=C
 [/card]
 [card]
 primitive=Final Reward
-id=294945
+id=547573
 rarity=C
 [/card]
 [card]
 primitive=Gravedigger
-id=294946
+id=547574
 rarity=U
 [/card]
 [card]
 primitive=Horror of the Broken Lands
-id=294947
+id=547575
 rarity=C
 [/card]
 [card]
 primitive=Khenra Eternal
-id=294948
+id=547576
 rarity=C
 [/card]
 [card]
 primitive=Lethal Sting
-id=294949
+id=547577
 rarity=C
 [/card]
 [card]
 primitive=Liliana, Death's Majesty
-id=294950
+id=547578
 rarity=M
 [/card]
 [card]
 primitive=Liliana's Defeat
-id=294951
+id=547579
 rarity=U
 [/card]
 [card]
 primitive=Liliana's Mastery
-id=294952
+id=547580
 rarity=R
 [/card]
 [card]
 primitive=Lord of the Accursed
-id=294953
+id=547581
 rarity=U
 [/card]
 [card]
 primitive=Marauding Boneslasher
-id=294954
+id=547582
 rarity=C
 [/card]
 [card]
 primitive=Miasmic Mummy
-id=294955
+id=547583
 rarity=C
 [/card]
 [card]
 primitive=Nest of Scarabs
-id=294956
+id=547584
 rarity=U
 [/card]
 [card]
 primitive=Never // Return
-id=294957
+id=547585
 rarity=R
 [/card]
 [card]
 primitive=Pitiless Vizier
-id=294958
+id=547586
 rarity=C
 [/card]
 [card]
 primitive=Razaketh, the Foulblooded
-id=294959
+id=547587
 rarity=M
 [/card]
 [card]
 primitive=Ruthless Sniper
-id=294960
+id=547588
 rarity=U
 [/card]
 [card]
 primitive=Scarab Feast
-id=294961
+id=547589
 rarity=C
 [/card]
 [card]
 primitive=Shadow of the Grave
-id=294962
+id=547590
 rarity=R
 [/card]
 [card]
 primitive=Soulstinger
-id=294963
+id=547591
 rarity=C
 [/card]
 [card]
 primitive=Splendid Agony
-id=294964
+id=547592
 rarity=C
 [/card]
 [card]
 primitive=Supernatural Stamina
-id=294965
+id=547593
 rarity=C
 [/card]
 [card]
 primitive=Thoughtseize
-id=294966
+id=547594
 rarity=R
 [/card]
 [card]
 primitive=Torment of Hailfire
-id=294967
+id=547595
 rarity=R
 [/card]
 [card]
 primitive=Trespasser's Curse
-id=294968
+id=547596
 rarity=C
 [/card]
 [card]
 primitive=Trial of Ambition
-id=294969
+id=547597
 rarity=U
 [/card]
 [card]
 primitive=Unburden
-id=294970
+id=547598
 rarity=C
 [/card]
 [card]
 primitive=Vile Manifestation
-id=294971
+id=547599
 rarity=U
 [/card]
 [card]
 primitive=Wander in Death
-id=294972
+id=547600
 rarity=C
 [/card]
 [card]
 primitive=Wasp of the Bitter End
-id=294973
+id=547601
 rarity=U
 [/card]
 [card]
 primitive=Wasteland Scorpion
-id=294974
+id=547602
 rarity=C
 [/card]
 [card]
 primitive=Abrade
-id=294975
+id=547603
 rarity=U
 [/card]
 [card]
 primitive=Ahn-Crop Crasher
-id=294976
+id=547604
 rarity=U
 [/card]
 [card]
 primitive=Anger of the Gods
-id=294977
+id=547605
 rarity=R
 [/card]
 [card]
 primitive=Battlefield Scavenger
-id=294978
+id=547606
 rarity=U
 [/card]
 [card]
 primitive=Bloodlust Inciter
-id=294979
+id=547607
 rarity=C
 [/card]
 [card]
 primitive=Blur of Blades
-id=294980
+id=547608
 rarity=C
 [/card]
 [card]
 primitive=Brute Strength
-id=294981
+id=547609
 rarity=C
 [/card]
 [card]
 primitive=Burning-Fist Minotaur
-id=294982
+id=547610
 rarity=U
 [/card]
 [card]
 primitive=By Force
-id=294983
+id=547611
 rarity=U
 [/card]
 [card]
 primitive=Cartouche of Zeal
-id=294984
+id=547612
 rarity=C
 [/card]
 [card]
 primitive=Chandra, Pyromaster
-id=294985
+id=547613
 rarity=M
 [/card]
 [card]
 primitive=Chandra's Defeat
-id=294986
+id=547614
 rarity=U
 [/card]
 [card]
 primitive=Combat Celebrant
-id=294987
+id=547615
 rarity=M
 [/card]
 [card]
 primitive=Crash Through
-id=294988
+id=547616
 rarity=C
 [/card]
 [card]
 primitive=Deem Worthy
-id=294989
+id=547617
 rarity=U
 [/card]
 [card]
 primitive=Desert Cerodon
-id=294990
+id=547618
 rarity=C
 [/card]
 [card]
 primitive=Earthshaker Khenra
-id=294991
+id=547619
 rarity=R
 [/card]
 [card]
 primitive=Fervent Paincaster
-id=294992
+id=547620
 rarity=U
 [/card]
 [card]
 primitive=Firebrand Archer
-id=294993
+id=547621
 rarity=C
 [/card]
 [card]
 primitive=Gilded Cerodon
-id=294994
+id=547622
 rarity=C
 [/card]
 [card]
 primitive=Glorious End
-id=294995
+id=547623
 rarity=M
 [/card]
 [card]
 primitive=Glorybringer
-id=294996
+id=547624
 rarity=R
 [/card]
 [card]
 primitive=Harsh Mentor
-id=294997
+id=547625
 rarity=R
 [/card]
 [card]
 primitive=Hazoret the Fervent
-id=294998
+id=547626
 rarity=M
 [/card]
 [card]
 primitive=Hour of Devastation
-id=294999
+id=547627
 rarity=R
 [/card]
 [card]
 primitive=Imminent Doom
-id=295000
+id=547628
 rarity=R
 [/card]
 [card]
 primitive=Insult // Injury
-id=295001
+id=547629
 rarity=R
 [/card]
 [card]
 primitive=Khenra Scrapper
-id=295002
+id=547630
 rarity=C
 [/card]
 [card]
 primitive=Magma Spray
-id=295003
+id=547631
 rarity=C
 [/card]
 [card]
 primitive=Magmaroth
-id=295004
+id=547632
 rarity=U
 [/card]
 [card]
 primitive=Nef-Crop Entangler
-id=295005
+id=547633
 rarity=C
 [/card]
 [card]
 primitive=Neheb, the Eternal
-id=295006
+id=547634
 rarity=M
 [/card]
 [card]
 primitive=Nimble-Blade Khenra
-id=295007
+id=547635
 rarity=C
 [/card]
 [card]
 primitive=Open Fire
-id=295008
+id=547636
 rarity=C
 [/card]
 [card]
 primitive=Pathmaker Initiate
-id=295009
+id=547637
 rarity=C
 [/card]
 [card]
 primitive=Puncturing Blow
-id=295010
+id=547638
 rarity=C
 [/card]
 [card]
 primitive=Pursue Glory
-id=295011
+id=547639
 rarity=C
 [/card]
 [card]
 primitive=Sand Strangler
-id=295012
+id=547640
 rarity=U
 [/card]
 [card]
 primitive=Shatterstorm
-id=295013
+id=547641
 rarity=R
 [/card]
 [card]
 primitive=Soul-Scar Mage
-id=295014
+id=547642
 rarity=R
 [/card]
 [card]
 primitive=Sweltering Suns
-id=295015
+id=547643
 rarity=R
 [/card]
 [card]
 primitive=Thorned Moloch
-id=295016
+id=547644
 rarity=C
 [/card]
 [card]
 primitive=Thresher Lizard
-id=295017
+id=547645
 rarity=C
 [/card]
 [card]
 primitive=Tormenting Voice
-id=295018
+id=547646
 rarity=C
 [/card]
 [card]
 primitive=Trial of Zeal
-id=295019
+id=547647
 rarity=U
 [/card]
 [card]
 primitive=Zealot of the God-Pharaoh
-id=295020
+id=547648
 rarity=C
 [/card]
 [card]
 primitive=Beneath the Sands
-id=295021
+id=547649
 rarity=C
 [/card]
 [card]
 primitive=Bitterbow Sharpshooters
-id=295022
+id=547650
 rarity=C
 [/card]
 [card]
 primitive=Cartouche of Strength
-id=295023
+id=547651
 rarity=C
 [/card]
 [card]
 primitive=Champion of Rhonas
-id=295024
+id=547652
 rarity=R
 [/card]
 [card]
 primitive=Collected Company
-id=295025
+id=547653
 rarity=R
 [/card]
 [card]
 primitive=Crocodile of the Crossing
-id=295026
+id=547654
 rarity=U
 [/card]
 [card]
 primitive=Defiant Greatmaw
-id=295027
+id=547655
 rarity=U
 [/card]
 [card]
 primitive=Dissenter's Deliverance
-id=295028
+id=547656
 rarity=C
 [/card]
 [card]
 primitive=Exemplar of Strength
-id=295029
+id=547657
 rarity=U
 [/card]
 [card]
 primitive=Feral Prowler
-id=295030
+id=547658
 rarity=C
 [/card]
 [card]
 primitive=Greater Sandwurm
-id=295031
+id=547659
 rarity=C
 [/card]
 [card]
 primitive=Haze of Pollen
-id=295032
+id=547660
 rarity=C
 [/card]
 [card]
 primitive=Hooded Brawler
-id=295033
+id=547661
 rarity=C
 [/card]
 [card]
 primitive=Hope Tender
-id=295034
+id=547662
 rarity=U
 [/card]
 [card]
 primitive=Hornet Queen
-id=295035
+id=547663
 rarity=M
 [/card]
 [card]
 primitive=Hour of Promise
-id=295036
+id=547664
 rarity=R
 [/card]
 [card]
 primitive=Initiate's Companion
-id=295037
+id=547665
 rarity=C
 [/card]
 [card]
 primitive=Life Goes On
-id=295038
+id=547666
 rarity=C
 [/card]
 [card]
 primitive=Majestic Myriarch
-id=295039
+id=547667
 rarity=M
 [/card]
 [card]
 primitive=Manglehorn
-id=295040
+id=547668
 rarity=U
 [/card]
 [card]
 primitive=Mouth // Feed
-id=295041
+id=547669
 rarity=R
 [/card]
 [card]
 primitive=Naga Vitalist
-id=295042
+id=547670
 rarity=C
 [/card]
 [card]
 primitive=Oashra Cultivator
-id=295043
+id=547671
 rarity=C
 [/card]
 [card]
 primitive=Oasis Ritualist
-id=295044
+id=547672
 rarity=C
 [/card]
 [card]
 primitive=Ornery Kudu
-id=295045
+id=547673
 rarity=C
 [/card]
 [card]
 primitive=Pouncing Cheetah
-id=295046
+id=547674
 rarity=C
 [/card]
 [card]
 primitive=Pride Sovereign
-id=295047
+id=547675
 rarity=R
 [/card]
 [card]
 primitive=Prowling Serpopard
-id=295048
+id=547676
 rarity=R
 [/card]
 [card]
 primitive=Quarry Hauler
-id=295049
+id=547677
 rarity=C
 [/card]
 [card]
 primitive=Ramunap Excavator
-id=295050
+id=547678
 rarity=R
 [/card]
 [card]
 primitive=Resilient Khenra
-id=295051
+id=547679
 rarity=R
 [/card]
 [card]
 primitive=Rhonas the Indomitable
-id=295052
+id=547680
 rarity=M
 [/card]
 [card]
 primitive=Rhonas's Stalwart
-id=295053
+id=547681
 rarity=C
 [/card]
 [card]
 primitive=Sandwurm Convergence
-id=295054
+id=547682
 rarity=R
 [/card]
 [card]
 primitive=Shed Weakness
-id=295055
+id=547683
 rarity=C
 [/card]
 [card]
 primitive=Shefet Monitor
-id=295056
+id=547684
 rarity=U
 [/card]
 [card]
 primitive=Sidewinder Naga
-id=295057
+id=547685
 rarity=C
 [/card]
 [card]
 primitive=Sifter Wurm
-id=295058
+id=547686
 rarity=U
 [/card]
 [card]
 primitive=Sixth Sense
-id=295059
+id=547687
 rarity=U
 [/card]
 [card]
 primitive=Stinging Shot
-id=295060
+id=547688
 rarity=C
 [/card]
 [card]
 primitive=Synchronized Strike
-id=295061
+id=547689
 rarity=U
 [/card]
 [card]
 primitive=Trial of Strength
-id=295062
+id=547690
 rarity=U
 [/card]
 [card]
 primitive=Vizier of the Menagerie
-id=295063
+id=547691
 rarity=M
 [/card]
 [card]
 primitive=Watchful Naga
-id=295064
+id=547692
 rarity=U
 [/card]
 [card]
 primitive=Ahn-Crop Champion
-id=295065
+id=547693
 rarity=U
 [/card]
 [card]
 primitive=Appeal // Authority
-id=295066
+id=547694
 rarity=U
 [/card]
 [card]
 primitive=Aven Wind Guide
-id=295067
+id=547695
 rarity=U
 [/card]
 [card]
 primitive=Claim // Fame
-id=295068
+id=547696
 rarity=U
 [/card]
 [card]
 primitive=Consign // Oblivion
-id=295069
+id=547697
 rarity=U
 [/card]
 [card]
 primitive=Cut // Ribbons
-id=295070
+id=547698
 rarity=R
 [/card]
 [card]
 primitive=Destined // Lead
-id=295071
+id=547699
 rarity=U
 [/card]
 [card]
 primitive=Driven // Despair
-id=295072
+id=547700
 rarity=R
 [/card]
 [card]
 primitive=Enigma Drake
-id=295073
+id=547701
 rarity=U
 [/card]
 [card]
 primitive=Failure // Comply
-id=295074
+id=547702
 rarity=R
 [/card]
 [card]
 primitive=Farm // Market
-id=295075
+id=547703
 rarity=U
 [/card]
 [card]
 primitive=Grind // Dust
-id=295076
+id=547704
 rarity=R
 [/card]
 [card]
 primitive=Hapatra, Vizier of Poisons
-id=295077
+id=547705
 rarity=R
 [/card]
 [card]
 primitive=Heaven // Earth
-id=295078
+id=547706
 rarity=R
 [/card]
 [card]
 primitive=Honored Crop-Captain
-id=295079
+id=547707
 rarity=U
 [/card]
 [card]
 primitive=Khenra Charioteer
-id=295080
+id=547708
 rarity=U
 [/card]
 [card]
 primitive=Leave // Chance
-id=295081
+id=547709
 rarity=R
 [/card]
 [card]
 primitive=The Locust God
-id=295082
+id=547710
 rarity=M
 [/card]
 [card]
 primitive=Lord of Extinction
-id=295083
+id=547711
 rarity=R
 [/card]
 [card]
 primitive=Merciless Javelineer
-id=295084
+id=547712
 rarity=U
 [/card]
 [card]
 primitive=Neheb, the Worthy
-id=295085
+id=547713
 rarity=R
 [/card]
 [card]
 primitive=Nicol Bolas, God-Pharaoh
-id=295086
+id=547714
 rarity=M
 [/card]
 [card]
 primitive=Nissa, Steward of Elements
-id=295087
+id=547715
 rarity=M
 [/card]
 [card]
 primitive=Obelisk Spider
-id=295088
+id=547716
 rarity=U
 [/card]
 [card]
 primitive=Onward // Victory
-id=295089
+id=547717
 rarity=U
 [/card]
 [card]
 primitive=Prepare // Fight
-id=295090
+id=547718
 rarity=R
 [/card]
 [card]
 primitive=Rags // Riches
-id=295091
+id=547719
 rarity=R
 [/card]
 [card]
 primitive=Reason // Believe
-id=295092
+id=547720
 rarity=R
 [/card]
 [card]
 primitive=Reduce // Rubble
-id=295093
+id=547721
 rarity=U
 [/card]
 [card]
 primitive=Refuse // Cooperate
-id=295094
+id=547722
 rarity=R
 [/card]
 [card]
 primitive=River Hoopoe
-id=295095
+id=547723
 rarity=U
 [/card]
 [card]
 primitive=Samut, the Tested
-id=295096
+id=547724
 rarity=M
 [/card]
 [card]
 primitive=Samut, Voice of Dissent
-id=295097
+id=547725
 rarity=M
 [/card]
 [card]
 primitive=The Scarab God
-id=295098
+id=547726
 rarity=M
 [/card]
 [card]
 primitive=The Scorpion God
-id=295099
+id=547727
 rarity=M
 [/card]
 [card]
 primitive=Shadowstorm Vizier
-id=295100
+id=547728
 rarity=U
 [/card]
 [card]
 primitive=Sphinx's Revelation
-id=295101
+id=547729
 rarity=M
 [/card]
 [card]
 primitive=Spring // Mind
-id=295102
+id=547730
 rarity=U
 [/card]
 [card]
 primitive=Start // Finish
-id=295103
+id=547731
 rarity=U
 [/card]
 [card]
 primitive=Struggle // Survive
-id=295104
+id=547732
 rarity=U
 [/card]
 [card]
 primitive=Temmet, Vizier of Naktamun
-id=295105
+id=547733
 rarity=R
 [/card]
 [card]
 primitive=Wayward Servant
-id=295106
+id=547734
 rarity=U
 [/card]
 [card]
 primitive=Abandoned Sarcophagus
-id=295107
+id=547735
 rarity=R
 [/card]
 [card]
 primitive=Bontu's Monument
-id=295108
+id=547736
 rarity=U
 [/card]
 [card]
 primitive=Edifice of Authority
-id=295109
+id=547737
 rarity=U
 [/card]
 [card]
 primitive=Gate to the Afterlife
-id=295110
+id=547738
 rarity=U
 [/card]
 [card]
 primitive=God-Pharaoh's Gift
-id=295111
+id=547739
 rarity=R
 [/card]
 [card]
 primitive=Hazoret's Monument
-id=295112
+id=547740
 rarity=U
 [/card]
 [card]
 primitive=Hollow One
-id=295113
+id=547741
 rarity=R
 [/card]
 [card]
 primitive=Kefnet's Monument
-id=295114
+id=547742
 rarity=U
 [/card]
 [card]
 primitive=Mirage Mirror
-id=295115
+id=547743
 rarity=R
 [/card]
 [card]
 primitive=Oketra's Monument
-id=295116
+id=547744
 rarity=U
 [/card]
 [card]
 primitive=Perilous Vault
-id=295117
+id=547745
 rarity=R
 [/card]
 [card]
 primitive=Rhonas's Monument
-id=295118
+id=547746
 rarity=U
 [/card]
 [card]
 primitive=Sunset Pyramid
-id=295119
+id=547747
 rarity=U
 [/card]
 [card]
 primitive=Throne of the God-Pharaoh
-id=295120
+id=547748
 rarity=R
 [/card]
 [card]
 primitive=Wall of Forgotten Pharaohs
-id=295121
+id=547749
 rarity=C
 [/card]
 [card]
 primitive=Watchers of the Dead
-id=295122
+id=547750
 rarity=U
 [/card]
 [card]
 primitive=Canyon Slough
-id=295123
+id=547751
 rarity=R
 [/card]
 [card]
 primitive=Cascading Cataracts
-id=295124
+id=547752
 rarity=R
 [/card]
 [card]
 primitive=Crypt of the Eternals
-id=295125
+id=547753
 rarity=U
 [/card]
 [card]
 primitive=Desert of the Fervent
-id=295126
+id=547754
 rarity=C
 [/card]
 [card]
 primitive=Desert of the Glorified
-id=295127
+id=547755
 rarity=C
 [/card]
 [card]
 primitive=Desert of the Indomitable
-id=295128
+id=547756
 rarity=C
 [/card]
 [card]
 primitive=Desert of the Mindful
-id=295129
+id=547757
 rarity=C
 [/card]
 [card]
 primitive=Desert of the True
-id=295130
+id=547758
 rarity=C
 [/card]
 [card]
 primitive=Evolving Wilds
-id=295131
+id=547759
 rarity=C
 [/card]
 [card]
 primitive=Fetid Pools
-id=295132
+id=547760
 rarity=R
 [/card]
 [card]
 primitive=Forest
-id=295133
-rarity=C
+id=547761
+rarity=L
 [/card]
 [card]
 primitive=Forest
-id=295134
-rarity=C
+id=547762
+rarity=L
 [/card]
 [card]
 primitive=Forest
-id=295135
-rarity=C
+id=547763
+rarity=L
 [/card]
 [card]
 primitive=Forest
-id=295136
-rarity=C
+id=547764
+rarity=L
 [/card]
 [card]
 primitive=Forest
-id=295137
-rarity=C
+id=547765
+rarity=L
 [/card]
 [card]
 primitive=Forest
-id=295138
-rarity=C
+id=547766
+rarity=L
 [/card]
 [card]
 primitive=Forest
-id=295139
-rarity=C
+id=547767
+rarity=L
 [/card]
 [card]
 primitive=Hashep Oasis
-id=295140
+id=547768
 rarity=U
 [/card]
 [card]
 primitive=Ifnir Deadlands
-id=295141
+id=547769
 rarity=U
 [/card]
 [card]
 primitive=Ipnu Rivulet
-id=295142
+id=547770
 rarity=U
 [/card]
 [card]
 primitive=Irrigated Farmland
-id=295143
+id=547771
 rarity=R
 [/card]
 [card]
 primitive=Island
-id=295144
-rarity=C
+id=547772
+rarity=L
 [/card]
 [card]
 primitive=Island
-id=295145
-rarity=C
+id=547773
+rarity=L
 [/card]
 [card]
 primitive=Island
-id=295146
-rarity=C
+id=547774
+rarity=L
 [/card]
 [card]
 primitive=Island
-id=295147
-rarity=C
+id=547775
+rarity=L
 [/card]
 [card]
 primitive=Island
-id=295148
-rarity=C
+id=547776
+rarity=L
 [/card]
 [card]
 primitive=Island
-id=295149
-rarity=C
+id=547777
+rarity=L
 [/card]
 [card]
 primitive=Island
-id=295150
-rarity=C
+id=547778
+rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=295151
-rarity=C
+id=547779
+rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=295152
-rarity=C
+id=547780
+rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=295153
-rarity=C
+id=547781
+rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=295154
-rarity=C
+id=547782
+rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=295155
-rarity=C
+id=547783
+rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=295156
-rarity=C
+id=547784
+rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=295157
-rarity=C
+id=547785
+rarity=L
 [/card]
 [card]
 primitive=Plains
-id=295158
-rarity=C
+id=547786
+rarity=L
 [/card]
 [card]
 primitive=Plains
-id=295159
-rarity=C
+id=547787
+rarity=L
 [/card]
 [card]
 primitive=Plains
-id=295160
-rarity=C
+id=547788
+rarity=L
 [/card]
 [card]
 primitive=Plains
-id=295161
-rarity=C
+id=547789
+rarity=L
 [/card]
 [card]
 primitive=Plains
-id=295162
-rarity=C
+id=547790
+rarity=L
 [/card]
 [card]
 primitive=Plains
-id=295163
-rarity=C
+id=547791
+rarity=L
 [/card]
 [card]
 primitive=Plains
-id=295164
-rarity=C
+id=547792
+rarity=L
 [/card]
 [card]
 primitive=Ramunap Ruins
-id=295165
+id=547793
 rarity=U
 [/card]
 [card]
 primitive=Scattered Groves
-id=295166
+id=547794
 rarity=R
 [/card]
 [card]
 primitive=Scavenger Grounds
-id=295167
+id=547795
 rarity=R
 [/card]
 [card]
 primitive=Shefet Dunes
-id=295168
+id=547796
 rarity=U
 [/card]
 [card]
 primitive=Sheltered Thicket
-id=295169
+id=547797
 rarity=R
 [/card]
 [card]
 primitive=Sunscorched Desert
-id=295170
+id=547798
 rarity=C
 [/card]
 [card]
 primitive=Swamp
-id=295171
-rarity=C
+id=547799
+rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=295172
-rarity=C
+id=547800
+rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=295173
-rarity=C
+id=547801
+rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=295174
-rarity=C
+id=547802
+rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=295175
-rarity=C
+id=547803
+rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=295176
-rarity=C
+id=547804
+rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=295177
-rarity=C
+id=547805
+rarity=L
 [/card]
 [card]
 primitive=Regal Caracal
-id=295178
+id=547806
 rarity=R
 [/card]

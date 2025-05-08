@@ -1,5 +1,5 @@
 include randomCommander.txt
-name=Random Commander From File
+name=Random Everlasting Commander
 unlock=prx_rnddeck
 [INIT]
 mode=random_commander_from_file
