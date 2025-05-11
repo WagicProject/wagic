@@ -93,13 +93,14 @@ if(NOT backend_sdl AND UNIX AND NOT ANDROID AND NOT IOS)
 endif()
 
 #third party build options
-WAGIC_OPTION(BUILD_ZLIB    "build zlib from source"    WIN32 OR APPLE)
+WAGIC_OPTION(BUILD_ZLIB    "build zlib from source"    ((NOT MINGW) AND (WIN32 OR APPLE)))
 WAGIC_OPTION(BUILD_JPEG    "build jpeg from source"    (WIN32 OR APPLE OR PSP OR ANDROID OR EMSCRIPTEN))
 WAGIC_OPTION(BUILD_PNG     "build png from source"     (WIN32 OR APPLE OR PSP OR ANDROID OR EMSCRIPTEN))
 WAGIC_OPTION(BUILD_UNZIP   "build unzip from source"   ON)
 WAGIC_OPTION(BUILD_TINYXML "build tinyxml from source" (WIN32 OR APPLE OR PSP OR ANDROID OR EMSCRIPTEN OR IOS))
 WAGIC_OPTION(BUILD_ZIPFS   "build zipfs from source"   ON)
 WAGIC_OPTION(BUILD_SDL2    "build SDL2 from source"    (backend_sdl AND (UNIX OR WIN32 OR ANDROID) AND (NOT EMSCRIPTEN AND NOT IOS)))
+#WAGIC_OPTION(BUILD_CURL    "build curl from source"  (backend_sdl AND WIN32))
 
 #project options
 if(ANDROID)
@@ -170,6 +171,8 @@ FindOrBuildUNZIP()
 FindOrBuildPNG()
 FindOrBuildJPEG()
 FindOrBuildBoost()
+#FindOrBuildCurl()
+
 if(PSP)
     FindOrBuildGIF()
 endif()

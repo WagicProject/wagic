@@ -5,6 +5,7 @@
 #include "Translate.h"
 #include "PriceList.h"
 #include "Subtypes.h"
+#include <random>
 
 //WSyncable
 bool WSyncable::Hook(WSyncable* s)
@@ -285,7 +286,10 @@ bool WSrcCards::setOffset(int pos)
 
 void WSrcCards::Shuffle()
 {
-    std::random_shuffle(cards.begin(), cards.end());
+    std::random_device rd;
+    std::mt19937 g(rd());
+
+    std::shuffle (cards.begin(), cards.end(), g);
     validate();
 }
 

@@ -804,7 +804,7 @@ bool SdlApp::OnInit()
 	return true;
 };
 
-#if (defined ANDROID)
+#if (defined ANDROID) || (defined WIN32)
 int SDL_main(int argc, char * argv[])
 #else
 int main(int argc, char* argv[])
