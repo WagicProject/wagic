@@ -1,7 +1,7 @@
 #NAME:Tobias Commander
-#DESC:Tobias Andrion considers himself
-#DESC:a master of strategy.  Can you
-#DESC:defeat him?
+#DESC:A master of strategy, Tobias
+#DESC:Andrion helped engineer the
+#DESC:rise of the Sheoltun Empire
 #DESC: 
 #DESC:Win Wagic duels to unlock
 #DESC:more Commander opponents
@@ -10,7 +10,6 @@
 #DESC:(mtggoldfish.com)
 #DESC:Built for Wagic by Bob
 #HINT:castpriority(commander,*)
-
 Acrobatic Maneuver (*) * 1
 Aethersnipe (*) * 1
 Alabaster Dragon (*) * 1
