@@ -1,86 +1,25 @@
 #NAME:Deep Blue
-#DESC:"Are you sure you want to
-#DESC: send that mighty creature
-#DESC: into the battle?
+#DESC:'Here have we war for war, 
+#DESC:and blood for blood, 
+#DESC:Controlment for controlment'
+#DESC:William Shakespeare
 #DESC:
-#DESC: You realize it might end up
-#DESC: fighting against you, right?
-#DESC:
-#DESC: It's not like I did not warn
-#DESC: you with that Boomerang ..."
-#Blue Deck, with Persusasion
-#24 Islands
-158237
-158237
-158237
-158237
-158237
-158237
-158237
-157875
-157875
-157875
-157875
-157875
-157875
-157875
-157883
-157883
-157883
-157883
-157883
-157883
-157883
-# (PSY) Actually these were only 21 Islands, adding 3 more:
-158237
-157875
-157883
-#3Jhessian Lookout
-# (PSY) These were listed under "Islands"
-176428
-176428
-176428
-#4persusasion
-129900
-129900
-129900
-129900
-#2Control Magic
-1194
-1194
-#4Boomerang
-129494
-129494
-129494
-129494
-#4Lord of Atlantis
-1206
-1206
-1206
-1206
-#2Merfolk
-# (PSY) Adding 1 to bring card count to 60
-1210
-1210
-1210
-#4Gravelgill
-141935
-141935
-141935
-141935
-#4Unsummon
-136218
-136218
-136218
-136218
-#4Counsel of the Soratami
-134757
-134757
-134757
-134757
-#2Air Elemental
-129459
-129459
-#2 Mahamoti djinn
-129633
-129633
+#DESC:Win matches to unlock more
+#DESC:opponents, sets and game modes
+Air Elemental (10E) * 2
+Boomerang (10E) * 4
+Control Magic (RV) * 4
+Coral Merfolk (M10) * 3
+Counsel of the Soratami (10E) * 4
+Gravelgill Axeshark (SHM) * 4
+Island (10E) * 4
+Island (4ED) * 4
+Island (6ED) * 4
+Island (9ED) * 4
+Island (M10) * 4
+Island (RV) * 4
+Lord of Atlantis (RV) * 4
+Mahamoti Djinn (10E) * 2
+Merfolk of the Pearl Trident (RV) * 3
+Persuasion (10E) * 2
+Unsummon (10E) * 4
