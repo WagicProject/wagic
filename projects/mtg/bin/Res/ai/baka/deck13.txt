@@ -1,79 +1,24 @@
 #NAME:Jungle
-#DESC:Creatures of the mountains,
-#DESC:forests, and plains,
-#DESC:are ready to take their revenge.
-
-# (PSY) added 1x Tundra Wolves, 1x Scryb Sprites, 1x Forest, 1x Mountain, to bring card count to 60
-
-#Spark Elemental
-129577
-129577
-129577
-129577
-#Tundra Wolves
-129604
-129604
-129604
-129604
-#Watchwolf
-83625
-83625
-83625
-83625
-#Wooly Thoctar
-175062
-175062
-175062
-175062
-#Scryb Sprites
-1264
-1264
-1264
-1264
-#Lightning Bolt
-1303
-1303
-1303
-1303
-#Kird Ape
-1302
-1302
-1302
-1302
-#Savannah Lions
-1365
-1365
-1365
-1365
-#Swords to Plowshares
-1367
-1367
-1367
-1367
-#Forest6
-1388
-1388
-1388
-1388
-1388
-1388
-#Plains9
-1397
-1397
-1397
-1397
-1397
-1397
-1397
-1397
-1397
-#Mountain9
-1390
-1390
-1390
-1390
-1390
-1390
-1390
-1390
-1390
+#DESC:In the heart of the jungle
+#DESC:there are wild beasts
+#DESC:both cunning and fierce
+#DESC:
+#DESC:Win matches to unlock more
+#DESC:opponents, sets and game modes
+Forest (10E) * 2
+Forest (RV) * 4
+Kird Ape (RV) * 4
+Lightning Bolt (RV) * 4
+Mountain (10E) * 4
+Mountain (RAV) * 1
+Mountain (RV) * 4
+Plains (10E) * 4
+Plains (RAV) * 1
+Plains (RV) * 4
+Savannah Lions (RV) * 4
+Scryb Sprites (RV) * 4
+Spark Elemental (10E) * 4
+Swords to Plowshares (RV) * 4
+Tundra Wolves (10E) * 4
+Watchwolf (RAV) * 4
+Woolly Thoctar (ALA) * 4

@@ -1,6 +1,6 @@
 #NAME:Rats!
-#DESC:"They fought the dogs, 
-#DESC:    and killed the cats,
+#DESC:'They fought the dogs, 
+#DESC:   and killed the cats,
 #DESC:And bit the babies in the cradles,
 #DESC:And ate the cheeses out of the vats
 #DESC:And licked the soup 
@@ -10,17 +10,23 @@
 #DESC:And even spoiled the women's chats,
 #DESC:By drowning their speaking
 #DESC:With shrieking and squeaking
-#DESC:In fifty different sharps and flats."
-#Black Deck, Rats
-#26 Swamps
+#DESC:In fifty different sharps and flats.'
+#DESC:Robert Browning
+#HINT:combo hold(Fear|myhand)^until(Relentless Rats|mybattlefield)^cast(Fear|myhand) targeting(Relentless Rats|mybattlefield)^totalmananeeded({B}{B})
+Ascendant Evincar (10E) * 2
+Fear (10E) * 4
+Oona's Gatewarden (SHM) * 4
+Plague Beetle (10E) * 4
+Plague Rats (RV) * 4
+Rain of Tears (10E) * 4
+Relentless Rats (10E) * 4
+Relentless Rats (M10) * 4
+Relentless Rats (M11) * 4
+# SHM Swamps
 157886
 157886
 157886
 157886
-157886
-157871
-157871
-157871
 157871
 157871
 157871
@@ -29,54 +35,10 @@
 158239
 158239
 158239
-158239
-158239
-158239
 157889
 157889
 157889
 157889
-157889
-157889
-157889
-#4plague rats
-1173
-1173
-1173
-1173
-#4plague beetle
-129678
-129678
-129678
-129678
-#12 relentless rats
-135236
-135236
-135236
-135236
-135236
-135236
-135236
-135236
-135236
-135236
-135236
-135236
-#4Oona's Gatewarden
-141975
-141975
-141975
-141975
-#4Fear
-129544
-129544
-129544
-129544
-#Ascendant Evincar
-106525
-106525
-#4rain of tears
-135220
-135220
-135220
-135220
+Swamp (ALA) * 4
+Swamp (10E) * 4
+Swamp (M10) * 2
