@@ -37,7 +37,7 @@ GameStateAwards::GameStateAwards(GameApp* parent) :
 
 GameStateAwards::~GameStateAwards()
 {
-    kAwardFile = ""; //Reset the chosen backgorund.
+    kAwardFile = ""; //Reset the chosen background.
 }
 
 void GameStateAwards::End()
@@ -50,7 +50,7 @@ void GameStateAwards::End()
     if (saveMe)
         options.save();
 
-    kAwardFile = ""; //Reset the chosen backgorund.
+    kAwardFile = ""; //Reset the chosen background.
 }
 void GameStateAwards::Start()
 {

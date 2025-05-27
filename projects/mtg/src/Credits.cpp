@@ -165,7 +165,7 @@ Credits::~Credits()
         if (bonus[i])
             delete bonus[i];
     bonus.clear();
-    kBgFile = ""; //Reset the chosen backgorund.
+    kBgFile = ""; //Reset the chosen background.
 }
 
 void Credits::compute(GameObserver* g, GameApp * _app)

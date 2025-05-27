@@ -26,7 +26,7 @@ Subtypes::Subtypes()
     find("Dungeon");
     find("Emblem");
     find("Conspiracy");
-    find("Backgorund");
+    find("Background");
     find("Battle");
 }
 

@@ -374,6 +374,9 @@
 # Zombie Token
 #AUTO_DEFINE _ZOMBIETOKEN_ create(zombie:creature zombie:2/2:black)
 
+# Blood Token
+#AUTO_DEFINE _BLOOD_ token(Blood^Blood Artifact^0/0) and!( transforms((,newability[{1}{T}{D(*|myhand)}{S}:draw:1])) forever )!
+
 # Clue Token
 #AUTO_DEFINE _CLUE_ token(Clue^Clue Artifact^0/0) and!( transforms((,newability[{2}{S}:draw:1])) forever )!
 

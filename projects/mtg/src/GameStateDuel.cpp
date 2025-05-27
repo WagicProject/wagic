@@ -182,7 +182,7 @@ GameStateDuel::~GameStateDuel()
 {
     End();
     SAFE_DELETE(tournament);
-    kBgFile = ""; //Reset the chosen backgorund.
+    kBgFile = ""; //Reset the chosen background.
 }
 
 void GameStateDuel::Start()
@@ -372,7 +372,7 @@ void GameStateDuel::End()
 #endif
 
     MTGAbility::deletedpointers.clear(); // Clear the list of deallocated pointer.
-    kBgFile = ""; //Reset the chosen backgorund.
+    kBgFile = ""; //Reset the chosen background.
 }
 
 //TODO Move This to utils or ResourceManager. Don't we have more generic functions that can do that?

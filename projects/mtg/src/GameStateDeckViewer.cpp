@@ -105,7 +105,7 @@ GameStateDeckViewer::~GameStateDeckViewer()
         SAFE_DELETE(myCollection);
     }
     SAFE_DELETE(filterMenu);
-    kBgFile = ""; //Reset the chosen backgorund.
+    kBgFile = ""; //Reset the chosen background.
 }
 
 void GameStateDeckViewer::rebuildFilters()
@@ -308,7 +308,7 @@ void GameStateDeckViewer::End()
     SAFE_DELETE(playerdata);
     SAFE_DELETE(filterMenu);
     SAFE_DELETE(source);
-    kBgFile = ""; //Reset the chosen backgorund.
+    kBgFile = ""; //Reset the chosen background.
 }
 
 void GameStateDeckViewer::addRemove(MTGCard * card)

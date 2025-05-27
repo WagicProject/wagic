@@ -454,7 +454,7 @@ Player * Rules::loadPlayerRandomCommander(GameObserver* observer, int isAI)
     if(colors.data()[0] != 0) { colors.insert(colors.begin(),0); }
 
     // Add lands
-    int numLands = colors.size() > 1 ? 40 / (colors.size() - 1) : 40;
+    int numLands = colors.size() > 2 ? 40 / (colors.size() - 1) : 40;
     if(colors.size() > 1)
     {
         for (unsigned int i = 1; i < colors.size(); i++)
@@ -627,7 +627,7 @@ Player* Rules::loadPlayerRandomCommanderFromFile(GameObserver* observer, int isA
     }
 
     // Add lands
-    int numLands = colors.size() > 1 ? 40 / (colors.size() - 1) : 40;
+    int numLands = colors.size() > 2 ? 40 / (colors.size() - 1) : 40;
     if (colors.size() > 1)
     {
         for (unsigned int i = 1; i < colors.size(); i++)

@@ -17,7 +17,7 @@ GuiBackground::GuiBackground(GameObserver* observer)
 
 GuiBackground::~GuiBackground()
 {
-    kBackdropFile = ""; //Reset the chosen backgorund.
+    kBackdropFile = ""; //Reset the chosen background.
 }
 
 void GuiBackground::Render()
