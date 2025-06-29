@@ -1,90 +1,28 @@
 #NAME:Depletion
-#DESC:More than one mage 
-#DESC:has been driven insane by
-#DESC:the howl of the mine,
-#DESC:Dreamborn Muse's voice,
-#DESC:and Mortivore's breath. 
-#DESC:Prepare to discover the truth
-#DESC:of the House Dimir.
-
-# (PSY) added 2x Swamp, 2x Island, 1x Psychic Drain,
-# 1x Forced Fruition, 1x Tome Scour, 1x Traumatize,
-# to bring card count to 60.
-
-#4x Animate Dead
-1143
-1143
-1143
-1143
-#2x Control Magic
-1194
-1194
-#3x Tome Scour
-191598
-191598
-191598
-#4x Glimpse the Unthinkable
-83597
-83597
-83597
-83597
-#2x Psychic Drain
-89114
-89114
-#2x Forced Fruition
-146166
-146166
-#2x Howling Mine
-129598
-129598
-#2x Memory Erosion
-175108
-175108
-#2x Mortivore
-129648
-129648
-#2x Terror
-135199
-135199
-#2x Dreamborn Muse
-135246
-135246
-#3x Traumatize
-129774
-129774
-129774
-#4x Oona's Gatewarden
-141975
-141975
-141975
-141975
-#2x Glen Elendra Liege
-146743
-146743
-#12x Swamp
-129754
-129754
-129754
-129754
-129755
-129755
-129755
-129755
-129757
-129757
-129757
-129757
-#12x Island
-129607
-129607
-129608
-129608
-129608
-129608
-129609
-129609
-129609
-129609
-129609
-129609
-
+#DESC:The cruellest fate for a  
+#DESC:spellcaster is to stand
+#DESC:helpless as your power
+#DESC:drains away.
+#DESC: 
+#DESC:Win matches to unlock more
+#DESC:opponents, sets and game modes
+Animate Dead (RV) * 4
+Control Magic (RV) * 2
+Dreamborn Muse (10E) * 2
+Forced Fruition (LRW) * 2
+Glen Elendra Liege (SHM) * 2
+Glimpse the Unthinkable (RAV) * 4
+Howling Mine (10E) * 2
+Island (10E) * 4
+Island (LRW) * 4
+Island (SHM) * 4
+Memory Erosion (ALA) * 2
+Mortivore (10E) * 2
+Oona's Gatewarden (SHM) * 4
+Swamp (10E) * 4
+Swamp (LRW) * 4
+Swamp (SHM) * 4
+Terror (10E) * 2
+Tome Scour (M10) * 4
+Traumatize (10E) * 3
+Underground Sea (RV) * 1

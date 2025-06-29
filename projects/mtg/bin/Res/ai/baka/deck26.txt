@@ -1,7 +1,6 @@
 #NAME:Atarka Commander
-#DESC:Atarka's dragons bring death
-#DESC:from the air. Can you defeat
-#DESC:her?
+#DESC:Savage and ferocious, Atarka
+#DESC:is universally feared
 #DESC: 
 #DESC:Win Wagic duels to unlock
 #DESC:more Commander opponents
