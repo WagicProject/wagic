@@ -1,83 +1,27 @@
 #NAME:Giants!
-#DESC:It's actually very hard to miss a giant.
-#DESC:You don't even have to aim your blow well.
-#DESC:The hard part
-#DESC:is to get into striking range.
-#Mogg Fanatic
-4832
-4832
-4832
-4832
-#Kithkin Greatheart 1W
-146444
-146444
-146444
-146444
-#Ballyknock Cohort
-142045
-142045
-142045
-142045
-#Sunrise Sovereign 5R
-139667
-139667
-139667
-139667
-#Axegrinder Giant
-145976
-145976
-145976
-145976
-#Blind Spot Giant
-146597
-146597
-146597
-146597
-#Borderland Behemoth
-153102
-153102
-#Oathsworn Giant {4}{W}{W} - 3/4 giant - lord creature|myinplay 0/2 vigilance other
-89012
-89012
-#Pyroclasm
-129801
-129801
-129801
-129801
-#Wall of Stone
-1325
-1325
-1325
-1325
-#Smash
-130532
-#Kitchen Finks
-141976
-141976
-141976
-#Mountain
-143626
-143626
-143626
-143627
-143627
-143627
-143631
-143631
-143631
-143623
-143623
-143623
-#Plains
-143630
-143630
-143630
-143620
-143620
-143620
-143622
-143622
-143622
-143621
-143621
-143621
+#DESC:'Who shall place
+#DESC:A limit to the giant's
+#DESC:unchained strength?'
+#DESC:William Cullen Bryant
+#DESC: 
+#DESC:Win matches to unlock more
+#DESC:opponents, sets and game modes
+#DESC:
+#DESC:Deck for Wagic by Bob
+#HINT:dontattackwith(Mogg Sentry)
+Blind-Spot Giant (LRW) * 4
+Borderland Behemoth (MOR) * 2
+Calamity Bearer (KHM) * 4
+Inferno Titan (M11) * 3
+Mogg Sentry (9ED) * 4
+Mountain (9ED) * 4
+Mountain (FDN) * 4
+Mountain (LRW) * 4
+Mountain (M11) * 4
+Mountain (RAV) * 4
+Mountain (SHM) * 4
+Mountain (TMP) * 4
+Skyraker Giant (FDN) * 4
+Stinkdrinker Daredevil (LRW) * 4
+Sunrise Sovereign (LRW) * 3
+Universal Automaton (MH1) * 4
