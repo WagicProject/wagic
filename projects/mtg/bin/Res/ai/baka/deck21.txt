@@ -1,80 +1,25 @@
-#NAME:Burning
-#DESC:Better be prepared, 
-#DESC:to burn the midnight oil.
-#DESC:The goblin brashness
-#DESC:will make you boil.
-#DESC:And you will end 
-#DESC:burning with a low flame ...
-#2 x Bloodmark Mentor
-142062
-142062
-#4x Scuzzback Scrapper
-142052
-142052
-142052
-142052
-#4x Goblin king (10E)
-129578
-129578
-129578
-129578
-#4x Volcanic hammer
-4366
-4366
-4366
-4366
-#4x Boggart Ram-Gang  
-153970
-153970
-153970
-153970
-#4x Lightning Bolt
-1303
-1303
-1303
-1303
-#4x orcish oriflame
-1310
-1310
-1310
-1310
-#4x Raging goblin
-129688
-129688
-129688
-129688
-#4xBoartusk Liege
-147428
-147428
-147428
-147428
-#2x Siege Gang Commander
-130539
-130539
-#4x Spark elemental 
-129577
-129577
-129577
-129577
-#20x Mountain
-129650
-129650
-129650
-129650
-129650
-129650
-129650
-129650
-129650
-129650
-129650
-129650
-129650
-129650
-129650
-129650
-129650
-129650
-129650
-129650
-
+#NAME:Goblin Gang
+#DESC:'We must not look at goblin men,
+#DESC:We must not buy their fruits:
+#DESC:Who knows upon what soil they fed
+#DESC:Their hungry thirsty roots?'
+#DESC:Christina Rossetti
+#DESC: 
+#DESC:Win matches to unlock more
+#DESC:opponents, sets and game modes
+Bloodmark Mentor (SHM) * 2
+Boartusk Liege (SHM) * 4
+Boggart Ram-Gang (SHM) * 4 
+Goblin Gang Leader (ANB) * 2
+Goblin King (10E) * 4
+Lightning Bolt (RV) * 4
+Mountain (10E) * 4
+Mountain (ANB) * 4
+Mountain (POR) * 4
+Mountain (RV) * 4
+Mountain (SHM) * 4
+Orcish Oriflamme (RV) * 4
+Raging Goblin (1OE) * 4
+Scuzzback Scrapper (SHM) * 4
+Spark Elemental (10E) * 4 
+Volcanic Hammer (POR) * 4
