@@ -1,38 +1,28 @@
 #NAME:Master of Ether
-#DESC:"Surrounded by the things I built
-#DESC: my power will grow
-#DESC: boundlessly."
-
-# Cards considered, but not included:
-# Gaea's Cradle - would make the deck even stronger, but doesn't
-#   fit the theme.
-#
-# Cards removed from the deck:
-# Sculpting Steel - reported to lead to crashes
-
-# Land(s)
-Ancient Den (MRD) * 4        # 20 artifact lands for huge bonuses on Master of Etherium and Tolarian Academy.
-Great Furnace (MRD) * 4
+#DESC:Surrounded by the things I built,
+#DESC:my power grows boundlessly
+Academy Ruins (TSP) * 1    
+Akroma's Memorial (FUT) * 2 
+Ancient Den (MRD) * 2
+Cathodion (C14) * 4       
+Coiled Tinviper (TPR) * 1
+Glaze Fiend (ALA) * 2   
+Great Furnace (MRD) * 2
+Island (10E) * 4
+Island (MRD) * 2
+Master of Etherium (ALA) * 4
+Mox Jet (2ED) * 1
+Mox Sapphire (2ED) * 1
+Nuisance Engine (MRD) * 4
+Ornithopter (MRD) * 4        
+Salvage Slasher (CFX) * 2 
+Scarecrone (EVE) * 2 
 Seat of the Synod (MRD) * 4
-Tree of Tales (MRD) * 4
+Silver Myr (MRD) * 4   
+Steel Wall (MRD) * 2    
+Swamp (10E) * 2    
+Tolarian Academy (VMA) * 1
+Tree of Tales (MRD) * 1
 Vault of Whispers (MRD) * 4
-Academy Ruins (TSP) * 1      # brings back artifacts
-Tolarian Academy (VMA) * 1   # Generates massive amounts of mana in this deck - which the AI usually wastes.
-Island (10E) * 3
-
-# Creature(s)
-Cathodion (C14) * 4          # 3-drop 3/3 creature without a down-side since manaburn was abolished
-Coiled Tinviper (TPR) * 1    # first strike attacker
-Glaze Fiend (ALA) * 2        # temp. bonus for playing artifacts
-Master of Etherium (ALA) * 4 # gets stronger with every artifact
-Ornithopter (MRD) * 4        # cheap artifact, later air defense
-Salvage Slasher (CFX) * 2    # grows stronger with artifacts in graveyard - nice effect if opponent has destroyed all artifacts
-Scarecrone (EVE) * 2         # brings back artifacts
-Silver Myr (MRD) * 4         # artifact source of blue mana (which is needed for the 6 Vedalken)
-Steel Wall (MRD) * 2         # mainly for defending
-Vedalken Archmage (MRD) * 2  # draws card when summoning artifact
-Yotian Soldier (MRD) * 2     # cheap defender
-
-# Artifact(s)
-Akroma's Memorial (FUT) * 2  # massive bonuses incl. Trample
-Nuisance Engine (MRD) * 4    # create more cheap artifacts
+Vedalken Archmage (MRD) * 2 
+Yotian Soldier (MRD) * 2    
