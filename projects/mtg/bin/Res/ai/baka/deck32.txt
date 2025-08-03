@@ -1,26 +1,23 @@
 #NAME:Armored Ascent
-#DESC:They may look weak
-#DESC:and barely present,
-#DESC:but if you let them grow
-#DESC:they will crush your army.
-# Land(s)
-Plains (M21) * 23
-
-# Creature(s)
+#DESC:'The armourers, accomplishing the 
+#DESC:knights, / With busy hammers 
+#DESC:closing rivets up, / Give 
+#DESC:dreadful note of preparation.'
+#DESC:William Shakespeare
+Armored Ascension (SHM) * 2
+Crusade (LEA) * 4
+Disenchant (TPR) * 3
+Glorious Anthem (8ED) * 4
+Honor of the Pure (M10) * 4
 Kitchen Finks (SHM) * 3
 Knight of Meadowgrain (LRW) * 4
 Paladin en-Vec (10E) * 2
-Stillmoon Cavalier (EVE) * 3
-
-# Enchantment(s)
-Armored Ascension (SHM) * 2
-Crusade (DDF) * 4
-Glorious Anthem (8ED) * 4
-Honor of the Pure (M10) * 4
-
-# Instant(s)
-Disenchant (TPR) * 3
-Swords to Plowshares (DDF) * 4
-
-# Sorcery(s)
+Plains (10E) * 4
+Plains (8ED) * 3
+Plains (LRW) * 4
+Plains (M10) * 4
+Plains (M21) * 4
+Plains (SHM) * 4
 Spectral Procession (SHM) * 4
+Stillmoon Cavalier (EVE) * 3
+Swords to Plowshares (BBD) * 4
