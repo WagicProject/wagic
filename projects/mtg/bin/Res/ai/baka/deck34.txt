@@ -1,7 +1,7 @@
 #NAME:Ragavan Commander 
-#DESC:Ragavan's pirates steal both
-#DESC:treasure and your spells!
-#DESC:Can you defeat him?
+#DESC:Ragavan the pirate steals
+#DESC:more than just treasure
+#DESC:from his enemies
 #DESC: 
 #DESC:Win Wagic duels to unlock
 #DESC:more Commander opponents
