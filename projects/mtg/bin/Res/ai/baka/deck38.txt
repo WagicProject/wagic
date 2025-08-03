@@ -1,26 +1,25 @@
 #NAME:Bad Dreams
-#DESC:If you ever thought
-#DESC:  that YOU had bad dreams ...
-#DESC:Wait until you meet these.
-# Land(s)
-Mountain (M10) * 8
-Swamp (M10) * 16
-
-# Artifact(s)
+#DESC:'For in that sleep of death
+#DESC:what dreams may come / When
+#DESC:we have shuffled off this
+#DESC:mortal coil'
+#DESC:William Shakespeare
+#HINT:combo hold(Damnation|myhand)^cast(Damnation|myhand)^restriction{type(creature|opponentbattlefield)~morethan~1}^totalmananeeded({2}{B}{B})
+#HINT:combo hold(Infest|myhand)^cast(Infest|myhand)^restriction{type(creature|opponentbattlefield)~morethan~1}^totalmananeeded({1}{B}{B})
 Black Vise (V10) * 1
+Damnation (PLC) * 4
 Font of Mythos (CFX) * 2
 Howling Mine (8ED) * 4
-
-# Enchantment(s)
-Spiteful Visions (SHM) * 4
-Underworld Dreams (8ED) * 4
-
-# Instant(s)
-Lightning Bolt (M10) * 4
-Sudden Impact (8ED) * 4
-Terminate (ARB) * 4
-
-# Sorcery(s)
-Damnation (PLC) * 4
 Infest (ALA) * 4
+Lightning Bolt (M10) * 4
+Mountain (8ED) * 4
+Mountain (M10) * 4
+Spiteful Visions (SHM) * 4
+Sudden Impact (8ED) * 4
+Swamp (10E) * 4
+Swamp (8ED) * 4
+Swamp (9ED) * 4
+Swamp (M10) * 4
+Terminate (ARB) * 4
+Underworld Dreams (8ED) * 4
 Wheel of Fortune (VMA) * 1
