@@ -1,28 +1,23 @@
-#NAME:Angelism
-#DESC:An army of angels
-#DESC:will sweep through your defenses
-#DESC:while all your forces can do
-#DESC:is watch and gape in awe.
-# Land(s)
-Plains (M15) * 19
-Quicksand (WWK) * 4
-Serra's Sanctum (*) * 1
-
-# Creature(s)
-Kitchen Finks (SHM) * 4
-Mesa Enchantress (PLC) * 4
-
-# Enchantment(s)
+#NAME:Angelic Sigil
+#DESC:'Every crime has in the 
+#DESC:moment of its perpetration
+#DESC:its own avenging angel'
+#DESC:Friedrich Schiller
+#HINT:combo hold(Wrath of God|myhand)^cast(Wrath of God|myhand)^restriction{type(creature|opponentbattlefield)~morethan~2}^totalmananeeded({2}{W}{W})
 Angelic Chorus (10E) * 3
 Cage of Hands (CHK) * 3
 Honor of the Pure (M10) * 4
+Kitchen Finks (SHM) * 4
+Mesa Enchantress (PLC) * 4
 Moat (PRM) * 3
 Pacifism (A25) * 4
+Plains (10E) * 4
+Plains (M10) * 4
+Plains (M11) * 4
+Plains (M12) * 3
+Plains (M15) * 4
+Plains (BBD) * 4
+Serra's Sanctum (USG) * 1
 Sigil of the Empty Throne (CFX) * 4
-
-# Instant(s)
-Swords to Plowshares (DDF) * 4
-
-# Sorcery(s)
+Swords to Plowshares (BBD) * 4
 Wrath of God (10E) * 3
-
