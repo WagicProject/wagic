@@ -1,27 +1,25 @@
-#NAME:Millage
-#DESC:"You may think that you have
-#DESC: a rich repository
-#DESC: of spells and artifacts and
-#DESC: creatures.
-#DESC: But before you know it,
-#DESC: all your possessions
-#DESC: will crumble
-#DESC: in your hands."
-Wrath of God (10E) *4
+#NAME:Erosion
+#DESC:All the things you most value
+#DESC:will crumble in your hands.
+#HINT:combo hold(Damnation|myhand)^cast(Damnation|myhand)^restriction{type(creature|opponentbattlefield)~morethan~1}^totalmananeeded({2}{B}{B})
+#HINT:combo hold(Evacuation|myhand)^cast(Evacuation|myhand)^restriction{type(creature|opponentbattlefield)~morethan~1}^totalmananeeded({3}{U}{U})
+#HINT:combo hold(Moat|myhand)^cast(Moat|myhand)^restriction{type(Moat|mybattlefield)~lessthan~1}^totalmananeeded({2}{W}{W})
+#HINT:combo hold(Wrath of God|myhand)^cast(Wrath of God|myhand)^restriction{type(creature|opponentbattlefield)~morethan~1}^totalmananeeded({2}{W}{W})
 Damnation (PLC) *4
-Evacuation (10E) *3
-Moat (LEG) *2
-Tome Scour (M10) *4
-Howling Mine (M10) *4
-Glimpse the Unthinkable (RAV) *4
 Dream Fracture (EVE) *4
-Memory Erosion (ALA) *4
-Traumatize (M10) *2
+Evacuation (10E) *3
 Forced Fruition (LRW) *1
+Glimpse the Unthinkable (RAV) *4
+Howling Mine (M10) *4
+Island (LRW) *2
 Island (RAV) *4
 Island (TSP) *4
-Island (LRW) *2
-Swamp (RAV) *4
-Swamp (TSP) *3
+Memory Erosion (ALA) *4
+Moat (LEG) *2
 Plains (RAV) *4
 Plains (TSP) *3
+Swamp (RAV) *4
+Swamp (TSP) *3
+Tome Scour (M10) *4
+Traumatize (M10) *2
+Wrath of God (10E) *4
