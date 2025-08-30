@@ -1,58 +1,28 @@
-#NAME:Viashino Warrior
-#
-#DESC:"With claws and swords and flames
-#DESC: we fiercely protect
-#DESC: those we revere"
-
-Viashino Slasher (RAV)         *4 # cheap Viashino
-Viashino Slaughtermaster (CFX) *4 # cheap Viashino
-Viashino Spearhunter (M10)     *4 # first strike
-Viashino Grappler (INV)        *4 # high power but very vulnerable
-Viashino Warrior (MIR)         *2 # attacker
-Viashino Weaponsmith (USG)     *2 # attacker
-Viashino Fangtail (RAV)        *3 # attacker
-Furnace Whelp (10E)            *2 # not a Viashino, but having
-#                                 # two flyers helps the deck
-
-Firebreathing (10E)            *4 # fiery breath for the dragons'
-#                                 # descendants - also allows to
-#                                 # use spare mana, although the
-#                                 # AI rarely does that.
-Flaming Sword (MRQ)            *2 # fiery weapons as well
-Emblem of the Warmind (FUT)    *2 # gives Haste
-Beacon of Destruction (10E)    *1 # repeated fire blasts
-Rage Reflection (SHM)          *1 # double strike
-Dragon Roost (10E)             *1 # endgame surprise - produces
-#                                 # red dragons
-
-Mountain (10E) *24
-
-
-# Cards considered, but not included:
-# Burning Cloak - AI would kill its own creatures
-# Canyon Drake - flyers would be nice, but too expensive
-# Crown of Flames - Firebreathing is more foolproof for the AI
-# Dragon Whelp - Furnace Whelp is more foolproof
-# Desert Drake - Furnace Whelp is better for the same cost
-# Immolation - AI can't decide whether it'll help or destroy the
-#   enchanted creature
-# Lizard warrior - is not a viashino, and a viashino with
-#   identical values exists
-# Mass Hysteria - Emblem of the Warmind fits the theme better and
-#   doesn't help the enemy
-# Pyroclasm - AI would kill its own creatures
-# Viashino Skeleton - other viashinos wouldn't associate with it
-# Kindled Fury - lasts only until end of turn, often wasted by AI
-# Double Cleave - lasts only until end of turn, often wasted by AI
-# Reflexes - first strike already provided by Flaming Sword
-
-# Cards removed from the deck:
-# Bravado - AI casts it on opponent's creatures
-# Seething Song - mana acceleration would be great, bit the AI
-#   doesn't use the mana
-# Viashino Sandscout - AI doesn't understand that it will return
-#   to owner's hand, may enchant it
-# Viashino Bladescout - removed from Wagic
-
-# Notes:
-# Flavor deck.
+#NAME:Viashino Warriors
+#DESC:Descended from dragons, the
+#DESC:Viashino are agile, aggressive
+#DESC:and deadly
+#HINT:alwaysattackwith(Archwing Dragon)
+#HINT:alwaysattackwith(Viashino Cutthroat)
+#HINT:alwaysattackwith(Viashino Sandscout)
+#HINT:alwaysattackwith(Viashino Sandstalker)
+Archetype of Aggression (BNG) *2 
+Archwing Dragon (AVR) *2
+Bloodmark Mentor (SHM) *3
+Impact Tremors (DTK) *4
+Mountain (10E) *1
+Mountain (AVR) *4
+Mountain (INV) *4
+Mountain (MIR) *4
+Mountain (RAV) *4
+Mountain (SHM) *4
+Mountain (USG) *4
+Purphoros, God of the Forge (THS) * 2
+Rage Reflection (SHM) *1
+Viashino Cutthroat (ULG) *2
+Viashino Pyromancer (FGN) *4
+Viashino Sandscout (10E) *4 
+Viashino Sandstalker (VIS) *3 
+Viashino Spearhunter (M10) *4 
+Viashino Warrior (MIR) *2
+Viashino Weaponsmith (USG) *2
