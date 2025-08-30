@@ -1,44 +1,26 @@
 #NAME:Noble Predators
-#
-#DESC:"We are hunters.
-#DESC: You are prey.
-#DESC: Now run
-#DESC: So that we can catch you."
-
-Noble Panther (INV)     *4 # 29 furious feline friends
-Horned Cheetah (INV)    *4 # lifelink
-Cave Tiger (UZS)        *3
-Grizzled Leotau (ARB)   *4 # great cheap defender
-Mist Leopard (M10)      *4 # shroud
-Savannah Lions (RV)     *4
-Silvercoat Lion (M10)   *3
-Jungle Lion (POR)       *3
-
-Predator's Strike (MRD) *4 # AI often wastes it, great theme fit
-Aggressive Urge (10E)   *4 # weak stand-in for Predatory Hunger
-Gaea's Embrace (UZS)    *1 # a bit of help from mother Nature
-
-Forest (10E) *13
-Plains (10E) *9
-
-
-# Cards considered, but not included:
-# Wirecat - mechanical cat doesn't fit the theme
-# Red cats: Canyon Wildcat, Guma, Raging Cougar, Sabretooth Tiger,
-#   Whild Jhovall: No synergy with green or white
-# Jhovall Queen - used as a mount, so not really a "wild" cat
-# Wild Nacatl - wields a weapon, so not really wild either
-# Sabertooth Nishoba - is a cat warrior
-# Panther Warriors - dito
-# Giant Growth - AI doesn't seem to use it at all
-# Whitemane Lion - AI can't choose well which creature to return
-
-
-# Cards removed from the deck:
-# Predatory Hunger - This card was a fantastic fit for theme,
-#   focus, and power. Unfortunately the AI casts it on its
-#   opponent's creatures. Swap this card back in as soon as this
-#   problem gets solved.
-
-# Notes:
-# Flavor deck.
+#DESC:'Dangerous it is to rouse
+#DESC:the lion, fatal is the
+#DESC:tiger's tooth'
+#DESC:Friedrich Schiller 
+Beastmaster Ascension (ZEN) *4
+Cave Tiger (UZS) *2
+Forest (10E) *4
+Forest (INV) *3
+Forest (M10) *4
+Forest (POR) *4 
+Grizzled Leotau (ARB) *2
+Horned Cheetah (INV) *2
+King of the Pride (MH1) *4
+Loam Lion (WWK) *3
+Mist Leopard (M10) *2 
+Noble Panther (INV)  *2
+Plains (10E) *4
+Plains (M10) *1
+Plains (POR) *4
+Pouncing Cheetah (AKH) *2
+Pouncing Jaguar (USG) * 3
+Predatory Hunger (EXO) *4
+Savannah Lions (FDN) *2
+Silvercoat Lion (M10) *2
+Slashing Tiger (PTK) * 2
