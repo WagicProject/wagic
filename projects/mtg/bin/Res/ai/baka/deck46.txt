@@ -1,4 +1,11 @@
-#NAME:Tatyova Commander 
+#NAME:Tatyova Commander
+#DESC:Years of study attuned
+#DESC:Tatyova to the magic
+#DESC:of the coastal woodlands
+#DESC: 
+#DESC:Win Wagic duels to unlock
+#DESC:more Commander opponents
+#DESC: 
 #DESC:The Tatyova Commander Deck
 #DESC:Refined for Wagic by Bob
 #HINT:castpriority(commander,*)

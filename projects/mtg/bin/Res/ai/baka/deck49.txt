@@ -1,43 +1,23 @@
 #NAME:Dragons
-#DESC:Dragons are rage
-#DESC:of power and will.
-#DESC:Dragons are artists 
-#DESC:with flames, 
-#DESC:painting the world 
-#DESC:with fire.
-#Land
-Mountain (M10) *24
-
-#Direct Damage
-Lightning Bolt (M10) *4
-Soulblast (10E) *1
+#DESC:Dragons are sculptors
+#DESC:of fire, fashioning
+#DESC:flames into death.
+Ashenmoor Liege (SHM) *2
 Beacon of Destruction (10E) *1
-Spitting Earth (10E) *2
-
-#Generic booster
-Goblin War Paint (ZEN) *2
-
-#Dragon Generator
-Dragon Roost (10E) *1
-
-#Boost Dragon
-Crucible of Fire (ALA) *4
-
-#Small dragon (4)
-Rakdos Pit Dragon (DIS) *4
-Furnace Whelp (10E) *4
-
-#Heavy Dragon (6)
-Shivan Dragon (M10) *2
-
-#Legendary Dragon (6)
-Rorix Bladewing (ONS) *1
-Ryusei, the Falling Star (CHK) *1
-
-#Black Red small creatures
-Bloodhall Ooze (CFX) *2
-# (PSY) 2x Ashenmoor Liege not available, removed
-#Ashenmoor Liege (SHM) *2
-Ashenmoor Gouger (SHM) *2
-Emberstrike Duo (SHM) *2
 Bloodmark Mentor (SHM) *4
+Crucible of Fire (ALA) *4
+Dragonmaster Outcast (WWK) *4
+Firespitter Whelp (FDN) *4
+Goblin War Paint (ZEN) *2
+Lava Spike (CHK) *2
+Lightning Bolt (M10) *4
+Mountain (10E) *4
+Mountain (ALA) *4
+Mountain (CHK) *4
+Mountain (DTK) *2
+Mountain (M10) *4
+Mountain (SHM) *4
+Mountain (ZEN) *4
+Rorix Bladewing (ONS) *1
+Shivan Dragon (M10) *2
+Thunderbreak Regent (DTK) *4
