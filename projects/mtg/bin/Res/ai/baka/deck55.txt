@@ -1,6 +1,8 @@
 #NAME:Brimaz Commander
-#DESC:Brimaz draws power from his 
-#DESC:cat army.  Can you defeat him?
+#DESC:A warrior and a spiritual 
+#DESC:leader, Brimaz leads the
+#DESC:pride with honor and
+#DESC:humility.
 #DESC: 
 #DESC:Win Wagic duels to unlock
 #DESC:more Commander opponents
