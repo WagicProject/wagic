@@ -1,18 +1,25 @@
 #NAME:Blind Faith
-#DESC:"No more Dark and Light
-#DESC: for it is one that we fight"
-Unholy Strength (RV)         * 2 #
-Holy Strength (RV)           * 2 #
-Silent Attendant (USG)       * 2 #
-Temple Acolyte (P02)         * 4 #
-Priest of Gix (USG)          * 4 #
-Teroh's Faithful (TOR)       * 2 #
-Doubtless One (ONS)          * 4 #
-Profane Prayers (ONS)        * 4 #
-Akroma's Devoted (LGN)       * 2 #
-Soul Warden (10E)            * 4 #
-Venerable Monk (10E)         * 2 #
-Ancestor's Chosen (10E)      * 2 #
-Plains (ALA)                 *11 #
-Swamp (ALA)                  *11 #
-Acolyte of Xathrid (M10)     * 4 #
+#DESC:Some clerics follow the life-
+#DESC:giving path of righteousness.
+#DESC:Others invoke the horrors
+#DESC:of the darkness.
+#HINT:castpriority(creature,*)
+#HINT:combo hold(Profane Prayers|myhand)^cast(Profane Prayers|myhand)^restriction{type(creature|mybattlefield)~morethan~2}^totalmananeeded({2}{B}{B})
+#HINT:alwaysattackwith(Vile Deacon)
+Doubtless One (ONS) * 4 #
+Elenda's Hierophant (LCC) * 4 #
+Nullpriest of Oblivion (ZNR) * 2 #
+Plains (10E) * 4 #
+Plains (ALA) * 4 #
+Plains (M10) * 4 #
+Profane Prayers (ONS) * 4 #
+Soul's Attendant (ROE) * 2
+Soul Warden (10E) * 4 #
+Swamp (10E) * 4 #
+Swamp (ALA) * 4 #
+Swamp (M10) * 4 #
+Temple Acolyte (P02) * 4 #
+Teroh's Faithful (TOR) * 2 #
+Venerable Monk (10E) * 2 #
+Vile Deacon (LGN) * 4 #
+Vito, Thorn of the Dusk Rose (M21) * 4 #
