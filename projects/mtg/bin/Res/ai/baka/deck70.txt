@@ -1,23 +1,23 @@
 #NAME:Life & Death
-#DESC:"Life causes death.
-#DESC: Death provides the basis
-#DESC: for new life.
-#DESC:
-#DESC: Life and Death do not contradict,
-#DESC: but complement each other.
-#DESC:
-#DESC: Understanding their interaction
-#DESC: is the secret of our strength."
-Dark Ritual (RV)             * 4 #
-Righteous War (VIS)          * 4 #
-Vindicate (APC)              * 4 #
-Swamp (RAV)                  *11 #
-Plains (RAV)                 *11 #
-Mourning Thrull (GPT)        * 4 #
-Nip Gwyllion (EVE)           * 4 #
-Harvest Gwyllion (EVE)       * 2 #
-Stillmoon Cavalier (EVE)     * 2 #
-Voracious Hatchling (EVE)    * 4 #
-Deathbringer Liege (EVE)     * 4 #
-Restless Apparition (EVE)    * 2 #
-Zealous Persecution (ARB)    * 4 #
+#DESC:'As man, perhaps, the moment 
+#DESC:of his breath, / Receives the 
+#DESC:lurking principle of death'
+#DESC:Alexander Pope
+#HINT:combo hold(Zealous Persecution|myhand)^cast(Zealous Persecution|myhand)^restriction{type(creature|mybattlefield)~morethan~2}^totalmananeeded({W}{B})
+Athreos, God of Passage (JOU) * 2 #
+Deathbringer Liege (EVE) * 4 #
+Harvest Gwyllion (EVE) * 2 #
+Moonrise Cleric (BLB) * 2 #
+Mourning Thrull (GPT) * 4 #
+Nightsky Mimic (EVE) * 2 #
+Nip Gwyllion (EVE) * 4 #
+Plains (M13) * 4 #
+Plains (RAV) * 4 #
+Plains (RV) * 4 #
+Righteous War (VIS) * 4 #
+Swamp (M13) * 4 #
+Swamp (RAV) * 4 #
+Swamp (RV) * 4 #
+Vindicate (APC) * 4 #
+Voracious Hatchling (EVE) * 4 #
+Zealous Persecution (ARB) * 4 #
