@@ -1,31 +1,21 @@
 #NAME:Mind Wracked
-#DESC:"What was it, what was it ... I know
-#DESC: there was something I wanted to tell
-#DESC: you. Or was it something you wanted
-#DESC: to tell me? Ah, why can't I remember?
-#DESC: I know it was important! Or wasn't it?
-#DESC:
-#DESC: What am I thinking about here? And
-#DESC: are these actually my own thoughts?
-#DESC: Who am I anyway? And who are *you*?
-#DESC: Ah, never mind. I'll just kill you.
-#DESC:
-#DESC: You're disrupting my thoughts."
-Izzet Signet (GPT)           * 4 #
-Gelectrode (GPT)             * 4 #
-Wee Dragonauts (GPT)         * 4 #
-Stream Hopper (EVE)          * 4 #
-Mindwrack Liege (EVE)        * 4 #
-Noggle Ransacker (EVE)       * 4 #
-Noggle Bridgebreaker (EVE)   * 4 #
-Magefire Wings  (ARB)        * 4 #
-Unsummon (M10)               * 2 #
-Lightning Bolt (M10)         * 2 #
-Island (ZEN)                 * 3 #
-Island (ZEN)                 * 3 #
-Island (ZEN)                 * 3 #
-Island (ZEN)                 * 3 #
-Mountain (ZEN)               * 3 #
-Mountain (ZEN)               * 3 #
-Mountain (ZEN)               * 3 #
-Mountain (ZEN)               * 3 #
+#DESC:Sometimes forgetting can
+#DESC:be an act of aggression 
+#HINT:castpriority(instant,enchantment,creature,*)
+Blistercoil Weird (RTR) * 4
+Clout of the Dominus (EVE) * 4
+Island (10E) * 4
+Island (M10) * 4
+Island (ZEN) * 4
+Lightning Bolt (M10) * 3
+Magefire Wings  (ARB) * 4
+Mindwrack Liege (EVE) * 2
+Mountain (10E) * 4
+Mountain (M10) * 4
+Mountain (ZEN) * 4
+Noggle Bandit (EVE) * 2
+Noggle Bridgebreaker (EVE) * 2
+Riverfall Mimic (EVE) * 4
+Sprite Dragon (CLB) *4
+Tempest Angler (BLB) * 4
+Unsummon (M10) * 3
