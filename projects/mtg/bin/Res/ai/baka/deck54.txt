@@ -1,24 +1,24 @@
-#NAME:Disciplination
-#DESC:"Unfortunately, my army
-#DESC: has not managed to survive
-#DESC: certain disciplinary measures
-#DESC: that I was sadly forced to take.
-#DESC: But I see that you
-#DESC: have brought me reinforcements.
-#DESC: How very nice of you. Thanks!"
-Paralyze (RV)                * 3 #
-Moat (LEG)                   * 4 #
-Light of Day (TMP)           * 1 #
-Torment (STH)                * 4 #
-Sleeper Agent (USG)          * 4 #
-Pillory of the Sleepless (GPT) * 4 #
-Pacifism (10E)               * 4 #
-Bound in Silence (FUT)       * 4 #
-Stronghold Discipline (10E)  * 4 #
-Recumbent Bliss (EVE)        * 4 #
-Swamp (ZEN)                  * 4 #
-Plains (ZEN)                 * 4 #
-Plains (ZEN)                 * 4 #
-Plains (ZEN)                 * 4 #
-Swamp (ZEN)                  * 4 #
-Swamp (ZEN)                  * 4 #
+#NAME:Torpor
+#DESC:When the army is unoccupied
+#DESC:and restless, beware the 
+#DESC:enemies within.
+#HINT:combo hold(Darkest Hour|myhand)^cast(Darkest Hour|myhand)^restriction{type(Darkest Hour|mybattlefield)~lessthan~1}^totalmananeeded({B})
+#HINT:combo hold(Light of Day|myhand)^cast(Light of Day|myhand)^restriction{type(Light of Day|mybattlefield)~lessthan~1}^totalmananeeded({3}{W})
+#HINT:combo hold(Moat|myhand)^cast(Moat|myhand)^restriction{type(Moat|mybattlefield)~lessthan~1}^totalmananeeded({2}{W}[W})
+#HINT:combo hold(Stronghold Discipline|myhand)^cast(Stronghold Discipline|myhand)^restriction{type(creature|opponentbattlefield)~morethan~2}^totalmananeeded({2}{B}{B})
+Bound in Silence (FUT) * 2
+Darkest Hour (7ED) * 4
+Light of Day (TMP) * 4
+Moat (LEG) * 4
+Pacifism (10E) * 4
+Paralyze (RV) * 3
+Pillory of the Sleepless (GPT) * 4
+Plains (10E) * 4
+Plains (7ED) * 4
+Plains (ZEN) * 4
+Recumbent Bliss (EVE) * 3
+Sleeper Agent (USG) * 4
+Stronghold Discipline (10E) * 4
+Swamp (10E) * 4
+Swamp (7ED) * 4
+Swamp (ZEN) * 4
