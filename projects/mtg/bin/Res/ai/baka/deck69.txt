@@ -1,19 +1,23 @@
 #NAME:Balefire Blast
-#DESC:"Order and chaos
-#DESC: can be united
-#DESC: by the raw power
-#DESC: of pure fanaticism."
-Boros Swiftblade (RAV)       * 4 #
-Lightning Helix (RAV)        * 4 #
-Boros Recruit (RAV)          * 4 #
-Mountain (RAV)               *12 #
-Plains (RAV)                 *12 #
-Skyknight Legionnaire (RAV)  * 3 #
-Hobgoblin Dragoon (EVE)      * 1 #
-Rise of the Hobgoblins (EVE) * 2 #
-Belligerent Hatchling (EVE)  * 4 #
-Nobilis of War (EVE)         * 4 #
-Hearthfire Hobgoblin (EVE)   * 4 #
-Balefire Liege (EVE)         * 4 #
-Bull Cerodon (ALA)           * 1 #
-Cerodon Yearling (ARB)       * 1 #
+#DESC:Order and chaos
+#DESC:can be united
+#DESC:by the power of
+#DESC:pure fanaticism.
+Balefire Liege (EVE) * 4 #
+Battlegate Mimic (EVE) * 3 #
+Belligerent Hatchling (EVE) * 4 #
+Boros Recruit (RAV) * 4 #
+Boros Swiftblade (RAV) * 4 #
+Bull Cerodon (ALA) * 1 #
+Cerodon Yearling (ARB) * 1 #
+Hearthfire Hobgoblin (EVE) * 4 #
+Hobgoblin Dragoon (EVE) * 1 #
+Lightning Helix (RAV) * 4 #
+Mountain (ALA) * 4 #
+Mountain (M13) * 4 #
+Mountain (RAV) * 4 #
+Nobilis of War (EVE) * 3 #
+Plains (ALA) * 4 #
+Plains (M13) * 4 #
+Plains (RAV) * 4 #
+Skyknight Legionnaire (RAV) * 3 #
