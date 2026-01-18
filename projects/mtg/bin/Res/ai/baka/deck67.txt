@@ -1,15 +1,24 @@
 #NAME:Planet of the Apes
-#DESC:A planet where apes
-#DESC:evolved from men?
-#DESC:There's got to be an answer!
-Tree Monkey (P02) *4
-Kird Ape (RV) *4
-Barbary Apes (LEG) *4
-Zodiac Monkey (PTK) *4
-Gorilla Warrior (USG) *4
-Gorilla Pack (ICE) *4
-Raging Gorilla (VIS) *4
-Gorilla Chieftain (ALL) *4
-Ancient Silverback (UDS) *4
-Forest (RV) *16
-Mountain (RV) *8
+#DESC:Stealthy, ferocious and 
+#DESC:intelligent, the apes 
+#DESC:are rulers of their
+#DESC:forest domain.
+Alpha Status (SCG) * 4
+Ancient Silverback (UDS) * 1
+Barbary Apes (LEG) * 4
+Forest (5ED) * 4
+Forest (ICE) * 4
+Forest (MIR) * 4
+Forest (POR) * 2
+Forest (RV) * 4
+Gorilla Chieftain (ALL) * 2
+Gorilla Pack (ICE) * 3
+Gorilla Warrior (USG) * 3
+Hidden Gibbons (ULG) * 4
+Silverback Shaman (M20) * 1
+Towering Gibbon (J22) * 4
+Tree Monkey (P02) * 4
+Uktabi Orangutan (VIS) * 2
+Unnatural Growth (MID) * 2
+Yavimaya, Cradle of Growth (MH2) * 4
+Zodiac Monkey (PTK) * 4
