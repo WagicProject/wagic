@@ -1,4 +1,9 @@
 #NAME:Ranar Commander
+#DESC:Ranar swore never to
+#DESC:abandon his post. For
+#DESC:him, guardianship is a
+#DESC:sacred honor.
+#DESC:
 #DESC:Kaldheim Commander Deck
 #DESC:Phantom Premonition
 #HINT:castpriority(commander,*)
