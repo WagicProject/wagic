@@ -1,25 +1,23 @@
 #NAME:Enchantresses
-#DESC:Fear the might
-#DESC:of the Enchantresses!
-#DESC:If you don't take care,
-#DESC:they will fire
-#DESC:a barrage of spells
-#DESC:while growing
-#DESC:to powerful warriors
-#DESC:themselves.
-Web (RV)                     * 4 #
-Wall of Blossoms (STH)       * 4 #
-Argothian Enchantress (USG)  * 4 #
-Yavimaya Enchantress (UDS)   * 4 #
-Ancestral Mask (MRQ)         * 3 #
-Briar Patch (MRQ)            * 3 #
-Fists of Ironwood (RAV)      * 4 #
-Forest (RAV)                 * 4 #
-Forest (RAV)                 * 4 #
-Forest (RAV)                 * 4 #
-Gaea's Anthem (PLC)          * 3 #
-Primal Rage (10E)            * 3 #
-Forest (ALA)                 * 4 #
-Forest (ALA)                 * 4 #
-Forest (ALA)                 * 4 #
-Birds of Paradise (M10)      * 4 #
+#DESC:The enchantresses weave
+#DESC:their spells in mighty
+#DESC:webs, ready to catch the
+#DESC:foolish and unwary.
+Ancestral Mask (MRQ) * 4 #
+Argothian Enchantress (USG) * 4 #
+Birds of Paradise (M10) * 4 #
+Blanchwood Armor (10E) * 2 #
+Briar Patch (MRQ) * 2 #
+Canopy Spider (10E) * 2 #
+Druid of the Cowl (AER) * 2 #
+Fists of Ironwood (RAV) * 4 #
+Forest (10E) * 4 #
+Forest (ALA) * 4 #
+Forest (M10) * 4 #
+Forest (M11) * 4 #
+Forest (RAV) * 4 #
+Forest (RV) * 2 #
+Gaea's Anthem (PLC) * 3 #
+Primal Rage (10E) * 3 #
+Web (RV) * 4 #
+Yavimaya Enchantress (UDS) * 4 #
