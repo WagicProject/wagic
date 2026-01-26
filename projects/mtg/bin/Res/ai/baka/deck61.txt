@@ -1,20 +1,21 @@
-#NAME:The Tarmack
-#DESC:How does it feel
-#DESC:being stripped to the rack
-#DESC:while Tarmogoyf licks
-#DESC:the soles of your feet?
-The Rack (RV)                * 4 #
-Hymn to Tourach (FEM)        * 4 #
-Darksteel Ingot (DST)        * 3 #
-Geth's Grimoire (DST)        * 3 #
-Forest (RAV)                 * 5 #
-Forest (RAV)                 * 4 #
-Hypnotic Specter (10E)       * 4 #
-Tarmogoyf (FUT)              * 4 #
-Peppersmoke (LRW)            * 4 #
-Nath of the Gilt-Leaf (LRW)  * 4 #
-Executioner's Capsule (ALA)  * 3 #
-Doom Blade (M10)             * 4 #
-Weakness (M10)               * 3 #
-Swamp (ZEN)                  * 5 #
-Swamp (ZEN)                  * 6 #
+#NAME:Tarmogoyf's Rack
+#DESC:The Tarmogoyf is an
+#DESC:odious creaure, feeding
+#DESC:on the suffering of others
+Darksteel Ingot (DST) * 3 #
+Doom Blade (M10) * 4 #
+Fell (BLB) * 4 #
+Forest (M10) * 1 #
+Forest (RAV) * 4 #
+Forest (ZEN) * 4 #
+Geth's Grimoire (DST) * 3 #
+Go for the Throat (MOC) * 4 #
+Hymn to Tourach (FEM) * 4 #
+Hypnotic Specter (10E) * 4 #
+Murder (DSK) * 2 #
+Nath of the Gilt-Leaf (LRW) * 3 #
+Swamp (M10) * 4 #
+Swamp (RAV) * 4 #
+Swamp (ZEN) * 4 #
+Tarmogoyf (FUT) * 4 #
+The Rack (RV) * 4 #

@@ -1,30 +1,30 @@
 #NAME:Ascendant Bloodwitch
-#DESC:Oh to sink one's teeth
+#DESC:To sink one's teeth
 #DESC:into the warm softness
 #DESC:of pulsating flesh!
 #DESC:
-#DESC:Oh to drink the liquor
+#DESC:To drink the liquor
 #DESC:of life and passion
 #DESC:fresh from the source!
 #DESC:
 #DESC:Can it be a sin
 #DESC:to revel in such bliss?
-Dark Ritual (RV)             * 2 #
-Arrogant Vampire (POR)       * 4 #
-Vampiric Feast (POR)         * 2 #
-Vampiric Touch (POR)         * 2 #
-Stalking Bloodsucker (ODY)   * 1 #
-Skeletal Vampire (GPT)       * 1 #
-Ascendant Evincar (10E)      * 2 #
-Vampiric Link (PLC)          * 3 #
-Swamp (ALA)                  * 4 #
-Swamp (ALA)                  * 4 #
-Vampire's Bite (ZEN)         * 3 #
-Blood Seeker (ZEN)           * 4 #
-Vampire Nighthawk (ZEN)      * 4 #
-Malakir Bloodwitch (ZEN)     * 4 #
-Child of Night (M10)         * 4 #
-Swamp (M10)                  * 4 #
-Swamp (M10)                  * 4 #
-Swamp (M10)                  * 4 #
-Swamp (M10)                  * 4 #
+Arrogant Vampire (POR) * 2
+Ascendant Evincar (10E) * 2
+Blood Seeker (ZEN) * 4
+Child of Night (M10) * 4
+Gift of Fangs (VOW) * 3
+Malakir Bloodwitch (ZEN) * 4
+Necropolis Regent (RTR) * 1
+Swamp (10E) * 4
+Swamp (ALA) * 4
+Swamp (M10) * 4
+Swamp (M11) * 4
+Swamp (POR) * 4
+Swamp (ZEN) * 4
+Vampire Cutthroat (EMN) * 3
+Vampire Nighthawk (ZEN) * 4
+Vampire of the Dire Moon (M20) * 4
+Vampiric Link (PLC) * 2
+Vampiric Touch (POR) * 2
+Vengeant Vampire (PZ2) * 1

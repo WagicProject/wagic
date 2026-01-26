@@ -1,21 +1,22 @@
-#NAME:Bushwhacked
-#DESC:"Attack! Heal! Attack! Heal!
-#DESC: And again and again and again.
-#DESC: Oh, how I miss my days
-#DESC: in the goblin army!
-#DESC: There, I never had to do
-#DESC: TWO things in a battle!"
-Swords to Plowshares (ICE)   * 4 #
-Akki Raider (BOK)            * 4 #
-Lightning Helix (RAV)        * 4 #
-Knight of Meadowgrain (LRW)  * 4 #
-Tattermunge Maniac (SHM)     * 3 #
-Nobilis of War (EVE)         * 3 #
-Plated Geopede (ZEN)         * 4 #
-Steppe Lynx (ZEN)            * 4 #
-Elite Vanguard (M10)         * 3 #
-Lightning Bolt (M10)         * 4 #
-Plains (ZEN)                 * 5 #
-Mountain (ZEN)               * 4 #
-Plains (ZEN)                 * 7 #
-Mountain (ZEN)               * 7 #
+#NAME:Crucible
+#DESC:Destruction is the forerunner
+#DESC:of new beginnings
+#HINT:combo hold(Armageddon|myhand)^cast(Armageddon|myhand)^restriction{type(Crucible of Worlds|mybattlefield)~morethan~0}^totalmananeeded({3}{W})
+Akki Raider (BOK) * 2
+Akoum Hellhound (ZNR) * 3
+Armageddon (A25) * 3
+Crucible of Worlds (5DN) * 3
+Fearless Fledgling (ZNR) * 4
+Lightning Bolt (M10) * 3
+Lightning Helix (RAV) * 4
+Mountain (RAV) * 3
+Mountain (M10) * 4
+Mountain (ZEN) * 4
+Nobilis of War (EVE) * 2
+Plains (RAV) * 4
+Plains (M10) * 4
+Plains (ZEN) * 4 
+Plated Geopede (ZEN) * 4
+Prowling Felidar (ZNR) * 2
+Steppe Lynx (ZEN) * 4
+Swords to Plowshares (ICE) * 3

@@ -1,20 +1,24 @@
 #NAME:Persistence
-#DESC:See your whole army
-#DESC:fall victim
-#DESC:to wrath and damnation
-#DESC:while we persist
-#DESC:and survive
-#DESC:to strike you
-#DESC:when you are defenseless.
-Wrath of God (RV)            * 4 #
-Damnation (PLC)              * 4 #
-Kitchen Finks (SHM)          * 4 #
-Safehold Elite (SHM)         * 4 #
-Lingering Tormentor (EVE)    * 3 #
-Kithkin Spellduster (EVE)    * 1 #
-Heartmender (SHM)            * 4 #
-Restless Apparition (EVE)    * 4 #
-Rendclaw Trow (EVE)          * 4 #
-Day of Judgment (ZEN)        * 4 #
-Swamp (ZEN)                  *11 #
-Plains (ZEN)                 *13 #
+#DESC:You will fall to
+#DESC:damnation while we
+#DESC:survive and persist.
+#HINT:combo hold(Damnation|myhand)^cast(Damnation|myhand)^restriction{type(creature|opponentbattlefield)~morethan~1}^totalmananeeded({2}{B}{B})
+#HINT:combo hold(Day of Judgment|myhand)^cast(Day of Judgment|myhand)^restriction{type(creature|opponentbattlefield)~morethan~1}^totalmananeeded({2}{W}{W})
+#HINT:combo hold(Wrath of God|myhand)^cast(Wrath of God|myhand)^restriction{type(creature|opponentbattlefield)~morethan~1}^totalmananeeded({2}{W}{W})
+Damnation (PLC) * 4
+Day of Judgment (ZEN) * 4
+Heartmender (SHM) * 4
+Kitchen Finks (SHM) * 4
+Kithkin Spellduster (EVE) * 1
+Lingering Tormentor (EVE) * 3
+Plains (M10) * 4
+Plains (RV) * 1
+Plains (SHM) * 4
+Plains (ZEN) * 4
+Rendclaw Trow (EVE) * 4
+Restless Apparition (EVE) * 4
+Safehold Elite (SHM) * 4
+Swamp (M10) * 3
+Swamp (SHM) * 4
+Swamp (ZEN) * 4
+Wrath of God (RV) * 4

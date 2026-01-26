@@ -1,22 +1,25 @@
-#NAME:Slightly Sligh
-#DESC:The Mogg are loose!
-#DESC:And they come
-#DESC:with some powerful spells
-#DESC:too!
-Mogg Conscripts (TMP)        * 4 #
-Mogg Flunkies (STH)          * 4 #
-Flame Rift (NMS)             * 2 #
-Mogg Sentry (PLS)            * 2 #
-Great Furnace (MRD)          * 4 #
-Lava Spike (CHK)             * 4 #
-Brute Force (PLC)            * 4 #
-Mogg Fanatic (10E)           * 4 #
-Tattermunge Maniac (SHM)     * 4 #
-Mudbrawler Cohort (SHM)      * 4 #
-Mountain (ALA)               * 4 #
-Mountain (ALA)               * 4 #
-Mountain (ALA)               * 4 #
-Mountain (ALA)               * 2 #
-Goblin Chieftain (M10)       * 2 #
-Raging Goblin (M10)          * 4 #
-Lightning Bolt (M10)         * 4 #
+#NAME:Mogg Brawlers
+#DESC:Mogg Goblins are known for
+#DESC:their size, their savagery...
+#DESC:and their recklessness.
+#DESC:
+#DESC:Deck inspired by Paul Sligh
+Consuming Fervor (AKH) * 2 #
+Foundry Street Denizen (GTC) * 2 #
+Furor of the Bitten (ISD) * 2 #
+Goblin Chieftain (M10) * 2 #
+Great Furnace (MRD) * 4 #
+Lava Spike (CHK) * 4 #
+Legion Loyalist (GTC) * 2 #
+Lightning Bolt (M10) * 4 #
+Mogg Conscripts (TMP) * 4 #
+Mogg Flunkies (STH) * 4 #
+Mogg Sentry (PLS) * 2 #
+Mountain (10E) * 2 #
+Mountain (ALA) * 4 #
+Mountain (SHM) * 4 #
+Mountain (TMP) * 4 #
+Mudbrawler Cohort (SHM) * 4 #
+Raging Goblin (M10) * 4 #
+Skullcrack (GTC) * 2 #
+Tattermunge Maniac (SHM) * 4 #

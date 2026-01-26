@@ -1,20 +1,21 @@
 #NAME:Soul Blossom Procession
-#DESC:"Beware!
-#DESC: they come from everywhere!"
-#DESC:
-#DESC:Meet a diverse army
-#DESC:drafted by unusual means.
-Swords to Plowshares (ICE)   * 4 #
-Raise the Alarm (MRD)        * 4 #
-Plains (MRD)                 * 7 #
-Swamp (MRD)                  * 5 #
-Swamp (MRD)                  * 5 #
-Skeletal Vampire (GPT)       * 2 #
-Glorious Anthem (10E)        * 4 #
-Spectral Procession (SHM)    * 4 #
-Bitterblossom (MOR)          * 4 #
-Voracious Hatchling (EVE)    * 2 #
-Deathbringer Liege (EVE)     * 4 #
-Plains (ALA)                 * 7 #
-Deathgreeter (ALA)           * 4 #
-Soul Warden (M10)            * 4 #
+#DESC:The most powerful sorcerors
+#DESC:can conjure biddable armies
+#DESC:to serve their every desire.
+Bitterblossom (MOR) * 4 #
+Deathbringer Liege (EVE) * 4 #
+Deathgreeter (ALA) * 4 #
+Glorious Anthem (10E) * 4 #
+Plains (10E) * 2 #
+Plains (ALA) * 4 #
+Plains (ICE) * 4 #
+Plains (MRD) * 4 #
+Raise the Alarm (MRD) * 4 #
+Skeletal Vampire (GPT) * 2 #
+Soul Warden (M10) * 4 #
+Spectral Procession (SHM) * 4 #
+Swamp (ALA) * 2 #
+Swamp (ICE) * 4 #
+Swamp (MRD) * 4 #
+Swords to Plowshares (ICE) * 4 #
+Voracious Hatchling (EVE) * 2 #
