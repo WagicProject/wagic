@@ -1,17 +1,21 @@
 #NAME:Thistlestings
-#DESC:Meet a more mystical tribe
-#DESC:of Kithkin. Will you allow
-#DESC:them to confuse you?
-Wings of Aesthir (ICE)       * 4 #
-Wings of Hope (INV)          * 4 #
-Plains (INV)                 *12 #
-Island (INV)                 *12 #
-Iridescent Angel (ODY)       * 2 #
-Zealous Guardian (SHM)       * 4 #
-Somnomancer (SHM)            * 2 #
-Thistledown Liege (SHM)      * 4 #
-Thistledown Duo (SHM)        * 4 #
-Plumeveil (SHM)              * 2 #
-Ethercaste Knight (ARB)      * 4 #
-Wall of Denial (ARB)         * 2 #
-Esper Cormorants (CFX)       * 4 #
+#DESC:A dozen stings is more
+#DESC:painful than one mighty
+#DESC:blow
+Esper Cormorants (CFX) * 4 #
+Ethercaste Knight (ARB) * 4 #
+Iridescent Angel (ODY) * 2 #
+Island (ODY) * 4 #
+Island (INV) * 4 #
+Island (SHM) * 4 #
+Plains (ODY) * 4 #
+Plains (INV) * 4 #
+Plains (SHM) * 4 #
+Plumeveil (SHM) * 2 #
+Somnomancer (SHM) * 2 #
+Thistledown Duo (SHM) * 4 #
+Thistledown Liege (SHM) * 4 #
+Wall of Denial (ARB) * 2 #
+Wings of Aesthir (ICE) * 4 #
+Wings of Hope (INV) * 4 #
+Zealous Guardian (SHM) * 4 #
