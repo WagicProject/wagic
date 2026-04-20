@@ -1,16 +1,23 @@
-#NAME:Air Sea Battle
-#DESC:Meet the darker side
-#DESC:of fairies
-#DESC:and merfolk.
-Sleeper's Robe (INV)         * 4 #
+#NAME:Pitch Darkness
+#DESC:In the storm clouds and
+#DESC:the inky depths, the 
+#DESC:enemy strikes without
+#DESC:warning.
+#HINT:alwaysattackwith(Inkfathom Infiltrator)
+Glen Elendra Liege (SHM) * 4 #
+Gravelgill Axeshark (SHM) * 2 #
+Gravelgill Duo (SHM) * 3 #
+Helm of the Ghastlord (SHM) * 2 #
+Inkfathom Infiltrator (SHM) * 4 #
+Island (M10) * 4 #
+Island (M11) * 4 #
+Island (SHM) * 4 #
+Nightveil Predator (GRN) * 3
+Oona's Gatewarden (SHM) * 4 #
 Shadowmage Infiltrator (ODY) * 3 #
-Gravelgill Axeshark (SHM)    * 3 #
-Oona's Gatewarden (SHM)      * 4 #
-Glen Elendra Liege (SHM)     * 4 #
-Gravelgill Duo (SHM)         * 3 #
-Wasp Lancer (SHM)            * 3 #
-Scarscale Ritual (SHM)       * 4 #
-Inkfathom Infiltrator (SHM)  * 4 #
-Tidehollow Strix (ALA)       * 4 #
-Swamp (M10)                  *12 #
-Island (M10)                 *12 #
+Sleeper's Robe (INV) * 4 #
+Swamp (M10) * 4 #
+Swamp (M11) * 4 #
+Swamp (SHM) * 4 #
+Tidehollow Strix (ALA) * 4 #
+Wasp Lancer (SHM) * 3 #

@@ -1,18 +1,22 @@
 #NAME:Saproling Surge
-#DESC:A wiggling, squirming mass
-#DESC:of fungal matter
-#DESC:will overgrow your army.
-Verdant Force (TMP)          * 2 #
-Gaea's Cradle (USG)          * 2 #
-Spontaneous Generation (MRQ) * 2 #
-Nemata, Grove Guardian (PLS) * 1 #
-Fists of Ironwood (RAV)      * 4 #
-Forest (RAV)                 *15 #
-Swamp (RAV)                  * 7 #
-Verdant Embrace (TSP)        * 4 #
-Sprout (TSP)                 * 4 #
-Gaea's Anthem (PLC)          * 4 #
-Creakwood Liege (EVE)        * 4 #
-Necrogenesis (ALA)           * 4 #
-Morbid Bloom (ARB)           * 3 #
-Tukatongue Thallid (CFX)     * 4 #
+#DESC:The tenacity of new life
+#DESC:is remarkable, but left
+#DESC:unchecked it is terrifying
+#HINT:combo hold(Fungal Sprouting|myhand)^cast(Fungal Sprouting|myhand)^restriction{type(creature|mybattlefield)~morethan~1}^totalmananeeded({3}{G})
+Creakwood Liege (EVE) * 4 #
+Fists of Ironwood (RAV) * 4 #
+Forest (ALA) * 4 #
+Forest (TSP) * 4 #
+Forest (RAV) * 4 #
+Forest (TMP) * 4 #
+Forest (M13) * 4 #
+Fungal Sprouting (M13) * 3 #
+Gaea's Anthem (PLC) * 4 #
+Gaea's Cradle (USG) * 2 #
+Overgrown Armasaur (RIX) * 2 #
+Saproling Migration (DOM) * 4 #
+Shroofus Sproutsire (J25) * 3 #
+Sprout (TSP) * 4 #
+Tendershoot Dryad (RIX) * 4 #
+Tukatongue Thallid (CFX) * 4 #
+Verdant Embrace (TSP) * 2 #

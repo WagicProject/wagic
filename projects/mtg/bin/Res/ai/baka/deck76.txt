@@ -1,26 +1,25 @@
 #NAME:The Memorial
-#DESC:What will you do
-#DESC:when you are facing
-#DESC:an army of super-beings?
-#DESC:
 #DESC:Worshipping the Memorial
-#DESC:gives them powers
-#DESC:beyond comprehension.
-Pendelhaven (LEG)            * 1 #
-Urborg (LEG)                 * 1 #
-Fyndhorn Elves (ICE)         * 4 #
+#DESC:grants powers beyond
+#DESC:comprehension.
+#HINT:combo hold(Elvish Promenade|myhand)^cast(Elvish Promenade|myhand)^restriction{type(creature[Elf]|mybattlefield)~morethan~2}^totalmananeeded({3}{G})
+Akroma's Memorial (FUT) * 4 #
+Ant Queen (M10) * 3 #
+Bitterblossom (MOR) * 4 #
+Citanul Hierophants (USG) * 1 #
 Eladamri, Lord of Leaves (TMP) * 1 #
-Citanul Hierophants (USG)    * 1 #
-Priest of Titania (USG)      * 4 #
-Gaea's Cradle (USG)          * 1 #
-Wirewood Lodge (ONS)         * 1 #
-Wellwisher (ONS)             * 4 #
-Akroma's Memorial (FUT)      * 4 #
-Elvish Promenade (LRW)       * 3 #
-Imperious Perfect (LRW)      * 4 #
-Bitterblossom (MOR)          * 4 #
-Llanowar Elves (M10)         * 4 #
-Ant Queen (M10)              * 3 #
-Elvish Archdruid (M10)       * 4 #
-Forest (ZEN)                 *12 #
-Swamp (ZEN)                  * 4 #
+Elvish Archdruid (M10) * 4 #
+Elvish Promenade (LRW) * 3 #
+Forest (LRW) * 4 #
+Forest (M10) * 4 #
+Forest (M11) * 1 #
+Forest (ZEN) * 4 #
+Fyndhorn Elves (ICE) * 4 #
+Gaea's Cradle (USG) * 1 #
+Imperious Perfect (LRW) * 4 #
+Llanowar Elves (M10) * 4 #
+Pendelhaven (LEG) * 1 #
+Priest of Titania (USG) * 4 #
+Swamp (M10) * 1 #
+Swamp (ZEN) * 4 #
+Wellwisher (ONS) * 4 #

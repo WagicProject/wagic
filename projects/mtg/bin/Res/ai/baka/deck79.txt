@@ -1,17 +1,22 @@
 #NAME:Malakir Seeker
-#DESC:"The cattle has arrived.
-#DESC: Time to feed ..."
-Bad Moon (RV)                * 4 #
-Terror (RV)                  * 3 #
-Swamp (RV)                   *16 #
-Vampire Hounds (EXO)         * 2 #
-Piranha Marsh (ZEN)          * 4 #
-Marsh Casualties (ZEN)       * 4 #
-Vampire's Bite (ZEN)         * 4 #
-Disfigure (ZEN)              * 4 #
-Blood Seeker (ZEN)           * 4 #
-Vampire Nighthawk (ZEN)      * 4 #
-Malakir Bloodwitch (ZEN)     * 2 #
-Sign in Blood (M10)          * 3 #
-Child of Night (M10)         * 4 #
+#DESC:The last true refuge of
+#DESC:vampires is a lethal place
+#DESC:for the unwary.
+Bad Moon (RV) * 4 #
+Blood Seeker (ZEN) * 4 #
+Child of Night (M10) * 4 #
+Cordial Vampire (MH1) * 2 #
+Feast of Blood (ZEN) * 2 #
+Gift of Fangs (VOW) * 4 #
+Guul Draz Vampire (ZEN) * 4 #
+Malakir Bloodwitch (ZEN) * 2 #
 Ob Nixilis, the Fallen (ZEN) * 2 #
+Piranha Marsh (ZEN) * 2 #
+Swamp (ISD) * 4 #
+Swamp (M10) * 4 #
+Swamp (M11) * 4 #
+Swamp (RV) * 4 #
+Swamp (ZEN) * 4 #
+Terror (RV) * 2 #
+Vampire Nighthawk (ZEN) * 4 #
+Victim of Night (ISD) * 4 #
