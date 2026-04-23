@@ -61,7 +61,7 @@ JZipCache::~JZipCache()
 
 void JFileSystem::Pause() 
 {
-    filesystem::closeTempFiles();
+    ZipFS::closeTempFiles();
 }
 
 void JFileSystem::preloadZip(const string& filename)
@@ -198,8 +198,8 @@ JFileSystem::JFileSystem(const string & _userPath, const string & _systemPath)
 
     mSystemFSPath = systemPath;
    
-    mUserFS = new filesystem(userPath.c_str());
-    mSystemFS = (mSystemFSPath.size() && (mSystemFSPath.compare(mUserFSPath) != 0)) ? new filesystem(systemPath.c_str()) : NULL;
+    mUserFS = new ZipFS(userPath.c_str());
+    mSystemFS = (mSystemFSPath.size() && (mSystemFSPath.compare(mUserFSPath) != 0)) ? new ZipFS(systemPath.c_str()) : NULL;
 
     mZipAvailable = false;
     mZipCachedElementsCount = 0;
@@ -240,7 +240,7 @@ bool JFileSystem::MakeDir(const string & dir)
 JFileSystem::~JFileSystem()
 {
     clearZipCache();
-    filesystem::closeTempFiles();
+    ZipFS::closeTempFiles();
     SAFE_DELETE(mUserFS);
     SAFE_DELETE(mSystemFS);
 }
@@ -282,8 +282,8 @@ bool JFileSystem::AttachZipFile(const string &zipfile, char *password /* = NULL 
     if (mZipFile.Zipped())
     {
         mZipFile.close();
-        assert(filesystem::getCurrentFS());
-        mZipFile.open(filesystem::getCurrentZipName().c_str(), filesystem::getCurrentFS()); 
+        assert(ZipFS::getCurrentFS());
+        mZipFile.open(ZipFS::getCurrentZipName().c_str(), ZipFS::getCurrentFS()); 
         assert(mZipFile);
     }
     mZipAvailable = true;
@@ -403,7 +403,7 @@ bool JFileSystem::OpenFile(const string &filename)
         return openForRead(mFile, filename);
     }
     JZipCache * zc = it->second;
-    map<string,  filesystem::limited_file_info>::iterator it2 = zc->dir.find(filename);
+    map<string,  ZipFS::limited_file_info>::iterator it2 = zc->dir.find(filename);
     if (it2 == zc->dir.end())
     {
         /*DetachZipFile();
@@ -437,7 +437,7 @@ int JFileSystem::ReadFile(void *buffer, int size)
         assert(mZipFile);
         if((size_t)size > mCurrentFileInZip->m_Size) //only support "store" method for zip inside zips
             return 0;
-        std::streamoff offset = filesystem::SkipLFHdr(mZipFile, mCurrentFileInZip->m_Offset);
+        std::streamoff offset = ZipFS::SkipLFHdr(mZipFile, mCurrentFileInZip->m_Offset);
         if (!mZipFile.seekg(offset))
             return 0;
         mZipFile.read((char *) buffer, size);
@@ -489,7 +489,7 @@ std::vector<std::string>& JFileSystem::scanfolder(const std::string& _folderName
 
     //user zips
     {    
-        //Scan the zip filesystem
+        //Scan the zip ZipFS
         std::vector<std::string> userZips;
         mUserFS->scanfolder(folderName, userZips);
 
@@ -500,7 +500,7 @@ std::vector<std::string>& JFileSystem::scanfolder(const std::string& _folderName
     //system zips
     if (mSystemFS)
     {
-        //Scan the zip filesystem
+        //Scan the zip ZipFS
         std::vector<std::string> systemZips;
         mSystemFS->scanfolder(folderName, systemZips);
 

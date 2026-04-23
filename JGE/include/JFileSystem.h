@@ -3,9 +3,9 @@
 
 #include "zfsystem.h"
 #include <string>
-using zip_file_system::filesystem;
 using zip_file_system::izfstream;
 using namespace std;
+typedef zip_file_system::filesystem ZipFS;
 
 #include "unzip/unzip.h"
 
@@ -23,14 +23,14 @@ class JZipCache {
 public:
   JZipCache();
   ~JZipCache();
-  map<string, filesystem::limited_file_info> dir;
+  map<string, ZipFS::limited_file_info> dir;
   
 };
 
 class JFileSystem {
 private:
     string mSystemFSPath, mUserFSPath;
-    filesystem * mSystemFS, * mUserFS;
+    ZipFS * mSystemFS, * mUserFS;
 	static JFileSystem* mInstance;
     izfstream mFile;
 
@@ -42,7 +42,7 @@ private:
 	bool mZipAvailable;
   	void preloadZip(const string& filename);
 	izfstream mZipFile;
-    filesystem::limited_file_info * mCurrentFileInZip;
+    ZipFS::limited_file_info * mCurrentFileInZip;
 
     std::vector<std::string>& scanRealFolder(const std::string& folderName, std::vector<std::string>& results);
 

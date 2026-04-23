@@ -140,7 +140,7 @@ maemo5: {
     ICON = MacOS/wagic.icns
 
     #Move resource file
-    res.commands = cd $$_PRO_FILE_PWD_/bin/Res; python createResourceZip.py;
+    res.commands = cd $$_PRO_FILE_PWD_/bin/Res; python3 createResourceZip.py;
     res.depends = all
     QMAKE_EXTRA_TARGETS += res
 
@@ -149,11 +149,9 @@ maemo5: {
     dmg.depends = res
     QMAKE_EXTRA_TARGETS += dmg
 
-    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.9
+    QMAKE_MACOSX_DEPLOYMENT_TARGET = 11.0
     QMAKE_MAC_SDK = macosx
-
-    # Only Intel binaries are accepted so force this
-    CONFIG += x86
+    QMAKE_APPLE_DEVICE_ARCHS = arm64
 
 } else:unix {
     # Variables
