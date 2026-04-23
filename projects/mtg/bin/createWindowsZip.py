@@ -8,6 +8,7 @@ def createWindowsZipFile(filename):
     utilities = ZipUtilities()
     zip_file = zipfile.ZipFile(filename, 'w', zipfile.ZIP_STORED)
     zip_file.write('../../../LICENSE')
+    zip_file.write('freetype6.dll')
     zip_file.write('libpng13.dll')
     zip_file.write('SDL.dll')
     zip_file.write('fmod.dll')
