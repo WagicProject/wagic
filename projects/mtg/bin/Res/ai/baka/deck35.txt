@@ -8,16 +8,16 @@ Forest (TMP) * 4
 Forest (TSP) * 4
 Fury Sliver (TSP) * 2 
 Gemhide Sliver (TSP) * 4 
-Heart Sliver (H09) * 2  
+Heart Sliver (TMP) * 2  
 Horned Sliver (TPR) * 3 
 Island (8ED) * 4
 Island (TMP) * 1
 Might Sliver (TSP) * 4  
 Mountain (8ED) * 6
 Mountain (TMP) * 4
-Muscle Sliver (H09) * 4  
+Muscle Sliver (TMP) * 4  
 Shifting Sliver (LGN) * 2   
 Spinneret Sliver (TSP) * 3
 Striking Sliver (M14) * 3 
 Two-Headed Sliver (TSP) * 1
-Winged Sliver (H09) * 3 
+Winged Sliver (TMP) * 3 

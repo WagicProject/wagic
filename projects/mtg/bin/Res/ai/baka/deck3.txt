@@ -6,11 +6,11 @@
 #DESC:Win matches to unlock more
 #DESC:opponents, sets and game modes
 Armageddon (VMA) * 1
-Black Vise (V10) * 2
+Black Vise (RV) * 2
 Builder's Blessing (AVR) * 2
 Cockatrice (TSB) * 2
 Craw Wurm (9ED) * 2
-Crusade (DDF) * 2
+Crusade (RV) * 2
 Forest (8ED) * 4
 Forest (9ED) * 4
 Forest (MRD) * 1

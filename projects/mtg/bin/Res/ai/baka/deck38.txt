@@ -6,7 +6,7 @@
 #DESC:William Shakespeare
 #HINT:combo hold(Damnation|myhand)^cast(Damnation|myhand)^restriction{type(creature|opponentbattlefield)~morethan~1}^totalmananeeded({2}{B}{B})
 #HINT:combo hold(Infest|myhand)^cast(Infest|myhand)^restriction{type(creature|opponentbattlefield)~morethan~1}^totalmananeeded({1}{B}{B})
-Black Vise (V10) * 1
+Black Vise (RV) * 1
 Damnation (PLC) * 4
 Font of Mythos (CFX) * 2
 Howling Mine (8ED) * 4
