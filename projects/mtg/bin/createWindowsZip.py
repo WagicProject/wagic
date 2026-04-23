@@ -13,6 +13,8 @@ def createWindowsZipFile(filename):
     zip_file.write('SDL.dll')
     zip_file.write('fmod.dll')
     zip_file.write('zlib1.dll')
+    zip_file.write('MSVCR100.dll')
+    zip_file.write('MSVCP100.dll')
     zip_file.write('Wagic.exe')
     zip_file.write('Res/' + getFilename('core') + '.zip')
     zip_file.close()

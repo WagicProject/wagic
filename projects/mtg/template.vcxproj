@@ -143,6 +143,10 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <OutputFile>.\Release/template.bsc</OutputFile>
     </Bscmake>
+    <PostBuildEvent>
+      <Command>xcopy /y "$(VCInstallDir)redist\x86\Microsoft.VC100.CRT\MSVCR100.dll" "$(OutDir)"
+xcopy /y "$(VCInstallDir)redist\x86\Microsoft.VC100.CRT\MSVCP100.dll" "$(OutDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
