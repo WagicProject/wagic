@@ -43,7 +43,7 @@ Goreclaw, Terror of Qal Sisma (BLC) (*) * 1
 Grumgully, the Generous (BLC) (*) * 1
 Gruul Signet (BLC) (*) * 1
 Gruul Turf (BLC) (*) * 1
-Gruul War Chant (*() * 1
+Gruul War Chant (*) * 1
 Harmonize (BLC) (*) * 1
 Hedron Archive (BLC) (*) * 1
 Kodama of the East Tree (BLC) (*) * 1

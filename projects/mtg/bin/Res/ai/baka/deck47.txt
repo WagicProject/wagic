@@ -4,7 +4,7 @@
 #DESC:tiger's tooth'
 #DESC:Friedrich Schiller 
 Beastmaster Ascension (ZEN) *4
-Cave Tiger (UZS) *2
+Cave Tiger (USG) *2
 Forest (10E) *4
 Forest (INV) *3
 Forest (M10) *4

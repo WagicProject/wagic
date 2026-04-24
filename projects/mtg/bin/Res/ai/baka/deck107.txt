@@ -5,7 +5,7 @@
 Suq'Ata Firewalker (MIR) *3
 Zuran Spellcaster (ME2) *3
 Prodigal Sorcerer (*) *3
-Massacre Wurm (mbs) *2
+Massacre Wurm (MBS) *2
 ########################################
 #    Spells                            #
 ########################################

@@ -844,7 +844,7 @@ void GameObserver::gameStateBasedEffects()
             }
 
             //704.5n If an Aura is attached to an illegal object or player,
-            //or is not attached to an object or player, that Aura is put into its owner’s graveyard.
+            //or is not attached to an object or player, that Aura is put into its ownerï¿½s graveyard.
             if (card->target && isInPlay(card->target) && !card->hasType(Subtypes::TYPE_EQUIPMENT) && card->hasSubtype(Subtypes::TYPE_AURA))
             {
                 bool unattachB = (!card->target->isCreature() && card->isBestowed)?true:false;
@@ -2331,7 +2331,7 @@ void GameObserver::loadPlayer(int playerId, PlayerType playerType, int decknb, b
 
 #ifdef NETWORK_SUPPORT
 NetworkGameObserver::NetworkGameObserver(JNetwork* pNetwork, WResourceManager* output, JGE* input)
-    : GameObserver(output, input), mpNetworkSession(pNetwork),     mSynchronized(false)
+    : GameObserver(output, input), mpNetworkSession(pNetwork), mSynchronized(false), mForwardAction(true)
 {
     mpNetworkSession->registerCommand("loadPlayer", this, loadPlayer, ignoreResponse);
     mpNetworkSession->registerCommand("synchronize", this, synchronize, checkSynchro);
@@ -2386,6 +2386,8 @@ void NetworkGameObserver::loadPlayer(void*pxThis, stringstream& in, stringstream
             break;
         }
     }
+    if (pPlayer)
+        pThis->GameObserver::loadPlayer(pThis->players.size(), pPlayer);
 }
 
 void NetworkGameObserver::synchronize()

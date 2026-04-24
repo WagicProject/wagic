@@ -60,7 +60,9 @@ WagicCore::WagicCore(super *parent) :
     setAttribute(Qt::WA_AcceptTouchEvents);
   //  setAttribute(Qt::WA_InputMethodEnabled);
     setMouseTracking(true);
+#if defined(Q_WS_ANDROID) || defined(Q_OS_ANDROID)
     grabGesture(Qt::TapAndHoldGesture);
+#endif
     resize(ACTUAL_SCREEN_WIDTH, ACTUAL_SCREEN_HEIGHT);
 #else
     setWidth(480);
@@ -439,9 +441,9 @@ void WagicCore::mousePressEvent(QMouseEvent *event)
       mLastFingerDownTime = g_startTimer.elapsed();
 #endif
     } else if(lastPosy()<m_viewPort.top()) {
-      m_engine->HoldKey_NoRepeat(JGE_BTN_MENU);
+      // ignore clicks in top letterbox on desktop
     } else if(lastPosy()>m_viewPort.bottom()) {
-      m_engine->HoldKey_NoRepeat(JGE_BTN_NEXT);
+      // ignore clicks in bottom letterbox on desktop
     }
     event->accept();
   }

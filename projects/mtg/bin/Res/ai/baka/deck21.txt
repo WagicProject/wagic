@@ -19,7 +19,7 @@ Mountain (POR) * 4
 Mountain (RV) * 4
 Mountain (SHM) * 4
 Orcish Oriflamme (RV) * 4
-Raging Goblin (1OE) * 4
+Raging Goblin (10E) * 4
 Scuzzback Scrapper (SHM) * 4
 Spark Elemental (10E) * 4 
 Volcanic Hammer (POR) * 4

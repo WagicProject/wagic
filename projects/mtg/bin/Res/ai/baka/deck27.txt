@@ -24,4 +24,4 @@ Vodalian Zombie (INV) * 4
 Walking Dead (LEG) * 2
 Wasp Lancer (SHM) * 1
 Zombie Master (RV) * 2
-Zombie Outlander (CRX) * 4
+Zombie Outlander (CFX) * 4
