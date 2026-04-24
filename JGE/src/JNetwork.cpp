@@ -10,6 +10,7 @@
 #if defined(WIN32)
 #include <winsock.h>
 #elif defined(LINUX) || defined(__APPLE__)
+#include <unistd.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>

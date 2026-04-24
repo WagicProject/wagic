@@ -60,7 +60,9 @@ WagicCore::WagicCore(super *parent) :
     setAttribute(Qt::WA_AcceptTouchEvents);
   //  setAttribute(Qt::WA_InputMethodEnabled);
     setMouseTracking(true);
+#if defined(Q_WS_ANDROID) || defined(Q_OS_ANDROID)
     grabGesture(Qt::TapAndHoldGesture);
+#endif
     resize(ACTUAL_SCREEN_WIDTH, ACTUAL_SCREEN_HEIGHT);
 #else
     setWidth(480);
