@@ -44,7 +44,7 @@ private:
   // socket handle
 #ifdef WIN32
   SOCKET mfd;
-#elif LINUX || PSP
+#else
   int mfd;
 #endif
 };
