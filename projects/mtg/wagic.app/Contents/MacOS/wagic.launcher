@@ -2,4 +2,4 @@
 
 cd ${0%/*/*}/Resources
 #cd ../Resources
-exec ../MacOS/wagic -platformpluginpath ../PlugIns >> ../logs/out.log 2> ../logs/err.log
+exec ../MacOS/wagic -platformpluginpath /opt/homebrew/opt/qt@5/plugins >> ../logs/out.log 2> ../logs/err.log

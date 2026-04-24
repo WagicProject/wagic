@@ -441,9 +441,9 @@ void WagicCore::mousePressEvent(QMouseEvent *event)
       mLastFingerDownTime = g_startTimer.elapsed();
 #endif
     } else if(lastPosy()<m_viewPort.top()) {
-      m_engine->HoldKey_NoRepeat(JGE_BTN_MENU);
+      // ignore clicks in top letterbox on desktop
     } else if(lastPosy()>m_viewPort.bottom()) {
-      m_engine->HoldKey_NoRepeat(JGE_BTN_NEXT);
+      // ignore clicks in bottom letterbox on desktop
     }
     event->accept();
   }

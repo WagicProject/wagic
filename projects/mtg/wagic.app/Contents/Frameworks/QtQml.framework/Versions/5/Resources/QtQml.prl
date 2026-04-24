@@ -1,7 +1,0 @@
-QMAKE_PRL_BUILD_DIR = /private/tmp/qtA5-20260217-88563-t8jhnb/qt-everywhere-src-5.15.18/qtdeclarative/src/qml
-QMAKE_PRO_INPUT = qml.pro
-QMAKE_PRL_TARGET = QtQml
-QMAKE_PRL_CONFIG = lex yacc depend_includepath testcase_targets import_plugins import_qpa_plugin asset_catalogs rez prepare_docs qt_docs_targets qt_build_extra file_copies qmake_use qt warn_on release link_prl only_active_arch app_bundle incremental global_init_link_order lib_version_first sdk clang_pch_style shared shared qt_framework release macos osx macx mac darwin unix posix gcc clang llvm compile_examples largefile neon precompile_header prefix_build force_independent no_warn_empty_obj_files utf8_source create_prl link_prl no_private_qt_headers_warning QTDIR_build qt_example_installs exceptions_off testcase_exceptions explicitlib testcase_no_bundle warning_clean qt_tracepoints qlalr qmltypes install_qmltypes install_metatypes generated_privates module_frameworks lib_bundle relative_qt_rpath app_extension_api_only target_qt c++11 strict_c++ c++14 c++1z c99 c11 hide_symbols need_fwd_pri qt_install_module create_cmake sliced_bundle absolute_library_soname compiler_supports_fpmath create_pc have_target dll objective_c metatypes thread moc resources
-QMAKE_PRL_VERSION = 5.15.18
-QMAKE_PRL_LIBS = -F$$[QT_INSTALL_LIBS] -framework QtNetwork -framework QtCore -framework DiskArbitration -framework IOKit
-QMAKE_PRL_LIBS_FOR_CMAKE = -F$$[QT_INSTALL_LIBS];-framework;QtNetwork;-framework;QtCore;-framework;DiskArbitration;-framework;IOKit;
