@@ -4,16 +4,16 @@
 #include <stdio.h>
 #include <conio.h>
 #include <winsock.h>
-#include <winsock.h>
 #include <fcntl.h>
-#elif LINUX
+#else
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
 #include <fcntl.h>
-#endif //WINDOWS
+#include <string.h>
+#endif
 
 #include "../../include/JSocket.h"
 #include "../../include/DebugRoutines.h"
@@ -37,7 +37,7 @@ JSocket::JSocket(string ipAddr)
 		DebugTrace("WSAStartup\t");
 		return;
 	}
-#elif LINUX
+#else
 	struct sockaddr_in Adresse_Socket_Server;
 #endif
 
@@ -50,8 +50,8 @@ JSocket::JSocket(string ipAddr)
 	unsigned int addr_dest = inet_addr(ipAddr.c_str());
 	hostentptr = gethostbyaddr((char*) &addr_dest, 4, AF_INET);
 	if (hostentptr == NULL)
-	    hostentptr = gethostbyname(ipAddr.c_str()); // Fix for Windows if IP Address cannot be resolved.
-#elif LINUX
+	    hostentptr = gethostbyname(ipAddr.c_str());
+#else
 	hostentptr = gethostbyname(ipAddr.c_str());
 #endif
 	if (hostentptr == NULL)
@@ -62,9 +62,9 @@ JSocket::JSocket(string ipAddr)
 
 #ifdef WIN32
 	ZeroMemory( (char*)&Adresse_Socket_Server, sizeof(Adresse_Socket_Server));
-#elif LINUX
+#else
 	bzero( (char*)&Adresse_Socket_Server, sizeof(Adresse_Socket_Server));
-#endif //WINDOWS
+#endif
 
 	Adresse_Socket_Server.sin_family = (*hostentptr).h_addrtype;
 	Adresse_Socket_Server.sin_port = htons(SERVER_PORT);
@@ -86,8 +86,7 @@ JSocket::JSocket(string ipAddr)
 
 bool JSocket::SetNonBlocking(int sock)
 {
-#ifdef WIN32
-#elif LINUX
+#ifndef WIN32
 	int opts = fcntl(sock,F_GETFL);
 	if (opts < 0)
 	{
@@ -100,7 +99,7 @@ bool JSocket::SetNonBlocking(int sock)
 		perror("fcntl(F_SETFL)");
 		return false;
 	}
-#endif //WINDOWS
+#endif
 	return true;
 }
 
@@ -122,29 +121,24 @@ JSocket::JSocket()
 		DebugTrace("WSAStartup\t");
 		return;
 	}
-#elif LINUX
+#else
 	struct sockaddr_in Adresse_Socket_Connection;
-#endif //WINDOWS
+#endif
 
 	mfd=socket( AF_INET, SOCK_STREAM,0);
 
-#ifdef WIN32
-#elif LINUX
-	int reuse_addr = 1;  /* Used so we can re-bind to our port
-						 while a previous connection is still
-						 in TIME_WAIT state. */
-	/* So that we can re-bind to it without TIME_WAIT problems */
-	setsockopt(mfd, SOL_SOCKET, SO_REUSEADDR, &reuse_addr,
-		sizeof(reuse_addr));
-#endif //WINDOWS
+#ifndef WIN32
+	int reuse_addr = 1;
+	setsockopt(mfd, SOL_SOCKET, SO_REUSEADDR, &reuse_addr, sizeof(reuse_addr));
+#endif
 
 	SetNonBlocking(mfd);
 
 #ifdef WIN32
 	ZeroMemory( &Adresse_Socket_Connection,sizeof(Adresse_Socket_Connection));
-#elif LINUX
+#else
 	bzero( &Adresse_Socket_Connection,sizeof(Adresse_Socket_Connection));
-#endif //WINDOWS
+#endif
 	Adresse_Socket_Connection.sin_family = AF_INET;
 	Adresse_Socket_Connection.sin_port = htons(SERVER_PORT);
 
@@ -190,7 +184,7 @@ void JSocket::Disconnect()
 	{
 #ifdef WIN32
 		closesocket(mfd);
-#elif LINUX
+#else
 		close(mfd);
 #endif
 		mfd = 0;
@@ -202,10 +196,10 @@ JSocket* JSocket::Accept()
 #ifdef WIN32
 	SOCKADDR_IN Adresse_Socket_Cliente;
 	int Longueur_Adresse;
-#elif LINUX
+#else
 	struct sockaddr_in Adresse_Socket_Cliente;
 	socklen_t Longueur_Adresse;
-#endif //WINDOWS
+#endif
 
 	JSocket* socket = NULL;
 
@@ -221,7 +215,6 @@ JSocket* JSocket::Accept()
 		int result = select(mfd+1, &set, NULL, NULL, &tv);
 		if (result > 0 && FD_ISSET(mfd, &set))
 		{
-
 			Longueur_Adresse = sizeof(Adresse_Socket_Cliente);
 			int val = accept(
 				mfd,
@@ -233,7 +226,7 @@ JSocket* JSocket::Accept()
 			{
 				state = CONNECTED;
 				socket = new JSocket(val);
-			} 
+			}
 			break;
 		}
 	}
@@ -257,14 +250,14 @@ int JSocket::Read(char* buff, int size)
 		{
 #ifdef WIN32
 			int readbytes = recv(mfd, buff, size, 0);
-#elif LINUX
+#else
 			int readbytes = read(mfd, buff, size);
-#endif //WINDOWS
+#endif
 			if(readbytes < 0)
 			{
 #ifdef WIN32
 				DebugTrace("Error reading from socket: " << WSAGetLastError());
-#endif //WINDOWS
+#endif
 				Disconnect();
 				return -1;
 			}

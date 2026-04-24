@@ -7,7 +7,13 @@
 #include "../include/DebugRoutines.h"
 #include "../include/JNetwork.h"
 
-#if defined (WIN32) || defined (LINUX)
+#if defined(WIN32)
+#include <winsock.h>
+#elif defined(LINUX) || defined(__APPLE__)
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include <arpa/inet.h>
 #else
 #ifdef NETWORK_SUPPORT
 
@@ -62,8 +68,24 @@ void JNetwork::getServerIp(string& aString)
         memcpy(&addr, phe->h_addr_list[i], sizeof(struct in_addr));
         aString = inet_ntoa(addr);
     }
+#elif defined(__APPLE__) || defined(LINUX)
+    char ac[256];
+    if (gethostname(ac, sizeof(ac)) != 0) {
+        aString = "unknown";
+        return;
+    }
+    struct hostent *phe = gethostbyname(ac);
+    if (phe == 0) {
+        aString = "unknown";
+        return;
+    }
+    for (int i = 0; phe->h_addr_list[i] != 0; ++i) {
+        struct in_addr addr;
+        memcpy(&addr, phe->h_addr_list[i], sizeof(struct in_addr));
+        aString = inet_ntoa(addr);
+    }
 #else
-    aString = "No clue";
+    aString = "unknown";
 #endif
 }
 
@@ -196,7 +218,7 @@ void JNetwork::ThreadProc(void* param)
   DebugTrace("Quitting Thread");
 }
 
-#if defined (WIN32) || defined (LINUX)
+#if defined(WIN32) || defined(LINUX) || defined(__APPLE__)
 int JNetwork::connect(const string& ip)
 {
   if (mpWorkerThread) return 0;
