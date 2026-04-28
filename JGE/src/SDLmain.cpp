@@ -648,10 +648,12 @@ bool SdlApp::OnInit()
 {
 	int window_w, window_h;
 
-	if(SDL_Init(SDL_INIT_EVERYTHING) < 0) 
+	if(SDL_Init(SDL_INIT_EVERYTHING & ~SDL_INIT_HAPTIC) < 0)
 	{
 		return false;
 	}
+
+	SDL_putenv("SDL_VIDEO_CENTERED=1");
 
 	const SDL_VideoInfo *pVideoInfo = SDL_GetVideoInfo();
 	DebugTrace("Video Display : h " << pVideoInfo->current_h << ", w " << pVideoInfo->current_w);
@@ -683,17 +685,39 @@ bool SdlApp::OnInit()
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 1);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 
-	if((Surf_Display = SDL_SetVideoMode(window_w, window_h, 32,
 #ifdef ANDROID
-		SDL_OPENGL | SDL_FULLSCREEN | SDL_WINDOW_BORDERLESS)) == NULL)
-	{
+	Surf_Display = SDL_SetVideoMode(window_w, window_h, 32, SDL_OPENGL | SDL_FULLSCREEN | SDL_WINDOW_BORDERLESS);
 #else
-		SDL_OPENGL | SDL_RESIZABLE )) == NULL)
+	Surf_Display = SDL_SetVideoMode(window_w, window_h, 32, SDL_OPENGL | SDL_RESIZABLE);
+	if (!Surf_Display)
 	{
+		// Retry without MSAA — many modern GL drivers reject the multisample request
+		SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 0);
+		SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 0);
+		Surf_Display = SDL_SetVideoMode(window_w, window_h, 32, SDL_OPENGL | SDL_RESIZABLE);
+	}
 #endif
+	if (!Surf_Display)
+	{
+		MessageBoxA(NULL, SDL_GetError(), "SDL_SetVideoMode failed", MB_OK | MB_ICONERROR);
 		return false;
 	}
 	SDL_WM_SetCaption(g_launcher->GetName(), "");
+
+#ifdef WIN32
+	{
+		// Center on primary monitor — SDL 1.2 may place the window off-screen
+		HWND hwnd = FindWindowA(NULL, g_launcher->GetName());
+		if (hwnd)
+		{
+			int sw = GetSystemMetrics(SM_CXSCREEN);
+			int sh = GetSystemMetrics(SM_CYSCREEN);
+			RECT wr; GetWindowRect(hwnd, &wr);
+			int ww = wr.right - wr.left, wh = wr.bottom - wr.top;
+			SetWindowPos(hwnd, HWND_TOP, (sw - ww) / 2, (sh - wh) / 2, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+		}
+	}
+#endif
 
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// Black Background (yes that's the way fuckers)
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
