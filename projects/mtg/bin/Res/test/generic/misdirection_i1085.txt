@@ -1,0 +1,36 @@
+#Misdirection (#1085): change the target of target spell with a single target.
+#P1 shocks P2; P2 interrupts with Misdirection and retargets the shock... at P1.
+#Same-phase INIT pool pays the {3}{U}{U}. The moved original deals nothing; the
+#recast copy takes a new target (P1) and connects for 2.
+[INIT]
+firstmain
+[PLAYER1]
+manapool:{R}
+hand:shock
+[PLAYER2]
+manapool:{3}{U}{U}
+hand:misdirection
+[DO]
+shock
+p2
+no
+yes
+misdirection
+choice 0
+shock
+goto firstmain
+goto firstmain
+p1
+goto firstmain
+goto firstmain
+endinterruption
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+life:18
+graveyard:shock
+[PLAYER2]
+graveyard:misdirection
+[END]
