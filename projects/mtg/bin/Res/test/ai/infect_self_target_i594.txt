@@ -5,6 +5,7 @@
 # must aim the trigger at the opponent, not at itself.
 FORCEABILITY
 AICALLS 5
+SEED 12345
 [INIT]
 FIRSTMAIN
 [PLAYER1]
