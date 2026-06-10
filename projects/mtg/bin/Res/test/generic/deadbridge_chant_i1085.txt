@@ -1,0 +1,28 @@
+#From the #1085 meta-list: Deadbridge Chant (no symptom given).
+#ETB mills ten; at upkeep a random graveyard card returns - creature
+#to the battlefield. With all ten milled cards being creatures the
+#outcome is deterministic: one comes back.
+# https://github.com/WagicProject/wagic/issues/1085
+[INIT]
+SECONDMAIN
+[PLAYER1]
+hand:deadbridge chant
+library:darksteel citadel,walking corpse,walking corpse,walking corpse,walking corpse,walking corpse,runeclaw bear,runeclaw bear,runeclaw bear,runeclaw bear,runeclaw bear
+manapool:{4}{B}{G}
+[PLAYER2]
+[DO]
+deadbridge chant
+goto upkeep
+goto end
+goto upkeep
+choice 0
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:deadbridge chant,*
+hand:*
+graveyard:*,*,*,*,*,*,*,*,*
+[PLAYER2]
+[END]
