@@ -50,6 +50,7 @@ generic/extract_brain_i1085.txt
 generic/fertile_imagination_i1085.txt
 generic/first_slivers_chosen_i1085.txt
 generic/flay_essence_i1085.txt
+generic/forebears_blade_i1085.txt
 ai/death_wind_self_target_i1085.txt
 generic/devotion.txt
 generic/doesnotuntap.txt

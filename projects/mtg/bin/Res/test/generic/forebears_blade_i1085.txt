@@ -1,0 +1,36 @@
+#Forebear's Blade (#1085): equipped creature dies -> attach to target creature you control.
+#Equip bears, shock bears (2/2 dies), re-attach prompt -> hill giant; giant attacks
+#unblocked with +3/+0 = 6 damage (life 14). If the granted re-attach is inert the giant
+#swings for 3 (life 17).
+[INIT]
+firstmain
+[PLAYER1]
+manapool:{3}{R}
+inplay:forebear's blade,grizzly bears,hill giant
+hand:shock
+[PLAYER2]
+[DO]
+forebear's blade
+grizzly bears
+goto firstmain
+goto firstmain
+shock
+grizzly bears
+goto firstmain
+goto firstmain
+choice 0
+hill giant
+goto firstmain
+goto firstmain
+goto attackers
+hill giant
+next
+goto end
+[ASSERT]
+ENDOFTURN
+[PLAYER1]
+inplay:forebear's blade,hill giant
+graveyard:shock,grizzly bears
+[PLAYER2]
+life:14
+[END]
