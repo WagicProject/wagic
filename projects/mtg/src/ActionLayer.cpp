@@ -465,6 +465,13 @@ void ActionLayer::doReactTo(int menuIndex)
 
     if (menuObject)
     {
+        //An out-of-range index (a test script's stray "choice N", an AI
+        //picking a stale option) crashed on the unchecked vector access.
+        if (!abilitiesMenu || menuIndex < 0 || (size_t)menuIndex >= abilitiesMenu->mObjects.size())
+        {
+            DebugTrace("ActionLayer::doReactTo ignoring out-of-range menu index " << menuIndex);
+            return;
+        }
         int controlid = abilitiesMenu->mObjects[menuIndex]->GetId();
         DebugTrace("ActionLayer::doReactTo " << controlid);
         if (abilitiesMenu && abilitiesMenu->isMultipleChoice)

@@ -1,0 +1,27 @@
+#From the #1085 meta-list: "Flameblast Dragon if you only have red
+#mana doesn't work". Attack, pay {X}{R} with X=1 from two Iron Myr
+#taps (all red), deal 1 to the opponent: 20 - 5 - 1 = 14.
+# https://github.com/WagicProject/wagic/issues/1085
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:flameblast dragon,iron myr,iron myr
+[PLAYER2]
+[DO]
+goto attackers
+flameblast dragon
+iron myr
+iron myr
+next
+choice 0
+choice 0
+p2
+next
+next
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:flameblast dragon,iron myr,iron myr
+[PLAYER2]
+life:14
+[END]
