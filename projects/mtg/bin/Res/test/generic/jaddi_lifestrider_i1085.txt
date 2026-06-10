@@ -1,0 +1,28 @@
+#Jaddi Lifestrider (#1085): ETB - tap any number of your creatures, gain 2 per tap.
+#The <anyamount> chooser is CONFIRMED BY RE-CLICKING THE SOURCE after picking targets.
+#Two taps = +4 life (24); both targets tapped.
+[INIT]
+firstmain
+[PLAYER1]
+manapool:{4}{G}
+hand:jaddi lifestrider
+inplay:grizzly bears,hill giant
+[PLAYER2]
+[DO]
+jaddi lifestrider
+goto firstmain
+goto firstmain
+choice 0
+grizzly bears
+hill giant
+jaddi lifestrider
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+life:24
+inplay:jaddi lifestrider,grizzly bears,hill giant
+tappedinplay:2
+[PLAYER2]
+[END]
