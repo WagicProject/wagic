@@ -65,6 +65,19 @@ MTGCardInstance * TestSuiteAI::getCard(string action)
         }
     }
     DebugTrace("TESTUISTEAI: Can't find card:" << action.c_str());
+    //Dump what IS there: a failed lookup is usually a typo'd name or a
+    //zone that never got populated, and seeing the actual board answers
+    //both in one read.
+    for (int i = 0; i < 2; i++)
+    {
+        Player * p = observer->players[i];
+        MTGGameZone * zones[] = { p->game->library, p->game->hand, p->game->inPlay, p->game->graveyard, p->game->commandzone, p->game->sideboard, p->game->removedFromGame, p->game->reveal };
+        const char * zoneNames[] = { "library", "hand", "inPlay", "graveyard", "command", "sideboard", "exile", "reveal" };
+        for (int j = 0; j < 8; j++)
+            for (int k = 0; k < zones[j]->nb_cards; k++)
+                if (zones[j]->cards[k])
+                    DebugTrace("TESTUISTEAI: p" << i << " " << zoneNames[j] << "[" << k << "] '" << zones[j]->cards[k]->getLCName() << "' mtgid=" << zones[j]->cards[k]->getMTGId());
+    }
     return NULL;
 }
 
@@ -287,7 +300,14 @@ TestSuiteState::~TestSuiteState()
 
 void TestSuiteState::parsePlayerState(int playerId, string s)
 {
-    players[playerId]->parseLine(s);
+    if (!players[playerId]->parseLine(s))
+    {
+        //A typo'd key (e.g. "inhand:" for "hand:") used to vanish without a
+        //trace, leaving the expected state silently empty and the test
+        //vacuously green. Surface it in the results instead.
+        std::cerr << "TESTSUITE: unparsed player-state line (typo'd key?): " << s << std::endl;
+        DebugTrace("TESTSUITE: unparsed player-state line: " << s);
+    }
 }
 
 
