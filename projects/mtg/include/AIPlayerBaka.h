@@ -59,8 +59,17 @@ public:
         OrderedAIAction* a2Ptr = const_cast<OrderedAIAction*>(&a2);
         int e1 = a1Ptr->getEfficiency();
         int e2 = a2Ptr->getEfficiency();
-        if (e1 == e2) return a1Ptr->id < a2Ptr->id;
-        return (e1 > e2);
+        if (e1 != e2) return (e1 > e2);
+        if (a1Ptr->id != a2Ptr->id) return a1Ptr->id < a2Ptr->id;
+        //Same ability, same efficiency: tie-break on the actual action
+        //identity. Without this, equally-rated targets of one ability
+        //collapse into a single map key and all but one are silently
+        //dropped from the ranking - a major cause of 'the AI never
+        //plays/aims this card right' reports (upstream issue #1079).
+        if (a1Ptr->target != a2Ptr->target) return a1Ptr->target < a2Ptr->target;
+        if (a1Ptr->playerAbilityTarget != a2Ptr->playerAbilityTarget) return a1Ptr->playerAbilityTarget < a2Ptr->playerAbilityTarget;
+        if (a1Ptr->player != a2Ptr->player) return a1Ptr->player < a2Ptr->player;
+        return a1Ptr->click < a2Ptr->click;
     }
 };
 

@@ -53,7 +53,10 @@ int OrderedAIAction::getEfficiency(AADamager * aad)
     if (dTarget && aad && (aad->getDamage() == dTarget->toughness))
         return 100;
     else if (dTarget && aad && (aad->getDamage() > dTarget->toughness))
-        return 10 * (10 - (aad->getDamage() - dTarget->toughness)); //less eff the more dmg above toughness
+        //A kill with slight overkill must still outrank chip damage to the
+        //player's face (90 - otherTargets above); waste-heavy overkill
+        //decays below it (upstream issue #1079 / ai/goblin_artillery.txt).
+        return 95 - 10 * (aad->getDamage() - dTarget->toughness - 1);
     else
         return 10;
 
