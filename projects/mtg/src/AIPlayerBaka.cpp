@@ -2941,6 +2941,11 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                 }
                 int randomChance = randomGenerator.random();
                 int chance = randomChance % 100;
+                //FORCEABILITY tests: any card worth playing at all is played,
+                //so scripted AI tests don't depend on the (process-global,
+                //thread-shared) rand() stream. Deliberate zeros still skip.
+                if (forceBestAbilityUse && shouldPlayPercentage > 0)
+                    chance = 0;
                 if (chance > shouldPlayPercentage)
                     continue;
                 if(shouldPlayPercentage <= 10)
@@ -3101,6 +3106,11 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
             }
             int randomChance = randomGenerator.random();
             int chance = randomChance % 100;
+            //FORCEABILITY tests: any card worth playing at all is played,
+            //so scripted AI tests don't depend on the (process-global,
+            //thread-shared) rand() stream. Deliberate zeros still skip.
+            if (forceBestAbilityUse && shouldPlayPercentage > 0)
+                chance = 0;
             if (chance > shouldPlayPercentage)
                 continue;
             if(shouldPlayPercentage <= 10)
@@ -3231,6 +3241,11 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
             }
             int randomChance = randomGenerator.random();
             int chance = randomChance % 100;
+            //FORCEABILITY tests: any card worth playing at all is played,
+            //so scripted AI tests don't depend on the (process-global,
+            //thread-shared) rand() stream. Deliberate zeros still skip.
+            if (forceBestAbilityUse && shouldPlayPercentage > 0)
+                chance = 0;
             if (chance > shouldPlayPercentage)
                 continue;
             if(shouldPlayPercentage <= 10)
@@ -3448,6 +3463,11 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
             }
             int randomChance = randomGenerator.random();
             int chance = randomChance % 100;
+            //FORCEABILITY tests: any card worth playing at all is played,
+            //so scripted AI tests don't depend on the (process-global,
+            //thread-shared) rand() stream. Deliberate zeros still skip.
+            if (forceBestAbilityUse && shouldPlayPercentage > 0)
+                chance = 0;
             if (chance > shouldPlayPercentage)
                 continue;
             if(shouldPlayPercentage <= 10)
