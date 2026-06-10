@@ -9051,6 +9051,16 @@ MTGAbility(observer, _id, card),sAbility(sAbility), phase(_phase),forcedestroy(f
         psMenuText = sAbility.c_str();
     delete (ability);
 
+    //The 'next' keyword guards against firing during the very phase the
+    //ability was created in: a new ability's first Update synthesizes a
+    //phase 'transition' into the current phase (currentPhase starts as
+    //MTG_PHASE_INVALID), which would fire the action immediately.
+    //When created during any OTHER phase, the first genuine occurrence of
+    //the target phase already IS "the next <phase>" - leaving the guard
+    //armed made every such delayed trigger fire a full turn late
+    //(upstream issue #1126, Arcane Denial's upkeep draws).
+    if (!this->next && game && game->getCurrentGamePhase() != phase)
+        this->next = true;
 }
 
 void APhaseAction::Update(float dt)
@@ -9071,7 +9081,7 @@ void APhaseAction::Update(float dt)
             /*(myturn && opponentturn)*/)
         {
             if(newPhase == phase && next )
-            {
+{
                 MTGCardInstance * _target = NULL;
                 bool isTargetable = false;
                 
@@ -9081,17 +9091,22 @@ void APhaseAction::Update(float dt)
                     isTargetable = (_target && !_target->currentZone && _target != this->source);
                 }
                 
-                if(!sAbility.size() || (!target || isTargetable))
+                //Die without firing when there is nothing to do, or when the
+                //card this action was tracking has vanished from the game.
+                //A NULL target is NOT a reason to skip: self-directed delayed
+                //actions ("you draw a card at the beginning of the next
+                //upkeep" - upstream issue #1126) have no card target and act
+                //from their own source instead.
+                if(!sAbility.size() || (target && isTargetable))
                 {
                     this->forceDestroy = 1;
                     return;
                 }
-                else
-                {
-                    while(_target && _target->next)
-                        _target = _target->next;
-                }
-                
+                while(_target && _target->next)
+                    _target = _target->next;
+                if (!_target)
+                    _target = source;
+
                 AbilityFactory af(game);
                 MTGAbility * ability = af.parseMagicLine(sAbility, abilityId, NULL, _target);
 

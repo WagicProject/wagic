@@ -1,0 +1,30 @@
+#Upstream issue #1136: Kraul Whipcracker entering via Momir could not
+#destroy any tokens. P2 momirs Llanowar Elves (a token); P1 then momirs
+#Kraul Whipcracker, which must be able to destroy the Elves token.
+MOMIR
+[INIT]
+SECONDMAIN
+[PLAYER1]
+hand:Mountain
+manapool:{2}
+life:20
+[PLAYER2]
+hand:Plains
+manapool:{1}
+life:20
+[DO]
+goto firstmain
+plains -momir- llanowar elves
+goto end
+goto firstmain
+mountain -momir- kraul whipcracker
+choice 0
+Llanowar Elves
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:*
+graveyard:Mountain
+[PLAYER2]
+graveyard:Plains
+[END]

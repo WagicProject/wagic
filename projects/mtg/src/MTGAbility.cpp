@@ -5899,9 +5899,23 @@ MTGAbility * AbilityFactory::parsePhaseActionAbility(string s,MTGCardInstance * 
     bool once = (s1.find("once") != string::npos);
 
     MTGCardInstance * _target = NULL;
+    bool stackTargetSuppressed = false;
     if (spell)
+    {
         _target = spell->getNextCardTarget();
-    if(!_target)
+        //Counterspells target a spell on the stack, which is gone by the
+        //time a delayed phase action fires; their delayed effects act from
+        //the casting card instead ("You draw a card at the beginning of
+        //the next turn's upkeep" - Arcane Denial, upstream issue #1126).
+        //Card-directed delayed effects on countered spells go through
+        //transforms(newability[...]), which does not pass a spell here.
+        if (_target && _target->currentZone && _target->currentZone == _target->controller()->game->stack)
+        {
+            _target = NULL;
+            stackTargetSuppressed = true;
+        }
+    }
+    if(!_target && !stackTargetSuppressed)
         _target = target;
 
     return NEW APhaseActionGeneric(observer, id, card, _target, trim(splitActions[2]), restrictions, phase, sourceinPlay, next, myturn, opponentturn, once, checkexile);

@@ -1,0 +1,34 @@
+#Upstream issue #1126: after Arcane Denial counters a spell, its
+#controller should be offered up to two draws at the next upkeep, and
+#the Denial's caster should draw one automatically.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Grizzly Bears
+manapool:{1}{G}
+library:Juggernaut,Ornithopter,Millstone
+life:20
+[PLAYER2]
+hand:Arcane Denial
+manapool:{1}{U}
+library:Rod of Ruin,Howling Mine,Icy Manipulator
+life:20
+[DO]
+Grizzly Bears
+no
+yes
+Arcane Denial
+Grizzly Bears
+endinterruption
+goto upkeep
+[ASSERT]
+UPKEEP
+[PLAYER1]
+hand:Millstone,Ornithopter
+graveyard:Grizzly Bears
+library:Juggernaut
+[PLAYER2]
+hand:Icy Manipulator
+graveyard:Arcane Denial
+library:Rod of Ruin,Howling Mine
+[END]
