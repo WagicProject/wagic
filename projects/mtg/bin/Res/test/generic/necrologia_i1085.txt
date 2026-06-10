@@ -1,0 +1,25 @@
+#Necrologia (#1085): pay X life, draw X - one merged menu entry per affordable X.
+#choice 2 = third entry = pay 3 life, draw 3 (life 17, hand 3).
+[INIT]
+firstmain
+[PLAYER1]
+manapool:{3}{B}{B}
+hand:necrologia
+library:millstone,juggernaut,gold myr,silver myr
+[PLAYER2]
+[DO]
+necrologia
+goto firstmain
+goto firstmain
+choice 2
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+life:17
+hand:silver myr,gold myr,juggernaut
+graveyard:necrologia
+library:millstone
+[PLAYER2]
+[END]
