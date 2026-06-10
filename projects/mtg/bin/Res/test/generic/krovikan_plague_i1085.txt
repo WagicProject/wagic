@@ -1,0 +1,29 @@
+#Krovikan Plague (#1085): aura teaches "{T}, put a -0/-1 counter: deal 1 damage to any
+#target". Enchant own bears, activate, hit the opponent's face: life 19, bears tapped.
+[INIT]
+firstmain
+[PLAYER1]
+manapool:{2}{B}
+hand:krovikan plague
+inplay:grizzly bears
+library:millstone,juggernaut
+[PLAYER2]
+[DO]
+krovikan plague
+grizzly bears
+goto firstmain
+goto firstmain
+grizzly bears
+choice 0
+p2
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:krovikan plague,grizzly bears
+library:millstone,juggernaut
+tappedinplay:1
+[PLAYER2]
+life:19
+[END]

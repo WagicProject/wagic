@@ -13,8 +13,12 @@ inplay:grizzly bears
 [DO]
 battlegrowth
 grizzly bears
+goto firstmain
+goto firstmain
 cytoplast manipulator
 grizzly bears
+goto firstmain
+goto firstmain
 goto secondmain
 goto secondmain
 [ASSERT]
