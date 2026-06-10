@@ -1,0 +1,26 @@
+#From the #1085 meta-list: Battletide Alchemist (no symptom given).
+#With one Cleric (itself), activating the prevention shields 1 damage:
+#a self-targeted Shock deals only 1.
+# https://github.com/WagicProject/wagic/issues/1085
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:battletide alchemist
+hand:shock
+manapool:{R}
+[PLAYER2]
+[DO]
+battletide alchemist
+choice 0
+shock
+p1
+goto secondmain
+goto secondmain
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+inplay:battletide alchemist
+graveyard:shock
+life:19
+[PLAYER2]
+[END]

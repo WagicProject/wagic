@@ -1,0 +1,23 @@
+#From the #1085 meta-list: Betrayal of Flesh (no symptom given).
+#Base mode: destroy target creature.
+# https://github.com/WagicProject/wagic/issues/1085
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:betrayal of flesh
+manapool:{5}{B}
+[PLAYER2]
+inplay:grizzly bears
+[DO]
+betrayal of flesh
+choice 0
+grizzly bears
+goto secondmain
+goto secondmain
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+graveyard:betrayal of flesh
+[PLAYER2]
+graveyard:grizzly bears
+[END]
