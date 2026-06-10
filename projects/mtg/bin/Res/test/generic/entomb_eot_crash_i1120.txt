@@ -1,0 +1,30 @@
+#Upstream issue #1120: casting a library-to-graveyard searcher (Entomb /
+#Buried Alive use Reveal: + transforms(newability[moveto(mygraveyard)]))
+#works, but the game crashes at end of turn. This test reproduces the
+#sequence: cast Entomb, choose a card, then run the turn to completion.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Entomb
+manapool:{B}
+library:Grizzly Bears,Llanowar Elves,Forest,Mountain,Island
+[PLAYER2]
+[DO]
+Entomb
+choice 0
+Grizzly Bears
+next
+next
+next
+next
+next
+next
+next
+next
+[ASSERT]
+UPKEEP
+[PLAYER1]
+graveyard:Entomb,Grizzly Bears
+library:Llanowar Elves,Forest,Mountain,Island
+[PLAYER2]
+[END]
