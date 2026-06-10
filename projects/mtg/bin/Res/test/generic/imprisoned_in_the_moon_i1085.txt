@@ -1,0 +1,25 @@
+#Imprisoned in the Moon (#1085): enchanted permanent becomes a colorless land with
+#"{T}: Add {C}" and loses other types/abilities. Enchant own hill giant, tap it: pool {C}.
+[INIT]
+firstmain
+[PLAYER1]
+manapool:{2}{U}
+inplay:hill giant
+hand:imprisoned in the moon
+[PLAYER2]
+[DO]
+imprisoned in the moon
+hill giant
+goto firstmain
+goto firstmain
+hill giant
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+manapool:{C}
+inplay:imprisoned in the moon,hill giant
+tappedinplay:1
+[PLAYER2]
+[END]
