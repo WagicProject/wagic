@@ -613,8 +613,26 @@ void GameStateMenu::Update(float dt)
         currentState &= MENU_STATE_MAJOR_MAINMENU;
         options.reloadProfile(); //Handles building a new deck, if needed.
         break;
-    case MENU_STATE_MAJOR_MAINMENU: 
+    case MENU_STATE_MAJOR_MAINMENU:
         {
+#ifdef TESTSUITE
+            //Headless-ish test runs: WAGIC_TESTSUITE=1 jumps straight into
+            //the test suite from the main menu (same effect as selecting it
+            //in the debug submenu). Results land in test/results.html.
+            static bool autoTestSuiteTried = false;
+            if (!autoTestSuiteTried && getenv("WAGIC_TESTSUITE"))
+            {
+                autoTestSuiteTried = true;
+                fprintf(stderr, "WAGIC_TESTSUITE: auto-launching test suite\n");
+                mParent->rules = Rules::getRulesByFilename("testsuite.txt");
+                hasChosenGameType = true;
+                mParent->gameType = GAME_TYPE_CLASSIC;
+                mParent->players[0] = PLAYER_TYPE_TESTSUITE;
+                mParent->players[1] = PLAYER_TYPE_TESTSUITE;
+                currentState = MENU_STATE_MAJOR_DUEL;
+                break;
+            }
+#endif
             if (!scrollerSet)
                 fillScroller();
             ensureMGuiController();

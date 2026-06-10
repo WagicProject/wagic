@@ -911,6 +911,14 @@ void GameStateDuel::Update(float dt)
                     testSuite->initGame(game);
                 }
                 else {
+                    //Headless runs (WAGIC_TESTSUITE=1) exit with a
+                    //CI-friendly status code when the suite completes.
+                    if (getenv("WAGIC_TESTSUITE"))
+                    {
+                        fprintf(stderr, "Test suite finished: %d tests (%d failed), %d AI tests (%d failed)\n",
+                                testSuite->nbTests, testSuite->nbFailed, testSuite->nbAITests, testSuite->nbAIFailed);
+                        exit((testSuite->nbFailed + testSuite->nbAIFailed) ? 1 : 0);
+                    }
                     setGamePhase(DUEL_STATE_END);
                 }
             }
