@@ -1,0 +1,29 @@
+#Hot Soup (#1085): equipped creature is destroyed whenever it's dealt damage.
+#Equip the 3/3 hill giant, shock it for 2 (survives toughness-wise) - the taught
+#@damaged trigger destroys it anyway.
+[INIT]
+firstmain
+[PLAYER1]
+manapool:{3}{R}
+inplay:hot soup,hill giant
+hand:shock
+[PLAYER2]
+[DO]
+hot soup
+hill giant
+goto firstmain
+goto firstmain
+shock
+hill giant
+goto firstmain
+goto firstmain
+choice 0
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:hot soup
+graveyard:shock,hill giant
+[PLAYER2]
+[END]
