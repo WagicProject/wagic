@@ -1,0 +1,29 @@
+#Inevitable End (#1085): aura teaches "at the beginning of your upkeep, sacrifice a
+#creature" to the enchanted creature. Enchant the opponent's hill giant; at the
+#opponent's upkeep they sacrifice the grizzly bears.
+[INIT]
+firstmain
+[PLAYER1]
+manapool:{2}{B}
+hand:inevitable end
+[PLAYER2]
+inplay:hill giant,grizzly bears
+[DO]
+inevitable end
+hill giant
+goto firstmain
+goto firstmain
+goto end
+goto upkeep
+choice 0
+grizzly bears
+goto upkeep
+goto upkeep
+[ASSERT]
+UPKEEP
+[PLAYER1]
+inplay:inevitable end
+[PLAYER2]
+inplay:hill giant
+graveyard:grizzly bears
+[END]

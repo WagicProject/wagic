@@ -60,6 +60,7 @@ generic/heron_of_hope_i1085.txt
 generic/hooded_hydra_i1085.txt
 generic/hot_soup_i1085.txt
 generic/idol_of_oblivion_i1085.txt
+generic/inevitable_end_i1085.txt
 ai/death_wind_self_target_i1085.txt
 generic/devotion.txt
 generic/doesnotuntap.txt
