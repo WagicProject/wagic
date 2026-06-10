@@ -43,6 +43,7 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     monarch = 0;
     initiative = 0;
     surveilOffset = 0;
+    exiledBySerum = 0;
     devotionOffset = 0;
     lastShuffleTurn = -1;
     epic = 0;
@@ -261,6 +262,7 @@ void Player::serumMulligan()
 {
     MTGPlayerCards * currentPlayerZones = game;
     int cardsinhand = currentPlayerZones->hand->nb_cards;
+    exiledBySerum += cardsinhand;
     for (int i = 0; i < cardsinhand; i++) //Exile
         currentPlayerZones->putInZone(currentPlayerZones->hand->cards[0],
         currentPlayerZones->hand,
@@ -392,6 +394,11 @@ bool Player::parseLine(const string& s)
             premade = (atoi(s.substr(limiter + 1).c_str())==1);
             return true;
         }
+        else if (areaS.compare("serumexiled") == 0)
+        {
+            exiledBySerum = atoi(s.substr(limiter + 1).c_str());
+            return true;
+        }
         else if (areaS.compare("deckfile") == 0)
         {
             deckFile = s.substr(limiter + 1);
@@ -471,6 +478,8 @@ ostream& operator<<(ostream& out, const Player& p)
         out << "customphasering=" << p.phaseRing << endl;
     out << "offerinterruptonphase=" << Constants::MTGPhaseCodeNames[p.offerInterruptOnPhase] << endl;
     out << "premade=" << p.premade << endl;
+    if(p.exiledBySerum)
+        out << "serumexiled=" << p.exiledBySerum << endl;
     if(p.deckFile != "")
         out << "deckfile=" << p.deckFile << endl;
     if(p.deckFileSmall != "")

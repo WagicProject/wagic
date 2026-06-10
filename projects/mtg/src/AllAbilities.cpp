@@ -993,6 +993,10 @@ int GenericActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost 
 {
     if (dynamic_cast<AAMorph*> (ability) && !card->isMorphed && !card->morphed && card->turningOver)
         return 0;
+    //Serum Powder's redraw is only available "any time you could mulligan"
+    if (AAMulligan * mulligan = dynamic_cast<AAMulligan*> (ability))
+        if (!mulligan->mulliganWindowOpen())
+            return 0;
     return ActivatedAbility::isReactingToClick(card, mana);
 }
 
@@ -6799,6 +6803,32 @@ AAShuffle::~AAShuffle()
 AAMulligan::AAMulligan(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, int who) :
     ActivatedAbilityTP(observer, _id, card, _target, _cost, who)
 {
+}
+
+bool AAMulligan::mulliganWindowOpen()
+{
+    //"Any time you could mulligan" (Serum Powder): only while the
+    //opening-hand window is open, same as the Mulligan menu entry -
+    //the first player's first main phase, or the second player's first
+    //turn before drawing, with no game actions taken yet. Cards exiled
+    //by previous Serum Powder redraws don't end the window (issue #979).
+    Player * p = source->controller();
+    GamePhase phase = (GamePhase)game->getCurrentGamePhase();
+    if (!((game->turn == 0 && phase == MTG_PHASE_FIRSTMAIN) || (game->turn == 1 && phase < MTG_PHASE_DRAW)))
+        return false;
+    if (p != game->currentPlayer || game->currentlyActing() != p)
+        return false;
+    if (p->game->inPlay->nb_cards != 0 || p->game->graveyard->nb_cards != 0
+        || p->game->exile->nb_cards != p->exiledBySerum)
+        return false;
+    return true;
+}
+
+int AAMulligan::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
+{
+    if (!mulliganWindowOpen())
+        return 0;
+    return ActivatedAbilityTP::isReactingToClick(card, mana);
 }
 
 int AAMulligan::resolve()

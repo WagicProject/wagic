@@ -6933,6 +6933,8 @@ class AAMulligan: public ActivatedAbilityTP
 public:
     AAMulligan(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost = NULL, int who =
             TargetChooser::UNSET);
+    bool mulliganWindowOpen();
+    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int resolve();
     const string getMenuText();
     AAMulligan * clone() const;

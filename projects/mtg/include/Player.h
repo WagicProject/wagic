@@ -53,6 +53,12 @@ public:
     int surveilOffset;
     int devotionOffset;
     int lastShuffleTurn;
+    //Number of cards this player exiled via Serum Powder's redraw. The
+    //opening-hand rules (Leylines, the Mulligan menu) detect the pre-game
+    //window by "graveyard and exile are empty"; Serum Powder legitimately
+    //fills exile before the game starts, so those checks compare against
+    //this count instead of zero.
+    int exiledBySerum;
     int epic;
     int forcefield;
     int dealsdamagebycombat;

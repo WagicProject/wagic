@@ -1,0 +1,20 @@
+#Bug: Serum Powder's redraw is only legal "any time you could mulligan",
+#but it stayed clickable for the whole game.
+# https://github.com/WagicProject/wagic/issues/979
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:serum powder,juggernaut
+library:leyline of sanctity,millstone
+[PLAYER2]
+[DO]
+goto secondmain
+serum powder
+choice 0
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+hand:serum powder,juggernaut
+library:leyline of sanctity,millstone
+[PLAYER2]
+[END]

@@ -301,17 +301,20 @@ PermanentAbility(observer, _id)
 
 int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 {
-    int cardsinhand = game->players[0]->game->hand->nb_cards;
     defaultPlayName = card->isLand()?"Play Land":"Cast Card Normally";
     Player * player = game->currentlyActing();
     if (!player->game->hand->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->library->hasCard(card) && !player->game->commandzone->hasCard(card))
          return 0;
     if ((player->game->library->hasCard(card) && !card->canPlayFromLibrary()) || (player->game->graveyard->hasCard(card) && !card->has(Constants::CANPLAYFROMGRAVEYARD)) || (player->game->exile->hasCard(card) && !card->has(Constants::CANPLAYFROMEXILE)))
          return 0;
-    if ((game->turn < 1) && (cardsinhand != 0) && (card->basicAbilities[(int)Constants::LEYLINE])
+    //Leylines may start on the battlefield while the opening-hand window is
+    //open. "Nothing has happened yet" is detected through empty zones, but
+    //cards exiled by Serum Powder redraws (player->exiledBySerum) are part
+    //of that window and must not close it (issue #979).
+    if ((game->turn < 1) && (player->game->hand->nb_cards != 0) && (card->basicAbilities[(int)Constants::LEYLINE])
         && game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
-        && game->players[0]->game->graveyard->nb_cards == 0
-        && game->players[0]->game->exile->nb_cards == 0
+        && player->game->graveyard->nb_cards == 0
+        && player->game->exile->nb_cards == player->exiledBySerum
         )
     {
 

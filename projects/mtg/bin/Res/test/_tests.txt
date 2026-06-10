@@ -14,6 +14,8 @@ generic/changeling_i501.txt
 generic/cycling.txt
 generic/cycling2.txt
 generic/deathtouch.txt
+generic/serum_powder_leyline_i979.txt
+generic/serum_powder_window_i979.txt
 generic/devotion.txt
 generic/doesnotuntap.txt
 generic/doesnotuntap2.txt

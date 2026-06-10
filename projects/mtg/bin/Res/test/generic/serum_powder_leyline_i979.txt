@@ -1,0 +1,22 @@
+#Bug: Serum Powder's redraw exiles the hand, which wrongly closed the
+#opening-hand window: Leylines drawn after the redraw could no longer
+#begin the game on the battlefield.
+# https://github.com/WagicProject/wagic/issues/979
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:serum powder,juggernaut
+library:leyline of sanctity,millstone
+[PLAYER2]
+[DO]
+serum powder
+choice 0
+leyline of sanctity
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:leyline of sanctity
+hand:millstone
+exile:serum powder,juggernaut
+[PLAYER2]
+[END]

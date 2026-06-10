@@ -960,7 +960,7 @@ void GameStateDuel::Update(float dt)
                     //almosthumane - mulligan
                     if (((game->turn == 0 && game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN) || (game->turn == 1 && game->getCurrentGamePhase() < MTG_PHASE_DRAW))
                         && game->currentPlayer->game->hand->nb_cards > 0 && game->currentPlayer->game->inPlay->nb_cards == 0 && game->currentPlayer->game->graveyard->nb_cards == 0
-                        && game->currentPlayer->game->exile->nb_cards == 0 && game->currentlyActing() == (Player*)game->currentPlayer) //Now you can mulligan even if you didn't start as first.
+                        && game->currentPlayer->game->exile->nb_cards == game->currentPlayer->exiledBySerum && game->currentlyActing() == (Player*)game->currentPlayer) //Now you can mulligan even if you didn't start as first. Serum Powder exiles don't end the window (issue #979).
                     {
                         menu->Add(MENUITEM_MULLIGAN, "Mulligan");
                     }
