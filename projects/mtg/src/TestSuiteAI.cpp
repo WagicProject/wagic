@@ -34,9 +34,22 @@ TestSuiteAI::TestSuiteAI(TestSuiteGame *tsGame, int playerId) :
 
     suite = tsGame;
     timer = 0;
+    expectedTappedInPlay = -1;
     playMode = MODE_TEST_SUITE;
     this->deckName = "Test Suite AI";
     this->comboHint = NULL;
+}
+
+bool TestSuiteAI::parseLine(const string& s)
+{
+    //test-suite-only assertion keys
+    static const string kTapped = "tappedinplay:";
+    if (s.compare(0, kTapped.size(), kTapped) == 0)
+    {
+        expectedTappedInPlay = atoi(s.c_str() + kTapped.size());
+        return true;
+    }
+    return AIPlayerBaka::parseLine(s);
 }
 
 MTGCardInstance * TestSuiteAI::getCard(string action)
@@ -376,6 +389,20 @@ void TestSuiteGame::assertGame()
                             endState.players[i]->poisonCount, p->poisonCount);
             Log(result);
             error++;
+        }
+        if (endState.players[i]->expectedTappedInPlay >= 0)
+        {
+            int tapped = 0;
+            for (int k = 0; k < p->game->inPlay->nb_cards; k++)
+                if (p->game->inPlay->cards[k]->isTapped())
+                    tapped++;
+            if (tapped != endState.players[i]->expectedTappedInPlay)
+            {
+                sprintf(result, "<span class=\"error\">==tapped battlefield cards problem for player %i. Expected %i, got %i==</span><br />", i,
+                                endState.players[i]->expectedTappedInPlay, tapped);
+                Log(result);
+                error++;
+            }
         }        if (!p->getManaPool()->canAfford(endState.players[i]->getManaPool(),0))
         {
             sprintf(result, "<span class=\"error\">==Mana problem. Was expecting %i but got %i for player %i==</span><br />",

@@ -1,0 +1,25 @@
+#Upstream issue #1131: Gulf Squid only ever tapped its controller's
+#lands. The card reads 'tap all lands target player controls' and is now
+#scripted with a player target (like Early Harvest).
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Gulf Squid
+inplay:Forest,Forest
+manapool:{3}{U}
+life:20
+[PLAYER2]
+inplay:Island,Island
+life:20
+[DO]
+Gulf Squid
+p2
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Gulf Squid,Forest,Forest
+tappedinplay:0
+[PLAYER2]
+inplay:Island,Island
+tappedinplay:2
+[END]

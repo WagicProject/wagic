@@ -122,9 +122,13 @@ private:
     TestSuiteGame * suite;
 
 public:
+    //[ASSERT]-only: expected number of tapped battlefield cards (-1 = don't check)
+    int expectedTappedInPlay;
+
     TestSuiteAI(TestSuiteGame *tsGame, int playerId);
     virtual int Act(float dt);
     virtual int displayStack();
+    bool parseLine(const string& s);
     bool summoningSickness() {return (suite->summoningSickness == 1); }
 };
 
