@@ -43,6 +43,13 @@ class CardDescriptor: public MTGCardInstance
   int manacostComparisonMode;
   int counterComparisonMode;
   int convertedManacost; // might fit better into MTGCardInstance?
+  //When the manacost criterion is an expression referencing the source
+  //card's stats ("manacost<=power", Dreadhorde Arcanist), freezing its
+  //value at parse time ignores later pumps (issue #1125). The expression
+  //is kept and re-evaluated against the source at match time.
+  string dynamicManacostExpression;
+  MTGCardInstance * dynamicManacostSource;
+  int currentManacostCriterion();
   int zposComparisonMode;
   int zposition;
   int numofColorsComparisonMode;

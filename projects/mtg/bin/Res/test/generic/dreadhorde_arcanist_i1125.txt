@@ -1,0 +1,37 @@
+#Bug: Dreadhorde Arcanist's "mana value <= power" check froze power at
+#parse time, so pumping the Arcanist never widened the castable range:
+#a 3/5 Arcanist (two +1/+1 counters) could not cast a mana value 3
+#sorcery from the graveyard.
+# https://github.com/WagicProject/wagic/issues/1125
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:dreadhorde arcanist
+hand:battlegrowth,battlegrowth
+graveyard:divination
+library:millstone,juggernaut
+manapool:{G}{G}
+[PLAYER2]
+[DO]
+battlegrowth
+dreadhorde arcanist
+battlegrowth
+dreadhorde arcanist
+goto attackers
+dreadhorde arcanist
+next
+choice 0
+divination
+goto blockers
+goto blockers
+goto blockers
+goto blockers
+[ASSERT]
+COMBATBLOCKERS
+[PLAYER1]
+inplay:dreadhorde arcanist
+hand:*,*
+exile:divination
+graveyard:battlegrowth,battlegrowth
+[PLAYER2]
+[END]

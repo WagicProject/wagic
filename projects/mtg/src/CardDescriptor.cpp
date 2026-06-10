@@ -22,6 +22,8 @@ CardDescriptor::CardDescriptor()
     manacostComparisonMode = COMPARISON_NONE;
     counterComparisonMode = COMPARISON_NONE;
     convertedManacost = -1;
+    dynamicManacostExpression = "";
+    dynamicManacostSource = NULL;
     numofColorsComparisonMode = COMPARISON_NONE;
     numofColors = -1;
     zposComparisonMode = COMPARISON_NONE;
@@ -140,6 +142,19 @@ void CardDescriptor::setNegativeSubtype(string value)
 
 // Very generic function to compare a value to a criterion.
 // Should be easily transferable to a more generic class if desired.
+//The manacost criterion may be an expression over the source card's
+//current stats ("manacost<=power"); evaluate it fresh so pumps and
+//counters are respected at match time (issue #1125).
+int CardDescriptor::currentManacostCriterion()
+{
+    if (dynamicManacostExpression.size() && dynamicManacostSource)
+    {
+        WParsedInt val(dynamicManacostExpression, NULL, dynamicManacostSource);
+        return val.getValue();
+    }
+    return convertedManacost;
+}
+
 bool CardDescriptor::valueInRange(int comparisonMode, int value, int criterion)
 {
     switch (comparisonMode)
@@ -230,7 +245,7 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card)
         if(!valueInRange(numofColorsComparisonMode, totalcolor, numofColors))
             return NULL;
     }
-    if (manacostComparisonMode && !valueInRange(manacostComparisonMode, card->myconvertedcost, convertedManacost))
+    if (manacostComparisonMode && !valueInRange(manacostComparisonMode, card->myconvertedcost, currentManacostCriterion()))
         return NULL;
     if (zposComparisonMode && !valueInRange(zposComparisonMode, card->zpos, zposition))
         return NULL;
@@ -297,7 +312,7 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card)
         if(!valueInRange(numofColorsComparisonMode, totalcolor, numofColors))
             return NULL;
     }
-    if (manacostComparisonMode && !valueInRange(manacostComparisonMode, card->myconvertedcost, convertedManacost))
+    if (manacostComparisonMode && !valueInRange(manacostComparisonMode, card->myconvertedcost, currentManacostCriterion()))
         match = NULL;
     if (zposComparisonMode && !valueInRange(zposComparisonMode, card->zpos, zposition))
         match = NULL;

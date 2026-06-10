@@ -588,12 +588,14 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 }
                 int comparisonMode = COMPARISON_NONE;
                 int comparisonCriterion = 0;
+                string comparisonExpression = "";
                 if (attribute.size() > 1)
                 {
                     size_t operatorPosition = attribute.find("=", 1);
                     if (operatorPosition != string::npos)
                     {
                         string numberCD = attribute.substr(operatorPosition + 1, attribute.size() - operatorPosition - 1);
+                        comparisonExpression = numberCD;
                         WParsedInt * val = NEW WParsedInt(numberCD,NULL, card);
                         comparisonCriterion = val->getValue();
                         delete val;           
@@ -1098,6 +1100,16 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     //Manacost restrictions
                     cd->convertedManacost = comparisonCriterion;
                     cd->manacostComparisonMode = comparisonMode;
+                    //"manacost<=power" (Dreadhorde Arcanist): the criterion
+                    //depends on the source card's CURRENT stats - store the
+                    //expression so the descriptor re-evaluates it at match
+                    //time instead of freezing the parse-time value (#1125).
+                    if (comparisonExpression.size()
+                        && comparisonExpression.find_first_not_of("0123456789") != string::npos)
+                    {
+                        cd->dynamicManacostExpression = comparisonExpression;
+                        cd->dynamicManacostSource = card;
+                    }
                 }
                 else if (attribute.find("share!") != string::npos)
                 {
