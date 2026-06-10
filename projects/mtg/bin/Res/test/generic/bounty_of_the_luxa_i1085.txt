@@ -1,0 +1,28 @@
+#From the #1085 meta-list: Bounty of the Luxa (no symptom given).
+#First upkeep cycle: flood counter + draw. Next: counters off, add
+#{1}{G}{U}. Asserted at the second of the controller's main phases.
+# https://github.com/WagicProject/wagic/issues/1085
+[INIT]
+SECONDMAIN
+[PLAYER1]
+inplay:bounty of the luxa
+library:millstone,juggernaut
+[PLAYER2]
+[DO]
+goto firstmain
+goto end
+goto firstmain
+choice 0
+goto end
+goto firstmain
+goto end
+goto firstmain
+choice 0
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:bounty of the luxa
+manapool:{C}{G}{U}
+hand:*,*
+[PLAYER2]
+[END]

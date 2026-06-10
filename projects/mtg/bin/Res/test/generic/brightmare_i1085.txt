@@ -1,0 +1,26 @@
+#From the #1085 meta-list: Brightmare (no symptom given).
+#ETB: tap up to one target creature, gain life equal to its power.
+#Tapping the opponent's Grizzly Bears gains 2.
+# https://github.com/WagicProject/wagic/issues/1085
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:brightmare
+manapool:{2}{W}
+[PLAYER2]
+inplay:grizzly bears
+[DO]
+brightmare
+choice 0
+grizzly bears
+goto secondmain
+goto secondmain
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+inplay:brightmare
+life:22
+[PLAYER2]
+inplay:grizzly bears
+tappedinplay:1
+[END]
