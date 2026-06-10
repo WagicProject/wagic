@@ -41,7 +41,6 @@ generic/descendants_path_i1085.txt
 generic/curse_of_thirst_i1085.txt
 generic/curse_of_opulence_i1085.txt
 generic/cursed_rack_i1085.txt
-generic/cytoplast_manipulator_i1085.txt
 generic/deadbridge_chant_i1085.txt
 generic/earthbind_i1085.txt
 generic/entrancing_lyre_i1085.txt
@@ -66,6 +65,7 @@ generic/jaddi_lifestrider_i1085.txt
 generic/infernal_darkness_i1085.txt
 generic/krovikan_plague_i1085.txt
 generic/livewire_lash_i1085.txt
+generic/living_death_i1085.txt
 ai/death_wind_self_target_i1085.txt
 generic/devotion.txt
 generic/doesnotuntap.txt

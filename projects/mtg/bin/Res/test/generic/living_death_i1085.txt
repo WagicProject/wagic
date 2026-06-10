@@ -1,0 +1,28 @@
+#Living Death (#1085): each player exiles creatures from graveyard, sacrifices all
+#creatures, then returns the exiled ones. My bears swap with my graveyard giant;
+#opponent's myr swaps with their graveyard juggernaut.
+[INIT]
+firstmain
+[PLAYER1]
+manapool:{3}{B}{B}
+hand:living death
+inplay:grizzly bears
+graveyard:hill giant
+[PLAYER2]
+inplay:gold myr
+graveyard:juggernaut
+[DO]
+living death
+goto firstmain
+goto firstmain
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:hill giant
+graveyard:living death,grizzly bears
+[PLAYER2]
+inplay:juggernaut
+graveyard:gold myr
+[END]
