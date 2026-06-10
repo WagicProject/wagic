@@ -21,6 +21,8 @@ generic/alrund_hand_buff_i1085.txt
 generic/archghoul_zombie_dies_i1085.txt
 generic/arcums_weathervane_i1085.txt
 generic/athreos_shroud_veiled_coin_i1085.txt
+generic/azor_lockout_i1085.txt
+generic/bag_of_holding_i1085.txt
 ai/death_wind_self_target_i1085.txt
 generic/devotion.txt
 generic/doesnotuntap.txt
