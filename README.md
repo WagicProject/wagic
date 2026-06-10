@@ -29,6 +29,8 @@ Chat with the community on the [**Wagic - MTG Game** Discord](https://discord.co
 
 Developer information from the [Wagic Wiki](https://github.com/WagicProject/wagic/wiki) is also included in the [wagic/docs/](docs) folder.
 
+Compilation instructions for all platforms are in [BUILDING.md](BUILDING.md).
+
 
 ### Sample round play-through video
 
