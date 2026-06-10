@@ -1,0 +1,25 @@
+#Gutter Grime (#1085): nontoken creature dies -> slime counter + Ooze token with P/T =
+#slime counters. The 0/0 ooze only survives if the counter-scaled lord (+1/+1 at one
+#slime counter) applies - its presence on the battlefield IS the assertion.
+[INIT]
+firstmain
+[PLAYER1]
+manapool:{R}
+inplay:gutter grime,grizzly bears
+hand:shock
+[PLAYER2]
+[DO]
+shock
+grizzly bears
+goto firstmain
+goto firstmain
+choice 0
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:gutter grime,*
+graveyard:shock,grizzly bears
+[PLAYER2]
+[END]
