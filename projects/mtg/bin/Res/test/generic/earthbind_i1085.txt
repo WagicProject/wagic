@@ -1,0 +1,23 @@
+#From the #1085 meta-list: Earthbind (no symptom given).
+#Enchanting a flyer deals it 2: the 2/2 Wind Drake dies and the aura
+#follows it to the graveyard.
+# https://github.com/WagicProject/wagic/issues/1085
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:earthbind
+manapool:{R}
+[PLAYER2]
+inplay:wind drake
+[DO]
+earthbind
+wind drake
+goto secondmain
+goto secondmain
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+graveyard:earthbind
+[PLAYER2]
+graveyard:wind drake
+[END]
