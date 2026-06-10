@@ -1,0 +1,19 @@
+#Infernal Darkness (#1085): lands produce {B} instead of their own mana.
+#Tapping Darksteel Citadel (normally {C}) must yield {B}.
+[INIT]
+firstmain
+[PLAYER1]
+inplay:infernal darkness,darksteel citadel
+[PLAYER2]
+[DO]
+darksteel citadel
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+manapool:{B}
+inplay:infernal darkness,darksteel citadel
+tappedinplay:1
+[PLAYER2]
+[END]
