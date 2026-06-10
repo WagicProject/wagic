@@ -1,0 +1,60 @@
+#Fertile Imagination (#1085 list): choose Creature via the merged type menu (choice 2 = third
+#entry, line order artifact/battle/creature/...), opponent reveals, 2 Saprolings per creature
+#revealed (transforms-granted one-shot pays out to the caster). The other 8 type-prompts are
+#mandatory (may-must) and each reveals+returns one card.
+[INIT]
+firstmain
+[PLAYER1]
+manapool:{2}{G}{G}
+hand:fertile imagination
+[PLAYER2]
+hand:grizzly bears,hill giant
+[DO]
+fertile imagination
+goto firstmain
+goto firstmain
+choice 2
+grizzly bears
+hill giant
+goto firstmain
+goto firstmain
+choice 0
+grizzly bears
+goto firstmain
+goto firstmain
+choice 0
+grizzly bears
+goto firstmain
+goto firstmain
+choice 0
+grizzly bears
+goto firstmain
+goto firstmain
+choice 0
+grizzly bears
+goto firstmain
+goto firstmain
+choice 0
+grizzly bears
+goto firstmain
+goto firstmain
+choice 0
+grizzly bears
+goto firstmain
+goto firstmain
+choice 0
+grizzly bears
+goto firstmain
+goto firstmain
+choice 0
+grizzly bears
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:fertile imagination
+inplay:*,*,*,*
+[PLAYER2]
+hand:grizzly bears,hill giant
+[END]
