@@ -1,0 +1,29 @@
+#Island Sanctuary (#1085): replace your draw -> skip it and become unattackable except
+#by flying/islandwalk until your next turn. Skip the turn-3 draw; the opponent's bears
+#cannot attack on their turn 4 (life stays 20; without the skip the attack deals 2).
+[INIT]
+firstmain
+[PLAYER1]
+inplay:island sanctuary
+library:millstone,juggernaut
+[PLAYER2]
+inplay:grizzly bears
+[DO]
+goto end
+goto end
+goto draw
+choice 0
+goto end
+goto attackers
+grizzly bears
+next
+goto end
+[ASSERT]
+ENDOFTURN
+[PLAYER1]
+life:20
+inplay:island sanctuary
+library:millstone,juggernaut
+[PLAYER2]
+inplay:grizzly bears
+[END]
