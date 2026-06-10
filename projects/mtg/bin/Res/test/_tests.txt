@@ -56,6 +56,7 @@ generic/gor_muldrak_i1085.txt
 generic/grip_of_phyresis_i1085.txt
 generic/gutter_grime_i1085.txt
 generic/hall_of_storm_giants_i1085.txt
+generic/heron_of_hope_i1085.txt
 ai/death_wind_self_target_i1085.txt
 generic/devotion.txt
 generic/doesnotuntap.txt

@@ -1,0 +1,25 @@
+#Heron of Hope (#1085): lifefaker (gain +1 extra). Activate {1}{W} lifelink, attack
+#unblocked for 2: opponent 18, controller gains 2+1=3 -> 23.
+[INIT]
+firstmain
+[PLAYER1]
+manapool:{1}{W}
+inplay:heron of hope
+[PLAYER2]
+[DO]
+heron of hope
+choice 0
+goto firstmain
+goto firstmain
+goto attackers
+heron of hope
+next
+goto end
+[ASSERT]
+ENDOFTURN
+[PLAYER1]
+life:23
+inplay:heron of hope
+[PLAYER2]
+life:18
+[END]
