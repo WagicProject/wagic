@@ -1,0 +1,29 @@
+#From the #1085 meta-list: "Athreos, Shroud-Veiled creature return".
+#Works: the end-step coin prompt must be accepted (choice 0) before
+#clicking the target; a coined creature that dies then returns to the
+#battlefield under Athreos's controller's control.
+#(Card by set id 676085: the name contains a comma.)
+# https://github.com/WagicProject/wagic/issues/1085
+[INIT]
+SECONDMAIN
+[PLAYER1]
+inplay:676085,iron myr
+hand:shock
+[PLAYER2]
+inplay:grizzly bears
+[DO]
+goto end
+choice 0
+grizzly bears
+iron myr
+shock
+grizzly bears
+goto cleanup
+goto cleanup
+[ASSERT]
+CLEANUP
+[PLAYER1]
+inplay:676085,iron myr,grizzly bears
+graveyard:shock
+[PLAYER2]
+[END]
