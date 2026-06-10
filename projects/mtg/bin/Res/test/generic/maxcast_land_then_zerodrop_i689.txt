@@ -1,0 +1,16 @@
+#Bug: after playing a land, casting a 0-cost spell was refused
+# https://github.com/WagicProject/wagic/issues/689
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:darksteel citadel,memnite
+[PLAYER2]
+[DO]
+darksteel citadel
+memnite
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:darksteel citadel,memnite
+[PLAYER2]
+[END]
