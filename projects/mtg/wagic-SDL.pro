@@ -11,23 +11,28 @@ QT -= core gui opengl network declarative
 
 #unix|windows:QMAKE_CXXFLAGS += -std=c++11
 
-INCLUDEPATH += ../../JGE/Dependencies/SDL/include
+windows:INCLUDEPATH += ../../JGE/Dependencies/SDL/include
 unix:INCLUDEPATH += /usr/include/GL
-unix:INCLUDEPATH += /usr/local/include/SDL
+unix:INCLUDEPATH += /usr/include/SDL2
+unix:QMAKE_CXXFLAGS += -std=gnu++14
 OBJECTS_DIR = objs
 MOC_DIR = objs
 DESTDIR = bin
 
-macx|unix:LIBS += -lz -lboost_thread-mt
-unix:LIBS += -ljpeg -lgif -lpng12 -L/usr/local/lib -lGL -lGLU -lSDL
+macx|unix:LIBS += -lz -lboost_thread
+unix:LIBS += -ljpeg -lgif -lpng -L/usr/local/lib -lGL -lGLU -lSDL2
 windows:LIBS += -L../../JGE/Dependencies/lib -L../../Boost/lib -llibjpeg-static-mt-debug -lgiflib -llibpng -lfmodvc
 
-CONFIG(debug, debug|release):SOURCES += src/TestSuiteAI.cpp
+# TestSuiteAI.cpp is already in wagic.pri's SOURCES; adding it here double-links
 
 # JGE, could probably be moved outside
 SOURCES += \
         ../../JGE/src/SDLmain.cpp\
         ../../JGE/src/JMD2Model.cpp
+
+unix:SOURCES += \
+        ../../JGE/src/pc/JGfx.cpp\
+        ../../JGE/src/pc/JSfx.cpp
 
 windows{
 

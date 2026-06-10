@@ -108,7 +108,7 @@ class SdlApp
 public: /* For easy interfacing with JGE static functions */
     bool            Running;
     SDL_Window*     window;
-    SDL_Surface*    Surf_Display;
+    SDL_GLContext   glContext;
     SDL_Rect        viewPort;
     Uint32          lastMouseUpTime;
     Uint32          lastFingerDownTime;
@@ -121,7 +121,7 @@ public: /* For easy interfacing with JGE static functions */
     int mMouseDownY;
 
 public:
-    SdlApp() : Surf_Display(NULL), window(NULL), lastMouseUpTime(0), lastFingerDownTime(0), Running(true), mMouseDownX(0), mMouseDownY(0)
+    SdlApp() : glContext(NULL), window(NULL), lastMouseUpTime(0), lastFingerDownTime(0), Running(true), mMouseDownX(0), mMouseDownY(0)
     {
     }
 
@@ -291,7 +291,10 @@ public:
 
     void OnCleanup()
     {
-        SDL_FreeSurface(Surf_Display);
+        if (glContext)
+            SDL_GL_DeleteContext(glContext);
+        if (window)
+            SDL_DestroyWindow(window);
         SDL_Quit();
     }
 };
@@ -459,7 +462,7 @@ void SdlApp::OnUpdate()
 	if(g_engine)
 		g_engine->Render();
 
-	SDL_GL_SwapBuffers();
+	SDL_GL_SwapWindow(window);
 }
 
 void SdlApp::OnKeyPressed(const SDL_KeyboardEvent& event)
@@ -653,12 +656,13 @@ bool SdlApp::OnInit()
 		return false;
 	}
 
-	const SDL_VideoInfo *pVideoInfo = SDL_GetVideoInfo();
-	DebugTrace("Video Display : h " << pVideoInfo->current_h << ", w " << pVideoInfo->current_w);
+	SDL_DisplayMode displayMode;
+	SDL_GetCurrentDisplayMode(0, &displayMode);
+	DebugTrace("Video Display : h " << displayMode.h << ", w " << displayMode.w);
 
 #if (defined ANDROID) || (defined IOS)
-	window_w = pVideoInfo->current_w;
-	window_h = pVideoInfo->current_h;
+	window_w = displayMode.w;
+	window_h = displayMode.h;
 #else
 	window_w = ACTUAL_SCREEN_WIDTH;
 	window_h = ACTUAL_SCREEN_HEIGHT;
@@ -683,17 +687,25 @@ bool SdlApp::OnInit()
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 1);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 
-	if((Surf_Display = SDL_SetVideoMode(window_w, window_h, 32,
+	window = SDL_CreateWindow(g_launcher->GetName(),
+		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+		window_w, window_h,
 #ifdef ANDROID
-		SDL_OPENGL | SDL_FULLSCREEN | SDL_WINDOW_BORDERLESS)) == NULL)
-	{
+		SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN | SDL_WINDOW_BORDERLESS);
 #else
-		SDL_OPENGL | SDL_RESIZABLE )) == NULL)
-	{
+		SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
 #endif
+	if (!window)
+	{
 		return false;
 	}
-	SDL_WM_SetCaption(g_launcher->GetName(), "");
+
+	glContext = SDL_GL_CreateContext(window);
+	if (!glContext)
+	{
+		return false;
+	}
+	SDL_GL_SetSwapInterval(1);
 
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// Black Background (yes that's the way fuckers)
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
