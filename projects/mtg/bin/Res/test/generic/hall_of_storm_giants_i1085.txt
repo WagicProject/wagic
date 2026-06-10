@@ -1,0 +1,37 @@
+#Hall of Storm Giants (#1085): {5}{U}: becomes a 7/7 Giant with ward until end of turn.
+#Myrs pay the cost on a later turn; the animated hall attacks unblocked for 7 (life 13).
+#NB: clicking a permanent with activated abilities at attackers opens a menu -
+#choice 0 = "Attack Player".
+[INIT]
+firstmain
+[PLAYER1]
+inplay:hall of storm giants,gold myr,copper myr,silver myr,iron myr,leaden myr,palladium myr
+[PLAYER2]
+[DO]
+goto end
+goto firstmain
+goto end
+goto firstmain
+gold myr
+copper myr
+silver myr
+iron myr
+leaden myr
+palladium myr
+hall of storm giants
+choice 1
+goto firstmain
+goto firstmain
+goto attackers
+hall of storm giants
+choice 0
+next
+goto end
+[ASSERT]
+ENDOFTURN
+[PLAYER1]
+inplay:hall of storm giants,gold myr,copper myr,silver myr,iron myr,leaden myr,palladium myr
+tappedinplay:7
+[PLAYER2]
+life:13
+[END]
