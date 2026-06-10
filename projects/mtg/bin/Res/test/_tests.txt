@@ -155,7 +155,6 @@ aura_mutation.txt
 auriok_bladewarden_POWERPUMPBOTH.txt
 Auriok_Sunchaser_ASLONGAS_1.txt
 Auriok_Sunchaser_ASLONGAS_2.txt
-aven_shrine.txt
 avarice_totem.txt
 avatar_of_woe1.txt
 avatar_of_woe2.txt
@@ -189,7 +188,6 @@ blessed_wine.txt
 blinking_spirit.txt
 blinkmoth_nexus.txt
 Blink_and_X_counters.txt
-Blink_and_X_counters2.txt
 bloated_toad1.txt
 bloated_toad2.txt
 bloodbond_march.txt
@@ -589,7 +587,6 @@ resuscitate_i210.txt
 restinpeace.txt
 righteous_cause.txt
 rise_from_the_grave.txt
-river_kelpie2_i335.txt
 rockslide_elemental.txt
 rootwalla.txt
 royal_assassin.txt

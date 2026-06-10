@@ -568,13 +568,8 @@ int TestSuite::loadNext()
 
     if(!mProcessing)
     {   // "I don't like to wait" mode
+        joinWorkers();
         mProcessing = true;
-        while(mWorkerThread.size())
-        {
-          mWorkerThread.back()->join();
-          SAFE_DELETE(mWorkerThread.back());
-          mWorkerThread.pop_back();
-        }
 
         size_t thread_count = 1;
 #ifdef QT_CONFIG
@@ -590,10 +585,30 @@ int TestSuite::loadNext()
 
     cleanup();
     if (!load())
+    {
+        //A registered test file that cannot be loaded used to be skipped
+        //silently, understating the test count and hiding dead entries.
+        char buf[4096];
+        sprintf(buf, "<h3>%s</h3>", filename.c_str());
+        Log(buf);
+        Log("<span class=\"error\">==Could not load test file==</span><br />");
+        handleResults(false, 1);
         return loadNext();
+    }
     else
         cout << "Starting test : " << files[currentfile - 1] << endl;
     return currentfile;
+}
+
+void TestSuite::joinWorkers()
+{
+    mProcessing = false;
+    while(mWorkerThread.size())
+    {
+        mWorkerThread.back()->join();
+        SAFE_DELETE(mWorkerThread.back());
+        mWorkerThread.pop_back();
+    }
 }
 
 void TestSuite::ThreadProc(void* inParam)
@@ -620,6 +635,15 @@ void TestSuite::ThreadProc(void* inParam)
 
                 while(!theGame.observer->didWin())
                     theGame.observer->Update(counter++);
+            }
+            else
+            {
+                //Report unloadable tests instead of skipping them silently
+                char buf[4096];
+                sprintf(buf, "<h3>%s</h3>", filename.c_str());
+                theGame.Log(buf);
+                theGame.Log("<span class=\"error\">==Could not load test file==</span><br />");
+                theGame.handleResults(false, 1);
             }
         }
     }

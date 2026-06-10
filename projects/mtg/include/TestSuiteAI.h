@@ -99,7 +99,18 @@ private:
 
 public:
     int getElapsedTime() {return endTime-startTime;};
-    unsigned int seed;
+    //Wait for all worker threads to finish their in-flight tests. MUST be
+    //called before reading the result counters or tearing down: the file
+    //list running dry on the main thread does not mean the suite is done,
+    //and exiting with live workers used to discard their results (or
+    //corrupt teardown - random "end of suite" segfaults).
+    void joinWorkers();
+    //This used to be a second `unsigned int seed` SHADOWING the inherited
+    //TestSuiteGame::seed. TestSuiteGame::load() parses the test file's
+    //"seed" directive into the base member, while GameStateDuel reads it
+    //through a TestSuite* - the shadow meant the directive never worked
+    //and AI chance gates rolled real rand() per run (flaky AI tests).
+    using TestSuiteGame::seed;
     int nbFailed, nbTests, nbAIFailed, nbAITests;
     TestSuite(const char * filename);
     ~TestSuite();

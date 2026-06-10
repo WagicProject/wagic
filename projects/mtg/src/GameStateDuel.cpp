@@ -333,6 +333,10 @@ void GameStateDuel::loadTestSuitePlayers()
     initRand(testSuite->seed);
     SAFE_DELETE(game);
     game = new GameObserver(WResourceManager::Instance(), JGE::GetInstance());
+    //The GameObserver ctor reseeds from time(0), which clobbered the test's
+    //"seed" directive and made AI chance gates nondeterministic per run.
+    if (testSuite->seed)
+        game->resetSeed(testSuite->seed);
     testSuite->setObserver(game);
     for (int i = 0; i < 2; i++)
     {
@@ -911,6 +915,11 @@ void GameStateDuel::Update(float dt)
                     testSuite->initGame(game);
                 }
                 else {
+                    //The main thread running out of test files does NOT mean
+                    //the suite is done: worker threads may still be mid-test.
+                    //Tearing down without joining them discarded their results
+                    //and occasionally crashed at the end of the suite.
+                    testSuite->joinWorkers();
                     setGamePhase(DUEL_STATE_END);
                 }
             }

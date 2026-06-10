@@ -163,6 +163,10 @@ class GameObserver{
   Player* getPlayer(size_t index) { return players[index];};
   bool isStarted() { return (mLayers!=NULL);};
   RandomGenerator* getRandomGenerator() { return &randomGenerator; };
+  //Reseed this game's randomness (test suite "seed" directive). The ctor
+  //seeds from time(0), so a test's fixed seed must be re-applied after
+  //construction to make the run deterministic.
+  void resetSeed(unsigned int seed) { mSeed = seed; randomGenerator.setSeed(seed); };
   WResourceManager* getResourceManager() { if(this) return mResourceManager;else return 0;};
   CardSelectorBase* getCardSelector() { return mLayers->getCardSelector();};
   bool operator==(const GameObserver& aGame);
