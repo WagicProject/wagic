@@ -1,0 +1,24 @@
+#Bug (from the #1085 meta-list): "AI uses Death Wind on its creatures"
+# https://github.com/WagicProject/wagic/issues/1085
+#The card script constrains AI casts to opponentbattlefield; the engine
+#also classifies targeting by the ability's effect since #1167.
+FORCEABILITY
+AICALLS 5
+SEED 12345
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:grizzly bears,leaden myr,leaden myr,leaden myr
+hand:death wind
+[PLAYER2]
+inplay:raging goblin
+[DO]
+ai
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:grizzly bears,leaden myr,leaden myr,leaden myr
+graveyard:death wind
+[PLAYER2]
+graveyard:raging goblin
+[END]

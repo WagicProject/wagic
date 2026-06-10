@@ -8324,6 +8324,16 @@ AManaProducer::AManaProducer(GameObserver* observer, int id, MTGCardInstance * c
 int AManaProducer::isReactingToClick(MTGCardInstance * _card, ManaCost * mana)
 {
     int result = 0;
+    //This override bypasses ActivatedAbility::isReactingToClick entirely,
+    //so restriction{...} on mana abilities was silently ignored (e.g.
+    //Adarkar Unicorn's upkeep-only mana, #1085 list). Enforce it here the
+    //same way the base class does.
+    if (castRestriction.size())
+    {
+        AbilityFactory af(game);
+        if (!af.parseCastRestrictions(_card, _card->controller(), castRestriction))
+            return 0;
+    }
     if (!mana)
         mana = game->currentlyActing()->getManaPool();
     //please do not condense the following, I broke it apart for readability, it was far to difficult to tell what exactly happened before with it all in a single line.

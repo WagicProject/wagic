@@ -1,0 +1,17 @@
+#Companion to adarkar_unicorn_upkeep: outside the upkeep the mana
+#abilities must not be available.
+# https://github.com/WagicProject/wagic/issues/1085
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:adarkar unicorn
+[PLAYER2]
+[DO]
+adarkar unicorn
+choice 0
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:adarkar unicorn
+[PLAYER2]
+[END]

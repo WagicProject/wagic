@@ -1,0 +1,29 @@
+#Bug (from the #1085 meta-list): Aegar, the Freezing Flame "doesn't
+#seem to work with instants and sorceries" - excess spell damage to an
+#opposing creature should draw a card.
+# https://github.com/WagicProject/wagic/issues/1085
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:503816
+hand:shock
+library:millstone,juggernaut
+manapool:{R}
+[PLAYER2]
+inplay:raging goblin
+[DO]
+shock
+raging goblin
+goto firstmain
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:503816
+graveyard:shock
+hand:*
+library:*
+[PLAYER2]
+graveyard:raging goblin
+[END]
