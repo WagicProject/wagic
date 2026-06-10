@@ -16,6 +16,7 @@ generic/cycling2.txt
 generic/deathtouch.txt
 generic/carom_i1085.txt
 generic/agony_warp_i1085.txt
+generic/memory_leak_i1085.txt
 generic/devotion.txt
 generic/doesnotuntap.txt
 generic/doesnotuntap2.txt

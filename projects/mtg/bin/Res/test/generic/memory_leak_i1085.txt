@@ -1,0 +1,28 @@
+#Memory Leak (#1085): opponent reveals hand; exile a nonland card from their hand or
+#graveyard. Exile the hill giant from hand.
+[INIT]
+firstmain
+[PLAYER1]
+manapool:{2}{B}
+hand:memory leak
+[PLAYER2]
+hand:hill giant,forest
+[DO]
+memory leak
+choice 0
+goto firstmain
+goto firstmain
+goto firstmain
+goto firstmain
+choice 0
+hill giant
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:memory leak
+[PLAYER2]
+hand:forest
+exile:hill giant
+[END]

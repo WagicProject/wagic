@@ -2785,7 +2785,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             if (digits && pos < trimmed.size() && trimmed[pos] == '/')
                 plainPT = true;
         }
-        if (plainDamage || plainPT)
+        //A bare zone move with its own target() (Memory Leak's "exile a
+        //nonland card from that player's hand") fizzled the same way.
+        //Only the leaf form opts in: a chained/structural line keeps its
+        //old parse, since its target() may belong to the nested part.
+        bool plainMove = (trimmed.find("moveto(") == 0)
+            && trimmed.find("and!(") == string::npos
+            && trimmed.find("transforms(") == string::npos
+            && trimmed.find("newability") == string::npos
+            && trimmed.find("teach(") == string::npos
+            && trimmed.find("&&") == string::npos;
+        if (plainDamage || plainPT || plainMove)
         {
             MTGAbility * a1 = parseMagicLine(sWithoutTc, id, spell, card);
             if (a1)
