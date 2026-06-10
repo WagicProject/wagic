@@ -1,0 +1,29 @@
+#Grip of Phyresis (#1085): gain control of target Equipment, create a 0/0 Germ, attach the
+#stolen Equipment to it. Accorder's Shield (+0/+3) keeps the germ alive at 0/3.
+[INIT]
+firstmain
+[PLAYER1]
+manapool:{2}{U}
+hand:grip of phyresis
+[PLAYER2]
+inplay:accorder's shield
+[DO]
+grip of phyresis
+accorder's shield
+goto firstmain
+goto firstmain
+choice 0
+accorder's shield
+goto firstmain
+goto firstmain
+choice 0
+phyrexian germ
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:accorder's shield,*
+graveyard:grip of phyresis
+[PLAYER2]
+[END]

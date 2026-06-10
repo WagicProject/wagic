@@ -53,6 +53,7 @@ generic/flay_essence_i1085.txt
 generic/forebears_blade_i1085.txt
 generic/gift_of_the_gargantuan_i1085.txt
 generic/gor_muldrak_i1085.txt
+generic/grip_of_phyresis_i1085.txt
 ai/death_wind_self_target_i1085.txt
 generic/devotion.txt
 generic/doesnotuntap.txt
