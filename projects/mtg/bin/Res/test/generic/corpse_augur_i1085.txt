@@ -1,0 +1,30 @@
+#From the #1085 meta-list: Corpse Augur (no symptom given).
+#On death: draw X, lose X, X = creatures in target player's graveyard.
+#Choosing the controller with 3 dead creatures (including the Augur
+#itself): draw 3, lose 3.
+# https://github.com/WagicProject/wagic/issues/1085
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:corpse augur
+hand:shock
+graveyard:walking corpse,juggernaut
+library:millstone,ornithopter,mox pearl
+manapool:{R}
+[PLAYER2]
+[DO]
+shock
+corpse augur
+goto firstmain
+goto firstmain
+choice 1
+goto secondmain
+goto secondmain
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+graveyard:walking corpse,juggernaut,corpse augur,shock
+hand:*,*,*
+life:17
+[PLAYER2]
+[END]

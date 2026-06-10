@@ -13,11 +13,17 @@ manapool:{2}{U}{R}
 collected conjuring
 goto firstmain
 goto firstmain
+goto firstmain
+goto firstmain
 choice 0
 krenko's command
 goto firstmain
 goto firstmain
+goto firstmain
+goto firstmain
 divination
+goto firstmain
+goto firstmain
 goto secondmain
 goto secondmain
 [ASSERT]
