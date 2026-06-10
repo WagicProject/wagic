@@ -29,6 +29,7 @@ generic/bounty_of_the_luxa_i1085.txt
 generic/brightmare_i1085.txt
 generic/brothers_yamazaki_i1085.txt
 generic/brudiclad_token_i1085.txt
+generic/calamity_bearer_i1085.txt
 ai/death_wind_self_target_i1085.txt
 generic/devotion.txt
 generic/doesnotuntap.txt

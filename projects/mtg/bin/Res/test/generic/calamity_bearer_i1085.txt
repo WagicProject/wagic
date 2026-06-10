@@ -1,0 +1,22 @@
+#From the #1085 meta-list: Calamity Bearer (no symptom given).
+#A Giant source you control deals double damage: an unblocked Hill
+#Giant (3/3) hits the player for 6 with the Bearer out.
+# https://github.com/WagicProject/wagic/issues/1085
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:calamity bearer,hill giant
+[PLAYER2]
+[DO]
+goto attackers
+hill giant
+next
+next
+next
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:calamity bearer,hill giant
+[PLAYER2]
+life:14
+[END]
