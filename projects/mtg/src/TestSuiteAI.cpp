@@ -668,6 +668,13 @@ void TestSuite::ThreadProc(void* inParam)
                 theGame->observer->loadTestSuitePlayer(1, theGame);
 
                 theGame->observer->startGame(theGame->gameType, /*instance->mRules*/Rules::getRulesByFilename("testsuite.txt"));
+                //Mirror the GameStateDuel path: without this, a test's "seed"
+                //directive only took effect when the MAIN thread ran it -
+                //worker-run games kept the ctor's time(0) seed and seeded
+                //tests (die rolls, coin flips) failed randomly in the suite
+                //while passing solo.
+                if (theGame->seed)
+                    theGame->observer->resetSeed(theGame->seed);
                 theGame->initGame();
 
                 while(!theGame->observer->didWin())
