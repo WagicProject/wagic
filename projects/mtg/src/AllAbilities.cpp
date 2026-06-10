@@ -6155,6 +6155,17 @@ int AACloner::resolve()
         spell->source->model->data = spell->source;
         spell->source->tokCard = spell->source->clone();
         spell->source->TokenAndAbility = _target->TokenAndAbility;//token andAbility
+        //'Exile it at the beginning of the next end step' / unearth-style
+        //riders are delayed effects attached by whatever created the
+        //ORIGINAL - they are not copiable characteristics, so a copy
+        //(populate, Clone...) must not inherit them (upstream issue #1145,
+        //Zektar Shrine Expedition's populated Elemental). The flag survives
+        //instance copies and masks the bits whenever basicAbilities are
+        //rebuilt from the (shared) token model.
+        spell->source->exileRiderSuppressed = true;
+        spell->source->basicAbilities[Constants::UNEARTH] = 0;
+        spell->source->basicAbilities[Constants::EXILEDEATH] = 0;
+        spell->source->basicAbilities[Constants::GAINEDEXILEDEATH] = 0;
         //if the token doesn't have cda/dynamic pt then allow this...
         if((_target->isToken) && (!_target->isCDA))
         {

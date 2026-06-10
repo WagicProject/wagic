@@ -42,7 +42,15 @@ TestSuiteAI::TestSuiteAI(TestSuiteGame *tsGame, int playerId) :
 MTGCardInstance * TestSuiteAI::getCard(string action)
 {
     int mtgid = Rules::getMTGId(action);
-    if (mtgid) return Rules::getCardByMTGId(observer, mtgid);
+    if (mtgid)
+    {
+        MTGCardInstance * byId = Rules::getCardByMTGId(observer, mtgid);
+        if (byId)
+            return byId;
+        //Fall through to the name scan: a token NAME can resolve to the
+        //token model registered in the collection, whose id no live
+        //instance carries (each token instance has its own generated id).
+    }
 
     //This mostly handles tokens
     std::transform(action.begin(), action.end(), action.begin(), ::tolower);

@@ -79,6 +79,11 @@ public:
     int flanked;
     int regenerateTokens;
     int isToken;
+    //Copies (populate, Clone...) must not inherit 'exile at the next end
+    //step' riders from the original; this flag survives instance copies
+    //and masks those bits when basicAbilities are rebuilt from data
+    //(upstream issue #1145).
+    bool exileRiderSuppressed;
     int origpower;
     int basepower;//to keep origpower intact
     int pbonus;

@@ -1,0 +1,28 @@
+#Upstream issue #1145: populating a token that carries an
+#'exile at the beginning of the next end step' rider (Zektar Shrine
+#Expedition, Elemental Appeal...) exiled the COPY as well. The rider is
+#a delayed effect on the original, not a copiable characteristic.
+#Feral Lightning makes three rider tokens; Druid's Deliverance populates one.
+#After the end step: original Elemental exiled, populated copy remains.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Feral Lightning,Druid's Deliverance
+manapool:{3}{R}{R}{R}{1}{G}
+life:20
+[PLAYER2]
+life:20
+[DO]
+Feral Lightning
+Druid's Deliverance
+choice 0
+Elemental
+goto end
+goto upkeep
+[ASSERT]
+UPKEEP
+[PLAYER1]
+inplay:*
+graveyard:Feral Lightning,Druid's Deliverance
+[PLAYER2]
+[END]

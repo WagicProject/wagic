@@ -134,6 +134,13 @@ void MTGCardInstance::copy(MTGCardInstance * card, bool nolegend)
         if(data->basicAbilities[j])
             basicAbilities[j] = data->basicAbilities[j];
     }
+    exileRiderSuppressed = card->exileRiderSuppressed;
+    if (exileRiderSuppressed)
+    {
+        basicAbilities[Constants::UNEARTH] = 0;
+        basicAbilities[Constants::EXILEDEATH] = 0;
+        basicAbilities[Constants::GAINEDEXILEDEATH] = 0;
+    }
     types.clear();//reset types.. fix copying man lands... the copier becomes an unanimated land...
     for (size_t i = 0; i < data->types.size(); i++)
     {
@@ -217,6 +224,7 @@ void MTGCardInstance::initMTGCI()
     sample = "";
     model = NULL;
     isToken = false;
+    exileRiderSuppressed = false;
     lifeOrig = 0;
     doDamageTest = 1;
     skipDamageTestOnce = false;
@@ -2094,5 +2102,15 @@ std::ostream& operator<<(std::ostream& out, const MTGCardInstance& c)
 
 MTGCardInstance* MTGCardInstance::clone()
 {
-    return NEW MTGCardInstance(model, owner->game);
+    MTGCardInstance * c = NEW MTGCardInstance(model, owner->game);
+    //zone moves rebuild instances from the model; the rider-suppression
+    //flag of copies (populate, Clone...) must survive (issue #1145)
+    c->exileRiderSuppressed = exileRiderSuppressed;
+    if (c->exileRiderSuppressed)
+    {
+        c->basicAbilities[Constants::UNEARTH] = 0;
+        c->basicAbilities[Constants::EXILEDEATH] = 0;
+        c->basicAbilities[Constants::GAINEDEXILEDEATH] = 0;
+    }
+    return c;
 }
