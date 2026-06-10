@@ -2757,6 +2757,47 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             return mainAbility;
         }
     }
+    //A plain spell-effect line carrying its own target(...) - Agony
+    //Warp's second line, Carom's redirect leg, Rites of Reaping... -
+    //historically lost its chooser: no leaf parser consumes `tc` on
+    //these paths, so the secondary effect silently fizzled when the
+    //spell resolved. Give such lines the mandatory-choice treatment
+    //(same wrapping the 'choice ' keyword gets) so the target is
+    //prompted for at resolution. Spell context only: the same card
+    //text parsed outside a resolving spell keeps its old meaning.
+    if (tc && spell)
+    {
+        //Only plain leaf effects opt in: the target() extraction above is
+        //not bracket-aware, so lines whose target(...) belongs to a NESTED
+        //ability (teach/transforms/newability grants, conditionals...)
+        //must fall through to their structural parsers untouched.
+        string trimmed = sWithoutTc;
+        size_t firstChar = trimmed.find_first_not_of(" ");
+        if (firstChar != string::npos)
+            trimmed = trimmed.substr(firstChar);
+        bool plainDamage = (trimmed.find("damage:") == 0);
+        bool plainPT = false;
+        {
+            size_t pos = 0;
+            if (pos < trimmed.size() && (trimmed[pos] == '+' || trimmed[pos] == '-')) pos++;
+            size_t digits = 0;
+            while (pos < trimmed.size() && isdigit(trimmed[pos])) { pos++; digits++; }
+            if (digits && pos < trimmed.size() && trimmed[pos] == '/')
+                plainPT = true;
+        }
+        if (plainDamage || plainPT)
+        {
+            MTGAbility * a1 = parseMagicLine(sWithoutTc, id, spell, card);
+            if (a1)
+            {
+                a1 = NEW GenericTargetAbility(observer, newName, castRestriction, id, card, tc, a1);
+                return NEW MayAbility(observer, id, a1, card, true, castRestriction);
+            }
+            SAFE_DELETE(tc);
+            return NULL;
+        }
+    }
+
     // Generic "Until end of turn" effect
     if (s.find("ueot ") == 0)
     {

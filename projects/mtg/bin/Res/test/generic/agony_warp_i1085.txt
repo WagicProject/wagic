@@ -1,0 +1,28 @@
+#Asymmetric two-target spells: a second effect line with its own
+#target(...) never prompted and silently fizzled (Carom, Agony Warp,
+#Rites of Reaping...). Agony Warp's -0/-3 leg must kill the goblin
+#while the -3/-0 leg leaves the bears alive.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:agony warp
+manapool:{U}{B}
+[PLAYER2]
+inplay:grizzly bears,raging goblin
+[DO]
+agony warp
+grizzly bears
+goto firstmain
+goto firstmain
+choice 0
+raging goblin
+goto secondmain
+goto secondmain
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+graveyard:agony warp
+[PLAYER2]
+inplay:grizzly bears
+graveyard:raging goblin
+[END]
