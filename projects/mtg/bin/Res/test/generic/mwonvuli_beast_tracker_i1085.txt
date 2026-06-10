@@ -1,0 +1,30 @@
+#Mwonvuli Beast Tracker (#1085): ETB - search library for a creature with deathtouch/
+#hexproof/reach/trample, reveal, shuffle, put it on top. Searching the trample krotiq
+#puts it on top: my next draw step draws it.
+[INIT]
+firstmain
+[PLAYER1]
+manapool:{1}{G}{G}
+hand:mwonvuli beast tracker
+library:millstone,gold myr,ambush krotiq
+[PLAYER2]
+[DO]
+mwonvuli beast tracker
+goto firstmain
+goto firstmain
+choice 0
+ambush krotiq
+goto firstmain
+goto firstmain
+goto end
+goto firstmain
+goto end
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+hand:ambush krotiq
+inplay:mwonvuli beast tracker
+library:*,*
+[PLAYER2]
+[END]
