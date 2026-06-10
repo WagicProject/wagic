@@ -1,0 +1,30 @@
+#Gift of the Gargantuan (#1085): look at top 4, reveal a creature and/or a land to hand,
+#rest to bottom. Library lists BOTTOM-TO-TOP: top 4 = citadel(top), bears, juggernaut,
+#millstone. Take bears (creature) then citadel (land) via the nested second-type choice.
+[INIT]
+firstmain
+[PLAYER1]
+manapool:{2}{G}
+hand:gift of the gargantuan
+library:millstone,juggernaut,grizzly bears,darksteel citadel
+[PLAYER2]
+[DO]
+gift of the gargantuan
+goto firstmain
+goto firstmain
+choice 0
+grizzly bears
+goto firstmain
+goto firstmain
+choice 0
+darksteel citadel
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+hand:grizzly bears,darksteel citadel
+graveyard:gift of the gargantuan
+library:*,*
+[PLAYER2]
+[END]
