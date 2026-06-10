@@ -742,3 +742,4 @@ momir/overcost.txt
 #AI Tests
 ########################
 ai/proliferate_simple.txt
+ai/infect_self_target_i594.txt

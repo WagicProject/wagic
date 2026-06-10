@@ -1,0 +1,23 @@
+#Bug: AI gives ITSELF the poison counter from its own infect trigger
+# https://github.com/WagicProject/wagic/issues/594
+# Hand of the Praetors: "Whenever you cast a creature spell with infect,
+# target player gets a poison counter." The AI casts Plague Stinger and
+# must aim the trigger at the opponent, not at itself.
+FORCEABILITY
+AICALLS 5
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:hand of the praetors,leaden myr,leaden myr
+hand:plague stinger
+[PLAYER2]
+[DO]
+ai
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+poisoncount:0
+inplay:hand of the praetors,leaden myr,leaden myr,plague stinger
+[PLAYER2]
+poisoncount:1
+[END]

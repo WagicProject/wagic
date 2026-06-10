@@ -2591,6 +2591,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 tc->targetter->bypassTC = false;
         sWithoutTc = splitTarget[0];
         sWithoutTc.append(splitTarget[2]);
+        //Let the AI judge the targeting decision by the ability's own effect
+        //rather than by its source card. Historically this was only set for
+        //activated abilities (below, with the cost prefix); triggered
+        //abilities fell back to "is the source card good?", which made the
+        //AI aim hostile triggers of its own good permanents at itself -
+        //e.g. Hand of the Praetors handing its controller the poison
+        //counter (issue #594). The activated-ability path overwrites this
+        //with the full costed string, preserving its previous behavior.
+        tc->belongsToAbility = sWithoutTc;
     }
 
     size_t delimiter = sWithoutTc.find("}:");
@@ -6122,7 +6131,10 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
     if (AALifer * abi = dynamic_cast<AALifer *>(a))
         return abi->getLife() > 0 ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
     if (AAAlterPoison * abi = dynamic_cast<AAAlterPoison *>(a))
-        return abi->poison > 0 ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
+        //Getting poison counters is bad for the affected player (10 = death),
+        //losing them is good. This was inverted, making the AI aim its own
+        //infect triggers (Hand of the Praetors...) at itself (issue #594).
+        return abi->poison > 0 ? BAKA_EFFECT_BAD : BAKA_EFFECT_GOOD;
     if (dynamic_cast<AADepleter *> (a))
         return BAKA_EFFECT_BAD;
     if (dynamic_cast<AADrawer *> (a))
