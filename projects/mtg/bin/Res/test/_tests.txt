@@ -17,6 +17,8 @@ generic/deathtouch.txt
 generic/adarkar_unicorn_upkeep_i1085.txt
 generic/adarkar_unicorn_mainphase_i1085.txt
 generic/aegar_spell_excess_i1085.txt
+generic/alrund_hand_buff_i1085.txt
+generic/archghoul_zombie_dies_i1085.txt
 ai/death_wind_self_target_i1085.txt
 generic/devotion.txt
 generic/doesnotuntap.txt

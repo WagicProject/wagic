@@ -1,0 +1,26 @@
+#From the #1085 meta-list: Alrund, God of the Cosmos (no symptom given).
+#Pins the static buff: +1/+1 for each card in your hand. With three
+#cards in hand Alrund is 4/4 and deals 4 unblocked combat damage.
+#(Referenced by set id 503646: the name contains a comma, which the
+#test zone lists split on.)
+# https://github.com/WagicProject/wagic/issues/1085
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:503646
+hand:millstone,juggernaut,ornithopter
+[PLAYER2]
+[DO]
+goto attackers
+503646
+next
+next
+next
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:503646
+hand:millstone,juggernaut,ornithopter
+[PLAYER2]
+life:16
+[END]
