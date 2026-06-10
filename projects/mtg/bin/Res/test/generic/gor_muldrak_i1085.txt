@@ -1,0 +1,21 @@
+#Gor Muldrak, Amphinologist (#1085; comma name -> set id 497797): at the beginning of my
+#end step, each player with the fewest creatures creates a 4/3 Salamander Warrior. One
+#creature each side = tie -> both players get one.
+[INIT]
+firstmain
+[PLAYER1]
+inplay:497797
+[PLAYER2]
+inplay:grizzly bears
+[DO]
+goto end
+choice 0
+goto end
+goto end
+[ASSERT]
+ENDOFTURN
+[PLAYER1]
+inplay:497797,*
+[PLAYER2]
+inplay:grizzly bears,*
+[END]
