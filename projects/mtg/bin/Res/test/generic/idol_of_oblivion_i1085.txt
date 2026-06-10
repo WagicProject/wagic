@@ -1,0 +1,31 @@
+#Idol of Oblivion (#1085): created a token this turn -> idol gains "{T}: draw a card"
+#until end of turn (transforms-granted ACTIVATED ability). Raise the Alarm makes the
+#tokens, then tapping the idol draws: hand 1, library 1, idol tapped.
+[INIT]
+firstmain
+[PLAYER1]
+manapool:{1}{W}
+inplay:idol of oblivion
+hand:raise the alarm
+library:millstone,juggernaut
+[PLAYER2]
+[DO]
+raise the alarm
+goto firstmain
+goto firstmain
+choice 0
+goto firstmain
+goto firstmain
+idol of oblivion
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+hand:juggernaut
+graveyard:raise the alarm
+inplay:idol of oblivion,*,*
+library:millstone
+tappedinplay:1
+[PLAYER2]
+[END]
