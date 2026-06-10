@@ -49,8 +49,10 @@ MTGCardInstance * TestSuiteAI::getCard(string action)
     for (int i = 0; i < 2; i++)
     {
         Player * p = observer->players[i];
-        MTGGameZone * zones[] = { p->game->library, p->game->hand, p->game->inPlay, p->game->graveyard, p->game->commandzone, p->game->sideboard, p->game->removedFromGame };
-        for (int j = 0; j < 7; j++)
+        //reveal included so tests can click cards revealed by effects like
+        //Alrund's end-step type choice
+        MTGGameZone * zones[] = { p->game->library, p->game->hand, p->game->inPlay, p->game->graveyard, p->game->commandzone, p->game->sideboard, p->game->removedFromGame, p->game->reveal };
+        for (int j = 0; j < 8; j++)
         {
             MTGGameZone * zone = zones[j];
             for (int k = 0; k < zone->nb_cards; k++)
