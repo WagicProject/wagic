@@ -1,0 +1,31 @@
+#Livewire Lash (#1085): equipped creature gets +2/+0 and deals 2 to any target when
+#targeted by a spell. Equip bears, shock the bears: the taught trigger hits the
+#opponent for 2 (life 18); the 4/2 bears dies to the 2-damage shock.
+[INIT]
+firstmain
+[PLAYER1]
+manapool:{2}{R}
+inplay:livewire lash,grizzly bears
+hand:shock
+[PLAYER2]
+[DO]
+livewire lash
+grizzly bears
+goto firstmain
+goto firstmain
+shock
+grizzly bears
+goto firstmain
+goto firstmain
+choice 0
+p2
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:livewire lash
+graveyard:shock,grizzly bears
+[PLAYER2]
+life:18
+[END]

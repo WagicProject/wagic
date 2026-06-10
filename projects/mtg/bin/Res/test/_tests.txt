@@ -65,6 +65,7 @@ generic/imprisoned_in_the_moon_i1085.txt
 generic/jaddi_lifestrider_i1085.txt
 generic/infernal_darkness_i1085.txt
 generic/krovikan_plague_i1085.txt
+generic/livewire_lash_i1085.txt
 ai/death_wind_self_target_i1085.txt
 generic/devotion.txt
 generic/doesnotuntap.txt
