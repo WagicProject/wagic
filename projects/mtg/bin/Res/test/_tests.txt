@@ -33,6 +33,8 @@ generic/calamity_bearer_i1085.txt
 generic/call_death_dweller_i1085.txt
 generic/chalice_of_the_void_i1085.txt
 generic/chaos_wand_i1085.txt
+generic/charm_peddler_i1085.txt
+generic/chatterfang_i1085.txt
 ai/death_wind_self_target_i1085.txt
 generic/devotion.txt
 generic/doesnotuntap.txt
