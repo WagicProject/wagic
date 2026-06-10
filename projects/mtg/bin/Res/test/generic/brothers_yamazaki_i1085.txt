@@ -1,0 +1,22 @@
+#From the #1085 meta-list: Brothers Yamazaki (no symptom given).
+#Exactly two may coexist (legend rule waived) and each gives the
+#other +2/+2 and haste: one attacks unblocked for 4.
+# https://github.com/WagicProject/wagic/issues/1085
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:brothers yamazaki,brothers yamazaki
+[PLAYER2]
+[DO]
+goto attackers
+brothers yamazaki
+next
+next
+next
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:brothers yamazaki,brothers yamazaki
+[PLAYER2]
+life:16
+[END]

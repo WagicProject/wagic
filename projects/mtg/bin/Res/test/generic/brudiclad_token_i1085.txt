@@ -1,0 +1,22 @@
+#From the #1085 meta-list: Brudiclad, Telchor Engineer (no symptom
+#given). At the beginning of combat on your turn he creates a 2/1
+#Myr token. (Card by set id 489866: the name contains a comma.)
+# https://github.com/WagicProject/wagic/issues/1085
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:489866
+[PLAYER2]
+[DO]
+goto combatbegins
+choice 0
+phyrexian myr
+goto attackers
+goto end
+goto end
+[ASSERT]
+ENDOFTURN
+[PLAYER1]
+inplay:489866,*
+[PLAYER2]
+[END]
