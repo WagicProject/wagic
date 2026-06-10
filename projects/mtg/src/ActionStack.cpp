@@ -1370,7 +1370,15 @@ void ActionStack::Fizzle(Interruptible * action, MTGCardInstance * fizzler, Fizz
         unsigned int position = 0;
         switch (fizzleMode) {
         case PUT_IN_GRAVEARD:
-            spell->source->controller()->game->putInGraveyard(spell->source);
+            //Flashback-cast spells are exiled wherever they would leave
+            //the stack - including when countered (CR 702.34a). The
+            //resolved path already does this; the countered path sent
+            //them back to the graveyard (Dread Return report in #1085).
+            if (spell->source->alternateCostPaid[ManaCost::MANA_PAID_WITH_FLASHBACK] > 0
+                || spell->source->basicAbilities[(int)Constants::TEMPFLASHBACK])
+                spell->source->controller()->game->putInExile(spell->source);
+            else
+                spell->source->controller()->game->putInGraveyard(spell->source);
             break;
         case PUT_IN_HAND:
             spell->source->controller()->game->putInHand(spell->source);

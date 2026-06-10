@@ -1,0 +1,35 @@
+#From the #1085 meta-list: "Dread Return flashback countered remains
+#in gy". A flashback cast that gets countered must EXILE the card
+#(CR 702.34a), not put it back in the graveyard.
+# https://github.com/WagicProject/wagic/issues/1085
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:walking corpse,grizzly bears,hill giant
+graveyard:dread return,runeclaw bear
+offerinterruptonphase:firstmain
+[PLAYER2]
+hand:counterspell
+manapool:{U}{U}
+[DO]
+dread return
+choice 0
+walking corpse
+grizzly bears
+hill giant
+runeclaw bear
+no
+yes
+counterspell
+dread return
+endinterruption
+goto secondmain
+goto secondmain
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+exile:dread return
+graveyard:runeclaw bear,walking corpse,grizzly bears,hill giant
+[PLAYER2]
+graveyard:counterspell
+[END]
