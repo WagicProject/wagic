@@ -1,0 +1,21 @@
+#Loreseeker's Stone (#1085): {3+cards in hand}{T}: draw 3. Empty hand -> {3}{T}.
+[INIT]
+firstmain
+[PLAYER1]
+manapool:{3}
+inplay:loreseeker's stone
+library:millstone,juggernaut,gold myr,silver myr
+[PLAYER2]
+[DO]
+loreseeker's stone
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+hand:silver myr,gold myr,juggernaut
+inplay:loreseeker's stone
+library:millstone
+tappedinplay:1
+[PLAYER2]
+[END]

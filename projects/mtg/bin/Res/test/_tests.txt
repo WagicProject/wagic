@@ -67,6 +67,7 @@ generic/krovikan_plague_i1085.txt
 generic/livewire_lash_i1085.txt
 generic/living_death_i1085.txt
 generic/memorys_journey_i1085.txt
+generic/loreseekers_stone_i1085.txt
 ai/death_wind_self_target_i1085.txt
 generic/devotion.txt
 generic/doesnotuntap.txt
