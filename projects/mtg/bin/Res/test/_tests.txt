@@ -40,6 +40,8 @@ generic/corpse_augur_i1085.txt
 generic/descendants_path_i1085.txt
 generic/curse_of_thirst_i1085.txt
 generic/curse_of_opulence_i1085.txt
+generic/cursed_rack_i1085.txt
+generic/cytoplast_manipulator_i1085.txt
 ai/death_wind_self_target_i1085.txt
 generic/devotion.txt
 generic/doesnotuntap.txt
