@@ -1,0 +1,25 @@
+#Flay Essence (#1085): exile target creature, gain life equal to its counters.
+#Fertilid enters with two +1/+1 counters -> exiled, caster gains 2 (life 22).
+[INIT]
+firstmain
+[PLAYER1]
+manapool:{1}{B}{B}
+hand:flay essence
+[PLAYER2]
+inplay:fertilid
+[DO]
+flay essence
+goto firstmain
+goto firstmain
+choice 0
+fertilid
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+life:22
+graveyard:flay essence
+[PLAYER2]
+exile:fertilid
+[END]
