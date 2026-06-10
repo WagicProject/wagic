@@ -1,0 +1,30 @@
+#Memory's Journey (#1085): target player shuffles up to three graveyard cards into their
+#library (the effect is granted to the targeted player). Target self, pick all three -
+#the upto:3 chooser completes at max. The spell itself is in the graveyard during the
+#granted ability and is a legal pick, so choose explicit cards.
+[INIT]
+firstmain
+[PLAYER1]
+manapool:{1}{U}
+hand:memory's journey
+graveyard:millstone,juggernaut,gold myr
+library:silver myr
+[PLAYER2]
+[DO]
+memory's journey
+p1
+goto firstmain
+goto firstmain
+choice 0
+millstone
+juggernaut
+gold myr
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:memory's journey
+library:*,*,*,*
+[PLAYER2]
+[END]
