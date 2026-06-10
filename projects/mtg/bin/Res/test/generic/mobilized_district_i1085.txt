@@ -1,0 +1,34 @@
+#Mobilized District (#1085): {4}: becomes a 3/3 Citizen with vigilance until end of turn
+#(cheaper per legend/planeswalker). No legends -> {4}. Animate with myr mana on turn 3,
+#attack: 3 damage, and vigilance means the district itself stays untapped.
+[INIT]
+firstmain
+[PLAYER1]
+inplay:mobilized district,gold myr,copper myr,silver myr,iron myr
+[PLAYER2]
+[DO]
+goto end
+goto firstmain
+goto end
+goto firstmain
+gold myr
+copper myr
+silver myr
+iron myr
+mobilized district
+choice 1
+goto firstmain
+goto firstmain
+goto attackers
+mobilized district
+choice 0
+next
+goto end
+[ASSERT]
+ENDOFTURN
+[PLAYER1]
+inplay:mobilized district,gold myr,copper myr,silver myr,iron myr
+tappedinplay:4
+[PLAYER2]
+life:17
+[END]
