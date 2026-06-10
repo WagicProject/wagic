@@ -584,7 +584,13 @@ int TestSuite::loadNext()
     }
 
     cleanup();
-    if (!load())
+    bool loaded;
+    {
+        //Serialized with the worker threads' loads (see ThreadProc)
+        boost::mutex::scoped_lock lock(mMutex);
+        loaded = load();
+    }
+    if (!loaded)
     {
         //A registered test file that cannot be loaded used to be skipped
         //silently, understating the test count and hiding dead entries.
@@ -624,27 +630,37 @@ void TestSuite::ThreadProc(void* inParam)
         float counter = 1.0f;
         while(instance->mProcessing && (filename = instance->getNextFile()) != "")
         {
-            TestSuiteGame theGame(instance, filename);
-            if(theGame.isOK)
+            TestSuiteGame * theGame = NULL;
             {
-                theGame.observer->loadTestSuitePlayer(0, &theGame);
-                theGame.observer->loadTestSuitePlayer(1, &theGame);
+                //File reads and the lazily-populated card collection are not
+                //thread-safe: unserialized concurrent loads spuriously failed,
+                //making tests randomly report "Could not load test file" (or,
+                //before that was reported at all, silently vanish from the
+                //results). Serialize the load; the game itself runs unlocked.
+                boost::mutex::scoped_lock lock(mMutex);
+                theGame = NEW TestSuiteGame(instance, filename);
+            }
+            if(theGame->isOK)
+            {
+                theGame->observer->loadTestSuitePlayer(0, theGame);
+                theGame->observer->loadTestSuitePlayer(1, theGame);
 
-                theGame.observer->startGame(theGame.gameType, /*instance->mRules*/Rules::getRulesByFilename("testsuite.txt"));
-                theGame.initGame();
+                theGame->observer->startGame(theGame->gameType, /*instance->mRules*/Rules::getRulesByFilename("testsuite.txt"));
+                theGame->initGame();
 
-                while(!theGame.observer->didWin())
-                    theGame.observer->Update(counter++);
+                while(!theGame->observer->didWin())
+                    theGame->observer->Update(counter++);
             }
             else
             {
                 //Report unloadable tests instead of skipping them silently
                 char buf[4096];
                 sprintf(buf, "<h3>%s</h3>", filename.c_str());
-                theGame.Log(buf);
-                theGame.Log("<span class=\"error\">==Could not load test file==</span><br />");
-                theGame.handleResults(false, 1);
+                theGame->Log(buf);
+                theGame->Log("<span class=\"error\">==Could not load test file==</span><br />");
+                theGame->handleResults(false, 1);
             }
+            SAFE_DELETE(theGame);
         }
     }
     LOG("Leaving TestSuite::ThreadProc");
