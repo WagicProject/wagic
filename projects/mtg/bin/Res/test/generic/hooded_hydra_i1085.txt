@@ -1,0 +1,28 @@
+#Hooded Hydra (#1085): enters with X +1/+1 counters; dies -> a 1/1 Snake per counter.
+#Cast with X=2 (choice 2 on the X menu), shock it (2 dmg kills the 2/2), expect 2 snakes.
+[INIT]
+firstmain
+[PLAYER1]
+manapool:{2}{G}{G}{R}
+hand:hooded hydra,shock
+[PLAYER2]
+[DO]
+hooded hydra
+choice 0
+choice 2
+goto firstmain
+goto firstmain
+shock
+hooded hydra
+goto firstmain
+goto firstmain
+choice 0
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:shock,hooded hydra
+inplay:*,*
+[PLAYER2]
+[END]
