@@ -37,6 +37,7 @@ generic/charm_peddler_i1085.txt
 generic/chatterfang_i1085.txt
 generic/chisei_i1085.txt
 generic/corpse_augur_i1085.txt
+generic/descendants_path_i1085.txt
 ai/death_wind_self_target_i1085.txt
 generic/devotion.txt
 generic/doesnotuntap.txt
