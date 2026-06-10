@@ -39,11 +39,9 @@ class DownloadRequest
     Q_OBJECT
 
 private slots:
-#endif
     void fileDownloaded();
     void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
 
-#ifdef QT_CONFIG
 signals:
     void percentChanged(int percent);
     void statusChanged(int);

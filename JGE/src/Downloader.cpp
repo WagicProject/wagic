@@ -54,6 +54,7 @@ void DownloadRequest::startGet()
 #endif
 }
 
+#ifdef QT_CONFIG
 void DownloadRequest::fileDownloaded()
 {
     do {
@@ -119,6 +120,7 @@ void DownloadRequest::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
         percent = (bytesReceived/bytesTotal)*100;
     emit percentChanged(percent);
 }
+#endif // QT_CONFIG
 
 Downloader* Downloader::mInstance = 0;
 
