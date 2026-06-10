@@ -7256,6 +7256,25 @@ NestedAbility::NestedAbility(MTGAbility * _ability)
     ability = _ability;
 }
 
+void MTGAbility::propagateSource(MTGAbility * a, MTGCardInstance * newSource)
+{
+    if (!a || !newSource)
+        return;
+    a->source = newSource;
+    //Wrappers (GenericActivatedAbility & co) hold the real effect nested
+    //inside; resolve() forwards target but reads source from the child.
+    if (NestedAbility * na = dynamic_cast<NestedAbility *>(a))
+    {
+        if (na->ability != a) //defensive: avoid pathological self-nesting
+            propagateSource(na->ability, newSource);
+    }
+    if (MultiAbility * ma = dynamic_cast<MultiAbility *>(a))
+    {
+        for (size_t i = 0; i < ma->abilities.size(); ++i)
+            propagateSource(ma->abilities[i], newSource);
+    }
+}
+
 //
 
 ActivatedAbility::ActivatedAbility(GameObserver* observer, int id, MTGCardInstance * card, ManaCost * _cost, int restrictions,string limit,MTGAbility * sideEffect,string usesBeforeSideEffects,string castRestriction) :

@@ -3558,7 +3558,10 @@ public:
         {
             if (d->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
             {
-                a->source = (MTGCardInstance *) d;
+                //Repoint the whole ability tree, not just the wrapper: the
+                //nested effect's source is what damage/deathtouch/lifelink
+                //rules inspect (upstream issue #1142).
+                MTGAbility::propagateSource(a, (MTGCardInstance *) d);
             }
             if (oneShot)
             {
@@ -3709,7 +3712,10 @@ public:
         {
             if (d->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
             {
-                a->source = (MTGCardInstance *) d;
+                //Repoint the whole ability tree, not just the wrapper: the
+                //nested effect's source is what damage/deathtouch/lifelink
+                //rules inspect (upstream issue #1142).
+                MTGAbility::propagateSource(a, (MTGCardInstance *) d);
             }
             if (oneShot)
             {

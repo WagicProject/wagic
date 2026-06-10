@@ -56,6 +56,11 @@ protected:
      // returns target itself if it is a player, or its controller if it is a card
      static Player * getPlayerFromDamageable(Damageable * target);
 public:
+    // Repoints the source of an ability AND its nested/multi children.
+    // Needed when an ability is granted to another card (teach): effects
+    // that depend on the damage/effect source (deathtouch, lifelink...)
+    // must see the taught card, not the teaching aura/equipment.
+    static void propagateSource(MTGAbility * a, MTGCardInstance * newSource);
     enum
     {
         NO_RESTRICTION = 0,

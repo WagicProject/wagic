@@ -1,0 +1,31 @@
+#Upstream issue #1142: deathtouch must apply to NON-combat damage dealt via
+#a taught activated ability (Power of Fire / Viridian Longbow / Fire Whip).
+#The taught ability's damage source must be the enchanted creature, so its
+#deathtouch destroys the damaged creature even though only 1 damage is dealt.
+#Toxic Iguanar has deathtouch while a green permanent (Grizzly Bears) is around.
+#Wall of Fire is 0/5: it only dies to 1 damage if deathtouch applies.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Power of Fire
+inplay:Toxic Iguanar,Grizzly Bears
+manapool:{1}{R}
+life:20
+[PLAYER2]
+inplay:Wall of Fire
+life:20
+[DO]
+Power of Fire
+Toxic Iguanar
+Toxic Iguanar
+Wall of Fire
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Power of Fire,Toxic Iguanar,Grizzly Bears
+manapool:{0}
+life:20
+[PLAYER2]
+graveyard:Wall of Fire
+life:20
+[END]
