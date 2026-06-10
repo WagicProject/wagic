@@ -1,0 +1,32 @@
+#From the #1085 meta-list: Extract Brain (no symptom given).
+#Cast with X=1: look at a card from the opponent's hand and cast a
+#spell from among them free.
+# https://github.com/WagicProject/wagic/issues/1085
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:extract brain
+manapool:{1}{U}{B}
+[PLAYER2]
+hand:shock,millstone
+[DO]
+extract brain
+choice 1
+goto firstmain
+goto firstmain
+choice 0
+shock
+goto firstmain
+goto firstmain
+p2
+goto secondmain
+goto secondmain
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+graveyard:extract brain
+[PLAYER2]
+hand:millstone
+graveyard:shock
+life:18
+[END]

@@ -45,6 +45,8 @@ generic/cytoplast_manipulator_i1085.txt
 generic/deadbridge_chant_i1085.txt
 generic/earthbind_i1085.txt
 generic/entrancing_lyre_i1085.txt
+generic/etherwrought_page_i1085.txt
+generic/extract_brain_i1085.txt
 ai/death_wind_self_target_i1085.txt
 generic/devotion.txt
 generic/doesnotuntap.txt
