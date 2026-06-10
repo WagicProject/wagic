@@ -1,0 +1,21 @@
+#First Sliver's Chosen (#1085): slivers you control gain exalted. Metallic Sliver attacks
+#alone: chosen's own exalted (+1) plus the granted exalted on the attacker (+1) = 1/1 swings
+#as 3/3 unblocked -> opponent at 17.
+[INIT]
+firstmain
+[PLAYER1]
+inplay:first sliver's chosen,metallic sliver
+[PLAYER2]
+[DO]
+goto attackers
+metallic sliver
+next
+choice 0
+goto end
+[ASSERT]
+ENDOFTURN
+[PLAYER1]
+inplay:first sliver's chosen,metallic sliver
+[PLAYER2]
+life:17
+[END]

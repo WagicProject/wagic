@@ -48,6 +48,7 @@ generic/entrancing_lyre_i1085.txt
 generic/etherwrought_page_i1085.txt
 generic/extract_brain_i1085.txt
 generic/fertile_imagination_i1085.txt
+generic/first_slivers_chosen_i1085.txt
 ai/death_wind_self_target_i1085.txt
 generic/devotion.txt
 generic/doesnotuntap.txt
