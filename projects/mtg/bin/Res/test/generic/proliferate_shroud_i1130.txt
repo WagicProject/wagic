@@ -1,0 +1,47 @@
+#Upstream issue #1130: proliferate could not add counters to shrouded
+#permanents. Proliferate does not target (CR 701.27a), so shroud is
+#irrelevant. Blastoderm (shroud, fading 3) proliferated to 4 fade
+#counters survives through the upkeep where a 3-counter one is already
+#sacrificed. NOTE: goto no-ops when already in the target phase, hence
+#the end/upkeep pairs - each pair advances exactly one upkeep.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Blastoderm,Steady Progress
+manapool:{2}{G}{G}{2}{U}
+library:Forest,Forest,Forest,Forest,Forest,Forest
+life:20
+[PLAYER2]
+life:20
+[DO]
+Blastoderm
+Steady Progress
+Blastoderm
+next
+goto end
+goto upkeep
+goto end
+goto upkeep
+goto end
+goto upkeep
+goto end
+goto upkeep
+goto end
+goto upkeep
+goto end
+goto upkeep
+goto end
+goto upkeep
+goto end
+goto upkeep
+goto end
+goto upkeep
+[ASSERT]
+UPKEEP
+[PLAYER1]
+inplay:Blastoderm
+graveyard:Steady Progress
+hand:*
+library:*,*,*,*,*
+[PLAYER2]
+[END]

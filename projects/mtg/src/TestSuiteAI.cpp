@@ -269,6 +269,7 @@ void TestSuiteActions::add(string s)
 
 TestSuiteState::TestSuiteState()
 {
+    phase = MTG_PHASE_INVALID;
     players.clear();
 }
 
@@ -352,8 +353,14 @@ void TestSuiteGame::assertGame()
 
     if (observer->getCurrentGamePhase() != endState.phase)
     {
-        sprintf(result, "<span class=\"error\">==phase problem. Expected [ %s ](%i), got [ %s ](%i)==</span><br />", 
-            Constants::MTGPhaseNames[endState.phase].c_str(),endState.phase,
+        //A garbage/uninitialized expected phase means the test file's
+        //[ASSERT] section was missing or never parsed - report it instead
+        //of indexing MTGPhaseNames out of bounds (used to crash).
+        const char * expectedName = (endState.phase >= 0 && endState.phase < NB_MTG_PHASES)
+            ? Constants::MTGPhaseNames[endState.phase].c_str()
+            : "INVALID - missing/unparsed [ASSERT] section?";
+        sprintf(result, "<span class=\"error\">==phase problem. Expected [ %s ](%i), got [ %s ](%i)==</span><br />",
+            expectedName, endState.phase,
             Constants::MTGPhaseNames[observer->getCurrentGamePhase()].c_str(), observer->getCurrentGamePhase());
         Log(result);
         error++;
