@@ -1,0 +1,31 @@
+#Upstream issue #1128: two Defense of the Heart triggering at the same
+#upkeep let the player search 2+2 creatures but only the second pair
+#reached the battlefield.
+[INIT]
+SECONDMAIN
+[PLAYER1]
+inplay:Defense of the Heart,Defense of the Heart
+library:Grizzly Bears,Llanowar Elves,Eager Cadet,Storm Crow
+life:20
+[PLAYER2]
+inplay:Raging Goblin,Raging Goblin,Raging Goblin
+life:20
+[DO]
+goto end
+goto upkeep
+goto end
+goto upkeep
+choice 0
+Grizzly Bears
+Llanowar Elves
+choice 0
+Eager Cadet
+Storm Crow
+[ASSERT]
+UPKEEP
+[PLAYER1]
+inplay:Grizzly Bears,Llanowar Elves,Eager Cadet,Storm Crow
+graveyard:Defense of the Heart,Defense of the Heart
+[PLAYER2]
+inplay:Raging Goblin,Raging Goblin,Raging Goblin
+[END]

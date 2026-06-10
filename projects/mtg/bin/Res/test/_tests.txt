@@ -15,6 +15,7 @@ generic/cycling.txt
 generic/cycling2.txt
 generic/deathtouch.txt
 generic/kathari_bomber_sacrifice_i1146.txt
+generic/defense_of_heart_double_i1128.txt
 generic/devotion.txt
 generic/doesnotuntap.txt
 generic/doesnotuntap2.txt
