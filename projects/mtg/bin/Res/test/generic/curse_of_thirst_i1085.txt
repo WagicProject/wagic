@@ -1,0 +1,23 @@
+#From the #1085 meta-list: Curse of Thirst (no symptom given).
+#At the cursed player's upkeep it deals damage equal to their curse
+#count: the opponent takes 1 at their next upkeep.
+# https://github.com/WagicProject/wagic/issues/1085
+[INIT]
+SECONDMAIN
+[PLAYER1]
+hand:curse of thirst
+manapool:{4}{B}
+[PLAYER2]
+[DO]
+curse of thirst
+p2
+goto upkeep
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:curse of thirst
+[PLAYER2]
+life:19
+[END]

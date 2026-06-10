@@ -1,0 +1,27 @@
+#From the #1085 meta-list: "Curse of Opulence and similar curses".
+#Attacking the cursed player creates a Gold token for the attacker.
+# https://github.com/WagicProject/wagic/issues/1085
+[INIT]
+SECONDMAIN
+[PLAYER1]
+inplay:grizzly bears
+hand:curse of opulence
+manapool:{R}
+[PLAYER2]
+[DO]
+curse of opulence
+p2
+goto attackers
+goto end
+goto attackers
+grizzly bears
+next
+next
+next
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:grizzly bears,curse of opulence,*
+[PLAYER2]
+life:18
+[END]
