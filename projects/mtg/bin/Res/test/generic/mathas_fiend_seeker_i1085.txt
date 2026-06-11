@@ -1,0 +1,38 @@
+#Mathas, Fiend Seeker (#1085; set id 571585): at my end step, bounty an opponent
+#creature; while bountied, its death makes each of its controller's opponents draw 1
+#and gain 2. Bounty the bears turn 1, shock them turn 3: P1 gains 2 (life 22) and
+#draws the rider card on top of the normal turn-3 draw.
+[INIT]
+firstmain
+[PLAYER1]
+inplay:571585,iron myr
+hand:shock
+library:millstone,juggernaut
+[PLAYER2]
+inplay:grizzly bears
+[DO]
+goto end
+choice 0
+grizzly bears
+goto firstmain
+goto end
+goto firstmain
+iron myr
+shock
+grizzly bears
+goto firstmain
+goto firstmain
+choice 0
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+life:22
+hand:juggernaut,millstone
+inplay:571585,iron myr
+graveyard:shock
+tappedinplay:1
+[PLAYER2]
+graveyard:grizzly bears
+[END]
