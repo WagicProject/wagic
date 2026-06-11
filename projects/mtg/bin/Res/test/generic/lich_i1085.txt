@@ -1,0 +1,29 @@
+#Lich (#1085): life becomes 0 (can't lose the game from it, life can't change);
+#damage instead forces sacrificing that many nontoken permanents. Self-shock for 2:
+#sacrifice two myrs, life stays 0.
+[INIT]
+firstmain
+[PLAYER1]
+inplay:lich,iron myr,gold myr,silver myr
+hand:shock
+[PLAYER2]
+[DO]
+iron myr
+shock
+p1
+goto firstmain
+goto firstmain
+choice 0
+gold myr
+silver myr
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+life:0
+inplay:lich,iron myr
+graveyard:shock,gold myr,silver myr
+tappedinplay:1
+[PLAYER2]
+[END]
