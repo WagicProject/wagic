@@ -75,6 +75,7 @@ generic/mwonvuli_beast_tracker_i1085.txt
 generic/misdirection_i1085.txt
 generic/mathas_fiend_seeker_i1085.txt
 generic/lich_i1085.txt
+generic/lazotep_chancellor_i1085.txt
 ai/death_wind_self_target_i1085.txt
 generic/devotion.txt
 generic/doesnotuntap.txt

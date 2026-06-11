@@ -1,0 +1,30 @@
+#Lazotep Chancellor (#1085): discard a card -> may pay {1} -> amass 2 (0/0 Zombie Army
+#with two +1/+1 counters; SBA survival at 2/2 proves the counters). Tormenting Voice
+#provides the discard.
+[INIT]
+firstmain
+[PLAYER1]
+manapool:{2}{R}
+inplay:lazotep chancellor
+hand:tormenting voice,millstone
+library:juggernaut,gold myr
+[PLAYER2]
+[DO]
+tormenting voice
+millstone
+goto firstmain
+goto firstmain
+choice 0
+goto firstmain
+goto firstmain
+choice 0
+goto firstmain
+goto firstmain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:lazotep chancellor,*
+graveyard:tormenting voice,millstone
+hand:gold myr,juggernaut
+[PLAYER2]
+[END]
