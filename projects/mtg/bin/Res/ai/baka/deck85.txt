@@ -1,18 +1,20 @@
 #NAME:Traveling Party
-#DESC:We may look
-#DESC:like any other party
-#DESC:of adventurers.
-#DESC:But you have no idea
-#DESC:how much help we can get
-#DESC:if we need to.
-Swords to Plowshares (ICE)   * 4 #
-Glorious Anthem (10E)        * 4 #
-Spectral Procession (SHM)    * 4 #
-Kabira Crossroads (ZEN)      * 4 #
-Stonework Puma (ZEN)         * 4 #
-Honor of the Pure (M10)      * 4 #
-Kazandu Blademaster (ZEN)    * 4 #
-Ondu Cleric (ZEN)            * 4 #
-Plains (ZEN)                 *20 #
-Conqueror's Pledge (ZEN)     * 4 #
-Makindi Shieldmate (ZEN)     * 4 #
+#DESC:'It is always adventurers who
+#DESC:do great things, not the
+#DESC:sovereigns of great empires'
+#DESC:Montesquieu
+Conqueror's Pledge (ZEN) * 4 #
+Glorious Anthem (10E) * 4 #
+Honor of the Pure (M10) * 4 #
+Kabira Crossroads (ZEN) * 4 #
+Kazandu Blademaster (ZEN) * 4 #
+Makindi Shieldmate (ZEN) * 4 #
+Ondu Cleric (ZEN) * 4 #
+Plains (10E) * 4 #
+Plains (ICE) * 4 #
+Plains (M10) * 4 #
+Plains (SHM) * 4 #
+Plains (ZEN) * 4 #
+Spectral Procession (SHM) * 4 #
+Stonework Puma (ZEN) * 4 #
+Swords to Plowshares (ICE) * 4 #
