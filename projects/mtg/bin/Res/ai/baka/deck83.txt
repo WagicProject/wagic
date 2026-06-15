@@ -1,20 +1,22 @@
-#NAME:Kazuul Ranger Ally
-#DESC:"We may not be alike,
-#DESC: but we share a common goal.
-#DESC: All opposition will falter
-#DESC: when the piper
-#DESC: begins her tune."
-Mountain (10E)               * 2 #
-Primal Rage (10E)            * 3 #
-Mountain (LRW)               *10 #
-Turntimber Ranger (ZEN)      * 4 #
-Oran-Rief Survivalist (ZEN)  * 4 #
-Highland Berserker (ZEN)     * 4 #
-Kazuul Warlord (ZEN)         * 4 #
-Birds of Paradise (M10)      * 4 #
-Elvish Piper (M10)           * 4 #
-Joraga Bard (ZEN)            * 3 #
-Sea Gate Loremaster (ZEN)    * 2 #
-Seascape Aerialist (ZEN)     * 2 #
-Murasa Pyromancer (ZEN)      * 3 #
-Forest (ZEN)                 *11 #
+#NAME:Highland Allies
+#DESC:To survive in the harsh
+#DESC:mountainous terrain requires
+#DESC:unbreakable bonds of kinship
+Akoum Battlesinger (WWK) * 4 #
+Captain's Claws (OGW) * 2 #
+Chasm Guide (BFZ) * 2 #
+Firemantle Mage (BFZ) * 4 #
+Highland Berserker (ZEN) * 4 #
+Impact Tremors (DTK) * 3 #
+Kazuul Warlord (ZEN) * 4 #
+Mountain (10E) * 4 #
+Mountain (M10) * 2 #
+Mountain (M11) * 4 #
+Mountain (BFZ) * 4 #
+Mountain (LRW) * 4 #
+Mountain (ZEN) * 4 #
+Murasa Pyromancer (ZEN) * 2 #
+Ondu Champion (BFZ) * 4 #
+Reckless Cohort (BFZ) * 4 #
+Shared Animosity (MOR) * 3 #
+Tuktuk Grunts (ZEN) * 2 #
