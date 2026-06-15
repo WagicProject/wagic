@@ -1,14 +1,24 @@
 #NAME:Hot & Hasty
-#DESC:"Our heat will burn you
-#DESC: before you can even move!"
-Breath of Darigaaz (INV)     * 4 #
-Rorix Bladewing (ONS)        * 3 #
-Slith Firewalker (MRD)       * 4 #
-Lava Spike (CHK)             * 4 #
-Spark Elemental (10E)        * 4 #
-Flame Javelin (SHM)          * 3 #
-Boggart Ram-Gang (SHM)       * 4 #
-Burst Lightning (ZEN)        * 4 #
-Lightning Bolt (M10)         * 4 #
-Ball Lightning (M10)         * 4 #
-Mountain (M10)               *22 #
+#DESC:'Those that with haste will make
+#DESC:a mighty fire, / Begin with weak
+#DESC:straws'
+#DESC:William Shakespeare
+#HINT:alwaysattackwith(creature[Elemental])
+Ball Lightning (M10) * 4 #
+Boggart Ram-Gang (SHM) * 4 #
+Burst Lightning (ZEN) * 4 #
+Flame Javelin (SHM) * 2 #
+Lava Spike (CHK) * 4 #
+Lightning Bolt (M10) * 4 #
+Lightning Serpent (CSP) * 4 #
+Mountain (10E) * 4 #
+Mountain (CHK) * 4 #
+Mountain (INV) * 2 #
+Mountain (M10) * 4 #
+Mountain (SHM) * 4 #
+Mountain (ZEN) * 4 #
+Rorix Bladewing (ONS) * 1 #
+Slith Firewalker (MRD) * 3 #
+Spark Elemental (10E) * 4 #
+Terror of the Peaks (M21) * 2 #
+Zektar Shrine Expedition (ZEN) * 2 #
