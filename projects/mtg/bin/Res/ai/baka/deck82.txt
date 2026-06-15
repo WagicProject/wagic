@@ -1,22 +1,25 @@
 #NAME:Skies of Emeria
-#DESC:All land-walkers beware!
-#DESC:None shall pass on foot
-#DESC:into our realm,
-#DESC:and all who enter by other means
-#DESC:shall be repelled.
-Serra Angel (RV)             * 4 #
-Karakas (LEG)                * 1 #
-Zephid (USG)                 * 1 #
-Iridescent Angel (ODY)       * 4 #
+#DESC:The sky ruins of Emeria
+#DESC:represent shattered hopes
+#DESC:and new beginnings
+Emeria Angel (ZEN) * 4 #
+Flagstones of Trokair (TSP) * 1 #
+Griffin Sentinel (M10) * 4 #
 Honden of Cleansing Fire (CHK) * 1 #
 Honden of Seeing Winds (CHK) * 1 #
+Iridescent Angel (ODY) * 4 #
+Island (ZEN) * 4 #
+Island (M10) * 4 #
+Island (TSP) * 1 #
+Karakas (LEG) * 1 #
+Magus of the Moat (FUT) * 4 #
 Minamo, School at Water's Edge (CHK) * 1 #
-Flagstones of Trokair (TSP)  * 1 #
-Magus of the Moat (FUT)      * 4 #
-Recumbent Bliss (EVE)        * 4 #
-Plumeveil (SHM)              * 4 #
-Wall of Denial (ARB)         * 4 #
-Griffin Sentinel (M10)       * 4 #
-Emeria Angel (ZEN)           * 4 #
-Island (ZEN)                 * 9 #
-Plains (ZEN)                 *13 #
+Plains (ZEN) * 4 #
+Plains (M10) * 4 #
+Plains (TSP) * 4 #
+Plains (SHM) * 1 #
+Plumeveil (SHM) * 4 #
+Recumbent Bliss (EVE) * 4 #
+Serra Angel (RV) * 4 #
+Wall of Denial (ARB) * 4 #
+Zephid (USG) * 1 #
