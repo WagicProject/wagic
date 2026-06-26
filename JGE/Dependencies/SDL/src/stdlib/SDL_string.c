@@ -1228,7 +1228,7 @@ SDL_PrintFloat(char *text, double arg, size_t maxlen)
             --maxlen;
             arg = -arg;
         }
-        value = (unsigned long) arg;
+        value = (unsigned long)(long) arg;
         len = SDL_PrintUnsignedLong(text, value, 10, maxlen);
         text += len;
         maxlen -= len;
@@ -1237,7 +1237,7 @@ SDL_PrintFloat(char *text, double arg, size_t maxlen)
             int mult = 10;
             *text++ = '.';
             while ((arg > precision) && maxlen) {
-                value = (unsigned long) (arg * mult);
+                value = (unsigned long)(long) (arg * mult);
                 len = SDL_PrintUnsignedLong(text, value, 10, maxlen);
                 text += len;
                 maxlen -= len;

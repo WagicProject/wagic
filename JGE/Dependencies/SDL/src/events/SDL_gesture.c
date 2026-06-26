@@ -107,8 +107,8 @@ unsigned long SDL_HashDollar(SDL_FloatPoint* points) {
   unsigned long hash = 5381;
   int i;
   for(i = 0;i < DOLLARNPOINTS; i++) { 
-    hash = ((hash<<5) + hash) + (unsigned long)points[i].x;
-    hash = ((hash<<5) + hash) + (unsigned long)points[i].y;
+    hash = ((hash<<5) + hash) + (unsigned long)(long)points[i].x;
+    hash = ((hash<<5) + hash) + (unsigned long)(long)points[i].y;
   }
   return hash;
 }
