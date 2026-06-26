@@ -1,27 +1,22 @@
 #NAME:Vinelasher Armor
-#DESC:If you don't come to the forest,
-#DESC:the forest will come to you.
-#DESC:
-#DESC:But the trees we plant today
-#DESC:are the armors we wear tomorrow.
-Nature's Lore (POR)          * 4 #
-Titania's Chosen (USG)       * 3 #
-Forest (CHK)                 * 5 #
-Vinelasher Kudzu (RAV)       * 4 #
-Forest (RAV)                 * 3 #
-Forest (10E)                 * 3 #
-Forest (10E)                 * 3 #
-Forest (10E)                 * 2 #
-Forest (10E)                 * 5 #
-Llanowar Elves (10E)         * 4 #
-Might of Oaks (10E)          * 1 #
-Rampant Growth (10E)         * 4 #
-Birds of Paradise (10E)      * 4 #
-Blanchwood Armor (10E)       * 4 #
-Oversoul of Dusk (SHM)       * 1 #
-Farhaven Elf (SHM)           * 3 #
-Wilt-Leaf Cavaliers (SHM)    * 3 #
-
-#Taken out, AI casts it on opponent's creatures
-#Aspect of Wolf (RV)          * 4 #
-Fists of Ironwood (RAV)      * 4 #
+#DESC:If you don't come to the
+#DESC:enchanted forest, the forest
+#DESC:will come to you
+Birds of Paradise (10E) * 4 #
+Blanchwood Armor (10E) * 4 #
+Farhaven Elf (SHM) * 3 #
+Fists of Ironwood (RAV) * 4 #
+Forest (10E) * 4 #
+Forest (CHK) * 4 #
+Forest (M10) * 4 #
+Forest (POR) * 3 #
+Forest (RAV) * 3 #
+Forest (SHM) * 3 #
+Llanowar Elves (10E) * 4 #
+Might of Oaks (10E) * 1 #
+Nature's Lore (POR) * 4 #
+Oversoul of Dusk (SHM) * 1 #
+Rampant Growth (10E) * 4 #
+Titania's Chosen (USG) * 3 #
+Vinelasher Kudzu (RAV) * 4 #
+Wilt-Leaf Cavaliers (SHM) * 3 #

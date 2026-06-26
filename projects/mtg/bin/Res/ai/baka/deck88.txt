@@ -1,22 +1,24 @@
 #NAME:Heedless Perfect
-#DESC:Watch the vanguard!
-#DESC:How its strength rises
-#DESC:and rises
-#DESC:and rises
-#DESC:until nothing can stop it!
-Pendelhaven (LEG)            * 2 #
-Fyndhorn Elves (ICE)         * 3 #
-Elvish Vanguard (ONS)        * 4 #
-Elvish Herder (USG)          * 3 #
-Priest of Titania (USG)      * 4 #
-Gaea's Cradle (USG)          * 4 #
-Wirewood Lodge (ONS)         * 3 #
-Wellwisher (ONS)             * 2 #
-Heedless One (ONS)           * 2 #
-Howling Mine (10E)           * 2 #
-Llanowar Elves (10E)         * 4 #
-Lys Alana Huntmaster (LRW)   * 4 #
-Elvish Promenade (LRW)       * 4 #
-Imperious Perfect (LRW)      * 4 #
-Immaculate Magistrate (LRW)  * 4 #
-Forest (M10)                 *11 #
+#DESC:'Heirs of eternity! yborn to rise / 
+#DESC:Through endless states of being, 
+#DESC:still more near / To bliss approaching, 
+#DESC:and perfection clear.' 
+#DESC:James Thomson.
+Defiant Elf (LGN) * 3 #
+Elvish Promenade (LRW) * 4 #
+Elvish Vanguard (ONS) * 4 #
+Forest (10E) * 4 #
+Forest (ICE) * 4 #
+Forest (LRW) * 4 #
+Forest (M10) * 4 #
+Forest (ONS) * 1 #
+Fyndhorn Elves (ICE) * 3 #
+Heedless One (ONS) * 2 #
+Howling Mine (10E) * 2 #
+Immaculate Magistrate (LRW) * 4 #
+Imperious Perfect (LRW) * 4 #
+Llanowar Elves (10E) * 4 #
+Lys Alana Huntmaster (LRW) * 4 #
+Priest of Titania (USG) * 4 #
+Wellwisher (ONS) * 2 #
+Wirewood Lodge (ONS) * 3 #

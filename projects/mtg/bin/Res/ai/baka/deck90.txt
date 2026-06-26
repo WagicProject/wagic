@@ -1,24 +1,25 @@
 #NAME:Gaea's Promenade
-#DESC:Meet a combined force
-#DESC:of elves and treefolk.
-#DESC:Can you withstand
-#DESC:the standing power of the trees
-#DESC:and the fertility of the elves
-#DESC:at the same time?
-Living Lands (RV)            * 2 #
+#DESC:Nature's sacred song is the
+#DESC:music of strength, beauty and 
+#DESC:endurance.
+Akroma's Memorial (FUT) * 2 #
+Creakwood Liege (EVE) * 3 #
+Dauntless Dourbark (LRW) * 2 #
 Eladamri, Lord of Leaves (TMP) * 2 #
-Treefolk Seedlings (USG)     * 4 #
-Wellwisher (ONS)             * 3 #
-Gaea's Anthem (PLC)          * 4 #
-Forest (10E)                 *26 #
-Llanowar Elves (10E)         * 4 #
-Akroma's Memorial (FUT)      * 3 #
-Lys Alana Huntmaster (LRW)   * 2 #
-Elvish Promenade (LRW)       * 4 #
-Imperious Perfect (LRW)      * 2 #
-Timber Protector (LRW)       * 3 #
-Dauntless Dourbark (LRW)     * 2 #
-Nath of the Gilt-Leaf (LRW)  * 3 #
-Creakwood Liege (EVE)        * 3 #
-Howling Mine (M10)           * 3 #
-Elvish Archdruid (M10)       * 4 #
+Elvish Archdruid (M10) * 3 #
+Elvish Promenade (LRW) * 3 #
+Forest (10E) * 4 #
+Forest (LRW) * 4 #
+Forest (M10) * 4 #
+Forest (RV) * 2 #
+Forest (TMP) * 4 #
+Forest (USG) * 4 #
+Gaea's Anthem (PLC) * 4 #
+Howling Mine (M10) * 2 #
+Imperious Perfect (LRW) * 2 #
+Living Lands (RV) * 2 #
+Llanowar Elves (10E) * 4 #
+Lys Alana Huntmaster (LRW) * 2 #
+Timber Protector (LRW) * 2 #
+Treefolk Seedlings (USG) * 3 #
+Wellwisher (ONS) * 2 #

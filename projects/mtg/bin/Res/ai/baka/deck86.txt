@@ -1,23 +1,22 @@
-#NAME:Allies
-#DESC:"Alone we are weak, 
-#DESC: but together
-#DESC: we are unstoppable."
-#DESC:
-#DESC:If you thought that
-#DESC:it won't be possible
-#DESC:to combine three elements
-#DESC:into a single powerful force
-#DESC:- think again!
-Swords to Plowshares (RV)    * 4 #
-Turntimber Ranger (ZEN)      * 4 #
-Oran-Rief Survivalist (ZEN)  * 4 #
-Umara Raptor (ZEN)           * 4 #
-Dauntless Escort (ARB)       * 4 #
-Day of Judgment (ZEN)        * 4 #
-Rampant Growth (M10)         * 4 #
-Kazandu Blademaster  (ZEN)   * 4 #
-Ondu Cleric (ZEN)            * 4 #
-Forest (ZEN)                 * 9 #
-Plains (ZEN)                 * 9 #
-Sea Gate Loremaster (ZEN)    * 3 #
-Island (ZEN)                 * 7 #
+#NAME:Steppe Allies
+#DESC:On the vast plains of the
+#DESC:steppe, distance is no 
+#DESC:barrier to common purpose
+Affa Protector (OGW) * 2
+Angel of Renewal (BFZ) * 2
+Expedition Envoy (BFZ) * 4
+Hada Freeblade (WWK) * 4
+Hero of Goma Fada (BFZ) * 2
+Kazandu Blademaster (ZEN) * 4 #
+Kor Bladewhirl (BFZ) * 3
+Kor Entanglers (BFZ) * 2
+Lantern Scout (BFZ) * 3
+Makindi Aeronaut (OGW) * 4
+Makindi Patrol (BFZ) * 3
+Ondu Cleric (ZEN) * 4 #
+Plains (10E) * 4 #
+Plains (BFZ) * 4 #
+Plains (LRW) * 4 #
+Plains (M11) * 4 #
+Plains (ZEN) * 4 #
+Talus Paladin (WWK) * 3
