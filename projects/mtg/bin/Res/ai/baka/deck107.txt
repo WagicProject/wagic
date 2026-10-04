@@ -1,30 +1,26 @@
-#NAME:Pointy Hats Society
-########################################
-#    Creatures                         #
-########################################
-Suq'Ata Firewalker (MIR) *3
-Zuran Spellcaster (ME2) *3
-Prodigal Sorcerer (*) *3
-Massacre Wurm (mbs) *2
-########################################
-#    Spells                            #
-########################################
-Font of Mythos (*) *3
-Grasp of Darkness (*) *3
-Doom Blade (*) *3
-Sorin's Vengeance (*) *2
-Mox Sapphire (*) *2
-Mox Jet (*) *2
-Boomerang (MIR)*2
-Cancel (DPA) *3
-Last Word (DST) *2
-Counterspell (JVC) *4
-Unsummon (M11) *2
-Disperse (SOM) *3
-########################################
-#    Lands                             #
-########################################
-Island (MIR) *11
-Swamp (*) *10
-
-
+#NAME:School of Magic
+#DESC:Not every wizard becomes an
+#DESC:archmage, but all who
+#DESC:graduate wield their skills
+#DESC:with pride
+#DESC:
+#DESC:Original deck by willian2 
+#DESC:(tappedout.net)
+#DESC:Refined for Wagic by Bob
+Adeliz, the Cinder Wind (DAR) * 3
+Curious Obsession (JMP) * 3 
+Dwarven Forge-Chanter (BRO) * 4
+Grim Lavamancer (2XM) * 2
+Island (4ED) * 4
+Island (OTJ) * 4
+Island (JMP) * 2
+Lava Spike (UMA) * 4 
+Lightning Bolt (4ED) * 4
+Mountain (4ED) * 4
+Mountain (OTJ) * 4
+Mountain (JMP) * 2
+Opt (TDC) * 4
+Serum Visions (OTC) * 4
+Soul-Scar Mage * 4
+Stormchaser Mage (OGW) * 4
+Wingcrafter (MM3) * 4
