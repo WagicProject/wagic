@@ -1,4 +1,10 @@
 #NAME:Tergrid Commander
+#DESC:The god of fright listens
+#DESC:to the desperate prayers
+#DESC:of the frightened, but
+#DESC:never seeks to bring them
+#DESC:comfort 
+#DESC:
 #DESC:The Tergrid Commander Deck
 #DESC:Refined for Wagic by Bob
 #HINT:castpriority(commander,*)
