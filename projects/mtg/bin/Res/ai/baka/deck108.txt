@@ -1,30 +1,25 @@
 #NAME:Krenko's Goblins
-#DESC:Modern R Aggro
+#DESC:A leader of unparalleled 
+#DESC:persuasiveness, many goblins
+#DESC:find it impossible to resist
+#DESC:his summons
 #HINT:dontattackwith(Krenko, Mob Boss)
 #HINT:dontblockwith(Krenko, Mob Boss)
 #HINT:combo hold(Blood Moon|myhand)^cast(Blood Moon|myhand)^restriction{type(Blood Moon|inplay)~lessthan~1}^totalmananeeded({2}{R})
 #HINT:combo hold(instant|myhand)^cast(instant|myhand)^restriction{turn:3}^totalmananeeded({R})
-
-#26 creatures
-#12 1-drops
-Goblin Arsonist * 4
-Spikeshot Elder * 4
-Legion Loyalist * 4
-#4 2-drops
-Goblin Wardriver * 4
-#8 3-drops
-Goblin Chieftain * 4
-Goblin King (9ED) * 4
-#2 4-drops
-Krenko, Mob Boss * 2
-
-#10 spells
-Tarfire * 2
-Lightning Bolt (M10) * 4
-Krenko's Command * 4
-
-#4 enchantments
 Blood Moon (9ED) * 4
-
-#20 lands
-Mountain (9ED) * 20
+Goblin Arsonist (ROE) * 4
+Goblin Chieftain (M10) * 4
+Goblin King (9ED) * 4
+Goblin Wardriver (MBS) * 4
+Krenko, Mob Boss (M13) * 2
+Krenko's Command (M13) * 4
+Legion Loyalist (GTC) * 4
+Lightning Bolt (M10) * 4
+Mountain (LRW) * 4
+Mountain (M10) * 4
+Mountain (M13) * 4
+Mountain (ROE) * 4
+Mountain (SOM) * 4
+Spikeshot Elder (SOM) * 4
+Tarfire (LRW) * 2
