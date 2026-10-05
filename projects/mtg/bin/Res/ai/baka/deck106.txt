@@ -1,18 +1,23 @@
 #NAME:Painful Dream
-Traumatize	 (ODY) *2
-Island	 (UNH) *4
-Followed Footsteps	 (RAV) *4
-Howling Mine	 (10E) *4
-Dreamborn Muse	 (10E) *4
-Forced Fruition	 (LRW) *4
-Memory Erosion	 (ALA) *4
-Hedron Crab	 (ZEN) *4
-Font of Mythos	 (CFX) *4
-Tome Scour	 (M10) *4
-Island	 (ZEN) *4
-Island	 (ZEN) *4
-Island	 (ZEN) *4
-Island	 (ZEN) *4
-Platinum Angel	 (M11) *1
-Sword of Body and Mind	 (SOM) *2
-Seat of the Synod	 (EVT) *4
+#DESC:It is a waking nightmare
+#DESC:to see your dreams
+#DESC:unaccomplished.
+#HINT:combo hold(Fractured Sanity|myhand)^cast(Fractured Sanity|myhand)~totalmananeeded({U}{U}{U})
+#HINT:dontattackwith(creature[Crab])
+Font of Mythos (CFX) * 4
+Forced Fruition (LRW) * 2
+Fractured Sanity (MH2) * 4
+Hedron Crab (ZEN) * 4
+Howling Mine (10E) * 4
+Island (ALA) * 1
+Island (10E) * 4
+Island (LRW) * 4
+Island (M10) * 4
+Island (RAV) * 4
+Island (UNH) * 4
+Memory Erosion (ALA) * 4
+Platinum Angel (M11) * 1
+Ruin Crab (ZNR) * 4
+Seat of the Synod (EVT) * 4
+Tome Scour (M10) * 4
+Traumatize (ODY) * 4

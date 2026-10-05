@@ -1,31 +1,22 @@
 #NAME:Etched Affinity
-#DESC:Modern URB Aggro
+#DESC:The artificier marks his creations
+#DESC:to signify his mastery
 #HINT:dontattackwith(creature[power<=0])
 #HINT:combo hold(Galvanic Blast|myhand)^cast(Galvanic Blast|myhand)^restriction{type(artifact|mybattlefield)~morethan~2,turn:3}^totalmananeeded({R})
-
-#25 creatures
-#8 0-drops
-Memnite * 4
+Cranial Plating (5DN) * 4
+Darksteel Citadel (DST) * 4
+Etched Champion (SOM) * 4
+Galvanic Blast (SOM) * 4
+Glimmervoid (MRD) * 4
+Island (M11) * 3
+Island (SOM) * 4
+Master of Etherium (ALA) * 3
+Memnite (TD2) * 4
+Mountain (M11) * 1
+Mountain (SOM) * 4
+Mox Opal (SOM) * 3
 Ornithopter (M11) * 4
-#4 1-drops
-Signal Pest * 4
-#6 2-drops
-Vault Skirge * 4
-Steel Overseer * 2
-#7 3-drops
-Etched Champion * 4
-Master of Etherium * 3
-
-#7 artifacts
-Cranial Plating * 4
-Mox Opal * 3
-
-#8 spells
-Thoughtcast * 4
-Galvanic Blast * 4
-
-#20 lands
-Darksteel Citadel * 4
-Glimmervoid * 4
-Island (SOM) * 7
-Mountain (SOM) * 5
+Signal Pest (PRM) * 4
+Steel Overseer (M11) * 2
+Thoughtcast (MRD) * 4
+Vault Skirge (PRM) * 4

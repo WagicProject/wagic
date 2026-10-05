@@ -1,19 +1,23 @@
-#NAME:Herdsmen
-Aurochs	 (ICE) *4
-Brushwagg	 (MIR) *2
-Birds of Paradise	 (7ED) *4
-Snorting Gahr	 (MRQ) *1
-Aggressive Urge	 (INV) *4
-Blanchwood Armor	 (8ED) *4
-Bull Aurochs	 (CSP) *4
-Boreal Druid	 (CSP) *4
-Aurochs Herd	 (CSP) *4
-Timbermaw Larva	 (ZEN) *4
-Bramble Creeper	 (M10) *2
-Awakening Zone	 (ROE) *4
-Beastmaster Ascension	 (ZEN) *4
-Forest	 (M11) *4
-Forest	 (SOM) *4
-Forest	 (SOM) *4
-Forest	 (SOM) *4
-Forest	 (SOM) *4
+#NAME:Stampeding Herd
+#DESC:The keepers of the mighty
+#DESC:auroch herds prefer to live
+#DESC:in peace. But when provoked
+#DESC:they can steer their beasts
+#DESC:into thundering stampedes
+Aggressive Urge (INV) * 4
+Aurochs (ICE) * 4
+Aurochs Herd (CSP) * 4	
+Awakening Zone (ROE) * 2	
+Beastmaster Ascension (ZEN) * 2	
+Birds of Paradise (7ED) * 4	
+Blanchwood Armor (8ED) * 4	
+Boreal Druid (CSP) * 4	
+Bramble Creeper (M10) * 2
+Brushwagg  (MIR) * 2	
+Bull Aurochs (CSP) * 4	
+Forest (7ED) * 4	
+Forest (ICE) * 4	
+Forest (M11) * 4	
+Forest (MIR) * 4	
+Forest (ZEN) * 4	
+Timbermaw Larva (ZEN) * 4

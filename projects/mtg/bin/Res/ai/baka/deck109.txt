@@ -1,26 +1,21 @@
 #NAME:Hellrider
-#DESC:Standard R Aggro
-#DESC:ISD-M13-RTR
-#HINT:combo hold(Hellrider|myhand)^until(creature|mybattlefield)^cast(Hellrider|myhand)^restriction{type(creature|mybattlefield)~morethan~2}^totalmananeeded({2}{R}{R})
+#DESC:The most dangerous devils
+#DESC:persuade others to join
+#DESC:their evil
+#HINT:combo hold(Hellrider|myhand)^cast(Hellrider|myhand)^restriction{type(creature|mybattlefield)~morethan~2}^totalmananeeded({2}{R}{R})
 #HINT:combo hold(Pillar of Flame|myhand)^cast(Pillar of Flame|myhand)^restriction{turn:3}^totalmananeeded({R})
-
-#28 creatures
-#12 1-drops
-Stromkirk Noble * 4
-Rakdos Cackler * 4
-Legion Loyalist * 4
-#8 2-drops
-Ash Zealot * 4
-Gore-House Chainwalker * 4
-#4 3-drops
-Boros Reckoner * 4
-#4 4-drops
-Hellrider * 4
-
-#12 spells
-Pillar of Flame * 4
-Searing Spear * 4
-Krenko's Command * 4
-
-#20 lands
-Mountain (RTR) * 20
+Ash Zealot (RTR) * 4
+Boros Reckoner (MB1) * 4
+Gore-House Chainwalker (RTR) * 4
+Hellrider (DKA) * 4
+Krenko's Command (M13) * 4
+Legion Loyalist (GTC) * 4
+Mountain (ISD) * 4
+Mountain (M11) * 4
+Mountain (M13) * 4
+Mountain (PRM) * 4
+Mountain (RTR) * 4
+Pillar of Flame (PRM) * 4
+Rakdos Cackler (PRM) * 4
+Searing Spear (PRM) * 4
+Stromkirk Noble (ISD) * 4

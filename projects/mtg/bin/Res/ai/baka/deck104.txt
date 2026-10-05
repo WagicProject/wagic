@@ -1,29 +1,36 @@
 #NAME:Kazandu the Redeemed
-#DESC:They just keep multiplying.
+#DESC:Can recruiting more to the 
+#DESC:cause redeem the failures of
+#DESC:the past?
 #HINT:castpriority(enchantment,instant,sorcery,artifact,creature)
 #HINT:dontattackwith(Rhys the Redeemed)
 #HINT:dontblockwith(Rhys the Redeemed)
 #HINT:dontattackwith(Kazandu Tuskcaller)
 #HINT:dontblockwith(Kazandu Tuskcaller)
-
-Mox Emerald	 (LEA) *2
-Mox Pearl	 (LEA) *2
-Forest	 (LEA) *15
-Plains	 (LEA) *8
-Marble Diamond	 (MIR) *2
-Blazing Archon	 (*) *2
-Serra's Sanctum	 (USG) *1
-Gaea's Cradle	 (USG) *2
-Rofellos, Llanowar Emissary	 (UDS) *2
-Beacon of Creation	 (5DN) *2
-Honden of Life's Web	 (CHK) *2
-Kabira Vindicator	 (*) *2
-Rhys the Redeemed	 (SHM) *2
-Fable of Wolf and Owl	 (EVE) *2
-Murkfiend Liege	 (EVE) *2
-Creakwood Liege	 (EVE) *2
-Spawnwrithe	 (SHM) *2
-Awakening Zone	 (ROE) *3
-Kazandu Tuskcaller	 (ROE) *2
-Conqueror's Pledge	 (ZEN) *2
-Bestial Menace	 (WWK) *2
+#HINT:dontattackwith(Birds of Paradise)
+#HINT:dontblockwith(Birds of Paradise)
+Awakening Zone (ROE) * 2	
+Beacon of Creation (5DN) * 2	
+Bestial Menace (WWK) * 2
+Birds of Paradise (LEA) * 2
+Blazing Archon (RAV) * 1	
+Conqueror's Pledge (ZEN) * 2	
+Creakwood Liege (EVE) * 2	
+Fable of Wolf and Owl (EVE) * 2	
+Forest (LEA) * 4	
+Forest (MIR) * 4
+Forest (RAV) * 4	
+Forest (SHM) * 4	
+Forest (ZEN) * 2	
+Honden of Life's Web (CHK) * 1	
+Kabira Vindicator (ROE) * 2	
+Kazandu Tuskcaller (ROE) * 3	
+Marble Diamond (MIR) * 2	
+Mox Emerald (LEA) * 1	
+Mox Pearl (LEA) * 1	
+Murkfiend Liege (EVE) * 2	
+Plains (LEA) * 4	
+Plains (MIR) * 4
+Plains (SHM) * 2	
+Rhys the Redeemed (SHM) * 3	
+Spawnwrithe (SHM) * 2	
