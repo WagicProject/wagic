@@ -137851,3 +137851,278 @@ subtype=Equipment Spider
 power=1
 toughness=4
 [/card]
+
+# ===== EOC (Edge of Eternities Commander) cards =====
+[card]
+name=Baloth Prime
+auto=tap(noevent)
+auto=counter(0/0,6,Stun)
+auto={4}{S(land|mybattlefield)}:life:2
+text=This creature enters tapped with six stun counters on it. -- When you sacrifice a land, create a tapped 4/4 green Beast creature token and untap this creature. -- {4}, Sacrifice a land: You gain 2 life.
+type=Creature
+subtype=Beast
+power=10
+toughness=10
+mana={3}{G}
+[/card]
+[card]
+name=Braids, Arisen Nightmare
+text=At the beginning of your end step, you may sacrifice an artifact, creature, enchantment, land, or planeswalker. If you do, each opponent may sacrifice a permanent of their choice that shares a card type with it. For each opponent who doesn't, that player loses 2 life and you draw a card.
+type=Legendary Creature
+subtype=Nightmare
+power=3
+toughness=3
+mana={1}{B}{B}
+[/card]
+[card]
+name=Depthshaker Titan
+auto=all(artifact[-creature]|mybattlefield) becomes(Artifact Creature) ueot
+auto=lord(artifact creature|mybattlefield) trample
+auto=lord(artifact creature|mybattlefield) haste
+text=When this creature enters, any number of target noncreature artifacts you control become 3/3 artifact creatures. Sacrifice them at the beginning of the next end step. -- Each artifact creature you control has melee, trample, and haste.
+type=Artifact Creature
+subtype=Robot
+power=5
+toughness=5
+mana={5}{R}{R}
+[/card]
+[card]
+name=Eumidian Hatchery
+auto={T}:Add{B}
+text={T}, Pay 1 life: Add {B}. Put a hatchling counter on this land. -- When this land is put into a graveyard from the battlefield, for each hatchling counter on it, create a 1/1 black Insect creature token with flying.
+type=Land
+[/card]
+[card]
+name=Eumidian Wastewaker
+autograveyard={6}{B}{B}:name(Encore) moveto(exile) and!(clone with(treason,haste,mustattack))! asSorcery
+text=Whenever this creature attacks, you and defending player each discard a card or sacrifice a permanent. You draw a card for each land card put into a graveyard this way. -- Encore {6}{B}{B}
+type=Creature
+subtype=Insect Cleric
+power=4
+toughness=4
+mana={2}{B}{B}
+[/card]
+[card]
+name=Evendo Brushrazer
+auto={T}{S(land|mybattlefield)}:Add{R}{R}
+text=Whenever you sacrifice a nontoken permanent, exile the top card of your library. -- During your turn, as long as you've sacrificed a nontoken permanent this turn, you may play cards exiled with this creature. -- {T}, Sacrifice a land: Add {R}{R}.
+type=Creature
+subtype=Insect Warrior
+power=2
+toughness=2
+mana={2}{R}
+[/card]
+[card]
+name=Exploration Broodship
+auto={T(creature[-tapped]|mybattlefield)}:counter(0/0,1,Charge)
+auto=maxPlay(land)+1
+text=Station (Tap another creature you control: Put charge counters equal to its power on this Spacecraft. It's an artifact creature at 8+.) -- 3+ | You may play an additional land on each of your turns. -- 8+ | Flying -- Once during each of your turns, you may cast a permanent spell from your graveyard by sacrificing a land in addition to paying its other costs.
+type=Artifact
+subtype=Spacecraft
+power=4
+toughness=4
+mana={G}
+[/card]
+[card]
+name=Festering Thicket
+abilities=cycling
+auto=tap(noevent)
+auto={T}:Add{B}
+auto={T}:Add{G}
+autohand=__CYCLING__({2})
+text=({T}: Add {B} or {G}.) -- This land enters tapped. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+type=Land
+subtype=Swamp Forest
+[/card]
+[card]
+name=Gavel of the Righteous
+auto={3}:equip
+text=At the beginning of combat on your turn, put a charge counter on this Equipment. -- Equipped creature gets +1/+1 for each counter on this Equipment. -- As long as this Equipment has four or more counters on it, equipped creature has double strike. -- Equip—Pay {3} or remove a counter from this Equipment.
+type=Artifact
+subtype=Equipment
+mana={2}
+[/card]
+[card]
+name=Glittering Massif
+abilities=cycling
+auto=tap(noevent)
+auto={T}:Add{R}
+auto={T}:Add{W}
+autohand=__CYCLING__({2})
+text=({T}: Add {R} or {W}.) -- This land enters tapped. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+type=Land
+subtype=Mountain Plains
+[/card]
+[card]
+name=Hearthhull, the Worldseed
+auto={T(creature[-tapped]|mybattlefield)}:counter(0/0,1,Charge)
+auto={1}{T}{S(land|mybattlefield)}:draw:2
+text=Station (Tap another creature you control: Put charge counters equal to its power on this Spacecraft. It's an artifact creature at 8+.) -- 2+ | {1}, {T}, Sacrifice a land: Draw two cards. You may play an additional land this turn. -- 8+ | Flying, vigilance, haste -- Whenever you sacrifice a land, each opponent loses 2 life.
+type=Legendary Artifact
+subtype=Spacecraft
+power=6
+toughness=7
+mana={1}{B}{R}{G}
+[/card]
+[card]
+name=Horizon Explorer
+text=Lands you control enter untapped. -- Whenever you attack a player, create a Lander token.
+type=Creature
+subtype=Insect Scout
+power=2
+toughness=4
+mana={2}{G}
+[/card]
+[card]
+name=Insight Engine
+auto={2}{T}:counter(0/0,1,Charge) and!(draw:1)!
+text={2}, {T}: Put a charge counter on this artifact, then draw a card for each charge counter on it.
+type=Artifact
+mana={2}{U}
+[/card]
+[card]
+name=Inspirit, Flagship Vessel
+auto={T(creature[-tapped]|mybattlefield)}:counter(0/0,1,Charge)
+text=Station (Tap another creature you control: Put charge counters equal to its power on this Spacecraft. It's an artifact creature at 8+.) -- 1+ | At the beginning of combat on your turn, put your choice of a +1/+1 counter or two charge counters on up to one other target artifact. -- 8+ | Flying -- Other artifacts you control have hexproof and indestructible.
+type=Legendary Artifact
+subtype=Spacecraft
+power=5
+toughness=5
+mana={U}{R}{W}
+[/card]
+[card]
+name=Kilo, Apogee Mind
+abilities=haste
+auto=@tapped(this):_PROLIFERATE_
+text=Haste -- Whenever Kilo becomes tapped, proliferate.
+type=Legendary Artifact Creature
+subtype=Robot Artificer
+power=3
+toughness=3
+mana={U}{R}{W}
+[/card]
+[card]
+name=Loamcrafter Faun
+text=When this creature enters, you may discard one or more land cards. When you do, return up to that many target nonland permanent cards from your graveyard to your hand.
+type=Creature
+subtype=Satyr Druid
+power=3
+toughness=3
+mana={2}{G}
+[/card]
+[card]
+name=Long-Range Sensor
+auto={1}{T}:draw:1
+text=Whenever you attack a player, put a charge counter on this artifact. -- {1}, Remove two charge counters from this artifact: Discover 4.
+type=Artifact
+mana={2}{R}
+[/card]
+[card]
+name=Moxite Refinery
+text={2}, {T}, Remove X counters from an artifact or creature you control: Choose one - Put X charge counters on target artifact; or put X +1/+1 counters on target creature. Activate only as a sorcery.
+type=Artifact
+mana={2}
+[/card]
+[card]
+name=Patrolling Peacemaker
+auto=counter(1/1)
+auto=counter(1/1)
+text=This creature enters with two +1/+1 counters on it. -- Whenever an opponent commits a crime, proliferate.
+type=Artifact Creature
+subtype=Robot Soldier
+power=0
+toughness=0
+mana={2}{W}
+[/card]
+[card]
+name=Planetary Annihilation
+auto=all(creature) damage:6
+text=Each player chooses six lands they control, then sacrifices the rest. Planetary Annihilation deals 6 damage to each creature.
+type=Sorcery
+mana={3}{R}{R}
+[/card]
+[card]
+name=Radiant Summit
+auto=if type(land[basic]|mybattlefield)~lessthan~2 then tap(noevent)
+auto={T}:Add{R}
+auto={T}:Add{W}
+text=({T}: Add {R} or {W}.) -- This land enters tapped unless you control two or more basic lands.
+type=Land
+subtype=Mountain Plains
+[/card]
+[card]
+name=Resourceful Defense
+text=Whenever a permanent you control leaves the battlefield, if it had counters on it, put those counters on target permanent you control. -- {4}{W}: Move any number of counters from target permanent you control onto a second target permanent you control.
+type=Enchantment
+mana={2}{W}
+[/card]
+[card]
+name=Ripples of Potential
+auto=_PROLIFERATE_
+text=Proliferate, then choose any number of permanents you control that had a counter put on them this way. Those permanents phase out.
+type=Instant
+mana={1}{U}
+[/card]
+[card]
+name=Scouring Swarm
+abilities=flying
+text=Flying -- Whenever you sacrifice a land, create a tapped token that's a copy of this creature if seven or more land cards are in your graveyard. Otherwise, create a tapped 1/1 black Insect creature token with flying.
+type=Creature
+subtype=Insect
+power=1
+toughness=1
+mana={1}{B}{G}
+[/card]
+[card]
+name=Solar Array
+auto={T}:activatechooseacolor add{chosencolor} activatechooseend
+text={T}: Add one mana of any color. -- When you next cast an artifact spell this turn, that spell gains sunburst.
+type=Artifact
+mana={3}
+[/card]
+[card]
+name=Surge Conductor
+auto=@movedTo(artifact[-token]|mybattlefield):_PROLIFERATE_
+text=Whenever another nontoken artifact you control enters, proliferate.
+type=Artifact Creature
+subtype=Robot
+power=3
+toughness=2
+mana={3}
+[/card]
+[card]
+name=Szarel, Genesis Shepherd
+abilities=flying
+text=Flying -- You may play lands from your graveyard. -- Whenever you sacrifice another nontoken permanent during your turn, put a number of +1/+1 counters equal to Szarel's power on up to one other target creature.
+type=Legendary Creature
+subtype=Insect Druid
+power=2
+toughness=5
+mana={2}{B}{R}{G}
+[/card]
+[card]
+name=Uthros Research Craft
+auto={T(creature[-tapped]|mybattlefield)}:counter(0/0,1,Charge)
+text=Station (Tap another creature you control: Put charge counters equal to its power on this Spacecraft. It's an artifact creature at 12+.) -- 3+ | Whenever you cast an artifact spell, draw a card. Put a charge counter on this Spacecraft. -- 12+ | Flying -- This Spacecraft gets +1/+0 for each artifact you control.
+type=Artifact
+subtype=Spacecraft
+power=0
+toughness=8
+mana={2}{U}
+[/card]
+[card]
+name=Vernal Fen
+auto=if type(land[basic]|mybattlefield)~lessthan~2 then tap(noevent)
+auto={T}:Add{B}
+auto={T}:Add{G}
+text=({T}: Add {B} or {G}.) -- This land enters tapped unless you control two or more basic lands.
+type=Land
+subtype=Swamp Forest
+[/card]
+[card]
+name=Worldsoul's Rage
+auto=target(any):damage:X
+text=Worldsoul's Rage deals X damage to any target. Put up to X land cards from your hand and/or graveyard onto the battlefield tapped.
+type=Sorcery
+mana={X}{R}{G}
+[/card]
