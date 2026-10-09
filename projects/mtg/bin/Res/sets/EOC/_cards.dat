@@ -6,856 +6,856 @@ total=171
 [/meta]
 [card]
 primitive=Adarkar Wastes
-id=212999999
+id=1000001
 rarity=R
 [/card]
 [card]
 primitive=Aftermath Analyst
-id=213000000
+id=1000002
 rarity=U
 [/card]
 [card]
 primitive=Alibou, Ancient Witness
-id=213000001
+id=1000003
 rarity=M
 [/card]
 [card]
 primitive=Ancient Den
-id=213000002
+id=1000004
 rarity=C
 [/card]
 [card]
 primitive=Angel of the Ruins
-id=213000003
+id=1000005
 rarity=R
 [/card]
 [card]
 primitive=Arcane Signet
-id=213000004
+id=1000006
 rarity=C
 [/card]
 [card]
 primitive=Astral Cornucopia
-id=213000005
+id=1000007
 rarity=R
 [/card]
 [card]
 primitive=Augur of Autumn
-id=213000006
+id=1000008
 rarity=R
 [/card]
 [card]
 primitive=Baloth Prime
-id=213000007
+id=1000009
 rarity=R
 [/card]
 [card]
 primitive=Battlefield Forge
-id=213000008
+id=1000010
 rarity=R
 [/card]
 [card]
 primitive=Beast Within
-id=213000009
+id=1000011
 rarity=U
 [/card]
 [card]
 primitive=Binding the Old Gods
-id=213000010
+id=1000012
 rarity=U
 [/card]
 [card]
 primitive=Blasphemous Act
-id=213000011
+id=1000013
 rarity=R
 [/card]
 [card]
 primitive=Bojuka Bog
-id=213000012
+id=1000014
 rarity=C
 [/card]
 [card]
 primitive=Braids, Arisen Nightmare
-id=213000013
+id=1000015
 rarity=R
 [/card]
 [card]
 primitive=Buried Ruin
-id=213000014
+id=1000016
 rarity=U
 [/card]
 [card]
 primitive=Cabaretti Courtyard
-id=213000015
+id=1000017
 rarity=C
 [/card]
 [card]
 primitive=Canyon Slough
-id=213000016
+id=1000018
 rarity=R
 [/card]
 [card]
 primitive=Cascade Bluffs
-id=213000017
+id=1000019
 rarity=R
 [/card]
 [card]
 primitive=Centaur Vinecrasher
-id=213000018
+id=1000020
 rarity=R
 [/card]
 [card]
 primitive=Chain Reaction
-id=213000019
+id=1000021
 rarity=R
 [/card]
 [card]
 primitive=Chaos Warp
-id=213000020
+id=1000022
 rarity=R
 [/card]
 [card]
 primitive=Chrome Host Seedshark
-id=213000021
+id=1000023
 rarity=R
 [/card]
 [card]
 primitive=Cinder Glade
-id=213000022
+id=1000024
 rarity=R
 [/card]
 [card]
 primitive=Clifftop Retreat
-id=213000023
+id=1000025
 rarity=R
 [/card]
 [card]
 primitive=Cloud Key
-id=213000024
+id=1000026
 rarity=R
 [/card]
 [card]
 primitive=Command Tower
-id=213000025
+id=1000027
 rarity=C
 [/card]
 [card]
 primitive=Coretapper
-id=213000026
+id=1000028
 rarity=U
 [/card]
 [card]
 primitive=Crystalline Crawler
-id=213000027
+id=1000029
 rarity=R
 [/card]
 [card]
 primitive=Cultivate
-id=213000028
+id=1000030
 rarity=C
 [/card]
 [card]
 primitive=Cyberdrive Awakener
-id=213000029
+id=1000031
 rarity=R
 [/card]
 [card]
 primitive=Dakmor Salvage
-id=213000030
+id=1000032
 rarity=U
 [/card]
 [card]
 primitive=Darksteel Reactor
-id=213000031
+id=1000033
 rarity=R
 [/card]
 [card]
 primitive=Deepglow Skate
-id=213000032
+id=1000034
 rarity=R
 [/card]
 [card]
 primitive=Depthshaker Titan
-id=213000033
+id=1000035
 rarity=R
 [/card]
 [card]
 primitive=Dispatch
-id=213000034
+id=1000036
 rarity=U
 [/card]
 [card]
 primitive=Empowered Autogenerator
-id=213000035
+id=1000037
 rarity=R
 [/card]
 [card]
 primitive=Emry, Lurker of the Loch
-id=213000036
+id=1000038
 rarity=R
 [/card]
 [card]
 primitive=Enthusiastic Mechanaut
-id=213000037
+id=1000039
 rarity=U
 [/card]
 [card]
 primitive=Escape to the Wilds
-id=213000038
+id=1000040
 rarity=R
 [/card]
 [card]
 primitive=Escape Tunnel
-id=213000039
+id=1000041
 rarity=C
 [/card]
 [card]
 primitive=Etched Oracle
-id=213000040
+id=1000042
 rarity=U
 [/card]
 [card]
 primitive=Etherium Sculptor
-id=213000041
+id=1000043
 rarity=C
 [/card]
 [card]
 primitive=Eumidian Hatchery
-id=213000042
+id=1000044
 rarity=R
 [/card]
 [card]
 primitive=Eumidian Wastewaker
-id=213000043
+id=1000045
 rarity=R
 [/card]
 [card]
 primitive=Evendo Brushrazer
-id=213000044
+id=1000046
 rarity=R
 [/card]
 [card]
 primitive=Everflowing Chalice
-id=213000045
+id=1000047
 rarity=U
 [/card]
 [card]
 primitive=Evolving Wilds
-id=213000046
+id=1000048
 rarity=C
 [/card]
 [card]
 primitive=Exotic Orchard
-id=213000047
+id=1000049
 rarity=R
 [/card]
 [card]
 primitive=Experimental Augury
-id=213000048
+id=1000050
 rarity=C
 [/card]
 [card]
 primitive=Exploration Broodship
-id=213000049
+id=1000051
 rarity=R
 [/card]
 [card]
 primitive=Fabled Passage
-id=213000050
+id=1000052
 rarity=R
 [/card]
 [card]
 primitive=Farseek
-id=213000051
+id=1000053
 rarity=C
 [/card]
 [card]
 primitive=Festering Thicket
-id=213000052
+id=1000054
 rarity=R
 [/card]
 [card]
 primitive=Formless Genesis
-id=213000053
+id=1000055
 rarity=R
 [/card]
 [card]
 primitive=Fumigate
-id=213000054
+id=1000056
 rarity=R
 [/card]
 [card]
 primitive=Gavel of the Righteous
-id=213000055
+id=1000057
 rarity=R
 [/card]
 [card]
 primitive=Gaze of Granite
-id=213000056
+id=1000058
 rarity=R
 [/card]
 [card]
 primitive=Glacial Fortress
-id=213000057
+id=1000059
 rarity=R
 [/card]
 [card]
 primitive=Glittering Massif
-id=213000058
+id=1000060
 rarity=R
 [/card]
 [card]
 primitive=God-Eternal Bontu
-id=213000059
+id=1000061
 rarity=M
 [/card]
 [card]
 primitive=Golem Foundry
-id=213000060
+id=1000062
 rarity=C
 [/card]
 [card]
 primitive=Great Furnace
-id=213000061
+id=1000063
 rarity=C
 [/card]
 [card]
 primitive=Groundskeeper
-id=213000062
+id=1000064
 rarity=U
 [/card]
 [card]
 primitive=Hammer of Purphoros
-id=213000063
+id=1000065
 rarity=R
 [/card]
 [card]
 primitive=Hangarback Walker
-id=213000064
+id=1000066
 rarity=R
 [/card]
 [card]
 primitive=Harrow
-id=213000065
+id=1000067
 rarity=C
 [/card]
 [card]
 primitive=Hearthhull, the Worldseed
-id=213000066
+id=1000068
 rarity=M
 [/card]
 [card]
 primitive=Horizon Explorer
-id=213000067
+id=1000069
 rarity=R
 [/card]
 [card]
 primitive=Infernal Grasp
-id=213000068
+id=1000070
 rarity=U
 [/card]
 [card]
 primitive=Insight Engine
-id=213000069
+id=1000071
 rarity=R
 [/card]
 [card]
 primitive=Inspirit, Flagship Vessel
-id=213000070
+id=1000072
 rarity=M
 [/card]
 [card]
 primitive=Irrigated Farmland
-id=213000071
+id=1000073
 rarity=R
 [/card]
 [card]
 primitive=Jhoira, Weatherlight Captain
-id=213000072
+id=1000074
 rarity=R
 [/card]
 [card]
 primitive=Juri, Master of the Revue
-id=213000073
+id=1000075
 rarity=U
 [/card]
 [card]
 primitive=Kappa Cannoneer
-id=213000074
+id=1000076
 rarity=R
 [/card]
 [card]
 primitive=Karn's Bastion
-id=213000075
+id=1000077
 rarity=R
 [/card]
 [card]
 primitive=Karplusan Forest
-id=213000076
+id=1000078
 rarity=R
 [/card]
 [card]
 primitive=Kilo, Apogee Mind
-id=213000077
+id=1000079
 rarity=M
 [/card]
 [card]
 primitive=Korvold, Fae-Cursed King
-id=213000078
+id=1000080
 rarity=M
 [/card]
 [card]
 primitive=Llanowar Wastes
-id=213000079
+id=1000081
 rarity=R
 [/card]
 [card]
 primitive=Loamcrafter Faun
-id=213000080
+id=1000082
 rarity=R
 [/card]
 [card]
 primitive=Lonely Sandbar
-id=213000081
+id=1000083
 rarity=C
 [/card]
 [card]
 primitive=Long-Range Sensor
-id=213000082
+id=1000084
 rarity=R
 [/card]
 [card]
 primitive=Lux Artillery
-id=213000083
+id=1000085
 rarity=R
 [/card]
 [card]
 primitive=Lux Cannon
-id=213000084
+id=1000086
 rarity=R
 [/card]
 [card]
 primitive=Maestros Theater
-id=213000085
+id=1000087
 rarity=C
 [/card]
 [card]
 primitive=Mayhem Devil
-id=213000086
+id=1000088
 rarity=U
 [/card]
 [card]
 primitive=Mazirek, Kraul Death Priest
-id=213000087
+id=1000089
 rarity=R
 [/card]
 [card]
 primitive=Mindless Automaton
-id=213000088
+id=1000090
 rarity=U
 [/card]
 [card]
 primitive=Moraug, Fury of Akoum
-id=213000089
+id=1000091
 rarity=M
 [/card]
 [card]
 primitive=Mountain Valley
-id=213000090
+id=1000092
 rarity=U
 [/card]
 [card]
 primitive=Moxite Refinery
-id=213000091
+id=1000093
 rarity=R
 [/card]
 [card]
 primitive=Multani, Yavimaya's Avatar
-id=213000092
+id=1000094
 rarity=M
 [/card]
 [card]
 primitive=Myriad Landscape
-id=213000093
+id=1000095
 rarity=U
 [/card]
 [card]
 primitive=Mystic Monastery
-id=213000094
+id=1000096
 rarity=U
 [/card]
 [card]
 primitive=Nature's Lore
-id=213000095
+id=1000097
 rarity=U
 [/card]
 [card]
 primitive=Night's Whisper
-id=213000096
+id=1000098
 rarity=C
 [/card]
 [card]
 primitive=Omnath, Locus of Rage
-id=213000097
+id=1000099
 rarity=M
 [/card]
 [card]
 primitive=Oracle of Mul Daya
-id=213000098
+id=1000100
 rarity=R
 [/card]
 [card]
 primitive=Organic Extinction
-id=213000099
+id=1000101
 rarity=R
 [/card]
 [card]
 primitive=Patrolling Peacemaker
-id=213000100
+id=1000102
 rarity=R
 [/card]
 [card]
 primitive=Pentad Prism
-id=213000101
+id=1000103
 rarity=U
 [/card]
 [card]
 primitive=Pest Infestation
-id=213000102
+id=1000104
 rarity=R
 [/card]
 [card]
 primitive=Phyrexian Metamorph
-id=213000103
+id=1000105
 rarity=R
 [/card]
 [card]
 primitive=Planetary Annihilation
-id=213000104
+id=1000106
 rarity=R
 [/card]
 [card]
 primitive=Pull from Tomorrow
-id=213000105
+id=1000107
 rarity=R
 [/card]
 [card]
 primitive=Putrefy
-id=213000106
+id=1000108
 rarity=U
 [/card]
 [card]
 primitive=Radiant Summit
-id=213000107
+id=1000109
 rarity=R
 [/card]
 [card]
 primitive=Rakdos Charm
-id=213000108
+id=1000110
 rarity=U
 [/card]
 [card]
 primitive=Rampaging Baloths
-id=213000109
+id=1000111
 rarity=R
 [/card]
 [card]
 primitive=Razortide Bridge
-id=213000110
+id=1000112
 rarity=C
 [/card]
 [card]
 primitive=Resourceful Defense
-id=213000111
+id=1000113
 rarity=R
 [/card]
 [card]
 primitive=Ripples of Potential
-id=213000112
+id=1000114
 rarity=R
 [/card]
 [card]
 primitive=Riveteers Overlook
-id=213000113
+id=1000115
 rarity=C
 [/card]
 [card]
 primitive=Rocky Tar Pit
-id=213000114
+id=1000116
 rarity=U
 [/card]
 [card]
 primitive=Roiling Regrowth
-id=213000115
+id=1000117
 rarity=U
 [/card]
 [card]
 primitive=Rugged Prairie
-id=213000116
+id=1000118
 rarity=R
 [/card]
 [card]
 primitive=Rustvale Bridge
-id=213000117
+id=1000119
 rarity=C
 [/card]
 [card]
 primitive=Satyr Wayfinder
-id=213000118
+id=1000120
 rarity=C
 [/card]
 [card]
 primitive=Scouring Swarm
-id=213000119
+id=1000121
 rarity=R
 [/card]
 [card]
 primitive=Seat of the Synod
-id=213000120
+id=1000122
 rarity=C
 [/card]
 [card]
 primitive=Secluded Steppe
-id=213000121
+id=1000123
 rarity=C
 [/card]
 [card]
 primitive=Sheltered Thicket
-id=213000122
+id=1000124
 rarity=R
 [/card]
 [card]
 primitive=Shivan Reef
-id=213000123
+id=1000125
 rarity=R
 [/card]
 [card]
 primitive=Silverbluff Bridge
-id=213000124
+id=1000126
 rarity=C
 [/card]
 [card]
 primitive=Skycloud Expanse
-id=213000125
+id=1000127
 rarity=R
 [/card]
 [card]
 primitive=Skyshroud Claim
-id=213000126
+id=1000128
 rarity=C
 [/card]
 [card]
 primitive=Smoldering Marsh
-id=213000127
+id=1000129
 rarity=R
 [/card]
 [card]
 primitive=Solar Array
-id=213000128
+id=1000130
 rarity=R
 [/card]
 [card]
 primitive=Sol Ring
-id=213000129
+id=1000131
 rarity=U
 [/card]
 [card]
 primitive=Soul-Guide Lantern
-id=213000130
+id=1000132
 rarity=U
 [/card]
 [card]
 primitive=Soul of Windgrace
-id=213000131
+id=1000133
 rarity=M
 [/card]
 [card]
 primitive=Spire of Industry
-id=213000132
+id=1000134
 rarity=R
 [/card]
 [card]
 primitive=Splendid Reclamation
-id=213000133
+id=1000135
 rarity=R
 [/card]
 [card]
 primitive=Springbloom Druid
-id=213000134
+id=1000136
 rarity=C
 [/card]
 [card]
 primitive=Sprouting Goblin
-id=213000135
+id=1000137
 rarity=U
 [/card]
 [card]
 primitive=Steel Overseer
-id=213000136
+id=1000138
 rarity=R
 [/card]
 [card]
 primitive=Sulfur Falls
-id=213000137
+id=1000139
 rarity=R
 [/card]
 [card]
 primitive=Sulfurous Springs
-id=213000138
+id=1000140
 rarity=R
 [/card]
 [card]
 primitive=Surge Conductor
-id=213000139
+id=1000141
 rarity=R
 [/card]
 [card]
 primitive=Swan Song
-id=213000140
+id=1000142
 rarity=R
 [/card]
 [card]
 primitive=Swords to Plowshares
-id=213000141
+id=1000143
 rarity=U
 [/card]
 [card]
 primitive=Szarel, Genesis Shepherd
-id=213000142
+id=1000144
 rarity=M
 [/card]
 [card]
 primitive=Tear Asunder
-id=213000143
+id=1000145
 rarity=U
 [/card]
 [card]
 primitive=Tekuthal, Inquiry Dominus
-id=213000144
+id=1000146
 rarity=M
 [/card]
 [card]
 primitive=Temple of Enlightenment
-id=213000145
+id=1000147
 rarity=R
 [/card]
 [card]
 primitive=Temple of Epiphany
-id=213000146
+id=1000148
 rarity=R
 [/card]
 [card]
 primitive=Temple of Triumph
-id=213000147
+id=1000149
 rarity=R
 [/card]
 [card]
 primitive=Terramorphic Expanse
-id=213000148
+id=1000150
 rarity=C
 [/card]
 [card]
 primitive=Tezzeret's Gambit
-id=213000149
+id=1000151
 rarity=U
 [/card]
 [card]
 primitive=The Gitrog Monster
-id=213000150
+id=1000152
 rarity=M
 [/card]
 [card]
 primitive=The Mycosynth Gardens
-id=213000151
+id=1000153
 rarity=R
 [/card]
 [card]
 primitive=Thirst for Knowledge
-id=213000152
+id=1000154
 rarity=U
 [/card]
 [card]
 primitive=Thought Monitor
-id=213000153
+id=1000155
 rarity=R
 [/card]
 [card]
 primitive=Threefold Thunderhulk
-id=213000154
+id=1000156
 rarity=R
 [/card]
 [card]
 primitive=Thrummingbird
-id=213000155
+id=1000157
 rarity=U
 [/card]
 [card]
 primitive=Tireless Tracker
-id=213000156
+id=1000158
 rarity=R
 [/card]
 [card]
 primitive=Titan Forge
-id=213000157
+id=1000159
 rarity=R
 [/card]
 [card]
 primitive=Titania, Protector of Argoth
-id=213000158
+id=1000160
 rarity=M
 [/card]
 [card]
 primitive=Twilight Mire
-id=213000159
+id=1000161
 rarity=R
 [/card]
 [card]
 primitive=Universal Surveillance
-id=213000160
+id=1000162
 rarity=R
 [/card]
 [card]
 primitive=Uthros Research Craft
-id=213000161
+id=1000163
 rarity=R
 [/card]
 [card]
 primitive=Uurg, Spawn of Turg
-id=213000162
+id=1000164
 rarity=U
 [/card]
 [card]
 primitive=Vernal Fen
-id=213000163
+id=1000165
 rarity=R
 [/card]
 [card]
 primitive=Viridescent Bog
-id=213000164
+id=1000166
 rarity=R
 [/card]
 [card]
 primitive=Wake the Past
-id=213000165
+id=1000167
 rarity=R
 [/card]
 [card]
 primitive=Wastes
-id=213000166
+id=1000168
 rarity=C
 [/card]
 [card]
 primitive=Windgrace's Judgment
-id=213000167
+id=1000169
 rarity=R
 [/card]
 [card]
 primitive=World Breaker
-id=213000168
+id=1000170
 rarity=M
 [/card]
 [card]
 primitive=Worldsoul's Rage
-id=213000169
+id=1000171
 rarity=R
 [/card]
